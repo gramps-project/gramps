@@ -85,16 +85,48 @@ class FilterProxyDb(ProxyDbBase):
     # include_* predicates — use precomputed handle sets
     # -----------------------------------------------------------------------
 
-    def include_person(self, handle):
+    def include_person(self, handle: str) -> bool:
+        """
+        Return True if *handle* is in the precomputed set of visible persons.
+
+        :param handle: database handle of the Person to test
+        :type handle: str
+        :returns: True if the person passed the filter
+        :rtype: bool
+        """
         return handle in self.plist
 
-    def include_family(self, handle):
+    def include_family(self, handle: str) -> bool:
+        """
+        Return True if *handle* is in the precomputed set of visible families.
+
+        :param handle: database handle of the Family to test
+        :type handle: str
+        :returns: True if the family is included (derived from filtered persons)
+        :rtype: bool
+        """
         return handle in self.flist
 
-    def include_event(self, handle):
+    def include_event(self, handle: str) -> bool:
+        """
+        Return True if *handle* is in the precomputed set of visible events.
+
+        :param handle: database handle of the Event to test
+        :type handle: str
+        :returns: True if the event passed the filter
+        :rtype: bool
+        """
         return handle in self.elist
 
-    def include_note(self, handle):
+    def include_note(self, handle: str) -> bool:
+        """
+        Return True if *handle* is in the precomputed set of visible notes.
+
+        :param handle: database handle of the Note to test
+        :type handle: str
+        :returns: True if the note passed the filter and its links are included
+        :rtype: bool
+        """
         return handle in self.nlist
 
     # -----------------------------------------------------------------------
@@ -103,17 +135,45 @@ class FilterProxyDb(ProxyDbBase):
     # These handle nested note_list fields inside sub-objects.
     # -----------------------------------------------------------------------
 
-    def _filter_note_list(self, note_list):
+    def _filter_note_list(self, note_list: list) -> list:
+        """
+        Return a new list containing only those note handles that are in the
+        precomputed visible notes set.
+
+        :param note_list: list of note handles to filter
+        :type note_list: list[str]
+        :returns: filtered list of note handles
+        :rtype: list[str]
+        """
         return [h for h in note_list if h in self.nlist]
 
-    def _sanitize_subnotes(self, items):
-        """Filter note_list on each item in a DataList."""
+    def _sanitize_subnotes(self, items) -> list:
+        """
+        Filter note_list on each item in a DataList.
+
+        :param items: iterable of DataDict sub-objects to sanitize
+        :returns: the items list with each item's note_list filtered in place
+        :rtype: list
+        """
         for item in items:
             if hasattr(item, "note_list"):
                 item["note_list"] = self._filter_note_list(item.note_list)
         return items
 
-    def sanitize_person(self, data):
+    def sanitize_person(self, data: "DataDict") -> "DataDict":
+        """
+        Filter note_list on nested sub-objects of the person DataDict.
+
+        Top-level note_list filtering is handled by the base class; this method
+        handles note_list fields inside attribute_list, address_list,
+        event_ref_list, media_list, lds_ord_list, person_ref_list, and
+        primary_name sub-objects.
+
+        :param data: raw DataDict for the Person, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         self._sanitize_subnotes(data.attribute_list)
         self._sanitize_subnotes(data.address_list)
         self._sanitize_subnotes(data.event_ref_list)
@@ -127,7 +187,19 @@ class FilterProxyDb(ProxyDbBase):
         self._sanitize_subnotes(data.alternate_names)
         return data
 
-    def sanitize_family(self, data):
+    def sanitize_family(self, data: "DataDict") -> "DataDict":
+        """
+        Filter note_list on nested sub-objects of the family DataDict.
+
+        Top-level note_list filtering is handled by the base class; this method
+        handles note_list fields inside attribute_list, event_ref_list,
+        media_list, lds_ord_list, and child_ref_list sub-objects.
+
+        :param data: raw DataDict for the Family, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         self._sanitize_subnotes(data.attribute_list)
         self._sanitize_subnotes(data.event_ref_list)
         self._sanitize_subnotes(data.media_list)
@@ -135,24 +207,79 @@ class FilterProxyDb(ProxyDbBase):
         self._sanitize_subnotes(data.child_ref_list)
         return data
 
-    def sanitize_source(self, data):
+    def sanitize_source(self, data: "DataDict") -> "DataDict":
+        """
+        Filter note_list on nested sub-objects of the source DataDict.
+
+        Top-level note_list filtering is handled by the base class; this method
+        handles note_list fields inside reporef_list and media_list sub-objects.
+
+        :param data: raw DataDict for the Source, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         self._sanitize_subnotes(data.reporef_list)
         self._sanitize_subnotes(data.media_list)
         return data
 
-    def sanitize_citation(self, data):
+    def sanitize_citation(self, data: "DataDict") -> "DataDict":
+        """
+        Filter note_list on nested sub-objects of the citation DataDict.
+
+        Top-level note_list filtering is handled by the base class; this method
+        handles note_list fields inside media_list sub-objects.
+
+        :param data: raw DataDict for the Citation, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         self._sanitize_subnotes(data.media_list)
         return data
 
-    def sanitize_place(self, data):
+    def sanitize_place(self, data: "DataDict") -> "DataDict":
+        """
+        Filter note_list on nested sub-objects of the place DataDict.
+
+        Top-level note_list filtering is handled by the base class; this method
+        handles note_list fields inside media_list sub-objects.
+
+        :param data: raw DataDict for the Place, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         self._sanitize_subnotes(data.media_list)
         return data
 
-    def sanitize_media(self, data):
+    def sanitize_media(self, data: "DataDict") -> "DataDict":
+        """
+        Filter note_list on nested sub-objects of the media DataDict.
+
+        Top-level note_list filtering is handled by the base class; this method
+        handles note_list fields inside attribute_list sub-objects.
+
+        :param data: raw DataDict for the Media, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         self._sanitize_subnotes(data.attribute_list)
         return data
 
-    def sanitize_repository(self, data):
+    def sanitize_repository(self, data: "DataDict") -> "DataDict":
+        """
+        Filter note_list on nested sub-objects of the repository DataDict.
+
+        Top-level note_list filtering is handled by the base class; this method
+        handles note_list fields inside address_list sub-objects.
+
+        :param data: raw DataDict for the Repository, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict
+        :rtype: DataDict
+        """
         self._sanitize_subnotes(data.address_list)
         return data
 
@@ -160,42 +287,120 @@ class FilterProxyDb(ProxyDbBase):
     # Handle list / iterator overrides (using precomputed sets for speed)
     # -----------------------------------------------------------------------
 
-    def get_person_handles(self, sort_handles=False, locale=glocale):
+    def get_person_handles(self, sort_handles=False, locale=glocale) -> list:
+        """
+        Return a list of database handles for all Person objects that passed
+        the filter.  The list is not sorted (sort_handles is ignored here).
+
+        :param sort_handles: ignored; the precomputed set is unordered
+        :type sort_handles: bool
+        :param locale: locale used for sorting (ignored)
+        :type locale: GrampsLocale
+        :returns: list of person handles
+        :rtype: list[str]
+        """
         # FIXME: plist is not a sorted list of handles
         return list(self.plist)
 
     def iter_person_handles(self):
+        """
+        Return an iterator over database handles for all visible Person objects.
+
+        :returns: iterator over person handles
+        """
         return self.plist
 
     def iter_people(self):
+        """
+        Return an iterator over Person objects that passed the filter.
+
+        :returns: iterator over Person objects
+        """
         return map(self.get_person_from_handle, self.plist)
 
-    def get_event_handles(self):
+    def get_event_handles(self) -> list:
+        """
+        Return a list of database handles for all Event objects that passed
+        the filter.
+
+        :returns: list of event handles
+        :rtype: list[str]
+        """
         return list(self.elist)
 
     def iter_event_handles(self):
+        """
+        Return an iterator over database handles for all visible Event objects.
+
+        :returns: iterator over event handles
+        """
         return self.elist
 
     def iter_events(self):
+        """
+        Return an iterator over Event objects that passed the filter.
+
+        :returns: iterator over Event objects
+        """
         return map(self.get_event_from_handle, self.elist)
 
-    def get_family_handles(self, sort_handles=False, locale=glocale):
+    def get_family_handles(self, sort_handles=False, locale=glocale) -> list:
+        """
+        Return a list of database handles for all Family objects derived from
+        the filtered person set.  The list is not sorted (sort_handles is
+        ignored here).
+
+        :param sort_handles: ignored; the precomputed set is unordered
+        :type sort_handles: bool
+        :param locale: locale used for sorting (ignored)
+        :type locale: GrampsLocale
+        :returns: list of family handles
+        :rtype: list[str]
+        """
         # FIXME: flist is not a sorted list of handles
         return list(self.flist)
 
     def iter_family_handles(self):
+        """
+        Return an iterator over database handles for all visible Family objects.
+
+        :returns: iterator over family handles
+        """
         return self.flist
 
     def iter_families(self):
+        """
+        Return an iterator over Family objects derived from the filtered person
+        set.
+
+        :returns: iterator over Family objects
+        """
         return map(self.get_family_from_handle, self.flist)
 
-    def get_note_handles(self):
+    def get_note_handles(self) -> list:
+        """
+        Return a list of database handles for all Note objects that passed
+        the filter.
+
+        :returns: list of note handles
+        :rtype: list[str]
+        """
         return list(self.nlist)
 
     def iter_note_handles(self):
+        """
+        Return an iterator over database handles for all visible Note objects.
+
+        :returns: iterator over note handles
+        """
         return self.nlist
 
     def iter_notes(self):
+        """
+        Return an iterator over Note objects that passed the filter.
+
+        :returns: iterator over Note objects
+        """
         return map(self.get_note_from_handle, self.nlist)
 
     def get_default_person(self):
