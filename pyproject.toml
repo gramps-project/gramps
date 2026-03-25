@@ -39,7 +39,7 @@ maintainers = [
     {name = "Gramps Development Team", email = "benny.malengier@gmail.com"}
 ]
 requires-python = ">= 3.10"
-dependencies = ["orjson"]
+dependencies = ["orjson", "pyparsing"]
 classifiers = [
     "Development Status :: 1 - Planning",
     "Environment :: Console",
