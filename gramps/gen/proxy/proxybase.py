@@ -154,139 +154,139 @@ class ProxyDbBase(DbReadBase):
 
     # -----------------------------------------------------------------------
     # include_* predicates — return True if the object should be visible.
-    # Default: include everything (handle is not None).
+    # Default: include everything.
     # Subclasses override to implement filtering.
     # -----------------------------------------------------------------------
 
     def include_person(self, handle: str) -> bool:
         """
         Return True if the object identified by *handle* should be visible
-        through this proxy.  The base implementation includes every non-None
-        handle; subclasses override to implement type-specific filtering.
+        through this proxy.  The base implementation includes everything;
+        subclasses override to implement type-specific filtering.
 
         :param handle: database handle of the object to test
         :type handle: str
         :returns: True if the object is included, False if it is filtered out
         :rtype: bool
         """
-        return handle is not None
+        return True
 
     def include_family(self, handle: str) -> bool:
         """
         Return True if the object identified by *handle* should be visible
-        through this proxy.  The base implementation includes every non-None
-        handle; subclasses override to implement type-specific filtering.
+        through this proxy.  The base implementation includes everything;
+        subclasses override to implement type-specific filtering.
 
         :param handle: database handle of the object to test
         :type handle: str
         :returns: True if the object is included, False if it is filtered out
         :rtype: bool
         """
-        return handle is not None
+        return True
 
     def include_event(self, handle: str) -> bool:
         """
         Return True if the object identified by *handle* should be visible
-        through this proxy.  The base implementation includes every non-None
-        handle; subclasses override to implement type-specific filtering.
+        through this proxy.  The base implementation includes everything;
+        subclasses override to implement type-specific filtering.
 
         :param handle: database handle of the object to test
         :type handle: str
         :returns: True if the object is included, False if it is filtered out
         :rtype: bool
         """
-        return handle is not None
+        return True
 
     def include_source(self, handle: str) -> bool:
         """
         Return True if the object identified by *handle* should be visible
-        through this proxy.  The base implementation includes every non-None
-        handle; subclasses override to implement type-specific filtering.
+        through this proxy.  The base implementation includes everything;
+        subclasses override to implement type-specific filtering.
 
         :param handle: database handle of the object to test
         :type handle: str
         :returns: True if the object is included, False if it is filtered out
         :rtype: bool
         """
-        return handle is not None
+        return True
 
     def include_citation(self, handle: str) -> bool:
         """
         Return True if the object identified by *handle* should be visible
-        through this proxy.  The base implementation includes every non-None
-        handle; subclasses override to implement type-specific filtering.
+        through this proxy.  The base implementation includes everything;
+        subclasses override to implement type-specific filtering.
 
         :param handle: database handle of the object to test
         :type handle: str
         :returns: True if the object is included, False if it is filtered out
         :rtype: bool
         """
-        return handle is not None
+        return True
 
     def include_place(self, handle: str) -> bool:
         """
         Return True if the object identified by *handle* should be visible
-        through this proxy.  The base implementation includes every non-None
-        handle; subclasses override to implement type-specific filtering.
+        through this proxy.  The base implementation includes everything;
+        subclasses override to implement type-specific filtering.
 
         :param handle: database handle of the object to test
         :type handle: str
         :returns: True if the object is included, False if it is filtered out
         :rtype: bool
         """
-        return handle is not None
+        return True
 
     def include_media(self, handle: str) -> bool:
         """
         Return True if the object identified by *handle* should be visible
-        through this proxy.  The base implementation includes every non-None
-        handle; subclasses override to implement type-specific filtering.
+        through this proxy.  The base implementation includes everything;
+        subclasses override to implement type-specific filtering.
 
         :param handle: database handle of the object to test
         :type handle: str
         :returns: True if the object is included, False if it is filtered out
         :rtype: bool
         """
-        return handle is not None
+        return True
 
     def include_repository(self, handle: str) -> bool:
         """
         Return True if the object identified by *handle* should be visible
-        through this proxy.  The base implementation includes every non-None
-        handle; subclasses override to implement type-specific filtering.
+        through this proxy.  The base implementation includes everything;
+        subclasses override to implement type-specific filtering.
 
         :param handle: database handle of the object to test
         :type handle: str
         :returns: True if the object is included, False if it is filtered out
         :rtype: bool
         """
-        return handle is not None
+        return True
 
     def include_note(self, handle: str) -> bool:
         """
         Return True if the object identified by *handle* should be visible
-        through this proxy.  The base implementation includes every non-None
-        handle; subclasses override to implement type-specific filtering.
+        through this proxy.  The base implementation includes everything;
+        subclasses override to implement type-specific filtering.
 
         :param handle: database handle of the object to test
         :type handle: str
         :returns: True if the object is included, False if it is filtered out
         :rtype: bool
         """
-        return handle is not None
+        return True
 
     def include_tag(self, handle: str) -> bool:
         """
         Return True if the object identified by *handle* should be visible
-        through this proxy.  The base implementation includes every non-None
-        handle; subclasses override to implement type-specific filtering.
+        through this proxy.  The base implementation includes everything;
+        subclasses override to implement type-specific filtering.
 
         :param handle: database handle of the object to test
         :type handle: str
         :returns: True if the object is included, False if it is filtered out
         :rtype: bool
         """
-        return handle is not None
+        return True
 
     # Map gramps:// link object class names to the corresponding include_*
     # method name on this proxy.  Used by _note_links_included.
