@@ -286,7 +286,7 @@ def looking_for_urls_in_user_css(css_file):
     cssfile = os.path.join(USER_CSS, css_file)
     with open(cssfile) as css:
         cssd = css.read()
-        comments = pyparsing.nestedExpr("/*", "*/").suppress()
+        comments = pyparsing.nested_expr("/*", "*/").suppress()
         without_comments = comments.transformString(cssd)
         data = without_comments.splitlines()
         for line in data:
