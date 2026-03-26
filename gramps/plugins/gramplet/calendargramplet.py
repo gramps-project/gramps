@@ -52,45 +52,19 @@ class CalendarGramplet(Gramplet):
         self.__classname = classname  # must be set before calling super().__init__
         super().__init__(gui, nav_group)
 
-    def db_changed(self):
-        self.main()
-
-    def main(self):
-        active_handle = self.get_active(self.__classname)
-        date = Today()
-        if active_handle:
-            if self.__classname == "Event":
-                active = self.dbstate.db.get_event_from_handle(active_handle)
-                if active:
-                    date = active.get_date_object()
-            elif self.__classname == "Person":
-                active = self.dbstate.db.get_person_from_handle(active_handle)
-                if active:
-                    bd_event = get_birth_or_fallback(self.dbstate.db, active)
-                    if bd_event:
-                        date = bd_event.get_date_object()
-            elif self.__classname == "Family":
-                active = self.dbstate.db.get_family_from_handle(active_handle)
-                if active:
-                    fam_evt_ref_list = active.get_event_ref_list()
-                    if fam_evt_ref_list:
-                        for evt_ref in fam_evt_ref_list:
-                            evt = self.dbstate.db.get_event_from_handle(evt_ref.ref)
-                            if evt:
-                                evt_type = evt.get_type()
-                                if evt_type == EventType.MARRIAGE:
-                                    date = evt.get_date_object()
+    def show_on_calendar(self, date):
+        date = date.to_calendar("gregorian")
+        year = date.get_year()
+        if year < 0:  # Gtk.Calendar only works for positive years
+            date = Today()
             year = date.get_year()
-            if year < 1:
-                date = Today()
-                year = date.get_year()
-            month = date.get_month()
-            if month > 0 and month < 13:
-                month -= 1
-            else:
-                month = 0
-            self.gui.calendar.select_month(month, date.get_year())
-            self.gui.calendar.select_day(date.get_day())
+        month = date.get_month()
+        if month > 0 and month < 13:
+            month -= 1
+        else:
+            month = 0
+        self.gui.calendar.select_month(month, date.get_year())
+        self.gui.calendar.select_day(date.get_day())
 
     def init(self):
         self.set_tooltip(_("Double-click a day for details"))
@@ -115,9 +89,6 @@ class CalendarGramplet(Gramplet):
         date.set_yr_mon_day(year, month + 1, day)
         run_quick_report_by_name(self.gui.dbstate, self.gui.uistate, "onthisday", date)
 
-    def active_changed(self, handle):
-        self.main()
-
 
 class StandardCalendar(CalendarGramplet):
     """
@@ -125,7 +96,7 @@ class StandardCalendar(CalendarGramplet):
     """
 
     def __init__(self, gui, nav_group=0):
-        super().__init__(gui, nav_group)
+        super().__init__("Other", gui, nav_group)
 
 
 class PersonBirthCalendar(CalendarGramplet):
@@ -134,7 +105,7 @@ class PersonBirthCalendar(CalendarGramplet):
     """
 
     def __init__(self, gui, nav_group=0):
-        super().__init__(gui, nav_group)
+        super().__init__("Person", gui, nav_group)
         self.connect_signal("Person", self.update)
 
     def db_changed(self):
@@ -161,7 +132,7 @@ class PersonDeathCalendar(CalendarGramplet):
     """
 
     def __init__(self, gui, nav_group=0):
-        super().__init__(gui, nav_group)
+        super().__init__("Person", gui, nav_group)
         self.connect_signal("Person", self.update)
 
     def db_changed(self):
@@ -188,7 +159,7 @@ class FamilyCalendar(CalendarGramplet):
     """
 
     def __init__(self, gui, nav_group=0):
-        super().__init__(gui, nav_group)
+        super().__init__("Family", gui, nav_group)
         self.connect_signal("Family", self.update)
 
     def db_changed(self):
@@ -221,7 +192,7 @@ class EventCalendar(CalendarGramplet):
     """
 
     def __init__(self, gui, nav_group=0):
-        super().__init__(gui, nav_group)
+        super().__init__("Event", gui, nav_group)
         self.connect_signal("Event", self.update)
 
     def db_changed(self):
