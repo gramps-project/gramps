@@ -1002,10 +1002,14 @@ class ProxyDbBase(DbReadBase):
         """
         return data_to_object(self.get_raw_tag_data(handle))
 
-    def get_person_from_gramps_id(self, val):
+    def get_person_from_gramps_id(self, val: str) -> Person:
         """
         Finds a Person in the database from the passed Gramps ID.
 
+        :param val: the Gramps ID of the Person to retrieve
+        :type val: str
+        :returns: the Person object
+        :rtype: Person
         :raises HandleError: if no such Person exists or it is filtered
         """
         person = self.db.get_person_from_gramps_id(val)
@@ -1013,10 +1017,14 @@ class ProxyDbBase(DbReadBase):
             raise HandleError(val)
         return self.get_person_from_handle(person.handle)
 
-    def get_family_from_gramps_id(self, val):
+    def get_family_from_gramps_id(self, val: str) -> Family:
         """
         Finds a Family in the database from the passed Gramps ID.
 
+        :param val: the Gramps ID of the Family to retrieve
+        :type val: str
+        :returns: the Family object
+        :rtype: Family
         :raises HandleError: if no such Family exists or it is filtered
         """
         family = self.db.get_family_from_gramps_id(val)
@@ -1024,10 +1032,14 @@ class ProxyDbBase(DbReadBase):
             raise HandleError(val)
         return self.get_family_from_handle(family.handle)
 
-    def get_event_from_gramps_id(self, val):
+    def get_event_from_gramps_id(self, val: str) -> Event:
         """
         Finds an Event in the database from the passed Gramps ID.
 
+        :param val: the Gramps ID of the Event to retrieve
+        :type val: str
+        :returns: the Event object
+        :rtype: Event
         :raises HandleError: if no such Event exists or it is filtered
         """
         event = self.db.get_event_from_gramps_id(val)
@@ -1035,10 +1047,14 @@ class ProxyDbBase(DbReadBase):
             raise HandleError(val)
         return self.get_event_from_handle(event.handle)
 
-    def get_place_from_gramps_id(self, val):
+    def get_place_from_gramps_id(self, val: str) -> Place:
         """
         Finds a Place in the database from the passed Gramps ID.
 
+        :param val: the Gramps ID of the Place to retrieve
+        :type val: str
+        :returns: the Place object
+        :rtype: Place
         :raises HandleError: if no such Place exists or it is filtered
         """
         place = self.db.get_place_from_gramps_id(val)
@@ -1046,10 +1062,14 @@ class ProxyDbBase(DbReadBase):
             raise HandleError(val)
         return self.get_place_from_handle(place.handle)
 
-    def get_source_from_gramps_id(self, val):
+    def get_source_from_gramps_id(self, val: str) -> Source:
         """
         Finds a Source in the database from the passed Gramps ID.
 
+        :param val: the Gramps ID of the Source to retrieve
+        :type val: str
+        :returns: the Source object
+        :rtype: Source
         :raises HandleError: if no such Source exists or it is filtered
         """
         source = self.db.get_source_from_gramps_id(val)
@@ -1057,10 +1077,14 @@ class ProxyDbBase(DbReadBase):
             raise HandleError(val)
         return self.get_source_from_handle(source.handle)
 
-    def get_citation_from_gramps_id(self, val):
+    def get_citation_from_gramps_id(self, val: str) -> Citation:
         """
         Finds a Citation in the database from the passed Gramps ID.
 
+        :param val: the Gramps ID of the Citation to retrieve
+        :type val: str
+        :returns: the Citation object
+        :rtype: Citation
         :raises HandleError: if no such Citation exists or it is filtered
         """
         citation = self.db.get_citation_from_gramps_id(val)
@@ -1068,10 +1092,14 @@ class ProxyDbBase(DbReadBase):
             raise HandleError(val)
         return self.get_citation_from_handle(citation.handle)
 
-    def get_media_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, val: str) -> Media:
         """
         Finds a Media in the database from the passed Gramps ID.
 
+        :param val: the Gramps ID of the Media to retrieve
+        :type val: str
+        :returns: the Media object
+        :rtype: Media
         :raises HandleError: if no such Media exists or it is filtered
         """
         media = self.db.get_media_from_gramps_id(val)
@@ -1079,10 +1107,14 @@ class ProxyDbBase(DbReadBase):
             raise HandleError(val)
         return self.get_media_from_handle(media.handle)
 
-    def get_repository_from_gramps_id(self, val):
+    def get_repository_from_gramps_id(self, val: str) -> Repository:
         """
         Finds a Repository in the database from the passed Gramps ID.
 
+        :param val: the Gramps ID of the Repository to retrieve
+        :type val: str
+        :returns: the Repository object
+        :rtype: Repository
         :raises HandleError: if no such Repository exists or it is filtered
         """
         repository = self.db.get_repository_from_gramps_id(val)
@@ -1090,10 +1122,14 @@ class ProxyDbBase(DbReadBase):
             raise HandleError(val)
         return self.get_repository_from_handle(repository.handle)
 
-    def get_note_from_gramps_id(self, val):
+    def get_note_from_gramps_id(self, val: str) -> Note:
         """
         Finds a Note in the database from the passed Gramps ID.
 
+        :param val: the Gramps ID of the Note to retrieve
+        :type val: str
+        :returns: the Note object
+        :rtype: Note
         :raises HandleError: if no such Note exists or it is filtered
         """
         note = self.db.get_note_from_gramps_id(val)
@@ -1101,10 +1137,14 @@ class ProxyDbBase(DbReadBase):
             raise HandleError(val)
         return self.get_note_from_handle(note.handle)
 
-    def get_tag_from_name(self, val):
+    def get_tag_from_name(self, val: str) -> Tag:
         """
         Finds a Tag in the database from the passed tag name.
 
+        :param val: the name of the Tag to retrieve
+        :type val: str
+        :returns: the Tag object
+        :rtype: Tag
         :raises HandleError: if no such Tag exists or it is filtered
         """
         tag = self.db.get_tag_from_name(val)
