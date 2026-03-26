@@ -120,10 +120,9 @@ class PrivateProxyTest(unittest.TestCase):
 
     # --- gramps_id lookup ---
 
-    def test_gramps_id_raises_for_private(self):
+    def test_gramps_id_returns_none_for_private(self):
         # Private person's gramps_id is I0988
-        with self.assertRaises(HandleError):
-            self.db.get_person_from_gramps_id("I0988")
+        self.assertIsNone(self.db.get_person_from_gramps_id("I0988"))
 
     def test_gramps_id_returns_person_for_normal(self):
         raw = self.db.basedb.get_person_from_handle(NORMAL_PERSON)
@@ -488,9 +487,8 @@ class FilterProxyTest(unittest.TestCase):
         with self.assertRaises(HandleError):
             self.db_one.get_raw_person_data(DEAD_PERSON)
 
-    def test_excluded_person_gramps_id_raises(self):
-        with self.assertRaises(HandleError):
-            self.db_one.get_person_from_gramps_id("I0001")
+    def test_excluded_person_gramps_id_returns_none(self):
+        self.assertIsNone(self.db_one.get_person_from_gramps_id("I0001"))
 
     def test_family_of_included_person_accessible(self):
         # NORMAL_PERSON (I0122) has parent family DLTJQCAPOXEIKSOU3J

@@ -51,14 +51,23 @@ from ..lib import (
 from ..lib.json_utils import object_to_data, data_to_object, DataDict
 from ..const import GRAMPS_LOCALE as glocale
 from ..types import (
+    CitationGrampsID,
     CitationHandle,
+    EventGrampsID,
     EventHandle,
+    FamilyGrampsID,
     FamilyHandle,
+    MediaGrampsID,
     MediaHandle,
+    NoteGrampsID,
     NoteHandle,
+    PersonGrampsID,
     PersonHandle,
+    PlaceGrampsID,
     PlaceHandle,
+    RepositoryGrampsID,
     RepositoryHandle,
+    SourceGrampsID,
     SourceHandle,
     TagHandle,
 )
@@ -1002,140 +1011,160 @@ class ProxyDbBase(DbReadBase):
         """
         return data_to_object(self.get_raw_tag_data(handle))
 
-    def get_person_from_gramps_id(self, val: str) -> Person:
+    def get_person_from_gramps_id(self, val: PersonGrampsID) -> Person | None:
         """
         Finds a Person in the database from the passed Gramps ID.
 
         :param val: the Gramps ID of the Person to retrieve
-        :type val: str
-        :returns: the Person object
-        :rtype: Person
-        :raises HandleError: if no such Person exists or it is filtered
+        :type val: PersonGrampsID
+        :returns: the Person object, or None if not found or filtered
+        :rtype: Person | None
         """
         person = self.db.get_person_from_gramps_id(val)
         if person is None:
-            raise HandleError(val)
-        return self.get_person_from_handle(person.handle)
+            return None
+        try:
+            return self.get_person_from_handle(person.handle)
+        except HandleError:
+            return None
 
-    def get_family_from_gramps_id(self, val: str) -> Family:
+    def get_family_from_gramps_id(self, val: FamilyGrampsID) -> Family | None:
         """
         Finds a Family in the database from the passed Gramps ID.
 
         :param val: the Gramps ID of the Family to retrieve
-        :type val: str
-        :returns: the Family object
-        :rtype: Family
-        :raises HandleError: if no such Family exists or it is filtered
+        :type val: FamilyGrampsID
+        :returns: the Family object, or None if not found or filtered
+        :rtype: Family | None
         """
         family = self.db.get_family_from_gramps_id(val)
         if family is None:
-            raise HandleError(val)
-        return self.get_family_from_handle(family.handle)
+            return None
+        try:
+            return self.get_family_from_handle(family.handle)
+        except HandleError:
+            return None
 
-    def get_event_from_gramps_id(self, val: str) -> Event:
+    def get_event_from_gramps_id(self, val: EventGrampsID) -> Event | None:
         """
         Finds an Event in the database from the passed Gramps ID.
 
         :param val: the Gramps ID of the Event to retrieve
-        :type val: str
-        :returns: the Event object
-        :rtype: Event
-        :raises HandleError: if no such Event exists or it is filtered
+        :type val: EventGrampsID
+        :returns: the Event object, or None if not found or filtered
+        :rtype: Event | None
         """
         event = self.db.get_event_from_gramps_id(val)
         if event is None:
-            raise HandleError(val)
-        return self.get_event_from_handle(event.handle)
+            return None
+        try:
+            return self.get_event_from_handle(event.handle)
+        except HandleError:
+            return None
 
-    def get_place_from_gramps_id(self, val: str) -> Place:
+    def get_place_from_gramps_id(self, val: PlaceGrampsID) -> Place | None:
         """
         Finds a Place in the database from the passed Gramps ID.
 
         :param val: the Gramps ID of the Place to retrieve
-        :type val: str
-        :returns: the Place object
-        :rtype: Place
-        :raises HandleError: if no such Place exists or it is filtered
+        :type val: PlaceGrampsID
+        :returns: the Place object, or None if not found or filtered
+        :rtype: Place | None
         """
         place = self.db.get_place_from_gramps_id(val)
         if place is None:
-            raise HandleError(val)
-        return self.get_place_from_handle(place.handle)
+            return None
+        try:
+            return self.get_place_from_handle(place.handle)
+        except HandleError:
+            return None
 
-    def get_source_from_gramps_id(self, val: str) -> Source:
+    def get_source_from_gramps_id(self, val: SourceGrampsID) -> Source | None:
         """
         Finds a Source in the database from the passed Gramps ID.
 
         :param val: the Gramps ID of the Source to retrieve
-        :type val: str
-        :returns: the Source object
-        :rtype: Source
-        :raises HandleError: if no such Source exists or it is filtered
+        :type val: SourceGrampsID
+        :returns: the Source object, or None if not found or filtered
+        :rtype: Source | None
         """
         source = self.db.get_source_from_gramps_id(val)
         if source is None:
-            raise HandleError(val)
-        return self.get_source_from_handle(source.handle)
+            return None
+        try:
+            return self.get_source_from_handle(source.handle)
+        except HandleError:
+            return None
 
-    def get_citation_from_gramps_id(self, val: str) -> Citation:
+    def get_citation_from_gramps_id(self, val: CitationGrampsID) -> Citation | None:
         """
         Finds a Citation in the database from the passed Gramps ID.
 
         :param val: the Gramps ID of the Citation to retrieve
-        :type val: str
-        :returns: the Citation object
-        :rtype: Citation
-        :raises HandleError: if no such Citation exists or it is filtered
+        :type val: CitationGrampsID
+        :returns: the Citation object, or None if not found or filtered
+        :rtype: Citation | None
         """
         citation = self.db.get_citation_from_gramps_id(val)
         if citation is None:
-            raise HandleError(val)
-        return self.get_citation_from_handle(citation.handle)
+            return None
+        try:
+            return self.get_citation_from_handle(citation.handle)
+        except HandleError:
+            return None
 
-    def get_media_from_gramps_id(self, val: str) -> Media:
+    def get_media_from_gramps_id(self, val: MediaGrampsID) -> Media | None:
         """
         Finds a Media in the database from the passed Gramps ID.
 
         :param val: the Gramps ID of the Media to retrieve
-        :type val: str
-        :returns: the Media object
-        :rtype: Media
-        :raises HandleError: if no such Media exists or it is filtered
+        :type val: MediaGrampsID
+        :returns: the Media object, or None if not found or filtered
+        :rtype: Media | None
         """
         media = self.db.get_media_from_gramps_id(val)
         if media is None:
-            raise HandleError(val)
-        return self.get_media_from_handle(media.handle)
+            return None
+        try:
+            return self.get_media_from_handle(media.handle)
+        except HandleError:
+            return None
 
-    def get_repository_from_gramps_id(self, val: str) -> Repository:
+    def get_repository_from_gramps_id(
+        self, val: RepositoryGrampsID
+    ) -> Repository | None:
         """
         Finds a Repository in the database from the passed Gramps ID.
 
         :param val: the Gramps ID of the Repository to retrieve
-        :type val: str
-        :returns: the Repository object
-        :rtype: Repository
-        :raises HandleError: if no such Repository exists or it is filtered
+        :type val: RepositoryGrampsID
+        :returns: the Repository object, or None if not found or filtered
+        :rtype: Repository | None
         """
         repository = self.db.get_repository_from_gramps_id(val)
         if repository is None:
-            raise HandleError(val)
-        return self.get_repository_from_handle(repository.handle)
+            return None
+        try:
+            return self.get_repository_from_handle(repository.handle)
+        except HandleError:
+            return None
 
-    def get_note_from_gramps_id(self, val: str) -> Note:
+    def get_note_from_gramps_id(self, val: NoteGrampsID) -> Note | None:
         """
         Finds a Note in the database from the passed Gramps ID.
 
         :param val: the Gramps ID of the Note to retrieve
-        :type val: str
-        :returns: the Note object
-        :rtype: Note
-        :raises HandleError: if no such Note exists or it is filtered
+        :type val: NoteGrampsID
+        :returns: the Note object, or None if not found or filtered
+        :rtype: Note | None
         """
         note = self.db.get_note_from_gramps_id(val)
         if note is None:
-            raise HandleError(val)
-        return self.get_note_from_handle(note.handle)
+            return None
+        try:
+            return self.get_note_from_handle(note.handle)
+        except HandleError:
+            return None
 
     def get_tag_from_name(self, val: str) -> Tag:
         """
