@@ -882,194 +882,234 @@ class ProxyDbBase(DbReadBase):
         # Default behaviour: lookup attribute in parent object
         return getattr(self.db, name)
 
-    def get_person_from_handle(self, handle):
+    def get_person_from_handle(self, handle: PersonHandle) -> Person:
         """
         Finds a Person in the database from the passed gramps handle.
-        If no such Person exists or is filtered, None is returned.
+
+        :param handle: database handle of the Person
+        :type handle: PersonHandle
+        :returns: the Person object
+        :rtype: Person
+        :raises HandleError: if the handle does not exist or is filtered
         """
-        if not self.include_person(handle):
-            return None
         return data_to_object(self.get_raw_person_data(handle))
 
-    def get_family_from_handle(self, handle):
+    def get_family_from_handle(self, handle: FamilyHandle) -> Family:
         """
         Finds a Family in the database from the passed gramps handle.
-        If no such Family exists or is filtered, None is returned.
+
+        :param handle: database handle of the Family
+        :type handle: FamilyHandle
+        :returns: the Family object
+        :rtype: Family
+        :raises HandleError: if the handle does not exist or is filtered
         """
-        if not self.include_family(handle):
-            return None
         return data_to_object(self.get_raw_family_data(handle))
 
-    def get_event_from_handle(self, handle):
+    def get_event_from_handle(self, handle: EventHandle) -> Event:
         """
         Finds an Event in the database from the passed gramps handle.
-        If no such Event exists or is filtered, None is returned.
+
+        :param handle: database handle of the Event
+        :type handle: EventHandle
+        :returns: the Event object
+        :rtype: Event
+        :raises HandleError: if the handle does not exist or is filtered
         """
-        if not self.include_event(handle):
-            return None
         return data_to_object(self.get_raw_event_data(handle))
 
-    def get_source_from_handle(self, handle):
+    def get_source_from_handle(self, handle: SourceHandle) -> Source:
         """
         Finds a Source in the database from the passed gramps handle.
-        If no such Source exists or is filtered, None is returned.
+
+        :param handle: database handle of the Source
+        :type handle: SourceHandle
+        :returns: the Source object
+        :rtype: Source
+        :raises HandleError: if the handle does not exist or is filtered
         """
-        if not self.include_source(handle):
-            return None
         return data_to_object(self.get_raw_source_data(handle))
 
-    def get_citation_from_handle(self, handle):
+    def get_citation_from_handle(self, handle: CitationHandle) -> Citation:
         """
         Finds a Citation in the database from the passed gramps handle.
-        If no such Citation exists or is filtered, None is returned.
+
+        :param handle: database handle of the Citation
+        :type handle: CitationHandle
+        :returns: the Citation object
+        :rtype: Citation
+        :raises HandleError: if the handle does not exist or is filtered
         """
-        if not self.include_citation(handle):
-            return None
         return data_to_object(self.get_raw_citation_data(handle))
 
-    def get_place_from_handle(self, handle):
+    def get_place_from_handle(self, handle: PlaceHandle) -> Place:
         """
         Finds a Place in the database from the passed gramps handle.
-        If no such Place exists or is filtered, None is returned.
+
+        :param handle: database handle of the Place
+        :type handle: PlaceHandle
+        :returns: the Place object
+        :rtype: Place
+        :raises HandleError: if the handle does not exist or is filtered
         """
-        if not self.include_place(handle):
-            return None
         return data_to_object(self.get_raw_place_data(handle))
 
-    def get_media_from_handle(self, handle):
+    def get_media_from_handle(self, handle: MediaHandle) -> Media:
         """
         Finds a Media in the database from the passed gramps handle.
-        If no such Media exists or is filtered, None is returned.
+
+        :param handle: database handle of the Media
+        :type handle: MediaHandle
+        :returns: the Media object
+        :rtype: Media
+        :raises HandleError: if the handle does not exist or is filtered
         """
-        if not self.include_media(handle):
-            return None
         return data_to_object(self.get_raw_media_data(handle))
 
-    def get_repository_from_handle(self, handle):
+    def get_repository_from_handle(self, handle: RepositoryHandle) -> Repository:
         """
         Finds a Repository in the database from the passed gramps handle.
-        If no such Repository exists or is filtered, None is returned.
+
+        :param handle: database handle of the Repository
+        :type handle: RepositoryHandle
+        :returns: the Repository object
+        :rtype: Repository
+        :raises HandleError: if the handle does not exist or is filtered
         """
-        if not self.include_repository(handle):
-            return None
         return data_to_object(self.get_raw_repository_data(handle))
 
-    def get_note_from_handle(self, handle):
+    def get_note_from_handle(self, handle: NoteHandle) -> Note:
         """
         Finds a Note in the database from the passed gramps handle.
-        If no such Note exists or is filtered, None is returned.
+
+        :param handle: database handle of the Note
+        :type handle: NoteHandle
+        :returns: the Note object
+        :rtype: Note
+        :raises HandleError: if the handle does not exist or is filtered
         """
-        if not self.include_note(handle):
-            return None
         return data_to_object(self.get_raw_note_data(handle))
 
-    def get_tag_from_handle(self, handle):
+    def get_tag_from_handle(self, handle: TagHandle) -> Tag:
         """
         Finds a Tag in the database from the passed gramps handle.
-        If no such Tag exists or is filtered, None is returned.
+
+        :param handle: database handle of the Tag
+        :type handle: TagHandle
+        :returns: the Tag object
+        :rtype: Tag
+        :raises HandleError: if the handle does not exist or is filtered
         """
-        if not self.include_tag(handle):
-            return None
         return data_to_object(self.get_raw_tag_data(handle))
 
     def get_person_from_gramps_id(self, val):
         """
         Finds a Person in the database from the passed Gramps ID.
-        If no such Person exists, None is returned.
+
+        :raises HandleError: if no such Person exists or it is filtered
         """
         person = self.db.get_person_from_gramps_id(val)
         if person is None:
-            return None
+            raise HandleError(val)
         return self.get_person_from_handle(person.handle)
 
     def get_family_from_gramps_id(self, val):
         """
         Finds a Family in the database from the passed Gramps ID.
-        If no such Family exists, None is returned.
+
+        :raises HandleError: if no such Family exists or it is filtered
         """
         family = self.db.get_family_from_gramps_id(val)
         if family is None:
-            return None
+            raise HandleError(val)
         return self.get_family_from_handle(family.handle)
 
     def get_event_from_gramps_id(self, val):
         """
         Finds an Event in the database from the passed Gramps ID.
-        If no such Event exists, None is returned.
+
+        :raises HandleError: if no such Event exists or it is filtered
         """
         event = self.db.get_event_from_gramps_id(val)
         if event is None:
-            return None
+            raise HandleError(val)
         return self.get_event_from_handle(event.handle)
 
     def get_place_from_gramps_id(self, val):
         """
         Finds a Place in the database from the passed Gramps ID.
-        If no such Place exists, None is returned.
+
+        :raises HandleError: if no such Place exists or it is filtered
         """
         place = self.db.get_place_from_gramps_id(val)
         if place is None:
-            return None
+            raise HandleError(val)
         return self.get_place_from_handle(place.handle)
 
     def get_source_from_gramps_id(self, val):
         """
         Finds a Source in the database from the passed Gramps ID.
-        If no such Source exists, None is returned.
+
+        :raises HandleError: if no such Source exists or it is filtered
         """
         source = self.db.get_source_from_gramps_id(val)
         if source is None:
-            return None
+            raise HandleError(val)
         return self.get_source_from_handle(source.handle)
 
     def get_citation_from_gramps_id(self, val):
         """
         Finds a Citation in the database from the passed Gramps ID.
-        If no such Citation exists, None is returned.
+
+        :raises HandleError: if no such Citation exists or it is filtered
         """
         citation = self.db.get_citation_from_gramps_id(val)
         if citation is None:
-            return None
+            raise HandleError(val)
         return self.get_citation_from_handle(citation.handle)
 
     def get_media_from_gramps_id(self, val):
         """
         Finds a Media in the database from the passed Gramps ID.
-        If no such Media exists, None is returned.
+
+        :raises HandleError: if no such Media exists or it is filtered
         """
         media = self.db.get_media_from_gramps_id(val)
         if media is None:
-            return None
+            raise HandleError(val)
         return self.get_media_from_handle(media.handle)
 
     def get_repository_from_gramps_id(self, val):
         """
         Finds a Repository in the database from the passed Gramps ID.
-        If no such Repository exists, None is returned.
+
+        :raises HandleError: if no such Repository exists or it is filtered
         """
         repository = self.db.get_repository_from_gramps_id(val)
         if repository is None:
-            return None
+            raise HandleError(val)
         return self.get_repository_from_handle(repository.handle)
 
     def get_note_from_gramps_id(self, val):
         """
         Finds a Note in the database from the passed Gramps ID.
-        If no such Note exists, None is returned.
+
+        :raises HandleError: if no such Note exists or it is filtered
         """
         note = self.db.get_note_from_gramps_id(val)
         if note is None:
-            return None
+            raise HandleError(val)
         return self.get_note_from_handle(note.handle)
 
     def get_tag_from_name(self, val):
         """
         Finds a Tag in the database from the passed tag name.
-        If no such Tag exists, None is returned.
+
+        :raises HandleError: if no such Tag exists or it is filtered
         """
         tag = self.db.get_tag_from_name(val)
         if tag is None:
-            return None
+            raise HandleError(val)
         return self.get_tag_from_handle(tag.handle)
 
     def get_name_group_mapping(self, surname):
