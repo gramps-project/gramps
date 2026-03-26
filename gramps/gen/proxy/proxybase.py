@@ -1462,61 +1462,61 @@ class ProxyDbBase(DbReadBase):
         """
         Returns True if the handle exists in the current Person database.
         """
-        return self.include_person(handle) and self.db.has_person_handle(handle)
+        return self.include_person(handle)
 
     def has_family_handle(self, handle):
         """
         Returns True if the handle exists in the current Family database.
         """
-        return self.include_family(handle) and self.db.has_family_handle(handle)
+        return self.include_family(handle)
 
     def has_event_handle(self, handle):
         """
         Returns True if the handle exists in the current Event database.
         """
-        return self.include_event(handle) and self.db.has_event_handle(handle)
+        return self.include_event(handle)
 
     def has_source_handle(self, handle):
         """
         Returns True if the handle exists in the current Source database.
         """
-        return self.include_source(handle) and self.db.has_source_handle(handle)
+        return self.include_source(handle)
 
     def has_citation_handle(self, handle):
         """
         Returns True if the handle exists in the current Citation database.
         """
-        return self.include_citation(handle) and self.db.has_citation_handle(handle)
+        return self.include_citation(handle)
 
     def has_place_handle(self, handle):
         """
         Returns True if the handle exists in the current Place database.
         """
-        return self.include_place(handle) and self.db.has_place_handle(handle)
+        return self.include_place(handle)
 
     def has_media_handle(self, handle):
         """
         Returns True if the handle exists in the current Media database.
         """
-        return self.include_media(handle) and self.db.has_media_handle(handle)
+        return self.include_media(handle)
 
     def has_repository_handle(self, handle):
         """
         Returns True if the handle exists in the current Repository database.
         """
-        return self.include_repository(handle) and self.db.has_repository_handle(handle)
+        return self.include_repository(handle)
 
     def has_note_handle(self, handle):
         """
         Returns True if the handle exists in the current Note database.
         """
-        return self.include_note(handle) and self.db.has_note_handle(handle)
+        return self.include_note(handle)
 
     def has_tag_handle(self, handle):
         """
         Returns True if the handle exists in the current Tag database.
         """
-        return self.include_tag(handle) and self.db.has_tag_handle(handle)
+        return self.include_tag(handle)
 
     def get_mediapath(self):
         """returns the default media path of the database"""
