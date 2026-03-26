@@ -580,7 +580,8 @@ class BasePersonView(ListView):
                 "Person Notes",
                 "Person Attributes",
                 "Person Backlinks",
-                "Person Calendar",
+                "Person's birth Calendar",
+                "Person's death Calendar",
             ),
         )
 

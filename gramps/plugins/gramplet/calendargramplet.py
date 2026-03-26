@@ -128,14 +128,58 @@ class StandardCalendar(CalendarGramplet):
         super().__init__("Other", gui, nav_group)
 
 
-class PersonCalendar(CalendarGramplet):
+class PersonBirthCalendar(CalendarGramplet):
     """
-    Displays the calendar for a person.
+    Displays the calendar for the person’s birth
     """
 
     def __init__(self, gui, nav_group=0):
-        super().__init__("Person", gui, nav_group)
+        super().__init__(gui, nav_group)
         self.connect_signal("Person", self.update)
+
+    def db_changed(self):
+        self.connect_signal("Person", self.update)
+        self.connect(self.dbstate.db, "person-delete", self.update)
+        self.connect(self.dbstate.db, "person-add", self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
+
+    def main(self):
+        date = Today()
+        active_handle = self.get_active("Person")
+        if active_handle:
+            active = self.dbstate.db.get_person_from_handle(active_handle)
+            if active:
+                bd_event = get_birth_or_fallback(self.dbstate.db, active)
+                if bd_event:
+                    date = bd_event.get_date_object()
+        self.show_on_calendar(date)
+
+
+class PersonDeathCalendar(CalendarGramplet):
+    """
+    Displays the calendar for the person’s death
+    """
+
+    def __init__(self, gui, nav_group=0):
+        super().__init__(gui, nav_group)
+        self.connect_signal("Person", self.update)
+
+    def db_changed(self):
+        self.connect_signal("Person", self.update)
+        self.connect(self.dbstate.db, "person-delete", self.update)
+        self.connect(self.dbstate.db, "person-add", self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
+
+    def main(self):
+        date = Today()
+        active_handle = self.get_active("Person")
+        if active_handle:
+            active = self.dbstate.db.get_person_from_handle(active_handle)
+            if active:
+                bd_event = get_death_or_fallback(self.dbstate.db, active)
+                if bd_event:
+                    date = bd_event.get_date_object()
+        self.show_on_calendar(date)
 
 
 class FamilyCalendar(CalendarGramplet):
