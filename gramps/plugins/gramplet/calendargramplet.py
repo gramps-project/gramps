@@ -125,7 +125,7 @@ class StandardCalendar(CalendarGramplet):
     """
 
     def __init__(self, gui, nav_group=0):
-        super().__init__("Other", gui, nav_group)
+        super().__init__(gui, nav_group)
 
 
 class PersonBirthCalendar(CalendarGramplet):
@@ -188,8 +188,31 @@ class FamilyCalendar(CalendarGramplet):
     """
 
     def __init__(self, gui, nav_group=0):
-        super().__init__("Family", gui, nav_group)
+        super().__init__(gui, nav_group)
         self.connect_signal("Family", self.update)
+
+    def db_changed(self):
+        self.connect_signal("Family", self.update)
+        self.connect(self.dbstate.db, "family-delete", self.update)
+        self.connect(self.dbstate.db, "family-add", self.update)
+        self.connect(self.dbstate.db, "family-update", self.update)
+
+    def main(self):
+        date = Today()
+        active_handle = self.get_active("Family")
+        if active_handle:
+            active = self.dbstate.db.get_family_from_handle(active_handle)
+            if active:
+                fam_evt_ref_list = active.get_event_ref_list()
+                if fam_evt_ref_list:
+                    for evt_ref in fam_evt_ref_list:
+                        evt = self.dbstate.db.get_event_from_handle(evt_ref.ref)
+                        if evt:
+                            evt_type = evt.get_type()
+                            if evt_type == EventType.MARRIAGE:
+                                date = evt.get_date_object()
+                                break
+        self.show_on_calendar(date)
 
 
 class EventCalendar(CalendarGramplet):
@@ -198,5 +221,20 @@ class EventCalendar(CalendarGramplet):
     """
 
     def __init__(self, gui, nav_group=0):
-        super().__init__("Event", gui, nav_group)
+        super().__init__(gui, nav_group)
         self.connect_signal("Event", self.update)
+
+    def db_changed(self):
+        self.connect_signal("Event", self.update)
+        self.connect(self.dbstate.db, "event-delete", self.update)
+        self.connect(self.dbstate.db, "event-add", self.update)
+        self.connect(self.dbstate.db, "event-update", self.update)
+
+    def main(self):
+        date = Today()
+        active_handle = self.get_active("Event")
+        if active_handle:
+            event = self.dbstate.db.get_event_from_handle(active_handle)
+            if event:
+                date = event.get_date_object()
+        self.show_on_calendar(date)
