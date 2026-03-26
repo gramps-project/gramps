@@ -710,11 +710,11 @@ class ProxyDbBase(DbReadBase):
         else:
             return []
 
-    def get_default_person(self):
+    def get_default_person(self) -> Person | None:
         """returns the default Person of the database"""
         return self.db.get_default_person()
 
-    def get_default_handle(self):
+    def get_default_handle(self) -> PersonHandle | None:
         """returns the default Person of the database"""
         return self.db.get_default_handle()
 
@@ -1166,20 +1166,22 @@ class ProxyDbBase(DbReadBase):
         except HandleError:
             return None
 
-    def get_tag_from_name(self, val: str) -> Tag:
+    def get_tag_from_name(self, val: str) -> Tag | None:
         """
         Finds a Tag in the database from the passed tag name.
 
         :param val: the name of the Tag to retrieve
         :type val: str
-        :returns: the Tag object
-        :rtype: Tag
-        :raises HandleError: if no such Tag exists or it is filtered
+        :returns: the Tag object, or None if not found or filtered
+        :rtype: Tag | None
         """
         tag = self.db.get_tag_from_name(val)
         if tag is None:
-            raise HandleError(val)
-        return self.get_tag_from_handle(tag.handle)
+            return None
+        try:
+            return self.get_tag_from_handle(tag.handle)
+        except HandleError:
+            return None
 
     def get_name_group_mapping(self, surname):
         """

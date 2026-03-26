@@ -30,6 +30,7 @@ Proxy class for the Gramps databases. Apply filter
 #
 # -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
+from ..lib import Person
 from ..lib.json_utils import DataDict
 from ..const import GRAMPS_LOCALE as glocale
 from ..types import EventHandle, FamilyHandle, NoteHandle, PersonHandle
@@ -408,14 +409,14 @@ class FilterProxyDb(ProxyDbBase):
         """
         return map(self.get_note_from_handle, self.nlist)
 
-    def get_default_person(self):
+    def get_default_person(self) -> Person | None:
         """returns the default Person of the database"""
         person = self.db.get_default_person()
         if person and person.handle in self.plist:
             return person
         return None
 
-    def get_default_handle(self):
+    def get_default_handle(self) -> PersonHandle | None:
         """returns the default Person of the database"""
         handle = self.db.get_default_handle()
         if handle in self.plist:
