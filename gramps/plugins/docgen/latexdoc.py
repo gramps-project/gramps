@@ -1,4 +1,3 @@
-#
 # -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
@@ -12,6 +11,7 @@
 #               2010       Peter Landgren
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 #               2011-2012  Harald Rosemann
+#               2019_2020  Harald Rosemann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,8 +37,9 @@
 from __future__ import annotations
 from bisect import bisect
 import re
-import os
+import os.path
 import logging
+import csv
 
 try:
     from PIL import Image
@@ -456,12 +457,29 @@ TBLFMT_PAT = re.compile(r"({\|?)l(\|?})")
 CELL_BEG, CELL_TEXT, CELL_END, ROW_BEG, ROW_END, TAB_BEG, TAB_END = list(range(7))
 FIRST_ROW, SUBSEQ_ROW = list(range(2))
 
+# kind_of_picture:
+UNKNOWN, INDIVID_PICT, IN_GALLERY = list(range(3))
+
+# constants for vertical fine-tuning (used by VerticalFineTuning class):
+HI_STRUT, LO_STRUT, HI_SPACE, LO_SPACE = range(4)
+
+# additional regex patterns used by VerticalFineTuning:
+FLOAT_PAT = re.compile(r"[-+]?\d+\.\d+")
+STYLE_DETAIL = re.compile(r"\A[^-]+-([^\d]*)(\d*)([^\d]*)\Z")
+HASH_STRIP = re.compile(r" *#.*\Z")
+
+# endings of table rows
+NORMAL_END = r"\\"
+NO_PAGE_BREAK = r"\\*"
+
+# Dictionary for transliteration and/or supplying hyphenation patterns. Mapping to be
+# loaded in method LaTeXDoc.open(), to be used in global function latexescape(text)
+gramps_to_latex: dict[str, str] = {}
+
 
 def get_charform(col_num):
-    """
-    Transfer column number to column charakter,
-    limited to letters within a-z;
-    26, there is no need for more.
+    """Transfer column number to column charakter,
+    limited to letters within Station a-z  (26, there is no need for more).
     early test of column count in start_table()
     """
     if col_num > ord("z") - ord("a"):
@@ -509,7 +527,7 @@ def str_incr(str_counter):
                     )
                 )
             )
-        for i in reversed(lili):
+        for i in range(len(lili) - 1, -1, -1):
             if lili[i] < "z":
                 lili[i] = chr(ord(lili[i]) + 1)
                 break
@@ -519,12 +537,14 @@ def str_incr(str_counter):
 
 # ------------------------------------------------------------------------
 #
-# Structure of Table-Memory
+# LaTeX Table-Memory and related methods
 #
 # ------------------------------------------------------------------------
 
 
 class TabCell:
+    """ " cell of a row of a table"""
+
     def __init__(self, colchar, span, head, content):
         self.colchar = colchar
         self.span = span
@@ -533,6 +553,8 @@ class TabCell:
 
 
 class TabRow:
+    """ " row of a table"""
+
     def __init__(self):
         self.cells = []
         self.tail = ""
@@ -551,6 +573,33 @@ class TabMem:
 # Functions for docbackend
 #
 # ------------------------------------------------------------------------
+def mapping_to_latex(filename, mapping):
+    """Read mapping from gramps terms to LaTeX terms and/or hyphenation
+    patterns, or initialize the mapping file if it does not exist."""
+    parts = os.path.split(filename)
+    mapping_file = os.path.join(parts[0], "mapping.csv")
+    if os.path.exists(mapping_file):
+        with open(mapping_file, newline="") as csv_file:
+            csv_reader = csv.reader(csv_file)
+            for line in csv_reader:
+                if line == []:
+                    return
+                cleared = [HASH_STRIP.sub("", cont) for cont in line]
+                if cleared[0] != "":
+                    mapping[cleared[0]] = cleared[1]
+        return
+    with open(mapping_file, "w") as csv_file:
+        csv_write = csv.writer(csv_file)
+        csv_write.writerow([r"# From # on", r"up to the end of each field: purged"])
+        csv_write.writerow([r"# First field", r"empty: line is ignored"])
+        csv_write.writerow([r"# professionally", r"pro\-fessionally # may hyph. at \-"])
+        csv_write.writerow(
+            [r"# professionally", r"\hyphenation{pro-fessionally} # new way"]
+        )
+        csv_write.writerow([r"# professionally", r"\-professionally # no hyphenation"])
+        csv_write.writerow([r"# \u6771\u4eac\u99c5", r"Tokyo Station # transcription"])
+
+
 def latexescape(text):
     """
     Escape the following special characters: & $ % # _ { }
@@ -568,9 +617,8 @@ def latexescape(text):
 
 
 def latexescapeverbatim(text):
-    """
-    Escape special characters and also make sure that LaTeX respects whitespace
-    and newlines correctly.
+    """Escape special characters and also make sure that LaTeX
+    respects whitespace and newlines correctly.
     """
     text = latexescape(text)
     text = text.replace(" ", "\\ ")
@@ -595,6 +643,7 @@ class LaTeXBackend(DocBackend):
     """
 
     # overwrite base class attributes, they become static var of LaTeXDoc
+
     SUPPORTED_MARKUP = [
         DocBackend.BOLD,
         DocBackend.ITALIC,
@@ -625,6 +674,7 @@ class LaTeXBackend(DocBackend):
         """
         if not preformatted:
             LaTeXBackend.ESCAPE_FUNC = lambda x: latexescape
+
         else:
             LaTeXBackend.ESCAPE_FUNC = lambda x: latexescapeverbatim
 
@@ -632,8 +682,7 @@ class LaTeXBackend(DocBackend):
         r"""
         overwrites the method in DocBackend.
         creates the latex tags needed for non bool style types we support:
-            FONTSIZE : use different \large denomination based
-                                        on size
+            FONTSIZE : use different \large denomination based on size
                                      : very basic, in mono in the font face
                                         then we use {\ttfamily }
         """
@@ -656,8 +705,9 @@ class LaTeXBackend(DocBackend):
 
     def _checkfilename(self):
         """
-        Check to make sure filename satisfies the standards for this filetype
+        Check to make sure filename satisfies the standards for %this filetype
         """
+
         if not self._filename.endswith(".tex"):
             self._filename = self._filename + ".tex"
 
@@ -683,6 +733,96 @@ class TexFont:
             self.first_line_indent = ""
 
 
+# -------------------------------------------------------------------------
+#
+# Vertical fine tuning, data and methods bound together to be included by LaTeXDoc
+#
+# -------------------------------------------------------------------------
+
+
+class VerticalFineTuning:
+    """Specific adjustments yielding an appealing appearence in pdf"""
+
+    tail_vals: list[dict[str, str]] = [{}, {}, {}, {}]
+    tail_vals[HI_STRUT] = {
+        "First-Entry": "1.0",
+        "Generation": "2.5",
+        "Entry": "0.5",
+        "ChildList": "0.8",
+        "ChildTitle": "1.5",
+        "ChildText": "2.0",
+        "MoreHeader": "1.5",
+        "NoteHeader": "1.5",
+        "ParentName": "2.0",
+        "PlaceTitle": "2.5",
+        "Section": "0.5",
+    }
+    tail_vals[LO_STRUT] = {"ParentName": "0.5", "PlaceTitle": "1.0", "Pedigree": "2.0"}
+    tail_vals[HI_SPACE] = {
+        "Heading": "2.0",
+        "Level": "-0.8",
+        "Spouse": "-1.0",
+        "PlaceDetails": "-1.0",
+        "PlaceTitle": "1.5",
+        "Section": "0.5",
+        "Monthstyle": "3.0",
+    }
+    tail_vals[LO_SPACE] = {
+        "First-Entry": "-1.0",
+        "ChildTitle": "-1.0",
+        "Title": "3.0",
+        "ReportTitle": "3.0",
+        "blank": "-1.2",
+        "Section": "1.0",
+        "Datastyle": "-\\parskip",
+        "Daystyle": "-\grbirthdaylineup",
+        "instead_of_pg_break": "2.9",
+    }
+
+    cmpl_vals: list[dict[str, str]] = [{}, {}, {}, {}]
+    cmpl_vals[HI_STRUT] = {}
+    cmpl_vals[LO_STRUT] = {}
+    cmpl_vals[HI_SPACE] = {
+        "EOL": "1.0",  # short for:   endofline_report,
+        "IDS": "1.0",
+        "Not": "1.0",  # indiv_complete, notelinkreport
+        "PCL": "1.0",
+        "TR-": "1.0",  # place_report, tag_report
+        "KIN-Normal": "-1.0",
+        "KIN-Subtitle": "1.5",
+        "first_page_top": "3.0",
+        "before_tab": "-2.5",
+    }
+    cmpl_vals[LO_SPACE] = {
+        "behind_tab": "-2.5",
+        "REC-Normal": "-1.0",
+        "TR-Heading": "2\\parskip",
+        "KIN-Subtitle": "0.5",
+        "REC-Subtitle": "2.0",
+        "EOL-Subtitle": "2.0",
+    }
+
+    in_front = ["\\grupstrut{", "\\grdownstrut{"]
+    vacant = ["", "", "0ex", "0ex"]
+
+    def decorate(self, what, vert_val):
+        """Complete number to strut or measure"""
+        if re.fullmatch(FLOAT_PAT, vert_val):
+            if what in [HI_STRUT, LO_STRUT]:
+                return "".join((self.in_front[what], vert_val, "ex}"))
+            return "".join((vert_val, "ex"))
+        return vert_val
+
+    def get_v_adjust(self, what, style_name):
+        """Deliver special adjustments as strut or measure"""
+        style_tail = re.sub(STYLE_DETAIL, r"\1\3", style_name)
+        if style_tail in self.tail_vals[what].keys():
+            return self.decorate(what, self.tail_vals[what][style_tail])
+        if style_name in self.cmpl_vals[what].keys():
+            return self.decorate(what, self.cmpl_vals[what][style_name])
+        return self.vacant[what]
+
+
 # ------------------------------------------------------------------
 #
 # LaTeXDoc
@@ -690,7 +830,7 @@ class TexFont:
 # ------------------------------------------------------------------
 
 
-class LaTeXDoc(BaseDoc, TextDoc):
+class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
     """LaTeX document interface class. Derived from BaseDoc"""
 
     #   ---------------------------------------------------------------
@@ -704,14 +844,22 @@ class LaTeXDoc(BaseDoc, TextDoc):
     pict_height = 0
     textmem: list[str] = []
     in_title = True
+    curr_tab_style = ""
+    stick_next = 0
+    kind_of_pict = UNKNOWN
+    curr_style_name = "00-00"
+    space_above_paragr = "0ex"
+    space_below_paragr = "0ex"
 
     #   ---------------------------------------------------------------
     #   begin of table special treatment
     #   ---------------------------------------------------------------
     def emit(self, text, tab_state=CELL_TEXT, span=1):
         """
-        Hand over all text but tables to self._backend.write(), (line 1-2).
+        Hand over all text but tables and birthday-record lines to self._backend.write()
         In case of tables pass to specal treatment below.
+        _    gramps serves tables column by column
+        _    whereas LaTeX builds them row by row.
         """
         if not self.in_table:  # all stuff but table
             self._backend.write(text)
@@ -809,8 +957,10 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self.pict_in_table = False
 
         # new row-col structure
+        first_cell, last_cell = (0, self.numcols)
         for row in range(num_new_rows):
             new_row = TabRow()
+            self.tabmem.rows.append(new_row)
             for i in range(first_cell, last_cell):
                 new_cell = TabCell(
                     get_charform(i + first_cell),
@@ -823,21 +973,47 @@ class LaTeXDoc(BaseDoc, TextDoc):
             new_row.addit = ""
             self.tabmem.rows.append(new_row)
 
-        self.tabmem.rows[-1].addit = self.tabrow.addit
-        self.in_multrow_cell = False
+        if self.curr_style_name in [
+            "EOL-Generation",
+            "EOL-Normal",
+            "FGR-ChildText",
+            "FGR-ParentName",
+            "IDS-SectionTitle",
+            "IDS-ImageCaption",
+            "NoteLink-Normal-Bold",
+            "PLC-ColumnTitle",
+            "TR-Normal_Bold",
+        ]:
+            set_tail(3, NO_PAGE_BREAK)  # last but two
+            set_tail(2, NORMAL_END)  # next to last
+            set_tail(1, NO_PAGE_BREAK)  # last row
+            if self.curr_style_name in [
+                "IDS-SectionTitle",
+                "FGR-ParentName",
+                "PCL-ColumnTitle",
+            ]:
+                self.stick_next = 2
+                return
+            self.stick_next = 1
 
-    def calc_latex_widths(self):
-        """
-        Control width settings in latex table construction
+    def discover_col_widths(self):
+        """Control width settings in latex table csonstruction
         Evaluations are set up here and passed to LaTeX
         to calculate required and to fix suitable widths.
-        ??? Can all this be done exclusively in TeX? Don't know how.
         """
-        tabcol_chars = []
+        total_pict_width = 4.0
         for col_num in range(self.numcols):
             col_char = get_charform(col_num)
-            tabcol_chars.append(col_char)
-            for row in self.tabmem.rows:
+            self._backend.write(
+                "".join(("\\grinitlength{\\grmaxlencolcont", col_char, "}{0ex}%\n"))
+            )
+            if self.kind_of_pict == IN_GALLERY:
+                relevant_rows = self.tabmem.rows[1:2]
+            else:
+                relevant_rows = self.tabmem.rows
+            for row in relevant_rows:
+                if col_num >= len(row.cells):
+                    break
                 cell = row.cells[col_num]
                 if cell.span == 0:
                     continue
@@ -945,6 +1121,144 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 )
             )
 
+    def discover_multcol_widths(self):
+        """calc width of _latex_ multicolumns for each row"""
+        self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
+        for row in self.tabmem.rows:
+            for cell_id, cell in enumerate(row.cells):
+                if cell.span > 1:
+                    multcol_alph_id = next(self.multcol_alph_counter)
+                    self._backend.write(
+                        "".join(
+                            (
+                                "\\grgetspanwidth{",
+                                "\\grspanwidth",
+                                multcol_alph_id,
+                                "}{\\grcolbeg",
+                                get_charform(get_numform(cell.colchar) - cell.span + 1),
+                                "}{\\grcolbeg",
+                                cell.colchar,
+                                "}{\\grtempwidth",
+                                cell.colchar,
+                                "}%\n",
+                            )
+                        )
+                    )
+
+    def calc_latex_widths(self):
+        """
+        Control width settings in latex table construction.
+        Evaluations are set up here and passed to LaTeX to calculate
+        required and to fix suitable widths.
+        """
+        tabcol_chars = []
+        for col_num in range(self.numcols):
+            col_char = get_charform(col_num)
+            tabcol_chars.append(col_char)
+            for row in self.tabmem.rows:
+                if col_num >= len(row.cells):
+                    break
+                cell = row.cells[col_num]
+                if cell.span == 0:
+                    continue
+                if cell.content.startswith("\\grmkpicture"):
+                    self._backend.write(
+                        "".join(
+                            (
+                                "\\setlength{\\grpictsize}{",
+                                self.pict_width,
+                                "\\grbaseindent}%\n",
+                            )
+                        )
+                    )
+                else:
+                    for part in cell.content.split(SEPARATION_PAT):
+                        self._backend.write(
+                            "".join(("\\grtextneedwidth{", part, "}%\n"))
+                        )
+                    row.cells[col_num].content = cell.content.replace(
+                        SEPARATION_PAT, "~\\newline \n"
+                    )
+                if cell.span == 1:
+                    self._backend.write("".join(("\\grsetreqfull%\n")))
+                elif cell.span > 1:
+                    self._backend.write(
+                        "".join(
+                            (
+                                "\\grsetreqpart{\\grcolbeg",
+                                get_charform(get_numform(cell.colchar) - cell.span + 1),
+                                "}%\n",
+                            )
+                        )
+                    )
+            self._backend.write(
+                "".join(
+                    (
+                        "\\grcolsfirstfix",
+                        " {\\grcolbeg",
+                        col_char,
+                        "}{\\grtempwidth",
+                        col_char,
+                        "}{\\grfinalwidth",
+                        col_char,
+                        "}{\\grpictreq",
+                        col_char,
+                        "}{\\grtextreq",
+                        col_char,
+                        "}%\n",
+                    )
+                )
+            )
+        self._backend.write("".join(("\\grdividelength%\n")))
+        for col_char in tabcol_chars:
+            self._backend.write(
+                "".join(
+                    (
+                        "\\grcolssecondfix",
+                        " {\\grcolbeg",
+                        col_char,
+                        "}{\\grtempwidth",
+                        col_char,
+                        "}{\\grfinalwidth",
+                        col_char,
+                        "}{\\grpictreq",
+                        col_char,
+                        "}%\n",
+                    )
+                )
+            )
+        self._backend.write("".join(("\\grdividelength%\n")))
+        for col_char in tabcol_chars:
+            self._backend.write(
+                "".join(
+                    (
+                        "\\grcolsthirdfix",
+                        " {\\grcolbeg",
+                        col_char,
+                        "}{\\grtempwidth",
+                        col_char,
+                        "}{\\grfinalwidth",
+                        col_char,
+                        "}%\n",
+                    )
+                )
+            )
+        self._backend.write("".join(("\\grdividelength%\n")))
+        for col_char in tabcol_chars:
+            self._backend.write(
+                "".join(
+                    (
+                        "\\grcolsfourthfix",
+                        " {\\grcolbeg",
+                        col_char,
+                        "}{\\grtempwidth",
+                        col_char,
+                        "}{\\grfinalwidth",
+                        col_char,
+                        "}%\n",
+                    )
+                )
+            )
         self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
         for row in self.tabmem.rows:
             for cell in row.cells:
@@ -1013,12 +1327,12 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write("".join(self.tabmem.head))
 
         # special treatment at begin of longtable for heading and
-        # closing at top and bottom of table
+        # closing at top and bottom of the table
         # and parts of it at pagebreak separating
         self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
         splitting_row = self.mk_splitting_row(self.tabmem.rows[FIRST_ROW])
         self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
-        complete_row = self.mk_complete_row(self.tabmem.rows[FIRST_ROW])
+        complete_row = self.mk_complete_row(self.tabmem.rows[FIRST_ROW], None)
 
         self._backend.write(splitting_row)
         self._backend.write("\\endhead%\n")
@@ -1033,9 +1347,36 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write("\\endfirsthead%\n")
         self._backend.write("\\endlastfoot%\n")
 
-        # hand over subsequent rows
-        for row in self.tabmem.rows[SUBSEQ_ROW:]:
-            self._backend.write(self.mk_complete_row(row))
+        if self.kind_of_pict == INDIVID_PICT:
+            #    special treatment for individual report, individual data with picture
+            self._backend.write("\\multicolumn{2}{l}{%\n")
+            self._backend.write("\\begin{tabular}[t]{*{2}l}%\n")
+            # hand over _all_ rows
+            for row in self.tabmem.rows:
+                self._backend.write(self.mk_complete_row(row, -1))
+            self._backend.write("\\end{tabular}%\n")
+            self._backend.write("}&%\n")
+            self._backend.write(
+                "".join(
+                    (
+                        "\\grindivipict{%\n",
+                        self.tabmem.rows[FIRST_ROW]
+                        .cells[-1]
+                        .content.replace("{b}", "{}"),
+                        "}%\n{",
+                        self.tabmem.rows[SUBSEQ_ROW]
+                        .cells[-1]
+                        .content.replace("\\hfill", ""),
+                        "}%\n",
+                    )
+                )
+            )
+            #    end of special treatment for individual report
+            self.tabmem.rows[0].addit += "\\hline%\n%\n"
+        else:
+            # hand over subsequent rows
+            for row in self.tabmem.rows[SUBSEQ_ROW:]:
+                self._backend.write(self.mk_complete_row(row, None))
 
         # close table by '\\end{longtable}', end '{\\RaggedRight' or '{' by '}'
         self._backend.write("".join(("".join(self.tabmem.tail), "}%\n\n")))
@@ -1067,9 +1408,12 @@ class LaTeXDoc(BaseDoc, TextDoc):
             )
         return "".join((" & ".join(splitting), "%\n", row.tail))
 
-    def mk_complete_row(self, row):
+    def mk_complete_row(self, row, last=None):
+        #    last:  '-1' for [:-1] or
+        #           'None' for all i.e. [:]
+        """collocate all data of a latex row and write out"""
         complete = []
-        for cell in row.cells:
+        for cell in row.cells[:last]:
             if cell.span == 0:
                 continue
             elif cell.span == 1:
@@ -1095,6 +1439,13 @@ class LaTeXDoc(BaseDoc, TextDoc):
     #       end of special table treatment
     #       ---------------------------------------------------------------------
 
+    # ===========================================================
+    #
+    #       Interface to the central gramps doc-generator,
+    #       most of the following methods are called from there
+    #
+    # ===========================================================
+
     def page_break(self):
         "Forces a page break, creating a new page"
         self.emit("\\newpage%\n")
@@ -1104,15 +1455,15 @@ class LaTeXDoc(BaseDoc, TextDoc):
         extension of .tex"""
         self._backend = LaTeXBackend(filename)
         self._backend.open()
+        mapping_to_latex(filename, gramps_to_latex)
 
         # Font size control seems to be limited. For now, ignore
         # any style constraints, and use 12pt as the default
-
         options = "12pt"
-
         if self.paper.get_orientation() == PAPER_LANDSCAPE:
             options = options + ",landscape"
 
+        # Old:
         # Paper selections are somewhat limited on a stock installation.
         # If the user picks something not listed here, we'll just accept
         # the default of the user's LaTeX installation (usually letter).
@@ -1120,11 +1471,17 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if paper_name in ["a4", "a5", "legal", "letter"]:
             options += "," + paper_name + "paper"
 
+        # Old:
+        # Paper selections are somewhat limited on a stock installation.
         # Use the article template, T1 font encodings, and specify
         # that we should use Latin1 and unicode character encodings.
         self.emit(_LATEX_TEMPLATE_1 % options)
         self.emit(_LATEX_TEMPLATE)
-
+        self.emit(
+            "".join(
+                ("\\vspace*{", self.get_v_adjust(HI_SPACE, "first_page_top"), "}%\n")
+            )
+        )
         self.in_list = False
         self.in_table = False
         self.head_line = False
@@ -1192,13 +1549,20 @@ class LaTeXDoc(BaseDoc, TextDoc):
     def start_paragraph(self, style_name, leader=None):
         """Paragraphs handling - A Gramps paragraph is any
         single body of text from a single word to several sentences.
-        We assume a linebreak at the end of each paragraph."""
-        style_sheet = self.get_style_sheet()
+        We assume a linebreak at the end of each paragraph.
+        """
+        if style_name == "DR-Title":
+            self.emit("\\setlength{\\grbaseindent}{0.5\\grbaseindent}%\n")
+        self.space_above_paragr = self.get_v_adjust(HI_SPACE, self.curr_style_name)
+        self.space_below_paragr = self.get_v_adjust(LO_SPACE, self.curr_style_name)
+        self.curr_style_name = style_name
 
+        style_sheet = self.get_style_sheet()
         style = style_sheet.get_paragraph_style(style_name)
         ltxstyle = self.latexstyle[style_name]
         self.level = style.get_header_level()
 
+        self.curr_style_name = style_name
         self.fbeg = ltxstyle.font_beg
         self.fend = ltxstyle.font_end
 
@@ -1222,7 +1586,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
             #           -------------------------------------------------------------------
             #   Gramps presumes 'cm' as units; here '\\grbaseindent' is used
-            #   as equivalent, set in '_LATEX_TEMPLATE' above to '3em';
+            #   as equivalent, set in '_LATEX_TEMPLATE' above to '2.85em';
             #   there another value might be choosen.
             #           -------------------------------------------------------------------
             if self.indent is not None:
@@ -1238,7 +1602,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     )
                 )
                 self.fix_indent = True
-
                 if leader is not None and not self.in_list:
                     self.in_list = True
                     self._backend.write("".join(("\\grlisthead{", leader, "}%\n")))
@@ -1261,10 +1624,10 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if self.fix_indent:
             self.emit("\\grminpgtail%\n\n")
             self.fix_indent = False
-
-        if self.pict_width:
-            self.pict_width = 0
-            self.pict_height = 0
+            self.emit("".join(("\\grparagrtail{", self.space_below_paragr, "}%\n")))
+        self.space_below_paragr = self.get_v_adjust(LO_SPACE, self.curr_style_name)
+        if self.curr_style_name.startswith("DR"):
+            self.emit("\\small%\n")
 
     def start_bold(self):
         """Bold face"""
@@ -1280,9 +1643,17 @@ class LaTeXDoc(BaseDoc, TextDoc):
     def end_superscript(self):
         self.emit("}")
 
+    # ---------------------------------------------------------------------
+    #
+    # Methods for table construction; values are supplied.
+    # For new LaTeX output some former settings are ignored.
+    #
+    # ---------------------------------------------------------------------
+
     def start_table(self, name, style_name):
         """Begin new table"""
         self.in_table = True
+        self.curr_tab_style = style_name
         self.currow = 0
 
         # We need to know a priori how many columns are in this table
@@ -1302,6 +1673,11 @@ class LaTeXDoc(BaseDoc, TextDoc):
         """Close the table environment"""
         self.emit("%\n\\end{longtable}%\n", TAB_END)
         self.in_table = False
+        for col_num in range(self.numcols):
+            col_char = get_charform(col_num)
+            self._backend.write(
+                "".join(("\\setlength{\\grmaxlencolcont", col_char, "}{0em}%\n"))
+            )
 
     def start_row(self):
         """Begin a new row"""
@@ -1330,7 +1706,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
         for safety of formatting."""
         self.colspan = span
         self.curcol += self.colspan
-
         styles = self.get_style_sheet()
         self.cstyle = styles.get_cell_style(style_name)
 
@@ -1343,13 +1718,12 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.rborder = self.cstyle.get_right_border() == 1
         self.bborder = self.cstyle.get_bottom_border() == 1
         self.tborder = self.cstyle.get_top_border() != 0
-
-        # self.llist not needed any longer.
-        # now column widths are arranged in self.calc_latex_widths()
-        # serving for fitting of cell contents at any column position.
-        # self.llist = 1 == self.cstyle.get_longlist()
-
         cellfmt = "l"
+        # new settings:
+        self.lborder = 0
+        self.rborder = 0
+        self.bborder = 0
+
         # Account for vertical rules
         if self.lborder:
             cellfmt = "|" + cellfmt
@@ -1383,7 +1757,11 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if HAVE_PIL and infile not in [outfile, outfile2, outfile3]:
             try:
                 curr_img = Image.open(infile)
-                curr_img.save(outfile)
+                if crop:
+                    cr_n = [round(x * y / 100) for x, y in zip(2 * curr_img.size, crop)]
+                    curr_img = curr_img.crop(cr_n)
+                    outfile = "temp_" + os.path.basename(infile)
+                    curr_img.save(outfile)
                 width, height = curr_img.size
                 if height > width:
                     y = y * height / width
@@ -1460,7 +1838,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if text == "\n":
             text = ""
         text = latexescape(text)
-
+        self.space_below_paragr = self.get_v_adjust(LO_SPACE, self.curr_style_name)
         if links is True:
             text = re.sub(URL_PATTERN, _CLICKABLE, text)
 
@@ -1472,9 +1850,10 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self, styledtext, format, style_name, contains_html=False, links=False
     ):
         """
+
         Convenience function to write a styledtext to the latex doc.
         styledtext : assumed a StyledText object to write
-        format : = 0 : Flowed, = 1 : Preformatted
+        given_format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
         contains_html: bool, the backend should not check if html is present.
             If contains_html=True, then the textdoc is free to handle that in
@@ -1502,7 +1881,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         # now solved by postprocessing in self.calc_latex_widths()
         # by explicitely setting suitable width for all columns.
         #
-        if format:
+        if given_format:
             self.start_paragraph(style_name)
             self.emit(markuptext)
             self.end_paragraph()
@@ -1513,5 +1892,4 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 self.start_paragraph(style_name)
                 for realline in line.split("\n"):
                     self.emit(realline)
-                    self.emit("~\\newline \n")
                 self.end_paragraph()
