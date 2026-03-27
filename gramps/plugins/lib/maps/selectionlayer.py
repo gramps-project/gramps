@@ -15,52 +15,52 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from math import pi
-from gi.repository import GObject
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.selectionlayer")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # osmGpsMap
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from gi.repository import GObject
 
 try:
     import gi
-    gi.require_version('OsmGpsMap', '1.0')
+
+    gi.require_version("OsmGpsMap", "1.0")
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-# pylint: disable=unused-argument
+# ------------------------------------------------------------------------
+#
+# Set up logging
+#
+# ------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.selectionlayer")
+
 
 class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This class is used to select an area on the map
     """
+
     def __init__(self):
         """
         Initialize thz selection layer
@@ -86,10 +86,12 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
         draw the circles and the rectangles
         """
         for circle in self.circles:
-            top_left = osmgpsmap.MapPoint.new_degrees(circle[1] + circle[0],
-                                                   circle[2] - circle[0])
-            bottom_right = osmgpsmap.MapPoint.new_degrees(circle[1] - circle[0],
-                                                       circle[2] + circle[0])
+            top_left = osmgpsmap.MapPoint.new_degrees(
+                circle[1] + circle[0], circle[2] - circle[0]
+            )
+            bottom_right = osmgpsmap.MapPoint.new_degrees(
+                circle[1] - circle[0], circle[2] + circle[0]
+            )
             center = osmgpsmap.MapPoint.new_degrees(circle[1], circle[2])
             crd_x, crd_y = gpsmap.convert_geographic_to_screen(top_left)
             crd_x2, crd_y2 = gpsmap.convert_geographic_to_screen(bottom_right)
@@ -100,8 +102,8 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
             ctx.translate(crd_xc, crd_yc)
             ctx.set_line_width(3.0)
             ctx.set_source_rgba(0.0, 0.0, 0.0, 0.8)
-            ctx.scale(1.0, (height/width))
-            ctx.arc(float(0.0), float(0.0), width, 0.0, 2*pi)
+            ctx.scale(1.0, (height / width))
+            ctx.arc(float(0.0), float(0.0), width, 0.0, 2 * pi)
             ctx.stroke()
             ctx.restore()
 
@@ -121,8 +123,7 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
                 if crd_y < crd_y2:
                     ctx.rectangle(crd_x2, crd_y, crd_x - crd_x2, crd_y2 - crd_y)
                 else:
-                    ctx.rectangle(crd_x2, crd_y2, crd_x - crd_x2,
-                                  crd_y - crd_y2)
+                    ctx.rectangle(crd_x2, crd_y2, crd_x - crd_x2, crd_y - crd_y2)
             ctx.stroke()
 
     def do_render(self, gpsmap):
@@ -141,7 +142,9 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Someone press a button
         """
+        dummy_map = gpsmap
+        dummy_evt = gdkeventbutton
         return False
 
-GObject.type_register(SelectionLayer)
 
+GObject.type_register(SelectionLayer)

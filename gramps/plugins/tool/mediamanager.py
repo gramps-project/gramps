@@ -6,6 +6,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Nick Hall
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,63 +18,65 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Written by Alex Roitman
 
 """Tools/Utilities/Media Manager"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # standard python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import os
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 from gi.repository import GdkPixbuf
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE, ICON, SPLASH
 from gramps.gui.display import display_help
 from gramps.gen.lib import Media
+
+from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
 from gramps.gen.utils.file import media_path_full, relative_path, media_path
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from gramps.gen.mime import get_type, is_image_type
 from gramps.gui.managedwindow import ManagedWindow
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Media_Manager')
+# -------------------------------------------------------------------------
+WIKI_HELP_PAGE = "%s_-_Tools" % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _("Media_Manager", "manual")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # This is an Assistant implementation to guide the user
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MediaMan(ManagedWindow, tool.Tool):
-
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
 
@@ -85,28 +88,28 @@ class MediaMan(ManagedWindow, tool.Tool):
         self.build_batch_ops()
 
         self.assistant = Gtk.Assistant()
-        self.set_window(self.assistant, None, _('Media Manager'))
-        self.setup_configs('interface.mediaman', 780, 600)
+        self.set_window(self.assistant, None, _("Media Manager"))
+        self.setup_configs("interface.mediaman", 780, 600)
 
-        help_btn = Gtk.Button.new_with_label(_('Help'))
-        help_btn.connect('clicked', self.on_help_clicked)
+        help_btn = Gtk.Button.new_with_label(_("Help"))
+        help_btn.connect("clicked", self.on_help_clicked)
         self.assistant.add_action_widget(help_btn)
 
-        self.assistant.connect('close', self.do_close)
-        self.assistant.connect('cancel', self.do_close)
-        self.assistant.connect('apply', self.run)
-        self.assistant.connect('prepare', self.prepare)
+        self.assistant.connect("close", self.do_close)
+        self.assistant.connect("cancel", self.do_close)
+        self.assistant.connect("apply", self.run)
+        self.assistant.connect("prepare", self.prepare)
 
         intro = IntroductionPage()
-        self.add_page(intro, Gtk.AssistantPageType.INTRO, _('Introduction'))
+        self.add_page(intro, Gtk.AssistantPageType.INTRO, _("Introduction"))
         self.selection = SelectionPage(self.batch_ops)
-        self.add_page(self.selection, Gtk.AssistantPageType.CONTENT,
-                      _('Selection'))
+        self.add_page(self.selection, Gtk.AssistantPageType.CONTENT, _("Selection"))
         self.settings = SettingsPage(self.batch_ops, self.assistant)
         self.add_page(self.settings, Gtk.AssistantPageType.CONTENT)
         self.confirmation = ConfirmationPage(self.batch_ops)
-        self.add_page(self.confirmation, Gtk.AssistantPageType.CONFIRM,
-                      _('Final confirmation'))
+        self.add_page(
+            self.confirmation, Gtk.AssistantPageType.CONFIRM, _("Final confirmation")
+        )
         self.conclusion = ConclusionPage(self.assistant)
         self.add_page(self.conclusion, Gtk.AssistantPageType.SUMMARY)
 
@@ -115,13 +118,13 @@ class MediaMan(ManagedWindow, tool.Tool):
 
     def build_menu_names(self, obj):
         """Override :class:`.ManagedWindow` method."""
-        return (_('Media Manager'), None)
+        return (_("Media Manager"), None)
 
     def do_close(self, assistant):
         """
         Close the assistant.
         """
-        position = self.window.get_position() # crock
+        position = self.window.get_position()  # crock
         self.assistant.hide()
         self.window.move(position[0], position[1])
         self.close()
@@ -130,7 +133,7 @@ class MediaMan(ManagedWindow, tool.Tool):
         """
         Specify the next page to be displayed.
         """
-        if page == 1: # selection page
+        if page == 1:  # selection page
             index = self.selection.get_index()
             if self.settings.prepare(index):
                 return page + 1
@@ -148,7 +151,7 @@ class MediaMan(ManagedWindow, tool.Tool):
             self.confirmation.prepare(index)
         self.assistant.set_page_complete(page, True)
 
-    def add_page(self, page, page_type, title=''):
+    def add_page(self, page, page_type, title=""):
         """
         Add a page to the assistant.
         """
@@ -172,7 +175,7 @@ class MediaMan(ManagedWindow, tool.Tool):
             Convert2Abs,
             Convert2Rel,
             ImagesNotIncluded,
-            ]
+        ]
 
         for batch_class in batches_to_use:
             self.batch_ops.append(batch_class(self.db, self.callback))
@@ -201,15 +204,17 @@ class MediaMan(ManagedWindow, tool.Tool):
         self.uistate.set_busy_cursor(False)
         self.uistate.progress.hide()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Assistant pages
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class IntroductionPage(Gtk.Box):
     """
     A page containing introductory text.
     """
+
     def __init__(self):
         Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
@@ -230,32 +235,34 @@ class IntroductionPage(Gtk.Box):
         """
         Return the introductory text.
         """
-        return _("This tool allows batch operations on media objects "
-                 "stored in Gramps. "
-                 "An important distinction must be made between a Gramps "
-                 "media object and its file.\n\n"
-                 "The Gramps media object is a collection of data about "
-                 "the media object file: its filename and/or path, its "
-                 "description, its ID, notes, source references, etc. "
-                 "These data "
-                 "%(bold_start)sdo not include the file itself%(bold_end)s.\n\n"
-                 "The files containing image, sound, video, etc, exist "
-                 "separately on your hard drive. These files are "
-                 "not managed by Gramps and are not included in the Gramps "
-                 "database. "
-                 "The Gramps database only stores the path and file names.\n\n"
-                 "This tool allows you to only modify the records within "
-                 "your Gramps database. If you want to move or rename "
-                 "the files then you need to do it on your own, outside of "
-                 "Gramps. Then you can adjust the paths using this tool so "
-                 "that the media objects store the correct file locations."
-                ) % { 'bold_start' : '<b>' ,
-                      'bold_end'   : '</b>' }
+        return _(
+            "This tool allows batch operations on media objects "
+            "stored in Gramps. "
+            "An important distinction must be made between a Gramps "
+            "media object and its file.\n\n"
+            "The Gramps media object is a collection of data about "
+            "the media object file: its filename and/or path, its "
+            "description, its ID, notes, source references, etc. "
+            "These data "
+            "%(bold_start)sdo not include the file itself%(bold_end)s.\n\n"
+            "The files containing image, sound, video, etc, exist "
+            "separately on your hard drive. These files are "
+            "not managed by Gramps and are not included in the Gramps "
+            "database. "
+            "The Gramps database only stores the path and file names.\n\n"
+            "This tool allows you to only modify the records within "
+            "your Gramps database. If you want to move or rename "
+            "the files then you need to do it on your own, outside of "
+            "Gramps. Then you can adjust the paths using this tool so "
+            "that the media objects store the correct file locations."
+        ) % {"bold_start": "<b>", "bold_end": "</b>"}
+
 
 class SelectionPage(Gtk.Box):
     """
     A page with the radio buttons for every available batch op.
     """
+
     def __init__(self, batch_ops):
         Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
@@ -291,10 +298,12 @@ class SelectionPage(Gtk.Box):
 
         return 0
 
+
 class SettingsPage(Gtk.Box):
     """
     An extra page with the settings specific for the chosen batch-op.
     """
+
     def __init__(self, batch_ops, assistant):
         Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
         self.assistant = assistant
@@ -313,14 +322,16 @@ class SettingsPage(Gtk.Box):
             self.show_all()
             return True
         else:
-            self.assistant.set_page_title(self, '')
+            self.assistant.set_page_title(self, "")
             return False
+
 
 class ConfirmationPage(Gtk.Box):
     """
     A page to display the summary of the proposed action, as well as the
     list of affected paths.
     """
+
     def __init__(self, batch_ops):
         Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
@@ -341,15 +352,20 @@ class ConfirmationPage(Gtk.Box):
         tree = Gtk.TreeView()
         self.path_model = Gtk.ListStore(GObject.TYPE_STRING)
         tree.set_model(self.path_model)
-        tree_view_column = Gtk.TreeViewColumn(_('Affected path'),
-                                              Gtk.CellRendererText(), text=0)
+        tree_view_column = Gtk.TreeViewColumn(
+            _("Affected path"), Gtk.CellRendererText(), text=0
+        )
         tree_view_column.set_sort_column_id(0)
         tree.append_column(tree_view_column)
         scrolled_window.add(tree)
         self.pack_start(scrolled_window, True, True, 0)
 
-        label3 = Gtk.Label(label=_('Press Apply to proceed, Cancel to abort, '
-                                   'or Back to revisit your options.'))
+        label3 = Gtk.Label(
+            label=_(
+                "Press Apply to proceed, Cancel to abort, "
+                "or Back to revisit your options."
+            )
+        )
         self.pack_start(label3, False, True, 0)
 
     def prepare(self, index):
@@ -365,11 +381,13 @@ class ConfirmationPage(Gtk.Box):
         for path in path_list:
             self.path_model.append(row=[path])
 
+
 class ConclusionPage(Gtk.Box):
     """
     A page to display the summary of the proposed action, as well as the
     list of affected paths.
     """
+
     def __init__(self, assistant):
         Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
@@ -386,29 +404,33 @@ class ConclusionPage(Gtk.Box):
 
     def set_result(self, success):
         if success:
-            conclusion_title = _('Operation successfully finished')
+            conclusion_title = _("Operation successfully finished")
             conclusion_text = _(
-                'The operation you requested has finished successfully. '
-                'You may press Close now to continue.')
+                "The operation you requested has finished successfully. "
+                "You may press Close now to continue."
+            )
         else:
-            conclusion_title = _('Operation failed')
+            conclusion_title = _("Operation failed")
             conclusion_text = _(
-                'There was an error while performing the requested '
-                'operation. You may try starting the tool again.')
+                "There was an error while performing the requested "
+                "operation. You may try starting the tool again."
+            )
         self.label.set_text(conclusion_text)
         self.assistant.set_page_title(self, conclusion_title)
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # These are the actuall sub-tools (batch-ops) for use from Assistant
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class BatchOp(UpdateCallback):
     """
     Base class for the sub-tools.
     """
-    title = 'Untitled operation'
-    description = 'This operation needs to be described'
+
+    title = "Untitled operation"
+    description = "This operation needs to be described"
 
     def __init__(self, db, callback):
         UpdateCallback.__init__(self, callback)
@@ -428,8 +450,8 @@ class BatchOp(UpdateCallback):
         no confirmation) or a string with the confirmation text.
         """
         text = _(
-            'The following action is to be performed:\n\n'
-            'Operation:\t%s') % self.title.replace('_','')
+            "The following action is to be performed:\n\n" "Operation:\t%s"
+        ) % self.title.replace("_", "")
         return text
 
     def build_path_list(self):
@@ -481,15 +503,18 @@ class BatchOp(UpdateCallback):
         print("This method needs to be written.")
         print("Preparing BatchOp tool... done.")
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 # Simple op to replace substrings in the paths
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class PathChange(BatchOp):
-    title = _('Replace _substrings in the path')
-    description = _('This tool allows replacing specified substring in the '
-                    'path of media objects with another substring. '
-                    'This can be useful when you move your media files '
-                    'from one directory to another')
+    title = _("Replace _substrings in the path")
+    description = _(
+        "This tool allows replacing specified substring in the "
+        "path of media objects with another substring. "
+        "This can be useful when you move your media files "
+        "from one directory to another"
+    )
 
     def build_config(self):
         title = _("Replace substring settings")
@@ -505,7 +530,7 @@ class PathChange(BatchOp):
         self.from_entry.set_hexpand(True)
         grid.attach(self.from_entry, 1, 0, 1, 1)
 
-        from_label = Gtk.Label(label=_('_Replace:'))
+        from_label = Gtk.Label(label=_("_Replace:"))
         from_label.set_halign(Gtk.Align.START)
         from_label.set_use_underline(True)
         from_label.set_mnemonic_widget(self.from_entry)
@@ -515,7 +540,7 @@ class PathChange(BatchOp):
         self.to_entry.set_hexpand(True)
         grid.attach(self.to_entry, 1, 1, 1, 1)
 
-        to_label = Gtk.Label(label=_('_With:'))
+        to_label = Gtk.Label(label=_("_With:"))
         to_label.set_halign(Gtk.Align.START)
         to_label.set_use_underline(True)
         to_label.set_mnemonic_widget(self.to_entry)
@@ -529,13 +554,15 @@ class PathChange(BatchOp):
         from_text = str(self.from_entry.get_text())
         to_text = str(self.to_entry.get_text())
         text = _(
-            'The following action is to be performed:\n\n'
-            'Operation:\t%(title)s\n'
-            'Replace:\t\t%(src_fname)s\n'
-            'With:\t\t%(dest_fname)s') % {
-            'title' : self.title.replace('_',''),
-            'src_fname' : from_text,
-            'dest_fname' : to_text }
+            "The following action is to be performed:\n\n"
+            "Operation:\t%(title)s\n"
+            "Replace:\t\t%(src_fname)s\n"
+            "With:\t\t%(dest_fname)s"
+        ) % {
+            "title": self.title.replace("_", ""),
+            "src_fname": from_text,
+            "dest_fname": to_text,
+        }
         return text
 
     def _prepare(self):
@@ -543,8 +570,7 @@ class PathChange(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = Media()
-                obj.unserialize(data)
+                obj = data_to_object(data)
                 if obj.get_path().find(from_text) != -1:
                     self.handle_list.append(handle)
                     self.path_list.append(obj.path)
@@ -566,22 +592,24 @@ class PathChange(BatchOp):
             self.update()
         return True
 
-#------------------------------------------------------------------------
-#An op to convert relative paths to absolute
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
+# An op to convert relative paths to absolute
+# ------------------------------------------------------------------------
 class Convert2Abs(BatchOp):
-    title = _('Convert paths from relative to _absolute')
-    description = _("This tool allows converting relative media paths "
-                    "to the absolute ones. It does this by prepending "
-                    "the base path as given in the Preferences, or if "
-                    "that is not set, it prepends user's directory.")
+    title = _("Convert paths from relative to _absolute")
+    description = _(
+        "This tool allows converting relative media paths "
+        "to the absolute ones. It does this by prepending "
+        "the base path as given in the Preferences, or if "
+        "that is not set, it prepends user's directory."
+    )
 
     def _prepare(self):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = Media()
-                obj.unserialize(data)
+                obj = data_to_object(data)
                 if not os.path.isabs(obj.path):
                     self.handle_list.append(handle)
                     self.path_list.append(obj.path)
@@ -600,24 +628,26 @@ class Convert2Abs(BatchOp):
             self.update()
         return True
 
-#------------------------------------------------------------------------
-#An op to convert absolute paths to relative
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
+# An op to convert absolute paths to relative
+# ------------------------------------------------------------------------
 class Convert2Rel(BatchOp):
-    title = _('Convert paths from absolute to r_elative')
-    description = _("This tool allows converting absolute media paths "
-                    "to a relative path. The relative path is relative "
-                    "viz-a-viz the base path as given in the Preferences, "
-                    "or if that is not set, user's directory. "
-                    "A relative path allows to tie the file location to "
-                    "a base path that can change to your needs.")
+    title = _("Convert paths from absolute to r_elative")
+    description = _(
+        "This tool allows converting absolute media paths "
+        "to a relative path. The relative path is relative "
+        "viz-a-viz the base path as given in the Preferences, "
+        "or if that is not set, user's directory. "
+        "A relative path allows to tie the file location to "
+        "a base path that can change to your needs."
+    )
 
     def _prepare(self):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = Media()
-                obj.unserialize(data)
+                obj = data_to_object(data)
                 if os.path.isabs(obj.path):
                     self.handle_list.append(handle)
                     self.path_list.append(obj.path)
@@ -637,14 +667,17 @@ class Convert2Rel(BatchOp):
             self.update()
         return True
 
-#------------------------------------------------------------------------
-#An op to look for images that may have been forgotten.
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
+# An op to look for images that may have been forgotten.
+# ------------------------------------------------------------------------
 class ImagesNotIncluded(BatchOp):
-    title = _('Add images not included in database')
+    title = _("Add images not included in database")
     description = _("Check directories for images not included in database")
-    description = _("This tool adds images in directories that are "
-                    "referenced by existing images in the database.")
+    description = _(
+        "This tool adds images in directories that are "
+        "referenced by existing images in the database."
+    )
 
     def _prepare(self):
         """
@@ -655,8 +688,7 @@ class ImagesNotIncluded(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = Media()
-                obj.unserialize(data)
+                obj = data_to_object(data)
                 self.handle_list.append(handle)
                 full_path = media_path_full(self.db, obj.path)
                 self.path_list.append(full_path)
@@ -685,9 +717,9 @@ class ImagesNotIncluded(BatchOp):
             self.prepare()
         self.set_total(len(self.dir_list))
         for directory in self.dir_list:
-            for (dirpath, dirnames, filenames) in os.walk(directory):
+            for dirpath, dirnames, filenames in os.walk(directory):
                 if ".git" in dirnames:
-                    dirnames.remove('.git')  # don't visit .git directories
+                    dirnames.remove(".git")  # don't visit .git directories
                 for filename in filenames:
                     media_full_path = os.path.join(dirpath, filename)
                     if media_full_path not in self.path_list:
@@ -697,17 +729,18 @@ class ImagesNotIncluded(BatchOp):
                             obj = Media()
                             obj.set_path(media_full_path)
                             obj.set_mime_type(mime_type)
-                            (root, ext) = os.path.splitext(filename)
+                            root, ext = os.path.splitext(filename)
                             obj.set_description(root)
                             self.db.add_media(obj, self.trans)
             self.update()
         return True
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class MediaManOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.

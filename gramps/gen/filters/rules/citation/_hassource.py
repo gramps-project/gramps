@@ -14,49 +14,52 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Filter rule to match citation with a particular source.
 """
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hassourcebase import HasSourceBase
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Any
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasEvent
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasSource(HasSourceBase):
     """Rule that checks for an citation with a particular value"""
 
-    labels = [ _('Title:'),
-                    _('Author:'),
-                    _('Abbreviation:'),
-                    _('Publication:') ]
-    name = _('Sources matching parameters')
-    description = _("Matches citations with a source of a particular "
-                    "value")
-    category = _('Source filters')
+    labels = [_("Title:"), _("Author:"), _("Abbreviation:"), _("Publication:")]
+    name = _("Sources matching parameters")
+    description = _("Matches citations with a source of a particular " "value")
+    category = _("Source filters")
 
-    def apply(self, dbase, citation):
-        source = dbase.get_source_from_handle(
-                                    citation.get_reference_handle())
-        if HasSourceBase.apply(self, dbase, source):
-            return True
-        return False
+    def apply_to_one(self, dbase: Database, citation: Any) -> bool:
+        source = dbase.get_source_from_handle(citation.source_handle)
+        return HasSourceBase.apply_to_one(self, dbase, source)

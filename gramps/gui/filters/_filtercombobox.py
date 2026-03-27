@@ -13,43 +13,42 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Package providing filtering framework for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.filters import CustomFilters
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # FilterComboBox
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FilterComboBox(Gtk.ComboBox):
-
-    def set(self,local_filters,default=""):
+    def set(self, local_filters, default=""):
         self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
         cell = Gtk.CellRendererText()
-        self.pack_start(cell,True)
-        self.add_attribute(cell,'text',0)
+        self.pack_start(cell, True)
+        self.add_attribute(cell, "text", 0)
 
         self.map = {}
 
@@ -62,12 +61,12 @@ class FilterComboBox(Gtk.ComboBox):
                 active = cnt
             cnt += 1
 
-        #for filt in SystemFilters.get_filters():
-            #self.store.append(row=[filt.get_name()])
-            #self.map[unicode(filt.get_name())] = filt
-            #if default != "" and default == filt.get_name():
-                #active = cnt
-            #cnt += 1
+        # for filt in SystemFilters.get_filters():
+        # self.store.append(row=[filt.get_name()])
+        # self.map[unicode(filt.get_name())] = filt
+        # if default != "" and default == filt.get_name():
+        # active = cnt
+        # cnt += 1
 
         for filt in CustomFilters.get_filters():
             self.store.append(row=[filt.get_name()])
@@ -80,8 +79,8 @@ class FilterComboBox(Gtk.ComboBox):
             self.set_active(active)
         elif len(local_filters):
             self.set_active(2)
-        #elif len(SystemFilters.get_filters()):
-            #self.set_active(4 + len(local_filters))
+        # elif len(SystemFilters.get_filters()):
+        # self.set_active(4 + len(local_filters))
         elif len(CustomFilters.get_filters()):
             self.set_active(4 + len(local_filters))
         else:

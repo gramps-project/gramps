@@ -15,95 +15,99 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 File and folder related utility functions
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import sys
 import shutil
+import tempfile
 import hashlib
 import logging
+
 LOG = logging.getLogger(".gen.utils.file")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..constfunc import win, mac, get_env_var
-from ..const import TEMP_DIR, USER_HOME, ENV, GRAMPS_LOCALE as glocale
+from ..const import USER_HOME, USER_PICTURES, ENV, GRAMPS_LOCALE as glocale
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 #  Constants
 #
-#-------------------------------------------------------------------------
-_NEW_NAME_PATTERN = '%s%sUntitled_%d.%s'
+# -------------------------------------------------------------------------
+_NEW_NAME_PATTERN = "%s%sUntitled_%d.%s"
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #  Functions
 #
-#-------------------------------------------------------------------------
-def find_file( filename):
+# -------------------------------------------------------------------------
+def find_file(filename):
     # try the filename we got
     try:
         if os.path.isfile(filename):
-            return(filename)
+            return filename
     except UnicodeError as err:
         LOG.error("Filename %s raised a Unicode Error %s.", repr(filename), err)
 
     LOG.debug("Filename %s not found.", repr(filename))
-    return ''
+    return ""
 
-def find_folder( filename):
+
+def find_folder(filename):
     # try the filename we got
     try:
         if os.path.isdir(filename):
-            return(filename)
+            return filename
     except UnicodeError as err:
         LOG.error("Filename %s raised a Unicode Error %s", repr(filename), err)
 
-    LOG.debug("Filename %s either not found or not a directory.",
-              repr(filename))
-    return ''
+    LOG.debug("Filename %s either not found or not a directory.", repr(filename))
+    return ""
 
-def get_new_filename(ext, folder='~/'):
+
+def get_new_filename(ext, folder="~/"):
     ix = 1
-    while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN %
-                                            (folder, os.path.sep, ix, ext))):
+    while os.path.isfile(
+        os.path.expanduser(_NEW_NAME_PATTERN % (folder, os.path.sep, ix, ext))
+    ):
         ix = ix + 1
     return os.path.expanduser(_NEW_NAME_PATTERN % (folder, os.path.sep, ix, ext))
 
+
 def get_empty_tempdir(dirname):
-    """ Return path to TEMP_DIR/dirname, a guaranteed empty directory
+    """Return path to TEMP_DIR/dirname, a guaranteed empty directory
 
     makes intervening directories if required
     fails if _file_ by that name already exists,
     or for inadequate permissions to delete dir/files or create dir(s)
 
     """
-    dirpath = os.path.join(TEMP_DIR, str(dirname))
-    if os.path.isdir(dirpath):
-        shutil.rmtree(dirpath)
-    os.makedirs(dirpath)
+    dirpath = tempfile.mkdtemp(prefix="gramps-", suffix="-" + dirname)
     return dirpath
+
 
 def rm_tempdir(path):
     """Remove a tempdir created with get_empty_tempdir"""
-    if path.startswith(TEMP_DIR) and os.path.isdir(path):
+    if path.startswith(tempfile.gettempdir()) and os.path.isdir(path):
         shutil.rmtree(path)
+
 
 def relative_path(original, base):
     """
@@ -113,7 +117,7 @@ def relative_path(original, base):
     """
     if not os.path.isdir(base):
         return original
-    #original and base must be absolute paths
+    # original and base must be absolute paths
     if not os.path.isabs(base):
         return original
     if not os.path.isabs(original):
@@ -123,8 +127,8 @@ def relative_path(original, base):
 
     # If the db_dir and obj_dir are on different drives (win only)
     # then there cannot be a relative path. Return original obj_path
-    (base_drive, base) = os.path.splitdrive(base)
-    (orig_drive, orig_name) = os.path.splitdrive(original)
+    base_drive, base = os.path.splitdrive(base)
+    orig_drive, orig_name = os.path.splitdrive(original)
     if base_drive.upper() != orig_drive.upper():
         return original
 
@@ -147,12 +151,13 @@ def relative_path(original, base):
             if base_list[i] != target_list[i]:
                 break
     else:
-        #if break did not happen we are here at end, and add 1.
+        # if break did not happen we are here at end, and add 1.
         i += 1
     rel_list = [os.pardir] * (len(base_list) - i) + target_list[i:]
     return os.path.join(*rel_list)
 
-def expand_path(path, normalize = True):
+
+def expand_path(path, normalize=True):
     """
     Expand environment variables in a path
     Uses both the environment variables and the Gramps environment
@@ -162,12 +167,13 @@ def expand_path(path, normalize = True):
     """
     environment = dict(os.environ)
     environment.update(ENV)
-    if not 'GRAMPSHOME' in environment:
-        environment['GRAMPSHOME'] = USER_HOME
+    if not "GRAMPSHOME" in environment:
+        environment["GRAMPSHOME"] = USER_HOME
     path = path.format(**environment)
     if normalize:
         path = os.path.normcase(os.path.normpath(os.path.abspath(path)))
     return path
+
 
 def media_path(db):
     """
@@ -175,6 +181,7 @@ def media_path(db):
     """
     mpath = db.get_mediapath()
     return expand_media_path(mpath, db)
+
 
 def expand_media_path(mpath, db):
     """
@@ -184,9 +191,9 @@ def expand_media_path(mpath, db):
      - Convert to absolute path
      - Convert slashes and case (on Windows)
     """
-    # Use home dir if no media_path specified
+    # Use XDG pictures diectory if no media_path specified
     if mpath is None:
-        mpath = os.path.abspath(USER_HOME)
+        mpath = os.path.abspath(USER_PICTURES)
     # Expand environment variables
     mpath = expand_path(mpath, False)
     # Relative mediapath are considered as relative to the database
@@ -199,30 +206,34 @@ def expand_media_path(mpath, db):
     mpath = os.path.normcase(os.path.normpath(os.path.abspath(mpath)))
     return mpath
 
+
 def media_path_full(db, filename):
     """
     Given a database and a filename of a media, return the media filename
     is full form, eg 'graves/tomb.png' becomes '/home/me/genea/graves/tomb.png
     """
+    if filename.startswith(("http://", "https://")):
+        return filename
     if os.path.isabs(filename):
         return filename
     mpath = media_path(db)
     return os.path.join(mpath, filename)
 
+
 def search_for(name):
-    if name.startswith( '"' ):
+    if name.startswith('"'):
         name = name.split('"')[1]
     else:
         name = name.split()[0]
     if win():
-        for i in get_env_var('PATH').split(';'):
+        for i in get_env_var("PATH").split(";"):
             fname = os.path.join(i, name)
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
                 return 1
         if os.access(name, os.X_OK) and not os.path.isdir(name):
             return 1
     else:
-        for i in os.environ['PATH'].split(':'): #not win()
+        for i in os.environ["PATH"].split(":"):  # not win()
             fname = os.path.join(i, name)
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
                 return 1
@@ -230,15 +241,16 @@ def search_for(name):
 
 
 def where_is(name):
-    """ This command is similar to the Linux "whereis -b file" command.
+    """This command is similar to the Linux "whereis -b file" command.
     It looks for an executable file (name) in the PATH python is using, as
     well as several likely other paths.  It returns the first file found,
     or an empty string if not found.
     """
-    paths = set(os.environ['PATH'].split(os.pathsep))
+    paths = set(os.environ["PATH"].split(os.pathsep))
     if not win():
-        paths.update(("/bin", "/usr/bin", "/usr/local/bin", "/opt/local/bin",
-                      "/opt/bin"))
+        paths.update(
+            ("/bin", "/usr/bin", "/usr/local/bin", "/opt/local/bin", "/opt/bin")
+        )
     for i in paths:
         fname = os.path.join(i, name)
         if os.access(fname, os.X_OK) and not os.path.isdir(fname):
@@ -253,7 +265,7 @@ def create_checksum(full_path):
     full_path = os.path.normpath(full_path)
     md5 = hashlib.md5()
     try:
-        with open(full_path, 'rb') as media_file:
+        with open(full_path, "rb") as media_file:
             while True:
                 buf = media_file.read(65536)
                 if not buf:
@@ -261,7 +273,7 @@ def create_checksum(full_path):
                 md5.update(buf)
         md5sum = md5.hexdigest()
     except IOError:
-        md5sum = ''
+        md5sum = ""
     except UnicodeEncodeError:
-        md5sum = ''
+        md5sum = ""
     return md5sum

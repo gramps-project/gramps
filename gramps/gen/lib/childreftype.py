@@ -13,24 +13,30 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Provide the different child reference types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.gettext
 
+
+# -------------------------------------------------------------------------
+#
+# ChildRefType
+#
+# -------------------------------------------------------------------------
 class ChildRefType(GrampsType):
     """
     Provide the different ChildRef types.
@@ -65,14 +71,14 @@ class ChildRefType(GrampsType):
 
     _DATAMAP = [
         (NONE, _("None"), "None"),
-        (BIRTH, _("Birth"), "Birth"),
-        (ADOPTED, _("Adopted"), "Adopted"),
+        (BIRTH, _("Birth", "relationship"), "Birth"),
+        (ADOPTED, _("Adopted", "relationship"), "Adopted"),
         (STEPCHILD, _("Stepchild"), "Stepchild"),
         (SPONSORED, _("Sponsored"), "Sponsored"),
         (FOSTER, _("Foster"), "Foster"),
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

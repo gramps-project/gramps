@@ -13,17 +13,18 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Provide Error objects
 """
 
+
 class FilterError(Exception):
     """Error used to report Filter errors"""
+
     def __init__(self, value, value2=""):
         Exception.__init__(self)
         self.value = value
@@ -36,6 +37,7 @@ class FilterError(Exception):
     def messages(self):
         "Return the messages"
         return (self.value, self.value2)
+
 
 class DateError(Exception):
     """Error used to report Date errors
@@ -43,6 +45,7 @@ class DateError(Exception):
     Might have a .date attribute holding an invalid Date object
     that triggered the error.
     """
+
     def __init__(self, value=""):
         Exception.__init__(self)
         self.value = value
@@ -50,9 +53,11 @@ class DateError(Exception):
     def __str__(self):
         "Return string representation"
         return self.value
+
 
 class DatabaseError(Exception):
     """Error used to report database errors"""
+
     def __init__(self, value=""):
         Exception.__init__(self)
         self.value = value
@@ -61,8 +66,10 @@ class DatabaseError(Exception):
         "Return string representation"
         return self.value
 
+
 class ReportError(Exception):
     """Error used to report Report errors."""
+
     def __init__(self, value, value2=""):
         Exception.__init__(self)
         self.value = value
@@ -75,9 +82,11 @@ class ReportError(Exception):
     def messages(self):
         "Return the messages"
         return (self.value, self.value2)
+
 
 class GedcomError(Exception):
     """Error used to report GEDCOM errors"""
+
     def __init__(self, value):
         Exception.__init__(self)
         self.value = value
@@ -86,8 +95,10 @@ class GedcomError(Exception):
         "Return string representation"
         return self.value
 
+
 class GrampsImportError(Exception):
     """Error used to report mistakes during import of files into Gramps"""
+
     def __init__(self, value, value2=""):
         Exception.__init__(self)
         self.value = value
@@ -101,8 +112,10 @@ class GrampsImportError(Exception):
         "Return the messages"
         return (self.value, self.value2)
 
+
 class PluginError(Exception):
     """Error used to report plugin errors"""
+
     def __init__(self, value):
         Exception.__init__(self)
         self.value = value
@@ -110,9 +123,11 @@ class PluginError(Exception):
     def __str__(self):
         "Return string representation"
         return self.value
+
 
 class HandleError(Exception):
     """Error used to report wrong database handle errors"""
+
     def __init__(self, value):
         Exception.__init__(self)
         self.value = value
@@ -120,9 +135,11 @@ class HandleError(Exception):
     def __str__(self):
         "Return string representation"
         return self.value
+
 
 class WindowActiveError(Exception):
     """Error used to report that the request window is already displayed."""
+
     def __init__(self, value):
         Exception.__init__(self)
         self.value = value
@@ -130,6 +147,7 @@ class WindowActiveError(Exception):
     def __str__(self):
         "Return string representation"
         return self.value
+
 
 class UnavailableError(Exception):
     def __init__(self, value):
@@ -140,18 +158,22 @@ class UnavailableError(Exception):
         "Return string representation"
         return self.value
 
+
 class MaskError(Exception):
     pass
+
 
 class ValidationError(Exception):
     pass
 
+
 class DbError(Exception):
     """Error used to report BerkeleyDB errors."""
+
     def __init__(self, value):
         Exception.__init__(self)
         try:
-            (errnum, errmsg) = value
+            errnum, errmsg = value
             self.value = errmsg
         except:
             self.value = value
@@ -160,8 +182,10 @@ class DbError(Exception):
         "Return string representation"
         return self.value
 
+
 class MergeError(Exception):
     """Error used to report merge errors"""
+
     def __init__(self, value=""):
         Exception.__init__(self)
         self.value = value

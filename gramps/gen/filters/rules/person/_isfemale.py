@@ -13,38 +13,46 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....lib.person import Person
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # IsFemale
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsFemale(Rule):
     """Rule that checks for a person that is a female"""
 
-    name = _('Females')
-    category = _('General filters')
-    description = _('Matches all females')
+    name = _("Females")
+    category = _("General filters")
+    description = _("Matches all females")
 
-    def apply(self,db,person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.gender == Person.FEMALE

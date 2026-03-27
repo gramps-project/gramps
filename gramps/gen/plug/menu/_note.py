@@ -14,32 +14,33 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Option class representing a string.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import StringOption
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # NoteOption class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class NoteOption(StringOption):
     """
     This class describes an option that allows a note from the
     database to be selected.
     """
+
     def __init__(self, label):
         """
         :param label: A friendly label to be applied to this option.

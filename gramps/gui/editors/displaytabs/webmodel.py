@@ -13,35 +13,34 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 The TreeModel for the URL list in the Url Tab.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # WebModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class WebModel(Gtk.ListStore):
     """
     WebModel derives from the ListStore, defining te items in the list
     """
-    def __init__(self, obj_list, dbase):
 
+    def __init__(self, obj_list, dbase):
         Gtk.ListStore.__init__(self, str, str, str, bool, object)
         self.db = dbase
         for obj in obj_list:
-            self.append(row=[str(obj.type), obj.path, obj.desc,
-                    obj.get_privacy(), obj])
+            self.append(row=[str(obj.type), obj.path, obj.desc, obj.get_privacy(), obj])

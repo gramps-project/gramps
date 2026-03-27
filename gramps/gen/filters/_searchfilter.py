@@ -13,14 +13,14 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Package providing filtering framework for Gramps.
 """
+
 
 class SearchFilter:
     def __init__(self, func, text, invert):
@@ -31,10 +31,10 @@ class SearchFilter:
     def match(self, handle, db):
         return self.invert ^ (self.func(handle).upper().find(self.text) != -1)
 
+
 class ExactSearchFilter(SearchFilter):
     def __init__(self, func, text, invert):
         SearchFilter.__init__(self, func, text, invert)
 
     def match(self, handle, db):
         return self.invert ^ (self.func(handle).upper() == self.text.strip())
-

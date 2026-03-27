@@ -17,51 +17,51 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gui.basesidebar import BaseSidebar
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
-UICATEGORY = '''<ui>
+# -------------------------------------------------------------------------
+UICATEGORY = """<ui>
 <toolbar name="ToolBar">
   <placeholder name="ViewsInCategory">%s
   </placeholder>
 </toolbar>
 </ui>
-'''
+"""
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CategorySidebar class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CategorySidebar(BaseSidebar):
     """
     A sidebar displaying a column of toggle buttons that allows the user to
     change the current view.
     """
-    def __init__(self, dbstate, uistate, categories, views):
 
+    def __init__(self, dbstate, uistate, categories, views):
         self.viewmanager = uistate.viewmanager
 
         self.buttons = []
@@ -76,17 +76,15 @@ class CategorySidebar(BaseSidebar):
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
 
-        use_text = config.get('interface.sidebar-text')
+        use_text = config.get("interface.sidebar-text")
         for cat_num, cat_name, cat_icon in categories:
-
             # create the button and add it to the sidebar
-            button = self.__make_sidebar_button(use_text, cat_num,
-                                                cat_name, cat_icon)
+            button = self.__make_sidebar_button(use_text, cat_num, cat_name, cat_icon)
             vbox.pack_start(button, False, True, 0)
 
             # Enable view switching during DnD
             button.drag_dest_set(0, [], 0)
-            button.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
+            button.connect("drag_motion", self.cb_switch_page_on_dnd, cat_num)
 
         vbox.show_all()
 
@@ -120,15 +118,15 @@ class CategorySidebar(BaseSidebar):
         """
         Block signals to the buttons to prevent spurious events.
         """
-        for idx in range(len(self.buttons)):
-            self.buttons[idx].handler_block(self.button_handlers[idx])
+        for idx, button in enumerate(self.buttons):
+            button.handler_block(self.button_handlers[idx])
 
     def __handlers_unblock(self):
         """
         Unblock signals to the buttons.
         """
-        for idx in range(len(self.buttons)):
-            self.buttons[idx].handler_unblock(self.button_handlers[idx])
+        for idx, button in enumerate(self.buttons):
+            button.handler_unblock(self.button_handlers[idx])
 
     def cb_view_clicked(self, radioaction, current, cat_num):
         """
@@ -160,7 +158,7 @@ class CategorySidebar(BaseSidebar):
         button.set_tooltip_text(page_title)
 
         # connect the signal, along with the index as user data
-        handler_id = button.connect('clicked', self.__category_clicked, index)
+        handler_id = button.connect("clicked", self.__category_clicked, index)
         self.button_handlers.append(handler_id)
         button.show()
 

@@ -27,9 +27,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -38,21 +37,22 @@ Narrative Web Page generator.
 Classe:
     IntroductionPage
 """
-#------------------------------------------------
+
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import FULLCLEAR
 
@@ -60,42 +60,47 @@ _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
+
 class IntroductionPage(BasePage):
     """
     This class is responsible for displaying information
     about the introduction page.
     """
-    def __init__(self, report, title):
+
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
-        @param: title  -- Is the title of the web page
+        @param: report    -- The instance of the main report class for
+                             this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
         ldatec = 0
 
         output_file, sio = self.report.create_file(report.intro_fname)
-        result = self.write_header(self._('Introduction'))
+        result = self.write_header(self._("Introduction"))
         intropage, head, dummy_body, outerwrapper = result
 
         # begin Introduction division
         with Html("div", class_="content", id="Introduction") as section:
             outerwrapper += section
 
-            introimg = self.add_image('introimg', head)
+            introimg = self.add_image("introimg", head)
             if introimg is not None:
                 section += introimg
 
-            note_id = report.options['intronote']
+            note_id = report.options["intronote"]
+            ldatec = None
             if note_id:
                 note = self.r_db.get_note_from_gramps_id(note_id)
-                note_text = self.get_note_format(note, False)
+                if note:
+                    note_text = self.get_note_format(note, False)
 
-                # attach note
-                section += note_text
+                    # attach note
+                    section += note_text
 
-                # last modification of this note
-                ldatec = note.get_change_time()
+                    # last modification of this note
+                    ldatec = note.get_change_time()
 
         # add clearline for proper styling
         # create footer section

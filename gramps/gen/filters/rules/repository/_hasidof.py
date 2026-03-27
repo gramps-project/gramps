@@ -13,33 +13,42 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+from ....db import Database
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import HasGrampsId
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasIdOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasIdOf(HasGrampsId):
     """Rule that checks for a repo with a specific Gramps ID"""
 
-    name = _('Repository with <Id>')
+    name = _("Repository with <Id>")
     description = _("Matches a repository with a specified Gramps ID")
+
+    def prepare(self, db: Database, user):
+        data = db._get_raw_repository_from_id_data(self.list[0])
+        if data:
+            self.selected_handles = set([data.handle])
+        else:
+            self.selected_handles = set([])

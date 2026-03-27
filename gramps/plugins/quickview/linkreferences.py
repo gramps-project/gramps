@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 #
 
@@ -27,7 +26,9 @@ from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.lib import StyledTextTagType
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 def run(database, document, obj):
     """
@@ -44,21 +45,21 @@ def run(database, document, obj):
     sdoc.paragraph("\n")
     stab.columns(_("Type"), _("Reference"), _("Link check"))
 
-    for (ldomain, ltype, lprop, lvalue) in obj.get_links():
-            if ldomain == "gramps":
-                tagtype = _(ltype)
-                ref_obj = sdb.get_link(ltype, lprop, lvalue)
-                if ref_obj:
-                    tagvalue = ref_obj
-                    tagcheck = _("Ok")
-                else:
-                    tagvalue = lvalue
-                    tagcheck = _("Failed: missing object")
+    for ldomain, ltype, lprop, lvalue in obj.get_links():
+        if ldomain == "gramps":
+            tagtype = _(ltype)
+            ref_obj = sdb.get_link(ltype, lprop, lvalue)
+            if ref_obj:
+                tagvalue = ref_obj
+                tagcheck = _("Ok")
             else:
-                tagtype = _("Internet")
                 tagvalue = lvalue
-                tagcheck = ""
-            stab.row(tagtype, tagvalue, tagcheck)
+                tagcheck = _("Failed: missing object")
+        else:
+            tagtype = _("Internet")
+            tagvalue = lvalue
+            tagcheck = ""
+        stab.row(tagtype, tagvalue, tagcheck)
 
     if stab.get_row_count() > 0:
         stab.write(sdoc)
@@ -68,4 +69,3 @@ def run(database, document, obj):
         sdoc.paragraph("")
         document.has_data = False
     sdoc.paragraph("")
-

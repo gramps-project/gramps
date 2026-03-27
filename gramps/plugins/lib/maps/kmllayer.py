@@ -15,56 +15,54 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
-from gi.repository import GObject
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.kmllayer")
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
-from gi.repository import Gdk
+# -------------------------------------------------------------------------
 import cairo
+from gi.repository import Gdk
+from gi.repository import GObject
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .libkml import Kml
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # osmGpsMap
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 try:
     import gi
-    gi.require_version('OsmGpsMap', '1.0')
     from gi.repository import OsmGpsMap as osmgpsmap
+
+    gi.require_version("OsmGpsMap", "1.0")
 except:
     raise
 
-# pylint: disable=unused-variable
-# pylint: disable=unused-argument
-# pylint: disable=no-member
+# ------------------------------------------------------------------------
+#
+# Set up logging
+#
+# ------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.kmllayer")
+
 
 class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
@@ -77,6 +75,7 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
     * One polygon : name, type, color, transparency,
     *             [ (latitude, longitude), (latitude, longitude), ...]
     """
+
     def __init__(self):
         """
         Initialize the layer
@@ -104,7 +103,7 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         The access right and validity must be verified before this method.
         """
         self.kml = Kml(kml_file)
-        (paths, polygons) = self.kml.add_kml()
+        paths, polygons = self.kml.add_kml()
         if paths != []:
             self.paths.append(paths)
         if polygons != []:
@@ -114,23 +113,21 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Draw all the surfaces and paths
         """
-        color1 = Gdk.color_parse('red')
-        color2 = Gdk.color_parse('blue')
+        color1 = Gdk.RGBA()
+        color1.parse("red")
+        color2 = Gdk.RGBA()
+        color2.parse("blue")
         for polygons in self.polygons:
             for polygon in polygons:
-                (name, ptype, color, transparency, points) = polygon
+                dummy_name, ptype, dummy_color, dummy_transparency, points = polygon
                 map_points = []
                 for point in points:
                     conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
-                    (coord_x,
-                     coord_y) = gpsmap.convert_geographic_to_screen(conv_pt)
+                    coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
                     map_points.append((coord_x, coord_y))
                 first = True
                 ctx.save()
-                ctx.set_source_rgba(float(color2.red / 65535.0),
-                                    float(color2.green / 65535.0),
-                                    float(color2.blue / 65535.0),
-                                    0.3) # transparency
+                ctx.set_source_rgba(color2.red, color2.green, color2.blue, 0.3)
                 ctx.set_line_cap(cairo.LINE_CAP_ROUND)
                 ctx.set_line_join(cairo.LINE_JOIN_ROUND)
                 ctx.set_line_width(3)
@@ -138,11 +135,9 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
                 for idx_pt in range(0, len(map_points)):
                     if first:
                         first = False
-                        ctx.move_to(map_points[idx_pt][0],
-                                    map_points[idx_pt][1])
+                        ctx.move_to(map_points[idx_pt][0], map_points[idx_pt][1])
                     else:
-                        ctx.line_to(map_points[idx_pt][0],
-                                    map_points[idx_pt][1])
+                        ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
                 ctx.close_path()
                 if ptype == "Polygon":
                     ctx.stroke()
@@ -155,29 +150,23 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
                 ctx.restore()
         for paths in self.paths:
             for path in paths:
-                (name, ptype, color, transparency, points) = path
+                dummy_name, ptype, dummy_color, dummy_transparency, points = path
                 map_points = []
                 for point in points:
                     conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
-                    (coord_x,
-                     coord_y) = gpsmap.convert_geographic_to_screen(conv_pt)
+                    coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
                     map_points.append((coord_x, coord_y))
                 first = True
                 ctx.save()
-                ctx.set_source_rgba(float(color1.red / 65535.0),
-                                    float(color1.green / 65535.0),
-                                    float(color1.blue / 65535.0),
-                                    0.5) # transparency
+                ctx.set_source_rgba(color1.red, color1.green, color1.blue, 0.5)
                 ctx.set_line_width(5)
                 ctx.set_operator(cairo.OPERATOR_ATOP)
                 for idx_pt in range(0, len(map_points)):
                     if first:
                         first = False
-                        ctx.move_to(map_points[idx_pt][0],
-                                    map_points[idx_pt][1])
+                        ctx.move_to(map_points[idx_pt][0], map_points[idx_pt][1])
                     else:
-                        ctx.line_to(map_points[idx_pt][0],
-                                    map_points[idx_pt][1])
+                        ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
                 ctx.stroke()
                 ctx.restore()
 
@@ -185,7 +174,7 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         render the layer
         """
-        pass
+        dummy_map = gpsmap
 
     def do_busy(self):
         """
@@ -197,6 +186,9 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         When we press a button.
         """
+        dummy_map = gpsmap
+        dummy_evt = gdkeventbutton
         return False
+
 
 GObject.type_register(KmlLayer)

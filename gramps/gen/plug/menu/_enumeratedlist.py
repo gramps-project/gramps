@@ -14,43 +14,44 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Option class representing an enumerated list of possible values.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Option
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EnumeratedListOption class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EnumeratedListOption(Option):
     """
     This class describes an option that provides a finite number of values.
     Each possible value is assigned a value and a description.
     """
 
-    __signals__ = { 'options-changed' : None }
+    __signals__ = {"options-changed": None}
 
     def __init__(self, label, value):
         """
@@ -62,6 +63,7 @@ class EnumeratedListOption(Option):
         :type value: int
         :return: nothing
         """
+        self.ini_value = value
         Option.__init__(self, label, value)
         self.__items = []
         self.__xml_items = []
@@ -80,12 +82,12 @@ class EnumeratedListOption(Option):
         :type _xml_item: Boolean
         :return: nothing
         """
-        if not xml_item: # localized item description is being passed in
+        if not xml_item:  # localized item description is being passed in
             self.__items.append((value, description))
-        else: # English item description is being passed in
+        else:  # English item description is being passed in
             self.__xml_items.append((value, description))
             self.__items.append((value, _(description)))
-        self.emit('options-changed')
+        self.emit("options-changed")
 
     def set_items(self, items, xml_items=False):
         """
@@ -98,13 +100,13 @@ class EnumeratedListOption(Option):
         :type _xml_items: Boolean
         :return: nothing
         """
-        if not xml_items: # localized item descriptions are being passed in
+        if not xml_items:  # localized item descriptions are being passed in
             self.__items = items
-        else: # English item descriptions are being passed in
+        else:  # English item descriptions are being passed in
             self.__xml_items = items
-            for (value, description) in items:
+            for value, description in items:
                 self.__items.append((value, _(description)))
-        self.emit('options-changed')
+        self.emit("options-changed")
 
     def get_items(self, xml_items=False):
         """
@@ -114,9 +116,9 @@ class EnumeratedListOption(Option):
         :type _xml_items: Boolean
         :return: an array of tuples containing (value,description) pairs.
         """
-        if not xml_items: # localized item descriptions are wanted
+        if not xml_items:  # localized item descriptions are wanted
             return self.__items
-        return self.__xml_items # English item descriptions are wanted
+        return self.__xml_items  # English item descriptions are wanted
 
     def clear(self):
         """
@@ -125,7 +127,7 @@ class EnumeratedListOption(Option):
         :return: nothing.
         """
         self.__items = []
-        self.emit('options-changed')
+        self.emit("options-changed")
 
     def set_value(self, value):
         """
@@ -138,7 +140,11 @@ class EnumeratedListOption(Option):
         """
         if value in (v for v, d in self.__items):
             Option.set_value(self, value)
+        elif value == self.ini_value:
+            return
         else:
-            logging.warning(_("Value '%(val)s' not found for option '%(opt)s'") %
-                             {'val' : str(value), 'opt' : self.get_label()})
+            logging.warning(
+                _("Value '%(val)s' not found for option '%(opt)s'")
+                % {"val": str(value), "opt": self.get_label()}
+            )
             logging.warning(_("Valid values: ") + str(self.__items))

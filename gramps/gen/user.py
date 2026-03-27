@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -25,6 +24,7 @@ The User class provides basic interaction with the user.
 import sys
 from abc import ABCMeta, abstractmethod
 from contextlib import contextmanager
+
 
 class UserBase(metaclass=ABCMeta):
     """
@@ -36,7 +36,7 @@ class UserBase(metaclass=ABCMeta):
     def __init__(self, callback=None, error=None, uistate=None, dbstate=None):
         self.callback_function = callback
         self.error_function = error
-        self._fileout = sys.stderr # redirected to mocks by unit tests
+        self._fileout = sys.stderr  # redirected to mocks by unit tests
         self.uistate = uistate
         self.dbstate = dbstate
 
@@ -117,8 +117,15 @@ class UserBase(metaclass=ABCMeta):
             self.end_progress()
 
     @abstractmethod
-    def prompt(self, title, message, accept_label, reject_label, parent=None,
-               default_label=None):
+    def prompt(
+        self,
+        title,
+        message,
+        accept_label,
+        reject_label,
+        parent=None,
+        default_label=None,
+    ):
         """
         Prompt the user with a message to select an alternative.
 
@@ -188,6 +195,7 @@ class UserBase(metaclass=ABCMeta):
         Displays information to the user
         """
 
+
 class User(UserBase):
     """
     An implementation of the :class:`.gen.user.UserBase` class which supresses
@@ -209,8 +217,15 @@ class User(UserBase):
     def end_progress(self):
         pass
 
-    def prompt(self, title, message, accept_label, reject_label, parent=None,
-               default_label=None):
+    def prompt(
+        self,
+        title,
+        message,
+        accept_label,
+        reject_label,
+        parent=None,
+        default_label=None,
+    ):
         return True
 
     def warn(self, title, warning=""):

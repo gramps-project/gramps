@@ -13,40 +13,45 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PersonRefModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PersonRefModel(Gtk.ListStore):
-
     def __init__(self, obj_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, bool, object)
+        Gtk.ListStore.__init__(self, str, str, str, bool, bool, object)
         self.db = db
         for obj in obj_list:
             p = self.db.get_person_from_handle(obj.ref)
             if p:
-                data = [name_displayer.display(p), p.gramps_id, obj.rel,
-                        obj.get_privacy(), obj]
+                data = [
+                    name_displayer.display(p),
+                    p.gramps_id,
+                    obj.rel,
+                    obj.has_citations(),
+                    obj.get_privacy(),
+                    obj,
+                ]
             else:
-                data = ['unknown','unknown', obj.rel, obj.get_privacy(), obj]
+                data = ["unknown", "unknown", obj.rel, obj.get_privacy(), obj]
             self.append(row=data)

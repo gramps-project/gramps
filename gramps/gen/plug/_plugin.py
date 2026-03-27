@@ -14,20 +14,21 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 This module provides the base class for plugins.
 """
 
+
 class Plugin:
     """
     This class serves as a base class for all plugins that can be registered
     with the plugin manager
     """
+
     def __init__(self, name, description, module_name):
         """
         :param name: A friendly name to call this plugin.
@@ -68,4 +69,3 @@ class Plugin:
         :return: a string representing the name of the module for this plugin
         """
         return self.__mod_name
-

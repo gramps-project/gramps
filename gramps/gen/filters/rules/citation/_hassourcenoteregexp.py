@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -23,39 +22,49 @@ Filter rule to match citations whose source notes contain a substring or
 match a regular expression.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasnoteregexbase import HasNoteRegexBase
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Citation
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasSourceNoteRegexp
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasSourceNoteRegexp(HasNoteRegexBase):
     """
     Rule that checks if a citation has a source note that contains a
     substring or matches a regular expression.
     """
 
-    name = _('Citations having source notes containing <text>')
-    description = _("Matches citations whose source notes contain a substring "
-                    "or match a regular expression")
-    category = _('Source filters')
+    name = _("Citations having source notes containing <text>")
+    description = _(
+        "Matches citations whose source notes contain a substring "
+        "or match a regular expression"
+    )
+    category = _("Source filters")
 
-    def apply(self, db, citation):
-        source = db.get_source_from_handle(citation.get_reference_handle())
-        if HasNoteRegexBase.apply(self, db, source):
-            return True
-        return False
+    def apply_to_one(self, db: Database, citation: Citation) -> bool:  # type: ignore[override]
+        source = db.get_source_from_handle(citation.source_handle)
+        return HasNoteRegexBase.apply_to_one(self, db, source)

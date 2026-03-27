@@ -13,33 +13,32 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasnotesubstrbase import HasNoteSubstrBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Events having notes that contain a substring"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
     """Places having notes containing <substring>"""
 
-    name = _('Places having notes containing <substring>')
-    description = _("Matches places whose notes contain text "
-                    "matching a substring")
-
+    name = _("Places having notes containing <substring>")
+    description = _("Matches places whose notes contain text " "matching a substring")

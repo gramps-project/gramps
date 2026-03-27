@@ -13,24 +13,25 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from gramps.gen.plug._pluginreg import register, STABLE, DATABASE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-register(DATABASE,
-         id='sqlite',
-         name=_('SQLite'),
-         name_accell=_('_SQLite Database'),
-         description=_('SQLite Database'),
-         version='1.0.0',
-         gramps_target_version='5.1',
-         status=STABLE,
-         fname='sqlite.py',
-         databaseclass='SQLite',
-         authors=['Doug Blank'],
-         authors_email=['doug.blank@gmail.com']
+register(
+    DATABASE,
+    id="sqlite",
+    name=_("SQLite"),
+    name_accell=_("_SQLite Database"),
+    description=_("SQLite Database"),
+    version="1.0.0",
+    gramps_target_version="6.0",
+    status=STABLE,
+    fname="sqlite.py",
+    databaseclass="SQLite",
+    authors=["Doug Blank"],
+    authors_email=["doug.blank@gmail.com"],
 )

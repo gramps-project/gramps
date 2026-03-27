@@ -13,25 +13,34 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Provide the different event roles.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.sgettext
 
+
+# -------------------------------------------------------------------------
+#
+# EventRoleType
+#
+# -------------------------------------------------------------------------
 class EventRoleType(GrampsType):
+    """
+    Class representing role a participant played in an event.
+    """
 
     UNKNOWN = -1
     CUSTOM = 0
@@ -44,6 +53,15 @@ class EventRoleType(GrampsType):
     WITNESS = 7
     FAMILY = 8
     INFORMANT = 9
+    GODPARENT = 10
+    FATHER = 11
+    MOTHER = 12
+    PARENT = 13
+    CHILD = 14
+    MULTIPLE = 15
+    FRIEND = 16
+    NEIGHBOR = 17
+    OFFICIATOR = 18
 
     _CUSTOM = CUSTOM
     _DEFAULT = PRIMARY
@@ -51,16 +69,25 @@ class EventRoleType(GrampsType):
     _DATAMAP = [
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
-        (PRIMARY, _("Role|Primary"), "Primary"),
+        (PRIMARY, _("Primary", "Role"), "Primary"),
         (CLERGY, _("Clergy"), "Clergy"),
         (CELEBRANT, _("Celebrant"), "Celebrant"),
         (AIDE, _("Aide"), "Aide"),
         (BRIDE, _("Bride"), "Bride"),
         (GROOM, _("Groom"), "Groom"),
         (WITNESS, _("Witness"), "Witness"),
-        (FAMILY, _("Role|Family"), "Family"),
+        (FAMILY, _("Family", "Role"), "Family"),
         (INFORMANT, _("Informant"), "Informant"),
-        ]
+        (GODPARENT, _("Godparent"), "Godparent"),
+        (FATHER, _("Father"), "Father"),
+        (MOTHER, _("Mother"), "Mother"),
+        (PARENT, _("Parent"), "Parent"),
+        (CHILD, _("Child"), "Child"),
+        (MULTIPLE, _("Multiple birth"), "Multiple birth"),
+        (FRIEND, _("Friend"), "Friend"),
+        (NEIGHBOR, _("Neighbor"), "Neighbor"),
+        (OFFICIATOR, _("Officiator"), "Officiator"),
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

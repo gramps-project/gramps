@@ -13,43 +13,54 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.notebase import NoteBase
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # Objects having notes that contain a substring or match a regular expression
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNoteRegexBase(Rule):
     """Objects having notes containing <text>."""
 
-    labels = [ _('Text:')]
-    name = 'Objects having notes containing <text>'
-    description = ("Matches objects whose notes contain a substring "
-                   "or match a regular expression")
-    category = _('General filters')
+    labels = [_("Text:")]
+    name = "Objects having notes containing <text>"
+    description = (
+        "Matches objects whose notes contain a substring "
+        "or match a regular expression"
+    )
+    category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, person):
-        for handle in person.get_note_list():
+    def apply_to_one(self, db: Database, obj: NoteBase) -> bool:
+        for handle in obj.note_list:
             note = db.get_note_from_handle(handle)
-            if self.match_substring(0, note.get()):
+            if self.match_substring(0, str(note.text)):
                 return True
         return False

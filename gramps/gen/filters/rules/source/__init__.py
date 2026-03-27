@@ -15,16 +15,13 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Package providing filter rules for Gramps.
 """
-
-from .._hassourcebase import HasSourceBase as HasSource
 
 from ._allsources import AllSources
 from ._hasattribute import HasAttribute
@@ -34,7 +31,9 @@ from ._regexpidof import RegExpIdOf
 from ._hasnote import HasNote
 from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from ._hasnotetype import HasNoteType
 from ._hasreferencecountof import HasReferenceCountOf
+from ._hassource import HasSource
 from ._sourceprivate import SourcePrivate
 from ._matchesfilter import MatchesFilter
 from ._changedsince import ChangedSince
@@ -52,6 +51,7 @@ editor_rule_list = [
     RegExpIdOf,
     HasNote,
     HasNoteRegexp,
+    HasNoteType,
     HasReferenceCountOf,
     SourcePrivate,
     MatchesFilter,
@@ -60,5 +60,5 @@ editor_rule_list = [
     MatchesTitleSubstringOf,
     HasRepositoryCallNumberRef,
     MatchesRepositoryFilter,
-    HasTag
+    HasTag,
 ]

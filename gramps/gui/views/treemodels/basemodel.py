@@ -15,23 +15,22 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.utils.lru import LRU
 from gramps.gen.config import config
 
-class BaseModel:
 
+class BaseModel:
     # LRU cache size
-    _CACHE_SIZE = config.get('interface.treemodel-cache-size')
+    _CACHE_SIZE = config.get("interface.treemodel-cache-size")
 
     def __init__(self):
         self.lru_data = LRU(BaseModel._CACHE_SIZE)
@@ -63,9 +62,9 @@ class BaseModel:
         or a name (special value used by view).
         """
         if handle in self.lru_data and col in self.lru_data[handle]:
-            #print("hit", handle, col)
+            # print("hit", handle, col)
             return (True, self.lru_data[handle][col])
-        #print("MISS", handle, col)
+        # print("MISS", handle, col)
         return (False, None)
 
     def set_cached_value(self, handle, col, data):

@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 
@@ -28,7 +27,17 @@
 # -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -39,15 +48,16 @@ _ = glocale.translation.gettext
 class HasAddressText(Rule):
     """Rule that checks for text in personal addresses"""
 
-    labels = [_('Text:')]
-    name = _('People with an address containing <text>')
-    description = _("Matches people with a personal address containing "
-                    "the given text")
-    category = _('General filters')
+    labels = [_("Text:")]
+    name = _("People with an address containing <text>")
+    description = _(
+        "Matches people with a personal address containing " "the given text"
+    )
+    category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, person):
-        for address in person.get_address_list():
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for address in person.address_list:
             for string in address.get_text_data_list():
                 if self.match_substring(0, string):
                     return True

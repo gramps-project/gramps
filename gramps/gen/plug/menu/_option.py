@@ -14,27 +14,27 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 The base option class for all other option classes.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...utils.callback import Callback
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Option class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Option(Callback):
     """
     This class serves as a base class for all options. All Options must
@@ -42,8 +42,7 @@ class Option(Callback):
     to add additional functionality.
     """
 
-    __signals__ = { 'value-changed' : None,
-                    'avail-changed' : None}
+    __signals__ = {"value-changed": None, "avail-changed": None}
 
     def __init__(self, label, value):
         """
@@ -98,7 +97,7 @@ class Option(Callback):
         :return: nothing
         """
         self.__value = value
-        self.emit('value-changed')
+        self.emit("value-changed")
 
     def get_help(self):
         """
@@ -132,7 +131,7 @@ class Option(Callback):
         """
         if avail != self.__available:
             self.__available = avail
-            self.emit('avail-changed')
+            self.emit("avail-changed")
 
     def get_available(self):
         """

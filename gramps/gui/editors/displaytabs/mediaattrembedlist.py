@@ -13,30 +13,30 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .attrembedlist import AttrEmbedList
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MediaAttrEmbedList
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MediaAttrEmbedList(AttrEmbedList):
-
-    def __init__(self, dbstate, uistate, track, data):
-        AttrEmbedList.__init__(self, dbstate, uistate, track, data)
+    def __init__(self, dbstate, uistate, track, data, config_key):
+        AttrEmbedList.__init__(self, dbstate, uistate, track, data, config_key)
 
     def get_editor(self):
         from .. import EditAttribute
+
         return EditAttribute
 
     def get_user_values(self):

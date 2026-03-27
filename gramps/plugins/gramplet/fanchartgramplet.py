@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 
 ## Based on the paper:
 ##   http://www.cs.utah.edu/~draperg/research/fanchart/draperg_FHT08.pdf
@@ -25,16 +24,22 @@
 ## Found by redwood:
 ## http://www.gramps-project.org/bugs/view.php?id=2611
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
-from gramps.gui.widgets.fanchart import (FanChartWidget, FanChartGrampsGUI,
-                                         FORM_HALFCIRCLE, BACKGROUND_SCHEME1)
+from gramps.gui.widgets.fanchart import (
+    FanChartWidget,
+    FanChartGrampsGUI,
+    FORM_HALFCIRCLE,
+    BACKGROUND_SCHEME1,
+)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 class FanChartGramplet(FanChartGrampsGUI, Gramplet):
     """
@@ -50,9 +55,9 @@ class FanChartGramplet(FanChartGrampsGUI, Gramplet):
         self.flipupsidedownname = True
         self.twolinename = True
         self.radialtext = True
-        self.fonttype = 'Sans'
-        self.grad_start = '#0000FF'
-        self.grad_end = '#FF0000'
+        self.fonttype = "Sans"
+        self.grad_start = "#0000FF"
+        self.grad_end = "#FF0000"
         self.generic_filter = None
         self.alpha_filter = 0.2
         self.form = FORM_HALFCIRCLE
@@ -65,8 +70,12 @@ class FanChartGramplet(FanChartGrampsGUI, Gramplet):
         self.fan.show()
 
     def init(self):
-        self.set_tooltip(_("Click to expand/contract person\nRight-click for "
-                           "options\nClick and drag in open area to rotate"))
+        self.set_tooltip(
+            _(
+                "Click to expand/contract person\nRight-click for "
+                "options\nClick and drag in open area to rotate"
+            )
+        )
 
     def active_changed(self, handle):
         """
@@ -77,7 +86,7 @@ class FanChartGramplet(FanChartGrampsGUI, Gramplet):
 
     def on_childmenu_changed(self, obj, person_handle):
         """Callback for the pulldown menu selection, changing to the person
-           attached with menu item."""
+        attached with menu item."""
         dummy_obj = obj
-        self.set_active('Person', person_handle)
+        self.set_active("Person", person_handle)
         return True

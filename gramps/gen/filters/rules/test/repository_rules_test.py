@@ -13,29 +13,37 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Unittest that tests repository-specific filter rules
 """
+
 import unittest
 import os
 
 from ....db.utils import import_as_dict
 from ....filters import GenericFilterFactory
-from ....const import DATA_DIR
+from ....const import TEST_DIR
 from ....user import User
 
 from ..repository import (
-    AllRepos, HasIdOf, RegExpIdOf, HasNoteRegexp, HasReferenceCountOf,
-    RepoPrivate, ChangedSince, MatchesNameSubstringOf, HasTag)
+    AllRepos,
+    HasIdOf,
+    RegExpIdOf,
+    HasNoteRegexp,
+    HasReferenceCountOf,
+    RepoPrivate,
+    ChangedSince,
+    MatchesNameSubstringOf,
+    HasTag,
+)
 
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
-GenericRepositoryFilter = GenericFilterFactory('Repository')
+GenericRepositoryFilter = GenericFilterFactory("Repository")
+
 
 class BaseTest(unittest.TestCase):
     """
@@ -63,41 +71,43 @@ class BaseTest(unittest.TestCase):
         Test AllRepos rule.
         """
         rule = AllRepos([])
-        self.assertEqual(len(self.filter_with_rule(rule)),
-                         self.db.get_number_of_repositories())
+        self.assertEqual(
+            len(self.filter_with_rule(rule)), self.db.get_number_of_repositories()
+        )
 
     def test_hasidof(self):
         """
         Test HasIdOf rule.
         """
-        rule = HasIdOf(['R0000'])
-        self.assertEqual(self.filter_with_rule(rule),
-                         set(['b39fe38593f3f8c4f12']))
+        rule = HasIdOf(["R0000"])
+        self.assertEqual(self.filter_with_rule(rule), set(["b39fe38593f3f8c4f12"]))
 
     def test_regexpidof(self):
         """
         Test RegExpIdOf rule.
         """
-        rule = RegExpIdOf(['R000.'], use_regex=True)
-        self.assertEqual(self.filter_with_rule(rule), set([
-            'a701ead12841521cd4d', 'a701e99f93e5434f6f3',
-            'b39fe38593f3f8c4f12']))
+        rule = RegExpIdOf(["R000."], use_regex=True)
+        self.assertEqual(
+            self.filter_with_rule(rule),
+            set(["a701ead12841521cd4d", "a701e99f93e5434f6f3", "b39fe38593f3f8c4f12"]),
+        )
 
     def test_hasnoteregexp(self):
         """
         Test HasNoteRegexp rule.
         """
-        rule = HasNoteRegexp(['.'], use_regex=True)
-        self.assertEqual(self.filter_with_rule(rule), set([
-            'a701ead12841521cd4d', 'b39fe38593f3f8c4f12']))
+        rule = HasNoteRegexp(["."], use_regex=True)
+        self.assertEqual(
+            self.filter_with_rule(rule),
+            set(["a701ead12841521cd4d", "b39fe38593f3f8c4f12"]),
+        )
 
     def test_hasreferencecountof(self):
         """
         Test HasReferenceCountOf rule.
         """
-        rule = HasReferenceCountOf(['greater than', '1'])
-        self.assertEqual(self.filter_with_rule(rule),
-                         set(['a701e99f93e5434f6f3']))
+        rule = HasReferenceCountOf(["greater than", "1"])
+        self.assertEqual(self.filter_with_rule(rule), set(["a701e99f93e5434f6f3"]))
 
     def test_repoprivate(self):
         """
@@ -110,25 +120,22 @@ class BaseTest(unittest.TestCase):
         """
         Test ChangedSince rule.
         """
-        rule = ChangedSince(['2010-01-01', '2016-01-01'])
-        self.assertEqual(self.filter_with_rule(rule),
-                         set(['a701e99f93e5434f6f3']))
+        rule = ChangedSince(["2010-01-01", "2016-01-01"])
+        self.assertEqual(self.filter_with_rule(rule), set(["a701e99f93e5434f6f3"]))
 
     def test_matchesnamesubstringof(self):
         """
         Test MatchesNameSubstringOf rule.
         """
-        rule = MatchesNameSubstringOf(['Martha'])
-        self.assertEqual(self.filter_with_rule(rule),
-                         set(['a701ead12841521cd4d']))
+        rule = MatchesNameSubstringOf(["Martha"])
+        self.assertEqual(self.filter_with_rule(rule), set(["a701ead12841521cd4d"]))
 
     def test_hastag(self):
         """
         Test HasTag rule.
         """
-        rule = HasTag(['ToDo'])
-        self.assertEqual(self.filter_with_rule(rule),
-                         set())
+        rule = HasTag(["ToDo"])
+        self.assertEqual(self.filter_with_rule(rule), set())
 
 
 if __name__ == "__main__":

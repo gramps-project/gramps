@@ -13,27 +13,27 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Base Reference class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# RefBase class
+# RefBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RefBase(metaclass=ABCMeta):
     """
     Base reference class to manage references to other objects.

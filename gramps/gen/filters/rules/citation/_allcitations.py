@@ -14,33 +14,34 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._everything import Everything
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Everyone
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class AllCitations(Everything):
     """Matches every citation"""
 
-    name = _('Every citation')
-    description = _('Matches every citation in the database')
+    name = _("Every citation")
+    description = _("Matches every citation in the database")

@@ -15,32 +15,33 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # gen.filters.rules/Place/_HasGallery.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasgallerybase import HasGalleryBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Places who have media object reference"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasGallery(HasGalleryBase):
     """Rule that checks for place who has media object reference"""
 
-    name = _('Places with <count> media')
+    name = _("Places with <count> media")
     description = _("Matches places with a certain number of items in the gallery")

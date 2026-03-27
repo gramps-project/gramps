@@ -14,39 +14,40 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # StyleComboBox
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class StyleComboBox(Gtk.ComboBox):
     """
     Derived from the ComboBox, this widget provides handling of Report
     Styles.
     """
 
-    def __init__(self,model=None):
+    def __init__(self, model=None):
         """
         Initialize the combobox, building the display column.
         """
         Gtk.ComboBox.__init__(self)
         self.set_model(model)
         cell = Gtk.CellRendererText()
-        self.pack_start(cell,True)
-        self.add_attribute(cell,'text',0)
+        self.pack_start(cell, True)
+        self.add_attribute(cell, "text", 0)
 
-    def set(self,style_map,default):
+    def set(self, style_map, default):
         """
         Set the options for the ComboBox, using the passed style
         map as the data.
@@ -63,7 +64,7 @@ class StyleComboBox(Gtk.ComboBox):
         start_index = 0
         for index, key in enumerate(sorted(style_map)):
             if key == "default":
-                self.store.append(row=[_('default')])
+                self.store.append(row=[_("default")])
             else:
                 self.store.append(row=[key])
             if key == default:
@@ -82,6 +83,6 @@ class StyleComboBox(Gtk.ComboBox):
         if active < 0:
             return None
         key = str(self.store[active][0])
-        if key == _('default'):
+        if key == _("default"):
             key = "default"
-        return (key,self.style_map[key])
+        return (key, self.style_map[key])

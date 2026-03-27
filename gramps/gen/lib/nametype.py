@@ -13,25 +13,34 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Name types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.gettext
 
+
+# -------------------------------------------------------------------------
+#
+# NameType
+#
+# -------------------------------------------------------------------------
 class NameType(GrampsType):
+    """
+    Class encapsulating the type of name.
+    """
 
     UNKNOWN = -1
     CUSTOM = 0
@@ -48,7 +57,7 @@ class NameType(GrampsType):
         (AKA, _("Also Known As"), "Also Known As"),
         (BIRTH, _("Birth Name"), "Birth Name"),
         (MARRIED, _("Married Name"), "Married Name"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

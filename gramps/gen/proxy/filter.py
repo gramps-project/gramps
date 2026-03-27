@@ -16,24 +16,69 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Proxy class for the Gramps databases. Apply filter
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+
+# -------------------------------------------------------------------------
 #
 # Gramps libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
-from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
-                   Citation, Event, Media, Place, Repository, Note, Tag)
+from ..lib import (
+    Date,
+    Person,
+    Name,
+    Surname,
+    NameOriginType,
+    Family,
+    Source,
+    Citation,
+    Event,
+    Media,
+    Place,
+    Repository,
+    Note,
+    Tag,
+)
 from ..const import GRAMPS_LOCALE as glocale
+from ..types import (
+    AnyHandle,
+    PersonHandle,
+    EventHandle,
+    FamilyHandle,
+    PlaceHandle,
+    PrimaryObject,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+    TagHandle,
+    TableObjectType,
+    PersonGrampsID,
+    EventGrampsID,
+    FamilyGrampsID,
+    PlaceGrampsID,
+    SourceGrampsID,
+    RepositoryGrampsID,
+    CitationGrampsID,
+    MediaGrampsID,
+    NoteGrampsID,
+)
+
 
 class FilterProxyDb(ProxyDbBase):
     """
@@ -42,28 +87,32 @@ class FilterProxyDb(ProxyDbBase):
     the user.
     """
 
-    def __init__(self, db, person_filter=None, event_filter=None,
-                 note_filter=None, user=None):
+    def __init__(
+        self, db, person_filter=None, event_filter=None, note_filter=None, user=None
+    ):
         """
         Create a new FilterProxyDb instance.
         """
         ProxyDbBase.__init__(self, db)
         self.person_filter = person_filter
         if person_filter:
-            self.plist = set(person_filter.apply(
-                    self.db, self.db.iter_person_handles(), user=user))
+            self.plist = set(
+                person_filter.apply(self.db, self.db.iter_person_handles(), user=user)
+            )
         else:
             self.plist = set(self.db.iter_person_handles())
 
         if event_filter:
-            self.elist = set(event_filter.apply(
-                    self.db, self.db.iter_event_handles(), user=user))
+            self.elist = set(
+                event_filter.apply(self.db, self.db.iter_event_handles(), user=user)
+            )
         else:
             self.elist = set(self.db.iter_event_handles())
 
         if note_filter:
-            self.nlist = set(note_filter.apply(
-                    self.db, self.db.iter_note_handles(), user=user))
+            self.nlist = set(
+                note_filter.apply(self.db, self.db.iter_note_handles(), user=user)
+            )
         else:
             self.nlist = set(self.db.iter_note_handles())
 
@@ -84,23 +133,26 @@ class FilterProxyDb(ProxyDbBase):
             if person is None:
                 return None
             person.set_person_ref_list(
-                [ ref for ref in person.get_person_ref_list()
-                  if ref.ref in self.plist ])
+                [ref for ref in person.get_person_ref_list() if ref.ref in self.plist]
+            )
 
             person.set_family_handle_list(
-                [ hndl for hndl in person.get_family_handle_list()
-                  if hndl in self.flist ])
+                [hndl for hndl in person.get_family_handle_list() if hndl in self.flist]
+            )
 
             person.set_parent_family_handle_list(
-                [ hndl for hndl in person.get_parent_family_handle_list()
-                  if hndl in self.flist ])
+                [
+                    hndl
+                    for hndl in person.get_parent_family_handle_list()
+                    if hndl in self.flist
+                ]
+            )
 
             eref_list = person.get_event_ref_list()
             bref = person.get_birth_ref()
             dref = person.get_death_ref()
 
-            new_eref_list = [ ref for ref in eref_list
-                              if ref.ref in self.elist]
+            new_eref_list = [ref for ref in eref_list if ref.ref in self.elist]
 
             person.set_event_ref_list(new_eref_list)
             if bref in new_eref_list:
@@ -220,8 +272,9 @@ class FilterProxyDb(ProxyDbBase):
             family = self.db.get_family_from_handle(handle)
             if family is None:
                 return None
-            eref_list = [ eref for eref in family.get_event_ref_list()
-                          if eref.ref in self.elist ]
+            eref_list = [
+                eref for eref in family.get_event_ref_list() if eref.ref in self.elist
+            ]
             family.set_event_ref_list(eref_list)
 
             if family.get_father_handle() not in self.plist:
@@ -230,8 +283,9 @@ class FilterProxyDb(ProxyDbBase):
             if family.get_mother_handle() not in self.plist:
                 family.set_mother_handle(None)
 
-            clist = [ cref for cref in family.get_child_ref_list()
-                      if cref.ref in self.plist ]
+            clist = [
+                cref for cref in family.get_child_ref_list() if cref.ref in self.plist
+            ]
             family.set_child_ref_list(clist)
 
             # Filter notes out
@@ -287,102 +341,106 @@ class FilterProxyDb(ProxyDbBase):
         else:
             return None
 
-    def get_person_from_gramps_id(self, val):
+    def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
         """
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
-        person = self.db.get_person_from_gramps_id(val)
-        if person:
-            return self.get_person_from_handle(person.get_handle())
+        data = self.db.get_raw_person_from_id_data(gramps_id)
+        if data:
+            return self.get_person_from_handle(data.handle)
         else:
             return None
 
-    def get_family_from_gramps_id(self, val):
+    def get_family_from_gramps_id(self, gramps_id: FamilyGrampsID) -> Family | None:
         """
         Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
-        family = self.db.get_family_from_gramps_id(val)
-        if family:
-            return self.get_family_from_handle(family.get_handle())
+        data = self.db.get_raw_family_from_id_data(gramps_id)
+        if data:
+            return self.get_family_from_handle(data.handle)
         else:
             return None
 
-    def get_event_from_gramps_id(self, val):
+    def get_event_from_gramps_id(self, gramps_id: EventGrampsID) -> Event | None:
         """
         Finds an Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
-        event = self.db.get_event_from_gramps_id(val)
-        if event:
-            return self.get_event_from_handle(event.get_handle())
+        data = self.db.get_raw_event_from_id_data(gramps_id)
+        if data:
+            return self.get_event_from_handle(data.handle)
         else:
             return None
 
-    def get_place_from_gramps_id(self, val):
+    def get_place_from_gramps_id(self, gramps_id: PlaceGrampsID) -> Place | None:
         """
         Finds a Place in the database from the passed Gramps ID.
         If no such Place exists, None is returned.
         """
-        place = self.db.get_place_from_gramps_id(val)
-        if place:
-            return self.get_place_from_handle(place.get_handle())
+        data = self.db.get_raw_place_from_id_data(gramps_id)
+        if data:
+            return self.get_place_from_handle(data.handle)
         else:
             return None
 
-    def get_source_from_gramps_id(self, val):
+    def get_source_from_gramps_id(self, gramps_id: SourceGrampsID) -> Source | None:
         """
         Finds a Source in the database from the passed Gramps ID.
         If no such Source exists, None is returned.
         """
-        source = self.db.get_source_from_gramps_id(val)
-        if source:
-            return self.get_source_from_handle(source.get_handle())
+        data = self.db.get_raw_source_from_id_data(gramps_id)
+        if data:
+            return self.get_source_from_handle(data.handle)
         else:
             return None
 
-    def get_citation_from_gramps_id(self, val):
+    def get_citation_from_gramps_id(
+        self, gramps_id: CitationGrampsID
+    ) -> Citation | None:
         """
         Finds a Citation in the database from the passed Gramps ID.
         If no such Citation exists, None is returned.
         """
-        citation = self.db.get_citation_from_gramps_id(val)
-        if citation:
-            return self.get_citation_from_handle(citation.get_handle())
+        data = self.db.get_raw_citation_from_id_data(gramps_id)
+        if data:
+            return self.get_citation_from_handle(data.handle)
         else:
             return None
 
-    def get_media_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, gramps_id: MediaGrampsID) -> Media | None:
         """
         Finds a Media in the database from the passed Gramps ID.
         If no such Media exists, None is returned.
         """
-        media = self.db.get_media_from_gramps_id(val)
-        if media:
-            return self.get_media_from_handle(media.get_handle())
+        data = self.db.get_raw_media_from_id_data(gramps_id)
+        if data:
+            return self.get_media_from_handle(data.handle)
         else:
             return None
 
-    def get_repository_from_gramps_id(self, val):
+    def get_repository_from_gramps_id(
+        self, gramps_id: RepositoryGrampsID
+    ) -> Repository | None:
         """
         Finds a Repository in the database from the passed Gramps ID.
         If no such Repository exists, None is returned.
         """
-        repository = self.db.get_repository_from_gramps_id(val)
-        if repository:
-            return self.get_repository_from_handle(repository.get_handle())
+        data = self.db.get_raw_repository_from_id_data(gramps_id)
+        if data:
+            return self.get_repository_from_handle(data.handle)
         else:
             return None
 
-    def get_note_from_gramps_id(self, val):
+    def get_note_from_gramps_id(self, gramps_id: NoteGrampsID) -> Note | None:
         """
         Finds a Note in the database from the passed Gramps ID.
         If no such Note exists, None is returned.
         """
-        note = self.db.get_note_from_gramps_id(val)
-        if note:
-            return self.get_note_from_handle(note.get_handle())
+        data = self.db.get_raw_note_from_id_data(gramps_id)
+        if data:
+            return self.get_note_from_handle(data.handle)
         else:
             return None
 
@@ -539,7 +597,7 @@ class FilterProxyDb(ProxyDbBase):
 
         >    result_list = list(find_backlink_handles(handle))
         """
-        #FIXME: add a filter for returned handles (see private.py as an example)
+        # FIXME: add a filter for returned handles (see private.py as an example)
         return self.db.find_backlink_handles(handle, include_classes)
 
     def sanitize_notebase(self, notebase):
@@ -551,7 +609,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         if notebase:
             note_list = notebase.get_note_list()
-            new_note_list = [ note for note in note_list if note in self.nlist ]
+            new_note_list = [note for note in note_list if note in self.nlist]
             notebase.set_note_list(new_note_list)
 
     def sanitize_addressbase(self, addressbase):

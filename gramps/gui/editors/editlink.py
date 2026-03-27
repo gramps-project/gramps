@@ -13,25 +13,25 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 import re
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 from ..managedwindow import ManagedWindow
 from ..display import display_help
@@ -39,16 +39,18 @@ from ..glade import Glade
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.const import URL_MANUAL_SECT2
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|Link_Editor')
+WIKI_HELP_SEC = _("Link_Editor", "manual")
 
-WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE, CITATION = list(range(10))
+WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE, CITATION = list(
+    range(10)
+)
 OBJECT_MAP = {
     EVENT: "Event",
     FAMILY: "Family",
@@ -59,15 +61,15 @@ OBJECT_MAP = {
     REPOSITORY: "Repository",
     SOURCE: "Source",
     CITATION: "Citation",
-    }
+}
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EditLink class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EditLink(ManagedWindow):
-
     def __init__(self, dbstate, uistate, track, url, callback):
         self.url = url
         self.dbstate = dbstate
@@ -82,29 +84,30 @@ class EditLink(ManagedWindow):
 
     def _local_init(self):
         self.top = Glade()
-        self.set_window(self.top.toplevel,
-                        self.top.get_object("title"),
-                        _('Link Editor'))
-        self.setup_configs('interface.editlink', 600, 160)
+        self.set_window(
+            self.top.toplevel, self.top.get_object("title"), _("Link Editor")
+        )
+        self.setup_configs("interface.editlink", 600, 160)
 
-        self.uri_list = self.top.get_object('link_type')
-        for text in [_("Internet Address"),       # 0 this order range above
-                     _("Event"),      # 1
-                     _("Family"),     # 2
-                     _("Media"),      # 3
-                     _("Note"),       # 4
-                     _("Person"),     # 5
-                     _("Place"),      # 6
-                     _("Repository"), # 7
-                     _("Source"),     # 8
-                     _("Citation"),   # 9
-                     ]:
+        self.uri_list = self.top.get_object("link_type")
+        for text in [
+            _("Internet Address"),  # 0 this order range above
+            _("Event"),  # 1
+            _("Family"),  # 2
+            _("Media"),  # 3
+            _("Note"),  # 4
+            _("Person"),  # 5
+            _("Place"),  # 6
+            _("Repository"),  # 7
+            _("Source"),  # 8
+            _("Citation"),  # 9
+        ]:
             self.uri_list.append_text(text)
-        self.pick_item = self.top.get_object('button1')
-        self.new_button = self.top.get_object('new')
-        self.edit_button = self.top.get_object('edit')
-        self.selected = self.top.get_object('label1')
-        self.url_link = self.top.get_object('entry1')
+        self.pick_item = self.top.get_object("button1")
+        self.new_button = self.top.get_object("new")
+        self.edit_button = self.top.get_object("edit")
+        self.selected = self.top.get_object("label1")
+        self.url_link = self.top.get_object("entry1")
         self.uri_list.connect("changed", self._on_type_changed)
         self.pick_item.connect("clicked", self._on_pick_one)
         self.new_button.connect("clicked", self._on_new)
@@ -130,10 +133,8 @@ class EditLink(ManagedWindow):
             elif object_class == "Citation":
                 self.uri_list.set_active(CITATION)
             # set texts:
-            self.selected.set_text(self.display_link(
-                    object_class, prop, value))
-            self.url_link.set_text("gramps://%s/%s/%s" %
-                                   (object_class, prop, value))
+            self.selected.set_text(self.display_link(object_class, prop, value))
+            self.url_link.set_text("gramps://%s/%s/%s" % (object_class, prop, value))
         else:
             self.uri_list.set_active(WEB)
             self.url_link.set_text(self.url)
@@ -154,32 +155,34 @@ class EditLink(ManagedWindow):
 
     def _on_new_callback(self, obj):
         object_class = obj.__class__.__name__
-        self.selected.set_text(self.display_link(
-                object_class, "handle", obj.handle))
-        self.url_link.set_text("gramps://%s/%s/%s" %
-                               (object_class, "handle", obj.handle))
+        self.selected.set_text(self.display_link(object_class, "handle", obj.handle))
+        self.url_link.set_text(
+            "gramps://%s/%s/%s" % (object_class, "handle", obj.handle)
+        )
 
     def _on_new(self, widget):
         from ..editors import EditObject
+
         object_class = OBJECT_MAP[self.uri_list.get_active()]
-        EditObject(self.dbstate,
-                   self.uistate,
-                   self.track,
-                   object_class,
-                   callback=self._on_new_callback)
+        EditObject(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            object_class,
+            callback=self._on_new_callback,
+        )
 
     def _on_edit_one(self, widget):
         from ..editors import EditObject
+
         uri = self.url_link.get_text()
         if uri.startswith("gramps://"):
             obj_class, prop, value = uri[9:].split("/", 2)
-            EditObject(self.dbstate,
-                       self.uistate,
-                       self.track,
-                       obj_class, prop, value)
+            EditObject(self.dbstate, self.uistate, self.track, obj_class, prop, value)
 
     def _on_pick_one(self, widget):
         from ..selectors import SelectorFactory
+
         object_class = OBJECT_MAP[self.uri_list.get_active()]
         Select = SelectorFactory(object_class)
         uri = self.url_link.get_text()
@@ -189,36 +192,44 @@ class EditLink(ManagedWindow):
             if object_class == obj_class:
                 if prop == "handle":
                     default = value
-                elif (prop == "gramps_id" and
-                      object_class in OBJECT_MAP.values()):
-                    person = self.dbstate.db.method('get_%s_from_gramps_id',
-                                                    object_class)(value)
+                elif prop == "gramps_id" and object_class in OBJECT_MAP.values():
+                    person = self.dbstate.db.method(
+                        "get_%s_from_gramps_id", object_class
+                    )(value)
                     if person:
                         default = person.handle
-        d = Select(self.dbstate, self.uistate, self.track,
-                   default=default)
+        d = Select(self.dbstate, self.uistate, self.track, default=default)
 
         result = d.run()
         if result:
             prop = "handle"
             value = result.handle
-            self.selected.set_text(self.display_link(
-                    object_class, prop, value))
-            self.url_link.set_text("gramps://%s/%s/%s" %
-                                   (object_class, prop, value))
+            self.selected.set_text(self.display_link(object_class, prop, value))
+            self.url_link.set_text("gramps://%s/%s/%s" % (object_class, prop, value))
 
     def _on_type_changed(self, widget):
-        self.selected.set_text("")
         if self.uri_list.get_active() == WEB:
             self.url_link.set_sensitive(True)
             self.pick_item.set_sensitive(False)
             self.new_button.set_sensitive(False)
             self.edit_button.set_sensitive(False)
+            self.selected.set_text("")
+            self.url_link.set_text("https://")
         else:
             self.url_link.set_sensitive(False)
             self.pick_item.set_sensitive(True)
             self.new_button.set_sensitive(True)
             self.edit_button.set_sensitive(True)
+            object_class = OBJECT_MAP[self.uri_list.get_active()]
+            handle = self.uistate.get_active(object_class)
+            if handle:
+                self.selected.set_text(
+                    self.display_link(object_class, "handle", handle)
+                )
+                self.url_link.set_text("gramps://%s/handle/%s" % (object_class, handle))
+            else:
+                self.selected.set_text("")
+                self.url_link.set_text("")
 
     def get_uri(self):
         if self.uri_list.get_active() == WEB:
@@ -227,28 +238,28 @@ class EditLink(ManagedWindow):
             return self.url_link.get_text()
 
     def _connect_signals(self):
-        self.define_cancel_button(self.top.get_object('button125'))
-        self.ok_button = self.top.get_object('button124')
+        self.define_cancel_button(self.top.get_object("button125"))
+        self.ok_button = self.top.get_object("button124")
         self.define_ok_button(self.ok_button, self.save)
         # TODO help button (rename glade button name)
-        self.define_help_button(self.top.get_object('button130'),
-                WIKI_HELP_PAGE, WIKI_HELP_SEC)
+        self.define_help_button(
+            self.top.get_object("button130"), WIKI_HELP_PAGE, WIKI_HELP_SEC
+        )
         self.update_ui(self.url_link)
 
     def build_menu_names(self, obj):
-        etitle =_('Link Editor')
+        etitle = _("Link Editor")
         return (etitle, etitle)
 
-    def define_ok_button(self,button,function):
-        button.connect('clicked',function)
+    def define_ok_button(self, button, function):
+        button.connect("clicked", function)
 
     def save(self, widget):
         self.callback(self.get_uri())
         self.close()
 
-    def define_cancel_button(self,button):
-        button.connect('clicked',self.close)
+    def define_cancel_button(self, button):
+        button.connect("clicked", self.close)
 
-    def define_help_button(self, button, webpage='', section=''):
-        button.connect('clicked', lambda x: display_help(webpage,
-                                                               section))
+    def define_help_button(self, button, webpage="", section=""):
+        button.connect("clicked", lambda x: display_help(webpage, section))

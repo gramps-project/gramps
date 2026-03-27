@@ -4,7 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
-# Copyright (C) 2017       Nick Hall
+# Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,48 +16,56 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Event object for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# standard python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .mediabase import MediaBase
-from .attrbase import AttributeBase
-from .datebase import DateBase
-from .placebase import PlaceBase
-from .tagbase import TagBase
-from .eventtype import EventType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import AttributeBase
+from .citationbase import CitationBase
+from .datebase import DateBase
+from .eventtype import EventType
+from .mediabase import MediaBase
+from .notebase import NoteBase
+from .placebase import PlaceBase
+from .primaryobj import PrimaryObject
+from .tagbase import TagBase
+
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Event class
+# Event
 #
-#-------------------------------------------------------------------------
-class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
-            DateBase, PlaceBase, PrimaryObject):
+# -------------------------------------------------------------------------
+class Event(
+    CitationBase,
+    NoteBase,
+    MediaBase,
+    AttributeBase,
+    DateBase,
+    PlaceBase,
+    PrimaryObject,
+):
     """
     The Event record is used to store information about some type of
     action that occurred at a particular place at a particular time,
@@ -111,14 +119,43 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
                   be considered persistent.
         :rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.__type.serialize(),
-                DateBase.serialize(self, no_text_date),
-                self.__description, self.place,
-                CitationBase.serialize(self),
-                NoteBase.serialize(self),
-                MediaBase.serialize(self),
-                AttributeBase.serialize(self),
-                self.change, TagBase.serialize(self), self.private)
+        return (
+            self.handle,
+            self.gramps_id,
+            self.__type.serialize(),
+            DateBase.serialize(self, no_text_date),
+            self.__description,
+            self.place,
+            CitationBase.serialize(self),
+            NoteBase.serialize(self),
+            MediaBase.serialize(self),
+            AttributeBase.serialize(self),
+            self.change,
+            TagBase.serialize(self),
+            self.private,
+        )
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        We override this method to handle the `type` and `description` properties.
+        """
+        attr_dict = super().get_object_state()
+        attr_dict["type"] = self.__type
+        attr_dict["description"] = self.__description
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to handle the `type` and `description` properties.
+        """
+        self.__type = attr_dict.pop("type")
+        self.__description = attr_dict.pop("description")
+        super().set_object_state(attr_dict)
 
     @classmethod
     def get_schema(cls):
@@ -128,50 +165,58 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
         from .date import Date
         from .mediaref import MediaRef
+
         return {
             "type": "object",
             "title": _("Event"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "gramps_id": {"type": "string",
-                              "title": _("Gramps ID")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
+                "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "type": EventType.get_schema(),
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
-                         "title": _("Date")},
-                "description": {"type": "string",
-                                "title": _("Description")},
-                "place": {"type": ["string", "null"],
-                          "maxLength": 50,
-                          "title": _("Place")},
-                "citation_list": {"type": "array",
-                                  "items": {"type": "string",
-                                            "maxLength": 50},
-                                  "title": _("Citations")},
-                "note_list": {"type": "array",
-                              "items": {"type": "string",
-                                        "maxLength": 50},
-                               "title": _("Notes")},
-                "media_list": {"type": "array",
-                               "items": MediaRef.get_schema(),
-                               "title": _("Media")},
-                "attribute_list": {"type": "array",
-                                   "items": Attribute.get_schema(),
-                                   "title": _("Media")},
-                "change": {"type": "integer",
-                           "title": _("Last changed")},
-                "tag_list": {"type": "array",
-                             "items": {"type": "string",
-                                       "maxLength": 50},
-                             "title": _("Tags")},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-            }
+                "date": Date.get_schema(),
+                "description": {"type": "string", "title": _("Description")},
+                "place": {
+                    "type": ["string", "null"],
+                    "maxLength": 50,
+                    "title": _("Place"),
+                },
+                "citation_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Citations"),
+                },
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Notes"),
+                },
+                "media_list": {
+                    "type": "array",
+                    "items": MediaRef.get_schema(),
+                    "title": _("Media"),
+                },
+                "attribute_list": {
+                    "type": "array",
+                    "items": Attribute.get_schema(),
+                    "title": _("Attributes"),
+                },
+                "change": {"type": "integer", "title": _("Last changed")},
+                "tag_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Tags"),
+                },
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def unserialize(self, data):
@@ -183,10 +228,21 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
                      Event object
         :type data: tuple
         """
-        (self.handle, self.gramps_id, the_type, date,
-         self.__description, self.place,
-         citation_list, note_list, media_list, attribute_list,
-         self.change, tag_list, self.private) = data
+        (
+            self.handle,
+            self.gramps_id,
+            the_type,
+            date,
+            self.__description,
+            self.place,
+            citation_list,
+            note_list,
+            media_list,
+            attribute_list,
+            self.change,
+            tag_list,
+            self.private,
+        ) = data
 
         self.__type = EventType()
         self.__type.unserialize(the_type)
@@ -211,7 +267,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
                   this object type.
         :rtype: bool
         """
-        if classname == 'Place':
+        if classname == "Place":
             return self.place == handle
         return False
 
@@ -224,7 +280,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :param handle_list: The list of handles to be removed.
         :type handle_list: str
         """
-        if classname == 'Place' and self.place in handle_list:
+        if classname == "Place" and self.place in handle_list:
             self.place = ""
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
@@ -238,7 +294,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :param new_handle: The handle to replace the old one with.
         :type new_handle: str
         """
-        if classname == 'Place' and self.place == old_handle:
+        if classname == "Place" and self.place == old_handle:
             self.place = new_handle
 
     def get_text_data_list(self):
@@ -287,11 +343,13 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = (self.get_referenced_note_handles() +
-               self.get_referenced_citation_handles() +
-               self.get_referenced_tag_handles())
+        ret = (
+            self.get_referenced_note_handles()
+            + self.get_referenced_citation_handles()
+            + self.get_referenced_tag_handles()
+        )
         if self.place:
-            ret.append(('Place', self.place))
+            ret.append(("Place", self.place))
         return ret
 
     def get_handle_referents(self):
@@ -315,8 +373,12 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         place = self.get_place_handle()
         description = self.__description
         the_type = self.__type
-        return (the_type == EventType.CUSTOM and date.is_empty()
-                and not place and not description)
+        return (
+            the_type == EventType.CUSTOM
+            and date.is_empty()
+            and not place
+            and not description
+        )
 
     def are_equal(self, other):
         """
@@ -330,13 +392,14 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         if other is None:
             other = Event(None)
 
-        if self.__type != other.type or \
-           ((self.place or other.place) and (self.place != other.place)) or \
-           self.__description != other.description \
-           or self.private != other.private or \
-           (not self.get_date_object().is_equal(other.get_date_object())) or \
-           len(self.get_citation_list()) != \
-                len(other.get_citation_list()):
+        if (
+            self.__type != other.type
+            or ((self.place or other.place) and (self.place != other.place))
+            or self.__description != other.description
+            or self.private != other.private
+            or (not self.get_date_object().is_equal(other.get_date_object()))
+            or len(self.get_citation_list()) != len(other.get_citation_list())
+        ):
             return False
 
         index = 0
@@ -382,8 +445,8 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :rtype: tuple
         """
         return self.__type
-    type = property(get_type, set_type, None,
-                    'Returns or sets type of the event')
+
+    type = property(get_type, set_type, None, "Returns or sets type of the event")
 
     def set_description(self, description):
         """
@@ -404,6 +467,10 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :rtype: str
         """
         return self.__description
-    description = property(get_description, set_description, None,
-                           'Returns or sets description of the event')
 
+    description = property(
+        get_description,
+        set_description,
+        None,
+        "Returns or sets description of the event",
+    )

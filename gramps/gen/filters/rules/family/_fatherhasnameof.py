@@ -13,38 +13,53 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..person import HasNameOf
-from ._memberbase import father_base
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Family
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasNameOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FatherHasNameOf(HasNameOf):
     """Rule that checks for full or partial name matches"""
 
-    name = _('Families with father with the <name>')
-    description = _("Matches families whose father has a specified "
-                    "(partial) name")
-    category = _('Father filters')
-    base_class = HasNameOf
-    apply = father_base
+    name = _("Families with father with the <name>")
+    description = _("Matches families whose father has a specified " "(partial) name")
+    category = _("Father filters")
+
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
+        father_handle = family.father_handle
+        if father_handle:
+            father = db.get_person_from_handle(father_handle)
+            if father:
+                return super().apply_to_one(db, father)
+            else:
+                return False
+        return False

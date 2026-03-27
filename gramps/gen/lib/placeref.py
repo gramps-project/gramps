@@ -14,32 +14,33 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Place Reference class for Gramps
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .refbase import RefBase
-from .datebase import DateBase
-from .const import IDENTICAL, EQUAL, DIFFERENT
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .datebase import DateBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Place References
+# PlaceRef
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceRef(RefBase, DateBase, SecondaryObject):
     """
     Place reference class.
@@ -59,16 +60,13 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (
-            RefBase.serialize(self),
-            DateBase.serialize(self)
-            )
+        return (RefBase.serialize(self), DateBase.serialize(self))
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (ref, date) = data
+        ref, date = data
         RefBase.unserialize(self, ref)
         DateBase.unserialize(self, date)
         return self
@@ -81,18 +79,21 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .date import Date
+
         return {
             "type": "object",
             "title": _("Place ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "ref": {"type": "string",
-                        "title": _("Handle"),
-                        "maxLength": 50},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
-                         "title": _("Date")}
-            }
+                "ref": {
+                    "type": "string",
+                    "title": _("Handle"),
+                    "maxLength": 50,
+                },
+                "date": Date.get_schema(),
+            },
         }
 
     def get_text_data_list(self):
@@ -142,7 +143,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
                   objects.
         :rtype: list
         """
-        return [('Place', self.ref)]
+        return [("Place", self.ref)]
 
     def get_handle_referents(self):
         """
@@ -166,8 +167,6 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         """
         if self.ref != other.ref or self.date != other.date:
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL

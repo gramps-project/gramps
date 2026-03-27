@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -25,30 +24,31 @@ without any translation happening yet.  Do _not_ add imports that will
 perform a translation on import, eg Gtk.
 """
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import platform
 import sys
 import os
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Platforms
 # Never test on LINUX, handle Linux in the else statement as default
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 LINUX = ["Linux", "linux", "linux2"]
 MACOS = ["Darwin", "darwin"]
 WINDOWS = ["Windows", "win32"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Platform determination functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 def lin():
     """
@@ -59,6 +59,7 @@ def lin():
         return True
     return False
 
+
 def mac():
     """
     Return True if a Macintosh system
@@ -66,6 +67,7 @@ def mac():
     if platform.system() in MACOS:
         return True
     return False
+
 
 def win():
     """
@@ -75,9 +77,11 @@ def win():
         return True
     return False
 
+
 ## The following functions do import gtk, but only when called. They
 ## should only be called after translation system has been
 ## initialized!
+
 
 def is_quartz():
     """
@@ -87,14 +91,16 @@ def is_quartz():
     if mac():
         try:
             import gi
-            gi.require_version('Gtk', '3.0')
-            gi.require_version('Gdk', '3.0')
+
+            gi.require_version("Gtk", "3.0")
+            gi.require_version("Gdk", "3.0")
             from gi.repository import Gtk
             from gi.repository import Gdk
         except ImportError:
             return False
         return Gdk.Display.get_default().__class__.__name__.endswith("QuartzDisplay")
     return False
+
 
 def has_display():
     """
@@ -105,26 +111,28 @@ def has_display():
     temp, sys.argv = sys.argv, sys.argv[:1]
     try:
         import gi
-        gi.require_version('Gtk', '3.0')
-        gi.require_version('Gdk', '3.0')
+
+        gi.require_version("Gtk", "3.0")
+        gi.require_version("Gdk", "3.0")
         from gi.repository import Gtk
         from gi.repository import Gdk
     except ImportError:
         return False
 
     try:
-        test = Gtk.init_check(temp) and \
-            Gdk.Display.get_default()
+        test = Gtk.init_check(temp) and Gdk.Display.get_default()
         sys.argv = temp
         return bool(test)
     except:
         sys.argv = temp
         return False
 
+
 # A couple of places add menu accelerators using <alt>, which doesn't
 # work with Gtk-quartz. <Meta> is the usually correct replacement, but
 # in one case the key is a number, and <meta>number is used by Spaces
 # (a mac feature), so we'll use control instead.
+
 
 def mod_key():
     """
@@ -136,6 +144,7 @@ def mod_key():
 
     return "<alt>"
 
+
 # Python2 on Windows munges environemnt variables to match the system
 # code page. This breaks all manner of things and the workaround
 # though a bit ugly, is encapsulated here. Use this to retrieve
@@ -146,21 +155,55 @@ def mod_key():
 
 
 def get_env_var(name, default=None):
-    '''
+    """
     Python2 on Windows can't directly read unicode values from
     environment variables. This routine does so using the native C
     wide-character function.
-    '''
+    """
     if not name or name not in os.environ:
         return default
 
     return os.environ[name]
 
+
 def get_curr_dir():
-    '''
+    """
     In Python2 on Windows, os.getcwd() returns a string encoded with
     the current code page, which may not be able to correctly handle
     an arbitrary unicode character in a path. This function uses the
     native GetCurrentDirectory function to return a unicode cwd.
-    '''
+    """
     return os.getcwd()
+
+
+# -------------------------------------------------------------------------
+#
+# Functions that return base directories as described in the XDG base directory
+# specification.
+#
+# -------------------------------------------------------------------------
+def get_user_data_dir():
+    """
+    Returns a base directory in which to store user-specific application data.
+    """
+    if "XDG_DATA_HOME" in os.environ:
+        return get_env_var("XDG_DATA_HOME")
+    return os.path.join(get_env_var("HOME"), ".local", "share")
+
+
+def get_user_config_dir():
+    """
+    Returns a base directory in which to store user-specific configuration settings.
+    """
+    if "XDG_CONFIG_HOME" in os.environ:
+        return get_env_var("XDG_CONFIG_HOME")
+    return os.path.join(get_env_var("HOME"), ".config")
+
+
+def get_user_cache_dir():
+    """
+    Returns a base directory in which to store temporary cached data.
+    """
+    if "XDG_CACHE_HOME" in os.environ:
+        return get_env_var("XDG_CACHE_HOME")
+    return os.path.join(get_env_var("HOME"), ".cache")

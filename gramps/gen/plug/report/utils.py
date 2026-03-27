@@ -6,6 +6,7 @@
 # Copyright (C) 2008       James Friedmann <jfriedmannj@gmail.com>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2015-2016  Paul Franklin
+# Copyright (C) 2025       Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,44 +18,49 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 A collection of utilities to aid in the generation of reports.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from ...datehandler import get_date
 from ...display.place import displayer as _pd
 from ...utils.file import media_path_full
+from ...utils.symbols import Symbols
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 
-# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value):
-    """ enable deferred translations (see Python docs 22.1.3.4) """
-    return value
 
-#-------------------------------------------------------------------------
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+def _T_(value, context=""):  # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
+
+
+SYMBOLS = Symbols()
+
+
+# -------------------------------------------------------------------------
 #
 #  Convert points to cm and back
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def pt2cm(pt_):
     """
     Convert points to centimeters. Fonts are typically specified in points,
@@ -67,6 +73,7 @@ def pt2cm(pt_):
     """
     return pt_ / 28.3465
 
+
 def cm2pt(cm_):
     """
     Convert centimeters to points. Fonts are typically specified in points,
@@ -78,6 +85,7 @@ def cm2pt(cm_):
     :rtype: float
     """
     return cm_ * 28.3465
+
 
 def rgb_color(color):
     """
@@ -93,34 +101,35 @@ def rgb_color(color):
     blue = float(color[2]) / 255.0
     return (red, green, blue)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #  Roman numbers
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def roman(num):
-    """ Integer to Roman numeral converter for 0 < num < 4000 """
+    """Integer to Roman numeral converter for 0 < num < 4000"""
     if not isinstance(num, int):
         return "?"
     if not 0 < num < 4000:
         return "?"
     vals = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
-    nums = ('M', 'CM', 'D', 'CD', 'C', 'XC', 'L',
-            'XL', 'X', 'IX', 'V', 'IV', 'I')
+    nums = ("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
     retval = ""
-    for i in range(len(vals)):
-        amount = int(num / vals[i])
+    for i, value in enumerate(vals):
+        amount = int(num / value)
         retval += nums[i] * amount
-        num -= vals[i] * amount
+        num -= value * amount
     return retval
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def place_name(dbase, place_handle):
-    """ returns a place string given a handle """
+    """returns a place string given a handle"""
     if place_handle:
         place = dbase.get_place_from_handle(place_handle)
         name = _pd.display(dbase, place)
@@ -128,13 +137,23 @@ def place_name(dbase, place_handle):
         name = ""
     return str(name)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Functions commonly used in reports
 #
-#-------------------------------------------------------------------------
-def insert_image(database, doc, photo, user,
-                 w_cm=4.0, h_cm=4.0, alt="", style_name=None, align='right'):
+# -------------------------------------------------------------------------
+def insert_image(
+    database,
+    doc,
+    photo,
+    user,
+    w_cm=4.0,
+    h_cm=4.0,
+    alt="",
+    style_name=None,
+    align="right",
+):
     """
     Insert pictures of a person into the document.
 
@@ -151,22 +170,30 @@ def insert_image(database, doc, photo, user,
     if mime_type and mime_type.startswith("image"):
         filename = media_path_full(database, media.get_path())
         if os.path.exists(filename):
-            doc.add_media(filename, align, w_cm, h_cm,
-                          alt=alt, style_name=style_name,
-                          crop=photo.get_rectangle())
+            doc.add_media(
+                filename,
+                align,
+                w_cm,
+                h_cm,
+                alt=alt,
+                style_name=style_name,
+                crop=photo.get_rectangle(),
+            )
         else:
-            no_file = _('File does not exist')
-            user.warn(_("Could not add photo to page"),
-                      _("%(str1)s: %(str2)s") % {'str1': filename,
-                                                 'str2': no_file})
+            no_file = _("File does not exist")
+            user.warn(
+                _("Could not add photo to page"),
+                _("%(str1)s: %(str2)s") % {"str1": filename, "str2": no_file},
+            )
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # find_spouse
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def find_spouse(person, family):
-    """ find the spouse of a person """
+    """find the spouse of a person"""
     spouse_handle = None
     if family:
         if person.get_handle() == family.get_father_handle():
@@ -175,26 +202,26 @@ def find_spouse(person, family):
             spouse_handle = family.get_father_handle()
     return spouse_handle
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # find_marriage
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def find_marriage(database, family):
-    """ find the marriage of a family """
+    """find the marriage of a family"""
     for event_ref in family.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if (event
-                and event.type.is_marriage()
-                and event_ref.role.is_family()):
+        if event and event.type.is_marriage() and event_ref.role.is_family():
             return event
     return None
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Indexing function
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def get_person_mark(dbase, person):
     """
     Return a IndexMark that can be used to index a person in a report
@@ -227,11 +254,12 @@ def get_person_mark(dbase, person):
 
     return IndexMark(key, INDEX_TYPE_ALP)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Address String
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def get_address_str(addr):
     """
     Return a string that combines the elements of an address
@@ -239,30 +267,32 @@ def get_address_str(addr):
     :param addr: the Gramps address instance
     """
     addr_str = ""
-    elems = [addr.get_street(),
-             addr.get_locality(),
-             addr.get_city(),
-             addr.get_county(),
-             addr.get_state(),
-             addr.get_country(),
-             addr.get_postal_code(),
-             addr.get_phone()]
+    elems = [
+        addr.get_street(),
+        addr.get_locality(),
+        addr.get_city(),
+        addr.get_county(),
+        addr.get_state(),
+        addr.get_country(),
+        addr.get_postal_code(),
+        addr.get_phone(),
+    ]
 
     for info in elems:
         if info:
             if addr_str == "":
                 addr_str = info
             else:
-                # translators: needed for Arabic, ignore otherwise
-                addr_str = _("%(str1)s, %(str2)s"
-                            ) % {'str1' : addr_str, 'str2' : info}
+                # Translators: needed for Arabic, ignore otherwise
+                addr_str = _("%(str1)s, %(str2)s") % {"str1": addr_str, "str2": info}
     return addr_str
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # People Filters
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def get_person_filters(person, include_single=True, name_format=None):
     """
     Return a list of filters that are relevant for the given person
@@ -287,7 +317,7 @@ def get_person_filters(person, include_single=True, name_format=None):
     else:
         # Do this in case of command line options query (show=filter)
         name = _("PERSON")
-        gramps_id = ''
+        gramps_id = ""
 
     if include_single:
         filt_id = GenericFilter()
@@ -316,16 +346,16 @@ def get_person_filters(person, include_single=True, name_format=None):
         the_filters = [filt_id, all_people, des, d_fams, ans, com]
     else:
         the_filters = [all_people, des, d_fams, ans, com]
-    the_filters.extend(CustomFilters.get_filters('Person'))
+    the_filters.extend(CustomFilters.get_filters("Person"))
     return the_filters
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Family Filters
 #
-#-------------------------------------------------------------------------
-def get_family_filters(database, family,
-                       include_single=True, name_format=None):
+# -------------------------------------------------------------------------
+def get_family_filters(database, family, include_single=True, name_format=None):
     """
     Return a list of filters that are relevant for the given family
 
@@ -338,8 +368,12 @@ def get_family_filters(database, family,
     :param name_format: optional format to control display of person's name
     :type name_format: None or int
     """
-    from ...filters import (GenericFilterFactory, rules, CustomFilters,
-                            DeferredFamilyFilter)
+    from ...filters import (
+        GenericFilterFactory,
+        rules,
+        CustomFilters,
+        DeferredFamilyFilter,
+    )
     from ...display.name import displayer as name_displayer
 
     if family:
@@ -359,18 +393,19 @@ def get_family_filters(database, family,
         else:
             mother_name = _("unknown mother")
         gramps_id = family.get_gramps_id()
-        name = _("%(father_name)s and %(mother_name)s (%(family_id)s)"
-                ) % {'father_name' : father_name,
-                     'mother_name' : mother_name,
-                     'family_id' : gramps_id}
+        name = _("%(father_name)s and %(mother_name)s (%(family_id)s)") % {
+            "father_name": father_name,
+            "mother_name": mother_name,
+            "family_id": gramps_id,
+        }
         name_displayer.set_default_format(real_format)
     else:
         # Do this in case of command line options query (show=filter)
         name = _("FAMILY")
-        gramps_id = ''
+        gramps_id = ""
 
     if include_single:
-        FilterClass = GenericFilterFactory('Family')
+        FilterClass = GenericFilterFactory("Family")
         filt_id = FilterClass()
         filt_id.set_name(name)
         filt_id.add_rule(rules.family.HasIdOf([gramps_id]))
@@ -390,5 +425,15 @@ def get_family_filters(database, family,
         the_filters = [filt_id, all_families, d_fams, ans]
     else:
         the_filters = [all_families, d_fams, ans]
-    the_filters.extend(CustomFilters.get_filters('Family'))
+    the_filters.extend(CustomFilters.get_filters("Family"))
     return the_filters
+
+
+# -------------------------------------------------------------------------
+#
+# Get Gender Symbol of the person
+#
+# -------------------------------------------------------------------------
+def get_gender_symbol(person):
+    """generate gender symbol"""
+    return SYMBOLS.get_symbol_for_string(person.gender)

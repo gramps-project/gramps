@@ -13,53 +13,70 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rule that checks for families with a particular relationship type.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from ....lib.familyreltype import FamilyRelType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+_ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
 #
-# HasAttribute
+# Typing modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ....lib import Family
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
+#
+# HasRelType
+#
+# -------------------------------------------------------------------------
 class HasRelType(Rule):
-    """Rule that checks for a person with a particular personal attribute"""
+    """
+    Rule that checks for families with a particular relationship type.
+    """
 
-    labels = [ _('Relationship type:') ]
-    name = _('Families with the relationship type')
-    description = _("Matches families with the relationship type "
-                    "of a particular value")
-    category = _('General filters')
+    labels = [_("Relationship type:")]
+    name = _("Families with the relationship type")
+    description = _("Matches families with the relationship type of a particular value")
+    category = _("General filters")
 
-    def prepare(self, db, user):
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
+        self.relation_type = None
+
+    def prepare(self, db: Database, user):
+        """
+        Prepare the rule. Things we only want to do once.
+        """
         if self.list[0]:
-            self.rtype = FamilyRelType()
-            self.rtype.set_from_xml_str(self.list[0])
-        else:
-            self.rtype = None
+            self.relation_type = FamilyRelType()
+            self.relation_type.set_from_xml_str(self.list[0])
 
-    def apply(self, db, family):
-        if self.rtype:
-            if self.rtype.is_custom() and self.use_regex:
-                if self.regex[0].search(str(family.get_relationship())) is None:
+    def apply_to_one(self, _db: Database, obj: Family) -> bool:
+        """
+        Apply the rule. Return True on a match.
+        """
+        if self.relation_type:
+            if self.relation_type.is_custom() and self.use_regex:
+                if self.regex[0].search(str(obj.type)) is None:
                     return False
-            elif self.rtype != family.get_relationship():
+            elif self.relation_type != obj.type:
                 return False
         return True

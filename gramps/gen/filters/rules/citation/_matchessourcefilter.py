@@ -15,54 +15,63 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import MatchesFilterBase
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Citation
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # MatchesFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesSourceFilter(MatchesFilterBase):
     """
     Rule that checks against another filter.
     """
 
-    labels = [_('Source filter name:')]
-    name = _('Citations with source matching the <source filter>')
-    description = _("Matches citations with sources that match the "
-                    "specified source filter name")
-    category = _('General filters')
+    labels = [_("Source filter name:")]
+    name = _("Citations with source matching the <source filter>")
+    description = _(
+        "Matches citations with sources that match the " "specified source filter name"
+    )
+    category = _("General filters")
 
     # we want to have this filter show source filters
-    namespace = 'Source'
+    namespace = "Source"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MRF_filt = self.find_filter()
 
-    def apply(self, db, object):
-        if self.MRF_filt is None :
+    def apply_to_one(self, db: Database, object: Citation) -> bool:
+        if self.MRF_filt is None:
             return False
 
         source_handle = object.source_handle
-        if self.MRF_filt.check(db, source_handle):
-            return True
-        return False
+        source = db.get_source_from_handle(source_handle)
+        return self.MRF_filt.apply_to_one(db, source)

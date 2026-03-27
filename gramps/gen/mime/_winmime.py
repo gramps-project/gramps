@@ -13,31 +13,32 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Mime utility functions for the MS Windows platform
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 from winreg import *
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import _pythonmime
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 def get_description(mime_type):
     """Return the description of the specfied mime type"""
@@ -58,9 +59,11 @@ def get_description(mime_type):
 
     return desc
 
+
 def get_type(file):
     """Return the mime type of the specified file"""
     return _pythonmime.get_type(file)
+
 
 def mime_type_is_defined(mime_type):
     """
@@ -72,11 +75,12 @@ def mime_type_is_defined(mime_type):
     else:
         return _pythonmime.mime_type_is_defined(mime_type)
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # private functions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def _get_extension(mime_type):
     """
     Return the extension associated with this mime type
@@ -97,13 +101,14 @@ def _get_extension(mime_type):
     if not extension:
         # Work around for Windows mime problems
         extmap = {
-            'application/abiword' : '.abw',
-            'application/rtf'     : '.rtf',
-            }
+            "application/abiword": ".abw",
+            "application/rtf": ".rtf",
+        }
         if mime_type in extmap:
             extension = extmap[mime_type]
 
     return extension
+
 
 def _get_prog_id(extension):
     """
@@ -120,4 +125,3 @@ def _get_prog_id(extension):
         return progid
     except WindowsError:
         return None
-

@@ -13,52 +13,54 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.lds import TEMPLES
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # LdsModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class LdsModel(Gtk.ListStore):
-
-    _HANDLE_COL = 5
+    _HANDLE_COL = 6
 
     def __init__(self, lds_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, str, str, bool, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, str, bool, bool, object)
 
         for lds_ord in lds_list:
-            self.append(row=[
-                lds_ord.type2str(),
-                get_date(lds_ord),
-                lds_ord.status2str(),
-                TEMPLES.name(lds_ord.get_temple()),
-                place_displayer.display_event(db, lds_ord),
-                lds_ord.get_privacy(),
-                lds_ord,
-                ])
+            self.append(
+                row=[
+                    lds_ord.type2str(),
+                    get_date(lds_ord),
+                    lds_ord.status2str(),
+                    TEMPLES.name(lds_ord.get_temple()),
+                    place_displayer.display_event(db, lds_ord),
+                    lds_ord.has_citations(),
+                    lds_ord.get_privacy(),
+                    lds_ord,
+                ]
+            )

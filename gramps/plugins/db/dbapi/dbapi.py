@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
-# Copyright (C) 2016-2017 Nick Hall
+# Copyright (C) 2015-2016,2024 Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2016-2017      Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,48 +14,88 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+"""
+Database API interface
+"""
+
+# -------------------------------------------------------------------------
 #
-# Standard python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
-import os
-import time
-import pickle
+# -------------------------------------------------------------------------
 import logging
+import json
+import time
 
-#------------------------------------------------------------------------
-#
-# Gramps Modules
-#
-#------------------------------------------------------------------------
-from gramps.gen.db.dbconst import (DBLOGNAME, DBBACKEND, KEY_TO_NAME_MAP,
-                                   KEY_TO_CLASS_MAP, TXNADD, TXNUPD, TXNDEL,
-                                   PERSON_KEY, FAMILY_KEY, SOURCE_KEY,
-                                   EVENT_KEY, MEDIA_KEY, PLACE_KEY, NOTE_KEY,
-                                   TAG_KEY, CITATION_KEY, REPOSITORY_KEY,
-                                   REFERENCE_KEY)
-from gramps.gen.db.generic import DbGeneric
-from gramps.gen.updatecallback import UpdateCallback
-from gramps.gen.lib import (Tag, Media, Person, Family, Source,
-                            Citation, Event, Place, Repository, Note)
-from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+# ------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# ------------------------------------------------------------------------
+from gramps.gen.db.dbconst import (
+    DBLOGNAME,
+    KEY_TO_CLASS_MAP,
+    KEY_TO_NAME_MAP,
+    REFERENCE_KEY,
+    TXNADD,
+    TXNDEL,
+    TXNUPD,
+)
+from gramps.gen.db.generic import DbGeneric
+from gramps.gen.lib import (
+    Citation,
+    Event,
+    Family,
+    Media,
+    Note,
+    Person,
+    Place,
+    Repository,
+    Source,
+    Tag,
+)
+from gramps.gen.lib.genderstats import GenderStats
+from gramps.gen.updatecallback import UpdateCallback
 
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
 
+
+# -------------------------------------------------------------------------
+#
+# DBAPI class
+#
+# -------------------------------------------------------------------------
 class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
+
     def _initialize(self, directory, username, password):
         raise NotImplementedError
+
+    def use_json_data(self):
+        """
+        A DBAPI level method for testing if the
+        database supports JSON access.
+        """
+        # Check if json_data exists on metadata as a proxy to see
+        # if the database has been converted to use JSON data
+        return self.dbapi.column_exists("metadata", "json_data")
+
+    def upgrade_table_for_json_data(self, table_name):
+        """
+        A DBAPI level method for upgrading the given table
+        adding a json_data column.
+        """
+        if not self.dbapi.column_exists(table_name, "json_data"):
+            self.dbapi.execute("ALTER TABLE %s ADD COLUMN json_data TEXT;" % table_name)
 
     def _schema_exists(self):
         """
@@ -66,135 +106,158 @@ class DBAPI(DbGeneric):
         """
         return self.dbapi.table_exists("person")
 
-    def _create_schema(self):
+    def _create_schema(self, json_data):
         """
         Create and update schema.
         """
         self.dbapi.begin()
+        if json_data:
+            col_data = "json_data TEXT"
+            meta_col_data = "json_data TEXT, value BLOB"
+        else:
+            col_data = "blob_data BLOB"
+            meta_col_data = "value BLOB"
 
         # make sure schema is up to date:
-        self.dbapi.execute('CREATE TABLE person '
-                           '('
-                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'given_name TEXT, '
-                           'surname TEXT, '
-                           'blob_data BLOB'
-                           ')')
-        self.dbapi.execute('CREATE TABLE family '
-                           '('
-                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'blob_data BLOB'
-                           ')')
-        self.dbapi.execute('CREATE TABLE source '
-                           '('
-                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'blob_data BLOB'
-                           ')')
-        self.dbapi.execute('CREATE TABLE citation '
-                           '('
-                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'blob_data BLOB'
-                           ')')
-        self.dbapi.execute('CREATE TABLE event '
-                           '('
-                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'blob_data BLOB'
-                           ')')
-        self.dbapi.execute('CREATE TABLE media '
-                           '('
-                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'blob_data BLOB'
-                           ')')
-        self.dbapi.execute('CREATE TABLE place '
-                           '('
-                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'enclosed_by VARCHAR(50), '
-                           'blob_data BLOB'
-                           ')')
-        self.dbapi.execute('CREATE TABLE repository '
-                           '('
-                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'blob_data BLOB'
-                           ')')
-        self.dbapi.execute('CREATE TABLE note '
-                           '('
-                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'blob_data BLOB'
-                           ')')
-        self.dbapi.execute('CREATE TABLE tag '
-                           '('
-                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'blob_data BLOB'
-                           ')')
+        self.dbapi.execute(
+            "CREATE TABLE person "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            "given_name TEXT, "
+            "surname TEXT, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE family "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE source "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE citation "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE event "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE media "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE place "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            "enclosed_by VARCHAR(50), "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE repository "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE note "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE tag "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
         # Secondary:
-        self.dbapi.execute('CREATE TABLE reference '
-                           '('
-                           'obj_handle VARCHAR(50), '
-                           'obj_class TEXT, '
-                           'ref_handle VARCHAR(50), '
-                           'ref_class TEXT'
-                           ')')
-        self.dbapi.execute('CREATE TABLE name_group '
-                           '('
-                           'name VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'grouping TEXT'
-                           ')')
-        self.dbapi.execute('CREATE TABLE metadata '
-                           '('
-                           'setting VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'value BLOB'
-                           ')')
-        self.dbapi.execute('CREATE TABLE gender_stats '
-                           '('
-                           'given_name TEXT, '
-                           'female INTEGER, '
-                           'male INTEGER, '
-                           'unknown INTEGER'
-                           ')')
+        self.dbapi.execute(
+            "CREATE TABLE reference "
+            "("
+            "obj_handle VARCHAR(50), "
+            "obj_class TEXT, "
+            "ref_handle VARCHAR(50), "
+            "ref_class TEXT"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE name_group "
+            "("
+            "name VARCHAR(50) PRIMARY KEY NOT NULL, "
+            "grouping TEXT"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE metadata "
+            "("
+            "setting VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{meta_col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE gender_stats "
+            "("
+            "given_name TEXT, "
+            "female INTEGER, "
+            "male INTEGER, "
+            "unknown INTEGER"
+            ")"
+        )
 
         self._create_secondary_columns()
 
         ## Indices:
-        self.dbapi.execute('CREATE INDEX person_gramps_id '
-                           'ON person(gramps_id)')
-        self.dbapi.execute('CREATE INDEX person_surname '
-                           'ON person(surname)')
-        self.dbapi.execute('CREATE INDEX person_given_name '
-                           'ON person(given_name)')
-        self.dbapi.execute('CREATE INDEX source_title '
-                           'ON source(title)')
-        self.dbapi.execute('CREATE INDEX source_gramps_id '
-                           'ON source(gramps_id)')
-        self.dbapi.execute('CREATE INDEX citation_page '
-                           'ON citation(page)')
-        self.dbapi.execute('CREATE INDEX citation_gramps_id '
-                           'ON citation(gramps_id)')
-        self.dbapi.execute('CREATE INDEX media_desc '
-                           'ON media(desc)')
-        self.dbapi.execute('CREATE INDEX media_gramps_id '
-                           'ON media(gramps_id)')
-        self.dbapi.execute('CREATE INDEX place_title '
-                           'ON place(title)')
-        self.dbapi.execute('CREATE INDEX place_enclosed_by '
-                           'ON place(enclosed_by)')
-        self.dbapi.execute('CREATE INDEX place_gramps_id '
-                           'ON place(gramps_id)')
-        self.dbapi.execute('CREATE INDEX tag_name '
-                           'ON tag(name)')
-        self.dbapi.execute('CREATE INDEX reference_ref_handle '
-                           'ON reference(ref_handle)')
-        self.dbapi.execute('CREATE INDEX family_gramps_id '
-                           'ON family(gramps_id)')
-        self.dbapi.execute('CREATE INDEX event_gramps_id '
-                           'ON event(gramps_id)')
-        self.dbapi.execute('CREATE INDEX repository_gramps_id '
-                           'ON repository(gramps_id)')
-        self.dbapi.execute('CREATE INDEX note_gramps_id '
-                           'ON note(gramps_id)')
-        self.dbapi.execute('CREATE INDEX reference_obj_handle '
-                           'ON reference(obj_handle)')
+        self.dbapi.execute("CREATE INDEX person_gramps_id ON person(gramps_id)")
+        self.dbapi.execute("CREATE INDEX person_surname ON person(surname)")
+        self.dbapi.execute("CREATE INDEX person_given_name ON person(given_name)")
+        self.dbapi.execute("CREATE INDEX source_title ON source(title)")
+        self.dbapi.execute("CREATE INDEX source_gramps_id ON source(gramps_id)")
+        self.dbapi.execute("CREATE INDEX citation_page ON citation(page)")
+        self.dbapi.execute("CREATE INDEX citation_gramps_id ON citation(gramps_id)")
+        self.dbapi.execute("CREATE INDEX media_desc ON media(desc)")
+        self.dbapi.execute("CREATE INDEX media_gramps_id ON media(gramps_id)")
+        self.dbapi.execute("CREATE INDEX place_title ON place(title)")
+        self.dbapi.execute("CREATE INDEX place_enclosed_by ON place(enclosed_by)")
+        self.dbapi.execute("CREATE INDEX place_gramps_id ON place(gramps_id)")
+        self.dbapi.execute("CREATE INDEX tag_name ON tag(name)")
+        self.dbapi.execute("CREATE INDEX reference_ref_handle ON reference(ref_handle)")
+        self.dbapi.execute("CREATE INDEX family_gramps_id ON family(gramps_id)")
+        self.dbapi.execute("CREATE INDEX event_gramps_id ON event(gramps_id)")
+        self.dbapi.execute("CREATE INDEX repository_gramps_id ON repository(gramps_id)")
+        self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
+        self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
 
         self.dbapi.commit()
+
+    def _drop_column(self, table_name, column_name):
+        """
+        Used to remove a column of data which we don't need anymore.
+        Must be used within a tranaction
+        If db doesn't support, nothing happens
+        """
+        self.dbapi.drop_column(table_name, column_name)
 
     def _close(self):
         self.dbapi.close()
@@ -204,7 +267,7 @@ class DBAPI(DbGeneric):
         Lowlevel interface to the backend transaction.
         Executes a db BEGIN;
         """
-        if self.transaction == None:
+        if self.transaction is None:
             _LOG.debug("    DBAPI %s transaction begin", hex(id(self)))
             self.dbapi.begin()
 
@@ -213,7 +276,7 @@ class DBAPI(DbGeneric):
         Lowlevel interface to the backend transaction.
         Executes a db END;
         """
-        if self.transaction == None:
+        if self.transaction is None:
             _LOG.debug("    DBAPI %s transaction commit", hex(id(self)))
             self.dbapi.commit()
 
@@ -222,133 +285,163 @@ class DBAPI(DbGeneric):
         Lowlevel interface to the backend transaction.
         Executes a db ROLLBACK;
         """
-        if self.transaction == None:
+        if self.transaction is None:
             self.dbapi.rollback()
+
+    def _collation(self, locale):
+        """
+        Get the adjusted collation if there is one, falling back on
+        the locale.collation.
+        """
+        collation = self.dbapi.check_collation(locale)
+        if collation is None:
+            return locale.get_collation()
+        return collation
 
     def transaction_begin(self, transaction):
         """
         Transactions are handled automatically by the db layer.
         """
-        _LOG.debug("    %sDBAPI %s transaction begin for '%s'",
-                   "Batch " if transaction.batch else "",
-                   hex(id(self)), transaction.get_description())
+        _LOG.debug(
+            "    %sDBAPI %s transaction begin for '%s'",
+            "Batch " if transaction.batch else "",
+            hex(id(self)),
+            transaction.get_description(),
+        )
+        if transaction.batch:
+            # A batch transaction does not store the commits
+            # Aborting the session completely will become impossible.
+            self.abort_possible = False
         self.transaction = transaction
         self.dbapi.begin()
         return transaction
 
-    def transaction_commit(self, txn):
+    def transaction_commit(self, transaction):
         """
         Executed at the end of a transaction.
         """
-        _LOG.debug("    %sDBAPI %s transaction commit for '%s'",
-                   "Batch " if txn.batch else "",
-                   hex(id(self)), txn.get_description())
+        _LOG.debug(
+            "    %sDBAPI %s transaction commit for '%s'",
+            "Batch " if transaction.batch else "",
+            hex(id(self)),
+            transaction.get_description(),
+        )
 
-        action = {TXNADD: "-add",
-                  TXNUPD: "-update",
-                  TXNDEL: "-delete",
-                  None: "-delete"}
-        if txn.batch:
-            # FIXME: need a User GUI update callback here:
-            self.reindex_reference_map(lambda percent: percent)
+        action = {TXNADD: "-add", TXNUPD: "-update", TXNDEL: "-delete", None: "-delete"}
         self.dbapi.commit()
-        if not txn.batch:
+        if not transaction.batch:
             # Now, emit signals:
             # do deletes and adds first
             for trans_type in [TXNDEL, TXNADD, TXNUPD]:
                 for obj_type in range(11):
-                    if obj_type != REFERENCE_KEY and \
-                            (obj_type, trans_type) in txn:
+                    if (
+                        obj_type != REFERENCE_KEY
+                        and (obj_type, trans_type) in transaction
+                    ):
                         if trans_type == TXNDEL:
-                            handles = [handle for (handle, data) in
-                                       txn[(obj_type, trans_type)]]
+                            handles = [
+                                handle
+                                for (handle, data) in transaction[
+                                    (obj_type, trans_type)
+                                ]
+                            ]
                         else:
-                            handles = [handle for (handle, data) in
-                                       txn[(obj_type, trans_type)]
-                                       if (handle, None)
-                                       not in txn[(obj_type, TXNDEL)]]
+                            handles = [
+                                handle
+                                for (handle, data) in transaction[
+                                    (obj_type, trans_type)
+                                ]
+                                if (handle, None) not in transaction[(obj_type, TXNDEL)]
+                            ]
                         if handles:
-                            signal = KEY_TO_NAME_MAP[
-                                obj_type] + action[trans_type]
-                            self.emit(signal, (handles, ))
+                            signal = KEY_TO_NAME_MAP[obj_type] + action[trans_type]
+                            self.emit(signal, (handles,))
         self.transaction = None
-        msg = txn.get_description()
-        self.undodb.commit(txn, msg)
-        self._after_commit(txn)
-        txn.clear()
-        self.has_changed = True
+        msg = transaction.get_description()
+        self.undodb.commit(transaction, msg)
+        self._after_commit(transaction)
+        transaction.clear()
+        self.has_changed += 1  # Also gives commits since startup
 
-    def transaction_abort(self, txn):
+    def transaction_abort(self, transaction):
         """
         Executed after a batch operation abort.
         """
         self.dbapi.rollback()
         self.transaction = None
-        txn.clear()
-        txn.first = None
-        txn.last = None
-        self._after_commit(txn)
+        transaction.clear()
+        transaction.first = None
+        transaction.last = None
+        self._after_commit(transaction)
 
-    def _get_metadata(self, key, default=[]):
+    def _get_metadata_keys(self):
+        """
+        Get all of the metadata setting names from the
+        database.
+        """
+        self.dbapi.execute("SELECT setting FROM metadata;")
+        return [row[0] for row in self.dbapi.fetchall()]
+
+    def _get_metadata(self, key, default="_"):
         """
         Get an item from the database.
 
-        Default is an empty list, which is a mutable and
-        thus a bad default (pylint will complain).
-
-        However, it is just used as a value, and not altered, so
-        its use here is ok.
+        Note we reserve and use _ to denote default value of []
         """
         self.dbapi.execute(
-            "SELECT value FROM metadata WHERE setting = ?", [key])
+            f"SELECT {self.serializer.metadata_field} FROM metadata WHERE setting = ?",
+            [key],
+        )
         row = self.dbapi.fetchone()
         if row:
-            return pickle.loads(row[0])
-        elif default == []:
-            return []
-        else:
-            return default
+            return self.serializer.metadata_to_object(row[0])
 
-    def _set_metadata(self, key, value):
+        if default == "_":
+            return []
+        return default
+
+    def _set_metadata(self, key, value, use_txn=True):
         """
         key: string
         value: item, will be serialized here
+
+        Note: if use_txn, then begin/commit txn
         """
-        self._txn_begin()
+        if use_txn:
+            self._txn_begin()
         self.dbapi.execute("SELECT 1 FROM metadata WHERE setting = ?", [key])
         row = self.dbapi.fetchone()
         if row:
             self.dbapi.execute(
-                "UPDATE metadata SET value = ? WHERE setting = ?",
-                [pickle.dumps(value), key])
+                f"UPDATE metadata SET {self.serializer.metadata_field} = ? WHERE setting = ?",
+                [self.serializer.object_to_metadata(value), key],
+            )
         else:
             self.dbapi.execute(
-                "INSERT INTO metadata (setting, value) VALUES (?, ?)",
-                [key, pickle.dumps(value)])
-        self._txn_commit()
+                f"INSERT INTO metadata (setting, {self.serializer.metadata_field}) VALUES (?, ?)",
+                [key, self.serializer.object_to_metadata(value)],
+            )
+        if use_txn:
+            self._txn_commit()
 
     def get_name_group_keys(self):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        self.dbapi.execute("SELECT name, grouping FROM name_group "
-                           "ORDER BY name")
-        rows = self.dbapi.fetchall()
+        self.dbapi.execute("SELECT name, grouping FROM name_group ORDER BY name")
         # not None test below fixes db corrupted by 11011 for export
-        return [row[0] for row in rows if row[1] is not None]
+        return [row[0] for row in self.dbapi.fetchall() if row[1] is not None]
 
-    def get_name_group_mapping(self, key):
+    def get_name_group_mapping(self, surname):
         """
         Return the default grouping name for a surname.
         """
-        self.dbapi.execute(
-            "SELECT grouping FROM name_group WHERE name = ?", [key])
+        self.dbapi.execute("SELECT grouping FROM name_group WHERE name = ?", [surname])
         row = self.dbapi.fetchone()
         if row and row[0] is not None:
             # not None test fixes db corrupted by 11011
             return row[0]
-        else:
-            return key
+        return surname
 
     def get_person_handles(self, sort_handles=False, locale=glocale):
         """
@@ -361,16 +454,14 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
-            self.dbapi.execute('SELECT handle FROM person '
-                               'ORDER BY surname '
-                               'COLLATE "%s"' % locale.get_collation())
+            self.dbapi.execute(
+                "SELECT handle FROM person "
+                "ORDER BY surname "
+                f'COLLATE "{self._collation(locale)}"'
+            )
         else:
             self.dbapi.execute("SELECT handle FROM person")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def get_family_handles(self, sort_handles=False, locale=glocale):
         """
@@ -383,29 +474,26 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
-            sql = ('SELECT family.handle ' +
-                   'FROM family ' +
-                   'LEFT JOIN person AS father ' +
-                   'ON family.father_handle = father.handle ' +
-                   'LEFT JOIN person AS mother ' +
-                   'ON family.mother_handle = mother.handle ' +
-                   'ORDER BY (CASE WHEN father.handle IS NULL ' +
-                   'THEN mother.surname ' +
-                   'ELSE father.surname ' +
-                   'END), ' +
-                   '(CASE WHEN family.handle IS NULL ' +
-                   'THEN mother.given_name ' +
-                   'ELSE father.given_name ' +
-                   'END) ' +
-                   'COLLATE "%s"' % locale.get_collation())
-            self.dbapi.execute(sql)
+            self.dbapi.execute(
+                "SELECT family.handle "
+                "FROM family "
+                "LEFT JOIN person AS father "
+                "ON family.father_handle = father.handle "
+                "LEFT JOIN person AS mother "
+                "ON family.mother_handle = mother.handle "
+                "ORDER BY (CASE WHEN father.handle IS NULL "
+                "THEN mother.surname "
+                "ELSE father.surname "
+                "END), "
+                "(CASE WHEN family.handle IS NULL "
+                "THEN mother.given_name "
+                "ELSE father.given_name "
+                "END) "
+                f'COLLATE "{self._collation(locale)}"'
+            )
         else:
             self.dbapi.execute("SELECT handle FROM family")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def get_event_handles(self):
         """
@@ -413,8 +501,7 @@ class DBAPI(DbGeneric):
         database.
         """
         self.dbapi.execute("SELECT handle FROM event")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def get_citation_handles(self, sort_handles=False, locale=glocale):
         """
@@ -427,16 +514,14 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
-            self.dbapi.execute('SELECT handle FROM citation '
-                               'ORDER BY page '
-                               'COLLATE "%s"' % locale.get_collation())
+            self.dbapi.execute(
+                "SELECT handle FROM citation "
+                "ORDER BY page "
+                f'COLLATE "{self._collation(locale)}"'
+            )
         else:
             self.dbapi.execute("SELECT handle FROM citation")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def get_source_handles(self, sort_handles=False, locale=glocale):
         """
@@ -449,16 +534,14 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
-            self.dbapi.execute('SELECT handle FROM source '
-                               'ORDER BY title '
-                               'COLLATE "%s"' % locale.get_collation())
+            self.dbapi.execute(
+                "SELECT handle FROM source "
+                "ORDER BY title "
+                f'COLLATE "{self._collation(locale)}"'
+            )
         else:
             self.dbapi.execute("SELECT handle from source")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def get_place_handles(self, sort_handles=False, locale=glocale):
         """
@@ -471,16 +554,14 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
-            self.dbapi.execute('SELECT handle FROM place '
-                               'ORDER BY title '
-                               'COLLATE "%s"' % locale.get_collation())
+            self.dbapi.execute(
+                "SELECT handle FROM place "
+                "ORDER BY title "
+                f'COLLATE "{self._collation(locale)}"'
+            )
         else:
             self.dbapi.execute("SELECT handle FROM place")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def get_repository_handles(self):
         """
@@ -488,8 +569,7 @@ class DBAPI(DbGeneric):
         the database.
         """
         self.dbapi.execute("SELECT handle FROM repository")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def get_media_handles(self, sort_handles=False, locale=glocale):
         """
@@ -502,16 +582,14 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
-            self.dbapi.execute('SELECT handle FROM media '
-                               'ORDER BY desc '
-                               'COLLATE "%s"' % locale.get_collation())
+            self.dbapi.execute(
+                "SELECT handle FROM media "
+                "ORDER BY desc "
+                f'COLLATE "{self._collation(locale)}"'
+            )
         else:
             self.dbapi.execute("SELECT handle FROM media")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def get_note_handles(self):
         """
@@ -519,8 +597,7 @@ class DBAPI(DbGeneric):
         database.
         """
         self.dbapi.execute("SELECT handle FROM note")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def get_tag_handles(self, sort_handles=False, locale=glocale):
         """
@@ -533,16 +610,14 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
-            self.dbapi.execute('SELECT handle FROM tag '
-                               'ORDER BY name '
-                               'COLLATE "%s"' % locale.get_collation())
+            self.dbapi.execute(
+                "SELECT handle FROM tag "
+                "ORDER BY name "
+                f'COLLATE "{self._collation(locale)}"'
+            )
         else:
             self.dbapi.execute("SELECT handle FROM tag")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def get_tag_from_name(self, name):
         """
@@ -550,16 +625,17 @@ class DBAPI(DbGeneric):
 
         If no such Tag exists, None is returned.
         """
-        self.dbapi.execute("SELECT blob_data FROM tag WHERE name = ?", [name])
+        self.dbapi.execute(
+            f"SELECT {self.serializer.data_field} FROM tag WHERE name = ?", [name]
+        )
         row = self.dbapi.fetchone()
         if row:
-            return Tag.create(pickle.loads(row[0]))
+            return self.serializer.string_to_object(Tag, row[0])
         return None
 
     def _get_number_of(self, obj_key):
         table = KEY_TO_NAME_MAP[obj_key]
-        sql = "SELECT count(1) FROM %s" % table
-        self.dbapi.execute(sql)
+        self.dbapi.execute(f"SELECT count(1) FROM {table}")
         row = self.dbapi.fetchone()
         return row[0]
 
@@ -567,31 +643,32 @@ class DBAPI(DbGeneric):
         """
         Return if a key exists in the name_group table.
         """
-        self.dbapi.execute("SELECT grouping FROM name_group WHERE name = ?",
-                           [key])
+        self.dbapi.execute("SELECT grouping FROM name_group WHERE name = ?", [key])
         row = self.dbapi.fetchone()
         return row and row[0] is not None
 
-    def set_name_group_mapping(self, name, grouping):
+    def set_name_group_mapping(self, name, group):
         """
         Set the default grouping name for a surname.
         """
         self._txn_begin()
-        self.dbapi.execute("SELECT 1 FROM name_group WHERE name = ?",
-                           [name])
+        self.dbapi.execute("SELECT 1 FROM name_group WHERE name = ?", [name])
         row = self.dbapi.fetchone()
-        if row and grouping is not None:
-            self.dbapi.execute("UPDATE name_group SET grouping=? "
-                               "WHERE name = ?", [grouping, name])
-        elif row and grouping is None:
+        if row and group is not None:
+            self.dbapi.execute(
+                "UPDATE name_group SET grouping=? WHERE name = ?", [group, name]
+            )
+        elif row and group is None:
             self.dbapi.execute("DELETE FROM name_group WHERE name = ?", [name])
-            grouping = ''
         else:
             self.dbapi.execute(
                 "INSERT INTO name_group (name, grouping) VALUES (?, ?)",
-                [name, grouping])
+                [name, group],
+            )
         self._txn_commit()
-        self.emit('person-groupname-rebuild', (name, grouping))
+        if group is None:
+            group = ""
+        self.emit("person-groupname-rebuild", (name, group))
 
     def _commit_base(self, obj, obj_key, trans, change_time):
         """
@@ -605,27 +682,35 @@ class DBAPI(DbGeneric):
         if self._has_handle(obj_key, obj.handle):
             old_data = self._get_raw_data(obj_key, obj.handle)
             # update the object:
-            sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
-            self.dbapi.execute(sql,
-                               [pickle.dumps(obj.serialize()),
-                                obj.handle])
+            self.dbapi.execute(
+                f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
+                [self.serializer.object_to_string(obj), obj.handle],
+            )
         else:
             # Insert the object:
-            sql = ("INSERT INTO %s (handle, blob_data) VALUES (?, ?)") % table
-            self.dbapi.execute(sql,
-                               [obj.handle,
-                                pickle.dumps(obj.serialize())])
+            self.dbapi.execute(
+                f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
+                [obj.handle, self.serializer.object_to_string(obj)],
+            )
         self._update_secondary_values(obj)
+        self._update_backlinks(obj, trans)
         if not trans.batch:
-            self._update_backlinks(obj, trans)
             if old_data:
-                trans.add(obj_key, TXNUPD, obj.handle,
-                          old_data,
-                          obj.serialize())
+                trans.add(
+                    obj_key,
+                    TXNUPD,
+                    obj.handle,
+                    old_data,
+                    self.serializer.object_to_data(obj),
+                )
             else:
-                trans.add(obj_key, TXNADD, obj.handle,
-                          None,
-                          obj.serialize())
+                trans.add(
+                    obj_key,
+                    TXNADD,
+                    obj.handle,
+                    None,
+                    self.serializer.object_to_data(obj),
+                )
 
         return old_data
 
@@ -635,65 +720,85 @@ class DBAPI(DbGeneric):
         changes as part of the transaction.
         """
         table = KEY_TO_NAME_MAP[obj_key]
-        handle = data[0]
+        handle = self.serializer.get_from_data_by_name(data, "handle")
 
         if self._has_handle(obj_key, handle):
             # update the object:
-            sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
-            self.dbapi.execute(sql,
-                               [pickle.dumps(data),
-                                handle])
+            self.dbapi.execute(
+                f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
+                [self.serializer.data_to_string(data), handle],
+            )
         else:
             # Insert the object:
-            sql = ("INSERT INTO %s (handle, blob_data) VALUES (?, ?)") % table
-            self.dbapi.execute(sql,
-                               [handle,
-                                pickle.dumps(data)])
-
-        return
+            self.dbapi.execute(
+                f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
+                [handle, self.serializer.data_to_string(data)],
+            )
 
     def _update_backlinks(self, obj, transaction):
-
-        # Find existing references
-        sql = ("SELECT ref_class, ref_handle " +
-               "FROM reference WHERE obj_handle = ?")
-        self.dbapi.execute(sql, [obj.handle])
-        existing_references = set(self.dbapi.fetchall())
-
-        # Once we have the list of rows that already have a reference
-        # we need to compare it with the list of objects that are
-        # still references from the primary object.
-        current_references = set(obj.get_referenced_handles_recursively())
-        no_longer_required_references = existing_references.difference(
-                                                            current_references)
-        new_references = current_references.difference(existing_references)
-
-        # Delete the existing references
-        self.dbapi.execute("DELETE FROM reference WHERE obj_handle = ?",
-                           [obj.handle])
-
-        # Now, add the current ones
-        for (ref_class_name, ref_handle) in current_references:
-            sql = ("INSERT INTO reference " +
-                   "(obj_handle, obj_class, ref_handle, ref_class)" +
-                   "VALUES(?, ?, ?, ?)")
-            self.dbapi.execute(sql, [obj.handle, obj.__class__.__name__,
-                                     ref_handle, ref_class_name])
-
         if not transaction.batch:
+            # Find existing references
+            self.dbapi.execute(
+                "SELECT ref_class, ref_handle FROM reference WHERE obj_handle = ?",
+                [obj.handle],
+            )
+            existing_references = set(self.dbapi.fetchall())
+
+            # Once we have the list of rows that already have a reference
+            # we need to compare it with the list of objects that are
+            # still references from the primary object.
+            current_references = set(obj.get_referenced_handles_recursively())
+            no_longer_required_references = existing_references.difference(
+                current_references
+            )
+            new_references = current_references.difference(existing_references)
+
+            # Delete the existing references
+            self.dbapi.execute(
+                "DELETE FROM reference WHERE obj_handle = ?", [obj.handle]
+            )
+
+            # Now, add the current ones
+            for ref_class_name, ref_handle in current_references:
+                self.dbapi.execute(
+                    "INSERT INTO reference "
+                    "(obj_handle, obj_class, ref_handle, ref_class) "
+                    "VALUES(?, ?, ?, ?)",
+                    [obj.handle, obj.__class__.__name__, ref_handle, ref_class_name],
+                )
+
             # Add new references to the transaction
-            for (ref_class_name, ref_handle) in new_references:
+            for ref_class_name, ref_handle in new_references:
                 key = (obj.handle, ref_handle)
-                data = (obj.handle, obj.__class__.__name__,
-                        ref_handle, ref_class_name)
+                data = (obj.handle, obj.__class__.__name__, ref_handle, ref_class_name)
                 transaction.add(REFERENCE_KEY, TXNADD, key, None, data)
 
             # Add old references to the transaction
-            for (ref_class_name, ref_handle) in no_longer_required_references:
+            for ref_class_name, ref_handle in no_longer_required_references:
                 key = (obj.handle, ref_handle)
-                old_data = (obj.handle, obj.__class__.__name__,
-                            ref_handle, ref_class_name)
+                old_data = (
+                    obj.handle,
+                    obj.__class__.__name__,
+                    ref_handle,
+                    ref_class_name,
+                )
                 transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
+        else:  # batch mode
+            current_references = set(obj.get_referenced_handles_recursively())
+
+            # Delete the existing references
+            self.dbapi.execute(
+                "DELETE FROM reference WHERE obj_handle = ?", [obj.handle]
+            )
+
+            # Now, add the current ones
+            for ref_class_name, ref_handle in current_references:
+                self.dbapi.execute(
+                    "INSERT INTO reference "
+                    "(obj_handle, obj_class, ref_handle, ref_class) "
+                    "VALUES(?, ?, ?, ?)",
+                    [obj.handle, obj.__class__.__name__, ref_handle, ref_class_name],
+                )
 
     def _do_remove(self, handle, transaction, obj_key):
         if self.readonly or not handle:
@@ -703,8 +808,7 @@ class DBAPI(DbGeneric):
             obj_class = KEY_TO_CLASS_MAP[obj_key]
             self._remove_backlinks(obj_class, handle, transaction)
             table = KEY_TO_NAME_MAP[obj_key]
-            sql = "DELETE FROM %s WHERE handle = ?" % table
-            self.dbapi.execute(sql, [handle])
+            self.dbapi.execute(f"DELETE FROM {table} WHERE handle = ?", [handle])
             if not transaction.batch:
                 transaction.add(obj_key, TXNDEL, handle, data, None)
 
@@ -713,15 +817,16 @@ class DBAPI(DbGeneric):
         Removes all references from this object (backlinks).
         """
         # collect backlinks from this object for undo
-        self.dbapi.execute("SELECT ref_class, ref_handle " +
-                           "FROM reference WHERE obj_handle = ?", [obj_handle])
+        self.dbapi.execute(
+            "SELECT ref_class, ref_handle FROM reference WHERE obj_handle = ?",
+            [obj_handle],
+        )
         rows = self.dbapi.fetchall()
         # Now, delete backlinks from this object:
-        self.dbapi.execute("DELETE FROM reference WHERE obj_handle = ?;",
-                           [obj_handle])
+        self.dbapi.execute("DELETE FROM reference WHERE obj_handle = ?;", [obj_handle])
         # Add old references to the transaction
         if not transaction.batch:
-            for (ref_class_name, ref_handle) in rows:
+            for ref_class_name, ref_handle in rows:
                 key = (obj_handle, ref_handle)
                 old_data = (obj_handle, obj_class, ref_handle, ref_class_name)
                 transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
@@ -743,10 +848,10 @@ class DBAPI(DbGeneric):
 
             result_list = list(find_backlink_handles(handle))
         """
-        self.dbapi.execute("SELECT obj_class, obj_handle "
-                           "FROM reference "
-                           "WHERE ref_handle = ?",
-                           [handle])
+        self.dbapi.execute(
+            "SELECT obj_class, obj_handle FROM reference WHERE ref_handle = ?",
+            [handle],
+        )
         rows = self.dbapi.fetchall()
         for row in rows:
             if (include_classes is None) or (row[0] in include_classes):
@@ -766,14 +871,14 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         if row:
             return self.get_person_from_handle(row[0])
+        return None
 
     def _iter_handles(self, obj_key):
         """
         Return an iterator over handles in the database
         """
         table = KEY_TO_NAME_MAP[obj_key]
-        sql = "SELECT handle FROM %s" % table
-        self.dbapi.execute(sql)
+        self.dbapi.execute(f"SELECT handle FROM {table}")
         rows = self.dbapi.fetchall()
         for row in rows:
             yield row[0]
@@ -783,28 +888,29 @@ class DBAPI(DbGeneric):
         Return an iterator over raw data in the database.
         """
         table = KEY_TO_NAME_MAP[obj_key]
-        sql = "SELECT handle, blob_data FROM %s" % table
         with self.dbapi.cursor() as cursor:
-            cursor.execute(sql)
+            cursor.execute(f"SELECT handle, {self.serializer.data_field} FROM {table}")
             rows = cursor.fetchmany()
             while rows:
                 for row in rows:
-                    yield (row[0], pickle.loads(row[1]))
+                    yield (row[0], self.serializer.string_to_data(row[1]))
                 rows = cursor.fetchmany()
 
     def _iter_raw_place_tree_data(self):
         """
         Return an iterator over raw data in the place hierarchy.
         """
-        to_do = ['']
-        sql = 'SELECT handle, blob_data FROM place WHERE enclosed_by = ?'
+        to_do = [""]
         while to_do:
             handle = to_do.pop()
-            self.dbapi.execute(sql, [handle])
+            self.dbapi.execute(
+                f"SELECT handle, {self.serializer.data_field} FROM place WHERE enclosed_by = ?",
+                [handle],
+            )
             rows = self.dbapi.fetchall()
             for row in rows:
                 to_do.append(row[0])
-                yield (row[0], pickle.loads(row[1]))
+                yield (row[0], self.serializer.string_to_data(row[1]))
 
     def reindex_reference_map(self, callback):
         """
@@ -813,8 +919,18 @@ class DBAPI(DbGeneric):
         self._txn_begin()
         self.dbapi.execute("DELETE FROM reference")
         total = 0
-        for tbl in ('people', 'families', 'events', 'places', 'sources',
-                    'citations', 'media', 'repositories', 'notes', 'tags'):
+        for tbl in (
+            "people",
+            "families",
+            "events",
+            "places",
+            "sources",
+            "citations",
+            "media",
+            "repositories",
+            "notes",
+            "tags",
+        ):
             total += self.method("get_number_of_%s", tbl)()
         UpdateCallback.__init__(self, callback)
         self.set_total(total)
@@ -835,19 +951,22 @@ class DBAPI(DbGeneric):
         for cursor_func, class_func in primary_table:
             logging.info("Rebuilding %s reference map", class_func.__name__)
             with cursor_func() as cursor:
-                for found_handle, val in cursor:
-                    obj = class_func.create(val)
+                for _, val in cursor:
+                    obj = self.serializer.data_to_object(val, class_func)
                     references = set(obj.get_referenced_handles_recursively())
                     # handle addition of new references
-                    for (ref_class_name, ref_handle) in references:
+                    for ref_class_name, ref_handle in references:
                         self.dbapi.execute(
                             "INSERT INTO reference "
                             "(obj_handle, obj_class, ref_handle, ref_class) "
                             "VALUES (?, ?, ?, ?)",
-                            [obj.handle,
-                             obj.__class__.__name__,
-                             ref_handle,
-                             ref_class_name])
+                            [
+                                obj.handle,
+                                obj.__class__.__name__,
+                                ref_handle,
+                                ref_class_name,
+                            ],
+                        )
                     self.update()
         self._txn_commit()
 
@@ -859,18 +978,38 @@ class DBAPI(DbGeneric):
             return
 
         total = 0
-        for tbl in ('people', 'families', 'events', 'places', 'sources',
-                    'citations', 'media', 'repositories', 'notes', 'tags'):
+        for tbl in (
+            "people",
+            "families",
+            "events",
+            "places",
+            "sources",
+            "citations",
+            "media",
+            "repositories",
+            "notes",
+            "tags",
+        ):
             total += self.method("get_number_of_%s", tbl)()
         UpdateCallback.__init__(self, callback)
         self.set_total(total)
 
         # First, expand blob to individual fields:
         self._txn_begin()
-        for obj_type in ('Person', 'Family', 'Event', 'Place', 'Repository',
-                         'Source', 'Citation', 'Media', 'Note', 'Tag'):
-            for handle in self.method('get_%s_handles', obj_type)():
-                obj = self.method('get_%s_from_handle', obj_type)(handle)
+        for obj_type in (
+            "Person",
+            "Family",
+            "Event",
+            "Place",
+            "Repository",
+            "Source",
+            "Citation",
+            "Media",
+            "Note",
+            "Tag",
+        ):
+            for handle in self.method("get_%s_handles", obj_type)():
+                obj = self.method("get_%s_from_handle", obj_type)(handle)
                 self._update_secondary_values(obj)
                 self.update()
         self._txn_commit()
@@ -881,46 +1020,47 @@ class DBAPI(DbGeneric):
 
     def _has_handle(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
-        sql = "SELECT 1 FROM %s WHERE handle = ?" % table
-        self.dbapi.execute(sql, [handle])
+        self.dbapi.execute(f"SELECT 1 FROM {table} WHERE handle = ?", [handle])
         return self.dbapi.fetchone() is not None
 
     def _has_gramps_id(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
-        sql = "SELECT 1 FROM %s WHERE gramps_id = ?" % table
-        self.dbapi.execute(sql, [gramps_id])
-        return self.dbapi.fetchone() != None
+        self.dbapi.execute(f"SELECT 1 FROM {table} WHERE gramps_id = ?", [gramps_id])
+        return self.dbapi.fetchone() is not None
 
     def _get_gramps_ids(self, obj_key):
         table = KEY_TO_NAME_MAP[obj_key]
-        sql = "SELECT gramps_id FROM %s" % table
-        self.dbapi.execute(sql)
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        self.dbapi.execute(f"SELECT gramps_id FROM {table}")
+        return [row[0] for row in self.dbapi.fetchall()]
 
     def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
-        sql = "SELECT blob_data FROM %s WHERE handle = ?" % table
-        self.dbapi.execute(sql, [handle])
+        self.dbapi.execute(
+            f"SELECT {self.serializer.data_field} FROM {table} WHERE handle = ?",
+            [handle],
+        )
         row = self.dbapi.fetchone()
         if row:
-            return pickle.loads(row[0])
+            return self.serializer.string_to_data(row[0])
+        return None
 
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
-        sql = "SELECT blob_data FROM %s WHERE gramps_id = ?" % table
-        self.dbapi.execute(sql, [gramps_id])
+        self.dbapi.execute(
+            f"SELECT {self.serializer.data_field} FROM {table} WHERE gramps_id = ?",
+            [gramps_id],
+        )
         row = self.dbapi.fetchone()
         if row:
-            return pickle.loads(row[0])
+            return self.serializer.string_to_data(row[0])
+        return None
 
     def get_gender_stats(self):
         """
         Returns a dictionary of
         {given_name: (male_count, female_count, unknown_count)}
         """
-        self.dbapi.execute("SELECT given_name, female, male, unknown "
-                           "FROM gender_stats")
+        self.dbapi.execute("SELECT given_name, female, male, unknown FROM gender_stats")
         gstats = {}
         for row in self.dbapi.fetchall():
             gstats[row[0]] = (row[1], row[2], row[3])
@@ -931,10 +1071,12 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("DELETE FROM gender_stats")
         for key in gstats.stats:
             female, male, unknown = gstats.stats[key]
-            self.dbapi.execute("INSERT INTO gender_stats "
-                               "(given_name, female, male, unknown) "
-                               "VALUES (?, ?, ?, ?)",
-                               [key, female, male, unknown])
+            self.dbapi.execute(
+                "INSERT INTO gender_stats "
+                "(given_name, female, male, unknown) "
+                "VALUES (?, ?, ?, ?)",
+                [key, female, male, unknown],
+            )
         self._txn_commit()
 
     def undo_reference(self, data, handle):
@@ -942,14 +1084,17 @@ class DBAPI(DbGeneric):
         Helper method to undo a reference map entry
         """
         if data is None:
-            sql = ("DELETE FROM reference " +
-                   "WHERE obj_handle = ? AND ref_handle = ?")
-            self.dbapi.execute(sql, [handle[0], handle[1]])
+            self.dbapi.execute(
+                "DELETE FROM reference WHERE obj_handle = ? AND ref_handle = ?",
+                [handle[0], handle[1]],
+            )
         else:
-            sql = ("INSERT INTO reference " +
-                   "(obj_handle, obj_class, ref_handle, ref_class) " +
-                   "VALUES(?, ?, ?, ?)")
-            self.dbapi.execute(sql, data)
+            self.dbapi.execute(
+                "INSERT INTO reference "
+                "(obj_handle, obj_class, ref_handle, ref_class) "
+                "VALUES(?, ?, ?, ?)",
+                data,
+            )
 
     def undo_data(self, data, handle, obj_key):
         """
@@ -958,25 +1103,26 @@ class DBAPI(DbGeneric):
         cls = KEY_TO_CLASS_MAP[obj_key]
         table = cls.lower()
         if data is None:
-            sql = "DELETE FROM %s WHERE handle = ?" % table
-            self.dbapi.execute(sql, [handle])
+            self.dbapi.execute(f"DELETE FROM {table} WHERE handle = ?", [handle])
         else:
             if self._has_handle(obj_key, handle):
-                sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
-                self.dbapi.execute(sql, [pickle.dumps(data), handle])
+                self.dbapi.execute(
+                    f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
+                    [self.serializer.data_to_string(data), handle],
+                )
             else:
-                sql = "INSERT INTO %s (handle, blob_data) VALUES (?, ?)" % table
-                self.dbapi.execute(sql, [handle, pickle.dumps(data)])
-            obj = self._get_table_func(cls)["class_func"].create(data)
+                self.dbapi.execute(
+                    f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
+                    [handle, self.serializer.data_to_string(data)],
+                )
+            obj = self.serializer.data_to_object(data, cls)
             self._update_secondary_values(obj)
 
     def get_surname_list(self):
         """
         Return the list of locale-sorted surnames contained in the database.
         """
-        self.dbapi.execute("SELECT DISTINCT surname "
-                           "FROM person "
-                           "ORDER BY surname")
+        self.dbapi.execute("SELECT DISTINCT surname FROM person ORDER BY surname")
         surname_list = []
         for row in self.dbapi.fetchall():
             surname_list.append(row[0])
@@ -987,31 +1133,40 @@ class DBAPI(DbGeneric):
         Given a schema type, return the SQL type for
         a new column.
         """
-        if schema_type == 'string':
+        if schema_type == "string":
             if max_length:
-                return "VARCHAR(%s)" % max_length
-            else:
-                return "TEXT"
-        elif schema_type in ['boolean', 'integer']:
+                return f"VARCHAR({max_length})"
+            return "TEXT"
+        if schema_type in ["boolean", "integer"]:
             return "INTEGER"
-        elif schema_type == 'number':
+        if schema_type == "number":
             return "REAL"
-        else:
-            return "BLOB"
+        return "BLOB"
 
     def _create_secondary_columns(self):
         """
         Create secondary columns.
         """
-        LOG.info("Creating secondary columns...")
-        for cls in (Person, Family, Event, Place, Repository, Source,
-                    Citation, Media, Note, Tag):
+        LOG.debug("Creating secondary columns...")
+        for cls in (
+            Person,
+            Family,
+            Event,
+            Place,
+            Repository,
+            Source,
+            Citation,
+            Media,
+            Note,
+            Tag,
+        ):
             table_name = cls.__name__.lower()
             for field, schema_type, max_length in cls.get_secondary_fields():
-                if field != 'handle':
+                if field != "handle":
                     sql_type = self._sql_type(schema_type, max_length)
-                    self.dbapi.execute("ALTER TABLE %s ADD COLUMN %s %s"
-                                       % (table_name, field, sql_type))
+                    self.dbapi.execute(
+                        f"ALTER TABLE {table_name} ADD COLUMN {field} {sql_type}"
+                    )
 
     def _update_secondary_values(self, obj):
         """
@@ -1024,27 +1179,27 @@ class DBAPI(DbGeneric):
         sets = []
         values = []
         for field in fields:
-            sets.append("%s = ?" % field)
+            sets.append(f"{field} = ?")
             values.append(getattr(obj, field))
 
         # Derived fields
-        if table == 'Person':
+        if table == "Person":
             given_name, surname = self._get_person_data(obj)
             sets.append("given_name = ?")
             values.append(given_name)
             sets.append("surname = ?")
             values.append(surname)
-        if table == 'Place':
+        if table == "Place":
             handle = self._get_place_data(obj)
             sets.append("enclosed_by = ?")
             values.append(handle)
 
         if len(values) > 0:
             table_name = table.lower()
-            self.dbapi.execute("UPDATE %s SET %s where handle = ?"
-                               % (table_name, ", ".join(sets)),
-                               self._sql_cast_list(values)
-                               + [obj.handle])
+            self.dbapi.execute(
+                f'UPDATE {table_name} SET {", ".join(sets)} where handle = ?',
+                self._sql_cast_list(values) + [obj.handle],
+            )
 
     def _sql_cast_list(self, values):
         """

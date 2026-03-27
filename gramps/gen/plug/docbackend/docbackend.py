@@ -13,35 +13,38 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-"""File and File format management for the different reports
-"""
+"""File and File format management for the different reports"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+from __future__ import annotations
+
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".docbackend.py")
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Functions
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 
 def noescape(text):
     """
@@ -49,13 +52,15 @@ def noescape(text):
     """
     return text
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # DocBackend exception
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DocBackendError(Exception):
     """Error used to report docbackend errors."""
+
     def __init__(self, value=""):
         Exception.__init__(self)
         self.value = value
@@ -63,11 +68,13 @@ class DocBackendError(Exception):
     def __str__(self):
         return self.value
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Document Backend class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 
 class DocBackend:
     """
@@ -78,6 +85,7 @@ class DocBackend:
     Specifically for text reports a translation of styled notes to the file
     format usage is done.
     """
+
     BOLD = 0
     ITALIC = 1
     UNDERLINE = 2
@@ -87,24 +95,27 @@ class DocBackend:
     HIGHLIGHT = 6
     SUPERSCRIPT = 7
     LINK = 8
+    STRIKETHROUGH = 9
+    SUBSCRIPT = 10
 
-    SUPPORTED_MARKUP = []
+    SUPPORTED_MARKUP: list[int] = []
 
     ESCAPE_FUNC = lambda: noescape
-    #Map between styletypes and internally used values. This map is needed
-    # to make TextDoc officially independant of gen.lib.styledtexttag
-    STYLETYPE_MAP = {
-        }
+    # Map between styletypes and internally used values. This map is needed
+    # to make TextDoc officially independent of gen.lib.styledtexttag
+    STYLETYPE_MAP: dict[int, int] = {}
     CLASSMAP = None
 
-    #STYLETAGTABLE to store markup for write_markup associated with style tags
+    # STYLETAGTABLE to store markup for write_markup associated with style tags
     STYLETAG_MARKUP = {
-        BOLD        : ("", ""),
-        ITALIC      : ("", ""),
-        UNDERLINE   : ("", ""),
-        SUPERSCRIPT : ("", ""),
-        LINK        : ("", ""),
-        }
+        BOLD: ("", ""),
+        ITALIC: ("", ""),
+        UNDERLINE: ("", ""),
+        SUPERSCRIPT: ("", ""),
+        LINK: ("", ""),
+        STRIKETHROUGH: ("", ""),
+        SUBSCRIPT: ("", ""),
+    }
 
     def __init__(self, filename=None):
         """
@@ -126,7 +137,7 @@ class DocBackend:
         Can only be done if the previous filename is not open.
         """
         if self.__file is not None:
-            raise ValueError(_('Close file first'))
+            raise ValueError(_("Close file first"))
         self._filename = value
 
     filename = property(getf, setf, None, "The filename the backend works on")
@@ -136,10 +147,11 @@ class DocBackend:
         Opens the document.
         """
         if self.filename is None:
-            raise DocBackendError(_('No filename given'))
-        if self.__file is not None :
-            raise DocBackendError(_('File %s already open, close it first.')
-                                            % self.filename)
+            raise DocBackendError(_("No filename given"))
+        if self.__file is not None:
+            raise DocBackendError(
+                _("File %s already open, close it first.") % self.filename
+            )
         self._checkfilename()
         try:
             self.__file = open(self.filename, "w", encoding="utf-8")
@@ -160,7 +172,7 @@ class DocBackend:
         Closes the file that is written on.
         """
         if self.__file is None:
-            raise IOError('No file open')
+            raise IOError("No file open")
         self.__file.close()
         self.__file = None
 
@@ -189,11 +201,9 @@ class DocBackend:
         """
         return self.ESCAPE_FUNC()
 
-
     def find_tag_by_stag(self, s_tag):
         """
         :param s_tag: object: assumed styledtexttag
-        :param s_tagvalue: None/int/str: value associated with the tag
 
         A styled tag is type with a value. Every styled tag must be converted
         to the tags used in the corresponding markup for the backend,
@@ -204,8 +214,7 @@ class DocBackend:
         """
         tagtype = s_tag.name
 
-        if not self.STYLETYPE_MAP or \
-        self.CLASSMAP != tagtype.__class__.__name__ :
+        if not self.STYLETYPE_MAP or self.CLASSMAP != tagtype.__class__.__name__:
             self.CLASSMAP = tagtype.__class__.__name__
             self.STYLETYPE_MAP[tagtype.BOLD] = self.BOLD
             self.STYLETYPE_MAP[tagtype.ITALIC] = self.ITALIC
@@ -216,6 +225,8 @@ class DocBackend:
             self.STYLETYPE_MAP[tagtype.HIGHLIGHT] = self.HIGHLIGHT
             self.STYLETYPE_MAP[tagtype.SUPERSCRIPT] = self.SUPERSCRIPT
             self.STYLETYPE_MAP[tagtype.LINK] = self.LINK
+            self.STYLETYPE_MAP[tagtype.STRIKETHROUGH] = self.STRIKETHROUGH
+            self.STYLETYPE_MAP[tagtype.SUBSCRIPT] = self.SUBSCRIPT
 
         if s_tag.name == tagtype.LINK:
             return self.format_link(s_tag.value)
@@ -234,7 +245,7 @@ class DocBackend:
         tags = self.STYLETAG_MARKUP.get(tag_name)
         if tags is not None:
             return tags
-        #no tag known yet, create the markup, add to lookup, and return
+        # no tag known yet, create the markup, add to lookup, and return
         tags = self._create_xmltag(self.STYLETYPE_MAP[typeval], s_tagvalue)
         self.STYLETAG_MARKUP[tag_name] = tags
         return tags
@@ -246,9 +257,9 @@ class DocBackend:
         """
         if tagtype not in self.SUPPORTED_MARKUP:
             return None
-        return ('', '')
+        return ("", "")
 
-    def add_markup_from_styled(self, text, s_tags, split='', escape=True):
+    def add_markup_from_styled(self, text, s_tags, split="", escape=True):
         """
         Input is plain text, output is text with markup added according to the
         s_tags which are assumed to be styledtexttags.
@@ -275,7 +286,7 @@ class DocBackend:
         if not escape:
             escape_func = self.ESCAPE_FUNC
             self.ESCAPE_FUNC = lambda: (lambda text: text)
-        #unicode text must be sliced correctly
+        # unicode text must be sliced correctly
         text = str(text)
         FIRST = 0
         LAST = 1
@@ -283,7 +294,7 @@ class DocBackend:
         for s_tag in s_tags:
             tag = self.find_tag_by_stag(s_tag)
             if tag is not None:
-                for (start, end) in s_tag.ranges:
+                for start, end in s_tag.ranges:
                     if start in tagspos:
                         tagspos[start] += [(tag, FIRST)]
                     else:
@@ -298,66 +309,69 @@ class DocBackend:
         keylist.sort()
         keylist = [x for x in keylist if x <= len(text)]
         opentags = []
-        otext = ""  #the output, text with markup
+        otext = ""  # the output, text with markup
         lensplit = len(split)
         for pos in keylist:
-            #write text up to tag
+            # write text up to tag
             if pos > start:
                 if split:
-                    #make sure text can split
+                    # make sure text can split
                     splitpos = text[start:pos].find(split)
                     while splitpos != -1:
-                        otext += self.ESCAPE_FUNC()(text[start:start+splitpos])
-                        #close open tags
+                        otext += self.ESCAPE_FUNC()(text[start : start + splitpos])
+                        # close open tags
                         for opentag in reversed(opentags):
                             otext += opentag[1]
-                        #add split text
+                        # add split text
                         otext += self.ESCAPE_FUNC()(split)
-                        #open the tags again
+                        # open the tags again
                         for opentag in opentags:
                             otext += opentag[0]
-                        #obtain new values
+                        # obtain new values
                         start = start + splitpos + lensplit
                         splitpos = text[start:pos].find(split)
 
                 otext += self.ESCAPE_FUNC()(text[start:pos])
-            #write out tags
+            # write out tags
             for tag in tagspos[pos]:
-                #close open tags starting from last open
+                # close open tags starting from last open
                 for opentag in reversed(opentags):
                     otext += opentag[1]
-                #if start, add to opentag in beginning as first to open
+                # if start, add to opentag in beginning as first to open
                 if tag[1] == FIRST:
                     opentags = [tag[0]] + opentags
                 else:
-                    #end tag, is closed already, remove from opentag
-                    opentags = [x for x in opentags if not x == tag[0] ]
-                #now all tags are closed, open the ones that should open
+                    # end tag, is closed already, remove from opentag
+                    opentags = [x for x in opentags if not x == tag[0]]
+                # now all tags are closed, open the ones that should open
                 for opentag in opentags:
                     otext += opentag[0]
             start = pos
-        #add remainder of text, no markup present there if all is correct
+        # add remainder of text, no markup present there if all is correct
         if opentags:
             # a problem, we don't have a closing tag left but there are open
             # tags. Just keep them up to end of text
             pos = len(text)
-            print('WARNING: DocBackend : More style tags in text than length '\
-                    'of text allows.\n', opentags)
+            print(
+                "WARNING: DocBackend : More style tags in text than length "
+                "of text allows.\n",
+                opentags,
+            )
             if pos > start:
                 if split:
-                    #make sure text can split
+                    # make sure text can split
                     splitpos = text[start:pos].find(split)
                     while splitpos != -1:
-                        otext += self.ESCAPE_FUNC()(text[start:start+splitpos])
-                        #close open tags
+                        otext += self.ESCAPE_FUNC()(text[start : start + splitpos])
+                        # close open tags
                         for opentag in reversed(opentags):
                             otext += opentag[1]
-                        #add split text
+                        # add split text
                         otext += self.ESCAPE_FUNC()(split)
-                        #open the tags again
+                        # open the tags again
                         for opentag in opentags:
                             otext += opentag[0]
-                        #obtain new values
+                        # obtain new values
                         start = start + splitpos + lensplit
                         splitpos = text[start:pos].find(split)
 
@@ -378,4 +392,3 @@ class DocBackend:
 
         """
         return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
-

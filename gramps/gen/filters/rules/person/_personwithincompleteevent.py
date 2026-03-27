@@ -13,42 +13,51 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 # "People with incomplete events"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PersonWithIncompleteEvent(Rule):
     """People with incomplete events"""
 
-    name = _('People with incomplete events')
+    name = _("People with incomplete events")
     description = _("Matches people with missing date or place in an event")
-    category = _('Event filters')
+    category = _("Event filters")
 
-    def apply(self,db,person):
-        for event_ref in person.get_event_ref_list():
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for event_ref in person.event_ref_list:
             if event_ref:
                 event = db.get_event_from_handle(event_ref.ref)
-                if not event.get_place_handle():
+                if not event.place:
                     return True
-                if not event.get_date_object():
+                if not event.date:
                     return True
         return False

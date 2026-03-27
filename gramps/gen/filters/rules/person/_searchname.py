@@ -14,47 +14,63 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Any
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasNameOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SearchName(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels = [_('Substring:')]
-    name = _('People matching the <name>')
+    labels = [_("Substring:")]
+    name = _("People matching the <name>")
     description = _("Matches people with a specified (partial) name")
-    category = _('General filters')
+    category = _("General filters")
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Any) -> bool:
         src = self.list[0].upper()
         if not src:
             return False
 
-        for name in [person.get_primary_name()] + person.get_alternate_names():
-            for field in [name.first_name, name.get_surname(), name.suffix,
-                          name.title, name.nick, name.famnick, name.call]:
+        for name in [person.primary_name] + person.alternate_names:
+            for field in [
+                name.first_name,
+                name.get_surname(),
+                name.suffix,
+                name.title,
+                name.nick,
+                name.famnick,
+                name.call,
+            ]:
                 if src and field.upper().find(src) != -1:
                     return True
         return False

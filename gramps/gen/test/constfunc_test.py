@@ -14,29 +14,33 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Unittest for constfunc.py """
+"""Unittest for constfunc.py"""
 
 import unittest
 from .. import constfunc
 
 from os import environ as env
 
+
 class Test_has_display(unittest.TestCase):
     def setUp(self):
         self.has = constfunc.has_display()
-        self.display_nonempty = ('DISPLAY' in env) and bool(env['DISPLAY'])
+        self.display_nonempty = ("DISPLAY" in env) and bool(env["DISPLAY"])
 
     @unittest.skipUnless(constfunc.lin(), "Written for Linux only...")
     def test_consistent_with_DISPLAY_env(self):
-        assert self.has == self.display_nonempty, \
-                "has_display(): {}, $DISPLAY: {}".format(
-                        self.has, env['DISPLAY'] if ('DISPLAY' in env) \
-                                else "(unset)")
+        self.assertEqual(
+            self.has,
+            self.display_nonempty,
+            "has_display(): {}, $DISPLAY: {}".format(
+                self.has, env["DISPLAY"] if ("DISPLAY" in env) else "(unset)"
+            ),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

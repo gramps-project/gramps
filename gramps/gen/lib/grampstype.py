@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2017       Nick Hall
+# Copyright (C) 2017,2024  Nick Hall
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,38 +15,48 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Base type for all gramps types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+from functools import singledispatchmethod
+from typing import Any
+
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-_UNKNOWN = _('Unknown')
+_UNKNOWN = _("Unknown")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# GrampsTypeMeta class
+# GrampsTypeMeta
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GrampsTypeMeta(type):
     """
     Metaclass for :class:`~.grampstype.GrampsType`.
 
     Create the class-specific integer/string maps.
     """
-    def __init__(cls, name, bases, namespace):
 
+    def __init__(cls, name, bases, namespace):
         # Helper function to create the maps
         def init_map(data, key_col, data_col, blacklist=None):
             """
@@ -53,28 +64,30 @@ class GrampsTypeMeta(type):
             columns.
             """
             if blacklist:
-                return dict([(item[key_col], item[data_col])
-                             for item in data if item[0] not in blacklist])
-            else:
-                return dict([(item[key_col], item[data_col]) for item in data])
+                return {
+                    item[key_col]: item[data_col]
+                    for item in data
+                    if item[0] not in blacklist
+                }
+            return {item[key_col]: item[data_col] for item in data}
 
         # Call superclass initialization
         type.__init__(cls, name, bases, namespace)
 
         # Build the integer/string maps
-        if hasattr(cls, '_DATAMAP'):
+        if hasattr(cls, "_DATAMAP"):
             cls._I2SMAP = init_map(cls._DATAMAP, 0, 1, cls._BLACKLIST)
             cls._S2IMAP = init_map(cls._DATAMAP, 1, 0, cls._BLACKLIST)
             cls._I2EMAP = init_map(cls._DATAMAP, 0, 2, cls._BLACKLIST)
             cls._E2IMAP = init_map(cls._DATAMAP, 2, 0, cls._BLACKLIST)
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# GrampsType class
+# GrampsType
 #
-#-------------------------------------------------------------------------
-class GrampsType(object, metaclass=GrampsTypeMeta):
+# -------------------------------------------------------------------------
+class GrampsType(metaclass=GrampsTypeMeta):
     """Base class for all Gramps object types.
 
     :cvar _DATAMAP:
@@ -83,43 +96,34 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
       List of indices to ignore (obsolete/retired entries).
       (gramps policy is never to delete type values, or reuse the name (TOKEN)
       of any specific type value)
-    :cvar POS_<x>: (int)
-      Position of <x> attribute in the serialized format of
-      an instance.
-
-    .. warning:: The POS_<x> class variables reflect the serialized object,
-                 they have to be updated in case the data structure or the
-                 :meth:`serialize` method changes!
-
     :cvar _CUSTOM:  (int) a custom type object
     :cvar _DEFAULT: (int) the default type, used on creation
 
     :attribute value: (int) Returns or sets integer value
     :attribute string: (str) Returns or sets string value
     """
-    (POS_VALUE, POS_STRING) = list(range(2))
 
     _CUSTOM = 0
     _DEFAULT = 0
 
-    _DATAMAP = []
-    _BLACKLIST = None
-    _I2SMAP = {}
-    _S2IMAP = {}
-    _I2EMAP = {}
-    _E2IMAP = {}
-    _MENU = []
-    __slots__ = ('__value', '__string')
+    _DATAMAP: list[tuple[int, str, str]] = []
+    _BLACKLIST: list[int] | None = None
+    _I2SMAP: dict[int, str] = {}
+    _S2IMAP: dict[str, int] = {}
+    _I2EMAP: dict[int, str] = {}
+    _E2IMAP: dict[str, int] = {}
+    _MENU: list[list[Any]] = []
+    __slots__ = ("__value", "__string")
 
     def __getstate__(self):
-        return {'__value': self.__value, '__string': self.__string}
+        return {"__value": self.__value, "__string": self.__string}
 
     def __setstate__(self, dict_):
-        self.__value = dict_['__value']
+        self.__value = dict_["__value"]
         if self.__value == self._CUSTOM:
-            self.__string = dict_['__string']
+            self.__string = dict_["__string"]
         else:
-            self.__string = ''
+            self.__string = ""
 
     def __init__(self, value=None):
         """
@@ -127,13 +131,48 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
         states.
         """
         self.__value = self._DEFAULT
-        self.__string = ''
+        self.__string = ""
         if value is not None:
             self.set(value)
 
-    def __set_tuple(self, value):
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        We override this method to handle the `value` and `string` properties.
+        """
+        attr_dict = {"_class": self.__class__.__name__}
+        attr_dict["value"] = self.__value
+        attr_dict["string"] = self.__string
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to handle the `value` and `string` properties.
+        """
+        self.__value = attr_dict["value"]
+        if self.__value == self._CUSTOM:
+            self.__string = attr_dict["string"]
+        else:
+            self.__string = ""
+
+    @singledispatchmethod
+    def set(self, value):
+        self.__value = self._DEFAULT
+        self.__string = ""
+
+    @set.register
+    def __set_dict(self, value: dict):
+        "Set the value/string properties from a dict."
+        self.__set_tuple((value["value"], value["string"]))
+
+    @set.register
+    def __set_tuple(self, value: tuple):
         "Set the value/string properties from a tuple."
-        val, strg = self._DEFAULT, ''
+        val, strg = self._DEFAULT, ""
         if value:
             val = value[0]
             if len(value) > 1 and val == self._CUSTOM:
@@ -141,40 +180,29 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
         self.__value = val
         self.__string = strg
 
-    def __set_int(self, value):
+    @set.register
+    def __set_int(self, value: int):
         "Set the value/string properties from an integer."
         self.__value = value
-        self.__string = ''
+        self.__string = ""
 
-    def __set_instance(self, value):
+    # This method needs to be registered outside of the class.
+    def __set_instance(self, value: GrampsType):
         "Set the value/string properties from another grampstype."
         self.__value = value.value
         if self.__value == self._CUSTOM:
             self.__string = value.string
         else:
-            self.__string = ''
+            self.__string = ""
 
-    def __set_str(self, value):
+    @set.register
+    def __set_str(self, value: str):
         "Set the value/string properties from a string."
         self.__value = self._S2IMAP.get(value, self._CUSTOM)
         if self.__value == self._CUSTOM:
             self.__string = value
         else:
-            self.__string = ''
-
-    def set(self, value):
-        "Set the value/string properties from the passed in value."
-        if isinstance(value, tuple):
-            self.__set_tuple(value)
-        elif isinstance(value, int):
-            self.__set_int(value)
-        elif isinstance(value, self.__class__):
-            self.__set_instance(value)
-        elif isinstance(value, str):
-            self.__set_str(value)
-        else:
-            self.__value = self._DEFAULT
-            self.__string = ''
+            self.__string = ""
 
     def set_from_xml_str(self, value):
         """
@@ -183,9 +211,9 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
         """
         if value in self._E2IMAP:
             self.__value = self._E2IMAP[value]
-            self.__string = ''
+            self.__string = ""
             if self.__value == self._CUSTOM:
-                #if the custom event is actually 'Custom' then we should save it
+                # if the custom event is actually 'Custom' then we should save it
                 # with that string value. That is, 'Custom' is in _E2IMAP
                 self.__string = value
         else:
@@ -199,14 +227,32 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
         """
         if self.__value == self._CUSTOM:
             return self.__string
-        elif self.__value in self._I2EMAP:
+        if self.__value in self._I2EMAP:
             return self._I2EMAP[self.__value]
-        else:
-            return _UNKNOWN
+        return _UNKNOWN
 
     def serialize(self):
-        """Convert the object to a serialized tuple of data. """
+        """Convert the object to a serialized tuple of data."""
         return (self.__value, self.__string)
+
+    @classmethod
+    def __get_str(cls, value, string):
+        if value == cls._CUSTOM:
+            return string
+        else:
+            return cls._I2SMAP.get(value, _UNKNOWN)
+
+    @classmethod
+    def get_str(cls, data):
+        """
+        Return the translated string corresponding to the type.
+
+        :param data: A dict representation of the type.
+        :type data: dict
+        :returns: The translated string corresponding to the type.
+        :rtype: str
+        """
+        return cls.__get_str(data.value, data.string)
 
     @classmethod
     def get_schema(cls):
@@ -221,23 +267,20 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
             "title": _("Type"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "string":  {"type": "string",
-                            "title": _("Type")},
-            }
+                "string": {"type": "string", "title": _("Custom type")},
+                "value": {"type": "integer", "title": _("Type code")},
+            },
         }
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object."""
         self.__value, self.__string = data
         if self.__value != self._CUSTOM:
-            self.__string = ''
+            self.__string = ""
         return self
 
     def __str__(self):
-        if self.__value == self._CUSTOM:
-            return self.__string
-        else:
-            return self._I2SMAP.get(self.__value, _UNKNOWN)
+        return type(self).__get_str(self.__value, self.__string)
 
     def __int__(self):
         return self.__value
@@ -247,21 +290,30 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
 
     def get_standard_names(self):
         """Return the list of localized names for all standard types."""
-        return [s for (i, s) in list(self._I2SMAP.items())
-                if (i != self._CUSTOM) and s.strip()]
+        return [
+            s
+            for (i, s) in list(self._I2SMAP.items())
+            if (i != self._CUSTOM) and s.strip()
+        ]
 
     def get_standard_xml(self):
         """Return the list of XML (english) names for all standard types."""
-        return [s for (i, s) in list(self._I2EMAP.items())
-                if (i != self._CUSTOM) and s.strip()]
+        return [
+            s
+            for (i, s) in list(self._I2EMAP.items())
+            if (i != self._CUSTOM) and s.strip()
+        ]
 
     def is_custom(self):
+        """Return true if custom type."""
         return self.__value == self._CUSTOM
 
     def is_default(self):
+        """Return true if default type."""
         return self.__value == self._DEFAULT
 
     def get_custom(self):
+        """Return custom type."""
         return self._CUSTOM
 
     def get_menu(self):
@@ -277,24 +329,26 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
     def __eq__(self, value):
         if isinstance(value, int):
             return self.__value == value
-        elif isinstance(value, str):
+        if isinstance(value, str):
             if self.__value == self._CUSTOM:
                 return self.__string == value
-            else:
-                return self._I2SMAP.get(self.__value) == value
-        elif isinstance(value, tuple):
+            return self._I2SMAP.get(self.__value) == value
+        if isinstance(value, tuple):
             if self.__value == self._CUSTOM:
                 return (self.__value, self.__string) == value
-            else:
-                return self.__value == value[0]
-        else:
-            if value.value == self._CUSTOM:
-                return self.__string == value.string
-            else:
-                return self.__value == value.value
+            return self.__value == value[0]
+
+        if value.value == self._CUSTOM and self.__value == self._CUSTOM:
+            return self.__string == value.string
+        if self._CUSTOM not in [value.value, self.__value]:
+            return self.__value == value.value
+        return False
 
     def __ne__(self, value):
         return not self.__eq__(value)
 
     value = property(__int__, __set_int, None, "Returns or sets integer value")
     string = property(__str__, __set_str, None, "Returns or sets string value")
+
+
+GrampsType.set.register(GrampsType, GrampsType._GrampsType__set_instance)  # type: ignore[attr-defined]

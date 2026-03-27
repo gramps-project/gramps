@@ -15,51 +15,51 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
-from gi.repository import GObject
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.dummylayer")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # osmGpsMap
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from gi.repository import GObject
 
 try:
     import gi
-    gi.require_version('OsmGpsMap', '1.0')
+
+    gi.require_version("OsmGpsMap", "1.0")
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-# pylint: disable=unused-argument
+# ------------------------------------------------------------------------
+#
+# Set up logging
+#
+# ------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.dummylayer")
+
 
 class DummyLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This is the class for the Dummy layer.
     """
+
     def __init__(self):
         """
         Initialize the dummy layer
@@ -88,7 +88,9 @@ class DummyLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Someone press a button
         """
+        dummy_map = gpsmap
+        dummy_evt = gdkeventbutton
         return False
 
-GObject.type_register(DummyLayer)
 
+GObject.type_register(DummyLayer)

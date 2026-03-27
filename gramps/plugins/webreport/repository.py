@@ -27,9 +27,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -38,29 +37,31 @@ Narrative Web Page generator.
 Classe:
     RepositoryPage - Repository index page and individual Repository pages
 """
-#------------------------------------------------
+
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from collections import defaultdict
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import Repository
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import (FULLCLEAR, html_escape)
+from gramps.plugins.webreport.common import FULLCLEAR, html_escape
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
+
 
 #################################################
 #
@@ -79,29 +80,35 @@ class RepositoryPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.repos_dict = defaultdict(set)
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Repository tab, namely the
         repository index and the individual repository pages.
 
-        @param: title  -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Person]")
         for item in self.report.obj_dict[Repository].items():
             LOG.debug("    %s", str(item))
 
         # set progress bar pass for Repositories
-        message = _('Creating repository pages')
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
-                                  len(self.report.obj_dict[Repository]) + 1
-                                 ) as step:
+        message = _("Creating repository pages")
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(
+            progress_title, message, len(self.report.obj_dict[Repository]) + 1
+        ) as step:
             # Sort the repositories
             repos_dict = {}
             for repo_handle in self.report.obj_dict[Repository]:
@@ -112,27 +119,28 @@ class RepositoryPages(BasePage):
             keys = sorted(repos_dict, key=self.rlocale.sort_key)
 
             # RepositoryListPage Class
-            self.repositorylistpage(self.report, title, repos_dict, keys)
+            self.repositorylistpage(self.report, the_lang, the_title, repos_dict, keys)
 
             idx = 1
             for dummy_index, key in enumerate(keys):
-                (repo, handle) = repos_dict[key]
+                repo, handle = repos_dict[key]
                 step()
                 idx += 1
-                self.repositorypage(self.report, title, repo, handle)
+                self.repositorypage(self.report, the_lang, the_title, repo, handle)
 
-    def repositorylistpage(self, report, title, repos_dict, keys):
+    def repositorylistpage(self, report, the_lang, the_title, repos_dict, keys):
         """
         Create Index for repositories
 
         @param: report     -- The instance of the main report class
                               for this report
-        @param: title      -- Is the title of the web page
+        @param: the_lang   -- The lang to process
+        @param: the_title  -- The title page related to the language
         @param: repos_dict -- The dictionary for all repositories
         @param: keys       -- The keys used to access repositories
         """
-        BasePage.__init__(self, report, title)
-        #inc_repos = self.report.options["inc_repository"]
+        BasePage.__init__(self, report, the_lang, the_title)
+        # inc_repos = self.report.options["inc_repository"]
 
         output_file, sio = self.report.create_file("repositories")
         result = self.write_header(_("Repositories"))
@@ -140,19 +148,22 @@ class RepositoryPages(BasePage):
 
         ldatec = 0
         # begin RepositoryList division
-        with Html("div", class_="content",
-                  id="RepositoryList") as repositorylist:
+        with Html("div", class_="content", id="RepositoryList") as repositorylist:
             outerwrapper += repositorylist
 
-            msg = self._("This page contains an index of "
-                         "all the repositories in the "
-                         "database, sorted by their title. "
-                         "Clicking on a repositories&#8217;s title "
-                         "will take you to that repositories&#8217;s page.")
+            msg = self._(
+                "This page contains an index of "
+                "all the repositories in the "
+                "database, sorted by their title. "
+                "Clicking on a repositories&#8217;s title "
+                "will take you to that repositories&#8217;s page."
+            )
             repositorylist += Html("p", msg, id="description")
 
             # begin repositories table and table head
-            with Html("table", class_="infolist primobjlist repolist") as table:
+            with Html(
+                "table", class_="infolist primobjlist repolist " + self.dir
+            ) as table:
                 repositorylist += table
 
                 thead = Html("thead")
@@ -160,11 +171,14 @@ class RepositoryPages(BasePage):
 
                 trow = Html("tr") + (
                     Html("th", "&nbsp;", class_="ColumnRowLabel", inline=True),
-                    Html("th", self._("Type"), class_="ColumnType",
-                         inline=True),
-                    Html("th", self._("Repository |Name"), class_="ColumnName",
-                         inline=True)
-                    )
+                    Html("th", self._("Type"), class_="ColumnType", inline=True),
+                    Html(
+                        "th",
+                        self._("Name", "Repository"),
+                        class_="ColumnName",
+                        inline=True,
+                    ),
+                )
                 thead += trow
 
                 # begin table body
@@ -172,14 +186,13 @@ class RepositoryPages(BasePage):
                 table += tbody
 
                 for index, key in enumerate(keys):
-                    (repo, handle) = repos_dict[key]
+                    repo, handle = repos_dict[key]
 
                     trow = Html("tr")
                     tbody += trow
 
                     # index number
-                    trow += Html("td", index + 1, class_="ColumnRowLabel",
-                                 inline=True)
+                    trow += Html("td", index + 1, class_="ColumnRowLabel", inline=True)
 
                     # repository type
                     rtype = self._(repo.type.xml_str())
@@ -187,12 +200,16 @@ class RepositoryPages(BasePage):
 
                     # repository name and hyperlink
                     if repo.get_name():
-                        trow += Html("td",
-                                     self.repository_link(handle,
-                                                          repo.get_name(),
-                                                          repo.get_gramps_id(),
-                                                          self.uplink),
-                                     class_="ColumnName")
+                        trow += Html(
+                            "td",
+                            self.repository_link(
+                                handle,
+                                repo.get_name(),
+                                repo.get_gramps_id(),
+                                self.uplink,
+                            ),
+                            class_="ColumnName",
+                        )
                         ldatec = repo.get_change_time()
                     else:
                         trow += Html("td", "[ untitled ]", class_="ColumnName")
@@ -206,35 +223,35 @@ class RepositoryPages(BasePage):
         # and close the file
         self.xhtml_writer(repolistpage, output_file, sio, ldatec)
 
-    def repositorypage(self, report, title, repo, handle):
+    def repositorypage(self, report, the_lang, the_title, repo, handle):
         """
         Create one page for one repository.
 
-        @param: report -- The instance of the main report class for this report
-        @param: title  -- Is the title of the web page
-        @param: repo   -- the repository to use
-        @param: handle -- the handle to use
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
+        @param: repo      -- the repository to use
+        @param: handle    -- the handle to use
         """
         gid = repo.get_gramps_id()
-        BasePage.__init__(self, report, title, gid)
+        BasePage.__init__(self, report, the_lang, the_title, gid)
         ldatec = repo.get_change_time()
 
-        output_file, sio = self.report.create_file(handle, 'repo')
+        output_file, sio = self.report.create_file(handle, "repo")
         self.uplink = True
-        result = self.write_header(_('Repositories'))
+        result = self.write_header(_("Repositories"))
         repositorypage, dummy_head, dummy_body, outerwrapper = result
 
         # begin RepositoryDetail division and page title
-        with Html("div", class_="content",
-                  id="RepositoryDetail") as repositorydetail:
+        with Html("div", class_="content", id="RepositoryDetail") as repositorydetail:
             outerwrapper += repositorydetail
 
             # repository name
-            repositorydetail += Html("h3", html_escape(repo.name),
-                                     inline=True)
+            repositorydetail += Html("h3", html_escape(repo.name), inline=True)
 
             # begin repository table
-            with Html("table", class_="infolist repolist") as table:
+            with Html("table", class_="infolist repolist " + self.dir) as table:
                 repositorydetail += table
 
                 tbody = Html("tbody")
@@ -242,26 +259,39 @@ class RepositoryPages(BasePage):
 
                 if not self.noid and gid:
                     trow = Html("tr") + (
-                        Html("td", self._("Gramps ID"),
-                             class_="ColumnAttribute",
-                             inline=True),
-                        Html("td", gid, class_="ColumnValue", inline=True)
+                        Html(
+                            "td",
+                            self._("Gramps ID"),
+                            class_="ColumnAttribute",
+                            inline=True,
+                        ),
+                        Html("td", gid, class_="ColumnValue", inline=True),
                     )
                     tbody += trow
 
                 trow = Html("tr") + (
-                    Html("td", self._("Type"), class_="ColumnAttribute",
-                         inline=True),
-                    Html("td", self._(repo.get_type().xml_str()),
-                         class_="ColumnValue",
-                         inline=True)
+                    Html("td", self._("Type"), class_="ColumnAttribute", inline=True),
+                    Html(
+                        "td",
+                        self._(repo.get_type().xml_str()),
+                        class_="ColumnValue",
+                        inline=True,
+                    ),
+                )
+                tbody += trow
+
+            # Tags
+            tags = self.show_tags(repo)
+            if tags and self.report.inc_tags:
+                trow = Html("tr") + (
+                    Html("td", self._("Tags"), class_="ColumnAttribute", inline=True),
+                    Html("td", tags, class_="ColumnValue", inline=True),
                 )
                 tbody += trow
 
             # repository: address(es)...
             # repository addresses do NOT have Sources
-            repo_address = self.display_addr_list(repo.get_address_list(),
-                                                  False)
+            repo_address = self.display_addr_list(repo.get_address_list(), False)
             if repo_address is not None:
                 repositorydetail += repo_address
 

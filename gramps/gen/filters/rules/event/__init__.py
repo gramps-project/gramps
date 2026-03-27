@@ -15,16 +15,13 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Package providing filter rules for Gramps.
 """
-
-from .._haseventbase import HasEventBase as HasEvent
 
 from ._hastype import HasType
 from ._allevents import AllEvents
@@ -32,9 +29,11 @@ from ._hasgallery import HasGallery
 from ._hasidof import HasIdOf
 from ._regexpidof import RegExpIdOf
 from ._hascitation import HasCitation
+from ._hasevent import HasEvent
 from ._hasnote import HasNote
 from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from ._hasnotetype import HasNoteType
 from ._hasreferencecountof import HasReferenceCountOf
 from ._hassourcecount import HasSourceCount
 from ._eventprivate import EventPrivate
@@ -58,6 +57,7 @@ editor_rule_list = [
     HasCitation,
     HasNote,
     HasNoteRegexp,
+    HasNoteType,
     HasReferenceCountOf,
     HasSourceCount,
     EventPrivate,
@@ -70,5 +70,5 @@ editor_rule_list = [
     ChangedSince,
     HasTag,
     MatchesPlaceFilter,
-    HasDayOfWeek
+    HasDayOfWeek,
 ]

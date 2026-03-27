@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # plugins/quickview/Reporef.py
 
@@ -35,7 +34,9 @@ Display RepoRef for sources related to active repository
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 def run(database, document, repo):
     """
@@ -50,14 +51,14 @@ def run(database, document, repo):
 
     # First we find repository and add its text
 
-    sdoc.title('%s\n' % repo.get_name())
+    sdoc.title("%s\n" % repo.get_name())
 
     # Go over all the sources that refer to this repository
 
     repo_handle = repo.handle
-    source_list = [item[1] for item in
-                   database.find_backlink_handles(repo_handle, ['Source'
-                   ])]
+    source_list = [
+        item[1] for item in database.find_backlink_handles(repo_handle, ["Source"])
+    ]
 
     stab.columns(_("Source"), _("Type of media"), _("Call number"))
     document.has_data = False
@@ -69,7 +70,6 @@ def run(database, document, repo):
 
         for reporef in src.get_reporef_list():
             if reporef.ref == repo_handle:
-
                 # Determine the text for this source
 
                 media = str(reporef.get_media_type())

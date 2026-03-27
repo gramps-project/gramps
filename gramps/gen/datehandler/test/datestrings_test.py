@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 import unittest
@@ -24,22 +23,24 @@ import unittest
 from .. import _datestrings
 from ...lib.date import Date
 
+
 class DateStringsTest(unittest.TestCase):
     def setUp(self):
         from ...utils.grampslocale import GrampsLocale
-        self.ds = _datestrings.DateStrings(GrampsLocale()) # whatever the default...
-        self.ds_EN = _datestrings.DateStrings(GrampsLocale(languages='en'))
-        self.ds_RU = _datestrings.DateStrings(GrampsLocale(languages='ru'))
+
+        self.ds = _datestrings.DateStrings(GrampsLocale())  # whatever the default...
+        self.ds_EN = _datestrings.DateStrings(GrampsLocale(languages="en"))
+        self.ds_RU = _datestrings.DateStrings(GrampsLocale(languages="ru"))
 
     def testTwelfthMonthIsDecember(self):
-        self.assertEqual(self.ds_EN.long_months[12], 'December')
-        self.assertEqual(self.ds_EN.short_months[12], 'Dec')
+        self.assertEqual(self.ds_EN.long_months[12], "December")
+        self.assertEqual(self.ds_EN.short_months[12], "Dec")
 
     # May is 3-letter in Russian, and so abbreviated form
     # will be different for inflections!
     def testRussianHasDifferentInflectionsForShortMay(self):
-           v5 = list(self.ds_RU.short_months[5].variants())
-           self.assertTrue(len(v5) > 1, msg=v5)
+        v5 = list(self.ds_RU.short_months[5].variants())
+        self.assertTrue(len(v5) > 1, msg=v5)
 
     def testEnAdarI_in_AdarII(self):
         adar1 = self.ds_EN.hebrew[6]
@@ -75,6 +76,7 @@ class DateStringsTest(unittest.TestCase):
 
     def testDayNamesLenIs8(self):
         self.assertEqual(len(self.ds.long_days), 8)
+
 
 if __name__ == "__main__":
     unittest.main()

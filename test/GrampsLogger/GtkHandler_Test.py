@@ -13,26 +13,28 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # test/GrampsLogger/GtkHandler_Test.py
 
+import os
 import unittest
 import logging
 import sys
-from gi.repository import Gtk
-import os
 
-log = logging.getLogger('Gramps.Tests.GrampsLogger')
+from gi.repository import Gtk
+
+log = logging.getLogger("Gramps.Tests.GrampsLogger")
 import gramps.gen.const as const
-const.rootDir = os.path.join(os.path.dirname(__file__), '../../gramps')
-sys.path.append(os.path.join(const.rootDir, 'test'))
-sys.path.append(const.rootDir)
+
+rootDir = os.path.join(os.path.dirname(__file__), "../../gramps")
+sys.path.append(os.path.join(rootDir, "test"))
+sys.path.append(rootDir)
 
 from gramps.gui.logger import RotateHandler, GtkHandler
+
 
 class GtkHandlerTest(unittest.TestCase):
     """Test the GtkHandler."""
@@ -53,9 +55,11 @@ class GtkHandlerTest(unittest.TestCase):
         l.addHandler(gtkh)
 
         l.info("An info message")
-        l.warn("A warn message")
+        l.warning("A warn message")
         l.debug("A debug message")
         log_message = "Debug message"
+
+
 # Comment this out because there is noone to close the dialogue
 #         try:
 #             wibble
@@ -66,11 +70,10 @@ class GtkHandlerTest(unittest.TestCase):
 #             Gtk.main_iteration()
 
 
-
 def testSuite():
-    suite = unittest.makeSuite(GtkHandlerTest,'test')
+    suite = unittest.TestLoader().loadTestsFromTestCase(GtkHandlerTest)
     return suite
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.TextTestRunner().run(testSuite())

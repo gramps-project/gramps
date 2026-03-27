@@ -1,9 +1,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008  Zsolt Foldvari
-# Copyright (C) 2013  Doug Blank <doug.blank@gmail.com>
-# Copyright (C) 2017  Nick Hall
+# Copyright (C) 2008       Zsolt Foldvari
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,28 +15,30 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Provide formatting tag definition for StyledText."
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .styledtexttagtype import StyledTextTagType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .baseobj import BaseObject
+from .styledtexttagtype import StyledTextTagType
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# StyledTextTag class
+# StyledTextTag
 #
-#-------------------------------------------------------------------------
-class StyledTextTag:
+# -------------------------------------------------------------------------
+class StyledTextTag(BaseObject):
     """Hold formatting information for :py:class:`.StyledText`.
 
     :py:class:`StyledTextTag` is a container class, it's attributes are
@@ -50,6 +52,7 @@ class StyledTextTag:
     :type ranges: list of (int(start), int(end)) tuples.
 
     """
+
     def __init__(self, name=None, value=None, ranges=None):
         """Setup initial instance variable values.
 
@@ -65,6 +68,16 @@ class StyledTextTag:
         else:
             # Current use of StyledTextTag is such that a shallow copy suffices.
             self.ranges = ranges
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to convert the elements of `ranges` into tuples.
+        """
+        attr_dict["ranges"] = [tuple(item) for item in attr_dict["ranges"]]
+        super().set_object_state(attr_dict)
 
     def serialize(self):
         """Convert the object to a serialized tuple of data.
@@ -82,7 +95,7 @@ class StyledTextTag:
         :type data: tuple
 
         """
-        (the_name, self.value, self.ranges) = data
+        the_name, self.value, self.ranges = data
 
         self.name = StyledTextTagType()
         self.name.unserialize(the_name)
@@ -102,13 +115,19 @@ class StyledTextTag:
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "name": StyledTextTagType.get_schema(),
-                "value": {"type": ["null", "string", "integer"],
-                          "title": _("Value")},
-                "ranges": {"type": "array",
-                           "items": {"type": "array",
-                                     "items": {"type": "integer"},
-                                     "minItems": 2,
-                                     "maxItems": 2},
-                           "title": _("Ranges")}
-            }
+                "value": {
+                    "type": ["null", "string", "integer"],
+                    "title": _("Value"),
+                },
+                "ranges": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {"type": "integer"},
+                        "minItems": 2,
+                        "maxItems": 2,
+                    },
+                    "title": _("Ranges"),
+                },
+            },
         }

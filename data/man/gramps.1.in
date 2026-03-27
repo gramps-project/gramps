@@ -1,8 +1,8 @@
 .\" Man page generated from reStructuredText.
 .
-.TH ENGLISH  "" "" ""
+.TH GRAMPS 1 "" "" "@VERSION@"
 .SH NAME
-English \- 
+gramps \- Genealogical Research and Analysis Management Programming System.
 .
 .nr rst2man-indent-level 0
 .
@@ -30,62 +30,63 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
+.SH SYNOPSIS
 .sp
-gramps(1)                @VERSION@               gramps(1)
+\fBgramps\fP
+[\fB\-?\fP | \fB\-\-help\fP]
+[\fB\-\-usage\fP]
+[\fB\-\-version\fP]
+[\fB\-l\fP]
+[\fB\-L\fP]
+[\fB\-u\fP | \fB\-\-force\-unlock\fP]
+[\fB\-O\fP | \fB\-\-open\fP=\fIDATABASE\fP [\fB\-f\fP | \fB\-\-format\fP=\fIFORMAT\fP]]
+[\fB\-i\fP | \fB\-\-import\fP=\fIFILE\fP [\fB\-f\fP | \fB\-\-format\fP=\fIFORMAT\fP]]
+[\fB\-\-remove\fP=\fIFAMILY_TREE_PATTERN\fP]
+[\fB\-e\fP | \fB\-\-export\fP=\fIFILE\fP [\fB\-f\fP | \fB\-\-format\fP=\fIFORMAT\fP]]
+[\fB\-a\fP | \fB\-\-action\fP=\fIACTION\fP]
+[\fB\-p\fP | \fB\-\-options\fP=\fIOPTION\-STRING\fP]]
+[\fIFILE\fP]
+[\fB\-\-version\fP]
+.SH DESCRIPTION
+.sp
+Gramps is a Free, Open Source genealogy program.
+It is written in Python, using the GTK+/GNOME interface.
+Gramps should seem familiar to anyone who has used other genealogy programs
+before such as Family Tree Maker™, Personal Ancestral Files™,
+or the GNU Geneweb.
+It supports importing of the ever\-popular GEDCOM format which is used worldwide
+by almost all other genealogy software.
+.SH OPTIONS
 .INDENT 0.0
 .TP
-.B \fBNAME\fP
-gramps \- Genealogical Research and Analysis Management Programming Sys‐
-tem.
-.TP
-.B \fBSYNOPSIS\fP
-\fBgramps\fP [\fB\-?\fP | \fB\-\-help\fP] [\fB\-\-usage\fP] [\fB\-\-version\fP]
-[\fB\-l\fP] [\fB\-L\fP] [\fB\-u\fP | \fB\-\-force\-unlock\fP] [\fB\-O\fP | \fB\-\-open=\fP \fIDATABASE\fP
-[\fB\-f\fP | \fB\-\-format=\fP \fIFORMAT\fP] [\fB\-i\fP | \fB\-\-import=\fP \fIFILE\fP
-[\fB\-f\fP | \fB\-\-format=\fP \fIFORMAT\fP]] [\fB\-\-remove=\fP \fIFAMILY_TREE_PATTERN\fP]
-[\fB\-e\fP | \fB\-\-export=\fP \fIFILE\fP [\fB\-f\fP | \fB\-\-format=\fP \fIFORMAT\fP]]
-[\fB\-a\fP | \fB\-\-action=\fP \fIACTION\fP] [\fI\-p\fP | \fB\-\-options=\fP \fIOPTION‐
-STRING\fP]] [\fIFILE\fP] [\fB\-\-version\fP]
-.TP
-.B \fBDESCRIPTION\fP
-Gramps is a Free/OpenSource genealogy program. It is written in Python,
-using  the GTK+/GNOME interface.  Gramps should seem familiar to anyone
-who has used other genealogy programs before such as Family Tree  Maker
-(TM),   Personal Ancestral Files (TM), or the GNU Geneweb.  It supports
-importing of the ever popular GEDCOM format which is used world wide by
-almost all other genealogy software.
-.TP
-.B \fBOPTIONS\fP
-.INDENT 7.0
-.TP
 .B \fBgramps\fP \fIFILE\fP
-When \fIFILE\fP is given (without any flags) as a family tree name or
-as a family tree database directory, then it is opened and an
-interactive  session is started. If \fIFILE\fP is a file format under‐
-stood by Gramps, an empty family tree is created  whose name is
-based  on  the \fIFILE\fP name and the data is imported into it. The
-rest of the options is ignored. This way of launching is suit‐
-able for using gramps as a handler for genealogical data in e.g.
-web browsers. This invocation can accept any data format  native
-to gramps, see below.
+When \fIFILE\fP is given (without any flags) as a family tree name or as a
+family tree database directory, then it is opened and an interactive
+session is started.
+If \fIFILE\fP is a file format understood by Gramps, an empty family tree is
+created whose name is based on the \fIFILE\fP name, and the data is imported
+into it.
+Any other options are ignored.
+This way of launching is suitable for using gramps as a handler for
+genealogical data in e.g. web browsers.
+This invocation can accept any data format native to gramps; see below.
 .TP
-.B \fB\-f\fP , \fB\-\-format=\fP \fIFORMAT\fP
-Explicitly specify format of \fIFILE\fP given by preceding \fB\-i\fP ,
-or \fB\-e\fP option. If the \fB\-f\fP option is not given for any
-\fIFILE\fP , the format of that file is guessed according to its extension
-or MIME\-type.
+.B \fB\-f\fP, \fB\-\-format\fP=\fIFORMAT\fP
+Explicitly specify format of \fIFILE\fP given by preceding \fB\-i\fP or \fB\-e\fP
+option.
+If the \fB\-f\fP option is not given for any \fIFILE\fP, the format of that file
+is guessed according to its extension or MIME type.
 .sp
-Formats  available for export are \fBgramps\-xml\fP (guessed if \fIFILE\fP
-ends with \fB\&.gramps\fP ), \fBgedcom\fP (guessed if \fIFILE\fP ends with
-\fB\&.ged\fP ), or any file export available through the Gramps plugin
-system.
+Formats available for export are \fBgramps\-xml\fP (guessed if \fIFILE\fP ends
+with \fI\&.gramps\fP), \fBgedcom\fP (guessed if \fIFILE\fP ends with \fI\&.ged\fP), or any
+file export available through the Gramps plugin system.
 .sp
-Formats available for import are \fBgramps\-xml\fP , \fBgedcom\fP ,
-\fBgramps\-pkg\fP (guessed if \fIFILE\fP ends with \fB\&.gpkg\fP ),
-and \fBgeneweb\fP (guessed if \fIFILE\fP ends with \fB\&.gw\fP ).
+Formats available for import are \fBgramps\-xml\fP, \fBgedcom\fP, \fBgramps\-pkg\fP
+(guessed if \fIFILE\fP ends with \fI\&.gpkg\fP), and \fBgeneweb\fP (guessed if \fIFILE\fP
+ends with \fI\&.gw\fP).
 .sp
-Formats available for export are \fBgramps\-xml\fP , \fBgedcom\fP ,
-\fBgramps\-pkg\fP , \fBwft\fP (guessed if \fIFILE\fP ends with \fB\&.wft\fP ),
+Formats available for export are \fBgramps\-xml\fP, \fBgedcom\fP,
+\fBgramps\-pkg\fP, \fBwft\fP (guessed if \fIFILE\fP ends with \fI\&.wft\fP),
 \fBgeneweb\fP\&.
 .TP
 .B \fB\-l\fP
@@ -94,209 +95,260 @@ Print a list of known family trees.
 .B \fB\-L\fP
 Print a detailed list of known family trees.
 .TP
-.B \fB\-u\fP , \fB\-\-force\-unlock\fP
+.B \fB\-u\fP, \fB\-\-force\-unlock\fP
 Unlock a locked database.
 .TP
-.B \fB\-O\fP , \fB\-\-open=\fP \fIDATABASE\fP
-Open \fIDATABASE\fP which  must be an existing database directory or
-existing family tree name. If no action, import or export
-options are given on the command line then an interactive ses‐
-sion is started using that database.
+.B \fB\-O\fP, \fB\-\-open\fP=\fIDATABASE\fP
+Open \fIDATABASE\fP which must be an existing database directory or existing
+family tree name.
+If no action, import, or export options are given on the command line, then
+an interactive session is started using that database.
 .TP
-.B \fB\-i\fP , \fB\-\-import=\fP \fIFILE\fP
-Import data from \fIFILE\fP . If you haven\(aqt specified a database, then
-an empty database is created for you called Family Tree x
-(where x is an incrementing number).
+.B \fB\-i\fP, \fB\-\-import\fP=\fIFILE\fP
+Import data from \fIFILE\fP\&.
+If no database was specified, then an empty database is created
+called Family Tree \fIx\fP (where \fIx\fP is an incrementing number).
 .sp
-When more than one input file is given, each has to be preceded
-by \fB\-i\fP flag. The files are imported in the specified order, i.e.
-\fB\-i\fP \fIFILE1\fP \fB\-i\fP \fIFILE2\fP and \fB\-i\fP \fIFILE2\fP \fB\-i\fP \fIFILE1\fP
+When more than one input file is given,
+each has to be preceded by a \fB\-i\fP flag.
+The files are imported in the specified order, e.g.,
+\fB\-i\fP \fIFILE1\fP \fB\-i\fP \fIFILE2\fP
+and
+\fB\-i\fP \fIFILE2\fP \fB\-i\fP \fIFILE1\fP
 might produce different gramps IDs in the resulting database.
 .TP
-.B \fB\-e\fP , \fB\-\-export=\fP \fIFILE\fP
-Export data into \fIFILE\fP . For \fBgramps\-xml\fP , \fBgedcom\fP
-, \fBwft\fP , \fBgramps\-pkg\fP , and \fBgeneweb\fP , the \fIFILE\fP is the
-name of the resulting file.
+.B \fB\-e\fP, \fB\-\-export\fP=\fIFILE\fP
+Export data into \fIFILE\fP\&.
+For \fBgramps\-xml\fP, \fBgedcom\fP, \fBwft\fP, \fBgramps\-pkg\fP, and \fBgeneweb\fP,
+the \fIFILE\fP is the name of the resulting file.
 .sp
-When more than one output file is given, each has to be preceded
-by \fB\-e\fP flag. The files are written one by one, in the specified order.
+When more than one output file is given,
+each has to be preceded by a \fB\-e\fP flag.
+The files are written one by one, in the specified order.
 .TP
-.B \fB\-a\fP , \fB\-\-action=\fP \fIACTION\fP
-Perform \fIACTION\fP on the imported data. This is done after all
-imports are successfully completed. Currently available  actions
-are \fBsummary\fP (same  as  Reports\->View\->Summary), \fBcheck\fP (same as
-Tools\->Database Processing\->Check and Repair), \fBreport\fP (generates
-report),  and  tool  (runs a plugin tool).  Both \fBreport\fP and \fBtool\fP
-need the \fIOPTIONSTRING\fP supplied by the \fB\-p\fP flag).
+.B \fB\-a\fP, \fB\-\-action\fP=\fIACTION\fP
+Perform \fIACTION\fP on the imported data.
+This is done after all imports are successfully completed.
+Currently available actions are \fBsummary\fP (same as
+Reports→View→Summary), \fBcheck\fP (same as Tools→Database
+Processing→Check and Repair), \fBreport\fP (generates report), and tool
+(runs a plugin tool).
+Both \fBreport\fP and \fBtool\fP need the \fIOPTION\-STRING\fP supplied by the
+\fB\-p\fP flag).
 .sp
-The \fIOPTIONSTRING\fP should satisfy the following conditions:
-It must not contain any  spaces. If some arguments need to
-include spaces, the string should be enclosed with quotation
-marks, i.e., follow the shell syntax. Option string is a list
-of  pairs  with name and value (separated by the equality sign).
+The \fIOPTION\-STRING\fP should satisfy the following conditions:
+.INDENT 7.0
+.IP \(bu 2
+It should not contain any spaces.
+.IP \(bu 2
+If some arguments need to include spaces, the string should be enclosed
+with quotation marks, following shell syntax.
+.IP \(bu 2
+The option string is a list of pairs with name and value (separated by an
+equals sign).
+.IP \(bu 2
 The name and value pairs must be separated by commas.
-.sp
-Most of the report or tools options are specific for each report
-or tool. However, there are some common options.
-.sp
-\fBname=name\fP
-This mandatory option determines which report or tool will be
-run. If the supplied name does not correspond to any  available
-report or tool, an error message will be printed followed by the
-list of available reports or tools (depending on the \fIACTION\fP ).
-.sp
-\fBshow=all\fP
-This will produce the list of names for all options available
-for a given report or tool.
-.sp
-\fBshow=optionname\fP
-This will print the description of the functionality supplied by
-\fIoptionname\fP, as well as what are the acceptable types and  values
-for this option.
-.sp
-Use the above options to find out everything about a given
-report.
 .UNINDENT
 .sp
-When more than one output action is given, each has to be preceded  by
-\fB\-a\fP flag. The actions are performed one by one, in the specified order.
+Most of the report or tools options are specific for each report or tool.
+However, there are some common options.
 .INDENT 7.0
 .TP
-.B \fB\-d\fP , \fB\-\-debug=\fP \fILOGGER_NAME\fP
-Enables debug logs for development and testing. Look at the
-source code for details
+.B \fBname\fP=\fIname\fP
+This mandatory option determines which report or tool will be run.
+If the supplied \fIname\fP does not correspond to any available report or
+tool, an error message will be printed followed by the list of
+available reports or tools (depending on the \fIACTION\fP).
+.TP
+.B \fBshow\fP=\fBall\fP
+This will produce the list of names for all options available for a
+given report or tool.
+.TP
+.B \fBshow\fP=\fIoptionname\fP
+This will print the description of the functionality supplied by
+\fIoptionname\fP, as well as what are the acceptable types and values for
+this option.
+.UNINDENT
+.sp
+Use the above options to find out everything about a given report.
+.sp
+When more than one output action is given, each has to be preceded by a
+\fB\-a\fP flag.
+The actions are performed one by one, in the specified order.
+.TP
+.B \fB\-d\fP, \fB\-\-debug\fP=\fILOGGER_NAME\fP
+Enable debug logs for development and testing.
+Look at the source code for details.
 .TP
 .B \fB\-\-version\fP
-Prints the version number of gramps and then exits
+Print the version number of gramps and then exits.
 .UNINDENT
-.TP
-.B \fBOperation\fP
-If the first argument on the command line does not start with dash
-(i.e. no flag), gramps will attempt to open the file with the name
-given by the first argument and start interactive session, ignoring the
-rest of the command line arguments.
+.SH OPERATION
 .sp
-If the  \fB\-O\fP flag is given, then gramps will try opening the supplied
-database and then work with that data, as instructed by the further
-command line parameters.
+If the first argument on the command line does not start with dash (i.e., no
+flag), gramps will attempt to open the file with the name given by the first
+argument and start an interactive session, ignoring the rest of the command line
+arguments.
 .sp
-With or without the \fB\-O\fP flag, there could be multiple imports, exports,
-and actions specified further on the command line by using \fB\-i\fP ,
-\fB\-e\fP , and \fB\-a\fP flags.
+If the \fB\-O\fP flag is given, then gramps will try opening the supplied database
+and then work with that data, as instructed by the further command line
+parameters.
 .sp
-The order of \fB\-i\fP , \fB\-e\fP , or \fB\-a\fP options does not matter. The actual order
-always is: all imports (if any) \-> all actions (if any) \-> all  exports
-(if any). But opening must always be first!
+With or without the \fB\-O\fP flag, further imports, exports, and actions may be
+specified on the command line by using \fB\-i\fP, \fB\-e\fP, and
+\fB\-a\fP flags.
 .sp
-If no \fB\-O\fP or \fB\-i\fP option is given, gramps will launch its main window and
-start the usual interactive session with the empty database, since
-there is no data to process, anyway.
+The order of \fB\-i\fP, \fB\-e\fP, or \fB\-a\fP options does not matter.
+The actual order they are processed always is:
+all imports (if any) → all actions (if any) → all exports (if any).
+But opening must always be first!
 .sp
-If no \fB\-e\fP  or \fB\-a\fP options are given, gramps will launch its main window
-and start the usual interactive session with the database resulted from
-all imports. This database resides in the \fBimport_db.grdb\fP under
-\fB~/.gramps/import\fP directory.
+If no \fB\-O\fP or \fB\-i\fP option is given,
+gramps will launch its main window and start the usual interactive session with
+an empty database, since there is no data to process anyway.
 .sp
-The error encountered during import, export, or action, will be  either
-dumped to stdout (if  these  are exceptions handled by gramps) or to
-\fIstderr\fP (if these are not handled). Use usual shell redirections of
-\fIstdout\fP and \fIstderr\fP to save messages and errors in files.
-.TP
-.B \fBEXAMPLES\fP
-To open an existing family tree and import an xml file into it, one
-may type:
-.INDENT 7.0
+If no \fB\-e\fP or \fB\-a\fP options are given,
+gramps will launch its main window and start the usual interactive session with
+the database resulting from all imports.
+This database resides in the \fIimport_db.grdb\fP under the \fI~/.gramps/import\fP
+directory.
+.sp
+Any errors encountered during import, export, or action
+will be dumped either to \fIstdout\fP (if these are exceptions handled by gramps)
+or to \fIstderr\fP (if these are not handled).
+Use usual shell redirections of \fIstdout\fP and \fIstderr\fP to save messages and
+errors to files.
+.SH EXAMPLES
+.sp
+To open an existing family tree and import an xml file into it, one may type:
+.INDENT 0.0
 .INDENT 3.5
-\fBgramps \-O\fP \fI\(aqMy Family Tree\(aq\fP \fB\-i\fP \fI~/db3.gramps\fP
+.sp
+.nf
+.ft C
+gramps \-O \(aqMy Family Tree\(aq \-i ~/db3.gramps
+.ft P
+.fi
 .UNINDENT
 .UNINDENT
 .sp
-The above changes the opened family tree, to do the  same, but import
-both in a temporary family tree and start an interactive session, one
-may type:
-.INDENT 7.0
+The above changes the opened family tree. To do the same, but import both in a
+temporary family tree and start an interactive session, one may type:
+.INDENT 0.0
 .INDENT 3.5
-\fBgramps \-i\fP \fI\(aqMy Family Tree\(aq\fP \fB\-i\fP \fI~/db3.gramps\fP
+.sp
+.nf
+.ft C
+gramps \-i \(aqMy Family Tree\(aq \-i ~/db3.gramps
+.ft P
+.fi
 .UNINDENT
 .UNINDENT
 .sp
-To import four databases (whose formats can be  determined from their
-names) and then check the resulting database for errors, one may type:
-.INDENT 7.0
+To import four databases (whose formats can be determined from their names) and
+then check the resulting database for errors, one may type:
+.INDENT 0.0
 .INDENT 3.5
-\fBgramps \-i\fP \fIfile1.ged\fP \fB\-i\fP \fIfile2.tgz\fP \fB\-i\fP \fI~/db3.gramps\fP
-\fB\-i\fP \fIfile4.wft\fP \fB\-a\fP \fIcheck\fP
+.sp
+.nf
+.ft C
+gramps \-i file1.ged \-i file2.tgz \-i ~/db3.gramps \-i file4.wft \-a check
+.ft P
+.fi
 .UNINDENT
 .UNINDENT
 .sp
-To explicitly specify the formats in the above  example,  append  file‐
-names with appropriate \fB\-f\fP options:
-.INDENT 7.0
+To explicitly specify the formats in the above example, append filenames with
+appropriate \fB\-f\fP options:
+.INDENT 0.0
 .INDENT 3.5
-\fBgramps \-i\fP \fIfile1.ged\fP \fB\-f\fP \fIgedcom\fP \fB\-i\fP \fIfile2.tgz\fP \fB\-f\fP
-\fIgramps\-pkg\fP \fB\-i\fP \fI~/db3.gramps\fP \fB\-f\fP \fIgramps\-xml\fP \fB\-i\fP \fIfile4.wft\fP
-\fB\-f\fP \fIwft\fP \fB\-a\fP \fIcheck\fP
+.sp
+.nf
+.ft C
+gramps \-i file1.ged \-f gedcom \-i file2.tgz \-f gramps\-pkg \e
+\-i ~/db3.gramps \-f gramps\-xml \-i file4.wft \-f wft \-a check
+.ft P
+.fi
 .UNINDENT
 .UNINDENT
 .sp
-To record the database resulting from all imports, supply \fB\-e\fP flag  (use
+To record the database resulting from all imports, supply a \fB\-e\fP flag (use
 \fB\-f\fP if the filename does not allow gramps to guess the format):
-.INDENT 7.0
+.INDENT 0.0
 .INDENT 3.5
-\fBgramps \-i\fP \fIfile1.ged\fP \fB\-i\fP \fIfile2.tgz\fP \fB\-e\fP \fI~/new\-package\fP
-\fB\-f\fP \fIgramps\-pkg\fP
+.sp
+.nf
+.ft C
+gramps \-i file1.ged \-i file2.tgz \-e ~/new\-package \-f gramps\-pkg
+.ft P
+.fi
 .UNINDENT
 .UNINDENT
 .sp
-To import three databases and start interactive gramps session with the
+To import three databases and start an interactive gramps session with the
 result:
-.INDENT 7.0
+.INDENT 0.0
 .INDENT 3.5
-\fBgramps \-i\fP \fIfile1.ged\fP \fB\-i\fP \fIfile2.tgz\fP \fB\-i\fP \fI~/db3.gramps\fP
+.sp
+.nf
+.ft C
+gramps \-i file1.ged \-i file2.tgz \-i ~/db3.gramps
+.ft P
+.fi
 .UNINDENT
 .UNINDENT
 .sp
 To run the Verify tool from the commandline and output the result to
-stdout:
-.INDENT 7.0
+\fIstdout\fP:
+.INDENT 0.0
 .INDENT 3.5
-\fBgramps \-O\fP \fI\(aqMy Family Tree\(aq\fP \fB\-a\fP \fItool\fP \fB\-p name=\fP \fIverify\fP
+.sp
+.nf
+.ft C
+gramps \-O \(aqMy Family Tree\(aq \-a tool \-p name= verify
+.ft P
+.fi
 .UNINDENT
 .UNINDENT
 .sp
-Finally, to start normal interactive session type:
-.INDENT 7.0
+Finally, to start a normal interactive session type:
+.INDENT 0.0
 .INDENT 3.5
-\fBgramps\fP
+.sp
+.nf
+.ft C
+gramps
+.ft P
+.fi
 .UNINDENT
 .UNINDENT
-.TP
-.B \fBENVIRONMENT VARIABLES\fP
+.SH ENVIRONMENT VARIABLES
+.sp
 The program checks whether these environment variables are set:
-.sp
-\fBLANG\fP  \-  describe, which language to use: Ex.: for polish language this
-variable has to be set to pl_PL.UTF\-8.
-.sp
-\fBGRAMPSHOME\fP \- if set, force Gramps to use  the  specified  directory  to
-keep program settings and databases there. By default, this variable is
-not set and gramps assumes that the folder with all databases and  pro‐
-file  settings  should  be  created  within  the  user  profile  folder
-(described by environment variable HOME for Linux  or  USERPROFILE  for
-Windows 2000/XP).
+.INDENT 0.0
+.TP
+.B \fBLANG\fP
+Describe which language to use.
+E.g., for the Polish language this variable has to be set to \fIpl_PL.UTF\-8\fP\&.
+.TP
+.B \fBGRAMPSHOME\fP
+Force Gramps to use the specified directory to keep program
+settings and databases in.
+By default, this variable is not set and gramps assumes that the folder
+with all databases and profile settings should be created within the user
+profile folder (described by environment variable \fIHOME\fP for Linux or
+\fIUSERPROFILE\fP for Windows 2000/XP).
 .TP
 .B \fBCONCEPTS\fP
-Supports a python\-based plugin system, allowing import and export writ‐
-ers, report generators, tools, and display filters to be added  without
+Supports a python\-based plugin system, allowing import and export writers,
+report generators, tools, and display filters to be added without
 modification of the main program.
 .sp
 In addition to generating direct printer output, report generators also
-target other systems, such as \fILibreOffice.org\fP , \fIAbiWord\fP , \fIHTML\fP,
-or \fILaTeX\fP to allow the users to modify the format to suit their needs.
+target other output formats, such as \fILibreOffice\fP, \fIAbiWord\fP, \fIHTML\fP, or
+\fILaTeX\fP to allow the users to modify the format to suit their needs.
 .UNINDENT
-.sp
-\fBKNOWN BUGS AND LIMITATIONS\fP
-.sp
-\fBFILES\fP
+.SH FILES
 .INDENT 0.0
 .INDENT 3.5
 \fI${PREFIX}/bin/gramps\fP
@@ -308,11 +360,10 @@ or \fILaTeX\fP to allow the users to modify the format to suit their needs.
 \fI${HOME}/.gramps\fP
 .UNINDENT
 .UNINDENT
-.INDENT 0.0
-.TP
-.B \fBAUTHORS\fP
+.SH AUTHORS
+.sp
 Donald Allingham <\fI\%don@gramps\-project.org\fP>
-\fI\%http://gramps\-project.org/\fP
+\fI\%https://www.gramps\-project.org/\fP
 .sp
 This man page was originally written by:
 Brandon L. Griffith <\fI\%brandon@debian.org\fP>
@@ -320,16 +371,13 @@ for inclusion in the Debian GNU/Linux system.
 .sp
 This man page is currently maintained by:
 Gramps project <\fI\%xxx@gramps\-project.org\fP>
-.TP
-.B \fBDOCUMENTATION\fP
-The user documentation is available through standard web browser
-in the form of Gramps Manual.
+.SH DOCUMENTATION
+.sp
+The user documentation is available through a web browser in the form of the
+Gramps Manual.
 .sp
 The developer documentation can be found on the
-\fI\%http://www.gramps\-project.org/wiki/index.php?title=Portal:Developers\fP
+\fI\%https://www.gramps\-project.org/wiki/index.php/Portal:Developers\fP
 portal.
-.UNINDENT
-.sp
-gramps(1)                 @VERSION@               gramps(1)
 .\" Generated by docutils manpage writer.
 .

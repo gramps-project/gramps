@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -26,11 +25,13 @@ from ..const import DATA_DIR
 import os
 import logging
 
-from  xml.parsers.expat import ParserCreate
+from xml.parsers.expat import ParserCreate
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(".")
+
 
 class LdsTemples:
     """
@@ -54,7 +55,7 @@ class LdsTemples:
             parser.StartElementHandler = self.__start_element
             parser.EndElementHandler = self.__end_element
             parser.CharacterDataHandler = self.__characters
-            with open(lds_filename, 'rb') as xml_file:
+            with open(lds_filename, "rb") as xml_file:
                 parser.ParseFile(xml_file)
         except Exception as msg:
             LOG.error(str(msg))
@@ -89,9 +90,10 @@ class LdsTemples:
         """
         returns a list of temple codes, temple name tuples
         """
-        return sorted([(code, name) for name, code
-                       in self.__temple_codes.items()],
-                      key=lambda v: v[1])
+        return sorted(
+            [(code, name) for name, code in self.__temple_codes.items()],
+            key=lambda v: v[1],
+        )
 
     def __start_element(self, tag, attrs):
         """
@@ -99,14 +101,14 @@ class LdsTemples:
         """
         self.__tlist = []
         if tag == "temple":
-            self.__current_temple = attrs.get('name')
+            self.__current_temple = attrs.get("name")
 
     def __end_element(self, tag):
         """
         XML parsing function that is called when an XML element is closed
         """
 
-        text = ''.join(self.__tlist)
+        text = "".join(self.__tlist)
 
         if tag == "code":
             if self.__temple_codes.get(self.__current_temple) is None:
@@ -119,5 +121,5 @@ class LdsTemples:
         """
         self.__tlist.append(data)
 
-TEMPLES = LdsTemples()
 
+TEMPLES = LdsTemples()

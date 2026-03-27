@@ -15,52 +15,53 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Written by Alex Roitman
 
 "Rebuild reference map tables"
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".RebuildRefMap")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # runTool
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RebuildRefMap(tool.Tool):
-
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
 
@@ -84,22 +85,25 @@ class RebuildRefMap(tool.Tool):
         if uistate:
             uistate.set_busy_cursor(False)
             uistate.progress.hide()
-            OkDialog(_("Reference maps rebuilt"),
-                     _('All reference maps have been rebuilt.'),
-                     parent=uistate.window)
+            OkDialog(
+                _("Reference maps rebuilt"),
+                _("All reference maps have been rebuilt."),
+                parent=uistate.window,
+            )
         else:
             print(_("All reference maps have been rebuilt."))
         self.db.enable_signals()
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 #
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class RebuildRefMapOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        tool.ToolOptions.__init__(self, name, person_id)

@@ -1,4 +1,3 @@
-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -15,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Custom widgets."""
@@ -26,6 +24,7 @@ from .basicentry import *
 from .buttons import *
 from .dateentry import *
 from .expandcollapsearrow import *
+from .histogram import *
 from .labels import *
 from .linkbox import *
 from .photo import *
@@ -43,3 +42,4 @@ from .undoablestyledbuffer import *
 from .validatedcomboentry import *
 from .validatedmaskedentry import *
 from .placewithin import *
+from .persistenttreeview import *

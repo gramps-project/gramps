@@ -14,47 +14,58 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 # "People with less than 2 parents"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MissingParent(Rule):
     """People with less than two parents"""
 
-    name = _('People missing parents')
-    description = _("Matches people that are children"
-                    " in a family with less than two parents"
-                    " or are not children in any family.")
-    category = _('Family filters')
+    name = _("People missing parents")
+    description = _(
+        "Matches people that are children"
+        " in a family with less than two parents"
+        " or are not children in any family."
+    )
+    category = _("Family filters")
 
-    def apply(self,db,person):
-        families = person.get_parent_family_handle_list()
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        families = person.parent_family_list
         if families == []:
             return True
-        for family_handle in person.get_parent_family_handle_list():
+        for family_handle in families:
             family = db.get_family_from_handle(family_handle)
             if family:
-                father_handle = family.get_father_handle()
-                mother_handle = family.get_mother_handle()
+                father_handle = family.father_handle
+                mother_handle = family.mother_handle
                 if not father_handle:
                     return True
                 if not mother_handle:

@@ -13,34 +13,36 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # gen.filters.rules/Person/_MatchesSourceConfidence.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._matchessourceconfidencebase import MatchesSourceConfidenceBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Confidence level"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesSourceConfidence(MatchesSourceConfidenceBase):
     """Persons matching a specific confidence level on its 'direct' source references"""
 
-    labels = [_('Confidence level:')]
-    name = _('Persons with at least one direct source >= <confidence level>')
-    description = _("Matches persons with at least one direct source with confidence level(s)")
-
+    labels = [_("Confidence level:")]
+    name = _("Persons with at least one direct source >= <confidence level>")
+    description = _(
+        "Matches persons with at least one direct source with confidence level(s)"
+    )

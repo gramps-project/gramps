@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Gramps
+GenericName=Genealogy System
+X-GNOME-FullName=Gramps Genealogy System
+Comment=Manage genealogical information, perform genealogical research and analysis
+Icon=org.gramps_project.Gramps
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GTK;Office;
+Keywords=Genealogy;Family History;Research;Family Tree;GEDCOM;
+MimeType=application/x-gramps;application/x-gedcom;application/x-gramps-package;application/x-gramps-xml;
+Exec=gramps %F

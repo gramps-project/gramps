@@ -13,38 +13,42 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Unittest for editreference.py """
+"""Unittest for editreference.py"""
 
 import unittest
-import sys
+from unittest.mock import Mock, patch
 import os
-try:
-    if sys.version_info < (3,3):
-        from mock import Mock, patch
-    else:
-        from unittest.mock import Mock, patch
-    MOCKING = True
-except:
-    MOCKING = False
 
-from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
-                             Repository, Media, Note, Tag)
+from gramps.gen.lib import (
+    Person,
+    Family,
+    Event,
+    Source,
+    Place,
+    Citation,
+    Repository,
+    Media,
+    Note,
+    Tag,
+)
 from gramps.cli.user import User
 from gramps.gen.dbstate import DbState
 from gramps.gen.db.utils import make_database
 from gramps.gen.db import DbTxn
 from gramps.gui.editors.editreference import EditReference
 
+
 class MockWindow:
     def set_transient_for(self, *args, **kwargs):
         pass
+
     def show_all(self):
         pass
+
 
 class MockEditReference(EditReference):
     def __init__(self, dbstate, uistate, track, source, source_ref, update):
@@ -53,8 +57,6 @@ class MockEditReference(EditReference):
 
 
 class TestEditReference(unittest.TestCase):
-
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_editreference(self):
         dbstate = DbState()
         db = make_database("sqlite")
@@ -69,11 +71,13 @@ class TestEditReference(unittest.TestCase):
         source.gramps_id = "P0001"
         with DbTxn("test place", dbstate.db) as trans:
             dbstate.db.add_place(source, trans)
-        editor = MockEditReference(dbstate, uistate=None, track=[],
-                                   source=source, source_ref=None, update=None)
-        with patch('gramps.gui.editors.editreference.ErrorDialog') as MockED:
+        editor = MockEditReference(
+            dbstate, uistate=None, track=[], source=source, source_ref=None, update=None
+        )
+        with patch("gramps.gui.editors.editreference.ErrorDialog") as MockED:
             editor.check_for_duplicate_id("Place")
             self.assertTrue(MockED.called)
+
 
 if __name__ == "__main__":
     unittest.main()

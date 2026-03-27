@@ -15,37 +15,36 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Utilities to create unique identifiers
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import sys
 import random
 import time
 import uuid
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_UUID
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # create_id
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 _rand = random.Random(time.time())
 _det_id = False
 
@@ -56,8 +55,7 @@ def create_id():
         _rand = _rand + 1
         return "%08x%08x" % (_rand, _rand)
     else:
-        return "%08x%08x" % (int(time.time()*10000),
-                             _rand.randint(0, sys.maxsize))
+        return "%08x%08x" % (int(time.time() * 10000), _rand.randint(0, sys.maxsize))
 
 
 def create_uid(self, handle=None):

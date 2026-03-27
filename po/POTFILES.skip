@@ -8,6 +8,7 @@ setup.py
 # gramps
 #
 gramps/__init__.py
+gramps/__main__.py
 gramps/version.py
 #
 # cli
@@ -29,6 +30,7 @@ gramps/gen/errors.py
 gramps/gen/git_revision.py
 gramps/gen/sort.py
 gramps/gen/soundex.py
+gramps/gen/types.py
 gramps/gen/updatecallback.py
 gramps/gen/user.py
 #
@@ -44,6 +46,7 @@ gramps/gen/datehandler/_date_el.py
 gramps/gen/datehandler/_date_es.py
 gramps/gen/datehandler/_date_fi.py
 gramps/gen/datehandler/_date_fr.py
+gramps/gen/datehandler/_date_he.py
 gramps/gen/datehandler/_date_hr.py
 gramps/gen/datehandler/_date_hu.py
 gramps/gen/datehandler/_date_is.py
@@ -82,6 +85,11 @@ gramps/gen/db/txn.py
 gramps/gen/db/undoredo.py
 gramps/gen/db/utils.py
 #
+# gen.db.conversion_tools package
+#
+gramps/gen/db/conversion_tools/__init__.py
+gramps/gen/db/conversion_tools/conversion_21.py
+#
 # gen.display package
 #
 gramps/gen/display/__init__.py
@@ -92,6 +100,7 @@ gramps/gen/filters/__init__.py
 gramps/gen/filters/_filterlist.py
 gramps/gen/filters/_paramfilter.py
 gramps/gen/filters/_searchfilter.py
+gramps/gen/filters/optimizer.py
 #
 # gen.filters.rules package
 #
@@ -109,7 +118,6 @@ gramps/gen/filters/rules/event/__init__.py
 # gen.filters.rules.family package
 #
 gramps/gen/filters/rules/family/__init__.py
-gramps/gen/filters/rules/family/_memberbase.py
 #
 # gen.filters.rules.media package
 #
@@ -146,6 +154,11 @@ gramps/gen/filters/rules/test/person_rules_test.py
 gramps/gen/filters/rules/test/place_rules_test.py
 gramps/gen/filters/rules/test/repository_rules_test.py
 #
+# gen.filters.test package
+#
+gramps/gen/filters/test/__init__.py
+gramps/gen/filters/test/filter_optimizer_test.py
+#
 # gen lib API
 #
 gramps/gen/lib/__init__.py
@@ -155,8 +168,10 @@ gramps/gen/lib/baseobj.py
 gramps/gen/lib/citationbase.py
 gramps/gen/lib/const.py
 gramps/gen/lib/datebase.py
+gramps/gen/lib/eventbase.py
 gramps/gen/lib/gcalendar.py
 gramps/gen/lib/genderstats.py
+gramps/gen/lib/json_utils.py
 gramps/gen/lib/ldsordbase.py
 gramps/gen/lib/locationbase.py
 gramps/gen/lib/mediabase.py
@@ -254,6 +269,11 @@ gramps/gen/proxy/living.py
 gramps/gen/proxy/proxybase.py
 gramps/gen/proxy/referencedbyselection.py
 #
+# gen.proxy.test
+#
+gramps/gen/proxy/test/__init__.py
+gramps/gen/proxy/test/proxies_test.py
+#
 # gen.simple
 #
 gramps/gen/simple/__init__.py
@@ -279,6 +299,7 @@ gramps/gen/utils/lru.py
 gramps/gen/utils/maclocale.py
 gramps/gen/utils/resourcepath.py
 gramps/gen/utils/thumbnails.py
+gramps/gen/utils/unittest.py
 #
 # gen.utils.docgen
 #
@@ -341,6 +362,7 @@ gramps/gui/editors/displaytabs/placenamemodel.py
 gramps/gui/editors/displaytabs/placerefmodel.py
 gramps/gui/editors/displaytabs/reporefmodel.py
 gramps/gui/editors/displaytabs/sourcebackreflist.py
+gramps/gui/editors/displaytabs/srcattrmodel.py
 gramps/gui/editors/displaytabs/surnamemodel.py
 gramps/gui/editors/displaytabs/webmodel.py
 #
@@ -404,6 +426,7 @@ gramps/gui/selectors/selectorfactory.py
 #
 # gui.test package
 #
+gramps/gui/test/display_test.py
 gramps/gui/test/user_test.py
 #
 # gui/views - the GUI views package
@@ -435,6 +458,7 @@ gramps/gui/widgets/dateentry.py
 gramps/gui/widgets/fanchart2way.py
 gramps/gui/widgets/fanchartdesc.py
 gramps/gui/widgets/grabbers.py
+gramps/gui/widgets/histogram.py
 gramps/gui/widgets/interactivesearchbox.py
 gramps/gui/widgets/linkbox.py
 gramps/gui/widgets/menuitem.py
@@ -452,6 +476,10 @@ gramps/gui/widgets/validatedcomboentry.py
 # plugins
 #
 gramps/plugins/__init__.py
+#
+# plugins/cite directory
+#
+gramps/plugins/cite/__init__.py
 #
 # plugins/db/bsddb directory
 #
@@ -560,6 +588,7 @@ gramps/plugins/rel/rel_de.py
 gramps/plugins/rel/rel_es.py
 gramps/plugins/rel/rel_fi.py
 gramps/plugins/rel/rel_fr.py
+gramps/plugins/rel/rel_he.py
 gramps/plugins/rel/rel_hr.py
 gramps/plugins/rel/rel_hu.py
 gramps/plugins/rel/rel_is.py
@@ -572,6 +601,7 @@ gramps/plugins/rel/rel_ru.py
 gramps/plugins/rel/rel_sk.py
 gramps/plugins/rel/rel_sl.py
 gramps/plugins/rel/rel_sv.py
+gramps/plugins/rel/rel_tr.py
 gramps/plugins/rel/rel_uk.py
 #
 # plugins/sidebar directory
@@ -587,6 +617,12 @@ gramps/plugins/test/exports_test.py
 gramps/plugins/test/imports_test.py
 gramps/plugins/test/reports_test.py
 gramps/plugins/test/tools_test.py
+#
+# Thumbnailers
+#
+gramps/plugins/thumbnailer/__init__.py
+gramps/plugins/thumbnailer/gnomethumb.py
+gramps/plugins/thumbnailer/imagethumb.py
 #
 # Development tools
 #

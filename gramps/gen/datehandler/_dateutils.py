@@ -13,36 +13,36 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Class handling language-specific selection for date parser and displayer.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import time
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 from ..lib.date import Date
 from . import LANG_TO_DISPLAY, LANG, parser, displayer
 
-#--------------------------------------------------------------
+
+# --------------------------------------------------------------
 #
 # Convenience functions
 #
-#--------------------------------------------------------------
+# --------------------------------------------------------------
 def get_date_formats(flocale=glocale):
     """
     Return the list of supported formats for date parsers and displayers.
@@ -54,17 +54,19 @@ def get_date_formats(flocale=glocale):
     # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
     trans_text = flocale.translation.sgettext
     try:
-        return tuple(trans_text(fmt)
-                     for fmt in LANG_TO_DISPLAY[flocale.lang](0).formats)
+        return tuple(
+            trans_text(fmt) for fmt in LANG_TO_DISPLAY[flocale.lang](0).formats
+        )
     except:
-        return tuple(trans_text(fmt)
-                     for fmt in LANG_TO_DISPLAY['C'](0).formats)
+        return tuple(trans_text(fmt) for fmt in LANG_TO_DISPLAY["C"](0).formats)
+
 
 def set_format(value):
     try:
         displayer.set_format(value)
     except:
         pass
+
 
 def set_date(date_base, text):
     """
@@ -79,6 +81,7 @@ def set_date(date_base, text):
     """
     parser.set_date(date_base.get_date_object(), text)
 
+
 def get_date(date_base):
     """
     Return a string representation of the date of the :class:`.DateBase`
@@ -92,9 +95,11 @@ def get_date(date_base):
     """
     return displayer.display(date_base.get_date_object())
 
+
 def get_date_valid(date_base):
     date_obj = date_base.get_date_object()
     return date_obj.get_valid()
+
 
 def format_time(secs):
     """
@@ -103,4 +108,4 @@ def format_time(secs):
     """
     t = time.localtime(secs)
     d = Date(t.tm_year, t.tm_mon, t.tm_mday)
-    return displayer.display(d) + time.strftime(' %X', t)
+    return displayer.display(d) + time.strftime(" %X", t)

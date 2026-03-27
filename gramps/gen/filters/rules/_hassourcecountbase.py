@@ -16,54 +16,65 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.citationbase import CitationBase
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # "Objects having sources"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasSourceCountBase(Rule):
     """Objects having sources"""
 
-    labels = [  _('Number of instances:'), _('Number must be:')]
-    name = 'Objects with <count> sources'
-    description = "Matches objects that have a certain number of sources " \
-                   "connected to it (actually citations are counted)"
-    category = _('Citation/source filters')
+    labels = [_("Number of instances:"), _("Number must be:")]
+    name = "Objects with <count> sources"
+    description = (
+        "Matches objects that have a certain number of sources "
+        "connected to it (actually citations are counted)"
+    )
+    category = _("Citation/source filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         # things we want to do just once, not for every handle
-        if  self.list[1] == 'less than':
+        if self.list[1] == "less than":
             self.count_type = 0
-        elif self.list[1] == 'greater than':
+        elif self.list[1] == "greater than":
             self.count_type = 2
         else:
-            self.count_type = 1 # "equal to"
+            self.count_type = 1  # "equal to"
 
         self.userSelectedCount = int(self.list[0])
 
-    def apply(self, db, obj):
-        count = len(obj.get_citation_list())
-        if self.count_type == 0:     # "less than"
+    def apply_to_one(self, db: Database, obj: CitationBase) -> bool:
+        count = len(obj.citation_list)
+        if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
-        elif self.count_type == 2:   # "greater than"
+        elif self.count_type == 2:  # "greater than"
             return count > self.userSelectedCount
         # "equal to"
         return count == self.userSelectedCount

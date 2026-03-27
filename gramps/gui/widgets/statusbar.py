@@ -13,52 +13,59 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".widgets.statusbar")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import WarnButton
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Statusbar class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Statusbar(Gtk.Box):
     """
     A status bar
     """
+
     def __init__(self):
         Gtk.Box.__init__(self)
         self.set_spacing(4)
         self.set_border_width(2)
 
         self.__progress = Gtk.ProgressBar()
+        self.__progress.set_valign(Gtk.Align.CENTER)
         self.__progress.set_size_request(100, -1)
         self.__progress.hide()
 
         self.__warnbtn = WarnButton()
+
+        self.__version = Gtk.Button()
+        self.__version.set_relief(Gtk.ReliefStyle.NONE)
+        self.__version.get_style_context().add_class("destructive-action")
 
         self.__status = Gtk.Statusbar()
         self.__status.show()
@@ -71,6 +78,7 @@ class Statusbar(Gtk.Box):
         self.pack_start(self.__progress, False, True, 4)
         self.pack_start(self.__status, True, True, 4)
         self.pack_end(self.__filter, False, True, 4)
+        self.pack_end(self.__version, False, True, 4)
 
     def get_warning_button(self):
         """Return the warning button widget."""
@@ -79,6 +87,10 @@ class Statusbar(Gtk.Box):
     def get_progress_bar(self):
         """Return the progress bar widget."""
         return self.__progress
+
+    def get_version_btn(self):
+        """Return the version button widget."""
+        return self.__version
 
     def get_context_id(self, context_description):
         """Return a new or existing context identifier."""
@@ -102,4 +114,4 @@ class Statusbar(Gtk.Box):
 
     def clear_filter(self):
         """Clear the filter status text."""
-        self.__filter.set_text('')
+        self.__filter.set_text("")

@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -24,12 +23,13 @@ This module provides the :class:`.Plugin` class for export plugins.
 
 from . import Plugin
 
+
 class ExportPlugin(Plugin):
     """
     This class represents a plugin for exporting data from Gramps
     """
-    def __init__(self, name, description, export_function,
-                 extension, config=None):
+
+    def __init__(self, name, description, export_function, extension, config=None):
         """
         :param name: A friendly name to call this plugin.
             Example: "GEDCOM Export"

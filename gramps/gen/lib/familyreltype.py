@@ -13,26 +13,35 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Provide the different family reference types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.gettext
 
+
+# -------------------------------------------------------------------------
+#
+# FamilyRelType
+#
+# -------------------------------------------------------------------------
 class FamilyRelType(GrampsType):
+    """
+    Class for type of relationship between two partners forming the family.
+    """
 
     MARRIED = 0
     UNMARRIED = 1
@@ -49,7 +58,7 @@ class FamilyRelType(GrampsType):
         (CIVIL_UNION, _("Civil Union"), "Civil Union"),
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
-        ]
+    ]
 
     def __init__(self, value=None):
         if value is None:

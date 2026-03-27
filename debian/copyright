@@ -46,7 +46,7 @@ Copyright: 2000-2007, Alex Roitman
            2009, Florian Heinle
            2009, Gerald W. Britton
            2009, Igal Shapira
-           2009-2018, Nick Hall
+           2009-2022, Nick Hall
            2009, Pander Musubi
            2009, Robert Ham
            2009, Swoon on bug tracker
@@ -92,6 +92,8 @@ Copyright: 2000-2007, Alex Roitman
            2018, Robin van der Vliet
            2018, Theo van Rijn
            2019, Matthias Kemmer
+           2020, Jan Sparreboom
+           2021, Mirko Leonhaeuser
 License: GPL-2+
 
 Files: debian/*

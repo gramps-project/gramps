@@ -5,7 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
-# Copyright (C) 2017       Nick Hall
+# Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,38 +17,43 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Media Reference class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .refbase import RefBase
-from .attrbase import AttributeBase
-from .const import IDENTICAL, EQUAL, DIFFERENT
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .attrbase import AttributeBase
+from .citationbase import CitationBase
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Media References for Person/Place/Source
+# MediaRef
 #
-#-------------------------------------------------------------------------
-class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
-               AttributeBase):
-    """Media reference class."""
+# -------------------------------------------------------------------------
+class MediaRef(
+    SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase, AttributeBase
+):
+    """
+    Media reference class.
+    """
+
     def __init__(self, source=None):
         PrivacyBase.__init__(self, source)
         CitationBase.__init__(self, source)
@@ -65,12 +70,14 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         """
         Convert the object to a serialized tuple of data.
         """
-        return (PrivacyBase.serialize(self),
-                CitationBase.serialize(self),
-                NoteBase.serialize(self),
-                AttributeBase.serialize(self),
-                RefBase.serialize(self),
-                self.rect)
+        return (
+            PrivacyBase.serialize(self),
+            CitationBase.serialize(self),
+            NoteBase.serialize(self),
+            AttributeBase.serialize(self),
+            RefBase.serialize(self),
+            self.rect,
+        )
 
     @classmethod
     def get_schema(cls):
@@ -80,49 +87,80 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
+
         return {
             "type": "object",
             "title": _("Media ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-                "citation_list": {"type": "array",
-                                  "title": _("Citations"),
-                                  "items": {"type": "string",
-                                            "maxLength": 50}},
-                "note_list": {"type": "array",
-                              "title": _("Notes"),
-                              "items": {"type": "string",
-                                        "maxLength": 50}},
-                "attribute_list": {"type": "array",
-                                   "title": _("Attributes"),
-                                   "items": Attribute.get_schema()},
-                "ref": {"type": "string",
-                        "title": _("Handle"),
-                        "maxLength": 50},
-                "rect": {"oneOf": [{"type": "null"},
-                                   {"type": "array",
-                                    "items": {"type": "integer"},
-                                    "minItems": 4,
-                                    "maxItems": 4}],
-                         "title": _("Region")}
-            }
+                "private": {"type": "boolean", "title": _("Private")},
+                "citation_list": {
+                    "type": "array",
+                    "title": _("Citations"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "note_list": {
+                    "type": "array",
+                    "title": _("Notes"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "attribute_list": {
+                    "type": "array",
+                    "title": _("Attributes"),
+                    "items": Attribute.get_schema(),
+                },
+                "ref": {
+                    "type": "string",
+                    "title": _("Handle"),
+                    "maxLength": 50,
+                },
+                "rect": {
+                    "oneOf": [
+                        {"type": "null"},
+                        {
+                            "type": "array",
+                            "items": {"type": "integer"},
+                            "minItems": 4,
+                            "maxItems": 4,
+                        },
+                    ],
+                    "title": _("Region"),
+                },
+            },
         }
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, attribute_list, ref,
-         self.rect) = data
+        (
+            privacy,
+            citation_list,
+            note_list,
+            attribute_list,
+            ref,
+            self.rect,
+        ) = data
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         AttributeBase.unserialize(self, attribute_list)
         RefBase.unserialize(self, ref)
         return self
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to convert `rect` into a tuple.
+        """
+        rect = attr_dict["rect"]
+        if rect is not None:
+            attr_dict["rect"] = tuple(rect)
+        super().set_object_state(attr_dict)
 
     def get_text_data_child_list(self):
         """
@@ -161,10 +199,11 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles() + \
-                self.get_referenced_citation_handles()
+        ret = (
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
+        )
         if self.ref:
-            ret += [('Media', self.ref)]
+            ret += [("Media", self.ref)]
         return ret
 
     def get_handle_referents(self):
@@ -189,11 +228,9 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         """
         if self.ref != other.ref or self.rect != other.rect:
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """

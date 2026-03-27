@@ -14,50 +14,60 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 CitationListModel class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".")
 LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .flatbasemodel import FlatBaseModel
 from .citationbasemodel import CitationBaseModel
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # CitationListModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CitationListModel(CitationBaseModel, FlatBaseModel):
     """
     Flat citation model.  (Original code in CitationBaseModel).
     """
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         self.map = db.get_raw_citation_data
         self.gen_cursor = db.get_citation_cursor
         self.fmap = [
@@ -75,8 +85,8 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_src_pinfo,
             self.citation_src_private,
             self.citation_src_chan,
-            self.citation_tag_color
-            ]
+            self.citation_tag_color,
+        ]
         self.smap = [
             self.citation_page,
             self.citation_id,
@@ -92,10 +102,11 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_src_pinfo,
             self.citation_src_private,
             self.citation_src_sort_change,
-            self.citation_tag_color
-            ]
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+            self.citation_tag_color,
+        ]
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -115,4 +126,4 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
         return 14
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        return len(self.fmap) + 1

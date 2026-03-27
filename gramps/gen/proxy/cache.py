@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -24,6 +23,7 @@ Proxy class for the Gramps databases. Caches lookups from handles.
 
 from ..utils.lru import LRU
 
+
 class CacheProxyDb:
     """
     A Proxy for a database with cached lookups on handles.
@@ -31,6 +31,7 @@ class CacheProxyDb:
     Does not invalid caches. Should be used only in read-only
     places, and not where caches are altered.
     """
+
     def __init__(self, database):
         """
         CacheProxy will cache items based on their handle.

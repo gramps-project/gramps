@@ -10,6 +10,7 @@ include RELEASE_NOTES
 include TODO
 include CONTRIBUTING
 include TestPlan.txt
+recursive-include aio *
 recursive-include data *
 recursive-include debian *
 recursive-include docs *
@@ -19,12 +20,8 @@ recursive-include images *
 recursive-include mac *
 recursive-include po *
 recursive-include test *
-recursive-include windows *
 
 # Remove files created in the build
-exclude data/tips.xml
-exclude data/holidays.xml
-exclude po/.intltool-merge-cache
 global-exclude *.pyc
 global-exclude *.pyo
 

@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 
 """
 update_doc.py for Gramps API(s) documentation.
@@ -37,17 +36,18 @@ import sys
 from argparse import ArgumentParser
 
 # You can set these variables from the command line.
-SPHINXBUILD   = 'sphinx-build'
+SPHINXBUILD = "sphinx-build"
 
-if sys.platform == 'win32':
-    pythonCmd = os.path.join(sys.prefix, 'bin', 'python.exe')
-    sphinxCmd = os.path.join(sys.prefix, 'bin', 'sphinx-build.exe')
-elif sys.platform in ['linux', 'linux2', 'darwin', 'cygwin']:
-    pythonCmd = os.path.join(sys.prefix, 'bin', 'python')
+if sys.platform == "win32":
+    pythonCmd = os.path.join(sys.prefix, "bin", "python.exe")
+    sphinxCmd = os.path.join(sys.prefix, "bin", "sphinx-build.exe")
+elif sys.platform in ["linux", "linux2", "darwin", "cygwin"]:
+    pythonCmd = os.path.join(sys.prefix, "bin", "python")
     sphinxCmd = SPHINXBUILD
 else:
-    print ("Update Docs ERROR: unknown system, don't know sphinx, ... commands")
+    print("Update Docs ERROR: unknown system, don't know sphinx, ... commands")
     sys.exit(0)
+
 
 def tests():
     """
@@ -57,15 +57,16 @@ def tests():
     """
     try:
         print("\n=================='python'=============================\n")
-        os.system('''%(program)s -V''' % {'program': pythonCmd})
+        os.system("""%(program)s -V""" % {"program": pythonCmd})
     except:
-        print ('Please, install python')
+        print("Please, install python")
 
     try:
         print("\n=================='sphinx-build'=============================\n")
-        os.system('''%(program)s''' % {'program': sphinxCmd})
+        os.system("""%(program)s""" % {"program": sphinxCmd})
     except:
-        print ('Please, install sphinx')
+        print("Please, install sphinx")
+
 
 def main():
     """
@@ -74,17 +75,26 @@ def main():
     """
 
     parser = ArgumentParser(
-                         description='This program aims to handle manual'
-                                      ' and translated version.',
-                         )
+        description="This program aims to handle manual" " and translated version.",
+    )
 
-    parser.add_argument("-t", "--test",
-            action="store_true", dest="test",  default=True,
-            help="test if 'python' and 'sphinx' are properly installed")
+    parser.add_argument(
+        "-t",
+        "--test",
+        action="store_true",
+        dest="test",
+        default=True,
+        help="test if 'python' and 'sphinx' are properly installed",
+    )
 
-    parser.add_argument("-b", "--build",
-            action="store_true", dest="build",  default=True,
-            help="build documentation")
+    parser.add_argument(
+        "-b",
+        "--build",
+        action="store_true",
+        dest="build",
+        default=True,
+        help="build documentation",
+    )
 
     args = parser.parse_args()
 
@@ -94,6 +104,7 @@ def main():
     if args.build:
         build()
 
+
 def build():
     """
     Build documentation.
@@ -101,10 +112,11 @@ def build():
 
     # testing stage
 
-    os.system('''%(program)s -b html . _build/html''' % {'program': sphinxCmd})
-    #os.system('''%(program)s -b changes . _build/changes''' % {'program': sphinxCmd})
-    #os.system('''%(program)s -b linkcheck . _build/linkcheck''' % {'program': sphinxCmd})
-    #os.system('''%(program)s -b devhelp . _build/devhelp''' % {'program': sphinxCmd})
+    os.system("""%(program)s -b html . _build/html""" % {"program": sphinxCmd})
+    # os.system('''%(program)s -b changes . _build/changes''' % {'program': sphinxCmd})
+    # os.system('''%(program)s -b linkcheck . _build/linkcheck''' % {'program': sphinxCmd})
+    # os.system('''%(program)s -b devhelp . _build/devhelp''' % {'program': sphinxCmd})
+
 
 if __name__ == "__main__":
     main()

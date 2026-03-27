@@ -14,41 +14,48 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
-# Notes that contain a substring or match a regular expression
-#-------------------------------------------------------------------------
-class MatchesRegexpOf(Rule):
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Note
+from ....db import Database
 
-    labels = [ _('Text:')]
-    name = _('Notes containing <text>')
-    description = _("Matches notes that contain a substring "
-                    "or match a regular expression")
-    category = _('General filters')
+
+# -------------------------------------------------------------------------
+# Notes that contain a substring or match a regular expression
+# -------------------------------------------------------------------------
+class MatchesRegexpOf(Rule):
+    labels = [_("Text:")]
+    name = _("Notes containing <text>")
+    description = _(
+        "Matches notes that contain a substring " "or match a regular expression"
+    )
+    category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, note):
-        """ Apply the filter """
-        if self.match_substring(0, note.get()):
-            return True
-        return False
+    def apply_to_one(self, db: Database, note: Note) -> bool:
+        """Apply the filter"""
+        return self.match_substring(0, str(note.text))

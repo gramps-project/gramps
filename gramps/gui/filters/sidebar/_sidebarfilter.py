@@ -14,12 +14,26 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Python modules
+#
+# -------------------------------------------------------------------------
+import time
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.filters import reload_custom_filters
+
 _ = glocale.translation.gettext
 from bisect import insort_left
 from gi.repository import Gdk
@@ -31,23 +45,26 @@ from ...dbguielement import DbGUIElement
 from gramps.gen.config import config
 from ...utils import no_match_primary_mask
 
+from ...editors import EditFilter
+import gramps.gen.filters
+
+# import gramps.gen.filters.rules.place
+
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
+
 class SidebarFilter(DbGUIElement):
-    if Gtk.get_minor_version() > 17:
-        _FILTER_WIDTH = -1
-    else:
-        _FILTER_WIDTH = 20
+    _FILTER_WIDTH = -1
     _FILTER_ELLIPSIZE = Pango.EllipsizeMode.END
 
     def __init__(self, dbstate, uistate, namespace):
         self.signal_map = {
-            'tag-add'     : self._tag_add,
-            'tag-delete'  : self._tag_delete,
-            'tag-update'  : self._tag_update,
-            'tag-rebuild' : self._tag_rebuild
-            }
+            "tag-add": self._tag_add,
+            "tag-delete": self._tag_delete,
+            "tag-update": self._tag_update,
+            "tag-rebuild": self._tag_rebuild,
+        }
         DbGUIElement.__init__(self, dbstate.db)
 
         self.position = 1
@@ -57,12 +74,33 @@ class SidebarFilter(DbGUIElement):
         self.grid.set_border_width(6)
         self.grid.set_row_spacing(6)
         self.grid.set_column_spacing(6)
-        self.apply_btn = Gtk.Button.new_with_mnemonic(_('_Find'))
+        self.apply_btn = Gtk.Button.new_with_mnemonic(_("_Find"))
+        self.apply_btn.set_tooltip_text(
+            _("This updates the view with the current filter parameters.")
+        )
         self.clear_btn = Gtk.Button()
+        self.clear_btn.set_tooltip_text(
+            _(
+                "This resets the filter parameters to empty state.  The 'Find' "
+                "button should be used to actually update the view to its "
+                "defaults."
+            )
+        )
+        self.define_filter_btn = Gtk.Button(_("Define filter"))
+        self.define_filter_btn.set_tooltip_text(
+            _(
+                "This opens a dialog to add a new custom filter "
+                "based on the values given."
+            )
+        )
+
+        self.msg_label = Gtk.Label()
+        self.msg_label.set_halign(Gtk.Align.START)
+        self.msg_label.set_margin_left(12)
 
         self._init_interface()
-        uistate.connect('filters-changed', self.on_filters_changed)
-        dbstate.connect('database-changed', self._db_changed)
+        uistate.connect("filters-changed", self.on_filters_changed)
+        dbstate.connect("database-changed", self._db_changed)
         self.uistate = uistate
         self.dbstate = dbstate
         self.namespace = namespace
@@ -72,21 +110,22 @@ class SidebarFilter(DbGUIElement):
     def _init_interface(self):
         self.create_widget()
 
-        self.apply_btn.connect('clicked', self.clicked)
+        self.apply_btn.connect("clicked", self.clicked)
 
         hbox = Gtk.Box()
         hbox.show()
         image = Gtk.Image()
-        image.set_from_icon_name('edit-undo', Gtk.IconSize.BUTTON)
+        image.set_from_icon_name("edit-undo", Gtk.IconSize.BUTTON)
         image.show()
-        label = Gtk.Label(label=_('Reset'))
+        label = Gtk.Label(label=_("Reset"))
         label.show()
         hbox.pack_start(image, False, False, 0)
         hbox.pack_start(label, False, True, 0)
         hbox.set_spacing(4)
 
         self.clear_btn.add(hbox)
-        self.clear_btn.connect('clicked', self.clear)
+        self.clear_btn.connect("clicked", self.clear)
+        self.clear_btn.set_halign(Gtk.Align.END)
 
         hbox = Gtk.ButtonBox()
         hbox.set_layout(Gtk.ButtonBoxStyle.START)
@@ -96,6 +135,17 @@ class SidebarFilter(DbGUIElement):
         hbox.add(self.clear_btn)
         hbox.show()
         self.vbox.pack_start(hbox, False, False, 0)
+
+        self.define_filter_btn.connect("clicked", self.define_filter)
+        hbox = Gtk.ButtonBox()
+        hbox.set_layout(Gtk.ButtonBoxStyle.START)
+        hbox.set_spacing(6)
+        hbox.set_border_width(12)
+        hbox.add(self.define_filter_btn)
+
+        self.vbox.pack_start(hbox, False, False, 0)
+        self.vbox.pack_start(self.msg_label, False, False, 0)
+
         self.vbox.show()
 
     def get_widget(self):
@@ -108,8 +158,15 @@ class SidebarFilter(DbGUIElement):
         pass
 
     def clicked(self, obj):
+        if not self.filter_is_ok():
+            return
         self.uistate.set_busy_cursor(True)
+        t1 = time.perf_counter()
         self.clicked_func()
+        t2 = time.perf_counter()
+        msg = _("Elapsed time: %.2fs") % (t2 - t1)
+        self.msg_label.set_text(msg)
+        self.msg_label.get_style_context().remove_class("error")
         self.uistate.set_busy_cursor(False)
 
     def clicked_func(self):
@@ -121,11 +178,29 @@ class SidebarFilter(DbGUIElement):
     def add_regex_entry(self, widget):
         hbox = Gtk.Box()
         hbox.pack_start(widget, False, False, 12)
+        widget.connect("toggled", self.regex_selection)
         self.vbox.pack_start(hbox, False, False, 0)
+
+    def add_regex_case(self, widget):
+        hbox = Gtk.Box()
+        hbox.pack_start(widget, False, False, 12)
+        self.vbox.pack_start(hbox, False, False, 0)
+        self.regex_selection()
+
+    def regex_selection(self, widget=None):
+        if self.sensitive_regex:
+            if widget and widget.get_active():
+                self.sensitive_regex.set_sensitive(True)
+            else:
+                self.sensitive_regex.set_active(False)
+                self.sensitive_regex.set_sensitive(False)
 
     def add_text_entry(self, name, widget, tooltip=None):
         self.add_entry(name, widget)
-        widget.connect('key-press-event', self.key_press)
+        if isinstance(widget, widgets.DateEntry):
+            widget.entry.connect("key-press-event", self.key_press)
+        else:
+            widget.connect("key-press-event", self.key_press)
         if tooltip:
             widget.set_tooltip_text(tooltip)
 
@@ -137,7 +212,7 @@ class SidebarFilter(DbGUIElement):
 
     def add_heading(self, heading):
         label = Gtk.Label()
-        label.set_text('<b>%s</b>' % heading)
+        label.set_text("<b>%s</b>" % heading)
         label.set_use_markup(True)
         label.set_halign(Gtk.Align.START)
         self.grid.attach(label, 1, self.position, 1, 1)
@@ -201,8 +276,9 @@ class SidebarFilter(DbGUIElement):
         """
         Called when tags are deleted.
         """
-        self.__tag_list = [item for item in self.__tag_list
-                           if item[1] not in handle_list]
+        self.__tag_list = [
+            item for item in self.__tag_list if item[1] not in handle_list
+        ]
         self.on_tags_changed([item[0] for item in self.__tag_list])
 
     def _tag_rebuild(self):
@@ -228,8 +304,9 @@ class SidebarFilter(DbGUIElement):
         """
         hbox = Gtk.Box()
         hbox.pack_start(widget, True, True, 0)
-        hbox.pack_start(widgets.SimpleButton('gtk-edit', self.edit_filter),
-                        False, False, 0)
+        hbox.pack_start(
+            widgets.SimpleButton("gtk-edit", self.edit_filter), False, False, 0
+        )
         self.add_entry(text, hbox)
 
     def edit_filter(self, obj):
@@ -240,6 +317,7 @@ class SidebarFilter(DbGUIElement):
         from ...editors import EditFilter
         from gramps.gen.filters import FilterList, GenericFilterFactory
         from gramps.gen.const import CUSTOM_FILTERS
+
         the_filter = None
         filterdb = FilterList(CUSTOM_FILTERS)
         filterdb.load()
@@ -255,9 +333,15 @@ class SidebarFilter(DbGUIElement):
         else:
             the_filter = GenericFilterFactory(self.namespace)()
         if the_filter:
-            EditFilter(self.namespace, self.dbstate, self.uistate, [],
-                       the_filter, filterdb,
-                       selection_callback=self.edit_filter_save)
+            EditFilter(
+                self.namespace,
+                self.dbstate,
+                self.uistate,
+                [],
+                the_filter,
+                filterdb,
+                selection_callback=self.edit_filter_save,
+            )
 
     def edit_filter_save(self, filterdb, filter_name):
         """
@@ -265,9 +349,10 @@ class SidebarFilter(DbGUIElement):
         Takes the filter database, and the filter name edited.
         """
         from gramps.gen.filters import reload_custom_filters
+
         filterdb.save()
         reload_custom_filters()
-        self.uistate.emit('filters-changed', (self.namespace,))
+        self.uistate.emit("filters-changed", (self.namespace,))
         self.set_filters_to_name(filter_name)
 
     def set_filters_to_name(self, filter_name):
@@ -282,3 +367,57 @@ class SidebarFilter(DbGUIElement):
                 self.generic.set_active_iter(iter)
                 break
             iter = liststore.iter_next(iter)
+
+    def filter_is_ok(self):
+        the_filter = self.get_filter()
+        if the_filter is None:
+            return True
+        for rule in the_filter.get_rules():
+            if isinstance(rule, gramps.gen.filters.rules.place.WithinArea):
+                if rule.list[0] is None:  # No active place
+                    msg = _("You should select a place when using the 'Within' rule")
+                    self.msg_label.set_text(msg)
+                    self.msg_label.get_style_context().add_class("error")
+                    return False
+        return True
+
+    def define_filter(self, _obj):
+        self.filterdb = gramps.gen.filters.CustomFilters
+        the_filter = self.get_filter()
+        if the_filter is None:
+            self.msg_label.set_text(_("Supply at least one value"))
+            self.msg_label.get_style_context().add_class("error")
+            return
+
+        if not self.filter_is_ok():
+            return
+        # fix some rules:
+        new_rules = []
+        for rule in the_filter.get_rules():
+            # The Place rule WithinArea might have numeric values while custom_filters.xml only accepts strings.
+            if isinstance(rule, gramps.gen.filters.rules.place.WithinArea):
+                rule.list[1] = str(rule.list[1])
+                rule.list[2] = str(rule.list[2])
+            new_rules.append(rule)
+        the_filter.flist = new_rules
+        comment = _("Created by Filter gramplet on {today}").format(
+            today=time.strftime("%Y-%m-%d", time.localtime())
+        )
+        the_filter.set_comment(comment)
+
+        self.msg_label.set_text("")
+        track = []
+        EditFilter(
+            self.namespace,
+            self.dbstate,
+            self.uistate,
+            track,
+            the_filter,
+            self.filterdb,
+            update=self.update,
+        )
+
+    def update(self):
+        self.filterdb.save()
+        reload_custom_filters()
+        self.uistate.emit("filters-changed", (self.namespace,))

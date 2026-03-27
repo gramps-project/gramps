@@ -15,32 +15,31 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.lib import EventType, FamilyRelType
 from gramps.gen.plug import Gramplet
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.plug.report import utils
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # The Gramplet
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class WhatNextGramplet(Gramplet):
-
     def init(self):
-
         self.set_tooltip(_("Double-click name for details"))
         self.set_text(_("No Family Tree loaded."))
 
@@ -90,9 +89,9 @@ class WhatNextGramplet(Gramplet):
         opt = EnumeratedListOption(name, self.__ignore_tag)
         self.opts.append(opt)
 
-        self.opts[3].add_item('', '')
-        self.opts[4].add_item('', '')
-        self.opts[5].add_item('', '')
+        self.opts[3].add_item("", "")
+        self.opts[4].add_item("", "")
+        self.opts[5].add_item("", "")
         if self.dbstate.db.is_open():
             for tag_handle in self.dbstate.db.get_tag_handles(sort_handles=True):
                 tag = self.dbstate.db.get_tag_from_handle(tag_handle)
@@ -119,12 +118,14 @@ class WhatNextGramplet(Gramplet):
         Save a gramplet's options to file.
         """
         self.save_options()
-        self.gui.data = [self.__todos_wanted,
-                         self.__downs_per_up,
-                         self.__ancestor_delay,
-                         self.__person_complete_tag,
-                         self.__family_complete_tag,
-                         self.__ignore_tag]
+        self.gui.data = [
+            self.__todos_wanted,
+            self.__downs_per_up,
+            self.__ancestor_delay,
+            self.__person_complete_tag,
+            self.__family_complete_tag,
+            self.__ignore_tag,
+        ]
         self.update()
 
     def on_load(self):
@@ -142,23 +143,20 @@ class WhatNextGramplet(Gramplet):
             self.__todos_wanted = 10
             self.__downs_per_up = 2
             self.__ancestor_delay = 1
-            self.__person_complete_tag = ''
-            self.__family_complete_tag = ''
-            self.__ignore_tag = ''
+            self.__person_complete_tag = ""
+            self.__family_complete_tag = ""
+            self.__ignore_tag = ""
 
     def db_changed(self):
-
-        self.connect(self.dbstate.db, 'home-person-changed', self.update)
-        self.connect(self.dbstate.db, 'person-add', self.update)
-        self.connect(self.dbstate.db, 'person-delete', self.update)
-        self.connect(self.dbstate.db, 'person-update', self.update)
-        self.connect(self.dbstate.db, 'family-add', self.update)
-        self.connect(self.dbstate.db, 'family-delete', self.update)
-        self.connect(self.dbstate.db, 'family-update', self.update)
-
+        self.connect(self.dbstate.db, "home-person-changed", self.update)
+        self.connect(self.dbstate.db, "person-add", self.update)
+        self.connect(self.dbstate.db, "person-delete", self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
+        self.connect(self.dbstate.db, "family-add", self.update)
+        self.connect(self.dbstate.db, "family-delete", self.update)
+        self.connect(self.dbstate.db, "family-update", self.update)
 
     def main(self):
-
         default_person = self.dbstate.db.get_default_person()
         if default_person is None:
             self.set_text(_("No Home Person set."))
@@ -200,8 +198,9 @@ class WhatNextGramplet(Gramplet):
         # parent's other spouses, the ancestors of my grandchildren's spouses,
         # the ancestors of my sibling's spouses etc.
         ancestors = [[default_person]]
-        ancestors_queue = ([[[default_person]]] +
-                           [[] for i in range(self.__ancestor_delay)])
+        ancestors_queue = [[[default_person]]] + [
+            [] for i in range(self.__ancestor_delay)
+        ]
 
         # List of lists of families of relatives in currently processed
         # distance. We go up one level of distance in each round.
@@ -254,7 +253,7 @@ class WhatNextGramplet(Gramplet):
                 new_families = []
                 for family_group in families:
                     children = []
-                    for (family, person, spouse) in family_group:
+                    for family, person, spouse in family_group:
                         for child in self.__get_children(family):
                             self.__process_person(child, children)
                         self.__process_family_2(family, person, spouse)
@@ -271,7 +270,9 @@ class WhatNextGramplet(Gramplet):
                                 self.__missing_spouse(person)
                             elif spouse is not None:
                                 self.__process_person(spouse, new_spouses_group)
-                            self.__process_family(family, person, spouse, new_family_group)
+                            self.__process_family(
+                                family, person, spouse, new_family_group
+                            )
                         self.__process_person_2(person)
                     if new_family_group:
                         new_families.append(new_family_group)
@@ -295,7 +296,7 @@ class WhatNextGramplet(Gramplet):
                 new_ancestor_group_2 = []
                 new_family_group = []
                 for person in ancestor_group:
-                    (father, mother, family) = self.__get_parents(person)
+                    father, mother, family = self.__get_parents(person)
                     if family is UnknownFamily:
                         self.__missing_parents(person)
                     elif family is not None:
@@ -328,11 +329,9 @@ class WhatNextGramplet(Gramplet):
             if self.__counter > 0:
                 self.append_text("\n")
 
-        self.append_text("", scroll_to='begin')
-
+        self.append_text("", scroll_to="begin")
 
     def __process_person(self, person, append_list):
-
         if person.get_handle() in self.__processed_persons:
             return
 
@@ -366,16 +365,15 @@ class WhatNextGramplet(Gramplet):
             missingbits.append(_("birth event missing"))
 
         if missingbits:
-            self.link(name, 'Person', person.get_handle())
-            self.append_text(_(": %(list)s\n") % {
-                'list': _(", ").join(missingbits)}) # Arabic OK
+            self.link(name, "Person", person.get_handle())
+            self.append_text(
+                _(": %(list)s\n") % {"list": _(", ").join(missingbits)}
+            )  # Arabic OK
             self.__counter += 1
 
         append_list.append(person)
 
-
     def __process_person_2(self, person):
-
         missingbits = []
 
         primary_name = person.get_primary_name()
@@ -383,19 +381,20 @@ class WhatNextGramplet(Gramplet):
         if not name:
             name = _("(person with unknown name)")
 
-        if self.__person_complete_handle is not None and \
-           self.__person_complete_handle not in person.get_tag_list():
+        if (
+            self.__person_complete_handle is not None
+            and self.__person_complete_handle not in person.get_tag_list()
+        ):
             missingbits.append(_("person not complete"))
 
         if missingbits:
-            self.link(name, 'Person', person.get_handle())
-            self.append_text(_(": %(list)s\n") % {
-                'list': _(", ").join(missingbits)}) # Arabic OK
+            self.link(name, "Person", person.get_handle())
+            self.append_text(
+                _(": %(list)s\n") % {"list": _(", ").join(missingbits)}
+            )  # Arabic OK
             self.__counter += 1
 
-
     def __process_family(self, family, person1, person2, append_list):
-
         if family.get_handle() in self.__processed_families:
             return
 
@@ -417,7 +416,7 @@ class WhatNextGramplet(Gramplet):
             if not name2:
                 name2 = _("(person with unknown name)")
 
-        name = _("%(name1)s and %(name2)s") % {'name1': name1, 'name2': name2}
+        name = _("%(name1)s and %(name2)s") % {"name1": name1, "name2": name2}
 
         has_marriage = False
 
@@ -436,16 +435,15 @@ class WhatNextGramplet(Gramplet):
             missingbits.append(_("relation type unknown"))
 
         if missingbits:
-            self.link(name, 'Family', family.get_handle())
-            self.append_text(_(": %(list)s\n") % {
-                'list': _(", ").join(missingbits)}) # Arabic OK
+            self.link(name, "Family", family.get_handle())
+            self.append_text(
+                _(": %(list)s\n") % {"list": _(", ").join(missingbits)}
+            )  # Arabic OK
             self.__counter += 1
 
         append_list.append((family, person1, person2))
 
-
     def __process_family_2(self, family, person1, person2):
-
         missingbits = []
 
         if person1 is UnknownPerson or person1 is None:
@@ -462,21 +460,22 @@ class WhatNextGramplet(Gramplet):
             if not name2:
                 name2 = _("(person with unknown name)")
 
-        name = _("%(name1)s and %(name2)s") % {'name1': name1, 'name2': name2}
+        name = _("%(name1)s and %(name2)s") % {"name1": name1, "name2": name2}
 
-        if self.__family_complete_handle is not None and \
-           self.__family_complete_handle not in family.get_tag_list():
+        if (
+            self.__family_complete_handle is not None
+            and self.__family_complete_handle not in family.get_tag_list()
+        ):
             missingbits.append(_("family not complete"))
 
         if missingbits:
-            self.link(name, 'Family', family.get_handle())
-            self.append_text(_(": %(list)s\n") % {
-                'list': _(", ").join(missingbits)}) # Arabic OK
+            self.link(name, "Family", family.get_handle())
+            self.append_text(
+                _(": %(list)s\n") % {"list": _(", ").join(missingbits)}
+            )  # Arabic OK
             self.__counter += 1
 
-
     def __process_event(self, event):
-
         missingbits = []
 
         date = event.get_date_object()
@@ -490,40 +489,33 @@ class WhatNextGramplet(Gramplet):
             missingbits.append(_("place unknown"))
 
         if missingbits:
-            # translators: needed for French, ignore otherwise
-            return [_("%(str1)s: %(str2)s"
-                     ) % {'str1' : event.get_type(),
-                          'str2' : _(", ").join(missingbits)}] # Arabic OK
+            # Translators: needed for French, ignore otherwise
+            return [
+                _("%(str1)s: %(str2)s")
+                % {"str1": event.get_type(), "str2": _(", ").join(missingbits)}
+            ]  # Arabic OK
         else:
             return []
-
 
     def __missing_spouse(self, person):
         self.__missing_link(person, _("spouse missing"))
 
-
     def __missing_father(self, person):
         self.__missing_link(person, _("father missing"))
-
 
     def __missing_mother(self, person):
         self.__missing_link(person, _("mother missing"))
 
-
     def __missing_parents(self, person):
         self.__missing_link(person, _("parents missing"))
 
-
     def __missing_link(self, person, text):
-
         name = name_displayer.display(person)
-        self.link(name, 'Person', person.get_handle())
+        self.link(name, "Person", person.get_handle())
         self.append_text(_(": %s\n") % text)
         self.__counter += 1
 
-
     def __get_spouse(self, person, family):
-
         spouse_handle = utils.find_spouse(person, family)
         if not spouse_handle:
             if family.get_relationship() == FamilyRelType.MARRIED:
@@ -531,37 +523,37 @@ class WhatNextGramplet(Gramplet):
             else:
                 return None
         spouse = self.dbstate.db.get_person_from_handle(spouse_handle)
-        if self.__ignore_handle is not None and \
-           self.__ignore_handle in spouse.get_tag_list():
+        if (
+            self.__ignore_handle is not None
+            and self.__ignore_handle in spouse.get_tag_list()
+        ):
             return None
         else:
             return spouse
 
-
     def __get_children(self, family):
-
         for child_ref in family.get_child_ref_list():
             child = self.dbstate.db.get_person_from_handle(child_ref.ref)
-            if self.__ignore_handle is not None and \
-               self.__ignore_handle in child.get_tag_list():
+            if (
+                self.__ignore_handle is not None
+                and self.__ignore_handle in child.get_tag_list()
+            ):
                 continue
             yield child
 
-
     def __get_families(self, person):
-
         for family_handle in person.get_family_handle_list():
             if family_handle in self.__processed_families:
                 continue
             family = self.dbstate.db.get_family_from_handle(family_handle)
-            if self.__ignore_handle is not None and \
-               self.__ignore_handle in family.get_tag_list():
+            if (
+                self.__ignore_handle is not None
+                and self.__ignore_handle in family.get_tag_list()
+            ):
                 continue
             yield family
 
-
     def __get_parents(self, person):
-
         family_handle = person.get_main_parents_family_handle()
         if not family_handle:
             return (UnknownPerson, UnknownPerson, UnknownFamily)
@@ -569,8 +561,10 @@ class WhatNextGramplet(Gramplet):
             return (None, None, None)
 
         family = self.dbstate.db.get_family_from_handle(family_handle)
-        if self.__ignore_handle is not None and \
-           self.__ignore_handle in family.get_tag_list():
+        if (
+            self.__ignore_handle is not None
+            and self.__ignore_handle in family.get_tag_list()
+        ):
             return (None, None, None)
 
         father_handle = family.get_father_handle()
@@ -581,8 +575,10 @@ class WhatNextGramplet(Gramplet):
                 father = None
         else:
             father = self.dbstate.db.get_person_from_handle(father_handle)
-            if self.__ignore_handle is not None and \
-               self.__ignore_handle in father.get_tag_list():
+            if (
+                self.__ignore_handle is not None
+                and self.__ignore_handle in father.get_tag_list()
+            ):
                 father = None
 
         mother_handle = family.get_mother_handle()
@@ -590,8 +586,10 @@ class WhatNextGramplet(Gramplet):
             mother = UnknownPerson
         else:
             mother = self.dbstate.db.get_person_from_handle(mother_handle)
-            if self.__ignore_handle is not None and \
-               self.__ignore_handle in mother.get_tag_list():
+            if (
+                self.__ignore_handle is not None
+                and self.__ignore_handle in mother.get_tag_list()
+            ):
                 mother = None
 
         return (father, mother, family)
@@ -599,8 +597,11 @@ class WhatNextGramplet(Gramplet):
 
 class UnknownPersonClass:
     pass
+
+
 class UnknownFamilyClass:
     pass
+
 
 UnknownPerson = UnknownPersonClass()
 UnknownFamily = UnknownFamilyClass()

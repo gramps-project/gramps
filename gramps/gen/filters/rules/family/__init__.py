@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -40,6 +39,7 @@ from ._regexpidof import RegExpIdOf
 from ._hasnote import HasNote
 from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from ._hasnotetype import HasNoteType
 from ._hassourcecount import HasSourceCount
 from ._hassourceof import HasSourceOf
 from ._hasreferencecountof import HasReferenceCountOf
@@ -69,6 +69,7 @@ editor_rule_list = [
     HasIdOf,
     HasLDS,
     HasNote,
+    HasNoteType,
     RegExpIdOf,
     HasNoteRegexp,
     HasReferenceCountOf,

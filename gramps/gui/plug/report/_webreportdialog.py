@@ -14,24 +14,24 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ._reportdialog import ReportDialog
 from gramps.gen.plug.report import CATEGORY_WEB
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # WebReportDialog class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class WebReportDialog(ReportDialog):
     """
     The WebReportDialog base class.  This is a base class for generating
@@ -41,9 +41,8 @@ class WebReportDialog(ReportDialog):
     def __init__(self, dbstate, uistate, option_class, name, trans_name):
         """Initialize a dialog"""
         self.category = CATEGORY_WEB
-        ReportDialog.__init__(self, dbstate, uistate, option_class,
-                                  name, trans_name)
-        self.options.handler.set_format_name('html')
+        ReportDialog.__init__(self, dbstate, uistate, option_class, name, trans_name)
+        self.options.handler.set_format_name("html")
 
     def setup_init(self):
         pass

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.5.0//EN"
+"http://gramps-project.org/xml/1.5.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.5.0/">
+  <header>
+    <created date="2025-02-19" version="3.4.5-1"/>
+    <researcher>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_fd3387e53407a63a460" change="1739987424" id="E0000">
+      <type>Birth</type>
+      <dateval val="1960-12-25"/>
+      <place hlink="_fd3387e53403c805984"/>
+      <description>me birth</description>
+      <attribute type="Identification Number" value="654"/>
+      <noteref hlink="_fd3387e534075407391"/>
+      <citationref hlink="_fd3387e53e0625cd585"/>
+    </event>
+    <event handle="_fd3387e56f63639b944" change="1739987502" id="E0001">
+      <type>Marriage</type>
+      <dateval val="1959-12-25"/>
+      <place hlink="_fd3387e53403c805984"/>
+      <description>mom/dad marriage</description>
+      <noteref hlink="_fd3387e56f61784131c"/>
+    </event>
+  </events>
+  <people>
+    <person handle="_fd3387e526d6f35dcb8" change="1739987719" id="I0000">
+      <gender>M</gender>
+      <name type="birth">
+        <first>me</first>
+        <surname>test</surname>
+        <title>doc</title>
+      </name>
+      <eventref hlink="_fd3387e53407a63a460" role="Primary"/>
+      <objref hlink="_fd3387e53e024034f1e"/>
+      <address>
+        <dateval val="1972"/>
+        <street>20197 lake rd</street>
+        <city>cleveland</city>
+        <state>ohio</state>
+      </address>
+      <childof hlink="_fd3387e53e07018acad"/>
+    </person>
+    <person handle="_fd3387e551603be51ef" change="1739288927" id="I0001">
+      <gender>M</gender>
+      <name type="birth">
+        <first>dad</first>
+        <surname>test</surname>
+      </name>
+      <parentin hlink="_fd3387e53e07018acad"/>
+    </person>
+    <person handle="_fd3387e565663519d28" change="1739288927" id="I0002">
+      <gender>F</gender>
+      <name type="birth">
+        <first>mom</first>
+        <surname>hansdottr</surname>
+      </name>
+      <parentin hlink="_fd3387e53e07018acad"/>
+    </person>
+  </people>
+  <families>
+    <family handle="_fd3387e53e07018acad" change="1739288927" id="F0000">
+      <rel type="Married"/>
+      <father hlink="_fd3387e551603be51ef"/>
+      <mother hlink="_fd3387e565663519d28"/>
+      <eventref hlink="_fd3387e56f63639b944" role="Family"/>
+      <childref hlink="_fd3387e526d6f35dcb8"/>
+    </family>
+  </families>
+  <citations>
+    <citation handle="_fd3387e53e0625cd585" change="1739986031" id="C0000">
+      <dateval val="1960"/>
+      <page>55</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_fd3387e534029c509e6"/>
+    </citation>
+    <citation handle="_fd338a28378505e58fa" change="1739986457" id="C0001">
+      <dateval val="2025-02-11"/>
+      <page>1st</page>
+      <confidence>2</confidence>
+      <data_item key="Attribute?" value="765"/>
+      <sourceref hlink="_fd3387e58c21e1e4515"/>
+    </citation>
+    <citation handle="_fd338ecb1b4247fcc34" change="1739987274" id="C0002">
+      <page>vol 7</page>
+      <confidence>2</confidence>
+      <noteref hlink="_fd3393943f80662a3a1"/>
+      <data_item key="Unknown" value=""/>
+      <sourceref hlink="_fd3387e534029c509e6"/>
+    </citation>
+  </citations>
+  <sources>
+    <source handle="_fd3387e534029c509e6" change="1739987274" id="S0000">
+      <stitle>A source</stitle>
+      <sauthor>who knows</sauthor>
+      <spubinfo>pag 1</spubinfo>
+      <data_item key="UnknownSrc" value=""/>
+      <reporef hlink="_fd3387e582c616cb8a2" callno="7777" medium="Book"/>
+    </source>
+    <source handle="_fd3387e58c21e1e4515" change="1739987128" id="S0001">
+      <stitle>Gramps</stitle>
+      <sauthor>the team</sauthor>
+      <noteref hlink="_fd3387e58c2554a011c"/>
+      <reporef hlink="_fd3387e58c201bd3c6a" callno="987" medium="Photo"/>
+    </source>
+  </sources>
+  <places>
+    <placeobj handle="_fd3387e53403c805984" change="1739987031" id="P0000">
+      <ptitle>A good place</ptitle>
+      <location city="a better place"/>
+      <noteref hlink="_fd3391660223883d400"/>
+    </placeobj>
+    <placeobj handle="_fd338eda4ac51eb2d06" change="1739986976" id="P0001">
+      <ptitle>a better place</ptitle>
+      <location country="USA"/>
+      <noteref hlink="_fd3390e0b481affd401"/>
+      <citationref hlink="_fd338ecb1b4247fcc34"/>
+    </placeobj>
+  </places>
+  <objects>
+    <object handle="_fd3387e53e024034f1e" change="1739986274" id="O0000">
+      <file src="C:/Program Files (x86)/GrampsAIO32-4.1.3/share/gramps/images/splash.jpg" mime="image/pjpeg" description="C:\Program Files (x86)\GrampsAIO32-4.1.3\share\gramps\images\splash.jpg"/>
+      <noteref hlink="_fd3387e5a3e131983f0"/>
+      <noteref hlink="_fd3387e5b7e7a956afe"/>
+      <citationref hlink="_fd338a28378505e58fa"/>
+    </object>
+  </objects>
+  <repositories>
+    <repository handle="_fd3387e582c616cb8a2" change="1739986032" id="R0000">
+      <rname>town lib</rname>
+      <type>Library</type>
+    </repository>
+    <repository handle="_fd3387e58c201bd3c6a" change="1739987126" id="R0001">
+      <rname>Gramps installation</rname>
+      <type>Collection</type>
+    </repository>
+  </repositories>
+  <notes>
+    <note handle="_fd3387e534075407391" change="1739986032" id="N0002" type="General">
+      <text>event ref note</text>
+    </note>
+    <note handle="_fd3387e56f61784131c" change="1739986032" id="N0003" type="General">
+      <text>Event note</text>
+    </note>
+    <note handle="_fd3387e58c2554a011c" change="1739986032" id="N0004" type="General">
+      <text>media note, from gramps installation</text>
+    </note>
+    <note handle="_fd3387e59a85abf523d" change="1739986032" id="N0001" type="General">
+      <text>place note italics</text>
+    </note>
+    <note handle="_fd3387e59a8614bfc10" change="1739986032" id="N0000" type="General">
+      <text>Source note</text>
+    </note>
+    <note handle="_fd3387e5a3e131983f0" change="1739986032" id="N0006" type="General">
+      <text>media note</text>
+    </note>
+    <note handle="_fd3387e5a3e554f45bd" change="1739986032" id="N0005" type="General">
+      <text>media attribute note</text>
+    </note>
+    <note handle="_fd3387e5b7e7a956afe" change="1739986032" id="N0007" type="GEDCOM import">
+      <text>Records not imported into OBJE (multi-media object) Gramps ID O0000:
+
+Skipped subordinate line                                            Line   102: 2 TITL splash
+Line ignored as not understood                                      Line   104: 1 SOUR @S0001@
+Skipped subordinate line                                            Line   105: 2 PAGE 1st
+Skipped subordinate line                                            Line   106: 2 DATA 
+Skipped subordinate line                                            Line   107: 3 DATE 2025-02-11</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="536"/>
+      </style>
+    </note>
+    <note handle="_fd3390e0b481affd401" change="1739986973" id="N0009" type="Place Note">
+      <text>Place Note italics</text>
+      <style name="italic">
+        <range start="10" end="18"/>
+      </style>
+    </note>
+    <note handle="_fd3391660223883d400" change="1739987028" id="N0010" type="Place Note">
+      <text>No spot for alt name</text>
+    </note>
+    <note handle="_fd3393943f80662a3a1" change="1739987257" id="N0011" type="Citation">
+      <text>Source note</text>
+    </note>
+  </notes>
+</database>

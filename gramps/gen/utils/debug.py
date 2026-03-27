@@ -15,26 +15,25 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Debugging utilities
 """
+
 import cProfile
 import pstats
 import sys
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Debugging utilities
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def profile(func, *args, **kwargs):
-
     prf = cProfile.Profile()
     print("Start")
     r = prf.runcall(func, *args, **kwargs)
@@ -43,10 +42,11 @@ def profile(func, *args, **kwargs):
     stats = pstats.Stats(prf, stream=sys.stdout)
     print("done")
     stats.strip_dirs()
-    stats.sort_stats('time', 'calls')
+    stats.sort_stats("time", "calls")
     stats.print_stats(100)
     stats.print_callers(100)
     return r
+
 
 def format_exception(tb_type=None, tb_value=None, tb=None):
     """
@@ -57,6 +57,7 @@ def format_exception(tb_type=None, tb_value=None, tb=None):
     """
     import sys
     import traceback
+
     if tb_type is None:
         tb_type = sys.exc_type
     if tb_value is None:
@@ -74,15 +75,16 @@ def format_exception(tb_type=None, tb_value=None, tb=None):
     stack.reverse()
     retval.append("Local variables (most recent frame last):\n")
     for frame in stack:
-        retval.append(" Frame %s, File \"%s\", line %s:\n" % (frame.f_code.co_name,
-                                                              frame.f_code.co_filename,
-                                                              frame.f_lineno))
+        retval.append(
+            ' Frame %s, File "%s", line %s:\n'
+            % (frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)
+        )
         for key, value in frame.f_locals.items():
             if key.startswith("__"):
                 continue
-            #We have to be careful not to cause a new error in our error
-            #handler! Calling str() on an unknown object could cause an
-            #error we don't want.
+            # We have to be careful not to cause a new error in our error
+            # handler! Calling str() on an unknown object could cause an
+            # error we don't want.
             try:
                 line = "  %s = %s\n" % (key, str(value))
             except:

@@ -13,60 +13,66 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # "Objects with a certain reference count"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasReferenceCountBase(Rule):
     """Objects with a reference count of <count>."""
 
-    labels = [ _('Reference count must be:'), _('Reference count:')]
-    name = 'Objects with a reference count of <count>'
+    labels = [_("Reference count must be:"), _("Reference count:")]
+    name = "Objects with a reference count of <count>"
     description = "Matches objects with a certain reference count"
-    category = _('General filters')
+    category = _("General filters")
 
-
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         # things we want to do just once, not for every handle
-        if  self.list[0] == 'less than':
+        if self.list[0] == "less than":
             self.count_type = 0
-        elif self.list[0] == 'greater than':
+        elif self.list[0] == "greater than":
             self.count_type = 2
         else:
-            self.count_type = 1 # "equal to"
+            self.count_type = 1  # "equal to"
 
         self.userSelectedCount = int(self.list[1])
 
-
-    def apply(self, db, obj):
-        handle = obj.get_handle()
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
+        handle = obj.handle
         count = 0
         for item in db.find_backlink_handles(handle):
             count += 1
 
-        if self.count_type == 0:     # "less than"
+        if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
-        elif self.count_type == 2:   # "greater than"
+        elif self.count_type == 2:  # "greater than"
             return count > self.userSelectedCount
         # "equal to"
         return count == self.userSelectedCount
-

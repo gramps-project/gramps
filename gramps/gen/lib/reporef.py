@@ -16,34 +16,35 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Repository Reference class for Gramps
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .notebase import NoteBase
-from .refbase import RefBase
-from .srcmediatype import SourceMediaType
-from .const import IDENTICAL, EQUAL, DIFFERENT
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .notebase import NoteBase
+from .privacybase import PrivacyBase
+from .refbase import RefBase
+from .secondaryobj import SecondaryObject
+from .srcmediatype import SourceMediaType
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Repository Reference for Sources
+# RepoRef
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
     """
     Repository reference class.
@@ -67,15 +68,16 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         return (
             NoteBase.serialize(self),
             RefBase.serialize(self),
-            self.call_number, self.media_type.serialize(),
+            self.call_number,
+            self.media_type.serialize(),
             PrivacyBase.serialize(self),
-            )
+        )
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (note_list, ref, self.call_number, media_type, privacy) = data
+        note_list, ref, self.call_number, media_type, privacy = data
         self.media_type = SourceMediaType()
         self.media_type.unserialize(media_type)
         PrivacyBase.unserialize(self, privacy)
@@ -96,19 +98,20 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
             "title": _("Repository ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "note_list": {"type": "array",
-                              "title": _("Notes"),
-                              "items": {"type": "string",
-                                        "maxLength": 50}},
-                "ref": {"type": "string",
-                        "title": _("Handle"),
-                        "maxLength": 50},
-                "call_number": {"type": "string",
-                                "title": _("Call Number")},
+                "note_list": {
+                    "type": "array",
+                    "title": _("Notes"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "ref": {
+                    "type": "string",
+                    "title": _("Handle"),
+                    "maxLength": 50,
+                },
+                "call_number": {"type": "string", "title": _("Call Number")},
                 "media_type": SourceMediaType.get_schema(),
-                "private": {"type": "boolean",
-                            "title": _("Private")}
-            }
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def get_text_data_list(self):
@@ -130,7 +133,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         """
         ret = self.get_referenced_note_handles()
         if self.ref:
-            ret += [('Repository', self.ref)]
+            ret += [("Repository", self.ref)]
         return ret
 
     def is_equivalent(self, other):
@@ -143,14 +146,14 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
-        if self.ref != other.ref or \
-            self.get_text_data_list() != other.get_text_data_list():
+        if (
+            self.ref != other.ref
+            or self.get_text_data_list() != other.get_text_data_list()
+        ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
@@ -164,13 +167,25 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         self._merge_note_list(acquisition)
 
     def set_call_number(self, number):
+        """
+        Set the call number.
+        """
         self.call_number = number
 
     def get_call_number(self):
+        """
+        Get the call number.
+        """
         return self.call_number
 
     def get_media_type(self):
+        """
+        Get the media type.
+        """
         return self.media_type
 
     def set_media_type(self, media_type):
+        """
+        Set the media type.
+        """
         self.media_type.set(media_type)

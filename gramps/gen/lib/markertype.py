@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -25,15 +24,22 @@ From version 3.3 onwards, this is only kept to convert markers into tags
 when loading old database files.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
+
+# -------------------------------------------------------------------------
+#
+# MarkerType
+#
+# -------------------------------------------------------------------------
 class MarkerType(GrampsType):
     """
     Class for handling data markers.
@@ -52,7 +58,7 @@ class MarkerType(GrampsType):
         (CUSTOM, _("Custom"), "Custom"),
         (COMPLETE, _("Complete"), "Complete"),
         (TODO_TYPE, _("ToDo"), "ToDo"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

@@ -13,26 +13,25 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 import unittest
 from ..treebasemodel import Node, NodeMap
 
-class NodeTest(unittest.TestCase):
 
+class NodeTest(unittest.TestCase):
     def test_addremovechildren(self):
-        n = Node('1', '', 'key_to_sort_on', None, None)
+        n = Node("1", "", "key_to_sort_on", None, None)
         nm = NodeMap()
         nm.add_node(n)
 
-        n2 = Node('2', '', 'key_to_sort_on2', None, None)
+        n2 = Node("2", "", "key_to_sort_on2", None, None)
         n.add_child(n2, nm)
         nm.add_node(n2)
 
-        n3 = Node('2', '', '', None, None)
+        n3 = Node("2", "", "", None, None)
         n.add_child(n3, nm)
         nm.add_node(n3)
 

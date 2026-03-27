@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,46 +15,55 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".gui.notemodel")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .flatbasemodel import FlatBaseModel
-from gramps.gen.lib import (Note, NoteType, StyledText)
+from gramps.gen.lib import Note, NoteType, StyledText
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # NoteModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class NoteModel(FlatBaseModel):
-    """
-    """
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+    """ """
+
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         """Setup initial values for instance variables."""
         self.gen_cursor = db.get_note_cursor
         self.map = db.get_raw_note_data
@@ -64,7 +74,7 @@ class NoteModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_tag_color
+            self.column_tag_color,
         ]
         self.smap = [
             self.column_preview,
@@ -73,10 +83,11 @@ class NoteModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_tag_color
+            self.column_tag_color,
         ]
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -93,6 +104,7 @@ class NoteModel(FlatBaseModel):
         """
         Return the color column.
         """
+        # This is for model.get_value() arg
         return 6
 
     def on_get_n_columns(self):
@@ -101,35 +113,28 @@ class NoteModel(FlatBaseModel):
 
     def column_id(self, data):
         """Return the id of the Note."""
-        return data[Note.POS_ID]
+        return data.gramps_id
 
     def column_type(self, data):
         """Return the type of the Note in readable format."""
-        temp = NoteType()
-        temp.set(data[Note.POS_TYPE])
-        return str(temp)
+        return NoteType.get_str(data.type)
 
     def column_preview(self, data):
         """Return a shortend version of the Note's text."""
-        note = data[Note.POS_TEXT][StyledText.POS_TEXT]
-        note = " ".join(note.split())
-        if len(note) > 80:
-            return note[:80] + "..."
-        else:
-            return note
+        return data.get_preview()
 
     def column_private(self, data):
-        if data[Note.POS_PRIVATE]:
-            return 'gramps-lock'
+        if data.private:
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
     def sort_change(self, data):
-        return "%012x" % data[Note.POS_CHANGE]
+        return "%012x" % data.change
 
-    def column_change(self,data):
-        return format_time(data[Note.POS_CHANGE])
+    def column_change(self, data):
+        return format_time(data.change)
 
     def get_tag_name(self, tag_handle):
         """
@@ -145,12 +150,12 @@ class NoteModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data.handle
         cached, value = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[Note.POS_TAGS]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 if tag:
                     this_priority = tag.get_priority()
@@ -165,6 +170,6 @@ class NoteModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[Note.POS_TAGS]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))

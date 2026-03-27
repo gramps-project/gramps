@@ -16,31 +16,32 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasnotebase import HasNoteBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "Events having notes"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasNote(HasNoteBase):
     """Events having notes"""
 
-    name = _('Events having <count> notes')
+    name = _("Events having <count> notes")
     description = _("Matches events having a certain number of notes")

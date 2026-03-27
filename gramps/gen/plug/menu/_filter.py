@@ -14,32 +14,33 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Option class representing a list of filters.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import EnumeratedListOption
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # FilterOption class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class FilterOption(EnumeratedListOption):
     """
     This class describes an option that provides a list of person filters.
     Each possible value represents one of the possible filters.
     """
+
     def __init__(self, label, value):
         """
         :param label: A friendly label to be applied to this option.
@@ -62,12 +63,11 @@ class FilterOption(EnumeratedListOption):
         :return: nothing
         """
         curval = self.get_value()
-        items = [(value, filt.get_name())
-                    for value, filt in enumerate(filter_list)]
+        items = [(value, filt.get_name()) for value, filt in enumerate(filter_list)]
 
         self.__filters = filter_list
         self.clear()
-        self.set_items( items )
+        self.set_items(items)
 
         self.set_value(curval)
 

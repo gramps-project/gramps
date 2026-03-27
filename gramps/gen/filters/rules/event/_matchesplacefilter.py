@@ -13,31 +13,40 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._matchesfilterbase import MatchesFilterBase
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Event
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # MatchesFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesPlaceFilter(MatchesFilterBase):
     """
     Rule that checks against another filter.
@@ -46,18 +55,21 @@ class MatchesPlaceFilter(MatchesFilterBase):
     Subclasses need to define the namespace class attribute.
     """
 
-    labels = [_('Place filter name:')]
-    name = _('Events of places matching the <place filter>')
-    description = _("Matches events that occurred at places that match the "
-                    "specified place filter name")
-    category = _('General filters')
+    labels = [_("Place filter name:")]
+    name = _("Events of places matching the <place filter>")
+    description = _(
+        "Matches events that occurred at places that match the "
+        "specified place filter name"
+    )
+    category = _("General filters")
     # we want to have this filter show place filters
-    namespace = 'Place'
+    namespace = "Place"
 
-    def apply(self, db, event):
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
-            handle = event.get_place_handle()
-            if handle and filt.check(db, handle):
-                return True
+            if event and event.place:
+                place = db.get_place_from_handle(event.place)
+                if filt.apply_to_one(db, place):
+                    return True
         return False

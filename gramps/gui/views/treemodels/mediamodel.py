@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,46 +15,56 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, Media
+from gramps.gen.lib.json_utils import data_to_object
 from .flatbasemodel import FlatBaseModel
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # MediaModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MediaModel(FlatBaseModel):
-
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         self.gen_cursor = db.get_media_cursor
         self.map = db.get_raw_media_data
 
@@ -67,7 +78,7 @@ class MediaModel(FlatBaseModel):
             self.column_tags,
             self.column_change,
             self.column_tag_color,
-            ]
+        ]
 
         self.smap = [
             self.column_description,
@@ -79,9 +90,10 @@ class MediaModel(FlatBaseModel):
             self.column_tags,
             self.sort_change,
             self.column_tag_color,
-            ]
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+        ]
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -98,61 +110,60 @@ class MediaModel(FlatBaseModel):
         """
         Return the color column.
         """
+        # For model.get_value() arg
         return 8
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        return len(self.fmap) + 1
 
     def column_description(self, data):
-        return data[4]
+        return data.desc
 
     def column_path(self, data):
-        return data[2]
+        return data.path
 
     def column_mime(self, data):
-        mime = data[3]
+        mime = data.mime
         if mime:
             return mime
         else:
-            return _('Note')
+            return _("Note")
 
-    def column_id(self,data):
-        return data[1]
+    def column_id(self, data):
+        return data.gramps_id
 
-    def column_date(self,data):
-        if data[10]:
-            date = Date()
-            date.unserialize(data[10])
+    def column_date(self, data):
+        if data.date:
+            date = data_to_object(data.date)
             return displayer.display(date)
-        return ''
+        return ""
 
-    def sort_date(self,data):
-        obj = Media()
-        obj.unserialize(data)
+    def sort_date(self, data):
+        obj = data_to_object(data)
         d = obj.get_date_object()
         if d:
             return "%09d" % d.get_sort_value()
         else:
-            return ''
+            return ""
 
-    def column_handle(self,data):
-        return str(data[0])
+    def column_handle(self, data):
+        return str(data.handle)
 
     def column_private(self, data):
-        if data[12]:
-            return 'gramps-lock'
+        if data.private:
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
-    def sort_change(self,data):
-        return "%012x" % data[9]
+    def sort_change(self, data):
+        return "%012x" % data.change
 
-    def column_change(self,data):
-        return format_time(data[9])
+    def column_change(self, data):
+        return format_time(data.change)
 
-    def column_tooltip(self,data):
-        return 'Media tooltip'
+    def column_tooltip(self, data):
+        return "Media tooltip"
 
     def get_tag_name(self, tag_handle):
         """
@@ -168,12 +179,12 @@ class MediaModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data.handle
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[11]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -186,6 +197,6 @@ class MediaModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[11]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))

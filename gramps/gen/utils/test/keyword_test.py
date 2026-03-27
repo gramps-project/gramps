@@ -13,20 +13,22 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Unittest for testing ... """
+"""Unittest for testing ..."""
 
 import unittest
 
-from ..keyword import (KEYWORDS, get_translation_from_keyword,
-                       get_keyword_from_translation)
+from ..keyword import (
+    KEYWORDS,
+    get_translation_from_keyword,
+    get_keyword_from_translation,
+)
+
 
 class TestCase(unittest.TestCase):
-
     def keyword_case(self, item1, item2):
         result = get_translation_from_keyword(item1)
         self.assertEqual(result, item2)

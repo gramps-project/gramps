@@ -15,57 +15,66 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # gen.filters.rules/_HasLDSBase.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 from . import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.ldsordbase import LdsOrdBase
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasLDSBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasLDSBase(Rule):
     """Rule that checks for object with a LDS event"""
 
-    labels = [  _('Number of instances:'), _('Number must be:')]
-    name = 'Objects with LDS events'
+    labels = [_("Number of instances:"), _("Number must be:")]
+    name = "Objects with LDS events"
     description = "Matches objects with LDS events"
-    category = _('General filters')
+    category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         # things we want to do just once, not for every handle
-        if  self.list[1] == 'less than':
+        if self.list[1] == "less than":
             self.count_type = 0
-        elif self.list[1] == 'greater than':
+        elif self.list[1] == "greater than":
             self.count_type = 2
         else:
-            self.count_type = 1 # "equal to"
+            self.count_type = 1  # "equal to"
 
         self.userSelectedCount = int(self.list[0])
 
-    def apply(self, db, obj):
-        count = len( obj.get_lds_ord_list())
-        if self.count_type == 0:     # "less than"
+    def apply_to_one(self, db: Database, obj: LdsOrdBase) -> bool:
+        count = len(obj.lds_ord_list)
+        if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
-        elif self.count_type == 2:   # "greater than"
+        elif self.count_type == 2:  # "greater than"
             return count > self.userSelectedCount
         # "equal to"
         return count == self.userSelectedCount

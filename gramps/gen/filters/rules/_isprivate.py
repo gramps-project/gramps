@@ -13,33 +13,42 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # "People marked private"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsPrivate(Rule):
     """Objects marked private."""
 
-    name = 'Objects marked private'
+    name = "Objects marked private"
     description = "Matches objects that are indicated as private"
-    category = _('General filters')
+    category = _("General filters")
 
-    def apply(self, db, obj):
-        return obj.get_privacy()
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
+        return obj.private

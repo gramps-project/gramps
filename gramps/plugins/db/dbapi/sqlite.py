@@ -14,69 +14,74 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Backend for SQLite database.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# standard python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
-import sqlite3
+# -------------------------------------------------------------------------
+import logging
 import os
 import re
-import logging
+import sqlite3
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from gramps.plugins.db.dbapi.dbapi import DBAPI
-from gramps.gen.db.dbconst import ARRAYSIZE
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.db.dbconst import ARRAYSIZE
+from gramps.plugins.db.dbapi.dbapi import DBAPI
+
 _ = glocale.translation.gettext
 
-sqlite3.paramstyle = 'qmark'
+sqlite3.paramstyle = "qmark"  # type: ignore[misc]
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SQLite class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SQLite(DBAPI):
+    """
+    SQLite interface.
+    """
 
     def get_summary(self):
         """
         Return a dictionary of information about this database backend.
         """
         summary = super().get_summary()
-        summary.update({
-            _("Database version"): sqlite3.sqlite_version,
-            _("Database module version"): sqlite3.version,
-            _("Database module location"): sqlite3.__file__,
-        })
+        summary.update(
+            {
+                _("Database version"): sqlite3.sqlite_version,
+                _("Database module location"): sqlite3.__file__,
+            }
+        )
         return summary
 
     def _initialize(self, directory, username, password):
-        if directory == ':memory:':
-            path_to_db = ':memory:'
+        if directory == ":memory:":
+            path_to_db = ":memory:"
         else:
-            path_to_db = os.path.join(directory, 'sqlite.db')
+            path_to_db = os.path.join(directory, "sqlite.db")
         self.dbapi = Connection(path_to_db)
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Connection class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Connection:
     """
     The Sqlite class is an interface between the DBAPI class which is the Gramps
@@ -101,6 +106,7 @@ class Connection:
         self.__cursor = self.__connection.cursor()
         self.__connection.create_function("regexp", 2, regexp)
         self.__collations = []
+        self.__tmap = str.maketrans("-.@=;", "_____")
         self.check_collation(glocale)
 
     def check_collation(self, locale):
@@ -110,9 +116,14 @@ class Connection:
         :param locale: Locale to be checked.
         :param type: A GrampsLocale object.
         """
-        collation = locale.get_collation()
+        # PySQlite3 permits only ascii alphanumerics and underscores in
+        # collation names so first translate any old-style Unicode locale
+        # delimiters to underscores.
+        collation = locale.get_collation().translate(self.__tmap)
         if collation not in self.__collations:
             self.__connection.create_collation(collation, locale.strcoll)
+            self.__collations.append(collation)
+        return collation
 
     def execute(self, *args, **kwargs):
         """
@@ -171,10 +182,36 @@ class Connection:
         :returns: True if the table exists, false otherwise.
         :rtype: bool
         """
-        self.execute("SELECT COUNT(*) "
-                     "FROM sqlite_master "
-                     "WHERE type='table' AND name='%s';" % table)
+        self.execute(
+            "SELECT COUNT(*) "
+            "FROM sqlite_master "
+            f"WHERE type='table' AND name='{table}';"
+        )
         return self.fetchone()[0] != 0
+
+    def column_exists(self, table, column):
+        """
+        Test whether the specified SQL column exists in the specified table.
+
+        :param table: table name to check.
+        :type table: str
+        :param column: column name to check.
+        :type column: str
+        :returns: True if the column exists, False otherwise.
+        :rtype: bool
+        """
+        self.execute(
+            "SELECT COUNT(*) "
+            f"FROM pragma_table_info('{table}') "
+            f"WHERE name = '{column}'"
+        )
+        return self.fetchone()[0] != 0
+
+    def drop_column(self, table_name, column_name):
+        # DROP COLUMN is available with Sqlite v 3.35.0, released 2021-03-12
+        db_ver = sqlite3.sqlite_version.split(".")
+        if int(db_ver[0]) == 3 and int(db_ver[1]) >= 35:
+            self.execute(f"ALTER TABLE {table_name} DROP COLUMN {column_name};")
 
     def close(self):
         """
@@ -190,12 +227,16 @@ class Connection:
         return Cursor(self.__connection)
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Cursor class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Cursor:
+    """
+    Exposes access to a SQLite cursor as an iterator
+    """
+
     def __init__(self, connection):
         self.__connection = connection
 

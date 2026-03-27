@@ -16,43 +16,54 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # gen.filters.rules/_MatchesSourceConfidenceBase.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.citationbase import CitationBase
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # "Confidence level"
 # Sources of an attribute of an event are ignored
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesSourceConfidenceBase(Rule):
     """Objects with a specific confidence level on 'direct' Source references"""
 
-    labels = ['Confidence level:']
-    name = 'Object with at least one direct source >= <confidence level>'
-    description = "Matches objects with at least one direct source with confidence level(s)"
-    category = _('Citation/source filters')
+    labels = ["Confidence level:"]
+    name = "Object with at least one direct source >= <confidence level>"
+    description = (
+        "Matches objects with at least one direct source with confidence level(s)"
+    )
+    category = _("Citation/source filters")
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: CitationBase) -> bool:
         required_conf = int(self.list[0])
-        for citation_handle in obj.get_citation_list():
+        for citation_handle in obj.citation_list:
             citation = db.get_citation_from_handle(citation_handle)
-            if required_conf <= citation.get_confidence_level():
+            if required_conf <= citation.confidence:
                 return True
         return False

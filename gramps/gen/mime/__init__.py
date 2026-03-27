@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # gen/mime/__init__.py
 
@@ -24,16 +23,21 @@ try:
 except:
     from ._pythonmime import get_description, get_type, mime_type_is_defined
 
+
 def base_type(val):
-    return val.split('/')[0]
+    return val.split("/")[0]
+
 
 def is_image_type(val):
     return base_type(val) == "image"
 
+
 def is_directory(val):
     return base_type(val) == "x-directory"
 
-_invalid_mime_types = ('x-directory','x-special')
+
+_invalid_mime_types = ("x-directory", "x-special")
+
 
 def is_valid_type(val):
     return base_type(val) not in _invalid_mime_types

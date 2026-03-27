@@ -14,28 +14,28 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 MediaBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from .const import DIFFERENT, EQUAL, IDENTICAL
 from .mediaref import MediaRef
-from .const import IDENTICAL, EQUAL, DIFFERENT
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# MediaBase class
+# MediaBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MediaBase:
     """
     Base class for storing media references.
@@ -109,7 +109,7 @@ class MediaBase:
                 equi = obj.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     obj.merge(addendum)
                     break
             else:
@@ -135,8 +135,11 @@ class MediaBase:
         :param obj_handle_list: The list of media handles to be removed.
         :type obj_handle_list: list
         """
-        new_media_list = [media_ref for media_ref in self.media_list
-                          if media_ref.ref not in obj_handle_list]
+        new_media_list = [
+            media_ref
+            for media_ref in self.media_list
+            if media_ref.ref not in obj_handle_list
+        ]
         self.media_list = new_media_list
 
     def replace_media_references(self, old_handle, new_handle):
@@ -154,7 +157,7 @@ class MediaBase:
         if new_handle in refs_list:
             new_ref = self.media_list[refs_list.index(new_handle)]
         n_replace = refs_list.count(old_handle)
-        for ix_replace in range(n_replace):
+        for _ in range(n_replace):
             idx = refs_list.index(old_handle)
             self.media_list[idx].ref = new_handle
             refs_list[idx] = new_handle

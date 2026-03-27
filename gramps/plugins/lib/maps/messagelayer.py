@@ -15,63 +15,61 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+import logging
 from gi.repository import GObject
 
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
-import logging
-_LOG = logging.getLogger("maps.messagelayer")
-
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Pango, PangoCairo
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # osmGpsMap
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 try:
     import gi
-    gi.require_version('OsmGpsMap', '1.0')
+
+    gi.require_version("OsmGpsMap", "1.0")
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-# pylint: disable=unused-variable
-# pylint: disable=unused-argument
-# pylint: disable=no-member
+# ------------------------------------------------------------------------
+#
+# Set up logging
+#
+# ------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.messagelayer")
+
 
 class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This is the layer used to display messages over the map
     """
+
     def __init__(self):
         """
         Initialize the layer
@@ -79,7 +77,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         GObject.GObject.__init__(self)
         self.message = ""
         self.color = "black"
-        self.font = config.get('utf8.selected-font')
+        self.font = config.get("utf8.selected-font")
         self.size = 13
 
     def clear_messages(self):
@@ -93,7 +91,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         reset the font attributes.
         """
         self.color = "black"
-        self.font = config.get('utf8.selected-font')
+        self.font = config.get("utf8.selected-font")
         self.size = 13
 
     def set_font_attributes(self, font, size, color):
@@ -105,7 +103,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         if font is not None:
             self.font = font
         else:
-            self.font = config.get('utf8.selected-font')
+            self.font = config.get("utf8.selected-font")
         if size is not None:
             self.size = size
 
@@ -113,22 +111,20 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Add a message
         """
-        self.message += "\n%s" % message if self.message is not "" else message
+        self.message += "\n%s" % message if self.message else message
 
     def do_draw(self, gpsmap, ctx):
         """
         Draw all the messages
         """
         ctx.save()
-        font_size = "%s %d" % (self.font, self.size)
-        font = Pango.FontDescription(font_size)
+        # font_size = "%s %d" % (self.font, self.size)
+        # font = Pango.FontDescription(font_size)
         descr = Pango.font_description_from_string(self.font)
         descr.set_size(self.size * Pango.SCALE)
-        color = Gdk.color_parse(self.color)
-        ctx.set_source_rgba(float(color.red / 65535.0),
-                            float(color.green / 65535.0),
-                            float(color.blue / 65535.0),
-                            0.9) # transparency
+        rgba = Gdk.RGBA()
+        rgba.parse(self.color)
+        ctx.set_source_rgba(rgba.red, rgba.green, rgba.blue, 0.9)
         d_width = gpsmap.get_allocation().width
         d_width -= 100
         ctx.restore()
@@ -152,7 +148,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         render the layer
         """
-        pass
+        dummy_map = gpsmap
 
     def do_busy(self):
         """
@@ -164,7 +160,9 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         When we press a button.
         """
+        dummy_map = gpsmap
+        dummy_evt = gdkeventbutton
         return False
 
-GObject.type_register(MessageLayer)
 
+GObject.type_register(MessageLayer)

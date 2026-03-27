@@ -13,61 +13,64 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "ShortlistComboEntry class."
 
 __all__ = ["ShortlistComboEntry"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".widgets.shortlistcomboentry")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .validatedcomboentry import ValidatedComboEntry
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 _GTYPE = {
     str: GObject.TYPE_STRING,
     int: GObject.TYPE_INT64,
     float: GObject.TYPE_FLOAT,
-    }
+}
 
-(COLUMN_ITEM,
- COLUMN_IS_SEP,) = list(range(2))
+(
+    COLUMN_ITEM,
+    COLUMN_IS_SEP,
+) = list(range(2))
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ShortlistComboEntry class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ShortlistComboEntry(ValidatedComboEntry):
-    """A ComboboxEntry class with optional shortlist.
-    """
+    """A ComboboxEntry class with optional shortlist."""
+
     __gtype_name__ = "ShortlistComboEntry"
 
     def __init__(self):
@@ -88,13 +91,14 @@ class ShortlistComboEntry(ValidatedComboEntry):
                 maxlen = len(str(item))
             model.append((item, False))
 
-        width = -1 #default width
+        width = -1  # default width
         if 1 < maxlen < 4:
             width = 4
         elif 1 < maxlen < 10:
             width = maxlen + 1
-        ValidatedComboEntry.__init__(self, data_type, model,
-                                     COLUMN_ITEM, validator, width=width)
+        ValidatedComboEntry.__init__(
+            self, data_type, model, COLUMN_ITEM, validator, width=width
+        )
         if shortlist:
             self._shortlist = []
             self.connect("changed", self._on_combobox_changed)
@@ -114,7 +118,7 @@ class ShortlistComboEntry(ValidatedComboEntry):
 
             # remove the existing shortlist from the model
             iter = model.get_iter_first()
-            for n in range(len(self._shortlist)):
+            for n in self._shortlist:
                 model.remove(iter)
 
             # update shortlist

@@ -12,31 +12,32 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
 from gramps.gen.utils.file import media_path_full
+
 
 class MediaPreview(Gramplet):
     """
     Displays a preview of the media object.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -53,11 +54,11 @@ class MediaPreview(Gramplet):
         return self.top
 
     def db_changed(self):
-        self.connect(self.dbstate.db, 'media-update', self.update)
-        self.connect_signal('Media', self.update)
+        self.connect(self.dbstate.db, "media-update", self.update)
+        self.connect_signal("Media", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active('Media')
+        active_handle = self.get_active("Media")
         if active_handle:
             active_media = self.dbstate.db.get_media_from_handle(active_handle)
             self.set_has_data(active_media is not None)
@@ -65,7 +66,7 @@ class MediaPreview(Gramplet):
             self.set_has_data(False)
 
     def main(self):
-        active_handle = self.get_active('Media')
+        active_handle = self.get_active("Media")
         if active_handle:
             media = self.dbstate.db.get_media_from_handle(active_handle)
             self.top.hide()

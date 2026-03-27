@@ -16,42 +16,40 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Provide the base for a list person view.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".gui.personview")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Person, Surname
-from gramps.gen.db import DbTxn
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.uimanager import ActionGroup
-from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
+from gramps.gui.dialog import ErrorDialog
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.config import config
@@ -61,23 +59,26 @@ from gramps.gui.filters.sidebar import PersonSidebarFilter
 from gramps.gui.merge import MergePerson
 from gramps.gen.plug import CATEGORY_QR_PERSON
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PersonView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class BasePersonView(ListView):
     """
     Base view for PersonView listviews ListView, a treeview
     """
+
     COL_NAME = 0
     COL_ID = 1
     COL_GEN = 2
@@ -95,32 +96,50 @@ class BasePersonView(ListView):
     COL_CHAN = 14
     # column definitions
     COLUMNS = [
-        (_('Name'), TEXT, None),
-        (_('ID'), TEXT, None),
-        (_('Gender'), TEXT, None),
-        (_('Birth Date'), MARKUP, None),
-        (_('Birth Place'), MARKUP, None),
-        (_('Death Date'), MARKUP, None),
-        (_('Death Place'), MARKUP, None),
-        (_('Spouse'), TEXT, None),
-        (_('Number of Parents'), TEXT, 'gramps-parents'),
-        (_('Number of Marriages'), TEXT, 'gramps-family'),
-        (_('Number of Children'), TEXT, 'gramps-relation'),
-        (_('Number of To Do Notes'), TEXT, 'gramps-notes'),
-        (_('Private'), ICON, 'gramps-lock'),
-        (_('Tags'), TEXT, None),
-        (_('Last Changed'), TEXT, None),
-        ]
+        (_("Name"), TEXT, None),
+        (_("ID"), TEXT, None),
+        (_("Gender"), TEXT, None),
+        (_("Birth Date"), MARKUP, None),
+        (_("Birth Place"), MARKUP, None),
+        (_("Death Date"), MARKUP, None),
+        (_("Death Place"), MARKUP, None),
+        (_("Spouse"), TEXT, None),
+        (_("Number of Parents"), TEXT, "gramps-parents"),
+        (_("Number of Marriages"), TEXT, "gramps-family"),
+        (_("Number of Children"), TEXT, "gramps-relation"),
+        (_("Number of To Do Notes"), TEXT, "gramps-notes"),
+        (_("Private"), ICON, "gramps-lock"),
+        (_("Tags"), TEXT, None),
+        (_("Last Changed"), TEXT, None),
+    ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_DDAT]),
-        ('columns.rank', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_BPLAC,
-                           COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_PARENTS,
-                           COL_MARRIAGES, COL_CHILDREN, COL_TODO, COL_PRIV,
-                           COL_TAGS, COL_CHAN]),
-        ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 30, 30, 30, 30,
-                          30, 100, 100])
-        )
+        ("columns.visible", [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_DDAT]),
+        (
+            "columns.rank",
+            [
+                COL_NAME,
+                COL_ID,
+                COL_GEN,
+                COL_BDAT,
+                COL_BPLAC,
+                COL_DDAT,
+                COL_DPLAC,
+                COL_SPOUSE,
+                COL_PARENTS,
+                COL_MARRIAGES,
+                COL_CHILDREN,
+                COL_TODO,
+                COL_PRIV,
+                COL_TAGS,
+                COL_CHAN,
+            ],
+        ),
+        (
+            "columns.size",
+            [250, 75, 75, 100, 175, 100, 175, 100, 30, 30, 30, 30, 30, 100, 100],
+        ),
+    )
     ADD_MSG = _("Add a new person")
     EDIT_MSG = _("Edit the selected person")
     DEL_MSG = _("Delete the selected person")
@@ -133,27 +152,34 @@ class BasePersonView(ListView):
         Create the Person View
         """
         signal_map = {
-            'person-add'     : self.row_add,
-            'person-update'  : self.row_update,
-            'person-delete'  : self.row_delete,
-            'person-rebuild' : self.object_build,
-            'person-groupname-rebuild' : self.object_build,
-            'no-database': self.no_database,
-            'family-update'  : self.related_update,
-            'family-add'     : self.related_update,
-            'event-update'   : self.related_update,
-            'place-update'   : self.related_update,
-            }
+            "person-add": self.row_add,
+            "person-update": self.row_update,
+            "person-delete": self.row_delete,
+            "person-rebuild": self.object_build,
+            "person-groupname-rebuild": self.object_build,
+            "no-database": self.no_database,
+            "family-update": self.related_update,
+            "family-add": self.related_update,
+            "event-update": self.related_update,
+            "place-update": self.related_update,
+        }
 
         ListView.__init__(
-            self, title, pdata, dbstate, uistate,
-            model, signal_map,
-            PersonBookmarks, nav_group,
+            self,
+            title,
+            pdata,
+            dbstate,
+            uistate,
+            model,
+            signal_map,
+            PersonBookmarks,
+            nav_group,
             multiple=True,
-            filter_class=PersonSidebarFilter)
+            filter_class=PersonSidebarFilter,
+        )
 
-        uistate.connect('nameformat-changed', self.build_tree)
-        uistate.connect('placeformat-changed', self.build_tree)
+        uistate.connect("nameformat-changed", self.build_tree)
+        uistate.connect("placeformat-changed", self.build_tree)
 
         self.additional_uis.append(self.additional_ui)
 
@@ -161,7 +187,7 @@ class BasePersonView(ListView):
         """
         Return the navigation type of the view.
         """
-        return 'Person'
+        return "Person"
 
     def drag_info(self):
         """
@@ -180,18 +206,18 @@ class BasePersonView(ListView):
         """
         Use the grampsperson stock icon
         """
-        return 'gramps-person'
+        return "gramps-person"
 
     additional_ui = [  # Defines the UI string for UIManager
-        '''
+        """
       <placeholder id="LocalExport">
         <item>
           <attribute name="action">win.ExportTab</attribute>
           <attribute name="label" translatable="yes">Export View...</attribute>
         </item>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id="AddEditBook">
         <item>
           <attribute name="action">win.AddBook</attribute>
@@ -202,8 +228,8 @@ class BasePersonView(ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-''' % _('Organize Bookmarks'),
-        '''
+""" % _("Organize Bookmarks"),
+        """
       <placeholder id="CommonGo">
       <section>
         <item>
@@ -222,8 +248,8 @@ class BasePersonView(ListView):
         </item>
       </section>
       </placeholder>
-''',
-        '''
+""",
+        """
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.Add</attribute>
@@ -242,29 +268,29 @@ class BasePersonView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("action|_Edit..."),  # to use sgettext()
-        '''
+""" % _("_Edit...", "action"),  # to use sgettext()
+        """
         <placeholder id='otheredit'>
         <item>
           <attribute name="action">win.SetActive</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Set _Home Person</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Set _Home Person</attribute>
         </item>
         <item>
           <attribute name="action">win.FilterEdit</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Person Filter Editor</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Person Filter Editor</attribute>
         </item>
         </placeholder>
-''',  # Following are the Toolbar items
-        '''
+""",  # Following are the Toolbar items
+        """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">go-previous</property>
         <property name="action-name">win.Back</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the previous object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the previous object in the history</property>
         <property name="label" translatable="yes">_Back</property>
         <property name="use-underline">True</property>
       </object>
@@ -276,8 +302,8 @@ class BasePersonView(ListView):
       <object class="GtkToolButton">
         <property name="icon-name">go-next</property>
         <property name="action-name">win.Forward</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the next object in the history</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the next object in the history</property>
         <property name="label" translatable="yes">_Forward</property>
         <property name="use-underline">True</property>
       </object>
@@ -289,8 +315,8 @@ class BasePersonView(ListView):
       <object class="GtkToolButton">
         <property name="icon-name">go-home</property>
         <property name="action-name">win.HomePerson</property>
-        <property name="tooltip_text" translatable="yes">'''
-        '''Go to the default person</property>
+        <property name="tooltip_text" translatable="yes">"""
+        """Go to the home person</property>
         <property name="label" translatable="yes">_Home</property>
         <property name="use-underline">True</property>
       </object>
@@ -299,8 +325,8 @@ class BasePersonView(ListView):
       </packing>
     </child>
     </placeholder>
-''',
-        '''
+""",
+        """
     <placeholder id='BarCommonEdit'>
     <child groups='RW'>
       <object class="GtkToolButton">
@@ -351,8 +377,8 @@ class BasePersonView(ListView):
       </packing>
     </child>
     </placeholder>
-''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
-        '''
+""" % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+        """
     <menu id="Popup">
       <section>
         <item>
@@ -369,8 +395,8 @@ class BasePersonView(ListView):
         </item>
         <item>
           <attribute name="action">win.SetActive</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Set _Home Person</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Set _Home Person</attribute>
         </item>
       </section>
       <section id="PopUpTree">
@@ -400,7 +426,8 @@ class BasePersonView(ListView):
         </placeholder>
       </section>
     </menu>
-    ''' % _('action|_Edit...')  # to use sgettext()
+    """
+        % _("_Edit...", "action"),  # to use sgettext()
     ]
 
     def get_handle_from_gramps_id(self, gid):
@@ -418,7 +445,7 @@ class BasePersonView(ListView):
         Add a new person to the database.
         """
         person = Person()
-        #the editor requires a surname
+        # the editor requires a surname
         person.primary_name.add_surname(Surname())
         person.primary_name.set_primary_surname(0)
 
@@ -443,95 +470,31 @@ class BasePersonView(ListView):
         Remove a person from the database.
         """
         handles = self.selected_handles()
-        if len(handles) == 1:
-            person = self._lookup_person(handles[0])
-            msg1 = self._message1_format(person)
-            msg2 = self._message2_format(person)
-            msg2 = "%s %s" % (msg2, data_recover_msg)
-            # This gets person to delete self.active_person:
-            QuestionDialog(msg1,
-                           msg2,
-                           _('_Delete Person'),
-                           self.delete_person_response,
-                           parent=self.uistate.window)
-        else:
-            # Ask to delete; option to cancel, delete rest
-            # This gets person to delete from parameter
-            MultiSelectDialog(self._message1_format,
-                              self._message2_format,
-                              handles,
-                              self._lookup_person,
-                              yes_func=self.delete_person_response,
-                              multi_yes_func=self.delete_multi_person_response,
-                              parent=self.uistate.window)
+        ht_list = [("Person", hndl) for hndl in handles]
+        self.remove_selected_objects(ht_list)
 
     def _message1_format(self, person):
-        return _('Delete %s?') % (name_displayer.display(person) +
-                                  (" [%s]" % person.gramps_id))
+        return _("Delete %s?") % (
+            name_displayer.display(person) + (" [%s]" % person.gramps_id)
+        )
 
     def _message2_format(self, person):
-        return _('Deleting the person will remove the person '
-                 'from the database.')
+        return _("Deleting the person will remove the person " "from the database.")
 
-    def _lookup_person(self, handle):
+    def _message3_format(self, person):
         """
-        Get the next person from handle.
+        Transaction label format
+        """
+        return _("Delete Person (%s)") % name_displayer.display(person)
+
+    def remove_object_from_handle(
+        self, _obj_type, handle, trans, in_use_prompt=False, parent=None
+    ):
+        """
+        deletes a single object from database
         """
         person = self.dbstate.db.get_person_from_handle(handle)
-        self.active_person = person
-        return person
-
-    def delete_person_response(self, person=None):
-        """
-        Deletes the person from the database.
-        """
-        # set the busy cursor, so the user knows that we are working
-        self.uistate.set_busy_cursor(True)
-
-        # create the transaction
-        with DbTxn('', self.dbstate.db) as trans:
-
-            # create name to save
-            person = self.active_person
-            active_name = _("Delete Person (%s)") % name_displayer.display(person)
-
-            # delete the person from the database
-            # Above will emit person-delete, which removes the person via
-            # callback to the model, so row delete is signaled
-            self.dbstate.db.delete_person_from_database(person, trans)
-            trans.set_description(active_name)
-
-        self.uistate.set_busy_cursor(False)
-
-    def delete_multi_person_response(self, handles=None):
-        """
-        Deletes multiple persons from the database.
-        """
-        # set the busy cursor, so the user knows that we are working
-        self.uistate.set_busy_cursor(True)
-        self.uistate.progress.show()
-        self.uistate.push_message(self.dbstate, _("Processing..."))
-        hndl_cnt = len(handles) / 100
-        self.dbstate.db.disable_signals()
-
-        # create the transaction
-        with DbTxn('', self.dbstate.db) as trans:
-            for (indx, handle) in enumerate(handles):
-                person = self.dbstate.db.get_person_from_handle(handle)
-                self.dbstate.db.delete_person_from_database(person, trans)
-                self.uistate.pulse_progressbar(indx / hndl_cnt)
-            trans.set_description(_("Multiple Selection Delete"))
-
-        self.dbstate.db.enable_signals()
-        self.dbstate.db.request_rebuild()
-        self.uistate.progress.hide()
-        self.uistate.set_busy_cursor(False)
-
-    def remove_object_from_handle(self, handle):
-        """
-        The remove_selected_objects method is not called in this view.
-        """
-        pass
+        self.dbstate.db.delete_person_from_database(person, trans)
 
     def define_actions(self):
         """
@@ -556,11 +519,16 @@ class BasePersonView(ListView):
         mlist = self.selected_handles()
 
         if len(mlist) != 2:
-            ErrorDialog(_("Cannot merge people"),
-                        _("Exactly two people must be selected to perform "
-                        "a merge. A second person can be selected by "
-                        "holding down the control key while clicking on "
-                        "the desired person."), parent=self.uistate.window)
+            ErrorDialog(
+                _("Cannot merge people"),
+                _(
+                    "Exactly two people must be selected to perform "
+                    "a merge. A second person can be selected by "
+                    "holding down the control key while clicking on "
+                    "the desired person."
+                ),
+                parent=self.uistate.window,
+            )
         else:
             MergePerson(self.dbstate, self.uistate, [], mlist[0], mlist[1])
 
@@ -570,9 +538,14 @@ class BasePersonView(ListView):
         """
         all_links = set([])
         for tag_handle in handle_list:
-            links = set([link[1] for link in
-                         self.dbstate.db.find_backlink_handles(tag_handle,
-                                                    include_classes='Person')])
+            links = set(
+                [
+                    link[1]
+                    for link in self.dbstate.db.find_backlink_handles(
+                        tag_handle, include_classes="Person"
+                    )
+                ]
+            )
             all_links = all_links.union(links)
         self.row_update(list(all_links))
 
@@ -596,12 +569,22 @@ class BasePersonView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Person Filter",),
-                ("Person Details",
-                 "Person Gallery",
-                 "Person Events",
-                 "Person Children",
-                 "Person Citations",
-                 "Person Notes",
-                 "Person Attributes",
-                 "Person Backlinks"))
+        return (
+            ("Person Filter",),
+            (
+                "Person Details",
+                "Person Gallery",
+                "Person Events",
+                "Person Children",
+                "Person Citations",
+                "Person Notes",
+                "Person Attributes",
+                "Person Backlinks",
+            ),
+        )
+
+    def get_config_name(self):
+        """
+        return the config name for this view
+        """
+        assert False, "Must be defined in the subclass"

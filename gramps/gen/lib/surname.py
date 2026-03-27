@@ -15,31 +15,32 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Surname class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .nameorigintype import NameOriginType
-from .const import IDENTICAL, EQUAL, DIFFERENT
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .nameorigintype import NameOriginType
+from .secondaryobj import SecondaryObject
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Personal Name
+# Surname
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Surname(SecondaryObject):
     """
     Provide surname information of a name.
@@ -67,12 +68,36 @@ class Surname(SecondaryObject):
         if data:
             self.unserialize(data)
 
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+        """
+        attr_dict = dict(
+            (key, value)
+            for key, value in self.__dict__.items()
+            if not key.startswith("_")
+        )
+        attr_dict["_class"] = self.__class__.__name__
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+        """
+        self.__dict__.update(attr_dict)
+
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.surname, self.prefix, self.primary,
-                self.origintype.serialize(), self.connector)
+        return (
+            self.surname,
+            self.prefix,
+            self.primary,
+            self.origintype.serialize(),
+            self.connector,
+        )
 
     @classmethod
     def get_schema(cls):
@@ -87,31 +112,31 @@ class Surname(SecondaryObject):
             "title": _("Surname"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "surname": {"type": "string",
-                            "title": _("Surname")},
-                "prefix": {"type": "string",
-                           "title": _("Prefix")},
-                "primary": {"type": "boolean",
-                            "title": _("Primary")},
+                "surname": {"type": "string", "title": _("Surname")},
+                "prefix": {"type": "string", "title": _("Prefix")},
+                "primary": {"type": "boolean", "title": _("Primary")},
                 "origintype": NameOriginType.get_schema(),
-                "connector": {"type": "string",
-                              "title": _("Connector")}
-            }
+                "connector": {"type": "string", "title": _("Connector")},
+            },
         }
 
     def is_empty(self):
         """
         Indicate if the surname is empty.
         """
-        return (self.surname == "" and self.prefix == "" and
-                self.connector == "")
+        return self.surname == "" and self.prefix == "" and self.connector == ""
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (self.surname, self.prefix, self.primary, origin_type,
-         self.connector) = data
+        (
+            self.surname,
+            self.prefix,
+            self.primary,
+            origin_type,
+            self.connector,
+        ) = data
         self.origintype = NameOriginType(origin_type)
         return self
 
@@ -122,8 +147,7 @@ class Surname(SecondaryObject):
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.surname, self.prefix, self.connector,
-                str(self.origintype)]
+        return [self.surname, self.prefix, self.connector, str(self.origintype)]
 
     def is_equivalent(self, other):
         """
@@ -136,14 +160,14 @@ class Surname(SecondaryObject):
         :rtype: int
         """
         # TODO what to do with sort and display?
-        if self.get_text_data_list() != other.get_text_data_list() or \
-            self.primary != other.primary:
+        if (
+            self.get_text_data_list() != other.get_text_data_list()
+            or self.primary != other.primary
+        ):
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
@@ -154,8 +178,6 @@ class Surname(SecondaryObject):
         :param acquisition: The surname to merge with the present surname.
         :type acquisition: Surname
         """
-        pass
-
 
     def get_surname(self):
         """

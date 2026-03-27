@@ -13,45 +13,57 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from __future__ import annotations
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # IsLessThanNthGenerationDescendantOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsLessThanNthGenerationDescendantOf(Rule):
     """Rule that checks for a person that is a descendant of a specified person
     not more than N generations away"""
 
-    labels = [ _('ID:'), _('Number of generations:') ]
-    name = _('Descendants of <person> not more than '
-                    '<N> generations away')
-    category = _('Descendant filters')
-    description = _("Matches people that are descendants of a "
-                    "specified person not more than N generations away")
+    labels = [_("ID:"), _("Number of generations:")]
+    name = _("Descendants of <person> not more than " "<N> generations away")
+    category = _("Descendant filters")
+    description = _(
+        "Matches people that are descendants of a "
+        "specified person not more than N generations away"
+    )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.selected_handles: Set[str] = set()
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             self.init_list(root_person, 0)
@@ -59,23 +71,24 @@ class IsLessThanNthGenerationDescendantOf(Rule):
             pass
 
     def reset(self):
-        self.map.clear()
+        self.selected_handles.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles
 
-    def init_list(self,person,gen):
-        if not person or person.handle in self.map:
+    def init_list(self, person: Person | None, gen: int):
+        if not person or person.handle in self.selected_handles:
             # if we have been here before, skip
             return
         if gen:
-            self.map.add(person.handle)
+            self.selected_handles.add(person.handle)
             if gen >= int(self.list[1]):
                 return
 
-        for fam_id in person.get_family_handle_list():
+        for fam_id in person.family_list:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                for child_ref in fam.get_child_ref_list():
+                for child_ref in fam.child_ref_list:
                     self.init_list(
-                        self.db.get_person_from_handle(child_ref.ref), gen+1)
+                        self.db.get_person_from_handle(child_ref.ref), gen + 1
+                    )

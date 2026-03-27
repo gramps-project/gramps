@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,44 +14,52 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SourceModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SourceModel(FlatBaseModel):
-
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
         self.fmap = [
@@ -62,8 +71,8 @@ class SourceModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_tag_color
-            ]
+            self.column_tag_color,
+        ]
         self.smap = [
             self.column_title,
             self.column_id,
@@ -73,10 +82,11 @@ class SourceModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_tag_color
-            ]
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+            self.column_tag_color,
+        ]
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -93,38 +103,39 @@ class SourceModel(FlatBaseModel):
         """
         Return the color column.
         """
+        # This is for model.get_value() arg
         return 8
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        return len(self.fmap) + 1
 
-    def column_title(self,data):
-        return data[2].replace('\n', ' ')
+    def column_title(self, data):
+        return data.title.replace("\n", " ")
 
-    def column_author(self,data):
-        return data[3]
+    def column_author(self, data):
+        return data.author
 
-    def column_abbrev(self,data):
-        return data[7]
+    def column_abbrev(self, data):
+        return data.abbrev
 
-    def column_id(self,data):
-        return data[1]
+    def column_id(self, data):
+        return data.gramps_id
 
-    def column_pubinfo(self,data):
-        return data[4]
+    def column_pubinfo(self, data):
+        return data.pubinfo
 
     def column_private(self, data):
-        if data[12]:
-            return 'gramps-lock'
+        if data.private:
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
-    def column_change(self,data):
-        return format_time(data[8])
+    def column_change(self, data):
+        return format_time(data.change)
 
-    def sort_change(self,data):
-        return "%012x" % data[8]
+    def sort_change(self, data):
+        return "%012x" % data.change
 
     def get_tag_name(self, tag_handle):
         """
@@ -140,12 +151,12 @@ class SourceModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data.handle
         cached, value = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[11]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 if tag:
                     this_priority = tag.get_priority()
@@ -160,6 +171,6 @@ class SourceModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[11]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))

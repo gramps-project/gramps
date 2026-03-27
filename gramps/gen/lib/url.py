@@ -15,40 +15,41 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Url class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# standard python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
-from warnings import warn
+# -------------------------------------------------------------------------
 from urllib.parse import urlparse
+from warnings import warn
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .urltype import UrlType
-from .const import IDENTICAL, EQUAL, DIFFERENT
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from .privacybase import PrivacyBase
+from .secondaryobj import SecondaryObject
+from .urltype import UrlType
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Url for Person/Place/Repository
+# Url
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Url(SecondaryObject, PrivacyBase):
     """
     Contains information related to internet Uniform Resource Locators,
@@ -71,7 +72,7 @@ class Url(SecondaryObject, PrivacyBase):
         return (self.private, self.path, self.desc, self.type.serialize())
 
     def unserialize(self, data):
-        (self.private, self.path, self.desc, type_value) = data
+        self.private, self.path, self.desc, type_value = data
         self.type.unserialize(type_value)
         return self
 
@@ -88,14 +89,11 @@ class Url(SecondaryObject, PrivacyBase):
             "title": _("Url"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-                "path": {"type": "string",
-                         "title": _("Path")},
-                "desc": {"type": "string",
-                         "title": _("Description")},
-                "type": UrlType.get_schema()
-            }
+                "private": {"type": "boolean", "title": _("Private")},
+                "path": {"type": "string", "title": _("Path")},
+                "desc": {"type": "string", "title": _("Description")},
+                "type": UrlType.get_schema(),
+            },
         }
 
     def get_text_data_list(self):
@@ -117,15 +115,15 @@ class Url(SecondaryObject, PrivacyBase):
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
-        if self.type != other.type or \
-            self.get_full_path() != other.get_full_path() or \
-            self.desc != other.desc:
+        if (
+            self.type != other.type
+            or self.get_full_path() != other.get_full_path()
+            or self.desc != other.desc
+        ):
             return DIFFERENT
-        else:
-            if self.get_privacy() != other.get_privacy():
-                return EQUAL
-            else:
-                return IDENTICAL
+        if self.get_privacy() != other.get_privacy():
+            return EQUAL
+        return IDENTICAL
 
     def merge(self, acquisition):
         """
@@ -195,9 +193,8 @@ class Url(SecondaryObject, PrivacyBase):
         """
         if self.type == UrlType.EMAIL and not self.path.startswith("mailto:"):
             return "mailto:" + self.path
-        elif self.type == UrlType.WEB_FTP and not self.path.startswith("ftp://"):
+        if self.type == UrlType.WEB_FTP and not self.path.startswith("ftp://"):
             return "ftp://" + self.path
-        elif self.parse_path().scheme == '':
+        if self.parse_path().scheme == "":
             return "http://" + self.path
-        else:
-            return self.path
+        return self.path

@@ -13,27 +13,28 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import HasTextMatchingSubstringOf
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 # "HasTextMatchingRegexOf"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
     """
     Wrap HasTextMatchingSubstringOf to enable the regex_match parameter.
     """
-    def __init__(self, list, use_regex=False):
-        HasTextMatchingSubstringOf.__init__(self, list, use_regex)
+
+    def __init__(self, list, use_regex=False, use_case=False):
+        HasTextMatchingSubstringOf.__init__(self, list, use_regex, use_case)
 
     # FIXME: This needs to be written for an arbitrary object
     # if possible

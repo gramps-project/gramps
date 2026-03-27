@@ -14,28 +14,16 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Unittest for user.py """
+"""Unittest for user.py"""
 
 import unittest
+from unittest.mock import Mock, patch
 from .. import user
-import sys
 
-try:
-    if sys.version_info < (3,3):
-        from mock import Mock, patch
-    else:
-        from unittest.mock import Mock, patch
-
-    MOCKING = True
-
-except:
-    MOCKING = False
-    print ("Mocking disabled", sys.exc_info()[0:2])
 
 class TestUser:
     TITLE = "Testing prompt"
@@ -43,24 +31,31 @@ class TestUser:
     ACCEPT = "To be"
     REJECT = "Not to be"
 
+
 class TestUser_prompt(unittest.TestCase):
     def setUp(self):
         self.user = user.User()
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_runs_QuestionDialog2(self):
-        with patch('gramps.gui.user.QuestionDialog2') as MockQD:
-            self.user.prompt(TestUser.TITLE, TestUser.MSG,
-                             TestUser.ACCEPT, TestUser.REJECT, parent=None)
-        MockQD.assert_called_once_with(TestUser.TITLE, TestUser.MSG,
-                                       TestUser.ACCEPT, TestUser.REJECT,
-                                       parent=None)
+        with patch("gramps.gui.user.QuestionDialog2") as MockQD:
+            self.user.prompt(
+                TestUser.TITLE,
+                TestUser.MSG,
+                TestUser.ACCEPT,
+                TestUser.REJECT,
+                parent=None,
+            )
+        MockQD.assert_called_once_with(
+            TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT, parent=None
+        )
         MockQD.return_value.run.assert_called_once_with()
         # TODO test that run's return is the one returned by prompt()...
 
+
 class TestUser_init_accepts_uistate(unittest.TestCase):
     def test(self):
-        user.User(uistate = None)
+        user.User(uistate=None)
+
 
 if __name__ == "__main__":
     unittest.main()

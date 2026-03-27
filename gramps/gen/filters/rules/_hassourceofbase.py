@@ -14,53 +14,57 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.citationbase import CitationBase
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasSourceOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasSourceOfBase(Rule):
     """Rule that checks for objects that have a particular source."""
 
-    labels = [ _('Source ID:') ]
-    name = 'Object with the <source>'
-    category = _('Citation/source filters')
-    description = 'Matches objects who have a particular source'
+    labels = [_("Source ID:")]
+    name = "Object with the <source>"
+    category = _("Citation/source filters")
+    description = "Matches objects who have a particular source"
 
-    def prepare(self, db, user):
-        if self.list[0] == '':
+    def prepare(self, db: Database, user):
+        self.nosource = self.list[0] == ""
+        if self.nosource:
             self.source_handle = None
-            self.nosource = True
-            return
+        else:
+            source = db.get_source_from_gramps_id(self.list[0])
+            self.source_handle = source.handle if source else None
 
-        self.nosource = False
-        try:
-            self.source_handle = db.get_source_from_gramps_id(
-                    self.list[0]).get_handle()
-        except:
-            self.source_handle = None
-
-    def apply(self, db, object):
+    def apply_to_one(self, db: Database, object: CitationBase) -> bool:
         if not self.source_handle:
             if self.nosource:
                 # check whether the citation list is empty as a proxy for
@@ -71,6 +75,6 @@ class HasSourceOfBase(Rule):
         else:
             for citation_handle in object.get_all_citation_lists():
                 citation = db.get_citation_from_handle(citation_handle)
-                if citation.get_reference_handle() == self.source_handle:
+                if citation.source_handle == self.source_handle:
                     return True
             return False

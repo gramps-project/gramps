@@ -13,38 +13,40 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PlaceNameModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceNameModel(Gtk.ListStore):
-
     def __init__(self, obj_list, db):
         Gtk.ListStore.__init__(self, str, str, str, object)
         self.db = db
         for obj in obj_list:
-            self.append(row=[obj.get_value(),
-                             get_date(obj),
-                             obj.get_language(),
-                             obj,
-                             ])
+            self.append(
+                row=[
+                    obj.get_value(),
+                    get_date(obj),
+                    obj.get_language(),
+                    obj,
+                ]
+            )

@@ -13,38 +13,47 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Repository
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 # "Repositories having a name that contain a substring"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesNameSubstringOf(Rule):
     """Repository name containing <substring>"""
 
-    labels = [ _('Text:')]
-    name = _('Repositories with name containing <text>')
+    labels = [_("Text:")]
+    name = _("Repositories with name containing <text>")
     description = _("Matches repositories whose name contains a certain substring")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, repository):
-        """ Apply the filter """
-        return self.match_substring(0, repository.get_name())
+    def apply_to_one(self, db: Database, repository: Repository) -> bool:
+        """Apply the filter"""
+        return self.match_substring(0, repository.name)

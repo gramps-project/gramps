@@ -27,9 +27,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -38,23 +37,25 @@ Narrative Web Page generator.
 Classe:
     CitationPages - dummy
 """
-#------------------------------------------------
+
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
+
 
 #################################################
 #
@@ -67,12 +68,15 @@ class CitationPages(BasePage):
     database objects. It passes this information to the 'Sources' tab. It is
     told by the 'add_instances' call which 'Citation's to display.
     """
-    def __init__(self, report):
-        """
-        @param: report -- The instance of the main report class for
-                          this report
-        """
-        BasePage.__init__(self, report, title="")
 
-    def display_pages(self, title):
+    def __init__(self, report, the_lang, the_title):
+        """
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
+        """
+        BasePage.__init__(self, report, the_lang, the_title)
+
+    def display_pages(self, the_lang, the_title):
         pass

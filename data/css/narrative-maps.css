@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 #
 ###################################################### */
@@ -117,7 +116,15 @@ div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
   font: bold 0.9em sans-serif;
   max-height: 200px;
   overflow-y: auto;
-  padding: 0 0.5em 15px 0.5em;
+  padding: 5px 0.5em 5px 0.5em;
+}
+#map_canvas .thumbnail {
+  padding: 5px 5px;
+  text-align: center;
+}
+#map_canvas img {
+  max-height: 300px;
+  max-width: 400px;
 }
 #map_canvas .ol-popup-content a {
   color: #111;

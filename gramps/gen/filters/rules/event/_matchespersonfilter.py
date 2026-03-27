@@ -13,31 +13,40 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import MatchesFilterBase
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Event
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # MatchesFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesPersonFilter(MatchesFilterBase):
     """
     Rule that checks against another filter.
@@ -47,19 +56,20 @@ class MatchesPersonFilter(MatchesFilterBase):
 
     """
 
-    labels = [_('Person filter name:'), _('Include Family events:')]
-    name = _('Events of persons matching the <person filter>')
-    description = _("Matches events of persons matched by the specified "
-                    "person filter name")
-    category = _('General filters')
+    labels = [_("Person filter name:"), _("Include Family events:")]
+    name = _("Events of persons matching the <person filter>")
+    description = _(
+        "Matches events of persons matched by the specified " "person filter name"
+    )
+    category = _("General filters")
 
     # we want to have this filter show person filters
-    namespace = 'Person'
+    namespace = "Person"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         MatchesFilterBase.prepare(self, db, user)
 
-        try :
+        try:
             if int(self.list[1]):
                 self.MPF_famevents = True
             else:
@@ -67,24 +77,28 @@ class MatchesPersonFilter(MatchesFilterBase):
         except IndexError:
             self.MPF_famevents = False
 
-
-    def apply(self, db, event):
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
-            for (classname, handle) in db.find_backlink_handles(
-                                            event.get_handle(), ['Person']):
-                if filt.check(db, handle):
+            for classname, handle in db.find_backlink_handles(event.handle, ["Person"]):
+                person = db.method("get_%s_from_handle", classname)(handle)
+                if filt.apply_to_one(db, person):
                     return True
-            if self.MPF_famevents :
-                #also include if family event of the person
-                for (classname, handle) in db.find_backlink_handles(
-                                            event.get_handle(), ['Family']):
+            if self.MPF_famevents:
+                # also include if family event of the person
+                for classname, handle in db.find_backlink_handles(
+                    event.handle, ["Family"]
+                ):
                     family = db.get_family_from_handle(handle)
-                    if family.father_handle and filt.check(db,
-                                                    family.father_handle):
-                        return True
-                    if family.mother_handle and filt.check(db,
-                                                    family.mother_handle):
-                        return True
+                    if family:
+                        if family.father_handle:
+                            father = db.get_person_from_handle(family.father_handle)
+                            if father and filt.apply_to_one(db, father):
+                                return True
+
+                        if family.mother_handle:
+                            mother = db.get_person_from_handle(family.mother_handle)
+                            if mother and filt.apply_to_one(db, mother):
+                                return True
 
         return False

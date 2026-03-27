@@ -13,36 +13,48 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Event
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasDayOfWeek
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasDayOfWeek(Rule):
     """Rule that matches an event occurring on a particular day of the week."""
 
-    labels = [ _('Day of Week:') ]
-    name = _('Events occurring on a particular day of the week')
-    description = _('Matches events occurring on a particular day of the week')
-    category = _('General filters')
+    labels = [_("Day of Week:")]
+    name = _("Events occurring on a particular day of the week")
+    description = _("Matches events occurring on a particular day of the week")
+    category = _("General filters")
 
-    def apply(self, db, event):
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         if not self.list[0]:
             return False
         else:
-            dow = event.get_date_object().get_dow()
-            return dow == int(self.list[0])
+            if event.date:
+                dow = event.date.get_dow()
+                return dow == int(self.list[0])
+            return False

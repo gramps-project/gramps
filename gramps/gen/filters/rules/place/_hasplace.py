@@ -15,64 +15,76 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ....lib import PlaceType
 from ....utils.location import get_locations
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Place
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasPlace
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasPlace(Rule):
     """Rule that checks for a place with a particular value"""
 
-    labels = [ _('Title:'),
-                    _('Street:'),
-                    _('Locality:'),
-                    _('City:'),
-                    _('County:'),
-                    _('State:'),
-                    _('Country:'),
-                    _('ZIP/Postal Code:'),
-                    _('Church Parish:'),
-                    ]
-    name = _('Places matching parameters')
+    labels = [
+        _("Title:"),
+        _("Street:"),
+        _("Locality:"),
+        _("City:"),
+        _("County:"),
+        _("State:"),
+        _("Country:"),
+        _("ZIP/Postal Code:"),
+        _("Church Parish:"),
+    ]
+    name = _("Places matching parameters")
     description = _("Matches places with particular parameters")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
-    TYPE2FIELD = {PlaceType.STREET: 1,
-                  PlaceType.LOCALITY: 2,
-                  PlaceType.CITY: 3,
-                  PlaceType.COUNTY: 4,
-                  PlaceType.STATE: 5,
-                  PlaceType.COUNTRY: 6,
-                  PlaceType.PARISH: 8}
+    TYPE2FIELD = {
+        PlaceType.STREET: 1,
+        PlaceType.LOCALITY: 2,
+        PlaceType.CITY: 3,
+        PlaceType.COUNTY: 4,
+        PlaceType.STATE: 5,
+        PlaceType.COUNTRY: 6,
+        PlaceType.PARISH: 8,
+    }
 
-    def apply(self, db, place):
-        if not self.match_substring(0, place.get_title()):
+    def apply_to_one(self, db: Database, place: Place) -> bool:
+        if not self.match_substring(0, place.title):
             return False
 
-        if not self.match_substring(7, place.get_code()):
+        if not self.match_substring(7, place.code):
             return False
 
         # If no location data was given then we're done: match
@@ -90,7 +102,7 @@ class HasPlace(Rule):
         Check each location for a match.
         """
         for place_type, field in self.TYPE2FIELD.items():
-            name_list = location.get(place_type, [''])
+            name_list = location.get(place_type, [""])
             if not self.match_name(field, name_list):
                 return False
         return True

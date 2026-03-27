@@ -14,20 +14,20 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Abstracted option handling.
 """
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Menu class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Menu:
     """
     **Introduction**
@@ -48,6 +48,7 @@ class Menu:
        the part of the system that will actually represent the menu to
        the user.
     """
+
     def __init__(self):
         # __options holds all the options by their category
         self.__options = {}
@@ -89,7 +90,7 @@ class Menu:
         :return: a list of strings
         """
         names = []
-        for (name, option) in self.__options[category]:
+        for name, option in self.__options[category]:
             names.append(name)
         return names
 
@@ -99,7 +100,7 @@ class Menu:
 
         :return: an :class:`.Option` instance or None on failure.
         """
-        for (oname, option) in self.__options[category]:
+        for oname, option in self.__options[category]:
             if oname == name:
                 return option
         return None
@@ -112,7 +113,7 @@ class Menu:
         """
         names = []
         for category in self.__options:
-            for (name, option) in self.__options[category]:
+            for name, option in self.__options[category]:
                 names.append(name)
         return names
 
@@ -123,7 +124,7 @@ class Menu:
         :return: an :class:`.Option` instance or None on failure.
         """
         for category in self.__options:
-            for (oname, option) in self.__options[category]:
+            for oname, option in self.__options[category]:
                 if oname == name:
                     return option
         return None

@@ -15,6 +15,9 @@
  <author title="author">
   Brian Matherly &lt;<html:a href="mailto:brian@gramps-project.org">brian@gramps-project.org</html:a>&gt;
  </author>
+ <author title="contributor">
+  Craig J. Anderson &lt;<html:a href="mailto:ander882@hotmail.com">ander882@hotmail.com</html:a>&gt;
+ </author>
  <author title="author">
   Don Allingham &lt;<html:a href="mailto:don@gramps-project.org">don@gramps-project.org</html:a>&gt;
  </author>
@@ -54,6 +57,9 @@
  <author title="contributor">
   Joan Creus &lt;<html:a href="mailto:joan.creus@gmail.com">joan.creus@gmail.com</html:a>&gt;
  </author>
+ <author title="author">
+  John Ralls &lt;<html:a href="mailto:jralls@ceridwen.us">jralls@ceridwen.us</html:a>&gt;
+ </author>
  <author title="contributor">
   Josip Pisoj &lt;<html:a href="mailto:josip@pisoj.com">josip@pisoj.com</html:a>&gt;
  </author>
@@ -90,8 +96,8 @@
  <author title="author">
   Martin Hawlisch &lt;<html:a href="mailto:martin.hawlisch@gmx.de">martin.hawlisch@gmx.de</html:a>&gt;
  </author>
- <author title="contributor">
-  Nick Hall &lt;<html:a href="mailto:nick__hall@hotmail.com">nick__hall@hotmail.com</html:a>&gt;
+ <author title="author">
+  Nick Hall &lt;<html:a href="mailto:nick-h@gramps-project.org">nick-h@gramps-project.org</html:a>&gt;
  </author>
  <author title="contributor">
   Paul Culley &lt;<html:a href="mailto:paulr2787@gmail.com">paulr2787@gmail.com</html:a>&gt;
@@ -104,6 +110,9 @@
  </author>
  <author title="author">
   Richard Taylor &lt;<html:a href="mailto:rjt-gramps@thegrindstone.me.uk">rjt-gramps@thegrindstone.me.uk</html:a>&gt;
+ </author>
+ <author title="author">
+  Rob G. Healey &lt;<html:a href="mailto:robhealey1@gmail.com">robhealey1@gmail.com</html:a>&gt;
  </author>
  <author title="contributor">
   Serge Noiraud &lt;<html:a href="mailto:Serge.Noiraud@free.fr">Serge.Noiraud@free.fr</html:a>&gt;
@@ -118,6 +127,9 @@
   Stéphane Charette &lt;<html:a href="mailto:stephanecharette@gmail.com">stephanecharette@gmail.com</html:a>&gt;
  </author>
  <author title="author">
+  Tim G L Lyons &lt;<html:a href="mailto:tim.g.lyons@gmail.com">tim.g.lyons@gmail.com</html:a>&gt;
+ </author>
+ <author title="author">
   Tim Waugh &lt;<html:a href="mailto:twaugh@redhat.com">twaugh@redhat.com</html:a>&gt;
  </author>
  <author title="contributor">
@@ -126,19 +138,7 @@
  <author title="contributor">
   Zdeněk Hataš &lt;<html:a href="mailto:zdenek.hatas@gmail.com">zdenek.hatas@gmail.com</html:a>&gt;
  </author>
-<author title="author">
-  Rob G. Healey &lt;<html:a href="mailto:robhealey1@gmail.com">robhealey1@gmail.com</html:a>&gt;
-</author>
  <author title="contributor">
   Zsolt Foldvari &lt;<html:a href="mailto:zfoldvar@users.sourceforge.net">zfoldvar@users.sourceforge.net</html:a>&gt;
- </author>
- <author title="contributor">
-  Craig J. Anderson &lt;<html:a href="mailto:ander882@hotmail.com">ander882@hotmail.com</html:a>&gt;
- </author>
- <author title="author">
-  Tim G L Lyons &lt;<html:a href="mailto:tim.g.lyons@gmail.com">tim.g.lyons@gmail.com</html:a>&gt;
- </author>
- <author title="author">
-  John Ralls &lt;<html:a href="mailto:jralls@ceridwen.us">jralls@ceridwen.us</html:a>&gt;
  </author>
 </authors>

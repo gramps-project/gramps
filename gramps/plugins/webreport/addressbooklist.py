@@ -27,9 +27,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -38,21 +37,22 @@ Narrative Web Page generator.
 Classe:
     AddressBookListPage
 """
-#------------------------------------------------
+
+# ------------------------------------------------
 # python modules
-#------------------------------------------------
+# ------------------------------------------------
 from decimal import getcontext
 import logging
 
-#------------------------------------------------
+# ------------------------------------------------
 # Gramps module
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.plugins.lib.libhtml import Html
 
-#------------------------------------------------
+# ------------------------------------------------
 # specific narrative web import
-#------------------------------------------------
+# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import FULLCLEAR
 
@@ -60,19 +60,22 @@ LOG = logging.getLogger(".NarrativeWeb")
 _ = glocale.translation.sgettext
 getcontext().prec = 8
 
+
 class AddressBookListPage(BasePage):
     """
     Create the index for addresses.
     """
-    def __init__(self, report, title, has_url_addr_res):
+
+    def __init__(self, report, the_lang, the_title, has_url_addr_res):
         """
         @param: report           -- The instance of the main report class
                                     for this report
-        @param: title            -- Is the title of the web page
+        @param: the_lang         -- The lang to process
+        @param: the_title        -- The title page related to the language
         @param: has_url_addr_res -- The url, address and residence to use
                                     for the report
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         # Name the file, and create it
         output_file, sio = self.report.create_file("addressbook")
@@ -82,21 +85,23 @@ class AddressBookListPage(BasePage):
         addressbooklistpage, dummy_head, dummy_body, outerwrapper = result
 
         # begin AddressBookList division
-        with Html("div", class_="content",
-                  id="AddressBookList") as addressbooklist:
+        with Html("div", class_="content", id="AddressBookList") as addressbooklist:
             outerwrapper += addressbooklist
 
             # Address Book Page message
-            msg = _("This page contains an index of all the individuals in "
-                    "the database, sorted by their surname, with one of the "
-                    "following: Address, Residence, or Web Links. "
-                    "Selecting the person&#8217;s name will take you "
-                    "to their individual Address Book page.")
+            msg = self._(
+                "This page contains an index of all the individuals "
+                "in the database, sorted by their surname, with one "
+                "of the following: Address, Residence, or Web Links. "
+                "Selecting the person&#8217;s name will take you "
+                "to their individual Address Book page."
+            )
             addressbooklist += Html("p", msg, id="description")
 
             # begin Address Book table
-            with Html("table",
-                      class_="infolist primobjlist addressbook") as table:
+            with Html(
+                "table", class_="infolist primobjlist addressbook " + self.dir
+            ) as table:
                 addressbooklist += table
 
                 thead = Html("thead")
@@ -109,10 +114,10 @@ class AddressBookListPage(BasePage):
                     Html("th", label, class_=colclass, inline=True)
                     for (label, colclass) in [
                         ["&nbsp;", "ColumnRowLabel"],
-                        [_("Full Name"), "ColumnName"],
-                        [_("Address"), "ColumnAddress"],
-                        [_("Residence"), "ColumnResidence"],
-                        [_("Web Links"), "ColumnWebLinks"]
+                        [self._("Full Name"), "ColumnName"],
+                        [self._("Address"), "ColumnAddress"],
+                        [self._("Residence"), "ColumnResidence"],
+                        [self._("Web Links"), "ColumnWebLinks"],
                     ]
                 )
 
@@ -120,10 +125,13 @@ class AddressBookListPage(BasePage):
                 table += tbody
 
                 index = 1
-                for (dummy_sort_name, person_handle,
-                     has_add, has_res,
-                     has_url) in has_url_addr_res:
-
+                for (
+                    dummy_sort_name,
+                    person_handle,
+                    has_add,
+                    has_res,
+                    has_url,
+                ) in has_url_addr_res:
                     address = None
                     residence = None
                     weblinks = None
@@ -149,15 +157,13 @@ class AddressBookListPage(BasePage):
                     tbody += trow
 
                     trow.extend(
-                        Html("td", data or "&nbsp;", class_=colclass,
-                             inline=True)
+                        Html("td", data or "&nbsp;", class_=colclass, inline=True)
                         for (colclass, data) in [
                             ["ColumnRowLabel", index],
-                            ["ColumnName",
-                             self.addressbook_link(person_handle)],
+                            ["ColumnName", self.addressbook_link(person_handle)],
                             ["ColumnAddress", address],
                             ["ColumnResidence", residence],
-                            ["ColumnWebLinks", weblinks]
+                            ["ColumnWebLinks", weblinks],
                         ]
                     )
                     index += 1

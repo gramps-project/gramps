@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2010,2017  Nick Hall
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,33 +16,35 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Note class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .primaryobj import BasicPrimaryObject
-from .tagbase import TagBase
+# -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
 from .notetype import NoteType
+from .primaryobj import BasicPrimaryObject
 from .styledtext import StyledText
 from .styledtexttagtype import StyledTextTagType
-from ..const import GRAMPS_LOCALE as glocale
+from .tagbase import TagBase
+from gramps.gen.config import config
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Class for notes used throughout the majority of Gramps objects
+# Note
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Note(BasicPrimaryObject):
     """Define a text note.
 
@@ -60,23 +63,9 @@ class Note(BasicPrimaryObject):
 
     :cvar FLOWED: indicates flowed format
     :cvar FORMATTED: indicates formatted format (respecting whitespace needed)
-    :cvar POS_<x>: (int) Position of <x> attribute in the serialized format of
-        an instance.
-
-    .. warning:: The POS_<x> class variables reflect the serialized object,
-                 they have to be updated in case the data structure or the
-                 :meth:`serialize` method changes!
     """
-    (FLOWED, FORMATTED) = list(range(2))
 
-    (POS_HANDLE,
-     POS_ID,
-     POS_TEXT,
-     POS_FORMAT,
-     POS_TYPE,
-     POS_CHANGE,
-     POS_TAGS,
-     POS_PRIVATE,) = list(range(8))
+    FLOWED, FORMATTED = list(range(2))
 
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""
@@ -92,9 +81,16 @@ class Note(BasicPrimaryObject):
         :rtype: tuple
 
         """
-        return (self.handle, self.gramps_id, self.text.serialize(), self.format,
-                self.type.serialize(), self.change, TagBase.serialize(self),
-                self.private)
+        return (
+            self.handle,
+            self.gramps_id,
+            self.text.serialize(),
+            self.format,
+            self.type.serialize(),
+            self.change,
+            TagBase.serialize(self),
+            self.private,
+        )
 
     @classmethod
     def get_schema(cls):
@@ -109,24 +105,23 @@ class Note(BasicPrimaryObject):
             "title": _("Note"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "gramps_id": {"type": "string",
-                              "title": _("Gramps ID")},
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
+                "gramps_id": {"type": "string", "title": _("Gramps ID")},
                 "text": StyledText.get_schema(),
-                "format": {"type": "integer",
-                           "title": _("Format")},
+                "format": {"type": "integer", "title": _("Format")},
                 "type": NoteType.get_schema(),
-                "change": {"type": "integer",
-                           "title": _("Last changed")},
-                "tag_list": {"type": "array",
-                             "items": {"type": "string",
-                                       "maxLength": 50},
-                             "title": _("Tags")},
-                "private": {"type": "boolean",
-                            "title": _("Private")}
-            }
+                "change": {"type": "integer", "title": _("Last changed")},
+                "tag_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Tags"),
+                },
+                "private": {"type": "boolean", "title": _("Private")},
+            },
         }
 
     def unserialize(self, data):
@@ -135,8 +130,16 @@ class Note(BasicPrimaryObject):
         :param data: The serialized format of a Note.
         :type: data: tuple
         """
-        (self.handle, self.gramps_id, the_text, self.format,
-         the_type, self.change, tag_list, self.private) = data
+        (
+            self.handle,
+            self.gramps_id,
+            the_text,
+            self.format,
+            the_type,
+            self.change,
+            tag_list,
+            self.private,
+        ) = data
 
         self.text = StyledText()
         self.text.unserialize(the_text)
@@ -151,7 +154,7 @@ class Note(BasicPrimaryObject):
         :returns: The list of all textual attributes of the object.
         :rtype: list
         """
-        return [str(self.text)]
+        return [str(self.text), self.gramps_id]
 
     def get_referenced_handles(self):
         """
@@ -161,7 +164,85 @@ class Note(BasicPrimaryObject):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_tag_handles()
+        reflist = []
+        for dom, obj, prop, hndl in self.get_links():
+            if dom != "gramps" or prop != "handle":
+                continue
+            reflist.append((obj, hndl))
+        reflist.extend(self.get_referenced_tag_handles())
+        return reflist
+
+    def has_handle_reference(self, classname, handle):
+        """
+        Return True if the object has reference to a given handle of given
+        primary object type.
+
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle: The handle to be checked.
+        :type handle: str
+
+        :returns:
+          Returns whether the object has reference to this handle of
+          this object type.
+
+        :rtype: bool
+        """
+        for dom, obj, prop, hndl in self.get_links():
+            if (
+                dom == "gramps"
+                and prop == "handle"
+                and obj == classname
+                and hndl == handle
+            ):
+                return True
+        return False
+
+    def remove_handle_references(self, classname, handle_list):
+        """
+        Remove all references in this object to object handles in the list.
+
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle_list: The list of handles to be removed.
+        :type handle_list: str
+
+        If the link is in the styled text, we just remove the style for that
+        link.
+        """
+        tags = []
+        for styledtext_tag in self.text.get_tags():
+            if (
+                styledtext_tag.name == StyledTextTagType.LINK
+                and styledtext_tag.value.startswith("gramps://")
+            ):
+                obj, prop, value = styledtext_tag.value[9:].split("/", 2)
+                if obj == classname and prop == "handle" and value in handle_list:
+                    continue
+            tags.append(styledtext_tag)
+        self.text.set_tags(tags)
+
+    def replace_handle_reference(self, classname, old_handle, new_handle):
+        """
+        Replace all references to old handle with those to the new handle.
+
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param old_handle: The handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The handle to replace the old one with.
+        :type new_handle: str
+        """
+        for styledtext_tag in self.text.get_tags():
+            if (
+                styledtext_tag.name == StyledTextTagType.LINK
+                and styledtext_tag.value.startswith("gramps://")
+            ):
+                obj, prop, value = styledtext_tag.value[9:].split("/", 2)
+                if obj == classname and prop == "handle" and value == old_handle:
+                    styledtext_tag.value = styledtext_tag.value.replace(
+                        old_handle, new_handle
+                    )
 
     def merge(self, acquisition):
         """
@@ -191,6 +272,19 @@ class Note(BasicPrimaryObject):
         """
         return str(self.text)
 
+    def get_preview(self):
+        """Return the max visible text string associated with the note.
+
+        :returns: either the *clear* text of the note contents or the maximum
+                  visible text.
+        :rtype: unicode
+        """
+        max_vis_len = config.get("interface.note-preview-length")
+        preview = str(self.text).replace("\n", " ")
+        if len(preview) > max_vis_len:
+            return preview[:max_vis_len] + "..."
+        return preview
+
     def set_styledtext(self, text):
         """Set the text associated with the note to the passed string.
 
@@ -215,13 +309,13 @@ class Note(BasicPrimaryObject):
         """
         self.text = self.text + text
 
-    def set_format(self, format):
+    def set_format(self, note_format):
         """Set the format of the note to the passed value.
 
         :param format: The value can either indicate Flowed or Preformatted.
         :type format: int
         """
-        self.format = format
+        self.format = note_format
 
     def get_format(self):
         """Return the format of the note.

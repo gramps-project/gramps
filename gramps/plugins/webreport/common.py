@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -27,11 +26,11 @@ This module is used to share variables, enums and functions between all modules
 
 """
 
-from unicodedata import normalize
+from __future__ import annotations
 from collections import defaultdict
 from hashlib import md5
 import re
-import locale # Used only with pyICU
+import os
 import logging
 from xml.sax.saxutils import escape
 
@@ -39,23 +38,53 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.db import get_death_or_fallback
-from gramps.gen.lib import (EventType, Date)
+from gramps.gen.lib import EventType, Date
 from gramps.gen.plug import BasePluginManager
 from gramps.plugins.lib.libgedcom import make_gedcom_date, DATE_QUALITY
 from gramps.gen.plug.report import utils
 from gramps.plugins.lib.libhtml import Html
+
+HAVE_ICU = False
+HAVE_ALPHABETICINDEX = False  # separate check as this is only in ICU 4.6+
+try:
+    from icu import Locale
+
+    HAVE_ICU = True
+    try:
+        from icu import AlphabeticIndex as icuAlphabeticIndex
+
+        HAVE_ALPHABETICINDEX = True
+    except ImportError:
+        from gramps.plugins.webreport.alphabeticindex import (
+            AlphabeticIndex as localAlphabeticIndex,
+        )
+except ImportError:
+    try:
+        from PyICU import Locale
+
+        HAVE_ICU = True
+        try:
+            from PyICU import AlphabeticIndex as icuAlphabeticIndex
+
+            HAVE_ALPHABETICINDEX = True
+        except ImportError:
+            from gramps.plugins.webreport.alphabeticindex import (
+                AlphabeticIndex as localAlphabeticIndex,
+            )
+    except ImportError:
+        pass
 
 LOG = logging.getLogger(".NarrativeWeb")
 
 # define clear blank line for proper styling
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
 # define all possible web page filename extensions
-_WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
+_WEB_EXT = (".html", ".htm", ".shtml", ".php", ".cgi")
 # used to select secured web site or not
 HTTP = "http://"
 HTTPS = "https://"
 
-GOOGLE_MAPS = 'https://maps.googleapis.com/maps/'
+GOOGLE_MAPS = "https://maps.googleapis.com/maps/"
 # javascript code for marker path
 MARKER_PATH = """
   var marker_png = '%s';
@@ -201,6 +230,7 @@ https://openlayers.org/en/latest/examples/
 OSM_MARKERS = """
   window.addEventListener("load", function() {
     var map;
+    var heat = '%s';
     var tracelife = %s;
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon(({
@@ -213,6 +243,10 @@ OSM_MARKERS = """
     });
     var markerSource = new ol.source.Vector({
     });
+    var centerCoord = new ol.proj.transform([%s, %s], 'EPSG:4326', 'EPSG:3857');
+    var zoom = %d;
+    var radius = %d;
+    var blur = %d;
     for (var i = 0; i < tracelife.length; i++) {
       var loc = tracelife[i];
       var iconFeature = new ol.Feature({
@@ -232,13 +266,27 @@ OSM_MARKERS = """
       source: markerSource,
       style: iconStyle
     });
-    var centerCoord = new ol.proj.transform([%s, %s], 'EPSG:4326', 'EPSG:3857');
-    map = new ol.Map({
-                 target: 'map_canvas',
-                 layers: [new ol.layer.Tile({ source: new ol.source.OSM() }),
-                          markerLayer, tooltip],
-                 view: new ol.View({ center: centerCoord, zoom: %d })
-                 });
+    heatmap = new ol.layer.Heatmap({
+      source: markerSource,
+      radius: radius,
+      blur: blur,
+      style: iconStyle
+    });
+    if (heat == "heatmap") {
+      map = new ol.Map({
+                   target: 'map_canvas',
+                   layers: [new ol.layer.Tile({ source: new ol.source.OSM() }),
+                            heatmap],
+                   view: new ol.View({ center: centerCoord, zoom: zoom })
+                   });
+    } else {
+      map = new ol.Map({
+                   target: 'map_canvas',
+                   layers: [new ol.layer.Tile({ source: new ol.source.OSM() }),
+                            markerLayer, tooltip],
+                   view: new ol.View({ center: centerCoord, zoom: zoom })
+                   });
+    };
 """
 
 STAMEN_MARKERS = """
@@ -294,6 +342,8 @@ OPENLAYER = """
     var closer = document.getElementById('popup-closer');
     var tip = document.getElementById('tooltip');
     var tipcontent = document.getElementById('tooltip-content');
+    var tltip1 = undefined;
+    var tltip2 = undefined;
     var tooltip = new ol.Overlay({
       element: tip,
       positioning: 'bottom-center',
@@ -315,12 +365,18 @@ OPENLAYER = """
     closer.onclick = function() {
       popup.setPosition(undefined);
       closer.blur();
+      tltip1 = undefined;
+      tltip2 = undefined;
       return false;
     };
     map.on('pointermove', function(evt) {
       evt.preventDefault()
+      if (tltip2 !== undefined) {
+        return;
+      }
       var feature = this.forEachFeatureAtPixel(evt.pixel,
                                                function(feature, layer) {
+        tltip1 = feature;
         return feature;
       });
       map.getTargetElement().style.cursor = feature ? 'pointer' : '';
@@ -338,8 +394,12 @@ OPENLAYER = """
     });
     map.on('singleclick', function(evt) {
       evt.preventDefault();
+      if (tltip1 !== undefined) {
+        tooltip.setPosition(undefined);
+      }
       var feature = map.forEachFeatureAtPixel(evt.pixel,
                                               function(feature, layer) {
+        tltip2 = feature;
         return feature;
       });
       if (feature) {
@@ -364,48 +424,122 @@ _NAME_STYLE_FIRST = 0
 _NAME_STYLE_SPECIAL = None
 
 PLUGMAN = BasePluginManager.get_instance()
-CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
+CSS = PLUGMAN.process_plugin_data("WEBSTUFF")
 
-#_NAME_COL = 3
+# _NAME_COL = 3
 
-_WRONGMEDIAPATH = []
+_WRONGMEDIAPATH: list[list[str]] = []
 
 _HTML_DBL_QUOTES = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _HTML_SNG_QUOTES = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
 
 # Events that are usually a family event
-_EVENTMAP = set([EventType.MARRIAGE, EventType.MARR_ALT,
-                 EventType.MARR_SETTL, EventType.MARR_LIC,
-                 EventType.MARR_CONTR, EventType.MARR_BANNS,
-                 EventType.ENGAGEMENT, EventType.DIVORCE,
-                 EventType.DIV_FILING])
+_EVENTMAP = set(
+    [
+        EventType.MARRIAGE,
+        EventType.MARR_ALT,
+        EventType.MARR_SETTL,
+        EventType.MARR_LIC,
+        EventType.MARR_CONTR,
+        EventType.MARR_BANNS,
+        EventType.ENGAGEMENT,
+        EventType.DIVORCE,
+        EventType.DIV_FILING,
+    ]
+)
 
 # Names for stylesheets
 _NARRATIVESCREEN = "narrative-screen.css"
 _NARRATIVEPRINT = "narrative-print.css"
 
+HOLIDAYS_ASSOC = [
+    # LANG INDEX HOLIDAY_NAME
+    ("be", 0, "Bulgaria"),
+    ("ca", 1, "Canada"),
+    ("cs", 2, "Czech Republic"),
+    ("cl", 3, "Chile"),
+    ("zh", 4, "China"),
+    ("hr", 5, "Croatia"),
+    ("en", 13, "United States of America"),  # must be here. should be en_US
+    ("en_GB", 6, "England"),
+    ("fi", 7, "Finland"),
+    ("fr_FR", 8, "France"),
+    ("de", 9, "Germany"),
+    ("ja", 10, "Japan"),
+    ("sk", 11, "Slovakia"),
+    ("sv", 12, "Sweden"),
+    ("he", 14, "Jewish Holidays"),
+    ("en_NZ", 15, "New Zealand"),
+    ("uk", 16, "Ukraine"),
+    ("sr_RS", 17, "Serbia"),
+    ("sr_RS@latin", 18, "Serbia (Latin)"),
+]
+
+
+def do_we_have_holidays(lang):
+    """
+    Associate an index for the holidays depending on the LANG
+    """
+    for lng, idx, dummy_name in HOLIDAYS_ASSOC:
+        if lng == lang:  # i.e. en_US
+            return idx
+        if lng[:2] == lang:  # i.e. en_US[:2] => en
+            return idx
+    return None
+
+
+def get_surname_from_person(dbase, person):
+    """
+    get the person's surname
+    get the primary name
+    if group as get the group_as surname
+    else get the primary surname of the primary name
+         and correct for [global] group_as name
+    correct for surnames that are space or None
+    """
+    primary_name = person.get_primary_name()
+
+    if primary_name.group_as:
+        surname = primary_name.group_as
+    else:
+        group_map = _nd.primary_surname(primary_name)
+        surname = dbase.get_name_group_mapping(group_map)
+
+    # Treat people who have no name with those whose name is just
+    # 'whitespace'
+    if surname is None or surname.isspace():
+        surname = ""
+    return surname
+
+
 def sort_people(dbase, handle_list, rlocale=glocale):
     """
     will sort the database people by surname
+    @param: dbase           -- The instance of the database
+    @param: handle_list     -- The list of handles of people to sort
+    @param: rlocale         -- The locale related to the language used for the
+                               sort
+    @result:                -- A list sorted by surname, each element of which
+                               consists of a tuple of (surname, list of handles)
+                               where the list of handles is sorted by
+                               primary surname, first name, suffix.
+                               Surname uses group_as, but primary surname
+                               does not.
+    get the primary name
+    if group as get the group_as surname
+    else get the primary surname of the primary name
+         and correct for [global] group_as name
+    correct for surnames that are space or None
+    for each surname sort handles by the surname, first name and suffix
+    construct a list of surnames and list of handles
     """
     sname_sub = defaultdict(list)
     sortnames = {}
 
     for person_handle in handle_list:
         person = dbase.get_person_from_handle(person_handle)
-        primary_name = person.get_primary_name()
-
-        if primary_name.group_as:
-            surname = primary_name.group_as
-        else:
-            group_map = _nd.primary_surname(primary_name)
-            surname = dbase.get_name_group_mapping(group_map)
-
-        # Treat people who have no name with those whose name is just
-        # 'whitespace'
-        if surname is None or surname.isspace():
-            surname = ''
-        sortnames[person_handle] = _nd.sort_string(primary_name)
+        surname = get_surname_from_person(dbase, person)
+        sortnames[person_handle] = _nd.sort_string(person.get_primary_name())
         sname_sub[surname].append(person_handle)
 
     sorted_lists = []
@@ -413,13 +547,16 @@ def sort_people(dbase, handle_list, rlocale=glocale):
 
     for name in temp_list:
         if isinstance(name, bytes):
-            name = name.decode('utf-8')
-        slist = sorted(((sortnames[x], x) for x in sname_sub[name]),
-                       key=lambda x: rlocale.sort_key(x[0]))
+            name = name.decode("utf-8")
+        slist = sorted(
+            ((sortnames[x], x) for x in sname_sub[name]),
+            key=lambda x: rlocale.sort_key(x[0]),
+        )
         entries = [x[1] for x in slist]
         sorted_lists.append((name, entries))
 
     return sorted_lists
+
 
 def sort_places(dbase, handle_list, rlocale=glocale):
     """
@@ -428,24 +565,28 @@ def sort_places(dbase, handle_list, rlocale=glocale):
     pname_sub = defaultdict(list)
 
     for place_name in handle_list.keys():
-        (hdle, pname, dummy_id, event) = handle_list[place_name]
+        cname = sname = None
+        if len(handle_list[place_name]) == 6:
+            hdle, pname, cname, sname, dummy_id, event = handle_list[place_name]
+        else:
+            continue
         place = dbase.get_place_from_handle(hdle)
-        pname = _pd.display(dbase, place)
-        apname = _pd.display_event(dbase, event)
+        pname = _pd.display(dbase, place, fmt=0)
+        apname = _pd.display_event(dbase, event, fmt=0)
 
         pname_sub[pname].append(hdle)
-        if pname != apname:
-            pname_sub[apname].append(hdle)
+        pname_sub[apname].append((hdle, pname, cname, sname))
 
     sorted_lists = []
     temp_list = sorted(pname_sub, key=rlocale.sort_key)
 
     for name in temp_list:
         if isinstance(name, bytes):
-            name = name.decode('utf-8')
+            name = name.decode("utf-8")
         sorted_lists.append((name, pname_sub[name][0]))
 
     return sorted_lists
+
 
 def sort_event_types(dbase, event_types, event_handle_list, rlocale):
     """
@@ -455,12 +596,12 @@ def sort_event_types(dbase, event_types, event_handle_list, rlocale):
     @param: event_types -- a dict of event types
     @param: event_handle_list -- all event handles in this database
     """
-    event_dict = dict((evt_type, list()) for evt_type in event_types)
+    rts = rlocale.translation.sgettext
+    event_dict = dict((rts(evt_type), list()) for evt_type in event_types)
 
     for event_handle in event_handle_list:
-
         event = dbase.get_event_from_handle(event_handle)
-        event_type = rlocale.translation.sgettext(event.get_type().xml_str())
+        event_type = rts(event.get_type().xml_str())
 
         # add (gramps_id, date, handle) from this event
         if event_type in event_dict:
@@ -471,16 +612,18 @@ def sort_event_types(dbase, event_types, event_handle_list, rlocale):
         tup_list.sort()
 
     # return a list of sorted tuples, one per event
-    retval = [(event_type, event_list) for (event_type,
-                                            event_list) in event_dict.items()]
+    retval = [
+        (event_type, event_list) for (event_type, event_list) in event_dict.items()
+    ]
     retval.sort(key=lambda item: str(item[0]))
 
     return retval
 
+
 # Modified _get_regular_surname from WebCal.py to get prefix, first name,
 # and suffix
 def _get_short_name(gender, name):
-    """ Will get suffix for all people passed through it """
+    """Will get suffix for all people passed through it"""
 
     dummy_gender = gender
     short_name = name.get_first_name()
@@ -490,289 +633,150 @@ def _get_short_name(gender, name):
         short_name = short_name + ", " + suffix
     return short_name
 
+
 def __get_person_keyname(dbase, handle):
-    """ .... """
+    """...."""
 
     person = dbase.get_person_from_handle(handle)
     return _nd.sort_string(person.get_primary_name())
 
+
 def __get_place_keyname(dbase, handle):
-    """ ... """
+    """..."""
 
     return utils.place_name(dbase, handle)
 
-# See : http://www.gramps-project.org/bugs/view.php?id = 4423
 
-# Contraction data taken from CLDR 22.1. Only the default variant is considered.
-# The languages included below are, by no means, all the langauges that have
-# contractions - just a sample of langauges that have been supported
+if HAVE_ALPHABETICINDEX:
 
-# At the time of writing (Feb 2013), the following langauges have greater that
-# 50% coverage of translation of Gramps: bg Bulgarian, ca Catalan, cs Czech, da
-# Danish, de German, el Greek, en_GB, es Spanish, fi Finish, fr French, he
-# Hebrew, hr Croation, hu Hungarian, it Italian, ja Japanese, lt Lithuanian, nb
-# Noregian Bokmål, nn Norwegian Nynorsk, nl Dutch, pl Polish, pt_BR Portuguese
-# (Brazil), pt_P Portugeuse (Portugal), ru Russian, sk Slovak, sl Slovenian, sv
-# Swedish, vi Vietnamese, zh_CN Chinese.
-
-# Key is the language (or language and country), Value is a list of
-# contractions. Each contraction consists of a tuple. First element of the
-# tuple is the list of characters, second element is the string to use as the
-# index entry.
-
-# The DUCET contractions (e.g. LATIN CAPIAL LETTER L, MIDDLE DOT) are ignored,
-# as are the supresscontractions in some locales.
-
-CONTRACTIONS_DICT = {
-    # bg Bulgarian validSubLocales="bg_BG" no contractions
-    # ca Catalan validSubLocales="ca_AD ca_ES"
-    "ca" : [(("l·", "L·"), "L")],
-    # Czech, validSubLocales="cs_CZ" Czech_Czech Republic
-    "cs" : [(("ch", "cH", "Ch", "CH"), "CH")],
-    # Danish validSubLocales="da_DK" Danish_Denmark
-    "da" : [(("aa", "Aa", "AA"), "Å")],
-    # de German validSubLocales="de_AT de_BE de_CH de_DE de_LI de_LU" no
-    # contractions in standard collation.
-    # el Greek validSubLocales="el_CY el_GR" no contractions.
-    # es Spanish validSubLocales="es_419 es_AR es_BO es_CL es_CO es_CR es_CU
-    # es_DO es_EA es_EC es_ES es_GQ es_GT es_HN es_IC es_MX es_NI es_PA es_PE
-    # es_PH es_PR es_PY es_SV es_US es_UY es_VE" no contractions in standard
-    # collation.
-    # fi Finish validSubLocales="fi_FI" no contractions in default (phonebook)
-    # collation.
-    # fr French no collation data.
-    # he Hebrew validSubLocales="he_IL" no contractions
-    # hr Croation validSubLocales="hr_BA hr_HR"
-    "hr" : [(("dž", "Dž"), "dž"),
-            (("lj", "Lj", 'LJ'), "Ǉ"),
-            (("Nj", "NJ", "nj"), "Ǌ")],
-    # Hungarian hu_HU for two and three character contractions.
-    "hu" : [(("cs", "Cs", "CS"), "CS"),
-            (("dzs", "Dzs", "DZS"), "DZS"), # order is important
-            (("dz", "Dz", "DZ"), "DZ"),
-            (("gy", "Gy", "GY"), "GY"),
-            (("ly", "Ly", "LY"), "LY"),
-            (("ny", "Ny", "NY"), "NY"),
-            (("sz", "Sz", "SZ"), "SZ"),
-            (("ty", "Ty", "TY"), "TY"),
-            (("zs", "Zs", "ZS"), "ZS")
-           ],
-    # it Italian no collation data.
-    # ja Japanese unable to process the data as it is too complex.
-    # lt Lithuanian no contractions.
-    # Norwegian Bokmål
-    "nb" : [(("aa", "Aa", "AA"), "Å")],
-    # nn Norwegian Nynorsk validSubLocales="nn_NO"
-    "nn" : [(("aa", "Aa", "AA"), "Å")],
-    # nl Dutch no collation data.
-    # pl Polish validSubLocales="pl_PL" no contractions
-    # pt Portuguese no collation data.
-    # ru Russian validSubLocales="ru_BY ru_KG ru_KZ ru_MD ru_RU ru_UA" no
-    # contractions
-    # Slovak,  validSubLocales="sk_SK" Slovak_Slovakia
-    # having DZ in Slovak as a contraction was rejected in
-    # http://unicode.org/cldr/trac/ticket/2968
-    "sk" : [(("ch", "cH", "Ch", "CH"), "Ch")],
-    # sl Slovenian validSubLocales="sl_SI" no contractions
-    # sv Swedish validSubLocales="sv_AX sv_FI sv_SE" default collation is
-    # "reformed" no contractions.
-    # vi Vietnamese validSubLocales="vi_VN" no contractions.
-    # zh Chinese validSubLocales="zh_Hans zh_Hans_CN zh_Hans_SG" no contractions
-    # in Latin characters the others are too complex.
-    }
-
-    # The comment below from the glibc locale sv_SE in
-    # localedata/locales/sv_SE :
-    #
-    # % The letter w is normally not present in the Swedish alphabet. It
-    # % exists in some names in Swedish and foreign words, but is accounted
-    # % for as a variant of 'v'.  Words and names with 'w' are in Swedish
-    # % ordered alphabetically among the words and names with 'v'. If two
-    # % words or names are only to be distinguished by 'v' or % 'w', 'v' is
-    # % placed before 'w'.
-    #
-    # See : http://www.gramps-project.org/bugs/view.php?id = 2933
-    #
-
-# HOWEVER: the characters V and W in Swedish are not considered as a special
-# case for several reasons. (1) The default collation for Swedish (called the
-# 'reformed' collation type) regards the difference between 'v' and 'w' as a
-# primary difference. (2) 'v' and 'w' in the 'standard' (non-default) collation
-# type are not a contraction, just a case where the difference is secondary
-# rather than primary. (3) There are plenty of other languages where a
-# difference that is primary in other languages is secondary, and those are not
-# specially handled.
-
-def first_letter(string, rlocale=glocale):
-    """
-    Receives a string and returns the first letter
-    """
-    dummy_rlocale = rlocale
-    if string is None or len(string) < 1:
-        return ' '
-
-    norm_unicode = normalize('NFKC', str(string))
-    contractions = CONTRACTIONS_DICT.get(COLLATE_LANG)
-    if contractions is None:
-        contractions = CONTRACTIONS_DICT.get(COLLATE_LANG.split("_")[0])
-
-    if contractions is not None:
-        for contraction in contractions:
-            count = len(contraction[0][0])
-            if (len(norm_unicode) >= count and
-                    norm_unicode[:count] in contraction[0]):
-                return contraction[1]
-
-    # no special case
-    return norm_unicode[0].upper()
-
-
-try:
-    import PyICU # pylint : disable=wrong-import-position
-    PRIM_COLL = PyICU.Collator.createInstance(PyICU.Locale(COLLATE_LANG))
-    PRIM_COLL.setStrength(PRIM_COLL.PRIMARY)
-
-    def primary_difference(prev_key, new_key, rlocale=glocale):
+    class AlphabeticIndex(icuAlphabeticIndex):
         """
-        Try to use the PyICU collation.
-        If we generate a report for another language, make sure we use the good
-        collation sequence
-        """
-        collation = PRIM_COLL
-        if rlocale.lang != locale.getlocale(locale.LC_COLLATE)[0]:
-            encoding = rlocale.encoding if rlocale.encoding else "UTF-8"
-            collate_lang = PyICU.Locale(rlocale.collation+"."+encoding)
-            collation = PyICU.Collator.createInstance(collate_lang)
-        return collation.compare(prev_key, new_key) != 0
-
-except:
-    def primary_difference(prev_key, new_key, rlocale=glocale):
-        """
-        The PyICU collation is not available.
-
-        Returns true if there is a primary difference between the two parameters
-        See http://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
-        letter[i]+'a' < letter[i+1]+'b' and letter[i+1]+'a' < letter[i]+'b' is
-        true then the letters should be grouped together
-
-        The test characters here must not be any that are used in contractions.
+        Call the ICU AlphabeticIndex, passing the ICU Locale
         """
 
-        return rlocale.sort_key(prev_key + "e") >= \
-                   rlocale.sort_key(new_key + "f") or \
-                   rlocale.sort_key(new_key + "e") >= \
-                   rlocale.sort_key(prev_key + "f")
+        def __init__(self, rlocale):
+            self.iculocale = Locale(rlocale.collation)
+            super().__init__(self.iculocale)
 
-def get_first_letters(dbase, handle_list, key, rlocale=glocale):
-    """
-    get the first letters of the handle_list
+            # set the maximum number of buckets, the undocumented default is 99
+            # Latin + Greek + Cyrillic + Hebrew + Arabic + Tamil + Hiragana +
+            # CJK Unified is about 206 different buckets
+            self.maxLabelCount = 500  # pylint: disable=invalid-name
 
-    @param: handle_list -- One of a handle list for either person or
-                           place handles or an evt types list
-    @param: key         -- Either a person, place, or event type
+            # Add bucket labels for scripts other than the one for the output
+            # which is being generated
+            self.iculocale.addLikelySubtags()
+            default_script = self.iculocale.getDisplayScript()
+            used_scripts = [default_script]
 
-    The first letter (or letters if there is a contraction) are extracted from
-    all the objects in the handle list. There may be duplicates, and there may
-    be letters where there is only a secondary or tertiary difference, not a
-    primary difference. The list is sorted in collation order. For each group
-    with secondary or tertiary differences, the first in collation sequence is
-    retained. For example, assume the default collation sequence (DUCET) and
-    names Ånström and Apple. These will sort in the order shown. Å and A have a
-    secondary difference. If the first letter from these names was chosen then
-    the inex entry would be Å. This is not desirable. Instead, the initial
-    letters are extracted (Å and A). These are sorted, which gives A and Å. Then
-    the first of these is used for the index entry.
-    """
-    index_list = []
+            for lang_code in glocale.get_language_dict().values():
+                loc = Locale(lang_code)
+                loc.addLikelySubtags()
+                script = loc.getDisplayScript()
+                if script not in used_scripts:
+                    used_scripts.append(script)
+                    super().addLabels(loc)
 
-    for handle in handle_list:
-        if key == _KEYPERSON:
-            keyname = __get_person_keyname(dbase, handle)
+else:
+    AlphabeticIndex = localAlphabeticIndex  # type: ignore[misc, assignment]
 
-        elif key == _KEYPLACE:
-            keyname = __get_place_keyname(dbase, handle)
 
-        else:
-            if rlocale != glocale:
-                keyname = rlocale.translation.sgettext(handle)
-            else:
-                keyname = handle
-        ltr = first_letter(keyname)
-
-        index_list.append(ltr)
-
-    # Now remove letters where there is not a primary difference
-    index_list.sort(key=rlocale.sort_key)
-    first = True
-    prev_index = None
-    for nkey in index_list[:]:   #iterate over a slice copy of the list
-        if first or primary_difference(prev_index, nkey, rlocale):
-            first = False
-            prev_index = nkey
-        else:
-            index_list.remove(nkey)
-
-    # return menu set letters for alphabet_navigation
-    return index_list
-
-def get_index_letter(letter, index_list, rlocale=glocale):
-    """
-    This finds the letter in the index_list that has no primary difference from
-    the letter provided. See the discussion in get_first_letters above.
-    Continuing the example, if letter is Å and index_list is A, then this would
-    return A.
-    """
-    for index in index_list:
-        if not primary_difference(letter, index, rlocale):
-            return index
-
-    LOG.warning("Initial letter '%s' not found in alphabetic navigation list",
-                letter)
-    LOG.debug("filtered sorted index list %s", index_list)
-    return letter
-
-def alphabet_navigation(index_list, rlocale=glocale):
+def alphabet_navigation(
+    sorted_alpha_index,
+    rlocale=glocale,
+    current=None,
+    rtl=False,
+    only=True,
+    new_page=False,
+    ext=None,
+):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
     SurnameListPage, PlaceListPage, and EventList
 
     @param: index_list -- a dictionary of either letters or words
+    @param: rlocale    -- The locale to use
+    @param: current    -- The current page
+    @param: rtl        -- Do we use rtl language ?
+    @param: only       -- Used only for alphabet letters
+    @param: new_page   -- Used to have multiple index pages
+    @param: ext        -- The default extension when new_page is used
     """
-    sorted_set = defaultdict(int)
-
-    for menu_item in index_list:
-        sorted_set[menu_item] += 1
-
-    # remove the number of each occurance of each letter
-    sorted_alpha_index = sorted(sorted_set, key=rlocale.sort_key)
-
     # if no letters, return None to its callers
     if not sorted_alpha_index:
         return None
 
     num_ltrs = len(sorted_alpha_index)
-    num_of_cols = 26
-    num_of_rows = ((num_ltrs // num_of_cols) + 1)
+    # num_of_cols = 26
+    num_of_cols = num_ltrs
+    # num_of_rows = (num_ltrs // num_of_cols) + 1
+    num_of_rows = 1
 
     # begin alphabet navigation division
-    with Html("div", id="alphanav") as alphabetnavigation:
-
+    with Html("div", id=rtl) as alphabetnavigation:
         index = 0
+        output = []
+        dup_index = 0
         for dummy_row in range(num_of_rows):
-            unordered = Html("ul")
+            unordered = Html("ul", class_=rtl)
 
             cols = 0
             while cols <= num_of_cols and index < num_ltrs:
                 menu_item = sorted_alpha_index[index]
-                if menu_item == ' ':
-                    menu_item = '&nbsp;'
+                if menu_item == " ":
+                    menu_item = "&nbsp;"
                 # adding title to hyperlink menu for screen readers and
                 # braille writers
                 title_txt = "Alphabet Menu: %s" % menu_item
                 title_str = rlocale.translation.sgettext(title_txt)
-                hyper = Html("a", menu_item, title=title_str,
-                             href="#%s" % menu_item)
-                unordered.extend(Html("li", hyper, inline=True))
+                # deal with multiple ellipsis which are generated for overflow,
+                # underflow and inflow labels
+                link = menu_item
+                if menu_item in output:
+                    link = "%s (%i)" % (menu_item, dup_index)
+                    dup_index += 1
+                output.append(menu_item)
+
+                check_cs = False
+                if new_page:
+                    new_index, extension = os.path.splitext(new_page)
+                    if extension == "":
+                        extension = ext
+                    pathl = os.path.dirname(new_index)
+                    filel = os.path.basename(new_index)
+                    if len(filel) > 6:  # 6 is the length of "events"
+                        url = "/".join((pathl, "events" + str(index + 1) + extension))
+                    else:
+                        url = "/".join((pathl, "events" + extension))
+                    hyper = Html("a", filel, title=title_str, href=url)
+                    if cols != 0:
+                        next_name = new_index + str(cols)
+                        hyper = Html(
+                            "a",
+                            menu_item,
+                            title=title_str,
+                            href="%s" % next_name + extension,
+                        )
+                    else:
+                        next_name = new_index
+                        hyper = Html(
+                            "a",
+                            menu_item,
+                            title=title_str,
+                            href="%s" % new_index + extension,
+                        )
+                    current = current.split("_")[0]
+                    if current == next_name:
+                        check_cs = True
+                    temp_cs = 'class = "CurrentSection"'
+                    check_cs = temp_cs if check_cs else False
+                else:
+                    hyper = Html("a", menu_item, title=title_str, href="#%s" % link)
+                if check_cs:
+                    next_elem = Html("li", hyper, attr=check_cs, inline=True)
+                else:
+                    next_elem = Html("li", hyper, inline=True)
+                unordered.extend(next_elem)
 
                 index += 1
                 cols += 1
@@ -782,13 +786,88 @@ def alphabet_navigation(index_list, rlocale=glocale):
 
     return alphabetnavigation
 
+
+def partial_navigation(
+    partial_index, rlocale=glocale, current=None, rtl=False, new_page=False, ext=None
+):
+    """
+    Will create the partial navigation bar for big indexes
+
+    @param: partial_index -- a dictionary of (name, handle)
+    @param: rlocale       -- The locale to use
+    @param: current       -- The current page
+    @param: rtl           -- Do we use rtl language ?
+    @param: new_page      -- Used to have multiple index pages
+    @param: ext           -- The default extension when new_page is used
+    """
+    # if no letters, return None to its callers
+    if not partial_index:
+        return None
+
+    num_pages = len(partial_index)
+    num_of_rows = 1
+
+    # begin alphabet navigation division
+    with Html("div", id=rtl, class_="pnav") as partialnavigation:
+        index = 0
+        for dummy_row in range(num_of_rows):
+            unordered = Html("ul", class_=rtl)
+
+            while index < num_pages:
+                handle, name = partial_index[index]
+                title_txt = "Go to: "
+                title_str = rlocale.translation.sgettext(title_txt) + name
+                check_cs = False
+                if new_page:
+                    if index == 0:
+                        new_index = new_page
+                    else:
+                        new_index = new_page[:-1]
+                    new_index, extension = os.path.splitext(new_page)
+                    if extension == "":
+                        extension = ext
+                    if index == 0:
+                        next_name = new_index
+                        hyper = Html(
+                            "a",
+                            name + " \u27a1 ",
+                            title=title_str,
+                            href="%s" % new_index + extension,
+                        )
+                    else:
+                        next_name = new_index + "_%d" % index
+                        hyper = Html(
+                            "a",
+                            name + " \u27a1 ",
+                            title=title_str,
+                            href="%s" % new_index + "_%d" % index + extension,
+                        )
+                    if current == next_name:
+                        check_cs = True
+                    temp_cs = 'class = "CurrentSection"'
+                    check_cs = temp_cs if check_cs else False
+                else:
+                    hyper = Html("a", name, title=title_str, href="#%s" % "link")
+                if check_cs:
+                    next_elem = Html("li", hyper, attr=check_cs, inline=True)
+                else:
+                    next_elem = Html("li", hyper, inline=True)
+                unordered.extend(next_elem)
+
+                index += 1
+            num_of_rows -= 1
+            partialnavigation += unordered
+    return partialnavigation
+
+
 def _has_webpage_extension(url):
     """
     determine if a filename has an extension or not...
 
     @param: url -- filename to be checked
     """
-    return any(url.endswith(ext) for ext in _WEB_EXT)
+    return url.endswith(_WEB_EXT)
+
 
 def add_birthdate(dbase, ppl_handle_list, rlocale):
     """
@@ -805,7 +884,7 @@ def add_birthdate(dbase, ppl_handle_list, rlocale):
     """
     sortable_individuals = []
     for person_handle in ppl_handle_list:
-        birth_date = 0    # dummy value in case none is found
+        birth_date = 0  # dummy value in case none is found
         person = dbase.get_person_from_handle(person_handle)
         if person:
             birth_ref = person.get_birth_ref()
@@ -824,6 +903,7 @@ def add_birthdate(dbase, ppl_handle_list, rlocale):
 
     # return a list of handles with the individual's birthdate attached
     return sortable_individuals
+
 
 def _find_birth_date(dbase, individual):
     """
@@ -852,6 +932,7 @@ def _find_birth_date(dbase, individual):
                         break
     return date_out
 
+
 def _find_death_date(dbase, individual):
     """
     will look for a death date within a person's events
@@ -879,6 +960,7 @@ def _find_death_date(dbase, individual):
                         break
     return date_out
 
+
 def build_event_data_by_individuals(dbase, ppl_handle_list):
     """
     creates a list of event handles and event types for this database
@@ -892,13 +974,11 @@ def build_event_data_by_individuals(dbase, ppl_handle_list):
     for person_handle in ppl_handle_list:
         person = dbase.get_person_from_handle(person_handle)
         if person:
-
             evt_ref_list = person.get_event_ref_list()
             if evt_ref_list:
                 for evt_ref in evt_ref_list:
                     event = dbase.get_event_from_handle(evt_ref.ref)
                     if event:
-
                         event_types.append(str(event.get_type()))
                         event_handle_list.append(evt_ref.ref)
 
@@ -907,7 +987,6 @@ def build_event_data_by_individuals(dbase, ppl_handle_list):
                 for family_handle in person_family_handle_list:
                     family = dbase.get_family_from_handle(family_handle)
                     if family:
-
                         family_evt_ref_list = family.get_event_ref_list()
                         if family_evt_ref_list:
                             for evt_ref in family_evt_ref_list:
@@ -919,10 +998,12 @@ def build_event_data_by_individuals(dbase, ppl_handle_list):
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
 
+
 def name_to_md5(text):
     """This creates an MD5 hex string to be used as filename."""
 
-    return md5(text.encode('utf-8')).hexdigest()
+    return md5(text.encode("utf-8")).hexdigest()
+
 
 def get_gendex_data(database, event_ref):
     """
@@ -931,8 +1012,8 @@ def get_gendex_data(database, event_ref):
     @param: database  -- The database
     @param: event_ref -- The event reference
     """
-    doe = "" # date of event
-    poe = "" # place of event
+    doe = ""  # date of event
+    poe = ""  # place of event
     if event_ref and event_ref.ref:
         event = database.get_event_from_handle(event_ref.ref)
         if event:
@@ -945,6 +1026,7 @@ def get_gendex_data(database, event_ref):
                     if place:
                         poe = _pd.display(database, place, date)
     return doe, poe
+
 
 def format_date(date):
     """
@@ -963,16 +1045,19 @@ def format_date(date):
             val = "%sFROM %s TO %s" % (
                 qual_text,
                 make_gedcom_date(start, cal, mod, None),
-                make_gedcom_date(date.get_stop_date(), cal, mod, None))
+                make_gedcom_date(date.get_stop_date(), cal, mod, None),
+            )
         elif mod == Date.MOD_RANGE:
             val = "%sBET %s AND %s" % (
                 qual_text,
                 make_gedcom_date(start, cal, mod, None),
-                make_gedcom_date(date.get_stop_date(), cal, mod, None))
+                make_gedcom_date(date.get_stop_date(), cal, mod, None),
+            )
         else:
             val = make_gedcom_date(start, cal, mod, quality)
         return val
     return ""
+
 
 # This command then defines the 'html_escape' option for escaping
 # special characters for presentation in HTML based on the above list.
@@ -988,15 +1073,78 @@ def html_escape(text):
         text = "%s" "&#8220;" "%s" "&#8221;" "%s" % match.groups()
         match = _HTML_DBL_QUOTES.match(text)
     # Replace remaining double quotes.
-    text = text.replace('"', '&#34;')
+    text = text.replace('"', "&#34;")
 
     # Deal with single quotes.
-    text = text.replace("'s ", '&#8217;s ')
+    text = text.replace("'s ", "&#8217;s ")
     match = _HTML_SNG_QUOTES.match(text)
     while match:
         text = "%s" "&#8216;" "%s" "&#8217;" "%s" % match.groups()
         match = _HTML_SNG_QUOTES.match(text)
     # Replace remaining single quotes.
-    text = text.replace("'", '&#39;')
+    text = text.replace("'", "&#39;")
 
     return text
+
+
+def create_indexes_pages(report, name, index_list, function, handle_list, locale=None):
+    """
+    This is used to create indexes depending on a row limit.
+
+    @param: report      -- The instance of the main report class
+    @param: name        -- The base name of the file to create
+    @param: index_list  -- The base name of the file to create
+    @param: function    -- The function used to create the page
+    @param: handle_list -- The list of handles to manage
+    @param: locale      -- The locale used for sor t, ...
+    """
+    row_count = report.options["splitindex"]
+    page = 0
+    for letter, hdle_list in handle_list:
+        if "events" not in name:
+            hdle_list.sort(key=lambda x: locale.sort_key(x[1]))
+        if len(hdle_list) <= row_count:
+            function(
+                report,
+                index_list,
+                name,
+                letter,
+                hdle_list,
+                part=page,
+            )
+        else:
+            partial_list = []
+            for idx in range(0, int(len(hdle_list) / row_count) + 1, 1):
+                if (idx * row_count) < len(hdle_list):
+                    partial_list.append(hdle_list[idx * row_count])
+            sub_page = 0
+            part = 0
+            start = 0
+            while start < len(hdle_list):
+                phdle_list = []
+                for nbh in range(len(hdle_list)):
+                    if nbh < start:
+                        continue
+                    if nbh >= start + row_count:
+                        break
+                    if nbh > len(hdle_list):
+                        break
+                    phdle_list.append(hdle_list[nbh])
+                if sub_page != 0:
+                    subp = "_%d" % sub_page
+                else:
+                    subp = None
+                function(
+                    report,
+                    index_list,
+                    name,
+                    letter,
+                    phdle_list,
+                    part=page,
+                    subp=subp,
+                    partial_list=partial_list,
+                )
+                part += 1
+                start += row_count
+                sub_page += 1
+        page += 1

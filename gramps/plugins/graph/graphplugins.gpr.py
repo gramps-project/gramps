@@ -13,81 +13,85 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from gramps.gen.plug._pluginreg import *
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import URL_MANUAL_PAGE, GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-MODULE_VERSION="5.1"
+MODULE_VERSION = "6.0"
+REPORTS_HELP = URL_MANUAL_PAGE + "_-_Reports#Graphs"
 
 # this is the default in gen/plug/_pluginreg.py: plg.require_active = True
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Family Lines Graph
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id = 'familylines_graph'
+plg.id = "familylines_graph"
 plg.name = _("Family Lines Graph")
 plg.description = _("Produces family line graphs using Graphviz.")
-plg.version = '1.0'
+plg.version = "1.0"
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
-plg.fname = 'gvfamilylines.py'
+plg.fname = "gvfamilylines.py"
 plg.ptype = REPORT
 plg.authors = ["Stephane Charette"]
 plg.authors_email = ["stephanecharette@gmail.com"]
 plg.category = CATEGORY_GRAPHVIZ
-plg.reportclass = 'FamilyLinesReport'
-plg.optionclass = 'FamilyLinesOptions'
+plg.reportclass = "FamilyLinesReport"
+plg.optionclass = "FamilyLinesOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 plg.require_active = False
+plg.help_url = REPORTS_HELP
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Hourglass Graph
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id = 'hourglass_graph'
+plg.id = "hourglass_graph"
 plg.name = _("Hourglass Graph")
 plg.description = _("Produces an hourglass graph using Graphviz.")
-plg.version = '1.0'
+plg.version = "1.0"
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
-plg.fname = 'gvhourglass.py'
+plg.fname = "gvhourglass.py"
 plg.ptype = REPORT
 plg.authors = ["Brian G. Matherly"]
 plg.authors_email = ["brian@gramps-project.org"]
 plg.category = CATEGORY_GRAPHVIZ
-plg.reportclass = 'HourGlassReport'
-plg.optionclass = 'HourGlassOptions'
+plg.reportclass = "HourGlassReport"
+plg.optionclass = "HourGlassOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Relationship Graph
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id = 'rel_graph'
+plg.id = "rel_graph"
 plg.name = _("Relationship Graph")
 plg.description = _("Produces relationship graphs using Graphviz.")
-plg.version = '1.0'
+plg.version = "1.0"
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
-plg.fname = 'gvrelgraph.py'
+plg.fname = "gvrelgraph.py"
 plg.ptype = REPORT
 plg.authors = ["Brian G. Matherly"]
 plg.authors_email = ["brian@gramps-project.org"]
 plg.category = CATEGORY_GRAPHVIZ
-plg.reportclass = 'RelGraphReport'
-plg.optionclass = 'RelGraphOptions'
+plg.reportclass = "RelGraphReport"
+plg.optionclass = "RelGraphOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP

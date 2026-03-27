@@ -13,39 +13,40 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # AttrModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class AttrModel(Gtk.ListStore):
-
     def __init__(self, attr_list, db):
-        Gtk.ListStore.__init__(self, str, str, bool, object)
+        Gtk.ListStore.__init__(self, str, str, bool, bool, object)
         self.db = db
         for attr in attr_list:
-            self.append(row=[
-                str(attr.get_type()),
-                attr.get_value(),
-                attr.get_privacy(),
-                attr,
-                ])
+            self.append(
+                row=[
+                    str(attr.get_type()),
+                    attr.get_value(),
+                    attr.has_citations(),
+                    attr.get_privacy(),
+                    attr,
+                ]
+            )

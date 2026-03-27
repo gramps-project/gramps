@@ -13,45 +13,47 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....utils.db import for_each_ancestor
 from ._hascommonancestorwith import HasCommonAncestorWith
 from ._matchesfilter import MatchesFilter
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasCommonAncestorWithFilterMatch
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
     """Rule that checks for a person that has a common ancestor with
     someone matching a filter"""
 
-    labels = [ _('Filter name:') ]
-    name = _('People with a common ancestor with <filter> match')
-    description = _("Matches people that have a common ancestor "
-                    "with anybody matched by a filter")
+    labels = [_("Filter name:")]
+    name = _("People with a common ancestor with <filter> match")
+    description = _(
+        "Matches people that have a common ancestor " "with anybody matched by a filter"
+    )
     category = _("Ancestral filters")
 
-    def __init__(self, list, use_regex=False):
-        HasCommonAncestorWith.__init__(self, list, use_regex)
+    def __init__(self, list, use_regex=False, use_case=False):
+        HasCommonAncestorWith.__init__(self, list, use_regex, use_case)
         self.ancestor_cache = {}
 
     def prepare(self, db, user):
@@ -65,18 +67,19 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
         if user:
-            user.begin_progress(self.category,
-                                _('Retrieving all sub-filter matches'),
-                                db.get_number_of_people())
-        for handle in db.iter_person_handles():
-            person = db.get_person_from_handle(handle)
+            user.begin_progress(
+                self.category,
+                _("Retrieving all sub-filter matches"),
+                db.get_number_of_people(),
+            )
+        for person in db.iter_people():
             if user:
                 user.step_progress()
-            if person and self.filt.apply(db, person):
-                #store all people in the filter so as to compare later
+            if person and self.filt.apply_to_one(db, person):
+                # store all people in the filter so as to compare later
                 self.with_people.append(person.handle)
-                #fill list of ancestor of person if not present yet
-                if handle not in self.ancestor_cache:
+                # fill list of ancestor of person if not present yet
+                if person.handle not in self.ancestor_cache:
                     self.add_ancs(db, person)
         if user:
             user.end_progress()

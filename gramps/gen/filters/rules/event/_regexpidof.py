@@ -13,37 +13,37 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._regexpidbase import RegExpIdBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasIdOf
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RegExpIdOf(RegExpIdBase):
     """
     Rule that checks for an event  whose Gramps ID
     matches regular expression.
     """
 
-    name = _('Events with Id containing <text>')
-    description = _("Matches events whose Gramps ID matches "
-                    "the regular expression")
+    name = _("Events with Id containing <text>")
+    description = _("Matches events whose Gramps ID matches " "the regular expression")

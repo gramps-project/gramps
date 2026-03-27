@@ -14,33 +14,34 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 AttributeRootBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .attribute import Attribute, AttributeRoot
+from .const import EQUAL, IDENTICAL
 from .srcattribute import SrcAttribute
-from .const import IDENTICAL, EQUAL
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# AttributeRootBase class
+# AttributeRootBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class AttributeRootBase:
     """
     Base class for attribute-aware objects.
     """
+
     _CLASS = AttributeRoot
 
     def __init__(self, source=None):
@@ -54,8 +55,9 @@ class AttributeRootBase:
         :type source: AttributeBase
         """
         if source:
-            self.attribute_list = [self._CLASS(attribute)
-                                   for attribute in source.attribute_list]
+            self.attribute_list = [
+                self._CLASS(attribute) for attribute in source.attribute_list
+            ]
         else:
             self.attribute_list = []
 
@@ -101,8 +103,7 @@ class AttributeRootBase:
         if attribute in self.attribute_list:
             self.attribute_list.remove(attribute)
             return True
-        else:
-            return False
+        return False
 
     def get_attribute_list(self):
         """
@@ -139,14 +140,34 @@ class AttributeRootBase:
                 equi = attr.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     attr.merge(addendum)
                     break
             else:
                 self.attribute_list.append(addendum)
 
+
+# -------------------------------------------------------------------------
+#
+# AttributeBase
+#
+# -------------------------------------------------------------------------
 class AttributeBase(AttributeRootBase):
+    """
+    Base class for an Attribute list.
+    """
+
     _CLASS = Attribute
 
+
+# -------------------------------------------------------------------------
+#
+# SrcAttributeBase
+#
+# -------------------------------------------------------------------------
 class SrcAttributeBase(AttributeRootBase):
+    """
+    Base class for a SrcAttribute list.
+    """
+
     _CLASS = SrcAttribute

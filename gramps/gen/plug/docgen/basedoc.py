@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -28,39 +27,42 @@ Provide base interface to text based documents. Specific document
 interfaces should be derived from the core classes.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .stylesheet import StyleSheet
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".basedoc")
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # BaseDoc
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class BaseDoc(metaclass=ABCMeta):
     """
     Base class for document generators. Different output formats,
     such as OpenOffice, AbiWord, and LaTeX are derived from this base
     class, providing a common interface to all document generators.
     """
+
     def __init__(self, styles, paper_style, track=[], uistate=None):
         """
         Create a BaseDoc instance, which provides a document generation
@@ -79,7 +81,7 @@ class BaseDoc(metaclass=ABCMeta):
         self._creator = ""
         self.init_called = False
         self.uistate = uistate
-        self._rtl_doc = False # does the document have right-to-left text?
+        self._rtl_doc = False  # does the document have right-to-left text?
 
     def set_rtl_doc(self, value):
         self._rtl_doc = value

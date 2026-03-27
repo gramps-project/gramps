@@ -12,55 +12,65 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from collections import defaultdict
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.plug.menu import NumberOption
+
 _ = glocale.translation.sgettext
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Constants
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 _YIELD_INTERVAL = 350
 
-#------------------------------------------------------------------------
+NUM_SURNAMES = _("Number of Surnames to display")
+
+
+# ------------------------------------------------------------------------
 #
 # TopSurnamesGramplet class
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class TopSurnamesGramplet(Gramplet):
     def init(self):
         self.set_tooltip(_("Double-click surname for details"))
-        self.top_size = 10 # will be overwritten in load
+        self.top_size = 10  # will be overwritten in load
         self.set_text(_("No Family Tree loaded."))
 
     def db_changed(self):
-        self.connect(self.dbstate.db, 'person-add', self.update)
-        self.connect(self.dbstate.db, 'person-delete', self.update)
-        self.connect(self.dbstate.db, 'person-update', self.update)
-        self.connect(self.dbstate.db, 'person-rebuild', self.update)
-        self.connect(self.dbstate.db, 'family-rebuild', self.update)
+        self.connect(self.dbstate.db, "person-add", self.update)
+        self.connect(self.dbstate.db, "person-delete", self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
+        self.connect(self.dbstate.db, "person-rebuild", self.update)
+        self.connect(self.dbstate.db, "family-rebuild", self.update)
         self.set_text(_("No Family Tree loaded."))
 
+    def build_options(self):
+        self.add_option(NumberOption(NUM_SURNAMES, self.top_size, 10, 1000))
+
+    def save_options(self):
+        self.top_size = int(self.get_option(NUM_SURNAMES).get_value())
+
     def on_load(self):
-        if len(self.gui.data) > 0:
+        if len(self.gui.data) == 1:
             self.top_size = int(self.gui.data[0])
 
     def on_save(self):
@@ -99,15 +109,16 @@ class TopSurnamesGramplet(Gramplet):
         line = 0
         ### All done!
         self.set_text("")
-        nosurname = config.get('preferences.no-surname-text')
-        for (count, surname) in surname_sort:
+        nosurname = config.get("preferences.no-surname-text")
+        for count, surname in surname_sort:
             text = "%s, " % (surname if surname else nosurname)
-            text += "%d%% (%d)\n" % (int((float(count)/total) * 100), count)
+            text += "%d%% (%d)\n" % (int((float(count) / total) * 100), count)
             self.append_text(" %d. " % (line + 1))
-            self.link(text, 'Surname', representative_handle[surname])
+            self.link(text, "Surname", representative_handle[surname])
             line += 1
             if line >= self.top_size:
                 break
-        self.append_text(("\n" + _("Total unique surnames") + ": %d\n") %
-                         total_surnames)
+        self.append_text(
+            ("\n" + _("Total unique surnames") + ": %d\n") % total_surnames
+        )
         self.append_text((_("Total people") + ": %d") % total_people, "begin")

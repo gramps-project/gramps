@@ -17,36 +17,37 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".tablestyle")
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # TableStyle
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class TableStyle:
     """
     Specifies the style or format of a table. The TableStyle contains the
@@ -54,6 +55,7 @@ class TableStyle:
     number of columns, and the width of each column as a percentage of the
     width of the table.
     """
+
     def __init__(self, obj=None):
         """
         Create a new TableStyle object, with the values initialized to
@@ -71,7 +73,7 @@ class TableStyle:
         else:
             self.width = 0
             self.columns = 0
-            self.colwid = [ 0 ] * 100
+            self.colwid = [0] * 100
             self.description = ""
 
     def set_description(self, text):
@@ -140,16 +142,18 @@ class TableStyle:
         """
         return self.colwid[index]
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # TableCellStyle
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class TableCellStyle:
     """
     Defines the style of a particular table cell. Characteristics are:
     right border, left border, top border, bottom border, and padding.
     """
+
     def __init__(self, obj=None):
         """
         Create a new TableCellStyle instance.

@@ -15,27 +15,26 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Person Tree View
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.views.listview import TEXT, MARKUP, ICON
 from gramps.plugins.lib.libpersonview import BasePersonView
 from gramps.gui.views.treemodels.peoplemodel import PersonTreeModel
@@ -44,33 +43,42 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gui.editors import EditPerson
 from gramps.gen.utils.db import preset_name
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Internationalization
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # PersonTreeView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PersonTreeView(BasePersonView):
     """
     A hierarchical view of the people based on family name.
     """
+
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-        BasePersonView.__init__(self, pdata, dbstate, uistate,
-                               _('People Tree View'), PersonTreeModel,
-                               nav_group=nav_group)
+        BasePersonView.__init__(
+            self,
+            pdata,
+            dbstate,
+            uistate,
+            _("People Tree View"),
+            PersonTreeModel,
+            nav_group=nav_group,
+        )
 
     def get_viewtype_stock(self):
         """
         Override the default icon.  Set for hierarchical view.
         """
-        return 'gramps-tree-group'
+        return "gramps-tree-group"
 
     def define_actions(self):
         """
@@ -78,34 +86,38 @@ class PersonTreeView(BasePersonView):
         """
         BasePersonView.define_actions(self)
 
-        self.action_list.extend([
-            ('OpenAllNodes', self.open_all_nodes),
-            ('CloseAllNodes', self.close_all_nodes)])
+        self.action_list.extend(
+            [
+                ("OpenAllNodes", self.open_all_nodes),
+                ("CloseAllNodes", self.close_all_nodes),
+            ]
+        )
 
     additional_ui = BasePersonView.additional_ui[:]
     additional_ui.append(  # Defines the UI string for UIManager
-        '''
+        """
       <section id="PopUpTree">
         <item>
           <attribute name="action">win.OpenAllNodes</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Expand all Nodes</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Expand all Nodes</attribute>
         </item>
         <item>
           <attribute name="action">win.CloseAllNodes</attribute>
-          <attribute name="label" translatable="yes">'''
-        '''Collapse all Nodes</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Collapse all Nodes</attribute>
         </item>
       </section>
-    ''')
+    """
+    )
 
     def add(self, *obj):
         person = Person()
 
         # attempt to get the current surname
-        (model, pathlist) = self.selection.get_selected_rows()
+        model, pathlist = self.selection.get_selected_rows()
         name = Name()
-        #the editor requires a surname
+        # the editor requires a surname
         name.add_surname(Surname())
         name.set_primary_surname(0)
         basepers = None
@@ -124,3 +136,6 @@ class PersonTreeView(BasePersonView):
             EditPerson(self.dbstate, self.uistate, [], person)
         except WindowActiveError:
             pass
+
+    def get_config_name(self):
+        return __name__

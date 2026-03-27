@@ -1,7 +1,7 @@
 **** This is Gramps Frequently Asked Questions ****
 
 The questions below frequently come up in mailing list discussions and forums.
-This list is by no means complete. If you would like to add questions/answers 
+This list is by no means complete. If you would like to add questions/answers
 to this list, please email your suggestions to gramps-devel@lists.sf.net
 
 
@@ -65,13 +65,13 @@ to this list, please email your suggestions to gramps-devel@lists.sf.net
 
  24. What is the maximum database size (bytes) Gramps can handle?
 
- 25. How many people can Gramps database handle? 
+ 25. How many people can Gramps database handle?
 
  26. My database is really big. Is there a way around loading all the data into memory?
 
  27. Can I run Gramps from a database on a NFS share?
 
- 28. Why is the database format not portable?
+ 28. Is the database format portable?
 
 ==Bugs and requests==
 
@@ -90,37 +90,41 @@ to this list, please email your suggestions to gramps-devel@lists.sf.net
 
 1. What is Gramps?
 
-Gramps is the Genealogical Research and Analysis Management Program System. 
-In other words, it is a personal genealogy program letting you store, edit, 
-and research genealogical data using the powers of your computer. 
+Gramps is the Genealogical Research and Analysis Management Program System.
+In other words, it is a personal genealogy program letting you store, edit,
+and research genealogical data using the powers of your computer.
 
 
 2. Where do I get it and how much does it cost?
 
-Gramps can be downloaded from http://sf.net/projects/gramps at no charge. 
-Gramps is an Open Source project covered by the GNU General Public License. 
-You have full access to the source code and are allowed to distribute the 
-program and source code freely. 
+Gramps can be downloaded from http://sf.net/projects/gramps at no charge.
+Gramps is an Open Source project covered by the GNU General Public License.
+You have full access to the source code and are allowed to distribute the
+program and source code freely.
 
 
 3. Does Gramps exist in other languages?
 
-Yes, at the moment Gramps is translated in 15 languages
-
+Yes. Although developed in English, Gramps is actively translated into dozens
+of languages including:  Catalan, Chinese, Croatian, Czech, Danish, Dutch,
+Esperanto, Finnish, French, German, Greek, Hebrew, Hungarian, Icelandic,
+Italian, Japanese, Lithuanian, Norwegian, Portuguese, Russian, Serbian,
+Slovak, Slovenian, Spanish, Swedish, Ukrainian and Vietnamese.
+Note: See https://www.gramps-project.org/wiki/index.php/Template:Gramps_translations for more information.
 
 4. How do I keep backups?
 
-Use a recent version of Gramps! From 2.2.5 onwards there is an automatic backup utility.
-It is extremely important to keep backups of your data, and keep them in a safe place. Gramps has a specific portable file format which is small, and human readable, denoted by .gramps. If you have allowed this in the preferences (In Edit menu->Preferences->General), Gramps will keep a backup of your database on exit. You can copy this backup file from time to time to a save location (eg a usb stick). 
-
+Use a recent version of Gramps! From 5.0.0 onwards there is an automatic backup utility.
+It is extremely important to keep backups of your data, and keep them in a safe place. Gramps has a specific portable file format which is small, and human readable, denoted by .gramps. If you have allowed this in the preferences (In Edit->Preferences->Family Tree menu), Gramps will keep a backup of your database on exit or on shedule (every 15 minutes, 30 minutes, 1 hour, 12 hours, or 1 day). You can copy this backup file from time to time to a save location (e.g. a USB stick).
 Note: The .gramps files are compressed. Clicking them will open Gramps. To see the XML select them and open them with a decompressing utility (like ark, gunzip), after which you can extract the XML file which is human readable.
+
 Do not keep backups in GEDCOM. Not all information Gramps stores can be written in the GEDCOM. Hence, an export/import operation Gramps --> GEDCOM --> Gramps, will mean you lose data. Use the .gramps file format for backups!
-Do not keep backups in GRDB format. GRDB is a database, which might be computer dependent (read, not working on a different PC). Small damage to a GRDB file can also not be repaired. Use the .gramps file format for backups!
 
 
 5. Does Gramps support Unicode fonts? In particular, does it support non-Roman Unicode fonts?
 
-Yes. Gramps works internally with Unicode (UTF-8), so all alphabets can be used on all entry fields. All reports fully support this, although for PDF/PS you need to work with gnome-print or openoffice.
+Yes. Gramps works internally with Unicode (UTF-8), so all alphabets can be used on all entry fields. All reports fully support this, although for PDF/PS you need to work with gnome-print or OpenOffice.
+Note: To use genealogical symbols you must install a font that provides the miscellaneous symbols in the unicode range 2600-26FF.
 
 ==Installation==
 
@@ -140,7 +144,7 @@ An Windows installer is available for 32 and 64 bit versions of windows from Win
 
 The Fink project has ported some older versions of Gramps to OS X (tm). The Mac OS X port is not directly supported by the Gramps project, primarily because none of the Gramps developers have access to Mac OS X and because OS X is not Free Software.
 
-This present version of Gramps (2.2.x) does not appear to have been ported by the Fink project. Please contact the Fink project for more information. However, some users had success in installing 2.2.x on Mac OSX either running in native mode or running on X11 using some of the fink packages. 
+This present version of Gramps (2.2.x) does not appear to have been ported by the Fink project. Please contact the Fink project for more information. However, some users had success in installing 2.2.x on Mac OSX either running in native mode or running on X11 using some of the fink packages.
 
 
 9. What are the Minimum Specs to run Gramps?
@@ -152,7 +156,7 @@ We would recommend at least an 800x600 video display. For Gramps 5.x, Gramps can
 
 10. Can I change the dates in reports to 'day month year'
 
-Yes, change in the preferences ("Edit->Preferences") the date for Gramps to the required format (eg YYYY-MM-DD or day mont year), and make the report. Your global date preferences will be used.
+Yes, change in the preferences ("Edit->Preferences") the date for Gramps to the required format (e.g. 'YYYY-MM-DD' or 'day month year'), and make the report. Your global date preferences will be used.
 
 
 ==Collaboration-Portability==
@@ -181,7 +185,7 @@ The nice thing about standards is that there never is a shortage of them. Gramps
 
 15. How do I import data from another genealogy program into Gramps?
 
-The best way is to create a new gramps database file, and select the import option in the file menu. Here you select the GEDCOM you generated with the other program, and import it. 
+The best way is to create a new Gramps database file, and select the import option in the file menu. Here you select the GEDCOM you generated with the other program, and import it.
 
 
 16. Can I install Gramps on a Linux Web Server and use it via a web browser? This would enable my relations worldwide to access and update it.
@@ -199,15 +203,15 @@ You may also want to consider the effects of possible downtime of your site if y
 
 17. Can Gramps print a genealogical tree for my family?
 
-Yes. Different people have different ideas of what a genealogical tree is. 
-Some think of it as a chart going from the distant ancestor and listing 
-all his/her descendants and their families. Others think it should be a 
-chart going from the person back in time, listing the ancestors and their 
-families. Yet other people think of a table, text report, etc. 
+Yes. Different people have different ideas of what a genealogical tree is.
+Some think of it as a chart going from the distant ancestor and listing
+all his/her descendants and their families. Others think it should be a
+chart going from the person back in time, listing the ancestors and their
+families. Yet other people think of a table, text report, etc.
 
-Gramps can produce any of the above, and many more different charts and 
-reports. Moreover, the plugin architechture enables users (you) to create 
-their own plugins which could be new reports, charts, or research tools. 
+Gramps can produce any of the above, and many more different charts and
+reports. Moreover, the plugin architechture enables users (you) to create
+their own plugins which could be new reports, charts, or research tools.
 
 
 18. In what formats can Gramps output its reports?
@@ -215,33 +219,33 @@ their own plugins which could be new reports, charts, or research tools.
 Text reports are available in HTML, PDF, ODT, LaTeX, and RTF formats. Graphical reports (charts and diagrams) are available in PostScript, PDF, SVG, ODS, and Graphviz formats.
 
 
-19. How can I change the default language in reports? 
+19. How can I change the default language in reports?
 
-The reports are in the language of your linux installation. You can change it by installing extra language packs, see [Howto: Change the language of reports] on wiki.
+The reports are in the language of your Linux installation. You can change it by installing extra language packs, see [Howto: Change the language of reports] on wiki.
 
 
 20. Is Gramps compatible with the Internet?
 
 Gramps can store web addresses and direct your browser to them. It can import
-data that you download from the Internet. It can export data that you could 
-send over the Internet. Gramps is familiar with the standard file formats 
-widely used on the Internet (e.g. JPEG, PNG, and GIF images, MP3, OGG, and 
-WAV sound files, QuickTime, MPEG, and AVI movie files, etc). Other than that, 
-there is little that a genealogical program can do with the Internet :-) 
+data that you download from the Internet. It can export data that you could
+send over the Internet. Gramps is familiar with the standard file formats
+widely used on the Internet (e.g. JPEG, PNG, and GIF images, MP3, OGG, and
+WAV sound files, QuickTime, MPEG, and AVI movie files, etc). Other than that,
+there is little that a genealogical program can do with the Internet :-)
 
 
 21. Can I create custom reports/filters/whatever?
 
-Yes. There are many levels of customization. One is creating or modifying 
-the templates used for the reports. This gives you some control over 
-the fonts, colors, and some layout of the reports. You can also use Gramps 
-controls in the report dialogs to tell what contents should be used for a 
-particular report. In addition to this, you have an ability to create your 
-own filters -- this is useful in selecting people based on criteria set 
-by you. You can combine these filters to create new, more complex filters. 
-Finally, you have an option to create your own plugins. These may be new 
-reports, research tools, import/export filters, etc. This assumes some 
-knowledge of programming in Python. 
+Yes. There are many levels of customization. One is creating or modifying
+the templates used for the reports. This gives you some control over
+the fonts, colors, and some layout of the reports. You can also use Gramps
+controls in the report dialogs to tell what contents should be used for a
+particular report. In addition to this, you have an ability to create your
+own filters -- this is useful in selecting people based on criteria set
+by you. You can combine these filters to create new, more complex filters.
+Finally, you have an option to create your own plugins. These may be new
+reports, research tools, import/export filters, etc. This assumes some
+knowledge of programming in Python.
 
 
 22. Why are non-latin characters displayed as garbage in PDF/PS reports?
@@ -265,17 +269,17 @@ If you are happy with your plugin and would like to contribute your code back to
 
 24. What is the maximum database size (bytes) Gramps can handle?
 
-Gramps has no hard limits on the size of a database that it can handle. Starting with 2.0.0 release, Gramps no longer loads all data into memory, which allows it to work with a much larger database than before. In reality, however, there are practical limits. The main limiting factors are the available memory on the system and the cache size used for BSDDB database access. With common memory sizes these days, Gramps should have no problem using databases with tens of thousands of people.
+Gramps has no hard limits on the size of a database that it can handle. Starting with 2.0.0 release, Gramps no longer loads all data into memory, which allows it to work with a much larger database than before. In reality, however, there are practical limits. The main limiting factors are the available memory on the system. With common memory sizes these days, Gramps should have no problem using databases with tens of thousands of people.
 
 
-25. How many people can Gramps database handle? 
+25. How many people can Gramps database handle?
 
 See above. Again, this is dependent on how much memory you have, see [Gramps Performance] on wiki.
 
 
 26. My database is really big. Is there a way around loading all the data into memory?
 
-Starting with 2.0.0 release, Gramps no longer loads all data into memory, which allows it to work with a much larger database than before. The fileformat used is .grdb which means gramps database.
+Starting with 2.0.0 release, Gramps no longer loads all data into memory, which allows it to work with a much larger database than before.
 
 
 27. Can I run Gramps from a database on a NFS share?
@@ -283,55 +287,45 @@ Starting with 2.0.0 release, Gramps no longer loads all data into memory, which 
 Yes you can.
 
 
-28. Why is the database format not portable?
+28. Is the database format portable?
 
-The biggest issue with Gramps portability lies with 'transactions'. With
-Gramps 2.2, we added support for atomic transactions to protect data.
-With atomic transactions, multiple changes are committed as a single
-unit. Either all the changes make it, or none of the changes make it.
-You are never left in a situation with a partial set of changes. A side
-benefit of using transactions is that database access (reads and writes)
-are faster.
+Prior to 5.0, Gramps used BSDDB as its database backend. The BSDDB database
+format is not portable.
 
-The problem with transactions (at least using BSDDB) is that it does not
-allow all the data to be stored in a single file. Logging files are
-needed to keep track of things. These logging files are kept in a DB
-Environment directory. We need a separate directory for each file,
-otherwise the log files can interfere with each other.
+Starting with 5.0, Gramps allowed the user to choose from other datbase
+backends, including SqLite. The SqLite database format is portable.
 
-In 2.2, we keep the log files under the ~/.gramps/ path directory,
-creating a unique directory for each database. The problem is that your
-GRDB file needs the log files, which are in a different directory.
-Copying the GRDB file is only copying a portion of the database.
-
+As of 5.2, the BSDDB backend is no longer available. SqLite is used by default.
 
 ==Bugs and requests==
 
 29. I found a bug and I want it fixed right now! What do I do?
 
-The best thing you can do is to fix the bug and send the patch to
-gramps-devel@lists.sf.net :-)
+The best thing you can do is to fix the bug and submit a pull request on
+GitHub :-)
 
-The next best thing would be to submit a good bug report. This can be done in
-one of the two ways: (1) send your report to gramps-bugs@lists.sf.net
-or (2) file your report with the bug tracker system at 
-https://gramps-project.org/bugs/ (this function is also 
-available by selecting "Help->Report a bug" from gramps main menu). 
+The next best thing would be to submit a good bug report. This can be done by
+filing your report with the bug tracker system at
+https://gramps-project.org/bugs/ (this function is also
+available by selecting "Help->Report a bug" from Gramps main menu).
 
-A good bug report would include: 
-   (1) Version of gramps you were using when you encountered the bug 
+You may also discuss the problem first on our mailing list or Discourse forum.
+https://gramps-project.org/blog/contact
+
+A good bug report would include:
+   (1) Version of Gramps you were using when you encountered the bug
        (available through Help->About menu item)
-   (2) Language under which gramps was run
-       (available by executing "echo $LANG" in your terminal)
+   (2) Language under which Gramps was run
+       (also available through Help->About menu item)
    (3) Symptoms indicating that this is indeed a bug
    (4) Any Traceback messages, error messages, warnings, etc, that showed up
        in your terminal or a in separate traceback window
 
-Most problems can be fixed quickly provided there is enough information. 
-To ensure this, please follow up on your bug reports. 
+Most problems can be fixed quickly provided there is enough information.
+To ensure this, please follow up on your bug reports.
 
 If the above explanations seem vague, please follow this link:
-http://www.chiark.greenend.org.uk/~sgtatham/bugs.html
+https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 
 
 30. Gramps should be a .... type of application
@@ -339,7 +333,7 @@ http://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 The surest way to see it happen is to get it done by yourself. Since Gramps is free/open source, nobody prevents you from taking all of the code and continuing its development in whatever direction you see fit. In doing so, you may consider giving your new project another name to avoid confusion with the continuing Gramps development. If you would like the Gramps project to provide advice, expertise, filters, etc., we will gladly cooperate with your new project, to ensure compatibility or import/export options to your new format of a project.
 
 If, however, you would like the Gramps project to adopt your strategy, you would need to convince Gramps developers that your strategy is good for Gramps and superior to the present development strategy.
-                                                                                
+
 HINT: if Gramps developers are still not convinced after about three
 messages sent to gramps-devel, maybe you are better off on your own
 rather than with a company of retards who can't fully realize the

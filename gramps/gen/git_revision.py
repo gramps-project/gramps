@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -25,25 +24,24 @@ Find the latest git revision.
 
 import subprocess
 
-def get_git_revision(path=""):
+
+def get_git_revision():
     """
     Return the short commit hash of the latest commit.
     """
     stdout = ""
-    command = ['git', 'log', '-1', '--format=%h', path]
+    command = ["git", "log", "-1", "--format=%h"]
     try:
-        proc = subprocess.Popen(command,
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE)
-        (stdout, stderr) = proc.communicate()
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = proc.communicate()
     except OSError:
-        return "" # subprocess failed
+        return ""  # subprocess failed
     # subprocess worked
-    if stdout and len(stdout) > 0: # has output
+    if stdout and len(stdout) > 0:  # has output
         try:
-            stdout = stdout.decode("utf-8", errors='replace')
+            stdout = stdout.decode("utf-8", errors="replace")
         except UnicodeDecodeError:
             pass
         return "-" + stdout if stdout else ""
-    else: # no output from git log
+    else:  # no output from git log
         return ""

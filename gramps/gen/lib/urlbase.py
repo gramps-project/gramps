@@ -13,28 +13,28 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 UrlBase class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from .const import EQUAL, IDENTICAL
 from .url import Url
-from .const import IDENTICAL, EQUAL
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# UrlBase classes
+# UrlBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class UrlBase:
     """
     Base class for url-aware objects.
@@ -97,7 +97,7 @@ class UrlBase:
                 equi = url.is_equivalent(addendum)
                 if equi == IDENTICAL:
                     break
-                elif equi == EQUAL:
+                if equi == EQUAL:
                     url.merge(addendum)
                     break
             else:
@@ -129,5 +129,4 @@ class UrlBase:
         if url in self.urls:
             self.urls.remove(url)
             return True
-        else:
-            return False
+        return False

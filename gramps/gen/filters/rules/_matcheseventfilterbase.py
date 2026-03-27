@@ -13,31 +13,40 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import MatchesFilterBase
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.eventbase import EventBase
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # MatchesEventFilter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesEventFilterBase(MatchesFilterBase):
     """
     Rule that checks against another filter.
@@ -47,26 +56,26 @@ class MatchesEventFilterBase(MatchesFilterBase):
 
     """
 
-    labels = ['Event filter name:']
-    name = 'Objects with events matching the <event filter>'
-    description = "Matches objects who have events that match a certain" \
-                   " event filter"
-    category = _('General filters')
+    labels = ["Event filter name:"]
+    name = "Objects with events matching the <event filter>"
+    description = "Matches objects who have events that match a certain" " event filter"
+    category = _("General filters")
 
     # we want to have this filter show event filters
-    namespace = 'Event'
+    namespace = "Event"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MEF_filt = self.find_filter()
 
-    def apply(self, db, object):
-        if self.MEF_filt is None :
+    def apply_to_one(self, db: Database, object: EventBase) -> bool:
+        if self.MEF_filt is None:
             return False
 
-        eventlist = [x.ref for x in object.get_event_ref_list()]
+        eventlist = [x.ref for x in object.event_ref_list]
         for eventhandle in eventlist:
-            #check if event in event filter
-            if self.MEF_filt.check(db, eventhandle):
+            # check if event in event filter
+            event = db.get_event_from_handle(eventhandle)
+            if self.MEF_filt.apply_to_one(db, event):
                 return True
         return False

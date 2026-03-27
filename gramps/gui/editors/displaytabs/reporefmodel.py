@@ -13,41 +13,42 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # RepoRefModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class RepoRefModel(Gtk.ListStore):
-
     def __init__(self, ref_list, db):
         Gtk.ListStore.__init__(self, str, str, str, str, bool, object)
         self.db = db
         for ref in ref_list:
             repo = self.db.get_repository_from_handle(ref.ref)
-            self.append(row=[
-                repo.gramps_id,
-                repo.name,
-                ref.call_number,
-                str(repo.get_type()),
-                ref.get_privacy(),
-                ref, ])
+            self.append(
+                row=[
+                    repo.gramps_id,
+                    repo.name,
+                    ref.call_number,
+                    str(repo.get_type()),
+                    ref.get_privacy(),
+                    ref,
+                ]
+            )

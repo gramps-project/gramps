@@ -14,43 +14,38 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Table Object class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
-from abc import abstractmethod
+# -------------------------------------------------------------------------
 import time
+from abc import abstractmethod
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .baseobj import BaseObject
-from ..errors import HandleError
-
-#-------------------------------------------------------------------------
-#
-# Localized constants
-#
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .baseobj import BaseObject
+
 CODESET = glocale.encoding
-#-------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
 #
-# Table Object class
+# TableObject
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class TableObject(BaseObject):
     """
     The TableObject is the base class for all objects that are stored in a
@@ -125,10 +120,8 @@ class TableObject(BaseObject):
 
         """
         if self.change:
-            return str(time.strftime('%x %X', time.localtime(self.change)),
-                       CODESET)
-        else:
-            return ''
+            return str(time.strftime("%x %X", time.localtime(self.change)), CODESET)
+        return ""
 
     def set_handle(self, handle):
         """
@@ -161,7 +154,7 @@ class TableObject(BaseObject):
         Return all secondary fields and their types
         """
         result = []
-        for (key, value) in cls.get_schema()["properties"].items():
+        for key, value in cls.get_schema()["properties"].items():
             schema_type = value.get("type")
             if isinstance(schema_type, list):
                 schema_type.remove("null")
@@ -169,7 +162,5 @@ class TableObject(BaseObject):
             elif isinstance(schema_type, dict):
                 schema_type = None
             if schema_type in ("string", "integer", "number", "boolean"):
-                result.append((key.lower(),
-                               schema_type,
-                               value.get("maxLength")))
+                result.append((key.lower(), schema_type, value.get("maxLength")))
         return result

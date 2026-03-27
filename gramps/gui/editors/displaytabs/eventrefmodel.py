@@ -14,62 +14,65 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Pango
+
 WEIGHT_NORMAL = Pango.Weight.NORMAL
 WEIGHT_BOLD = Pango.Weight.BOLD
 
 from html import escape
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...widgets.undoablebuffer import UndoableBuffer
-from gramps.gen.lib import EventRoleType
+from gramps.gen.lib import EventRoleType, EventType, Date
 from gramps.gen.datehandler import get_date, get_date_valid
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.proxy.cache import CacheProxyDb
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Globals
 #
-#-------------------------------------------------------------------------
-invalid_date_format = config.get('preferences.invalid-date-format')
-age_precision = config.get('preferences.age-display-precision')
+# -------------------------------------------------------------------------
+invalid_date_format = config.get("preferences.invalid-date-format")
+age_precision = config.get("preferences.age-display-precision")
+age_after_death = config.get("preferences.age-after-death")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # EventRefModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EventRefModel(Gtk.TreeStore):
-    #index of the working group
+    # index of the working group
     _ROOTINDEX = 0
-    _GROUPSTRING = _('%(groupname)s - %(groupnumber)d')
+    _GROUPSTRING = _("%(groupname)s - %(groupnumber)d")
 
     COL_DESCR = (0, str)
     COL_TYPE = (1, str)
@@ -84,10 +87,24 @@ class EventRefModel(Gtk.TreeStore):
     COL_AGE = (10, str)
     COL_SORTAGE = (11, str)
     COL_PRIVATE = (12, bool)
+    COL_HAS_SOURCE = (13, bool)
 
-    COLS = (COL_DESCR, COL_TYPE, COL_GID, COL_DATE, COL_PLACE, COL_ROLE,
-            COL_PARTIC, COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT, COL_AGE,
-            COL_SORTAGE, COL_PRIVATE)
+    COLS = (
+        COL_DESCR,
+        COL_TYPE,
+        COL_GID,
+        COL_DATE,
+        COL_PLACE,
+        COL_ROLE,
+        COL_PARTIC,
+        COL_SORTDATE,
+        COL_EVENTREF,
+        COL_FONTWEIGHT,
+        COL_AGE,
+        COL_SORTAGE,
+        COL_PRIVATE,
+        COL_HAS_SOURCE,
+    )
 
     def __init__(self, event_list, db, groups, **kwargs):
         """
@@ -100,6 +117,7 @@ class EventRefModel(Gtk.TreeStore):
         @param kwargs: A dictionary of additional settings/values.
         """
         self.start_date = kwargs.get("start_date", None)
+        self.end_date = kwargs.get("end_date", None)
         typeobjs = (x[1] for x in self.COLS)
         Gtk.TreeStore.__init__(self, *typeobjs)
         self.db = CacheProxyDb(db)
@@ -108,33 +126,51 @@ class EventRefModel(Gtk.TreeStore):
             parentiter = self.append(None, row=self.row_group(index, group))
             for eventref in group:
                 event = db.get_event_from_handle(eventref.ref)
-                self.append(parentiter, row = self.row(index, eventref, event))
+                self.append(parentiter, row=self.row(index, eventref, event))
 
     def row_group(self, index, group):
         name = self.namegroup(index, len(group))
         spouse = self.groups[index][2]
-        return [spouse, name, '', '', '', '', '', '', (index, None),
-                WEIGHT_BOLD, '', '', None]
+        return [
+            spouse,
+            name,
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            (index, None),
+            WEIGHT_BOLD,
+            "",
+            "",
+            None,
+            None,
+        ]
 
     def namegroup(self, groupindex, length):
-        return self._GROUPSTRING % {'groupname': self.groups[groupindex][1],
-                                    'groupnumber': length}
+        return self._GROUPSTRING % {
+            "groupname": self.groups[groupindex][1],
+            "groupnumber": length,
+        }
 
     def row(self, index, eventref, event):
-        return [event.get_description(),
-                str(event.get_type()),
-                event.get_gramps_id(),
-                self.column_date(eventref),
-                self.column_place(eventref),
-                self.column_role(eventref),
-                self.column_participant(eventref),
-                self.column_sort_date(eventref),
-                (index, eventref),
-                self.colweight(index),
-                self.column_age(event),
-                self.column_sort_age(event),
-                eventref.get_privacy(),
-               ]
+        return [
+            event.get_description(),
+            str(event.get_type()),
+            event.get_gramps_id(),
+            self.column_date(eventref),
+            self.column_place(eventref),
+            self.column_role(eventref),
+            self.column_participant(eventref),
+            self.column_sort_date(eventref),
+            (index, eventref),
+            self.colweight(index),
+            self.column_age(event),
+            self.column_sort_age(event),
+            eventref.get_privacy(),
+            event.has_citations() or eventref.has_citations(),
+        ]
 
     def colweight(self, index):
         return WEIGHT_NORMAL
@@ -176,7 +212,19 @@ class EventRefModel(Gtk.TreeStore):
         """
         date = event.get_date_object()
         if date and self.start_date:
-            return (date - self.start_date).format(precision=age_precision)
+            if (
+                date == self.start_date
+                and date.modifier == Date.MOD_NONE
+                and not (
+                    event.get_type().is_death_fallback()
+                    or event.get_type() == EventType.DEATH
+                )
+            ):
+                return ""
+            elif self.end_date and self.end_date < date and not age_after_death:
+                return ""
+            else:
+                return (date - self.start_date).format(precision=age_precision)
         else:
             return ""
 

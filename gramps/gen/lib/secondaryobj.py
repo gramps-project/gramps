@@ -13,34 +13,34 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Secondary Object class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from abc import abstractmethod
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .baseobj import BaseObject
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Secondary Object class
+# SecondaryObject
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SecondaryObject(BaseObject):
     """
     The SecondaryObject is the base class for all secondary objects in the
@@ -60,6 +60,9 @@ class SecondaryObject(BaseObject):
         """
 
     def is_equal(self, source):
+        """
+        Check if two secondary objects are equivalent.
+        """
         return self.serialize() == source.serialize()
 
     def is_equivalent(self, other):
@@ -68,4 +71,3 @@ class SecondaryObject(BaseObject):
 
         Should be overwritten by objects that inherit from this class.
         """
-        pass

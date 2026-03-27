@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -26,12 +25,23 @@ This module provides the Plugin class for document generator plugins.
 from . import Plugin
 from .docgen import TextDoc, DrawDoc
 
+
 class DocGenPlugin(Plugin):
     """
     This class represents a plugin for generating documents from Gramps
     """
-    def __init__(self, name, description, basedoc,
-                 paper, style, extension, docoptclass, basedocname):
+
+    def __init__(
+        self,
+        name,
+        description,
+        basedoc,
+        paper,
+        style,
+        extension,
+        docoptclass,
+        basedocname,
+    ):
         """
         :param name: A friendly name to call this plugin.
             Example: "Plain Text"

@@ -34,7 +34,6 @@ Depends:
  python3-gi (>= 3.12.0),
  python3-gi-cairo,
  python3-bsddb3,
- xdg-utils,
  ${misc:Depends},
  ${python3:Depends}
 Recommends:

@@ -13,57 +13,66 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 """
 Rule that checks for an object with a particular tag.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasTag
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasTagBase(Rule):
     """
     Rule that checks for an object with a particular tag.
     """
 
-    labels = [ 'Tag:' ]
-    name = 'Objects with the <tag>'
+    labels = ["Tag:"]
+    name = "Objects with the <tag>"
     description = "Matches objects with the given tag"
-    category = _('General filters')
+    category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we want to do just once.
         """
         self.tag_handle = None
         tag = db.get_tag_from_name(self.list[0])
         if tag is not None:
-            self.tag_handle = tag.get_handle()
+            self.tag_handle = tag.handle
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
         Apply the rule.  Return True for a match.
         """
         if self.tag_handle is None:
             return False
-        return self.tag_handle in obj.get_tag_list()
+        return self.tag_handle in obj.tag_list

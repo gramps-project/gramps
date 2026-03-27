@@ -13,24 +13,31 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .backrefmodel import BackRefModel
 from .backreflist import BackRefList
 
-class MediaBackRefList(BackRefList):
 
-    def __init__(self, dbstate, uistate, track, obj, callback=None):
-        BackRefList.__init__(self, dbstate, uistate, track, obj,
-                             BackRefModel, callback=callback)
+class MediaBackRefList(BackRefList):
+    def __init__(self, dbstate, uistate, track, obj, config_key, callback=None):
+        BackRefList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            obj,
+            BackRefModel,
+            config_key,
+            callback=callback,
+        )
 
     def get_icon_name(self):
-        return 'gramps-media'
+        return "gramps-media"

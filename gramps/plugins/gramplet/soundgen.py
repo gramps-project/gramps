@@ -15,40 +15,42 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Tools/Utilities/Generate SoundEx Codes"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gtk modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.soundex import soundex
 from gramps.gui.autocomp import fill_combo
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # SoundGen
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class SoundGen(Gramplet):
     """
     Generates SoundEx codes.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -73,7 +75,7 @@ class SoundGen(Gramplet):
         grid.attach(self.value, 1, 1, 1, 1)
         self.name = self.autocomp.get_child()
 
-        self.name.connect('changed', self.on_apply_clicked)
+        self.name.connect("changed", self.on_apply_clicked)
 
         grid.show_all()
         return grid
@@ -99,7 +101,7 @@ class SoundGen(Gramplet):
             try:
                 se_text = soundex(n)
             except UnicodeEncodeError:
-                se_text = soundex('')
+                se_text = soundex("")
             self.value.set_text(se_text)
         else:
             self.name.set_text("")
@@ -108,5 +110,5 @@ class SoundGen(Gramplet):
         try:
             se_text = soundex(str(obj.get_text()))
         except UnicodeEncodeError:
-            se_text = soundex('')
+            se_text = soundex("")
         self.value.set_text(se_text)

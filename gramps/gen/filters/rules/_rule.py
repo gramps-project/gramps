@@ -14,60 +14,73 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Base class for filter rules.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from __future__ import annotations
 import re
 
 from ...errors import FilterError
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # enable logging for error handling
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Any, List
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # Rule
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Rule:
     """Base rule class."""
 
-    labels = []
-    name = ''
-    category = _('Miscellaneous filters')
-    description = _('No description')
+    labels: list[str] = []
+    name = ""
+    category = _("Miscellaneous filters")
+    description = _("No description")
     allow_regex = False
 
-    def __init__(self, arg, use_regex=False):
+    def __init__(self, arg, use_regex=False, use_case=False):
         self.list = []
         self.regex = []
         self.match_substring = self.__match_substring
         self.set_list(arg)
         self.use_regex = use_regex
+        self.use_case = use_case
         self.nrprepare = 0
 
     def is_empty(self):
         return False
 
-    def requestprepare(self, db, user):
+    def requestprepare(self, db: Database, user):
         """
         Request that the prepare method of the rule is executed if needed
 
@@ -80,22 +93,29 @@ class Rule:
         """
         if self.nrprepare == 0:
             if self.use_regex:
-                self.regex = [None]*len(self.labels)
-                for i in range(len(self.labels)):
-                    if self.list[i]:
+                self.regex = [None] * len(self.labels)
+                for index, label in enumerate(self.labels):
+                    if self.list[index]:
                         try:
-                            self.regex[i] = re.compile(self.list[i], re.I)
+                            if self.use_case:
+                                self.regex[index] = re.compile(self.list[index])
+                            else:
+                                self.regex[index] = re.compile(self.list[index], re.I)
                         except re.error:
-                            self.regex[i] = re.compile('')
+                            self.regex[index] = re.compile("")
                 self.match_substring = self.match_regex
             self.prepare(db, user)
         self.nrprepare += 1
         if self.nrprepare > 20:  # more references to a filter than expected
-            raise FilterError(_("The filter definition contains a loop."),
-                              _("One rule references another which eventually"
-                                " references the first."))
+            raise FilterError(
+                _("The filter definition contains a loop."),
+                _(
+                    "One rule references another which eventually"
+                    " references the first."
+                ),
+            )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """prepare so the rule can be executed efficiently"""
         pass
 
@@ -122,9 +142,13 @@ class Rule:
         """Store the values of this rule."""
         assert isinstance(arg, list) or arg is None, "Argument is not a list"
         if len(arg) != len(self.labels):
-            LOG.warning(("Number of arguments does not match number of " +
-                         "labels.\n   list:   %s\n   labels: %s") % (arg,
-                             self.labels))
+            LOG.warning(
+                (
+                    "Number of arguments does not match number of "
+                    + "labels.\n   list:   %s\n   labels: %s"
+                )
+                % (arg, self.labels)
+            )
         self.list = arg
 
     def values(self):
@@ -135,18 +159,27 @@ class Rule:
         """Verify the number of rule values versus the number of rule labels."""
         return len(self.list) == len(self.labels)
 
-    def apply(self, dummy_db, dummy_person):
+    def apply_to_one(self, dummy_db: Database, dummy_object: Any) -> bool:
         """Apply the rule to some database entry; must be overwritten."""
         return True
 
     def display_values(self):
         """Return the labels and values of this rule."""
-        l_v = ('%s="%s"' % (_(self.labels[ix][0] if
-                              isinstance(self.labels[ix], tuple) else
-                              self.labels[ix]), self.list[ix])
-               for ix in range(len(self.list)) if self.list[ix])
+        l_v = (
+            '%s="%s"'
+            % (
+                _(
+                    self.labels[index][0]
+                    if isinstance(self.labels[index], tuple)
+                    else self.labels[index]
+                ),
+                item,
+            )
+            for index, item in enumerate(self.list)
+            if item
+        )
 
-        return ';'.join(l_v)
+        return ";".join(l_v)
 
     def __match_substring(self, param_index, str_var):
         """
@@ -157,8 +190,9 @@ class Rule:
         # make str_var unicode so that search for ü works
         # see issue 3188
         str_var = str(str_var)
-        if self.list[param_index] and \
-               (str_var.upper().find(self.list[param_index].upper()) == -1):
+        if self.list[param_index] and (
+            str_var.upper().find(self.list[param_index].upper()) == -1
+        ):
             return False
         else:
             return True
@@ -170,8 +204,7 @@ class Rule:
         expression search.
         """
         str_var = str(str_var)
-        if (self.list[param_index] and  self.regex[param_index].search(str_var)
-                is None):
+        if self.list[param_index] and self.regex[param_index].search(str_var) is None:
             return False
         else:
             return True

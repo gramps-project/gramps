@@ -13,52 +13,60 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasFamilyAttribute
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasFamilyAttribute(Rule):
     """Rule that checks for a person with a particular family attribute"""
 
-    labels = [ _('Family attribute:'), _('Value:') ]
-    name = _('People with the family <attribute>')
-    description = _("Matches people with the family attribute "
-                    "of a particular value")
-    category = _('General filters')
+    labels = [_("Family attribute:"), _("Value:")]
+    name = _("People with the family <attribute>")
+    description = _("Matches people with the family attribute " "of a particular value")
+    category = _("General filters")
     allow_regex = True
 
-    def apply(self,db,person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if not self.list[0]:
             return False
-        for f_id in person.get_family_handle_list():
+        for f_id in person.family_list:
             f = db.get_family_from_handle(f_id)
             if not f:
                 continue
-            for attr in f.get_attribute_list():
+            for attr in f.attribute_list:
                 if attr:
-                    name_match = self.list[0] == attr.get_type()
-                    value_match = self.match_substring(1, attr.get_value())
+                    name_match = self.list[0] == attr.type
+                    value_match = self.match_substring(1, attr.value)
                     if name_match and value_match:
                         return True
         return False

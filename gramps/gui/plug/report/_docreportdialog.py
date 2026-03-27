@@ -15,35 +15,35 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
-    base class for generating dialogs for docgen-derived reports
+base class for generating dialogs for docgen-derived reports
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK+ modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.config import config
 from ._reportdialog import ReportDialog
@@ -52,11 +52,12 @@ from ...pluginmanager import GuiPluginManager
 
 PLUGMAN = GuiPluginManager.get_instance()
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # DocReportDialog class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class DocReportDialog(ReportDialog):
     """
     The DocReportDialog base class.  This is a base class for generating
@@ -69,12 +70,13 @@ class DocReportDialog(ReportDialog):
 
         self.style_name = "default"
         self.firstpage_added = False
-        self.css = PLUGMAN.process_plugin_data('WEBSTUFF')
+        self.css = PLUGMAN.process_plugin_data("WEBSTUFF")
         self.dbname = dbstate.db.get_dbname()
-        ReportDialog.__init__(self, dbstate, uistate, option_class,
-                              name, trans_name, track=track)
+        ReportDialog.__init__(
+            self, dbstate, uistate, option_class, name, trans_name, track=track
+        )
 
-        self.basedocname = None # keep pylint happy
+        self.basedocname = None  # keep pylint happy
         self.css_filename = None
         self.doc = None
         self.doc_option_class = None
@@ -89,11 +91,11 @@ class DocReportDialog(ReportDialog):
         ReportDialog.init_interface(self)
         self.doc_type_changed(self.format_menu, preserve_tab=False)
 
-    #------------------------------------------------------------------------
+    # ------------------------------------------------------------------------
     #
     # Functions related to selecting/changing the current file format.
     #
-    #------------------------------------------------------------------------
+    # ------------------------------------------------------------------------
     def make_doc_menu(self, active=None):
         """Build a menu of document types that are appropriate for
         this report.  This menu will be generated based upon the type
@@ -102,19 +104,17 @@ class DocReportDialog(ReportDialog):
         raise NotImplementedError
 
     def make_document(self):
-        """Create a document of the type requested by the user.
-        """
+        """Create a document of the type requested by the user."""
         pstyle = self.paper_frame.get_paper_style()
 
         if self.doc_options:
-            self.doc = self.format(self.selected_style, pstyle,
-                                   self.doc_options,
-                                   uistate=self.uistate)
+            self.doc = self.format(
+                self.selected_style, pstyle, self.doc_options, uistate=self.uistate
+            )
         else:
-            self.doc = self.format(self.selected_style, pstyle,
-                                   uistate=self.uistate)
+            self.doc = self.format(self.selected_style, pstyle, uistate=self.uistate)
         if not self.format_menu.get_active_plugin().get_paper_used():
-            #set css filename
+            # set css filename
             self.doc.set_css_filename(self.css_filename)
 
         self.options.set_document(self.doc)
@@ -139,14 +139,12 @@ class DocReportDialog(ReportDialog):
         if self.firstpage_added:
             self.notebook.remove_page(0)
         if docgen_plugin.get_paper_used():
-            self.paper_label = Gtk.Label(
-                label='<b>%s</b>' % _("Paper Options"))
+            self.paper_label = Gtk.Label(label="<b>%s</b>" % _("Paper Options"))
             self.paper_label.set_use_markup(True)
             self.notebook.insert_page(self.paper_frame, self.paper_label, 0)
             self.paper_frame.show_all()
         else:
-            self.html_label = Gtk.Label(
-                label='<b>%s</b>' % _("HTML Options"))
+            self.html_label = Gtk.Label(label="<b>%s</b>" % _("HTML Options"))
             self.html_label.set_use_markup(True)
             self.notebook.insert_page(self.html_grid, self.html_label, 0)
             self.html_grid.show_all()
@@ -157,7 +155,7 @@ class DocReportDialog(ReportDialog):
         ext_val = docgen_plugin.get_extension()
         if ext_val:
             fname = self.target_fileentry.get_full_path(0)
-            (spath, ext) = os.path.splitext(fname)
+            spath, ext = os.path.splitext(fname)
 
             fname = spath + "." + ext_val
             self.target_fileentry.set_filename(fname)
@@ -182,7 +180,7 @@ class DocReportDialog(ReportDialog):
         work."""
 
         self.make_doc_menu(self.options.handler.get_format_name())
-        self.format_menu.connect('changed', self.doc_type_changed)
+        self.format_menu.connect("changed", self.doc_type_changed)
         label = Gtk.Label(label=_("%s:") % _("Output Format"))
         label.set_halign(Gtk.Align.START)
         self.grid.attach(label, 1, self.row, 1, 1)
@@ -190,10 +188,8 @@ class DocReportDialog(ReportDialog):
         self.grid.attach(self.format_menu, 2, self.row, 2, 1)
         self.row += 1
 
-        self.open_with_app = Gtk.CheckButton(
-            label=_("Open with default viewer"))
-        self.open_with_app.set_active(
-            config.get('interface.open-with-default-viewer'))
+        self.open_with_app = Gtk.CheckButton(label=_("Open with default viewer"))
+        self.open_with_app.set_active(config.get("interface.open-with-default-viewer"))
         self.grid.attach(self.open_with_app, 2, self.row, 2, 1)
         self.row += 1
 
@@ -214,13 +210,14 @@ class DocReportDialog(ReportDialog):
             self.target_fileentry.set_filename(spath)
 
     def setup_report_options_frame(self):
-        """ Set up the html/paper frame of the dialog """
+        """Set up the html/paper frame of the dialog"""
         self.paper_frame = PaperFrame(
             self.options.handler.get_paper_metric(),
             self.options.handler.get_paper_name(),
             self.options.handler.get_orientation(),
             self.options.handler.get_margins(),
-            self.options.handler.get_custom_paper_size())
+            self.options.handler.get_custom_paper_size(),
+        )
         self.setup_html_frame()
         ReportDialog.setup_report_options_frame(self)
 
@@ -244,9 +241,9 @@ class DocReportDialog(ReportDialog):
         self.css_filename = self.options.handler.get_css_filename()
         active_index = 0
         index = 0
-        for (name, _id) in sorted([(self.css[key]["translation"],
-                                    self.css[key]["id"])
-                                   for key in self.css]):
+        for name, _id in sorted(
+            [(self.css[key]["translation"], self.css[key]["id"]) for key in self.css]
+        ):
             if self.css[_id]["user"]:
                 self.css_combo.append_text(self.css[_id]["translation"])
                 # Associate this index number with CSS too:
@@ -275,7 +272,7 @@ class DocReportDialog(ReportDialog):
         entry was enabled.  This is for simplicity of programming."""
 
         active = self.css_combo.get_active()
-        if active == -1: # legal for "no active item" (see 7585, 8189, 9461)
+        if active == -1:  # legal for "no active item" (see 7585, 8189, 9461)
             active = self.style_name
         if self.css:
             self.css_filename = self.css[active]["filename"]
@@ -295,16 +292,13 @@ class DocReportDialog(ReportDialog):
         self.parse_style_frame()
         self.parse_html_frame()
 
-        self.options.handler.set_paper_metric(
-            self.paper_frame.get_paper_metric())
-        self.options.handler.set_paper_name(
-            self.paper_frame.get_paper_name())
-        self.options.handler.set_orientation(
-            self.paper_frame.get_orientation())
-        self.options.handler.set_margins(
-            self.paper_frame.get_paper_margins())
+        self.options.handler.set_paper_metric(self.paper_frame.get_paper_metric())
+        self.options.handler.set_paper_name(self.paper_frame.get_paper_name())
+        self.options.handler.set_orientation(self.paper_frame.get_orientation())
+        self.options.handler.set_margins(self.paper_frame.get_paper_margins())
         self.options.handler.set_custom_paper_size(
-            self.paper_frame.get_custom_paper_size())
+            self.paper_frame.get_custom_paper_size()
+        )
 
         self.parse_user_options()
 
@@ -315,5 +309,6 @@ class DocReportDialog(ReportDialog):
 
         # Save options
         self.options.handler.save_options()
-        config.set('interface.open-with-default-viewer',
-                   self.open_with_app.get_active())
+        config.set(
+            "interface.open-with-default-viewer", self.open_with_app.get_active()
+        )

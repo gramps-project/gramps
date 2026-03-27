@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -25,6 +24,7 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
@@ -43,7 +43,6 @@ from .._hasattributebase import HasAttributeBase
 class HasAttribute(HasAttributeBase):
     """Rule that checks for a repository with a particular attribute"""
 
-    labels = [_('Repository attribute:'), _('Value:')]
-    name = _('Repositories with the attribute <attribute>')
-    description = _("Matches repositories with the attribute "
-                    "of a particular value")
+    labels = [_("Repository attribute:"), _("Value:")]
+    name = _("Repositories with the attribute <attribute>")
+    description = _("Matches repositories with the attribute " "of a particular value")

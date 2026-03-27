@@ -13,39 +13,49 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Citation
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 # "Sources having a title that contain a substring"
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class MatchesPageSubstringOf(Rule):
     """Citation Volume/Page title containing <substring>"""
 
-    labels = [ _('Text:')]
-    name = _('Citations with Volume/Page containing <text>')
-    description = _("Matches citations whose Volume/Page contains a "
-                    "certain substring")
-    category = _('General filters')
+    labels = [_("Text:")]
+    name = _("Citations with Volume/Page containing <text>")
+    description = _(
+        "Matches citations whose Volume/Page contains a " "certain substring"
+    )
+    category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, object):
-        """ Apply the filter """
-        return self.match_substring(0, object.get_page())
+    def apply_to_one(self, db: Database, object: Citation) -> bool:
+        """Apply the filter"""
+        return self.match_substring(0, object.page)

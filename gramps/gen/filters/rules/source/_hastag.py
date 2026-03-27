@@ -13,38 +13,40 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 """
 Rule that checks for a source with a particular tag.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hastagbase import HasTagBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasTag
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasTag(HasTagBase):
     """
     Rule that checks for a source with a particular tag.
     """
-    labels = [ _('Tag:') ]
-    name = _('Sources with the <tag>')
+
+    labels = [_("Tag:")]
+    name = _("Sources with the <tag>")
     description = _("Matches sources with the particular tag")

@@ -13,35 +13,37 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hasattributebase import HasAttributeBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasAttribute
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasAttribute(HasAttributeBase):
     """Rule that checks for a person with a particular personal attribute"""
 
-    labels = [ _('Personal attribute:'), _('Value:') ]
-    name = _('People with the personal <attribute>')
-    description = _("Matches people with the personal attribute "
-                    "of a particular value")
+    labels = [_("Personal attribute:"), _("Value:")]
+    name = _("People with the personal <attribute>")
+    description = _(
+        "Matches people with the personal attribute " "of a particular value"
+    )

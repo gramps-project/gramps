@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 #
 
@@ -28,7 +27,9 @@ from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 def run(database, document, person):
     """
@@ -57,14 +58,13 @@ def run(database, document, person):
             if sdb.gid(child) != gid:
                 rel_str = rel_class.get_sibling_relationship_string(
                     rel_class.get_sibling_type(database, person, child),
-                    person.get_gender(), child.get_gender())
+                    person.get_gender(),
+                    child.get_gender(),
+                )
             else:
-                rel_str = _('self')
+                rel_str = _("self")
             # pass row the child object to make link:
-            stab.row(child,
-                     sdb.gender(child),
-                     sdb.birth_or_fallback(child),
-                     rel_str)
+            stab.row(child, sdb.gender(child), sdb.birth_or_fallback(child), rel_str)
             document.has_data = True
     if document.has_data:
         stab.write(sdoc)

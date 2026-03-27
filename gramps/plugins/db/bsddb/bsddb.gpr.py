@@ -13,22 +13,22 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from gramps.gen.plug._pluginreg import newplugin, STABLE, DATABASE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
 plg = newplugin()
-plg.id = 'bsddb'
+plg.id = "bsddb"
 plg.name = _("BSDDB")
 plg.name_accell = _("_BSDDB Database")
 plg.description = _("Berkeley Software Distribution Database Backend")
-plg.version = '2.0'
-plg.gramps_target_version = "5.1"
+plg.version = "2.0"
+plg.gramps_target_version = "6.0"
 plg.status = STABLE
-plg.fname = 'bsddb.py'
+plg.fname = "bsddb.py"
 plg.ptype = DATABASE
-plg.databaseclass = 'DbBsddb'
+plg.databaseclass = "DbBsddb"

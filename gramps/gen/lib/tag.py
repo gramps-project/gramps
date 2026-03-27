@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2010,2017 Nick Hall
-# Copyright (C) 2013      Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2010,2017,2024  Nick Hall
+# Copyright (C) 2013            Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,29 +14,30 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Tag object for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .tableobj import TableObject
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .tableobj import TableObject
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# Tag class
+# Tag
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Tag(TableObject):
     """
     The Tag record is used to store information about a tag that can be
@@ -59,7 +60,7 @@ class Tag(TableObject):
             self.__priority = source.priority
         else:
             self.__name = ""
-            self.__color = "#000000000000" # Black
+            self.__color = "#000000000000"  # Black
             self.__priority = 0
 
     def serialize(self):
@@ -80,11 +81,13 @@ class Tag(TableObject):
                   be considered persistent.
         :rtype: tuple
         """
-        return (self.handle,
-                self.__name,
-                self.__color,
-                self.__priority,
-                self.change)
+        return (
+            self.handle,
+            self.__name,
+            self.__color,
+            self.__priority,
+            self.change,
+        )
 
     def unserialize(self, data):
         """
@@ -95,12 +98,40 @@ class Tag(TableObject):
                      object
         :type data: tuple
         """
-        (self.handle,
-         self.__name,
-         self.__color,
-         self.__priority,
-         self.change) = data
+        (
+            self.handle,
+            self.__name,
+            self.__color,
+            self.__priority,
+            self.change,
+        ) = data
         return self
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        We override this method to handle the `name`, `color` and `priority`
+        properties.
+        """
+        attr_dict = super().get_object_state()
+        attr_dict["name"] = self.__name
+        attr_dict["color"] = self.__color
+        attr_dict["priority"] = self.__priority
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to handle the `name`, `color` and `priority`
+        properties.
+        """
+        self.__name = attr_dict.pop("name")
+        self.__color = attr_dict.pop("color")
+        self.__priority = attr_dict.pop("priority")
+        super().set_object_state(attr_dict)
 
     @classmethod
     def get_schema(cls):
@@ -115,20 +146,24 @@ class Tag(TableObject):
             "title": _("Tag"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string",
-                           "maxLength": 50,
-                           "title": _("Handle")},
-                "name": {"type": "string",
-                         "title": _("Name")},
-                "color": {"type": "string",
-                          "maxLength": 13,
-                          "title": _("Color")},
-                "priority": {"type": "integer",
-                             "minimum": 0,
-                             "title": _("Priority")},
-                "change": {"type": "integer",
-                           "title": _("Last changed")}
-            }
+                "handle": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "title": _("Handle"),
+                },
+                "name": {"type": "string", "title": _("Name")},
+                "color": {
+                    "type": "string",
+                    "maxLength": 13,
+                    "title": _("Color"),
+                },
+                "priority": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "title": _("Priority"),
+                },
+                "change": {"type": "integer", "title": _("Last changed")},
+            },
         }
 
     def get_text_data_list(self):
@@ -147,7 +182,7 @@ class Tag(TableObject):
         :returns: True if the Tag is empty
         :rtype: bool
         """
-        return self.__name != ""
+        return not self.__name
 
     def are_equal(self, other):
         """
@@ -161,9 +196,11 @@ class Tag(TableObject):
         if other is None:
             other = Tag()
 
-        if (self.__name != other.name or
-                self.__color != other.color or
-                self.__priority != other.priority):
+        if (
+            self.__name != other.name
+            or self.__color != other.color
+            or self.__priority != other.priority
+        ):
             return False
         return True
 
@@ -184,8 +221,8 @@ class Tag(TableObject):
         :rtype: str
         """
         return self.__name
-    name = property(get_name, set_name, None,
-                    'Returns or sets name of the tag')
+
+    name = property(get_name, set_name, None, "Returns or sets name of the tag")
 
     def set_color(self, color):
         """
@@ -206,8 +243,8 @@ class Tag(TableObject):
         :rtype: str
         """
         return self.__color
-    color = property(get_color, set_color, None,
-                     'Returns or sets color of the tag')
+
+    color = property(get_color, set_color, None, "Returns or sets color of the tag")
 
     def set_priority(self, priority):
         """
@@ -229,5 +266,6 @@ class Tag(TableObject):
         """
         return self.__priority
 
-    priority = property(get_priority, set_priority, None,
-                        'Returns or sets priority of the tag')
+    priority = property(
+        get_priority, set_priority, None, "Returns or sets priority of the tag"
+    )

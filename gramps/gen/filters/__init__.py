@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -26,15 +25,26 @@ CustomFilters = None
 
 from ..const import CUSTOM_FILTERS
 from ._filterlist import FilterList
-from ._genericfilter import (GenericFilter, GenericFilterFactory,
-                             DeferredFilter, DeferredFamilyFilter)
+from ._genericfilter import (
+    GenericFilter,
+    GenericFilterFactory,
+    DeferredFilter,
+    DeferredFamilyFilter,
+)
 from ._paramfilter import ParamFilter
 from ._searchfilter import SearchFilter, ExactSearchFilter
+
 
 def reload_custom_filters():
     global CustomFilters
     CustomFilters = FilterList(CUSTOM_FILTERS)
     CustomFilters.load()
 
+
+def set_custom_filters(filter_list):
+    global CustomFilters
+    CustomFilters = filter_list
+
+
 # if not CustomFilters:  # moved to viewmanager
-    # reload_custom_filters()
+# reload_custom_filters()

@@ -13,25 +13,34 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 SourceMedia types.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.gettext
 
+
+# -------------------------------------------------------------------------
+#
+# SourceMediaType
+#
+# -------------------------------------------------------------------------
 class SourceMediaType(GrampsType):
+    """
+    Class encapsulating the media type for a source.
+    """
 
     UNKNOWN = -1
     CUSTOM = 0
@@ -68,7 +77,7 @@ class SourceMediaType(GrampsType):
         (PHOTO, _("Photo"), "Photo"),
         (TOMBSTONE, _("Tombstone"), "Tombstone"),
         (VIDEO, _("Video"), "Video"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

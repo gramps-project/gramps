@@ -14,31 +14,32 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Option class representing a boolean (yes/no, true/false).
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Option
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # BooleanOption class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class BooleanOption(Option):
     """
     This class describes an option that is a boolean (True or False).
     """
+
     def __init__(self, label, value):
         """
         :param label: A friendly label to be applied to this option.

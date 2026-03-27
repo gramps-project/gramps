@@ -13,42 +13,51 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....datehandler import parser
 from ....display.place import displayer as place_displayer
 from ....lib.eventtype import EventType
 from ....lib.eventroletype import EventRoleType
 from .. import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasBirth
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasBirth(Rule):
     """Rule that checks for a person with a birth of a particular value"""
 
-    labels = [ _('Date:'), _('Place:'), _('Description:') ]
-    name = _('People with the <birth data>')
+    labels = [_("Date:"), _("Place:"), _("Description:")]
+    name = _("People with the <birth data>")
     description = _("Matches people with birth data of a particular value")
-    category = _('Event filters')
+    category = _("Event filters")
     allow_regex = True
 
     def prepare(self, db, user):
@@ -57,26 +66,26 @@ class HasBirth(Rule):
         else:
             self.date = None
 
-    def apply(self,db,person):
-        for event_ref in person.get_event_ref_list():
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for event_ref in person.event_ref_list:
             if not event_ref:
                 continue
-            elif event_ref.role != EventRoleType.PRIMARY:
+            elif event_ref.role.value != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
             event = db.get_event_from_handle(event_ref.ref)
-            if event.get_type() != EventType.BIRTH:
+            if event.type != EventType.BIRTH:
                 # No match: wrong type
                 continue
-            if not self.match_substring(2, event.get_description()):
+            if not self.match_substring(2, event.description):
                 # No match: wrong description
                 continue
             if self.date:
-                if not event.get_date_object().match(self.date):
+                if not event.date.match(self.date):
                     # No match: wrong date
                     continue
             if self.list[1]:
-                place_id = event.get_place_handle()
+                place_id = event.place
                 if place_id:
                     place = db.get_place_from_handle(place_id)
                     place_title = place_displayer.display(db, place)

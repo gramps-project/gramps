@@ -13,71 +13,87 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .. import Rule
 from ._matchesfilter import MatchesFilter
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Person
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # IsSiblingOfFilterMatch
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IsSiblingOfFilterMatch(Rule):
     """Rule that checks for siblings of someone matched by a filter"""
 
-    labels = [ _('Filter name:') ]
-    name = _('Siblings of <filter> match')
-    category = _('Family filters')
+    labels = [_("Filter name:")]
+    name = _("Siblings of <filter> match")
+    category = _("Family filters")
     description = _("Matches siblings of anybody matched by a filter")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.selected_handles: Set[str] = set()
         self.matchfilt = MatchesFilter(self.list)
         self.matchfilt.requestprepare(db, user)
         if user:
-            user.begin_progress(self.category,
-                                _('Retrieving all sub-filter matches'),
-                                db.get_number_of_people())
+            user.begin_progress(
+                self.category,
+                _("Retrieving all sub-filter matches"),
+                db.get_number_of_people(),
+            )
         for person in db.iter_people():
             if user:
                 user.step_progress()
-            if self.matchfilt.apply(db, person):
+            if self.matchfilt.apply_to_one(db, person):
                 self.init_list(person)
         if user:
             user.end_progress()
 
     def reset(self):
         self.matchfilt.requestreset()
-        self.map.clear()
+        self.selected_handles.clear()
 
-    def apply(self,db,person):
-        return person.handle in self.map
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles
 
-    def init_list(self,person):
+    def init_list(self, person: Person):
         if not person:
             return
-        fam_id = person.get_main_parents_family_handle()
+        fam_id = (
+            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
+        )
         if fam_id:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                self.map.update(
-                    child_ref.ref for child_ref in fam.get_child_ref_list()
-                    if child_ref and child_ref.ref != person.handle)
+                self.selected_handles.update(
+                    child_ref.ref
+                    for child_ref in fam.child_ref_list
+                    if child_ref and child_ref.ref != person.handle
+                )

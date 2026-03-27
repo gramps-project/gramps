@@ -13,25 +13,25 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # This is used by plugins to create a menu of available filters
 #
-#-------------------------------------------------------------------------
-def build_filter_model(space, local = []):
+# -------------------------------------------------------------------------
+def build_filter_model(space, local=[]):
     from gramps.gen.filters import CustomFilters
 
     model = Gtk.ListStore(GObject.TYPE_STRING, object)

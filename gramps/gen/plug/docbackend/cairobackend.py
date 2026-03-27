@@ -13,47 +13,48 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-"""File and File format management for the different reports
-"""
+"""File and File format management for the different reports"""
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Python modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from xml.sax.saxutils import escape
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from .docbackend import DocBackend
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".cairobackend.py")
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Document Backend class for cairo docs
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+
 
 class CairoBackend(DocBackend):
     """
@@ -61,31 +62,37 @@ class CairoBackend(DocBackend):
     """
 
     STYLETAG_TO_PROPERTY = {
-        DocBackend.FONTCOLOR : 'foreground',
-        DocBackend.HIGHLIGHT : 'background',
-        DocBackend.FONTFACE  : 'face',
-        DocBackend.FONTSIZE  : 'size',
+        DocBackend.FONTCOLOR: "foreground",
+        DocBackend.HIGHLIGHT: "background",
+        DocBackend.FONTFACE: "face",
+        DocBackend.FONTSIZE: "size",
     }
 
     # overwrite base class attributes, they become static var of CairoDoc
     SUPPORTED_MARKUP = [
-            DocBackend.BOLD,
-            DocBackend.ITALIC,
-            DocBackend.UNDERLINE,
-            DocBackend.FONTFACE,
-            DocBackend.FONTSIZE,
-            DocBackend.FONTCOLOR,
-            DocBackend.HIGHLIGHT,
-            DocBackend.SUPERSCRIPT ]
+        DocBackend.BOLD,
+        DocBackend.ITALIC,
+        DocBackend.UNDERLINE,
+        DocBackend.FONTFACE,
+        DocBackend.FONTSIZE,
+        DocBackend.FONTCOLOR,
+        DocBackend.HIGHLIGHT,
+        DocBackend.SUPERSCRIPT,
+        DocBackend.STRIKETHROUGH,
+        DocBackend.SUBSCRIPT,
+    ]
 
     STYLETAG_MARKUP = {
-        DocBackend.BOLD        : ("<b>", "</b>"),
-        DocBackend.ITALIC      : ("<i>", "</i>"),
-        DocBackend.UNDERLINE   : ("<u>", "</u>"),
-        DocBackend.SUPERSCRIPT : ("<sup>", "</sup>"),
+        DocBackend.BOLD: ("<b>", "</b>"),
+        DocBackend.ITALIC: ("<i>", "</i>"),
+        DocBackend.UNDERLINE: ("<u>", "</u>"),
+        DocBackend.SUPERSCRIPT: ("<sup>", "</sup>"),
+        DocBackend.STRIKETHROUGH: ("<s>", "</s>"),
+        DocBackend.SUBSCRIPT: ("<sub>", "</sub>"),
     }
 
-    ESCAPE_FUNC = lambda x: escape
+    def ESCAPE_FUNC(x):
+        return escape
 
     def _create_xmltag(self, tagtype, value):
         """
@@ -95,9 +102,11 @@ class CairoBackend(DocBackend):
         if tagtype not in self.SUPPORTED_MARKUP:
             return None
         if tagtype == DocBackend.FONTSIZE:
-            #size is in thousandths of a point in pango
+            # size is in thousandths of a point in pango
             value = str(1000 * value)
 
-        return ('<span %s="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype],
-                                    self.ESCAPE_FUNC()(value)),
-                '</span>')
+        return (
+            '<span %s="%s">'
+            % (self.STYLETAG_TO_PROPERTY[tagtype], self.ESCAPE_FUNC()(value)),
+            "</span>",
+        )

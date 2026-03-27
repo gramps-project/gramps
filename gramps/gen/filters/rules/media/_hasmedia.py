@@ -13,47 +13,56 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....datehandler import parser
 from .. import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Media
+from ....db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasMedia
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasMedia(Rule):
     """Rule that checks for a media with a particular value"""
 
-
-    labels = [ _('Title:'),
-                    _('Type:'),
-                    _('Path:'),
-                    _('Date:'),
-                    ]
-    name = _('Media objects matching parameters')
+    labels = [
+        _("Title:"),
+        _("Type:"),
+        _("Path:"),
+        _("Date:"),
+    ]
+    name = _("Media objects matching parameters")
     description = _("Matches media objects with particular parameters")
-    category = _('General filters')
+    category = _("General filters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.date = None
         try:
             if self.list[3]:
@@ -61,18 +70,18 @@ class HasMedia(Rule):
         except:
             pass
 
-    def apply(self,db, obj):
-        if not self.match_substring(0, obj.get_description()):
+    def apply_to_one(self, db: Database, obj: Media) -> bool:
+        if not self.match_substring(0, obj.desc):
             return False
 
-        if not self.match_substring(1, obj.get_mime_type()):
+        if not self.match_substring(1, obj.mime):
             return False
 
-        if not self.match_substring(2, obj.get_path()):
+        if not self.match_substring(2, obj.path):
             return False
 
         if self.date:
-            if not obj.get_date_object().match(self.date):
+            if not obj.date.match(self.date):
                 return False
 
         return True

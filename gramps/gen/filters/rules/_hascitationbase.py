@@ -14,44 +14,52 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ...datehandler import parser
 from . import Rule
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.citationbase import CitationBase
+from ...lib import Citation
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasCitation
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasCitationBase(Rule):
     """Rule that checks for a citation with a particular value
 
     First parameter is [Volume/page, Date, Confidence]
     """
 
-    labels = [ _('Volume/Page:'),
-                    _('Date:'),
-                    _('Confidence:') ]
-    name = _('Citations matching parameters')
+    labels = [_("Volume/Page:"), _("Date:"), _("Confidence:")]
+    name = _("Citations matching parameters")
     description = _("Matches citations with particular parameters")
-    category = _('Citation/source filters')
+    category = _("Citation/source filters")
     allow_regex = True
 
     def prepare(self, db, user):
@@ -62,23 +70,23 @@ class HasCitationBase(Rule):
         except:
             pass
 
-    def apply(self, dbase, object):
-        for citation_handle in object.get_citation_list():
+    def apply_to_one(self, dbase: Database, object: CitationBase) -> bool:
+        for citation_handle in object.citation_list:
             citation = dbase.get_citation_from_handle(citation_handle)
             if self._apply(dbase, citation):
                 return True
         return False
 
-    def _apply(self, db, citation):
-        if not self.match_substring(0, citation.get_page()):
+    def _apply(self, db: Database, citation: Citation):
+        if not self.match_substring(0, citation.page):
             return False
 
         if self.date:
-            if not citation.get_date_object().match(self.date):
+            if not citation.date.match(self.date):
                 return False
 
         if self.list[2]:
-            if citation.get_confidence_level() < int(self.list[2]):
+            if citation.confidence < int(self.list[2]):
                 return False
 
         return True

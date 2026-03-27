@@ -17,47 +17,48 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".fontstyle")
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 FONT_SANS_SERIF = 0
 FONT_SERIF = 1
 FONT_MONOSPACE = 2
 
-#------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
 #
 # FontStyle
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 class FontStyle:
     """
     Defines a font style. Controls the font face, size, color, and
@@ -92,8 +93,9 @@ class FontStyle:
             self.color = (0, 0, 0)
             self.under = 0
 
-    def set(self, face=None, size=None, italic=None, bold=None,
-            underline=None, color=None):
+    def set(
+        self, face=None, size=None, italic=None, bold=None, underline=None, color=None
+    ):
         """
         Set font characteristics.
 

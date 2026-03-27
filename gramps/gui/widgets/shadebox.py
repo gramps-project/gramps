@@ -13,37 +13,39 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 __all__ = ["ShadeBox"]
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
+
 _LOG = logging.getLogger(".widgets.shadebox")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ShadeBox class
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ShadeBox(Gtk.EventBox):
     """
     An EventBox with a shaded background.
     """
+
     def __init__(self, use_shade):
         Gtk.EventBox.__init__(self)
         self.use_shade = use_shade

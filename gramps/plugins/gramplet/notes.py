@@ -1,7 +1,9 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2011 Nick Hall
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011 Tim G L Lyons
+# Copyright (C) 2020 Matthias Kemmer
+# Copyright (C) 2024-2025 Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,34 +15,38 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gtk
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
+from gramps.gui.editors import EditNote
 from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gui.widgets import SimpleButton
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import StyledText
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
+
 
 class Notes(Gramplet):
     """
     Displays the notes for an object.
     """
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -54,18 +60,23 @@ class Notes(Gramplet):
         top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         hbox = Gtk.Box()
-        self.left = SimpleButton('go-previous', self.left_clicked)
+        self.left = SimpleButton("go-previous", self.left_clicked)
         self.left.set_sensitive(False)
         hbox.pack_start(self.left, False, False, 0)
-        self.right = SimpleButton('go-next', self.right_clicked)
+        self.right = SimpleButton("go-next", self.right_clicked)
         self.right.set_sensitive(False)
         hbox.pack_start(self.right, False, False, 0)
+        self.edit = SimpleButton("gtk-edit", self.edit_clicked)
+        self.edit.set_sensitive(False)
+        hbox.pack_start(self.edit, False, False, 0)
         self.page = Gtk.Label()
-        hbox.pack_end(self.page, False, False, 10)
+        self.page.set_halign(Gtk.Align.START)
+        hbox.pack_start(self.page, True, True, 10)
+        self.ntype = Gtk.Label()
+        hbox.pack_start(self.ntype, False, False, 10)
 
         scrolledwindow = Gtk.ScrolledWindow()
-        scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
-                                  Gtk.PolicyType.AUTOMATIC)
+        scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.texteditor = StyledTextEditor()
         self.texteditor.set_editable(False)
         self.texteditor.set_wrap_mode(Gtk.WrapMode.WORD)
@@ -76,29 +87,12 @@ class Notes(Gramplet):
         top.show_all()
         return top
 
-    def get_notes(self, obj):
-        """
-        Get the note list for the current object.
-        """
-        self.left.set_sensitive(False)
-        self.right.set_sensitive(False)
-        self.texteditor.set_text(StyledText())
-        self.note_list = obj.get_note_list()
-        self.page.set_text('')
-        if len(self.note_list) > 0:
-            self.set_has_data(True)
-            if len(self.note_list) > 1:
-                self.right.set_sensitive(True)
-            self.current = 0
-            self.display_note()
-        else:
-            self.set_has_data(False)
-
     def clear_text(self):
         self.left.set_sensitive(False)
         self.right.set_sensitive(False)
+        self.edit.set_sensitive(False)
         self.texteditor.set_text(StyledText())
-        self.page.set_text('')
+        self.page.set_text("")
         self.current = 0
 
     def display_note(self):
@@ -108,9 +102,11 @@ class Notes(Gramplet):
         note_handle = self.note_list[self.current]
         note = self.dbstate.db.get_note_from_handle(note_handle)
         self.texteditor.set_text(note.get_styledtext())
-        self.page.set_text(_('%(current)d of %(total)d') %
-                           {'current': self.current + 1,
-                            'total': len(self.note_list)})
+        self.ntype.set_text(str(note.get_type()))
+        self.page.set_text(
+            _("%(current)d of %(total)d")
+            % {"current": self.current + 1, "total": len(self.note_list)}
+        )
 
     def left_clicked(self, button):
         """
@@ -134,6 +130,9 @@ class Notes(Gramplet):
                 self.right.set_sensitive(False)
             self.display_note()
 
+    def edit_clicked(self, button):
+        pass
+
     def get_has_data(self, obj):
         """
         Return True if the gramplet has data, else return False.
@@ -144,228 +143,201 @@ class Notes(Gramplet):
             return True
         return False
 
-class PersonNotes(Notes):
+
+class NotesOf(Notes):
+    def init(self, object_class):
+        super().init()
+        self.object_class = object_class
+
+    def db_changed(self):
+        self.connect(
+            self.dbstate.db, "%s-update" % self.object_class.lower(), self.update
+        )
+        self.connect(
+            self.dbstate.db, "%s-delete" % self.object_class.lower(), self.update
+        )
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
+
+    def active_changed(self, handle):
+        self.update()
+        self.connect_signal(self.object_class, self.update)
+
+    def get_notes(self, obj):
+        """
+        Get the note list for the current object.
+        """
+        self.left.set_sensitive(False)
+        self.right.set_sensitive(False)
+        self.texteditor.set_text(StyledText())
+        self.note_list = obj.get_note_list()
+        self.page.set_text("")
+        self.ntype.set_text("")
+        self.edit.set_sensitive(len(self.note_list) > 0)
+        if len(self.note_list) > 0:
+            self.set_has_data(True)
+            if len(self.note_list) > 1:
+                self.right.set_sensitive(True)
+            self.current = 0
+            self.display_note()
+        else:
+            self.set_has_data(False)
+
+    def update_has_data(self):
+        active_handle = self.get_active(self.object_class)
+        if active_handle:
+            active = self.dbstate.db.method("get_%s_from_handle", self.object_class)(
+                active_handle
+            )
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
+
+    def edit_clicked(self, button):
+        """
+        Get the selected Note instance and call the EditNote editor with the
+        note.
+
+        Called when the Edit button is clicked.
+        If the window already exists (WindowActiveError), we ignore it.
+        This prevents the dialog from coming up twice on the same object.
+        """
+        note_handle = self.note_list[self.current]
+        note = self.dbstate.db.get_note_from_handle(note_handle)
+        try:
+            EditNote(self.gui.dbstate, self.gui.uistate, [], note)
+        except WindowActiveError:
+            pass
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active(self.object_class)
+        if active_handle:
+            active = self.dbstate.db.method("get_%s_from_handle", self.object_class)(
+                active_handle
+            )
+            if active:
+                self.get_notes(active)
+            else:
+                self.set_has_data(False)
+        else:
+            self.set_has_data(False)
+
+
+class PersonNotes(NotesOf):
     """
     Displays the notes for a person.
     """
+
+    def init(self):
+        super().init("Person")
+
     def db_changed(self):
-        self.connect(self.dbstate.db, 'person-update', self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
+        # superclass will call active_changed if the active Person changes
+        self.connect(self.dbstate.db, "note-add", self.update)
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
 
     def active_changed(self, handle):
         self.update()
 
-    def update_has_data(self):
-        active_handle = self.get_active('Person')
-        if active_handle:
-            active = self.dbstate.db.get_person_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
 
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active('Person')
-        if active_handle:
-            active = self.dbstate.db.get_person_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
-
-class EventNotes(Notes):
+class EventNotes(NotesOf):
     """
     Displays the notes for an event.
     """
-    def db_changed(self):
-        self.connect(self.dbstate.db, 'event-update', self.update)
-        self.connect_signal('Event', self.update)
 
-    def update_has_data(self):
-        active_handle = self.get_active('Event')
-        if active_handle:
-            active = self.dbstate.db.get_event_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Event")
 
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active('Event')
-        if active_handle:
-            active = self.dbstate.db.get_event_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
 
-class FamilyNotes(Notes):
+class FamilyNotes(NotesOf):
     """
     Displays the notes for a family.
     """
-    def db_changed(self):
-        self.connect(self.dbstate.db, 'family-update', self.update)
-        self.connect_signal('Family', self.update)
 
-    def update_has_data(self):
-        active_handle = self.get_active('Family')
-        if active_handle:
-            active = self.dbstate.db.get_family_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Family")
 
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active('Family')
-        if active_handle:
-            active = self.dbstate.db.get_family_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
 
-class PlaceNotes(Notes):
+class PlaceNotes(NotesOf):
     """
     Displays the notes for a place.
     """
-    def db_changed(self):
-        self.connect(self.dbstate.db, 'place-update', self.update)
-        self.connect_signal('Place', self.update)
 
-    def update_has_data(self):
-        active_handle = self.get_active('Place')
-        if active_handle:
-            active = self.dbstate.db.get_place_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Place")
 
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active('Place')
-        if active_handle:
-            active = self.dbstate.db.get_place_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
 
-class SourceNotes(Notes):
+class SourceNotes(NotesOf):
     """
     Displays the notes for a source.
     """
-    def db_changed(self):
-        self.connect(self.dbstate.db, 'source-update', self.update)
-        self.connect_signal('Source', self.update)
 
-    def update_has_data(self):
-        active_handle = self.get_active('Source')
-        if active_handle:
-            active = self.dbstate.db.get_source_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Source")
 
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active('Source')
-        if active_handle:
-            active = self.dbstate.db.get_source_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
 
-class CitationNotes(Notes):
+class CitationNotes(NotesOf):
     """
     Displays the notes for a Citation.
     """
-    def db_changed(self):
-        self.connect(self.dbstate.db, 'citation-update', self.update)
-        self.connect_signal('Citation', self.update)
 
-    def update_has_data(self):
-        active_handle = self.get_active('Citation')
-        if active_handle:
-            active = self.dbstate.db.get_citation_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Citation")
 
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active('Citation')
-        if active_handle:
-            active = self.dbstate.db.get_citation_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
 
-class RepositoryNotes(Notes):
+class RepositoryNotes(NotesOf):
     """
     Displays the notes for a repository.
     """
-    def db_changed(self):
-        self.connect(self.dbstate.db, 'repository-update', self.update)
-        self.connect_signal('Repository', self.update)
 
-    def update_has_data(self):
-        active_handle = self.get_active('Repository')
-        if active_handle:
-            active = self.dbstate.db.get_repository_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Repository")
 
-    def main(self):
-        self.clear_text()
-        active_handle = self.get_active('Repository')
-        if active_handle:
-            active = self.dbstate.db.get_repository_from_handle(active_handle)
-            if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
 
-class MediaNotes(Notes):
+class MediaNotes(NotesOf):
     """
     Displays the notes for a media object.
     """
-    def db_changed(self):
-        self.connect(self.dbstate.db, 'media-update', self.update)
-        self.connect_signal('Media', self.update)
 
-    def update_has_data(self):
-        active_handle = self.get_active('Media')
-        if active_handle:
-            active = self.dbstate.db.get_media_from_handle(active_handle)
-            self.set_has_data(self.get_has_data(active))
-        else:
-            self.set_has_data(False)
+    def init(self):
+        super().init("Media")
+
+
+class NoteNotes(Notes):
+    """
+    Display a single note in NoteView.
+    """
+
+    def db_changed(self):
+        self.connect(self.dbstate.db, "note-update", self.update)
+        self.connect(self.dbstate.db, "note-delete", self.update)
+        self.connect_signal("Note", self.update)
+
+    def edit_clicked(self, button):
+        """
+        Get the selected Note instance and call the EditNote editor with the
+        note.
+
+        Called when the Edit button is clicked.
+        If the window already exists (WindowActiveError), we ignore it.
+        This prevents the dialog from coming up twice on the same object.
+        """
+        active_handle = self.get_active("Note")
+        note = self.dbstate.db.get_note_from_handle(active_handle)
+        try:
+            EditNote(self.gui.dbstate, self.gui.uistate, [], note)
+        except WindowActiveError:
+            pass
 
     def main(self):
         self.clear_text()
-        active_handle = self.get_active('Media')
+        active_handle = self.get_active("Note")
         if active_handle:
-            active = self.dbstate.db.get_media_from_handle(active_handle)
+            active = self.dbstate.db.get_note_from_handle(active_handle)
             if active:
-                self.get_notes(active)
-            else:
-                self.set_has_data(False)
-        else:
-            self.set_has_data(False)
+                self.edit.set_sensitive(True)
+                self.texteditor.set_text(active.get_styledtext())

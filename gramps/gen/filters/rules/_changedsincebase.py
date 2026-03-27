@@ -13,47 +13,59 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # gen.filters.rules/_ChangedSinceBase.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 import time
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from . import Rule
 from ...errors import FilterError
 from ...const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # ChangedSince
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ChangedSinceBase(Rule):
     """
     Rule that checks for primary objects changed since a specific time.
     """
 
-    labels = [ 'Changed after:', 'but before:' ]
-    name = 'Objects changed after <date time>'
-    description = "Matches object records changed after a specified " \
-                    "date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second " \
-                    "date/time is given."
-    category = _('General filters')
+    labels = ["Changed after:", "but before:"]
+    name = "Objects changed after <date time>"
+    description = (
+        "Matches object records changed after a specified "
+        "date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second "
+        "date/time is given."
+    )
+    category = _("General filters")
 
     def add_time(self, date):
         if re.search(r"\d.*\s+\d{1,2}:\d{2}:\d{2}", date):
@@ -80,12 +92,16 @@ class ChangedSinceBase(Rule):
         except ValueError:
             raise FilterError(
                 _("Wrong format of date-time"),
-                _("Only date-times in the iso format of yyyy-mm-dd "
-                  "hh:mm:ss, where the time part is optional, are "
-                  "accepted. %s does not satisfy.") % iso_date_time)
+                _(
+                    "Only date-times in the iso format of yyyy-mm-dd "
+                    "hh:mm:ss, where the time part is optional, are "
+                    "accepted. %s does not satisfy."
+                )
+                % iso_date_time,
+            )
         return time_sec
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.since = None
         self.before = None
         if self.list[0]:
@@ -93,8 +109,8 @@ class ChangedSinceBase(Rule):
         if self.list[1]:
             self.before = self.time_str_to_sec(self.list[1])
 
-    def apply(self, db, obj):
-        obj_time = obj.get_change_time()
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
+        obj_time = obj.change
         if self.since:
             if obj_time < self.since:
                 return False

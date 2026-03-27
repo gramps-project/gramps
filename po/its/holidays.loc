@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<locatingRules>
+    <locatingRule name="Holidays" pattern="holidays.xml" target="holidays.its"/>
+</locatingRules>

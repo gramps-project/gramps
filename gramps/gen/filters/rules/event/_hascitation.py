@@ -14,40 +14,39 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Filter rule to match event with a particular citation.
 """
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._hascitationbase import HasCitationBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # HasEvent
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasCitation(HasCitationBase):
     """Rule that checks for an event with a particular value"""
 
-    labels = [ _('Volume/Page:'),
-                    _('Date:'),
-                    _('Confidence level:')]
-    name = _('Events with the <citation>')
-    description = _("Matches events with a citation of a particular "
-                    "value")
+    labels = [_("Volume/Page:"), _("Date:"), _("Confidence level:")]
+    name = _("Events with the <citation>")
+    description = _("Matches events with a citation of a particular " "value")

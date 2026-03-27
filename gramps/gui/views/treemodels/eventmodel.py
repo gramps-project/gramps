@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2024       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,66 +14,60 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from html import escape
 import logging
+
 log = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Event, EventType
+from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
-#-------------------------------------------------------------------------
-#
-# Positions in raw data structure
-#
-#-------------------------------------------------------------------------
-COLUMN_HANDLE = 0
-COLUMN_ID = 1
-COLUMN_TYPE = 2
-COLUMN_DATE = 3
-COLUMN_DESCRIPTION = 4
-COLUMN_PLACE = 5
-COLUMN_CHANGE = 10
-COLUMN_TAGS = 11
-COLUMN_PRIV = 12
+INVALID_DATE_FORMAT = config.get("preferences.invalid-date-format")
 
-INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # EventModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class EventModel(FlatBaseModel):
-
-    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
         self.gen_cursor = db.get_event_cursor
         self.map = db.get_raw_event_data
 
@@ -86,8 +81,8 @@ class EventModel(FlatBaseModel):
             self.column_tags,
             self.column_change,
             self.column_participant,
-            self.column_tag_color
-            ]
+            self.column_tag_color,
+        ]
         self.smap = [
             self.column_description,
             self.column_id,
@@ -98,10 +93,11 @@ class EventModel(FlatBaseModel):
             self.column_tags,
             self.sort_change,
             self.column_participant,
-            self.column_tag_color
-           ]
-        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
-                               skip=skip, sort_map=sort_map)
+            self.column_tag_color,
+        ]
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
 
     def destroy(self):
         """
@@ -121,74 +117,75 @@ class EventModel(FlatBaseModel):
         return 9
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        return len(self.fmap) + 1
 
-    def column_description(self,data):
-        return data[COLUMN_DESCRIPTION]
+    def column_description(self, data):
+        return data.description
 
-    def column_participant(self,data):
-        handle = data[0]
+    def column_participant(self, data):
+        handle = data.handle
         cached, value = self.get_cached_value(handle, "PARTICIPANT")
         if not cached:
-            value = get_participant_from_event(self.db, data[COLUMN_HANDLE])
+            value = get_participant_from_event(
+                self.db, data.handle, all_=True
+            )  # all participants
             self.set_cached_value(handle, "PARTICIPANT", value)
         return value
 
-    def column_place(self,data):
-        if data[COLUMN_PLACE]:
-            cached, value = self.get_cached_value(data[0], "PLACE")
+    def column_place(self, data):
+        if data.place:
+            cached, value = self.get_cached_value(data.handle, "PLACE")
             if not cached:
-                event = Event()
-                event.unserialize(data)
+                event = data_to_object(data)
                 value = place_displayer.display_event(self.db, event)
-                self.set_cached_value(data[0], "PLACE", value)
+                self.set_cached_value(data.handle, "PLACE", value)
             return value
         else:
-            return ''
+            return ""
 
-    def column_type(self,data):
-        return str(EventType(data[COLUMN_TYPE]))
+    def column_type(self, data):
+        return EventType.get_str(data.type)
 
-    def column_id(self,data):
-        return data[COLUMN_ID]
+    def column_id(self, data):
+        return data.gramps_id
 
-    def column_date(self,data):
-        if data[COLUMN_DATE]:
-            event = Event()
-            event.unserialize(data)
+    def column_date(self, data):
+        if data.date:
+            event = data_to_object(data)
             date_str = get_date(event)
             if date_str != "":
                 retval = escape(date_str)
+            else:
+                retval = ""
             if not get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
-        return ''
+        return ""
 
-    def sort_date(self,data):
-        if data[COLUMN_DATE]:
-            event = Event()
-            event.unserialize(data)
+    def sort_date(self, data):
+        if data.date:
+            event = data_to_object(data)
             retval = "%09d" % event.get_date_object().get_sort_value()
             if not get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
 
-        return ''
+        return ""
 
     def column_private(self, data):
-        if data[COLUMN_PRIV]:
-            return 'gramps-lock'
+        if data.private:
+            return "gramps-lock"
         else:
             # There is a problem returning None here.
-            return ''
+            return ""
 
-    def sort_change(self,data):
-        return "%012x" % data[COLUMN_CHANGE]
+    def sort_change(self, data):
+        return "%012x" % data.change
 
-    def column_change(self,data):
-        return format_time(data[COLUMN_CHANGE])
+    def column_change(self, data):
+        return format_time(data.change)
 
     def get_tag_name(self, tag_handle):
         """
@@ -205,12 +202,12 @@ class EventModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data.handle
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[COLUMN_TAGS]:
+            for handle in data.tag_list:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -223,6 +220,6 @@ class EventModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
+        tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        return ", ".join(sorted(tag_list, key=glocale.sort_key))

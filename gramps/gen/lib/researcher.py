@@ -14,29 +14,31 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Researcher information for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .locationbase import LocationBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
+# Researcher
 #
-#
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Researcher(LocationBase):
-    """Contains the information about the owner of the database."""
+    """
+    Contains the information about the owner of the database.
+    """
 
     def __init__(self, source=None):
         """
@@ -57,14 +59,13 @@ class Researcher(LocationBase):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (LocationBase.serialize(self),
-                self.name, self.addr, self.email)
+        return (LocationBase.serialize(self), self.name, self.addr, self.email)
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (location, self.name, self.addr, self.email) = data
+        location, self.name, self.addr, self.email = data
         LocationBase.unserialize(self, location)
 
         return self
@@ -86,7 +87,7 @@ class Researcher(LocationBase):
         return self.addr
 
     def set_email(self, data):
-        """ Set the database owner's email."""
+        """Set the database owner's email."""
         self.email = data
 
     def get_email(self):
@@ -109,14 +110,80 @@ class Researcher(LocationBase):
         self.email = other_researcher.email
 
     def get(self):
-        return [getattr(self, value) for value in
-                ['name', 'addr', 'locality', 'city', 'state',
-                 'country', 'postal', 'phone', 'email']
-               ]
+        """
+        Return attributes about the researcher.
+        """
+        return [
+            getattr(self, value)
+            for value in [
+                "name",
+                "addr",
+                "locality",
+                "city",
+                "state",
+                "country",
+                "postal",
+                "phone",
+                "email",
+            ]
+        ]
 
     def is_empty(self):
-        for attr in ['name', 'addr', 'locality', 'city', 'state',
-                     'country', 'postal', 'phone', 'email']:
+        """
+        Check and return true if object empty.
+        """
+        for attr in [
+            "name",
+            "addr",
+            "locality",
+            "city",
+            "state",
+            "country",
+            "postal",
+            "phone",
+            "email",
+        ]:
             if getattr(self, attr) != "":
                 return False
         return True
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        By default this returns the public attributes of the instance.  This
+        method can be overridden if the class requires other attributes or
+        properties to be saved.
+
+        This method is called to provide the information required to serialize
+        the object.
+
+        :returns: Returns a dictionary of attributes that represent the state
+                  of the object.
+        :rtype: dict
+        """
+        attr_dict = dict(
+            (key, value)
+            for key, value in self.__dict__.items()
+            if not key.startswith("_")
+        )
+        attr_dict["_class"] = self.__class__.__name__
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        By default this sets the state of the object assuming that all items in
+        the dictionary map to public attributes.  This method can be overridden
+        to set the state using custom functionality.  For performance reasons
+        it is useful to set a property without calling its setter function.  As
+        JSON provides no distinction between tuples and lists, this method can
+        also be use to convert lists into tuples where required.
+
+        :param attr_dict: A dictionary of attributes that represent the state of
+                          the object.
+        :type attr_dict: dict
+        """
+        self.__dict__.update(attr_dict)

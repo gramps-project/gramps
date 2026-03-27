@@ -13,79 +13,92 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Rule that checks for an event with a particular value.
+"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from ...const import GRAMPS_LOCALE as glocale
 from ...datehandler import parser
-from ...lib.eventtype import EventType
-from . import Rule
-from ...utils.db import get_participant_from_event
 from ...display.place import displayer as place_displayer
+from ...lib.eventtype import EventType
+from ...utils.db import get_participant_from_event
+from . import Rule
 
-#-------------------------------------------------------------------------
+_ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib import Event
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 #
 # HasEventBase
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class HasEventBase(Rule):
-    """Rule that checks for an event with a particular value."""
+    """
+    Rule that checks for an event with a particular value.
+    """
 
-
-    labels = [ 'Event type:',
-                    'Date:',
-                    'Place:',
-                    'Description:',
-                    'Main Participants:' ]
-    name = 'Events matching parameters'
+    labels = ["Event type:", "Date:", "Place:", "Description:", "Main Participants:"]
+    name = "Events matching parameters"
     description = "Matches events with particular parameters"
-    category = _('Event filters')
+    category = _("Event filters")
     allow_regex = True
 
-    def prepare(self, db, user):
+    def __init__(self, arg, use_regex=False, use_case=False):
+        super().__init__(arg, use_regex, use_case)
         self.date = None
+        self.event_type = None
+
+    def prepare(self, db: Database, user):
+        """
+        Prepare the rule. Things that should only be done once.
+        """
         if self.list[0]:
-            self.etype = EventType()
-            self.etype.set_from_xml_str(self.list[0])
-        else:
-            self.etype = None
+            self.event_type = EventType()
+            self.event_type.set_from_xml_str(self.list[0])
         try:
             if self.list[1]:
                 self.date = parser.parse(self.list[1])
         except:
             pass
 
-    def apply(self, db, event):
-        if self.etype:
-            if self.etype.is_custom() and self.use_regex:
+    def apply_to_one(self, db: Database, event: Event) -> bool:
+        """
+        Apply the rule. Return True if a match.
+        """
+        if self.event_type:
+            if self.event_type.is_custom() and self.use_regex:
                 if self.regex[0].search(str(event.type)) is None:
                     return False
-            elif event.type != self.etype:
+            elif event.type != self.event_type:
                 return False
 
-        if not self.match_substring(3, event.get_description()):
+        if not self.match_substring(3, event.description):
             return False
 
         if self.date:
-            if not event.get_date_object().match(self.date):
+            if not event.date.match(self.date):
                 return False
 
         if self.list[2]:
-            place_id = event.get_place_handle()
+            place_id = event.place
             if place_id:
                 place = db.get_place_from_handle(place_id)
                 place_title = place_displayer.display(db, place)
@@ -94,8 +107,9 @@ class HasEventBase(Rule):
             else:
                 return False
 
-        if not self.match_substring(4,
-                get_participant_from_event(db, event.get_handle(), all_=True)):
+        if not self.match_substring(
+            4, get_participant_from_event(db, event.handle, all_=True)
+        ):
             return False
 
         return True

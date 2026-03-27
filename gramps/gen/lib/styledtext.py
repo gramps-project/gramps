@@ -2,8 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2008       Zsolt Foldvari
-# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
-# Copyright (C) 2017       Nick Hall
+# Copyright (C) 2013,2024  Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017,2024  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,29 +15,37 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Handling formatted ('rich text') strings"
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Python modules
+#
+# -------------------------------------------------------------------------
+from copy import copy
+
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from copy import copy
-from .styledtexttag import StyledTextTag
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .baseobj import BaseObject
+from .styledtexttag import StyledTextTag
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# StyledText class
+# StyledText
 #
-#-------------------------------------------------------------------------
-class StyledText:
+# -------------------------------------------------------------------------
+class StyledText(BaseObject):
     """Helper class to enable character based text formatting.
 
     :py:class:`StyledText` is a wrapper class binding the clear text string and
@@ -59,15 +67,6 @@ class StyledText:
     :ivar tags: (list of :py:class:`.StyledTextTag`) Text tags holding
                 formatting information for the string.
 
-    :cvar POS_TEXT: Position of *string* attribute in the serialized format of
-                    an instance.
-    :cvar POS_TAGS: (int) Position of *tags* attribute in the serialized format
-                    of an instance.
-
-    .. warning:: The POS_<x> class variables reflect the serialized object,
-      they have to be updated in case the data structure or the
-      :py:meth:`serialize` method changes!
-
     .. note::
      1. There is no sanity check of tags in :py:meth:`__init__`, because when a
         :py:class:`StyledText` is displayed it is passed to a
@@ -81,7 +80,6 @@ class StyledText:
      3. Warning: Some of these operations modify the source tag ranges in place
         so if you intend to use a source tag more than once, copy it for use.
     """
-    (POS_TEXT, POS_TAGS) = list(range(2))
 
     def __init__(self, text="", tags=None):
         """Setup initial instance variable values."""
@@ -91,6 +89,27 @@ class StyledText:
             self._tags = tags
         else:
             self._tags = []
+
+    def get_object_state(self):
+        """
+        Get the current object state as a dictionary.
+
+        We override this method to handle the `tags` and `string` properties.
+        """
+        attr_dict = {"_class": self.__class__.__name__}
+        attr_dict["tags"] = self._tags
+        attr_dict["string"] = self._string
+        return attr_dict
+
+    def set_object_state(self, attr_dict):
+        """
+        Set the current object state using information provided in the given
+        dictionary.
+
+        We override this method to handle the `tags` and `string` properties.
+        """
+        self._tags = attr_dict["tags"]
+        self._string = attr_dict["string"]
 
     # special methods
 
@@ -114,17 +133,17 @@ class StyledText:
         if isinstance(other, StyledText):
             # need to join strings and merge tags
             for tag in other.tags:
-                tag.ranges = [(start + offset, end + offset)
-                              for (start, end) in tag.ranges]
+                tag.ranges = [
+                    (start + offset, end + offset) for (start, end) in tag.ranges
+                ]
 
-            return self.__class__("".join([self._string, other.string]),
-                                  self._tags + other.tags)
-        elif isinstance(other, str):
+            return self.__class__(
+                "".join([self._string, other.string]), self._tags + other.tags
+            )
+        if isinstance(other, str):
             # tags remain the same, only text becomes longer
             return self.__class__("".join([self._string, other]), self._tags)
-        else:
-            return self.__class__("".join([self._string, str(other)]),
-                                  self._tags)
+        return self.__class__("".join([self._string, str(other)]), self._tags)
 
     def __eq__(self, other):
         return self._string == other.string and self._tags == other.tags
@@ -154,18 +173,18 @@ class StyledText:
 
         start = 0
         while True:
-            idx1 = result.string.find('%', start)
+            idx1 = result.string.find("%", start)
             if idx1 < 0:
                 break
-            if result.string[idx1+1] == '(':
-                idx2 = result.string.find(')', idx1+3)
-                param_name = result.string[idx1+2:idx2]
+            if result.string[idx1 + 1] == "(":
+                idx2 = result.string.find(")", idx1 + 3)
+                param_name = result.string[idx1 + 2 : idx2]
             else:
                 idx2 = idx1
                 param_name = None
             end = idx2 + 1
-            for end in range(idx2+1, len(result.string)):
-                if result.string[end] in 'diouxXeEfFgGcrs%':
+            for end in range(idx2 + 1, len(result.string)):
+                if result.string[end] in "diouxXeEfFgGcrs%":
                     break
             if param_name is not None:
                 param = other[param_name]
@@ -175,9 +194,9 @@ class StyledText:
             else:
                 param = other
             if not isinstance(param, StyledText):
-                param_type = '%' + result.string[idx2+1:end+1]
+                param_type = "%" + result.string[idx2 + 1 : end + 1]
                 param = StyledText(param_type % param)
-            parts = result.split(result.string[idx1:end+1], 1)
+            parts = result.split(result.string[idx1 : end + 1], 1)
             if len(parts) == 2:
                 result = parts[0] + param + parts[1]
             start = end + 1
@@ -185,7 +204,6 @@ class StyledText:
         return result
 
     # private methods
-
 
     # string methods in alphabetical order:
 
@@ -210,15 +228,17 @@ class StyledText:
                 # put the joined element tag(s) into place
                 for tag in self.tags:
                     ntag = copy(tag)
-                    ntag.ranges = [(start + offset, end + offset)
-                                   for (start, end) in tag.ranges]
+                    ntag.ranges = [
+                        (start + offset, end + offset) for (start, end) in tag.ranges
+                    ]
                     new_tags += [ntag]
                 offset += self_len
             if isinstance(text, StyledText):
                 for tag in text.tags:
                     ntag = copy(tag)
-                    ntag.ranges = [(start + offset, end + offset)
-                                   for (start, end) in tag.ranges]
+                    ntag.ranges = [
+                        (start + offset, end + offset) for (start, end) in tag.ranges
+                    ]
                     new_tags += [ntag]
             offset += len(str(text))
             not_first = True
@@ -273,13 +293,14 @@ class StyledText:
 
             for tag in self._tags:
                 new_tag = StyledTextTag(int(tag.name), tag.value)
-                for (start_tag, end_tag) in tag.ranges:
+                for start_tag, end_tag in tag.ranges:
                     start = max(start_string, start_tag)
                     end = min(end_string, end_tag)
 
                     if start < end:
-                        new_tag.ranges.append((start - start_string,
-                                               end - start_string))
+                        new_tag.ranges.append(
+                            (start - start_string, end - start_string)
+                        )
 
                 if new_tag.ranges:
                     new_tags.append(new_tag)
@@ -299,6 +320,7 @@ class StyledText:
         """
         if self._tags:
             the_tags = [tag.serialize() for tag in self._tags]
+            the_tags.sort()
         else:
             the_tags = []
 
@@ -317,12 +339,13 @@ class StyledText:
             "title": _("Styled Text"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "string": {"type": "string",
-                           "title": _("Text")},
-                "tags": {"type": "array",
-                         "items": StyledTextTag.get_schema(),
-                         "title": _("Styled Text Tags")}
-            }
+                "string": {"type": "string", "title": _("Text")},
+                "tags": {
+                    "type": "array",
+                    "items": StyledTextTag.get_schema(),
+                    "title": _("Styled Text Tags"),
+                },
+            },
         }
 
     def unserialize(self, data):
@@ -332,10 +355,10 @@ class StyledText:
         :param data: Serialized format of instance variables.
         :type data: tuple
         """
-        (self._string, the_tags) = data
+        self._string, the_tags = data
 
         # I really wonder why this doesn't work... it does for all other types
-        #self._tags = [StyledTextTag().unserialize(tag) for tag in the_tags]
+        # self._tags = [StyledTextTag().unserialize(tag) for tag in the_tags]
         for tag in the_tags:
             stt = StyledTextTag()
             stt.unserialize(tag)
@@ -375,22 +398,24 @@ class StyledText:
     tags = property(get_tags, set_tags)
     string = property(get_string, set_string)
 
-if __name__ == '__main__':
-    from .styledtexttagtype import StyledTextTagType
-    T1 = StyledTextTag(StyledTextTagType(1), 'v1', [(0, 2), (2, 4), (4, 6)])
-    T2 = StyledTextTag(StyledTextTagType(2), 'v2', [(1, 3), (3, 5), (0, 7)])
-    T3 = StyledTextTag(StyledTextTagType(0), 'v3', [(0, 1)])
 
-    A = StyledText('123X456', [T1])
+if __name__ == "__main__":
+    from .styledtexttagtype import StyledTextTagType
+
+    T1 = StyledTextTag(StyledTextTagType(1), "v1", [(0, 2), (2, 4), (4, 6)])
+    T2 = StyledTextTag(StyledTextTagType(2), "v2", [(1, 3), (3, 5), (0, 7)])
+    T3 = StyledTextTag(StyledTextTagType(0), "v3", [(0, 1)])
+
+    A = StyledText("123X456", [T1])
     B = StyledText("abcXdef", [T2])
 
-    C = StyledText('\n')
+    C = StyledText("\n")
 
-    S = 'cleartext'
+    S = "cleartext"
 
     C = C.join([A, S, B])
     L = C.split()
-    C = C.replace('X', StyledText('_', [T3]))
+    C = C.replace("X", StyledText("_", [T3]))
     A = A + B
 
     print(A)

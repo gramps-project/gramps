@@ -13,46 +13,46 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Provide soundex calculation
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import unicodedata
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 IGNORE = "HW~!@#$%^&*()_+=-`[]\\|;:'/?.,<>\" \t\f\v"
-TABLE = bytes.maketrans(b'ABCDEFGIJKLMNOPQRSTUVXYZ',
-                        b'012301202245501262301202')
+TABLE = bytes.maketrans(b"ABCDEFGIJKLMNOPQRSTUVXYZ", b"012301202245501262301202")
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # soundex - returns the soundex value for the specified string
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def soundex(strval):
     "Return the soundex value to a string argument."
 
-    strval = unicodedata.normalize(
-        'NFKD', str(strval.upper().strip())).encode('ASCII', 'ignore')
+    strval = unicodedata.normalize("NFKD", str(strval.upper().strip())).encode(
+        "ASCII", "ignore"
+    )
     if not strval:
         return "Z000"
-    strval = strval.decode('ASCII', 'ignore')
+    strval = strval.decode("ASCII", "ignore")
     str2 = strval[0]
-    translator = strval.maketrans('','',IGNORE)
+    translator = strval.maketrans("", "", IGNORE)
     strval = strval.translate(translator)
     strval = strval.translate(TABLE)
     if not strval:
@@ -63,14 +63,15 @@ def soundex(strval):
             str2 = str2 + character
         prev = character
     # pad with zeros
-    str2 = str2+"0000"
+    str2 = str2 + "0000"
     return str2[:4]
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # compare - compares the soundex values of two strings
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def compare(str1, str2):
     "1 if strings are close. 0 otherwise."
     return soundex(str1) == soundex(str2)

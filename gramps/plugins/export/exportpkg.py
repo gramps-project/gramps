@@ -17,60 +17,61 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Export to Gramps package"
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import time
 import shutil
 import os
 import tarfile
 from io import StringIO, BytesIO
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 log = logging.getLogger(".WritePkg")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.plugins.export.exportxml import XmlWriter
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.constfunc import win
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # writeData
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def writeData(database, filename, user, option_box=None):
-
-# Rename file, if it exists already, with <filename>.bak
-# as it it for normal XML export.
+    # Rename file, if it exists already, with <filename>.bak
+    # as it it for normal XML export.
 
     if os.path.isfile(filename):
         try:
@@ -88,25 +89,26 @@ def writeData(database, filename, user, option_box=None):
 
 
 def fix_mtime(tarinfo):
-    """ this fixes a bug in the python tarfile GNU_FORMAT where if mtime has
+    """this fixes a bug in the python tarfile GNU_FORMAT where if mtime has
     a fractional component, it fails."""
     tarinfo.mtime = int(tarinfo.mtime)
     return tarinfo
-#-------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
 #
 # PackageWriter
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PackageWriter:
-
     def __init__(self, database, filename, user):
         self.db = database
         self.user = user
         self.filename = filename
 
     def export(self):
-#        missmedia_action = 0
-        #--------------------------------------------------------------
+        #        missmedia_action = 0
+        # --------------------------------------------------------------
         # def remove_clicked():
         #     # File is lost => remove all references and the object itself
         #     for p_id in self.db.iter_family_handles():
@@ -176,37 +178,36 @@ class PackageWriter:
         #         fs_close_window(fs_top)
 
         #     fs_top.destroy()
-        #---------------------------------------------------------------
+        # ---------------------------------------------------------------
 
         try:
-            archive = tarfile.open(self.filename,'w:gz')
-        except EnvironmentError as msg:
+            with tarfile.open(self.filename, "w:gz") as archive:
+                # Write media files first, since the database may be modified
+                # during the process (i.e. when removing object)
+                handles = self.db.get_media_handles(sort_handles=True)
+                for indx, m_id in enumerate(handles):
+                    self.user.callback(indx * 100 / len(handles))
+                    mobject = self.db.get_media_from_handle(m_id)
+                    filename = media_path_full(self.db, mobject.get_path())
+                    archname = str(mobject.get_path())
+                    if os.path.isfile(filename) and os.access(filename, os.R_OK):
+                        archive.add(filename, archname, filter=fix_mtime)
+
+                # Write XML now
+                with BytesIO() as g:
+                    gfile = XmlWriter(self.db, self.user, 2)
+                    gfile.write_handle(g)
+                    tarinfo = tarfile.TarInfo("data.gramps")
+                    tarinfo.size = len(g.getvalue())
+                    tarinfo.mtime = time.time()
+                    if not win():
+                        tarinfo.uid = os.getuid()
+                        tarinfo.gid = os.getgid()
+                    g.seek(0)
+                    archive.addfile(tarinfo, g)
+
+                return True
+        except (EnvironmentError, OSError) as msg:
             log.warning(str(msg))
-            self.user.notify_error(_('Failure writing %s') % self.filename, str(msg))
+            self.user.notify_error(_("Failure writing %s") % self.filename, str(msg))
             return 0
-
-        # Write media files first, since the database may be modified
-        # during the process (i.e. when removing object)
-        for m_id in self.db.get_media_handles(sort_handles=True):
-            mobject = self.db.get_media_from_handle(m_id)
-            filename = media_path_full(self.db, mobject.get_path())
-            archname = str(mobject.get_path())
-            if os.path.isfile(filename) and os.access(filename, os.R_OK):
-                archive.add(filename, archname, filter=fix_mtime)
-
-        # Write XML now
-        g = BytesIO()
-        gfile = XmlWriter(self.db, self.user, 2)
-        gfile.write_handle(g)
-        tarinfo = tarfile.TarInfo('data.gramps')
-        tarinfo.size = len(g.getvalue())
-        tarinfo.mtime = time.time()
-        if not win():
-            tarinfo.uid = os.getuid()
-            tarinfo.gid = os.getgid()
-        g.seek(0)
-        archive.addfile(tarinfo, g)
-        archive.close()
-        g.close()
-
-        return True

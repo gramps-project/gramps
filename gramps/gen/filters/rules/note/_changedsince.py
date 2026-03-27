@@ -13,38 +13,41 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # gen.filters.rules/Note/_ChangedSince.py
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .._changedsincebase import ChangedSinceBase
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ChangedSince
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ChangedSince(ChangedSinceBase):
     """Rule that checks for notes changed since a specific time."""
 
-    labels = [ _('Changed after:'), _('but before:') ]
-    name = _('Notes changed after <date time>')
-    description = _("Matches note records changed after a specified "
-                    "date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second "
-                    "date-time is given.")
+    labels = [_("Changed after:"), _("but before:")]
+    name = _("Notes changed after <date time>")
+    description = _(
+        "Matches note records changed after a specified "
+        "date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second "
+        "date-time is given."
+    )

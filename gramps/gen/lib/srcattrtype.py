@@ -13,25 +13,34 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Provide the different Source Attribute Types for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .grampstype import GrampsType
+
 _ = glocale.translation.gettext
 
+
+# -------------------------------------------------------------------------
+#
+# SrcAttributeType
+#
+# -------------------------------------------------------------------------
 class SrcAttributeType(GrampsType):
+    """
+    Class encapsulating the type of source attribute.
+    """
 
     UNKNOWN = -1
     CUSTOM = 0
@@ -42,7 +51,7 @@ class SrcAttributeType(GrampsType):
     _DATAMAP = [
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
-        ]
+    ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
