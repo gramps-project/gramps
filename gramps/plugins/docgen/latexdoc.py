@@ -466,6 +466,7 @@ HI_STRUT, LO_STRUT, HI_SPACE, LO_SPACE = range(4)
 # additional regex patterns used by VerticalFineTuning:
 FLOAT_PAT = re.compile(r"[-+]?\d+\.\d+")
 STYLE_DETAIL = re.compile(r"\A[^-]+-([^\d]*)(\d*)([^\d]*)\Z")
+HASH_STRIP = re.compile(r" *#.*\Z")
 
 # endings of table rows
 NORMAL_END = r"\\"
@@ -572,6 +573,33 @@ class TabMem:
 # Functions for docbackend
 #
 # ------------------------------------------------------------------------
+def mapping_to_latex(filename, mapping):
+    """Read mapping from gramps terms to LaTeX terms and/or hyphenation
+    patterns, or initialize the mapping file if it does not exist."""
+    parts = os.path.split(filename)
+    mapping_file = os.path.join(parts[0], "mapping.csv")
+    if os.path.exists(mapping_file):
+        with open(mapping_file, newline="") as csv_file:
+            csv_reader = csv.reader(csv_file)
+            for line in csv_reader:
+                if line == []:
+                    return
+                cleared = [HASH_STRIP.sub("", cont) for cont in line]
+                if cleared[0] != "":
+                    mapping[cleared[0]] = cleared[1]
+        return
+    with open(mapping_file, "w") as csv_file:
+        csv_write = csv.writer(csv_file)
+        csv_write.writerow([r"# From # on", r"up to the end of each field: purged"])
+        csv_write.writerow([r"# First field", r"empty: line is ignored"])
+        csv_write.writerow([r"# professionally", r"pro\-fessionally # may hyph. at \-"])
+        csv_write.writerow(
+            [r"# professionally", r"\hyphenation{pro-fessionally} # new way"]
+        )
+        csv_write.writerow([r"# professionally", r"\-professionally # no hyphenation"])
+        csv_write.writerow([r"# \u6771\u4eac\u99c5", r"Tokyo Station # transcription"])
+
+
 def latexescape(text):
     """
     Escape the following special characters: & $ % # _ { }
@@ -932,7 +960,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         first_cell, last_cell = (0, self.numcols)
         for row in range(num_new_rows):
             new_row = TabRow()
-            self.tabmem.add_row(new_row)
+            self.tabmem.rows.append(new_row)
             for i in range(first_cell, last_cell):
                 new_cell = TabCell(
                     get_charform(i + first_cell),
@@ -1117,6 +1145,142 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
                         )
                     )
 
+    def calc_latex_widths(self):
+        """
+        Control width settings in latex table construction.
+        Evaluations are set up here and passed to LaTeX to calculate
+        required and to fix suitable widths.
+        """
+        tabcol_chars = []
+        for col_num in range(self.numcols):
+            col_char = get_charform(col_num)
+            tabcol_chars.append(col_char)
+            for row in self.tabmem.rows:
+                if col_num >= len(row.cells):
+                    break
+                cell = row.cells[col_num]
+                if cell.span == 0:
+                    continue
+                if cell.content.startswith("\\grmkpicture"):
+                    self._backend.write(
+                        "".join(
+                            (
+                                "\\setlength{\\grpictsize}{",
+                                self.pict_width,
+                                "\\grbaseindent}%\n",
+                            )
+                        )
+                    )
+                else:
+                    for part in cell.content.split(SEPARATION_PAT):
+                        self._backend.write(
+                            "".join(("\\grtextneedwidth{", part, "}%\n"))
+                        )
+                    row.cells[col_num].content = cell.content.replace(
+                        SEPARATION_PAT, "~\\newline \n"
+                    )
+                if cell.span == 1:
+                    self._backend.write("".join(("\\grsetreqfull%\n")))
+                elif cell.span > 1:
+                    self._backend.write(
+                        "".join(
+                            (
+                                "\\grsetreqpart{\\grcolbeg",
+                                get_charform(get_numform(cell.colchar) - cell.span + 1),
+                                "}%\n",
+                            )
+                        )
+                    )
+            self._backend.write(
+                "".join(
+                    (
+                        "\\grcolsfirstfix",
+                        " {\\grcolbeg",
+                        col_char,
+                        "}{\\grtempwidth",
+                        col_char,
+                        "}{\\grfinalwidth",
+                        col_char,
+                        "}{\\grpictreq",
+                        col_char,
+                        "}{\\grtextreq",
+                        col_char,
+                        "}%\n",
+                    )
+                )
+            )
+        self._backend.write("".join(("\\grdividelength%\n")))
+        for col_char in tabcol_chars:
+            self._backend.write(
+                "".join(
+                    (
+                        "\\grcolssecondfix",
+                        " {\\grcolbeg",
+                        col_char,
+                        "}{\\grtempwidth",
+                        col_char,
+                        "}{\\grfinalwidth",
+                        col_char,
+                        "}{\\grpictreq",
+                        col_char,
+                        "}%\n",
+                    )
+                )
+            )
+        self._backend.write("".join(("\\grdividelength%\n")))
+        for col_char in tabcol_chars:
+            self._backend.write(
+                "".join(
+                    (
+                        "\\grcolsthirdfix",
+                        " {\\grcolbeg",
+                        col_char,
+                        "}{\\grtempwidth",
+                        col_char,
+                        "}{\\grfinalwidth",
+                        col_char,
+                        "}%\n",
+                    )
+                )
+            )
+        self._backend.write("".join(("\\grdividelength%\n")))
+        for col_char in tabcol_chars:
+            self._backend.write(
+                "".join(
+                    (
+                        "\\grcolsfourthfix",
+                        " {\\grcolbeg",
+                        col_char,
+                        "}{\\grtempwidth",
+                        col_char,
+                        "}{\\grfinalwidth",
+                        col_char,
+                        "}%\n",
+                    )
+                )
+            )
+        self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
+        for row in self.tabmem.rows:
+            for cell in row.cells:
+                if cell.span > 1:
+                    multcol_alph_id = next(self.multcol_alph_counter)
+                    self._backend.write(
+                        "".join(
+                            (
+                                "\\grgetspanwidth{",
+                                "\\grspanwidth",
+                                multcol_alph_id,
+                                "}{\\grcolbeg",
+                                get_charform(get_numform(cell.colchar) - cell.span + 1),
+                                "}{\\grcolbeg",
+                                cell.colchar,
+                                "}{\\grtempwidth",
+                                cell.colchar,
+                                "}%\n",
+                            )
+                        )
+                    )
+
     def write_table(self):
         # Choosing RaggedRight (with hyphenation) in table and
         # provide manually adjusting of column widths
@@ -1166,8 +1330,9 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         # closing at top and bottom of the table
         # and parts of it at pagebreak separating
         self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
-        splitted_row = self.mk_splitting_row(self.tabmem.rows[FIRST_ROW])
+        splitting_row = self.mk_splitting_row(self.tabmem.rows[FIRST_ROW])
         self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
+        complete_row = self.mk_complete_row(self.tabmem.rows[FIRST_ROW], None)
 
         self._backend.write(splitting_row)
         self._backend.write("\\endhead%\n")
@@ -1206,8 +1371,12 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
                     )
                 )
             )
-            #    end of special treament for individual report
-            self.tabmem.rows[0].put_addit("\\hline%\n%\n")
+            #    end of special treatment for individual report
+            self.tabmem.rows[0].addit += "\\hline%\n%\n"
+        else:
+            # hand over subsequent rows
+            for row in self.tabmem.rows[SUBSEQ_ROW:]:
+                self._backend.write(self.mk_complete_row(row, None))
 
         # close table by '\\end{longtable}', end '{\\RaggedRight' or '{' by '}'
         self._backend.write("".join(("".join(self.tabmem.tail), "}%\n\n")))
@@ -1239,7 +1408,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             )
         return "".join((" & ".join(splitting), "%\n", row.tail))
 
-    def mk_complete_row(self, row, last):
+    def mk_complete_row(self, row, last=None):
         #    last:  '-1' for [:-1] or
         #           'None' for all i.e. [:]
         """collocate all data of a latex row and write out"""
