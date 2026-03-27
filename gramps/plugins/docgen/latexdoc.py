@@ -474,7 +474,7 @@ NO_PAGE_BREAK = r"\\*"
 
 # Dictionary for transliteration and/or supplying hyphenation patterns. Mapping to be
 # loaded in method LaTeXDoc.open(), to be used in global function latexescape(text)
-gramps_to_latex = {}
+gramps_to_latex: dict[str, str] = {}
 
 
 def get_charform(col_num):
@@ -743,7 +743,7 @@ class TexFont:
 class VerticalFineTuning:
     """Specific adjustments yielding an appealing appearence in pdf"""
 
-    tail_vals = list(range(4))
+    tail_vals: list[dict[str, str]] = [{}, {}, {}, {}]
     tail_vals[HI_STRUT] = {
         "First-Entry": "1.0",
         "Generation": "2.5",
@@ -779,7 +779,7 @@ class VerticalFineTuning:
         "instead_of_pg_break": "2.9",
     }
 
-    cmpl_vals = list(range(4))
+    cmpl_vals: list[dict[str, str]] = [{}, {}, {}, {}]
     cmpl_vals[HI_STRUT] = {}
     cmpl_vals[LO_STRUT] = {}
     cmpl_vals[HI_SPACE] = {
