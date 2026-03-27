@@ -460,6 +460,13 @@ FIRST_ROW, SUBSEQ_ROW = list(range(2))
 # kind_of_picture:
 UNKNOWN, INDIVID_PICT, IN_GALLERY = list(range(3))
 
+# constants for vertical fine-tuning (used by VerticalFineTuning class):
+HI_STRUT, LO_STRUT, HI_SPACE, LO_SPACE = range(4)
+
+# additional regex patterns used by VerticalFineTuning:
+FLOAT_PAT = re.compile(r"[-+]?\d+\.\d+")
+STYLE_DETAIL = re.compile(r"\A[^-]+-([^\d]*)(\d*)([^\d]*)\Z")
+
 # endings of table rows
 NORMAL_END = r"\\"
 NO_PAGE_BREAK = r"\\*"
@@ -519,7 +526,7 @@ def str_incr(str_counter):
                     )
                 )
             )
-        for i in reversed(lili):
+        for i in range(len(lili) - 1, -1, -1):
             if lili[i] < "z":
                 lili[i] = chr(ord(lili[i]) + 1)
                 break
@@ -809,6 +816,12 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
     pict_height = 0
     textmem: list[str] = []
     in_title = True
+    curr_tab_style = ""
+    stick_next = 0
+    kind_of_pict = UNKNOWN
+    curr_style_name = "00-00"
+    space_above_paragr = "0ex"
+    space_below_paragr = "0ex"
 
     #   ---------------------------------------------------------------
     #   begin of table special treatment
