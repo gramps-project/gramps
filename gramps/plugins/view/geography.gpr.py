@@ -27,7 +27,7 @@
 # pylint: disable=bad-whitespace
 # pylint: disable=bad-whitespace
 
-MODULE_VERSION = "6.0"
+MODULE_VERSION = "6.1"
 
 from gi import Repository
 from gramps.gen.const import GRAMPS_LOCALE as glocale

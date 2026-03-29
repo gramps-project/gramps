@@ -26,7 +26,7 @@ DEBUG_HELP = URL_MANUAL_PAGE + "_-_Tools#Debug"
 GRAMPS registration file
 """
 
-MODULE_VERSION = "6.0"
+MODULE_VERSION = "6.1"
 
 # ------------------------------------------------------------------------
 #
