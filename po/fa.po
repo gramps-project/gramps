@@ -5,13 +5,14 @@
 # Abolfazl Mazloomi <firetooth10@gmail.com>, 2024.
 # Shahin “Shahin Ozone” Arab <shahino3ozone@gmail.com>, 2025.
 # Seyed Amir MirMohammadi <s.a.mirmohammadi@gmail.com>, 2026.
+# he tav haf <l2ryun8if@mozmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-01-06 16:45+0000\n"
-"Last-Translator: Seyed Amir MirMohammadi <s.a.mirmohammadi@gmail.com>\n"
+"PO-Revision-Date: 2026-03-26 13:09+0000\n"
+"Last-Translator: he tav haf <l2ryun8if@mozmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fa/>\n"
 "Language: fa\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8509,7 +8510,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:346
 #: ../gramps/plugins/tool/reorderids.glade:836
 msgid "Repository"
-msgstr "مخزن"
+msgstr "انباره"
 
 #: ../gramps/gen/lib/reporef.py:98 ../gramps/gui/clipboard.py:530
 msgid "Repository ref"
@@ -24732,7 +24733,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:383
 msgid "place"
-msgstr "مکان"
+msgstr "جا"
 
 #: ../gramps/plugins/importer/importcsv.py:384
 msgid "place id"
@@ -34057,7 +34058,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Verify the Data"
-msgstr ""
+msgstr "راستی‌آزمایی داده"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verifies the data against user-defined tests"
