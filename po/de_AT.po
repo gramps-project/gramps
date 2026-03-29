@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-02-21 23:09+0000\n"
+"PO-Revision-Date: 2026-03-21 22:09+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -10899,7 +10899,7 @@ msgstr "Ehefrau"
 #: ../gramps/gen/relationship.py:2470
 msgctxt "gender unknown"
 msgid "spouse"
-msgstr "Partner(in)"
+msgstr "Ehepartner(in)"
 
 #: ../gramps/gen/relationship.py:2473
 msgid "ex-husband"
@@ -10912,7 +10912,7 @@ msgstr "Ex-Ehefrau"
 #: ../gramps/gen/relationship.py:2477
 msgctxt "gender unknown"
 msgid "ex-spouse"
-msgstr "Ex-Partner(in)"
+msgstr "Ex-Ehepartner(in)"
 
 #: ../gramps/gen/relationship.py:2480
 msgctxt "male,unmarried"
@@ -10927,7 +10927,7 @@ msgstr "Lebensgefährtin"
 #: ../gramps/gen/relationship.py:2484
 msgctxt "gender unknown,unmarried"
 msgid "partner"
-msgstr "Partner(in)"
+msgstr "Lebensgefährt(e/in)"
 
 #: ../gramps/gen/relationship.py:2487
 msgctxt "male,unmarried"
@@ -10957,7 +10957,7 @@ msgstr "eingetragene Lebenspartnerin"
 #: ../gramps/gen/relationship.py:2498
 msgctxt "gender unknown,civil union"
 msgid "partner"
-msgstr "eingetragene(r) Lebenspartner(in)"
+msgstr "eingetragene(r) Partner(in)"
 
 #: ../gramps/gen/relationship.py:2501
 msgctxt "male,civil union"
@@ -10972,7 +10972,7 @@ msgstr "frühere eingetragene Lebenspartnerin"
 #: ../gramps/gen/relationship.py:2505
 msgctxt "gender unknown,civil union"
 msgid "former partner"
-msgstr "frühere(r) eingetragene(r) Lebenspartner(in)"
+msgstr "frühere(r) eingetragene(r) Partner(in)"
 
 #: ../gramps/gen/relationship.py:2508
 msgctxt "male,unknown relation"
@@ -11704,7 +11704,7 @@ msgstr "Arabisch"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Baschkirisch"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -12383,7 +12383,7 @@ msgstr "Farben für Personen, die weder männlich noch weiblich sind"
 
 #: ../gramps/gui/configure.py:908
 msgid "Colors for Unknown persons"
-msgstr "Farben für unbekannte Personen"
+msgstr "Farben für Unbekannt-Personen"
 
 #: ../gramps/gui/configure.py:909
 msgid "Colors for Family nodes"
@@ -15468,8 +15468,8 @@ msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
 msgstr ""
-"Das Geschlecht der Person ist im Moment unbekannt. Gewöhnlich ist dies ein "
-"Fehler. Bitte wähle das Geschlecht aus."
+"Das Geschlecht der Person ist derzeit unbekannt. Normalerweise ist dies ein "
+"Fehler. Bitte gib das Geschlecht an."
 
 #: ../gramps/gui/editors/editperson.py:1234
 msgid "_Male"
@@ -17266,12 +17266,12 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner."
 msgstr ""
-"Wenn das Medium ein Bild ist, wähle den Bereich des Bildes, auf den du dich "
-"beziehen willst.\n"
-"Du kannst die Maus verwenden, um einen Ausschnitt zu wählen oder die "
-"Drehschaltfläche verwenden, um die linke obere und rechte untere Ecke des "
-"gewünschten Bereiches zu setzen. Punkt (0,0) ist die linke obere und "
-"(100,100) die rechte untere Ecke."
+"Wenn das Medium ein Bild ist, wähle den Bereich des Bildes aus, auf den du "
+"verweisen willst.\n"
+"Du kannst die Maus auf dem Bild verwenden, um einen Bereich auszuwählen oder "
+"diese Drehregler, um die linke obere und rechte untere Ecke des verweisenden "
+"Bereiches festzulegen. Punkt (0,0) ist die linke obere und (100,100) die "
+"rechte untere Ecke des Bildes."
 
 #: ../gramps/gui/glade/editmediaref.glade:179
 msgid ""
@@ -17280,10 +17280,10 @@ msgid ""
 "corner of the region you want, dragging the mouse to the bottom right corner "
 "of the region, and then releasing the mouse button."
 msgstr ""
-"Referenzierter Bereich des Bildobjekt.\n"
+"Referenzierter Bereich des Bildmedienobjekts.\n"
 "Wähle einen Bereich durch Klicken und Halten der Maustaste in der Ecke links "
 "oben des gewünschten Bereichs, ziehe die Maus in die Ecke rechts unten und "
-"dann lass die Maustaste los."
+"lass dann die Maustaste los."
 
 #: ../gramps/gui/glade/editmediaref.glade:209
 msgid "_Corner 1:  X"
@@ -17298,12 +17298,12 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner.\n"
 msgstr ""
-"Wenn das Medium ein Bild ist, wähle den Bereich des Bildes, auf den du dich "
-"beziehen willst.\n"
-"Du kannst die Maus verwenden, um einen Ausschnitt zu wählen oder die "
-"Drehschaltfläche verwenden, um die linke obere und rechte untere Ecke des "
-"gewünschten Bereiches zu setzen.Punkt (0,0) ist links oben und (100,100) die "
-"Ecke rechts unten.\n"
+"Wenn das Medium ein Bild ist, wähle den Bereich des Bildes aus, auf den du "
+"verweisen willst.\n"
+"Du kannst die Maus auf dem Bild verwenden, um einen Bereich auszuwählen oder "
+"diese Drehregler, um die linke obere und rechte untere Ecke des verweisenden "
+"Bereiches festzulegen. Punkt (0,0) ist die linke obere und (100,100) die "
+"rechte untere Ecke des Bildes.\n"
 
 #: ../gramps/gui/glade/editmediaref.glade:461
 msgid ""
@@ -19753,7 +19753,7 @@ msgstr "Überprüfe Erweiterung…"
 
 #: ../gramps/gui/plug/_windows.py:1295
 msgid "Unknown Help URL"
-msgstr "Unbekannte Hilfe URL"
+msgstr "Unbekannte Hilfe-URL"
 
 #: ../gramps/gui/plug/_windows.py:1306
 msgid "Unknown URL"
@@ -20107,7 +20107,7 @@ msgstr "Gewählten Notizfilter anwenden"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:678
 msgid "Filtering referenced records"
-msgstr "Filtere referenzierte Einträge"
+msgstr "Referenzierte Datensätze filtern"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:727
 msgid "Cannot edit a system filter"
@@ -25791,8 +25791,9 @@ msgid ""
 "for filled. If the sex of an individual is unknown it will be shown with "
 "gray."
 msgstr ""
-"Männer werden blau angezeigt, Frauen in rot, außer die Farben wurden oben "
-"anders gesetzt. Bei unbekanntem Geschlecht wird grau verwendet."
+"Männliche Personen werden mit blau, weibliche mit rot dargestellt, sofern "
+"oben nicht anders angegeben. Wenn das Geschlecht eines Individuums unbekannt "
+"ist, wird es grau dargestellt."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:190
 msgid "Rounded corners"
@@ -25964,7 +25965,7 @@ msgstr ""
 #: ../gramps/plugins/graph/gvhourglass.py:517
 #: ../gramps/plugins/graph/gvrelgraph.py:1059
 msgid "The color to use when the gender is unknown."
-msgstr "Die Farbe die verwendet wird, wenn das Geschlecht unbekannt ist."
+msgstr "Die Farbe, die verwendet wird, wenn das Geschlecht unbekannt ist."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:357
 #: ../gramps/plugins/graph/gvhourglass.py:521
@@ -26074,8 +26075,8 @@ msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
 msgstr ""
-"Männer werden blau angezeigt, Frauen in rot.  Für Personen mit unbekanntem "
-"Geschlecht wird grau verwendet."
+"Männliche Personen werden mit blau, weibliche mit rot dargestellt.  Wenn das "
+"Geschlecht eines Individuums unbekannt ist, wird es grau dargestellt."
 
 #: ../gramps/plugins/graph/gvhourglass.py:476
 #: ../gramps/plugins/graph/gvrelgraph.py:909
@@ -26142,7 +26143,7 @@ msgstr "Verwende Sechsecke"
 #: ../gramps/plugins/graph/gvrelgraph.py:918
 msgid "Use hexagons to differentiate those of unknown gender."
 msgstr ""
-"Verwende Sechsecke, um diese von unbekanntem Geschlecht zu unterscheiden."
+"Verwende Sechsecke, um Personen unbekannten Geschlechts zu unterscheiden."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:946
 msgid "Dates and/or Places"
@@ -26699,7 +26700,7 @@ msgstr[1] "Import abgeschlossen: {number_of} Sekunden"
 
 #: ../gramps/plugins/importer/importcsv.py:572
 msgid "The following IDs were referenced but not found:\n"
-msgstr "Die folgenden IDs wurden referenziert aber nicht gefunden:\n"
+msgstr "Die folgenden IDs wurden referenziert, aber nicht gefunden:\n"
 
 #: ../gramps/plugins/importer/importgedcom.glade:15
 msgid "ANSEL"
@@ -27242,7 +27243,7 @@ msgstr "vCard-Importbericht: %s Fehler festgestellt\n"
 #: ../gramps/plugins/importer/importvcard.py:341
 #, python-format
 msgid "Token >%(token)s< unknown. line skipped: %(line)s"
-msgstr "Token >%(token)s< unbekannte Zeile übersprungen: %(line)s"
+msgstr "Token >%(token)s< unbekannt. Zeile übersprungen: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:358
 msgid ""
@@ -27366,7 +27367,7 @@ msgstr ""
 "und ihre klassifizierenden Attribute wurden auf 'Unbekannt'\n"
 "gesetzt. Die Aufschlüsselung pro Kategorie wird durch die\n"
 " Zahl in Klammern dargestellt. Wo es möglich ist, werden\n"
-"diese 'unbekannten' Objekte in der Notiz %(unknown)s referenziert."
+"'Unbekannt'-Objekte in der Notiz %(unknown)s referenziert."
 
 #: ../gramps/plugins/importer/importxml.py:387
 msgid ""
@@ -27740,10 +27741,10 @@ msgid ""
 "referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-" Die importierte Datei war nicht in sich abgeschlossen\n"
+"Die importierte Datei war nicht in sich abgeschlossen\n"
 "Um dies zu korrigieren, wurden %(new)d Objekte erstellt und\n"
 "ihre klassifizierenden Attribute wurden auf 'Unbekannt'\n"
-"gesetzt. Wo es möglich ist, werden diese 'Unbekannten' Objekte\n"
+"gesetzt. Wo es möglich ist, werden diese 'Unbekannt'-Objekte\n"
 "durch Notiz %(unknown)s referenziert.\n"
 
 #: ../gramps/plugins/lib/libgedcom.py:3871
@@ -31769,8 +31770,8 @@ msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
 msgstr ""
-"Dieser Ort wird momentan von einem anderen referenziert. Entferne zuerst den "
-"Ort, den er enthält."
+"Dieser Ort wird momentan von einem anderen referenziert. Entferne zuerst die "
+"Orte, die er enthält."
 
 #: ../gramps/plugins/lib/libplaceview.py:565
 #: ../gramps/plugins/lib/libplaceview.py:576
@@ -35130,10 +35131,14 @@ msgstr "Auf fehlerhafte Verknüpfungen in Notizen prüfen"
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
 msgstr ""
+"Zusammenführen von doppelten Rollen in Ereignissen, die auf Personen "
+"verweisen"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
 msgstr ""
+"Zusammenführen von doppelten Rollen in Ereignissen, die auf Familien "
+"verweisen"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -35392,6 +35397,8 @@ msgstr "%d fehlerhafte Notizverknüpfungen wurden repariert;\n"
 #, python-format
 msgid "%d duplicate event role names coalesced. %d references updated\n"
 msgstr ""
+"%d doppelte Namen von Ereignisrollen zusammengeführt. %d Referenzen "
+"aktualisiert\n"
 
 #: ../gramps/plugins/tool/check.py:3189
 msgid "Integrity Check Results"
@@ -35845,8 +35852,8 @@ msgid ""
 "This tool adds images in directories that are referenced by existing images "
 "in the database."
 msgstr ""
-"Dieses Werkzeug fügt Bilder aus Verzeichnissen hinzu, die von vorhandenen "
-"Bildern in der Datenbank referenziert werden."
+"Dieses Werkzeug fügt Bilder in Verzeichnissen hinzu, auf die von vorhandenen "
+"Bildern in der Datenbank verwiesen wird."
 
 #: ../gramps/plugins/tool/mergecitations.glade:142
 msgid "Don't merge if citation has notes"
@@ -36947,7 +36954,7 @@ msgstr "Familien sind nicht chronologisch sortiert"
 
 #: ../gramps/plugins/tool/verify.py:2576
 msgid "Family has events with role Unknown"
-msgstr "Familie hat Ereignisse mit unbekannter Rolle"
+msgstr "Familie hat Ereignisse mit Rolle Unbekannt"
 
 #: ../gramps/plugins/tool/verify.py:2589
 msgid "Person has events with role Unknown"
@@ -37481,7 +37488,7 @@ msgstr "GeoEreignisse"
 
 #: ../gramps/plugins/view/geoevents.py:321
 msgid "incomplete or unreferenced event ?"
-msgstr "Unvollständiges oder nicht referenziertes Ereignis?"
+msgstr "unvollständiges oder nicht referenziertes Ereignis?"
 
 #: ../gramps/plugins/view/geoevents.py:365
 #: ../gramps/plugins/view/geoevents.py:378
