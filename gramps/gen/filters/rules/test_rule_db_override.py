@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Tests for the DB-override dispatch on Rule.apply_to_one and
-Rule._checked_prepare / requestprepare.
+Tests for the DB-override dispatch on Rule.prepare and Rule.apply_to_one.
 
-apply_to_one is wrapped at class-definition time via __init_subclass__ so that
-rule.apply_to_one(db, obj) — called directly by the filter — routes through
-the registry.  The wrapper is injected at the concrete class level, including
-when apply_to_one is inherited from an abstract base (e.g. HasTag from
-HasTagBase), so inheritance depth is not a concern.
-
-prepare is dispatched through _checked_prepare called from requestprepare;
-_checked_prepare is never overridden by subclasses so it works for all depths.
+Both methods are wrapped at class-definition time via __init_subclass__ so
+that calling them directly routes through the registry.  The wrapper is
+injected at the concrete class level, including when the method is inherited
+from an abstract base (e.g. HasTag.apply_to_one from HasTagBase), so
+inheritance depth is not a concern.
 """
 
 import unittest
@@ -124,7 +120,7 @@ class TestPrepareDbOverride(unittest.TestCase):
             prepare=lambda s, orig, d, u: called.append(True),
         )
 
-        rule._checked_prepare(db, None)
+        rule.prepare(db, None)
         self.assertEqual(called, [True])
 
     def test_fallback_when_no_override(self):
@@ -133,7 +129,7 @@ class TestPrepareDbOverride(unittest.TestCase):
         real_db = type(
             "DB", (), {"_override_registry": {}, "is_proxy": lambda self: False}
         )()
-        rule._checked_prepare(real_db, None)
+        rule.prepare(real_db, None)
         self.assertTrue(getattr(real_db, "_prepare_called_by_rule", False))
 
     def test_inherited_prepare_overridden(self):
@@ -160,7 +156,7 @@ class TestPrepareDbOverride(unittest.TestCase):
             "rule", key, prepare=lambda s, orig, d, u: called.append(True)
         )
 
-        rule._checked_prepare(db, None)
+        rule.prepare(db, None)
         self.assertEqual(called, [True])
         self.assertFalse(getattr(db, "_base_prepare_called", False))
 
@@ -202,7 +198,7 @@ class TestProxyBypassesOverride(unittest.TestCase):
             "rule", key, prepare=lambda s, orig, d, u: called.append("override")
         )
 
-        rule._checked_prepare(db, None)
+        rule.prepare(db, None)
         self.assertEqual(called, [])
         self.assertTrue(getattr(db, "_prepare_called_by_rule", False))
 

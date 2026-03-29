@@ -55,6 +55,30 @@ from typing import Any, List
 from ...db import Database
 
 
+def _wrap_prepare(method):
+    @functools.wraps(method)
+    def wrapper(self, db, user):
+        if not db.is_proxy() and not getattr(self, "_in_prepare_override", False):
+            cls = type(self)
+            parts = cls.__module__.split(".")
+            try:
+                key = (parts[parts.index("rules") + 1], cls.__name__)
+            except (ValueError, IndexError):
+                key = (None, cls.__name__)
+            entry = getattr(db, "_override_registry", {}).get("rule", {}).get(key)
+            if entry is not None and entry.get("prepare") is not None:
+                LOG.debug("%s using optimized prepare", cls.__name__)
+                self._in_prepare_override = True
+                try:
+                    return entry["prepare"](self, method, db, user)
+                finally:
+                    self._in_prepare_override = False
+        LOG.debug("%s using non-optimized prepare", type(self).__name__)
+        return method(self, db, user)
+
+    return wrapper
+
+
 def _wrap_apply_to_one(method):
     @functools.wraps(method)
     def wrapper(self, db, obj):
@@ -106,9 +130,10 @@ class Rule:
         # cause every super().apply_to_one() call to re-enter the registry.
         if cat is None or cat.startswith("_"):
             return
-        # Wrap if the class defines apply_to_one itself, OR if it inherits
-        # an unwrapped one from an abstract base (not Rule.apply_to_one,
-        # which is already wrapped by the setattr below).
+        # Wrap if the class defines the method itself, OR if it inherits an
+        # unwrapped one from an abstract base (not Rule's already-wrapped version).
+        if "prepare" in cls.__dict__ or cls.prepare is not Rule.prepare:
+            cls.prepare = _wrap_prepare(cls.prepare)
         if "apply_to_one" in cls.__dict__ or cls.apply_to_one is not Rule.apply_to_one:
             cls.apply_to_one = _wrap_apply_to_one(cls.apply_to_one)
 
@@ -148,7 +173,7 @@ class Rule:
                         except re.error:
                             self.regex[index] = re.compile("")
                 self.match_substring = self.match_regex
-            self._checked_prepare(db, user)
+            self.prepare(db, user)
         self.nrprepare += 1
         if self.nrprepare > 20:  # more references to a filter than expected
             raise FilterError(
@@ -162,30 +187,6 @@ class Rule:
     def prepare(self, db: Database, user):
         """prepare so the rule can be executed efficiently"""
         pass
-
-    def _checked_prepare(self, db: Database, user):
-        """
-        Call prepare, routing through a DB override when one is registered.
-
-        This method is called by requestprepare and is never overridden by
-        rule subclasses, so the lookup works regardless of inheritance depth.
-        """
-        cls = type(self)
-        parts = cls.__module__.split(".")
-        try:
-            key = (parts[parts.index("rules") + 1], cls.__name__)
-        except (ValueError, IndexError):
-            key = (None, cls.__name__)
-        entry = (
-            getattr(db, "_override_registry", {}).get("rule", {}).get(key)
-            if db is not None and not db.is_proxy()
-            else None
-        )
-        if entry is not None and entry.get("prepare") is not None:
-            LOG.debug("%s using optimized prepare", cls.__name__)
-            return entry["prepare"](self, cls.prepare, db, user)
-        LOG.debug("%s using non-optimized prepare", cls.__name__)
-        return self.prepare(db, user)
 
     def requestreset(self):
         """
@@ -278,6 +279,7 @@ class Rule:
             return True
 
 
-# Wrap Rule.apply_to_one so that concrete rules which define no apply_to_one
-# of their own (and inherit only from Rule) also go through override dispatch.
+# Wrap Rule.prepare and Rule.apply_to_one so that concrete rules which inherit
+# only from Rule (no intermediate abstract base) also go through override dispatch.
+Rule.prepare = _wrap_prepare(Rule.prepare)
 Rule.apply_to_one = _wrap_apply_to_one(Rule.apply_to_one)
