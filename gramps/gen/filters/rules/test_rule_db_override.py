@@ -158,5 +158,109 @@ class TestProxyBypassesOverride(unittest.TestCase):
         self.assertTrue(getattr(db, "_prepare_called_by_rule", False))
 
 
+class TestSuperCallNoDoubleDispatch(unittest.TestCase):
+    """
+    Override must fire exactly once regardless of super() calls in the chain.
+
+    Two scenarios are covered:
+
+    1. Concrete → abstract base (starts with "_"): __init_subclass__ leaves the
+       abstract base unwrapped, so the override fires once and super() falls
+       through to the raw abstract implementation.
+
+    2. Concrete-B → concrete-A (both in category subdirectories and both
+       wrapped): without a re-entry guard the override for B would fire a
+       second time inside A's wrapper.  The guard on the rule instance prevents
+       this.
+    """
+
+    def test_abstract_base_not_wrapped_no_double_dispatch(self):
+        """Override fires once; super() into an unwrapped abstract base is safe."""
+        call_log = []
+
+        # Set __module__ *in the class body* so __init_subclass__ sees the
+        # correct path and skips wrapping the abstract base.
+        class _AbstractBase(Rule):
+            __module__ = "gramps.gen.filters.rules._abstractbase"
+            labels = []
+
+            def apply_to_one(self, db, obj):
+                call_log.append("abstract")
+                return False
+
+        class _ConcreteRule(_AbstractBase):
+            __module__ = "gramps.gen.filters.rules.person._concreterule"
+            labels = []
+
+            def apply_to_one(self, db, obj):
+                call_log.append("concrete")
+                return super().apply_to_one(db, obj)
+
+        rule = _ConcreteRule([])
+        key = _rule_key(type(rule))
+
+        db = _MockDB()
+        db.register_override(
+            "rule",
+            key,
+            apply_to_one=lambda s, orig, d, obj: (
+                call_log.append("override") or orig(s, d, obj)
+            ),
+        )
+
+        result = rule.apply_to_one(db, None)
+
+        # override → concrete (orig) → abstract (super, unwrapped)
+        self.assertEqual(call_log, ["override", "concrete", "abstract"])
+        self.assertFalse(result)
+
+    def test_concrete_intermediate_base_no_double_dispatch(self):
+        """Override fires once even when super() goes into a wrapped concrete base.
+
+        This mirrors the real-world pattern where a family rule (e.g.
+        MotherHasNameOf) inherits from a person rule (e.g. HasNameOf) and
+        delegates via super().apply_to_one().  Both live in category
+        subdirectories so both are wrapped.  Without a re-entry guard the
+        override would fire a second time inside the parent's wrapper.
+        """
+        call_log = []
+
+        class _PersonRule(Rule):
+            __module__ = "gramps.gen.filters.rules.person._personrule"
+            labels = []
+
+            def apply_to_one(self, db, obj):
+                call_log.append("person_rule")
+                return False
+
+        class _FamilyRule(_PersonRule):
+            __module__ = "gramps.gen.filters.rules.family._familyrule"
+            labels = []
+
+            def apply_to_one(self, db, obj):
+                call_log.append("family_rule")
+                return super().apply_to_one(db, obj)
+
+        rule = _FamilyRule([])
+        key = _rule_key(type(rule))  # ('family', '_FamilyRule')
+
+        db = _MockDB()
+        db.register_override(
+            "rule",
+            key,
+            apply_to_one=lambda s, orig, d, obj: (
+                call_log.append("override") or orig(s, d, obj)
+            ),
+        )
+
+        result = rule.apply_to_one(db, None)
+
+        # override → family_rule (orig) → person_rule (super, wrapped but
+        # re-entry guard prevents a second override dispatch)
+        self.assertEqual(call_log, ["override", "family_rule", "person_rule"])
+        self.assertEqual(call_log.count("override"), 1)
+        self.assertFalse(result)
+
+
 if __name__ == "__main__":
     unittest.main()

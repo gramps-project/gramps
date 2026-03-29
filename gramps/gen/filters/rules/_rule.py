@@ -79,7 +79,7 @@ def _rule_key(cls):
 def _wrap_prepare(method):
     @functools.wraps(method)
     def wrapper(self, db, user):
-        if not db.is_proxy():
+        if not db.is_proxy() and not getattr(self, "_in_prepare_override", False):
             entry = (
                 getattr(db, "_override_registry", {})
                 .get("rule", {})
@@ -87,7 +87,11 @@ def _wrap_prepare(method):
             )
             if entry is not None and entry.get("prepare") is not None:
                 LOG.debug("%s using optimized prepare", type(self).__name__)
-                return entry["prepare"](self, method, db, user)
+                self._in_prepare_override = True
+                try:
+                    return entry["prepare"](self, method, db, user)
+                finally:
+                    self._in_prepare_override = False
         LOG.debug("%s using non-optimized prepare", type(self).__name__)
         return method(self, db, user)
 
@@ -97,7 +101,7 @@ def _wrap_prepare(method):
 def _wrap_apply_to_one(method):
     @functools.wraps(method)
     def wrapper(self, db, obj):
-        if not db.is_proxy():
+        if not db.is_proxy() and not getattr(self, "_in_apply_override", False):
             entry = (
                 getattr(db, "_override_registry", {})
                 .get("rule", {})
@@ -105,7 +109,11 @@ def _wrap_apply_to_one(method):
             )
             if entry is not None and entry.get("apply_to_one") is not None:
                 LOG.debug("%s using optimized apply_to_one", type(self).__name__)
-                return entry["apply_to_one"](self, method, db, obj)
+                self._in_apply_override = True
+                try:
+                    return entry["apply_to_one"](self, method, db, obj)
+                finally:
+                    self._in_apply_override = False
         LOG.debug("%s using non-optimized apply_to_one", type(self).__name__)
         return method(self, db, obj)
 

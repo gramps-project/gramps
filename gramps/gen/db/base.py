@@ -96,31 +96,56 @@ class DbReadBase:
         """
         Register database-optimised handler callables under a namespace/key.
 
-        All handlers must accept *db* as one of their arguments; the exact
-        signature is a convention of the consuming subsystem.
-
         Parameters
         ----------
         namespace : str
-            Subsystem that will consume the override (e.g. "rule").
+            Subsystem that will consume the override (e.g. ``"rule"``).
         key : hashable
             Identifies the specific target within the namespace.
             For filter rules this is the ``(category, rule_name)`` tuple
-            returned by ``_rule_key()``.
+            returned by ``gramps.gen.filters.rules._rule._rule_key()``.
         **handlers : callable
-            Named callables whose names are defined by the consuming
-            subsystem.  For filter rules the recognised names are
-            ``apply_to_one`` and ``prepare``.
+            Named callables whose names and signatures are defined by the
+            consuming subsystem.
+
+            For the ``"rule"`` namespace the recognised names and their
+            signatures are:
+
+            ``apply_to_one(rule, original, db, obj) -> bool``
+                Called instead of the rule's ``apply_to_one`` method.
+                *rule* is the ``Rule`` instance, *original* is the
+                unwrapped method that would otherwise have been called
+                (useful for delegation), *db* is the database, and *obj*
+                is the object being tested.
+
+            ``prepare(rule, original, db, user) -> None``
+                Called instead of the rule's ``prepare`` method.
+                Arguments follow the same convention as ``apply_to_one``.
+
+            Overrides are bypassed automatically when ``db.is_proxy()``
+            returns ``True`` (e.g. Living or Privacy proxy databases).
+
+        Note
+        ----
+        This method is not thread-safe.  Overrides should be registered
+        during database initialisation, before any concurrent filter
+        evaluation begins.
 
         Examples
         --------
-        Register a fast SQL implementation for the ``Disconnected`` rule::
+        Register fast SQL implementations for the ``Disconnected`` rule::
+
+            from gramps.gen.filters.rules._rule import _rule_key
+            from gramps.gen.filters.rules.person.disconnected import Disconnected
+
+            def fast_apply(rule, original, db, person):
+                # optimised path; fall back via original(rule, db, person)
+                return db.run_query(...)
 
             db.register_override(
                 "rule",
-                ("person", "Disconnected"),
-                apply_to_one=my_apply_fn,
-                prepare=my_prepare_fn,
+                _rule_key(Disconnected),
+                apply_to_one=fast_apply,
             )
         """
         self._override_registry.setdefault(namespace, {})[key] = handlers
