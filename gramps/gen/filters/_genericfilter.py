@@ -212,19 +212,19 @@ class GenericFilter:
         return final_list
 
     def and_test(self, db, data: dict, flist):
-        return all(rule._checked_apply_to_one(db, data) for rule in flist)
+        return all(rule.apply_to_one(db, data) for rule in flist)
 
     def one_test(self, db, data: dict, flist):
         found_one = False
         for rule in flist:
-            if rule._checked_apply_to_one(db, data):
+            if rule.apply_to_one(db, data):
                 if found_one:
                     return False  # There can be only one!
                 found_one = True
         return found_one
 
     def or_test(self, db, data: dict, flist):
-        return any(rule._checked_apply_to_one(db, data) for rule in flist)
+        return any(rule.apply_to_one(db, data) for rule in flist)
 
     def get_logical_op(self):
         return self.logical_op

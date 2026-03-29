@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Tests for the DB-override dispatch mechanism on Rule._checked_apply_to_one
-and Rule._checked_prepare / requestprepare.
+Tests for the DB-override dispatch on Rule.apply_to_one and
+Rule._checked_prepare / requestprepare.
 
-The dispatch methods are non-overridable on Rule, so they work regardless of
-how deep the inheritance chain is (e.g. HasTag inheriting apply_to_one from
-HasTagBase).  Internal super().apply_to_one() calls inside rule implementations
-go directly to the parent class method and never re-enter the registry, so
-double-dispatch is impossible by construction.
+apply_to_one is wrapped at class-definition time via __init_subclass__ so that
+rule.apply_to_one(db, obj) — called directly by the filter — routes through
+the registry.  The wrapper is injected at the concrete class level, including
+when apply_to_one is inherited from an abstract base (e.g. HasTag from
+HasTagBase), so inheritance depth is not a concern.
+
+prepare is dispatched through _checked_prepare called from requestprepare;
+_checked_prepare is never overridden by subclasses so it works for all depths.
 """
 
 import unittest
@@ -55,7 +58,7 @@ class TestApplyToOneDbOverride(unittest.TestCase):
         db = _MockDB()
         db.register_override("rule", key, apply_to_one=lambda self, orig, db, obj: True)
 
-        result = rule._checked_apply_to_one(db, None)
+        result = rule.apply_to_one(db, None)
         self.assertTrue(result)
 
     def test_original_callable_from_override(self):
@@ -71,26 +74,29 @@ class TestApplyToOneDbOverride(unittest.TestCase):
         )
 
         # _FakeRule.apply_to_one returns False; the override delegates to it
-        result = rule._checked_apply_to_one(db, None)
+        result = rule.apply_to_one(db, None)
         self.assertFalse(result)
 
     def test_fallback_when_no_override(self):
         """Original apply_to_one is used when DB has no override."""
         db = _MockDB()  # empty registry
         rule = _FakeRule([])
-        result = rule._checked_apply_to_one(db, None)
+        result = rule.apply_to_one(db, None)
         self.assertFalse(result)
 
     def test_inherited_apply_to_one_overridden(self):
-        """Override fires even when the concrete class inherits apply_to_one."""
+        """Override fires even when the concrete class inherits apply_to_one
+        from an abstract base (the HasTag / HasTagBase pattern)."""
 
         class _AbstractBase(Rule):
+            __module__ = "gramps.gen.filters.rules._abstractbase"
             labels = []
 
             def apply_to_one(self, db, obj):
                 return False
 
         class _ConcreteRule(_AbstractBase):
+            __module__ = "gramps.gen.filters.rules.person._concreterule"
             labels = []
             # no apply_to_one defined — inherited from _AbstractBase
 
@@ -100,7 +106,7 @@ class TestApplyToOneDbOverride(unittest.TestCase):
         db = _MockDB()
         db.register_override("rule", key, apply_to_one=lambda s, orig, d, obj: True)
 
-        result = rule._checked_apply_to_one(db, None)
+        result = rule.apply_to_one(db, None)
         self.assertTrue(result)
 
 
@@ -115,7 +121,6 @@ class TestPrepareDbOverride(unittest.TestCase):
         db.register_override(
             "rule",
             key,
-            apply_to_one=lambda s, orig, d, o: None,
             prepare=lambda s, orig, d, u: called.append(True),
         )
 
@@ -135,12 +140,14 @@ class TestPrepareDbOverride(unittest.TestCase):
         """Override fires even when the concrete class inherits prepare."""
 
         class _AbstractBase(Rule):
+            __module__ = "gramps.gen.filters.rules._abstractbase"
             labels = []
 
             def prepare(self, db, user):
                 db._base_prepare_called = True
 
         class _ConcreteRule(_AbstractBase):
+            __module__ = "gramps.gen.filters.rules.person._concreterule"
             labels = []
             # no prepare defined — inherited from _AbstractBase
 
@@ -176,7 +183,7 @@ class TestProxyBypassesOverride(unittest.TestCase):
         )
 
         # _FakeRule.apply_to_one returns False; override must not be called
-        result = rule._checked_apply_to_one(db, None)
+        result = rule.apply_to_one(db, None)
         self.assertFalse(result)
 
     def test_proxy_db_uses_original_prepare(self):
@@ -201,15 +208,13 @@ class TestProxyBypassesOverride(unittest.TestCase):
 
 
 class TestNoDoubleDispatch(unittest.TestCase):
-    """
-    super().apply_to_one() inside a rule goes directly to the parent class,
-    never through _checked_apply_to_one, so the override fires exactly once.
-    """
+    """Override fires exactly once even when super().apply_to_one() is called."""
 
     def test_override_fires_once_with_super_chain(self):
         call_log = []
 
         class _AbstractBase(Rule):
+            __module__ = "gramps.gen.filters.rules._abstractbase"
             labels = []
 
             def apply_to_one(self, db, obj):
@@ -217,6 +222,7 @@ class TestNoDoubleDispatch(unittest.TestCase):
                 return False
 
         class _ConcreteRule(_AbstractBase):
+            __module__ = "gramps.gen.filters.rules.person._concreterule"
             labels = []
 
             def apply_to_one(self, db, obj):
@@ -235,7 +241,7 @@ class TestNoDoubleDispatch(unittest.TestCase):
             ),
         )
 
-        result = rule._checked_apply_to_one(db, None)
+        result = rule.apply_to_one(db, None)
 
         # override fires once → calls concrete (orig) → concrete calls abstract via super
         self.assertEqual(call_log, ["override", "concrete", "abstract"])
