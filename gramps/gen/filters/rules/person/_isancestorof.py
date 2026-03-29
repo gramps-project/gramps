@@ -78,7 +78,7 @@ class IsAncestorOf(Rule):
         return person.handle in self.selected_handles
 
     def init_ancestor_list(
-        self, db: Database, person: Person | None, first: bool, user=None
+        self, db: Database, person: Person | None, first: bool, user
     ) -> None:
         if user.get_cancelled():
             return

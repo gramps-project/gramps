@@ -87,7 +87,7 @@ class IsDescendantFamilyOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def add_matches(self, person: Person | None, user=None):
+    def add_matches(self, person: Person | None, user):
         if not person:
             return
 

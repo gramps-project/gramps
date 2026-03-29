@@ -76,9 +76,7 @@ class IsDescendantOf(Rule):
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
 
-    def init_list(
-        self, db: Database, family: Family | None, first: bool, user=None
-    ) -> None:
+    def init_list(self, db: Database, family: Family | None, first: bool, user) -> None:
         """
         Initialise family handle list.
         """

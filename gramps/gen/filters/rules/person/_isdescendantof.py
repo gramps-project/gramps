@@ -77,7 +77,7 @@ class IsDescendantOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_list(self, person: Person | None, first: bool, user=None) -> None:
+    def init_list(self, person: Person | None, first: bool, user) -> None:
         if user.get_cancelled():
             return
         if not person or person.handle in self.selected_handles:

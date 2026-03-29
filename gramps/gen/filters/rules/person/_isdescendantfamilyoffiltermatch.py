@@ -72,9 +72,9 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
         # Must use db.iter_people() rather that db._iter_raw_person_data()
         # because of proxies:
         for person in db.iter_people():
-            user.step_progress()
             if user.get_cancelled():
                 break
+            user.step_progress()
             if self.matchfilt.apply_to_one(db, person):
                 self.add_matches(person, user)
         user.end_progress()

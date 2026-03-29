@@ -81,9 +81,9 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
             can_cancel=True,
         )
         for person in db.iter_people():
-            user.step_progress()
             if user.get_cancelled():
                 break
+            user.step_progress()
             if self.filt.apply_to_one(db, person):
                 self.init_list(person, first, user)
         user.end_progress()
