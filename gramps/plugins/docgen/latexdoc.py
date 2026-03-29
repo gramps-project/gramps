@@ -11,7 +11,7 @@
 #               2010       Peter Landgren
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 #               2011-2012  Harald Rosemann
-#               2019_2020  Harald Rosemann
+#               2019-2020  Harald Rosemann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -478,7 +478,7 @@ gramps_to_latex: dict[str, str] = {}
 
 
 def get_charform(col_num):
-    """Transfer column number to column charakter,
+    """Transfer column number to column character,
     limited to letters within Station a-z  (26, there is no need for more).
     early test of column count in start_table()
     """
@@ -705,7 +705,7 @@ class LaTeXBackend(DocBackend):
 
     def _checkfilename(self):
         """
-        Check to make sure filename satisfies the standards for %this filetype
+        Check to make sure filename satisfies the standards for this filetype
         """
 
         if not self._filename.endswith(".tex"):
