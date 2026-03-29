@@ -825,7 +825,7 @@ class DbManager(CLIDbManager, ManagedWindow):
             next_item_name = self.model.get_value(next_iter, NAME_COL)
         else:
             # If no next item, try previous item
-            prev_iter = store.iter_previous(node)
+            prev_iter = self.model.iter_previous(node)
             if prev_iter is not None:
                 next_item_name = self.model.get_value(prev_iter, NAME_COL)
 
