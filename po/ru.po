@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-03-19 15:09+0000\n"
+"PO-Revision-Date: 2026-03-21 22:09+0000\n"
 "Last-Translator: Petr Fedorov <petr.e.fedorov@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -3444,7 +3444,7 @@ msgstr "Формат по умолчанию (определён в настро
 
 #: ../gramps/gen/display/name.py:396
 msgid "Surname, Given Suffix"
-msgstr "Отчество Фамилия, Имя Суффикс"
+msgstr "Фамилия, Имя Суффикс"
 
 #: ../gramps/gen/display/name.py:397 ../gramps/gen/utils/keyword.py:56
 #: ../gramps/gui/configure.py:1086 ../gramps/gui/configure.py:1087
@@ -3457,7 +3457,7 @@ msgstr "Отчество Фамилия, Имя Суффикс"
 #: ../gramps/plugins/export/exportcsv.py:420
 #: ../gramps/plugins/importer/importcsv.py:205
 msgid "Given"
-msgstr "С учетом"
+msgstr "Имя"
 
 #: ../gramps/gen/display/name.py:398
 msgid "Given Surname Suffix"
@@ -3518,7 +3518,7 @@ msgstr "главное[пр]"
 
 #: ../gramps/gen/display/name.py:672 ../gramps/gen/display/name.py:798
 msgid "primary[sur]"
-msgstr "главное[фам]"
+msgstr "главное[им]"
 
 #: ../gramps/gen/display/name.py:677 ../gramps/gen/display/name.py:803
 msgid "primary[con]"
@@ -3542,7 +3542,7 @@ msgstr "отчество[св]"
 
 #: ../gramps/gen/display/name.py:702 ../gramps/gen/display/name.py:828
 msgid "notpatronymic"
-msgstr "безотчества"
+msgstr "кромеотчества"
 
 #: ../gramps/gen/display/name.py:707 ../gramps/gen/display/name.py:833
 msgctxt "Remaining names"
@@ -3557,7 +3557,7 @@ msgstr "префикс"
 
 #: ../gramps/gen/display/name.py:717 ../gramps/gen/display/name.py:839
 msgid "rawsurnames"
-msgstr "списокфо"
+msgstr "толькоим"
 
 #: ../gramps/gen/display/name.py:719 ../gramps/gen/display/name.py:841
 #: ../gramps/plugins/importer/importcsv.py:219
@@ -5447,7 +5447,7 @@ msgstr "Суффикс:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:60
 msgid "Call Name:"
-msgstr "В быту:"
+msgstr "Обиходное имя:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:61
 msgid "Nick Name:"
@@ -5607,8 +5607,8 @@ msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"Выбирает людей с указанным именем. Поиск имени, фамилии, прозвища "
-"производится в основных и альтернативных именах."
+"Выбирает людей с указанным именем. Личное имя, фамилия, обиходное имя, "
+"прозвище ищутся  в основных и альтернативных именах."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:46
 msgid "People with <count> sources"
@@ -8650,7 +8650,7 @@ msgstr "Показывать как"
 
 #: ../gramps/gen/lib/name.py:192 ../gramps/plugins/importer/importcsv.py:210
 msgid "Call name"
-msgstr "Прозвище"
+msgstr "Обиходное имя"
 
 #: ../gramps/gen/lib/name.py:193
 msgid "Nick name"
@@ -10088,15 +10088,15 @@ msgstr "Короткая"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72
 msgid "Given Nickname Surname"
-msgstr "Прозвище, произошедшее от фамилии"
+msgstr "Имя Прозвище Фамилия"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:73
 msgid "Surname Given Nickname"
-msgstr "Фамилия, произошедшая от прозвища"
+msgstr "Фамилия Имя Прозвище"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74
 msgid "Surname, Given Nickname"
-msgstr "Фамилия, Никнейм"
+msgstr "Фамилия, Имя Прозвище"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:75
 msgid "GivenNicknameSurname"
@@ -10108,7 +10108,7 @@ msgstr "Авто"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Call Name Only"
-msgstr "Бытовое имя только"
+msgstr "Только обиходное имя"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Whole Given Name"
@@ -10241,8 +10241,8 @@ msgid ""
 "Select the portion of the given name to be marked as preferred. Auto sets "
 "the call name if one exists, otherwise the whole given name."
 msgstr ""
-"Укажите, какую часть полного имени пометить, как предпочитаемую. В режиме "
-"Авто это будет краткое имя, если есть, в ином случае выбирается полное имя."
+"Укажите, какую часть личного имени пометить, как предпочитаемую. В режиме "
+"Авто это будет обиходное имя, если есть, в ином случае выбирается полное имя."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:226
 msgid "Position of marriage information."
@@ -11198,11 +11198,11 @@ msgstr "Главное[пр]"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "PRIMARY[SUR]"
-msgstr "ГЛАВНОЕ[ФАМ]"
+msgstr "ГЛАВНОЕ[ИМ]"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "Primary[sur]"
-msgstr "Главное[фам]"
+msgstr "Главное[им]"
 
 #: ../gramps/gen/utils/keyword.py:65
 msgid "PRIMARY[CON]"
@@ -11242,19 +11242,19 @@ msgstr "Отчество[св]"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "RAWSURNAMES"
-msgstr "СПИСОКФО"
+msgstr "ТОЛЬКОИМ"
 
 #: ../gramps/gen/utils/keyword.py:70 ../gramps/gui/configure.py:1104
 msgid "Rawsurnames"
-msgstr "Списокфо"
+msgstr "Толькоим"
 
 #: ../gramps/gen/utils/keyword.py:71
 msgid "NOTPATRONYMIC"
-msgstr "БЕЗОТЧЕСТВА"
+msgstr "КРОМЕОТЧЕСТВА"
 
 #: ../gramps/gen/utils/keyword.py:71
 msgid "Notpatronymic"
-msgstr "Безотчества"
+msgstr "Кромеотчества"
 
 #: ../gramps/gen/utils/keyword.py:72
 msgid "PREFIX"
@@ -12057,36 +12057,36 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Ниже следующие ключевые слова будут заменены соответствующими частями имени:"
-"<tt>\n"
-"  <b>Имя</b>   - личное имя     <b>Фамилия</b>  - фамилии (с префиксом и "
-"связками)\n"
+"Ниже следующие ключевые слова будут заменены соответствующими частями "
+"имени:<tt>\n"
+"  <b>Имя</b>   - личное имя  (имена)    <b>Фамилия</b>  - родовые имена (с "
+"префиксом и связками)\n"
 "  <b>Титул</b>   - звание (Др., Мис.)           <b>Суффикс</b>   - суффикс "
 "(Мл., Ст.)\n"
-"  <b>Обиходное</b>    - бытовое или мирское имя                   "
-"<b>Прозвище</b> - прозвище, псевдоним\n"
+"  <b>Обиходное</b>    - повседневно используемое имя       <b>Прозвище</b> - "
+"прозвище\n"
 "  <b>Инициалы</b>- начальные буквы имён      <b>Разговорное</b>   - "
-"прозвище, или одно из имен\n"
+"прозвище, обиходное или <u>первое</u> личное имя\n"
 "  <b>Префикс</b>  - приставки (ван, де)\n"
-"Фамилии:\n"
-"  <b>Главное</b>      - non primary surnames    <b>Notpatronymic</b>- all "
-"surnames, except pa/matronymic &amp; primary\n"
-"  <b>Familynick</b>- family nick name        <b>Rawsurnames</b>  - surnames "
-"(no prefixes and connectors)\n"
-"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, "
-"prefix, surname only, connector\n"
-"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronymic "
-"surname, prefix, surname only, connector\n"
+"Родовые имена:\n"
+"  <b>Rest</b>      - все не Главные род. имена    <b>Кромеотчества</b>- все "
+"род. имена, кроме Отчество  &amp; Главное\n"
+"  <b>Семпрозвище</b>- семейное прозвище        <b>Толькоим</b>  - имена всех "
+"род. имен (без префиксов и связок)\n"
+"  <b>Главное, Главное[пр]</b> или <b>[им]</b> или <b>[св]</b>-  Главное род. "
+"имя полностью, только префикс или имя или связка\n"
+"  <b>Отчество</b>, или <b>Отчество[пр]</b> или <b>[им]</b> или <b>[св]</b> - "
+"Отчество полностью,  только префикс или имя или связка\n"
 "</tt>\n"
-"UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. "
-"Other text appears literally.\n"
+"Ключевое слово в ВЕРХНЕМ РЕГИСТРЕ  даёт верхний регистр. Остальной текст (не "
+"ключевые слова) показывается буквально.\n"
 "\n"
-"<b>Example</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
+"<b>Пример</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
 "Underhills\n"
-"     <i>Edwin Jose</i>: Given, <i>von der</i>: Prefix, <i>Smith</i> and "
-"<i>Weston</i>: Primary, <i>and</i>: [con], <i>Wilson</i>: Patronymic,\n"
-"     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
-"<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
+"     <i>Edwin Jose</i>: Имя, <i>von der</i>: Префикс, <i>Smith</i> and <i>"
+"Weston</i>: Главное, <i>and</i>: Главное[св], <i>Wilson</i>: Отчество,\n"
+"     <i>Dr.</i>: Титул, <i>Sr</i>: Суффикс, <i>Ed</i>: Прозвище, <i>"
+"Underhills</i>: Семпрозвище, <i>Jose</i>: Обиходное.\n"
 
 #: ../gramps/gui/configure.py:161
 msgid " Name Editor"
@@ -12376,7 +12376,7 @@ msgstr "Обиходное"
 
 #: ../gramps/gui/configure.py:1096
 msgid "NotPatronymic"
-msgstr "БезОтчества"
+msgstr "КромеОтчества"
 
 #: ../gramps/gui/configure.py:1169
 msgid "Enter to save, Esc to cancel editing"
@@ -14449,7 +14449,7 @@ msgstr "Переместить выделенную фамилию ниже"
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
 msgctxt "Multiple surnames"
 msgid "Surname"
-msgstr "Родовое имя"
+msgstr "Имя"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:82
 #: ../gramps/plugins/lib/libgedcom.py:754
@@ -15140,7 +15140,8 @@ msgstr "Редактор_имён"
 #: ../gramps/gui/editors/editname.py:183
 #: ../gramps/gui/editors/editperson.py:341
 msgid "Call name must be the given name that is normally used."
-msgstr "Часть полного имени, которая используется в обиходе."
+msgstr ""
+"Обиходное имя должно совпадать с личным именем, которое обычно используется."
 
 #: ../gramps/gui/editors/editname.py:342
 msgid "New Name"
@@ -16290,7 +16291,7 @@ msgstr ""
 "  <b>%t</b> - Титул            <b>%T</b> - ТИТУЛ\n"
 "  <b>%p</b> - Префикс          <b>%P</b> - ПРЕФИКС\n"
 "  <b>%s</b> - Суффикс          <b>%S</b> - СУФФИКС\n"
-"  <b>%c</b> - Бытовое имя      <b>%C</b> - БЫТОВОЕ ИМЯ\n"
+"  <b>%c</b> - Обиходное имя      <b>%C</b> - ОБИХОДНОЕ ИМЯ\n"
 "  <b>%y</b> - Отчество         <b>%Y</b> - ОТЧЕСТВО</tt>"
 
 #: ../gramps/gui/glade/configure.glade:154
@@ -17193,12 +17194,12 @@ msgstr "Суффи_кс:"
 
 #: ../gramps/gui/glade/editname.glade:232
 msgid "C_all Name:"
-msgstr "В быту:"
+msgstr "О_биходное имя:"
 
 #: ../gramps/gui/glade/editname.glade:247
 #: ../gramps/gui/glade/editperson.glade:148
 msgid "The person's given names"
-msgstr "Список личных имён человека"
+msgstr "Личное имя (имена) человека"
 
 #: ../gramps/gui/glade/editname.glade:262
 msgid "_Nick Name:"
@@ -17211,20 +17212,20 @@ msgid ""
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
-"Часть личного имени человека, которая обычно употребляется в обиходе. "
-"Отображение на красном фоне означает, что указанное мирское, бытовое имя не "
-"является частью перечисленных личных имён, и поэтому не будет подчёркнуто в "
-"некоторых отчётах."
+"Одно из личных имен человека, которое обычно употребляется в обиходе. "
+"Отображение на красном фоне означает, что указанное обиходное имя не "
+"является одним из перечисленных личных имён, и поэтому не будет подчёркнуто "
+"в некоторых отчётах."
 
 #: ../gramps/gui/glade/editname.glade:288
 #: ../gramps/gui/glade/editperson.glade:209
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-msgstr "Титул, используемый при обращении, например «Г-н.» или «Преп.»"
+msgstr "Титул, используемый при обращении, например «Г-н.» или «Преподоб.»"
 
 #: ../gramps/gui/glade/editname.glade:301
 #: ../gramps/gui/glade/editperson.glade:223
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Необязательный суффикс фамилии, например «Млад.» или «III»"
+msgstr "Необязательный суффикс имени, например «Млад.» или «III»"
 
 #: ../gramps/gui/glade/editname.glade:314
 #: ../gramps/gui/glade/editperson.glade:257
@@ -17238,7 +17239,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:348
 msgid "Given Name(s)"
-msgstr "Данное имя (имена)"
+msgstr "Индивидуальное имя (имена)"
 
 #: ../gramps/gui/glade/editname.glade:400
 msgid "_Family Nick Name:"
@@ -17356,7 +17357,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editperson.glade:163
 msgid "C_all:"
-msgstr "В _быту:"
+msgstr "О_биходное:"
 
 #: ../gramps/gui/glade/editperson.glade:243
 msgid "_Nick:"
@@ -17393,13 +17394,14 @@ msgid ""
 "An optional prefix for the family that is not used in sorting, such as "
 "\"de\" or \"van\"."
 msgstr ""
-"Необязательная приставка к фамилии, которая игнорируется при упорядочении, "
+"Необязательная приставка к имени, которая игнорируется при упорядочении, "
 "например «де» или «ван»."
 
 #: ../gramps/gui/glade/editperson.glade:481
 msgid ""
 "Part of a person's name indicating the family to which the person belongs"
-msgstr "Часть имени человека обозначающая род, к которому он принадлежит"
+msgstr ""
+"Часть полного имени человека обозначающая род, к которому он принадлежит"
 
 #: ../gramps/gui/glade/editperson.glade:506
 msgid "Go to Name Editor to add more information about this name"
@@ -17414,7 +17416,9 @@ msgstr "Происхождение:"
 msgid ""
 "The origin of this family name for this family, eg 'Inherited' or "
 "'Patronymic'."
-msgstr "Происхождение фамилии, например 'принятая' или 'унаследованная'."
+msgstr ""
+"Происхождение родового имени для этой семьи, например 'Унаследовано' или "
+"'Отчество'."
 
 #: ../gramps/gui/glade/editperson.glade:580
 msgid "G_ender:"
@@ -22085,7 +22089,7 @@ msgstr "Выберите где расположить комментарий."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1048
 msgid "inter-box scale factor"
-msgstr "Коэффициент масштабирования по оси Y"
+msgstr "коэффициент масштабирования по оси Y"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1050
 msgid "Make the inter-box spacing bigger or smaller"
@@ -22094,7 +22098,7 @@ msgstr "Увеличивает или уменьшает расстояние п
 #: ../gramps/plugins/drawreport/ancestortree.py:1054
 #: ../gramps/plugins/drawreport/descendtree.py:1773
 msgid "box shadow scale factor"
-msgstr "Коэффициент масштабирования теней"
+msgstr "коэффициент масштабирования теней"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1056
 #: ../gramps/plugins/drawreport/descendtree.py:1775
@@ -22582,7 +22586,7 @@ msgstr "Формат отображения для партнёра."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1767
 msgid "inter-box Y scale factor"
-msgstr "Коэффициент масштабирования по оси Y"
+msgstr "коэффициент масштабирования по оси Y"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1769
 msgid "Make the inter-box Y bigger or smaller"
@@ -24041,7 +24045,7 @@ msgstr "Добро пожаловать в Gramps!"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:377
 msgid "What's Next"
-msgstr "Что дальше?"
+msgstr "Что дальше"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:378
 msgid "Gramplet suggesting items to research"
@@ -26172,7 +26176,7 @@ msgstr "имя"
 
 #: ../gramps/plugins/importer/importcsv.py:215
 msgid "call"
-msgstr "бытовое имя"
+msgstr "обиходное"
 
 #: ../gramps/plugins/importer/importcsv.py:223
 msgid "nick"
@@ -26309,7 +26313,7 @@ msgstr "Место деятельности"
 
 #: ../gramps/plugins/importer/importcsv.py:322
 msgid "occupationplace_id"
-msgstr "Id_местадеятельности"
+msgstr "id_местадеятельности"
 
 #: ../gramps/plugins/importer/importcsv.py:323
 msgid "Occupation place id"
@@ -33575,7 +33579,7 @@ msgstr "Использовать бытовое имя по умолчанию"
 #: ../gramps/plugins/textreport/detancestralreport.py:922
 #: ../gramps/plugins/textreport/detdescendantreport.py:1130
 msgid "Whether to use the call name as the first name."
-msgstr "Использовать ли разговорное имя в качестве основного."
+msgstr "Использовать ли обиходное имя в качестве первого личного имени."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:930
 #: ../gramps/plugins/textreport/detdescendantreport.py:1138
@@ -34284,19 +34288,21 @@ msgstr "Количество отображаемых мест"
 
 #: ../gramps/plugins/textreport/recordsreport.py:248
 msgid "Use call name"
-msgstr "Использовать прозвище"
+msgstr "Использовать обиходное имя"
 
 #: ../gramps/plugins/textreport/recordsreport.py:251
 msgid "Don't use call name"
-msgstr "Не использовать прозвище"
+msgstr "Не использовать обиходное имя"
 
 #: ../gramps/plugins/textreport/recordsreport.py:252
 msgid "Replace first names with call name"
-msgstr "Заменять имя на прозвище"
+msgstr "Заменять первое личное имя на обиходное имя"
 
 #: ../gramps/plugins/textreport/recordsreport.py:256
 msgid "Underline call name in first names / add call name to first name"
-msgstr "Подчеркнуть прозвище в имени / добавить прозвище к имени"
+msgstr ""
+"Подчеркнуть обиходное имя среди личных имен / добавить обиходное к первому "
+"личному имени"
 
 #: ../gramps/plugins/textreport/recordsreport.py:264
 msgid "Footer text"
@@ -39800,7 +39806,7 @@ msgstr "Не показывать маркеры"
 
 #: ../gramps/plugins/webreport/person.py:1850
 msgid "Call Name"
-msgstr "Бытовое имя"
+msgstr "Обиходное имя"
 
 #: ../gramps/plugins/webreport/person.py:1871
 msgid "Nick Name"
