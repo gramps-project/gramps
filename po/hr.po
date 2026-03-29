@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-02-04 10:01+0000\n"
+"PO-Revision-Date: 2026-03-26 13:09+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -720,11 +720,11 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Gumb za odabir „Prikaži sve”</b><br/>Kad dodaješ jednu postojeću osobu "
-"kao supružnika, popis osoba se filtrira tako da sadrži samo osobe, koje "
-"uopće dolaze u obzir (na osnovi datuma u bazi podataka). Ako misliš da "
-"program griješi u odabiru, možeš nadvladati to filtriranje upotrebom gumba "
-"„Prikaži sve”."
+"<b>Gumb za „Prikaži sve”</b><br/>Kada dodaješ jednu postojeću osobu kao "
+"supružnika, popis osoba se filtrira tako da sadrži samo osobe, koje uopće "
+"dolaze u obzir (na osnovi datuma u bazi podataka). Ako misliš da program "
+"griješi u odabiru, možeš nadvladati to filtriranje upotrebom gumba „Prikaži "
+"sve”."
 
 #: ../data/tips.xml:60
 msgid ""
@@ -8616,8 +8616,6 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
 msgstr "Nepoznato"
@@ -11517,7 +11515,7 @@ msgstr "Arapski"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Baškirski"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -12307,7 +12305,7 @@ msgstr "Nepatronim"
 
 #: ../gramps/gui/configure.py:1169
 msgid "Enter to save, Esc to cancel editing"
-msgstr "ENTER za spremanje, ESC za prekid s uređivanjem"
+msgstr "Tipka ENTER za spremanje, tipka ESC za prekid uređivanja"
 
 #: ../gramps/gui/configure.py:1216
 msgid "This format exists already."
@@ -14367,8 +14365,6 @@ msgid "Move the selected surname downwards"
 msgstr "Pomakni odabrano prezime prema dolje"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Prezime"
@@ -17081,8 +17077,6 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
 msgstr "_Ime:"
@@ -26874,7 +26868,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importvcard.py:372
 #, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Gramps ne podržava uvoz VCards verziju %s."
+msgstr "Gramps ne podržava uvoz vCards verziju %s."
 
 #: ../gramps/plugins/importer/importvcard.py:395
 msgid ""
@@ -27982,7 +27976,7 @@ msgid ""
 "of %(age)s."
 msgstr ""
 "%(unknown_gender_name)s je umro/la %(death_date)s u mjestu %(death_place)s u "
-"dobi od %(age)s godina."
+"dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:231
 #, python-format
@@ -27995,8 +27989,8 @@ msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(male_name)s je umro %(death_date)s u mjestu %(death_place)s u dobi od "
-"%(age)s godina."
+"%(male_name)s je umro %(death_date)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:237
 #, python-format
@@ -28009,8 +28003,8 @@ msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(female_name)s je umrla %(death_date)s u mjestu %(death_place)s u dobi od "
-"%(age)s godina."
+"%(female_name)s je umrla %(death_date)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:245
 #, python-format
@@ -28022,8 +28016,7 @@ msgstr "Ova je osoba umrla %(death_date)s u mjestu %(death_place)s."
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"Ova je osoba umrla %(death_date)s u mjestu %(death_place)s u dobi od %(age)s "
-"godina."
+"Ova je osoba umrla %(death_date)s u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:251
 #, python-format
@@ -28033,8 +28026,7 @@ msgstr "Umro je %(death_date)s u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:252
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Umro je %(death_date)s u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "Umro je %(death_date)s u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:255
 #, python-format
@@ -28044,8 +28036,7 @@ msgstr "Umrla je %(death_date)s u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:256
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Umrla je %(death_date)s u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "Umrla je %(death_date)s u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:260
 #: ../gramps/plugins/lib/libnarrate.py:303
@@ -28072,7 +28063,7 @@ msgid ""
 "%(age)s."
 msgstr ""
 "%(unknown_gender_name)s je umro/la %(death_date)s u mjestu %(death_place)s u "
-"dobi od %(age)s godina."
+"dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:274
 #, python-format
@@ -28084,8 +28075,8 @@ msgstr "%(male_name)s je umro %(death_date)s u mjestu %(death_place)s."
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(male_name)s je umro %(death_date)s u mjestu %(death_place)s u dobi od "
-"%(age)s godina."
+"%(male_name)s je umro %(death_date)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:280
 #, python-format
@@ -28097,8 +28088,8 @@ msgstr "%(female_name)s je umrla %(death_date)s u mjestu %(death_place)s."
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(female_name)s je umrla %(death_date)s u mjestu %(death_place)s u dobi od "
-"%(age)s godina."
+"%(female_name)s je umrla %(death_date)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:288
 #, python-format
@@ -28110,8 +28101,7 @@ msgstr "Ova je osoba umrla %(death_date)s u mjestu %(death_place)s."
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"Ova je osoba umrla %(death_date)s u mjestu %(death_place)s u dobi od %(age)s "
-"godina."
+"Ova je osoba umrla %(death_date)s u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:294
 #, python-format
@@ -28121,8 +28111,7 @@ msgstr "Umro je %(death_date)s u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:295
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Umro je %(death_date)s u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "Umro je %(death_date)s u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:298
 #, python-format
@@ -28132,8 +28121,7 @@ msgstr "Umrla je %(death_date)s u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:299
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Umrla je %(death_date)s u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "Umrla je %(death_date)s u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:311
 #, python-format
@@ -28143,8 +28131,7 @@ msgstr "%(unknown_gender_name)s je umro/la %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:312
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)s."
-msgstr ""
-"%(unknown_gender_name)s je umro/la %(death_date)s u dobi od %(age)s godina."
+msgstr "%(unknown_gender_name)s je umro/la %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:315
 #, python-format
@@ -28154,7 +28141,7 @@ msgstr "%(male_name)s je umro %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:316
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)s."
-msgstr "%(male_name)s je umro %(death_date)s u dobi od %(age)s godina."
+msgstr "%(male_name)s je umro %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:319
 #, python-format
@@ -28164,7 +28151,7 @@ msgstr "%(female_name)s je umrla %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:320
 #, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)s."
-msgstr "%(female_name)s je umrla %(death_date)s u dobi od %(age)s godina."
+msgstr "%(female_name)s je umrla %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:325
 #, python-format
@@ -28174,7 +28161,7 @@ msgstr "Ova je osoba umrla %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:326
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)s."
-msgstr "Ova je osoba umrla %(death_date)s u dobi od %(age)s godina."
+msgstr "Ova je osoba umrla %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:329
 #, python-format
@@ -28184,7 +28171,7 @@ msgstr "Umro je %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:330
 #, python-format
 msgid "He died on %(death_date)s at the age of %(age)s."
-msgstr "Umro je %(death_date)s u dobi od %(age)s godina."
+msgstr "Umro je %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:333
 #, python-format
@@ -28194,7 +28181,7 @@ msgstr "Umrla je %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:334
 #, python-format
 msgid "She died on %(death_date)s at the age of %(age)s."
-msgstr "Umrla je %(death_date)s u dobi od %(age)s godina."
+msgstr "Umrla je %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:338
 #: ../gramps/plugins/lib/libnarrate.py:373
@@ -28218,8 +28205,7 @@ msgstr "%(unknown_gender_name)s je umro/la %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:347
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)s."
-msgstr ""
-"%(unknown_gender_name)s je umro/la %(death_date)s u dobi od %(age)s godina."
+msgstr "%(unknown_gender_name)s je umro/la %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:350
 #, python-format
@@ -28229,7 +28215,7 @@ msgstr "%(male_name)s je umro %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:351
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(male_name)s je umro %(death_date)s u dobi od %(age)s godina."
+msgstr "%(male_name)s je umro %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:354
 #, python-format
@@ -28239,7 +28225,7 @@ msgstr "%(female_name)s je umrla %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:355
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(female_name)s je umrla %(death_date)s u dobi od %(age)s godina."
+msgstr "%(female_name)s je umrla %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:360
 #, python-format
@@ -28249,7 +28235,7 @@ msgstr "Ova je osoba umrla %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:361
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)s."
-msgstr "Ova je osoba umrla %(death_date)s u dobi od %(age)s godina."
+msgstr "Ova je osoba umrla %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:364
 #, python-format
@@ -28259,7 +28245,7 @@ msgstr "Umro je %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:365
 #, python-format
 msgid "He died %(death_date)s at the age of %(age)s."
-msgstr "Umro je %(death_date)s u dobi od %(age)s godina."
+msgstr "Umro je %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:368
 #, python-format
@@ -28269,7 +28255,7 @@ msgstr "Umrla je %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:369
 #, python-format
 msgid "She died %(death_date)s at the age of %(age)s."
-msgstr "Umrla je %(death_date)s u dobi od %(age)s godina."
+msgstr "Umrla je %(death_date)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:381
 #, python-format
@@ -28284,7 +28270,7 @@ msgid ""
 "of %(age)s."
 msgstr ""
 "%(unknown_gender_name)s je umro/la %(month_year)s u mjestu %(death_place)s u "
-"dobi od %(age)s godina."
+"dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:387
 #, python-format
@@ -28297,8 +28283,8 @@ msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(male_name)s je umro %(month_year)s u mjestu %(death_place)s u dobi od "
-"%(age)s godina."
+"%(male_name)s je umro %(month_year)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:393
 #, python-format
@@ -28311,8 +28297,8 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(female_name)s je umrla %(month_year)s u mjestu %(death_place)s u dobi od "
-"%(age)s godina."
+"%(female_name)s je umrla %(month_year)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:401
 #, python-format
@@ -28324,8 +28310,7 @@ msgstr "Ova je osoba umrla %(month_year)s u mjestu %(death_place)s."
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"Ova je osoba umrla %(month_year)s u mjestu %(death_place)s u dobi od %(age)s "
-"godina."
+"Ova je osoba umrla %(month_year)s u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:407
 #, python-format
@@ -28335,8 +28320,7 @@ msgstr "Umro je %(month_year)s u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:408
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Umro je %(month_year)s u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "Umro je %(month_year)s u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:411
 #, python-format
@@ -28346,8 +28330,7 @@ msgstr "Umrla je %(month_year)s u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:412
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Umrla je %(month_year)s u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "Umrla je %(month_year)s u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:416
 #, python-format
@@ -28367,8 +28350,7 @@ msgstr "%(unknown_gender_name)s je umro/la %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:425
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)s."
-msgstr ""
-"%(unknown_gender_name)s je umro/la %(month_year)s u dobi od %(age)s godina."
+msgstr "%(unknown_gender_name)s je umro/la %(month_year)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:428
 #, python-format
@@ -28378,7 +28360,7 @@ msgstr "%(male_name)s je umro %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:429
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(male_name)s je umro %(month_year)s u dobi od %(age)s godina."
+msgstr "%(male_name)s je umro %(month_year)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:432
 #, python-format
@@ -28388,7 +28370,7 @@ msgstr "%(female_name)s je umrla %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:433
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(female_name)s je umrla %(month_year)s u dobi od %(age)s godina."
+msgstr "%(female_name)s je umrla %(month_year)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:438
 #, python-format
@@ -28398,7 +28380,7 @@ msgstr "Ova je osoba umrla %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:439
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)s."
-msgstr "Ova je osoba umrla %(month_year)s u dobi od %(age)s godina."
+msgstr "Ova je osoba umrla %(month_year)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:442
 #, python-format
@@ -28408,7 +28390,7 @@ msgstr "Umro je %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:443
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)s."
-msgstr "Umro je %(month_year)s u dobi od %(age)s godina."
+msgstr "Umro je %(month_year)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:446
 #, python-format
@@ -28418,7 +28400,7 @@ msgstr "Umrla je %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:447
 #, python-format
 msgid "She died in %(month_year)s at the age of %(age)s."
-msgstr "Umrla je %(month_year)s u dobi od %(age)s godina."
+msgstr "Umrla je %(month_year)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:451
 #, python-format
@@ -28439,8 +28421,8 @@ msgstr "%(unknown_gender_name)s je umro/la u mjestu %(death_place)s."
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s je umro/la u mjestu %(death_place)s u dobi od "
-"%(age)s godina."
+"%(unknown_gender_name)s je umro/la u mjestu %(death_place)s u dobi od %(age)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:463
 #, python-format
@@ -28450,8 +28432,7 @@ msgstr "%(male_name)s je umro u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:464
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)s."
-msgstr ""
-"%(male_name)s je umro u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "%(male_name)s je umro u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:467
 #, python-format
@@ -28461,8 +28442,7 @@ msgstr "%(female_name)s je umrla u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:468
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)s."
-msgstr ""
-"%(female_name)s je umrla u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "%(female_name)s je umrla u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:473
 #, python-format
@@ -28472,7 +28452,7 @@ msgstr "Ova je osoba umrla u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:474
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)s."
-msgstr "Ova je osoba umrla u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "Ova je osoba umrla u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:477
 #, python-format
@@ -28482,7 +28462,7 @@ msgstr "Umro je u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:478
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)s."
-msgstr "Umro je u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "Umro je u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:481
 #, python-format
@@ -28492,7 +28472,7 @@ msgstr "Umrla je u mjestu %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:482
 #, python-format
 msgid "She died in %(death_place)s at the age of %(age)s."
-msgstr "Umrla je u mjestu %(death_place)s u dobi od %(age)s godina."
+msgstr "Umrla je u mjestu %(death_place)s u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:486
 #, python-format
@@ -28507,32 +28487,32 @@ msgstr "Smrt u mjestu %(death_place)s (%(age)s)."
 #: ../gramps/plugins/lib/libnarrate.py:495
 #, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)s."
-msgstr "%(unknown_gender_name)s je umro/la u dobi od %(age)s godina."
+msgstr "%(unknown_gender_name)s je umro/la u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:499
 #, python-format
 msgid "%(male_name)s died at the age of %(age)s."
-msgstr "%(male_name)s je umro u dobi od %(age)s godina."
+msgstr "%(male_name)s je umro u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:503
 #, python-format
 msgid "%(female_name)s died at the age of %(age)s."
-msgstr "%(female_name)s je umrla u dobi od %(age)s godina."
+msgstr "%(female_name)s je umrla u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:509
 #, python-format
 msgid "This person died at the age of %(age)s."
-msgstr "Ova je osoba umrla u dobi od %(age)s godina."
+msgstr "Ova je osoba umrla u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:513
 #, python-format
 msgid "He died at the age of %(age)s."
-msgstr "Umro je u dobi od %(age)s godina."
+msgstr "Umro je u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:517
 #, python-format
 msgid "She died at the age of %(age)s."
-msgstr "Umrla je u dobi od %(age)s godina."
+msgstr "Umrla je u dobi od %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:522
 #, python-format
@@ -34668,11 +34648,11 @@ msgstr "Provjeravanje ispravnosti poveznica u zabilješkama"
 
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
-msgstr ""
+msgstr "Spajanje duplih uloga u događajima na koje se osobe referenciraju"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
-msgstr ""
+msgstr "Spajanje duplih uloga u događajima na koje se obitelji referenciraju"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -34951,7 +34931,7 @@ msgstr "%d neispravne poveznice u zabilješkama su ispravljene;\n"
 #: ../gramps/plugins/tool/check.py:3154
 #, python-format
 msgid "%d duplicate event role names coalesced. %d references updated\n"
-msgstr ""
+msgstr "Broj spojenih duplih imena: %d. Broj aktualiziranih referenca: %d\n"
 
 #: ../gramps/plugins/tool/check.py:3189
 msgid "Integrity Check Results"
@@ -36866,7 +36846,7 @@ msgstr "Okreni smjer prikaza imena u lepezi"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:386
 msgid "Show the gramps id"
-msgstr "Prikaži gramps ID"
+msgstr "Prikaži Gramps ID"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:389
 #: ../gramps/plugins/view/fanchartdescview.py:385
@@ -36905,7 +36885,7 @@ msgstr "Četvrt kruga"
 #: ../gramps/plugins/view/fanchartdescview.py:382
 #: ../gramps/plugins/view/fanchartview.py:457
 msgid "Show gramps id"
-msgstr "Prikaži gramps ID"
+msgstr "Prikaži Gramps ID"
 
 #: ../gramps/plugins/view/fanchartview.py:227
 msgid "Print or save the Fan Chart View"
