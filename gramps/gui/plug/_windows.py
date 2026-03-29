@@ -1,3 +1,4 @@
+# https://github.com/gramps-project/gramps/blob/maintenance/gramps60/gramps/gui/plug/_windows.py
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -32,6 +33,7 @@ import threading
 import sys
 import subprocess
 import importlib
+from ._projectdialog import EnhancedProjectDialog
 
 # -------------------------------------------------------------------------
 #
@@ -231,14 +233,22 @@ class AddonRow(Gtk.ListBoxRow):
         vbox.pack_start(title, False, False, 0)
 
         hbox = Gtk.Box()
-        hbox.set_spacing(6)
-        lozenge = self.__create_lozenge(_("Project"), addon["_p"])
+        hbox.set_spacing(3)
+        lozenge = self.__create_lozenge_button(
+            _("Project"), addon["_p"], self.manager.project_combo
+        )
         hbox.pack_start(lozenge, False, False, 0)
-        lozenge = self.__create_lozenge(_("Type"), PTYPE_STR[addon["t"]])
+        lozenge = self.__create_lozenge_button(
+            _("Type"), PTYPE_STR[addon["t"]], self.manager.type_combo
+        )
         hbox.pack_start(lozenge, False, False, 0)
-        lozenge = self.__create_lozenge(_("Audience"), AUDIENCETEXT[addon["a"]])
+        lozenge = self.__create_lozenge_button(
+            _("Audience"), AUDIENCETEXT[addon["a"]], self.manager.audience_combo
+        )
         hbox.pack_start(lozenge, False, False, 0)
-        lozenge = self.__create_lozenge(_("Status"), STATUSTEXT[addon["s"]])
+        lozenge = self.__create_lozenge_button(
+            _("Status"), STATUSTEXT[addon["s"]], self.manager.status_combo
+        )
         hbox.pack_start(lozenge, False, False, 0)
         lozenge = self.__create_lozenge(_("Version"), addon["v"])
         hbox.pack_start(lozenge, False, False, 0)
@@ -359,15 +369,71 @@ class AddonRow(Gtk.ListBoxRow):
 
     def __create_lozenge(self, description, text):
         """
-        Create a lozenge shaped label to display addon information.
+        Create a passive lozenge shaped label to display addon information.
+        Used for non-filterable fields (Version, Installed version).
         """
         label = Gtk.Label()
         label.set_tooltip_text(description)
         context = label.get_style_context()
         context.add_class("lozenge")
         label.set_text(text)
-        label.set_margin_start(6)
         return label
+
+    def __create_lozenge_button(self, description, text, combo):
+        """
+        Create an interactive two-state lozenge button linked to a filter combo.
+
+        Blue  = the combo is at its "All..." position  → click sets the filter.
+        Orange = the combo is filtered to this value   → click resets the filter.
+        """
+        label = Gtk.Label()
+        label.set_text(text)
+        context = label.get_style_context()
+        context.add_class("lozenge")
+
+        button = Gtk.Button()
+        button.set_relief(Gtk.ReliefStyle.NONE)
+        button.set_focus_on_click(False)
+        button.add(label)
+        button.get_style_context().add_class("lozenge-button")
+
+        # Store data for external colour refresh (used by AddonManager.__refresh_lozenge_colours)
+        button._lozenge_data = (label, combo, text)
+
+        # Initialise colour state
+        self.__update_lozenge_colour(label, combo, text)
+
+        button.connect(
+            "clicked", self.__on_lozenge_clicked, label, combo, text
+        )
+        return button
+
+    def __update_lozenge_colour(self, label, combo, text):
+        """
+        Apply or remove the lozenge-active CSS class based on the current
+        state of *combo*.  Orange when the filter matches *text*, blue otherwise.
+        """
+        ctx = label.get_style_context()
+        if self.manager.is_filter_active(combo, text):
+            ctx.add_class("lozenge-active")
+            label.set_tooltip_text(_("Click to clear this filter"))
+        else:
+            ctx.remove_class("lozenge-active")
+            label.set_tooltip_text(_('Click to filter by "%s"') % text)
+
+    def __on_lozenge_clicked(self, button, label, combo, text):
+        """
+        Toggle the filter combo between "active for this value" and "All".
+        """
+        if self.manager.is_filter_active(combo, text):
+            # Currently orange → reset to "All"
+            combo.set_active(0)
+        else:
+            # Currently blue → set to matching entry
+            self.manager.set_combo_to_text(combo, text)
+        # Colour update will propagate via __combo_changed → invalidate_filter
+        # but we also flip immediately for instant visual feedback.
+        self.__update_lozenge_colour(label, combo, text)
 
 
 # -------------------------------------------------------------------------
@@ -605,11 +671,88 @@ class AddonManager(ManagedWindow):
         self.audience_combo.set_active(1)
         self.status_combo.set_active(1)
 
+    def is_filter_active(self, combo, text):
+        """
+        Return True when *combo* is currently filtering on *text*
+        (i.e. not at its "All..." position).
+
+        project_combo is a ComboBoxText  → compare active text directly.
+        type/audience/status combos are ComboBox with a ListStore(int, str)
+        → active when the active row's integer key is not -1 AND the display
+          text in column 1 matches *text*.
+        """
+        if combo is self.project_combo:
+            return combo.get_active_text() == text
+        active_iter = combo.get_active_iter()
+        if active_iter is None:
+            return False
+        model = combo.get_model()
+        key = model.get_value(active_iter, 0)
+        label = model.get_value(active_iter, 1)
+        return key != -1 and label == text
+
+    def set_combo_to_text(self, combo, text):
+        """
+        Set *combo* to the entry whose display text equals *text*.
+        For project_combo (ComboBoxText) iterate by index.
+        For model-based combos iterate the ListStore.
+        Does nothing if no matching entry is found.
+        """
+        if combo is self.project_combo:
+            model = combo.get_model()
+            for i, row in enumerate(model):
+                if row[0] == text:
+                    combo.set_active(i)
+                    return
+        else:
+            model = combo.get_model()
+            row_iter = model.get_iter_first()
+            while row_iter:
+                if model.get_value(row_iter, 1) == text:
+                    combo.set_active_iter(row_iter)
+                    return
+                row_iter = model.iter_next(row_iter)
+
     def __combo_changed(self, combo):
         """
         Called when a filter is changed.
+        Invalidates the filter and refreshes lozenge colours on all rows.
         """
         self.lb.invalidate_filter()
+        self.__refresh_lozenge_colours()
+
+    def __refresh_lozenge_colours(self):
+        """
+        Walk all AddonRows and ask each button-lozenge to re-evaluate its
+        colour state against the current filter combos.
+        """
+        for row in self.lb.get_children():
+            if not isinstance(row, AddonRow):
+                continue
+            # The lozenge hbox is the second child of vbox (index 1)
+            vbox = row.vbox
+            children = vbox.get_children()
+            if len(children) < 2:
+                continue
+            hbox = children[1]
+            for widget in hbox.get_children():
+                if not isinstance(widget, Gtk.Button):
+                    continue
+                # Retrieve the label, combo, and text stored on the button
+                inner = widget.get_child()
+                if not isinstance(inner, Gtk.Label):
+                    continue
+                data = getattr(widget, "_lozenge_data", None)
+                if data is None:
+                    continue
+                lbl, cb, txt = data
+                ctx = inner.get_style_context()
+                if self.is_filter_active(cb, txt):
+                    ctx.add_class("lozenge-active")
+                    inner.set_tooltip_text(_("Click to clear this filter"))
+                else:
+                    ctx.remove_class("lozenge-active")
+                    inner.set_tooltip_text(_('Click to filter by "%s"') % txt)
 
     def __sort_func(self, row1, row2):
         """
@@ -829,51 +972,24 @@ class AddonManager(ManagedWindow):
 
     def edit_project(self, row):
         """
-        Add or edit a project
+        Add or edit a project using enhanced dialog with URL validation.
         """
         if row.project[0] == "":
             title = _("New Project")
         else:
             title = _("Edit Project")
-        dialog = Gtk.Dialog(title=title, transient_for=self.window, default_width=600)
-        dialog.set_border_width(6)
-        dialog.vbox.set_spacing(6)
 
-        grid = Gtk.Grid()
-        grid.set_row_spacing(6)
-        grid.set_column_spacing(6)
-        label = Gtk.Label(label=_("%s: ") % _("Project name"))
-        label.set_halign(Gtk.Align.END)
-        grid.attach(label, 0, 0, 1, 1)
-        name = Gtk.Entry()
-        name.set_hexpand(True)
-        name.set_text(row.project[0])
-        name.set_activates_default(True)
-        grid.attach(name, 1, 0, 1, 1)
-        label = Gtk.Label(label=_("%s: ") % _("URL"))
-        label.set_halign(Gtk.Align.END)
-        grid.attach(label, 0, 1, 1, 1)
-        url = Gtk.Entry()
-        url.set_hexpand(True)
-        url.set_text(row.project[1])
-        grid.attach(url, 1, 1, 1, 1)
-        dialog.vbox.pack_start(grid, True, True, 0)
+        dialog = EnhancedProjectDialog(self.window, title, row.project[0], row.project[1])
+        result = dialog.run()
 
-        dialog.add_buttons(
-            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_OK"), Gtk.ResponseType.OK
-        )
-        dialog.set_default_response(Gtk.ResponseType.OK)
-        dialog.vbox.show_all()
-
-        if dialog.run() == Gtk.ResponseType.OK:
+        if result:
             if row.project[0] == "":
                 self.project_list.add(row)
-            row.project[0] = name.get_text().strip()
-            row.project[1] = url.get_text().strip()
+            row.project[0] = result['name']
+            row.project[1] = result['url']
             row.update()
             self.update_project_list()
             self.refresh()
-        dialog.destroy()
 
     def __add_project(self, button):
         """
