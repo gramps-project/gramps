@@ -47,13 +47,14 @@
 # lolly76 <thelolly76@gmail.com>, 2025.
 # Ohne Sonne <ohne_sonne_1312@protonmail.com>, 2025.
 # Proxima <weblate.cylinder605@passmail.net>, 2026.
+# Bruno FORESTIER <bforest76@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-01-17 08:01+0000\n"
-"Last-Translator: Proxima <weblate.cylinder605@passmail.net>\n"
+"PO-Revision-Date: 2026-03-26 13:09+0000\n"
+"Last-Translator: Bruno FORESTIER <bforest76@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -61,7 +62,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -12330,7 +12331,7 @@ msgstr "Arabe"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Bachkir"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -15434,7 +15435,6 @@ msgstr "Déplacer le nom de famille sélectionné vers le bas"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
 #, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Nom"
