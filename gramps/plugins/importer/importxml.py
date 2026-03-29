@@ -655,7 +655,7 @@ class GrampsParser(UpdateCallback):
             if tag:
                 self.default_tag = tag
             else:
-                self.default_tag = Tag()
+                self.default_tag = Tag(db=self.db)
                 self.default_tag.set_name(name)
         else:
             self.default_tag = None
@@ -3391,7 +3391,7 @@ class GrampsParser(UpdateCallback):
             tag_name = _(tag_name)
             tag = self.db.get_tag_from_name(tag_name)
             if tag is None:
-                tag = Tag()
+                tag = Tag(db=self.db)
                 tag.set_name(tag_name)
                 tag.set_priority(self.db.get_number_of_tags())
                 tag_handle = self.db.add_tag(tag, self.trans)

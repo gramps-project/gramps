@@ -60,27 +60,26 @@ DEFAULT_TAG_COLORS = [
 ]
 
 
-def get_default_tag_color(db=None, index=None):
+def get_default_tag_color(db=None):
     """
     Get a default color for a new tag that minimizes collisions.
 
     This function provides colors that work well on both light and dark
-    GTK themes. Colors are selected from a predefined palette in a
-    rotating fashion to minimize collisions with existing tags.
+    GTK themes. Colors are selected from a predefined palette, rotating
+    by the number of existing tags and skipping colors already in use.
+
+    Colors are stored as #RRGGBB (6-digit hex). Note: older Gramps data
+    and XML imports may use the legacy #RRRRGGGGBBBB (12-digit) format.
 
     :param db: Optional database to check existing tag colors
     :type db: DbBase
-    :param index: Optional index to use for color selection (defaults to
-                  number of existing tags)
-    :type index: int
     :returns: A hex color string in format #RRGGBB
     :rtype: str
     """
-    if index is None:
-        if db:
-            index = db.get_number_of_tags()
-        else:
-            index = 0
+    if db:
+        index = db.get_number_of_tags()
+    else:
+        index = 0
 
     # Rotate through the color palette
     color = DEFAULT_TAG_COLORS[index % len(DEFAULT_TAG_COLORS)]
