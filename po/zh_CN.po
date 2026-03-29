@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-03-20 15:36+0000\n"
+"PO-Revision-Date: 2026-03-29 01:12+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
@@ -384,9 +384,9 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>如何录入日期</b><br/>您可以通过使用格式\"between January 4, 2000 and "
-"March 20, 2003\".表达一段日期。您也可以注明日期的可信程度，甚至选择七种不同的"
-"历制。尝试点击“事件编辑器”中日期区域旁的按钮。"
+"<b>日期</b><br/>您可以通过使用格式 \"between January 4, 2000 and March 20, "
+"2003\" 来表示一段时间范围。同时可以在日期中指出可信程度，还可以选择七种不同的"
+"历制。点击“事件编辑器”中日期区域旁的按钮可以尝试此功能。"
 
 #: ../data/tips.xml:6
 msgid ""
@@ -539,11 +539,11 @@ msgid ""
 "library or other research facility. To view the SoundEx codes for surnames "
 "in your database, add the SoundEx Gramplet."
 msgstr ""
-"<b>SoundEx 助力家族研究。</b><br/> SoundEx 解决了一个长期困扰系谱学研究的问"
-"题，那就是怎样处理拼写的变体。SoundEx Gramplet 获取一个姓氏后会生成一个简化形"
-"式，而它与相似发音的姓氏是等同的。了解某个姓氏的 SoundEx 编码对在图书馆或其它"
-"研究机构进行普查数据文件（缩微胶片）的研究是很有帮助的。若要查看您数据库中姓"
-"氏的 SoundEx 编码，请加载 SoundEx Gramplet。"
+"<b>SoundEx 助力家族研究。</b><br/> SoundEx 解决了一个长期困扰系谱学研究的问题"
+"，那就是怎样处理拼写的变体。SoundEx Gramplet 碰到一个姓氏后会生成一个简化形式"
+"，等同于相似发音的姓氏。了解某个姓氏的 SoundEx 编码对在图书馆或其它研究机构进"
+"行普查数据文件（缩微胶片）的研究是很有帮助的。若要查看您数据库中姓氏的 "
+"SoundEx 编码，请加载 SoundEx Gramplet。"
 
 #: ../data/tips.xml:32
 msgid ""
@@ -552,9 +552,9 @@ msgid ""
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>设置您的首选项</b><br/>在“编辑 > 首选项...\" 中，您可以修改若干设置，比如"
-"您媒体文件的路径，以及按需调整 Gramps 的展示方式。每种独立视图也可以在“视图 "
-"> 配置视图...”中进行配置。"
+"<b>设置您的首选项</b><br/>在“编辑 > 首选项...\" 中，您可以调整很多设置，比如"
+"您媒体文件的路径，以及按需调整 Gramps 的展示方式。每种独立视图也可以在“视"
+"图 > 配置视图...”中进行配置。"
 
 #: ../data/tips.xml:34
 msgid ""
@@ -607,8 +607,8 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>重复的录入</b><br/>“工具 > 家谱处理 > 寻找可能重复的成员...”允许您定位（并"
-"合并）在数据中录入多次的相同人员的信息。"
+"<b>重复条目</b><br/> “工具 > 家谱处理 > 寻找可能重复的人员...”允许您定位（并"
+"合并）在数据库中录入多次但实际是同一人员的条目。"
 
 #: ../data/tips.xml:44
 msgid ""
@@ -920,8 +920,8 @@ msgid ""
 "which toggles records between private and public."
 msgstr ""
 "<b>Gramps 中的隐私</b><br/>Gramps 允许您用标记私有的方式保证个人信息安全。标"
-"记为私有的数据可以从报告和数据输出时被忽略。Look for the padlock which "
-"toggles records between private and public."
+"记为私有的数据可以从报告和数据输出时被忽略。留意查看挂锁符号，它可以在私有和"
+"公开状态间切换。"
 
 #: ../data/tips.xml:100
 msgid ""
@@ -998,9 +998,9 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>您的家谱的“如何和为什么”</b><br/>族谱不仅仅关于日期和姓名。它是关于人。更"
-"详细的说。包括 为什么事情如何发生，和后代如何在经历过事件后被塑造的。叙述经过"
-"很长的一段时间后，如何让历史变得鲜活。"
+"<b>您家谱的来龙去脉</b><br/>家谱不仅仅是简单记录日期和姓名。它更重要的是讲述"
+"人物。详细的说，包括事情为何发生，以及所经历的事件是如何影响后代的。长久的叙"
+"述和记录会让您的家族史变得生动鲜活起来。"
 
 #: ../data/tips.xml:114
 msgid ""
@@ -1060,10 +1060,11 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
-"<b>开源软件</b><br/>免费/自由和开源软件 (FLOSS) 开发模型意味着 Gramps 可以被"
-"任何程序员扩展，因为所有源代码都开源的。因此它不仅仅像一杯免费的啤酒，它是关"
-"于自由的研究和变更的工具。了解更多关于开源软件，请查询自由软件基金会 (Free "
-"Software Foundation) 及开放源代码促进会 (Open Source Initiative)。"
+"<b>开源软件</b><br/> 自由 (Free/Libre) 和开源软件 (FLOSS) 的开发模式意味着 "
+"Gramps 可以被任何程序员扩展，因为所有源代码都是遵照其许可证可自由获取的。这"
+"里 Free 的意义，不是像一杯免费啤酒那样意味着其价格免费 (Free)，更在于对软件研"
+"究和修改的自由 (Free) 权利。了解更多关于开源软件的内容，请查阅自由软件基金会 "
+"(Free Software Foundation) 及开放源代码促进会 (Open Source Initiative)。"
 
 #: ../data/tips.xml:126
 msgid ""
@@ -2363,7 +2364,7 @@ msgstr "之后"
 #: ../gramps/gen/datehandler/_datedisplay.py:509
 msgctxt "about-date"
 msgid ""
-msgstr "关于"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -3443,9 +3444,8 @@ msgid "Error in '%s' file: cannot load."
 msgstr "'%s' 文件错误：无法读取。"
 
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/docgen/treedoc.py:66
-#, fuzzy
 msgid "Full"
-msgstr "全名"
+msgstr "全部"
 
 #: ../gramps/gen/filters/_filterparser.py:131
 #, python-format
@@ -4077,7 +4077,7 @@ msgstr "匹配其卷/页包含特定字符的引用"
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:52
 #: ../gramps/gui/editors/filtereditor.py:573
 msgid "Repository filter name:"
-msgstr "文库筛查Gramplet:"
+msgstr "文库筛选器名称："
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:57
 #, fuzzy
@@ -6227,7 +6227,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
 msgid "Repository attribute:"
-msgstr "文库参照:"
+msgstr "文库属性："
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 #, fuzzy
@@ -6245,7 +6245,7 @@ msgstr "ID 编号为 <Id> 的文库"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "匹配拥有特定GRAMPS ID编号的文库"
+msgstr "匹配拥有特定 GRAMPS ID 编号的文库"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:43
 msgid "Repositories having notes containing <substring>"
@@ -6359,8 +6359,8 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"匹配 修改于特定日期-时间 (yyyy-mm-dd hh:mm:ss)之后或者在某个范围之内的（如果"
-"给出了第二个日期-时间）的来源。"
+"匹配修改于特定日期-时间 (yyyy-mm-dd hh:mm:ss)之后或者在某个范围之内的（如果给"
+"出了第二个日期-时间）的来源。"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
 msgid "Source attribute:"
@@ -6434,11 +6434,11 @@ msgstr "匹配 含有个定参考数量的来源"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:56
 msgid "Sources with <count> Repository references"
-msgstr "来源含有<count>文库参考数量为"
+msgstr "来源含有 <count> 项文库参考"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:57
 msgid "Matches sources with a certain number of repository references"
-msgstr "匹配含有特定数量的参考索引的来源"
+msgstr "匹配含有特定数量文库参考的来源"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:53
 #, fuzzy
@@ -6450,8 +6450,8 @@ msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"匹配具有存储库参考文献的来源\n"
-"含有 \"调用号码 \"中的一个子串的源"
+"匹配具有文库参考的来源\n"
+"其中含有“调用号码”子字符串"
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
 msgid "Matches sources with particular parameters"
@@ -6645,7 +6645,7 @@ msgstr "摘录"
 #: ../gramps/plugins/webreport/basepage.py:3422
 #: ../gramps/plugins/webreport/basepage.py:3500
 msgid "Street"
-msgstr "街道 (Street)"
+msgstr "街道"
 
 #: ../gramps/gen/lib/address.py:121 ../gramps/gen/lib/location.py:92
 #: ../gramps/gen/lib/placetype.py:79 ../gramps/gui/configure.py:711
@@ -6657,7 +6657,7 @@ msgstr "街道 (Street)"
 #: ../gramps/plugins/webreport/basepage.py:3423
 #: ../gramps/plugins/webreport/basepage.py:3501
 msgid "Locality"
-msgstr "聚居地 (Locality)"
+msgstr "地区"
 
 #: ../gramps/gen/lib/address.py:122 ../gramps/gen/lib/location.py:93
 #: ../gramps/gen/lib/placetype.py:77 ../gramps/gui/configure.py:714
@@ -6669,7 +6669,7 @@ msgstr "聚居地 (Locality)"
 #: ../gramps/plugins/webreport/basepage.py:3424
 #: ../gramps/plugins/webreport/basepage.py:3502
 msgid "City"
-msgstr "城市 (City)"
+msgstr "城市"
 
 #: ../gramps/gen/lib/address.py:123 ../gramps/gen/lib/location.py:94
 #: ../gramps/gen/lib/placetype.py:76
@@ -6706,7 +6706,7 @@ msgstr "州 (State)"
 #: ../gramps/plugins/webreport/place.py:350
 #: ../gramps/plugins/webreport/place.py:362
 msgid "Country"
-msgstr "国家/地区 (Country)"
+msgstr "国家/地区"
 
 #: ../gramps/gen/lib/address.py:126 ../gramps/gen/lib/location.py:97
 #: ../gramps/plugins/webreport/basepage.py:1515
@@ -7107,7 +7107,7 @@ msgstr "未知"
 #, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "大于 {number_of} 年"
+msgstr[0] "超过 {number_of} 岁"
 
 #: ../gramps/gen/lib/date.py:312 ../gramps/gen/lib/date.py:343
 #: ../gramps/gen/lib/date.py:345 ../gramps/gen/lib/date.py:351
@@ -8935,7 +8935,7 @@ msgstr "数字"
 #: ../gramps/plugins/quickview/filterbyname.py:346
 #: ../gramps/plugins/tool/reorderids.glade:836
 msgid "Repository"
-msgstr "库"
+msgstr "文库"
 
 #: ../gramps/gen/lib/reporef.py:98 ../gramps/gui/clipboard.py:530
 msgid "Repository ref"
@@ -9384,7 +9384,7 @@ msgstr "关系计算器"
 #: ../gramps/gui/widgets/grampletpane.py:245
 #: ../gramps/gui/widgets/grampletpane.py:1004
 msgid "Gramplet"
-msgstr "爷爷"
+msgstr "Gramplet"
 
 #: ../gramps/gen/plug/_pluginreg.py:129
 msgid "Sidebar"
@@ -10865,9 +10865,8 @@ msgid "the event"
 msgstr "事件"
 
 #: ../gramps/gen/utils/grampslocale.py:774
-#, fuzzy
 msgid "the repository"
-msgstr "每个文库"
+msgstr "文库"
 
 #: ../gramps/gen/utils/grampslocale.py:776
 msgid "the note"
@@ -11302,7 +11301,7 @@ msgstr "东正教十字架"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Chi rho"
-msgstr "芝华士"
+msgstr "Chi Rho 符号(希腊字母 Chi 和 Rho 组成的十字光环符号)"
 
 #: ../gramps/gen/utils/symbols.py:114
 msgid "Cross of Lorraine"
@@ -11314,11 +11313,11 @@ msgstr "耶路撒冷的十字架"
 
 #: ../gramps/gen/utils/symbols.py:116
 msgid "Star and crescent"
-msgstr "启动日期测试"
+msgstr "星月标记"
 
 #: ../gramps/gen/utils/symbols.py:117
 msgid "West Syriac cross"
-msgstr "西叙利亚的十字架"
+msgstr "西叙利亚十字架"
 
 #: ../gramps/gen/utils/symbols.py:118
 #, fuzzy
@@ -11343,7 +11342,7 @@ msgstr "马尔他十字架"
 
 #: ../gramps/gen/utils/symbols.py:123
 msgid "Star of David"
-msgstr "六角星播放"
+msgstr "大卫之星"
 
 #: ../gramps/gen/utils/symbols.py:124
 msgid "Dead"
@@ -11992,7 +11991,7 @@ msgstr "输入您的个人联系信息，以便在您分发家谱后别人可以
 
 #: ../gramps/gui/configure.py:766 ../gramps/gui/configure.py:867
 msgid "ID Formats"
-msgstr "ID编号格式"
+msgstr "ID 格式"
 
 #: ../gramps/gui/configure.py:818 ../gramps/plugins/importer/importxml.py:325
 msgid "Media Object"
@@ -12005,9 +12004,9 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
-"默认的Gramps ID格式包含一个字母前缀和一个数字字符串。\"I%04d \"创建从I0000到"
-"I9999的ID。大型数据库可能需要更大的ID。\"I%06d \"创建的ID从I000000到"
-"I999999。\n"
+"默认的 Gramps ID 格式包含一个字母前缀和一个数字字符串。\"I%04d \" 创建从 "
+"I0000 到 I9999 的 ID。大型数据库可能需要更大的 ID 范围。\"I%06d\" 创建的 ID "
+"从 I000000 到 I999999。\n"
 
 #: ../gramps/gui/configure.py:877
 msgid "Colors used for boxes in the graphical views"
@@ -12392,10 +12391,8 @@ msgid "Calculation limits"
 msgstr "计算限制"
 
 #: ../gramps/gui/configure.py:1892
-#, fuzzy
-#| msgid "Date about range"
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Date about range"
+msgstr ""
 
 #: ../gramps/gui/configure.py:1900
 #, fuzzy
@@ -12431,7 +12428,7 @@ msgstr "最多显示几代关系"
 
 #: ../gramps/gui/configure.py:1955
 msgid "Limits"
-msgstr "边界"
+msgstr "限制"
 
 #: ../gramps/gui/configure.py:1968
 msgid "Environment Settings"
@@ -12881,10 +12878,8 @@ msgid "Tab"
 msgstr "标签"
 
 #: ../gramps/gui/csvdialect.py:81
-#, fuzzy
-#| msgid "Check your installation."
 msgid "Choose your dialect"
-msgstr "请检查您的设置。"
+msgstr "选择您需要的格式"
 
 #: ../gramps/gui/csvdialect.py:84
 msgid ""
@@ -12926,7 +12921,7 @@ msgstr "停止(_S)"
 
 #: ../gramps/gui/dbloader.py:219
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "您确定要升级此 Family Tree？"
+msgstr "您确定要升级此家谱？"
 
 #: ../gramps/gui/dbloader.py:222
 msgid ""
@@ -13445,7 +13440,7 @@ msgstr "未选中引用"
 
 #: ../gramps/gui/displaystate.py:455
 msgid "No active repository"
-msgstr "未选中文库"
+msgstr "无活动文库"
 
 #: ../gramps/gui/displaystate.py:456
 msgid "No active media"
@@ -13564,7 +13559,7 @@ msgstr "下移所选地址"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:78
 msgid "Postal"
-msgstr "邮政"
+msgstr "邮区"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:91
 msgid "_Addresses"
@@ -14123,7 +14118,7 @@ msgstr "其他名称"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1503
 #: ../gramps/plugins/webreport/basepage.py:3529
 msgid "Enclosed By"
-msgstr "被此地围绕"
+msgstr "此地区以内"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:214
 msgid "Place cycle detected"
@@ -14139,7 +14134,7 @@ msgstr "创建并添加一个新的文库"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Remove the existing repository"
-msgstr "移除现有文库"
+msgstr "移除已有文库"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:57
 #: ../gramps/plugins/view/repoview.py:139
@@ -15222,12 +15217,12 @@ msgstr "无法保存条目。 ID 编号已经存在。"
 
 #: ../gramps/gui/editors/editreporef.py:70
 msgid "Repository Reference Editor"
-msgstr "文库索引编辑器"
+msgstr "文库参考编辑器"
 
 #: ../gramps/gui/editors/editreporef.py:225
 #, python-format
 msgid "Repository: %s"
-msgstr "文库:%s"
+msgstr "文库：%s"
 
 #: ../gramps/gui/editors/editreporef.py:227
 #: ../gramps/gui/editors/editrepository.py:86
@@ -15240,7 +15235,7 @@ msgstr "文库索引编辑器"
 
 #: ../gramps/gui/editors/editreporef.py:234
 msgid "Modify Repository"
-msgstr "修订文库"
+msgstr "修改文库"
 
 #: ../gramps/gui/editors/editreporef.py:239
 msgid "Add Repository"
@@ -15475,14 +15470,14 @@ msgid ""
 "$\tA dollar sign will match the end of a line."
 msgstr ""
 "将字符串字段的内容解释为正则表达式：\n"
-".\t小数点将匹配任何字符。\n"
-"?\t一个问号将匹配前一个字符或字符组的零或一个出现次数。\n"
-"* 一个星号将匹配零个或多个出现的字符。\n"
-"+ 一个加号将匹配一个或多个出现的字符。\n"
-"() 使用圆括号来分组表达式。\n"
-"| 使用竖条指定替代物。\n"
-"^ 粗体字将匹配一行的开始。\n"
-"$ 一个美元符号将匹配一个行的结束。"
+".\t匹配任何字符。\n"
+"?\t匹配前一个字符或字符组零次或一次。\n"
+"* \t匹配零个或多个字符。\n"
+"+ \t匹配一个或多个字符。\n"
+"()\t组合表达式。\n"
+"|\t说明备选表达式。\n"
+"^\t匹配一行的开始。\n"
+"$\t匹配一行的结束。"
 
 #: ../gramps/gui/editors/filtereditor.py:667
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:85
@@ -15826,7 +15821,7 @@ msgstr "去世地点"
 
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:120
 msgid "Within"
-msgstr "范围(之内)"
+msgstr "此范围之内"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:115
 #: ../gramps/gui/plug/_windows.py:853
@@ -16688,7 +16683,7 @@ msgstr "链接类型(_L)："
 
 #: ../gramps/gui/glade/editlocation.glade:105
 msgid "The town or city where the place is."
-msgstr "地点所位于的城镇或者城市。"
+msgstr "地点所在的城镇或者城市。"
 
 #: ../gramps/gui/glade/editlocation.glade:119
 msgid "S_treet:"
@@ -16730,11 +16725,11 @@ msgstr "地点所在国家。"
 
 #: ../gramps/gui/glade/editlocation.glade:297
 msgid "Lowest level of a place division: eg the street name."
-msgstr "地点的最小的等级区分，比如街道名称"
+msgstr "地区划分的最低级别，比如街道名称。"
 
 #: ../gramps/gui/glade/editlocation.glade:325
 msgid "A district within, or a settlement near to, a town or city."
-msgstr "某个城镇内或者与之相连的定居点"
+msgstr ""
 
 #: ../gramps/gui/glade/editmedia.glade:137
 #: ../gramps/gui/glade/editmediaref.glade:381
@@ -17263,11 +17258,11 @@ msgstr "Call 号码(_U)："
 
 #: ../gramps/gui/glade/editreporef.glade:155
 msgid "On what type of media this source is available in the repository."
-msgstr "文库中这个来源何种媒体类型是有效的"
+msgstr ""
 
 #: ../gramps/gui/glade/editreporef.glade:207
 msgid "Id number of the source in the repository."
-msgstr "在文库中的来源的ID号码"
+msgstr "文库中来源的 ID 编号。"
 
 #: ../gramps/gui/glade/editreporef.glade:272
 #: ../gramps/gui/glade/editrepository.glade:98
@@ -17279,7 +17274,7 @@ msgstr "名称(_N)："
 #: ../gramps/gui/glade/editreporef.glade:301
 #: ../gramps/gui/glade/editrepository.glade:127
 msgid "Name of the repository (where sources are stored)."
-msgstr "文库的名称（来源保存的位置）"
+msgstr "文库的名称（来源保存的位置）。"
 
 #: ../gramps/gui/glade/editreporef.glade:337
 msgid ""
@@ -17287,8 +17282,8 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>注：</b>在共享文库信息中的任何更改将会影响文库本身，包含所有参照文库的索"
-"引。"
+"<b>注：</b> 在共享文库信息中所做的任何更改将会在该文库本身体现，适用于参考该"
+"文库的所有项目。"
 
 #: ../gramps/gui/glade/editreporef.glade:378
 #: ../gramps/gui/glade/editrepository.glade:180
@@ -17364,7 +17359,7 @@ msgstr "您保存的网络地址的描述性标题。"
 
 #: ../gramps/gui/glade/grampletpane.glade:62
 msgid "Drag to move; click to detach"
-msgstr "拖动；点击收起"
+msgstr "通过拖拽来移动；点击可分离"
 
 #: ../gramps/gui/glade/grampletpane.glade:70
 msgid "Config"
@@ -17638,8 +17633,8 @@ msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
-"选择将为合并后的存储库提供\n"
-"为合并后的版本库提供主要数据。"
+"选择将为合并后的文库提供\n"
+"主要数据的文库。"
 
 #: ../gramps/gui/glade/mergerepository.glade:182
 msgid "Repository 1"
@@ -17665,7 +17660,7 @@ msgstr ""
 msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
-msgstr "两个源的注释、媒体对象、数据项目和文库参考都将被合并。"
+msgstr "两个源的注释、媒体对象、数据条目和文库参考都将被合并。"
 
 #: ../gramps/gui/glade/papermenu.glade:8
 msgid "Paper Settings"
@@ -17735,7 +17730,7 @@ msgstr "公制"
 
 #: ../gramps/gui/glade/plugins.glade:22
 msgid "_Wiki"
-msgstr "维基(_W)"
+msgstr "维基网页(_W)"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
@@ -18390,7 +18385,7 @@ msgstr "解析参数出错"
 
 #: ../gramps/gui/grampsgui.py:640
 msgid "Gramps terminated because of no DISPLAY"
-msgstr "爷爷因为没有DISPLAY而被解雇"
+msgstr "缺少显示环境，Gramps 终止"
 
 #: ../gramps/gui/grampsgui.py:670 ../gramps/gui/grampsgui.py:751
 msgid ""
@@ -18868,7 +18863,7 @@ msgstr "安装"
 
 #: ../gramps/gui/plug/_windows.py:270
 msgid "Wiki"
-msgstr "维基"
+msgstr "维基页面"
 
 #: ../gramps/gui/plug/_windows.py:275
 msgid "Requires"
@@ -20481,7 +20476,7 @@ msgstr "条目"
 
 #: ../gramps/gui/views/listview.py:1467
 msgid "CSV Dialect"
-msgstr "CSV方言"
+msgstr "CSV 格式"
 
 #: ../gramps/gui/views/navigationview.py:246
 #, python-format
@@ -22323,7 +22318,7 @@ msgstr "向上"
 
 #: ../gramps/plugins/drawreport/fanchart.py:827
 msgid "roundabout"
-msgstr "大约"
+msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:828
 msgid "Print radial texts upright or roundabout"
@@ -23603,14 +23598,12 @@ msgid "Details"
 msgstr "详细信息"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:412
-#, fuzzy
 msgid "Repository Details"
-msgstr "文库筛选器"
+msgstr "文库详情"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:413
-#, fuzzy
 msgid "Gramplet showing details of a repository"
-msgstr "Gramplet 显示成员详细"
+msgstr "显示文库详细信息的 Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:428
 msgid "Place Details"
@@ -23831,9 +23824,8 @@ msgid "Repository Notes"
 msgstr "文库笔记"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:857
-#, fuzzy
 msgid "Gramplet showing the notes for a repository"
-msgstr "Gramplet为成员显示媒体对象"
+msgstr "显示文库笔记的 Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:872
 msgid "Media Notes"
@@ -23977,7 +23969,7 @@ msgstr "Gramplet为成员显示媒体对象"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1112
 #: ../gramps/plugins/quickview/quickview.gpr.py:275
 msgid "Repository References"
-msgstr "参照文库"
+msgstr "文库参考"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1113
 #, fuzzy
@@ -24063,7 +24055,7 @@ msgstr "文库筛选"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1273
 msgid "Gramplet providing a repository filter"
-msgstr "Gramplet 提供一个文库过滤器"
+msgstr "用于文库筛选的 Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1288
 msgid "Note Filter"
@@ -24142,9 +24134,8 @@ msgid "Repository To Do"
 msgstr "文库待做事项"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1419
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet为成员显示媒体对象"
+msgstr "显示文库中待做笔记的 Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1434
 msgid "Media To Do"
@@ -24782,7 +24773,7 @@ msgstr "从其他系谱学程序导入"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:225
 msgid "Dashboard View"
-msgstr "仪表盘视图"
+msgstr "小组件视图"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:228
 msgid ""
@@ -24795,13 +24786,13 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet on this page, "
 "and detach the gramplet to float above Gramps."
 msgstr ""
-"您当前正在查看“仪表盘”视图，在这里您可以添加自己所需的 gramplet 控件。您还可"
+"您当前正在查看“小组件”视图，在这里您可以添加自己所需的 gramplet 控件。您还可"
 "以在其他视图中的边栏或低栏中添加 gramplet 控件\n"
 "\n"
 "你可以点击工具栏上的配置图标（扳手和螺丝刀图标）来添加额外的列，在背景上右键"
-"点击也可以添加 gramplet 控件。另外您还可以通过拖拽 gramplet 控件的属性按钮"
-"（控件左上角扳手图标）来移动它的位置，单击该按钮还可以让控件脱离 Gramps 主界"
-"面。"
+"点击也可以添加 gramplet 控件。另外您还可以通过拖拽 gramplet 控件的属性按钮（"
+"控件左上角扳手图标）来移动它的位置，单击该按钮还可以让控件脱离 Gramps 主界面"
+"。"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:241
 msgid "Gramps View Categories"
@@ -27072,7 +27063,7 @@ msgstr "OBJE (多媒体对象) Gramps ID %s"
 #: ../gramps/plugins/lib/libgedcom.py:7467
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "重新整理 GRAMPS ID编号： %s"
+msgstr "文库的 GRAMPS ID 编号： %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7528
 #: ../gramps/plugins/lib/libgedcom.py:8550
@@ -30695,7 +30686,7 @@ msgstr "前往默认成员"
 #: ../gramps/plugins/view/relview.py:453 ../gramps/plugins/view/repoview.py:242
 #: ../gramps/plugins/view/sourceview.py:214
 msgid "Go to the next object in the history"
-msgstr "前往历史中的下一个对象"
+msgstr "前往浏览历史中的下一个对象"
 
 #: ../gramps/plugins/lib/libpersonview.py:286
 #: ../gramps/plugins/lib/libplaceview.py:360
@@ -30717,7 +30708,7 @@ msgstr "前往历史中的下一个对象"
 #: ../gramps/plugins/view/relview.py:453 ../gramps/plugins/view/repoview.py:242
 #: ../gramps/plugins/view/sourceview.py:214
 msgid "Go to the previous object in the history"
-msgstr "前往历史中的上一个对象"
+msgstr "前往浏览历史中的上一个对象"
 
 #: ../gramps/plugins/lib/libpersonview.py:329
 #: ../gramps/plugins/lib/libplaceview.py:390
@@ -30805,7 +30796,7 @@ msgstr "使用地图服务寻找(_L)"
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
-msgstr "尝试使用地图服务（开放街道地图、Google 地图……）查看选中的位置"
+msgstr "尝试使用地图服务（OpenstreetMap、Google 地图……）查看选中的位置"
 
 #: ../gramps/plugins/lib/libplaceview.py:498
 msgid "Select a Map Service"
@@ -31382,7 +31373,7 @@ msgstr "纬度不在 '54.55' 和 '69.05' 的范围内\n"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:160
 msgid "Longitude not within '8.05' to '24.15'"
-msgstr "经度不在 '8.05' 和 '24.15' 范围内"
+msgstr "经度不在 '8.05' 到 '24.15' 范围内"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:163
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:196
@@ -31745,7 +31736,7 @@ msgstr "整体数量"
 #: ../gramps/plugins/quickview/filterbyname.py:92
 #: ../gramps/plugins/tool/reorderids.glade:1383
 msgid "Object"
-msgstr "目标"
+msgstr "对象"
 
 #: ../gramps/plugins/quickview/filterbyname.py:229
 #: ../gramps/plugins/quickview/filterbyname.py:231
@@ -32020,7 +32011,7 @@ msgstr "为注释显示链接参照"
 #: ../gramps/plugins/quickview/quickview.gpr.py:277
 msgid ""
 "Display the repository reference for sources related to the active repository"
-msgstr "为与激活的文库相关的来源，显示文库参照信息"
+msgstr "为与活跃文库相关的来源显示文库参考"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:300
 msgid "Same Surnames"
@@ -33635,10 +33626,8 @@ msgid "Number of citations: %d"
 msgstr "引用数量: %d"
 
 #: ../gramps/plugins/textreport/summary.py:302
-#, fuzzy
-#| msgid "Relationship Information"
 msgid "Repository Information"
-msgstr "关系信息"
+msgstr "文库信息"
 
 #: ../gramps/plugins/textreport/summary.py:307
 #, python-format
@@ -34044,7 +34033,7 @@ msgstr "搜索空的媒体记录"
 
 #: ../gramps/plugins/tool/check.py:1016
 msgid "Looking for empty repository records"
-msgstr "寻找空的文库记录"
+msgstr "寻找空文库记录"
 
 #: ../gramps/plugins/tool/check.py:1025
 msgid "Looking for empty note records"
@@ -34077,7 +34066,7 @@ msgstr "正在查找家庭参照问题"
 
 #: ../gramps/plugins/tool/check.py:1520
 msgid "Looking for repository reference problems"
-msgstr "寻找文库参照问题"
+msgstr "寻找文库参考问题"
 
 #: ../gramps/plugins/tool/check.py:1560
 msgid "Looking for place reference problems"
@@ -34216,7 +34205,7 @@ msgstr[0] "已更正 {quantity} 个日期\n"
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "{quantity} 个文库被参照，但是无法找到 \n"
+msgstr[0] "{quantity} 个文库被参考，但是没有找到\n"
 
 #: ../gramps/plugins/tool/check.py:2950 ../gramps/plugins/tool/check.py:3050
 #, python-brace-format
@@ -35216,7 +35205,7 @@ msgstr "列出随后可用的 ID（可能并不连续）。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1405
 msgid "  Actual"
-msgstr ""
+msgstr "  实际"
 
 #: ../gramps/plugins/tool/reorderids.glade:1417
 msgid "Amount of ID in use."
@@ -36028,7 +36017,7 @@ msgstr "对象的类型必须相同，要么都是来源，要么都是引用。
 #: ../gramps/plugins/view/dashboardview.py:85
 #: ../gramps/plugins/view/view.gpr.py:70 ../gramps/plugins/view/view.gpr.py:78
 msgid "Dashboard"
-msgstr "仪表盘"
+msgstr "小组件"
 
 #: ../gramps/plugins/view/eventview.py:112
 msgid "Add a new event"
@@ -36205,7 +36194,7 @@ msgstr "扇形图分布"
 #: ../gramps/plugins/view/fanchart2wayview.py:362
 #: ../gramps/plugins/view/fanchartdescview.py:358
 msgid "Homogeneous children distribution"
-msgstr "均匀的儿童分布"
+msgstr ""
 
 #: ../gramps/plugins/view/fanchart2wayview.py:365
 #: ../gramps/plugins/view/fanchartdescview.py:361
@@ -36296,7 +36285,7 @@ msgstr "打印或保存地图"
 #: ../gramps/plugins/view/geoclose.py:220
 #: ../gramps/plugins/view/geography.gpr.py:177
 msgid "Have they been able to meet?"
-msgstr "他们是否已经能够见面？"
+msgstr "他们是否曾经相遇？"
 
 #: ../gramps/plugins/view/geoclose.py:264
 #, fuzzy
@@ -36417,7 +36406,7 @@ msgstr "参照家庭(_F)"
 #: ../gramps/plugins/view/geofamclose.py:219
 #: ../gramps/plugins/view/geography.gpr.py:156
 msgid "Have these two families been able to meet?"
-msgstr "这两个家庭是否已经能够见面？"
+msgstr "这两个家庭是否曾相遇？"
 
 #: ../gramps/plugins/view/geofamclose.py:261
 #, fuzzy
@@ -36653,7 +36642,7 @@ msgstr "动画速度，以毫秒为单位（大值意味着更慢）。"
 
 #: ../gramps/plugins/view/geoperson.py:653
 msgid "How many steps between two markers when we are on large move ?"
-msgstr "当我们在大范围内移动时，两个标志物之间有多少步？"
+msgstr "当我们在大范围内移动时，两个标记之间要用多少步进？"
 
 #: ../gramps/plugins/view/geoperson.py:661
 msgid ""
@@ -37257,7 +37246,7 @@ msgstr "该视图显示所有引用"
 
 #: ../gramps/plugins/view/view.gpr.py:316
 msgid "Citation Tree"
-msgstr "引用树状图"
+msgstr "引用树视图"
 
 #: ../gramps/plugins/view/view.gpr.py:317
 msgid "A view displaying citations and sources in a tree format."
@@ -38380,7 +38369,6 @@ msgid "Include repository pages"
 msgstr "包含文库页面"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2621
-#, fuzzy
 msgid "Whether or not to include the repository pages."
 msgstr "是否包含文库页面。"
 
@@ -38885,11 +38873,9 @@ msgstr ""
 "转到来源&#8217;s 的页面."
 
 #: ../gramps/plugins/webreport/repository.py:177
-#, fuzzy
-#| msgid "Name"
 msgctxt "Repository"
 msgid "Name"
-msgstr "名字"
+msgstr "名称"
 
 #: ../gramps/plugins/webreport/source.py:115
 msgid "Creating source pages"
@@ -38975,8 +38961,8 @@ msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
-"这个页面包含了最近%(days)d 天内数据库中最后更新的对象，每个对象类型最多可"
-"有%(nb)d个对象。"
+"这个页面包含了最近 %(days)d 天内数据库中最后更新的对象，每个对象类型最多可有 "
+"%(nb)d 个对象。"
 
 #. Translators: This is the email subject line in the Web Calendar
 #: ../gramps/plugins/webreport/webcal.py:1667
