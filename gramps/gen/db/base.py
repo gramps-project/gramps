@@ -77,7 +77,7 @@ class DbReadBase:
         Returns True if the database has a proxy, such as Living, or Private.
         Otherwise, return False.
         """
-        return self != self.basedb
+        return self.basedb is not None and self != self.basedb
 
     def get_feature(self, feature):
         """
