@@ -277,13 +277,10 @@ class GenericFilter:
                 if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
-        t0 = time.perf_counter()
+        start_time = time.time()
         for rule in self.flist:
             rule.requestprepare(db, user)
-        t1 = time.perf_counter()
-        LOG.debug("Prepare time: %s seconds", t1 - t0)
-        if user:
-            user.print("Prepare time: %.3fs" % (t1 - t0))
+        LOG.debug("Prepare time: %s seconds", time.time() - start_time)
 
         if self.logical_op == "and":
             apply_logical_op = self.and_test
@@ -293,6 +290,8 @@ class GenericFilter:
             apply_logical_op = self.one_test
         else:
             raise Exception("invalid operator: %r" % self.logical_op)
+
+        start_time = time.time()
 
         # build the starting set of possible_handles to be filtered
         possible_handles: Set[PrimaryObjectHandle]
@@ -313,22 +312,20 @@ class GenericFilter:
         else:
             possible_handles = set(self.get_all_handles(db))
 
-        t1 = time.perf_counter()
         res = self.apply_logical_op_to_all(db, possible_handles, apply_logical_op, user)
-        t2 = time.perf_counter()
-        LOG.debug("Apply time: %s seconds", t2 - t1)
-        if user:
-            user.print("Apply time: %.3fs" % (t2 - t1))
 
         # convert the filtered set of handles to the correct result type
         if id_list is not None and tupleind is not None:
-            # filter id_list to only matched handles, preserving original order
-            res_set = set(res)
-            res = [item for item in id_list if item[tupleind] in res_set]
+            # convert the final_list of handles back to the corresponding final_list of tuples
+            res = sorted(
+                [handle_tuple[handle] for handle in res],
+                key=lambda x: id_list.index(x),
+            )
         elif tree:
             # sort final_list into the same order as traversed by get_tree_cursor
-            tree_pos = {h: i for i, h in enumerate(tree_handles)}
-            res = sorted(res, key=lambda x: tree_pos[x])
+            res = sorted(res, key=lambda x: tree_handles.index(x))
+
+        LOG.debug("Apply time: %s seconds", time.time() - start_time)
 
         for rule in self.flist:
             rule.requestreset()
