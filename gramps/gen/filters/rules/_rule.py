@@ -28,7 +28,6 @@ Base class for filter rules.
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
-import functools
 import re
 
 from ...errors import FilterError
@@ -54,71 +53,6 @@ LOG = logging.getLogger(".rules")
 from typing import Any, List
 from ...db import Database
 
-# -------------------------------------------------------------------------
-#
-# DB-override helpers
-#
-# -------------------------------------------------------------------------
-
-
-def _rule_key(cls):
-    """Return (category, rule_name) tuple for *cls*, cached on the class."""
-    cached = cls.__dict__.get("_rule_key_cache")
-    if cached is not None:
-        return cached
-    parts = cls.__module__.split(".")
-    try:
-        category = parts[parts.index("rules") + 1]
-    except (ValueError, IndexError):
-        category = None
-    key = (category, cls.__name__)
-    cls._rule_key_cache = key
-    return key
-
-
-def _wrap_prepare(method):
-    @functools.wraps(method)
-    def wrapper(self, db, user):
-        if not db.is_proxy() and not getattr(self, "_in_prepare_override", False):
-            entry = (
-                getattr(db, "_override_registry", {})
-                .get("rule", {})
-                .get(_rule_key(type(self)))
-            )
-            if entry is not None and entry.get("prepare") is not None:
-                LOG.debug("%s using optimized prepare", type(self).__name__)
-                self._in_prepare_override = True
-                try:
-                    return entry["prepare"](self, method, db, user)
-                finally:
-                    self._in_prepare_override = False
-        LOG.debug("%s using non-optimized prepare", type(self).__name__)
-        return method(self, db, user)
-
-    return wrapper
-
-
-def _wrap_apply_to_one(method):
-    @functools.wraps(method)
-    def wrapper(self, db, obj):
-        if not db.is_proxy() and not getattr(self, "_in_apply_override", False):
-            entry = (
-                getattr(db, "_override_registry", {})
-                .get("rule", {})
-                .get(_rule_key(type(self)))
-            )
-            if entry is not None and entry.get("apply_to_one") is not None:
-                LOG.debug("%s using optimized apply_to_one", type(self).__name__)
-                self._in_apply_override = True
-                try:
-                    return entry["apply_to_one"](self, method, db, obj)
-                finally:
-                    self._in_apply_override = False
-        LOG.debug("%s using non-optimized apply_to_one", type(self).__name__)
-        return method(self, db, obj)
-
-    return wrapper
-
 
 # -------------------------------------------------------------------------
 #
@@ -133,23 +67,6 @@ class Rule:
     category = _("Miscellaneous filters")
     description = _("No description")
     allow_regex = False
-
-    @classmethod
-    def __init_subclass__(cls, **kwargs):
-        super().__init_subclass__(**kwargs)
-        cat = _rule_key(cls)[0]
-        # Only wrap concrete rules in category subdirectories (person/, family/,
-        # etc.).  Abstract base classes live directly under rules/ and their
-        # module component after "rules" starts with "_" (e.g. _regexpidbase).
-        # Wrapping those causes every super().apply_to_one() call to re-enter
-        # the registry dispatch with type(self) still pointing at the concrete
-        # class, triggering overrides with wrong arguments.
-        if cat is None or cat.startswith("_"):
-            return
-        if "prepare" in cls.__dict__:
-            cls.prepare = _wrap_prepare(cls.prepare)
-        if "apply_to_one" in cls.__dict__:
-            cls.apply_to_one = _wrap_apply_to_one(cls.apply_to_one)
 
     def __init__(self, arg, use_regex=False, use_case=False):
         self.list = []
@@ -187,7 +104,7 @@ class Rule:
                         except re.error:
                             self.regex[index] = re.compile("")
                 self.match_substring = self.match_regex
-            self.prepare(db, user)
+            self._checked_prepare(db, user)
         self.nrprepare += 1
         if self.nrprepare > 20:  # more references to a filter than expected
             raise FilterError(
@@ -201,6 +118,58 @@ class Rule:
     def prepare(self, db: Database, user):
         """prepare so the rule can be executed efficiently"""
         pass
+
+    def _checked_prepare(self, db: Database, user):
+        """
+        Call prepare, routing through a DB override when one is registered.
+
+        This method is called by requestprepare and is never overridden by
+        rule subclasses, so the lookup works regardless of inheritance depth.
+        """
+        cls = type(self)
+        parts = cls.__module__.split(".")
+        try:
+            key = (parts[parts.index("rules") + 1], cls.__name__)
+        except (ValueError, IndexError):
+            key = (None, cls.__name__)
+        entry = (
+            getattr(db, "_override_registry", {}).get("rule", {}).get(key)
+            if db is not None and not db.is_proxy()
+            else None
+        )
+        if entry is not None and entry.get("prepare") is not None:
+            LOG.debug("%s using optimized prepare", cls.__name__)
+            return entry["prepare"](self, cls.prepare, db, user)
+        LOG.debug("%s using non-optimized prepare", cls.__name__)
+        return self.prepare(db, user)
+
+    def _checked_apply_to_one(self, db: Database, obj) -> bool:
+        """
+        Call apply_to_one, routing through a DB override when one is registered.
+
+        Filters call this method instead of apply_to_one directly so that
+        overrides fire for rules that inherit apply_to_one from a base class
+        (e.g. HasTag inheriting from HasTagBase) without any wrapping magic.
+        Internal super().apply_to_one() calls inside rule implementations
+        bypass this method and go straight to the original, so there is no
+        risk of double dispatch.
+        """
+        cls = type(self)
+        parts = cls.__module__.split(".")
+        try:
+            key = (parts[parts.index("rules") + 1], cls.__name__)
+        except (ValueError, IndexError):
+            key = (None, cls.__name__)
+        entry = (
+            getattr(db, "_override_registry", {}).get("rule", {}).get(key)
+            if db is not None and not db.is_proxy()
+            else None
+        )
+        if entry is not None and entry.get("apply_to_one") is not None:
+            LOG.debug("%s using optimized apply_to_one", type(self).__name__)
+            return entry["apply_to_one"](self, type(self).apply_to_one, db, obj)
+        LOG.debug("%s using non-optimized apply_to_one", type(self).__name__)
+        return self.apply_to_one(db, obj)
 
     def requestreset(self):
         """
@@ -291,13 +260,3 @@ class Rule:
             return False
         else:
             return True
-
-
-# Wrap the base-class implementations so DB overrides are checked for
-# concrete rules that do not define their own prepare / apply_to_one.
-# Intermediate abstract bases (RegExpIdBase etc.) are intentionally NOT
-# wrapped — their module sits directly under rules/ so __init_subclass__
-# skips them — which prevents super() calls inside a concrete rule's method
-# from re-entering the override registry with the wrong key.
-setattr(Rule, "prepare", _wrap_prepare(Rule.prepare))
-setattr(Rule, "apply_to_one", _wrap_apply_to_one(Rule.apply_to_one))
