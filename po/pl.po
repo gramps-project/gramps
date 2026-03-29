@@ -18,13 +18,14 @@
 # Piotr Strebski <strebski@gmail.com>, 2025.
 # Klaudiusz Dybiec <klaudi30i@gmail.com>, 2025.
 # Maciej L <github@maciej.website>, 2025.
+# Patryk <patryk230206@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2025-09-10 23:02+0000\n"
-"Last-Translator: Krystian Safjan <ksafjan@gmail.com>\n"
+"PO-Revision-Date: 2026-03-21 22:10+0000\n"
+"Last-Translator: Patryk <patryk230206@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -33,7 +34,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -8415,10 +8416,8 @@ msgid "Type code"
 msgstr "Kod typu"
 
 #: ../gramps/gen/lib/ldsord.py:96
-#, fuzzy
-#| msgid "Initiatory (LDS)"
 msgid "Initiatory"
-msgstr "Inicjator (LDS)"
+msgstr "Inicjator"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -8705,8 +8704,6 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
 msgstr "Nieznany"
@@ -11606,7 +11603,7 @@ msgstr "Arabski"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Baszkirski"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -14477,8 +14474,6 @@ msgid "Move the selected surname downwards"
 msgstr "Przenieś zaznaczone nazwisko w dół"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Nazwisko"
@@ -34817,11 +34812,11 @@ msgstr "Sprawdzanie złych linków w Notatkach"
 
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
-msgstr ""
+msgstr "Łączenie zduplikowanych ról w wydarzeniach przypisanych osobom"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
-msgstr ""
+msgstr "Łączenie zduplikowanych ról w wydarzeniach przypisanych rodzinach"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -38255,8 +38250,6 @@ msgid " [Click to Go]"
 msgstr " [Kliknij aby przejść]"
 
 #: ../gramps/plugins/webreport/basepage.py:2973
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
 msgstr "Ordynacja Świętych w Dniach Ostatnich/LDS (Mormonów)"
 
