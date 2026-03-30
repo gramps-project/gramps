@@ -281,5 +281,5 @@ class Rule:
 
 # Wrap Rule.prepare and Rule.apply_to_one so that concrete rules which inherit
 # only from Rule (no intermediate abstract base) also go through override dispatch.
-Rule.prepare = _wrap_prepare(Rule.prepare)
-Rule.apply_to_one = _wrap_apply_to_one(Rule.apply_to_one)
+Rule.prepare = _wrap_prepare(Rule.prepare)  # type: ignore[method-assign]
+Rule.apply_to_one = _wrap_apply_to_one(Rule.apply_to_one)  # type: ignore[method-assign]
