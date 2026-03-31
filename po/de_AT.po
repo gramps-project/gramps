@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-03-21 22:09+0000\n"
+"PO-Revision-Date: 2026-03-30 21:09+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/de_AT/>\n"
@@ -8789,8 +8789,6 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
 msgstr "Unbekannt"
@@ -8803,7 +8801,7 @@ msgstr "Geerbt"
 #: ../gramps/gen/lib/nameorigintype.py:83
 msgctxt "Surname"
 msgid "Given"
-msgstr "Gegeben"
+msgstr "Vorname"
 
 #: ../gramps/gen/lib/nameorigintype.py:84
 msgctxt "Surname"
@@ -14577,8 +14575,6 @@ msgid "Move the selected surname downwards"
 msgstr "Ausgewählten Nachnamen hinab schieben"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Nachname"
@@ -17339,8 +17335,6 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
 msgstr "_Vorname:"
