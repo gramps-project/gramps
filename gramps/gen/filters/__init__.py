@@ -52,6 +52,8 @@ def get_filter_by_name(namespace: str, filter_name: str):
 
     Assumes filters have been loaded.
     """
+    if CustomFilters is None:
+        return None
     filters_dict = CustomFilters.get_filters_dict(namespace)
     return filters_dict.get(filter_name)
 
@@ -65,7 +67,7 @@ def get_rule_names(namespace: str, filter_name: str):
     return _get_rule_names_recursively(filt)
 
 
-def _get_rule_names_recursively(filt, seen: set[str] = None):
+def _get_rule_names_recursively(filt, seen: set[str] | None = None):
     """
     Walk a gramps filter object looking for rules.
 
