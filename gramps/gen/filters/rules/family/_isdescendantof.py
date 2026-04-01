@@ -45,6 +45,7 @@ from ....const import GRAMPS_LOCALE as glocale
 from typing import Set
 from ....lib import Family
 from ....db import Database
+from ....user import User
 
 _ = glocale.translation.gettext
 
@@ -76,7 +77,9 @@ class IsDescendantOf(Rule):
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
 
-    def init_list(self, db: Database, family: Family | None, first: bool, user) -> None:
+    def init_list(
+        self, db: Database, family: Family | None, first: bool, user: User
+    ) -> None:
         """
         Initialise family handle list.
         """

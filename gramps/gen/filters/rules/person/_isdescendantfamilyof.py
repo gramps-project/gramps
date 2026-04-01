@@ -47,6 +47,7 @@ from typing import List, Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -87,7 +88,7 @@ class IsDescendantFamilyOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def add_matches(self, person: Person | None, user):
+    def add_matches(self, person: Person | None, user: User):
         if not person:
             return
 

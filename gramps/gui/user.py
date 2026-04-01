@@ -100,9 +100,7 @@ class User(user.UserBase):
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-    def get_cancelled(
-        self,
-    ):
+    def get_cancelled(self):
         if self._progress:
             return self._progress.get_cancelled()
         else:
