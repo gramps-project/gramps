@@ -42,6 +42,7 @@ from .. import Rule
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -76,7 +77,7 @@ class IsLessThanNthGenerationDescendantOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_list(self, person: Person | None, gen: int, user=None):
+    def init_list(self, person: Person | None, gen: int, user: User):
         if user.get_cancelled():
             return
         if not person or person.handle in self.selected_handles:

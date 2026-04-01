@@ -42,6 +42,7 @@ from typing import List, Set, Dict
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -113,7 +114,7 @@ class RelationshipPathBetween(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_list(self, p1_handle: PersonHandle, p2_handle: PersonHandle, user=None):
+    def init_list(self, p1_handle: PersonHandle, p2_handle: PersonHandle, user: User):
         firstMap: Dict[PersonHandle, int] = {}
         firstSet: Set[PersonHandle] = set()
         secondMap: Dict[PersonHandle, int] = {}
