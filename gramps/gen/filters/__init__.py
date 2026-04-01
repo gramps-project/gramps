@@ -46,5 +46,47 @@ def set_custom_filters(filter_list):
     CustomFilters = filter_list
 
 
+def get_filter_by_name(namespace, filter_name):
+    """
+    Get a filter_name from a namespace.
+
+    Assumes filters have been loaded.
+    """
+    filters_dict = CustomFilters.get_filters_dict(namespace)
+    return filters_dict.get(filter_name)
+
+
+def get_rule_names(namespace: str, filter_name: str):
+    """
+    Get all of rule names recursively that a filter references
+    """
+    filt = get_filter_by_name(namespace, filter_name)
+
+    return _get_rule_names_recursively(filt)
+                   
+
+def _get_rule_names_recursively(filt, seen: set[str] = None):
+    """
+    Walk a gramps filter object looking for rules.
+
+    Returns a set of rulenames.
+    """
+    from gramps.gen.filters.rules._matchesfilterbase import MatchesFilterBase
+
+    if seen is None:
+        seen = set()
+    if filt.name in seen:
+        return []
+    seen.add(filt.name)
+
+    names = []
+    for rule in filt.get_rules():
+        names.append(type(rule).__name__)
+        if isinstance(rule, MatchesFilterBase):
+            nested = rule.find_filter()
+            if nested:
+                names += _get_rule_names_recursively(nested, seen)
+    return names
+
 # if not CustomFilters:  # moved to viewmanager
 # reload_custom_filters()

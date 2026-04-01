@@ -92,14 +92,26 @@ class DbReadBase:
         """
         self.__feature[feature] = value
 
-    def register_override(self, namespace, key, **handlers):
+    def is_filter_override(self, table, filter_name):
         """
-        Register database-optimised handler callables under a namespace/key.
+        Return True if the database has a native (such as SQL) implementation for the
+        named filter on the given table, False otherwise.
+
+        If any rule is registered, then the filter is considered
+        to be.
+        """
+        from ..filters import get_rule_names
+
+        for rule_name in get_rule_names(table, filter_name):
+            if (table, rule_name) in self._override_registry.get("rule", {}):
+                return True
+
+    def register_rule_override(self, key, **handlers):
+        """
+        Register database-optimised handler callables under 'rule' namespace.
 
         Parameters
         ----------
-        namespace : str
-            Subsystem that will consume the override (e.g. ``"rule"``).
         key : hashable
             Identifies the specific target within the namespace.
             For filter rules this is the ``(category, rule_name)`` tuple
@@ -133,22 +145,21 @@ class DbReadBase:
 
         Examples
         --------
-        Register fast SQL implementations for the ``Disconnected`` rule::
+        Register fast implementations (such as SQL) for the person ``MyRule`` rule::
 
-            from gramps.gen.filters.rules._rule import _rule_key
-            from gramps.gen.filters.rules.person.disconnected import Disconnected
+            def fast_prepare(rule, original, db, user):
+                rule.selected_handles = db.sql_select(...)
 
-            def fast_apply(rule, original, db, person):
-                # optimised path; fall back via original(rule, db, person)
-                return db.run_query(...)
+            def fast_apply_to_one(rule, original, db, person):
+                return person.handle in rule.selected_handles
 
-            db.register_override(
-                "rule",
-                _rule_key(Disconnected),
-                apply_to_one=fast_apply,
+            db.register_rule_override(
+                ("person", "MyRule"),
+                apply_to_one=fast_apply_to_one,
+                prepare=fast_prepare,
             )
         """
-        self._override_registry.setdefault(namespace, {})[key] = handlers
+        self._override_registry.setdefault("rule", {})[key] = handlers
 
     def close(self):
         """
