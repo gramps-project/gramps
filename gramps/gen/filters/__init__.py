@@ -46,7 +46,7 @@ def set_custom_filters(filter_list):
     CustomFilters = filter_list
 
 
-def get_filter_by_name(namespace, filter_name):
+def get_filter_by_name(namespace: str, filter_name: str):
     """
     Get a filter_name from a namespace.
 
@@ -63,7 +63,7 @@ def get_rule_names(namespace: str, filter_name: str):
     filt = get_filter_by_name(namespace, filter_name)
 
     return _get_rule_names_recursively(filt)
-                   
+
 
 def _get_rule_names_recursively(filt, seen: set[str] = None):
     """
@@ -87,6 +87,7 @@ def _get_rule_names_recursively(filt, seen: set[str] = None):
             if nested:
                 names += _get_rule_names_recursively(nested, seen)
     return names
+
 
 # if not CustomFilters:  # moved to viewmanager
 # reload_custom_filters()
