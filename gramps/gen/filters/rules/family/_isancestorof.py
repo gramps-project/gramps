@@ -65,7 +65,7 @@ class IsAncestorOf(Rule):
     category = _("General filters")
     description = _("Matches ancestor families of the specified family")
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.selected_handles: Set[str] = set()
         first = False if int(self.list[1]) else True
         root_family = db.get_family_from_gramps_id(self.list[0])

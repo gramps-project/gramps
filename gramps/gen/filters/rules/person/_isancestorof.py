@@ -42,6 +42,7 @@ from .. import Rule
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -57,7 +58,7 @@ class IsAncestorOf(Rule):
     category = _("Ancestral filters")
     description = _("Matches people that are ancestors of a specified person")
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         """Assume that if 'Inclusive' not defined, assume inclusive"""
         self.db = db
         self.selected_handles: Set[str] = set()
@@ -78,7 +79,7 @@ class IsAncestorOf(Rule):
         return person.handle in self.selected_handles
 
     def init_ancestor_list(
-        self, db: Database, person: Person | None, first: bool, user
+        self, db: Database, person: Person | None, first: bool, user: User
     ) -> None:
         if user.get_cancelled():
             return

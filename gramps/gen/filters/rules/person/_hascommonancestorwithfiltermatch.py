@@ -34,6 +34,7 @@ _ = glocale.translation.gettext
 from ....utils.db import for_each_ancestor
 from ._hascommonancestorwith import HasCommonAncestorWith
 from ._matchesfilter import MatchesFilter
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -56,7 +57,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         HasCommonAncestorWith.__init__(self, list, use_regex, use_case)
         self.ancestor_cache = {}
 
-    def prepare(self, db, user):
+    def prepare(self, db, user: User):
         self.db = db
         # For each(!) person we keep track of who their ancestors
         # are, in a set(). So we only have to compute a person's

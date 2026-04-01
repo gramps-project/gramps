@@ -58,7 +58,7 @@ class IsRelatedWith(Rule):
     category = _("Relationship filters")
     description = _("Matches people related to a specified person")
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         """prepare so the rule can be executed efficiently
         we build the list of people related to <person> here,
         so that apply is only a check into this list

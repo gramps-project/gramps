@@ -67,7 +67,7 @@ class IsDescendantFamilyOf(Rule):
         "of a descendant of a specified person"
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         self.root_person = db.get_person_from_gramps_id(self.list[0])

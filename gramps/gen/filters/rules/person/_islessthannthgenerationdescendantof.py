@@ -62,7 +62,7 @@ class IsLessThanNthGenerationDescendantOf(Rule):
         "specified person not more than N generations away"
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[str] = set()
         try:

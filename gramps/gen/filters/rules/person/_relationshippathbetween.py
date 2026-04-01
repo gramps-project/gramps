@@ -63,7 +63,7 @@ class RelationshipPathBetween(Rule):
         "path between two persons."
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[PersonHandle] = set()
         root1 = db.get_person_from_gramps_id(self.list[0])
