@@ -146,12 +146,8 @@ class DashboardView(PageView):
         """
         self._dashboard_names, self._current_name = self._load_dashboard_list()
 
-        # ── Outer vertical box ──────────────────────────────────────────
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-
-        # ── Selector bar ────────────────────────────────────────────────
-        bar = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=4)
-        bar.set_border_width(2)
+        # ── Selector bar (lives in the status bar, not the view) ────────
+        self._selector_bar = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=4)
 
         self._combo = Gtk.ComboBoxText()
         for name in self._dashboard_names:
@@ -163,38 +159,34 @@ class DashboardView(PageView):
         )
         self._combo.set_active(active_idx)
         self._combo.connect("changed", self._on_combo_changed)
-        bar.pack_start(self._combo, False, False, 0)
+        self._selector_bar.pack_start(self._combo, False, False, 0)
 
         add_btn = Gtk.Button.new_from_icon_name("list-add", Gtk.IconSize.BUTTON)
         add_btn.set_tooltip_text(_("Create new dashboard"))
         add_btn.connect("clicked", self._on_add_dashboard)
-        bar.pack_start(add_btn, False, False, 0)
+        self._selector_bar.pack_start(add_btn, False, False, 0)
 
         self._rename_btn = Gtk.Button.new_from_icon_name(
             "document-edit", Gtk.IconSize.BUTTON
         )
         self._rename_btn.set_tooltip_text(_("Rename current dashboard"))
         self._rename_btn.connect("clicked", self._on_rename_dashboard)
-        bar.pack_start(self._rename_btn, False, False, 0)
+        self._selector_bar.pack_start(self._rename_btn, False, False, 0)
 
         self._delete_btn = Gtk.Button.new_from_icon_name(
             "list-remove", Gtk.IconSize.BUTTON
         )
         self._delete_btn.set_tooltip_text(_("Delete current dashboard"))
         self._delete_btn.connect("clicked", self._on_delete_dashboard)
-        bar.pack_start(self._delete_btn, False, False, 0)
-
-        vbox.pack_start(bar, False, False, 0)
+        self._selector_bar.pack_start(self._delete_btn, False, False, 0)
 
         # ── Container for the active GrampletPane ───────────────────────
         self._pane_container = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        vbox.pack_start(self._pane_container, True, True, 0)
-
         self.widget = self._make_pane(self._current_name)
         self._pane_container.pack_start(self.widget, True, True, 0)
 
         self._update_button_sensitivity()
-        return vbox
+        return self._pane_container
 
     def build_tree(self):
         """
@@ -230,6 +222,7 @@ class DashboardView(PageView):
     def set_inactive(self):
         self.active = False
         self.widget.set_inactive()
+        self.uistate.status.clear_view_widget()
 
     def set_active(self):
         new_title = "%s - %s - Gramps" % (
@@ -239,8 +232,10 @@ class DashboardView(PageView):
         self.uistate.window.set_title(new_title)
         self.active = True
         self.widget.set_active()
+        self.uistate.status.set_view_widget(self._selector_bar)
 
     def on_delete(self):
+        self.uistate.status.clear_view_widget()
         self.widget.on_delete()
         self._config.save()
 
