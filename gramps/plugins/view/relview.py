@@ -1119,7 +1119,6 @@ class RelationshipView(NavigationView):
                 else:
                     parent1 = _("Parent")
 
-
                 if mother == Person.FEMALE:
                     parent2 = _("Mother")
                 elif mother == Person.MALE:
