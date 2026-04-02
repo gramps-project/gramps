@@ -1688,7 +1688,7 @@ class RelationshipView(NavigationView):
                     box = self.write_person(_("Wife"), handle)
                 else:
                     box = self.write_person(_("Spouse"), handle)
-            #MARRIED and CIVIL_UNION handled separately if translators need to use different labels
+            # MARRIED and CIVIL_UNION handled separately if translators need to use different labels
             elif family.get_relationship() == FamilyRelType.CIVIL_UNION:
                 if spouse == Person.MALE:
                     box = self.write_person(_("Husband"), handle)
@@ -1698,7 +1698,7 @@ class RelationshipView(NavigationView):
                     box = self.write_person(_("Spouse"), handle)
             else:
                 box = self.write_person(_("Partner"), handle)
-				
+
             if not self.write_relationship_events(box, family):
                 self.write_relationship(box, family)
 
