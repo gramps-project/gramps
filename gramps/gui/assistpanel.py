@@ -41,6 +41,51 @@ from .pluginmanager import GuiPluginManager
 
 # -------------------------------------------------------------------------
 #
+# BaseAssistPanel class
+#
+# -------------------------------------------------------------------------
+class BaseAssistPanel:
+    """
+    The base class for all assist panel plugins.
+    """
+
+    def __init__(self, dbstate, uistate):
+        raise NotImplementedError
+
+    def get_top(self):
+        """
+        Return the top container widget for the GUI.
+        """
+        raise NotImplementedError
+
+    def view_changed(self, cat_num, view_num):
+        """
+        Called when the active view is changed.
+        """
+        raise NotImplementedError
+
+    def db_changed(self, db):
+        """
+        Called when the database is changed (opened or closed).
+        The db argument is the new database object (may be a NullDB when closed).
+        """
+        pass
+
+    def active(self, cat_num, view_num):
+        """
+        Called when the panel becomes visible.
+        """
+        pass
+
+    def inactive(self):
+        """
+        Called when the panel is hidden.
+        """
+        pass
+
+
+# -------------------------------------------------------------------------
+#
 # AssistPanelManager class
 #
 # -------------------------------------------------------------------------
