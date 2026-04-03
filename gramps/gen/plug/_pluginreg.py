@@ -96,6 +96,7 @@ DATABASE = 12
 RULE = 13
 THUMBNAILER = 14
 CITE = 15
+ASSISTPANEL = 16
 PTYPE = [
     REPORT,
     QUICKREPORT,
@@ -113,6 +114,7 @@ PTYPE = [
     RULE,
     THUMBNAILER,
     CITE,
+    ASSISTPANEL,
 ]
 PTYPE_STR = {
     REPORT: _("Report"),
@@ -131,6 +133,7 @@ PTYPE_STR = {
     RULE: _("Rule"),
     THUMBNAILER: _("Thumbnailer"),
     CITE: _("Citation formatter"),
+    ASSISTPANEL: _("Assist panel"),
 }
 
 # possible report categories
@@ -536,6 +539,9 @@ class PluginData:
         self._namespace = None
         # THUMBNAILER attr
         self._thumbnailer = None
+        # ASSISTPANEL attr
+        self._assistpanelclass = None
+        self._panel_label = ""
 
     @property
     def id(self):
@@ -1152,9 +1158,9 @@ class PluginData:
 
     @order.setter
     def order(self, order):
-        if self._ptype not in [VIEW, SIDEBAR, THUMBNAILER]:
+        if self._ptype not in [VIEW, SIDEBAR, THUMBNAILER, ASSISTPANEL]:
             raise ValueError(
-                "order may only be set for VIEW/SIDEBAR/THUMBNAILER plugins"
+                "order may only be set for VIEW/SIDEBAR/THUMBNAILER/ASSISTPANEL plugins"
             )
         self._order = order
 
@@ -1232,6 +1238,27 @@ class PluginData:
             raise ValueError("thumbnailer may only be set for THUMBNAILER plugins")
         self._thumbnailer = data
 
+    # ASSISTPANEL attributes
+    @property
+    def assistpanelclass(self):
+        return self._assistpanelclass
+
+    @assistpanelclass.setter
+    def assistpanelclass(self, assistpanelclass):
+        if self._ptype != ASSISTPANEL:
+            raise ValueError("assistpanelclass may only be set for ASSISTPANEL plugins")
+        self._assistpanelclass = assistpanelclass
+
+    @property
+    def panel_label(self):
+        return self._panel_label
+
+    @panel_label.setter
+    def panel_label(self, panel_label):
+        if self._ptype != ASSISTPANEL:
+            raise ValueError("panel_label may only be set for ASSISTPANEL plugins")
+        self._panel_label = panel_label
+
 
 def newplugin():
     """
@@ -1298,6 +1325,7 @@ def make_environment(**kwargs):
         "SIDEBAR": SIDEBAR,
         "THUMBNAILER": THUMBNAILER,
         "CITE": CITE,
+        "ASSISTPANEL": ASSISTPANEL,
         "CATEGORY_TEXT": CATEGORY_TEXT,
         "CATEGORY_DRAW": CATEGORY_DRAW,
         "CATEGORY_CODE": CATEGORY_CODE,
@@ -1656,6 +1684,12 @@ class PluginRegister:
         Return a list of :class:`PluginData` that are of type CITE
         """
         return self.type_plugins(CITE)
+
+    def assist_panel_plugins(self):
+        """
+        Return a list of :class:`PluginData` that are of type ASSISTPANEL
+        """
+        return self.type_plugins(ASSISTPANEL)
 
     def filter_load_on_reg(self):
         """
