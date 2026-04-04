@@ -210,15 +210,15 @@ UIDEFAULT = (
           <attribute name="label" translatable="yes">_Navigator</attribute>
         </item>
         <item>
-          <attribute name="action">win.AssistPanel</attribute>
-          <attribute name="label" translatable="yes">_Assist Column</attribute>
-        </item>
-        <item>
           <attribute name="action">win.Toolbar</attribute>
           <attribute name="label" translatable="yes">_Toolbar</attribute>
         </item>
         <placeholder id='Bars'>
         </placeholder>
+        <item>
+          <attribute name="action">win.AssistPanel</attribute>
+          <attribute name="label" translatable="yes">_Assist Column</attribute>
+        </item>
         <item>
           <attribute name="action">win.Fullscreen</attribute>
           <attribute name="label" translatable="yes">F_ull Screen</attribute>
