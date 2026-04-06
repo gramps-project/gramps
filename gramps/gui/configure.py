@@ -1081,48 +1081,51 @@ class GrampsPreferences(ConfigureDialog):
         return name_format_model, the_index
 
     def __new_name(self, obj):
-        lyst = [
-            "%s, %s %s (%s)"
-            % (_("Surname"), _("Given"), _("Suffix"), _("Common", "Name")),
-            "%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"), _("Nickname")),
-            "%s, %s %s (%s)"
-            % (_("Surname"), _("Common", "Name"), _("Suffix"), _("Nickname")),
-            "%s, %s %s" % (_("Surname"), _("Common", "Name"), _("Suffix")),
-            "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"), _("Call")),
-            "%s, %s (%s)" % (_("Surname"), _("Given"), _("Common", "Name")),
-            "%s, %s (%s)" % (_("Surname"), _("Common", "Name"), _("Nickname")),
-            "%s %s" % (_("Given"), _("Surname")),
-            "%s %s, %s" % (_("Given"), _("Surname"), _("Suffix")),
-            "%s %s %s" % (_("Given"), _("NotPatronymic"), _("Patronymic")),
-            "%s, %s %s (%s)"
-            % (_("SURNAME"), _("Given"), _("Suffix"), _("Common", "Name")),
-            "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Common", "Name")),
-            "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Nickname")),
-            "%s %s" % (_("Given"), _("SURNAME")),
-            "%s %s, %s" % (_("Given"), _("SURNAME"), _("Suffix")),
-            "%s /%s/" % (_("Given"), _("SURNAME")),
-            "%s %s, %s" % (_("Given"), _("Rawsurnames"), _("Suffix")),
-        ]
-        # repeat above list, but not translated.
-        fmtlyst = [
-            "%s, %s %s (%s)" % (("Surname"), ("Given"), ("Suffix"), ("Common")),
-            "%s, %s %s (%s)" % (("Surname"), ("Given"), ("Suffix"), ("Nickname")),
-            "%s, %s %s (%s)" % (("Surname"), ("Common"), ("Suffix"), ("Nickname")),
-            "%s, %s %s" % (("Surname"), ("Common"), ("Suffix")),
-            "%s, %s %s (%s)" % (("SURNAME"), ("Given"), ("Suffix"), ("Call")),
-            "%s, %s (%s)" % (("Surname"), ("Given"), ("Common")),
-            "%s, %s (%s)" % (("Surname"), ("Common"), ("Nickname")),
-            "%s %s" % (("Given"), ("Surname")),
-            "%s %s, %s" % (("Given"), ("Surname"), ("Suffix")),
-            "%s %s %s" % (("Given"), ("NotPatronymic"), ("Patronymic")),
-            "%s, %s %s (%s)" % (("SURNAME"), ("Given"), ("Suffix"), ("Common")),
-            "%s, %s (%s)" % (("SURNAME"), ("Given"), ("Common")),
-            "%s, %s (%s)" % (("SURNAME"), ("Given"), ("Nickname")),
-            "%s %s" % (("Given"), ("SURNAME")),
-            "%s %s, %s" % (("Given"), ("SURNAME"), ("Suffix")),
-            "%s /%s/" % (("Given"), ("SURNAME")),
-            "%s %s, %s" % (("Given"), ("Rawsurnames"), ("Suffix")),
-        ]
+
+        def formats(translate: bool = True) -> list[str]:
+            """
+            Return a translated or untranslated list of name formats.
+
+            :param translate: If True, return translated format strings; otherwise untranslated.
+            :type translate: bool
+            :returns: A list of name format strings.
+            :rtype: list[str]
+
+            """
+            if translate:
+                _ = glocale.translation.gettext
+            else:
+
+                def _(string, context=""):
+                    return string
+
+            return [
+                "%s, %s %s (%s)"
+                % (_("Surname"), _("Given"), _("Suffix"), _("Common", "Name")),
+                "%s, %s %s (%s)"
+                % (_("Surname"), _("Given"), _("Suffix"), _("Nickname")),
+                "%s, %s %s (%s)"
+                % (_("Surname"), _("Common", "Name"), _("Suffix"), _("Nickname")),
+                "%s, %s %s" % (_("Surname"), _("Common", "Name"), _("Suffix")),
+                "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"), _("Call")),
+                "%s, %s (%s)" % (_("Surname"), _("Given"), _("Common", "Name")),
+                "%s, %s (%s)" % (_("Surname"), _("Common", "Name"), _("Nickname")),
+                "%s %s" % (_("Given"), _("Surname")),
+                "%s %s, %s" % (_("Given"), _("Surname"), _("Suffix")),
+                "%s %s %s" % (_("Given"), _("NotPatronymic"), _("Patronymic")),
+                "%s, %s %s (%s)"
+                % (_("SURNAME"), _("Given"), _("Suffix"), _("Common", "Name")),
+                "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Common", "Name")),
+                "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Nickname")),
+                "%s %s" % (_("Given"), _("SURNAME")),
+                "%s %s, %s" % (_("Given"), _("SURNAME"), _("Suffix")),
+                "%s /%s/" % (_("Given"), _("SURNAME")),
+                "%s %s, %s" % (_("Given"), _("Rawsurnames"), _("Suffix")),
+            ]
+
+        lyst = formats()
+        fmtlyst = formats(translate=False)
+
         rand = int(random.random() * len(lyst))
         f = lyst[rand]
         fmt = fmtlyst[rand]
