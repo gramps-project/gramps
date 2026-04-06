@@ -1681,23 +1681,12 @@ class RelationshipView(NavigationView):
         else:
             # show "V Family: ..." and the rest
             self.write_label(_("%s:") % _("Family"), family, False, person)
-            if family.get_relationship() == FamilyRelType.MARRIED:
-                if spouse == Person.MALE:
-                    box = self.write_person(_("Husband"), handle)
-                elif spouse == Person.FEMALE:
-                    box = self.write_person(_("Wife"), handle)
-                else:
-                    box = self.write_person(_("Spouse"), handle)
-            # MARRIED and CIVIL_UNION handled separately if translators need to use different labels
-            elif family.get_relationship() == FamilyRelType.CIVIL_UNION:
-                if spouse == Person.MALE:
-                    box = self.write_person(_("Husband"), handle)
-                elif spouse == Person.FEMALE:
-                    box = self.write_person(_("Wife"), handle)
-                else:
-                    box = self.write_person(_("Spouse"), handle)
-            else:
-                box = self.write_person(_("Partner"), handle)
+
+            fam_type = family.get_relationship()
+			
+            spouse_label = spouse_label_from_gender(spouse,fam_type)
+			
+            box = self.write_person(spouse_label, handle)
 
             if not self.write_relationship_events(box, family):
                 self.write_relationship(box, family)
@@ -2068,3 +2057,24 @@ def button_activated(event, mouse_button):
         return True
     else:
         return False
+
+def spouse_label_from_gender(spouse,fam_type):
+    if fam_type == FamilyRelType.MARRIED:
+        if spouse == Person.MALE:
+            label = _("Husband")
+        elif spouse == Person.FEMALE:
+            label = _("Wife")
+        else:
+            label = _("Spouse")
+    # MARRIED and CIVIL_UNION handled separately if translators need to use different labels
+    elif fam_type == FamilyRelType.CIVIL_UNION:
+        if spouse == Person.MALE:
+            label = _("Husband X")
+        elif spouse == Person.FEMALE:
+            label = _("Wife X")
+        else:
+            label = _("Spouse X")
+    else:
+        label = _("Partner")
+
+    return label
