@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-03-17 06:10+0000\n"
+"PO-Revision-Date: 2026-04-03 23:09+0000\n"
 "Last-Translator: Jozef Gaal <preklady@mayday.sk>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -3304,7 +3304,7 @@ msgstr "Počet poznámok"
 
 #: ../gramps/gen/db/generic.py:2712
 msgid "Number of tags"
-msgstr "Počet značiek"
+msgstr "Počet štítkov"
 
 #: ../gramps/gen/db/generic.py:2713
 msgid "Schema version"
@@ -4142,7 +4142,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 #: ../gramps/gui/editors/filtereditor.py:616
 msgid "Tag:"
-msgstr "Značka:"
+msgstr "Štítok:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
 msgid "Citations with the <tag>"
@@ -7234,7 +7234,7 @@ msgstr "Posledná zmena"
 #: ../gramps/plugins/webreport/repository.py:287
 #: ../gramps/plugins/webreport/source.py:414
 msgid "Tags"
-msgstr "Značky"
+msgstr "Štítky"
 
 #: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:458
 #: ../gramps/gen/mime/_pythonmime.py:52 ../gramps/gen/mime/_pythonmime.py:63
