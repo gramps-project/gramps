@@ -1106,25 +1106,13 @@ class RelationshipView(NavigationView):
                 father = mother = None
                 hd21 = family.get_father_handle()
                 if hd21:
-                    father = self.dbstate.db.get_person_from_handle(hd21).gender
+                    father_gen = self.dbstate.db.get_person_from_handle(hd21).gender
                 hd22 = family.get_mother_handle()
                 if hd22:
-                    mother = self.dbstate.db.get_person_from_handle(hd22).gender
+                    mother_gen = self.dbstate.db.get_person_from_handle(hd22).gender
 
-                parent1 = parent2 = ""
-                if father == Person.MALE:
-                    parent1 = _("Father")
-                elif father == Person.FEMALE:
-                    parent1 = _("Mother")
-                else:
-                    parent1 = _("Parent")
-
-                if mother == Person.FEMALE:
-                    parent2 = _("Mother")
-                elif mother == Person.MALE:
-                    parent2 = _("Father")
-                else:
-                    parent2 = _("Parent")
+                parent1 = parent_label_from_gender(father_gen)
+                parent2 = parent_label_from_gender(mother_gen)
 
                 self.write_label(_("%s:") % _("Parents"), family, True, person)
                 self.write_person(parent1, family.get_father_handle())
@@ -2057,6 +2045,15 @@ def button_activated(event, mouse_button):
         return True
     else:
         return False
+def parent_label_from_gender(gender):
+    if gender == Person.MALE:
+        label = _("Father")
+    elif gender == Person.FEMALE:
+        label = _("Mother")
+    else:
+        label = _("Parent")
+
+    return label
 
 def spouse_label_from_gender(spouse,fam_type):
     if fam_type == FamilyRelType.MARRIED:
