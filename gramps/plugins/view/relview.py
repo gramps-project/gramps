@@ -1672,7 +1672,7 @@ class RelationshipView(NavigationView):
 
             fam_type = family.get_relationship()
             spouse_label = spouse_label_from_gender(spouse,fam_type)
-			
+
             box = self.write_person(spouse_label, handle)
 
             if not self.write_relationship_events(box, family):
@@ -2057,7 +2057,7 @@ def parent_label_from_gender(gender):
     return label
 
 
-def spouse_label_from_gender(spouse,fam_type):
+def spouse_label_from_gender(spouse, fam_type):
     if fam_type == FamilyRelType.MARRIED:
         if spouse == Person.MALE:
             label = _("Husband")
