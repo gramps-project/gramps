@@ -1244,8 +1244,8 @@ class RelationshipView(NavigationView):
 
     def write_person(self, title, handle):
         """
-        Create and show a person cell with a "Father/Mother/Parent/Adoptive/Step/Guardian" in the case 
-		of the child and "Husband/Wife/Spouse/Partner" for a spouse label in the GUI at the current row
+        Create and show a person cell with a "Father/Mother/Parent/Adoptive/Step/Guardian" in the case
+        of the child and "Husband/Wife/Spouse/Partner" for a spouse label in the GUI at the current row
         @param title: left column label ("Father/Mother/Parent/Adoptive/Step/Guardian" or "Husband/Wife/Spouse/Partner")
         @param handle: person handle
         """
@@ -1671,7 +1671,6 @@ class RelationshipView(NavigationView):
             self.write_label(_("%s:") % _("Family"), family, False, person)
 
             fam_type = family.get_relationship()
-			
             spouse_label = spouse_label_from_gender(spouse,fam_type)
 			
             box = self.write_person(spouse_label, handle)
@@ -2045,6 +2044,8 @@ def button_activated(event, mouse_button):
         return True
     else:
         return False
+
+
 def parent_label_from_gender(gender):
     if gender == Person.MALE:
         label = _("Father")
@@ -2054,6 +2055,7 @@ def parent_label_from_gender(gender):
         label = _("Parent")
 
     return label
+
 
 def spouse_label_from_gender(spouse,fam_type):
     if fam_type == FamilyRelType.MARRIED:
