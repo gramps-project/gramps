@@ -2069,11 +2069,11 @@ def spouse_label_from_gender(spouse,fam_type):
     # MARRIED and CIVIL_UNION handled separately if translators need to use different labels
     elif fam_type == FamilyRelType.CIVIL_UNION:
         if spouse == Person.MALE:
-            label = _("Husband X")
+            label = _("Husband")
         elif spouse == Person.FEMALE:
-            label = _("Wife X")
+            label = _("Wife")
         else:
-            label = _("Spouse X")
+            label = _("Spouse")
     else:
         label = _("Partner")
 
