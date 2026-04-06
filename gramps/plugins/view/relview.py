@@ -1671,7 +1671,7 @@ class RelationshipView(NavigationView):
             self.write_label(_("%s:") % _("Family"), family, False, person)
 
             fam_type = family.get_relationship()
-            spouse_label = spouse_label_from_gender(spouse,fam_type)
+            spouse_label = spouse_label_from_gender(spouse, fam_type)
 
             box = self.write_person(spouse_label, handle)
 
