@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-03-31 16:12+0000\n"
+"PO-Revision-Date: 2026-04-03 23:09+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
@@ -262,9 +262,7 @@ msgstr "系谱学；家族史；研究；家谱图；GEDCOM;"
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
-msgstr ""
-"Gramps 是一款简单易用，功能全面的系谱学程序，适合爱好者及系谱学研究人员的使"
-"用。"
+msgstr "Gramps 是一款简单易用，功能全面的系谱学程序，适合爱好者及系谱学研究人员使用。"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -1931,7 +1929,7 @@ msgstr "   有效选项为："
 #: ../gramps/plugins/textreport/descendreport.py:313
 #: ../gramps/plugins/textreport/placereport.py:202
 msgid ", "
-msgstr ", "
+msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:502 ../gramps/cli/plug/__init__.py:607
 #: ../gramps/cli/plug/__init__.py:690
@@ -2084,7 +2082,7 @@ msgstr "YYYY-MM-DD (ISO)"
 #: ../gramps/gen/datehandler/_datedisplay.py:81
 msgctxt "date format"
 msgid "Numerical"
-msgstr "数字格式"
+msgstr "数字形式"
 
 #. Translators: Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:83
@@ -2356,7 +2354,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:494
 msgctxt "after-date"
 msgid ""
-msgstr "之后"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2372,7 +2370,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:514
 msgctxt "estimated-date"
 msgid ""
-msgstr "估计"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -2380,7 +2378,7 @@ msgstr "估计"
 #: ../gramps/gen/datehandler/_datedisplay.py:519
 msgctxt "calculated-date"
 msgid ""
-msgstr "计算出来的"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:539
 #, python-brace-format
@@ -2663,57 +2661,57 @@ msgstr "瑞典历"
 #: ../gramps/gen/datehandler/_datestrings.py:162
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr "Tishri"
+msgstr "提示黎月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr "提斯利"
+msgstr "马西班月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgctxt "Hebrew month lexeme"
 msgid "Kislev"
-msgstr "基斯列夫"
+msgstr "基斯流月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgctxt "Hebrew month lexeme"
 msgid "Tevet"
-msgstr "特薇特"
+msgstr "提别月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:166
 msgctxt "Hebrew month lexeme"
 msgid "Shevat"
-msgstr "薛华"
+msgstr "细罢特月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgctxt "Hebrew month lexeme"
 msgid "AdarI"
-msgstr "阿达里"
+msgstr "亚达月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
 msgctxt "Hebrew month lexeme"
 msgid "AdarII"
-msgstr "阿达尔二世"
+msgstr "闰亚达月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
 msgctxt "Hebrew month lexeme"
 msgid "Nisan"
-msgstr "尼桑"
+msgstr "尼散月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgctxt "Hebrew month lexeme"
 msgid "Iyyar"
-msgstr "伊亚尔"
+msgstr "以珥月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgctxt "Hebrew month lexeme"
 msgid "Sivan"
-msgstr "西万"
+msgstr "西弯月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
 msgctxt "Hebrew month lexeme"
 msgid "Tammuz"
-msgstr "塔木斯"
+msgstr "塔木兹月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:173
 msgctxt "Hebrew month lexeme"
@@ -2723,7 +2721,7 @@ msgstr "Av"
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgctxt "Hebrew month lexeme"
 msgid "Elul"
-msgstr "悼念"
+msgstr "以禄月"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2732,67 +2730,67 @@ msgstr "悼念"
 #: ../gramps/gen/datehandler/_datestrings.py:183
 msgctxt "French month lexeme"
 msgid "Vendémiaire"
-msgstr "销售"
+msgstr "葡萄月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgctxt "French month lexeme"
 msgid "Brumaire"
-msgstr "布鲁姆"
+msgstr "雾月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgctxt "French month lexeme"
 msgid "Frimaire"
-msgstr "芙丽美尔"
+msgstr "霜月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:186
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr "尼沃斯"
+msgstr "雪月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:187
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr "普鲁维奥斯"
+msgstr "雨月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr "沟通"
+msgstr "风月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "French month lexeme"
 msgid "Germinal"
-msgstr "沟通"
+msgstr "芽月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr "弗洛里亚尔"
+msgstr "花月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr "普拉里尔"
+msgstr "草月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "French month lexeme"
 msgid "Messidor"
-msgstr "梅西多"
+msgstr "收获月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr "暖气片"
+msgstr "热月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "French month lexeme"
 msgid "Fructidor"
-msgstr "枸杞子"
+msgstr "果月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "French month lexeme"
 msgid "Extra"
-msgstr "额外的"
+msgstr "补充日"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2801,17 +2799,17 @@ msgstr "额外的"
 #: ../gramps/gen/datehandler/_datestrings.py:204
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr "穆哈拉姆"
+msgstr "穆哈兰姆月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:205
 msgctxt "Islamic month lexeme"
 msgid "Safar"
-msgstr "萨法尔"
+msgstr "色法尔月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:206
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr "腊月"
+msgstr "赖比尔·敖外鲁月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:207
 msgctxt "Islamic month lexeme"
@@ -2821,42 +2819,42 @@ msgstr "拉比-塔尼"
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr "乌拉节"
+msgstr "主马达·敖外鲁月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Islamic month lexeme"
 msgid "Jumada t-Tania"
-msgstr "塔尼娅节"
+msgstr "主马达·阿赫尔月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr "Rajab"
+msgstr "赖哲卜月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr "沙班"
+msgstr "舍尔邦月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Islamic month lexeme"
 msgid "Ramadan"
-msgstr "斋月"
+msgstr "赖买丹月（斋月）"
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
 msgctxt "Islamic month lexeme"
 msgid "Shawwal"
-msgstr "沙瓦勒"
+msgstr "闪瓦鲁月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Qa`da"
-msgstr ""
+msgstr "都尔·盖尔德月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
-msgstr "伊斯兰教纪元"
+msgstr "都尔·黑哲月"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2865,76 +2863,76 @@ msgstr "伊斯兰教纪元"
 #: ../gramps/gen/datehandler/_datestrings.py:224
 msgctxt "Persian month lexeme"
 msgid "Farvardin"
-msgstr "法尔瓦丁"
+msgstr "法尔瓦丁月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "Persian month lexeme"
 msgid "Ordibehesht"
-msgstr "鄂迪贝希特"
+msgstr "奥尔迪贝赫什特月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:226
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr ""
+msgstr "赫尔达德月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:227
 msgctxt "Persian month lexeme"
 msgid "Tir"
-msgstr ""
+msgstr "提尔月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "Persian month lexeme"
 msgid "Mordad"
-msgstr ""
+msgstr "莫尔达德月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:229
 msgctxt "Persian month lexeme"
 msgid "Shahrivar"
-msgstr ""
+msgstr "沙赫里瓦尔月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:230
 msgctxt "Persian month lexeme"
 msgid "Mehr"
-msgstr ""
+msgstr "梅尔月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgctxt "Persian month lexeme"
 msgid "Aban"
-msgstr ""
+msgstr "阿班月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:232
 msgctxt "Persian month lexeme"
 msgid "Azar"
-msgstr "阿扎尔"
+msgstr "阿扎尔月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:233
 msgctxt "Persian month lexeme"
 msgid "Dey"
-msgstr ""
+msgstr "迪月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:234
 msgctxt "Persian month lexeme"
 msgid "Bahman"
-msgstr ""
+msgstr "巴赫曼月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
 msgctxt "Persian month lexeme"
 msgid "Esfand"
-msgstr ""
+msgstr "艾斯凡德月"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:242
 msgctxt "date modifier"
 msgid "before "
-msgstr "以前 "
+msgstr " 以前"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:245
 msgctxt "date modifier"
 msgid "after "
-msgstr "以后 "
+msgstr " 以后"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -3929,10 +3927,8 @@ msgid ""
 msgstr "匹配其注释内容匹配特定正则表达式的引用"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:47
-#, fuzzy
-#| msgid "Citations with the <tag>"
 msgid "Citations with a note of type <type>"
-msgstr "带 <tag> 标签的引用"
+msgstr "注释类型为 <type> 的引用"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
 msgid "Matches citations with a note of the specified type"
@@ -4103,25 +4099,22 @@ msgid ""
 msgstr "匹配特定来源筛选名称的来源事件"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
-#, fuzzy
 msgid "Citations with Id containing <text>"
-msgstr "拥有笔记中包含 <substring> 的家庭"
+msgstr "ID 包含 <text> 的引用"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:51
 msgid "Matches citations whose Gramps ID matches the regular expression"
 msgstr "匹配 GRAMPS ID 符合正则表达式的引用"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:57
-#, fuzzy
 msgid "Citations with Source Id containing <text>"
-msgstr "拥有笔记中包含 <substring> 的家庭"
+msgstr "来源 ID 包含 <text> 的引用"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:59
-#, fuzzy
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
-msgstr "匹配GRAMPS ID编号匹配正则表达式的对象"
+msgstr "匹配来源中 GRAMPS ID 编号符合正则表达式的引用"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:45
 msgid "Every event"
@@ -4353,9 +4346,8 @@ msgid "Place filter name:"
 msgstr "地点筛选器名称："
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:59
-#, fuzzy
 msgid "Events of places matching the <place filter>"
-msgstr "成员时间匹配 个人过滤条件 <person filter>"
+msgstr "匹配地点筛选条件 <place filter> 的地点事件"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:61
 #, fuzzy
@@ -4417,7 +4409,7 @@ msgstr "人员 ID 编号："
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:54
 msgid "Families having child with Id containing <text>"
-msgstr ""
+msgstr "子女的 ID 包含 <text> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:55
 msgid "Matches families where child has a specified Gramps ID"
@@ -7749,7 +7741,7 @@ msgstr "遗嘱"
 #: ../gramps/plugins/textreport/familygroup.py:616
 #: ../gramps/plugins/webreport/family.py:316
 msgid "Marriage"
-msgstr "婚姻"
+msgstr "结婚"
 
 #: ../gramps/gen/lib/eventtype.py:234
 msgid "Marriage Settlement"
@@ -7949,10 +7941,9 @@ msgid "occ."
 msgstr "职业"
 
 #: ../gramps/gen/lib/eventtype.py:277
-#, fuzzy
 msgctxt "Ordination abbreviation"
 msgid "ord."
-msgstr "授神职"
+msgstr "授圣职"
 
 #: ../gramps/gen/lib/eventtype.py:278
 msgctxt "Probate abbreviation"
@@ -8157,7 +8148,7 @@ msgstr "类型编码"
 
 #: ../gramps/gen/lib/ldsord.py:96
 msgid "Initiatory"
-msgstr ""
+msgstr "入会"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -9126,7 +9117,7 @@ msgstr "链接"
 #: ../gramps/gen/lib/styledtexttagtype.py:74
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Strikethrough"
-msgstr ""
+msgstr "删除线"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:75
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -9661,14 +9652,12 @@ msgid "How the lines between objects will be drawn."
 msgstr "对象间的连线如何绘制。"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:225
-#, fuzzy
 msgid "Alternate line attachment"
-msgstr "曾用名"
+msgstr "连线端点间带有间隔"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:226
-#, fuzzy
 msgid "Whether lines attach to nodes differently"
-msgstr "是否链接数据到网页报告"
+msgstr "连线的端点是否搭靠在节点的不同位置"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:242
 msgid "Graphviz Options"
@@ -9966,8 +9955,6 @@ msgid "Detail of information to be shown in a node."
 msgstr "要在节点中显示的信息详情。"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:204
-#, fuzzy
-#| msgid "Name format"
 msgid "Name Format"
 msgstr "姓名格式"
 
@@ -11083,7 +11070,6 @@ msgid "GObject introspection modules"
 msgstr ""
 
 #: ../gramps/gen/utils/requirements.py:171
-#, fuzzy
 msgid "Executables"
 msgstr "可执行"
 
@@ -11593,8 +11579,8 @@ msgid ""
 "Creative Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
-"很多 Gramps 的艺术作品来自Tango 项目\n"
-"或者从 Tango 项目衍伸而来。\n"
+"很多 Gramps 的艺术作品来自 Tango 项目\n"
+"或者从 Tango 项目衍生而来。\n"
 "这些艺术作品是基于\n"
 "Creative Commons Attribution-ShareAlike 2.5\n"
 "许可协议发布的。"
@@ -11621,8 +11607,8 @@ msgstr ""
 "十分感谢！\n"
 "YH Tan, 2014\n"
 "霍东灵 Anthony Fok <foka@debian.org>, 2015\n"
-"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, "
-"2021,2022,2023,2024,2025\n"
+"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021, 2022, 2023, 2024, "
+"2025, 2026\n"
 "快乐的老鼠宝宝 LaoshuBaby <laoshubaby@protonmail.com>, 2022, 2023"
 
 #: ../gramps/gui/aboutdialog.py:163
@@ -14312,7 +14298,7 @@ msgstr "编辑引用 (%s)"
 
 #: ../gramps/gui/editors/editdate.py:76 ../gramps/gui/editors/editdate.py:88
 msgid "Regular"
-msgstr "规则的"
+msgstr "常规"
 
 #: ../gramps/gui/editors/editdate.py:77
 msgid "Before"
@@ -14324,7 +14310,7 @@ msgstr "以后"
 
 #: ../gramps/gui/editors/editdate.py:79
 msgid "About"
-msgstr "关于"
+msgstr "大约"
 
 #: ../gramps/gui/editors/editdate.py:80
 msgid "Range"
@@ -17818,7 +17804,7 @@ msgstr "注释(_M)："
 
 #: ../gramps/gui/glade/rule.glade:591
 msgid "Return values that do no_t match the filter rules"
-msgstr "显示不符过滤规则的值"
+msgstr "返回不符合筛选规则的值"
 
 #: ../gramps/gui/glade/rule.glade:879
 msgid "Selected Rule"
@@ -21048,7 +21034,7 @@ msgstr "打印当前文档"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:63
 msgid "_First"
-msgstr ""
+msgstr "第一页(_F)"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:68
 msgid "Shows the first page"
@@ -21114,7 +21100,7 @@ msgstr "显示下一页"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:108
 msgid "_Last"
-msgstr ""
+msgstr "最后一页(_L)"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:113
 msgid "Shows the last page"
@@ -21321,7 +21307,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:860
 msgid "The number of generations of empty boxes that will be displayed"
-msgstr "将被显示的空箱的代数"
+msgstr "要显示的空白人员世代的数量"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:867
 #: ../gramps/plugins/drawreport/descendtree.py:1605
@@ -22008,7 +21994,7 @@ msgstr "家庭 %s 不在数据库中"
 #: ../gramps/plugins/drawreport/descendtree.py:1576
 #: ../gramps/plugins/drawreport/descendtree.py:1580
 msgid "Report for"
-msgstr "的报告"
+msgstr "报告对象"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1577
 msgid "The main person for the report"
@@ -22173,7 +22159,7 @@ msgstr "围绕家庭生成后代图表"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:159
 msgid "Family Descendant Tree"
-msgstr "家庭子孙图树"
+msgstr "家庭后代树状图"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:160
 msgid "Produces a graphical descendant tree around a family"
@@ -25775,11 +25761,11 @@ msgstr "居住地 ID 编号"
 
 #: ../gramps/plugins/importer/importcsv.py:343
 msgid "residencesource"
-msgstr ""
+msgstr "住所来源"
 
 #: ../gramps/plugins/importer/importcsv.py:344
 msgid "residence source"
-msgstr ""
+msgstr "住所来源"
 
 #: ../gramps/plugins/importer/importcsv.py:346
 msgid "attribute type"
@@ -26038,7 +26024,7 @@ msgstr "没有提及"
 
 #: ../gramps/plugins/importer/importgeneweb.py:156
 msgid "Separated"
-msgstr ""
+msgstr "已分居"
 
 #: ../gramps/plugins/importer/importgeneweb.py:221
 msgid "GeneWeb import"
