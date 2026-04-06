@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-04-05 06:09+0000\n"
-"Last-Translator: Zizhuo JIa <jzz0313@outlook.com>\n"
+"PO-Revision-Date: 2026-04-06 16:09+0000\n"
+"Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -9921,7 +9921,7 @@ msgstr "小"
 #: ../gramps/plugins/graph/gvrelgraph.py:1081
 #: ../gramps/plugins/importer/importprogen.py:515
 msgid "Normal"
-msgstr "正常"
+msgstr "常规"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:125
 #: ../gramps/plugins/graph/gvfamilylines.py:322
@@ -10691,7 +10691,7 @@ msgstr ""
 #, fuzzy
 #| msgid "ancestor birth date"
 msgid "offset from birth date"
-msgstr "先辈出生日期"
+msgstr "从出生日期推算"
 
 #: ../gramps/gen/utils/alive.py:447
 #, python-brace-format
@@ -13431,7 +13431,7 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"本版本不适合普通使用，请谨慎使用。\n"
+"本版本不适合日常使用，请谨慎使用。\n"
 "\n"
 "本版本可能：\n"
 "1）与您期待工作方式不同。\n"
@@ -14821,7 +14821,7 @@ msgstr "名称编辑器"
 #: ../gramps/gui/editors/editname.py:183
 #: ../gramps/gui/editors/editperson.py:341
 msgid "Call name must be the given name that is normally used."
-msgstr "称呼的名字一定就是平时日常用的名字。"
+msgstr "称呼名一定是名字中日常使用的那个。"
 
 #: ../gramps/gui/editors/editname.py:342
 msgid "New Name"
@@ -16839,8 +16839,8 @@ msgid ""
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
-"给定名的一部分，是通常使用的名字。如果背景是红色，则称呼不是给定名的一部分，"
-"在某些报告中不会用下划线打印。"
+"名字的一部分是通常使用的名字。如果背景显示红色，说明称呼名不是名字的一部分，"
+"在某些报告中不会用下划线标出。"
 
 #: ../gramps/gui/glade/editname.glade:288
 #: ../gramps/gui/glade/editperson.glade:209
@@ -22185,7 +22185,7 @@ msgstr "生成扇形父辈图"
 #: ../gramps/plugins/drawreport/statisticschart.py:970
 #: ../gramps/plugins/drawreport/statisticschart.py:972
 msgid "Statistics Charts"
-msgstr "统计图标"
+msgstr "统计数据图表"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:208
 msgid "Produces statistical bar and pie charts of the people in the database"
@@ -25491,10 +25491,10 @@ msgid ""
 "with many people in a generation more square."
 msgstr ""
 "在“常规”设置下，父母会被放到让多数线条最短的位置。\n"
-"“父母在一起”的设置，会将配偶放到彼此相邻的位置，但是带有重要复杂图表时会使图"
-"标变得更大、连线变得更长。\n"
-"“父母偏移”设置也会尝试将配偶放置到彼此相邻的位置，不过彼此间会有一定的偏移"
-"量。    这样可以让一代中含有很多人员的图表变得更方一些。"
+"“父母在一起”的设置，会将配偶放到彼此相邻的位置，但是有复杂图表内容时，图会变"
+"得更大、连线会变得更长。\n"
+"“父母偏移”设置也会尝试将配偶放置到彼此相邻的位置，不过彼此间会有一定的距离。"
+"    这样可以让一代中含有很多人员的图变得更方一些。"
 
 #: ../gramps/plugins/importer/import.gpr.py:37
 msgid "Import data from CSV files"
@@ -32952,7 +32952,7 @@ msgstr "是否为起始人员包含与每位后代的关系路径。"
 #: ../gramps/plugins/textreport/endoflinereport.py:166
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "%s 的线性报告完结"
+msgstr "%s 的断线报告"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:173
 #, python-format
@@ -33666,11 +33666,11 @@ msgstr "生成详细的后代报告"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:176
 msgid "End of Line Report"
-msgstr "线性报告"
+msgstr "断线报告"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:177
 msgid "Produces a textual end of line report"
-msgstr "生成一个原文结尾行的报告"
+msgstr "生成文字断线报告"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:201
 msgid ""
@@ -33696,7 +33696,7 @@ msgstr "为有特定标签的人员生成一个列表"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:295
 msgid "Number of Ancestors Report"
-msgstr "祖先报告的数目"
+msgstr "祖先数目报告"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:296
 msgid "Counts number of ancestors of selected person"
