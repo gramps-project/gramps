@@ -17,13 +17,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2024, 2026.
 # 快乐的老鼠宝宝 <laoshubaby@protonmail.com>, 2024.
 # pyccl <changcongliang@163.com>, 2024.
+# Zizhuo JIa <jzz0313@outlook.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-04-03 23:09+0000\n"
-"Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
+"PO-Revision-Date: 2026-04-05 06:09+0000\n"
+"Last-Translator: Zizhuo JIa <jzz0313@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1857,7 +1858,7 @@ msgstr "纸张尺寸名称。"
 #: ../gramps/cli/plug/__init__.py:328 ../gramps/cli/plug/__init__.py:329
 #: ../gramps/cli/plug/__init__.py:330
 msgid "=number"
-msgstr ""
+msgstr "=编号"
 
 #: ../gramps/cli/plug/__init__.py:326
 #, fuzzy
@@ -2299,9 +2300,10 @@ msgstr "{short_month} {year}"
 #. Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:413
 #: ../gramps/gen/datehandler/_datedisplay.py:499
+#, fuzzy
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "自"
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2310,7 +2312,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:504
 msgctxt "to-date"
 msgid ""
-msgstr ""
+msgstr "至"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:423
 #, python-brace-format
@@ -2323,7 +2325,7 @@ msgstr "{date_quality}自{date_start} 至{date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:444
 msgctxt "between-date"
 msgid ""
-msgstr ""
+msgstr "介于"
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2331,7 +2333,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:451
 msgctxt "and-date"
 msgid ""
-msgstr ""
+msgstr "与"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:454
 #, python-brace-format
