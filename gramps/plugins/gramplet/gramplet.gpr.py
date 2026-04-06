@@ -325,6 +325,22 @@ register(
 
 register(
     GRAMPLET,
+    id="Place Cloud",
+    name=_("Place Cloud"),
+    description=_("Gramplet showing all place as a text cloud"),
+    status=STABLE,
+    fname="placecloudgramplet.py",
+    height=300,
+    expand=True,
+    gramplet="PlaceCloudGramplet",
+    gramplet_title=_("Place Cloud"),
+    version="1.0.0",
+    gramps_target_version=MODULE_VERSION,
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
     id="To Do",
     name=_("To Do", "gramplet"),
     description=_("Gramplet for displaying a To Do list"),
