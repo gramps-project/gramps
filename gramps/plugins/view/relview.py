@@ -1103,7 +1103,14 @@ class RelationshipView(NavigationView):
             self.row += 1  # now advance it
         else:
             if family:
-                father = mother = None
+                father_gen = mother_gen = None
+                father_rel = mother_rel = ""
+                child_handle = person.get_handle()
+                child_ref_list = family.get_child_ref_list()
+                for child_ref in child_ref_list:
+                    if child_ref.ref == child_handle:
+                        father_rel = str(child_ref.get_father_relation())
+                        mother_rel = str(child_ref.get_mother_relation())
                 hd21 = family.get_father_handle()
                 if hd21:
                     father_gen = self.dbstate.db.get_person_from_handle(hd21).gender
@@ -1111,8 +1118,8 @@ class RelationshipView(NavigationView):
                 if hd22:
                     mother_gen = self.dbstate.db.get_person_from_handle(hd22).gender
 
-                parent1 = parent_label_from_gender(father_gen)
-                parent2 = parent_label_from_gender(mother_gen)
+                parent1 = parent_label_from_gender(father_gen, father_rel)
+                parent2 = parent_label_from_gender(mother_gen, mother_rel)
 
                 self.write_label(_("%s:") % _("Parents"), family, True, person)
                 self.write_person(parent1, family.get_father_handle())
@@ -2046,11 +2053,28 @@ def button_activated(event, mouse_button):
         return False
 
 
-def parent_label_from_gender(gender):
-    if gender == Person.MALE:
-        label = _("Father")
-    elif gender == Person.FEMALE:
-        label = _("Mother")
+def parent_label_from_gender(gender, rel_type):
+    if rel_type == "Birth":
+        if gender == Person.MALE:
+            label = _("Father")
+        if gender == Person.FEMALE:
+                label = _("Mother")
+    elif rel_type == "Stepchild":
+        if gender == Person.MALE:
+            label = _("Stepfather")
+        elif gender == Person.FEMALE:
+            label = _("Stepmother")
+        else:
+            label = _("Step-Parent")
+    elif rel_type == "Adopted":
+        if gender == Person.MALE:
+            label = _("Adoptive Father")
+        elif gender == Person.FEMALE:
+            label = _("Adoptive Mother")
+        else:
+            label = _("Adoptive Parent")
+    elif rel_type == "Sponsored" or rel_type == "Foster":
+        label = _("Guardian")
     else:
         label = _("Parent")
 
