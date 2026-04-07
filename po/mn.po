@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-03-23 02:09+0000\n"
+"PO-Revision-Date: 2026-04-07 13:45+0000\n"
 "Last-Translator: \"Batsaihan P.\" <batsaihan.p@gmail.com>\n"
 "Language-Team: Mongolian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/mn/>\n"
@@ -118,16 +118,19 @@ msgid "Rosh Ha'Shana"
 msgstr "Рош Хашана"
 
 #: ../data/holidays.xml:369
+#, fuzzy
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Rosh Ha'Shana 2"
 
 #: ../data/holidays.xml:370
+#, fuzzy
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Yom Kippur"
 
 #: ../data/holidays.xml:371
+#, fuzzy
 msgid "Sukot"
-msgstr ""
+msgstr "Sukot"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
@@ -138,44 +141,54 @@ msgid "3 of Sukot"
 msgstr ""
 
 #: ../data/holidays.xml:374
+#, fuzzy
 msgid "4 of Sukot"
-msgstr ""
+msgstr "4 of Sukot"
 
 #: ../data/holidays.xml:375
+#, fuzzy
 msgid "5 of Sukot"
-msgstr ""
+msgstr "5 of Sukot"
 
 #: ../data/holidays.xml:376
+#, fuzzy
 msgid "6 of Sukot"
-msgstr ""
+msgstr "6 of Sukot"
 
 #: ../data/holidays.xml:377
+#, fuzzy
 msgid "7 of Sukot"
-msgstr ""
+msgstr "7 of Sukot"
 
 #: ../data/holidays.xml:378
+#, fuzzy
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Simhat Tora"
 
 #: ../data/holidays.xml:379
+#, fuzzy
 msgid "Hanuka"
-msgstr ""
+msgstr "Hanuka"
 
 #: ../data/holidays.xml:380
+#, fuzzy
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "2 of Hanuka"
 
 #: ../data/holidays.xml:381
+#, fuzzy
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "3 of Hanuka"
 
 #: ../data/holidays.xml:382
+#, fuzzy
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "4 of Hanuka"
 
 #: ../data/holidays.xml:383
+#, fuzzy
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "5 of Hanuka"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
