@@ -2058,7 +2058,7 @@ def parent_label_from_gender(gender, rel_type):
         if gender == Person.MALE:
             label = _("Father")
         if gender == Person.FEMALE:
-                label = _("Mother")
+            label = _("Mother")
     elif rel_type == "Stepchild":
         if gender == Person.MALE:
             label = _("Stepfather")
