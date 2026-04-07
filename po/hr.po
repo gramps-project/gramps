@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-04-06 16:09+0000\n"
+"PO-Revision-Date: 2026-04-07 13:45+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -8039,7 +8039,7 @@ msgstr "u. smr."
 #: ../gramps/gen/lib/eventtype.py:260
 msgctxt "Census abbreviation"
 msgid "cens."
-msgstr "ppis."
+msgstr "popis"
 
 #: ../gramps/gen/lib/eventtype.py:261
 msgctxt "Christening abbreviation"
@@ -9240,7 +9240,7 @@ msgstr "Oznaka"
 
 #: ../gramps/gen/lib/styledtexttag.py:130
 msgid "Ranges"
-msgstr "Razdoblja"
+msgstr "Rasponi"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:65
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -13048,7 +13048,7 @@ msgstr "Znak razdvajanja:"
 
 #: ../gramps/gui/dbloader.py:115 ../gramps/gui/plug/tool.py:123
 msgid "Undo history warning"
-msgstr "Upozorenje kronologije obrade"
+msgstr "Upozorenje za povijest poništavanja"
 
 #: ../gramps/gui/dbloader.py:117
 msgid ""
@@ -13059,8 +13059,8 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"Ako nastaviš s uvozom, izbrisat će se kronologija obrade ove sesije. Neće "
-"biti moguće vratiti uvoz, kao ni sve prethodne promjene.\n"
+"Ako nastaviš s uvozom, izbrisat će se povijest ove sesije. Neće biti moguće "
+"vratiti uvoz, kao ni sve prethodne promjene.\n"
 "\n"
 "Ako misliš da ti treba mogućnost vraćanja podataka u prijašnje stanje, "
 "najprije napravi zaštitnu kopiju baze podataka."
@@ -18453,7 +18453,7 @@ msgstr "Savjet dana"
 
 #: ../gramps/gui/grampsgui.py:57 ../gramps/gui/undohistory.py:73
 msgid "Undo History"
-msgstr "Kronologija obrade"
+msgstr "Povijest poništavanja"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Abandon Changes and Quit"
@@ -20258,9 +20258,9 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"Ako nastaviš s ovim alatom, izbrisat će se kronologija obrade ove sesije. "
-"Neće ti biti moguće vratiti promjene učinjene ovim alatom, kao niti sve "
-"prethodne promjene.\n"
+"Ako nastaviš s ovim alatom, izbrisat će se povijest ove sesije. Neće ti biti "
+"moguće vratiti promjene učinjene ovim alatom, kao niti sve prethodne "
+"promjene.\n"
 "\n"
 "Ako misliš da ne želiš nastaviti raditi s ovim alatom, prekini ovdje i "
 "izradi zaštitnu kopiju tvoje baze podataka."
@@ -20427,7 +20427,7 @@ msgstr "Potvrda brisanja"
 
 #: ../gramps/gui/undohistory.py:196
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "Zaista želiš isprazniti kronologiju obrade?"
+msgstr "Zaista želiš isprazniti povijest poništavanja?"
 
 #: ../gramps/gui/undohistory.py:197 ../gramps/plugins/gramplet/eval.py:83
 msgid "Clear"
@@ -20439,7 +20439,7 @@ msgstr "Baza podataka je otvorena"
 
 #: ../gramps/gui/undohistory.py:237
 msgid "History cleared"
-msgstr "Kronologija je izbrisana"
+msgstr "Povijest je izbrisana"
 
 #: ../gramps/gui/utils.py:318
 msgid "Canceling..."
@@ -31176,7 +31176,7 @@ msgstr "Idi na početnu osobu"
 #: ../gramps/plugins/view/relview.py:453 ../gramps/plugins/view/repoview.py:242
 #: ../gramps/plugins/view/sourceview.py:214
 msgid "Go to the next object in the history"
-msgstr "Idi na sljedeći objekt u kronologiji obrade"
+msgstr "Idi na sljedeći objekt u povijesti"
 
 #: ../gramps/plugins/lib/libpersonview.py:286
 #: ../gramps/plugins/lib/libplaceview.py:360
@@ -31198,7 +31198,7 @@ msgstr "Idi na sljedeći objekt u kronologiji obrade"
 #: ../gramps/plugins/view/relview.py:453 ../gramps/plugins/view/repoview.py:242
 #: ../gramps/plugins/view/sourceview.py:214
 msgid "Go to the previous object in the history"
-msgstr "Idi na prethodni objekt u kronologiji obrade"
+msgstr "Idi na prethodni objekt u povijesti"
 
 #: ../gramps/plugins/lib/libpersonview.py:329
 #: ../gramps/plugins/lib/libplaceview.py:390
@@ -32805,7 +32805,7 @@ msgstr "Cjelokupna knjiga"
 #: ../gramps/plugins/textreport/ancestorreport.py:212
 #, python-format
 msgid "Ahnentafel Report for %s"
-msgstr "Izvještaj o precima za %s"
+msgstr "Izvještaj s pločom predaka za %s"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:313
 #: ../gramps/plugins/textreport/detancestralreport.py:878
@@ -34225,7 +34225,7 @@ msgstr "Oznaka koja se koristi za izvještaj"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:38
 msgid "Ahnentafel Report"
-msgstr "Izvještaj o precima"
+msgstr "Izvještaj s pločom predaka"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:39
 msgid "Produces a textual ancestral report"
@@ -34347,7 +34347,7 @@ msgstr "Gnome generator minijatura"
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:48
 #: ../gramps/plugins/thumbnailer/thumb.gpr.py:49
 msgid "Image Thumbnailer"
-msgstr "Generator minijatura"
+msgstr "Generator minijatura slika"
 
 #: ../gramps/plugins/tool/changenames.glade:33
 msgid ""
@@ -35054,11 +35054,11 @@ msgstr "Uspoređivanje događaja"
 
 #: ../gramps/plugins/tool/eventcmp.py:320
 msgid "Building data"
-msgstr "Stvaranje podataka"
+msgstr "Podaci izgradnje"
 
 #: ../gramps/plugins/tool/eventcmp.py:404
 msgid "Select filename"
-msgstr "Odaberi datoteku"
+msgstr "Odaberi ime datoteke"
 
 #: ../gramps/plugins/tool/eventnames.py:80
 msgid "Event name changes"
@@ -36946,7 +36946,7 @@ msgid ""
 "this view and use the history."
 msgstr ""
 "Idi u prikaz osoba i odaberi osobe, koje želiš usporediti. Vrati se na ovaj "
-"prikaz i koristi kronologiju obrade."
+"prikaz i koristi povijest."
 
 #: ../gramps/plugins/view/geoclose.py:408
 msgid "Select the person which will be our reference."
@@ -37011,7 +37011,7 @@ msgid ""
 msgstr ""
 "Pritisni desnim gumbom miša na kartu i odaberi „pokaži sva mjesta”, za "
 "prikaz svih poznatih mjesta s koordinatama. Za navigiranje kartom možeš "
-"koristiti kronologiju. Možeš koristi filtriranje."
+"koristiti povijest. Možeš koristi filtriranje."
 
 #: ../gramps/plugins/view/geoevents.py:426
 #: ../gramps/plugins/view/geoevents.py:458
@@ -37072,7 +37072,7 @@ msgid ""
 "this view and use the history."
 msgstr ""
 "Idi u prikaz obitelj i odaberi obitelji, koje želiš usporediti. Vrati se na "
-"ovaj prikaz i koristi kronologiju obrade."
+"ovaj prikaz i koristi povijest."
 
 #: ../gramps/plugins/view/geofamclose.py:723
 #: ../gramps/plugins/view/geofamily.py:416
@@ -37326,7 +37326,7 @@ msgid ""
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
 "Pritisni desnim gumbom miša na kartu i odaberi „pokaži sva mjesta”, za "
-"prikaz svih poznatih mjesta s koordinatama. Možeš koristiti kronologiju za "
+"prikaz svih poznatih mjesta s koordinatama. Možeš koristiti povijest za "
 "navigaciju na karti. Možeš promijeniti boju oznake ovisno o vrsti mjesta. "
 "Možeš koristi filtriranje."
 
