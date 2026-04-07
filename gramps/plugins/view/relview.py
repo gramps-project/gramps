@@ -2074,7 +2074,7 @@ def parent_label_from_gender(gender, rel_type):
         else:
             label = _("Adoptive Parent")
     elif rel_type == "Sponsored" or rel_type == "Foster":
-    # Masculine, feminine and other gender entries needed for translations
+        # Masculine, feminine and other gender entries needed for translations
         if gender == Person.MALE:
             label = _("Guardian")
         elif gender == Person.FEMALE:
@@ -2082,7 +2082,7 @@ def parent_label_from_gender(gender, rel_type):
         else:
             label = _("Guardian")
     else:
-    # Masculine, feminine and other gender entries needed for translations
+        # Masculine, feminine and other gender entries needed for translations
         if gender == Person.MALE:
             label = _("Parent")
         elif gender == Person.FEMALE:
