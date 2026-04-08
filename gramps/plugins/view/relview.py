@@ -2094,7 +2094,7 @@ def parent_label_from_gender(gender, rel_type):
             label = _("Parent")
         elif gender == Person.FEMALE:
             label = _("Parent")
-        else:        
+        else:
             label = _("Parent")
 
     return label
