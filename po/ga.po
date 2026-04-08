@@ -5,15 +5,15 @@
 # Dale Athanasias <dalegrind@hotmail.com>, 2021.
 # OscarBrownbread <brian.tuffy@gmail.com>, 2024.
 # Aindriú Mac Giolla Eoin <aindriu80@gmail.com>, 2025, 2026.
-# Nick Hall <nick-h@gramps-project.org>, 2025.
+# Nick Hall <nick-h@gramps-project.org>, 2025, 2026.
 # Seán Ó Séaghdha <sean.anseo@gmail.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-03-17 06:10+0000\n"
-"Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
+"PO-Revision-Date: 2026-04-08 20:41+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
 "Language: ga\n"
@@ -7314,6 +7314,8 @@ msgid_plural "greater than {number_of} years"
 msgstr[0] "níos mó ná {number_of} bliain"
 msgstr[1] "níos mó ná {number_of} bliana"
 msgstr[2] "níos mó ná {number_of} bliana"
+msgstr[3] "níos mó ná {number_of} bliana"
+msgstr[4] "níos mó ná {number_of} bliana"
 
 #: ../gramps/gen/lib/date.py:312 ../gramps/gen/lib/date.py:343
 #: ../gramps/gen/lib/date.py:345 ../gramps/gen/lib/date.py:351
