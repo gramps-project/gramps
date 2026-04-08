@@ -2080,7 +2080,7 @@ def parent_label_from_gender(gender, rel_type):
             label = _("Foster Mother")
         else:
             label = _("Foster Parent")
-    elif rel_type == "Sponsored"":
+    elif rel_type == "Sponsored":
         # Masculine, feminine and other gender entries needed for translations
         if gender == Person.MALE:
             label = _("Sponsor")
