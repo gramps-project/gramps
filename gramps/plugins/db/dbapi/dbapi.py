@@ -30,6 +30,7 @@ Database API interface
 import logging
 import json
 import time
+from typing import Any
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -76,6 +77,11 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
+
+    # Set by _initialize() in concrete subclasses (e.g. SQLite).  Typed as
+    # Any because each backend provides its own connection class and there
+    # is no shared interface type in the codebase.
+    dbapi: Any
 
     # Populated by _prime_metadata_cache(); None when no cache is active.
     _metadata_cache: dict | None = None
@@ -467,12 +473,18 @@ class DBAPI(DbGeneric):
         """
         self._metadata_cache = None
 
-    def _set_all_metadata(self) -> None:
+    def _set_all_metadata(self, use_txn: bool = True) -> None:
         """
         Persist all in-memory metadata to the database in a single
         transaction, reducing the number of round-trips from one per key
         to one for the entire batch.
 
+        The *use_txn* parameter is accepted for LSP compatibility with
+        :meth:`DbGeneric._set_all_metadata` but is ignored: DBAPI always
+        wraps the batch in one ``BEGIN``/``COMMIT`` pair.
+
+        :param use_txn: Ignored; present for interface compatibility only.
+        :type use_txn: bool
         :rtype: None
         """
         self.dbapi.begin()
