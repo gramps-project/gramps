@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-04-08 20:41+0000\n"
+"PO-Revision-Date: 2026-04-09 15:27+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
@@ -7364,6 +7364,8 @@ msgid_plural "{number_of} years"
 msgstr[0] "{number_of} bliana"
 msgstr[1] "{number_of} blianta"
 msgstr[2] "{number_of} blianta"
+msgstr[3] "{number_of} blianta"
+msgstr[4] "{number_of} blianta"
 
 #: ../gramps/gen/lib/date.py:482
 #, python-brace-format
@@ -7372,6 +7374,8 @@ msgid_plural "{number_of} months"
 msgstr[0] "{number_of} mí"
 msgstr[1] "{number_of} mhí"
 msgstr[2] "{number_of} mhí"
+msgstr[3] "{number_of} mhí"
+msgstr[4] "{number_of} mhí"
 
 #: ../gramps/gen/lib/date.py:493
 #, python-brace-format
@@ -7380,6 +7384,8 @@ msgid_plural "{number_of} days"
 msgstr[0] "{number_of} lá"
 msgstr[1] "{number_of} laethanta"
 msgstr[2] "{number_of} laethanta"
+msgstr[3] "{number_of} laethanta"
+msgstr[4] "{number_of} laethanta"
 
 #: ../gramps/gen/lib/date.py:499
 msgid "0 days"
@@ -11000,6 +11006,8 @@ msgid_plural "descendant death: {number_of} generations "
 msgstr[0] "bás sliocht: {number_of} giniúint "
 msgstr[1] "bás sliocht: {number_of} generations "
 msgstr[2] "bás sliocht: {number_of} generations "
+msgstr[3] "bás sliocht: {number_of} generations "
+msgstr[4] "bás sliocht: {number_of} generations "
 
 #: ../gramps/gen/utils/alive.py:802
 #, python-format
@@ -19677,6 +19685,8 @@ msgid_plural "{number_of} addons were installed."
 msgstr[0] "Suiteáilíodh {number_of} addon."
 msgstr[1] "Suiteáladh {number_of} breiseán."
 msgstr[2] "Suiteáladh {number_of} breiseán."
+msgstr[3] "Suiteáladh {number_of} breiseán."
+msgstr[4] "Suiteáladh {number_of} breiseán."
 
 #: ../gramps/gui/plug/_windows.py:2276
 msgid "If you have installed a 'View', you will need to restart Gramps."
@@ -19866,6 +19876,8 @@ msgid_plural "{number_of} People"
 msgstr[0] "{number_of} Duine"
 msgstr[1] "{number_of} Daoine"
 msgstr[2] "{number_of} Daoine"
+msgstr[3] "{number_of} Daoine"
+msgstr[4] "{number_of} Daoine"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:184
 msgid "Click to see preview of unfiltered data"
@@ -24857,6 +24869,10 @@ msgstr[1] ""
 " tá {count_person} de {max_count_person} aonair ({percent} críochnaithe)\n"
 msgstr[2] ""
 " tá {count_person} de {max_count_person} aonair ({percent} críochnaithe)\n"
+msgstr[3] ""
+" tá {count_person} de {max_count_person} aonair ({percent} críochnaithe)\n"
+msgstr[4] ""
+" tá {count_person} de {max_count_person} aonair ({percent} críochnaithe)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:304
 msgid "All generations"
@@ -24873,6 +24889,8 @@ msgid_plural " have {number_of} individuals\n"
 msgstr[0] " tá {number_of}  duine aonair agat\n"
 msgstr[1] " tá {number_of} duine aonair agat\n"
 msgstr[2] " tá {number_of} duine aonair agat\n"
+msgstr[3] " tá {number_of} duine aonair agat\n"
+msgstr[4] " tá {number_of} duine aonair agat\n"
 
 #: ../gramps/plugins/gramplet/persondetails.py:273
 #, python-format
@@ -25861,6 +25879,8 @@ msgid_plural "{number_of} children"
 msgstr[0] "{number_of} child"
 msgstr[1] "{number_of} leanaí"
 msgstr[2] "{number_of} leanaí"
+msgstr[3] "{number_of} leanaí"
+msgstr[4] "{number_of} leanaí"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:1135
 #, python-format
@@ -26539,6 +26559,8 @@ msgid_plural "Import Complete: {number_of} seconds"
 msgstr[0] "Import Complete: {number_of} second"
 msgstr[1] "Import Complete: {number_of} soicindí"
 msgstr[2] "Import Complete: {number_of} soicindí"
+msgstr[3] "Import Complete: {number_of} soicindí"
+msgstr[4] "Import Complete: {number_of} soicindí"
 
 #: ../gramps/plugins/importer/importcsv.py:572
 msgid "The following IDs were referenced but not found:\n"
@@ -31914,6 +31936,8 @@ msgid_plural "You have {places_nb} places to edit."
 msgstr[0] "Tá {places_nb} áit agat le cur in eagar."
 msgstr[1] "Tá {places_nb} áit agat le cur in eagar."
 msgstr[2] "Tá {places_nb} áit agat le cur in eagar."
+msgstr[3] "Tá {places_nb} áit agat le cur in eagar."
+msgstr[4] "Tá {places_nb} áit agat le cur in eagar."
 
 #: ../gramps/plugins/lib/maps/geography.py:1157
 msgid "You have more than 5 places in this kml file."
@@ -32532,6 +32556,8 @@ msgid_plural "Filter matched {number_of} records."
 msgstr[0] "Comhoiriúnaigh an scagaire taifead {number_of}."
 msgstr[1] "Comhoiriúnaigh an scagaire {number_of} thaifid."
 msgstr[2] "Comhoiriúnaigh an scagaire {number_of} thaifid."
+msgstr[3] "Comhoiriúnaigh an scagaire {number_of} thaifid."
+msgstr[4] "Comhoiriúnaigh an scagaire {number_of} thaifid."
 
 #: ../gramps/plugins/quickview/lineage.py:52
 #, python-format
@@ -32840,12 +32866,11 @@ msgstr "Daoine a roinneann an sloinne '%s'"
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
-msgstr[0] ""
-"Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile air.\n"
-msgstr[1] ""
-"Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile orthu.\n"
-msgstr[2] ""
-"Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile orthu.\n"
+msgstr[0] "Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile air.\n"
+msgstr[1] "Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile orthu.\n"
+msgstr[2] "Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile orthu.\n"
+msgstr[3] "Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile orthu.\n"
+msgstr[4] "Tá {number_of} duine ann a bhfuil ainm meaitseála nó ainm eile orthu.\n"
 
 #: ../gramps/plugins/quickview/samesurnames.py:176
 #, python-format
@@ -33097,6 +33122,8 @@ msgid_plural "* {year}{person}{dead}, {age}{relation}"
 msgstr[0] "* {year}{person}{dead}, {age}{relation}"
 msgstr[1] "* {year}{person}{dead}, {age}{relation}"
 msgstr[2] "* {year}{person}{dead}, {age}{relation}"
+msgstr[3] "* {year}{person}{dead}, {age}{relation}"
+msgstr[4] "* {year}{person}{dead}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:461
 #, python-format
@@ -33124,6 +33151,12 @@ msgstr[1] ""
 msgstr[2] ""
 "⚭ {year}{spouse}{deadtxt2} agus\n"
 " {person}{deadtxt1}, {nyears}"
+msgstr[3] ""
+"⚭ {year}{spouse}{deadtxt2} agus\n"
+" {person}{deadtxt1}, {nyears}"
+msgstr[4] ""
+"⚭ {year}{spouse}{deadtxt2} agus\n"
+" {person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:521
 #, python-brace-format
@@ -33137,6 +33170,8 @@ msgid_plural "✝ {year}{person}, {age}{relation}"
 msgstr[0] "✝ {year}{person}, {age}{relation}"
 msgstr[1] "✝ {year}{person}, {age}{relation}"
 msgstr[2] "✝ {year}{person}, {age}{relation}"
+msgstr[3] "✝ {year}{person}, {age}{relation}"
+msgstr[4] "✝ {year}{person}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:561
 #: ../gramps/plugins/textreport/familygroup.py:722
@@ -34137,6 +34172,8 @@ msgid_plural "Generation {number} has {count} individuals. {percent}"
 msgstr[0] "Tá {count} duine aonair ag giniúint {number}. {percent}"
 msgstr[1] "Tá {count} daoine aonair ag giniúint {number}. {percent}"
 msgstr[2] "Tá {count} daoine aonair ag giniúint {number}. {percent}"
+msgstr[3] "Tá {count} daoine aonair ag giniúint {number}. {percent}"
+msgstr[4] "Tá {count} daoine aonair ag giniúint {number}. {percent}"
 
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:176
 #, python-format
@@ -34696,6 +34733,8 @@ msgid_plural "{number_of} event records were modified."
 msgstr[0] "Athraíodh taifead teagmhais {number_of}."
 msgstr[1] "Athraíodh {number_of} thaifead teagmhais."
 msgstr[2] "Athraíodh {number_of} thaifead teagmhais."
+msgstr[3] "Athraíodh {number_of} thaifead teagmhais."
+msgstr[4] "Athraíodh {number_of} thaifead teagmhais."
 
 #: ../gramps/plugins/tool/check.py:138 ../gramps/plugins/tool/check.py:320
 msgid "Checking Database"
@@ -34928,6 +34967,8 @@ msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "Socraíodh {quantity} nasc briste linbh/teaghlaigh\n"
 msgstr[1] "Socraíodh {quantity} nasc briste leanaí/teaghlaigh\n"
 msgstr[2] "Socraíodh {quantity} nasc briste leanaí/teaghlaigh\n"
+msgstr[3] "Socraíodh {quantity} nasc briste leanaí/teaghlaigh\n"
+msgstr[4] "Socraíodh {quantity} nasc briste leanaí/teaghlaigh\n"
 
 #: ../gramps/plugins/tool/check.py:2801
 msgid "Non existing child"
@@ -34945,6 +34986,8 @@ msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "Socraíodh {quantity} nasc céile/teaghlaigh briste\n"
 msgstr[1] "Socraíodh {quantity} nasc briste céile/teaghlaigh\n"
 msgstr[2] "Socraíodh {quantity} nasc briste céile/teaghlaigh\n"
+msgstr[3] "Socraíodh {quantity} nasc briste céile/teaghlaigh\n"
+msgstr[4] "Socraíodh {quantity} nasc briste céile/teaghlaigh\n"
 
 #: ../gramps/plugins/tool/check.py:2829 ../gramps/plugins/tool/check.py:2857
 msgid "Non existing person"
@@ -34962,6 +35005,8 @@ msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "Fuarthas nasc dúblach céile/teaghlaigh\n"
 msgstr[1] "Fuarthas {quantity} naisc dúblacha céile/teaghlaigh\n"
 msgstr[2] "Fuarthas {quantity} naisc dúblacha céile/teaghlaigh\n"
+msgstr[3] "Fuarthas {quantity} naisc dúblacha céile/teaghlaigh\n"
+msgstr[4] "Fuarthas {quantity} naisc dúblacha céile/teaghlaigh\n"
 
 #: ../gramps/plugins/tool/check.py:2876
 #, python-brace-format
@@ -34974,6 +35019,10 @@ msgstr[1] ""
 "{quantity} teaghlach gan aon tuismitheoirí nó leanaí aimsithe, bainte.\n"
 msgstr[2] ""
 "{quantity} teaghlach gan aon tuismitheoirí nó leanaí aimsithe, bainte.\n"
+msgstr[3] ""
+"{quantity} teaghlach gan aon tuismitheoirí nó leanaí aimsithe, bainte.\n"
+msgstr[4] ""
+"{quantity} teaghlach gan aon tuismitheoirí nó leanaí aimsithe, bainte.\n"
 
 #: ../gramps/plugins/tool/check.py:2890
 #, python-brace-format
@@ -34982,6 +35031,8 @@ msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] "Caidreamh teaghlaigh truaillithe socraithe\n"
 msgstr[1] "{quantity} caidreamh teaghlaigh truaillithe socraithe\n"
 msgstr[2] "{quantity} caidreamh teaghlaigh truaillithe socraithe\n"
+msgstr[3] "{quantity} caidreamh teaghlaigh truaillithe socraithe\n"
+msgstr[4] "{quantity} caidreamh teaghlaigh truaillithe socraithe\n"
 
 #: ../gramps/plugins/tool/check.py:2900
 #, python-brace-format
@@ -34990,6 +35041,8 @@ msgid_plural "{quantity} place alternate names fixed\n"
 msgstr[0] "{quantity} áit ainm eile socraithe\n"
 msgstr[1] "{quantity} ainmneacha malartacha socraithe\n"
 msgstr[2] "{quantity} ainmneacha malartacha socraithe\n"
+msgstr[3] "{quantity} ainmneacha malartacha socraithe\n"
+msgstr[4] "{quantity} ainmneacha malartacha socraithe\n"
 
 #: ../gramps/plugins/tool/check.py:2910
 #, python-brace-format
@@ -34998,16 +35051,18 @@ msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] "Rinneadh tagairt do {quantity} don duine ach níor aimsíodh é\n"
 msgstr[1] "Rinneadh tagairt do {quantity} daoine, ach níor aimsíodh iad\n"
 msgstr[2] "Rinneadh tagairt do {quantity} daoine, ach níor aimsíodh iad\n"
+msgstr[3] "Rinneadh tagairt do {quantity} daoine, ach níor aimsíodh iad\n"
+msgstr[4] "Rinneadh tagairt do {quantity} daoine, ach níor aimsíodh iad\n"
 
 #: ../gramps/plugins/tool/check.py:2920
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "Rinneadh tagairt do theaghlach {quantity} ach níor aimsíodh é\n"
-msgstr[1] ""
-"Rinneadh tagairt do {quantity} do theaghlaigh, ach níor aimsíodh iad\n"
-msgstr[2] ""
-"Rinneadh tagairt do {quantity} do theaghlaigh, ach níor aimsíodh iad\n"
+msgstr[1] "Rinneadh tagairt do {quantity} do theaghlaigh, ach níor aimsíodh iad\n"
+msgstr[2] "Rinneadh tagairt do {quantity} do theaghlaigh, ach níor aimsíodh iad\n"
+msgstr[3] "Rinneadh tagairt do {quantity} do theaghlaigh, ach níor aimsíodh iad\n"
+msgstr[4] "Rinneadh tagairt do {quantity} do theaghlaigh, ach níor aimsíodh iad\n"
 
 #: ../gramps/plugins/tool/check.py:2930
 #, python-brace-format
@@ -35016,6 +35071,8 @@ msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] "Ceartaíodh an dáta {quantity}\n"
 msgstr[1] "Ceartaíodh {quantity} dáta\n"
 msgstr[2] "Ceartaíodh {quantity} dáta\n"
+msgstr[3] "Ceartaíodh {quantity} dáta\n"
+msgstr[4] "Ceartaíodh {quantity} dáta\n"
 
 #: ../gramps/plugins/tool/check.py:2940
 #, python-brace-format
@@ -35035,6 +35092,8 @@ msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] "Rinneadh tagairt do réad meán {quantity} ach níor aimsíodh é\n"
 msgstr[1] "Rinneadh tagairt do {quantity} réad meán, ach níor aimsíodh é\n"
 msgstr[2] "Rinneadh tagairt do {quantity} réad meán, ach níor aimsíodh é\n"
+msgstr[3] "Rinneadh tagairt do {quantity} réad meán, ach níor aimsíodh é\n"
+msgstr[4] "Rinneadh tagairt do {quantity} réad meán, ach níor aimsíodh é\n"
 
 #: ../gramps/plugins/tool/check.py:2960
 #, python-brace-format
@@ -35043,6 +35102,8 @@ msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "Coinníodh tagairt do {quantity} réad meán atá in easnamh\n"
 msgstr[1] "References to {quantity} missing media objects were kept\n"
 msgstr[2] "References to {quantity} missing media objects were kept\n"
+msgstr[3] "References to {quantity} missing media objects were kept\n"
+msgstr[4] "References to {quantity} missing media objects were kept\n"
 
 #: ../gramps/plugins/tool/check.py:2970
 #, python-brace-format
@@ -35051,6 +35112,8 @@ msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] "Cuireadh réad meán in easnamh in ionad {quantity}\n"
 msgstr[1] "Athsholáthraíodh {quantity} réad meán atá ar iarraidh\n"
 msgstr[2] "Athsholáthraíodh {quantity} réad meán atá ar iarraidh\n"
+msgstr[3] "Athsholáthraíodh {quantity} réad meán atá ar iarraidh\n"
+msgstr[4] "Athsholáthraíodh {quantity} réad meán atá ar iarraidh\n"
 
 #: ../gramps/plugins/tool/check.py:2980
 #, python-brace-format
@@ -35059,6 +35122,8 @@ msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] "Baineadh réad meán in easnamh {quantity}\n"
 msgstr[1] "Baineadh {quantity} réad meán ar iarraidh\n"
 msgstr[2] "Baineadh {quantity} réad meán ar iarraidh\n"
+msgstr[3] "Baineadh {quantity} réad meán ar iarraidh\n"
+msgstr[4] "Baineadh {quantity} réad meán ar iarraidh\n"
 
 #: ../gramps/plugins/tool/check.py:2990
 #, python-brace-format
@@ -35067,6 +35132,8 @@ msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] "Rinneadh tagairt d'imeacht {quantity} ach níor aimsíodh é\n"
 msgstr[1] "Rinneadh tagairt d'imeachtaí {quantity}, ach níor aimsíodh iad\n"
 msgstr[2] "Rinneadh tagairt d'imeachtaí {quantity}, ach níor aimsíodh iad\n"
+msgstr[3] "Rinneadh tagairt d'imeachtaí {quantity}, ach níor aimsíodh iad\n"
+msgstr[4] "Rinneadh tagairt d'imeachtaí {quantity}, ach níor aimsíodh iad\n"
 
 #: ../gramps/plugins/tool/check.py:3000
 #, python-brace-format
@@ -35075,6 +35142,8 @@ msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] "Socraíodh {quantity} ainm teagmhais breithe neamhbhailí\n"
 msgstr[1] "Socraíodh {quantity} ainmneacha teagmhais breithe neamhbhailí\n"
 msgstr[2] "Socraíodh {quantity} ainmneacha teagmhais breithe neamhbhailí\n"
+msgstr[3] "Socraíodh {quantity} ainmneacha teagmhais breithe neamhbhailí\n"
+msgstr[4] "Socraíodh {quantity} ainmneacha teagmhais breithe neamhbhailí\n"
 
 #: ../gramps/plugins/tool/check.py:3010
 #, python-brace-format
@@ -35083,6 +35152,8 @@ msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] "Socraíodh {quantity} ainm teagmhais báis neamhbhailí\n"
 msgstr[1] "Socraíodh {quantity} ainmneacha teagmhais báis neamhbhailí\n"
 msgstr[2] "Socraíodh {quantity} ainmneacha teagmhais báis neamhbhailí\n"
+msgstr[3] "Socraíodh {quantity} ainmneacha teagmhais báis neamhbhailí\n"
+msgstr[4] "Socraíodh {quantity} ainmneacha teagmhais báis neamhbhailí\n"
 
 #: ../gramps/plugins/tool/check.py:3020
 #, python-brace-format
@@ -35091,6 +35162,8 @@ msgid_plural "{quantity} places were referenced, but not found\n"
 msgstr[0] "Rinneadh tagairt don áit {quantity} ach níor aimsíodh é\n"
 msgstr[1] "Rinneadh tagairt d'áiteanna {quantity}, ach níor aimsíodh iad\n"
 msgstr[2] "Rinneadh tagairt d'áiteanna {quantity}, ach níor aimsíodh iad\n"
+msgstr[3] "Rinneadh tagairt d'áiteanna {quantity}, ach níor aimsíodh iad\n"
+msgstr[4] "Rinneadh tagairt d'áiteanna {quantity}, ach níor aimsíodh iad\n"
 
 #: ../gramps/plugins/tool/check.py:3030
 #, python-brace-format
@@ -35099,6 +35172,8 @@ msgid_plural "{quantity} citations were referenced, but not found\n"
 msgstr[0] "Rinneadh tagairt do {quantity} ach níor aimsíodh é\n"
 msgstr[1] "Rinneadh tagairt do {quantity} luanna, ach níor aimsíodh iad\n"
 msgstr[2] "Rinneadh tagairt do {quantity} luanna, ach níor aimsíodh iad\n"
+msgstr[3] "Rinneadh tagairt do {quantity} luanna, ach níor aimsíodh iad\n"
+msgstr[4] "Rinneadh tagairt do {quantity} luanna, ach níor aimsíodh iad\n"
 
 #: ../gramps/plugins/tool/check.py:3040
 #, python-brace-format
@@ -35107,6 +35182,8 @@ msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] "Rinneadh tagairt d'fhoinsí {quantity}, ach níor aimsíodh iad\n"
 msgstr[1] "Rinneadh tagairt d'fhoinsí {quantity}, ach níor aimsíodh iad\n"
 msgstr[2] "Rinneadh tagairt d'fhoinsí {quantity}, ach níor aimsíodh iad\n"
+msgstr[3] "Rinneadh tagairt d'fhoinsí {quantity}, ach níor aimsíodh iad\n"
+msgstr[4] "Rinneadh tagairt d'fhoinsí {quantity}, ach níor aimsíodh iad\n"
 
 #: ../gramps/plugins/tool/check.py:3060
 #, python-brace-format
@@ -35115,6 +35192,8 @@ msgid_plural "{quantity} note objects were referenced, but not found\n"
 msgstr[0] "Rinneadh tagairt do réad nóta {quantity} ach níor aimsíodh é\n"
 msgstr[1] "Rinneadh tagairt do réada nótaí {quantity}, ach níor aimsíodh iad\n"
 msgstr[2] "Rinneadh tagairt do réada nótaí {quantity}, ach níor aimsíodh iad\n"
+msgstr[3] "Rinneadh tagairt do réada nótaí {quantity}, ach níor aimsíodh iad\n"
+msgstr[4] "Rinneadh tagairt do réada nótaí {quantity}, ach níor aimsíodh iad\n"
 
 #: ../gramps/plugins/tool/check.py:3070 ../gramps/plugins/tool/check.py:3080
 #, python-brace-format
@@ -35123,6 +35202,8 @@ msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] "Rinneadh tagairt do réad tag {quantity} ach níor aimsíodh é\n"
 msgstr[1] "Rinneadh tagairt do {quantity} réad clibe, ach níor aimsíodh iad\n"
 msgstr[2] "Rinneadh tagairt do {quantity} réad clibe, ach níor aimsíodh iad\n"
+msgstr[3] "Rinneadh tagairt do {quantity} réad clibe, ach níor aimsíodh iad\n"
+msgstr[4] "Rinneadh tagairt do {quantity} réad clibe, ach níor aimsíodh iad\n"
 
 #: ../gramps/plugins/tool/check.py:3090
 #, python-brace-format
@@ -35131,6 +35212,8 @@ msgid_plural "{quantity} invalid name format references were removed\n"
 msgstr[0] "Baineadh tagairt formáid ainm neamhbhailí {quantity}\n"
 msgstr[1] "Baineadh {quantity} tagairtí formáid ainm neamhbhailí\n"
 msgstr[2] "Baineadh {quantity} tagairtí formáid ainm neamhbhailí\n"
+msgstr[3] "Baineadh {quantity} tagairtí formáid ainm neamhbhailí\n"
+msgstr[4] "Baineadh {quantity} tagairtí formáid ainm neamhbhailí\n"
 
 #: ../gramps/plugins/tool/check.py:3100
 #, python-brace-format
@@ -35139,6 +35222,8 @@ msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "Socraíodh {quantity} lua foinse neamhbhailí\n"
 msgstr[1] "Socraíodh {quantity} lua foinse neamhbhailí\n"
 msgstr[2] "Socraíodh {quantity} lua foinse neamhbhailí\n"
+msgstr[3] "Socraíodh {quantity} lua foinse neamhbhailí\n"
+msgstr[4] "Socraíodh {quantity} lua foinse neamhbhailí\n"
 
 #: ../gramps/plugins/tool/check.py:3110
 #, python-brace-format
@@ -35147,6 +35232,8 @@ msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
 msgstr[0] "{quantity} Aitheantas Gramps Dúblach socraithe\n"
 msgstr[1] "{quantity} Aitheantas Gramps Dúblach socraithe\n"
 msgstr[2] "{quantity} Aitheantas Gramps Dúblach socraithe\n"
+msgstr[3] "{quantity} Aitheantas Gramps Dúblach socraithe\n"
+msgstr[4] "{quantity} Aitheantas Gramps Dúblach socraithe\n"
 
 #: ../gramps/plugins/tool/check.py:3119
 #, python-format
@@ -35337,6 +35424,8 @@ msgid_plural "{quantity} event descriptions have been added"
 msgstr[0] "{quantity} cur síos ar an imeacht curtha leis"
 msgstr[1] "{quantity} cur síos ar imeachtaí curtha leis"
 msgstr[2] "{quantity} cur síos ar imeachtaí curtha leis"
+msgstr[3] "{quantity} cur síos ar imeachtaí curtha leis"
+msgstr[4] "{quantity} cur síos ar imeachtaí curtha leis"
 
 #: ../gramps/plugins/tool/eventnames.py:124
 msgid "Modifications made"
@@ -35707,6 +35796,8 @@ msgid_plural "{number_of} citations merged"
 msgstr[0] "{number_of} lua cumasc"
 msgstr[1] "{number_of} Luanna cumasc"
 msgstr[2] "{number_of} Luanna cumasc"
+msgstr[3] "{number_of} Luanna cumasc"
+msgstr[4] "{number_of} Luanna cumasc"
 
 #: ../gramps/plugins/tool/notrelated.glade:159
 msgid "_Tag"
@@ -35738,6 +35829,8 @@ msgid_plural "Setting tag for {number_of} people"
 msgstr[0] "Clib á shocrú do dhuine {number_of}"
 msgstr[1] "Clib á socrú le haghaidh {number_of} duine"
 msgstr[2] "Clib á socrú le haghaidh {number_of} duine"
+msgstr[3] "Clib á socrú le haghaidh {number_of} duine"
+msgstr[4] "Clib á socrú le haghaidh {number_of} duine"
 
 #: ../gramps/plugins/tool/notrelated.py:302
 #, python-brace-format
@@ -35746,6 +35839,8 @@ msgid_plural "Finding relationships between {number_of} people"
 msgstr[0] "Caidrimh a aimsiú idir {number_of} duine"
 msgstr[1] "Caidreamh a aimsiú idir {number_of} daoine"
 msgstr[2] "Caidreamh a aimsiú idir {number_of} daoine"
+msgstr[3] "Caidreamh a aimsiú idir {number_of} daoine"
+msgstr[4] "Caidreamh a aimsiú idir {number_of} daoine"
 
 #: ../gramps/plugins/tool/notrelated.py:393
 #, python-brace-format
@@ -35754,6 +35849,8 @@ msgid_plural "Looking for {number_of} people"
 msgstr[0] "{number_of} duine á lorg"
 msgstr[1] "{number_of} duine á lorg"
 msgstr[2] "{number_of} duine á lorg"
+msgstr[3] "{number_of} duine á lorg"
+msgstr[4] "{number_of} duine á lorg"
 
 #: ../gramps/plugins/tool/notrelated.py:420
 #, python-brace-format
@@ -35762,6 +35859,8 @@ msgid_plural "Looking up the names of {number_of} people"
 msgstr[0] "Ag féachaint suas ainm {number_of} duine"
 msgstr[1] "Ag féachaint suas ainmneacha {number_of} daoine"
 msgstr[2] "Ag féachaint suas ainmneacha {number_of} daoine"
+msgstr[3] "Ag féachaint suas ainmneacha {number_of} daoine"
+msgstr[4] "Ag féachaint suas ainmneacha {number_of} daoine"
 
 #: ../gramps/plugins/tool/ownereditor.glade:127
 msgid "_Street:"
@@ -37940,6 +38039,8 @@ msgid_plural " ({number_of} siblings)"
 msgstr[0] " ({number_of} siblín)"
 msgstr[1] " ({number_of} siblíní)"
 msgstr[2] " ({number_of} siblíní)"
+msgstr[3] " ({number_of} siblíní)"
+msgstr[4] " ({number_of} siblíní)"
 
 #: ../gramps/plugins/view/relview.py:1084
 #: ../gramps/plugins/view/relview.py:1147
@@ -38018,6 +38119,8 @@ msgid_plural " ({number_of} children)"
 msgstr[0] " ({number_of} leanbh)"
 msgstr[1] " ({number_of} leanaí)"
 msgstr[2] " ({number_of} leanaí)"
+msgstr[3] " ({number_of} leanaí)"
+msgstr[4] " ({number_of} leanaí)"
 
 #: ../gramps/plugins/view/relview.py:1636
 #: ../gramps/plugins/view/relview.py:1683
@@ -38496,6 +38599,8 @@ msgid_plural "{couple}, {years} year anniversary"
 msgstr[0] "{couple}, {years} comóradh bliana"
 msgstr[1] "{couple}, {years} comóradh bliana"
 msgstr[2] "{couple}, {years} comóradh bliana"
+msgstr[3] "{couple}, {years} comóradh bliana"
+msgstr[4] "{couple}, {years} comóradh bliana"
 
 #: ../gramps/plugins/webreport/download.py:102
 msgid ""
