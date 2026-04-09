@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-15 17:40+0000\n"
-"PO-Revision-Date: 2026-04-07 13:45+0000\n"
+"PO-Revision-Date: 2026-04-09 15:27+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
@@ -37318,10 +37318,8 @@ msgid " [Click to Go]"
 msgstr " [点击访问]"
 
 #: ../gramps/plugins/webreport/basepage.py:2973
-#, fuzzy
-#| msgid "Latter-Day Saints/ LDS Ordinance"
 msgid "Latter-day Saints/ LDS Ordinance"
-msgstr "后期圣徒 (Latter-Day Saints / LDS) 教仪"
+msgstr "后期圣徒教会礼仪"
 
 #: ../gramps/plugins/webreport/basepage.py:3140
 #: ../gramps/plugins/webreport/basepage.py:3142
