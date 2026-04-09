@@ -41,7 +41,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-15 17:40+0000\n"
+"POT-Creation-Date: 2026-04-09 17:05+0100\n"
 "PO-Revision-Date: 2026-03-17 06:09+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
@@ -343,7 +343,7 @@ msgstr "Vztahy"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:186 ../gramps/gui/clipboard.py:729
-#: ../gramps/gui/configure.py:773 ../gramps/gui/editors/editlink.py:99
+#: ../gramps/gui/configure.py:774 ../gramps/gui/editors/editlink.py:99
 #: ../gramps/gui/editors/filtereditor.py:308
 #: ../gramps/gui/glade/editpersonref.glade:177
 #: ../gramps/gui/glade/editpersonref.glade:241 ../gramps/gui/grampsgui.py:57
@@ -1274,7 +1274,7 @@ msgstr "Rodokmeny Gramps:"
 #: ../gramps/cli/arghandler.py:463 ../gramps/cli/arghandler.py:465
 #: ../gramps/cli/arghandler.py:467 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:176 ../gramps/cli/clidbman.py:215
-#: ../gramps/gui/clipboard.py:926 ../gramps/gui/configure.py:2383
+#: ../gramps/gui/clipboard.py:926 ../gramps/gui/configure.py:2382
 msgid "Family Tree"
 msgstr "Rodokmen"
 
@@ -1771,7 +1771,7 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:584 ../gramps/gui/configure.py:2328
+#: ../gramps/cli/clidbman.py:584 ../gramps/gui/configure.py:2327
 #: ../gramps/gui/plug/_windows.py:779
 msgid "Never"
 msgstr "Nikdy"
@@ -6638,7 +6638,7 @@ msgid "Matches sources that are indicated as private"
 msgstr "Vyhovují prameny označené jako soukromé"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
-#: ../gramps/gui/configure.py:707 ../gramps/gui/editors/editaddress.py:199
+#: ../gramps/gui/configure.py:708 ../gramps/gui/editors/editaddress.py:199
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/plugins/gramplet/repositorydetails.py:142
 #: ../gramps/plugins/lib/libgedcom.py:6123
@@ -6773,7 +6773,7 @@ msgid "Street"
 msgstr "Ulice"
 
 #: ../gramps/gen/lib/address.py:121 ../gramps/gen/lib/location.py:92
-#: ../gramps/gen/lib/placetype.py:79 ../gramps/gui/configure.py:711
+#: ../gramps/gen/lib/placetype.py:79 ../gramps/gui/configure.py:712
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/geoplaces.py:599
@@ -6785,7 +6785,7 @@ msgid "Locality"
 msgstr "Lokalita"
 
 #: ../gramps/gen/lib/address.py:122 ../gramps/gen/lib/location.py:93
-#: ../gramps/gen/lib/placetype.py:77 ../gramps/gui/configure.py:714
+#: ../gramps/gen/lib/placetype.py:77 ../gramps/gui/configure.py:715
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/view/geoplaces.py:627
@@ -6818,7 +6818,7 @@ msgid "State"
 msgstr "Stát"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:96
-#: ../gramps/gen/lib/placetype.py:74 ../gramps/gui/configure.py:721
+#: ../gramps/gen/lib/placetype.py:74 ../gramps/gui/configure.py:722
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:350
@@ -6841,7 +6841,7 @@ msgid "Postal Code"
 msgstr "PSČ"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:98
-#: ../gramps/gui/configure.py:733
+#: ../gramps/gui/configure.py:734
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
 #: ../gramps/plugins/export/exportgedcom.py:864
 #: ../gramps/plugins/export/exportgedcom.py:1253
@@ -6998,7 +6998,7 @@ msgid "Handle"
 msgstr "Ukazatel"
 
 #: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/plug/docgen/treedoc.py:92
-#: ../gramps/gui/configure.py:92
+#: ../gramps/gui/configure.py:93
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:233
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:196
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:267
@@ -7037,7 +7037,7 @@ msgid "Foster"
 msgstr "Pěstoun"
 
 #: ../gramps/gen/lib/citation.py:106 ../gramps/gen/lib/notetype.py:90
-#: ../gramps/gui/clipboard.py:481 ../gramps/gui/configure.py:809
+#: ../gramps/gui/clipboard.py:481 ../gramps/gui/configure.py:810
 #: ../gramps/gui/editors/editcitation.py:133
 #: ../gramps/gui/editors/editcitation.py:138
 #: ../gramps/gui/editors/editlink.py:103
@@ -7106,7 +7106,7 @@ msgid "Confidence"
 msgstr "Důvěryhodnost"
 
 #: ../gramps/gen/lib/citation.py:126 ../gramps/gen/lib/src.py:104
-#: ../gramps/gui/clipboard.py:770 ../gramps/gui/configure.py:800
+#: ../gramps/gui/clipboard.py:770 ../gramps/gui/configure.py:801
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:80
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:103
@@ -7400,7 +7400,7 @@ msgstr "Hodnoty"
 #: ../gramps/gen/lib/date.py:796 ../gramps/gen/lib/placename.py:97
 #: ../gramps/gen/lib/styledtext.py:342
 #: ../gramps/gen/plug/report/_constants.py:61 ../gramps/gui/clipboard.py:632
-#: ../gramps/gui/clipboard.py:640 ../gramps/gui/configure.py:1793
+#: ../gramps/gui/clipboard.py:640 ../gramps/gui/configure.py:1792
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:103
 #: ../gramps/plugins/importer/importprogen.glade:438
 #: ../gramps/plugins/importer/importprogen.glade:1051
@@ -7472,7 +7472,7 @@ msgid "textonly"
 msgstr "jen text"
 
 #: ../gramps/gen/lib/event.py:175 ../gramps/gen/lib/eventref.py:140
-#: ../gramps/gui/clipboard.py:355 ../gramps/gui/configure.py:827
+#: ../gramps/gui/clipboard.py:355 ../gramps/gui/configure.py:828
 #: ../gramps/gui/editors/editlink.py:95
 #: ../gramps/gui/editors/filtereditor.py:310
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:174
@@ -7492,7 +7492,7 @@ msgstr "Událost"
 
 #: ../gramps/gen/lib/event.py:190 ../gramps/gen/lib/ldsord.py:202
 #: ../gramps/gen/lib/place.py:153 ../gramps/gui/clipboard.py:374
-#: ../gramps/gui/configure.py:791
+#: ../gramps/gui/configure.py:792
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:93
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
@@ -7676,7 +7676,7 @@ msgstr "Životní události"
 
 #: ../gramps/gen/lib/eventtype.py:155 ../gramps/gen/lib/family.py:160
 #: ../gramps/gen/lib/ldsord.py:203 ../gramps/gui/clipboard.py:748
-#: ../gramps/gui/configure.py:782
+#: ../gramps/gui/configure.py:783
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
 #: ../gramps/gui/editors/editfamily.py:603 ../gramps/gui/editors/editlink.py:96
@@ -7751,7 +7751,7 @@ msgid "Adopted"
 msgstr "Adoptován(a)"
 
 #: ../gramps/gen/lib/eventtype.py:200 ../gramps/gen/utils/symbols.py:93
-#: ../gramps/gui/configure.py:2798 ../gramps/gui/merge/mergeperson.py:205
+#: ../gramps/gui/configure.py:2797 ../gramps/gui/merge/mergeperson.py:205
 #: ../gramps/plugins/export/exportvcalendar.py:148
 #: ../gramps/plugins/gramplet/ancestor.py:68
 #: ../gramps/plugins/gramplet/descendant.py:66
@@ -7767,7 +7767,7 @@ msgstr "Adoptován(a)"
 msgid "Birth"
 msgstr "Narození"
 
-#: ../gramps/gen/lib/eventtype.py:201 ../gramps/gui/configure.py:2804
+#: ../gramps/gen/lib/eventtype.py:201 ../gramps/gui/configure.py:2803
 #: ../gramps/gui/merge/mergeperson.py:212
 #: ../gramps/plugins/export/exportvcalendar.py:157
 #: ../gramps/plugins/importer/importprogen.glade:1422
@@ -7785,7 +7785,7 @@ msgid "Adult Christening"
 msgstr "Křtiny dospělých"
 
 #: ../gramps/gen/lib/eventtype.py:203 ../gramps/gen/lib/ldsord.py:94
-#: ../gramps/gui/configure.py:2799
+#: ../gramps/gui/configure.py:2798
 msgid "Baptism"
 msgstr "Baptistické křtiny"
 
@@ -7900,7 +7900,7 @@ msgid "Will"
 msgstr "Závěť"
 
 #: ../gramps/gen/lib/eventtype.py:233 ../gramps/gen/plug/docgen/treedoc.py:223
-#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2801
+#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2800
 #: ../gramps/gui/merge/mergeperson.py:277
 #: ../gramps/plugins/export/exportcsv.py:580
 #: ../gramps/plugins/export/exportvcalendar.py:136
@@ -7932,7 +7932,7 @@ msgid "Engagement"
 msgstr "Zasnoubení"
 
 #: ../gramps/gen/lib/eventtype.py:239 ../gramps/gen/utils/symbols.py:97
-#: ../gramps/gui/configure.py:2803 ../gramps/plugins/webreport/family.py:317
+#: ../gramps/gui/configure.py:2802 ../gramps/plugins/webreport/family.py:317
 msgid "Divorce"
 msgstr "Rozvod"
 
@@ -8450,7 +8450,7 @@ msgstr "Region"
 
 #: ../gramps/gen/lib/name.py:165 ../gramps/gen/lib/repo.py:104
 #: ../gramps/gen/lib/tag.py:154 ../gramps/gui/clipboard.py:584
-#: ../gramps/gui/configure.py:704
+#: ../gramps/gui/configure.py:705
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:65
@@ -8670,9 +8670,9 @@ msgstr "Rodné jméno"
 msgid "Married Name"
 msgstr "Manželské jméno"
 
-#: ../gramps/gen/lib/note.py:104 ../gramps/gen/plug/docgen/graphdoc.py:303
+#: ../gramps/gen/lib/note.py:104 ../gramps/gen/plug/docgen/graphdoc.py:305
 #: ../gramps/gen/plug/docgen/treedoc.py:291 ../gramps/gui/clipboard.py:393
-#: ../gramps/gui/configure.py:845 ../gramps/gui/editors/editlink.py:98
+#: ../gramps/gui/configure.py:846 ../gramps/gui/editors/editlink.py:98
 #: ../gramps/gui/editors/editmedia.py:107
 #: ../gramps/gui/editors/editmedia.py:206
 #: ../gramps/gui/editors/editmediaref.py:166
@@ -8707,13 +8707,13 @@ msgstr "Manželské jméno"
 msgid "Note"
 msgstr "Poznámka"
 
-#: ../gramps/gen/lib/note.py:114 ../gramps/gui/configure.py:1254
+#: ../gramps/gen/lib/note.py:114 ../gramps/gui/configure.py:1253
 #: ../gramps/gui/editors/editplaceformat.py:73
 #: ../gramps/plugins/tool/reorderids.glade:1428
 msgid "Format"
 msgstr "Formát"
 
-#: ../gramps/gen/lib/notetype.py:85 ../gramps/gui/configure.py:2204
+#: ../gramps/gen/lib/notetype.py:85 ../gramps/gui/configure.py:2203
 #: ../gramps/gui/editors/editeventref.py:101
 #: ../gramps/gui/editors/editmediaref.py:120
 #: ../gramps/gui/editors/editplaceref.py:83
@@ -9044,7 +9044,7 @@ msgid "Number"
 msgstr "Číslo"
 
 #: ../gramps/gen/lib/repo.py:94 ../gramps/gui/clipboard.py:789
-#: ../gramps/gui/configure.py:836 ../gramps/gui/editors/editlink.py:101
+#: ../gramps/gui/configure.py:837 ../gramps/gui/editors/editlink.py:101
 #: ../gramps/gui/editors/editrepository.py:82
 #: ../gramps/gui/editors/editrepository.py:84
 #: ../gramps/gui/editors/filtereditor.py:314 ../gramps/gui/grampsgui.py:57
@@ -9521,7 +9521,7 @@ msgstr "Pravidlo"
 msgid "Thumbnailer"
 msgstr "Thumbnailer"
 
-#: ../gramps/gen/plug/_pluginreg.py:133 ../gramps/gui/configure.py:1662
+#: ../gramps/gen/plug/_pluginreg.py:133 ../gramps/gui/configure.py:1661
 msgid "Citation formatter"
 msgstr "Formátovač citací"
 
@@ -9739,16 +9739,16 @@ msgstr "Oblý"
 msgid "Orthogonal"
 msgstr "Ortogonální"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:156
+#: ../gramps/gen/plug/docgen/graphdoc.py:158
 msgid "Graphviz Layout"
 msgstr "Rozložení GraphViz"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:158
+#: ../gramps/gen/plug/docgen/graphdoc.py:160
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Font family"
 msgstr "Řez písma"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:163
+#: ../gramps/gen/plug/docgen/graphdoc.py:165
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -9756,28 +9756,28 @@ msgstr ""
 "Zvolte rodinu písem. Jestliže se nezobrazují mezinárodní znaky, použijte "
 "písmo FreeSans. Písmo je dostupné z http://www.nongnu.org/freefont/"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:171
+#: ../gramps/gen/plug/docgen/graphdoc.py:173
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Font size"
 msgstr "Velikost písma"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:172
+#: ../gramps/gen/plug/docgen/graphdoc.py:174
 msgid "The font size, in points."
 msgstr "Velikost písma v bodech."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:175
+#: ../gramps/gen/plug/docgen/graphdoc.py:177
 msgid "Graph Direction"
 msgstr "Směr grafu"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:179
+#: ../gramps/gen/plug/docgen/graphdoc.py:181
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Zda-li graf směřuje odshora dolů nebo zleva doprava."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:183
+#: ../gramps/gen/plug/docgen/graphdoc.py:185
 msgid "Number of Horizontal Pages"
 msgstr "Počet horizontálních stránek"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:186
+#: ../gramps/gen/plug/docgen/graphdoc.py:188
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -9787,11 +9787,11 @@ msgstr ""
 "polí stránek. Toto pole určuje počet stránek vodorovně. Platné pouze pro dot "
 "a pdf s využitím Ghostscriptu."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:195
+#: ../gramps/gen/plug/docgen/graphdoc.py:197
 msgid "Number of Vertical Pages"
 msgstr "Počet vertikálních stránek"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:198
+#: ../gramps/gen/plug/docgen/graphdoc.py:200
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -9801,11 +9801,11 @@ msgstr ""
 "polí stránek. Toto pole určuje počet stránek svisle. Platné pouze pro dot a "
 "pdf s využitím Ghostscriptu."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:207
+#: ../gramps/gen/plug/docgen/graphdoc.py:209
 msgid "Paging Direction"
 msgstr "Směr stránkování"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:212
+#: ../gramps/gen/plug/docgen/graphdoc.py:214
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -9813,31 +9813,31 @@ msgstr ""
 "Pořadí ve kterém jsou vytvořeny stránky grafů. Tato volba je platná pouze "
 "pokud je počet svislých nebo vodorovných stran větší než 1."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:219
+#: ../gramps/gen/plug/docgen/graphdoc.py:221
 msgid "Connecting lines"
 msgstr "Propojovací linky"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:222
+#: ../gramps/gen/plug/docgen/graphdoc.py:224
 msgid "How the lines between objects will be drawn."
 msgstr "Jakým způsobe budou kresleny čáry propojující objekty."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:225
+#: ../gramps/gen/plug/docgen/graphdoc.py:227
 msgid "Alternate line attachment"
 msgstr "Alternativní připojení čáry"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:226
+#: ../gramps/gen/plug/docgen/graphdoc.py:228
 msgid "Whether lines attach to nodes differently"
 msgstr "Zda připojovat čáry k uzlům odlišně"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:242
+#: ../gramps/gen/plug/docgen/graphdoc.py:244
 msgid "Graphviz Options"
 msgstr "Nastavení GraphViz"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:245
+#: ../gramps/gen/plug/docgen/graphdoc.py:247
 msgid "Aspect ratio"
 msgstr "Poměr stran"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:249
+#: ../gramps/gen/plug/docgen/graphdoc.py:251
 msgid ""
 "Affects node spacing and scaling of the graph.\n"
 "If the graph is smaller than the print area:\n"
@@ -9864,11 +9864,11 @@ msgstr ""
 " Vyplnit zmenší graf tak aby se vešel, nejdříve ale zvětší rozteč uzlů.\n"
 " Rozšířit stejnoměrně zmenší graf tak aby se vešel do oblasti tisku."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:266
+#: ../gramps/gen/plug/docgen/graphdoc.py:268
 msgid "DPI"
 msgstr "DPI"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:269
+#: ../gramps/gen/plug/docgen/graphdoc.py:271
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
@@ -9878,11 +9878,11 @@ msgstr ""
 "zkuste velikost 100 nebo 300 DPI. Vytváříte-li PostScript nebo PDF soubory, "
 "použijte 72 DPI."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:278
+#: ../gramps/gen/plug/docgen/graphdoc.py:280
 msgid "Node spacing"
 msgstr "Vzdálenost uzlů"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:281
+#: ../gramps/gen/plug/docgen/graphdoc.py:283
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -9892,11 +9892,11 @@ msgstr ""
 "grafů parametr odpovídá mezerám mezi sloupci. U horizontálních odpovídá "
 "mezerám mezi řádky."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:290
+#: ../gramps/gen/plug/docgen/graphdoc.py:292
 msgid "Rank spacing"
 msgstr "Odstup řad"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:293
+#: ../gramps/gen/plug/docgen/graphdoc.py:295
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -9906,67 +9906,67 @@ msgstr ""
 "parametr odpovídá mezerám mezi sloupci. U horizontálních odpovídá mezerám "
 "mezi řádky."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:306
+#: ../gramps/gen/plug/docgen/graphdoc.py:308
 msgid "Note to add to the graph"
 msgstr "Poznámka přidaná do grafu"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:307
+#: ../gramps/gen/plug/docgen/graphdoc.py:309
 msgid "This text will be added to the graph."
 msgstr "Text bude přidán ke grafu."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:310
+#: ../gramps/gen/plug/docgen/graphdoc.py:312
 #: ../gramps/gen/plug/docgen/treedoc.py:300
 msgid "Note location"
 msgstr "Umístění poznámky"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:313
+#: ../gramps/gen/plug/docgen/graphdoc.py:315
 #: ../gramps/gen/plug/docgen/treedoc.py:303
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Zda se poznámky objeví na začátku, nebo na konci stránky."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:316
+#: ../gramps/gen/plug/docgen/graphdoc.py:318
 #: ../gramps/gen/plug/docgen/treedoc.py:307
 msgid "Note size"
 msgstr "Velikost poznámky"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:317
+#: ../gramps/gen/plug/docgen/graphdoc.py:319
 msgid "The size of note text, in points."
 msgstr "Velikost textu poznámky v bodech."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1160
+#: ../gramps/gen/plug/docgen/graphdoc.py:1162
 msgid "PDF (Ghostscript)"
 msgstr "PDF (pomocí Ghostscript)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1170
+#: ../gramps/gen/plug/docgen/graphdoc.py:1172
 msgid "PDF (Graphviz)"
 msgstr "PDF (pomocí Graphviz)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1180
+#: ../gramps/gen/plug/docgen/graphdoc.py:1182
 #: ../gramps/plugins/docgen/docgen.gpr.py:160
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1190
+#: ../gramps/gen/plug/docgen/graphdoc.py:1192
 msgid "Structured Vector Graphics (SVG)"
 msgstr "SVG (Scalable Vector Graphics)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1200
+#: ../gramps/gen/plug/docgen/graphdoc.py:1202
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "Komprimovaný SVG (SVGZ)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1210
+#: ../gramps/gen/plug/docgen/graphdoc.py:1212
 msgid "JPEG image"
 msgstr "Obrázek JPEG"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1220
+#: ../gramps/gen/plug/docgen/graphdoc.py:1222
 msgid "GIF image"
 msgstr "Obrázek GIF"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1230
+#: ../gramps/gen/plug/docgen/graphdoc.py:1232
 msgid "PNG image"
 msgstr "Obrázek PNG"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1240
+#: ../gramps/gen/plug/docgen/graphdoc.py:1242
 msgid "Graphviz File"
 msgstr "Soubor Graphviz"
 
@@ -10033,8 +10033,8 @@ msgstr "Pod"
 msgid "Not shown"
 msgstr "Není zobrazeno"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:104
-#: ../gramps/gui/configure.py:186 ../gramps/gui/configure.py:2638
+#: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:105
+#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2637
 #: ../gramps/gui/displaystate.py:429 ../gramps/gui/views/pageview.py:649
 msgid "Preferences"
 msgstr "Předvolby"
@@ -10379,7 +10379,7 @@ msgstr "Překlad použitý pro tuto sestavu."
 msgid "The additional translation to be used for the report."
 msgstr "Dodatečný překlad použitý pro sestavu."
 
-#: ../gramps/gen/plug/report/stdoptions.py:93 ../gramps/gui/configure.py:1504
+#: ../gramps/gen/plug/report/stdoptions.py:93 ../gramps/gui/configure.py:1503
 #: ../gramps/plugins/webreport/webcal.py:1901
 msgid "Name format"
 msgstr "Formát jména"
@@ -10487,7 +10487,7 @@ msgstr "Formát místa"
 msgid "Select the format to display places"
 msgstr "Vyberte formát zobrazení míst"
 
-#: ../gramps/gen/plug/report/stdoptions.py:424 ../gramps/gui/configure.py:1461
+#: ../gramps/gen/plug/report/stdoptions.py:424 ../gramps/gui/configure.py:1460
 msgid "Coordinates format"
 msgstr "Formát souřadnic"
 
@@ -11383,7 +11383,7 @@ msgstr "Nelegitimní"
 msgid "Baptism/Christening"
 msgstr "Křest"
 
-#: ../gramps/gen/utils/symbols.py:95 ../gramps/gui/configure.py:2800
+#: ../gramps/gen/utils/symbols.py:95 ../gramps/gui/configure.py:2799
 msgid "Engaged"
 msgstr "Zasnoubení"
 
@@ -11391,11 +11391,11 @@ msgstr "Zasnoubení"
 msgid "Unmarried partnership"
 msgstr "Nesezdané partnerství"
 
-#: ../gramps/gen/utils/symbols.py:99 ../gramps/gui/configure.py:2806
+#: ../gramps/gen/utils/symbols.py:99 ../gramps/gui/configure.py:2805
 msgid "Buried"
 msgstr "Pohřben"
 
-#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2807
+#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2806
 msgid "Cremated/Funeral urn"
 msgstr "Kremace/Urna"
 
@@ -11825,7 +11825,7 @@ msgstr "%(frel)s %(mrel)s"
 msgid "Clipboard"
 msgstr "Schránka"
 
-#: ../gramps/gui/clipboard.py:1386 ../gramps/gui/configure.py:218
+#: ../gramps/gui/clipboard.py:1386 ../gramps/gui/configure.py:219
 #: ../gramps/gui/editors/filtereditor.py:1232 ../gramps/gui/views/tags.py:397
 msgid "Any changes are saved immediately"
 msgstr "Veškeré změny jsou okamžitě uloženy"
@@ -11857,8 +11857,8 @@ msgstr "Pohled na strom: první sloupec \"%s\" nemůže být změněn"
 msgid "Drag and drop the columns to change the order"
 msgstr "Pořadí sloupců změníte jejich přetažením"
 
-#: ../gramps/gui/columnorder.py:115 ../gramps/gui/configure.py:2524
-#: ../gramps/gui/configure.py:2552 ../gramps/gui/configure.py:2581
+#: ../gramps/gui/columnorder.py:115 ../gramps/gui/configure.py:2523
+#: ../gramps/gui/configure.py:2551 ../gramps/gui/configure.py:2580
 #: ../gramps/gui/plug/_dialogs.py:145 ../gramps/gui/viewmanager.py:1946
 #: ../gramps/plugins/lib/maps/geography.py:1115
 #: ../gramps/plugins/lib/maps/geography.py:1537
@@ -11878,23 +11878,23 @@ msgstr "Zobrazení"
 msgid "Column Name"
 msgstr "Název sloupce"
 
-#: ../gramps/gui/configure.py:91
+#: ../gramps/gui/configure.py:92
 msgid "Father's surname"
 msgstr "Otcovo příjmení"
 
-#: ../gramps/gui/configure.py:93
+#: ../gramps/gui/configure.py:94
 msgid "Combination of mother's and father's surname"
 msgstr "Kombinace matčina a otcova příjmení"
 
-#: ../gramps/gui/configure.py:94
+#: ../gramps/gui/configure.py:95
 msgid "Icelandic style"
 msgstr "Islandský styl"
 
-#: ../gramps/gui/configure.py:120 ../gramps/gui/configure.py:122
+#: ../gramps/gui/configure.py:121 ../gramps/gui/configure.py:123
 msgid "Display Name Editor"
 msgstr "Zobrazit editor jmen"
 
-#: ../gramps/gui/configure.py:125 ../gramps/gui/configure.py:211
+#: ../gramps/gui/configure.py:126 ../gramps/gui/configure.py:212
 #: ../gramps/gui/dialog.py:276 ../gramps/gui/dialog.py:334
 #: ../gramps/gui/dialog.py:360 ../gramps/gui/glade/book.glade:38
 #: ../gramps/gui/glade/book.glade:626 ../gramps/gui/glade/clipboard.glade:69
@@ -11924,7 +11924,7 @@ msgstr "Zobrazit editor jmen"
 msgid "_Close"
 msgstr "_Zavřít"
 
-#: ../gramps/gui/configure.py:130
+#: ../gramps/gui/configure.py:131
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -11987,28 +11987,28 @@ msgstr ""
 "Příjmení po otci, <i>Dr.</i>: Titul, <i>Sr</i>: Přípona, <i>Ed</i>: "
 "Přezdívka, <i>Underhills</i>: Rodinná přezdívka, <i>Jose</i>: Běžné jméno.\n"
 
-#: ../gramps/gui/configure.py:161
+#: ../gramps/gui/configure.py:162
 msgid " Name Editor"
 msgstr " Editor jmen"
 
-#: ../gramps/gui/configure.py:266 ../gramps/gui/configure.py:274
-#: ../gramps/gui/configure.py:1238
+#: ../gramps/gui/configure.py:267 ../gramps/gui/configure.py:275
+#: ../gramps/gui/configure.py:1237
 msgid "Invalid or incomplete format definition."
 msgstr "Neplatná nebo nekompletní definice formátu."
 
 #. Translators: needed for French, ignore otherwise
-#: ../gramps/gui/configure.py:437 ../gramps/gui/configure.py:473
-#: ../gramps/gui/configure.py:504 ../gramps/gui/configure.py:520
-#: ../gramps/gui/configure.py:561 ../gramps/gui/configure.py:599
-#: ../gramps/gui/configure.py:627 ../gramps/gui/configure.py:893
-#: ../gramps/gui/configure.py:1434 ../gramps/gui/configure.py:1461
-#: ../gramps/gui/configure.py:1504 ../gramps/gui/configure.py:1548
-#: ../gramps/gui/configure.py:1570 ../gramps/gui/configure.py:1605
-#: ../gramps/gui/configure.py:1618 ../gramps/gui/configure.py:1639
-#: ../gramps/gui/configure.py:1657 ../gramps/gui/configure.py:1662
-#: ../gramps/gui/configure.py:1683 ../gramps/gui/configure.py:1699
-#: ../gramps/gui/configure.py:2132 ../gramps/gui/configure.py:2250
-#: ../gramps/gui/configure.py:2339 ../gramps/gui/plug/_windows.py:789
+#: ../gramps/gui/configure.py:438 ../gramps/gui/configure.py:474
+#: ../gramps/gui/configure.py:505 ../gramps/gui/configure.py:521
+#: ../gramps/gui/configure.py:562 ../gramps/gui/configure.py:600
+#: ../gramps/gui/configure.py:628 ../gramps/gui/configure.py:894
+#: ../gramps/gui/configure.py:1433 ../gramps/gui/configure.py:1460
+#: ../gramps/gui/configure.py:1503 ../gramps/gui/configure.py:1547
+#: ../gramps/gui/configure.py:1569 ../gramps/gui/configure.py:1604
+#: ../gramps/gui/configure.py:1617 ../gramps/gui/configure.py:1638
+#: ../gramps/gui/configure.py:1656 ../gramps/gui/configure.py:1661
+#: ../gramps/gui/configure.py:1682 ../gramps/gui/configure.py:1698
+#: ../gramps/gui/configure.py:2131 ../gramps/gui/configure.py:2249
+#: ../gramps/gui/configure.py:2338 ../gramps/gui/plug/_windows.py:789
 #: ../gramps/gui/plug/_windows.py:809 ../gramps/gui/plug/_windows.py:845
 #: ../gramps/gui/plug/_windows.py:853 ../gramps/gui/views/navigationview.py:350
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
@@ -12016,7 +12016,7 @@ msgstr "Neplatná nebo nekompletní definice formátu."
 msgid "%s: "
 msgstr "%s: "
 
-#: ../gramps/gui/configure.py:673 ../gramps/gui/editors/edittaglist.py:121
+#: ../gramps/gui/configure.py:674 ../gramps/gui/editors/edittaglist.py:121
 #: ../gramps/gui/glade/addmedia.glade:53
 #: ../gramps/gui/glade/baseselector.glade:55 ../gramps/gui/glade/book.glade:658
 #: ../gramps/gui/glade/clipboard.glade:22 ../gramps/gui/glade/dbman.glade:163
@@ -12081,26 +12081,26 @@ msgstr "%s: "
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../gramps/gui/configure.py:699 ../gramps/gui/configure.py:754
+#: ../gramps/gui/configure.py:700 ../gramps/gui/configure.py:755
 msgid "Researcher"
 msgstr "Badatel"
 
-#: ../gramps/gui/configure.py:717
+#: ../gramps/gui/configure.py:718
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
 msgstr "Stát/Kraj"
 
-#: ../gramps/gui/configure.py:726 ../gramps/plugins/view/repoview.py:94
+#: ../gramps/gui/configure.py:727 ../gramps/plugins/view/repoview.py:94
 msgid "ZIP/Postal Code"
 msgstr "PSČ"
 
-#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1650
+#: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1650
 #: ../gramps/plugins/view/repoview.py:95
 msgid "Email"
 msgstr "Email"
 
-#: ../gramps/gui/configure.py:744
+#: ../gramps/gui/configure.py:745
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
@@ -12108,15 +12108,15 @@ msgstr ""
 "Vložte své kontaktní údaje, aby Vás mohli lidé kontaktovat, když budete "
 "distribuovat svůj rodokmen."
 
-#: ../gramps/gui/configure.py:766 ../gramps/gui/configure.py:867
+#: ../gramps/gui/configure.py:767 ../gramps/gui/configure.py:868
 msgid "ID Formats"
 msgstr "Formáty ID"
 
-#: ../gramps/gui/configure.py:818 ../gramps/plugins/importer/importxml.py:325
+#: ../gramps/gui/configure.py:819 ../gramps/plugins/importer/importxml.py:325
 msgid "Media Object"
 msgstr "Mediální objekt"
 
-#: ../gramps/gui/configure.py:855
+#: ../gramps/gui/configure.py:856
 #, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
@@ -12127,140 +12127,140 @@ msgstr ""
 "řetězcem. \"I%04d\" vytvoří ID od I0000 do I9999. Velké databáze mohou "
 "potřebovat větší ID. \"I%06d\" vytvoří ID od I000000 do I999999.\n"
 
-#: ../gramps/gui/configure.py:877
+#: ../gramps/gui/configure.py:878
 msgid "Colors used for boxes in the graphical views"
 msgstr "Barvy použité pro bloky v grafických zobrazeních"
 
-#: ../gramps/gui/configure.py:888
+#: ../gramps/gui/configure.py:889
 msgid "Dark colors"
 msgstr "Tmavé barvy"
 
-#: ../gramps/gui/configure.py:888
+#: ../gramps/gui/configure.py:889
 msgid "Light colors"
 msgstr "Světlé barvy"
 
-#: ../gramps/gui/configure.py:893
+#: ../gramps/gui/configure.py:894
 msgid "Color scheme"
 msgstr "Schéma barev"
 
-#: ../gramps/gui/configure.py:897 ../gramps/gui/configure.py:2816
+#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2815
 msgid "Restore to defaults"
 msgstr "Obnovit výchozí nastavení"
 
-#: ../gramps/gui/configure.py:898
+#: ../gramps/gui/configure.py:899
 msgid "Restore colors for current theme to default."
 msgstr "Obnovit výchozí barvy aktuálního motivu."
 
-#: ../gramps/gui/configure.py:905
+#: ../gramps/gui/configure.py:906
 msgid "Colors for Male persons"
 msgstr "Barvy pro mužské osoby"
 
-#: ../gramps/gui/configure.py:906
+#: ../gramps/gui/configure.py:907
 msgid "Colors for Female persons"
 msgstr "Barvy osob ženského pohlaví"
 
-#: ../gramps/gui/configure.py:907
+#: ../gramps/gui/configure.py:908
 msgid "Colors for people who are neither male nor female"
 msgstr "Barvy pro osoby, které nejsou ani muži, ani ženy"
 
-#: ../gramps/gui/configure.py:908
+#: ../gramps/gui/configure.py:909
 msgid "Colors for Unknown persons"
 msgstr "Barvy pro neznámé osoby"
 
-#: ../gramps/gui/configure.py:909
+#: ../gramps/gui/configure.py:910
 msgid "Colors for Family nodes"
 msgstr "Barvy uzlů rodin"
 
-#: ../gramps/gui/configure.py:910
+#: ../gramps/gui/configure.py:911
 msgid "Other colors"
 msgstr "Ostatní barvy"
 
-#: ../gramps/gui/configure.py:913
+#: ../gramps/gui/configure.py:914
 msgid "Background for Alive"
 msgstr "Pozadí pro žijící"
 
-#: ../gramps/gui/configure.py:914
+#: ../gramps/gui/configure.py:915
 msgid "Background for Dead"
 msgstr "Pozadí pro zesnulé"
 
-#: ../gramps/gui/configure.py:915
+#: ../gramps/gui/configure.py:916
 msgid "Border for Alive"
 msgstr "Ohraničení pro žijící"
 
-#: ../gramps/gui/configure.py:916
+#: ../gramps/gui/configure.py:917
 msgid "Border for Dead"
 msgstr "Ohraničení pro zesnulé"
 
-#: ../gramps/gui/configure.py:941
+#: ../gramps/gui/configure.py:942
 msgid "Default background"
 msgstr "Výchozí pozadí"
 
-#: ../gramps/gui/configure.py:942
+#: ../gramps/gui/configure.py:943
 msgid "Background for Married"
 msgstr "Pozadí pro ženaté"
 
-#: ../gramps/gui/configure.py:943
+#: ../gramps/gui/configure.py:944
 msgid "Background for Unmarried"
 msgstr "Pozadí pro svobodné"
 
-#: ../gramps/gui/configure.py:944
+#: ../gramps/gui/configure.py:945
 msgid "Background for Civil union"
 msgstr "Pozadí pro registrované partnerství"
 
-#: ../gramps/gui/configure.py:945
+#: ../gramps/gui/configure.py:946
 msgid "Background for Unknown"
 msgstr "Pozadí pro neznámé"
 
-#: ../gramps/gui/configure.py:946
+#: ../gramps/gui/configure.py:947
 msgid "Background for Divorced"
 msgstr "Pozadí pro rozvedené"
 
-#: ../gramps/gui/configure.py:947
+#: ../gramps/gui/configure.py:948
 msgid "Default border"
 msgstr "Výchozí ohraničení"
 
-#: ../gramps/gui/configure.py:948
+#: ../gramps/gui/configure.py:949
 msgid "Border for Divorced"
 msgstr "Ohraničení pro rozvedené"
 
-#: ../gramps/gui/configure.py:950
+#: ../gramps/gui/configure.py:951
 msgid "Background for Home Person"
 msgstr "Pozadí pro výchozí osobu"
 
-#: ../gramps/gui/configure.py:969 ../gramps/gui/configure.py:2813
+#: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2812
 #, python-format
 msgid "<b>%s</b>"
 msgstr "<b>%s</b>"
 
-#: ../gramps/gui/configure.py:982
+#: ../gramps/gui/configure.py:983
 msgid "Colors"
 msgstr "Barvy"
 
-#: ../gramps/gui/configure.py:1003
+#: ../gramps/gui/configure.py:1004
 msgid "Warnings and Error dialogs"
 msgstr "Varování a chybové dialogy"
 
-#: ../gramps/gui/configure.py:1015
+#: ../gramps/gui/configure.py:1016
 msgid "Suppress warning when adding parents to a child"
 msgstr "Potlačit upozornění při přidávání rodičů k dítěti"
 
-#: ../gramps/gui/configure.py:1023
+#: ../gramps/gui/configure.py:1024
 msgid "Suppress warning when canceling with changed data"
 msgstr "Potlačit upozornění při odvolání se změněnými daty"
 
-#: ../gramps/gui/configure.py:1031
+#: ../gramps/gui/configure.py:1032
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
 msgstr "Potlačit hlášení o chybějícím badateli při exportu do GEDCOM"
 
-#: ../gramps/gui/configure.py:1039
+#: ../gramps/gui/configure.py:1040
 msgid "Suppress tooltip warnings about data being saved immediately"
 msgstr "Potlačení varování s nápovědou o okamžitém uložení dat"
 
-#: ../gramps/gui/configure.py:1047
+#: ../gramps/gui/configure.py:1048
 msgid "Show plugin status dialog on plugin load error"
 msgstr "Při chybě v nahrávání zásuvného modulu zobrazit stavový dialog"
 
-#: ../gramps/gui/configure.py:1053
+#: ../gramps/gui/configure.py:1054
 msgid "Warnings"
 msgstr "Varování"
 
@@ -12277,15 +12277,15 @@ msgstr "Nepatronymické"
 msgid "Enter to save, Esc to cancel editing"
 msgstr "Enter pro uložení, Esc pro odvolání úprav"
 
-#: ../gramps/gui/configure.py:1216
+#: ../gramps/gui/configure.py:1215
 msgid "This format exists already."
 msgstr "Tento formát již existuje."
 
-#: ../gramps/gui/configure.py:1263
+#: ../gramps/gui/configure.py:1262
 msgid "Example"
 msgstr "Příklad"
 
-#: ../gramps/gui/configure.py:1281
+#: ../gramps/gui/configure.py:1280
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:169
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:176
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:374
@@ -12301,7 +12301,7 @@ msgstr "Příklad"
 msgid "_Add"
 msgstr "Přid_at"
 
-#: ../gramps/gui/configure.py:1284
+#: ../gramps/gui/configure.py:1283
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:171
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:177
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:375
@@ -12318,7 +12318,7 @@ msgstr "Přid_at"
 msgid "_Edit"
 msgstr "Úpr_avy"
 
-#: ../gramps/gui/configure.py:1288
+#: ../gramps/gui/configure.py:1287
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:172
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:178
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:145
@@ -12330,11 +12330,11 @@ msgstr "Úpr_avy"
 msgid "_Remove"
 msgstr "O_dstranit"
 
-#: ../gramps/gui/configure.py:1414
+#: ../gramps/gui/configure.py:1413
 msgid "Display Options"
 msgstr "Možnosti zobrazení"
 
-#: ../gramps/gui/configure.py:1430 ../gramps/gui/configure.py:1508
+#: ../gramps/gui/configure.py:1429 ../gramps/gui/configure.py:1507
 #: ../gramps/gui/editors/displaytabs/buttontab.py:72
 #: ../gramps/gui/glade/editfamily.glade:280
 #: ../gramps/gui/glade/editfamily.glade:596
@@ -12347,72 +12347,72 @@ msgstr "Možnosti zobrazení"
 msgid "Edit"
 msgstr "Upravit"
 
-#: ../gramps/gui/configure.py:1434
+#: ../gramps/gui/configure.py:1433
 msgid "Automate Place format"
 msgstr "Automatizovat formát místa"
 
-#: ../gramps/gui/configure.py:1441
+#: ../gramps/gui/configure.py:1440
 msgid "Enables automatic place title generation using specified format."
 msgstr "Povolit automatické vytváření titulku místa dle daného formátu."
 
-#: ../gramps/gui/configure.py:1518
+#: ../gramps/gui/configure.py:1517
 msgid "Custom name display options are unique to each family tree."
 msgstr ""
 "Vlastní možnosti zobrazení jmen jsou pro každý rodinný strom jedinečné."
 
-#: ../gramps/gui/configure.py:1530
+#: ../gramps/gui/configure.py:1529
 msgid "Consider single pa/matronymic as surname"
 msgstr "Považovat jediné jméno po otci/matce za příjmení"
 
-#: ../gramps/gui/configure.py:1548
+#: ../gramps/gui/configure.py:1547
 msgid "Date format *"
 msgstr "Formát data *"
 
-#: ../gramps/gui/configure.py:1556
+#: ../gramps/gui/configure.py:1555
 msgid "Years"
 msgstr "Roky"
 
-#: ../gramps/gui/configure.py:1556
+#: ../gramps/gui/configure.py:1555
 msgid "Years, Months"
 msgstr "Roky, Měsíce"
 
-#: ../gramps/gui/configure.py:1556
+#: ../gramps/gui/configure.py:1555
 msgid "Years, Months, Days"
 msgstr "Roky, Měsíce, Dny"
 
-#: ../gramps/gui/configure.py:1570
+#: ../gramps/gui/configure.py:1569
 msgid "Age display precision *"
 msgstr "Přesnost zobrazení věku *"
 
-#: ../gramps/gui/configure.py:1578
+#: ../gramps/gui/configure.py:1577
 msgid "Round the year"
 msgstr "Zaokrouhlit rok"
 
-#: ../gramps/gui/configure.py:1589
+#: ../gramps/gui/configure.py:1588
 msgid "Display ages for events after death *"
 msgstr "Zobrazení věku pro události po smrti *"
 
-#: ../gramps/gui/configure.py:1605
+#: ../gramps/gui/configure.py:1604
 msgid "Calendar on reports"
 msgstr "Kalendář v sestavách"
 
-#: ../gramps/gui/configure.py:1618
+#: ../gramps/gui/configure.py:1617
 msgid "Calendar on input"
 msgstr "Kalendář na vstupu"
 
-#: ../gramps/gui/configure.py:1626
+#: ../gramps/gui/configure.py:1625
 msgid "On the previous day"
 msgstr "Předchozí den"
 
-#: ../gramps/gui/configure.py:1627
+#: ../gramps/gui/configure.py:1626
 msgid "On the next day"
 msgstr "Následující den"
 
-#: ../gramps/gui/configure.py:1628
+#: ../gramps/gui/configure.py:1627
 msgid "Only on leap years"
 msgstr "Pouze v přestupných letech"
 
-#: ../gramps/gui/configure.py:1635
+#: ../gramps/gui/configure.py:1634
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
@@ -12420,24 +12420,24 @@ msgstr ""
 "V nepřestupných letech se výročí zobrazují buď 28. února, 1. března, nebo se "
 "v gregoriánských kalendářích nezobrazují vůbec"
 
-#: ../gramps/gui/configure.py:1639
+#: ../gramps/gui/configure.py:1638
 msgid "Show leap day anniversaries"
 msgstr "Zobrazit přestupná výročí"
 
-#: ../gramps/gui/configure.py:1646
+#: ../gramps/gui/configure.py:1645
 msgid "Active person's name and ID"
 msgstr "Jméno a ID aktivní osoby"
 
-#: ../gramps/gui/configure.py:1646
+#: ../gramps/gui/configure.py:1645
 #: ../gramps/plugins/textreport/indivcomplete.py:394
 msgid "Relationship to home person"
 msgstr "Vztah k výchozí osobě"
 
-#: ../gramps/gui/configure.py:1657
+#: ../gramps/gui/configure.py:1656
 msgid "Status bar"
 msgstr "Stavový řádek"
 
-#: ../gramps/gui/configure.py:1669
+#: ../gramps/gui/configure.py:1668
 msgid ""
 "\n"
 "Input Options"
@@ -12445,121 +12445,121 @@ msgstr ""
 "\n"
 "Nastavení sestavy"
 
-#: ../gramps/gui/configure.py:1683
+#: ../gramps/gui/configure.py:1682
 msgid "Surname guessing"
 msgstr "Hádání příjmení"
 
-#: ../gramps/gui/configure.py:1699
+#: ../gramps/gui/configure.py:1698
 msgid "Default family relationship"
 msgstr "Výchozí rodinný vztah"
 
-#: ../gramps/gui/configure.py:1706
+#: ../gramps/gui/configure.py:1705
 msgid "Hide LDS tab in person and family editors"
 msgstr "Skrýt záložku SPD v editoru osoby a rodin"
 
-#: ../gramps/gui/configure.py:1714 ../gramps/gui/configure.py:2195
+#: ../gramps/gui/configure.py:1713 ../gramps/gui/configure.py:2194
 msgid "* Requires Restart"
 msgstr "* Vyžaduje restart"
 
-#: ../gramps/gui/configure.py:1723
+#: ../gramps/gui/configure.py:1722
 msgid "Data"
 msgstr "Data"
 
-#: ../gramps/gui/configure.py:1741
+#: ../gramps/gui/configure.py:1740
 msgid "Conditional Text Replacements"
 msgstr "Podmíněné nahrazení textu"
 
-#: ../gramps/gui/configure.py:1752
+#: ../gramps/gui/configure.py:1751
 msgid "Missing surname"
 msgstr "Chybí příjmení"
 
-#: ../gramps/gui/configure.py:1757
+#: ../gramps/gui/configure.py:1756
 msgid "Missing given name"
 msgstr "Chybí křestní jméno"
 
-#: ../gramps/gui/configure.py:1764
+#: ../gramps/gui/configure.py:1763
 msgid "Missing record"
 msgstr "Chybí záznam"
 
-#: ../gramps/gui/configure.py:1769
+#: ../gramps/gui/configure.py:1768
 msgid "Private surname"
 msgstr "Důvěrné příjmení"
 
-#: ../gramps/gui/configure.py:1778
+#: ../gramps/gui/configure.py:1777
 msgid "Private given name"
 msgstr "Důvěrné křestní jméno"
 
-#: ../gramps/gui/configure.py:1787
+#: ../gramps/gui/configure.py:1786
 msgid "Private record"
 msgstr "Důvěrný záznam"
 
-#: ../gramps/gui/configure.py:1844
+#: ../gramps/gui/configure.py:1843
 msgid "Change is not immediate"
 msgstr "Změna není okamžitá"
 
-#: ../gramps/gui/configure.py:1846
+#: ../gramps/gui/configure.py:1845
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
 msgstr "Změna formátu data se neprojeví dokud nebude Gramps znovu nastartován."
 
-#: ../gramps/gui/configure.py:1885
+#: ../gramps/gui/configure.py:1884
 msgid "Calculation limits"
 msgstr "Omezení výpočtu"
 
-#: ../gramps/gui/configure.py:1892
+#: ../gramps/gui/configure.py:1891
 msgid "Date 'about' year range: (date ± #)"
 msgstr "Rozsah přibližného data: (datum ± #)"
 
-#: ../gramps/gui/configure.py:1900
+#: ../gramps/gui/configure.py:1899
 msgid "Date 'after' year range:  (date + #)"
 msgstr "Rozsah data \"po\":  (datum + #)"
 
-#: ../gramps/gui/configure.py:1908
+#: ../gramps/gui/configure.py:1907
 msgid "Date 'before' year range: (date - #)"
 msgstr "Rozsah data \"před\": (datum + #)"
 
-#: ../gramps/gui/configure.py:1916
+#: ../gramps/gui/configure.py:1915
 msgid "Maximum age probably alive"
 msgstr "Nejvyšší věk pravděpodobně žijících"
 
-#: ../gramps/gui/configure.py:1924
+#: ../gramps/gui/configure.py:1923
 msgid "Maximum sibling age difference"
 msgstr "Maximální věkový rozdíl mezi sourozenci"
 
-#: ../gramps/gui/configure.py:1932
+#: ../gramps/gui/configure.py:1931
 msgid "Minimum years between generations"
 msgstr "Minimální počet let mezi generacemi"
 
-#: ../gramps/gui/configure.py:1940
+#: ../gramps/gui/configure.py:1939
 msgid "Average years between generations"
 msgstr "Průměrný počet let mezi generacemi"
 
-#: ../gramps/gui/configure.py:1948
+#: ../gramps/gui/configure.py:1947
 msgid "Max generations for relationships"
 msgstr "Nejvyšší počet generací pro vztahy mezi osobami"
 
-#: ../gramps/gui/configure.py:1955
+#: ../gramps/gui/configure.py:1954
 msgid "Limits"
 msgstr "Limity"
 
-#: ../gramps/gui/configure.py:1968
+#: ../gramps/gui/configure.py:1967
 msgid "Environment Settings"
 msgstr "Nastavení prostředí"
 
-#: ../gramps/gui/configure.py:1980
+#: ../gramps/gui/configure.py:1979
 msgid "Display Tip of the Day"
 msgstr "Zobrazit tip dne"
 
-#: ../gramps/gui/configure.py:1985
+#: ../gramps/gui/configure.py:1984
 msgid "Show useful information about using Gramps on startup."
 msgstr "Zobrazit užitečné informace o používání Gramps při startu."
 
-#: ../gramps/gui/configure.py:1990
+#: ../gramps/gui/configure.py:1989
 msgid "Remember last Family Tree"
 msgstr "Pamatovat si poslední rodokmen"
 
-#: ../gramps/gui/configure.py:1996
+#: ../gramps/gui/configure.py:1995
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
@@ -12567,23 +12567,23 @@ msgstr ""
 "Neotevírat nabídku výběru rodokmenu při startu, ale použít poslední "
 "zpracovávaný."
 
-#: ../gramps/gui/configure.py:2004
+#: ../gramps/gui/configure.py:2003
 msgid "Remember last view displayed"
 msgstr "Zapamatovat poslední zobrazený pohled"
 
-#: ../gramps/gui/configure.py:2009
+#: ../gramps/gui/configure.py:2008
 msgid "Remember last view displayed and open it next time."
 msgstr "Zapamatovat poslední zobrazený pohled a zobrazit jej příště."
 
-#: ../gramps/gui/configure.py:2014
+#: ../gramps/gui/configure.py:2013
 msgid "Enable spell checker"
 msgstr "Povolit kontrolu pravopisu"
 
-#: ../gramps/gui/configure.py:2019
+#: ../gramps/gui/configure.py:2018
 msgid "Enable the spelling checker for notes."
 msgstr "Povolit kontrolu pravopisu v poznámkách."
 
-#: ../gramps/gui/configure.py:2030
+#: ../gramps/gui/configure.py:2029
 #, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
@@ -12592,11 +12592,11 @@ msgstr ""
 "Gspell nebyl nahrán. Kontrola pravopisu nebude k dispozici.\n"
 "Překladem modulu pro Gramps vás provede %(gramps_wiki_build_spell_url)s"
 
-#: ../gramps/gui/configure.py:2042
+#: ../gramps/gui/configure.py:2041
 msgid "Show text label beside Navigator buttons *"
 msgstr "Zobrazovat text vedle tlačítek Navigátoru *"
 
-#: ../gramps/gui/configure.py:2048
+#: ../gramps/gui/configure.py:2047
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
@@ -12605,79 +12605,79 @@ msgstr ""
 "Události ...).\n"
 "Projeví se po restartu Gramps."
 
-#: ../gramps/gui/configure.py:2058
+#: ../gramps/gui/configure.py:2057
 msgid "Show Clipboard icon on toolbar"
 msgstr "Zobrazit ikonu schránky v nástrojové liště"
 
-#: ../gramps/gui/configure.py:2063
+#: ../gramps/gui/configure.py:2062
 msgid "Show or hide the Clipboard icon on the toolbar."
 msgstr "Zobrazit nebo skrýt ikonu schránky v nástrojové liště."
 
-#: ../gramps/gui/configure.py:2071
+#: ../gramps/gui/configure.py:2070
 msgid "Show Reports icon on toolbar"
 msgstr "Zobrazit ikonu sestav v nástrojové liště"
 
-#: ../gramps/gui/configure.py:2076
+#: ../gramps/gui/configure.py:2075
 msgid "Show or hide the Reports icon on the toolbar."
 msgstr "Zobrazit nebo skrýt ikonu sestav v nástrojové liště."
 
-#: ../gramps/gui/configure.py:2084
+#: ../gramps/gui/configure.py:2083
 msgid "Show Tools icon on toolbar"
 msgstr "Zobrazit ikonu nástrojů v nástrojové liště"
 
-#: ../gramps/gui/configure.py:2089
+#: ../gramps/gui/configure.py:2088
 msgid "Show or hide the Tools icon on the toolbar."
 msgstr "Zobrazit nebo skrýt ikonu nástrojů v nástrojové liště."
 
-#: ../gramps/gui/configure.py:2097
+#: ../gramps/gui/configure.py:2096
 msgid "Show Addons icon on toolbar"
 msgstr "Zobrazit ikonu rozšíření v nástrojové liště"
 
-#: ../gramps/gui/configure.py:2102
+#: ../gramps/gui/configure.py:2101
 msgid "Show or hide the Addons icon on the toolbar."
 msgstr "Zobrazit nebo skrýt ikonu rozšíření v nástrojové liště."
 
-#: ../gramps/gui/configure.py:2110
+#: ../gramps/gui/configure.py:2109
 msgid "Show Preferences icon on toolbar"
 msgstr "Zobrazit ikonu předvoleb v nástrojové liště"
 
-#: ../gramps/gui/configure.py:2115
+#: ../gramps/gui/configure.py:2114
 msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "Zobrazit nebo skrýt ikonu předvoleb v nástrojové liště."
 
-#: ../gramps/gui/configure.py:2123
+#: ../gramps/gui/configure.py:2122
 msgid "Both text and icons"
 msgstr "Text i ikony"
 
-#: ../gramps/gui/configure.py:2124 ../gramps/gui/editors/editdate.py:84
+#: ../gramps/gui/configure.py:2123 ../gramps/gui/editors/editdate.py:84
 msgid "Text only"
 msgstr "Jen text"
 
-#: ../gramps/gui/configure.py:2125
+#: ../gramps/gui/configure.py:2124
 msgid "Icons only"
 msgstr "Pouze ikony"
 
-#: ../gramps/gui/configure.py:2130
+#: ../gramps/gui/configure.py:2129
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr "Zobrazí text, ikony nebo obojí na tlačítkách panelu nástrojů."
 
-#: ../gramps/gui/configure.py:2132
+#: ../gramps/gui/configure.py:2131
 msgid "Toolbar Style"
 msgstr "Styl lišty nástrojů"
 
-#: ../gramps/gui/configure.py:2140
+#: ../gramps/gui/configure.py:2139
 msgid "Show close button in gramplet bar tabs"
 msgstr "Ukázat tlačítko pro zavření v záložkách panelu grampletů"
 
-#: ../gramps/gui/configure.py:2146
+#: ../gramps/gui/configure.py:2145
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr "Ukázat tlačítko uzavření pro usnadnění odebírání grampletů z panelů."
 
-#: ../gramps/gui/configure.py:2153
+#: ../gramps/gui/configure.py:2152
 msgid "Markup for invalid date format"
 msgstr "Zvýraznění neplatného formátu data"
 
-#: ../gramps/gui/configure.py:2159
+#: ../gramps/gui/configure.py:2158
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -12708,11 +12708,11 @@ msgstr ""
 "Například: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "zobrazí <u><b>Podtržený tučný datum</b></u>.\n"
 
-#: ../gramps/gui/configure.py:2180
+#: ../gramps/gui/configure.py:2179
 msgid "Multiple surname box height"
 msgstr "Výška pole Více příjmení"
 
-#: ../gramps/gui/configure.py:2186
+#: ../gramps/gui/configure.py:2185
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
@@ -12720,15 +12720,15 @@ msgstr ""
 "Zadajte výšku v bodech. Pokud je vloženo více příjmení, zobrazí se jména v "
 "poli. Toto nastavení určuje velikost pole."
 
-#: ../gramps/gui/configure.py:2245
+#: ../gramps/gui/configure.py:2244
 msgid "Database Setting"
 msgstr "Nastavení databáze"
 
-#: ../gramps/gui/configure.py:2250
+#: ../gramps/gui/configure.py:2249
 msgid "Database backend"
 msgstr "Databázový backend"
 
-#: ../gramps/gui/configure.py:2258
+#: ../gramps/gui/configure.py:2257
 msgid ""
 "\n"
 "Database Location"
@@ -12736,19 +12736,19 @@ msgstr ""
 "\n"
 "Umístění databáze"
 
-#: ../gramps/gui/configure.py:2269
+#: ../gramps/gui/configure.py:2268
 msgid "Host"
 msgstr "Server"
 
-#: ../gramps/gui/configure.py:2273
+#: ../gramps/gui/configure.py:2272
 msgid "Port"
 msgstr "Port"
 
-#: ../gramps/gui/configure.py:2282
+#: ../gramps/gui/configure.py:2281
 msgid "Database path"
 msgstr "Cesta k databázi"
 
-#: ../gramps/gui/configure.py:2293
+#: ../gramps/gui/configure.py:2292
 msgid ""
 "\n"
 "Backup Management"
@@ -12756,44 +12756,44 @@ msgstr ""
 "\n"
 "Správa zálohování"
 
-#: ../gramps/gui/configure.py:2306
+#: ../gramps/gui/configure.py:2305
 msgid "Backup path"
 msgstr "Cesta k záloze"
 
-#: ../gramps/gui/configure.py:2316
+#: ../gramps/gui/configure.py:2315
 msgid "Backup on exit"
 msgstr "Zálohovat při ukončení"
 
-#: ../gramps/gui/configure.py:2321
+#: ../gramps/gui/configure.py:2320
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
 "Zálohovat váš rodokmen při ukončení programu do adresáře zadaného výše."
 
-#: ../gramps/gui/configure.py:2329
+#: ../gramps/gui/configure.py:2328
 msgid "Every 15 minutes"
 msgstr "Každých 15 minut"
 
-#: ../gramps/gui/configure.py:2330
+#: ../gramps/gui/configure.py:2329
 msgid "Every 30 minutes"
 msgstr "Každých 30 minut"
 
-#: ../gramps/gui/configure.py:2331
+#: ../gramps/gui/configure.py:2330
 msgid "Every hour"
 msgstr "Každou hodinu"
 
-#: ../gramps/gui/configure.py:2332
+#: ../gramps/gui/configure.py:2331
 msgid "Every 12 hours"
 msgstr "Každých 12 hodin"
 
-#: ../gramps/gui/configure.py:2333
+#: ../gramps/gui/configure.py:2332
 msgid "Every day"
 msgstr "Každý den"
 
-#: ../gramps/gui/configure.py:2339
+#: ../gramps/gui/configure.py:2338
 msgid "Autobackup"
 msgstr "Automatická záloha"
 
-#: ../gramps/gui/configure.py:2346
+#: ../gramps/gui/configure.py:2345
 msgid ""
 "\n"
 "Family Tree's Media path"
@@ -12801,11 +12801,11 @@ msgstr ""
 "\n"
 "Cesta k médiím rodokmenu"
 
-#: ../gramps/gui/configure.py:2359
+#: ../gramps/gui/configure.py:2358
 msgid "Base media path"
 msgstr "Výchozí cesta k médiím"
 
-#: ../gramps/gui/configure.py:2371
+#: ../gramps/gui/configure.py:2370
 msgid ""
 "The base relative media path is specific to the active family tree. It is "
 "not a global setting. Each family tree is able to have a unique relative "
@@ -12815,15 +12815,15 @@ msgstr ""
 "obecné nastavení. Každý rodokmen může mít unikátní relativní cestu k médiím "
 "uloženou v databázi."
 
-#: ../gramps/gui/configure.py:2392
+#: ../gramps/gui/configure.py:2391
 msgid "Tag Records"
 msgstr "Štítkovat záznamy"
 
-#: ../gramps/gui/configure.py:2414
+#: ../gramps/gui/configure.py:2413
 msgid "Add tag on import"
 msgstr "Při importu přidat štítek"
 
-#: ../gramps/gui/configure.py:2421
+#: ../gramps/gui/configure.py:2420
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
@@ -12831,7 +12831,7 @@ msgstr ""
 "Zadaný štítek bude přidán ke všem záznamům při importu.\n"
 "Smazání nastaví výchozí hodnotu."
 
-#: ../gramps/gui/configure.py:2430
+#: ../gramps/gui/configure.py:2429
 msgid ""
 "\n"
 "Source GEDCOM import"
@@ -12839,20 +12839,20 @@ msgstr ""
 "\n"
 "Import zdrojového GEDCOM"
 
-#: ../gramps/gui/configure.py:2442
+#: ../gramps/gui/configure.py:2441
 msgid "Add default source on GEDCOM import"
 msgstr "Při importu GEDCOM přidat výchozí pramen"
 
-#: ../gramps/gui/configure.py:2449 ../gramps/gui/dbloader.py:399
+#: ../gramps/gui/configure.py:2448 ../gramps/gui/dbloader.py:399
 msgid "Import"
 msgstr "Import"
 
-#: ../gramps/gui/configure.py:2518
+#: ../gramps/gui/configure.py:2517
 msgid "Select media directory"
 msgstr "Vybrat adresář pro média"
 
-#: ../gramps/gui/configure.py:2522 ../gramps/gui/configure.py:2552
-#: ../gramps/gui/configure.py:2579 ../gramps/gui/dbloader.py:362
+#: ../gramps/gui/configure.py:2521 ../gramps/gui/configure.py:2551
+#: ../gramps/gui/configure.py:2578 ../gramps/gui/dbloader.py:362
 #: ../gramps/gui/dbloader.py:399 ../gramps/gui/editors/edittaglist.py:122
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:25
@@ -12919,15 +12919,15 @@ msgstr "Vybrat adresář pro média"
 msgid "_Cancel"
 msgstr "_Storno"
 
-#: ../gramps/gui/configure.py:2547
+#: ../gramps/gui/configure.py:2546
 msgid "Select database directory"
 msgstr "Vybrat adresář databáze"
 
-#: ../gramps/gui/configure.py:2575 ../gramps/gui/viewmanager.py:1941
+#: ../gramps/gui/configure.py:2574 ../gramps/gui/viewmanager.py:1941
 msgid "Select backup directory"
 msgstr "Vybrat adresář záloh"
 
-#: ../gramps/gui/configure.py:2650
+#: ../gramps/gui/configure.py:2649
 msgid ""
 "If checked, use the standard genealogic symbols (death symbol is user "
 "selectable).\n"
@@ -12938,7 +12938,7 @@ msgstr ""
 "pro smrt je volitelný uživatelem).\n"
 "Pokud není zaškrtnuto, může si symboly přizpůsobit v panelu níže."
 
-#: ../gramps/gui/configure.py:2657
+#: ../gramps/gui/configure.py:2656
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
@@ -12947,24 +12947,24 @@ msgstr ""
 "ukázali, jak vyslovit jméno nebo pokud mícháte více jazyků (např. ruština a "
 "řečtina)."
 
-#: ../gramps/gui/configure.py:2663
+#: ../gramps/gui/configure.py:2662
 msgid "Use symbols"
 msgstr "Použít symboly"
 
-#: ../gramps/gui/configure.py:2677
+#: ../gramps/gui/configure.py:2676
 msgid "Select default death symbol"
 msgstr "Zvolte výchozí symbol pro úmrtí"
 
-#: ../gramps/gui/configure.py:2687
+#: ../gramps/gui/configure.py:2686
 msgid "Genealogical Symbols"
 msgstr "Genealogické symboly"
 
-#: ../gramps/gui/configure.py:2718 ../gramps/gui/glade/editfamily.glade:142
+#: ../gramps/gui/configure.py:2717 ../gramps/gui/glade/editfamily.glade:142
 #: ../gramps/gui/glade/editfamily.glade:405
 msgid "Death:"
 msgstr "Úmrtí:"
 
-#: ../gramps/gui/configure.py:2802
+#: ../gramps/gui/configure.py:2801
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:496
 #: ../gramps/plugins/webreport/basepage.py:3168
@@ -12974,15 +12974,15 @@ msgstr "Úmrtí:"
 msgid "Partner"
 msgstr "Partner"
 
-#: ../gramps/gui/configure.py:2805
+#: ../gramps/gui/configure.py:2804
 msgid "Killed"
 msgstr "Zabitý"
 
-#: ../gramps/gui/configure.py:2809
+#: ../gramps/gui/configure.py:2808
 msgid "Default genealogy symbols replacement"
 msgstr "Nahrazení výchozích genealogických symbolů"
 
-#: ../gramps/gui/configure.py:2822
+#: ../gramps/gui/configure.py:2821
 msgid ""
 "You can set any text you want for this field.\n"
 "You can drag and drop a symbol from the symbol list above.\n"
@@ -34819,18 +34819,20 @@ msgstr "Všechny mapy odkazů byly přegenerovány."
 msgid "%d bad Note Links were fixed;\n"
 msgstr "%d špatných odkazů na poznámky bylo opraveno;\n"
 
-#: ../gramps/plugins/tool/check.py:3154
-#, python-format
-msgid "%d duplicate event role names coalesced. %d references updated\n"
+#: ../gramps/plugins/tool/check.py:3155
+#, fuzzy, python-format
+#| msgid "%d duplicate event role names coalesced. %d references updated\n"
+msgid ""
+"%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
 "Bylo sloučeno %d duplicitních názvů rolí v událostech. Bylo aktualizováno %d "
 "odkazů\n"
 
-#: ../gramps/plugins/tool/check.py:3189
+#: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
 msgstr "Výsledky ověření integrity"
 
-#: ../gramps/plugins/tool/check.py:3196
+#: ../gramps/plugins/tool/check.py:3198
 msgid "Check and Repair"
 msgstr "Ověření integrity databáze a oprava"
 

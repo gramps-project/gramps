@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-15 17:40+0000\n"
+"POT-Creation-Date: 2026-04-09 17:05+0100\n"
 "PO-Revision-Date: 2026-04-09 15:27+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -263,7 +263,8 @@ msgstr "系谱学；家族史；研究；家谱图；GEDCOM;"
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
-msgstr "Gramps 是一款简单易用，功能全面的系谱学程序，适合爱好者及系谱学研究人员使用。"
+msgstr ""
+"Gramps 是一款简单易用，功能全面的系谱学程序，适合爱好者及系谱学研究人员使用。"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -319,7 +320,7 @@ msgstr "关系"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:186 ../gramps/gui/clipboard.py:729
-#: ../gramps/gui/configure.py:773 ../gramps/gui/editors/editlink.py:99
+#: ../gramps/gui/configure.py:774 ../gramps/gui/editors/editlink.py:99
 #: ../gramps/gui/editors/filtereditor.py:308
 #: ../gramps/gui/glade/editpersonref.glade:177
 #: ../gramps/gui/glade/editpersonref.glade:241 ../gramps/gui/grampsgui.py:57
@@ -538,10 +539,10 @@ msgid ""
 "library or other research facility. To view the SoundEx codes for surnames "
 "in your database, add the SoundEx Gramplet."
 msgstr ""
-"<b>SoundEx 助力家族研究。</b><br/> SoundEx 解决了一个长期困扰系谱学研究的问题"
-"，那就是怎样处理拼写的变体。SoundEx Gramplet 碰到一个姓氏后会生成一个简化形式"
-"，等同于相似发音的姓氏。了解某个姓氏的 SoundEx 编码对在图书馆或其它研究机构进"
-"行普查数据文件（缩微胶片）的研究是很有帮助的。若要查看您数据库中姓氏的 "
+"<b>SoundEx 助力家族研究。</b><br/> SoundEx 解决了一个长期困扰系谱学研究的问"
+"题，那就是怎样处理拼写的变体。SoundEx Gramplet 碰到一个姓氏后会生成一个简化形"
+"式，等同于相似发音的姓氏。了解某个姓氏的 SoundEx 编码对在图书馆或其它研究机构"
+"进行普查数据文件（缩微胶片）的研究是很有帮助的。若要查看您数据库中姓氏的 "
 "SoundEx 编码，请加载 SoundEx Gramplet。"
 
 #: ../data/tips.xml:32
@@ -552,8 +553,8 @@ msgid ""
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
 "<b>设置您的首选项</b><br/>在“编辑 > 首选项...\" 中，您可以调整很多设置，比如"
-"您媒体文件的路径，以及按需调整 Gramps 的展示方式。每种独立视图也可以在“视"
-"图 > 配置视图...”中进行配置。"
+"您媒体文件的路径，以及按需调整 Gramps 的展示方式。每种独立视图也可以在“视图 "
+"> 配置视图...”中进行配置。"
 
 #: ../data/tips.xml:34
 msgid ""
@@ -620,8 +621,8 @@ msgid ""
 msgstr ""
 "<b>合并</b><br/>“编辑 > 合并...”功能可以将分开列出的人员合并成一个。在按住 "
 "Ctrl 键的同时选择第二个条目。本功能在合并两个数据库中重复的人，或者合并因错误"
-"输入导致的同人不同名时非常有用。合并功能适用于所有主要对象类型的全部列表视图"
-"。"
+"输入导致的同人不同名时非常有用。合并功能适用于所有主要对象类型的全部列表视"
+"图。"
 
 #: ../data/tips.xml:46
 msgid ""
@@ -931,10 +932,10 @@ msgid ""
 "confirm the accurate transcription of what appears to be an error in a "
 "source."
 msgstr ""
-"<b>保持良好的记录</b><br/>记录系谱学信息时，必须力求精确。当记录第一手信息时"
-"，不要作任何假设，而应如实记下您的所见所闻。使用括号注释来说明您的增、删以及"
-"评论情况。推荐使用拉丁文 [sic]，即“原文如此”，以确认准确抄写稿件内的来源中可"
-"能有错误。"
+"<b>保持良好的记录</b><br/>记录系谱学信息时，必须力求精确。当记录第一手信息"
+"时，不要作任何假设，而应如实记下您的所见所闻。使用括号注释来说明您的增、删以"
+"及评论情况。推荐使用拉丁文 [sic]，即“原文如此”，以确认准确抄写稿件内的来源中"
+"可能有错误。"
 
 #: ../data/tips.xml:102
 msgid ""
@@ -1171,7 +1172,7 @@ msgstr "Gramps 家谱："
 #: ../gramps/cli/arghandler.py:463 ../gramps/cli/arghandler.py:465
 #: ../gramps/cli/arghandler.py:467 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:176 ../gramps/cli/clidbman.py:215
-#: ../gramps/gui/clipboard.py:926 ../gramps/gui/configure.py:2383
+#: ../gramps/gui/clipboard.py:926 ../gramps/gui/configure.py:2382
 msgid "Family Tree"
 msgstr "家谱"
 
@@ -1651,7 +1652,7 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:584 ../gramps/gui/configure.py:2328
+#: ../gramps/cli/clidbman.py:584 ../gramps/gui/configure.py:2327
 #: ../gramps/gui/plug/_windows.py:779
 msgid "Never"
 msgstr "从不"
@@ -5423,7 +5424,8 @@ msgstr "Soundex 匹配名字带 <name> 的人员"
 msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
-msgstr "Soundex 匹配有特定名字的人员。在正式名和别名中搜索名字，姓氏，称呼名和昵称。"
+msgstr ""
+"Soundex 匹配有特定名字的人员。在正式名和别名中搜索名字，姓氏，称呼名和昵称。"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:46
 msgid "People with <count> sources"
@@ -6479,7 +6481,7 @@ msgid "Matches sources that are indicated as private"
 msgstr "匹配显示设为私有的来源"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
-#: ../gramps/gui/configure.py:707 ../gramps/gui/editors/editaddress.py:199
+#: ../gramps/gui/configure.py:708 ../gramps/gui/editors/editaddress.py:199
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:114
 #: ../gramps/plugins/gramplet/repositorydetails.py:142
 #: ../gramps/plugins/lib/libgedcom.py:6123
@@ -6614,7 +6616,7 @@ msgid "Street"
 msgstr "街道"
 
 #: ../gramps/gen/lib/address.py:121 ../gramps/gen/lib/location.py:92
-#: ../gramps/gen/lib/placetype.py:79 ../gramps/gui/configure.py:711
+#: ../gramps/gen/lib/placetype.py:79 ../gramps/gui/configure.py:712
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/geoplaces.py:599
@@ -6626,7 +6628,7 @@ msgid "Locality"
 msgstr "地区"
 
 #: ../gramps/gen/lib/address.py:122 ../gramps/gen/lib/location.py:93
-#: ../gramps/gen/lib/placetype.py:77 ../gramps/gui/configure.py:714
+#: ../gramps/gen/lib/placetype.py:77 ../gramps/gui/configure.py:715
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/view/geoplaces.py:627
@@ -6659,7 +6661,7 @@ msgid "State"
 msgstr "州 (State)"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:96
-#: ../gramps/gen/lib/placetype.py:74 ../gramps/gui/configure.py:721
+#: ../gramps/gen/lib/placetype.py:74 ../gramps/gui/configure.py:722
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:350
@@ -6682,7 +6684,7 @@ msgid "Postal Code"
 msgstr "邮编"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:98
-#: ../gramps/gui/configure.py:733
+#: ../gramps/gui/configure.py:734
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
 #: ../gramps/plugins/export/exportgedcom.py:864
 #: ../gramps/plugins/export/exportgedcom.py:1253
@@ -6839,7 +6841,7 @@ msgid "Handle"
 msgstr "处理"
 
 #: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/plug/docgen/treedoc.py:92
-#: ../gramps/gui/configure.py:92
+#: ../gramps/gui/configure.py:93
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:233
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:196
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:267
@@ -6878,7 +6880,7 @@ msgid "Foster"
 msgstr "抚养"
 
 #: ../gramps/gen/lib/citation.py:106 ../gramps/gen/lib/notetype.py:90
-#: ../gramps/gui/clipboard.py:481 ../gramps/gui/configure.py:809
+#: ../gramps/gui/clipboard.py:481 ../gramps/gui/configure.py:810
 #: ../gramps/gui/editors/editcitation.py:133
 #: ../gramps/gui/editors/editcitation.py:138
 #: ../gramps/gui/editors/editlink.py:103
@@ -6947,7 +6949,7 @@ msgid "Confidence"
 msgstr "可信度"
 
 #: ../gramps/gen/lib/citation.py:126 ../gramps/gen/lib/src.py:104
-#: ../gramps/gui/clipboard.py:770 ../gramps/gui/configure.py:800
+#: ../gramps/gui/clipboard.py:770 ../gramps/gui/configure.py:801
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:80
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:103
@@ -7233,7 +7235,7 @@ msgstr "值"
 #: ../gramps/gen/lib/date.py:796 ../gramps/gen/lib/placename.py:97
 #: ../gramps/gen/lib/styledtext.py:342
 #: ../gramps/gen/plug/report/_constants.py:61 ../gramps/gui/clipboard.py:632
-#: ../gramps/gui/clipboard.py:640 ../gramps/gui/configure.py:1793
+#: ../gramps/gui/clipboard.py:640 ../gramps/gui/configure.py:1792
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:103
 #: ../gramps/plugins/importer/importprogen.glade:438
 #: ../gramps/plugins/importer/importprogen.glade:1051
@@ -7305,7 +7307,7 @@ msgid "textonly"
 msgstr "仅文字"
 
 #: ../gramps/gen/lib/event.py:175 ../gramps/gen/lib/eventref.py:140
-#: ../gramps/gui/clipboard.py:355 ../gramps/gui/configure.py:827
+#: ../gramps/gui/clipboard.py:355 ../gramps/gui/configure.py:828
 #: ../gramps/gui/editors/editlink.py:95
 #: ../gramps/gui/editors/filtereditor.py:310
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:174
@@ -7325,7 +7327,7 @@ msgstr "事件"
 
 #: ../gramps/gen/lib/event.py:190 ../gramps/gen/lib/ldsord.py:202
 #: ../gramps/gen/lib/place.py:153 ../gramps/gui/clipboard.py:374
-#: ../gramps/gui/configure.py:791
+#: ../gramps/gui/configure.py:792
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:93
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
@@ -7509,7 +7511,7 @@ msgstr "人生大事"
 
 #: ../gramps/gen/lib/eventtype.py:155 ../gramps/gen/lib/family.py:160
 #: ../gramps/gen/lib/ldsord.py:203 ../gramps/gui/clipboard.py:748
-#: ../gramps/gui/configure.py:782
+#: ../gramps/gui/configure.py:783
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
 #: ../gramps/gui/editors/editfamily.py:603 ../gramps/gui/editors/editlink.py:96
@@ -7584,7 +7586,7 @@ msgid "Adopted"
 msgstr "收养"
 
 #: ../gramps/gen/lib/eventtype.py:200 ../gramps/gen/utils/symbols.py:93
-#: ../gramps/gui/configure.py:2798 ../gramps/gui/merge/mergeperson.py:205
+#: ../gramps/gui/configure.py:2797 ../gramps/gui/merge/mergeperson.py:205
 #: ../gramps/plugins/export/exportvcalendar.py:148
 #: ../gramps/plugins/gramplet/ancestor.py:68
 #: ../gramps/plugins/gramplet/descendant.py:66
@@ -7600,7 +7602,7 @@ msgstr "收养"
 msgid "Birth"
 msgstr "出生"
 
-#: ../gramps/gen/lib/eventtype.py:201 ../gramps/gui/configure.py:2804
+#: ../gramps/gen/lib/eventtype.py:201 ../gramps/gui/configure.py:2803
 #: ../gramps/gui/merge/mergeperson.py:212
 #: ../gramps/plugins/export/exportvcalendar.py:157
 #: ../gramps/plugins/importer/importprogen.glade:1422
@@ -7618,7 +7620,7 @@ msgid "Adult Christening"
 msgstr "成年洗礼"
 
 #: ../gramps/gen/lib/eventtype.py:203 ../gramps/gen/lib/ldsord.py:94
-#: ../gramps/gui/configure.py:2799
+#: ../gramps/gui/configure.py:2798
 msgid "Baptism"
 msgstr "洗礼"
 
@@ -7733,7 +7735,7 @@ msgid "Will"
 msgstr "遗嘱"
 
 #: ../gramps/gen/lib/eventtype.py:233 ../gramps/gen/plug/docgen/treedoc.py:223
-#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2801
+#: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2800
 #: ../gramps/gui/merge/mergeperson.py:277
 #: ../gramps/plugins/export/exportcsv.py:580
 #: ../gramps/plugins/export/exportvcalendar.py:136
@@ -7765,7 +7767,7 @@ msgid "Engagement"
 msgstr "订婚"
 
 #: ../gramps/gen/lib/eventtype.py:239 ../gramps/gen/utils/symbols.py:97
-#: ../gramps/gui/configure.py:2803 ../gramps/plugins/webreport/family.py:317
+#: ../gramps/gui/configure.py:2802 ../gramps/plugins/webreport/family.py:317
 msgid "Divorce"
 msgstr "离婚"
 
@@ -8283,7 +8285,7 @@ msgstr "地区 (Region)"
 
 #: ../gramps/gen/lib/name.py:165 ../gramps/gen/lib/repo.py:104
 #: ../gramps/gen/lib/tag.py:154 ../gramps/gui/clipboard.py:584
-#: ../gramps/gui/configure.py:704
+#: ../gramps/gui/configure.py:705
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:65
@@ -8511,9 +8513,9 @@ msgstr "出生名"
 msgid "Married Name"
 msgstr "婚后名"
 
-#: ../gramps/gen/lib/note.py:104 ../gramps/gen/plug/docgen/graphdoc.py:303
+#: ../gramps/gen/lib/note.py:104 ../gramps/gen/plug/docgen/graphdoc.py:305
 #: ../gramps/gen/plug/docgen/treedoc.py:291 ../gramps/gui/clipboard.py:393
-#: ../gramps/gui/configure.py:845 ../gramps/gui/editors/editlink.py:98
+#: ../gramps/gui/configure.py:846 ../gramps/gui/editors/editlink.py:98
 #: ../gramps/gui/editors/editmedia.py:107
 #: ../gramps/gui/editors/editmedia.py:206
 #: ../gramps/gui/editors/editmediaref.py:166
@@ -8548,13 +8550,13 @@ msgstr "婚后名"
 msgid "Note"
 msgstr "摘录"
 
-#: ../gramps/gen/lib/note.py:114 ../gramps/gui/configure.py:1254
+#: ../gramps/gen/lib/note.py:114 ../gramps/gui/configure.py:1253
 #: ../gramps/gui/editors/editplaceformat.py:73
 #: ../gramps/plugins/tool/reorderids.glade:1428
 msgid "Format"
 msgstr "格式"
 
-#: ../gramps/gen/lib/notetype.py:85 ../gramps/gui/configure.py:2204
+#: ../gramps/gen/lib/notetype.py:85 ../gramps/gui/configure.py:2203
 #: ../gramps/gui/editors/editeventref.py:101
 #: ../gramps/gui/editors/editmediaref.py:120
 #: ../gramps/gui/editors/editplaceref.py:83
@@ -8886,7 +8888,7 @@ msgid "Number"
 msgstr "数字"
 
 #: ../gramps/gen/lib/repo.py:94 ../gramps/gui/clipboard.py:789
-#: ../gramps/gui/configure.py:836 ../gramps/gui/editors/editlink.py:101
+#: ../gramps/gui/configure.py:837 ../gramps/gui/editors/editlink.py:101
 #: ../gramps/gui/editors/editrepository.py:82
 #: ../gramps/gui/editors/editrepository.py:84
 #: ../gramps/gui/editors/filtereditor.py:314 ../gramps/gui/grampsgui.py:57
@@ -9359,7 +9361,7 @@ msgstr "规则"
 msgid "Thumbnailer"
 msgstr "缩略图"
 
-#: ../gramps/gen/plug/_pluginreg.py:133 ../gramps/gui/configure.py:1662
+#: ../gramps/gen/plug/_pluginreg.py:133 ../gramps/gui/configure.py:1661
 msgid "Citation formatter"
 msgstr "格式化引用"
 
@@ -9574,16 +9576,16 @@ msgstr "弯曲的"
 msgid "Orthogonal"
 msgstr "直角的"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:156
+#: ../gramps/gen/plug/docgen/graphdoc.py:158
 msgid "Graphviz Layout"
 msgstr "Graphviz 布局"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:158
+#: ../gramps/gen/plug/docgen/graphdoc.py:160
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Font family"
 msgstr "字体字形"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:163
+#: ../gramps/gen/plug/docgen/graphdoc.py:165
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -9591,28 +9593,28 @@ msgstr ""
 "选择字体家族。如果国际字符没有显示，可使用 FreeSans 字体。FreeSans 字体可从 "
 "http://www.nongnu.org/freefont/ 获取"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:171
+#: ../gramps/gen/plug/docgen/graphdoc.py:173
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Font size"
 msgstr "字体大小"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:172
+#: ../gramps/gen/plug/docgen/graphdoc.py:174
 msgid "The font size, in points."
 msgstr "字体尺寸,点数。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:175
+#: ../gramps/gen/plug/docgen/graphdoc.py:177
 msgid "Graph Direction"
 msgstr "图形走向"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:179
+#: ../gramps/gen/plug/docgen/graphdoc.py:181
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "图形是否从顶部到底部或者自左向右。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:183
+#: ../gramps/gen/plug/docgen/graphdoc.py:185
 msgid "Number of Horizontal Pages"
 msgstr "水平页面数量"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:186
+#: ../gramps/gen/plug/docgen/graphdoc.py:188
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -9621,11 +9623,11 @@ msgstr ""
 "Graphviz 可以通过扩展矩形页面组创建非常大图像. 这控制水平组的数字页面. 仅仅对"
 "Ghostscript 的dot和pdf文件有效。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:195
+#: ../gramps/gen/plug/docgen/graphdoc.py:197
 msgid "Number of Vertical Pages"
 msgstr "垂直页面数量"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:198
+#: ../gramps/gen/plug/docgen/graphdoc.py:200
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -9634,41 +9636,41 @@ msgstr ""
 "Graphviz 可以通过延展页面的矩形数组创建非常大的图像，这控制在垂直方向上的数字"
 "页面。仅仅对Ghostscript的dot和Pdf有效。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:207
+#: ../gramps/gen/plug/docgen/graphdoc.py:209
 msgid "Paging Direction"
 msgstr "页面方向"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:212
+#: ../gramps/gen/plug/docgen/graphdoc.py:214
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr "图形页面输出的顺序。此选项仅适用于水平或者垂直页面数量大于 1 的时候。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:219
+#: ../gramps/gen/plug/docgen/graphdoc.py:221
 msgid "Connecting lines"
 msgstr "连接线"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:222
+#: ../gramps/gen/plug/docgen/graphdoc.py:224
 msgid "How the lines between objects will be drawn."
 msgstr "对象间的连线如何绘制。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:225
+#: ../gramps/gen/plug/docgen/graphdoc.py:227
 msgid "Alternate line attachment"
 msgstr "连线端点间带有间隔"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:226
+#: ../gramps/gen/plug/docgen/graphdoc.py:228
 msgid "Whether lines attach to nodes differently"
 msgstr "连线的端点是否搭靠在节点的不同位置"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:242
+#: ../gramps/gen/plug/docgen/graphdoc.py:244
 msgid "Graphviz Options"
 msgstr "Graphviz 选项"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:245
+#: ../gramps/gen/plug/docgen/graphdoc.py:247
 msgid "Aspect ratio"
 msgstr "宽高比"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:249
+#: ../gramps/gen/plug/docgen/graphdoc.py:251
 msgid ""
 "Affects node spacing and scaling of the graph.\n"
 "If the graph is smaller than the print area:\n"
@@ -9694,11 +9696,11 @@ msgstr ""
 "  填充则是先增加节点间距，然后再缩小图形以适合打印区域。\n"
 "  扩大会均匀的缩小图形以适应打印区域。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:266
+#: ../gramps/gen/plug/docgen/graphdoc.py:268
 msgid "DPI"
 msgstr "DPI"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:269
+#: ../gramps/gen/plug/docgen/graphdoc.py:271
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
@@ -9707,11 +9709,11 @@ msgstr ""
 "每英寸的点数。当为网页创建一个 .gif 或者 .png图像文件时，尝试100或者300 DPI。"
 "当创建 PostScript 或者PDF文件时，常使用 72 DPI。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:278
+#: ../gramps/gen/plug/docgen/graphdoc.py:280
 msgid "Node spacing"
 msgstr "节点间距"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:281
+#: ../gramps/gen/plug/docgen/graphdoc.py:283
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -9720,11 +9722,11 @@ msgstr ""
 "节点之间最小的英寸距离，对于垂直图表，是指相应的栏之间的距离。对于水平图像，"
 "是指相应的列之间的距离。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:290
+#: ../gramps/gen/plug/docgen/graphdoc.py:292
 msgid "Rank spacing"
 msgstr "阶层间距"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:293
+#: ../gramps/gen/plug/docgen/graphdoc.py:295
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -9733,67 +9735,67 @@ msgstr ""
 "等级之间的最小间隔，以英寸为单位。分别对应为垂直图表的行距，以及水平图表的列"
 "距。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:306
+#: ../gramps/gen/plug/docgen/graphdoc.py:308
 msgid "Note to add to the graph"
 msgstr "添加到图像的笔记"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:307
+#: ../gramps/gen/plug/docgen/graphdoc.py:309
 msgid "This text will be added to the graph."
 msgstr "文本将被添加到图表。"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:310
+#: ../gramps/gen/plug/docgen/graphdoc.py:312
 #: ../gramps/gen/plug/docgen/treedoc.py:300
 msgid "Note location"
 msgstr "注释位置"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:313
+#: ../gramps/gen/plug/docgen/graphdoc.py:315
 #: ../gramps/gen/plug/docgen/treedoc.py:303
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "是否在页面的顶部或者底部显示笔记."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:316
+#: ../gramps/gen/plug/docgen/graphdoc.py:318
 #: ../gramps/gen/plug/docgen/treedoc.py:307
 msgid "Note size"
 msgstr "笔记大小"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:317
+#: ../gramps/gen/plug/docgen/graphdoc.py:319
 msgid "The size of note text, in points."
 msgstr "笔记文本尺寸，in points."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1160
+#: ../gramps/gen/plug/docgen/graphdoc.py:1162
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1170
+#: ../gramps/gen/plug/docgen/graphdoc.py:1172
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1180
+#: ../gramps/gen/plug/docgen/graphdoc.py:1182
 #: ../gramps/plugins/docgen/docgen.gpr.py:160
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1190
+#: ../gramps/gen/plug/docgen/graphdoc.py:1192
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1200
+#: ../gramps/gen/plug/docgen/graphdoc.py:1202
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "压缩的 Structured Vector Graphs (SVGZ)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1210
+#: ../gramps/gen/plug/docgen/graphdoc.py:1212
 msgid "JPEG image"
 msgstr "JPEG image"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1220
+#: ../gramps/gen/plug/docgen/graphdoc.py:1222
 msgid "GIF image"
 msgstr "GIF 图像"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1230
+#: ../gramps/gen/plug/docgen/graphdoc.py:1232
 msgid "PNG image"
 msgstr "PNG image"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1240
+#: ../gramps/gen/plug/docgen/graphdoc.py:1242
 msgid "Graphviz File"
 msgstr "Graphviz 文件"
 
@@ -9860,8 +9862,8 @@ msgstr "下方"
 msgid "Not shown"
 msgstr "未显示"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:104
-#: ../gramps/gui/configure.py:186 ../gramps/gui/configure.py:2638
+#: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:105
+#: ../gramps/gui/configure.py:187 ../gramps/gui/configure.py:2637
 #: ../gramps/gui/displaystate.py:429 ../gramps/gui/views/pageview.py:649
 msgid "Preferences"
 msgstr "首选项"
@@ -10205,7 +10207,7 @@ msgstr "要用于报告的翻译。"
 msgid "The additional translation to be used for the report."
 msgstr "要用于报告的额外翻译。"
 
-#: ../gramps/gen/plug/report/stdoptions.py:93 ../gramps/gui/configure.py:1504
+#: ../gramps/gen/plug/report/stdoptions.py:93 ../gramps/gui/configure.py:1503
 #: ../gramps/plugins/webreport/webcal.py:1901
 msgid "Name format"
 msgstr "姓名格式"
@@ -10313,7 +10315,7 @@ msgstr "地点格式"
 msgid "Select the format to display places"
 msgstr "选择地点显示格式"
 
-#: ../gramps/gen/plug/report/stdoptions.py:424 ../gramps/gui/configure.py:1461
+#: ../gramps/gen/plug/report/stdoptions.py:424 ../gramps/gui/configure.py:1460
 msgid "Coordinates format"
 msgstr "坐标格式"
 
@@ -11210,7 +11212,7 @@ msgstr "私生子"
 msgid "Baptism/Christening"
 msgstr "受洗"
 
-#: ../gramps/gen/utils/symbols.py:95 ../gramps/gui/configure.py:2800
+#: ../gramps/gen/utils/symbols.py:95 ../gramps/gui/configure.py:2799
 msgid "Engaged"
 msgstr "已订婚"
 
@@ -11218,12 +11220,12 @@ msgstr "已订婚"
 msgid "Unmarried partnership"
 msgstr "未婚伴侣关系"
 
-#: ../gramps/gen/utils/symbols.py:99 ../gramps/gui/configure.py:2806
+#: ../gramps/gen/utils/symbols.py:99 ../gramps/gui/configure.py:2805
 #, fuzzy
 msgid "Buried"
 msgstr "埋葬"
 
-#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2807
+#: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2806
 msgid "Cremated/Funeral urn"
 msgstr ""
 
@@ -11665,7 +11667,7 @@ msgstr "%(frel)s %(mrel)s"
 msgid "Clipboard"
 msgstr "剪贴板"
 
-#: ../gramps/gui/clipboard.py:1386 ../gramps/gui/configure.py:218
+#: ../gramps/gui/clipboard.py:1386 ../gramps/gui/configure.py:219
 #: ../gramps/gui/editors/filtereditor.py:1232 ../gramps/gui/views/tags.py:397
 msgid "Any changes are saved immediately"
 msgstr "变更会立即保存"
@@ -11697,8 +11699,8 @@ msgstr "树状图：第一栏 \"%s\" 无法被更改"
 msgid "Drag and drop the columns to change the order"
 msgstr "拖放条栏改变顺序"
 
-#: ../gramps/gui/columnorder.py:115 ../gramps/gui/configure.py:2524
-#: ../gramps/gui/configure.py:2552 ../gramps/gui/configure.py:2581
+#: ../gramps/gui/columnorder.py:115 ../gramps/gui/configure.py:2523
+#: ../gramps/gui/configure.py:2551 ../gramps/gui/configure.py:2580
 #: ../gramps/gui/plug/_dialogs.py:145 ../gramps/gui/viewmanager.py:1946
 #: ../gramps/plugins/lib/maps/geography.py:1115
 #: ../gramps/plugins/lib/maps/geography.py:1537
@@ -11718,23 +11720,23 @@ msgstr "显示"
 msgid "Column Name"
 msgstr "条目名称"
 
-#: ../gramps/gui/configure.py:91
+#: ../gramps/gui/configure.py:92
 msgid "Father's surname"
 msgstr "父亲的姓"
 
-#: ../gramps/gui/configure.py:93
+#: ../gramps/gui/configure.py:94
 msgid "Combination of mother's and father's surname"
 msgstr "结合母亲和父亲的姓"
 
-#: ../gramps/gui/configure.py:94
+#: ../gramps/gui/configure.py:95
 msgid "Icelandic style"
 msgstr "冰岛式姓氏（父名后加 -sson 或 -sdótter）"
 
-#: ../gramps/gui/configure.py:120 ../gramps/gui/configure.py:122
+#: ../gramps/gui/configure.py:121 ../gramps/gui/configure.py:123
 msgid "Display Name Editor"
 msgstr "显示名称编辑器"
 
-#: ../gramps/gui/configure.py:125 ../gramps/gui/configure.py:211
+#: ../gramps/gui/configure.py:126 ../gramps/gui/configure.py:212
 #: ../gramps/gui/dialog.py:276 ../gramps/gui/dialog.py:334
 #: ../gramps/gui/dialog.py:360 ../gramps/gui/glade/book.glade:38
 #: ../gramps/gui/glade/book.glade:626 ../gramps/gui/glade/clipboard.glade:69
@@ -11764,7 +11766,7 @@ msgstr "显示名称编辑器"
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: ../gramps/gui/configure.py:130
+#: ../gramps/gui/configure.py:131
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -11821,28 +11823,28 @@ msgstr ""
 "     <i>Dr.</i>: 头衔，<i>Sr</i>: 后缀，<i>Ed</i>: 昵称, <i>Underhills</i>: "
 "家族昵称, <i>Jose</i>: Call。\n"
 
-#: ../gramps/gui/configure.py:161
+#: ../gramps/gui/configure.py:162
 msgid " Name Editor"
 msgstr " 名称编辑器"
 
-#: ../gramps/gui/configure.py:266 ../gramps/gui/configure.py:274
-#: ../gramps/gui/configure.py:1238
+#: ../gramps/gui/configure.py:267 ../gramps/gui/configure.py:275
+#: ../gramps/gui/configure.py:1237
 msgid "Invalid or incomplete format definition."
 msgstr "无效的或不完整的格式定义。"
 
 #. Translators: needed for French, ignore otherwise
-#: ../gramps/gui/configure.py:437 ../gramps/gui/configure.py:473
-#: ../gramps/gui/configure.py:504 ../gramps/gui/configure.py:520
-#: ../gramps/gui/configure.py:561 ../gramps/gui/configure.py:599
-#: ../gramps/gui/configure.py:627 ../gramps/gui/configure.py:893
-#: ../gramps/gui/configure.py:1434 ../gramps/gui/configure.py:1461
-#: ../gramps/gui/configure.py:1504 ../gramps/gui/configure.py:1548
-#: ../gramps/gui/configure.py:1570 ../gramps/gui/configure.py:1605
-#: ../gramps/gui/configure.py:1618 ../gramps/gui/configure.py:1639
-#: ../gramps/gui/configure.py:1657 ../gramps/gui/configure.py:1662
-#: ../gramps/gui/configure.py:1683 ../gramps/gui/configure.py:1699
-#: ../gramps/gui/configure.py:2132 ../gramps/gui/configure.py:2250
-#: ../gramps/gui/configure.py:2339 ../gramps/gui/plug/_windows.py:789
+#: ../gramps/gui/configure.py:438 ../gramps/gui/configure.py:474
+#: ../gramps/gui/configure.py:505 ../gramps/gui/configure.py:521
+#: ../gramps/gui/configure.py:562 ../gramps/gui/configure.py:600
+#: ../gramps/gui/configure.py:628 ../gramps/gui/configure.py:894
+#: ../gramps/gui/configure.py:1433 ../gramps/gui/configure.py:1460
+#: ../gramps/gui/configure.py:1503 ../gramps/gui/configure.py:1547
+#: ../gramps/gui/configure.py:1569 ../gramps/gui/configure.py:1604
+#: ../gramps/gui/configure.py:1617 ../gramps/gui/configure.py:1638
+#: ../gramps/gui/configure.py:1656 ../gramps/gui/configure.py:1661
+#: ../gramps/gui/configure.py:1682 ../gramps/gui/configure.py:1698
+#: ../gramps/gui/configure.py:2131 ../gramps/gui/configure.py:2249
+#: ../gramps/gui/configure.py:2338 ../gramps/gui/plug/_windows.py:789
 #: ../gramps/gui/plug/_windows.py:809 ../gramps/gui/plug/_windows.py:845
 #: ../gramps/gui/plug/_windows.py:853 ../gramps/gui/views/navigationview.py:350
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
@@ -11850,7 +11852,7 @@ msgstr "无效的或不完整的格式定义。"
 msgid "%s: "
 msgstr "%s： "
 
-#: ../gramps/gui/configure.py:673 ../gramps/gui/editors/edittaglist.py:121
+#: ../gramps/gui/configure.py:674 ../gramps/gui/editors/edittaglist.py:121
 #: ../gramps/gui/glade/addmedia.glade:53
 #: ../gramps/gui/glade/baseselector.glade:55 ../gramps/gui/glade/book.glade:658
 #: ../gramps/gui/glade/clipboard.glade:22 ../gramps/gui/glade/dbman.glade:163
@@ -11915,40 +11917,40 @@ msgstr "%s： "
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../gramps/gui/configure.py:699 ../gramps/gui/configure.py:754
+#: ../gramps/gui/configure.py:700 ../gramps/gui/configure.py:755
 msgid "Researcher"
 msgstr "调查者"
 
-#: ../gramps/gui/configure.py:717
+#: ../gramps/gui/configure.py:718
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
 msgstr "县/郡"
 
-#: ../gramps/gui/configure.py:726 ../gramps/plugins/view/repoview.py:94
+#: ../gramps/gui/configure.py:727 ../gramps/plugins/view/repoview.py:94
 msgid "ZIP/Postal Code"
 msgstr "邮编"
 
-#: ../gramps/gui/configure.py:737 ../gramps/gui/plug/_windows.py:1650
+#: ../gramps/gui/configure.py:738 ../gramps/gui/plug/_windows.py:1650
 #: ../gramps/plugins/view/repoview.py:95
 msgid "Email"
 msgstr "电子邮件"
 
-#: ../gramps/gui/configure.py:744
+#: ../gramps/gui/configure.py:745
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
 msgstr "输入您的个人联系信息，以便在您分发家谱后别人可以联系到您。"
 
-#: ../gramps/gui/configure.py:766 ../gramps/gui/configure.py:867
+#: ../gramps/gui/configure.py:767 ../gramps/gui/configure.py:868
 msgid "ID Formats"
 msgstr "ID 格式"
 
-#: ../gramps/gui/configure.py:818 ../gramps/plugins/importer/importxml.py:325
+#: ../gramps/gui/configure.py:819 ../gramps/plugins/importer/importxml.py:325
 msgid "Media Object"
 msgstr "媒体对象"
 
-#: ../gramps/gui/configure.py:855
+#: ../gramps/gui/configure.py:856
 #, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
@@ -11959,140 +11961,140 @@ msgstr ""
 "I0000 到 I9999 的 ID。大型数据库可能需要更大的 ID 范围。\"I%06d\" 创建的 ID "
 "从 I000000 到 I999999。\n"
 
-#: ../gramps/gui/configure.py:877
+#: ../gramps/gui/configure.py:878
 msgid "Colors used for boxes in the graphical views"
 msgstr "图形视图中方框的颜色"
 
-#: ../gramps/gui/configure.py:888
+#: ../gramps/gui/configure.py:889
 msgid "Dark colors"
 msgstr "深色"
 
-#: ../gramps/gui/configure.py:888
+#: ../gramps/gui/configure.py:889
 msgid "Light colors"
 msgstr "浅色"
 
-#: ../gramps/gui/configure.py:893
+#: ../gramps/gui/configure.py:894
 msgid "Color scheme"
 msgstr "配色方案"
 
-#: ../gramps/gui/configure.py:897 ../gramps/gui/configure.py:2816
+#: ../gramps/gui/configure.py:898 ../gramps/gui/configure.py:2815
 msgid "Restore to defaults"
 msgstr "恢复为默认值"
 
-#: ../gramps/gui/configure.py:898
+#: ../gramps/gui/configure.py:899
 msgid "Restore colors for current theme to default."
 msgstr "将当前主题颜色恢复到默认状态。"
 
-#: ../gramps/gui/configure.py:905
+#: ../gramps/gui/configure.py:906
 msgid "Colors for Male persons"
 msgstr "男性成员的颜色"
 
-#: ../gramps/gui/configure.py:906
+#: ../gramps/gui/configure.py:907
 msgid "Colors for Female persons"
 msgstr "女性成员的颜色"
 
-#: ../gramps/gui/configure.py:907
+#: ../gramps/gui/configure.py:908
 msgid "Colors for people who are neither male nor female"
 msgstr "非男也非女的成员颜色标记"
 
-#: ../gramps/gui/configure.py:908
+#: ../gramps/gui/configure.py:909
 msgid "Colors for Unknown persons"
 msgstr "未知人员的颜色"
 
-#: ../gramps/gui/configure.py:909
+#: ../gramps/gui/configure.py:910
 msgid "Colors for Family nodes"
 msgstr "家庭节点的颜色"
 
-#: ../gramps/gui/configure.py:910
+#: ../gramps/gui/configure.py:911
 msgid "Other colors"
 msgstr "其他颜色"
 
-#: ../gramps/gui/configure.py:913
+#: ../gramps/gui/configure.py:914
 msgid "Background for Alive"
 msgstr "在世人员的背景色"
 
-#: ../gramps/gui/configure.py:914
+#: ../gramps/gui/configure.py:915
 msgid "Background for Dead"
 msgstr "去世人员的背景色"
 
-#: ../gramps/gui/configure.py:915
+#: ../gramps/gui/configure.py:916
 msgid "Border for Alive"
 msgstr "在世人员的边框"
 
-#: ../gramps/gui/configure.py:916
+#: ../gramps/gui/configure.py:917
 msgid "Border for Dead"
 msgstr "去世人员的边框"
 
-#: ../gramps/gui/configure.py:941
+#: ../gramps/gui/configure.py:942
 msgid "Default background"
 msgstr "默认背景色"
 
-#: ../gramps/gui/configure.py:942
+#: ../gramps/gui/configure.py:943
 msgid "Background for Married"
 msgstr "已婚人员的颜色"
 
-#: ../gramps/gui/configure.py:943
+#: ../gramps/gui/configure.py:944
 msgid "Background for Unmarried"
 msgstr "未婚人员的颜色"
 
-#: ../gramps/gui/configure.py:944
+#: ../gramps/gui/configure.py:945
 msgid "Background for Civil union"
 msgstr "Civil union 的背景色"
 
-#: ../gramps/gui/configure.py:945
+#: ../gramps/gui/configure.py:946
 msgid "Background for Unknown"
 msgstr "未知人员的背景色"
 
-#: ../gramps/gui/configure.py:946
+#: ../gramps/gui/configure.py:947
 msgid "Background for Divorced"
 msgstr "离异人员的背景色"
 
-#: ../gramps/gui/configure.py:947
+#: ../gramps/gui/configure.py:948
 msgid "Default border"
 msgstr "默认边框"
 
-#: ../gramps/gui/configure.py:948
+#: ../gramps/gui/configure.py:949
 msgid "Border for Divorced"
 msgstr "离异人员边框"
 
-#: ../gramps/gui/configure.py:950
+#: ../gramps/gui/configure.py:951
 msgid "Background for Home Person"
 msgstr "主成员的背景"
 
-#: ../gramps/gui/configure.py:969 ../gramps/gui/configure.py:2813
+#: ../gramps/gui/configure.py:970 ../gramps/gui/configure.py:2812
 #, python-format
 msgid "<b>%s</b>"
 msgstr "<b>%s</b>"
 
-#: ../gramps/gui/configure.py:982
+#: ../gramps/gui/configure.py:983
 msgid "Colors"
 msgstr "颜色"
 
-#: ../gramps/gui/configure.py:1003
+#: ../gramps/gui/configure.py:1004
 msgid "Warnings and Error dialogs"
 msgstr "警告和错误对话框"
 
-#: ../gramps/gui/configure.py:1015
+#: ../gramps/gui/configure.py:1016
 msgid "Suppress warning when adding parents to a child"
 msgstr "当为子女添加父母时不提示警告。"
 
-#: ../gramps/gui/configure.py:1023
+#: ../gramps/gui/configure.py:1024
 msgid "Suppress warning when canceling with changed data"
 msgstr "取消已作出的数据修改时不提示警告。"
 
-#: ../gramps/gui/configure.py:1031
+#: ../gramps/gui/configure.py:1032
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
 msgstr "导出到 GEDCOM 时不提示关于缺少研究者的警告"
 
-#: ../gramps/gui/configure.py:1039
+#: ../gramps/gui/configure.py:1040
 msgid "Suppress tooltip warnings about data being saved immediately"
 msgstr "取消工具提示关于数据被立即保存的警告"
 
-#: ../gramps/gui/configure.py:1047
+#: ../gramps/gui/configure.py:1048
 msgid "Show plugin status dialog on plugin load error"
 msgstr "插件加载出错时显示插件状态对话框"
 
-#: ../gramps/gui/configure.py:1053
+#: ../gramps/gui/configure.py:1054
 msgid "Warnings"
 msgstr "警告"
 
@@ -12109,15 +12111,15 @@ msgstr "并非取自父的名"
 msgid "Enter to save, Esc to cancel editing"
 msgstr "按回车键保存，Esc 键取消编辑"
 
-#: ../gramps/gui/configure.py:1216
+#: ../gramps/gui/configure.py:1215
 msgid "This format exists already."
 msgstr "本格式已经存在。"
 
-#: ../gramps/gui/configure.py:1263
+#: ../gramps/gui/configure.py:1262
 msgid "Example"
 msgstr "例"
 
-#: ../gramps/gui/configure.py:1281
+#: ../gramps/gui/configure.py:1280
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:169
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:176
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:374
@@ -12133,7 +12135,7 @@ msgstr "例"
 msgid "_Add"
 msgstr "添加(_A)"
 
-#: ../gramps/gui/configure.py:1284
+#: ../gramps/gui/configure.py:1283
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:171
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:177
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:375
@@ -12150,7 +12152,7 @@ msgstr "添加(_A)"
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../gramps/gui/configure.py:1288
+#: ../gramps/gui/configure.py:1287
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:172
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:178
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:145
@@ -12162,11 +12164,11 @@ msgstr "编辑(_E)"
 msgid "_Remove"
 msgstr "删除(_R)"
 
-#: ../gramps/gui/configure.py:1414
+#: ../gramps/gui/configure.py:1413
 msgid "Display Options"
 msgstr "显示选项"
 
-#: ../gramps/gui/configure.py:1430 ../gramps/gui/configure.py:1508
+#: ../gramps/gui/configure.py:1429 ../gramps/gui/configure.py:1507
 #: ../gramps/gui/editors/displaytabs/buttontab.py:72
 #: ../gramps/gui/glade/editfamily.glade:280
 #: ../gramps/gui/glade/editfamily.glade:596
@@ -12179,99 +12181,99 @@ msgstr "显示选项"
 msgid "Edit"
 msgstr "编辑"
 
-#: ../gramps/gui/configure.py:1434
+#: ../gramps/gui/configure.py:1433
 msgid "Automate Place format"
 msgstr "自动化地点格式"
 
-#: ../gramps/gui/configure.py:1441
+#: ../gramps/gui/configure.py:1440
 msgid "Enables automatic place title generation using specified format."
 msgstr "启用使用指定格式的自动地点标题生成。"
 
-#: ../gramps/gui/configure.py:1518
+#: ../gramps/gui/configure.py:1517
 msgid "Custom name display options are unique to each family tree."
 msgstr "自定义姓名显示选项对每个家谱来说都是独一无二的。"
 
-#: ../gramps/gui/configure.py:1530
+#: ../gramps/gui/configure.py:1529
 msgid "Consider single pa/matronymic as surname"
 msgstr "将从父系或母系获得的单个名字作为姓氏"
 
-#: ../gramps/gui/configure.py:1548
+#: ../gramps/gui/configure.py:1547
 msgid "Date format *"
 msgstr "日期格式 *"
 
-#: ../gramps/gui/configure.py:1556
+#: ../gramps/gui/configure.py:1555
 msgid "Years"
 msgstr "年"
 
-#: ../gramps/gui/configure.py:1556
+#: ../gramps/gui/configure.py:1555
 msgid "Years, Months"
 msgstr "年、月"
 
-#: ../gramps/gui/configure.py:1556
+#: ../gramps/gui/configure.py:1555
 msgid "Years, Months, Days"
 msgstr "年、月、日"
 
-#: ../gramps/gui/configure.py:1570
+#: ../gramps/gui/configure.py:1569
 msgid "Age display precision *"
 msgstr "年龄显示精确度 *"
 
-#: ../gramps/gui/configure.py:1578
+#: ../gramps/gui/configure.py:1577
 msgid "Round the year"
 msgstr "四舍五入年龄"
 
-#: ../gramps/gui/configure.py:1589
+#: ../gramps/gui/configure.py:1588
 #, fuzzy
 #| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
 msgstr "显示 %s 的参考"
 
-#: ../gramps/gui/configure.py:1605
+#: ../gramps/gui/configure.py:1604
 msgid "Calendar on reports"
 msgstr "报告中的日历"
 
-#: ../gramps/gui/configure.py:1618
+#: ../gramps/gui/configure.py:1617
 #, fuzzy
 #| msgid "Calendar on reports"
 msgid "Calendar on input"
 msgstr "报告中的日历"
 
-#: ../gramps/gui/configure.py:1626
+#: ../gramps/gui/configure.py:1625
 msgid "On the previous day"
 msgstr "在前一天"
 
-#: ../gramps/gui/configure.py:1627
+#: ../gramps/gui/configure.py:1626
 msgid "On the next day"
 msgstr "在第二天"
 
-#: ../gramps/gui/configure.py:1628
+#: ../gramps/gui/configure.py:1627
 msgid "Only on leap years"
 msgstr "仅在闰年"
 
-#: ../gramps/gui/configure.py:1635
+#: ../gramps/gui/configure.py:1634
 msgid ""
 "For non leap years, anniversaries are displayed on either February 28, March "
 "1 or not at all in Gregorian calendars"
 msgstr ""
 "非闰年时，纪念日显示在 2 月 28 日或 3 月 1 日，或者干脆不在格里高利历中显示。"
 
-#: ../gramps/gui/configure.py:1639
+#: ../gramps/gui/configure.py:1638
 msgid "Show leap day anniversaries"
 msgstr "显示闰日纪念日"
 
-#: ../gramps/gui/configure.py:1646
+#: ../gramps/gui/configure.py:1645
 msgid "Active person's name and ID"
 msgstr "当前人的姓名和 ID 编号"
 
-#: ../gramps/gui/configure.py:1646
+#: ../gramps/gui/configure.py:1645
 #: ../gramps/plugins/textreport/indivcomplete.py:394
 msgid "Relationship to home person"
 msgstr "与家主的关系"
 
-#: ../gramps/gui/configure.py:1657
+#: ../gramps/gui/configure.py:1656
 msgid "Status bar"
 msgstr "状态栏"
 
-#: ../gramps/gui/configure.py:1669
+#: ../gramps/gui/configure.py:1668
 msgid ""
 "\n"
 "Input Options"
@@ -12279,147 +12281,147 @@ msgstr ""
 "\n"
 "报告选项"
 
-#: ../gramps/gui/configure.py:1683
+#: ../gramps/gui/configure.py:1682
 msgid "Surname guessing"
 msgstr "子女姓氏推测"
 
-#: ../gramps/gui/configure.py:1699
+#: ../gramps/gui/configure.py:1698
 msgid "Default family relationship"
 msgstr "默认家庭关系"
 
-#: ../gramps/gui/configure.py:1706
+#: ../gramps/gui/configure.py:1705
 msgid "Hide LDS tab in person and family editors"
 msgstr "在个人和家庭编辑中隐藏LDS标签"
 
-#: ../gramps/gui/configure.py:1714 ../gramps/gui/configure.py:2195
+#: ../gramps/gui/configure.py:1713 ../gramps/gui/configure.py:2194
 msgid "* Requires Restart"
 msgstr "* 需要重新启动"
 
-#: ../gramps/gui/configure.py:1723
+#: ../gramps/gui/configure.py:1722
 msgid "Data"
 msgstr "数据"
 
-#: ../gramps/gui/configure.py:1741
+#: ../gramps/gui/configure.py:1740
 msgid "Conditional Text Replacements"
 msgstr "有条件的文本替换"
 
-#: ../gramps/gui/configure.py:1752
+#: ../gramps/gui/configure.py:1751
 msgid "Missing surname"
 msgstr "缺失的姓"
 
-#: ../gramps/gui/configure.py:1757
+#: ../gramps/gui/configure.py:1756
 msgid "Missing given name"
 msgstr "缺失的名"
 
-#: ../gramps/gui/configure.py:1764
+#: ../gramps/gui/configure.py:1763
 msgid "Missing record"
 msgstr "缺失的记录"
 
-#: ../gramps/gui/configure.py:1769
+#: ../gramps/gui/configure.py:1768
 msgid "Private surname"
 msgstr "私有的姓"
 
-#: ../gramps/gui/configure.py:1778
+#: ../gramps/gui/configure.py:1777
 msgid "Private given name"
 msgstr "名（昵称）"
 
-#: ../gramps/gui/configure.py:1787
+#: ../gramps/gui/configure.py:1786
 msgid "Private record"
 msgstr "私人记录"
 
-#: ../gramps/gui/configure.py:1844
+#: ../gramps/gui/configure.py:1843
 msgid "Change is not immediate"
 msgstr "变更并非立即生效"
 
-#: ../gramps/gui/configure.py:1846
+#: ../gramps/gui/configure.py:1845
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
 msgstr "变更的日期格式，要等到下次 Gramps 重启后才会生效。"
 
-#: ../gramps/gui/configure.py:1885
+#: ../gramps/gui/configure.py:1884
 msgid "Calculation limits"
 msgstr "计算限制"
 
-#: ../gramps/gui/configure.py:1892
+#: ../gramps/gui/configure.py:1891
 msgid "Date 'about' year range: (date ± #)"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1900
+#: ../gramps/gui/configure.py:1899
 #, fuzzy
 #| msgid "Date after range"
 msgid "Date 'after' year range:  (date + #)"
 msgstr "Date after range"
 
-#: ../gramps/gui/configure.py:1908
+#: ../gramps/gui/configure.py:1907
 #, fuzzy
 #| msgid "Date before range"
 msgid "Date 'before' year range: (date - #)"
 msgstr "Date before range"
 
-#: ../gramps/gui/configure.py:1916
+#: ../gramps/gui/configure.py:1915
 msgid "Maximum age probably alive"
 msgstr "最长寿命"
 
-#: ../gramps/gui/configure.py:1924
+#: ../gramps/gui/configure.py:1923
 msgid "Maximum sibling age difference"
 msgstr "兄弟姐妹年岁最大差距"
 
-#: ../gramps/gui/configure.py:1932
+#: ../gramps/gui/configure.py:1931
 msgid "Minimum years between generations"
 msgstr "两代人相差最小年岁"
 
-#: ../gramps/gui/configure.py:1940
+#: ../gramps/gui/configure.py:1939
 msgid "Average years between generations"
 msgstr "代与代之间的平均相差年岁"
 
-#: ../gramps/gui/configure.py:1948
+#: ../gramps/gui/configure.py:1947
 msgid "Max generations for relationships"
 msgstr "最多显示几代关系"
 
-#: ../gramps/gui/configure.py:1955
+#: ../gramps/gui/configure.py:1954
 msgid "Limits"
 msgstr "限制"
 
-#: ../gramps/gui/configure.py:1968
+#: ../gramps/gui/configure.py:1967
 msgid "Environment Settings"
 msgstr "环境设置"
 
-#: ../gramps/gui/configure.py:1980
+#: ../gramps/gui/configure.py:1979
 msgid "Display Tip of the Day"
 msgstr "显示当日提示"
 
-#: ../gramps/gui/configure.py:1985
+#: ../gramps/gui/configure.py:1984
 msgid "Show useful information about using Gramps on startup."
 msgstr "在程序启动时显示有关使用 Gramps 的提示信息。"
 
-#: ../gramps/gui/configure.py:1990
+#: ../gramps/gui/configure.py:1989
 msgid "Remember last Family Tree"
 msgstr "记住上次的家谱"
 
-#: ../gramps/gui/configure.py:1996
+#: ../gramps/gui/configure.py:1995
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr "程序启动时不要提示选择要加载的家谱，直接加载上次使用的家谱。"
 
-#: ../gramps/gui/configure.py:2004
+#: ../gramps/gui/configure.py:2003
 msgid "Remember last view displayed"
 msgstr "记录上次显示视图"
 
-#: ../gramps/gui/configure.py:2009
+#: ../gramps/gui/configure.py:2008
 msgid "Remember last view displayed and open it next time."
 msgstr "记录上次显示视图并在下次打开。"
 
-#: ../gramps/gui/configure.py:2014
+#: ../gramps/gui/configure.py:2013
 msgid "Enable spell checker"
 msgstr "启用拼写检查"
 
-#: ../gramps/gui/configure.py:2019
+#: ../gramps/gui/configure.py:2018
 msgid "Enable the spelling checker for notes."
 msgstr "为注释启用拼写检查"
 
-#: ../gramps/gui/configure.py:2030
+#: ../gramps/gui/configure.py:2029
 #, python-format
 msgid ""
 "Gspell not loaded. Spell checking will not be available.\n"
@@ -12428,11 +12430,11 @@ msgstr ""
 "GtkSpell 未加载。拼写检查将不可用。\n"
 "要为 Gramps 构建它，请阅读 %(gramps_wiki_build_spell_url)s"
 
-#: ../gramps/gui/configure.py:2042
+#: ../gramps/gui/configure.py:2041
 msgid "Show text label beside Navigator buttons *"
 msgstr "在导航按钮旁显示文本标签 *"
 
-#: ../gramps/gui/configure.py:2048
+#: ../gramps/gui/configure.py:2047
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
@@ -12440,79 +12442,79 @@ msgstr ""
 "在导航按钮（成员，家庭，时间等）旁显示文本。\n"
 "Gramps 需重启应用更改。"
 
-#: ../gramps/gui/configure.py:2058
+#: ../gramps/gui/configure.py:2057
 msgid "Show Clipboard icon on toolbar"
 msgstr "工具栏上显示剪贴板"
 
-#: ../gramps/gui/configure.py:2063
+#: ../gramps/gui/configure.py:2062
 msgid "Show or hide the Clipboard icon on the toolbar."
 msgstr "在工具栏上显示或隐藏剪贴板。"
 
-#: ../gramps/gui/configure.py:2071
+#: ../gramps/gui/configure.py:2070
 msgid "Show Reports icon on toolbar"
 msgstr "在工具栏上显示报告图标"
 
-#: ../gramps/gui/configure.py:2076
+#: ../gramps/gui/configure.py:2075
 msgid "Show or hide the Reports icon on the toolbar."
 msgstr "在工具栏上显示或隐藏报告图标。"
 
-#: ../gramps/gui/configure.py:2084
+#: ../gramps/gui/configure.py:2083
 msgid "Show Tools icon on toolbar"
 msgstr "在工具栏上显示工具图标"
 
-#: ../gramps/gui/configure.py:2089
+#: ../gramps/gui/configure.py:2088
 msgid "Show or hide the Tools icon on the toolbar."
 msgstr "在工具栏上显示或隐藏工具图标。"
 
-#: ../gramps/gui/configure.py:2097
+#: ../gramps/gui/configure.py:2096
 msgid "Show Addons icon on toolbar"
 msgstr "在工具栏中显示加载项的图标"
 
-#: ../gramps/gui/configure.py:2102
+#: ../gramps/gui/configure.py:2101
 msgid "Show or hide the Addons icon on the toolbar."
 msgstr "在工具条栏显示或隐藏加载项图标。"
 
-#: ../gramps/gui/configure.py:2110
+#: ../gramps/gui/configure.py:2109
 msgid "Show Preferences icon on toolbar"
 msgstr "在工具栏上显示偏好设置图标"
 
-#: ../gramps/gui/configure.py:2115
+#: ../gramps/gui/configure.py:2114
 msgid "Show or hide the Preferences icon on the toolbar."
 msgstr "在工具栏上显示或隐藏偏好设置图标。"
 
-#: ../gramps/gui/configure.py:2123
+#: ../gramps/gui/configure.py:2122
 msgid "Both text and icons"
 msgstr "文字和图标"
 
-#: ../gramps/gui/configure.py:2124 ../gramps/gui/editors/editdate.py:84
+#: ../gramps/gui/configure.py:2123 ../gramps/gui/editors/editdate.py:84
 msgid "Text only"
 msgstr "只限文本"
 
-#: ../gramps/gui/configure.py:2125
+#: ../gramps/gui/configure.py:2124
 msgid "Icons only"
 msgstr "仅图标"
 
-#: ../gramps/gui/configure.py:2130
+#: ../gramps/gui/configure.py:2129
 msgid "Display text, icons or both on the toolbar buttons."
 msgstr "在工具栏按钮上显示文字或图标，或者全部显示。"
 
-#: ../gramps/gui/configure.py:2132
+#: ../gramps/gui/configure.py:2131
 msgid "Toolbar Style"
 msgstr "工具样式"
 
-#: ../gramps/gui/configure.py:2140
+#: ../gramps/gui/configure.py:2139
 msgid "Show close button in gramplet bar tabs"
 msgstr "在 gramplet 标签页框上显示关闭按钮"
 
-#: ../gramps/gui/configure.py:2146
+#: ../gramps/gui/configure.py:2145
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr "显示关闭按钮以方便从栏目中移除 gramplet 控件。"
 
-#: ../gramps/gui/configure.py:2153
+#: ../gramps/gui/configure.py:2152
 msgid "Markup for invalid date format"
 msgstr "标记为无效日期格式"
 
-#: ../gramps/gui/configure.py:2159
+#: ../gramps/gui/configure.py:2158
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -12543,11 +12545,11 @@ msgstr ""
 "例：&lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "将显示 <u><b>带下划线并加粗的日期</b></u>.\n"
 
-#: ../gramps/gui/configure.py:2180
+#: ../gramps/gui/configure.py:2179
 msgid "Multiple surname box height"
 msgstr "多姓氏框高度"
 
-#: ../gramps/gui/configure.py:2186
+#: ../gramps/gui/configure.py:2185
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
@@ -12555,15 +12557,15 @@ msgstr ""
 "以像素为单位输入高度。当输入多个姓氏时，这些姓氏会显示在一个方框内。此项设置"
 "可设定此方框的大小。"
 
-#: ../gramps/gui/configure.py:2245
+#: ../gramps/gui/configure.py:2244
 msgid "Database Setting"
 msgstr "数据库设置"
 
-#: ../gramps/gui/configure.py:2250
+#: ../gramps/gui/configure.py:2249
 msgid "Database backend"
 msgstr "数据库后端"
 
-#: ../gramps/gui/configure.py:2258
+#: ../gramps/gui/configure.py:2257
 msgid ""
 "\n"
 "Database Location"
@@ -12571,19 +12573,19 @@ msgstr ""
 "\n"
 "数据库信息"
 
-#: ../gramps/gui/configure.py:2269
+#: ../gramps/gui/configure.py:2268
 msgid "Host"
 msgstr "主机"
 
-#: ../gramps/gui/configure.py:2273
+#: ../gramps/gui/configure.py:2272
 msgid "Port"
 msgstr "端口"
 
-#: ../gramps/gui/configure.py:2282
+#: ../gramps/gui/configure.py:2281
 msgid "Database path"
 msgstr "数据库路径"
 
-#: ../gramps/gui/configure.py:2293
+#: ../gramps/gui/configure.py:2292
 msgid ""
 "\n"
 "Backup Management"
@@ -12591,43 +12593,43 @@ msgstr ""
 "\n"
 "退出时备份"
 
-#: ../gramps/gui/configure.py:2306
+#: ../gramps/gui/configure.py:2305
 msgid "Backup path"
 msgstr "备份路径"
 
-#: ../gramps/gui/configure.py:2316
+#: ../gramps/gui/configure.py:2315
 msgid "Backup on exit"
 msgstr "退出时备份"
 
-#: ../gramps/gui/configure.py:2321
+#: ../gramps/gui/configure.py:2320
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr "退出程序时将您的家谱备份到上方设定的备份路径下。"
 
-#: ../gramps/gui/configure.py:2329
+#: ../gramps/gui/configure.py:2328
 msgid "Every 15 minutes"
 msgstr "每 15 分钟"
 
-#: ../gramps/gui/configure.py:2330
+#: ../gramps/gui/configure.py:2329
 msgid "Every 30 minutes"
 msgstr "每 30 分钟"
 
-#: ../gramps/gui/configure.py:2331
+#: ../gramps/gui/configure.py:2330
 msgid "Every hour"
 msgstr "每小时"
 
-#: ../gramps/gui/configure.py:2332
+#: ../gramps/gui/configure.py:2331
 msgid "Every 12 hours"
 msgstr "每 12 小时"
 
-#: ../gramps/gui/configure.py:2333
+#: ../gramps/gui/configure.py:2332
 msgid "Every day"
 msgstr "每天"
 
-#: ../gramps/gui/configure.py:2339
+#: ../gramps/gui/configure.py:2338
 msgid "Autobackup"
 msgstr "自动备份"
 
-#: ../gramps/gui/configure.py:2346
+#: ../gramps/gui/configure.py:2345
 msgid ""
 "\n"
 "Family Tree's Media path"
@@ -12635,11 +12637,11 @@ msgstr ""
 "\n"
 "家谱数据库路径"
 
-#: ../gramps/gui/configure.py:2359
+#: ../gramps/gui/configure.py:2358
 msgid "Base media path"
 msgstr "基础媒体路径"
 
-#: ../gramps/gui/configure.py:2371
+#: ../gramps/gui/configure.py:2370
 msgid ""
 "The base relative media path is specific to the active family tree. It is "
 "not a global setting. Each family tree is able to have a unique relative "
@@ -12648,15 +12650,15 @@ msgstr ""
 "基础相对媒体路径是针对活动族树的。它不是一个全局设置。每个家谱都可以有一个独"
 "特的相对媒体路径，并存储在数据库中。"
 
-#: ../gramps/gui/configure.py:2392
+#: ../gramps/gui/configure.py:2391
 msgid "Tag Records"
 msgstr "标签纪录"
 
-#: ../gramps/gui/configure.py:2414
+#: ../gramps/gui/configure.py:2413
 msgid "Add tag on import"
 msgstr "导入时添加标签"
 
-#: ../gramps/gui/configure.py:2421
+#: ../gramps/gui/configure.py:2420
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
@@ -12664,7 +12666,7 @@ msgstr ""
 "导入时会在所有记录上加上说明标签。\n"
 "清除以设置默认值。"
 
-#: ../gramps/gui/configure.py:2430
+#: ../gramps/gui/configure.py:2429
 msgid ""
 "\n"
 "Source GEDCOM import"
@@ -12672,20 +12674,20 @@ msgstr ""
 "\n"
 "GEDCOM 文件导入"
 
-#: ../gramps/gui/configure.py:2442
+#: ../gramps/gui/configure.py:2441
 msgid "Add default source on GEDCOM import"
 msgstr "导入 GEDCOM 时添加默认源信息"
 
-#: ../gramps/gui/configure.py:2449 ../gramps/gui/dbloader.py:399
+#: ../gramps/gui/configure.py:2448 ../gramps/gui/dbloader.py:399
 msgid "Import"
 msgstr "导入"
 
-#: ../gramps/gui/configure.py:2518
+#: ../gramps/gui/configure.py:2517
 msgid "Select media directory"
 msgstr "选择媒体目录"
 
-#: ../gramps/gui/configure.py:2522 ../gramps/gui/configure.py:2552
-#: ../gramps/gui/configure.py:2579 ../gramps/gui/dbloader.py:362
+#: ../gramps/gui/configure.py:2521 ../gramps/gui/configure.py:2551
+#: ../gramps/gui/configure.py:2578 ../gramps/gui/dbloader.py:362
 #: ../gramps/gui/dbloader.py:399 ../gramps/gui/editors/edittaglist.py:122
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:25
@@ -12752,15 +12754,15 @@ msgstr "选择媒体目录"
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: ../gramps/gui/configure.py:2547
+#: ../gramps/gui/configure.py:2546
 msgid "Select database directory"
 msgstr "选择数据库目录"
 
-#: ../gramps/gui/configure.py:2575 ../gramps/gui/viewmanager.py:1941
+#: ../gramps/gui/configure.py:2574 ../gramps/gui/viewmanager.py:1941
 msgid "Select backup directory"
 msgstr "选择备份目录"
 
-#: ../gramps/gui/configure.py:2650
+#: ../gramps/gui/configure.py:2649
 msgid ""
 "If checked, use the standard genealogic symbols (death symbol is user "
 "selectable).\n"
@@ -12770,7 +12772,7 @@ msgstr ""
 "如果选中，使用标准的家谱符号（死亡符号可由用户选择）。\n"
 "如果没有勾选，你可以使用下面的面板来自己定制符号。"
 
-#: ../gramps/gui/configure.py:2657
+#: ../gramps/gui/configure.py:2656
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
@@ -12778,24 +12780,24 @@ msgstr ""
 "如果您想在注释中添加音标，以便能够知道名字如何发音，或者您混合使用了不同的语"
 "言，比如希腊语和俄语。那么使用本项是很有帮助的。"
 
-#: ../gramps/gui/configure.py:2663
+#: ../gramps/gui/configure.py:2662
 msgid "Use symbols"
 msgstr "使用符号"
 
-#: ../gramps/gui/configure.py:2677
+#: ../gramps/gui/configure.py:2676
 msgid "Select default death symbol"
 msgstr "选择默认去世符号"
 
-#: ../gramps/gui/configure.py:2687
+#: ../gramps/gui/configure.py:2686
 msgid "Genealogical Symbols"
 msgstr "家谱符号"
 
-#: ../gramps/gui/configure.py:2718 ../gramps/gui/glade/editfamily.glade:142
+#: ../gramps/gui/configure.py:2717 ../gramps/gui/glade/editfamily.glade:142
 #: ../gramps/gui/glade/editfamily.glade:405
 msgid "Death:"
 msgstr "去世："
 
-#: ../gramps/gui/configure.py:2802
+#: ../gramps/gui/configure.py:2801
 #: ../gramps/plugins/quickview/all_relations.py:345
 #: ../gramps/plugins/view/relview.py:496
 #: ../gramps/plugins/webreport/basepage.py:3168
@@ -12805,15 +12807,15 @@ msgstr "去世："
 msgid "Partner"
 msgstr "伴侣"
 
-#: ../gramps/gui/configure.py:2805
+#: ../gramps/gui/configure.py:2804
 msgid "Killed"
 msgstr "被杀害"
 
-#: ../gramps/gui/configure.py:2809
+#: ../gramps/gui/configure.py:2808
 msgid "Default genealogy symbols replacement"
 msgstr "默认的族谱符号替换"
 
-#: ../gramps/gui/configure.py:2822
+#: ../gramps/gui/configure.py:2821
 msgid ""
 "You can set any text you want for this field.\n"
 "You can drag and drop a symbol from the symbol list above.\n"
@@ -17104,8 +17106,8 @@ msgid ""
 "via a map service in the place view."
 msgstr ""
 "该地的经度（相对于主子午线或格林威治子午线的位置），以十进制或度数表示。\n"
-"例如，有效值可以是 -124.3647，124°52′21.92″E，E124°52′21.92″ 或 124:52:21.92"
-"。\n"
+"例如，有效值可以是 -124.3647，124°52′21.92″E，E124°52′21.92″ 或 "
+"124:52:21.92。\n"
 "您可以通过地理视图搜索地点来设置这些值，或者通过地点视图中的地图服务来设置。"
 
 #: ../gramps/gui/glade/editplace.glade:214
@@ -24721,9 +24723,9 @@ msgstr ""
 "以在其他视图中的边栏或低栏中添加 gramplet 控件\n"
 "\n"
 "你可以点击工具栏上的配置图标（扳手和螺丝刀图标）来添加额外的列，在背景上右键"
-"点击也可以添加 gramplet 控件。另外您还可以通过拖拽 gramplet 控件的属性按钮（"
-"控件左上角扳手图标）来移动它的位置，单击该按钮还可以让控件脱离 Gramps 主界面"
-"。"
+"点击也可以添加 gramplet 控件。另外您还可以通过拖拽 gramplet 控件的属性按钮"
+"（控件左上角扳手图标）来移动它的位置，单击该按钮还可以让控件脱离 Gramps 主界"
+"面。"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:241
 msgid "Gramps View Categories"
@@ -25492,8 +25494,8 @@ msgstr ""
 "在“常规”设置下，父母会被放到让多数线条最短的位置。\n"
 "“父母在一起”的设置，会将配偶放到彼此相邻的位置，但是有复杂图表内容时，图会变"
 "得更大、连线会变得更长。\n"
-"“父母偏移”设置也会尝试将配偶放置到彼此相邻的位置，不过彼此间会有一定的距离。"
-"    这样可以让一代中含有很多人员的图变得更方一些。"
+"“父母偏移”设置也会尝试将配偶放置到彼此相邻的位置，不过彼此间会有一定的距"
+"离。    这样可以让一代中含有很多人员的图变得更方一些。"
 
 #: ../gramps/plugins/importer/import.gpr.py:37
 msgid "Import data from CSV files"
@@ -26671,7 +26673,8 @@ msgstr "人物引文必须要有“hlink”属性。"
 msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
-msgstr "您的家谱组名 \"%(key)s\" 连同 \"%(parent)s\"，没有将该组改为 \"%(value)s\"。"
+msgstr ""
+"您的家谱组名 \"%(key)s\" 连同 \"%(parent)s\"，没有将该组改为 \"%(value)s\"。"
 
 #: ../gramps/plugins/importer/importxml.py:1932
 msgid "Gramps ignored a name grouping"
@@ -34262,16 +34265,17 @@ msgstr "所有的参照地图已经被重建。"
 msgid "%d bad Note Links were fixed;\n"
 msgstr "修复了 %d 个坏注释链接。\n"
 
-#: ../gramps/plugins/tool/check.py:3154
+#: ../gramps/plugins/tool/check.py:3155
 #, python-format
-msgid "%d duplicate event role names coalesced. %d references updated\n"
+msgid ""
+"%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:3189
+#: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
 msgstr "完整性检查结果"
 
-#: ../gramps/plugins/tool/check.py:3196
+#: ../gramps/plugins/tool/check.py:3198
 msgid "Check and Repair"
 msgstr "检查和修复"
 
