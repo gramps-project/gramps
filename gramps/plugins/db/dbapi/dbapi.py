@@ -77,6 +77,9 @@ class DBAPI(DbGeneric):
     Database backends class for DB-API 2.0 databases
     """
 
+    # Populated by _prime_metadata_cache(); None when no cache is active.
+    _metadata_cache: dict | None = None
+
     def _initialize(self, directory, username, password):
         raise NotImplementedError
 
@@ -386,8 +389,26 @@ class DBAPI(DbGeneric):
         """
         Get an item from the database.
 
+        When a metadata cache is active (populated by
+        :meth:`_prime_metadata_cache`) the value is returned from memory
+        without any database query.
+
         Note we reserve and use _ to denote default value of []
+
+        :param key: The metadata key to retrieve.
+        :type key: str
+        :param default: Value to return when the key is absent.  The
+            sentinel ``"_"`` causes an empty list to be returned.
+        :returns: The deserialized metadata value, or *default*.
         """
+        if self._metadata_cache is not None:
+            raw = self._metadata_cache.get(key)
+            if raw is not None:
+                return self.serializer.metadata_to_object(raw)
+            if default == "_":
+                return []
+            return default
+
         self.dbapi.execute(
             f"SELECT {self.serializer.metadata_field} FROM metadata WHERE setting = ?",
             [key],
@@ -423,6 +444,40 @@ class DBAPI(DbGeneric):
             )
         if use_txn:
             self._txn_commit()
+
+    def _prime_metadata_cache(self) -> None:
+        """
+        Fetch all metadata rows in a single query and store them in
+        ``self._metadata_cache`` so that the subsequent per-key
+        :meth:`_get_metadata` calls issued during :meth:`load` are served
+        from memory rather than from the database.
+
+        :rtype: None
+        """
+        self.dbapi.execute(
+            f"SELECT setting, {self.serializer.metadata_field} FROM metadata"
+        )
+        self._metadata_cache = dict(self.dbapi.fetchall())
+
+    def _clear_metadata_cache(self) -> None:
+        """
+        Discard the metadata cache populated by :meth:`_prime_metadata_cache`.
+
+        :rtype: None
+        """
+        self._metadata_cache = None
+
+    def _set_all_metadata(self) -> None:
+        """
+        Persist all in-memory metadata to the database in a single
+        transaction, reducing the number of round-trips from one per key
+        to one for the entire batch.
+
+        :rtype: None
+        """
+        self.dbapi.begin()
+        super()._set_all_metadata(use_txn=False)
+        self.dbapi.commit()
 
     def get_name_group_keys(self):
         """

@@ -901,5 +901,135 @@ class DbPersonTest(unittest.TestCase):
         self.assertEqual(saved["Mary"], (1, 3, 1))
 
 
+# -------------------------------------------------------------------------
+#
+# DbMetadataBatchTest class
+#
+# -------------------------------------------------------------------------
+class DbMetadataBatchTest(unittest.TestCase):
+    """
+    Tests for metadata batch-read and batch-write optimisations.
+
+    All assertions are expressed in terms of the number of SQL
+    ``execute()`` calls and ``begin()`` calls so they stay meaningful
+    even if the set of metadata keys grows.
+    """
+
+    def _make_db(self):
+        """Return a freshly opened in-memory database."""
+        db = make_database("sqlite")
+        db.load(":memory:")
+        return db
+
+    def _count_executes(self, db, fn):
+        """
+        Call *fn* and return the number of SQL statements executed
+        against the metadata table during that call.
+
+        :param db: An open DBAPI database instance.
+        :param fn: Zero-argument callable to instrument.
+        :returns: Number of ``execute()`` calls whose first argument
+            contains the word ``metadata``.
+        :rtype: int
+        """
+        real_execute = db.dbapi.execute
+        count = 0
+
+        def counting_execute(sql, *args, **kwargs):
+            nonlocal count
+            if "metadata" in sql.lower():
+                count += 1
+            return real_execute(sql, *args, **kwargs)
+
+        db.dbapi.execute = counting_execute
+        try:
+            fn()
+        finally:
+            db.dbapi.execute = real_execute
+        return count
+
+    def _count_begins(self, db, fn):
+        """
+        Call *fn* and return the number of ``BEGIN TRANSACTION``
+        statements issued during that call.
+
+        :param db: An open DBAPI database instance.
+        :param fn: Zero-argument callable to instrument.
+        :returns: Number of ``begin()`` calls.
+        :rtype: int
+        """
+        real_begin = db.dbapi.begin
+        count = 0
+
+        def counting_begin():
+            nonlocal count
+            count += 1
+            return real_begin()
+
+        db.dbapi.begin = counting_begin
+        try:
+            fn()
+        finally:
+            db.dbapi.begin = real_begin
+        return count
+
+    # ------------------------------------------------------------------
+    # Batch-read tests
+    # ------------------------------------------------------------------
+
+    def test_prime_cache_issues_single_query(self):
+        """
+        _prime_metadata_cache() must hit the database exactly once.
+        """
+        db = self._make_db()
+        queries = self._count_executes(db, db._prime_metadata_cache)
+        db.close(update=False)
+        self.assertEqual(queries, 1)
+
+    def test_cached_get_metadata_issues_no_queries(self):
+        """
+        _get_metadata() must not issue any SQL while the cache is active.
+        """
+        db = self._make_db()
+        db._prime_metadata_cache()
+        queries = self._count_executes(db, lambda: db._get_metadata("name_formats"))
+        db._clear_metadata_cache()
+        db.close(update=False)
+        self.assertEqual(queries, 0)
+
+    def test_cache_cleared_after_load(self):
+        """
+        After load() completes, _metadata_cache must be None so that
+        later _get_metadata() calls go to the database.
+        """
+        db = self._make_db()
+        self.assertIsNone(db._metadata_cache)
+        db.close(update=False)
+
+    def test_uncached_get_metadata_issues_one_query(self):
+        """
+        _get_metadata() with no active cache must issue exactly one query.
+        """
+        db = self._make_db()
+        self.assertIsNone(db._metadata_cache)
+        queries = self._count_executes(db, lambda: db._get_metadata("name_formats"))
+        db.close(update=False)
+        self.assertEqual(queries, 1)
+
+    # ------------------------------------------------------------------
+    # Batch-write tests
+    # ------------------------------------------------------------------
+
+    def test_set_all_metadata_single_transaction(self):
+        """
+        _set_all_metadata() must open exactly one database transaction
+        regardless of how many keys are written.
+        """
+        db = self._make_db()
+        begins = self._count_begins(db, db._set_all_metadata)
+        db.close(update=False)
+        self.assertEqual(begins, 1)
+
+
 if __name__ == "__main__":
     unittest.main()

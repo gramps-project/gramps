@@ -744,6 +744,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if need_to_set_metadata:
             self._set_metadata("version", str(self.VERSION[0]))
 
+        # Load all metadata in one batch query where possible, then
+        # populate individual attributes via the (possibly cached) getter.
+        self._prime_metadata_cache()
+
         # Load metadata
         self.name_formats = self._get_metadata("name_formats")
         self.owner = self._get_metadata("researcher", default=Researcher())
@@ -805,12 +809,16 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.rmap_index = self._get_metadata("rmap_index", 0)
         self.nmap_index = self._get_metadata("nmap_index", 0)
 
+        # Discard the batch cache; subsequent _get_metadata() calls
+        # (e.g. for default-person-handle) must always hit the database.
+        self._clear_metadata_cache()
+
         if need_to_set_metadata:
             # for new db we always need blob metadata to allow prior Gramps versions
             # to make it to the downgrade version check
             # Note: downgrade check only works from v5.1.2 and later on sqlite
             self.set_serializer("blob")
-            self.has_changed = 1  # to make sure genderstats gets saved
+            self.save_gender_stats(self.genderStats)
             self._set_all_metadata()
             if self.use_json_data():
                 self.set_serializer("json")
@@ -858,6 +866,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 # the database for gramps.cli.clidbman:
                 filename = os.path.join(self._directory, "meta_data.db")
                 Path(filename).touch()
+                if self.has_changed:
+                    self.save_gender_stats(self.genderStats)
                 self._set_all_metadata()
 
             self._close()
@@ -873,59 +883,76 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def is_open(self):
         return self.db_is_open
 
-    def _set_all_metadata(self):
+    def _set_all_metadata(self, use_txn: bool = True) -> None:
         """
-        sets all the metadata
+        Persist all in-memory metadata to the database.
+
+        :param use_txn: Whether each :meth:`_set_metadata` call should
+            manage its own transaction.  Pass ``False`` when the caller has
+            already opened an enclosing transaction.
+        :type use_txn: bool
+
+        .. note::
+            Gender statistics are *not* saved here; callers are responsible
+            for calling :meth:`save_gender_stats` separately when needed.
         """
         # Save metadata
-        self._set_metadata("version", str(self.VERSION[0]))
-        self._set_metadata("name_formats", self.name_formats)
-        self._set_metadata("researcher", self.owner)
+        self._set_metadata("version", str(self.VERSION[0]), use_txn=use_txn)
+        self._set_metadata("name_formats", self.name_formats, use_txn=use_txn)
+        self._set_metadata("researcher", self.owner, use_txn=use_txn)
 
         # Bookmarks
-        self._set_metadata("bookmarks", self.bookmarks.get())
-        self._set_metadata("family_bookmarks", self.family_bookmarks.get())
-        self._set_metadata("event_bookmarks", self.event_bookmarks.get())
-        self._set_metadata("place_bookmarks", self.place_bookmarks.get())
-        self._set_metadata("repo_bookmarks", self.repo_bookmarks.get())
-        self._set_metadata("source_bookmarks", self.source_bookmarks.get())
-        self._set_metadata("citation_bookmarks", self.citation_bookmarks.get())
-        self._set_metadata("media_bookmarks", self.media_bookmarks.get())
-        self._set_metadata("note_bookmarks", self.note_bookmarks.get())
+        self._set_metadata("bookmarks", self.bookmarks.get(), use_txn=use_txn)
+        self._set_metadata(
+            "family_bookmarks", self.family_bookmarks.get(), use_txn=use_txn
+        )
+        self._set_metadata(
+            "event_bookmarks", self.event_bookmarks.get(), use_txn=use_txn
+        )
+        self._set_metadata(
+            "place_bookmarks", self.place_bookmarks.get(), use_txn=use_txn
+        )
+        self._set_metadata("repo_bookmarks", self.repo_bookmarks.get(), use_txn=use_txn)
+        self._set_metadata(
+            "source_bookmarks", self.source_bookmarks.get(), use_txn=use_txn
+        )
+        self._set_metadata(
+            "citation_bookmarks", self.citation_bookmarks.get(), use_txn=use_txn
+        )
+        self._set_metadata(
+            "media_bookmarks", self.media_bookmarks.get(), use_txn=use_txn
+        )
+        self._set_metadata("note_bookmarks", self.note_bookmarks.get(), use_txn=use_txn)
 
         # Custom type values, sets
-        self._set_metadata("event_names", self.event_names)
-        self._set_metadata("fattr_names", self.family_attributes)
-        self._set_metadata("pattr_names", self.individual_attributes)
-        self._set_metadata("sattr_names", self.source_attributes)
-        self._set_metadata("marker_names", self.marker_names)
-        self._set_metadata("child_refs", self.child_ref_types)
-        self._set_metadata("family_rels", self.family_rel_types)
-        self._set_metadata("event_roles", self.event_role_names)
-        self._set_metadata("name_types", self.name_types)
-        self._set_metadata("origin_types", self.origin_types)
-        self._set_metadata("repo_types", self.repository_types)
-        self._set_metadata("note_types", self.note_types)
-        self._set_metadata("sm_types", self.source_media_types)
-        self._set_metadata("url_types", self.url_types)
-        self._set_metadata("mattr_names", self.media_attributes)
-        self._set_metadata("eattr_names", self.event_attributes)
-        self._set_metadata("place_types", self.place_types)
-
-        # Save misc items:
-        if self.has_changed:
-            self.save_gender_stats(self.genderStats)
+        self._set_metadata("event_names", self.event_names, use_txn=use_txn)
+        self._set_metadata("fattr_names", self.family_attributes, use_txn=use_txn)
+        self._set_metadata("pattr_names", self.individual_attributes, use_txn=use_txn)
+        self._set_metadata("sattr_names", self.source_attributes, use_txn=use_txn)
+        self._set_metadata("marker_names", self.marker_names, use_txn=use_txn)
+        self._set_metadata("child_refs", self.child_ref_types, use_txn=use_txn)
+        self._set_metadata("family_rels", self.family_rel_types, use_txn=use_txn)
+        self._set_metadata("event_roles", self.event_role_names, use_txn=use_txn)
+        self._set_metadata("name_types", self.name_types, use_txn=use_txn)
+        self._set_metadata("origin_types", self.origin_types, use_txn=use_txn)
+        self._set_metadata("repo_types", self.repository_types, use_txn=use_txn)
+        self._set_metadata("note_types", self.note_types, use_txn=use_txn)
+        self._set_metadata("sm_types", self.source_media_types, use_txn=use_txn)
+        self._set_metadata("url_types", self.url_types, use_txn=use_txn)
+        self._set_metadata("mattr_names", self.media_attributes, use_txn=use_txn)
+        self._set_metadata("eattr_names", self.event_attributes, use_txn=use_txn)
+        self._set_metadata("place_types", self.place_types, use_txn=use_txn)
 
         # Indexes:
-        self._set_metadata("cmap_index", self.cmap_index)
-        self._set_metadata("smap_index", self.smap_index)
-        self._set_metadata("emap_index", self.emap_index)
-        self._set_metadata("pmap_index", self.pmap_index)
-        self._set_metadata("fmap_index", self.fmap_index)
-        self._set_metadata("lmap_index", self.lmap_index)
-        self._set_metadata("omap_index", self.omap_index)
-        self._set_metadata("rmap_index", self.rmap_index)
-        self._set_metadata("nmap_index", self.nmap_index)
+        self._set_metadata("cmap_index", self.cmap_index, use_txn=use_txn)
+        self._set_metadata("smap_index", self.smap_index, use_txn=use_txn)
+        self._set_metadata("emap_index", self.emap_index, use_txn=use_txn)
+        self._set_metadata("pmap_index", self.pmap_index, use_txn=use_txn)
+        self._set_metadata("fmap_index", self.fmap_index, use_txn=use_txn)
+        self._set_metadata("lmap_index", self.lmap_index, use_txn=use_txn)
+        self._set_metadata("omap_index", self.omap_index, use_txn=use_txn)
+        self._set_metadata("rmap_index", self.rmap_index, use_txn=use_txn)
+        self._set_metadata("nmap_index", self.nmap_index, use_txn=use_txn)
 
     def get_dbid(self):
         """
@@ -1016,6 +1043,29 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Note: if use_txn, then begin/commit txn
         """
         raise NotImplementedError
+
+    def _prime_metadata_cache(self) -> None:
+        """
+        Pre-fetch all metadata rows into a temporary in-memory cache so that
+        subsequent :meth:`_get_metadata` calls can be served without
+        additional queries.  Called once at the start of :meth:`load` before
+        the individual :meth:`_get_metadata` calls.
+
+        The default is a no-op.  DBAPI backends override this to issue a
+        single ``SELECT setting, <field> FROM metadata`` and store the raw
+        rows in ``self._metadata_cache``.
+        """
+
+    def _clear_metadata_cache(self) -> None:
+        """
+        Discard any cache built by :meth:`_prime_metadata_cache`.  Called
+        once at the end of the metadata-loading phase in :meth:`load` so
+        that later :meth:`_get_metadata` calls (e.g. for
+        ``default-person-handle`` or ``media-path``) always go to the
+        database.
+
+        The default is a no-op.
+        """
 
     ################################################################
     #
