@@ -315,7 +315,7 @@ class SurnameTab(EmbeddedList):
 
     def on_origcmb_change(self, cmb, path, colnr):
         """
-        A selection occured in the cmb of the origin type column. colnr must
+        A selection occurred in the cmb of the origin type column. colnr must
         be the column in the model.
         """
         act = cmb.get_active()

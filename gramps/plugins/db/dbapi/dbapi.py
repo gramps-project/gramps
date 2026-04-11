@@ -28,7 +28,6 @@ Database API interface
 #
 # -------------------------------------------------------------------------
 import logging
-import json
 import time
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale

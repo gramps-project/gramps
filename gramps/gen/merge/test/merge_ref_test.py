@@ -2252,7 +2252,7 @@ class FamilyMergeCheck(BaseMergeCheck):
         )
 
     def test_regular_merge(self):
-        """Merge two families succesfully"""
+        """Merge two families successfully"""
         expect = ET.fromstring(self.basedoc, parser=self.parser)
         persons = expect.xpath("//g:person", namespaces={"g": NS_G})
         altname = ET.SubElement(persons[0], NSP + "name", alt="1", type="Birth Name")

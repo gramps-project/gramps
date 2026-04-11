@@ -579,7 +579,7 @@ class GeneWebParser:
                 idx += 1
             elif field == "#sep" and idx < len(fields):
                 sep_date = self.parse_date(self.decode(fields[idx]))
-                LOG.debug(" Seperated since: %s" % fields[idx])
+                LOG.debug(" Separated since: %s" % fields[idx])
                 idx += 1
             elif field == "#nm":
                 LOG.debug(" Are not married.")

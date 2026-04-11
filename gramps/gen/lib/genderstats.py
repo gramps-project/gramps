@@ -39,7 +39,7 @@ class GenderStats:
     """
     Class for keeping track of statistics related to Given Name vs. Gender.
 
-    This allows the tracking of the liklihood of a person's given name
+    This allows the tracking of the likelihood of a person's given name
     indicating the gender of the person.
     """
 

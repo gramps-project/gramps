@@ -135,7 +135,7 @@ class MaskedEntry(UndoableEntry):
         self._mask_validators = []
         self._mask = None
         # Fields defined by mask
-        # each item is a tuble, containing the begining and the end of the
+        # each item is a tuble, containing the beginning and the end of the
         # field in the text
         self._mask_fields = []
         self._current_field = -1
@@ -201,7 +201,6 @@ class MaskedEntry(UndoableEntry):
 
         mask = str(mask)
         input_length = len(mask)
-        lenght = 0
         pos = 0
         field_begin = 0
         field_end = 0

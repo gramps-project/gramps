@@ -580,7 +580,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
             )
 
     def _execute(self):
-        """execute all primary objects and reorder if neccessary"""
+        """execute all primary objects and reorder if necessary"""
 
         # Update progress calculation
         if self.uistate:

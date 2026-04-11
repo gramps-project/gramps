@@ -49,7 +49,7 @@ CODESET = glocale.encoding
 class TableObject(BaseObject):
     """
     The TableObject is the base class for all objects that are stored in a
-    seperate database table.  Each object has a database handle and a last
+    separate database table.  Each object has a database handle and a last
     changed time.  The database handle is used as the unique key for a record
     in the database.  This is not the same as the Gramps ID, which is a user
     visible identifier for a record.
@@ -61,7 +61,7 @@ class TableObject(BaseObject):
         """
         Initialize a TableObject.
 
-        If source is None, the handle is assigned as an empty string.
+        If source is None, the handle is initialized to None.
         If source is not None, then the handle is initialized from the value in
         the source object.
 

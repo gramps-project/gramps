@@ -204,7 +204,7 @@ LDS_SPOUSE_SEALING = [(LdsOrd.SEAL_TO_SPOUSE, LDS_SPOUSE_SEALING_DATE_STATUS)]
 
 class TestcaseGenerator(tool.BatchTool):
     """
-    This tool generates various test cases for problems that have occured.
+    This tool generates various test cases for problems that have occurred.
     The issues it generates can be corrected via the 'Check and Repair' tool.
     """
 

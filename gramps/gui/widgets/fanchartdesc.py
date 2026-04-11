@@ -743,7 +743,7 @@ class FanChartDescWidget(FanChartBaseWidget):
 
     def do_mouse_click(self):
         """
-        no drag occured, expand or collapse the section
+        no drag occurred, expand or collapse the section
         """
         self.toggle_cell_state(self._mouse_click_cell_address)
         self._compute_angles(*self.rootangle_rad)

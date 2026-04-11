@@ -732,7 +732,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         return None
 
     def do_mouse_click(self):
-        # no drag occured, expand or collapse the section
+        # no drag occurred, expand or collapse the section
         self.toggle_cell_state(self._mouse_click_cell_address)
         self._mouse_click = False
         self.draw()

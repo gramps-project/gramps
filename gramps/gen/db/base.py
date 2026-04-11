@@ -91,7 +91,7 @@ class DbReadBase:
 
     def db_has_bm_changes(self):
         """
-        Return whethere there were bookmark changes during the session.
+        Return whether there were bookmark changes during the session.
         """
         raise NotImplementedError
 
@@ -838,7 +838,7 @@ class DbReadBase:
 
     def get_url_types(self):
         """
-        Return a list of all custom names types associated with Url instances
+        Return a list of all custom url types associated with Url instances
         in the database.
         """
         raise NotImplementedError
@@ -947,7 +947,7 @@ class DbReadBase:
 
     def get_raw_media_data(self, handle):
         """
-        Return raw (serialized and pickled) Family object from handle
+        Return raw (serialized and pickled) Media object from handle
         """
         raise NotImplementedError
 

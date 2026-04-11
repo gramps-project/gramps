@@ -388,7 +388,7 @@ class EventComparisonResults(ManagedWindow):
         sort_list = [item[1] for item in unsort_list]
         ## Presently there's no Birth and Death. Instead there's Birth Date and
         ## Birth Place, as well as Death Date and Death Place.
-        ##         # Move birth and death to the begining of the list
+        ##         # Move birth and death to the beginning of the list
         ##         if _("Death") in the_map:
         ##             sort_list.remove(_("Death"))
         ##             sort_list = [_("Death")] + sort_list

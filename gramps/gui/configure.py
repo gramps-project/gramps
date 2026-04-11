@@ -1800,7 +1800,7 @@ class GrampsPreferences(ConfigureDialog):
 
     def color_scheme_changed(self, obj):
         """
-        Called on swiching color scheme.
+        Called on switching color scheme.
         """
         scheme = obj.get_active()
         config.set("colors.scheme", scheme)

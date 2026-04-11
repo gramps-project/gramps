@@ -117,7 +117,6 @@ from . import (
 from .bookmarks import DbBookmarks
 from .exceptions import DbUpgradeRequiredError, DbVersionError
 from .utils import clear_lock_file, write_lock_file
-from typing import Union
 
 _ = glocale.translation.gettext
 
@@ -2511,7 +2510,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_url_types(self):
         """
-        Return a list of all custom names types assocated with Url instances
+        Return a list of all custom url types assocated with Url instances
         in the database.
         """
         return list(self.url_types)
@@ -2677,7 +2676,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def db_has_bm_changes(self):
         """
-        Return whethere there were bookmark changes during the session.
+        Return whether there were bookmark changes during the session.
         """
         return self._bm_changes > 0
 
