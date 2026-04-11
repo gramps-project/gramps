@@ -408,12 +408,9 @@ class DBAPI(DbGeneric):
         :returns: The deserialized metadata value, or *default*.
         """
         if self._metadata_cache is not None:
-            raw = self._metadata_cache.get(key)
-            if raw is not None:
-                return self.serializer.metadata_to_object(raw)
-            if default == "_":
-                return []
-            return default
+            if key not in self._metadata_cache:
+                return [] if default == "_" else default
+            return self.serializer.metadata_to_object(self._metadata_cache[key])
 
         self.dbapi.execute(
             f"SELECT {self.serializer.metadata_field} FROM metadata WHERE setting = ?",
