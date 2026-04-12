@@ -103,7 +103,7 @@ from .display import display_help, display_url
 from .configure import GrampsPreferences
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
-from .assistpanel import AssistPanelManager
+from .sidepanel import SidePanelManager
 from .views.tags import Tags
 from .uimanager import ActionGroup, valid_action_name
 from gramps.gen.lib import (
@@ -225,7 +225,7 @@ class ViewManager(CLIManager):
         self.show_navigator = config.get("interface.view")
         self.show_toolbar = config.get("interface.toolbar-on")
         self.fullscreen = config.get("interface.fullscreen")
-        self.show_assist_panel = config.get("interface.assist-panel")
+        self.show_side_panel = config.get("interface.side-panel")
 
         self.__build_main_window()  # sets self.uistate
         if self.user is None:
@@ -334,7 +334,7 @@ class ViewManager(CLIManager):
         self.__init_lists()
         self.__build_ui_manager()
 
-        self.assist_panel_manager = AssistPanelManager(self)
+        self.side_panel_manager = SidePanelManager(self)
         self.right_hpane = Gtk.Paned()
         self.right_hpane.pack1(self.notebook, True, True)
         self.hpane.add2(self.right_hpane)
@@ -429,14 +429,14 @@ class ViewManager(CLIManager):
         else:
             self.ebox.hide()
 
-    def __setup_assist_panel(self):
+    def __setup_side_panel(self):
         """
-        Show or hide the assist panel based on the current setting.
+        Show or hide the side panel based on the current setting.
         Only has effect if plugins were actually loaded.
         """
         child = self.right_hpane.get_child2()
         if child is not None:
-            if self.show_assist_panel:
+            if self.show_side_panel:
                 child.show()
             else:
                 child.hide()
@@ -465,7 +465,7 @@ class ViewManager(CLIManager):
             # ('quit', self.quit, "<PRIMARY>q"),
             # ('ViewMenu', None, _('_View')),
             ("Navigator", self.navigator_toggle, "<PRIMARY>m", self.show_navigator),
-            ("AssistPanel", self.assist_panel_toggle, "", self.show_assist_panel),
+            ("SidePanel", self.side_panel_toggle, "", self.show_side_panel),
             ("Toolbar", self.toolbar_toggle, "", self.show_toolbar),
             ("Fullscreen", self.fullscreen_toggle, "F11", self.fullscreen),
             # ('EditMenu', None, _('_Edit')),
@@ -661,13 +661,13 @@ class ViewManager(CLIManager):
 
         self.navigator.load_plugins(self.dbstate, self.uistate)
 
-        self.assist_panel_manager.load_plugins(self.dbstate, self.uistate)
-        if self.assist_panel_manager.has_plugins():
-            panel_widget = self.assist_panel_manager.get_top()
+        self.side_panel_manager.load_plugins(self.dbstate, self.uistate)
+        if self.side_panel_manager.has_plugins():
+            panel_widget = self.side_panel_manager.get_top()
             self.right_hpane.add2(panel_widget)
             panel_widget.show()
 
-            # Set assist panel to 30% of total width on first layout.
+            # Set side panel to 30% of total width on first layout.
             _handler_id = [None]
 
             def _set_panel_pos(pane, allocation):
@@ -675,7 +675,7 @@ class ViewManager(CLIManager):
                 pane.disconnect(_handler_id[0])
 
             _handler_id[0] = self.right_hpane.connect("size-allocate", _set_panel_pos)
-        self.__setup_assist_panel()
+        self.__setup_side_panel()
 
         self.goto_page(defaults[0], defaults[1])
 
@@ -917,9 +917,9 @@ class ViewManager(CLIManager):
             self.show_navigator = False
         config.save()
 
-    def assist_panel_toggle(self, action, value):
+    def side_panel_toggle(self, action, value):
         """
-        Show or hide the assist panel based on the value of the toggle button.
+        Show or hide the side panel based on the value of the toggle button.
         Save the results in the configuration settings.
         """
         action.set_state(value)
@@ -927,13 +927,13 @@ class ViewManager(CLIManager):
         if value.get_boolean():
             if child is not None:
                 child.show()
-            config.set("interface.assist-panel", True)
-            self.show_assist_panel = True
+            config.set("interface.side-panel", True)
+            self.show_side_panel = True
         else:
             if child is not None:
                 child.hide()
-            config.set("interface.assist-panel", False)
-            self.show_assist_panel = False
+            config.set("interface.side-panel", False)
+            self.show_side_panel = False
         config.save()
 
     def toolbar_toggle(self, action, value):
@@ -1088,7 +1088,7 @@ class ViewManager(CLIManager):
         config.save()
 
         self.navigator.view_changed(cat_num, view_num)
-        self.assist_panel_manager.view_changed(cat_num, view_num)
+        self.side_panel_manager.view_changed(cat_num, view_num)
         self.__change_page(page_num)
         self.view_changing = False
 

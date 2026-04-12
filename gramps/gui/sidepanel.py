@@ -18,7 +18,7 @@
 #
 
 """
-A module that provides pluggable assist panels.  These provide a
+A module that provides pluggable side panels.  These provide a
 persistent panel visible alongside the main Gramps view area.
 """
 
@@ -41,12 +41,12 @@ from .pluginmanager import GuiPluginManager
 
 # -------------------------------------------------------------------------
 #
-# BaseAssistPanel class
+# BaseSidePanel class
 #
 # -------------------------------------------------------------------------
-class BaseAssistPanel:
+class BaseSidePanel:
     """
-    The base class for all assist panel plugins.
+    The base class for all side panel plugins.
     """
 
     def __init__(self, dbstate, uistate):
@@ -86,12 +86,12 @@ class BaseAssistPanel:
 
 # -------------------------------------------------------------------------
 #
-# AssistPanelManager class
+# SidePanelManager class
 #
 # -------------------------------------------------------------------------
-class AssistPanelManager:
+class SidePanelManager:
     """
-    Manages one or more ASSISTPANEL plugins in a container widget on the
+    Manages one or more SIDEPANEL plugins in a container widget on the
     right-hand side of the main Gramps window.  Analogous to Navigator
     for SIDEBAR plugins.
     """
@@ -124,17 +124,17 @@ class AssistPanelManager:
 
     def load_plugins(self, dbstate, uistate):
         """
-        Load the assist panel plugins.
+        Load the side panel plugins.
         """
         plugman = GuiPluginManager.get_instance()
 
-        for pdata in plugman.get_reg_assist_panels():
+        for pdata in plugman.get_reg_side_panels():
             module = plugman.load_plugin(pdata)
             if not module:
-                print("Error loading assist panel '%s': skipping content" % pdata.name)
+                print("Error loading side panel '%s': skipping content" % pdata.name)
                 continue
 
-            panel_class = getattr(module, pdata.assistpanelclass)
+            panel_class = getattr(module, pdata.sidepanelclass)
             panel_page = panel_class(dbstate, uistate)
             self.add(pdata.panel_label, panel_page, pdata.order)
 
@@ -153,7 +153,7 @@ class AssistPanelManager:
 
     def has_plugins(self):
         """
-        Return True if at least one assist panel plugin was loaded.
+        Return True if at least one side panel plugin was loaded.
         """
         return len(self.pages) > 0
 
@@ -165,7 +165,7 @@ class AssistPanelManager:
 
     def add(self, title, panel, order):
         """
-        Add a page to the assist panel manager for a plugin.
+        Add a page to the side panel manager for a plugin.
         """
         self.pages[title] = panel
         page = panel.get_top()
@@ -195,7 +195,7 @@ class AssistPanelManager:
 
     def cb_switch_page(self, stack, pspec):
         """
-        Called when the user has switched to a new assist panel plugin page.
+        Called when the user has switched to a new side panel plugin page.
         """
         old_page = self._active_page
         if old_page is not None:
