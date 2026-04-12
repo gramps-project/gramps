@@ -210,8 +210,8 @@ UIDEFAULT = (
         <placeholder id='Bars'>
         </placeholder>
         <item>
-          <attribute name="action">win.AssistPanel</attribute>
-          <attribute name="label" translatable="yes">_Assist Column</attribute>
+          <attribute name="action">win.SidePanel</attribute>
+          <attribute name="label" translatable="yes">_Side Panel</attribute>
         </item>
         <item>
           <attribute name="action">win.Fullscreen</attribute>

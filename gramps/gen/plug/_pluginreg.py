@@ -96,7 +96,7 @@ DATABASE = 12
 RULE = 13
 THUMBNAILER = 14
 CITE = 15
-ASSISTPANEL = 16
+SIDEPANEL = 16
 PTYPE = [
     REPORT,
     QUICKREPORT,
@@ -114,7 +114,7 @@ PTYPE = [
     RULE,
     THUMBNAILER,
     CITE,
-    ASSISTPANEL,
+    SIDEPANEL,
 ]
 PTYPE_STR = {
     REPORT: _("Report"),
@@ -133,7 +133,7 @@ PTYPE_STR = {
     RULE: _("Rule"),
     THUMBNAILER: _("Thumbnailer"),
     CITE: _("Citation formatter"),
-    ASSISTPANEL: _("Assist panel"),
+    SIDEPANEL: _("Side panel"),
 }
 
 # possible report categories
@@ -539,8 +539,8 @@ class PluginData:
         self._namespace = None
         # THUMBNAILER attr
         self._thumbnailer = None
-        # ASSISTPANEL attr
-        self._assistpanelclass = None
+        # SIDEPANEL attr
+        self._sidepanelclass = None
         self._panel_label = ""
 
     @property
@@ -1158,9 +1158,9 @@ class PluginData:
 
     @order.setter
     def order(self, order):
-        if self._ptype not in [VIEW, SIDEBAR, THUMBNAILER, ASSISTPANEL]:
+        if self._ptype not in [VIEW, SIDEBAR, THUMBNAILER, SIDEPANEL]:
             raise ValueError(
-                "order may only be set for VIEW/SIDEBAR/THUMBNAILER/ASSISTPANEL plugins"
+                "order may only be set for VIEW/SIDEBAR/THUMBNAILER/SIDEPANEL plugins"
             )
         self._order = order
 
@@ -1238,16 +1238,16 @@ class PluginData:
             raise ValueError("thumbnailer may only be set for THUMBNAILER plugins")
         self._thumbnailer = data
 
-    # ASSISTPANEL attributes
+    # SIDEPANEL attributes
     @property
-    def assistpanelclass(self):
-        return self._assistpanelclass
+    def sidepanelclass(self):
+        return self._sidepanelclass
 
-    @assistpanelclass.setter
-    def assistpanelclass(self, assistpanelclass):
-        if self._ptype != ASSISTPANEL:
-            raise ValueError("assistpanelclass may only be set for ASSISTPANEL plugins")
-        self._assistpanelclass = assistpanelclass
+    @sidepanelclass.setter
+    def sidepanelclass(self, sidepanelclass):
+        if self._ptype != SIDEPANEL:
+            raise ValueError("sidepanelclass may only be set for SIDEPANEL plugins")
+        self._sidepanelclass = sidepanelclass
 
     @property
     def panel_label(self):
@@ -1255,8 +1255,8 @@ class PluginData:
 
     @panel_label.setter
     def panel_label(self, panel_label):
-        if self._ptype != ASSISTPANEL:
-            raise ValueError("panel_label may only be set for ASSISTPANEL plugins")
+        if self._ptype != SIDEPANEL:
+            raise ValueError("panel_label may only be set for SIDEPANEL plugins")
         self._panel_label = panel_label
 
 
@@ -1325,7 +1325,7 @@ def make_environment(**kwargs):
         "SIDEBAR": SIDEBAR,
         "THUMBNAILER": THUMBNAILER,
         "CITE": CITE,
-        "ASSISTPANEL": ASSISTPANEL,
+        "SIDEPANEL": SIDEPANEL,
         "CATEGORY_TEXT": CATEGORY_TEXT,
         "CATEGORY_DRAW": CATEGORY_DRAW,
         "CATEGORY_CODE": CATEGORY_CODE,
@@ -1685,11 +1685,11 @@ class PluginRegister:
         """
         return self.type_plugins(CITE)
 
-    def assist_panel_plugins(self):
+    def side_panel_plugins(self):
         """
-        Return a list of :class:`PluginData` that are of type ASSISTPANEL
+        Return a list of :class:`PluginData` that are of type SIDEPANEL
         """
-        return self.type_plugins(ASSISTPANEL)
+        return self.type_plugins(SIDEPANEL)
 
     def filter_load_on_reg(self):
         """

@@ -207,11 +207,11 @@ class GuiPluginManager(Callback):
             if plg.id not in self.__hidden_plugins
         ]
 
-    def get_reg_assist_panels(self):
-        """Return list of non hidden registered assist panels"""
+    def get_reg_side_panels(self):
+        """Return list of non hidden registered side panels"""
         return [
             plg
-            for plg in self.basemgr.get_reg_assist_panels()
+            for plg in self.basemgr.get_reg_side_panels()
             if plg.id not in self.__hidden_plugins
         ]
 
