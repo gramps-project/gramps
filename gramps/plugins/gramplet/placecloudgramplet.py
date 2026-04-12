@@ -133,7 +133,7 @@ class PlaceCloudGramplet(Gramplet):
                 self.link(
                     text,
                     "", # TODO : Is link a good choice for place name ? Which link_type is requiered ? 
-                    text,
+                    "",
                     size,
                     "%s, %.2f%% (%d)"
                     % (text, (float(count) / total_people) * 100, count),
