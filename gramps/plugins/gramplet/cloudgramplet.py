@@ -134,7 +134,7 @@ class CloudGramplet(Gramplet):
         sorted_values = sorted(list(values_counts.items()), key= (lambda k : k[1]), reverse=True)
         total_unique = len(sorted_values)
 
-        ## limit counts to only include those that we can display (<= TOP_SIZE)
+        ## limit counts to only include those that we can display (<= self.top_size)
         acc = 0
         selected_values = []
         for value, count in sorted_values:
