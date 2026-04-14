@@ -148,7 +148,6 @@ class CloudGramplet(Gramplet):
             if not yield_counter % _YIELD_INTERVAL:
                     yield True
         yield_counter = 0
-
         
         # Define rank of each value (start at 0)
         values_rank = {}
@@ -165,8 +164,6 @@ class CloudGramplet(Gramplet):
                     yield True
             yield_counter = 0
 
-
-
         # alpha order 
         selected_values.sort(key= lambda k : k[0])
         
@@ -176,7 +173,7 @@ class CloudGramplet(Gramplet):
         
         showing = 0
         self.set_text("")
-        for value, count in selected_values:  # surname_sort:
+        for value, count in selected_values:
             if len(value) == 0:
                 text = _(f"[Missing %s]") % self.value_name # TODO : How can I refactor that ? config.get("preferences.no-surname-text")  
             else:
