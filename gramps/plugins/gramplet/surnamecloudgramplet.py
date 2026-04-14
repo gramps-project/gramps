@@ -29,11 +29,6 @@ from collections import defaultdict
 # ------------------------------------------------------------------------
 
 from gramps.plugins.gramplet.cloudgramplet import CloudGramplet 
-from gramps.gen.config import config
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.sgettext
-
 
 # ------------------------------------------------------------------------
 #
@@ -43,8 +38,8 @@ _ = glocale.translation.sgettext
 class SurnameCloudGramplet(CloudGramplet):
     def init(self):
         CloudGramplet.init(self)
-        self.set_value_name(_("surname"))
-        self.set_item_name(_("person"))
+        self.set_value_name("surname")
+        self.set_item_name("person")
 
     def db_changed(self):
         self.connect(self.dbstate.db, "person-add", self.update)
