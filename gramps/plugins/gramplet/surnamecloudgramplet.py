@@ -32,6 +32,8 @@ from gramps.plugins.gramplet.cloudgramplet import CloudGramplet
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
+_ = glocale.translation.sgettext
+
 
 # ------------------------------------------------------------------------
 #
@@ -41,6 +43,15 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 class SurnameCloudGramplet(CloudGramplet):
     def init(self):
         CloudGramplet.init(self)
+        self.set_value_name(_("surname"))
+        self.set_item_name(_("person"))
+
+    def db_changed(self):
+        self.connect(self.dbstate.db, "person-add", self.update)
+        self.connect(self.dbstate.db, "person-delete", self.update)
+        self.connect(self.dbstate.db, "person-update", self.update)
+        self.connect(self.dbstate.db, "person-rebuild", self.update)
+        self.connect(self.dbstate.db, "family-rebuild", self.update)
 
     def get_items(self):
         items = []

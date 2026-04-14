@@ -20,6 +20,9 @@
 # Python modules
 #
 # ------------------------------------------------------------------------
+from typing import Any, Iterable
+
+
 from abc import abstractmethod
 from collections import defaultdict
 
@@ -67,31 +70,30 @@ class CloudGramplet(Gramplet):
         self.min_font = 8
         self.max_font = 20
         self.set_text(_("No Family Tree loaded."))
+        self.value_name = "default_value_name"
+        self.item_name = "default_item_name"
 
+    def set_value_name(self,value_name):
+        """What the cloud display. For a name cloud, value_name is 'name' """
+        self.value_name = value_name
+
+    def set_item_name(self,item_name):
+        """ What the cloud analyse. For a name cloud, value_name could ba 'person' """
+        self.item_name = item_name
+
+    @abstractmethod
     def db_changed(self):
-        """TODO : find a way to refactr this """
-        # TODO : find a way to refactor this 
-        # self.connect(self.dbstate.db, "person-add", self.update)
-        # self.connect(self.dbstate.db, "person-delete", self.update)
-        # self.connect(self.dbstate.db, "person-update", self.update)
-        # self.connect(self.dbstate.db, "person-rebuild", self.update)
-        # self.connect(self.dbstate.db, "family-rebuild", self.update)
-
-    def get_items(self):
-        """How data can be acces for the cloud. Must return an iterator of (values list,handle).
-
-        Exemple for surname
-
-            items = []
-
-            for person in self.dbstate.db.iter_people():
-                allnames = [person.get_primary_name()] + person.get_alternate_names()
-                allnames = [name.get_group_name().strip() for name in allnames]
-                items.append((allnames , person.handle))
-            print(items)
-            return items
+        """ Connect the cloud with db. 
+            See the exemple in surnamecloudgramplet.py 
         """
-        return []
+        pass
+        
+    @abstractmethod
+    def get_items(self) -> Iterable:
+        """How data can be acces for the cloud. Must return an iterator of (values list,handle).
+            See the exemple in surnamecloudgramplet.py 
+        """
+        pass
 
     def on_load(self):
         if len(self.gui.data) == 3:
@@ -100,7 +102,7 @@ class CloudGramplet(Gramplet):
             self.max_font = int(self.gui.data[2])
 
     def save_update_options(self, widget=None):
-        self.top_size = int(self.get_option(_("Number of surnames")).get_value())
+        self.top_size = int(self.get_option(_("Number of " + self.value_name)).get_value())
         self.min_font = int(self.get_option(_("Min font size")).get_value())
         self.max_font = int(self.get_option(_("Max font size")).get_value())
         self.gui.data = [self.top_size, self.min_font, self.max_font]
@@ -166,13 +168,13 @@ class CloudGramplet(Gramplet):
         self.set_text("")
         for value, count in selected_values:  # surname_sort:
             if len(value) == 0:
-                text = config.get("preferences.no-surname-text")
+                text = _("Missing %s") % self.value_name # How can I refactor that ? config.get("preferences.no-surname-text")  
             else:
                 text = value
             size = make_tag_size(values_rank[value],curr_rank , mins=mins, maxs=maxs)
             self.link(
                 text,
-                "Surname",
+                "Surname", # TODO : What can I do for this part. Is there link_type for all type of value ?
                 values_handle[value],
                 size,
                 "%s, %d%% (%d)"
@@ -181,16 +183,16 @@ class CloudGramplet(Gramplet):
             self.append_text(" ")
             showing += 1
         self.append_text(
-            ("\n\n" + _("Total unique surnames") + ": %d\n") % total_unique
+            ("\n\n" + _("Total unique %s") + ": %d\n") % (self.value_name, total_unique)
         )
-        self.append_text((_("Total surnames showing") + ": %d\n") % showing)
-        self.append_text((_("Total people") + ": %d") % total_item, "begin")
+        self.append_text((_("Total %s showing") + ": %d\n") % (self.value_name,showing))
+        self.append_text((_("Total %s") + ": %d") % (self.item_name,total_item), "begin")
 
     def build_options(self):
         from gramps.gen.plug.menu import NumberOption
 
         self.top_size_option = NumberOption(
-            _("Number of surnames"), self.top_size, 1, 150
+            _("Number of %s") % self.value_name, self.top_size, 1, 150
         )
         self.add_option(self.top_size_option)
         self.min_option = NumberOption(_("Min font size"), self.min_font, 1, 50)
@@ -199,6 +201,6 @@ class CloudGramplet(Gramplet):
         self.add_option(self.max_option)
 
     def save_options(self):
-        self.top_size = int(self.get_option(_("Number of surnames")).get_value())
+        self.top_size = int(self.get_option(_("Number of %s") % self.value_name).get_value())
         self.min_font = int(self.get_option(_("Min font size")).get_value())
         self.max_font = int(self.get_option(_("Max font size")).get_value())
