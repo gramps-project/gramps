@@ -20,8 +20,6 @@
 # Python modules
 #
 # ------------------------------------------------------------------------
-from typing import Any, Iterable
-
 
 from abc import abstractmethod
 from collections import defaultdict
@@ -89,7 +87,7 @@ class CloudGramplet(Gramplet):
         pass
         
     @abstractmethod
-    def get_items(self) -> Iterable:
+    def get_items(self) -> list:
         """How data can be acces for the cloud. Must return an iterator of (values list,handle).
             See the exemple in surnamecloudgramplet.py 
         """
@@ -168,7 +166,7 @@ class CloudGramplet(Gramplet):
         self.set_text("")
         for value, count in selected_values:  # surname_sort:
             if len(value) == 0:
-                text = _("Missing %s") % self.value_name # How can I refactor that ? config.get("preferences.no-surname-text")  
+                text = _(f"[Missing %s]") % self.value_name # How can I refactor that ? config.get("preferences.no-surname-text")  
             else:
                 text = value
             size = make_tag_size(values_rank[value],curr_rank , mins=mins, maxs=maxs)
