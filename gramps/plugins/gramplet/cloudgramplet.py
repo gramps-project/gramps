@@ -110,6 +110,7 @@ class CloudGramplet(Gramplet):
         self.set_text(_("Processing...") + "\n")
         yield True
 
+        yield_counter = 0
 
         values_counts = {}
         values_handle = {}
@@ -126,6 +127,10 @@ class CloudGramplet(Gramplet):
                     values_counts[value] +=1
 
                 total_item += 1
+                yield_counter += 1
+                if not yield_counter % _YIELD_INTERVAL:
+                    yield True
+        yield_counter = 0
 
 
         # count order : [(value,count),...]
@@ -140,6 +145,9 @@ class CloudGramplet(Gramplet):
                 break
             acc += count
             selected_values.append((value,count))
+            if not yield_counter % _YIELD_INTERVAL:
+                    yield True
+        yield_counter = 0
 
         
         # Define rank of each value (start at 0)
@@ -153,6 +161,10 @@ class CloudGramplet(Gramplet):
                     curr_count = count
                     curr_rank += 1
                 values_rank[value] = curr_rank  
+                if not yield_counter % _YIELD_INTERVAL:
+                    yield True
+            yield_counter = 0
+
 
 
         # alpha order 
@@ -166,7 +178,7 @@ class CloudGramplet(Gramplet):
         self.set_text("")
         for value, count in selected_values:  # surname_sort:
             if len(value) == 0:
-                text = _(f"[Missing %s]") % self.value_name # How can I refactor that ? config.get("preferences.no-surname-text")  
+                text = _(f"[Missing %s]") % self.value_name # TODO : How can I refactor that ? config.get("preferences.no-surname-text")  
             else:
                 text = value
             size = make_tag_size(values_rank[value],curr_rank , mins=mins, maxs=maxs)
