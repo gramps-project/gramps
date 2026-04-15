@@ -73,11 +73,11 @@ class CloudGramplet(Gramplet):
 
     def set_value_name(self,value_name):
         """What the cloud display. For a name cloud, value_name is 'name' """
-        self.value_name = value_name
+        self.value_name = _(value_name)
 
     def set_item_name(self,item_name):
         """ What the cloud analyse. For a name cloud, value_name could ba 'person' """
-        self.item_name = item_name
+        self.item_name = _(item_name)
 
     @abstractmethod
     def db_changed(self):
