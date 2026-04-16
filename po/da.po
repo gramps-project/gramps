@@ -9,7 +9,7 @@
 # bytte om på hoved- og ledsætning, som f.eks.
 # Kaj Mikkelsen <kmi@vgdata.dk>, 2016, 2017, 2018.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
-# Kaj Arne Mikkelsen <kmi@vgdata.dk>, 2021, 2023, 2024, 2025.
+# Kaj Arne Mikkelsen <kmi@vgdata.dk>, 2021, 2023, 2024, 2025, 2026.
 # Jørn Hansen <joernh@gmail.com>, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2025.
 #
@@ -49,7 +49,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-09 17:05+0100\n"
-"PO-Revision-Date: 2025-12-06 09:00+0000\n"
+"PO-Revision-Date: 2026-04-14 09:09+0000\n"
 "Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -58,7 +58,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -4397,7 +4397,7 @@ msgstr "Matcher begivenheder der sker på en bestemt ugedag"
 #: ../gramps/gen/filters/rules/event/_hasevent.py:54
 #: ../gramps/gen/filters/rules/person/_hasevent.py:60
 msgid "Main Participants:"
-msgstr "Primære deltagere:"
+msgstr "Hoveddeltagere:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
 msgid "Events matching parameters"
@@ -4678,7 +4678,7 @@ msgstr "Familiebegivenhed:"
 #: ../gramps/plugins/gramplet/events.py:108
 #: ../gramps/plugins/view/eventview.py:88
 msgid "Main Participants"
-msgstr "Primære deltagere"
+msgstr "Hoveddeltagere"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:64
 msgid "Families with the <event>"
@@ -8678,8 +8678,6 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
 msgstr "Ukendt"
@@ -11577,7 +11575,7 @@ msgstr "Arabisk"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Basjkirisk"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -14425,8 +14423,6 @@ msgid "Move the selected surname downwards"
 msgstr "Ryk det valgte efternavn ned"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Efternavn"
@@ -17156,11 +17152,9 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
-msgstr "_Fornavn(e):"
+msgstr "_Fornavn:"
 
 #: ../gramps/gui/glade/editname.glade:204
 #: ../gramps/gui/glade/editperson.glade:195
@@ -34791,10 +34785,11 @@ msgstr "Kontrollérer om der er ugyldige henvisninger i Noter"
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
 msgstr ""
+"Sammenflet dubletter af roller i begivenheder, der refereres af personer"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
-msgstr ""
+msgstr "Sammenflet dobbelte roller i begivenheder, der henvises til af familier"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -35053,6 +35048,8 @@ msgstr "%d ugyldige henvisninger blev rettet;\n"
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
+"%(names)d dobbelte begivenhedsroller bliver sammenflettet. %(refs)d "
+"henvisninger opdateret\n"
 
 #: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
