@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-09 17:05+0100\n"
-"PO-Revision-Date: 2026-03-17 06:10+0000\n"
+"PO-Revision-Date: 2026-04-14 18:01+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -35047,13 +35047,12 @@ msgid "%d bad Note Links were fixed;\n"
 msgstr "%d viallista lisätietolinkkiä on korjattu;\n"
 
 #: ../gramps/plugins/tool/check.py:3155
-#, fuzzy, python-format
-#| msgid "%d duplicate event role names coalesced. %d references updated\n"
+#, python-format
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
-"%d päällekkäistä tapahtuman roolinimeä yhdistettiin. %d viittausta "
-"päivitettiin\n"
+"%(names)d päällekkäistä tapahtuman roolinimeä yhdistettiin. %(refs)d "
+"viittausta päivitettiin\n"
 
 #: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
