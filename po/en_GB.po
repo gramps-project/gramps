@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-09 17:05+0100\n"
-"PO-Revision-Date: 2026-04-03 23:09+0000\n"
+"PO-Revision-Date: 2026-04-10 19:09+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -34882,11 +34882,11 @@ msgid "%d bad Note Links were fixed;\n"
 msgstr "%d bad Note Links were fixed;\n"
 
 #: ../gramps/plugins/tool/check.py:3155
-#, fuzzy, python-format
-#| msgid "%d duplicate event role names coalesced. %d references updated\n"
+#, python-format
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
-msgstr "%d duplicate event role names coalesced. %d references updated\n"
+msgstr ""
+"%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 
 #: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
