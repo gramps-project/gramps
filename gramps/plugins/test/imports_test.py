@@ -324,10 +324,35 @@ def make_tst_function(tstfile, file_name):
                 self.database1 = db_load(fn1, self)
             else:
                 self.database1 = import_as_dict(
-                    fn1, self.user, skp_imp_adds=skp_imp_adds
+                    fn1,
+                    self.user,
+                    skp_imp_adds=skp_imp_adds,
+                    # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+                    person_prefix="I%04d",
+                    media_prefix="O%04d",
+                    family_prefix="F%04d",
+                    source_prefix="S%04d",
+                    citation_prefix="C%04d",
+                    place_prefix="P%04d",
+                    event_prefix="E%04d",
+                    repository_prefix="R%04d",
+                    note_prefix="N%04d",
                 )
             set_det_id(True)
-            self.database2 = import_as_dict(fn2, self.user)
+            self.database2 = import_as_dict(
+                fn2,
+                self.user,
+                # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+                person_prefix="I%04d",
+                media_prefix="O%04d",
+                family_prefix="F%04d",
+                source_prefix="S%04d",
+                citation_prefix="C%04d",
+                place_prefix="P%04d",
+                event_prefix="E%04d",
+                repository_prefix="R%04d",
+                note_prefix="N%04d",
+            )
             msg = (
                 "\n****Captured Output****\n"
                 + str(output[0])

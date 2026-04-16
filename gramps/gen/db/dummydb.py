@@ -1483,7 +1483,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as E%d or E%04d.
+        such as E%d or E%05d.
         """
         LOG.warning("database is readonly")
 
@@ -1492,7 +1492,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         Set the naming template for Gramps Family ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as F%d
-        or F%04d.
+        or F%05d.
         """
         LOG.warning("database is readonly")
 
@@ -1502,7 +1502,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as N%d or N%04d.
+        such as N%d or N%05d.
         """
         LOG.warning("database is readonly")
 
@@ -1512,7 +1512,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as O%d or O%04d.
+        such as O%d or O%05d.
         """
         LOG.warning("database is readonly")
 
@@ -1522,7 +1522,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as I%d or I%04d.
+        such as I%d or I%05d.
         """
         LOG.warning("database is readonly")
 
@@ -1532,7 +1532,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as P%d or P%04d.
+        such as P%d or P%05d.
         """
         LOG.warning("database is readonly")
 
@@ -1550,7 +1550,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as R%d or R%04d.
+        such as R%d or R%05d.
         """
         LOG.warning("database is readonly")
 
@@ -1560,7 +1560,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as S%d or S%04d.
+        such as S%d or S%05d.
         """
         LOG.warning("database is readonly")
 

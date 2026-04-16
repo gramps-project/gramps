@@ -853,8 +853,8 @@ class GrampsPreferences(ConfigureDialog):
             grid,
             _(  # xgettext: no-python-format
                 "Default Gramps ID formats containing a letter prefix"
-                ' followed by a numerical string. "I%04d" creates IDs'
-                " from I0000 to I9999. Large databases may need larger"
+                ' followed by a numerical string. "I%05d" creates IDs'
+                " from I00000 to I99999. Large databases may need larger"
                 ' IDs. "I%06d" creates IDs from I000000 to I999999.\n'
             ),
             row,

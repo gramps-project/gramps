@@ -51,7 +51,22 @@ class ReportControl:
     def __init__(self):
         super().__init__()
         self.tearDown()  # removes it if it existed
-        out, err = self.call("-C", TREE_NAME, "--import", example)
+        out, err = self.call(
+            "-C",
+            TREE_NAME,
+            "--import",
+            example,
+            # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+            "--config=preferences.iprefix:I%04d",
+            "--config=preferences.oprefix:O%04d",
+            "--config=preferences.fprefix:F%04d",
+            "--config=preferences.sprefix:S%04d",
+            "--config=preferences.cprefix:C%04d",
+            "--config=preferences.pprefix:P%04d",
+            "--config=preferences.eprefix:E%04d",
+            "--config=preferences.rprefix:R%04d",
+            "--config=preferences.nprefix:N%04d",
+        )
 
     def addreport(self, class_, report_name, test_function, files, **options):
         test_name = "test_" + report_name.replace("-", "_")

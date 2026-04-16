@@ -881,7 +881,7 @@ class ProgenParser(UpdateCallback):
             family = self.dbase.get_family_from_gramps_id(intid)
         else:
             # create a new Family
-            gramps_id = self.dbase.fid2user_format("F%04d" % progen_id)
+            gramps_id = self.dbase.fid2user_format("F%05d" % progen_id)
             if self.dbase.has_family_gramps_id(gramps_id):
                 gramps_id = self.dbase.find_next_family_gramps_id()
             intid = self.__find_from_handle(progen_id, self.fid2id)

@@ -46,7 +46,22 @@ class PrivateProxyTest(unittest.TestCase):
         """
         Import example database.
         """
-        cls.db = PrivateProxyDb(import_as_dict(EXAMPLE, User()))
+        cls.db = PrivateProxyDb(
+            import_as_dict(
+                EXAMPLE,
+                User(),
+                # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+                person_prefix="I%04d",
+                media_prefix="O%04d",
+                family_prefix="F%04d",
+                source_prefix="S%04d",
+                citation_prefix="C%04d",
+                place_prefix="P%04d",
+                event_prefix="E%04d",
+                repository_prefix="R%04d",
+                note_prefix="N%04d",
+            )
+        )
 
     def assertDataEquals(self, data1, data2):
         self.assertIsInstance(data1, dict)
@@ -124,7 +139,20 @@ class LivingProxyTest(unittest.TestCase):
         Import example database.
         """
         cls.db = LivingProxyDb(
-            import_as_dict(EXAMPLE, User()),
+            import_as_dict(
+                EXAMPLE,
+                User(),
+                # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+                person_prefix="I%04d",
+                media_prefix="O%04d",
+                family_prefix="F%04d",
+                source_prefix="S%04d",
+                citation_prefix="C%04d",
+                place_prefix="P%04d",
+                event_prefix="E%04d",
+                repository_prefix="R%04d",
+                note_prefix="N%04d",
+            ),
             mode=LivingProxyDb.MODE_EXCLUDE_ALL,
             current_year=2006,
             years_after_death=10,
@@ -167,7 +195,22 @@ class LivingPrivateProxyTest(unittest.TestCase):
         Import example database.
         """
         cls.db = LivingProxyDb(
-            PrivateProxyDb(import_as_dict(EXAMPLE, User())),
+            PrivateProxyDb(
+                import_as_dict(
+                    EXAMPLE,
+                    User(),
+                    # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+                    person_prefix="I%04d",
+                    media_prefix="O%04d",
+                    family_prefix="F%04d",
+                    source_prefix="S%04d",
+                    citation_prefix="C%04d",
+                    place_prefix="P%04d",
+                    event_prefix="E%04d",
+                    repository_prefix="R%04d",
+                    note_prefix="N%04d",
+                )
+            ),
             mode=LivingProxyDb.MODE_EXCLUDE_ALL,
             current_year=2006,
             years_after_death=10,

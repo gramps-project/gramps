@@ -92,7 +92,7 @@ DB_INDXES = {
 # -------------------------------------------------------------------------
 
 # gets the prefix, number, suffix specified in a format string, eg:
-# P%04dX returns 'P', '04', 'X'  It has to have the integer format with at
+# P%05dX returns 'P', '05', 'X'  It has to have the integer format with at
 # least 3 digits to pass.
 _parseformat = re.compile(r"(^[^\d]*)%(0[3-9])d([^\d]*$)")
 
@@ -168,9 +168,9 @@ class ReorderEntry(object):
             self.object_suffix = formatmatch.groups()[2]
         else:  # not a legal format string, use default
             self.object_prefix = PREFIXES[self.object].upper()
-            self.width_fmt = 4
+            self.width_fmt = 5
             self.object_suffix = ""
-            self.object_fmt = PREFIXES[self.object].upper() + "%04d"
+            self.object_fmt = PREFIXES[self.object].upper() + "%05d"
         self.actgramps_id = self.__ret_gid(self.actual_id)
 
     def zero_id(self):

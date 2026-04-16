@@ -146,7 +146,7 @@ class PopulateSources(tool.Tool, ManagedWindow):
 
         self.progress = ProgressMeter("Generating data", "", parent=self.uistate.window)
         self.progress.set_pass("Generating data", num_sources * num_citations)
-        LOG.debug("sources %04d citations %04d" % (num_sources, num_citations))
+        LOG.debug("sources %05d citations %05d" % (num_sources, num_citations))
 
         source = Source()
         citation = Citation()
@@ -156,14 +156,14 @@ class PopulateSources(tool.Tool, ManagedWindow):
             for i in range(num_sources):
                 source.gramps_id = None
                 source.handle = None
-                source.title = "Source %04d" % (i + 1)
+                source.title = "Source %05d" % (i + 1)
                 source_handle = self.db.add_source(source, trans)
 
                 for j in range(num_citations):
                     citation.gramps_id = None
                     citation.handle = None
                     citation.source_handle = source_handle
-                    citation.page = "Page %04d" % (j + 1)
+                    citation.page = "Page %05d" % (j + 1)
                     self.db.add_citation(citation, trans)
                     self.progress.step()
             LOG.debug("sources and citations added")

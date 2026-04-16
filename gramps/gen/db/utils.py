@@ -30,6 +30,7 @@ Database utilites
 # ------------------------------------------------------------------------
 import logging
 import os
+from typing import TYPE_CHECKING
 
 # ------------------------------------------------------------------------
 #
@@ -42,7 +43,11 @@ from ..const import PLUGINS_DIR, USER_PLUGINS
 from ..constfunc import get_env_var, win
 from ..lib import NameOriginType
 from ..plug import BasePluginManager
+from ..user import User
 from .dbconst import DBBACKEND, DBLOCKFN, DBLOGNAME
+
+if TYPE_CHECKING:
+    from .generic import DbGeneric
 
 _ = glocale.translation.gettext
 
@@ -140,23 +145,96 @@ def get_dbid_from_path(dirpath):
     return dbid
 
 
-def import_as_dict(filename, user, skp_imp_adds=True):
+def import_as_dict(
+    filename: str,
+    user: User,
+    skp_imp_adds: bool = True,
+    person_prefix: str | None = None,
+    media_prefix: str | None = None,
+    family_prefix: str | None = None,
+    source_prefix: str | None = None,
+    citation_prefix: str | None = None,
+    place_prefix: str | None = None,
+    event_prefix: str | None = None,
+    repository_prefix: str | None = None,
+    note_prefix: str | None = None,
+) -> "DbGeneric | None":
     """
-    Import the filename into a InMemoryDB and return it.
+    Import a genealogy file into a new in-memory database with custom ID prefixes.
+
+    This function creates a temporary in-memory database, loads the specified
+    genealogy file into it, and returns the populated database. All ID prefixes
+    can be customized to support different ID formats.
+
+    :param filename: Path to the genealogy file to import.
+    :type filename: str
+    :param user: User object for the database operation.
+    :type user: User
+    :param skp_imp_adds: Whether to skip import additions. Defaults to True.
+    :type skp_imp_adds: bool
+    :param person_prefix: Custom prefix format for Person IDs (e.g., 'I%05d').
+        If None, uses the configured default.
+    :type person_prefix: str | None
+    :param media_prefix: Custom prefix format for Media IDs (e.g., 'O%05d').
+        If None, uses the configured default.
+    :type media_prefix: str | None
+    :param family_prefix: Custom prefix format for Family IDs (e.g., 'F%05d').
+        If None, uses the configured default.
+    :type family_prefix: str | None
+    :param source_prefix: Custom prefix format for Source IDs (e.g., 'S%05d').
+        If None, uses the configured default.
+    :type source_prefix: str | None
+    :param citation_prefix: Custom prefix format for Citation IDs (e.g., 'C%05d').
+        If None, uses the configured default.
+    :type citation_prefix: str | None
+    :param place_prefix: Custom prefix format for Place IDs (e.g., 'P%05d').
+        If None, uses the configured default.
+    :type place_prefix: str | None
+    :param event_prefix: Custom prefix format for Event IDs (e.g., 'E%05d').
+        If None, uses the configured default.
+    :type event_prefix: str | None
+    :param repository_prefix: Custom prefix format for Repository IDs (e.g., 'R%05d').
+        If None, uses the configured default.
+    :type repository_prefix: str | None
+    :param note_prefix: Custom prefix format for Note IDs (e.g., 'N%05d').
+        If None, uses the configured default.
+    :type note_prefix: str | None
+    :returns: In-memory database with imported data, or None if import failed.
+    :rtype: DbGeneric | None
     """
+    # Evaluate default prefixes at function call time, not module load time
+    if person_prefix is None:
+        person_prefix = config.get("preferences.iprefix")
+    if media_prefix is None:
+        media_prefix = config.get("preferences.oprefix")
+    if family_prefix is None:
+        family_prefix = config.get("preferences.fprefix")
+    if source_prefix is None:
+        source_prefix = config.get("preferences.sprefix")
+    if citation_prefix is None:
+        citation_prefix = config.get("preferences.cprefix")
+    if place_prefix is None:
+        place_prefix = config.get("preferences.pprefix")
+    if event_prefix is None:
+        event_prefix = config.get("preferences.eprefix")
+    if repository_prefix is None:
+        repository_prefix = config.get("preferences.rprefix")
+    if note_prefix is None:
+        note_prefix = config.get("preferences.nprefix")
+
     db = make_database("sqlite")
     db.load(":memory:")
     db.set_feature("skip-import-additions", skp_imp_adds)
     db.set_prefixes(
-        config.get("preferences.iprefix"),
-        config.get("preferences.oprefix"),
-        config.get("preferences.fprefix"),
-        config.get("preferences.sprefix"),
-        config.get("preferences.cprefix"),
-        config.get("preferences.pprefix"),
-        config.get("preferences.eprefix"),
-        config.get("preferences.rprefix"),
-        config.get("preferences.nprefix"),
+        person_prefix,
+        media_prefix,
+        family_prefix,
+        source_prefix,
+        citation_prefix,
+        place_prefix,
+        event_prefix,
+        repository_prefix,
+        note_prefix,
     )
     status = import_from_filename(db, filename, user)
     return db if status else None
