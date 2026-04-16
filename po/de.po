@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-09 17:05+0100\n"
-"PO-Revision-Date: 2026-03-21 22:09+0000\n"
+"PO-Revision-Date: 2026-04-10 19:10+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -35418,13 +35418,12 @@ msgid "%d bad Note Links were fixed;\n"
 msgstr "%d fehlerhafte Notizverknüpfungen wurden repariert;\n"
 
 #: ../gramps/plugins/tool/check.py:3155
-#, fuzzy, python-format
-#| msgid "%d duplicate event role names coalesced. %d references updated\n"
+#, python-format
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
-"%d doppelte Ereignisrollennamen wurden zusammengefasst. %d Verweise wurden "
-"aktualisiert\n"
+"%(names)d doppelte Ereignisrollennamen wurden zusammengefasst. %(refs)d "
+"Verweise wurden aktualisiert\n"
 
 #: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
