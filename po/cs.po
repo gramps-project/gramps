@@ -42,7 +42,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-09 17:05+0100\n"
-"PO-Revision-Date: 2026-03-17 06:09+0000\n"
+"PO-Revision-Date: 2026-04-16 08:10+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -51,7 +51,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -19085,7 +19085,7 @@ msgstr "Projekt"
 
 #: ../gramps/gui/plug/_windows.py:239
 msgid "Audience"
-msgstr "Publikum"
+msgstr "Cílová skupina"
 
 #: ../gramps/gui/plug/_windows.py:243 ../gramps/gui/plug/_windows.py:1648
 msgid "Version"
@@ -19159,7 +19159,7 @@ msgstr "Všechny typy"
 
 #: ../gramps/gui/plug/_windows.py:453
 msgid "All audiences"
-msgstr "Všechna publika"
+msgstr "Všechny cílové skupiny"
 
 #: ../gramps/gui/plug/_windows.py:460
 msgid "All statuses"
@@ -34820,13 +34820,12 @@ msgid "%d bad Note Links were fixed;\n"
 msgstr "%d špatných odkazů na poznámky bylo opraveno;\n"
 
 #: ../gramps/plugins/tool/check.py:3155
-#, fuzzy, python-format
-#| msgid "%d duplicate event role names coalesced. %d references updated\n"
+#, python-format
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
-"Bylo sloučeno %d duplicitních názvů rolí v událostech. Bylo aktualizováno %d "
-"odkazů\n"
+"Bylo sloučeno %(names)d duplicitních názvů rolí v událostech. Bylo "
+"aktualizováno %(refs)d odkazů\n"
 
 #: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
