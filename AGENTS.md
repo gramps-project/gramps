@@ -40,25 +40,34 @@ def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
 
 ### Import Grouping
 
-Imports must be organized into three sections, each separated by a blank line and preceded by a comment header:
+Imports must be organized into sections, each preceded by a comment header of this form:
 
 ```python
-# ------------------------
-# Python modules
-# ------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import logging
 
-# ------------------------
-# Gramps modules
-# ------------------------
-from gramps.gen.db.base import DbReadBase
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
+from gi.repository import Gtk
 
-# ------------------------
-# Gramps specific
-# ------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.db.base import DbReadBase
 from .mymodule import MyClass
 ```
+
+Not all sections are required — include only those that apply. Common section names used in the codebase include `Standard Python modules`, `GTK/Gnome modules`, and `Gramps modules`.
 
 ### PEP 8 and Indentation
 
@@ -67,6 +76,8 @@ Code should be PEP 8 compatible, except where that conflicts with Black formatti
 ### Pylint
 
 Run pylint on new code. Ideally new code should score 9 or higher and changes should not reduce the overall pylint score. This is not strictly enforced and should never come at the expense of code clarity, Black formatting, or any other rule in this guide.
+
+Inline suppression comments such as `# pylint: disable=import-outside-toplevel` are acceptable when the author has a deliberate reason (e.g. a debug-only import, a circular-import workaround).
 
 ### Class Headers
 
@@ -104,6 +115,7 @@ raise ValueError(_("Invalid handle: %s") % handle)
 ```
 The alias `_(string , context)` is preferred to `pgettext(context, message)`.
 Use `ngettext(singular, plural, n)` for plural forms.
+
 ## Submodule Import Rules
 
 Files in the `gen` submodule must not import from any other Gramps submodule (e.g., `gui`, `plugins`). The `gen` submodule must remain self-contained.
@@ -201,6 +213,7 @@ lists accordingly:
 - Prefer existing exceptions from `gramps/gen/errors.py` and `gramps/gen/db/exceptions.py` over creating new ones.
 - Only introduce a new exception class when none of the existing ones accurately represent the error condition.
 - Raise `HandleError` for invalid or missing handles.
+
 ## Branch merges
 
 Branch merges are not allowed in pull requests.  Rebase rather than merging.
