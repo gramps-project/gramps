@@ -27,13 +27,14 @@
 # Alejandro Moctezuma <moctezumaalejandro25@gmail.com>, 2025.
 # Andrés Eloy Bracho Sarcos <andresbracho@gmail.com>, 2025.
 # Sofia <sofimanci2112@gmail.com>, 2025.
+# Cobol <cobol1970@protonmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-09 17:05+0100\n"
 "PO-Revision-Date: 2026-04-14 09:09+0000\n"
-"Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
+"Last-Translator: Cobol <cobol1970@protonmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -561,9 +562,9 @@ msgid ""
 "ancestors are reported."
 msgstr ""
 "<b>Cálculo de parentescos</b><br/>Para comprobar si dos personas en la base "
-"de datos están emparentadas (por sangre, no matrimonio) pruebe la "
-"herramienta que puede encontrar en «Herramientas > Utilidades > Calculador "
-"de parentesco...». Se proporciona tanto el parentesco exacto como los "
+"de datos están emparentadas (por sangre, no por matrimonio) pruebe la "
+"herramienta que puede encontrar en \"Herramientas > Utilidades > Calculador "
+"de parentesco...\". Se proporciona tanto el parentesco exacto como los "
 "ascendientes comunes."
 
 #: ../data/tips.xml:30
