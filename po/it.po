@@ -69,7 +69,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-09 17:05+0100\n"
-"PO-Revision-Date: 2026-03-17 06:10+0000\n"
+"PO-Revision-Date: 2026-04-14 18:01+0000\n"
 "Last-Translator: Fabio Restante <frestante@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -15344,10 +15344,9 @@ msgid "Group this name only"
 msgstr "Raggruppare solo questo nome"
 
 #: ../gramps/gui/editors/editnote.py:73
-#, fuzzy
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "Modifica_informazioni_eventi"
+msgstr "Modifica_informazioni_note"
 
 #: ../gramps/gui/editors/editnote.py:174
 #, python-format
@@ -17359,11 +17358,9 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
-msgstr "No_me:"
+msgstr "_Nome:"
 
 #: ../gramps/gui/glade/editname.glade:204
 #: ../gramps/gui/glade/editperson.glade:195
@@ -35508,11 +35505,12 @@ msgid "%d bad Note Links were fixed;\n"
 msgstr "Sono stati corretti %d collegamenti a note scorretti;\n"
 
 #: ../gramps/plugins/tool/check.py:3155
-#, fuzzy, python-format
-#| msgid "%d duplicate event role names coalesced. %d references updated\n"
+#, python-format
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
-msgstr "%d nomi di ruoli evento duplicati uniti. %d riferimenti aggiornati.\n"
+msgstr ""
+"%(names)d nomi di ruoli evento duplicati uniti. %(refs)d riferimenti "
+"aggiornati\n"
 
 #: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
