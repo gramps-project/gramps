@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-09 17:05+0100\n"
-"PO-Revision-Date: 2026-03-18 10:09+0000\n"
+"PO-Revision-Date: 2026-04-13 05:09+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -34886,12 +34886,12 @@ msgid "%d bad Note Links were fixed;\n"
 msgstr "%d felaktiga länkar lagades;\n"
 
 #: ../gramps/plugins/tool/check.py:3155
-#, fuzzy, python-format
-#| msgid "%d duplicate event role names coalesced. %d references updated\n"
+#, python-format
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
-"%d duplicerade händelserollnamn sammanslagna. %d referenser updaterade\n"
+"%(names)d duplicerade händelserollnamn sammanslagna. %(refs)d referenser "
+"updaterade\n"
 
 #: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
