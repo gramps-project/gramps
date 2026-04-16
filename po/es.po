@@ -22,7 +22,7 @@
 # Jesús Martínez <weblate@jandemor.com>, 2024.
 # Harald Herreros <h.herreros@proton.me>, 2024.
 # Jorge Martinez <6marvil@gmail.com>, 2025.
-# Francisco Serrador <fserrador@gmail.com>, 2025.
+# Francisco Serrador <fserrador@gmail.com>, 2025, 2026.
 # Hugo Vidal <69076992+hugoovf@users.noreply.github.com>, 2025.
 # Alejandro Moctezuma <moctezumaalejandro25@gmail.com>, 2025.
 # Andrés Eloy Bracho Sarcos <andresbracho@gmail.com>, 2025.
@@ -32,8 +32,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-09 17:05+0100\n"
-"PO-Revision-Date: 2025-11-26 04:51+0000\n"
-"Last-Translator: Sofia <sofimanci2112@gmail.com>\n"
+"PO-Revision-Date: 2026-04-14 09:09+0000\n"
+"Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -41,7 +41,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -532,8 +532,8 @@ msgid ""
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>¿Quién nació cuándo?</b><br/>Mediante \"Herramientas > Análisis y "
-"Exploración > Comparar eventos personales...\"; se pueden comparar los datos "
+"<b>¿Quién nació y cuándo?</b><br/>Debajo de \"Herramientas > Análisis y "
+"Exploración > Comparar eventos personales...\" se pueden comparar los datos "
 "de personas en su base de datos. Esto es útil si, por ejemplo, desea listar "
 "las fechas de nacimiento de todas las personas de su base de datos. Puede "
 "usar un filtro personalizado para limitar los resultados."
@@ -562,8 +562,8 @@ msgid ""
 msgstr ""
 "<b>Cálculo de parentescos</b><br/>Para comprobar si dos personas en la base "
 "de datos están emparentadas (por sangre, no matrimonio) pruebe la "
-"herramienta que puede encontrar en \"Herramientas > Utilidades > Calculador "
-"de parentesco...\". Se proporciona tanto el parentesco exacto como los "
+"herramienta que puede encontrar en «Herramientas > Utilidades > Calculador "
+"de parentesco...». Se proporciona tanto el parentesco exacto como los "
 "ascendientes comunes."
 
 #: ../data/tips.xml:30
@@ -595,8 +595,8 @@ msgstr ""
 "<b>Definir sus preferencias</b><br/> \"Editar > Preferencias...\" le permite "
 "modificar una serie de ajustes, como la ruta a sus archivos audiovisuales, y "
 "le permite ajustar a sus necesidades muchos aspectos de la presentación de "
-"Gramps. Cada vista separada puede configurarse también en \"View > "
-"Configurar...\"."
+"Gramps. Cada vista separada puede configurarse también en \"Vista > "
+"Configurar vista...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -623,9 +623,9 @@ msgid ""
 msgstr ""
 "<b>Comenzar un nuevo árbol genealógico</b><br/>Una buena manera de comenzar "
 "un nuevo árbol genealógico es introducir los miembros de la familia en la "
-"base de datos mediante la vista de Personas (utilice \"Editar > Agregar...\" "
-"o haga clic en el botón Agregar una nueva persona en la vista de Personas). "
-"A continuación, vaya a la vista de Relaciones y cree las relaciones entre "
+"base de datos mediante la vista de Personas (emplee \"Editar > Agregar...\" "
+"o pulse en el botón Agregar una nueva persona en la vista de Personas). A "
+"continuación, vaya a la vista de Relaciones y cree las relaciones entre "
 "personas."
 
 #: ../data/tips.xml:38
@@ -658,10 +658,10 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Entradas duplicadas</b><br/>\"Herramientas > Proceso de árboles "
-"genealógicos > Buscar personas posiblemente duplicadas...\" le permite "
-"localizar (y fusionar) múltiples entradas de la misma persona introducida "
-"más de una vez en la base de datos."
+"<b>Entradas duplicadas</b><br/>La herramienta \"Herramientas > Proceso de "
+"árboles genealógicos > Encontrar personas posiblemente duplicadas...\" le "
+"permite localizar (y fusionar) múltiples entradas de la misma persona "
+"introducida más de una vez en la base de datos."
 
 #: ../data/tips.xml:44
 msgid ""
@@ -672,9 +672,9 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Mezclar entradas</b><br/>La función \"Editar > Fusionar...\" le permite "
+"<b>Mezclar apuntes</b><br/>La función \"Editar > Fusionar...\" le permite "
 "combinar varias personas en una sola. Seleccione la segunda persona "
-"manteniendo pulsada la tecla Control al hacer clic. Esto es muy útil para "
+"manteniendo pulsada la tecla Control al pulsar. Esto es muy útil para "
 "combinar dos bases de datos que tienen personas coincidentes o combinar "
 "personas que se han introducido varias veces por error. Esta facilidad "
 "también existe para lugares, fuentes y repositorios."
@@ -689,7 +689,7 @@ msgstr ""
 "<b>Organizar las vistas</b><br/>Muchas de las vistas pueden presentar los "
 "datos bien en forma de árbol jerárquico, o como una lista simple. Cada vista "
 "puede también configurarse a su gusto. Mire a la derecha de la barra de "
-"herramientas superior o en el menú \"Ver\"."
+"herramientas superior o en el menú \"Vista\"."
 
 #: ../data/tips.xml:48
 msgid ""
@@ -700,7 +700,7 @@ msgid ""
 msgstr ""
 "<b>Navegar atrás y adelante</b><br/>Gramps mantiene una lista de los últimos "
 "objetos activos como Personas y Eventos. Puede moverse adelante y atrás por "
-"la lista utilizando \"Ir > Adelante\" e \"Ir > Atrás\" o los botones de "
+"la lista utilizando \"Ir > Avanzar\" e \"Ir > Retroceder\" o los botones de "
 "flechas."
 
 #: ../data/tips.xml:50
@@ -746,10 +746,10 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>Editar las relaciones padres-hijo</b><br/>Puede editar la relación de un "
-"hijo/a con sus padres haciendo doble clic en el hijo en el editor de "
-"familias. La relación admite los valores de Adoptado, Nacimiento, Acogido, "
-"Ninguna, Patrocinado, Hijastro y Desconocida."
+"<b>Editar las relaciones antecesores-heredero</b><br/>Puede editar la "
+"relación de un hijo/a con sus antecesores haciendo doble clic en el heredero "
+"en el editor de familias. La relación admite los valores de Adoptado, "
+"Nacimiento, Acogido, Ninguna, Patrocinado, Hijastro y Desconocida."
 
 #: ../data/tips.xml:58
 msgid ""
@@ -763,7 +763,7 @@ msgstr ""
 "cónyuge, solo se muestran inicialmente las personas que realísticamente "
 "podrían cumplir ese papel (en función de las fechas en la base de datos). Si "
 "Gramps erró al efectuar esta elección, puede pasar por alto el filtro "
-"mediante la casilla «Mostrar todos»."
+"mediante la casilla «Mostrar todo»."
 
 #: ../data/tips.xml:60
 msgid ""
@@ -773,7 +773,7 @@ msgid ""
 "project.org/bugs/ and creating a Feature Request. Filing a Feature Request "
 "is preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
-"<b>Mejorando GRAMPS</b><br/>Se anima a los usuarios a solicitar mejoras a "
+"<b>Mejorando Gramps</b><br/>Se anima a los usuarios a solicitar mejoras a "
 "Gramps. Se puede solicitar una mejora a través de las listas de correo "
 "gramps-users o gramps-devel o creando una solicitud de mejora (Feature "
 "Request) en https://gramps-project.org/bugs/. Este método es el preferido, "
@@ -810,8 +810,8 @@ msgstr ""
 "pueden ir desde escribir documentación a probar las versiones de desarrollo "
 "o ayudar con el sitio web. Comience suscribiéndose a la lista de correo de "
 "los desarrolladores de Gramps, gramps-devel, y presentándose. Información "
-"sobre cómo subscribirse puede ser consultada en \"Ayuda > Listas de correo "
-"de Gramps\"."
+"sobre cómo suscribirse puede ser consultada en «Ayuda > Listas de correo de "
+"Gramps»."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -860,7 +860,7 @@ msgstr ""
 "rojizo o un punto rojo a la derecha del campo. Puede arreglar la fecha "
 "mediante el diálogo de Selección de fecha que puede abrirse haciendo clic "
 "sobre el botón de fecha. El formato de la fecha se fija en \"Editar > "
-"Preferencias... > Datos\"."
+"Preferencias > Datos\"."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -870,7 +870,7 @@ msgid ""
 "will be added to the available events, but not translated."
 msgstr ""
 "<b>Listar eventos</b><br/>Los eventos se agregan usando el editor que se "
-"abre mediante \"Persona > Editar... > Eventos\". Hay una larga lista de "
+"abre mediante \"Persona > Editar persona > Eventos\". Hay una larga lista de "
 "tipos de eventos predefinidos. Puede agregar sus propios tipos de evento "
 "tecleando en el campo de texto, se agregarán a la lista de eventos "
 "disponibles, pero no resultarán traducidos a otros idiomas."
@@ -896,7 +896,7 @@ msgid ""
 msgstr ""
 "<b>Vista de Ascendientes</b><br/>La Vista de Ascendientes muestra un cuadro "
 "genealógico tradicional. Mantenga el cursor sobre un individuo para ver más "
-"información o haga clic con el botón derecho en un individuo para acceder a "
+"información o pulse con el botón secundario en un individuo para acceder a "
 "otros miembros de la familia y los ajustes. Juegue con los ajustes para ver "
 "las distintas opciones."
 
@@ -920,7 +920,7 @@ msgid ""
 msgstr ""
 "<b>Gestionar lugares</b><br/>La vista Lugares muestra la lista de todos los "
 "lugares presentes en la base de datos. La lista puede ordenarse por "
-"diferentes criterios, como Población, Condado o Estado/Provincia."
+"diferentes criterios, como Ciudad, Comunidad o Provincia."
 
 #: ../data/tips.xml:82
 msgid ""
@@ -1054,7 +1054,7 @@ msgid ""
 msgstr ""
 "<b>Reportes y herramientas adicionales</b><br/>Se pueden añadir a Gramps "
 "herramientas y reportes adicionales mediante le sistema de \"Extensiones\". "
-"Véalos en \"Help > Reportes/herramientas adicionales\". Es la mejor manera "
+"Véalos en \"Ayuda > Informes adicionales/Herramientas\". Es la mejor manera "
 "en que los usuarios avanzados pueden experimentar y crear nuevas "
 "funcionalidades."
 
@@ -1065,10 +1065,10 @@ msgid ""
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Reportes de libro</b><br/>El reporte de libro en \"Reportes > Libros..."
-"\", permite juntar varios reportes en un único documento. Este reporte "
-"combinado es más fácil de distribuir que los reportes múltiples, "
-"especialmente en forma impresa."
+"<b>Libro de Diario</b><br/>El reporte de libro en \"Reportes > Libros...\", "
+"permite juntar varios reportes en un único documento. Este reporte combinado "
+"es más fácil de distribuir que los reportes múltiples, especialmente en "
+"forma impresa."
 
 #: ../data/tips.xml:106
 msgid ""
@@ -1128,7 +1128,7 @@ msgid ""
 msgstr ""
 "<b>¿No habla inglés?</b><br/>Voluntarios han traducido Gramps a más de 40 "
 "idiomas. Si su idioma es uno de ellos y no se muestra, establezca el idioma "
-"predeterminado de su sistema operativo y rearranque Gramps."
+"predeterminado de su sistema operativo y re‐arranque Gramps."
 
 #: ../data/tips.xml:116
 msgid ""
@@ -1160,7 +1160,7 @@ msgstr ""
 "<b>La persona inicial</b><br/>Puede elegir cualquier persona como Persona "
 "Inicial en Gramps. Utilice \"Editar > Establecer persona inicial\" La "
 "persona inicial es la que resulta seleccionada cuando se abre la base de "
-"datos o cuando se pulsa el botón \"Ir a la persona inicial\"."
+"datos o cuando se pulsa el botón \"Ir a botón inicio\"."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1211,9 +1211,9 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
-"<b>¿Gramps para Gnome o para KDE?</b><br/>Los usuarios de Linux pueden "
-"disfrutar de Gramps con el entorno de escritorio que prefieran. Mientras "
-"estén instaladas las bibliotecas GTK requeridas, funcionará correctamente."
+"<b>¿Gramps para GNOME o KDE?</b><br/>Los usuarios de Linux pueden disfrutar "
+"de Gramps con el entorno de escritorio que prefieran. Mientras estén "
+"instaladas las bibliotecas GTK requeridas, funcionará correctamente."
 
 #: ../gramps/cli/arghandler.py:232
 #, python-format
@@ -3725,7 +3725,7 @@ msgid ""
 "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Solo se aceptan valores de fecha-hora en el formato ISO aaaa-mm-dd hh:mm:ss "
+"Solo se aceptan valores de fecha-hora en el formato iso aaaa-mm-dd hh:mm:ss "
 "(la parte hh:mm:ss es opcional). %s no tiene ese formato."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
@@ -4277,7 +4277,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Citations with Id containing <text>"
-msgstr "Citas cuyos ID contienen <texto>"
+msgstr "Citas cuyos Id contienen <texto>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:51
 msgid "Matches citations whose Gramps ID matches the regular expression"
@@ -4286,7 +4286,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:57
 msgid "Citations with Source Id containing <text>"
-msgstr "Citas cuyas ID de fuentes contienen <texto>"
+msgstr "Citas cuyas Id de fuentes contienen <texto>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:59
 msgid ""
@@ -4572,7 +4572,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Events with Id containing <text>"
-msgstr "Eventos cuyos ID contienen <texto>"
+msgstr "Eventos cuyos Id contienen <texto>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:49
 msgid "Matches events whose Gramps ID matches the regular expression"
@@ -4609,7 +4609,7 @@ msgstr "ID de la persona:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:54
 msgid "Families having child with Id containing <text>"
-msgstr "Familias con hijos cuyas ID contienen <subcadena>"
+msgstr "Familias con hijos cuyas Id contienen <subcadena>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:55
 msgid "Matches families where child has a specified Gramps ID"
@@ -4644,7 +4644,7 @@ msgstr "Coincide con las familias marcadas como privadas"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:54
 msgid "Families having father with Id containing <text>"
-msgstr "Familias cuyos padres tienen ID que contienen <subcadena>"
+msgstr "Familias cuyos padres tienen Id que contienen <subcadena>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:55
 msgid "Matches families whose father has a specified Gramps ID"
@@ -4892,7 +4892,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:54
 msgid "Families having mother with Id containing <text>"
-msgstr "Familias cuya madre tiene ID que contiene <subcadena>"
+msgstr "Familias cuya madre tiene Id que contiene <subcadena>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:55
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -4942,7 +4942,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:48
 msgid "Families with Id containing <text>"
-msgstr "Familias con ID que contiene <texto>"
+msgstr "Familias con Id que contiene <texto>"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:50
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -5147,7 +5147,7 @@ msgstr "Coincide con los objetos audiovisuales marcados como privados"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:48
 msgid "Media objects with Id containing <text>"
-msgstr "Objetos audiovisuales cuya ID contiene <texto>"
+msgstr "Objetos audiovisuales cuya Id contiene <texto>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:50
 msgid "Matches media objects whose Gramps ID matches the regular expression"
@@ -5249,7 +5249,7 @@ msgstr "Coincide con las notas marcadas como privadas"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:48
 msgid "Notes with Id containing <text>"
-msgstr "Notas cuya ID contiene <texto>"
+msgstr "Notas cuya Id contiene <texto>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:49
 msgid "Matches notes whose Gramps ID matches the regular expression"
@@ -6159,7 +6159,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:47
 msgid "People with Id containing <text>"
-msgstr "Personas cuyos ID contienen <texto>"
+msgstr "Personas cuyos Id contienen <texto>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:48
 msgid "Matches people whose Gramps ID matches the regular expression"
@@ -6502,7 +6502,7 @@ msgstr "Coincide con los lugares marcados como privados"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Places with Id containing <text>"
-msgstr "Lugares cuyos ID contienen <texto>"
+msgstr "Lugares cuyos Id contienen <texto>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -6656,7 +6656,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Repositories with Id containing <text>"
-msgstr "Repositorios cuyas ID contienen <texto>"
+msgstr "Repositorios cuyas Id contienen <texto>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:50
 msgid "Matches repositories whose Gramps ID matches the regular expression"
@@ -6834,7 +6834,7 @@ msgstr "Coincide con las fuentes cuyo título contiene una cierta subcadena"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:48
 msgid "Sources with Id containing <text>"
-msgstr "Fuentes cuyo ID contiene <texto>"
+msgstr "Fuentes cuyo Id contiene <texto>"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:49
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -8527,7 +8527,7 @@ msgstr "Código del tipo"
 
 #: ../gramps/gen/lib/ldsord.py:96
 msgid "Initiatory"
-msgstr "Iniciadora (SUD)"
+msgstr "Iniciadora"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Endowment"
@@ -8814,8 +8814,6 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
 msgstr "Desconocido"
@@ -8968,7 +8966,7 @@ msgstr "Informe"
 
 #: ../gramps/gen/lib/notetype.py:92
 msgid "Html code"
-msgstr "Código HTML"
+msgstr "Código html"
 
 #: ../gramps/gen/lib/notetype.py:93
 msgctxt "notetype"
@@ -9113,7 +9111,7 @@ msgstr "Direcciones"
 
 #: ../gramps/gen/lib/person.py:244
 msgid "Urls"
-msgstr "URLs"
+msgstr "Url"
 
 #: ../gramps/gen/lib/person.py:271
 msgid "Person references"
@@ -11728,7 +11726,7 @@ msgstr "Árabe"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Bashkir"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -14600,8 +14598,6 @@ msgid "Move the selected surname downwards"
 msgstr "Mover el apellido seleccionado hacia abajo"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Apellido"
@@ -17347,11 +17343,9 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
-msgstr "_Nombre:"
+msgstr "_Dado:"
 
 #: ../gramps/gui/glade/editname.glade:204
 #: ../gramps/gui/glade/editperson.glade:195
@@ -18075,8 +18069,8 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Se combinarán las ordenanzas SUD, los objetos multimedia, los atributos, las "
-"notas, las fuentes y las etiquetas de ambas familias."
+"Se combinarán los eventos, ids_ord, los objetos multimedia, los atributos, "
+"las notas, el código fuente y las etiquetas de ambas familias."
 
 #: ../gramps/gui/glade/mergemedia.glade:94
 msgid ""
@@ -18155,7 +18149,7 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"Los eventos, objetos audiovisuales, direcciones, atributos, URLs, notas, "
+"Los eventos, objetos audiovisuales, direcciones, atributos, urls, notas, "
 "fuentes y etiquetas de ambas personas se combinarán."
 
 #: ../gramps/gui/glade/mergeperson.glade:490
@@ -18175,8 +18169,8 @@ msgid ""
 "Alternative names, sources, urls, media objects and notes of both places "
 "will be combined."
 msgstr ""
-"Nombres alternativos, fuentes, URLs, objetos audiovisuales y notas de ambos "
-"lugares se combinarán."
+"Nombres alternativos, fuentes, las url, objetos audiovisuales y notas de "
+"ambos lugares se combinarán."
 
 #: ../gramps/gui/glade/mergerepository.glade:94
 msgid ""
@@ -18196,7 +18190,7 @@ msgstr "Repositorio 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:388
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Las direcciones, URLs y notas de ambos repositorios se combinarán."
+msgstr "Las direcciones, las url y notas de ambos repositorios se combinarán."
 
 #: ../gramps/gui/glade/mergesource.glade:94
 msgid ""
@@ -26443,7 +26437,7 @@ msgstr "lugar de nacimiento"
 
 #: ../gramps/plugins/importer/importcsv.py:247
 msgid "birth place id"
-msgstr "ID del lugar de nacimiento"
+msgstr "id del lugar de nacimiento"
 
 #: ../gramps/plugins/importer/importcsv.py:250
 msgid "birth date"
@@ -26459,7 +26453,7 @@ msgstr "lugar de bautismo"
 
 #: ../gramps/plugins/importer/importcsv.py:261
 msgid "baptism place id"
-msgstr "ID del lugar de bautismo"
+msgstr "id del lugar de bautismo"
 
 #: ../gramps/plugins/importer/importcsv.py:265
 msgid "baptism date"
@@ -26475,7 +26469,7 @@ msgstr "lugar de entierro"
 
 #: ../gramps/plugins/importer/importcsv.py:271
 msgid "burial place id"
-msgstr "ID del lugar de entierro"
+msgstr "id del lugar de entierro"
 
 #: ../gramps/plugins/importer/importcsv.py:275
 msgid "burial date"
@@ -26491,7 +26485,7 @@ msgstr "lugar de defunción"
 
 #: ../gramps/plugins/importer/importcsv.py:286
 msgid "death place id"
-msgstr "ID del lugar de defunción"
+msgstr "id del lugar de defunción"
 
 #: ../gramps/plugins/importer/importcsv.py:290
 msgid "death date"
@@ -26535,11 +26529,11 @@ msgstr "Lugar de la ocupación"
 
 #: ../gramps/plugins/importer/importcsv.py:322
 msgid "occupationplace_id"
-msgstr "lugarcupación_ID"
+msgstr "occupationplace_id"
 
 #: ../gramps/plugins/importer/importcsv.py:323
 msgid "Occupation place id"
-msgstr "ID del lugar de la Ocupación"
+msgstr "id del lugar de la Ocupación"
 
 #: ../gramps/plugins/importer/importcsv.py:327
 msgid "occupationsource"
@@ -26567,11 +26561,11 @@ msgstr "lugar de la residencia"
 
 #: ../gramps/plugins/importer/importcsv.py:338
 msgid "residenceplace_id"
-msgstr "lugaresidencia_ID"
+msgstr "residenceplace_id"
 
 #: ../gramps/plugins/importer/importcsv.py:339
 msgid "residence place id"
-msgstr "ID del lugar de la residencia"
+msgstr "id del lugar de la residencia"
 
 #: ../gramps/plugins/importer/importcsv.py:343
 msgid "residencesource"
@@ -26635,7 +26629,7 @@ msgstr "lugar"
 
 #: ../gramps/plugins/importer/importcsv.py:384
 msgid "place id"
-msgstr "ID del lugar"
+msgstr "id del lugar"
 
 #: ../gramps/plugins/importer/importcsv.py:385
 #: ../gramps/plugins/tool/removespaces.py:193
@@ -27392,7 +27386,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:1736
 #: ../gramps/plugins/importer/importxml.py:2168
 msgid "The Gramps Xml you are trying to import is malformed."
-msgstr "El XML Gramps que intenta importar no tiene un formato correcto."
+msgstr "El Xml Gramps que intenta importar no tiene un formato correcto."
 
 #: ../gramps/plugins/importer/importxml.py:907
 msgid "Attributes that link the data together are missing."
@@ -33936,7 +33930,7 @@ msgstr "Notas para %(mother_name)s y %(father_name)s:"
 # TBC
 #: ../gramps/plugins/textreport/detdescendantreport.py:1067
 msgid "Record (Modified Register) numbering"
-msgstr "Numeración NGSQ (\"Record\" o \"Modified Register\")"
+msgstr "Registro con numeración (Registro Modificado)"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1074
 msgid "Report structure"
@@ -35111,10 +35105,14 @@ msgstr "Buscando enlaces incorrectos en Notas"
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
 msgstr ""
+"Coalición de roles duplicados en eventos a los que hacen referencia las "
+"personas"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
 msgstr ""
+"Coalición de roles duplicados en eventos a los que hacen referencia las "
+"familias"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -35371,6 +35369,8 @@ msgstr "%d Enlaces de Nota incorrectos fueron arreglados;\n"
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
+"%(names)d nombres de roles de eventos duplicados se fusionaron. %(refs)d "
+"referencias actualizadas\n"
 
 #: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
@@ -38849,7 +38849,7 @@ msgstr " Nombre"
 
 #: ../gramps/plugins/webreport/media.py:250
 msgid "Mime Type"
-msgstr "Tipo MIME"
+msgstr "Tipo Mime"
 
 #: ../gramps/plugins/webreport/media.py:263
 msgid "Creating list of media pages"
