@@ -2,6 +2,83 @@
 
 This document specifies rules and conventions that agents should follow when making changes to the Gramps codebase.
 
+## Commands
+
+**Run from source (no install):**
+```bash
+python3 Gramps.py
+```
+
+**Build wheel:**
+```bash
+python3 -m build --wheel
+```
+
+**Run all tests:**
+```bash
+export GDK_BACKEND=-
+export GRAMPS_RESOURCES=build/share
+export LANGUAGE= 
+export LANG=en_US.utf-8 
+python3 -m unittest discover -p "*_test.py"
+```
+
+**Run a single test module or method:**
+```bash
+python3 -m unittest gramps.gen.db.test.db_test
+python3 -m unittest gramps.gen.db.test.db_test.TestGenericDb.test_get_person
+```
+
+**Type checking:**
+```bash
+mypy
+```
+
+**Code formatting (must pass CI):**
+```bash
+black .
+# Check only:
+black --check .
+```
+
+## Architecture
+
+Gramps is a GTK4 genealogy application. The codebase is split into four main packages:
+
+### `gramps/gen/` — Core (no GUI dependency)
+- `lib/` — Data model: `Person`, `Family`, `Event`, `Place`, `Source`, `Citation`, `Repository`, `Media`, `Note`, `Tag`. All inherit from `PrimaryObject` (has a database handle) or `SecondaryObject`.
+- `db/` — Database abstraction layer. `DbReadBase` / `DbBase` are the abstract interfaces. `generic.py` is the DBAPI-based implementation used by SQLite, DuckDB, MySQL, PostgreSQL backends. Transactions via `DbTxn`; undo/redo built-in.
+- `plug/` — Plugin system core: `BasePluginManager` (singleton), `PluginRegister`, plugin metadata, and base `Plugin` class.
+- `filters/`, `datehandler/`, `display/` — Shared utilities with no GUI imports.
+
+### `gramps/gui/` — GTK4 frontend
+- `editors/` — Modal dialogs for editing each primary object type.
+- `views/` — Navigation views (People, Families, Events, etc.) that populate the main window.
+- `grampsgui.py` — Main window and view-switching logic.
+- `dbman.py` — GUI database manager (open/close/import/export).
+- `configure.py` — Preferences dialog.
+- `glade/` — GTK UI definition files (`.glade` / `.ui`).
+
+### `gramps/plugins/` — All plugin implementations
+- `db/` — Database backends (bsddb legacy, dbapi/SQLite default, duckdb, mysql, postgresql).
+- `gramplet/` — ~50 dashboard widgets (mini read-only views). Each is a self-contained gramplet.
+- `importer/`, `export/` — GEDCOM, XML, CSV, and other formats.
+- `view/`, `tool/`, `textreport/`, `drawreport/`, `quickview/`, `sidebar/` — Other plugin categories.
+
+### `gramps/cli/` — Command-line interface
+- `grampscli.py` — Non-GUI entry point (import/export/script automation).
+- `arghandler.py` — Argument parsing and dispatch.
+
+### Plugin system
+Plugins are discovered from `~/.local/share/gramps/grampsx.x/plugins/` (user) and the system prefix. Each plugin registers itself via a `gpr.yaml` file or a `register()` call. The `BasePluginManager` singleton loads and manages them. Categories: Importers, Exporters, DB backends, Gramplets, Views, Tools, Reports, Quick views, Sidebars, Map services.
+
+### Database backends
+The default backend is DBAPI (SQLite via `gramps/plugins/db/dbapi/`). All backends implement the `DbReadBase`/`DbBase` interface from `gramps/gen/db/`. Schema migrations live in `gramps/gen/db/upgrade.py`.
+
+## CI
+
+The CI pipeline (`.github/workflows/gramps-ci.yml`) runs: build wheel → `mypy` → `unittest discover`. The `black.yml` workflow checks formatting on every push. Both must pass before merging.
+
 ## Code Style & Formatting
 
 ### Black
@@ -24,7 +101,16 @@ All functions and methods must have type hints using Python 3.10+ syntax:
 
 ### Docstrings
 
-All functions and methods must have docstrings using Sphinx format:
+All functions and methods must have docstrings. Keep them concise — a short description is almost always enough:
+
+```python
+def close(self):
+    """
+    Close the specified database.
+    """
+```
+
+Use the full Sphinx format (`:param:`, `:type:`, `:returns:`, `:rtype:`) only when the parameters or return value are non-obvious and not already expressed by type hints:
 
 ```python
 def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
@@ -38,27 +124,38 @@ def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
     """
 ```
 
+Do not add verbose multi-line docstrings to simple functions, and never repeat information already expressed by the function name or type hints.
+
 ### Import Grouping
 
-Imports must be organized into three sections, each separated by a blank line and preceded by a comment header:
+Imports must be organized into sections, each preceded by a comment header of this form:
 
 ```python
-# ------------------------
-# Python modules
-# ------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import logging
 
-# ------------------------
-# Gramps modules
-# ------------------------
-from gramps.gen.db.base import DbReadBase
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
+from gi.repository import Gtk
 
-# ------------------------
-# Gramps specific
-# ------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.db.base import DbReadBase
 from .mymodule import MyClass
 ```
+
+Not all sections are required — include only those that apply. Common section names used in the codebase include `Standard Python modules`, `GTK/Gnome modules`, and `Gramps modules`.
 
 ### PEP 8 and Indentation
 
@@ -67,6 +164,8 @@ Code should be PEP 8 compatible, except where that conflicts with Black formatti
 ### Pylint
 
 Run pylint on new code. Ideally new code should score 9 or higher and changes should not reduce the overall pylint score. This is not strictly enforced and should never come at the expense of code clarity, Black formatting, or any other rule in this guide.
+
+Inline suppression comments such as `# pylint: disable=import-outside-toplevel` are not acceptable.
 
 ### Class Headers
 
@@ -104,6 +203,7 @@ raise ValueError(_("Invalid handle: %s") % handle)
 ```
 The alias `_(string , context)` is preferred to `pgettext(context, message)`.
 Use `ngettext(singular, plural, n)` for plural forms.
+
 ## Submodule Import Rules
 
 Files in the `gen` submodule must not import from any other Gramps submodule (e.g., `gui`, `plugins`). The `gen` submodule must remain self-contained.
@@ -146,7 +246,9 @@ Every new `.py` file must include a GPL-2.0-or-later license header with copyrig
 ### Running Tests
 
 ```bash
-GRAMPS_RESOURCES=. python3 -m unittest discover -p "*_test.py"
+export GDK_BACKEND=-
+export GRAMPS_RESOURCES=build/share
+python3 -m unittest discover -p "*_test.py"
 ```
 
 ### Type Checking
@@ -184,7 +286,7 @@ Fixes #12345.
 
 To mark a bug as fixed use the Mantis BT special keywords `Fixes`, `Fixed`, `Resolves` or `Resolved` followed by a `#` and then the bug number without leading zeros. e.g. `Fixes #12345.`.
 To reference an issue the keywords `Bug`, `Bugs`, `Issue`, `Issues`, `Report` or `Reports` may be used with a bug number in the same format for bugs. e.g. `Issue #12345`.
-Multiple issues may be referenced. e.g. `Resolves #12345, #12346.` 
+Multiple issues may be referenced. e.g. `Resolves #12345, #12346.`
 These references should be used in the last line of a commit message.
 
 ## Translation Files
@@ -201,6 +303,11 @@ lists accordingly:
 - Prefer existing exceptions from `gramps/gen/errors.py` and `gramps/gen/db/exceptions.py` over creating new ones.
 - Only introduce a new exception class when none of the existing ones accurately represent the error condition.
 - Raise `HandleError` for invalid or missing handles.
+
 ## Branch merges
 
 Branch merges are not allowed in pull requests.  Rebase rather than merging.
+
+## Pull Requests
+
+All pull requests must be submitted from a branch in your personal fork of the repository, not from a branch pushed directly to the upstream `gramps-project/gramps` remote. Even if you have write access to the upstream remote, create your branch and submit the PR from your fork.
