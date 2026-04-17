@@ -41,6 +41,7 @@ class SurnameCloudGramplet(CloudGramplet):
         self.set_value_name("surname")
         self.set_item_name("person")
         self.set_preference_no_value("preferences.no-surname-text")
+        self.set_link_type("Surname")
 
     def db_changed(self):
         self.connect(self.dbstate.db, "person-add", self.update)

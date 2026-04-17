@@ -71,6 +71,7 @@ class CloudGramplet(Gramplet):
         self.value_name = "default_value_name"
         self.item_name = "default_item_name"
         self.preference_no_value = ""
+        self.link_type = "Cloud"
 
     def set_value_name(self,value_name):
         """What the cloud display. For a name cloud, value_name is 'name' """
@@ -83,6 +84,10 @@ class CloudGramplet(Gramplet):
     def set_preference_no_value(self,preference_no_value):
         """ When there is a config of preference to display when there are no values """
         self.preference_no_value = preference_no_value
+
+    def set_link_type(self,link_type):
+        """ The type of the link a user double clic on a value """
+        self.link_type = link_type
         
 
     @abstractmethod
@@ -190,8 +195,8 @@ class CloudGramplet(Gramplet):
             size = make_tag_size(values_rank[value],curr_rank , mins=mins, maxs=maxs)
             self.link(
                 text,
-                "Surname", # TODO : What can I do for this part. Is there link_type for all type of value ?
-                values_handle[value],
+                self.link_type,
+                "" #TODO : depend of teh cloud , Given -> text, Surname -> values_handle[value],
                 size,
                 "%s, %d%% (%d)"
                 % (text, int((float(count) / total_item) * 100), count),

@@ -759,6 +759,12 @@ class GuiGramplet:
                                 self.dbstate, self.uistate, "attribute_match", handle
                             )
                     return True
+
+                elif link_type == "Cloud":
+                    if event.button == 1:  # left mouse
+                        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
+                            pass # TODO : create a default view for cloud
+                    return True
                 else:  # overzealous l10n while setting the link?
                     logging.warning(
                         "Unknown link type %s, %s" % (link_type, RuntimeWarning)
