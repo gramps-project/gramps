@@ -55,6 +55,7 @@ class SurnameCloudGramplet(CloudGramplet):
 
         for person in self.dbstate.db.iter_people():
             allnames = [person.get_primary_name()] + person.get_alternate_names()
-            allnames = [name.get_group_name().strip() for name in allnames]
-            items.append((allnames , person.handle))
+            for name in allnames:
+                name = name.get_group_name().strip()
+                items.append((name , person.handle))
         return items

@@ -99,7 +99,7 @@ class CloudGramplet(Gramplet):
         
     @abstractmethod
     def get_items(self) -> list:
-        """How data can be acces for the cloud. Must return an iterator of (values list,handle).
+        """How data can be acces for the cloud. Must return an iterator of (value ,linked_data).
             See the exemple in surnamecloudgramplet.py 
         """
         pass
@@ -124,23 +124,22 @@ class CloudGramplet(Gramplet):
         yield_counter = 0
 
         values_counts = {}
-        values_handle = {}
+        values_linked_data = {}
         total_item = 0
 
         # Initialise dict variables and total 
-        for values, handle in self.get_items():
-            for value in values:
-                if value not in values_counts:
+        for value, linked_data in self.get_items():
+            if value not in values_counts:
 
-                    values_handle[value] = handle
-                    values_counts[value] = 1
-                else : 
-                    values_counts[value] +=1
+                values_linked_data[value] = linked_data
+                values_counts[value] = 1
+            else : 
+                values_counts[value] +=1
 
-                total_item += 1
-                yield_counter += 1
-                if not yield_counter % _YIELD_INTERVAL:
-                    yield True
+            total_item += 1
+            yield_counter += 1
+            if not yield_counter % _YIELD_INTERVAL:
+                yield True
         yield_counter = 0
 
 
@@ -196,7 +195,7 @@ class CloudGramplet(Gramplet):
             self.link(
                 text,
                 self.link_type,
-                "" #TODO : depend of teh cloud , Given -> text, Surname -> values_handle[value],
+                values_linked_data[value],
                 size,
                 "%s, %d%% (%d)"
                 % (text, int((float(count) / total_item) * 100), count),
