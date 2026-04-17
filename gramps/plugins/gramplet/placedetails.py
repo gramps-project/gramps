@@ -128,7 +128,7 @@ class PlaceDetails(Gramplet):
 
         self.clear_grid()
         self.add_row(_("Name"), place.get_name().get_value())
-        self.add_row(_("Type"), place.get_type())
+        self.add_row(_("Type"), str(place.get_type()))
         self.display_separator()
         self.display_alt_names(place)
         self.display_separator()
