@@ -77,7 +77,7 @@ class PlaceDetails(Gramplet):
         )
         label.set_selectable(True)
         label.show()
-        value = Gtk.Label(label=value, halign=Gtk.Align.START)
+        value = Gtk.Label(label=str(value), halign=Gtk.Align.START)
         value.set_selectable(True)
         value.show()
         self.grid.add(label)
