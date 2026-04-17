@@ -81,3 +81,6 @@ from .placetype import PlaceType
 # Text
 from .styledtexttag import StyledTextTag
 from .styledtext import StyledText
+
+# Familysearch
+from .fs.familysearchsync import FamilySearchSync

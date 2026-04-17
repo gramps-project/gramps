@@ -8,6 +8,7 @@
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2015-      Serge Noiraud
 # Copyright (C) 2026       Doug Blank
+# Copyright (C) 2026       Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -392,6 +393,13 @@ register("utf8.dead-symbol", "✝")
 register("utf8.buried-symbol", "[]")
 register("utf8.cremated-symbol", "⚱")
 register("utf8.killed-symbol", "x")
+
+register("familysearch.server", 0)  # beta
+register("familysearch.app-key", "")
+register("familysearch.redirect", "http://127.0.0.1:57938/familysearch-auth")
+register("familysearch.auth-provider", "foundation")
+register("familysearch.middleware.base-url", "")
+register("familysearch.middleware.access-code", "")
 
 if __debug__:  # enable a simple CLI test to see if the datestrings exist
     register("test.january", _("January", "localized lexeme inflections"))

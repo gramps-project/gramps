@@ -4,9 +4,10 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Raphael Ackermann
 # Copyright (C) 2010       Benny Malengier
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010,2025  Nick Hall
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2015-      Serge Noiraud
+# Copyright (C) 2025-2026  Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -671,6 +672,7 @@ class GrampsPreferences(ConfigureDialog):
             self.add_text_panel,
             self.add_warnings_panel,
             self.add_researcher_panel,
+            self.add_integrations_panel,
         )
         ConfigureDialog.__init__(
             self,
@@ -1062,6 +1064,124 @@ class GrampsPreferences(ConfigureDialog):
         )
 
         return _("Warnings"), grid
+
+    def add_integrations_panel(self, configdialog):
+        """
+        Config tab for integrations.
+        """
+        scroll_window = Gtk.ScrolledWindow()
+        scroll_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        grid = self.create_grid()
+        scroll_window.add(grid)
+
+        label = self.add_text(
+            grid, _("FamilySearch"), 0, line_wrap=True, bold=True, start=0, stop=3
+        )
+        label.set_margin_top(10)
+
+        row = 1
+        obox = Gtk.ComboBoxText()
+        options = [_("Beta"), _("Live")]
+        for option in options:
+            obox.append_text(option)
+        active = config.get("familysearch.server")
+        if active >= len(options):
+            active = 0
+        obox.set_active(active)
+        obox.connect("changed", self._server_changed)
+        lwidget = BasicLabel(_("%s: ") % _("Server"))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(obox, 2, row, 2, 1)
+        row += 1
+
+        self._fs_direct_mode_enabled = os.environ.get(
+            "GRAMPS_FS_ENABLE_DIRECT", ""
+        ).strip().lower() in ("1", "true", "yes", "on")
+        provider_box = Gtk.ComboBoxText()
+        provider_options = [(_("Foundation middleware"), "foundation")]
+        if self._fs_direct_mode_enabled:
+            provider_options.insert(0, (_("Direct FamilySearch"), "direct"))
+        active_provider = str(config.get("familysearch.auth-provider") or "foundation")
+        if (not self._fs_direct_mode_enabled) and active_provider == "direct":
+            active_provider = "foundation"
+            try:
+                config.set("familysearch.auth-provider", "foundation")
+            except Exception:
+                pass
+        active_provider_index = 0
+        for index, (label_text, provider_value) in enumerate(provider_options):
+            provider_box.append_text(label_text)
+            if active_provider == provider_value:
+                active_provider_index = index
+        provider_box.set_active(active_provider_index)
+        provider_box.connect("changed", self._auth_provider_changed)
+        lwidget = BasicLabel(_("%s: ") % _("Auth provider"))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(provider_box, 2, row, 2, 1)
+        row += 1
+
+        if self._fs_direct_mode_enabled:
+            # App key (no defaults / no hardcoding)
+            self.add_entry(
+                grid,
+                _("App key (direct mode only)"),
+                row,
+                "familysearch.app-key",
+                col_attach=1,
+            )
+            row += 1
+
+            # Redirect URL (default loopback if empty)
+            default_redirect = "http://127.0.0.1:57938/familysearch-auth"
+            try:
+                cur = config.get("familysearch.redirect")
+            except Exception:
+                cur = ""
+            if not (cur or "").strip():
+                try:
+                    config.set("familysearch.redirect", default_redirect)
+                except Exception:
+                    pass
+
+            self.add_entry(
+                grid,
+                _("Redirect URL (direct mode only)"),
+                row,
+                "familysearch.redirect",
+                col_attach=1,
+            )
+            row += 1
+
+        self.add_entry(
+            grid,
+            _("Middleware base URL"),
+            row,
+            "familysearch.middleware.base-url",
+            col_attach=1,
+        )
+        row += 1
+
+        self.add_entry(
+            grid,
+            _("Middleware access code (issued secret)"),
+            row,
+            "familysearch.middleware.access-code",
+            col_attach=1,
+        )
+        row += 1
+
+        return _("Integrations"), grid
+
+    def _server_changed(self, obj):
+        config.set("familysearch.server", obj.get_active())
+
+    def _auth_provider_changed(self, obj):
+        options = ["foundation"]
+        if getattr(self, "_fs_direct_mode_enabled", False):
+            options.insert(0, "direct")
+        active = obj.get_active()
+        if 0 <= active < len(options):
+            config.set("familysearch.auth-provider", options[active])
 
     def _build_name_format_model(self, active):
         """

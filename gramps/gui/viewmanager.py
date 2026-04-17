@@ -4,7 +4,7 @@
 # Copyright (C) 2005-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010,2025  Nick Hall
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Gary Burton
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
@@ -40,6 +40,7 @@ import datetime
 from io import StringIO
 import gc
 import html
+import webbrowser
 
 # -------------------------------------------------------------------------
 #
@@ -134,6 +135,9 @@ from gramps.gui.editors import (
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.gen.filters import reload_custom_filters
 from .managedwindow import ManagedWindow
+from .fs.manager import get_session
+from .fs.session import Session
+from .fs.tools_window import toggle_tools_window
 
 # -------------------------------------------------------------------------
 #
@@ -346,6 +350,12 @@ class ViewManager(CLIManager):
         vbox.show()
 
         self.uistate = DisplayState(self.window, self.statusbar, self.uimanager, self)
+        try:
+            fs_btn = self.statusbar.get_fs_status_button()
+            fs_btn.set_tooltip_text(_("FamilySearch tools"))
+            fs_btn.connect("clicked", self._on_fs_status_clicked)
+        except Exception:
+            LOG.warning("Failed to connect FamilySearch status button", exc_info=True)
 
         # Create history objects
         for nav_type in (
@@ -387,6 +397,28 @@ class ViewManager(CLIManager):
 
         self.window.set_title("%s - Gramps" % _("No Family Tree"))
         self.window.show()
+
+    def _on_fs_status_clicked(self, *_args):
+        """
+        Toggle the FamilySearch Tools window.
+        Only works after login (token present).
+        """
+        sess = get_session(dbstate=self.dbstate, uistate=self.uistate)
+        if not sess or not (
+            getattr(sess, "access_token", None) or getattr(sess, "connected", False)
+        ):
+            # You said: only after login. So we just show info.
+            try:
+                ErrorDialog(
+                    _("FamilySearch"),
+                    _("Not logged in to FamilySearch."),
+                    parent=self.uistate.window,
+                )
+            except Exception:
+                LOG.warning("Failed to show FamilySearch login dialog", exc_info=True)
+            return
+
+        toggle_tools_window(sess)
 
     def __setup_navigator(self):
         """
@@ -455,6 +487,7 @@ class ViewManager(CLIManager):
 
         self._readonly_action_list = [
             ("Close", self.close_database, "<control>w"),
+            ("Login", self.login, "<control>l"),
             ("Export", self.export_data, "<PRIMARY>e"),
             ("Backup", self.quick_backup),
             ("Abandon", self.abort),
@@ -522,6 +555,43 @@ class ViewManager(CLIManager):
         self._redo_action_list = [
             ("Redo", self.redo, "<shift><PRIMARY>z"),
         ]
+
+    def login(self, *action):
+        """
+        Login to FamilySearch.
+        """
+        session = Session.from_config()
+
+        self.uistate.set_busy_cursor(True)
+        self.statusbar.set_fs_online(False)
+
+        try:
+            auth_code = session.authorize()
+            if not auth_code:
+                ErrorDialog(
+                    _("FamilySearch"),
+                    _("User consent declined"),
+                    parent=self.uistate.window,
+                )
+                return
+
+            if not session.get_token(auth_code):
+                ErrorDialog(
+                    _("FamilySearch"),
+                    _("Authorization error"),
+                    parent=self.uistate.window,
+                )
+                return
+
+        finally:
+            self.uistate.set_busy_cursor(False)
+
+        self.statusbar.set_fs_online(
+            bool(
+                getattr(session, "connected", False)
+                or getattr(session, "access_token", None)
+            )
+        )
 
     def run_book(self, *action):
         """

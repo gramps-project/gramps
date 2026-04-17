@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2026       Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1463,6 +1464,22 @@ class DbReadBase:
         """
         return getattr(self, fmt % tuple([arg.lower() for arg in args]), None)
 
+    def get_familysearch_person_status(self, person_handle, default=None):
+        """
+        Return FamilySearch sync status for the given Person handle
+
+        Returns a dict with these keys when present:
+            fsid
+            is_root
+            status_ts
+            confirmed_ts
+            gramps_modified_ts
+            fs_modified_ts
+            essential_conflict
+            conflict
+        """
+        raise NotImplementedError
+
 
 # -------------------------------------------------------------------------
 #
@@ -2046,3 +2063,27 @@ class DbWriteBase(DbReadBase):
 
         person.birth_ref_index = birth_ref_index
         person.death_ref_index = death_ref_index
+
+    def set_familysearch_person_status(self, person_handle, status, transaction=None):
+        """
+        Persist FamilySearch sync status for the given Person handle.
+
+        status must be a dict with any of these keys:
+            fsid
+            is_root
+            status_ts
+            confirmed_ts
+            gramps_modified_ts
+            fs_modified_ts
+            essential_conflict
+            conflict
+
+        Passing an empty dict removes the stored status row.
+        """
+        raise NotImplementedError
+
+    def delete_familysearch_person_status(self, person_handle, transaction=None):
+        """
+        Remove FamilySearch sync status for the given Person handle.
+        """
+        raise NotImplementedError

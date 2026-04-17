@@ -5,6 +5,7 @@
 # Copyright (C) 2010            Michiel D. Nauta
 # Copyright (C) 2010,2017,2024  Nick Hall
 # Copyright (C) 2011            Tim G L Lyons
+# Copyright (C) 2026            Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,6 +47,8 @@ from .personref import PersonRef
 from .primaryobj import PrimaryObject
 from .tagbase import TagBase
 from .urlbase import UrlBase
+from .fs.familysearchsync import FamilySearchSync
+from .fs.familysearchsyncbase import FamilySearchSyncBase
 
 _ = glocale.translation.gettext
 
@@ -64,6 +67,7 @@ class Person(
     AddressBase,
     UrlBase,
     LdsOrdBase,
+    FamilySearchSyncBase,
     PrimaryObject,
 ):
     """
@@ -104,6 +108,7 @@ class Person(
         AddressBase.__init__(self)
         UrlBase.__init__(self)
         LdsOrdBase.__init__(self)
+        FamilySearchSyncBase.__init__(self)
         self.primary_name = Name()
         self.family_list = []
         self.parent_family_list = []
@@ -165,6 +170,7 @@ class Person(
             TagBase.serialize(self),  # 18
             self.private,  # 19
             [pr.serialize() for pr in self.person_ref_list],  # 20
+            self.familysearch_sync.serialize(),  # 21
         )
 
     @classmethod
@@ -270,6 +276,7 @@ class Person(
                     "items": PersonRef.get_schema(),
                     "title": _("Person references"),
                 },
+                "familysearch_sync": FamilySearchSync.get_schema(),
             },
         }
 
@@ -304,6 +311,7 @@ class Person(
             tag_list,  # 18
             self.private,  # 19
             person_ref_list,  # 20
+            familysearch_sync,  # 21
         ) = data
 
         self.primary_name = Name()
@@ -319,6 +327,7 @@ class Person(
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         TagBase.unserialize(self, tag_list)
+        self.set_familysearch_sync(familysearch_sync)
         return self
 
     def get_object_state(self):
@@ -517,6 +526,7 @@ class Person(
             + self.event_ref_list
             + add_list
             + self.person_ref_list
+            + [self.familysearch_sync]
         )
 
     def get_citation_child_list(self):

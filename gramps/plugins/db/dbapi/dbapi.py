@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2015-2016,2024 Douglas S. Blank <doug.blank@gmail.com>
 # Copyright (C) 2016-2017      Nick Hall
+# Copyright (C) 2026           Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,8 +30,7 @@ Database API interface
 # -------------------------------------------------------------------------
 import logging
 import time
-
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+import copy
 
 # ------------------------------------------------------------------------
 #
@@ -41,6 +41,7 @@ from gramps.gen.db.dbconst import (
     DBLOGNAME,
     KEY_TO_CLASS_MAP,
     KEY_TO_NAME_MAP,
+    PERSON_KEY,
     REFERENCE_KEY,
     TXNADD,
     TXNDEL,
@@ -51,6 +52,7 @@ from gramps.gen.lib import (
     Citation,
     Event,
     Family,
+    FamilySearchSync,
     Media,
     Note,
     Person,
@@ -62,8 +64,35 @@ from gramps.gen.lib import (
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.db import DbTxn
+from gramps.gen.errors import HandleError
+
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
+
+_ = glocale.translation.gettext
+
+
+def _familysearch_status_from_raw_person_data(person_data):
+    """
+    Return compact FamilySearch status data from raw Person JSON data.
+    """
+    if not isinstance(person_data, dict):
+        return {}
+
+    sync_data = person_data.get("familysearch_sync")
+    if not isinstance(sync_data, dict):
+        return {}
+
+    return FamilySearchSync(sync_data).to_status_dict()
+
+
+def _familysearch_sync_data_from_status(status):
+    """
+    Return raw FamilySearch sync JSON data from compact status data.
+    """
+    return FamilySearchSync(status).serialize()
 
 
 # -------------------------------------------------------------------------
@@ -734,6 +763,20 @@ class DBAPI(DbGeneric):
                 [handle, self.serializer.data_to_string(data)],
             )
 
+    def _commit_familysearch_person_raw(self, handle, old_data, new_data, transaction):
+        """
+        Commit raw Person JSON after updating FamilySearch sync status.
+        """
+        self._commit_raw(new_data, PERSON_KEY)
+        if not transaction.batch:
+            transaction.add(
+                PERSON_KEY,
+                TXNUPD,
+                handle,
+                old_data,
+                copy.deepcopy(new_data),
+            )
+
     def _update_backlinks(self, obj, transaction):
         if not transaction.batch:
             # Find existing references
@@ -1206,3 +1249,84 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    def get_familysearch_person_status(self, person_handle, default=None):
+        """
+        Return FamilySearch sync status for the given Person handle.
+        """
+        try:
+            person_data = self.get_raw_person_data(person_handle)
+        except HandleError:
+            return {} if default is None else default
+
+        data = _familysearch_status_from_raw_person_data(person_data)
+        if not data:
+            return {} if default is None else default
+
+        return data
+
+    def set_familysearch_person_status(self, person_handle, status, transaction=None):
+        """
+        Persist FamilySearch sync status for the given Person handle.
+
+        Passing an empty dict clears the stored FamilySearch sync data.
+        """
+        if not person_handle:
+            return
+
+        if status is None:
+            status = {}
+        if not isinstance(status, dict):
+            raise TypeError("status must be a dict")
+
+        try:
+            person_data = self.get_raw_person_data(person_handle)
+        except HandleError:
+            return
+
+        if not status:
+            self.delete_familysearch_person_status(person_handle, transaction)
+            return
+
+        if not isinstance(person_data, dict):
+            return
+
+        old_data = copy.deepcopy(person_data)
+        person_data["familysearch_sync"] = _familysearch_sync_data_from_status(status)
+
+        if transaction is not None:
+            self._commit_familysearch_person_raw(
+                person_handle, old_data, person_data, transaction
+            )
+            return
+
+        with DbTxn(_("FamilySearch: status update"), self) as txn:
+            self._commit_familysearch_person_raw(
+                person_handle, old_data, person_data, txn
+            )
+
+    def delete_familysearch_person_status(self, person_handle, transaction=None):
+        """
+        Clear FamilySearch sync status for the given Person handle.
+        """
+        try:
+            person_data = self.get_raw_person_data(person_handle)
+        except HandleError:
+            return
+
+        if not isinstance(person_data, dict):
+            return
+
+        old_data = copy.deepcopy(person_data)
+        person_data["familysearch_sync"] = FamilySearchSync().serialize()
+
+        if transaction is not None:
+            self._commit_familysearch_person_raw(
+                person_handle, old_data, person_data, transaction
+            )
+            return
+
+        with DbTxn(_("FamilySearch: status update"), self) as txn:
+            self._commit_familysearch_person_raw(
+                person_handle, old_data, person_data, txn
+            )
