@@ -760,10 +760,8 @@ class GuiGramplet:
                             )
                     return True
 
-                elif link_type == "Cloud":
-                    if event.button == 1:  # left mouse
-                        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
-                            pass # TODO : create a default view for cloud
+                elif link_type == "None":
+                    # Link not clickable
                     return True
                 else:  # overzealous l10n while setting the link?
                     logging.warning(

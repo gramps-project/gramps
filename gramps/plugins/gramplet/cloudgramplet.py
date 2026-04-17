@@ -71,7 +71,7 @@ class CloudGramplet(Gramplet):
         self.value_name = "default_value_name"
         self.item_name = "default_item_name"
         self.preference_no_value = ""
-        self.link_type = "Cloud"
+        self.link_type = "None"
 
     def set_value_name(self,value_name):
         """What the cloud display. For a name cloud, value_name is 'name' """
