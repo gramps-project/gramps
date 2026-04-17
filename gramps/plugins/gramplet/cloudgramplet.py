@@ -70,6 +70,7 @@ class CloudGramplet(Gramplet):
         self.set_text(_("No Family Tree loaded."))
         self.value_name = "default_value_name"
         self.item_name = "default_item_name"
+        self.preference_no_value = ""
 
     def set_value_name(self,value_name):
         """What the cloud display. For a name cloud, value_name is 'name' """
@@ -78,6 +79,11 @@ class CloudGramplet(Gramplet):
     def set_item_name(self,item_name):
         """ What the cloud analyse. For a name cloud, value_name could ba 'person' """
         self.item_name = _(item_name)
+
+    def set_preference_no_value(self,preference_no_value):
+        """ When there is a config of preference to display when there are no values """
+        self.preference_no_value = preference_no_value
+        
 
     @abstractmethod
     def db_changed(self):
@@ -175,7 +181,10 @@ class CloudGramplet(Gramplet):
         self.set_text("")
         for value, count in selected_values:
             if len(value) == 0:
-                text = _(f"[Missing %s]") % self.value_name # TODO : How can I refactor that ? config.get("preferences.no-surname-text")  
+                if self.preference_no_value != "":
+                    text = config.get(self.preference_no_value)
+                else:
+                    text = _(f"[Missing %s]") % self.value_name
             else:
                 text = value
             size = make_tag_size(values_rank[value],curr_rank , mins=mins, maxs=maxs)
