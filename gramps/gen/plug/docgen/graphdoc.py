@@ -164,9 +164,8 @@ class GVOptions:
             _(
                 "Choose the font family. If international "
                 "characters don't show, use FreeSans font. "
-                "FreeSans is available from: "
-                "https://www.nongnu.org/freefont/"
-            )
+                "FreeSans is available from: {freefont_url}"
+            ).format(freefont_url="https://www.nongnu.org/freefont/")
         )
         menu.add_option(category, "font_family", font_family)
 

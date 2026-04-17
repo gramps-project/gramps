@@ -96,6 +96,10 @@ class EditUrl(EditSecondary):
             self.obj.get_path,
             self.db.readonly,
         )
+        tooltip = _(
+            "The internet address as needed to navigate to it, eg. {gramps_url}"
+        ).format(gramps_url="https://gramps-project.org")
+        self.top.get_object("url_addr").set_tooltip_text(tooltip)
 
         self.priv = PrivacyButton(
             self.top.get_object("priv"), self.obj, self.db.readonly

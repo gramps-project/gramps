@@ -2794,8 +2794,8 @@ class NavWebOptions(MenuReportOptions):
                 "the maps in your website for OpenStreetMap or Stamen maps"
                 "\nYou can change the value in the specified file."
                 " The option name to modify is openlayers_version."
-                "\nSee OLDER VERSIONS in https://openlayers.org/"
-            )
+                "\nSee OLDER VERSIONS in {openlayers_url}"
+            ).format(openlayers_url="https://openlayers.org/")
         )
         addopt("ol_version", self.__olv)
 
