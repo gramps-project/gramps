@@ -20,7 +20,6 @@
 # Python modules
 #
 # ------------------------------------------------------------------------
-from collections import defaultdict
 
 # ------------------------------------------------------------------------
 #
@@ -36,6 +35,8 @@ from gramps.plugins.gramplet.cloudgramplet import CloudGramplet
 #
 # ------------------------------------------------------------------------
 class SurnameCloudGramplet(CloudGramplet):
+    """Implementation of a Cloud gramplet for surnames"""
+
     def init(self):
         CloudGramplet.init(self)
         self.set_value_name("surname")

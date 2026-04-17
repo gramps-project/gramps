@@ -22,7 +22,6 @@
 # ------------------------------------------------------------------------
 
 from abc import abstractmethod
-from collections import defaultdict
 
 # ------------------------------------------------------------------------
 #
@@ -62,6 +61,10 @@ def make_tag_size(rank, total_rank, mins=8, maxs=20):
 #
 # ------------------------------------------------------------------------
 class CloudGramplet(Gramplet):
+    """A gramplet class that displays a list of values, with each value's size determined by how many times it appears in the database. 
+    They are displayed as clickable or non-clickable links depending on the information you want to display about them.
+    """
+
     def init(self):
         self.set_tooltip(_("Double-click surname for details"))
         self.top_size = 150  # will be overwritten in load
@@ -74,33 +77,33 @@ class CloudGramplet(Gramplet):
         self.link_type = "None"
 
     def set_value_name(self,value_name):
-        """What the cloud display. For a name cloud, value_name is 'name' """
+        """What the cloud displays. For a name cloud, `value_name` is "name" """
         self.value_name = _(value_name)
 
     def set_item_name(self,item_name):
-        """ What the cloud analyse. For a name cloud, value_name could ba 'person' """
+        """What the cloud analyzes. For a keyword cloud, the value of "value_name" could be "person." """
         self.item_name = _(item_name)
 
     def set_preference_no_value(self,preference_no_value):
-        """ When there is a config of preference to display when there are no values """
+        """When there is a default configuration to display if no values are provided"""
         self.preference_no_value = preference_no_value
 
     def set_link_type(self,link_type):
-        """ The type of the link a user double clic on a value """
+        """The type of link that appears when a user double-clicks on a value"""
         self.link_type = link_type
         
 
     @abstractmethod
     def db_changed(self):
-        """ Connect the cloud with db. 
+        """Connect the cloud with db. 
             See the exemple in surnamecloudgramplet.py 
         """
         pass
         
     @abstractmethod
     def get_items(self) -> list:
-        """How data can be acces for the cloud. Must return an iterator of (value ,linked_data).
-            See the exemple in surnamecloudgramplet.py 
+        """How to access data in the cloud. Must return an iterator of type (value, related_data).
+            See the example in surnamecloudgramplet.py
         """
         pass
 

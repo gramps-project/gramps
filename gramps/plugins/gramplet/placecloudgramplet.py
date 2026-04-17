@@ -33,6 +33,8 @@ from gramps.plugins.gramplet.cloudgramplet import CloudGramplet
 
 
 class PlaceCloudGramplet(CloudGramplet):
+    """Implementation of a Cloud gramplet for place name"""
+
     def init(self):
         CloudGramplet.init(self)
         self.set_value_name("place name")
