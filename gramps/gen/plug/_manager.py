@@ -557,11 +557,15 @@ class BasePluginManager:
                     continue
                 mod = self.load_plugin(pdata)
                 if mod:
+                    sniff_func = None
+                    if pdata.sniff_function:
+                        sniff_func = getattr(mod, pdata.sniff_function, None)
                     imp = ImportPlugin(
                         name=pdata.name,
                         description=pdata.description,
                         import_function=getattr(mod, pdata.import_function),
                         extension=pdata.extension,
+                        sniff_function=sniff_func,
                     )
                     self.__import_plugins.append(imp)
 

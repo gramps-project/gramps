@@ -211,6 +211,7 @@ gramps/gen/plug/_docgenplugin.py
 gramps/gen/plug/_export.py
 gramps/gen/plug/_import.py
 gramps/gen/plug/_plugin.py
+gramps/gen/plug/test/sniff_function_test.py
 #
 # gen.plug.docbackend
 #

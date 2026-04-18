@@ -384,6 +384,11 @@ class PluginData:
     .. attribute:: import_function
        Function that starts an import
 
+    .. attribute:: sniff_function
+       Optional function that returns True if the plugin can handle the given
+       file, used to distinguish between multiple importers for the same
+       extension (e.g. GEDCOM 5.5 vs GEDCOM 7.0).
+
     Attributes for GRAMPLET plugins
 
     .. attribute:: gramplet
@@ -507,6 +512,7 @@ class PluginData:
         self._export_options_title = ""
         # IMPORT attr
         self._import_function = None
+        self._sniff_function = None
         # GRAMPLET attr
         self._gramplet = None
         self._height = 200
@@ -999,6 +1005,31 @@ class PluginData:
         if self._ptype != IMPORT:
             raise ValueError("import_function may only be set for IMPORT plugins")
         self._import_function = import_function
+
+    @property
+    def sniff_function(self):
+        """
+        Return the name of the sniff function for this import plugin.
+
+        :returns: The name of the sniff function, or ``None`` if not set.
+        :rtype: str | None
+        """
+        return self._sniff_function
+
+    @sniff_function.setter
+    def sniff_function(self, sniff_function: str) -> None:
+        """
+        Set the name of the sniff function for this import plugin.
+
+        :param sniff_function: The name of a callable in the plugin module
+            that accepts a filename and returns ``True`` if this plugin
+            should handle the file. Used when multiple importers share the
+            same extension (e.g. GEDCOM 5.5 vs GEDCOM 7.0).
+        :type sniff_function: str
+        """
+        if self._ptype != IMPORT:
+            raise ValueError("sniff_function may only be set for IMPORT plugins")
+        self._sniff_function = sniff_function
 
     # GRAMPLET attributes
     @property

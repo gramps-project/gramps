@@ -147,6 +147,43 @@ def _split_options(options_str):
     return options_str_dict
 
 
+def _choose_import_plugin(plugins, extension, filename):
+    """
+    Return the best import plugin for *filename* among *plugins*.
+
+    Plugins that declare a ``sniff_function`` are tested first; the first one
+    whose sniff function returns ``True`` for *filename* is returned.  If none
+    matches, the first plugin whose extension equals *extension* and that has
+    no sniff function is returned as a fallback.  Returns ``None`` when no
+    suitable plugin is found.
+
+    This allows multiple importers to share the same file extension while each
+    handling a distinct file version (e.g. GEDCOM 5.5 vs GEDCOM 7.0).
+
+    :param plugins: list of :class:`~gramps.gen.plug.ImportPlugin` instances
+    :type plugins: list
+    :param extension: lower-case file extension without leading dot
+    :type extension: str
+    :param filename: full path of the file to import
+    :type filename: str
+    :returns: the chosen plugin, or ``None``
+    :rtype: :class:`~gramps.gen.plug.ImportPlugin` | None
+    """
+    candidates = [p for p in plugins if extension == p.get_extension()]
+    for plugin in candidates:
+        sniff = plugin.get_sniff_function()
+        if sniff is not None:
+            try:
+                if sniff(filename):
+                    return plugin
+            except Exception:  # pylint: disable=broad-except
+                pass
+    for plugin in candidates:
+        if plugin.get_sniff_function() is None:
+            return plugin
+    return None
+
+
 # -------------------------------------------------------------------------
 # ArgHandler
 # -------------------------------------------------------------------------
@@ -595,10 +632,11 @@ class ArgHandler:
         Try to import filename using the family_tree_format.
         """
         pmgr = BasePluginManager.get_instance()
-        for plugin in pmgr.get_import_plugins():
-            if family_tree_format == plugin.get_extension():
-                import_function = plugin.get_import_function()
-                import_function(self.dbstate.db, filename, self.user)
+        plugin = _choose_import_plugin(
+            pmgr.get_import_plugins(), family_tree_format, filename
+        )
+        if plugin is not None:
+            plugin.get_import_function()(self.dbstate.db, filename, self.user)
 
     # -------------------------------------------------------------------------
     #
