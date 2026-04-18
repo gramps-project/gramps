@@ -127,10 +127,13 @@ class SidePanelManagerTest(unittest.TestCase):
 
     def test_add_two_panels_shows_selector(self):
         """add() shows the selector combo when a second panel is added."""
-        self.manager.stack.get_children.return_value = [MagicMock(), MagicMock()]
-        panel = MagicMock()
-        panel.get_top.return_value = MagicMock()
-        self.manager.add("plugin.second", "Second", panel, END)
+        panel_a = MagicMock()
+        panel_a.get_top.return_value = MagicMock()
+        self.manager.add("plugin.first", "First", panel_a, END)
+
+        panel_b = MagicMock()
+        panel_b.get_top.return_value = MagicMock()
+        self.manager.add("plugin.second", "Second", panel_b, END)
         self.manager.select_button.show_all.assert_called()
 
     def test_add_uses_plugin_id_as_page_key(self):
@@ -143,7 +146,7 @@ class SidePanelManagerTest(unittest.TestCase):
         self.assertNotIn("Display Title", self.manager.pages)
 
     def test_cb_switch_page_deactivates_old(self):
-        """cb_switch_page calls inactive() on the previously active panel."""
+        """cb_switch_page calls inactive() on the old panel and activates new."""
         old_panel = MagicMock()
         new_panel = MagicMock()
         self.manager.pages = {"plugin.old": old_panel, "plugin.new": new_panel}
@@ -154,6 +157,17 @@ class SidePanelManagerTest(unittest.TestCase):
         self.manager.cb_switch_page(self.manager.stack, MagicMock())
         old_panel.inactive.assert_called_once()
         new_panel.active.assert_called_once_with(0, 1)
+        new_panel.view_changed.assert_called_once_with(0, 1)
+
+    def test_cb_switch_page_missing_old_page_no_error(self):
+        """cb_switch_page does not raise if old_page key is absent from pages."""
+        new_panel = MagicMock()
+        self.manager.pages = {"plugin.new": new_panel}
+        self.manager._active_page = "plugin.stale"  # no longer in pages
+        self.manager.active_cat = 0
+        self.manager.active_view = 0
+        self.manager.stack.get_visible_child_name.return_value = "plugin.new"
+        self.manager.cb_switch_page(self.manager.stack, MagicMock())  # must not raise
 
     def test_cb_switch_page_none_title(self):
         """cb_switch_page returns early when visible child name is None."""
@@ -190,9 +204,6 @@ class BaseSidePanelTest(unittest.TestCase):
         class _ConcretePanel(BaseSidePanel):
             """Minimal concrete subclass for testing optional default methods."""
 
-            def __init__(self, dbstate, uistate):
-                pass
-
             def get_top(self):
                 pass
 
@@ -203,18 +214,23 @@ class BaseSidePanelTest(unittest.TestCase):
         self.ConcretePanel = _ConcretePanel
 
     def test_cannot_instantiate_directly(self):
-        """BaseSidePanel cannot be instantiated — it has abstract methods."""
+        """BaseSidePanel cannot be instantiated — get_top and view_changed are abstract."""
         with self.assertRaises(TypeError):
             self.BaseSidePanel(MagicMock(), MagicMock())
+
+    def test_init_stores_dbstate_and_uistate(self):
+        """BaseSidePanel.__init__ stores dbstate and uistate on the instance."""
+        dbstate = MagicMock()
+        uistate = MagicMock()
+        panel = self.ConcretePanel(dbstate, uistate)
+        self.assertIs(panel.dbstate, dbstate)
+        self.assertIs(panel.uistate, uistate)
 
     def test_subclass_missing_get_top_raises(self):
         """Subclass that omits get_top cannot be instantiated."""
         BaseSidePanel = self.BaseSidePanel
 
         class _Missing(BaseSidePanel):
-            def __init__(self, dbstate, uistate):
-                pass
-
             def view_changed(self, cat_num, view_num):
                 pass
 
@@ -226,9 +242,6 @@ class BaseSidePanelTest(unittest.TestCase):
         BaseSidePanel = self.BaseSidePanel
 
         class _Missing(BaseSidePanel):
-            def __init__(self, dbstate, uistate):
-                pass
-
             def get_top(self):
                 pass
 
