@@ -683,14 +683,19 @@ class ViewManager(CLIManager):
 
             handler_id = self.right_hpane.connect("size-allocate", _set_panel_pos)
 
-            def _save_panel_width(pane):
-                config.set("interface.side-panel-width", pane.get_position())
-                config.save()
+            _last_saved_pos = [-1]
 
+            def _save_panel_width(pane, _pspec):
+                pos = pane.get_position()
+                if pos != _last_saved_pos[0]:
+                    _last_saved_pos[0] = pos
+                    config.set("interface.side-panel-width", pos)
+                    config.save()
+
+            self.right_hpane.connect("notify::position", _save_panel_width)
             self.right_hpane.connect(
-                "button-release-event", lambda pane, _: _save_panel_width(pane)
+                "destroy", lambda pane: _save_panel_width(pane, None)
             )
-            self.right_hpane.connect("destroy", _save_panel_width)
         else:
             action = self.uimanager.get_action(self.fileactions, "SidePanel")
             if action:

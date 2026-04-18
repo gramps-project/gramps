@@ -200,9 +200,11 @@ class SidePanelManager:
                 continue
             panel_class = getattr(module, pdata.sidepanelclass)
             panel_page = panel_class(dbstate, uistate)
-            self.add(pdata.id, pdata.panel_label, panel_page, pdata.order)
+            label = pdata.panel_label or pdata.name
+            self.add(pdata.id, label, panel_page, pdata.order)
 
-        dbstate.connect("database-changed", self._on_database_changed)
+        if self.pages:
+            dbstate.connect("database-changed", self._on_database_changed)
 
         saved_page = config.get("interface.side-panel-page")
         if saved_page and saved_page in self.pages:
@@ -275,9 +277,8 @@ class SidePanelManager:
         self.active_cat = cat_num
         self.active_view = view_num
 
-        try:
-            panel = self.pages[self.stack.get_visible_child_name()]
-        except KeyError:
+        panel = self.pages.get(self.stack.get_visible_child_name())
+        if panel is None:
             return
         panel.view_changed(cat_num, view_num)
 
