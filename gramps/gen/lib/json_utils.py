@@ -85,6 +85,18 @@ class DataDict(dict):
             # And return the attr from the object:
             return getattr(self["_object"], key)
 
+    def __setitem__(self, key, value):
+        super().__setitem__(key, value)
+        if key != "_object":
+            # Invalidate cached object since data has changed
+            super().pop("_object", None)
+
+    def __setattr__(self, key, value):
+        if key.startswith("_"):
+            object.__setattr__(self, key, value)
+        else:
+            self[key] = value
+
 
 class DataList(list):
     """

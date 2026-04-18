@@ -28,24 +28,11 @@ Proxy class for the Gramps databases. Filter out all living people.
 #
 # -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
-from ..lib import (
-    Date,
-    Person,
-    Name,
-    Surname,
-    NameOriginType,
-    Family,
-    Source,
-    Citation,
-    Event,
-    Media,
-    Place,
-    Repository,
-    Note,
-    Tag,
-)
+from ..lib import Date, Name, Surname, NameOriginType
+from ..lib.json_utils import object_to_data, DataDict
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
+from ..types import AnyHandle, FamilyHandle, PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -87,20 +74,23 @@ class LivingProxyDb(ProxyDbBase):
             LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY will remove all
                 information but leave the entire name intact.
         :type mode: int
-        :param current_year: The current year to use for living determination.
-         If None is supplied, the current year will be found from the system.
-        :type current_year: int or None
+        :param current_year: The reference point for living determination.
+         Pass an int for a year-only date, or a :class:`.Date` object for a
+         fully-specified date.  If None, Today() is used.
+        :type current_year: int, :class:`.Date`, or None
         :param years_after_death: The number of years after a person's death to
                                   still consider them living.
         :type years_after_death: int
-        If llocale is passed in (a :class:`.GrampsLocale`), then (insofar as
-        possible) the translated values will be returned instead.
-        :param llocale: allow deferred translation of "[Living]"
-        :type llocale: a :class:`.GrampsLocale` instance
+        :param llocale: allow deferred translation of "[Living]"; if passed,
+                        the translated values will be returned instead of the
+                        default locale strings.
+        :type llocale: :class:`.GrampsLocale`
         """
         ProxyDbBase.__init__(self, dbase)
         self.mode = mode
-        if current_year is not None:
+        if isinstance(current_year, Date):
+            self.current_date = current_year
+        elif current_year is not None:
             self.current_date = Date()
             self.current_date.set_year(current_year)
         else:
@@ -110,249 +100,214 @@ class LivingProxyDb(ProxyDbBase):
         self._p_f_n = self._(config.get("preferences.private-given-text"))
         self._p_s_n = self._(config.get("preferences.private-surname-text"))
 
-    def get_person_from_handle(self, handle):
+    def include_person(self, handle: PersonHandle) -> bool:
         """
-        Finds a Person in the database from the passed Gramps ID.
-        If no such Person exists, None is returned.
-        """
-        person = self.db.get_person_from_handle(handle)
-        if person and self.__is_living(person):
-            if self.mode == self.MODE_EXCLUDE_ALL:
-                person = None
-            else:
-                person = self.__restrict_person(person)
-        return person
+        Exclude living people when mode is MODE_EXCLUDE_ALL.
 
-    def get_family_from_handle(self, handle):
-        """
-        Finds a Family in the database from the passed handle.
-        If no such Family exists, None is returned.
-        """
-        family = self.db.get_family_from_handle(handle)
-        family = self.__remove_living_from_family(family)
-        return family
+        In all other modes every person handle is included (sanitize_person
+        handles the data restriction).
 
-    def iter_people(self):
+        :param handle: database handle of the Person to test
+        :type handle: PersonHandle
+        :returns: False only in MODE_EXCLUDE_ALL when the person is living
+        :rtype: bool
         """
-        Protected version of iter_people
-        """
-        for person in filter(None, self.db.iter_people()):
-            if self.__is_living(person):
-                if self.mode == self.MODE_EXCLUDE_ALL:
-                    continue
-                else:
-                    yield self.__restrict_person(person)
-            else:
-                yield person
-
-    def get_person_from_gramps_id(self, val):
-        """
-        Finds a Person in the database from the passed Gramps ID.
-        If no such Person exists, None is returned.
-        """
-        person = self.db.get_person_from_gramps_id(val)
-        if person and self.__is_living(person):
-            if self.mode == self.MODE_EXCLUDE_ALL:
-                return None
-            else:
-                return self.__restrict_person(person)
-        else:
-            return person
-
-    def get_family_from_gramps_id(self, val):
-        """
-        Finds a Family in the database from the passed Gramps ID.
-        If no such Family exists, None is returned.
-        """
-        family = self.db.get_family_from_gramps_id(val)
-        family = self.__remove_living_from_family(family)
-        return family
-
-    def include_person(self, handle):
+        if not self.db.has_person_handle(handle):
+            return False
         if self.mode == self.MODE_EXCLUDE_ALL:
             person = self.get_unfiltered_person(handle)
             if person and self.__is_living(person):
                 return False
         return True
 
+    def sanitize_person(self, data: DataDict) -> DataDict:
+        """
+        For modes 1-3, replace name data with restricted versions.
+        Also clear all non-name data for living people.
+
+        :param data: raw DataDict for the Person, already cross-ref-filtered
+        :type data: DataDict
+        :returns: the sanitized DataDict with restricted or cleared fields
+        :rtype: DataDict
+        """
+        if self.mode == self.MODE_INCLUDE_ALL:
+            return data
+
+        # Check if this person is living using the unfiltered person
+        person = self.get_unfiltered_person(data.handle)
+        if not person or not self.__is_living(person):
+            return data
+
+        # Person is living — restrict data based on mode
+        old_name_data = data.primary_name
+        new_name = Name()
+
+        new_name.set_group_as(old_name_data.group_as)
+        new_name.set_sort_as(old_name_data.sort_as)
+        new_name.set_display_as(old_name_data.display_as)
+        new_name.set_type(old_name_data.type)
+
+        if self.mode in (
+            self.MODE_INCLUDE_LAST_NAME_ONLY,
+            self.MODE_REPLACE_COMPLETE_NAME,
+        ):
+            new_name.set_first_name(self._p_f_n)
+            new_name.set_title("")
+        else:  # MODE_INCLUDE_FULL_NAME_ONLY
+            new_name.set_first_name(old_name_data.first_name)
+            new_name.set_suffix(old_name_data.suffix)
+            new_name.set_title(old_name_data.title)
+            new_name.set_call_name(old_name_data.call)
+            new_name.set_nick_name(old_name_data.nick)
+            new_name.set_family_nick_name(old_name_data.famnick)
+
+        if self.mode == self.MODE_REPLACE_COMPLETE_NAME:
+            surname = Surname()
+            surname.set_surname(self._p_s_n)
+            new_name.set_surname_list([surname])
+        else:
+            surns = []
+            for surn_data in old_name_data.surname_list:
+                new_surn = Surname()
+                new_surn.set_surname(surn_data.surname)
+                new_surn.set_prefix(surn_data.prefix)
+                new_surn.set_connector(surn_data.connector)
+                new_surn.set_origintype(surn_data.origintype)
+                new_surn.set_primary(surn_data.primary)
+                if surn_data.origintype.value in [
+                    NameOriginType.PATRONYMIC,
+                    NameOriginType.MATRONYMIC,
+                ]:
+                    new_surn.set_surname(self._p_s_n)
+                surns.append(new_surn)
+            new_name.set_surname_list(surns)
+
+        data.primary_name = object_to_data(new_name)
+
+        # Clear all non-name data for living people
+        data.alternate_names = []
+        data.event_ref_list = []
+        data.address_list = []
+        data.attribute_list = []
+        data.urls = []
+        data.media_list = []
+        data.lds_ord_list = []
+        data.citation_list = []
+        data.note_list = []
+        data.person_ref_list = []
+
+        return data
+
+    def get_raw_family_data(self, handle: FamilyHandle) -> DataDict:
+        """
+        Override to additionally clear family events when any parent is living.
+
+        :param handle: database handle of the Family
+        :type handle: FamilyHandle
+        :returns: filtered family DataDict with events cleared if any parent is living
+        :rtype: DataDict
+        """
+        data = super().get_raw_family_data(handle)
+
+        if self.mode == self.MODE_INCLUDE_ALL:
+            return data
+
+        # Check original (unfiltered) family for living parents
+        orig = self.basedb.get_raw_family_data(handle)
+        if orig is None:
+            return data
+
+        parent_is_living = False
+        if orig.father_handle:
+            father = self.basedb.get_person_from_handle(orig.father_handle)
+            if father and self.__is_living(father):
+                parent_is_living = True
+        if orig.mother_handle:
+            mother = self.basedb.get_person_from_handle(orig.mother_handle)
+            if mother and self.__is_living(mother):
+                parent_is_living = True
+
+        if parent_is_living:
+            data.event_ref_list = []
+
+        return data
+
     def get_default_person(self):
-        """returns the default Person of the database"""
+        """
+        Return the default Person of the database, or None if the default
+        person is living and the mode excludes living people.
+
+        :returns: the default Person object, or None
+        """
         person_handle = self.db.get_default_handle()
         if person_handle:
             return self.get_person_from_handle(person_handle)
         return None
 
-    def get_default_handle(self):
-        """returns the default Person of the database"""
+    def get_default_handle(self) -> PersonHandle | None:
+        """
+        Return the handle of the default Person, or None if no default person
+        exists or the default person is not visible through this proxy.
+
+        :returns: the default person's handle, or None
+        :rtype: PersonHandle | None
+        """
         person_handle = self.db.get_default_handle()
-        if person_handle and self.get_person_from_handle(person_handle):
+        if person_handle and self.has_person_handle(person_handle):
             return person_handle
         return None
 
-    def has_person_handle(self, handle):
-        """
-        returns True if the handle exists in the current Person database.
-        """
-        if self.get_person_from_handle(handle):
-            return True
-        return False
-
-    def find_backlink_handles(self, handle, include_classes=None):
+    def find_backlink_handles(self, handle: AnyHandle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
-        Returns an iterator over a list of (class_name, handle) tuples.
+        Returns an iterator over (class_name, handle) tuples, filtering out
+        references from living people or families with living parents.
 
-        :param handle: handle of the object to search for.
-        :type handle: database handle
-        :param include_classes: list of class names to include in the results.
-                                Default: None means include all classes.
-        :type include_classes: list of class names
-
-        This default implementation does a sequential scan through all
-        the primary object databases and is very slow. Backends can
-        override this method to provide much faster implementations that
-        make use of additional capabilities of the backend.
-
-        Note that this is a generator function, it returns a iterator for
-        use in loops. If you want a list of the results use::
-
-        >    result_list = list(find_backlink_handles(handle))
+        :param handle: database handle of the object to find back-links for
+        :type handle: AnyHandle
+        :param include_classes: if given, only yield handles for these classes
+        :type include_classes: list[str] | None
+        :returns: iterator over (class_name, handle) tuples
+        :rtype: iterator
         """
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
-        for class_name, handle in handle_itr:
+        for class_name, ref_handle in handle_itr:
             if self.mode == self.MODE_INCLUDE_ALL:
-                yield (class_name, handle)
+                yield (class_name, ref_handle)
             elif class_name == "Person":
-                ## Don't get backlinks to living people at all
-                person = self.db.get_person_from_handle(handle)
+                person = self.db.get_person_from_handle(ref_handle)
                 if person and not self.__is_living(person):
-                    yield (class_name, handle)
+                    yield (class_name, ref_handle)
             elif class_name == "Family":
+                family = self.db.get_family_from_handle(ref_handle)
                 father = mother = None
-                family = self.db.get_family_from_handle(handle)
-                father_handle = family.get_father_handle()
-                mother_handle = family.get_mother_handle()
-                if father_handle:
-                    father = self.db.get_person_from_handle(father_handle)
-                if mother_handle:
-                    mother = self.db.get_person_from_handle(mother_handle)
+                if family.father_handle:
+                    father = self.db.get_person_from_handle(family.father_handle)
+                if family.mother_handle:
+                    mother = self.db.get_person_from_handle(family.mother_handle)
                 father_not_living = father and not self.__is_living(father)
                 mother_not_living = mother and not self.__is_living(mother)
                 if (
                     (father is None and mother is None)
-                    or (father is None and mother_not_living)  # shouldn't happen
-                    or (mother is None and father_not_living)  # could
-                    or (father_not_living and mother_not_living)  # could  # could
+                    or (father is None and mother_not_living)
+                    or (mother is None and father_not_living)
+                    or (father_not_living and mother_not_living)
                 ):
-                    yield (class_name, handle)
+                    yield (class_name, ref_handle)
             else:
-                yield (class_name, handle)
+                yield (class_name, ref_handle)
 
-    def __is_living(self, person):
+    def __is_living(self, person) -> bool:
         """
-        Check if a person is considered living.
-        Returns True if the person is considered living.
-        Returns False if the person is not considered living.
+        Check if a person is considered living using probably_alive logic.
+
+        :param person: the Person object to test
+        :returns: True if the person is considered living
+        :rtype: bool
         """
         from ..utils.alive import probably_alive
 
-        person_handle = person.get_handle()
-        unfil_person = self.get_unfiltered_person(person_handle)
+        unfil_person = self.get_unfiltered_person(person.handle)
         return probably_alive(
             unfil_person, self.db, self.current_date, self.years_after_death
         )
-
-    def __remove_living_from_family(self, family):
-        """
-        Remove information from a family that pertains to living people.
-        Returns a family instance with information about living people removed.
-        Returns None if family is None.
-        """
-        if family is None:
-            return None
-
-        parent_is_living = False
-
-        father_handle = family.get_father_handle()
-        if father_handle:
-            father = self.db.get_person_from_handle(father_handle)
-            if father and self.__is_living(father):
-                parent_is_living = True
-                if self.mode == self.MODE_EXCLUDE_ALL:
-                    family.set_father_handle(None)
-
-        mother_handle = family.get_mother_handle()
-        if mother_handle:
-            mother = self.db.get_person_from_handle(mother_handle)
-            if mother and self.__is_living(mother):
-                parent_is_living = True
-                if self.mode == self.MODE_EXCLUDE_ALL:
-                    family.set_mother_handle(None)
-
-        if parent_is_living:
-            # Clear all events for families where a parent is living.
-            family.set_event_ref_list([])
-
-        if self.mode == self.MODE_EXCLUDE_ALL:
-            for child_ref in family.get_child_ref_list():
-                child_handle = child_ref.get_reference_handle()
-                child = self.db.get_person_from_handle(child_handle)
-                if child and self.__is_living(child):
-                    family.remove_child_ref(child_ref)
-
-        return family
-
-    def __restrict_person(self, person):
-        """
-        Remove information from a person and replace the first name with
-        "[Living]" or what has been set in Preferences -> Text.
-        """
-        new_person = Person()
-        new_name = Name()
-        old_name = person.get_primary_name()
-
-        new_name.set_group_as(old_name.get_group_as())
-        new_name.set_sort_as(old_name.get_sort_as())
-        new_name.set_display_as(old_name.get_display_as())
-        new_name.set_type(old_name.get_type())
-        if (
-            self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY
-            or self.mode == self.MODE_REPLACE_COMPLETE_NAME
-        ):
-            new_name.set_first_name(self._p_f_n)
-            new_name.set_title("")
-        else:  # self.mode == self.MODE_INCLUDE_FULL_NAME_ONLY
-            new_name.set_first_name(old_name.get_first_name())
-            new_name.set_suffix(old_name.get_suffix())
-            new_name.set_title(old_name.get_title())
-            new_name.set_call_name(old_name.get_call_name())
-            new_name.set_nick_name(old_name.get_nick_name())
-            new_name.set_family_nick_name(old_name.get_family_nick_name())
-
-        surnlst = []
-        if self.mode == self.MODE_REPLACE_COMPLETE_NAME:
-            surname = Surname(source=old_name.get_primary_surname())
-            surname.set_surname(self._p_s_n)
-            surnlst.append(surname)
-        else:
-            for surn in old_name.get_surname_list():
-                surname = Surname(source=surn)
-                if int(surname.origintype) in [
-                    NameOriginType.PATRONYMIC,
-                    NameOriginType.MATRONYMIC,
-                ]:
-                    surname.set_surname(self._p_s_n)
-                surnlst.append(surname)
-
-        new_name.set_surname_list(surnlst)
-        new_person.set_primary_name(new_name)
-        new_person.set_privacy(person.get_privacy())
-        new_person.set_gender(person.get_gender())
-        new_person.set_gramps_id(person.get_gramps_id())
-        new_person.set_handle(person.get_handle())
-        new_person.set_change_time(person.get_change_time())
-        new_person.set_family_handle_list(person.get_family_handle_list())
-        new_person.set_parent_family_handle_list(person.get_parent_family_handle_list())
-        new_person.set_tag_list(person.get_tag_list())
-
-        return new_person

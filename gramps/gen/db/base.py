@@ -987,6 +987,19 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def is_filter_override(self, table, filter_name):
+        """
+        Return True if the database has a native (SQL) implementation for the
+        named filter on the given table, False otherwise.
+
+        Proxy databases always return False: filtering is applied by building
+        a precomputed handle set against the wrapped database (e.g. in
+        FilterProxyDb.__init__), not by pushing the filter into a SQL engine.
+        Callers should use filter.apply() rather than relying on the backend
+        to handle it natively.  Non-SQL backends also return False.
+        """
+        return False
+
     def get_researcher(self):
         """
         Return the Researcher instance, providing information about the owner
