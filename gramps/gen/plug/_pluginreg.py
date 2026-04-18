@@ -299,7 +299,10 @@ class PluginData:
        The URL where documentation for the plugin can be found
     .. attribute:: requires_mod
        A list of required modules that should be importable using the python
-       `import` statement.
+       `import` statement.  Each entry may be either a plain string (the
+       import name) or a ``(import_name, pip_spec)`` tuple where *pip_spec*
+       is the pip package name with an optional version constraint, e.g.
+       ``("gramps_gedcom7", "gramps-gedcom7>=1.0")``.
     .. attribute:: requires_gi
        A list of (module, version) tuples that specify required modules that
        are reuired to be loaded via the GObject introspection system.

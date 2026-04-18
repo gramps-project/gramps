@@ -314,6 +314,7 @@ gramps/gen/utils/test/file_test.py
 gramps/gen/utils/test/grampslocale_test.py
 gramps/gen/utils/test/keyword_test.py
 gramps/gen/utils/test/place_test.py
+gramps/gen/utils/test/requirements_test.py
 #
 # gui - GUI code
 #

@@ -41,20 +41,47 @@ _ = glocale.translation.sgettext
 # Requirements
 #
 # -------------------------------------------------------------------------
+def _mod_entry(entry: str | tuple[str, str]) -> tuple[str, str]:
+    """
+    Normalise a requires_mod / rm list entry.
+
+    Accepted forms::
+
+      "import_name"                         ->  ("import_name", "import_name")
+      ("import_name", "pip-package>=1.0")   ->  ("import_name", "pip-package>=1.0")
+
+    :param entry: Either a plain import name string or a
+        ``(import_name, pip_spec)`` tuple.
+    :type entry: str | tuple[str, str]
+    :returns: A ``(import_name, pip_spec)`` tuple.
+    :rtype: tuple[str, str]
+    """
+    if isinstance(entry, str):
+        return (entry, entry)
+    return (entry[0], entry[1])
+
+
 class Requirements:
     def __init__(self):
         self.mod_list = []
         self.gi_list = []
         self.exe_list = []
 
-    def check_mod(self, module):
+    def check_mod(self, entry: str | tuple[str, str]) -> bool:
         """
         Check to see if a given module is available.
+
+        :param entry: Either a plain import name string or a
+            ``(import_name, pip_spec)`` tuple.
+        :type entry: str | tuple[str, str]
+        :returns: ``True`` if the module can be imported, ``False`` otherwise.
+        :rtype: bool
         """
-        if module in self.mod_list:
+        import_name, _pip_spec = _mod_entry(entry)
+        if import_name in self.mod_list:
             return True
-        if find_spec(module) is not None:
-            self.mod_list.append(module)
+        if find_spec(import_name) is not None:
+            self.mod_list.append(import_name)
             return True
         else:
             return False
@@ -132,15 +159,22 @@ class Requirements:
         """
         return self.check(plugin.requires_gi, plugin.requires_exe, plugin.requires_mod)
 
-    def install(self, addon):
+    def install(self, addon: dict) -> list[str]:
         """
-        Return a list of modules required to be installed.
+        Return a list of pip specs for modules that are not yet installed.
+
+        :param addon: Addon metadata dict, optionally containing an ``"rm"``
+            key whose value is a list of requires_mod entries.
+        :type addon: dict
+        :returns: Pip install specs for any missing modules.
+        :rtype: list[str]
         """
         install_list = []
         if "rm" in addon:
-            for module in addon.get("rm"):
-                if not self.check_mod(module):
-                    install_list.append(module)
+            for entry in addon.get("rm", []):
+                if not self.check_mod(entry):
+                    _import_name, pip_spec = _mod_entry(entry)
+                    install_list.append(pip_spec)
         return install_list
 
     def info(self, addon):
@@ -151,9 +185,15 @@ class Requirements:
         if "rm" in addon:
             info.append(_("Python modules"))
             table = []
-            for module in addon.get("rm"):
-                result = self.check_mod(module)
-                table.append([module, tick_cross(result)])
+            for entry in addon.get("rm"):
+                import_name, pip_spec = _mod_entry(entry)
+                label = (
+                    import_name
+                    if import_name == pip_spec
+                    else f"{import_name} ({pip_spec})"
+                )
+                result = self.check_mod(entry)
+                table.append([label, tick_cross(result)])
             info.append(table)
         if "rg" in addon:
             info.append(_("GObject introspection modules"))
