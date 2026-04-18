@@ -214,9 +214,28 @@ def urlopen_maybe_no_check_cert(url):
     return fptr
 
 
-def get_addons(project, url):
+#: Fields that every entry in an addon listing JSON file must provide.
+_ADDON_LISTING_REQUIRED_FIELDS = ("i", "n", "v", "d", "t", "z")
+
+
+def get_addons(project: str, url: str) -> list[dict]:
     """
-    Get addons
+    Fetch and parse the addon listing JSON for a single addon *project*.
+
+    The listing is expected to be a JSON array of objects, each describing
+    one addon with at least the keys in
+    :data:`_ADDON_LISTING_REQUIRED_FIELDS`. A malformed listing, an invalid
+    top-level structure, or individual records missing required fields are
+    logged and skipped so the plugin manager UI never crashes on a bad
+    server response.
+
+    :param project: The identifier of the addon project being queried.
+    :type project: str
+    :param url: The base URL of the addon project's listing repository.
+    :type url: str
+    :returns: A list of addon-description dictionaries; empty if the
+              listing could not be fetched or was not a valid JSON array.
+    :rtype: list[dict]
     """
     LOG.debug("Checking for updated addons...")
     if not url.startswith(("http://", "https://", "file://")):
@@ -225,43 +244,79 @@ def get_addons(project, url):
     langs.append("en")
     # now we have a list of languages to try:
     fptr = None
+    addon_url = None
     for lang in langs:
         addon_url = f"{url}/listings/addons-{lang}.json"
         LOG.debug("   trying: %s", addon_url)
         try:
             fptr = urlopen_maybe_no_check_cert(addon_url)
-        except:
+        except Exception:
             try:
                 addon_url = f"{url}/listings/addons-{lang[:2]}.json"
                 fptr = urlopen_maybe_no_check_cert(addon_url)
-            except Exception as err:  # some error
+            except Exception as err:
                 LOG.warning(
-                    "Failed to open addon metadata for %s %s: %s", lang, addon_url, err
+                    "Failed to open addon metadata for %s %s: %s",
+                    lang,
+                    addon_url,
+                    err,
                 )
                 fptr = None
         if fptr and (fptr.getcode() == 200 or fptr.file):
             break
 
-    addon_list = []
-    if fptr and (fptr.getcode() == 200 or fptr.file):
-        addon_list = json.load(fptr)
-        for plugin_dict in addon_list:
-            if "a" not in plugin_dict:
-                plugin_dict["a"] = 0
-            if "s" not in plugin_dict:
-                plugin_dict["s"] = 0
-            if "h" not in plugin_dict:
-                plugin_dict["h"] = ""
-            plugin_dict["_p"] = project
-            plugin_dict["_u"] = url
-            pmgr = BasePluginManager.get_instance()
-            plugin = pmgr.get_plugin(plugin_dict["i"])
-            if plugin:
-                plugin_dict["_v"] = plugin.version
-    else:
+    if not fptr or (fptr.getcode() != 200 and not fptr.file):
         LOG.debug("Checking Addons Failed")
-    LOG.debug("Done checking!")
+        LOG.debug("Done checking!")
+        return []
 
+    try:
+        raw_listing = json.load(fptr)
+    except (json.JSONDecodeError, OSError, UnicodeDecodeError) as err:
+        LOG.error("Addon listing from %s is not valid JSON: %s", addon_url, err)
+        return []
+
+    if not isinstance(raw_listing, list):
+        LOG.error(
+            "Addon listing from %s is not a JSON array (got %s)",
+            addon_url,
+            type(raw_listing).__name__,
+        )
+        return []
+
+    pmgr = BasePluginManager.get_instance()
+    addon_list = []
+    for index, plugin_dict in enumerate(raw_listing):
+        if not isinstance(plugin_dict, dict):
+            LOG.warning(
+                "Skipping addon at index %d from %s: expected object, got %s",
+                index,
+                addon_url,
+                type(plugin_dict).__name__,
+            )
+            continue
+        missing = [
+            key for key in _ADDON_LISTING_REQUIRED_FIELDS if key not in plugin_dict
+        ]
+        if missing:
+            LOG.warning(
+                "Skipping addon %r from %s: missing required field(s): %s",
+                plugin_dict.get("i", f"<index {index}>"),
+                addon_url,
+                ", ".join(missing),
+            )
+            continue
+        plugin_dict.setdefault("a", 0)
+        plugin_dict.setdefault("s", 0)
+        plugin_dict.setdefault("h", "")
+        plugin_dict["_p"] = project
+        plugin_dict["_u"] = url
+        plugin = pmgr.get_plugin(plugin_dict["i"])
+        if plugin:
+            plugin_dict["_v"] = plugin.version
+        addon_list.append(plugin_dict)
+
+    LOG.debug("Done checking!")
     return addon_list
 
 
