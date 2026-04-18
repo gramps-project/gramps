@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2025 Doug Blank
+# Copyright (C) 2026 Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 """Tests for gramps/gui/sidepanel.py"""
 
 import unittest
-from unittest.mock import MagicMock, patch, call
+from unittest.mock import MagicMock, patch
 
 from gramps.gen.plug import START, END
 
@@ -66,7 +66,7 @@ class SidePanelManagerTest(unittest.TestCase):
         panel = MagicMock()
         panel.get_top.return_value = MagicMock()
         self.manager.stack.get_children.return_value = []
-        self.manager.add("Test", panel, END)
+        self.manager.add("plugin.test", "Test", panel, END)
         self.assertTrue(self.manager.has_plugins())
 
     def test_view_changed_updates_state(self):
@@ -79,60 +79,78 @@ class SidePanelManagerTest(unittest.TestCase):
     def test_view_changed_delegates_to_active_panel(self):
         """view_changed calls view_changed on the active panel."""
         panel = MagicMock()
-        self.manager.pages["MyPanel"] = panel
-        self.manager.stack.get_visible_child_name.return_value = "MyPanel"
+        self.manager.pages["plugin.mypanel"] = panel
+        self.manager.stack.get_visible_child_name.return_value = "plugin.mypanel"
         self.manager.view_changed(1, 0)
         panel.view_changed.assert_called_once_with(1, 0)
 
     def test_view_changed_no_active_panel(self):
         """view_changed does not raise when no panel is active."""
-        self.manager.stack.get_visible_child_name.return_value = "Missing"
+        self.manager.stack.get_visible_child_name.return_value = "plugin.missing"
         self.manager.view_changed(0, 0)  # should not raise
 
-    def test_on_database_changed_delegates(self):
-        """_on_database_changed calls db_changed on the visible panel."""
-        panel = MagicMock()
+    def test_on_database_changed_notifies_all_panels(self):
+        """_on_database_changed calls db_changed on every loaded panel."""
+        panel_a = MagicMock()
+        panel_b = MagicMock()
         db = MagicMock()
-        self.manager.pages["P"] = panel
-        self.manager.stack.get_visible_child_name.return_value = "P"
+        self.manager.pages["plugin.a"] = panel_a
+        self.manager.pages["plugin.b"] = panel_b
         self.manager._on_database_changed(db)
-        panel.db_changed.assert_called_once_with(db)
+        panel_a.db_changed.assert_called_once_with(db)
+        panel_b.db_changed.assert_called_once_with(db)
 
-    def test_on_database_changed_no_panel(self):
-        """_on_database_changed does not raise when no panel is visible."""
-        self.manager.stack.get_visible_child_name.return_value = "Missing"
+    def test_on_database_changed_no_panels(self):
+        """_on_database_changed does not raise when no panels are loaded."""
         self.manager._on_database_changed(MagicMock())  # should not raise
 
     def test_add_start_order_prepends(self):
-        """add() with START order prepends the entry."""
+        """add() with START order prepends the entry using plugin_id."""
         panel = MagicMock()
         panel.get_top.return_value = MagicMock()
         self.manager.stack.get_children.return_value = []
-        self.manager.add("First", panel, START)
+        self.manager.add("plugin.first", "First", panel, START)
         self.manager.select_button.prepend.assert_called_once_with(
-            id="First", text="First"
+            id="plugin.first", text="First"
         )
-        self.manager.select_button.set_active_id.assert_called_once_with("First")
+        self.manager.select_button.set_active_id.assert_called_once_with("plugin.first")
 
     def test_add_end_order_appends(self):
-        """add() with END order appends the entry."""
+        """add() with END order appends the entry using plugin_id."""
         panel = MagicMock()
         panel.get_top.return_value = MagicMock()
         self.manager.stack.get_children.return_value = []
-        self.manager.add("Last", panel, END)
+        self.manager.add("plugin.last", "Last", panel, END)
         self.manager.select_button.append.assert_called_once_with(
-            id="Last", text="Last"
+            id="plugin.last", text="Last"
         )
+
+    def test_add_two_panels_shows_selector(self):
+        """add() shows the selector combo when a second panel is added."""
+        self.manager.stack.get_children.return_value = [MagicMock(), MagicMock()]
+        panel = MagicMock()
+        panel.get_top.return_value = MagicMock()
+        self.manager.add("plugin.second", "Second", panel, END)
+        self.manager.select_button.show_all.assert_called()
+
+    def test_add_uses_plugin_id_as_page_key(self):
+        """add() stores the panel keyed by plugin_id, not by display title."""
+        panel = MagicMock()
+        panel.get_top.return_value = MagicMock()
+        self.manager.stack.get_children.return_value = []
+        self.manager.add("plugin.unique_id", "Display Title", panel, END)
+        self.assertIn("plugin.unique_id", self.manager.pages)
+        self.assertNotIn("Display Title", self.manager.pages)
 
     def test_cb_switch_page_deactivates_old(self):
         """cb_switch_page calls inactive() on the previously active panel."""
         old_panel = MagicMock()
         new_panel = MagicMock()
-        self.manager.pages = {"Old": old_panel, "New": new_panel}
-        self.manager._active_page = "Old"
+        self.manager.pages = {"plugin.old": old_panel, "plugin.new": new_panel}
+        self.manager._active_page = "plugin.old"
         self.manager.active_cat = 0
         self.manager.active_view = 1
-        self.manager.stack.get_visible_child_name.return_value = "New"
+        self.manager.stack.get_visible_child_name.return_value = "plugin.new"
         self.manager.cb_switch_page(self.manager.stack, MagicMock())
         old_panel.inactive.assert_called_once()
         new_panel.active.assert_called_once_with(0, 1)
@@ -167,11 +185,11 @@ class BaseSidePanelTest(unittest.TestCase):
         gtk_patcher.start()
         self.addCleanup(gtk_patcher.stop)
 
-    def test_init_raises(self):
-        """BaseSidePanel.__init__ raises NotImplementedError."""
+    def test_cannot_instantiate_directly(self):
+        """BaseSidePanel cannot be instantiated because it has abstract methods."""
         from gramps.gui.sidepanel import BaseSidePanel
 
-        with self.assertRaises(NotImplementedError):
+        with self.assertRaises(TypeError):
             BaseSidePanel(MagicMock(), MagicMock())
 
     def test_get_top_raises(self):
