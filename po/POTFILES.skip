@@ -261,6 +261,11 @@ gramps/gen/plug/report/_options.py
 gramps/gen/plug/report/_paper.py
 gramps/gen/plug/report/_reportbase.py
 #
+# gen.plug.test
+#
+gramps/gen/plug/test/__init__.py
+gramps/gen/plug/test/_manager_symlinks_test.py
+#
 # gen proxy API
 #
 gramps/gen/proxy/__init__.py
