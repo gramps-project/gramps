@@ -613,10 +613,11 @@ class ViewManager(CLIManager):
 
             handler_id = self.right_hpane.connect("size-allocate", _set_panel_pos)
             self.right_hpane.connect(
-                "notify::position",
+                "button-release-event",
                 lambda pane, _: config.set(
                     "interface.side-panel-width", pane.get_position()
-                ),
+                )
+                or config.save(),
             )
         self.__setup_side_panel()
 
