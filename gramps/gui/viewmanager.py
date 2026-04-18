@@ -612,13 +612,19 @@ class ViewManager(CLIManager):
                 pane.disconnect(handler_id)
 
             handler_id = self.right_hpane.connect("size-allocate", _set_panel_pos)
+
+            def _save_panel_width(pane):
+                config.set("interface.side-panel-width", pane.get_position())
+                config.save()
+
             self.right_hpane.connect(
-                "button-release-event",
-                lambda pane, _: config.set(
-                    "interface.side-panel-width", pane.get_position()
-                )
-                or config.save(),
+                "button-release-event", lambda pane, _: _save_panel_width(pane)
             )
+            self.right_hpane.connect("destroy", _save_panel_width)
+        else:
+            action = self.uimanager.get_action(self.fileactions, "SidePanel")
+            if action:
+                action.set_enabled(False)
         self.__setup_side_panel()
 
         self.goto_page(defaults[0], defaults[1])

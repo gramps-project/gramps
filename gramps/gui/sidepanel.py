@@ -71,16 +71,20 @@ class BaseSidePanel(abc.ABC):
     The base class for all side panel plugins.
     """
 
-    @abc.abstractmethod
     def __init__(self, dbstate: DbState, uistate: "DisplayState") -> None:
         """
         Initialise the side panel.
+
+        Subclasses should call super().__init__(dbstate, uistate) to have
+        self.dbstate and self.uistate set automatically.
 
         :param dbstate: The Gramps database state.
         :type dbstate: DbState
         :param uistate: The Gramps UI state.
         :type uistate: "DisplayState"
         """
+        self.dbstate = dbstate
+        self.uistate = uistate
 
     @abc.abstractmethod
     def get_top(self) -> Gtk.Widget:
@@ -256,7 +260,7 @@ class SidePanelManager:
         else:
             self.select_button.append(id=plugin_id, text=title)
 
-        if len(self.stack.get_children()) == 2:
+        if len(self.pages) == 2:
             self.select_button.show_all()
 
     def view_changed(self, cat_num: int, view_num: int) -> None:
@@ -288,15 +292,23 @@ class SidePanelManager:
         """
         old_page = self._active_page
         if old_page is not None:
-            self.pages[old_page].inactive()
+            panel = self.pages.get(old_page)
+            if panel is not None:
+                panel.inactive()
 
         plugin_id = stack.get_visible_child_name()
         if plugin_id is None:
             # May happen during the time that the widgets have been created, but
             # the pages haven't been added.
             return
-        if self.active_cat is not None and self.active_view is not None:
-            self.pages[plugin_id].active(self.active_cat, self.active_view)
+        panel = self.pages.get(plugin_id)
+        if (
+            panel is not None
+            and self.active_cat is not None
+            and self.active_view is not None
+        ):
+            panel.active(self.active_cat, self.active_view)
+            panel.view_changed(self.active_cat, self.active_view)
         self._active_page = plugin_id
         config.set("interface.side-panel-page", plugin_id)
         config.save()
