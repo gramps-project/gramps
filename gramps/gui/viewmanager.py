@@ -668,13 +668,14 @@ class ViewManager(CLIManager):
             panel_widget.show()
 
             # Set side panel to 30% of total width on first layout.
-            _handler_id = [None]
+            handler_id = None
 
             def _set_panel_pos(pane, allocation):
+                nonlocal handler_id
                 pane.set_position(int(allocation.width * 0.70))
-                pane.disconnect(_handler_id[0])
+                pane.disconnect(handler_id)
 
-            _handler_id[0] = self.right_hpane.connect("size-allocate", _set_panel_pos)
+            handler_id = self.right_hpane.connect("size-allocate", _set_panel_pos)
         self.__setup_side_panel()
 
         self.goto_page(defaults[0], defaults[1])
@@ -923,18 +924,10 @@ class ViewManager(CLIManager):
         Save the results in the configuration settings.
         """
         action.set_state(value)
-        child = self.right_hpane.get_child2()
-        if value.get_boolean():
-            if child is not None:
-                child.show()
-            config.set("interface.side-panel", True)
-            self.show_side_panel = True
-        else:
-            if child is not None:
-                child.hide()
-            config.set("interface.side-panel", False)
-            self.show_side_panel = False
+        self.show_side_panel = value.get_boolean()
+        config.set("interface.side-panel", self.show_side_panel)
         config.save()
+        self.__setup_side_panel()
 
     def toolbar_toggle(self, action, value):
         """

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2010 Nick Hall
+# Copyright (C) 2026 Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@ persistent panel visible alongside the main Gramps view area.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import abc
 import logging
 from typing import TYPE_CHECKING
 
@@ -64,11 +65,12 @@ LOG = logging.getLogger(__name__)
 # BaseSidePanel class
 #
 # -------------------------------------------------------------------------
-class BaseSidePanel:
+class BaseSidePanel(abc.ABC):
     """
     The base class for all side panel plugins.
     """
 
+    @abc.abstractmethod
     def __init__(self, dbstate: DbState, uistate: "DisplayState") -> None:
         """
         Initialise the side panel.
@@ -78,8 +80,8 @@ class BaseSidePanel:
         :param uistate: The Gramps UI state.
         :type uistate: "DisplayState"
         """
-        raise NotImplementedError
 
+    @abc.abstractmethod
     def get_top(self) -> Gtk.Widget:
         """
         Return the top container widget for the GUI.
@@ -87,8 +89,8 @@ class BaseSidePanel:
         :returns: The top-level widget for this panel.
         :rtype: Gtk.Widget
         """
-        raise NotImplementedError
 
+    @abc.abstractmethod
     def view_changed(self, cat_num: int, view_num: int) -> None:
         """
         Called when the active view is changed.
@@ -98,7 +100,6 @@ class BaseSidePanel:
         :param view_num: The view number within the category.
         :type view_num: int
         """
-        raise NotImplementedError
 
     def db_changed(self, db: DbReadBase) -> None:
         """
@@ -154,7 +155,7 @@ class SidePanelManager:
 
         self.select_button = Gtk.ComboBoxText()
         self.select_button.hide()
-        self.top.pack_end(self.select_button, False, True, 0)
+        self.top.pack_start(self.select_button, False, False, 0)
 
         self.stack = Gtk.Stack(homogeneous=False)
         self.stack.show()
@@ -189,23 +190,19 @@ class SidePanelManager:
 
             panel_class = getattr(module, pdata.sidepanelclass)
             panel_page = panel_class(dbstate, uistate)
-            self.add(pdata.panel_label, panel_page, pdata.order)
+            self.add(pdata.id, pdata.panel_label, panel_page, pdata.order)
 
-        # Forward db_changed to active plugin whenever the database changes
         dbstate.connect("database-changed", self._on_database_changed)
 
     def _on_database_changed(self, db: DbReadBase) -> None:
         """
-        Called when the active database changes.
+        Called when the active database changes; notifies all loaded panels.
 
         :param db: The new database object.
         :type db: DbReadBase
         """
-        try:
-            panel = self.pages[self.stack.get_visible_child_name()]
-        except KeyError:
-            return
-        panel.db_changed(db)
+        for panel in self.pages.values():
+            panel.db_changed(db)
 
     def has_plugins(self) -> bool:
         """
@@ -225,10 +222,12 @@ class SidePanelManager:
         """
         return self.top
 
-    def add(self, title: str, panel: BaseSidePanel, order: int) -> None:
+    def add(self, plugin_id: str, title: str, panel: BaseSidePanel, order: int) -> None:
         """
         Add a page to the side panel manager for a plugin.
 
+        :param plugin_id: The unique plugin ID used as the internal page key.
+        :type plugin_id: str
         :param title: The display title for this panel page.
         :type title: str
         :param panel: The side panel plugin instance.
@@ -236,15 +235,15 @@ class SidePanelManager:
         :param order: Insertion order constant (START or END).
         :type order: int
         """
-        self.pages[title] = panel
+        self.pages[plugin_id] = panel
         page = panel.get_top()
-        self.stack.add_named(page, title)
+        self.stack.add_named(page, plugin_id)
 
         if order == START:
-            self.select_button.prepend(id=title, text=title)
-            self.select_button.set_active_id(title)
+            self.select_button.prepend(id=plugin_id, text=title)
+            self.select_button.set_active_id(plugin_id)
         else:
-            self.select_button.append(id=title, text=title)
+            self.select_button.append(id=plugin_id, text=title)
 
         if len(self.stack.get_children()) == 2:
             self.select_button.show_all()
@@ -280,12 +279,12 @@ class SidePanelManager:
         if old_page is not None:
             self.pages[old_page].inactive()
 
-        title = stack.get_visible_child_name()
-        if title is None:
+        plugin_id = stack.get_visible_child_name()
+        if plugin_id is None:
             # May happen during the time that the widgets have been created, but
             # the pages haven't been added.
             return
         if self.active_cat is not None and self.active_view is not None:
-            self.pages[title].active(self.active_cat, self.active_view)
-            self.pages[title].view_changed(self.active_cat, self.active_view)
-        self._active_page = title
+            self.pages[plugin_id].active(self.active_cat, self.active_view)
+            self.pages[plugin_id].view_changed(self.active_cat, self.active_view)
+        self._active_page = plugin_id
