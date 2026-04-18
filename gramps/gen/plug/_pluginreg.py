@@ -33,7 +33,6 @@ import logging
 import os
 import re
 import sys
-import traceback
 
 # -------------------------------------------------------------------------
 #
@@ -1401,24 +1400,17 @@ class PluginRegister:
             try:
                 with open(full_filename, "r", encoding="utf-8") as file_descriptor:
                     stream = file_descriptor.read()
-            except Exception as msg:
-                print(
-                    _("ERROR: Failed reading plugin registration %(filename)s")
-                    % {"filename": filename}
-                )
-                print(msg)
+            except (OSError, UnicodeDecodeError):
+                LOG.exception("Failed reading plugin registration %s", filename)
                 continue
             if os.path.exists(os.path.join(os.path.dirname(full_filename), "locale")):
                 try:
                     local_gettext = glocale.get_addon_translator(full_filename).gettext
                 except ValueError:
-                    print(
-                        _(
-                            "WARNING: Plugin %(plugin_name)s has no translation"
-                            " for any of your configured languages, using US"
-                            " English instead"
-                        )
-                        % {"plugin_name": filename.split(".")[0]}
+                    LOG.warning(
+                        "Plugin %s has no translation for any of your"
+                        " configured languages, using US English instead",
+                        filename.split(".")[0],
                     )
                     local_gettext = glocale.translation.gettext
             else:
@@ -1437,18 +1429,10 @@ class PluginRegister:
                         lenpd -= 1
                     self.__id_to_pdata[pdata.id] = pdata
             except ValueError as msg:
-                print(
-                    _("ERROR: Failed reading plugin registration %(filename)s")
-                    % {"filename": filename}
-                )
-                print(msg)
+                LOG.error("Failed reading plugin registration %s: %s", filename, msg)
                 self.__plugindata = self.__plugindata[:lenpd]
-            except:
-                print(
-                    _("ERROR: Failed reading plugin registration %(filename)s")
-                    % {"filename": filename}
-                )
-                print("".join(traceback.format_exception(*sys.exc_info())))
+            except Exception:
+                LOG.exception("Failed reading plugin registration %s", filename)
                 self.__plugindata = self.__plugindata[:lenpd]
             # check if:
             #  1. plugin exists, if not remove, otherwise set module name
@@ -1461,17 +1445,12 @@ class PluginRegister:
                 ind += 1
                 plugin.directory = directory
                 if not valid_plugin_version(plugin.gramps_target_version):
-                    print(
-                        _(
-                            "ERROR: Plugin file %(filename)s has a version of "
-                            '"%(gramps_target_version)s" which is invalid for Gramps '
-                            '"%(gramps_version)s".'
-                            % {
-                                "filename": os.path.join(directory, plugin.fname),
-                                "gramps_version": GRAMPSVERSION,
-                                "gramps_target_version": plugin.gramps_target_version,
-                            }
-                        )
+                    LOG.error(
+                        'Plugin file %s has a version of "%s" which is'
+                        ' invalid for Gramps "%s".',
+                        os.path.join(directory, plugin.fname),
+                        plugin.gramps_target_version,
+                        GRAMPSVERSION,
                     )
                     rmlist.append(ind)
                     continue
@@ -1489,28 +1468,18 @@ class PluginRegister:
                 match = pymod.match(plugin.fname)
                 if not match:
                     rmlist.append(ind)
-                    print(
-                        _(
-                            "ERROR: Wrong python file %(filename)s in register file "
-                            "%(regfile)s"
-                        )
-                        % {
-                            "filename": os.path.join(directory, plugin.fname),
-                            "regfile": os.path.join(directory, filename),
-                        }
+                    LOG.error(
+                        "Wrong python file %s in register file %s",
+                        os.path.join(directory, plugin.fname),
+                        os.path.join(directory, filename),
                     )
                     continue
                 if not os.path.isfile(os.path.join(directory, plugin.fname)):
                     rmlist.append(ind)
-                    print(
-                        _(
-                            "ERROR: Python file %(filename)s in register file "
-                            "%(regfile)s does not exist"
-                        )
-                        % {
-                            "filename": os.path.join(directory, plugin.fname),
-                            "regfile": os.path.join(directory, filename),
-                        }
+                    LOG.error(
+                        "Python file %s in register file %s does not exist",
+                        os.path.join(directory, plugin.fname),
+                        os.path.join(directory, filename),
                     )
                     continue
                 module = match.groups()[0]
