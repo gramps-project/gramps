@@ -8,6 +8,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Gary Burton
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2026       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

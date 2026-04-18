@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009 Benny Malengier
 # Copyright (C) 2018 Paul Culley
+# Copyright (C) 2026 Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

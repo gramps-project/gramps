@@ -8,6 +8,7 @@
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2015-      Serge Noiraud
 # Copyright (C) 2026       Gabriel Rios
+# Copyright (C) 2026       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

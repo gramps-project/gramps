@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2026       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
