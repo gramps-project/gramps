@@ -327,8 +327,8 @@ gramps/gui/glade.py
 gramps/gui/listmodel.py
 gramps/gui/managedwindow.py
 gramps/gui/navigator.py
-gramps/gui/sidepanel.py
 gramps/gui/pluginmanager.py
+gramps/gui/sidepanel.py
 gramps/gui/uimanager.py
 gramps/gui/user.py
 gramps/gui/utilscairo.py
