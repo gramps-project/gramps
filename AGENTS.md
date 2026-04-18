@@ -77,7 +77,6 @@ Code should be PEP 8 compatible, except where that conflicts with Black formatti
 
 Run pylint on new code. Ideally new code should score 9 or higher and changes should not reduce the overall pylint score. This is not strictly enforced and should never come at the expense of code clarity, Black formatting, or any other rule in this guide.
 
-Inline suppression comments such as `# pylint: disable=import-outside-toplevel` are acceptable when the author has a deliberate reason (e.g. a debug-only import, a circular-import workaround).
 
 ### Class Headers
 
