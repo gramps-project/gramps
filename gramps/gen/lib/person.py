@@ -23,6 +23,8 @@
 """
 Person object for Gramps.
 """
+from collections.abc import Collection
+from typing_extensions import override
 
 # -------------------------------------------------------------------------
 #
@@ -341,19 +343,8 @@ class Person(
         self.__gender = attr_dict.pop("gender")
         super().set_object_state(attr_dict)
 
-    def _has_handle_reference(self, classname, handle):
-        """
-        Return True if the object has reference to a given handle of given
-        primary object type.
-
-        :param classname: The name of the primary object class.
-        :type classname: str
-        :param handle: The handle to be checked.
-        :type handle: str
-        :returns: Returns whether the object has reference to this handle of
-                  this object type.
-        :rtype: bool
-        """
+    @override
+    def _has_handle_reference(self, classname: str, handle: str) -> bool:
         if classname == "Event":
             return self._has_event_reference(handle)
         if classname == "Person":
@@ -369,7 +360,10 @@ class Person(
             return any(ordinance.place == handle for ordinance in self.lds_ord_list)
         return False
 
-    def _remove_handle_references(self, classname, handle_list):
+    @override
+    def _remove_handle_references(
+        self, classname: str, handle_list: Collection[str]
+    ) -> None:
         if classname == "Event":
             # Keep a copy of the birth and death references
             birth_ref = self.get_birth_ref()
@@ -421,7 +415,10 @@ class Person(
                 if ordinance.place in handle_list:
                     ordinance.place = None
 
-    def _replace_handle_reference(self, classname, old_handle, new_handle):
+    @override
+    def _replace_handle_reference(
+        self, classname: str, old_handle: str, new_handle: str
+    ) -> None:
         if classname == "Event":
             refs_list = [ref.ref for ref in self.event_ref_list]
             new_ref = None

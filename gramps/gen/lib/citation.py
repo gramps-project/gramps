@@ -30,6 +30,9 @@ Citation object for Gramps.
 #
 # -------------------------------------------------------------------------
 import logging
+from collections.abc import Collection
+
+from typing_extensions import override
 
 # -------------------------------------------------------------------------
 #
@@ -196,19 +199,8 @@ class Citation(
         SrcAttributeBase.unserialize(self, srcattr_list)
         return self
 
-    def _has_handle_reference(self, classname, handle):
-        """
-        Return True if the object has reference to a given handle of given
-        primary object type.
-
-        :param classname: The name of the primary object class.
-        :type classname: str
-        :param handle: The handle to be checked.
-        :type handle: str
-        :returns: Returns whether the object has reference to this handle of
-                  this object type.
-        :rtype: bool
-        """
+    @override
+    def _has_handle_reference(self, classname: str, handle: str) -> bool:
         if classname == "Note":
             return handle in [ref.ref for ref in self.note_list]
         if classname == "Media":
@@ -217,29 +209,17 @@ class Citation(
             return handle == self.get_reference_handle()
         return False
 
-    def _remove_handle_references(self, classname, handle_list):
-        """
-        Remove all references in this object to object handles in the list.
-
-        :param classname: The name of the primary object class.
-        :type classname: str
-        :param handle_list: The list of handles to be removed.
-        :type handle_list: str
-        """
+    @override
+    def _remove_handle_references(
+        self, classname: str, handle_list: Collection[str]
+    ) -> None:
         if classname == "Source" and self.get_reference_handle() in handle_list:
             self.set_reference_handle(None)
 
-    def _replace_handle_reference(self, classname, old_handle, new_handle):
-        """
-        Replace all references to old handle with those to the new handle.
-
-        :param classname: The name of the primary object class.
-        :type classname: str
-        :param old_handle: The handle to be replaced.
-        :type old_handle: str
-        :param new_handle: The handle to replace the old one with.
-        :type new_handle: str
-        """
+    @override
+    def _replace_handle_reference(
+        self, classname: str, old_handle: str, new_handle: str
+    ) -> None:
         if classname == "Source" and self.get_reference_handle() == old_handle:
             self.set_reference_handle(new_handle)
 
