@@ -33,6 +33,7 @@ import logging
 import os
 import re
 import sys
+from typing import Any
 
 # -------------------------------------------------------------------------
 #
@@ -1382,6 +1383,11 @@ class PluginRegister:
         The dir name will be scanned for plugin registration code, which will
         be loaded in :class:`PluginData` objects if they satisfy some checks.
 
+        Per-file processing is transactional: if a ``.gpr.py`` fails at any
+        point (read, exec, registration, or validation), the internal plugin
+        registry is rolled back to the state it had before the file was
+        processed. Other files in the same scan continue to be processed.
+
         :returns: A list with :class:`PluginData` objects
         """
         # if the directory does not exist, do nothing
@@ -1390,106 +1396,129 @@ class PluginRegister:
 
         ext = r".gpr.py"
         extlen = -len(ext)
-        pymod = re.compile(r"^(.*)\.py$")
 
         for filename in filenames:
             if not filename[extlen:] == ext:
                 continue
-            lenpd = len(self.__plugindata)
-            full_filename = os.path.join(directory, filename)
+            plugindata_snapshot = list(self.__plugindata)
+            id_to_pdata_snapshot = dict(self.__id_to_pdata)
             try:
-                with open(full_filename, "r", encoding="utf-8") as file_descriptor:
-                    stream = file_descriptor.read()
+                self.__scan_file(directory, filename, uistate)
             except (OSError, UnicodeDecodeError):
                 LOG.exception("Failed reading plugin registration %s", filename)
-                continue
-            if os.path.exists(os.path.join(os.path.dirname(full_filename), "locale")):
-                try:
-                    local_gettext = glocale.get_addon_translator(full_filename).gettext
-                except ValueError:
-                    LOG.warning(
-                        "Plugin %s has no translation for any of your"
-                        " configured languages, using US English instead",
-                        filename.split(".")[0],
-                    )
-                    local_gettext = glocale.translation.gettext
-            else:
-                local_gettext = glocale.translation.gettext
-            try:
-                exec(
-                    compile(stream, filename, "exec"),
-                    make_environment(_=local_gettext),
-                    {"uistate": uistate},
-                )
-                for pdata in self.__plugindata[lenpd:]:
-                    if pdata.id in self.__id_to_pdata:
-                        # reloading
-                        old = self.__id_to_pdata[pdata.id]
-                        self.__plugindata.remove(old)
-                        lenpd -= 1
-                    self.__id_to_pdata[pdata.id] = pdata
+                self.__plugindata = plugindata_snapshot
+                self.__id_to_pdata = id_to_pdata_snapshot
             except ValueError as msg:
                 LOG.error("Failed reading plugin registration %s: %s", filename, msg)
-                self.__plugindata = self.__plugindata[:lenpd]
+                self.__plugindata = plugindata_snapshot
+                self.__id_to_pdata = id_to_pdata_snapshot
             except Exception:
                 LOG.exception("Failed reading plugin registration %s", filename)
-                self.__plugindata = self.__plugindata[:lenpd]
-            # check if:
-            #  1. plugin exists, if not remove, otherwise set module name
-            #  2. plugin not stable, if stable_only=True, remove
-            #  3. TOOL_DEBUG only if DEBUG True
-            rmlist = []
-            ind = lenpd - 1
-            for plugin in self.__plugindata[lenpd:]:
-                # LOG.warning("\nPlugin scanned %s at registration", plugin.id)
-                ind += 1
-                plugin.directory = directory
-                if not valid_plugin_version(plugin.gramps_target_version):
-                    LOG.error(
-                        'Plugin file %s has a version of "%s" which is'
-                        ' invalid for Gramps "%s".',
-                        os.path.join(directory, plugin.fname),
-                        plugin.gramps_target_version,
-                        GRAMPSVERSION,
-                    )
-                    rmlist.append(ind)
-                    continue
-                if not self.__req.check_plugin(plugin):
-                    rmlist.append(ind)
-                    continue
-                if plugin.status == UNSTABLE and self.stable_only:
-                    rmlist.append(ind)
-                    continue
-                if plugin.ptype == TOOL and plugin.category == TOOL_DEBUG and not DEBUG:
-                    rmlist.append(ind)
-                    continue
-                if plugin.fname is None:
-                    continue
-                match = pymod.match(plugin.fname)
-                if not match:
-                    rmlist.append(ind)
-                    LOG.error(
-                        "Wrong python file %s in register file %s",
-                        os.path.join(directory, plugin.fname),
-                        os.path.join(directory, filename),
-                    )
-                    continue
-                if not os.path.isfile(os.path.join(directory, plugin.fname)):
-                    rmlist.append(ind)
-                    LOG.error(
-                        "Python file %s in register file %s does not exist",
-                        os.path.join(directory, plugin.fname),
-                        os.path.join(directory, filename),
-                    )
-                    continue
-                module = match.groups()[0]
-                plugin.mod_name = module
-                plugin.fpath = directory
-                # LOG.warning("\nPlugin added %s at registration", plugin.id)
-            rmlist.reverse()
-            for ind in rmlist:
-                del self.__id_to_pdata[self.__plugindata[ind].id]
-                del self.__plugindata[ind]
+                self.__plugindata = plugindata_snapshot
+                self.__id_to_pdata = id_to_pdata_snapshot
+
+    def __scan_file(self, directory: str, filename: str, uistate: Any) -> None:
+        """
+        Read and execute one ``.gpr.py`` file, registering and validating
+        its plugins.
+
+        On any failure this method raises; the caller is responsible for
+        rolling back ``__plugindata`` and ``__id_to_pdata``.
+
+        :param directory: The directory containing the registration file.
+        :type directory: str
+        :param filename: The name of the ``.gpr.py`` file in *directory*.
+        :type filename: str
+        :param uistate: The Gramps UI state, or ``None`` when scanning
+                        without a running UI; passed through to the
+                        registration file's execution environment.
+        :type uistate: Any
+        :returns: Nothing.
+        :rtype: None
+        """
+        pymod = re.compile(r"^(.*)\.py$")
+        lenpd = len(self.__plugindata)
+        full_filename = os.path.join(directory, filename)
+        with open(full_filename, "r", encoding="utf-8") as file_descriptor:
+            stream = file_descriptor.read()
+        if os.path.exists(os.path.join(os.path.dirname(full_filename), "locale")):
+            try:
+                local_gettext = glocale.get_addon_translator(full_filename).gettext
+            except ValueError:
+                LOG.warning(
+                    "Plugin %s has no translation for any of your"
+                    " configured languages, using US English instead",
+                    filename.split(".")[0],
+                )
+                local_gettext = glocale.translation.gettext
+        else:
+            local_gettext = glocale.translation.gettext
+        exec(
+            compile(stream, filename, "exec"),
+            make_environment(_=local_gettext),
+            {"uistate": uistate},
+        )
+        for pdata in self.__plugindata[lenpd:]:
+            if pdata.id in self.__id_to_pdata:
+                # reloading
+                old = self.__id_to_pdata[pdata.id]
+                self.__plugindata.remove(old)
+                lenpd -= 1
+            self.__id_to_pdata[pdata.id] = pdata
+        # check if:
+        #  1. plugin exists, if not remove, otherwise set module name
+        #  2. plugin not stable, if stable_only=True, remove
+        #  3. TOOL_DEBUG only if DEBUG True
+        rmlist = []
+        ind = lenpd - 1
+        for plugin in self.__plugindata[lenpd:]:
+            ind += 1
+            plugin.directory = directory
+            if not valid_plugin_version(plugin.gramps_target_version):
+                LOG.error(
+                    'Plugin file %s has a version of "%s" which is'
+                    ' invalid for Gramps "%s".',
+                    os.path.join(directory, plugin.fname),
+                    plugin.gramps_target_version,
+                    GRAMPSVERSION,
+                )
+                rmlist.append(ind)
+                continue
+            if not self.__req.check_plugin(plugin):
+                rmlist.append(ind)
+                continue
+            if plugin.status == UNSTABLE and self.stable_only:
+                rmlist.append(ind)
+                continue
+            if plugin.ptype == TOOL and plugin.category == TOOL_DEBUG and not DEBUG:
+                rmlist.append(ind)
+                continue
+            if plugin.fname is None:
+                continue
+            match = pymod.match(plugin.fname)
+            if not match:
+                rmlist.append(ind)
+                LOG.error(
+                    "Wrong python file %s in register file %s",
+                    os.path.join(directory, plugin.fname),
+                    os.path.join(directory, filename),
+                )
+                continue
+            if not os.path.isfile(os.path.join(directory, plugin.fname)):
+                rmlist.append(ind)
+                LOG.error(
+                    "Python file %s in register file %s does not exist",
+                    os.path.join(directory, plugin.fname),
+                    os.path.join(directory, filename),
+                )
+                continue
+            module = match.groups()[0]
+            plugin.mod_name = module
+            plugin.fpath = directory
+        rmlist.reverse()
+        for ind in rmlist:
+            del self.__id_to_pdata[self.__plugindata[ind].id]
+            del self.__plugindata[ind]
 
     def get_plugin(self, plugin_id):
         """

@@ -215,7 +215,9 @@ gramps/gen/plug/_plugin.py
 # gen.plug.test
 #
 gramps/gen/plug/test/__init__.py
+gramps/gen/plug/test/_manager_import_test.py
 gramps/gen/plug/test/_pluginreg_errors_test.py
+gramps/gen/plug/test/_pluginreg_transaction_test.py
 #
 # gen.plug.docbackend
 #

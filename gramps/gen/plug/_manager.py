@@ -38,6 +38,8 @@ import importlib
 import logging
 import os
 import sys
+from collections.abc import Iterator
+from contextlib import contextmanager
 
 # -------------------------------------------------------------------------
 #
@@ -61,6 +63,28 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 _UNAVAILABLE = _("No description was provided")
+
+
+@contextmanager
+def _prepended_sys_path(path: str) -> Iterator[None]:
+    """Temporarily prepend *path* to ``sys.path``.
+
+    The entry is removed on exit regardless of how the ``with`` block
+    terminates, so plugin import failures cannot leak ``sys.path``
+    entries into the rest of the process.
+    """
+    inserted = False
+    if path and path not in sys.path:
+        sys.path.insert(0, path)
+        inserted = True
+    try:
+        yield
+    finally:
+        if inserted:
+            try:
+                sys.path.remove(path)
+            except ValueError:
+                pass
 
 
 # -------------------------------------------------------------------------
@@ -292,47 +316,46 @@ class BasePluginManager:
         """
         Rather than just __import__(id), this will add the pdata.fpath
         to sys.path first (if needed), import, and then reset path.
+
+        ``sys.path`` is restored to its prior state even when the import
+        raises an unexpected exception.
         """
-        module = None
         if isinstance(pdata, str):
             pdata = self.get_plugin(pdata)
         if not pdata:
             return None
-        if pdata.fpath not in sys.path:
-            if pdata.mod_name:
-                sys.path.insert(0, pdata.fpath)
-                try:
-                    module = __import__(pdata.mod_name)
-                except ValueError as err:
-                    # Python3 on Windows  work with unicode in sys.path
-                    # but they are mbcs encode for checking validity
-                    if win():
-                        # we don't want to load Gramps core plugin like this
-                        # only 3rd party plugins
-                        if "gramps" in pdata.fpath:
+        if pdata.fpath in sys.path:
+            return __import__(pdata.mod_name) if pdata.mod_name else None
+        if not pdata.mod_name:
+            LOG.warning("Module cannot be loaded for plugin '%s'", pdata.id)
+            return None
+        with _prepended_sys_path(pdata.fpath):
+            try:
+                return __import__(pdata.mod_name)
+            except ValueError as err:
+                # Python 3 on Windows works with unicode in sys.path but
+                # mbcs-encodes for checking validity. Retry third-party
+                # plugins after cd'ing into the plugin directory.
+                if win() and "gramps" in pdata.fpath:
+                    oldwd = os.getcwd()
+                    try:
+                        os.chdir(pdata.fpath)
+                        with _prepended_sys_path("."):
                             try:
-                                sys.path.insert(0, ".")
-                                oldwd = os.getcwd()
-                                os.chdir(pdata.fpath)
-                                module = __import__(pdata.mod_name)
-                                os.chdir(oldwd)
-                                sys.path.pop(0)
+                                return __import__(pdata.mod_name)
                             except ValueError as error:
                                 LOG.warning(
                                     "Plugin error (from '%s'): %s",
                                     pdata.mod_name,
                                     error,
                                 )
-                    else:
-                        LOG.warning("Plugin error (from '%s'): %s", pdata.mod_name, err)
-                except ImportError as err:
+                    finally:
+                        os.chdir(oldwd)
+                else:
                     LOG.warning("Plugin error (from '%s'): %s", pdata.mod_name, err)
-                sys.path.pop(0)
-            else:
-                LOG.warning("Module cannot be loaded for plugin '%s'", pdata.id)
-        else:
-            module = __import__(pdata.mod_name)
-        return module
+            except ImportError as err:
+                LOG.warning("Plugin error (from '%s'): %s", pdata.mod_name, err)
+        return None
 
     def empty_managed_plugins(self):
         """For some plugins, managed Plugin are used. These are only
