@@ -189,6 +189,11 @@ class SidePanelManager:
                 )
                 continue
 
+            if not pdata.sidepanelclass:
+                LOG.warning(
+                    "Side panel '%s' has no sidepanelclass set: skipping", pdata.name
+                )
+                continue
             panel_class = getattr(module, pdata.sidepanelclass)
             panel_page = panel_class(dbstate, uistate)
             self.add(pdata.id, pdata.panel_label, panel_page, pdata.order)
@@ -292,6 +297,6 @@ class SidePanelManager:
             return
         if self.active_cat is not None and self.active_view is not None:
             self.pages[plugin_id].active(self.active_cat, self.active_view)
-            self.pages[plugin_id].view_changed(self.active_cat, self.active_view)
         self._active_page = plugin_id
         config.set("interface.side-panel-page", plugin_id)
+        config.save()

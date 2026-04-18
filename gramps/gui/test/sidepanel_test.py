@@ -185,48 +185,69 @@ class BaseSidePanelTest(unittest.TestCase):
         gtk_patcher.start()
         self.addCleanup(gtk_patcher.stop)
 
-    def test_cannot_instantiate_directly(self):
-        """BaseSidePanel cannot be instantiated because it has abstract methods."""
         from gramps.gui.sidepanel import BaseSidePanel
+
+        class _ConcretePanel(BaseSidePanel):
+            """Minimal concrete subclass for testing optional default methods."""
+
+            def __init__(self, dbstate, uistate):
+                pass
+
+            def get_top(self):
+                pass
+
+            def view_changed(self, cat_num, view_num):
+                pass
+
+        self.BaseSidePanel = BaseSidePanel
+        self.ConcretePanel = _ConcretePanel
+
+    def test_cannot_instantiate_directly(self):
+        """BaseSidePanel cannot be instantiated — it has abstract methods."""
+        with self.assertRaises(TypeError):
+            self.BaseSidePanel(MagicMock(), MagicMock())
+
+    def test_subclass_missing_get_top_raises(self):
+        """Subclass that omits get_top cannot be instantiated."""
+        BaseSidePanel = self.BaseSidePanel
+
+        class _Missing(BaseSidePanel):
+            def __init__(self, dbstate, uistate):
+                pass
+
+            def view_changed(self, cat_num, view_num):
+                pass
 
         with self.assertRaises(TypeError):
-            BaseSidePanel(MagicMock(), MagicMock())
+            _Missing(MagicMock(), MagicMock())
 
-    def test_get_top_raises(self):
-        """BaseSidePanel.get_top raises NotImplementedError."""
-        from gramps.gui.sidepanel import BaseSidePanel
+    def test_subclass_missing_view_changed_raises(self):
+        """Subclass that omits view_changed cannot be instantiated."""
+        BaseSidePanel = self.BaseSidePanel
 
-        panel = BaseSidePanel.__new__(BaseSidePanel)
-        with self.assertRaises(NotImplementedError):
-            panel.get_top()
+        class _Missing(BaseSidePanel):
+            def __init__(self, dbstate, uistate):
+                pass
 
-    def test_view_changed_raises(self):
-        """BaseSidePanel.view_changed raises NotImplementedError."""
-        from gramps.gui.sidepanel import BaseSidePanel
+            def get_top(self):
+                pass
 
-        panel = BaseSidePanel.__new__(BaseSidePanel)
-        with self.assertRaises(NotImplementedError):
-            panel.view_changed(0, 0)
+        with self.assertRaises(TypeError):
+            _Missing(MagicMock(), MagicMock())
 
     def test_db_changed_is_noop(self):
         """BaseSidePanel.db_changed is a no-op by default."""
-        from gramps.gui.sidepanel import BaseSidePanel
-
-        panel = BaseSidePanel.__new__(BaseSidePanel)
+        panel = self.ConcretePanel(MagicMock(), MagicMock())
         panel.db_changed(MagicMock())  # should not raise
 
     def test_active_is_noop(self):
         """BaseSidePanel.active is a no-op by default."""
-        from gramps.gui.sidepanel import BaseSidePanel
-
-        panel = BaseSidePanel.__new__(BaseSidePanel)
+        panel = self.ConcretePanel(MagicMock(), MagicMock())
         panel.active(0, 0)  # should not raise
 
     def test_inactive_is_noop(self):
         """BaseSidePanel.inactive is a no-op by default."""
-        from gramps.gui.sidepanel import BaseSidePanel
-
-        panel = BaseSidePanel.__new__(BaseSidePanel)
+        panel = self.ConcretePanel(MagicMock(), MagicMock())
         panel.inactive()  # should not raise
 
 
