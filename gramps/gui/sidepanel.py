@@ -44,6 +44,7 @@ from gi.repository import GObject, Gtk
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.config import config
 from gramps.gen.db import DbReadBase
 from gramps.gen.dbstate import DbState
 from gramps.gen.plug import START
@@ -194,6 +195,11 @@ class SidePanelManager:
 
         dbstate.connect("database-changed", self._on_database_changed)
 
+        saved_page = config.get("interface.side-panel-page")
+        if saved_page and saved_page in self.pages:
+            self.stack.set_visible_child_name(saved_page)
+            self.select_button.set_active_id(saved_page)
+
     def _on_database_changed(self, db: DbReadBase) -> None:
         """
         Called when the active database changes; notifies all loaded panels.
@@ -288,3 +294,4 @@ class SidePanelManager:
             self.pages[plugin_id].active(self.active_cat, self.active_view)
             self.pages[plugin_id].view_changed(self.active_cat, self.active_view)
         self._active_page = plugin_id
+        config.set("interface.side-panel-page", plugin_id)

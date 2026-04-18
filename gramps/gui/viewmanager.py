@@ -597,15 +597,27 @@ class ViewManager(CLIManager):
             self.right_hpane.add2(panel_widget)
             panel_widget.show()
 
-            # Set side panel to 30% of total width on first layout.
+            # Restore saved sash position; default to 70/30 split on first use.
+            # Uses a one-shot size-allocate handler so the position is set after
+            # the pane has a real allocation width.
             handler_id = None
 
             def _set_panel_pos(pane, allocation):
                 nonlocal handler_id
-                pane.set_position(int(allocation.width * 0.70))
+                saved = config.get("interface.side-panel-width")
+                if saved >= 0:
+                    pane.set_position(saved)
+                else:
+                    pane.set_position(int(allocation.width * 0.70))
                 pane.disconnect(handler_id)
 
             handler_id = self.right_hpane.connect("size-allocate", _set_panel_pos)
+            self.right_hpane.connect(
+                "notify::position",
+                lambda pane, _: config.set(
+                    "interface.side-panel-width", pane.get_position()
+                ),
+            )
         self.__setup_side_panel()
 
         self.goto_page(defaults[0], defaults[1])
