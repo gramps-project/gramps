@@ -212,6 +212,11 @@ gramps/gen/plug/_export.py
 gramps/gen/plug/_import.py
 gramps/gen/plug/_plugin.py
 #
+# gen.plug.test
+#
+gramps/gen/plug/test/__init__.py
+gramps/gen/plug/test/_utils_project_status_test.py
+#
 # gen.plug.docbackend
 #
 gramps/gen/plug/docbackend/__init__.py
