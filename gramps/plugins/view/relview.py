@@ -1105,6 +1105,7 @@ class RelationshipView(NavigationView):
             if family:
                 father_gen = mother_gen = None
                 father_rel = mother_rel = ""
+                parent1 = parent2 = ""
                 child_handle = person.get_handle()
                 child_ref_list = family.get_child_ref_list()
                 for child_ref in child_ref_list:
@@ -1114,12 +1115,12 @@ class RelationshipView(NavigationView):
                 hd21 = family.get_father_handle()
                 if hd21:
                     father_gen = self.dbstate.db.get_person_from_handle(hd21).gender
+                    parent1 = parent_label_from_gender(father_gen, father_rel)
+
                 hd22 = family.get_mother_handle()
                 if hd22:
                     mother_gen = self.dbstate.db.get_person_from_handle(hd22).gender
-
-                parent1 = parent_label_from_gender(father_gen, father_rel)
-                parent2 = parent_label_from_gender(mother_gen, mother_rel)
+                    parent2 = parent_label_from_gender(mother_gen, mother_rel)
 
                 self.write_label(_("%s:") % _("Parents"), family, True, person)
                 self.write_person(parent1, family.get_father_handle())
