@@ -72,7 +72,7 @@ class Url(SecondaryObject, PrivacyBase):
         return (self.private, self.path, self.desc, self.type.serialize())
 
     def unserialize(self, data):
-        (self.private, self.path, self.desc, type_value) = data
+        self.private, self.path, self.desc, type_value = data
         self.type.unserialize(type_value)
         return self
 

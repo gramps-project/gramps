@@ -36,7 +36,6 @@ import orjson
 
 import gramps.gen.lib as lib
 
-
 NoneType = type(None)
 
 

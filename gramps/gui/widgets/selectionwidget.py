@@ -566,7 +566,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         exceeding the image dimensions - with those corresponding dimensions.
         """
         x, y = coords
-        (image_width, image_height) = self._get_original_image_size()
+        image_width, image_height = self._get_original_image_size()
         x = max(x, 0)
         x = min(x, image_width)
         y = max(y, 0)
@@ -883,8 +883,8 @@ class SelectionWidget(Gtk.ScrolledWindow):
         """
         x1, y1, x2, y2 = self._rect_image_to_screen(self.current.coords())
         x1, y1, x2, y2 = MOTION_FUNCTIONS[self.grabber](x1, y1, x2, y2, dx, dy)
-        (x1, y1) = self._screen_to_truncated((x1, y1))
-        (x2, y2) = self._screen_to_truncated((x2, y2))
+        x1, y1 = self._screen_to_truncated((x1, y1))
+        x2, y2 = self._screen_to_truncated((x2, y2))
         grabber = switch_grabber(self.grabber, x1, y1, x2, y2)
         self.selection = order_coordinates((x1, y1), (x2, y2))
         return grabber

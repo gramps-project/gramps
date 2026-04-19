@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 """Test program for import modules"""
+
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -237,7 +238,7 @@ def db_load(zipfn, self):
     zip file.  For example the "imp_413.zip" must contain a single "imp_413" dir
     (not the usual 8 hex character name).
     """
-    (tstfile, _ext) = os.path.splitext(zipfn)
+    tstfile, _ext = os.path.splitext(zipfn)
     tstfile = os.path.join(TEMP_DIR, os.path.basename(tstfile))
     shutil.rmtree(tstfile, ignore_errors=True)
     with zipfile.ZipFile(zipfn, "r") as myzip:
@@ -323,10 +324,35 @@ def make_tst_function(tstfile, file_name):
                 self.database1 = db_load(fn1, self)
             else:
                 self.database1 = import_as_dict(
-                    fn1, self.user, skp_imp_adds=skp_imp_adds
+                    fn1,
+                    self.user,
+                    skp_imp_adds=skp_imp_adds,
+                    # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+                    person_prefix="I%04d",
+                    media_prefix="O%04d",
+                    family_prefix="F%04d",
+                    source_prefix="S%04d",
+                    citation_prefix="C%04d",
+                    place_prefix="P%04d",
+                    event_prefix="E%04d",
+                    repository_prefix="R%04d",
+                    note_prefix="N%04d",
                 )
             set_det_id(True)
-            self.database2 = import_as_dict(fn2, self.user)
+            self.database2 = import_as_dict(
+                fn2,
+                self.user,
+                # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+                person_prefix="I%04d",
+                media_prefix="O%04d",
+                family_prefix="F%04d",
+                source_prefix="S%04d",
+                citation_prefix="C%04d",
+                place_prefix="P%04d",
+                event_prefix="E%04d",
+                repository_prefix="R%04d",
+                note_prefix="N%04d",
+            )
             msg = (
                 "\n****Captured Output****\n"
                 + str(output[0])
@@ -395,7 +421,7 @@ if __name__ == "__main__":
 # The methods are inserted at load time into the 'TestImports' class
 # via the modules' globals, taking advantage that they are a dict.
 if _tstfile:  # single file mode
-    (fname, ext) = os.path.splitext(os.path.basename(_tstfile))
+    fname, ext = os.path.splitext(os.path.basename(_tstfile))
     test_func = make_tst_function(_tstfile, fname)
     tname = "test_" + _tstfile.replace("-", "_").replace(".", "_")
     test_func.__name__ = tname
@@ -403,7 +429,7 @@ if _tstfile:  # single file mode
     setattr(TestImports, tname, test_func)
 else:
     for _tstfile in os.listdir(TEST_DIR):
-        (fname, ext) = os.path.splitext(os.path.basename(_tstfile))
+        fname, ext = os.path.splitext(os.path.basename(_tstfile))
         if _tstfile != "SAMPLE.DEF" and (
             ext in (".gramps", ".difs", ".bak") or not fname.startswith("imp_")
         ):

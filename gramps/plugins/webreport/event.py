@@ -36,6 +36,7 @@ Narrative Web Page generator.
 Classe:
     EventPage - Event index page and individual Event pages
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------

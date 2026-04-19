@@ -39,7 +39,6 @@ import locale
 import logging
 import time
 
-from binascii import hexlify
 
 from .grampstranslation import GrampsTranslations, GrampsNullTranslations
 
@@ -84,7 +83,7 @@ if HAVE_ICU:
 _RTL_LOCALES = ("ar", "he")
 
 # locales with less than 70% currently translated
-INCOMPLETE_TRANSLATIONS = ("ar", "bg", "ko", "sq", "zh_HK", "zh_TW")
+INCOMPLETE_TRANSLATIONS = ("ar", "ba", "bg", "ko", "sq", "zh_HK", "zh_TW")
 
 
 def _check_gformat():
@@ -368,9 +367,17 @@ class GrampsLocale:
                     self.localedomain.encode("utf-8"), self.localedir.encode("utf-8")
                 )
             else:
-                # bug12278, _build_popup_ui() under linux and macOS
-                locale.textdomain(self.localedomain)
-                locale.bindtextdomain(self.localedomain, self.localedir)
+                try:
+                    # bug12278, _build_popup_ui() under linux and macOS
+                    locale.textdomain(self.localedomain)
+                    locale.bindtextdomain(self.localedomain, self.localedir)
+                except AttributeError:
+                    LOG.warning(
+                        "Python compiled without gettext support in the locale module"
+                    )
+                    self.no_gettext_support = True
+                    gettext.textdomain(self.localedomain)
+                    gettext.bindtextdomain(self.localedomain, self.localedir)
 
         self.rtl_locale = False
         if self.language[0] in _RTL_LOCALES:
@@ -431,6 +438,7 @@ class GrampsLocale:
         self.collation = None
         self.calendar = None
         self.rtl_locale = False
+        self.no_gettext_support = False
         _first = self._GrampsLocale__first_instance
         # Everything breaks without localedir, so get that set up
         # first.  Warnings are logged in __init_first_instance or
@@ -793,10 +801,15 @@ class GrampsLocale:
         """
 
         if HAVE_ICU and self.collator:
-            # ICU can digest strings and unicode
-            # Use hexlify() as to make a consistent string, fixing bug #10077
-            key = self.collator.getCollationKey(string)
-            return hexlify(key.getByteArray()).decode()
+            # ICU can digest strings and unicode.
+            # getSortKey() returns bytes directly; Python's bytes comparison
+            # is purely lexicographic and correct for ICU sort keys.
+            # hexlify() was previously used to work around a TypeError caused
+            # by Python's sort routine mixing bytearray and str when caching
+            # intermediate values (bug #10077, fixed 2017).  Gramps now
+            # requires Python >= 3.10 where that implicit conversion no longer
+            # occurs, so we can use bytes directly and skip the hexlify step.
+            return self.collator.getSortKey(string)
 
         if isinstance(string, bytes):
             string = string.decode("utf-8", "replace")

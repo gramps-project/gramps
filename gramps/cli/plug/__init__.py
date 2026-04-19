@@ -784,7 +784,7 @@ def cl_report(database, name, category, report_class, options_class, options_str
         my_report.end_report()
         return clr
     except ReportError as msg:
-        (msg1, msg2) = msg.messages()
+        msg1, msg2 = msg.messages()
         print(err_msg, file=sys.stderr)
         print(msg1, file=sys.stderr)
         if msg2:
@@ -911,7 +911,7 @@ def cl_book(database, name, book, options_str_dict):
             rpt.write_report()
         doc.close()
     except ReportError as msg:
-        (msg1, msg2) = msg.messages()
+        msg1, msg2 = msg.messages()
         print(err_msg % name, file=sys.stderr)  # which report has the error?
         print(msg1, file=sys.stderr)
         if msg2:
@@ -929,10 +929,10 @@ def write_book_item(database, report_class, options, user):
     try:
         return report_class(database, options, user)
     except ReportError as msg:
-        (msg1, msg2) = msg.messages()
+        msg1, msg2 = msg.messages()
         print("ReportError", msg1, msg2, file=sys.stderr)
     except FilterError as msg:
-        (msg1, msg2) = msg.messages()
+        msg1, msg2 = msg.messages()
         print("FilterError", msg1, msg2, file=sys.stderr)
     except:
         LOG.error("Failed to write book item.", exc_info=True)

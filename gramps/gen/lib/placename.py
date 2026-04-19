@@ -74,7 +74,7 @@ class PlaceName(SecondaryObject, DateBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (self.value, date, self.lang) = data
+        self.value, date, self.lang = data
         DateBase.unserialize(self, date)
         return self
 

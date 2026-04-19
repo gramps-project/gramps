@@ -90,7 +90,7 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
     img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
-        (start_x, start_y, end_x, end_y) = crop_percentage_to_pixel(
+        start_x, start_y, end_x, end_y = crop_percentage_to_pixel(
             img.get_width(), img.get_height(), crop
         )
         if end_x - start_x > 0 and end_y - start_y > 0:
@@ -98,9 +98,7 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
-    (width, height) = image_actual_size(
-        width, height, img.get_width(), img.get_height()
-    )
+    width, height = image_actual_size(width, height, img.get_width(), img.get_height())
 
     scaled = img.scale_simple(int(width), int(height), GdkPixbuf.InterpType.BILINEAR)
     scaled.savev(destination, "jpeg", "", "")
@@ -256,7 +254,7 @@ def resize_to_buffer(source, size, crop=None):
     img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
-        (start_x, start_y, end_x, end_y) = crop_percentage_to_pixel(
+        start_x, start_y, end_x, end_y = crop_percentage_to_pixel(
             img.get_width(), img.get_height(), crop
         )
         if end_x - start_x > 0 and end_y - start_y > 0:
@@ -264,7 +262,7 @@ def resize_to_buffer(source, size, crop=None):
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
-    (size[0], size[1]) = image_actual_size(
+    size[0], size[1] = image_actual_size(
         size[0], size[1], img.get_width(), img.get_height()
     )
 
@@ -298,7 +296,7 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
-        (start_x, start_y, end_x, end_y) = crop_percentage_to_pixel(
+        start_x, start_y, end_x, end_y = crop_percentage_to_pixel(
             img.get_width(), img.get_height(), crop
         )
         if end_x - start_x > 0 and end_y - start_y > 0:
@@ -306,7 +304,7 @@ def resize_to_jpeg_buffer(source, size, crop=None):
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
-    (size[0], size[1]) = image_actual_size(
+    size[0], size[1] = image_actual_size(
         size[0], size[1], img.get_width(), img.get_height()
     )
 

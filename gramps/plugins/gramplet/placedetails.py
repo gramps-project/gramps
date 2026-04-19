@@ -68,20 +68,20 @@ class PlaceDetails(Gramplet):
         self.top.show_all()
         return self.top
 
-    def add_row(self, title, value):
+    def add_row(self, title: str, value: str) -> None:
         """
         Add a row to the table.
         """
-        label = Gtk.Label(
+        title_label = Gtk.Label(
             label=title + COLON, halign=Gtk.Align.END, valign=Gtk.Align.START
         )
-        label.set_selectable(True)
-        label.show()
-        value = Gtk.Label(label=value, halign=Gtk.Align.START)
-        value.set_selectable(True)
-        value.show()
-        self.grid.add(label)
-        self.grid.attach_next_to(value, label, Gtk.PositionType.RIGHT, 1, 1)
+        title_label.set_selectable(True)
+        title_label.show()
+        value_label = Gtk.Label(label=value, halign=Gtk.Align.START)
+        value_label.set_selectable(True)
+        value_label.show()
+        self.grid.add(title_label)
+        self.grid.attach_next_to(value_label, title_label, Gtk.PositionType.RIGHT, 1, 1)
 
     def clear_grid(self):
         """
@@ -128,7 +128,7 @@ class PlaceDetails(Gramplet):
 
         self.clear_grid()
         self.add_row(_("Name"), place.get_name().get_value())
-        self.add_row(_("Type"), place.get_type())
+        self.add_row(_("Type"), str(place.get_type()))
         self.display_separator()
         self.display_alt_names(place)
         self.display_separator()

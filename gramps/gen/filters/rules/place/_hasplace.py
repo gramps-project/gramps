@@ -37,7 +37,6 @@ from .. import Rule
 from ....lib import PlaceType
 from ....utils.location import get_locations
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

@@ -40,7 +40,6 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
-
 # -------------------------------------------------------------------------
 #
 # Hebrew parser

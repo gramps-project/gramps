@@ -47,7 +47,7 @@ FULL_VERSION = ".".join(map(str, VERSION_TUPLE)) + VERSION_QUALIFIER
 NORMALIZED_VERSION = normalize(FULL_VERSION)
 
 VERSION = ".".join(map(str, VERSION_TUPLE)) + "." + str(VQ.get(VERSION_QUALIFIER, 99))
-COPYRIGHT = "Copyright 2024, Gramps developers.  GNU General Public License"
+COPYRIGHT = "Copyright 2026, Gramps developers.  GNU General Public License"
 BASE_DIR = os.path.split(sys.base_prefix)[1]
 SETUP_DIR = os.path.dirname(os.path.realpath(__file__))
 SETUP_FILES = [
@@ -66,7 +66,7 @@ else:
 
 INCLUDE_DLL_PATH = os.path.join(sys.base_exec_prefix, "bin")
 INCLUDE_FILES = []
-INCLUDES = ["gi", "cgi", "colorsys", "site"]
+INCLUDES = ["gi", "colorsys", "site"]
 PACKAGES = [
     "gi",
     "cairo",
@@ -112,7 +112,7 @@ MISSING_DLL = [
     "libgexiv2-2.dll",
     "libgoocanvas-3.0-9.dll",
     "libosmgpsmap-1.0-1.dll",
-    "gswin32c.exe",
+    "gswin64c.exe",
     "dot.exe",
     "libgvplugin_core-6.dll",
     "libgvplugin_dot_layout-6.dll",
@@ -126,7 +126,7 @@ MISSING_DLL = [
     "fc-match.exe",
     "gspawn-win64-helper-console.exe",
     "gspawn-win64-helper.exe",
-    "libgeocode-glib-0.dll",
+    "libgeocode-glib-2-0.dll",
     "gdbus.exe",
 ]
 BIN_EXCLUDES = ["Qt5Core.dll", "gdiplus.dll", "gdiplus"]
@@ -197,7 +197,7 @@ EXECUTABLES = [
     ),
     cx_Freeze.Executable(
         "grampsaiow.py",
-        base="Win32GUI",
+        base="gui",
         target_name="grampsw.exe",
         icon="gramps.ico",
         copyright=COPYRIGHT,

@@ -453,7 +453,7 @@ def map_font_size(fontsize):
 TBLFMT_PAT = re.compile(r"({\|?)l(\|?})")
 
 # constants for routing in table construction:
-(CELL_BEG, CELL_TEXT, CELL_END, ROW_BEG, ROW_END, TAB_BEG, TAB_END) = list(range(7))
+CELL_BEG, CELL_TEXT, CELL_END, ROW_BEG, ROW_END, TAB_BEG, TAB_END = list(range(7))
 FIRST_ROW, SUBSEQ_ROW = list(range(2))
 
 

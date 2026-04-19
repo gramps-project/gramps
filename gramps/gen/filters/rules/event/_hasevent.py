@@ -20,6 +20,7 @@
 """
 Filter rule to match events with a particular value.
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard Python modules

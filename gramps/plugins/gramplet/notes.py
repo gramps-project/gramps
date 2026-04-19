@@ -159,10 +159,13 @@ class NotesOf(Notes):
         self.connect(self.dbstate.db, "note-add", self.update)
         self.connect(self.dbstate.db, "note-update", self.update)
         self.connect(self.dbstate.db, "note-delete", self.update)
+        # Avoid connecting Person object to update() because super class
+        # handles this already by connecting Person to active_changed()
+        if self.object_class != "Person":
+            self.connect_signal(self.object_class, self.update)
 
     def active_changed(self, handle):
         self.update()
-        self.connect_signal(self.object_class, self.update)
 
     def get_notes(self, obj):
         """
@@ -232,16 +235,6 @@ class PersonNotes(NotesOf):
 
     def init(self):
         super().init("Person")
-
-    def db_changed(self):
-        self.connect(self.dbstate.db, "person-update", self.update)
-        # superclass will call active_changed if the active Person changes
-        self.connect(self.dbstate.db, "note-add", self.update)
-        self.connect(self.dbstate.db, "note-update", self.update)
-        self.connect(self.dbstate.db, "note-delete", self.update)
-
-    def active_changed(self, handle):
-        self.update()
 
 
 class EventNotes(NotesOf):

@@ -93,7 +93,7 @@ class ImageThumb(Thumbnailer):
             pixbuf = pixbuf.scale_simple(
                 scaled_width, scaled_height, GdkPixbuf.InterpType.BILINEAR
             )
-            pixbuf.savev(dest_file, "png", "", "")
+            pixbuf.savev(dest_file, "png", [], [])
             return True
         except Exception as err:
             LOG.warning("Error scaling image down: %s", str(err))

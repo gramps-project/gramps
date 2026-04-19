@@ -32,6 +32,7 @@ from the gobject framework. It enables the database code to use signals
 to communicate events to any callback methods in either the database code
 or the UI code.
 """
+
 import sys
 import types
 import traceback
@@ -300,7 +301,7 @@ class Callback:
         # Find the key in the callback map.
         for signal_name in self.__callback_map:
             for cb in self.__callback_map[signal_name]:
-                (skey, fn) = cb
+                skey, fn = cb
                 if skey == key:
                     # delete the callback from the map.
                     self._log(

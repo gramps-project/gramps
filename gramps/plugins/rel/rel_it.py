@@ -421,7 +421,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
         # get_relationship_distance changed, first data is relation to
         # orig person, apperently secondRel in this function
-        (secondRel, firstRel, common) = self.get_relationship_distance_new(
+        secondRel, firstRel, common = self.get_relationship_distance_new(
             db, orig_person, other_person
         )
 

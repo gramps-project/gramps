@@ -34,7 +34,6 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ._matchesfilter import MatchesFilter
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

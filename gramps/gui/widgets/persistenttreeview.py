@@ -20,6 +20,7 @@
 """
 An override to allow resizable columns
 """
+
 import logging
 
 from gi.repository import Gtk
@@ -42,6 +43,7 @@ class PersistentTreeView(Gtk.TreeView):
     """
 
     __gtype_name__ = "PersistentTreeView"
+    config_name = "undefined"
 
     def __init__(self, uistate=None, config_name=None):
         """

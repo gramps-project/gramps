@@ -266,7 +266,7 @@ gramps(1)                4.0.0               gramps(1)
 *AUTORES*
 
        Donald Allingham <don@gramps-project.org> 
-       http://gramps.sourceforge.net
+       https://gramps.sourceforge.net
        Este manual foi originalmente escrito por: 
        Brandon L. Griffith <brandon@debian.org> 
        para inclusão na distribuição Debian GNU/Linux.
@@ -281,7 +281,7 @@ gramps(1)                4.0.0               gramps(1)
         opção de ajuda.
 
         A documentação para desenvolvedores pode ser encontrada na 
-        página http://developers.gramps-project.org.
+        página https://www.gramps-project.org/wiki/index.php?title=Portal:Developers.
 
 
 

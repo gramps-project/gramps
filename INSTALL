@@ -19,14 +19,14 @@ directory and the file /usr/local/bin/gramps.
 
 If you don't know the list of all files that Gramps installed, you can
 reinstall it with the --record option, and take a look at the list this
-produces (so python setup.py install --record grampsfiles.txt
+produces (so pip install . --record grampsfiles.txt)
 
 Gramps is a Python application, so loading happens on reading the
 files, meaning that files of a previous version that are no longer
 present in the new version can still be loaded, making the new install
 unstable!
 
-Distutils install
+Install
 -----------------
 We do not check all dependencies of Gramps, see README for a list of
 all required and optional dependencies. Missing dependencies will
@@ -35,12 +35,8 @@ result in runtime errors.
 To install all needed dependencies you can use (in Ubuntu):
    sudo apt-get build-dep gramps
 
-To build and install, whether from a tarball or git repo:
-   python3 setup.py build
-   sudo pip3 install .
-
-You can avoid using sudo for the install step by specifying a prefix to which you have write privilege. The default is /usr/local, which is usually owned by root. You can learn of more options with
-   pip3 install --help
+To install use:
+   pip install .
 
 One can use Gramps from the command line without installing it by
 setting the following environment variables, but that won't provide
@@ -77,7 +73,7 @@ from the source directory.
  b) You installed Gramps, and want to start it from the PYTHONPATH. In this
     case use the command:
 
-     python3 -c 'from gramps.grampsapp import main; main()'
+     python -c 'from gramps.grampsapp import main; main()'
 
    The executable 'gramps' in /usr/local/bin or /usr/bin from a) does
    this for you.
@@ -85,7 +81,7 @@ from the source directory.
  c) You downloaded the Gramps source code to a directory, and want to run it.
     You can start Gramps from the source code directory with
 
-     python3 Gramps.py
+     python Gramps.py
 
     See gramps/gen/const.py how Gramps finds its resource directories in case
     you encounter problems.
@@ -93,14 +89,23 @@ from the source directory.
 Custom directory installation
 -------------------------------------
 If you would like to install Gramps without being root, or in an
-alternative location on Windows, supply the --root argument to pip3 install
+alternative location on Windows, supply the --root argument to pip install
 
 For example:
-   pip3 install . --root ~/test
+   sudo pip install . --root ~/test
+
+You can avoid using sudo for the install step by specifying a prefix to which you have write privilege. The default is /usr/local, which is usually owned by root. You can learn of more options with
+   pip install --help
 
 Packager's issues
 ------------------
 There is a MANIFEST.in file to indicate the work needed.
-To create a source distribution run:
+To create a source distribution 
 
-   python3 setup.py sdist
+   pip install build
+   python -m build --sdist
+
+This generates a sdist (.tar.gz). 
+You can install it with: 
+
+   pip install dist/gramps-*.tar.gz

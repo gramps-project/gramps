@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2026       Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -91,7 +92,7 @@ class DbReadBase:
 
     def db_has_bm_changes(self):
         """
-        Return whethere there were bookmark changes during the session.
+        Return whether there were bookmark changes during the session.
         """
         raise NotImplementedError
 
@@ -838,7 +839,7 @@ class DbReadBase:
 
     def get_url_types(self):
         """
-        Return a list of all custom names types associated with Url instances
+        Return a list of all custom url types associated with Url instances
         in the database.
         """
         raise NotImplementedError
@@ -947,7 +948,7 @@ class DbReadBase:
 
     def get_raw_media_data(self, handle):
         """
-        Return raw (serialized and pickled) Family object from handle
+        Return raw (serialized and pickled) Media object from handle
         """
         raise NotImplementedError
 
@@ -1311,7 +1312,7 @@ class DbReadBase:
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as C%d or C%04d.
+        such as C%d or C%05d.
         """
         raise NotImplementedError
 
@@ -1321,7 +1322,7 @@ class DbReadBase:
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as E%d or E%04d.
+        such as E%d or E%05d.
         """
         raise NotImplementedError
 
@@ -1331,7 +1332,7 @@ class DbReadBase:
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as F%d or F%04d.
+        such as F%d or F%05d.
         """
         raise NotImplementedError
 
@@ -1341,7 +1342,7 @@ class DbReadBase:
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as N%d or N%04d.
+        such as N%d or N%05d.
         """
         raise NotImplementedError
 
@@ -1351,7 +1352,7 @@ class DbReadBase:
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as O%d or O%04d.
+        such as O%d or O%05d.
         """
         raise NotImplementedError
 
@@ -1361,7 +1362,7 @@ class DbReadBase:
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as I%d or I%04d.
+        such as I%d or I%05d.
         """
         raise NotImplementedError
 
@@ -1371,7 +1372,7 @@ class DbReadBase:
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as P%d or P%04d.
+        such as P%d or P%05d.
         """
         raise NotImplementedError
 
@@ -1381,7 +1382,7 @@ class DbReadBase:
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as R%d or R%04d.
+        such as R%d or R%05d.
         """
         raise NotImplementedError
 
@@ -1391,7 +1392,7 @@ class DbReadBase:
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as S%d or S%04d.
+        such as S%d or S%05d.
         """
         raise NotImplementedError
 
@@ -1462,6 +1463,22 @@ class DbReadBase:
                       implemented.
         """
         return getattr(self, fmt % tuple([arg.lower() for arg in args]), None)
+
+    def get_familysearch_person_status(self, person_handle, default=None):
+        """
+        Return FamilySearch sync status for the given Person handle
+
+        Returns a dict with these keys when present:
+            fsid
+            is_root
+            status_ts
+            confirmed_ts
+            gramps_modified_ts
+            fs_modified_ts
+            essential_conflict
+            conflict
+        """
+        raise NotImplementedError
 
 
 # -------------------------------------------------------------------------
@@ -2046,3 +2063,27 @@ class DbWriteBase(DbReadBase):
 
         person.birth_ref_index = birth_ref_index
         person.death_ref_index = death_ref_index
+
+    def set_familysearch_person_status(self, person_handle, status, transaction=None):
+        """
+        Persist FamilySearch sync status for the given Person handle.
+
+        status must be a dict with any of these keys:
+            fsid
+            is_root
+            status_ts
+            confirmed_ts
+            gramps_modified_ts
+            fs_modified_ts
+            essential_conflict
+            conflict
+
+        Passing an empty dict removes the stored status row.
+        """
+        raise NotImplementedError
+
+    def delete_familysearch_person_status(self, person_handle, transaction=None):
+        """
+        Remove FamilySearch sync status for the given Person handle.
+        """
+        raise NotImplementedError

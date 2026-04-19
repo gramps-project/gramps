@@ -419,7 +419,7 @@ class GrampsImportFileDialog(ManagedWindow):
             gramps_filter.add_pattern("*.%s" % icase(plugin.get_extension()))
             import_dialog.add_filter(file_filter)
 
-        (box, type_selector) = format_maker()
+        box, type_selector = format_maker()
         import_dialog.set_extra_widget(box)
 
         import_dialog.set_current_folder(config.get("paths.recent-import-dir"))
@@ -437,7 +437,7 @@ class GrampsImportFileDialog(ManagedWindow):
                     # displays errors if any
                     continue
 
-                (the_path, the_file) = os.path.split(filename)
+                the_path, the_file = os.path.split(filename)
                 config.set("paths.recent-import-dir", the_path)
 
                 extension = type_selector.get_value()

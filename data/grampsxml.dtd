@@ -114,7 +114,7 @@ PEOPLE
 >
 
 <!--
-GENDER has values of M, F, or U.
+GENDER has values of M, F, U, or X.
 -->
 <!ELEMENT gender  (#PCDATA)>
 

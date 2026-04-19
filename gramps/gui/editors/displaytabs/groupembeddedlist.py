@@ -186,7 +186,7 @@ class GroupEmbeddedList(EmbeddedList):
             # make sure data = 1 row
             # pickle.loads(sel_data.data)[3] = 0
             try:
-                (mytype, selfid, obj, row_from) = pickle.loads(sel_data.get_data())
+                mytype, selfid, obj, row_from = pickle.loads(sel_data.get_data())
             except ValueError:
                 return
 

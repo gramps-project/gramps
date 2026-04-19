@@ -39,7 +39,7 @@ register(
     status=STABLE,
     fname="libcairodoc.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     # load_on_reg = True
 )
 
@@ -58,7 +58,7 @@ register(
     status=STABLE,
     fname="libgedcom.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )
 
 # ------------------------------------------------------------------------
@@ -76,7 +76,7 @@ register(
     status=STABLE,
     fname="librecurse.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )
 
 # ------------------------------------------------------------------------
@@ -94,7 +94,7 @@ register(
     status=STABLE,
     fname="libgrampsxml.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     # load_on_reg = True
 )
 
@@ -113,7 +113,7 @@ register(
     status=STABLE,
     fname="libholiday.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     # load_on_reg = True
 )
 
@@ -132,7 +132,7 @@ register(
     status=STABLE,
     fname="libhtmlbackend.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     # load_on_reg = True
 )
 
@@ -151,7 +151,7 @@ register(
     status=STABLE,
     fname="libhtmlconst.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     # load_on_reg = True
 )
 
@@ -189,7 +189,7 @@ register(
     status=STABLE,
     fname="libmapservice.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )
 
 # ------------------------------------------------------------------------
@@ -225,7 +225,7 @@ register(
     status=STABLE,
     fname="libodfbackend.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )
 
 # ------------------------------------------------------------------------
@@ -243,7 +243,7 @@ register(
     status=STABLE,
     fname="libpersonview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )
 
 # ------------------------------------------------------------------------
@@ -261,7 +261,7 @@ register(
     status=STABLE,
     fname="libprogen.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     # load_on_reg = True
 )
 
@@ -280,7 +280,7 @@ register(
     status=STABLE,
     fname="libplaceview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )
 
 # ------------------------------------------------------------------------
@@ -298,7 +298,7 @@ register(
     status=STABLE,
     fname="libsubstkeyword.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )
 
 # ------------------------------------------------------------------------
@@ -318,5 +318,5 @@ register(
     status=STABLE,
     fname="libtreebase.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
 )

@@ -162,6 +162,7 @@ class RelGraphReport(Report):
         self.show_family_leaves = get_value("show_family_leaves")
         self.use_subgraphs = get_value("usesubgraphs")
         self.event_choice = get_value("event_choice")
+        self.valid_date = get_value("valid_date")
         self.occupation = get_value("occupation")
         self.use_html_output = False
 
@@ -383,7 +384,7 @@ class RelGraphReport(Report):
             p_id = person.get_gramps_id()
             # Output the person's node
             label = self.get_person_label(person)
-            (shape, style, color, fill) = self.get_gender_style(person)
+            shape, style, color, fill = self.get_gender_style(person)
             url = ""
             if self.includeurl:
                 phan = person_handle
@@ -720,7 +721,7 @@ class RelGraphReport(Report):
         if self.increlname and self.center_person != person:
             # display relationship info
             if self.advrelinfo:
-                (relationship, _ga, _gb) = self.rel_calc.get_one_relationship(
+                relationship, _ga, _gb = self.rel_calc.get_one_relationship(
                     self._db,
                     self.center_person,
                     person,
@@ -823,9 +824,14 @@ class RelGraphReport(Report):
         """
         if event and event.get_date_object() is not None:
             event_date = event.get_date_object()
-            if event_date.get_year_valid():
+            if event_date:
                 if self.event_choice in [4, 5]:
-                    return self.get_date(Date(event_date.get_year()))  # localized year
+                    if event_date.get_year_valid():
+                        return self.get_date(
+                            Date(event_date.get_year())
+                        )  # localized year
+                    else:
+                        return ""
                 elif self.event_choice in [1, 2, 3, 7]:
                     return self.get_date(event_date)
         return ""
@@ -846,7 +852,13 @@ class RelGraphReport(Report):
 
     def get_date(self, date):
         """return a formatted date"""
-        return html.escape(self._get_date(date))
+        if self.valid_date:
+            if date.get_year_valid():
+                return html.escape(self._get_date(date))
+            else:
+                return ""
+        else:
+            return html.escape(self._get_date(date))
 
 
 # ------------------------------------------------------------------------
@@ -968,6 +980,10 @@ class RelGraphOptions(MenuReportOptions):
         )
         self.event_choice.set_help(_("Whether to include dates and/or places"))
         add_option("event_choice", self.event_choice)
+
+        valid = BooleanOption(_("Only valid dates"), True)
+        valid.set_help(_("Only show valid dates."))
+        add_option("valid_date", valid)
 
         show_family_leaves = BooleanOption(_("Show all family nodes"), True)
         show_family_leaves.set_help(

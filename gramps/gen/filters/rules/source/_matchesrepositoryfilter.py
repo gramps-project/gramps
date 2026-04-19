@@ -33,7 +33,6 @@ from ....const import GRAMPS_LOCALE as glocale
 from ....lib import Source
 from ....db import Database
 
-
 _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------

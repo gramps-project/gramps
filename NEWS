@@ -1,3 +1,72 @@
+2026-04-09
+Version 6.0.8
+* Update translations: cs, de_AT, en_GB, fa, fi, fr, ga, he, hr, it, mn, nl, pl,
+  pt_PT, ru, sk, sr, sv, zh_CN.
+* Fix xgettext format string warning.
+* Fix AttributeError when PersistentTreeView is GtkBuilder-created.
+  Fixes #14159.
+* Update DTD and RNG schemas.
+* Fix Notpatronymic and Rawsurnames format code entry. Fixes #14146.
+* Avoid duplicate calls to update() in Person view.
+* Remove redundant methods on PersonNotes class.
+* Fix signals in notes gramplet. Fixes #14148, #13866.
+* Fix ImageThumb savev() passing strings instead of lists.
+* Fix Serbian date modifiers.
+* Fix incorrect person gender schema max.
+* Update copyright year in Windows AIO.
+* Various fixes to the Windows AIO build.
+* Update GitHub upload-artifact action version to v6.
+* Add PyInstaller-based Windows AIO workflow.
+
+2026-03-15
+Version 6.0.7
+* Update translations: ba, bg, cs, da, de, de_AT, el, en_GB, fa, fi, fr, ga, he,
+  hr, hu, it, ka, ko, lt, mk, nl, pt_BR, ru, sk, sl, sv, ta, tr, uk, zh_CN.
+* Add Bashkir translation.
+* Fix Irish plural forms.
+* Update copyright dates.
+* Add bulk change revs to ignore list for blame.
+* I18n improvements of surname origin attributes
+* Use the OCCU tag for Occupation events in the Gedcom export. Fixes #14109.
+* Clean input data tool gives invalid lat/lon when not set. Fixes #14077.
+* Fix invalid date when no date in data verify tool. Fixes #14081.
+* Fix LT and LV language associations in Gedcom export.
+* Update GitHub checkout action version to v6.
+* Handle Stillbirth event correctly in Gedcom import. Fixes #14067.
+* Handle Arabic comma when creating missing note. Fixes #13692.
+* Remove some false positives from the data verify tool. Fixes #14060.
+* Extend the CheckIntegrity tool to coalesce duplicate event role names.
+* Don't ignore calendar, modifier and quality in diff_dates.
+* Catch IndexError in importxml.
+* Bump mac versions & copyright dates.  Preparing for 6.0.7 release.
+* Reformat code using the latest stable version of black.
+* Fix mypy errors.
+* Fix code formatting.
+* Mac:
+  * Bump mac versions & copyright dates.  Preparing for 6.0.7 release.
+  * Package Gramps 6.0.6 on macOS.
+  * Allow Gramps to load external shared libraries for plugins.
+
+2025-11-08
+Version 6.0.6
+* Update translations: ba, cs, da, de, de_AT, en_GB, es, fi, fr, ga, he, hr, id,
+  it, ka, lt, nl, pl, pt_PT, ro, ru, sk, sv, ta, tr, uk.
+* Added Weblate translation for Nepali.
+* Relationship Calculator:
+  * Re-written for Russian language. Fixes #12743, #14019.
+  * Fixed incorrect handling of return value of `get_birth_parents()` method.
+  * Add tests to improve coverage of step, in-law and plural cases.
+  * Fix error. Fixes #13996.
+* Fix order of LDS ordinances. Fixes #11651.
+* Fix "Latter-day Saints" name. Issue #11651.
+* Add missing "Initiatory" LDS ordinance. Fixes #4949.
+* Preserve order in `find_children`.
+* Update geocode-glib DLL reference in `setup.py` script. MSYS2 now provides a
+  libsoup3-based geocode-glib binary. Fixes #14018.
+* Update GPL2+ license text.
+* Update COPYING to the latest text.
+* Ignore mypy error when setting `sqlite3.paramstyle`.
+
 2025-09-06
 Version 6.0.5
 * Update translations: bg, ca, cs, da, de, es, fi, fr, ga, he, hr, hu, it, lt,
@@ -2763,7 +2832,7 @@ Version 3.4.2 -- the "We're all individuals!" bug fix release.
 * Consistency on PDF file format
 * New language: Greek
 * Various updated translations
-* Changelog: http://www.gramps-project.org/bugs/changelog_page.php?version_id=32
+* Changelog: https://www.gramps-project.org/bugs/changelog_page.php?version_id=32
 
 2012-08-23
 Version 3.4.1 -- The "A tiger? In Africa?!" bug fix release.
@@ -2773,7 +2842,7 @@ Mention in the release that upgrading is advised for two critical issues:
 * Some platform-specific fixes (Windows, OSX)
 * Bug fixes
 * Translation updates
-* Changelog: http://www.gramps-project.org/bugs/changelog_page.php?version_id=31
+* Changelog: https://www.gramps-project.org/bugs/changelog_page.php?version_id=31
 
 2012-05-21
 Version 3.4.0 -- The "always look on the bright side of life" feature release.
@@ -2781,8 +2850,8 @@ Version 3.4.0 -- The "always look on the bright side of life" feature release.
   import/export, image handling, gedom handling, Gramplets, date handling,
   citations, reports, more!
 * Some platform-specific fixes (Windows, OSX, Linux)
-* What's new (and what to do before you upgrade):  http://goo.gl/K3RDV
-* Roadmap:  http://goo.gl/GJhjH
+* What's new (and what to do before you upgrade):  https://goo.gl/K3RDV
+* Roadmap:  https://goo.gl/GJhjH
 * Many translation updates
 
 2012-05-18
@@ -2811,10 +2880,10 @@ Version 3.3.2 -- "The Knights who say 'Ni'" bug fix release.
 Version 3.3.1 -- "The Tenth Anniversary Edition" bug fix release.
 * translation updates:  ca, cs, de, fr, hr, it, nb, nl, pl, pt_br, sk, sl, sv, uk, zh_cn
 * new languages in this release:  ja (Japanese), vi (Vietnamese)
-* 36 bugs closed since v3.3.0:  http://www.gramps-project.org/bugs/roadmap_page.php?version_id=27
+* 36 bugs closed since v3.3.0:  https://www.gramps-project.org/bugs/roadmap_page.php?version_id=27
 * 79 translation commits since v3.3.0
 * 189 code commits since v3.3.0
-* ten years since v0.1.1 was first released:  http://www.gramps-project.org/wiki/index.php?title=Previous_releases
+* ten years since v0.1.1 was first released:  https://www.gramps-project.org/wiki/index.php?title=Previous_releases
 * "Thank you!" to Donald Allingham, The Gramps Developers, translators, and our every day users
 
 2011-06-12
@@ -2831,7 +2900,7 @@ Version 3.3.0 -- the "Prelude to the next version" new feature release.
 * undo/redo on entry fields (CTRL+Z, CTRL+SHIFT+Z)
 * backup option in the exporter
 * exporter based on filters with preview
-* many more changes; see http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual_-_What%27s_new%3F
+* many more changes; see https://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual_-_What%27s_new%3F
 
 2011-04-30
 Version 3.2.6 -- the "So far, so good." bug fix release.
@@ -2843,7 +2912,7 @@ Version 3.2.6 -- the "So far, so good." bug fix release.
 * NarrativeWeb fixes
 * prevent corrupting databases
 * many translation updates
-* other changes; see the changelog and the 3.2.6 roadmap: http://www.gramps-project.org/bugs/roadmap_page.php?version_id=23
+* other changes; see the changelog and the 3.2.6 roadmap: https://www.gramps-project.org/bugs/roadmap_page.php?version_id=23
 
 2010-11-17
 Version 3.2.5 -- the "I intend to live forever" bug fix release.
@@ -3146,5 +3215,5 @@ Version 2.1.3
 
 Version 2.1.0 -- the "What are you going to do, bleed on me?" release
 * Initial unstable release of 2.1.0.
-* Far too many changes to specify. See http://gramps-project.org/whats_new/
+* Far too many changes to specify. See https://gramps-project.org/whats_new/
 

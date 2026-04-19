@@ -186,7 +186,7 @@ class FlatNodeMap:
         This method keeps the index2hndl map, but sets it up the index in
         reverse order. If the hndl2index map does not exist yet, it is created
         in the acending order as given in index2hndl
-        The result is always a hndl2index map wich is correct, so or ascending
+        The result is always a hndl2index map which is correct, so or ascending
         order, or reverse order.
         """
         if self._hndl2index:

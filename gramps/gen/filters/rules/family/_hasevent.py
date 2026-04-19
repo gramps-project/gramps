@@ -20,6 +20,7 @@
 """
 Filter rule to match families with a particular event.
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -35,7 +36,6 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .._haseventbase import HasEventBase
-
 
 # -------------------------------------------------------------------------
 #

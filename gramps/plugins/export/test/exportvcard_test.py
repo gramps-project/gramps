@@ -20,6 +20,7 @@
 """
 Unittest for export to VCard
 """
+
 import unittest
 import time
 import subprocess

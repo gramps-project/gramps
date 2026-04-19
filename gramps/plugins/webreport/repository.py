@@ -37,6 +37,7 @@ Narrative Web Page generator.
 Classe:
     RepositoryPage - Repository index page and individual Repository pages
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -122,7 +123,7 @@ class RepositoryPages(BasePage):
 
             idx = 1
             for dummy_index, key in enumerate(keys):
-                (repo, handle) = repos_dict[key]
+                repo, handle = repos_dict[key]
                 step()
                 idx += 1
                 self.repositorypage(self.report, the_lang, the_title, repo, handle)
@@ -185,7 +186,7 @@ class RepositoryPages(BasePage):
                 table += tbody
 
                 for index, key in enumerate(keys):
-                    (repo, handle) = repos_dict[key]
+                    repo, handle = repos_dict[key]
 
                     trow = Html("tr")
                     tbody += trow

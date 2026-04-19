@@ -667,7 +667,7 @@ class FanChart(Report):
         for index in range(segments - 1, 2 * segments - 1):
             start_angle = end_angle
             end_angle = start_angle + delta
-            (_xc, _yc) = draw_wedge(
+            _xc, _yc = draw_wedge(
                 self.doc,
                 graphic_style,
                 _x_,
@@ -733,7 +733,7 @@ class FanChart(Report):
         for index in range(segments - 1, 2 * segments - 1):
             start_angle = end_angle
             end_angle = start_angle + delta
-            (_xc, _yc) = draw_wedge(
+            _xc, _yc = draw_wedge(
                 self.doc,
                 graphic_style,
                 _x_,

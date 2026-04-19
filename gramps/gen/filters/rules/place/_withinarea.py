@@ -42,7 +42,6 @@ from ....const import GRAMPS_LOCALE as glocale
 from .. import Rule
 from ....utils.place import conv_lat_lon
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules
@@ -51,7 +50,6 @@ from ....utils.place import conv_lat_lon
 from typing import Union
 from ....lib import Place
 from ....db import Database
-
 
 _ = glocale.translation.sgettext
 

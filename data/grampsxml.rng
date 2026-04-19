@@ -166,6 +166,7 @@
         <value>M</value>
         <value>F</value>
         <value>U</value>
+        <value>X</value>
     </choice></element>
     <zeroOrMore><element name="name">
         <ref name="name-content"/>

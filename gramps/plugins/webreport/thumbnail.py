@@ -38,6 +38,7 @@ Narrative Web Page generator.
 Classe:
     ThumbnailPreviewPage
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -156,7 +157,7 @@ class ThumbnailPreviewPage(BasePage):
                 numberdiv += Html("a", index, name=index, title=index, inline=True)
 
                 # create thumbnail
-                (dummy_real_path, newpath) = self.report.prepare_copy_media(photo)
+                dummy_real_path, newpath = self.report.prepare_copy_media(photo)
                 newpath = self.report.build_url_fname(newpath, image=True)
                 newpathc = newpath
                 pathp = photo.get_path()

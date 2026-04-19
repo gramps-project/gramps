@@ -117,7 +117,6 @@ from . import (
 from .bookmarks import DbBookmarks
 from .exceptions import DbUpgradeRequiredError, DbVersionError
 from .utils import clear_lock_file, write_lock_file
-from typing import Union
 
 _ = glocale.translation.gettext
 
@@ -208,7 +207,7 @@ class DbGenericUndo(DbUndo):
         try:
             self.db._txn_begin()
             for record_id in subitems:
-                (key, trans_type, handle, __, new_data) = pickle.loads(
+                key, trans_type, handle, __, new_data = pickle.loads(
                     self.undodb[record_id]
                 )
 
@@ -257,7 +256,7 @@ class DbGenericUndo(DbUndo):
         try:
             self.db._txn_begin()
             for record_id in subitems:
-                (key, trans_type, handle, old_data, x) = pickle.loads(
+                key, trans_type, handle, old_data, x = pickle.loads(
                     self.undodb[record_id]
                 )
 
@@ -420,7 +419,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     __callback_map = {}
 
-    VERSION = (21, 0, 0)
+    VERSION = (22, 0, 0)
 
     def __init__(self, directory=None):
         DbReadBase.__init__(self)
@@ -612,15 +611,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.repo_bookmarks = DbBookmarks()
         self.media_bookmarks = DbBookmarks()
         self.note_bookmarks = DbBookmarks()
-        self.set_person_id_prefix("I%04d")
-        self.set_media_id_prefix("O%04d")
-        self.set_family_id_prefix("F%04d")
-        self.set_citation_id_prefix("C%04d")
-        self.set_source_id_prefix("S%04d")
-        self.set_place_id_prefix("P%04d")
-        self.set_event_id_prefix("E%04d")
-        self.set_repository_id_prefix("R%04d")
-        self.set_note_id_prefix("N%04d")
+        self.set_person_id_prefix("I%05d")
+        self.set_media_id_prefix("O%05d")
+        self.set_family_id_prefix("F%05d")
+        self.set_citation_id_prefix("C%05d")
+        self.set_source_id_prefix("S%05d")
+        self.set_place_id_prefix("P%05d")
+        self.set_event_id_prefix("E%05d")
+        self.set_repository_id_prefix("R%05d")
+        self.set_note_id_prefix("N%05d")
         # Custom type values
         self.event_names = set()
         self.family_attributes = set()
@@ -1031,11 +1030,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             except TypeError:  # missing conversion specifier
                 prefix_var = val + "%d"
             except ValueError:  # incomplete format
-                prefix_var = default + "%04d"
+                prefix_var = default + "%05d"
             else:
                 prefix_var = val  # OK as given
         else:
-            prefix_var = default + "%04d"  # not a string or empty string
+            prefix_var = default + "%05d"  # not a string or empty string
         return prefix_var
 
     @staticmethod
@@ -1080,7 +1079,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as I%d or I%04d.
+        such as I%d or I%05d.
         """
         self.person_prefix = self._validated_id_prefix(val, "I")
         self.id2user_format = self.__id2user_format(self.person_prefix)
@@ -1091,7 +1090,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as C%d or C%04d.
+        such as C%d or C%05d.
         """
         self.citation_prefix = self._validated_id_prefix(val, "C")
         self.cid2user_format = self.__id2user_format(self.citation_prefix)
@@ -1102,7 +1101,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as S%d or S%04d.
+        such as S%d or S%05d.
         """
         self.source_prefix = self._validated_id_prefix(val, "S")
         self.sid2user_format = self.__id2user_format(self.source_prefix)
@@ -1113,7 +1112,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as O%d or O%04d.
+        such as O%d or O%05d.
         """
         self.media_prefix = self._validated_id_prefix(val, "O")
         self.oid2user_format = self.__id2user_format(self.media_prefix)
@@ -1124,7 +1123,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as P%d or P%04d.
+        such as P%d or P%05d.
         """
         self.place_prefix = self._validated_id_prefix(val, "P")
         self.pid2user_format = self.__id2user_format(self.place_prefix)
@@ -1134,7 +1133,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Set the naming template for Gramps Family ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as F%d
-        or F%04d.
+        or F%05d.
         """
         self.family_prefix = self._validated_id_prefix(val, "F")
         self.fid2user_format = self.__id2user_format(self.family_prefix)
@@ -1145,7 +1144,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as E%d or E%04d.
+        such as E%d or E%05d.
         """
         self.event_prefix = self._validated_id_prefix(val, "E")
         self.eid2user_format = self.__id2user_format(self.event_prefix)
@@ -1156,7 +1155,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as R%d or R%04d.
+        such as R%d or R%05d.
         """
         self.repository_prefix = self._validated_id_prefix(val, "R")
         self.rid2user_format = self.__id2user_format(self.repository_prefix)
@@ -1167,7 +1166,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
-        such as N%d or N%04d.
+        such as N%d or N%05d.
         """
         self.note_prefix = self._validated_id_prefix(val, "N")
         self.nid2user_format = self.__id2user_format(self.note_prefix)
@@ -2511,7 +2510,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_url_types(self):
         """
-        Return a list of all custom names types assocated with Url instances
+        Return a list of all custom url types assocated with Url instances
         in the database.
         """
         return list(self.url_types)
@@ -2677,7 +2676,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def db_has_bm_changes(self):
         """
-        Return whethere there were bookmark changes during the session.
+        Return whether there were bookmark changes during the session.
         """
         return self._bm_changes > 0
 
@@ -2777,6 +2776,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_19,
             gramps_upgrade_20,
             gramps_upgrade_21,
+            gramps_upgrade_22,
         )
 
         if version < 14:
@@ -2795,6 +2795,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_20(self)
         if version < 21:
             gramps_upgrade_21(self)
+        if version < 22:
+            gramps_upgrade_22(self)
 
         self.rebuild_secondary(callback)
         self.reindex_reference_map(callback)

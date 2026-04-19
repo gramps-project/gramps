@@ -23,3 +23,129 @@ paned>separator {
 label.error {
   color: @error_color;
 }
+
+/* FamilySearch - relatives import dialog */
+.fs-rel-import-dialog { }
+
+.fs-rel-import-wrap {
+  padding: 10px;
+}
+
+.fs-rel-import-panel {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background-color: rgba(0,0,0,0.03);
+}
+
+.fs-rel-import-legend {
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background-color: rgba(0,0,0,0.03);
+}
+
+.fs-rel-import-treeview header button {
+  font-weight: 700;
+}
+
+/* FamilySearch - compare window */
+@define-color fs_compare_match_bg #D8F3DC;
+@define-color fs_compare_different_bg #FFE8CC;
+@define-color fs_compare_only_gramps_bg #FFF3BF;
+@define-color fs_compare_only_fs_bg #D0EBFF;
+@define-color fs_compare_critical_bg #FFE3E3;
+@define-color fs_tools_person_bg rgba(0, 120, 170, 0.10);
+@define-color fs_tools_person_border rgba(0, 120, 170, 0.22);
+@define-color fs_tools_import_bg rgba(46, 125, 50, 0.10);
+@define-color fs_tools_import_border rgba(46, 125, 50, 0.22);
+@define-color fs_tools_util_bg rgba(80, 80, 80, 0.06);
+@define-color fs_tools_util_border rgba(0, 0, 0, 0.16);
+
+.fs-compare-window { }
+
+.fs-compare-wrap {
+  padding: 10px;
+}
+
+box.fs-compare-legend,
+.fs-compare-legend {
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background-color: rgba(0,0,0,0.03);
+}
+
+.fs-legend-pill {
+  border-radius: 999px;
+  padding: 2px 10px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background-image: none;
+}
+
+.fs-legend-pill.fs-match       { background-color: @fs_compare_match_bg; }
+.fs-legend-pill.fs-different   { background-color: @fs_compare_different_bg; }
+.fs-legend-pill.fs-only-gramps { background-color: @fs_compare_only_gramps_bg; }
+.fs-legend-pill.fs-only-fs     { background-color: @fs_compare_only_fs_bg; }
+.fs-legend-pill.fs-critical    { background-color: @fs_compare_critical_bg; }
+
+.fs-legend-label {
+  font-weight: 600;
+  opacity: 0.92;
+}
+
+.fs-compare-notebook {
+  border-radius: 12px;
+}
+
+.fs-compare-treeview {
+  border-radius: 10px;
+}
+
+.fs-compare-treeview header button {
+  font-weight: 700;
+}
+
+/* FamilySearch - tools window */
+.fs-tools-window { }
+
+.fs-banner {
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background-color: rgba(0,0,0,0.03);
+}
+
+.fs-status-row {
+  padding: 2px;
+}
+
+.fs-active-label {
+  opacity: 0.92;
+  font-weight: 600;
+}
+
+.fs-section {
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.10);
+}
+
+.fs-section-title {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.fs-sec-person {
+  background-color: @fs_tools_person_bg;
+  border-color: @fs_tools_person_border;
+}
+
+.fs-sec-import {
+  background-color: @fs_tools_import_bg;
+  border-color: @fs_tools_import_border;
+}
+
+.fs-sec-util {
+  background-color: @fs_tools_util_bg;
+  border-color: @fs_tools_util_border;
+}
+

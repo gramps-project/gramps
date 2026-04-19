@@ -159,7 +159,7 @@ class CalendarWriter:
 
     def format_single_date(self, subdate, thisyear, cal):
         retval = ""
-        (day, month, year, sl) = subdate
+        day, month, year, sl = subdate
 
         if thisyear:
             year = time.localtime().tm_year

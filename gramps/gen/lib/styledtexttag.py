@@ -95,7 +95,7 @@ class StyledTextTag(BaseObject):
         :type data: tuple
 
         """
-        (the_name, self.value, self.ranges) = data
+        the_name, self.value, self.ranges = data
 
         self.name = StyledTextTagType()
         self.name.unserialize(the_name)

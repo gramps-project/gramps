@@ -22,7 +22,7 @@
 ##   http://www.cs.utah.edu/~draperg/research/fanchart/demo/
 
 ## Found by redwood:
-## http://www.gramps-project.org/bugs/view.php?id=2611
+## https://www.gramps-project.org/bugs/view.php?id=2611
 
 # -------------------------------------------------------------------------
 #
@@ -180,8 +180,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-        % _("Organize Bookmarks"),  # Following are the Toolbar items
+""" % _("Organize Bookmarks"),  # Following are the Toolbar items
         """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>

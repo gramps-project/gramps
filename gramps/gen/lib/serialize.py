@@ -143,7 +143,7 @@ class JSONSerializer:
 
     @staticmethod
     def object_to_data(obj):
-        LOG.debug("json, object_to_string: %r", obj)
+        LOG.debug("json, object_to_data: %r", obj)
         return object_to_data(obj)
 
     @staticmethod

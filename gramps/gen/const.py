@@ -46,14 +46,15 @@ LOG = logging.getLogger(".")
 from .git_revision import get_git_revision
 from .constfunc import (
     get_env_var,
+    get_user_home_dir,
     get_user_cache_dir,
     get_user_config_dir,
     get_user_data_dir,
+    win,
 )
 from ..version import VERSION, VERSION_TUPLE, major_version, DEV_VERSION
 from .utils.resourcepath import ResourcePath
 from .utils.grampslocale import GrampsLocale
-
 
 # -------------------------------------------------------------------------
 #
@@ -67,11 +68,12 @@ PROGRAM_NAME = "Gramps"
 # Standard Gramps Websites
 #
 # -------------------------------------------------------------------------
-URL_HOMEPAGE = "http://gramps-project.org/"
-URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
-URL_BUGHOME = "http://gramps-project.org/bugs"
-URL_BUGTRACKER = "http://gramps-project.org/bugs/bug_report_page.php"
-URL_WIKISTRING = "http://gramps-project.org/wiki/index.php?title="
+URL_HOMEPAGE = "https://gramps-project.org/"
+URL_NS = "http://gramps-project.org/"  # XML NS URI
+URL_MAILINGLIST = "https://sourceforge.net/mail/?group_id=25770"
+URL_BUGHOME = "https://gramps-project.org/bugs"
+URL_BUGTRACKER = "https://gramps-project.org/bugs/bug_report_page.php"
+URL_WIKISTRING = "https://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
 URL_MANUAL_DATA = "%s_-_Entering_and_editing_data:_detailed" % URL_MANUAL_PAGE
 URL_MANUAL_SECT1 = "%s_-_part_1" % URL_MANUAL_DATA
@@ -104,33 +106,28 @@ if "GRAMPSHOME" in os.environ:
     USER_HOME = get_env_var("GRAMPSHOME")
     USER_DATA = os.path.join(USER_HOME, "gramps")
     USER_CONFIG = USER_DATA
-elif "USERPROFILE" in os.environ:
-    USER_HOME = get_env_var("USERPROFILE")
-    if "APPDATA" in os.environ:
-        USER_DATA = os.path.join(get_env_var("APPDATA"), "gramps")
-    else:
-        USER_DATA = os.path.join(USER_HOME, "AppData", "Roaming", "gramps")
-    USER_CONFIG = USER_DATA
-    # Migrate data from AppData\Local to AppData\Roaming on Windows.
-    OLD_HOME = os.path.join(USER_HOME, "AppData", "Local", "gramps")
-    if os.path.exists(OLD_HOME):
-        if os.path.exists(USER_DATA):
-            LOG.warning("Two Gramps application data directories exist.")
-        else:
-            shutil.move(OLD_HOME, USER_DATA)
 else:
-    USER_HOME = get_env_var("HOME")
+    USER_HOME = get_user_home_dir()
     USER_DATA = os.path.join(get_user_data_dir(), "gramps")
     USER_CONFIG = os.path.join(get_user_config_dir(), "gramps")
-    # Copy the database directory into the XDG directory.
-    OLD_HOME = os.path.join(USER_HOME, ".gramps")
-    if os.path.exists(OLD_HOME):
-        if os.path.exists(USER_DATA) or os.path.exists(USER_CONFIG):
-            LOG.warning("Two Gramps application data directories exist.")
-        else:
-            db_dir = os.path.join(OLD_HOME, "grampsdb")
-            if os.path.exists(db_dir):
-                shutil.copytree(db_dir, os.path.join(USER_DATA, "grampsdb"))
+    if win():
+        # Migrate data from AppData\Local to AppData\Roaming on Windows.
+        OLD_HOME = os.path.join(USER_HOME, "AppData", "Local", "gramps")
+        if os.path.exists(OLD_HOME):
+            if os.path.exists(USER_DATA):
+                LOG.warning("Two Gramps application data directories exist.")
+            else:
+                shutil.move(OLD_HOME, USER_DATA)
+    else:
+        # Copy the database directory into the XDG directory.
+        OLD_HOME = os.path.join(USER_HOME, ".gramps")
+        if os.path.exists(OLD_HOME):
+            if os.path.exists(USER_DATA) or os.path.exists(USER_CONFIG):
+                LOG.warning("Two Gramps application data directories exist.")
+            else:
+                db_dir = os.path.join(OLD_HOME, "grampsdb")
+                if os.path.exists(db_dir):
+                    shutil.copytree(db_dir, os.path.join(USER_DATA, "grampsdb"))
 
 USER_CACHE = os.path.join(get_user_cache_dir(), "gramps")
 
@@ -261,7 +258,7 @@ GTK_GETTEXT_DOMAIN = "gtk30"
 # About box information
 #
 # -------------------------------------------------------------------------
-COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2025 The Gramps Developers"
+COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2026 The Gramps Developers"
 COMMENTS = _(
     "Gramps is a genealogy program that is both intuitive for hobbyists "
     "and feature-complete for professional genealogists."

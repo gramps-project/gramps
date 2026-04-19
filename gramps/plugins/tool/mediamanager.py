@@ -729,7 +729,7 @@ class ImagesNotIncluded(BatchOp):
                             obj = Media()
                             obj.set_path(media_full_path)
                             obj.set_mime_type(mime_type)
-                            (root, ext) = os.path.splitext(filename)
+                            root, ext = os.path.splitext(filename)
                             obj.set_description(root)
                             self.db.add_media(obj, self.trans)
             self.update()

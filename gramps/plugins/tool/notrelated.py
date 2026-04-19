@@ -264,7 +264,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
                 )
 
             # iterate through all of the selected rows
-            (model, paths) = self.treeSelection.get_selected_rows()
+            model, paths = self.treeSelection.get_selected_rows()
 
             for path in paths:
                 if progress:

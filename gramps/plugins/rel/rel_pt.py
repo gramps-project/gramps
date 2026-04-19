@@ -187,7 +187,7 @@ _mother_level = [
 ]
 
 # Higher-order terms (after "tetravô") are not standard in Portuguese.
-# Check http://www.geneall.net/P/forum_msg.php?id=136774 that states
+# Check https://www.geneall.net/P/forum_msg.php?id=136774 that states
 # that although some people may use other greek-prefixed forms for
 # higher levels, both pt and pt_BR correct form is to use, after
 # "tetravô", the "quinto avô", "sexto avô", etc.

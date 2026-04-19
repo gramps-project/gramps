@@ -37,7 +37,7 @@ class TestCallback(unittest.TestCase):
         t.emit("test-signal", (1,))
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
     def test_exception_catch(self):
         class TestSignals(Callback):
@@ -78,7 +78,7 @@ class TestCallback(unittest.TestCase):
         t.emit("test-signal", (1,))
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
         t.disconnect(key)
 
@@ -101,7 +101,7 @@ class TestCallback(unittest.TestCase):
         t.emit("test-noargs")
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
     def test_no_callback(self):
         class TestSignals(Callback):
@@ -129,13 +129,13 @@ class TestCallback(unittest.TestCase):
         t.emit("test-signal", (1,))
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
         t.connect("test-sub-signal", fn)
         t.emit("test-sub-signal", (1,))
 
         self.assertEqual(len(rl), 2, "No subclass signal emitted")
-        self.assertEqual(rl[1], 1, "Wrong argument recieved in subclass")
+        self.assertEqual(rl[1], 1, "Wrong argument received in subclass")
 
     def test_signal_block(self):
         class TestSignals(Callback):
@@ -151,7 +151,7 @@ class TestCallback(unittest.TestCase):
         t.emit("test-signal", (1,))
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
         Callback.disable_all_signals()
         t.emit("test-signal", (1,))

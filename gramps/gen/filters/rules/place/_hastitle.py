@@ -35,7 +35,6 @@ _ = glocale.translation.sgettext
 from .. import Rule
 from ....display.place import displayer
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

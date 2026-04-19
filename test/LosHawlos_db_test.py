@@ -28,6 +28,7 @@ nosetests gramps test
 where gramps is the directory containing most of the Gramps code, and this file
 is in the directory 'test'
 """
+
 import os
 import tempfile
 import shutil

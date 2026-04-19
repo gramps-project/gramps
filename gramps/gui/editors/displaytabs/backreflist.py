@@ -147,12 +147,12 @@ class BackRefList(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2))
 
     def find_node(self):
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         try:
             return (model.get_value(node, 4), model.get_value(node, 3))
         except:
             return (None, None)
 
     def edit_button_clicked(self, obj):
-        (reftype, ref) = self.find_node()
+        reftype, ref = self.find_node()
         edit_object(self.dbstate, self.uistate, reftype, ref)

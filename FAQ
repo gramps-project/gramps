@@ -97,7 +97,7 @@ and research genealogical data using the powers of your computer.
 
 2. Where do I get it and how much does it cost?
 
-Gramps can be downloaded from http://sf.net/projects/gramps at no charge.
+Gramps can be downloaded from https://sf.net/projects/gramps at no charge.
 Gramps is an Open Source project covered by the GNU General Public License.
 You have full access to the source code and are allowed to distribute the
 program and source code freely.
@@ -130,7 +130,7 @@ Note: To use genealogical symbols you must install a font that provides the misc
 
 6. What is needed to install Gramps under Linux, Solaris, or FreeBSD?
 
-Gramps is a [http://en.wikipedia.org/wiki/Gtk GTK] application. Gramps needs to have the [http://en.wikipedia.org/wiki/Pygtk pygtk] libraries installed on the system. As long as these libraries are installed, Gramps should function. It will operate under the GNOME desktop, KDE desktop, or any other desktop. If the GNOME bindings for Python are installed on the system, Gramps will have additional functionality. The Gramps project recommends version 2.8 or higher of GTK.
+Gramps is a [https://en.wikipedia.org/wiki/Gtk GTK] application. Gramps needs to have the [https://en.wikipedia.org/wiki/Pygtk pygtk] libraries installed on the system. As long as these libraries are installed, Gramps should function. It will operate under the GNOME desktop, KDE desktop, or any other desktop. If the GNOME bindings for Python are installed on the system, Gramps will have additional functionality. The Gramps project recommends version 2.8 or higher of GTK.
 
 
 7. Does it work with Windows (tm)?
@@ -190,7 +190,7 @@ The best way is to create a new Gramps database file, and select the import opti
 
 16. Can I install Gramps on a Linux Web Server and use it via a web browser? This would enable my relations worldwide to access and update it.
 
-While Gramps can generate web sites, it does not provide a web interface that allows for editing. If this is a requirement, then [http://geneweb.org GeneWeb] or [http://phpgedview.sourceforge.net PhpGedView] are programs more likely to meet your needs. However, you may wish to ask yourself the following questions:
+While Gramps can generate web sites, it does not provide a web interface that allows for editing. If this is a requirement, then [https://github.com/geneweb/geneweb GeneWeb] or [https://phpgedview.sourceforge.net PhpGedView] are programs more likely to meet your needs. However, you may wish to ask yourself the following questions:
 * Do I really want relatives or other people to directly edit my genealogy database?
 * Do I implicitly trust, without verification, any data that people may enter?
 * Do these people have the same understanding of good genealogy practice that I have?

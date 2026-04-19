@@ -26,6 +26,7 @@ Narrative Web Page generator.
 Classe:
     UpdatesPage
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------

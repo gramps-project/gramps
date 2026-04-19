@@ -17,6 +17,7 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 """LaTeX Genealogy Tree adapter for Trees"""
+
 # -------------------------------------------------------------------------
 #
 # Standard Python modules

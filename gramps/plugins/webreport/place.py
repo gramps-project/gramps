@@ -36,6 +36,7 @@ Narrative Web Page generator.
 Classe:
     PlacePage - Place index page and individual Place pages
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -382,7 +383,7 @@ class PlacePages(BasePage):
                         val = [""]
                         cname = ""
                         sname = ""
-                    (ldatec, first_place) = self.__output_place(
+                    ldatec, first_place = self.__output_place(
                         ldatec,
                         trow,
                         first_place,
@@ -480,7 +481,7 @@ class PlacePages(BasePage):
         output_file, sio = self.report.create_file(place_handle, "plc")
         self.uplink = True
         self.page_title = place_name
-        (placepage, head, dummy_body, outerwrapper) = self.write_header(_("Places"))
+        placepage, head, dummy_body, outerwrapper = self.write_header(_("Places"))
 
         self.placemappages = self.report.options["placemappages"]
         self.mapservice = self.report.options["mapservice"]
@@ -669,7 +670,7 @@ class PlacePages(BasePage):
 
                             if mime_type and is_image_type(mime_type):
                                 uplnk = self.uplink
-                                (pth, dummy_) = self.report.prepare_copy_media(photo)
+                                pth, dummy_ = self.report.prepare_copy_media(photo)
                                 srbuf = self.report.build_url_fname
                                 newpath = srbuf(pth, image=True, uplink=uplnk)
                                 imglnk = self.media_link(

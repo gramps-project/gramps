@@ -300,7 +300,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         for entry in self.place_list:
             if math.hypot(lat - float(entry[3]), lon - float(entry[4])) <= rds:
                 # Do we already have this place ? avoid duplicates
-                (country, state, county, place, other) = self.get_location(entry[9])
+                country, state, county, place, other = self.get_location(entry[9])
                 if not [country, state, county, place, other] in self.places:
                     self.places.append([country, state, county, place, other])
         self.warning = False
@@ -329,7 +329,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
                     self.warning = True
                     continue
                 if math.hypot(lat - float(latn), lon - float(lonn)) <= rds:
-                    (country, state, county, place, other) = self.get_location(
+                    country, state, county, place, other = self.get_location(
                         place.get_gramps_id()
                     )
                     if not [country, state, county, place, other] in self.places:

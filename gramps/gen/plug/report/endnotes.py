@@ -122,7 +122,7 @@ def cite_source(bibliography, database, obj, elocale=glocale):
                 txt += trans_text(", ")
             first = False
             citation = database.get_citation_from_handle(ref)
-            (cindex, key) = bibliography.add_reference(citation)
+            cindex, key = bibliography.add_reference(citation)
             txt += "%d" % (cindex + 1)
             if key is not None:
                 txt += key

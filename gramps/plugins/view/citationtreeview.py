@@ -21,6 +21,7 @@
 Citation Tree View (or Source tree view).
 A view showing all the Sources with child Citations
 """
+
 # -------------------------------------------------------------------------
 #
 # python modules
@@ -174,7 +175,7 @@ class CitationTreeView(LibSourceView, ListView):
             self.dbstate.db.get_citation_from_handle(handle)
             super().change_active(handle)
         except HandleError:
-            # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
+            # FIXME: See https://www.gramps-project.org/bugs/view.php?id=6352 a
             # more comprehensive solution is needed in the long term. See also
             # add in Bookmarks.CitationBookmarks
             pass
@@ -342,8 +343,7 @@ class CitationTreeView(LibSourceView, ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-        % _("Organize Bookmarks"),
+""" % _("Organize Bookmarks"),
         """
       <placeholder id="CommonGo">
       <section>
@@ -385,8 +385,7 @@ class CitationTreeView(LibSourceView, ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-"""
-        % _("_Edit...", "action"),  # to use sgettext()
+""" % _("_Edit...", "action"),  # to use sgettext()
         """
         <placeholder id='otheredit'>
         <item>
@@ -499,8 +498,7 @@ class CitationTreeView(LibSourceView, ListView):
       </packing>
     </child>
     </placeholder>
-"""
-        % (ADD_MSG, ADD_SOURCE_MSG, ADD_CITATION_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+""" % (ADD_MSG, ADD_SOURCE_MSG, ADD_CITATION_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
         """
     <menu id="Popup">
       <section>

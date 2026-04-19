@@ -42,6 +42,7 @@ Classes:
     interface
 
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -1628,10 +1629,10 @@ class NavWebReport(Report):
             # remove self.target_uri
             fname = fname.replace(self.target_uri + "/", "")
             # remove the lang
-            (dummy_1_field, dummy_sep, second_field) = fname.partition("/")
+            dummy_1_field, dummy_sep, second_field = fname.partition("/")
             fname = second_field
         elif self.the_lang:
-            (first_field, dummy_sep, second_field) = fname.partition("/")
+            first_field, dummy_sep, second_field = fname.partition("/")
             if [(lang, title) for lang, title in self.languages if lang == first_field]:
                 # remove the lang
                 fname = second_field
@@ -1785,7 +1786,7 @@ class NavWebReport(Report):
                 if isinstance(subdirs, list):
                     subdirs = [val for val in subdirs if val is not None]
         elif self.the_lang:
-            (dummy_1_field, separator, second_field) = fname.partition("/")
+            dummy_1_field, separator, second_field = fname.partition("/")
             if separator == "/" and second_field[0:3] in ["ima", "thu"]:
                 fname = second_field
                 subdirs = self.build_subdirs(subdir, second_field, uplink, image)
@@ -2260,6 +2261,13 @@ class NavWebOptions(MenuReportOptions):
             _("The maximum number of rows to include in an index page")
         )
         addopt("splitindex", self.__splitindex)
+
+        self.__indexi = BooleanOption(_("Allow internet indexation."), False)
+        self.__indexi.set_help(
+            # _("Check it if you want google, bing... to spy on your data")
+            _("Allow search engines (Google, Bing, etc.) to index your website.")
+        )
+        addopt("internet_indexing", self.__indexi)
 
     def __add_more_pages(self, menu):
         """
@@ -2799,8 +2807,8 @@ class NavWebOptions(MenuReportOptions):
                 "the maps in your website for OpenStreetMap or Stamen maps"
                 "\nYou can change the value in the specified file."
                 " The option name to modify is openlayers_version."
-                "\nSee OLDER VERSIONS in https://openlayers.org/"
-            )
+                "\nSee OLDER VERSIONS in {openlayers_url}"
+            ).format(openlayers_url="https://openlayers.org/")
         )
         addopt("ol_version", self.__olv)
 

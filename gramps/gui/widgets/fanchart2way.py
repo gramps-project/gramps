@@ -26,7 +26,7 @@
 ##   http://www.cs.utah.edu/~draperg/research/fanchart/demo/
 
 ## Found by redwood:
-## http://www.gramps-project.org/bugs/view.php?id=2611
+## https://www.gramps-project.org/bugs/view.php?id=2611
 
 # -------------------------------------------------------------------------
 #
@@ -306,7 +306,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         """
         Compute the current half radius of the ascendant circle
         """
-        (dummy_radiusin, radius_asc) = self.get_radiusinout_for_gen_asc(generation)
+        dummy_radiusin, radius_asc = self.get_radiusinout_for_gen_asc(generation)
         return radius_asc + BORDER_EDGE_WIDTH
 
     def maxradius_desc(self, generation):
@@ -732,7 +732,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         return None
 
     def do_mouse_click(self):
-        # no drag occured, expand or collapse the section
+        # no drag occurred, expand or collapse the section
         self.toggle_cell_state(self._mouse_click_cell_address)
         self._mouse_click = False
         self.draw()

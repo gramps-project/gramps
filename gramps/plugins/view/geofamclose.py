@@ -22,6 +22,7 @@
 """
 Geography for two families
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -103,8 +104,7 @@ _UI_DEF = [
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-    % _("Organize Bookmarks"),  # Following are the Toolbar items
+""" % _("Organize Bookmarks"),  # Following are the Toolbar items
     """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
@@ -824,9 +824,7 @@ class GeoFamClose(GeoGraphyView):
                     if plce[11] == EventRoleType.PRIMARY:
                         message = "(%s) %s : %s" % (date, plce[2], plce[1])
                     elif plce[11] == EventRoleType.FAMILY:
-                        (father_name, mother_name) = self._get_father_and_mother_name(
-                            evt
-                        )
+                        father_name, mother_name = self._get_father_and_mother_name(evt)
                         message = "(%s) %s : %s - %s" % (
                             date,
                             plce[7],

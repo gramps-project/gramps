@@ -32,6 +32,7 @@ perform a translation on import, eg Gtk.
 import platform
 import sys
 import os
+from pathlib import Path
 
 # -------------------------------------------------------------------------
 #
@@ -145,20 +146,9 @@ def mod_key():
     return "<alt>"
 
 
-# Python2 on Windows munges environemnt variables to match the system
-# code page. This breaks all manner of things and the workaround
-# though a bit ugly, is encapsulated here. Use this to retrieve
-# environment variables if there's any chance they might contain
-# Unicode, and especially for paths.
-
-# Shamelessly lifted from http://stackoverflow.com/questions/2608200/problems-with-umlauts-in-python-appdata-environvent-variable, answer 1.
-
-
 def get_env_var(name, default=None):
     """
-    Python2 on Windows can't directly read unicode values from
-    environment variables. This routine does so using the native C
-    wide-character function.
+    Returns the value of the specified environment variable, or default if the variable is not defined.
     """
     if not name or name not in os.environ:
         return default
@@ -168,10 +158,7 @@ def get_env_var(name, default=None):
 
 def get_curr_dir():
     """
-    In Python2 on Windows, os.getcwd() returns a string encoded with
-    the current code page, which may not be able to correctly handle
-    an arbitrary unicode character in a path. This function uses the
-    native GetCurrentDirectory function to return a unicode cwd.
+    Returns the current working directory.
     """
     return os.getcwd()
 
@@ -182,28 +169,48 @@ def get_curr_dir():
 # specification.
 #
 # -------------------------------------------------------------------------
+def get_user_home_dir():
+    """
+    Returns the user's home directory.
+    """
+    return str(Path.home())
+
+
 def get_user_data_dir():
     """
     Returns a base directory in which to store user-specific application data.
     """
-    if "XDG_DATA_HOME" in os.environ:
-        return get_env_var("XDG_DATA_HOME")
-    return os.path.join(get_env_var("HOME"), ".local", "share")
+    if win():
+        return get_env_var(
+            "APPDATA", os.path.join(get_user_home_dir(), "AppData", "Roaming")
+        )
+    else:
+        if "XDG_DATA_HOME" in os.environ:
+            return get_env_var("XDG_DATA_HOME")
+        return os.path.join(get_user_home_dir(), ".local", "share")
 
 
 def get_user_config_dir():
     """
     Returns a base directory in which to store user-specific configuration settings.
     """
-    if "XDG_CONFIG_HOME" in os.environ:
-        return get_env_var("XDG_CONFIG_HOME")
-    return os.path.join(get_env_var("HOME"), ".config")
+    if win():
+        return get_user_data_dir()
+    else:
+        if "XDG_CONFIG_HOME" in os.environ:
+            return get_env_var("XDG_CONFIG_HOME")
+        return os.path.join(get_user_home_dir(), ".config")
 
 
 def get_user_cache_dir():
     """
     Returns a base directory in which to store temporary cached data.
     """
-    if "XDG_CACHE_HOME" in os.environ:
-        return get_env_var("XDG_CACHE_HOME")
-    return os.path.join(get_env_var("HOME"), ".cache")
+    if win():
+        return os.path.join(
+            get_user_home_dir(), "AppData", "Local", "Microsoft", "Windows", "INetCache"
+        )
+    else:
+        if "XDG_CACHE_HOME" in os.environ:
+            return get_env_var("XDG_CACHE_HOME")
+        return os.path.join(get_user_home_dir(), ".cache")

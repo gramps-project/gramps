@@ -19,7 +19,6 @@
 #
 """Collection of classes creating a multi-select listbox for menu options."""
 
-
 # -------------------------------------------------------------------------
 #
 # GTK Modules

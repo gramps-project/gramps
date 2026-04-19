@@ -38,6 +38,7 @@ Narrative Web Page generator.
 Classe:
     ContactPage
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------

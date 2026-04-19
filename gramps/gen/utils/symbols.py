@@ -17,7 +17,7 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # https://en.wikipedia.org/wiki/Miscellaneous_Symbols
-# http://www.w3schools.com/charsets/ref_utf_symbols.asp
+# https://www.w3schools.com/charsets/ref_utf_symbols.asp
 #
 
 # -------------------------------------------------------------------------

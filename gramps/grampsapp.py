@@ -75,6 +75,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 
+_encoding: str
 try:
     # On Darwin sys.getdefaultencoding() is correct, on Win32 it's
     # sys.stdout.encoding, and on Linux they're both right.
@@ -194,14 +195,13 @@ sys.excepthook = exc_hook
 
 from .gen.mime import mime_type_is_defined
 
-
 # -------------------------------------------------------------------------
 #
 # Minimum version check
 #
 # -------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (3, 9, 0, "", 0)
+MIN_PYTHON_VERSION = (3, 10, 0, "", 0)
 if not sys.version_info >= MIN_PYTHON_VERSION:
     logging.warning(
         _(

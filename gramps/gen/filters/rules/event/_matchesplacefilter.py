@@ -33,7 +33,6 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .._matchesfilterbase import MatchesFilterBase
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

@@ -50,7 +50,6 @@ from gi.repository import GObject
 from .managedwindow import ManagedWindow
 from .glade import Glade
 
-
 # -------------------------------------------------------------------------
 #
 # set up logging

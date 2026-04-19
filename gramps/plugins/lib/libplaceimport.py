@@ -20,6 +20,7 @@
 """
 Helper class for importing places.
 """
+
 from collections import OrderedDict
 
 # -------------------------------------------------------------------------

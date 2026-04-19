@@ -66,7 +66,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         """
         Convert a serialized tuple of data to an object.
         """
-        (ref, date) = data
+        ref, date = data
         RefBase.unserialize(self, ref)
         DateBase.unserialize(self, date)
         return self

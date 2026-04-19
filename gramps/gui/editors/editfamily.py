@@ -76,6 +76,7 @@ from .displaytabs import (
     GalleryTab,
     FamilyLdsEmbedList,
     ChildModel,
+    FamilyBackRefList,
     TEXT_COL,
     MARKUP_COL,
     ICON_COL,
@@ -873,6 +874,16 @@ class EditFamily(EditPrimary):
             self._add_tab(notebook, self.lds_embed)
         self.track_ref_for_deletion("lds_embed")
 
+        self.backref_tab = FamilyBackRefList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.db.find_backlink_handles(self.obj.handle),
+            "family_editor_references",
+        )
+        self._add_tab(notebook, self.backref_tab)
+        self.track_ref_for_deletion("backref_tab")
+
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
 
@@ -1165,7 +1176,7 @@ class EditFamily(EditPrimary):
         for i in self.hidden:
             i.set_sensitive(True)
         if sel_data and sel_data.get_data():
-            (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+            drag_type, idval, handle, val = pickle.loads(sel_data.get_data())
             person = self.db.get_person_from_handle(handle)
 
             if person:
@@ -1184,7 +1195,7 @@ class EditFamily(EditPrimary):
         for i in self.hidden:
             i.set_sensitive(True)
         if sel_data and sel_data.get_data():
-            (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+            drag_type, idval, handle, val = pickle.loads(sel_data.get_data())
             person = self.db.get_person_from_handle(handle)
 
             if person:
@@ -1253,7 +1264,7 @@ class EditFamily(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        (uses_dupe_id, id) = self._uses_duplicate_id()
+        uses_dupe_id, id = self._uses_duplicate_id()
         if uses_dupe_id:
             msg1 = _("Cannot save family. ID already exists.")
             msg2 = _(

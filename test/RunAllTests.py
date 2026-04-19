@@ -105,7 +105,7 @@ if __name__ == "__main__":
     logger = logging.getLogger("Gramps")
     logger.addHandler(console)
 
-    (options, args) = make_parser().parse_args()
+    options, args = make_parser().parse_args()
 
     if options.verbose_level == 1:
         logger.setLevel(logging.INFO)

@@ -153,8 +153,8 @@ class DateParserSR(DateParser):
         "пре": Date.MOD_BEFORE,
         "после": Date.MOD_AFTER,
         "око": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "од": Date.MOD_FROM,
+        "до": Date.MOD_TO,
     }
 
     calendar_to_int = {

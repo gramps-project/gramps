@@ -279,7 +279,7 @@ USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
 HOST = r"([-\w.]+|\[[0-9A-F:]+\])?"
 URLPATH = "(/[" + PATHCHARS + "]*)?[^]'.:}> \t\r\n,\\\"]"
 
-(GENURL, HTTP, MAIL, LINK) = list(range(4))
+GENURL, HTTP, MAIL, LINK = list(range(4))
 
 
 def find_parent_with_attr(self, attr="dbstate"):
@@ -1030,7 +1030,7 @@ def uri_dialog(self, uri, callback):
     if obj:
         if uri is None:
             # make a default link
-            uri = "http://"
+            uri = "https://"
             # Check in order for an open page:
             for object_class in [
                 "Person",

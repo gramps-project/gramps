@@ -1,6 +1,7 @@
 # this list MUST be a subset of _LOCALE_NAMES in gen/utils/grampslocale.py
 # (that is, if you add a new language here, be sure it's in _LOCALE_NAMES too)
 ar
+ba
 bg
 ca
 cs

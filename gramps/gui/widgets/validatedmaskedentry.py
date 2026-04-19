@@ -64,9 +64,9 @@ from gramps.gen.constfunc import is_quartz
 #
 # ============================================================================
 
-(DIRECTION_LEFT, DIRECTION_RIGHT) = (1, -1)
+DIRECTION_LEFT, DIRECTION_RIGHT = (1, -1)
 
-(INPUT_ASCII_LETTER, INPUT_ALPHA, INPUT_ALPHANUMERIC, INPUT_DIGIT) = list(range(4))
+INPUT_ASCII_LETTER, INPUT_ALPHA, INPUT_ALPHANUMERIC, INPUT_DIGIT = list(range(4))
 
 INPUT_FORMATS = {
     "0": INPUT_DIGIT,
@@ -88,7 +88,7 @@ INPUT_CHAR_MAP = {
     INPUT_DIGIT: str.isdigit,
 }
 
-(COL_TEXT, COL_OBJECT) = list(range(2))
+COL_TEXT, COL_OBJECT = list(range(2))
 
 
 class MaskedEntry(UndoableEntry):
@@ -135,7 +135,7 @@ class MaskedEntry(UndoableEntry):
         self._mask_validators = []
         self._mask = None
         # Fields defined by mask
-        # each item is a tuble, containing the begining and the end of the
+        # each item is a tuble, containing the beginning and the end of the
         # field in the text
         self._mask_fields = []
         self._current_field = -1
@@ -182,7 +182,7 @@ class MaskedEntry(UndoableEntry):
           - 'A' alphanumeric, honors the locale
 
         This is similar to MaskedTextBox:
-        http://msdn2.microsoft.com/en-us/library/system.windows.forms.maskedtextbox.mask(VS.80).aspx
+        https://msdn2.microsoft.com/en-us/library/system.windows.forms.maskedtextbox.mask(VS.80).aspx
 
         Example mask for a ISO-8601 date
         >>> entry.set_mask('0000-00-00')
@@ -201,7 +201,6 @@ class MaskedEntry(UndoableEntry):
 
         mask = str(mask)
         input_length = len(mask)
-        lenght = 0
         pos = 0
         field_begin = 0
         field_end = 0

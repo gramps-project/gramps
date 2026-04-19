@@ -257,7 +257,7 @@ def apportion(tree, default_ancestor, v_separation):
 
 def move_subtree(walk_l, walk_r, shift):
     """
-    Determine possible shifts required to accomodate new node, but don't
+    Determine possible shifts required to accommodate new node, but don't
     perform the shifts yet.
     """
     subtrees = walk_r.number - walk_l.number

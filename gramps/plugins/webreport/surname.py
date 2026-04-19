@@ -37,6 +37,7 @@ Narrative Web Page generator.
 Classe:
     SurnamePage - creates list of individuals with same surname
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------

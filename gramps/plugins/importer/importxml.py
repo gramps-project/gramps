@@ -2550,7 +2550,7 @@ class GrampsParser(UpdateCallback):
         stop = attrs["stop"]
 
         bce = 1
-        if start[0] == "-":
+        if start and start[0] == "-":
             bce = -1
             start = start[1:]
         start = start.split("-")
@@ -2570,7 +2570,7 @@ class GrampsParser(UpdateCallback):
             day = 0
 
         bce = 1
-        if stop[0] == "-":
+        if stop and stop[0] == "-":
             bce = -1
             stop = stop[1:]
         stop = stop.split("-")
@@ -2655,7 +2655,7 @@ class GrampsParser(UpdateCallback):
 
         bce = 1
         val = attrs["val"]
-        if val[0] == "-":
+        if val and val[0] == "-":
             bce = -1
             val = val[1:]
         start = val.split("-")
@@ -3342,7 +3342,9 @@ class GrampsParser(UpdateCallback):
         self.resemail = tag
 
     def stop_mediapath(self, tag):
-        self.mediapath = tag
+        # Only use XML mediapath if ignore flag is not set
+        if not config.get("paths.ignore-xml-mediapath"):
+            self.mediapath = tag
 
     def stop_ptag(self, tag):
         self.use_p = 1

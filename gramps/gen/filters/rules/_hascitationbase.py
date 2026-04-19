@@ -35,7 +35,6 @@ _ = glocale.translation.gettext
 from ...datehandler import parser
 from . import Rule
 
-
 # -------------------------------------------------------------------------
 #
 # Typing modules

@@ -495,7 +495,7 @@ class CalendarPage(BasePage):
             table += tbody
 
             # get first of the month and month information
-            (dummy_current_date, current_ord, monthinfo) = get_first_day_of_month(
+            dummy_current_date, current_ord, monthinfo = get_first_day_of_month(
                 year, month
             )
 

@@ -78,6 +78,12 @@ UIDEFAULT = (
       </section>
       <section groups='RO RW'>
         <item groups='RW'>
+          <attribute name="action">win.Login</attribute>
+          <attribute name="label" translatable="yes">_FamilySearch Sign in...</attribute>
+        </item>
+      </section>
+      <section groups='RO RW'>
+        <item groups='RW'>
           <attribute name="action">win.Import</attribute>
           <attribute name="label" translatable="yes">_Import...</attribute>
         </item>
@@ -465,6 +471,15 @@ except ImportError:
         _(
             "\ncairo python support not installed. "
             "Install cairo for your version of python\n\n"
+            "Gramps will terminate now."
+        )
+    )
+    sys.exit(1)
+
+if glocale.no_gettext_support:
+    print(
+        _(
+            "Python compiled without gettext support in the locale module.\n\n"
             "Gramps will terminate now."
         )
     )

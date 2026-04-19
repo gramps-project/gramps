@@ -65,7 +65,7 @@ class Note(BasicPrimaryObject):
     :cvar FORMATTED: indicates formatted format (respecting whitespace needed)
     """
 
-    (FLOWED, FORMATTED) = list(range(2))
+    FLOWED, FORMATTED = list(range(2))
 
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""
@@ -351,7 +351,7 @@ class Note(BasicPrimaryObject):
         Return examples::
 
             [("gramps", "Person", "handle", "7657626365362536"),
-             ("external", "www", "url", "http://example.com")]
+             ("external", "www", "url", "https://example.com")]
 
         :returns: list of [(domain, type, propery, value), ...]
         :rtype: list

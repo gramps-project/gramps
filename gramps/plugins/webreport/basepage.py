@@ -39,6 +39,7 @@ Classe:
     BasePage - super class for producing a web page. This class is instantiated
     once for each page. Provdes various common functions.
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -1834,9 +1835,12 @@ class BasePage:
             Html("meta", attr=_meta2, indent=False),
             Html("meta", attr=_meta3, indent=False),
             Html("meta", attr=_meta4, indent=False),
-            Html("meta", attr=_meta5, indent=False),
-            Html("meta", attr=_meta6, indent=False),
         )
+        if not self.report.options["internet_indexing"]:
+            meta += (
+                Html("meta", attr=_meta5, indent=False),
+                Html("meta", attr=_meta6, indent=False),
+            )
 
         # Link to _NARRATIVESCREEN  stylesheet
         sub_cal = cal + 1 if cal > 0 else 1
@@ -2197,7 +2201,7 @@ class BasePage:
                                 if "event" in nfname:
                                     nfname = "".join(("events", self.ext))
                                 if "cal" in nfname:
-                                    (dummy_field, dummy_sep, field2) = nfname.partition(
+                                    dummy_field, dummy_sep, field2 = nfname.partition(
                                         "cal/"
                                     )
                                     sub_cal = 3 if self.the_lang else 2
@@ -2358,9 +2362,7 @@ class BasePage:
                     newpath, dummy_tpath = self.report.prepare_copy_media(obj)
                     newpathc = newpath
                     if self.the_lang and self.report.archive:
-                        (dummy_1_field, dummy_sep, second_field) = newpath.partition(
-                            "/"
-                        )
+                        dummy_1_field, dummy_sep, second_field = newpath.partition("/")
                         newpathc = second_field
                     if self.usecms:
                         newpathc = newpathc.replace(self.target_uri + "/", "")
@@ -2522,7 +2524,7 @@ class BasePage:
             for mediaref in media_list:
                 # is this mediaref for this image?  do we have a rect?
                 if mediaref.ref == handle and mediaref.rect is not None:
-                    (coord_x1, coord_y1, coord_x2, coord_y2) = mediaref.rect
+                    coord_x1, coord_y1, coord_x2, coord_y2 = mediaref.rect
                     # Gramps gives us absolute coordinates,
                     # but we need relative width + height
                     width = coord_x2 - coord_x1
@@ -2971,7 +2973,7 @@ class BasePage:
         with Html("div", class_="subsection", id="LDSOrdinance") as section:
             with self.create_toggle("lds") as h4_head:
                 section += h4_head
-                h4_head += self._("Latter-Day Saints/ LDS Ordinance")
+                h4_head += self._("Latter-day Saints/ LDS Ordinance")
 
             # dump individual LDS ordinance list
             section += self.dump_ordinance(db_obj_, "Person")
@@ -3239,7 +3241,7 @@ class BasePage:
         else:
             # The person has been encountered in the web report, but this does
             # not necessarily mean that a page has been generated
-            (link, name, gid) = result
+            link, name, gid = result
 
         name = html_escape(name)
         # construct the result
@@ -3745,7 +3747,7 @@ class BasePage:
                     # dummy_cal is the original calendar. remove it.
                     if len(role.split(" ")) == 2:
                         # for sort, remove the modifier before, after...
-                        (dummy_modifier, role) = role.split(" ")
+                        dummy_modifier, role = role.split(" ")
                 else:
                     role = "3"
             return role
@@ -3780,11 +3782,11 @@ class BasePage:
                     # all modifiers are in english, so convert them
                     # to the local language
                     if len(role.split(" - ")) > 1:
-                        (date1, date2) = role.split(" - ")
+                        date1, date2 = role.split(" - ")
                         role = self._("between") + " " + date1 + " "
                         role += self._("and") + " " + date2
                     elif len(role.split(" ")) == 2:
-                        (pref, date) = role.split(" ")
+                        pref, date = role.split(" ")
                         if "aft" in pref:
                             role = self._("after") + " " + date
                         elif "bef" in pref:

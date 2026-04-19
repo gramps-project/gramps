@@ -210,7 +210,7 @@ class MediaView(ListView):
                 photo.set_path(name)
                 photo.set_mime_type(mime)
                 basename = os.path.basename(name)
-                (root, ext) = os.path.splitext(basename)
+                root, ext = os.path.splitext(basename)
                 photo.set_description(root)
                 with DbTxn(_("Drag Media Object"), self.dbstate.db) as trans:
                     self.dbstate.db.add_media(photo, trans)
@@ -277,8 +277,7 @@ class MediaView(ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-        % _("Organize Bookmarks"),
+""" % _("Organize Bookmarks"),
         """
       <placeholder id="CommonGo">
       <section>
@@ -312,8 +311,7 @@ class MediaView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-"""
-        % _("_Edit...", "action"),  # to use sgettext()
+""" % _("_Edit...", "action"),  # to use sgettext()
         """
         <placeholder id='otheredit'>
         <item>
@@ -404,8 +402,7 @@ class MediaView(ListView):
       </packing>
     </child>
     </placeholder>
-"""
-        % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+""" % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
         """
     <placeholder id='MoreButtons'>
     <child>

@@ -668,7 +668,7 @@ class GtkDocParagraph(GtkDocBaseElement):
 
         ##      GTK3 PROBLEM: get_iterator no longer available!!
         ##      REFERENCES:
-        ##          http://www.gramps-project.org/bugs/view.php?id=6208
+        ##          https://www.gramps-project.org/bugs/view.php?id=6208
         ##          https://bugzilla.gnome.org/show_bug.cgi?id=646788
         ##          workaround: https://github.com/matasbbb/pitivit/commit/da815339e5ce3631b122a72158ba9ffcc9ee4372
         ##      OLD EASY CODE:
@@ -1441,10 +1441,8 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             # NOTE: the warning will be bogus
             # if the EXT isn't properly overridden by derived class
             log.warning(
-                _(
-                    """Mismatch between selected extension %(ext)s and actual format.
- Writing to %(filename)s in format %(impliedext)s."""
-                )
+                _("""Mismatch between selected extension %(ext)s and actual format.
+ Writing to %(filename)s in format %(impliedext)s.""")
                 % {"ext": fe[-1], "filename": filename, "impliedext": self.EXT}
             )
         self._backend = CairoBackend(filename)
@@ -1589,18 +1587,15 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             if cairo.cairo_version() < 11210 and self._links_error == False:
                 # Cairo v1.12 is suppose to be the first version
                 # that supports clickable links
-                print(
-                    """
+                print("""
 WARNING: This version of cairo (%s) does NOT support clickable links.
 The first version that is suppose to is v1.12.  See the roadmap:
 
-    http://www.cairographics.org/roadmap/
+    https://www.cairographics.org/roadmap/
 
 The work around is to save to another format that supports clickable
 links (like ODF) and write PDF from that format.
-                """
-                    % cairo.version
-                )
+                """ % cairo.version)
                 self._links_error = True
 
         text = self.__markup(text, markup)

@@ -299,7 +299,7 @@ aos usuários a modificação de acordo com suas necessidades.
 .SH AUTORES
 Donald Allingham \fI<don@gramps-project.org>\fR
 .br 
-\fIhttp://gramps.sourceforge.net\fR
+\fIhttps://gramps.sourceforge.net\fR
 .LP 
 Este manual foi originalmente escrito por:
 .br 
@@ -319,7 +319,7 @@ formato XML como \fBgramps-manual.xml\fR em \fIdoc/gramps-manual/$LANG\fR
 nas fontes oficiais da sua distribuição.
 .LP 
 A documentação para desenvolvedores pode ser encontrada na página 
-\fIhttp://developers.gramps-project.org\fR. 
+\fIhttps://www.gramps\-project.org/wiki/index.php?title=Portal:Developers\fR. 
 
 .SH TRADUÇÃO
 \&\fR\&\f(CWAndré Marcelo Alvarenga <andrealvarenga@gmx.net> em 05/08/2012\fR

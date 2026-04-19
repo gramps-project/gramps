@@ -313,6 +313,7 @@ TOKEN__TEXT = 136
 TOKEN__DATE = 137
 TOKEN__APID = 138
 TOKEN__CALLNAME = 139
+TOKEN_INIL = 140
 
 TOKENS = {
     "_ADPN": TOKEN__ADPN,
@@ -450,6 +451,7 @@ TOKENS = {
     "HUSBAND": TOKEN_HUSB,
     "INDI": TOKEN_INDI,
     "INDIVIDUAL": TOKEN_INDI,
+    "INIL": TOKEN_INIL,
     "LABEL": TOKEN_LABL,
     "LABL": TOKEN_LABL,
     "LANG": TOKEN_LANG,
@@ -770,6 +772,7 @@ GED_TO_GRAMPS_EVENT = {}
 for __val, __key in PERSONALCONSTANTEVENTS.items():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
+GED_TO_GRAMPS_EVENT["Stillbirth"] = EventType.STILLBIRTH
 
 for __val, __key in FAMILYCONSTANTEVENTS.items():
     if __key != "":
@@ -1004,7 +1007,7 @@ class Lexer:
                     tag = "@" + line[1] + "@"
                     line_value = line[2].lstrip()
                     # Ignore meaningless @IDENT@ on CONT or CONC line
-                    # as noted at http://www.tamurajones.net/IdentCONT.xhtml
+                    # as noted at https://www.tamurajones.net/IdentCONT.xhtml
                     if line_value.startswith(("CONT ", "CONC ")):
                         line = line_value.partition(" ")
                         tag = line[0]
@@ -1092,7 +1095,7 @@ class GedLine:
         match = MOD.match(text)
         mod = ""
         if match:
-            (mod, text) = match.groups()
+            mod, text = match.groups()
             qual = QUALITY_MAP.get(mod, Date.QUAL_NONE)
             mod += " "
         else:
@@ -1104,13 +1107,13 @@ class GedLine:
         match2 = RANGE2.match(text)
         if match or match1 or match2:
             if match:
-                (cal1, data1, cal2, data2) = match.groups()
+                cal1, data1, cal2, data2 = match.groups()
             elif match1:
                 cal1 = Date.CAL_GREGORIAN
-                (data1, cal2, data2) = match1.groups()
+                data1, cal2, data2 = match1.groups()
             elif match2:
                 cal2 = Date.CAL_GREGORIAN
-                (cal1, data1, data2) = match2.groups()
+                cal1, data1, data2 = match2.groups()
             cal1 = CALENDAR_MAP_GEDCOM2XML.get(cal1, Date.CAL_GREGORIAN)
             cal2 = CALENDAR_MAP_GEDCOM2XML.get(cal2, Date.CAL_GREGORIAN)
             if cal1 != cal2:
@@ -1147,13 +1150,13 @@ class GedLine:
         match2 = SPAN2.match(text)
         if match or match1 or match2:
             if match:
-                (cal1, data1, cal2, data2) = match.groups()
+                cal1, data1, cal2, data2 = match.groups()
             elif match1:
                 cal1 = Date.CAL_GREGORIAN
-                (data1, cal2, data2) = match1.groups()
+                data1, cal2, data2 = match1.groups()
             elif match2:
                 cal2 = Date.CAL_GREGORIAN
-                (cal1, data1, data2) = match2.groups()
+                cal1, data1, data2 = match2.groups()
             cal1 = CALENDAR_MAP_GEDCOM2XML.get(cal1, Date.CAL_GREGORIAN)
             cal2 = CALENDAR_MAP_GEDCOM2XML.get(cal2, Date.CAL_GREGORIAN)
             if cal1 != cal2:
@@ -1185,7 +1188,7 @@ class GedLine:
 
         match = CAL.match(text)
         if match:
-            (abt, call, data) = match.groups()
+            abt, call, data = match.groups()
             call = CALENDAR_MAP_GEDCOM2XML.get(call, Date.CAL_GREGORIAN)
             data += CALENDAR_MAP_PARSESTRING.get(call, "")
             if abt:
@@ -2393,6 +2396,7 @@ class GedcomParser(UpdateCallback):
             # +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
             TOKEN_BAPL: self.__person_bapl,
             TOKEN_CONL: self.__person_conl,
+            TOKEN_INIL: self.__person_inil,
             TOKEN_ENDL: self.__person_endl,
             TOKEN_SLGC: self.__person_slgc,
             # +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
@@ -3060,7 +3064,7 @@ class GedcomParser(UpdateCallback):
         cursor = dbase.get_place_cursor()
         data = next(cursor)
         while data:
-            (handle, val) = data
+            handle, val = data
             self.place_names[val.title].append(handle)
             data = next(cursor)
         cursor.close()
@@ -3806,7 +3810,7 @@ class GedcomParser(UpdateCallback):
         +1 CTRY <ADDRESS_COUNTRY> {0:1}
 
         This is done along the lines suggested by Tamura Jones in
-        http://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
+        https://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
         "When a GEDCOM reader encounters a double address, it should read the
         structured address. ... A GEDCOM reader that does verify that the
         addresses are the same should issue an error if they are not".
@@ -5009,6 +5013,17 @@ class GedcomParser(UpdateCallback):
         """
         self.build_lds_ord(state, LdsOrd.CONFIRMATION)
 
+    def __person_inil(self, line, state):
+        """
+        Parses an INIL TOKEN, producing a Gramps LdsOrd instance
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.build_lds_ord(state, LdsOrd.INITIATORY)
+
     def __person_endl(self, line, state):
         """
         Parses an ENDL TOKEN, producing a Gramps LdsOrd instance
@@ -5199,7 +5214,7 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         # if the handle is not already in the person's parent family list, we
-        # need to add it to thie list.
+        # need to add it to the list.
 
         flist = state.person.get_parent_family_handle_list()
         if handle not in flist:
@@ -5874,7 +5889,7 @@ class GedcomParser(UpdateCallback):
             if sub_state.filename != "" and (
                 res.scheme == "" or len(res.scheme) == 1 or res.scheme == "file"
             ):
-                (valid, path) = self.__find_file(sub_state.filename, self.dir_path)
+                valid, path = self.__find_file(sub_state.filename, self.dir_path)
                 if not valid:
                     self.__add_msg(
                         _("Could not import %s") % sub_state.filename, line, state
@@ -7031,7 +7046,7 @@ class GedcomParser(UpdateCallback):
             #     +1 CALN <SOURCE_CALL_NUMBER>       {0:M}
             #        +2 MEDI <SOURCE_MEDIA_TYPE>     {0:1}
             #
-            # This format has no repository name. See http://west-
+            # This format has no repository name. See https://west-https://west-
             # penwith.org.uk/misc/ftmged.htm which points out this is
             # incorrect
             gid = self.rid_map[""]
@@ -7263,7 +7278,7 @@ class GedcomParser(UpdateCallback):
         if line.data != "" and (
             res.scheme == "" or len(res.scheme) == 1 or res.scheme == "file"
         ):
-            (file_ok, filename) = self.__find_file(line.data, self.dir_path)
+            file_ok, filename = self.__find_file(line.data, self.dir_path)
             if state.form != "url":
                 # Might not work if FORM doesn't precede FILE
                 if not file_ok:
@@ -7706,7 +7721,7 @@ class GedcomParser(UpdateCallback):
         """
         if line.data.strip() in ["FTW", "FTM"]:
             self.is_ftw = True
-        # Some software (e.g. RootsMagic (http://files.rootsmagic.com/PAF-
+        # Some software (e.g. RootsMagic (https://files.rootsmagic.com/PAF-
         # Book/RootsMagic-for-PAF-Users-Printable.pdf) use the Addr fields for
         # 'Place Details (address, hospital, cemetary)'
         if line.data.strip().lower() in ["rootsmagic"]:
@@ -8642,7 +8657,7 @@ class GedcomStageOne:
 
             try:
                 data = line.split(None, 3) + [""]
-                (level, key, value) = data[:3]
+                level, key, value = data[:3]
                 level = int(level)
                 key = key.strip()
                 value = value.strip()
@@ -8714,8 +8729,8 @@ def make_gedcom_date(subdate, calendar, mode, quality):
     Convert a Gramps date structure into a GEDCOM compatible date.
     """
     retval = ""
-    (day, mon, year) = subdate[0:3]
-    (mmap, prefix) = CALENDAR_MAP.get(calendar, (MONTH, ""))
+    day, mon, year = subdate[0:3]
+    mmap, prefix = CALENDAR_MAP.get(calendar, (MONTH, ""))
     if year < 0:
         year = -year
         bce = " B.C."

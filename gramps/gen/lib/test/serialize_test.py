@@ -154,21 +154,24 @@ def generate_cases(obj, data):
 
 
 db = import_as_dict(EXAMPLE, User())
-for obj_class in (
-    "Person",
-    "Family",
-    "Event",
-    "Place",
-    "Repository",
-    "Source",
-    "Citation",
-    "Media",
-    "Note",
-):
-    for handle in db.method("get_%s_handles", obj_class)():
-        obj = db.method("get_%s_from_handle", obj_class)(handle)
-        data = db.method("get_raw_%s_data", obj_class)(handle)
-        generate_cases(obj, data)
+tc = unittest.TestCase()
+tc.assertIsNotNone(db, "Failed to import example database")
+if db is not None:
+    for obj_class in (
+        "Person",
+        "Family",
+        "Event",
+        "Place",
+        "Repository",
+        "Source",
+        "Citation",
+        "Media",
+        "Note",
+    ):
+        for handle in db.method("get_%s_handles", obj_class)():
+            obj = db.method("get_%s_from_handle", obj_class)(handle)
+            data = db.method("get_raw_%s_data", obj_class)(handle)
+            generate_cases(obj, data)
 
 if __name__ == "__main__":
     unittest.main()

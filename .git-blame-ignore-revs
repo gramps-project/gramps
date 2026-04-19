@@ -1,2 +1,8 @@
 # Migrate code style to Black
 41720c5a7e736587088d25140f7eee7af540f668
+# Reformat code using version 25.1.0
+e0ad098a76e15d15ded92ce01d0e8d5d213b38a1
+# Update GPL2+ license text
+d82eb0f460325702037e1f32ac9bc156f85dce2c
+# Reformat code using version 26.1.0
+b3a5cf346fdac1f1d6362f7f55e090f9a7a80c2d
