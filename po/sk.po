@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-19 20:42+0100\n"
-"PO-Revision-Date: 2026-04-18 06:09+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2026-04-20 20:13+0000\n"
+"Last-Translator: Jozef Gaal <preklady@mayday.sk>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -985,14 +985,9 @@ msgstr ""
 "oznamovať cez Bug Tracker Grampsu na http://bugs.gramps-project.org"
 
 #: ../data/tips.xml:101
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
-#| "project.org/."
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
 msgstr ""
-"<b>Domovská stránka Gramps</b><br/>Domovská stránka Gramps je https://gramps-"
-"project.org/."
+"<b>Domovská stránka Gramps</b><br/>Domovská stránka Gramps je &gramps_url;."
 
 #: ../data/tips.xml:103
 msgid ""
