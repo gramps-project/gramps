@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-19 20:42+0100\n"
-"PO-Revision-Date: 2026-04-13 05:09+0000\n"
+"PO-Revision-Date: 2026-04-20 20:13+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -758,14 +758,6 @@ msgstr ""
 "alla&quot;."
 
 #: ../data/tips.xml:65
-#, fuzzy
-#| msgid ""
-#| "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "
-#| "to Gramps. Requesting an enhancement can be done either through the "
-#| "gramps-users or gramps-devel mailing lists, or by going to http://"
-#| "bugs.gramps-project.org and creating a Feature Request. Filing a Feature "
-#| "Request is preferred but it can be good to discuss your ideas on the "
-#| "email lists."
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -776,8 +768,8 @@ msgstr ""
 "<b>Att förbättra Gramps</b><br/>Användare uppmanas att göra förfrågningar om "
 "förbättringar i Gramps. En förfrågan kan göras antingen via e-postlistorna "
 "gramps-users eller gramps-devel eller genom att skapa en förfrågan om "
-"förbättring (Feature Request) på http://bugs.gramps-project.org. Den "
-"sistnämnda metoden är att föredra."
+"förbättring (Feature Request) på &bugs_url; Den sistnämnda metoden är att "
+"föredra."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -988,28 +980,16 @@ msgstr ""
 "till en samling webbsidor, klara för uppladdning till Internet."
 
 #: ../data/tips.xml:99
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at http://bugs.gramps-"
-#| "project.org"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
 "<b>Felrapportering</b><br/>Det bästa sättet att rapportera ett fel i Gramps "
-"är att använda Gramps felrapporteringssystem på adressen http://bugs.gramps-"
-"project.org"
+"är att använda Gramps felrapporteringssystem på adressen &bugs_url;."
 
 #: ../data/tips.xml:101
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
-#| "project.org/."
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
-msgstr ""
-"<b>Gramps hemsida</b><br/>Gramps hemsida finns på https://gramps-"
-"project.org/."
+msgstr "<b>Gramps hemsida</b><br/>Gramps hemsida finns på &gramps_url;."
 
 #: ../data/tips.xml:103
 msgid ""
@@ -1181,12 +1161,6 @@ msgstr ""
 "Software Foundation och Open Source Initiative."
 
 #: ../data/tips.xml:131
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see https://www.gnu.org/licenses/licenses.html#GPL to "
-#| "read about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1195,8 +1169,7 @@ msgid ""
 msgstr ""
 "<b>Gramps programvarulicens</b><br/>Du är fri att använda och dela Gramps "
 "med andra. Gramps är fritt distribuerbar under GNU General Public License, "
-"se https://www.gnu.org/licenses/licenses.html#GPL för att läsa mer om "
-"rättigheter och begränsningar."
+"se &gpl_url; för att läsa mer om rättigheter och begränsningar."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -3875,16 +3848,12 @@ msgid "Tag:"
 msgstr "Tagg:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "Objekt med notiser av den särskilda typen"
+msgstr "Objekt med notiser med en angiven tagg."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
-#| msgid "Matches a note with a specified Gramps ID"
 msgid "Matches notes with a specified tag"
-msgstr "Matchar en notis med ett angivet Gramps-ID"
+msgstr "Matchar notiser med en angiven tagg"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -4106,16 +4075,12 @@ msgstr ""
 "uttryck"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with a tag of <type>"
-msgstr "Citeringar med en notis av typen <type>"
+msgstr "Citeringar med en notis med taggen <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches citations with a note of the specified type"
 msgid "Matches citations with a note with a specified tag"
-msgstr "Matchar citeringar med en notis av den specificerade typen"
+msgstr "Matchar citeringar med en notis med en angiven tagg"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4471,16 +4436,12 @@ msgstr ""
 "uttryck"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with a tag of <type>"
-msgstr "Händelser med en notis av typen <type>"
+msgstr "Händelser med en notis med taggen <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches events with a note of the specified type"
 msgid "Matches events with a note with a specified tag"
-msgstr "Matchar händelser med en notis av den specificerade typen"
+msgstr "Matchar händelser med en notis med en angiven tagg"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4769,16 +4730,12 @@ msgstr ""
 "uttryck"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with a note of type <type>"
 msgid "Families with a note with a tag of <type>"
-msgstr "Familjer med en notis av typen <type>"
+msgstr "Familjer med en notis med taggen <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches families with a note with a specified tag"
-msgstr "Matchar familjer med en notis av den specificerade typen"
+msgstr "Matchar familjer med en notis med en angiven tagg"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -5079,28 +5036,20 @@ msgstr ""
 "uttryck"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with a tag of <type>"
-msgstr "Citeringar med en notis av typen <type>"
+msgstr "Media med en notis med taggen <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "Matchar familjer med en notis av den specificerade typen"
+msgstr "Matchar media med en notis med en angiven tagg"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "Händelser med en notis av typen <type>"
+msgstr "Media med en notis av typen <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "Matchar familjer med en notis av den specificerade typen"
+msgstr "Matchar media med en notis med en angiven typ"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
@@ -5627,16 +5576,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Matchar personer vars notiser innehåller angivet reguljärt uttryck"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with a tag of <type>"
-msgstr "Personer med en notis av typen <type>"
+msgstr "Personer med en notis med taggen <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "Matchar personer med en notis av den specificerade typen"
+msgstr "Matchar personer med en notis med en angiven tagg"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -6290,16 +6235,12 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Matchar platser vars notiser innehåller angivet reguljärt uttryck"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with a tag of <type>"
-msgstr "Platser med en notis av typen <type>"
+msgstr "Platser med en notis med taggen <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "Matchar platser med en notis av den specificerade typen"
+msgstr "Matchar platser med en notis med en angiven tagg"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6555,28 +6496,20 @@ msgid ""
 msgstr "Matchar arkivplatser vars notiser matchar ett reguljärt uttryck"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with a tag of <type>"
-msgstr "Arkivplatser med <taggen>"
+msgstr "Arkivplatser med en notis med taggen <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Matchar källor med en notis av den specificerade typen"
+msgstr "Matchar arkivplatser med en notis med en angiven tagg"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "Källor med en notis av typen <type>"
+msgstr "Arkivplatser med en notis av typen <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "Matchar källor med en notis av den specificerade typen"
+msgstr "Matchar arkivplatser med en notis med en angiven typ"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6723,16 +6656,12 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "Matchar källor vars notiser innehåller angivet reguljärt uttryck"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with a tag of <type>"
-msgstr "Källor med en notis av typen <type>"
+msgstr "Källor med en notis med taggen <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "Matchar källor med en notis av den specificerade typen"
+msgstr "Matchar källor med en notis med en angiven tagg"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6845,10 +6774,8 @@ msgstr "Matchar källor som indikerats som privata"
 #: ../gramps/gui/fs/person/mixins/helpers.py:68
 #: ../gramps/gui/fs/sync_directions.py:679 ../gramps/gui/viewmanager.py:406
 #: ../gramps/gui/viewmanager.py:552 ../gramps/gui/viewmanager.py:560
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch"
-msgstr "Familjekällor"
+msgstr "FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:160
 #: ../gramps/gui/fs/compare/window.py:224
@@ -6856,19 +6783,15 @@ msgstr "Familjekällor"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:760
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:962
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "Inte ansluten till FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "initialer"
+msgstr "Viktigt"
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "Objektnamn"
+msgstr "Andra namn"
 
 #: ../gramps/gen/fs/compare/aggregate.py:211
 #: ../gramps/gui/merge/mergeperson.py:241
@@ -6908,7 +6831,7 @@ msgstr "Familjer"
 
 #: ../gramps/gen/fs/compare/aggregate.py:225
 msgid "Facts"
-msgstr ""
+msgstr "Fakta"
 
 #: ../gramps/gen/fs/compare/comparators.py:81
 #: ../gramps/gen/fs/compare/comparators.py:88 ../gramps/gen/utils/string.py:49
@@ -7087,54 +7010,43 @@ msgstr "Barn"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
-#, fuzzy
-#| msgid "the citation"
 msgid "Birth Registration"
-msgstr "citeringen"
+msgstr "Födelseregistrering"
 
 #: ../gramps/gen/fs/constants.py:83 ../gramps/gen/fs/constants.py:84
-#, fuzzy
-#| msgid "the citation"
 msgid "Death Registration"
-msgstr "citeringen"
+msgstr "Dödsfallsregistrering"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "Februari"
+msgstr "Dödsruna"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "Släktskap"
+msgstr "Medborgarskap"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
-msgstr ""
+msgstr "Hoppa över ogiltig relation: barn är lika med förälder"
 
 #: ../gramps/gen/fs/fs_import/importer.py:286
 msgid "Possibly parentless family - Need at least one known parent locally"
-msgstr ""
+msgstr "Möjligen föräldralös familj - Behöver minst en känd förälder lokalt"
 
 #: ../gramps/gen/fs/fs_import/importer.py:333
 msgid "Skipping invalid couple: same person as both parents"
-msgstr ""
+msgstr "Hoppa över ogiltigt par: samma person som båda föräldrarna"
 
 #: ../gramps/gen/fs/fs_import/importer.py:375
 msgid "Possible parentless family?"
-msgstr ""
+msgstr "Möjlig föräldralös familj?"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
-#, fuzzy
-#| msgid "Building display"
 msgid "Building FSID list for places"
-msgstr "Förbereder visning"
+msgstr "Skapar FSID-lista för platser"
 
 #: ../gramps/gen/fs/fs_import/sources.py:523
 #: ../gramps/gen/fs/fs_import/sources.py:526
@@ -7207,18 +7119,15 @@ msgid "Internet Address"
 msgstr "Internetadress"
 
 #: ../gramps/gen/fs/sync_directions.py:493
-#, fuzzy, python-brace-format
-#| msgid "In-Memory"
+#, python-brace-format
 msgid "Memory: {t}"
-msgstr "In-Memory"
+msgstr "Minne: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:421
 #: ../gramps/gui/fs/sync_directions.py:599
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "Datum saknas"
+msgstr "(saknas)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:304
@@ -7265,34 +7174,32 @@ msgstr "Notis"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:653
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Uppdaterad från Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
-#, fuzzy
-#| msgid "Created for %(author)s"
 msgid "Created from Gramps"
-msgstr "Skapad för %(author)s"
+msgstr "Skapad från Gramps"
 
 #: ../gramps/gen/fs/tags.py:317
 #, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "Grupp %(num)d"
 
 #: ../gramps/gen/fs/tags.py:328
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Översikt ? %(title)s ? rad %(row)d inte grön (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:338
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Anteckningar ? rad %(row)d inte grön (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:348
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Källor ? rad %(row)d inte grön (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:358
 msgid ""
@@ -7300,12 +7207,13 @@ msgid ""
 "This add-on only sets default colors when the tags are first created and "
 "will not override your custom choices."
 msgstr ""
+"Färgerna på FamilySearch-statustaggarna kan anpassas i Gramps via Redigera "
+"taggar. Detta tillägg ställer bara in standardfärger när taggarna först "
+"skapas och åsidosätter inte dina anpassade val."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch tags"
-msgstr "Familjekällor"
+msgstr "FamilySearch-taggar"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:721 ../gramps/gui/editors/editaddress.py:199
@@ -8848,49 +8756,41 @@ msgid "Civil Union"
 msgstr "Registrerat partnerskap"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch sync"
-msgstr "Familjekällor"
+msgstr "FamilySearch-synkning"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "Familje-ID"
+msgstr "FamilySearch-ID"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Är root"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Statistics Gramplet"
 msgid "Status timestamp"
-msgstr "Gramplet med statistik"
+msgstr "Statusens tidsstämpel"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
-msgstr ""
+msgstr "Bekräftad tidsstämpel"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
-msgstr ""
+msgstr "Tidsstämpel modifierad av Gramps"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:92
 msgid "FamilySearch modified timestamp"
-msgstr ""
+msgstr "Tidsstämpel modifierad av FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "Väsentlig konflikt"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "Ställ in"
+msgstr "Konflikt"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -10279,17 +10179,13 @@ msgid "Font family"
 msgstr "Teckensnittsfamilj"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:165
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Choose the font family. If international characters don't show, use "
-#| "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+#, python-brace-format
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
 "Välj teckensnittsfamilj. Om internationella tecken inte visas, så använd "
-"FreeSans-teckensnitt. FreeSans finns tillgänglig från: http://www.nongnu.org/"
-"freefont/"
+"FreeSans-teckensnitt. FreeSans finns tillgänglig från: {freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:172
 #: ../gramps/gui/widgets/styledtexteditor.py:83
