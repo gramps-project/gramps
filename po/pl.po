@@ -19,13 +19,14 @@
 # Klaudiusz Dybiec <klaudi30i@gmail.com>, 2025.
 # Maciej L <github@maciej.website>, 2025.
 # Patryk <patryk230206@gmail.com>, 2026.
+# Artur <wy66m6xm@anonaddy.me>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-19 20:42+0100\n"
-"PO-Revision-Date: 2026-03-21 22:10+0000\n"
-"Last-Translator: Patryk <patryk230206@gmail.com>\n"
+"PO-Revision-Date: 2026-04-20 20:13+0000\n"
+"Last-Translator: Artur <wy66m6xm@anonaddy.me>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -34,7 +35,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -6945,7 +6946,7 @@ msgstr "Źródła rodziny"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:760
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:962
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "Brak połączenia z FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
 #, fuzzy
@@ -6997,7 +6998,7 @@ msgstr "Rodziny"
 
 #: ../gramps/gen/fs/compare/aggregate.py:225
 msgid "Facts"
-msgstr ""
+msgstr "Fakty"
 
 #: ../gramps/gen/fs/compare/comparators.py:81
 #: ../gramps/gen/fs/compare/comparators.py:88 ../gramps/gen/utils/string.py:49
@@ -7176,7 +7177,7 @@ msgstr "Dziecko"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
 #, fuzzy
@@ -7205,11 +7206,13 @@ msgstr "Związek"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
-msgstr ""
+msgstr "Pomijanie nieprawidłowej relacji: dziecko jest równoznaczne z rodzicem"
 
 #: ../gramps/gen/fs/fs_import/importer.py:286
 msgid "Possibly parentless family - Need at least one known parent locally"
 msgstr ""
+"Rodzina prawdopodobnie bez rodziców – konieczne jest, aby przynajmniej jedno "
+"z rodziców mieszkało w okolicy"
 
 #: ../gramps/gen/fs/fs_import/importer.py:333
 msgid "Skipping invalid couple: same person as both parents"
