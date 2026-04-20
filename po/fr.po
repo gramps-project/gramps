@@ -32,7 +32,7 @@
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
 # Christophe <khrys63@gmail.com>, 2018, 2022.
 # Gil da Costa <gdacosta@sommier-colas.fr>, 2019.
-# Jean-Marc <m.balthazar@posteo.net>, 2021, 2023, 2024, 2025.
+# Jean-Marc <m.balthazar@posteo.net>, 2021, 2023, 2024, 2025, 2026.
 # msansm1 <ronanbarbot@dizalch.fr>, 2021, 2025.
 # Translator <kvb@tuta.io>, 2022.
 # Olivier Berten <olivier.berten@gmail.com>, 2023.
@@ -53,8 +53,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-19 20:42+0100\n"
-"PO-Revision-Date: 2026-03-26 13:09+0000\n"
-"Last-Translator: Bruno FORESTIER <bforest76@gmail.com>\n"
+"PO-Revision-Date: 2026-04-20 20:13+0000\n"
+"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -62,7 +62,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7165,8 +7165,6 @@ msgid "Matches repositories with a note with a specified tag"
 msgstr "Correspond aux sources avec une note du type spécifié"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
 msgstr "Sources avec une note de type <type>"
 
@@ -7487,7 +7485,7 @@ msgstr "Famille"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:760
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:962
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "Non connecté à FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
 #, fuzzy
@@ -7849,7 +7847,7 @@ msgstr "Adresse Internet"
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
 msgid "Memory: {t}"
-msgstr ""
+msgstr "Mémoire : {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:421
@@ -7905,7 +7903,7 @@ msgstr "Note"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:653
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Mis à jour depuis Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
@@ -9560,7 +9558,7 @@ msgstr "Barre d'état"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
-msgstr ""
+msgstr "Horodatage confirmé"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
@@ -9572,7 +9570,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "Conflit essentiel"
 
 # trunk
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
@@ -13696,7 +13694,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1093
 msgid "Server"
-msgstr ""
+msgstr "Serveur"
 
 #: ../gramps/gui/configure.py:1102
 msgid "Foundation middleware"
@@ -17893,12 +17891,12 @@ msgstr "Scellement aux parents"
 
 #: ../gramps/gui/fs/actions.py:398
 msgid "No parents found on FamilySearch for this person."
-msgstr ""
+msgstr "Aucun parent n'a été trouvé pour cette personne sur FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:407 ../gramps/gui/fs/actions.py:543
 #: ../gramps/gui/fs/actions.py:701
 msgid "  - already in tree"
-msgstr ""
+msgstr "  - déjà dans l'arbre"
 
 #: ../gramps/gui/fs/actions.py:410
 #, fuzzy
@@ -17909,6 +17907,8 @@ msgstr "Texte d'importation"
 #: ../gramps/gui/fs/actions.py:425
 msgid "Parents imported but could not be located in the local database."
 msgstr ""
+"Les parents ont été importés mais n'ont pas pu être localisés dans la base "
+"de données locale."
 
 #: ../gramps/gui/fs/actions.py:429
 #, fuzzy
@@ -17918,7 +17918,7 @@ msgstr "Liens familiaux"
 
 #: ../gramps/gui/fs/actions.py:478
 msgid "Parent(s) imported and linked."
-msgstr ""
+msgstr "Parent(s) importé(s) et lié(s)."
 
 #: ../gramps/gui/fs/actions.py:504
 #, python-brace-format
@@ -17927,7 +17927,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:528
 msgid "No children found on FamilySearch for this person."
-msgstr ""
+msgstr "Aucun enfant n'a été trouvé pour cette personne sur FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:540
 #, python-brace-format
@@ -17943,6 +17943,8 @@ msgstr "Échec de l'importation"
 #: ../gramps/gui/fs/actions.py:562
 msgid "Children imported but could not be located in the local database."
 msgstr ""
+"Les enfants ont été importés mais n'ont pas pu être localisés dans la base "
+"de données locale."
 
 #: ../gramps/gui/fs/actions.py:566
 #, fuzzy
@@ -17952,7 +17954,7 @@ msgstr "Enfants (famille)"
 
 #: ../gramps/gui/fs/actions.py:629
 msgid "Child(ren) imported and linked."
-msgstr ""
+msgstr "Enfant(s) importé(s) et lié(s)."
 
 #: ../gramps/gui/fs/actions.py:661
 #, python-brace-format
@@ -17961,7 +17963,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:692
 msgid "No spouses found on FamilySearch for this person."
-msgstr ""
+msgstr "Aucun conjoint trouvé pour cette personne sur FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:704
 #, fuzzy
@@ -17972,6 +17974,8 @@ msgstr "Importation des objets"
 #: ../gramps/gui/fs/actions.py:719
 msgid "Spouses imported but could not be located in the local database."
 msgstr ""
+"Les conjoints ont été importés mais n'ont pas pu être localisés dans la base "
+"de données locale."
 
 #: ../gramps/gui/fs/actions.py:723
 #, fuzzy
@@ -17981,7 +17985,7 @@ msgstr "Liens familiaux"
 
 #: ../gramps/gui/fs/actions.py:770
 msgid "Spouse(s) imported and linked."
-msgstr ""
+msgstr "Conjoint(s) importé(s) et lié(s)."
 
 #: ../gramps/gui/fs/actions.py:860
 #, python-brace-format
@@ -18056,7 +18060,7 @@ msgstr ""
 #: ../gramps/gui/fs/actions.py:1024
 #, python-brace-format
 msgid "Failed to download from FamilySearch: {e}"
-msgstr ""
+msgstr "Échec du téléchargement depuis FamilySearch : {e}"
 
 #: ../gramps/gui/fs/actions.py:1029
 #, fuzzy
@@ -18079,12 +18083,12 @@ msgstr ""
 #: ../gramps/gui/fs/actions.py:1142
 #, python-brace-format
 msgid "Export to FamilySearch failed: {e}"
-msgstr ""
+msgstr "L'exportation vers FamilySearch a échoué : {e}"
 
 #: ../gramps/gui/fs/actions.py:1172
 #, python-brace-format
 msgid "Sync to FamilySearch failed: {e}"
-msgstr ""
+msgstr "La synchronisation avec FamilySearch a échoué : {e}"
 
 # trunk
 #: ../gramps/gui/fs/compare/options.py:46
@@ -18095,11 +18099,11 @@ msgstr "Citations de la famille"
 
 #: ../gramps/gui/fs/compare/options.py:49
 msgid "Days between comparisons"
-msgstr ""
+msgstr "Jours entre les comparaisons"
 
 #: ../gramps/gui/fs/compare/options.py:50
 msgid "Number of days between two comparisons."
-msgstr ""
+msgstr "Nombre de jours entre deux comparaisons."
 
 #: ../gramps/gui/fs/compare/options.py:54
 #, fuzzy
@@ -18110,6 +18114,8 @@ msgstr "Informations sur la source"
 #: ../gramps/gui/fs/compare/options.py:56
 msgid "Compare regardless of the number of days since the last run."
 msgstr ""
+"Comparer indépendamment du nombre de jours écoulés depuis la dernière "
+"exécution."
 
 #: ../gramps/gui/fs/compare/options.py:62
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
@@ -18132,7 +18138,7 @@ msgstr "Individu"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
-msgstr ""
+msgstr "FamilySearch n'est pas configuré (aucune session)."
 
 #: ../gramps/gui/fs/compare/window.py:204
 #, python-brace-format
@@ -18140,6 +18146,8 @@ msgid ""
 "Could not open compare window:\n"
 "{e}"
 msgstr ""
+"Impossible d'ouvrir la fenêtre de comparaison :\n"
+"{e}"
 
 # trunk
 #: ../gramps/gui/fs/compare/window.py:214
@@ -18194,7 +18202,7 @@ msgstr "Fiche familiale"
 
 #: ../gramps/gui/fs/fs_import/importer.py:86
 msgid "Downloading persons… (3/11)"
-msgstr ""
+msgstr "Téléchargement des personnes… (3/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:88
 #, fuzzy
@@ -18204,7 +18212,7 @@ msgstr "Le plus jeune individu vivant"
 
 #: ../gramps/gui/fs/fs_import/importer.py:98
 msgid "Downloading ancestors… (4/11)"
-msgstr ""
+msgstr "Téléchargement des ascendants… (4/11)"
 
 # trunk
 #: ../gramps/gui/fs/fs_import/importer.py:106
@@ -18215,7 +18223,7 @@ msgstr "Soumission : générations d'ascendants"
 
 #: ../gramps/gui/fs/fs_import/importer.py:109
 msgid "Downloading descendants… (5/11)"
-msgstr ""
+msgstr "Téléchargement des descendants… (5/11)"
 
 # trunk
 #: ../gramps/gui/fs/fs_import/importer.py:117
@@ -18226,19 +18234,19 @@ msgstr "Soumission : générations de descendants"
 
 #: ../gramps/gui/fs/fs_import/importer.py:122
 msgid "Downloading spouses… (6/11)"
-msgstr ""
+msgstr "Téléchargement des conjoints… (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:124
 msgid "Downloading spouses…"
-msgstr ""
+msgstr "Téléchargement des conjoints…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:130
 msgid "Downloading notes… (7/11)"
-msgstr ""
+msgstr "Téléchargement des notes… (7/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:133
 msgid "Downloading notes and sources…"
-msgstr ""
+msgstr "Téléchargement des notes et des sources…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:176
 #, fuzzy
@@ -18248,7 +18256,7 @@ msgstr "Importer"
 
 #: ../gramps/gui/fs/fs_import/importer.py:188
 msgid "Importing places… (8/11)"
-msgstr ""
+msgstr "Importation de lieux… (8/11)"
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/fs/fs_import/importer.py:189
@@ -18288,7 +18296,7 @@ msgstr "Importation des familles."
 #: ../gramps/gui/fs/fs_import/importer.py:211
 #: ../gramps/gui/fs/fs_import/importer.py:223
 msgid "Importing children… (11/11)"
-msgstr ""
+msgstr "Importation d'enfants… (11/11)"
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/fs/fs_import/importer.py:214
@@ -18306,7 +18314,7 @@ msgstr "Options de l'exportation Web Family Tree"
 
 #: ../gramps/gui/fs/fs_import/options.py:39
 msgid "identifier to be copied from the FamilySearch website"
-msgstr ""
+msgstr "identifiant à copier depuis le site web FamilySearch"
 
 # master
 #: ../gramps/gui/fs/fs_import/options.py:42
@@ -18394,7 +18402,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/fs_import/tool.py:39
 msgid "FamilySearch Import Tool"
-msgstr ""
+msgstr "Outil d'importation FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:465
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:637
@@ -18439,7 +18447,7 @@ msgstr "Sélectionner l'individu pour le rapport"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:491
 msgid "You must login first."
-msgstr ""
+msgstr "Vous devez d'abord vous connecter."
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:507
@@ -18641,11 +18649,11 @@ msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:82
 msgid "Already logged in to FamilySearch."
-msgstr ""
+msgstr "Déjà connecté(e) à FamilySearch."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:86
 msgid "Logged in to FamilySearch."
-msgstr ""
+msgstr "Connecté à FamilySearch."
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/fs/person/mixins/helpers.py:89
@@ -18680,7 +18688,7 @@ msgstr "%s n'a pas pu être importé"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:115
 msgid "No FamilySearch sources found to import."
-msgstr ""
+msgstr "Aucune source FamilySearch trouvée pour l'importation."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:256
 #, fuzzy
@@ -18739,7 +18747,7 @@ msgstr "Ajouter une nouvelle source"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:381
 msgid "Open the source page and download images"
-msgstr ""
+msgstr "Ouvrir la page source et télécharger les images"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:383
@@ -18750,7 +18758,7 @@ msgstr "Choisir une police de caractères"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:384
 msgid "Pick existing files from disk"
-msgstr ""
+msgstr "Sélectionner les fichiers existants sur le disque"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:386
 #, fuzzy
@@ -18874,7 +18882,7 @@ msgstr "Sans titre"
 #: ../gramps/gui/fs/sync_directions.py:448
 #: ../gramps/gui/fs/sync_directions.py:700
 msgid "(empty)"
-msgstr ""
+msgstr "(vide)"
 
 #: ../gramps/gui/fs/sync_directions.py:582
 #: ../gramps/gui/fs/sync_directions.py:980
@@ -18936,7 +18944,7 @@ msgstr "Changement de nom"
 
 #: ../gramps/gui/fs/sync_directions.py:678
 msgid "Field"
-msgstr ""
+msgstr "Champ"
 
 #: ../gramps/gui/fs/sync_directions.py:681 ../gramps/gui/undohistory.py:115
 msgid "Action"
@@ -18967,7 +18975,7 @@ msgstr ""
 #: ../gramps/gui/fs/sync_directions.py:777
 #: ../gramps/gui/fs/sync_directions.py:1342
 msgid "Not connected to FamilySearch."
-msgstr ""
+msgstr "Non connecté à FamilySearch."
 
 #: ../gramps/gui/fs/sync_directions.py:789
 msgid "No FamilySearch Person ID is set for this person."
@@ -19013,11 +19021,11 @@ msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:938
 msgid "FamilySearch update failed (names/facts)."
-msgstr ""
+msgstr "La mise à jour de FamilySearch a échoué (noms/informations)."
 
 #: ../gramps/gui/fs/sync_directions.py:961
 msgid "FamilySearch update failed (notes)."
-msgstr ""
+msgstr "La mise à jour de FamilySearch a échoué (notes)."
 
 #: ../gramps/gui/fs/sync_directions.py:996
 #, python-brace-format
@@ -19026,7 +19034,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1054
 msgid "FamilySearch update failed (sources)."
-msgstr ""
+msgstr "La mise à jour de FamilySearch a échoué (sources)."
 
 #: ../gramps/gui/fs/sync_directions.py:1097
 msgid "FamilySearch: Link uploaded memories"
@@ -19042,16 +19050,16 @@ msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1165
 msgid "FamilySearch updated successfully."
-msgstr ""
+msgstr "Mise à jour de FamilySearch réussie."
 
 #: ../gramps/gui/fs/sync_directions.py:1169
 #, python-brace-format
 msgid "FamilySearch sync failed: {e}"
-msgstr ""
+msgstr "La synchronisation FamilySearch a échoué : {e}"
 
 #: ../gramps/gui/fs/sync_directions.py:1181
 msgid "Export to FamilySearch (basic)"
-msgstr ""
+msgstr "Exporter vers FamilySearch (basique)"
 
 #: ../gramps/gui/fs/sync_directions.py:1186
 #, fuzzy
@@ -19099,7 +19107,7 @@ msgstr "l'individu"
 
 #: ../gramps/gui/fs/sync_directions.py:1276
 msgid "Create"
-msgstr ""
+msgstr "Créer"
 
 #: ../gramps/gui/fs/sync_directions.py:1282
 #, fuzzy
@@ -19145,7 +19153,7 @@ msgstr "Aucune extension correspondante trouvée"
 #: ../gramps/gui/fs/sync_directions.py:1573
 #, python-brace-format
 msgid "FamilySearch export failed: {e}"
-msgstr ""
+msgstr "L'exportation de FamilySearch a échoué : {e}"
 
 # trunk
 #: ../gramps/gui/fs/tools_window.py:314
@@ -19175,11 +19183,11 @@ msgstr "_Comparer"
 
 #: ../gramps/gui/fs/tools_window.py:364
 msgid "Sync from FamilySearch"
-msgstr ""
+msgstr "Synchronisation depuis FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:367
 msgid "Sync to FamilySearch..."
-msgstr ""
+msgstr "Synchronisation avec FamilySearch..."
 
 #: ../gramps/gui/fs/tools_window.py:369
 msgid "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
@@ -19187,7 +19195,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/tools_window.py:372
 msgid "Export to FamilySearch (basic)..."
-msgstr ""
+msgstr "Exportation vers FamilySearch (basique)..."
 
 #: ../gramps/gui/fs/tools_window.py:375
 msgid ""
@@ -24030,7 +24038,7 @@ msgstr "Aucun arbre familial"
 
 #: ../gramps/gui/viewmanager.py:407
 msgid "Not logged in to FamilySearch."
-msgstr ""
+msgstr "Non connecté à FamilySearch."
 
 #: ../gramps/gui/viewmanager.py:553
 #, fuzzy
@@ -37208,7 +37216,7 @@ msgstr "Sélection de vues depuis les listes avec extensions"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:91
 msgid "Favorites"
-msgstr ""
+msgstr "Favoris"
 
 # trunk
 #: ../gramps/plugins/textreport/alphabeticalindex.py:73
@@ -43524,6 +43532,8 @@ msgstr "Permet d'éditer les informations du propriétaire de la base."
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Allow search engines (Google, Bing, etc.) to index your website."
 msgstr ""
+"Permettre aux moteurs de recherche (Google, Bing, etc.) d'indexer votre site "
+"web."
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/webreport/narrativeweb.py:2272
