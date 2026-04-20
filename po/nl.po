@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-19 20:42+0100\n"
+"POT-Creation-Date: 2026-04-20 21:11+0100\n"
 "PO-Revision-Date: 2026-04-20 20:13+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
@@ -3698,9 +3698,12 @@ msgid "Wrong format of date-time"
 msgstr "Ongeldige datum- en tijdnotatie"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+#| "part is optional, are accepted. %s does not satisfy."
 msgid ""
-"Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+"Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
 "Alleen datumtijden in het iso-formaat van jjjj-mm-dd uu:mm:ss, waar het "
@@ -4104,7 +4107,9 @@ msgstr ""
 "met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-msgid "Citations with a note with a tag of <type>"
+#, fuzzy
+#| msgid "Citations with a note with a tag of <type>"
+msgid "Citations with a note with the <tag>"
 msgstr "Citaten met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
@@ -4481,12 +4486,15 @@ msgstr ""
 "overeenkomt met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-msgid "Events with a note with a tag of <type>"
+#, fuzzy
+#| msgid "Events with a note with a tag of <type>"
+msgid "Events with a note with the <tag>"
 msgstr "Gebeurtenissen met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
 msgid "Matches events with a note with a specified tag"
-msgstr "Overeenkomst met gebeurtenissen met een notitie met een specifiek label"
+msgstr ""
+"Overeenkomst met gebeurtenissen met een notitie met een specifiek label"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4798,8 +4806,10 @@ msgstr ""
 "met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-msgid "Families with a note with a tag of <type>"
-msgstr "Gezinnen met een notitie meet en label van <type>"
+#, fuzzy
+#| msgid "Families with father with the <name>"
+msgid "Families with a note with the <tag>"
+msgstr "Gezinnen met een vader met de <naam>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
 msgid "Matches families with a note with a specified tag"
@@ -5120,7 +5130,9 @@ msgstr ""
 "overeenkomt met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-msgid "Media with a note with a tag of <type>"
+#, fuzzy
+#| msgid "Media with a note with a tag of <type>"
+msgid "Media with a note with the <tag>"
 msgstr "Media met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
@@ -5383,7 +5395,7 @@ msgstr ""
 "persoon in de database"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:53
-#: ../gramps/gen/plug/_pluginreg.py:79
+#: ../gramps/gen/plug/_pluginreg.py:79 ../gramps/gui/fs/compare/options.py:68
 msgid "Everyone"
 msgstr "Iedereen"
 
@@ -5689,7 +5701,9 @@ msgstr ""
 "met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-msgid "People with a note with a tag of <type>"
+#, fuzzy
+#| msgid "People with a note with a tag of <type>"
+msgid "People with a note with the <tag>"
 msgstr "Personen met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
@@ -6390,7 +6404,9 @@ msgstr ""
 "met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-msgid "Places with a note with a tag of <type>"
+#, fuzzy
+#| msgid "Places with a note with a tag of <type>"
+msgid "Places with a note with the <tag>"
 msgstr "Plaatsen met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
@@ -6663,12 +6679,15 @@ msgstr ""
 "overeenkomt met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-msgid "Repositories with a note with a tag of <type>"
+#, fuzzy
+#| msgid "Repositories with a note with a tag of <type>"
+msgid "Repositories with a note with the <tag>"
 msgstr "Opslagplaatsen met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Overeenkomst met opslagplaatsen met een notitie met een specifiek label"
+msgstr ""
+"Overeenkomst met opslagplaatsen met een notitie met een specifiek label"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
 msgid "Repositories with a note of type <type>"
@@ -6676,7 +6695,8 @@ msgstr "Opslagplaatsen met een notitie van type <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
 msgid "Matches repositories with a note of a specified type"
-msgstr "Overeenkomst met opslagplaatsen met een notitie van een specifieke type"
+msgstr ""
+"Overeenkomst met opslagplaatsen met een notitie van een specifieke type"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6835,7 +6855,9 @@ msgstr ""
 "een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-msgid "Sources with a note with a tag of <type>"
+#, fuzzy
+#| msgid "Sources with a note with a tag of <type>"
+msgid "Sources with a note with the <tag>"
 msgstr "Bronnen met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
@@ -9532,8 +9554,9 @@ msgstr "Oudergezinnen"
 msgid "Addresses"
 msgstr "Adressen"
 
-#: ../gramps/gen/lib/person.py:250
-msgid "Urls"
+#: ../gramps/gen/lib/person.py:250 ../gramps/gen/lib/place.py:186
+#: ../gramps/gen/lib/repo.py:118
+msgid "URLs"
 msgstr "URL's"
 
 #: ../gramps/gen/lib/person.py:277
@@ -9604,10 +9627,6 @@ msgstr "Code"
 #: ../gramps/gen/lib/place.py:181 ../gramps/plugins/webreport/basepage.py:3494
 msgid "Alternate Locations"
 msgstr "Alternatieve plaatsen"
-
-#: ../gramps/gen/lib/place.py:186 ../gramps/gen/lib/repo.py:118
-msgid "URLs"
-msgstr "URL's"
 
 #: ../gramps/gen/lib/placename.py:94 ../gramps/gui/clipboard.py:593
 #: ../gramps/gui/editors/editplacename.py:135
@@ -17044,18 +17063,6 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
 msgid "Person Filter"
 msgstr "Persoonsfilter"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy, python-format
-#| msgid "All files"
-msgid "All %s"
-msgstr "Alle bestanden"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy
-#| msgid "Person"
-msgid "Persons"
-msgstr "Persoon"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
@@ -42311,6 +42318,22 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:229
 msgid "No style sheet"
 msgstr "Geen stijlblad"
+
+#~ msgid "Families with a note with a tag of <type>"
+#~ msgstr "Gezinnen met een notitie meet en label van <type>"
+
+#~ msgid "Urls"
+#~ msgstr "URL's"
+
+#, fuzzy, python-format
+#~| msgid "All files"
+#~ msgid "All %s"
+#~ msgstr "Alle bestanden"
+
+#, fuzzy
+#~| msgid "Person"
+#~ msgid "Persons"
+#~ msgstr "Persoon"
 
 #~ msgid "Applying ..."
 #~ msgstr "Toepassen …"

@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-19 20:42+0100\n"
+"POT-Creation-Date: 2026-04-20 21:11+0100\n"
 "PO-Revision-Date: 2026-01-30 20:53+0000\n"
 "Last-Translator: Iskren Petkov <auto-weblate@quietlyemailme.us>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
@@ -3686,7 +3686,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
 #, python-format
 msgid ""
-"Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+"Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
 
@@ -4116,7 +4116,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
 #, fuzzy
-msgid "Citations with a note with a tag of <type>"
+msgid "Citations with a note with the <tag>"
 msgstr "Бележки с <маркер>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
@@ -4511,7 +4511,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
 #, fuzzy
-msgid "Events with a note with a tag of <type>"
+msgid "Events with a note with the <tag>"
 msgstr "Бележки с <маркер>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
@@ -4825,7 +4825,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Families with father with the <name>"
-msgid "Families with a note with a tag of <type>"
+msgid "Families with a note with the <tag>"
 msgstr "Семейства с баща с името <име>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
@@ -5155,7 +5155,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
 #, fuzzy
-msgid "Media with a note with a tag of <type>"
+msgid "Media with a note with the <tag>"
 msgstr "Бележки с <маркер>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
@@ -5422,7 +5422,7 @@ msgid ""
 msgstr "Подбира хора без роднински връзки с други лица от базата данни"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:53
-#: ../gramps/gen/plug/_pluginreg.py:79
+#: ../gramps/gen/plug/_pluginreg.py:79 ../gramps/gui/fs/compare/options.py:68
 msgid "Everyone"
 msgstr "Всички"
 
@@ -5737,7 +5737,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
 #, fuzzy
-msgid "People with a note with a tag of <type>"
+msgid "People with a note with the <tag>"
 msgstr "Хора с името <име>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
@@ -6431,7 +6431,7 @@ msgstr "Подбира места с бележки, съдържащи текс
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
 #, fuzzy
-msgid "Places with a note with a tag of <type>"
+msgid "Places with a note with the <tag>"
 msgstr "Хора с името <име>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
@@ -6714,7 +6714,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
 #, fuzzy
-msgid "Repositories with a note with a tag of <type>"
+msgid "Repositories with a note with the <tag>"
 msgstr "Бележки с <маркер>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
@@ -6891,7 +6891,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
 #, fuzzy
-msgid "Sources with a note with a tag of <type>"
+msgid "Sources with a note with the <tag>"
 msgstr "Бележки с <маркер>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
@@ -9723,8 +9723,9 @@ msgstr "Преподреди семействата"
 msgid "Addresses"
 msgstr "Адреси"
 
-#: ../gramps/gen/lib/person.py:250
-msgid "Urls"
+#: ../gramps/gen/lib/person.py:250 ../gramps/gen/lib/place.py:186
+#: ../gramps/gen/lib/repo.py:118
+msgid "URLs"
 msgstr ""
 
 #: ../gramps/gen/lib/person.py:277
@@ -9798,10 +9799,6 @@ msgstr ""
 #: ../gramps/gen/lib/place.py:181 ../gramps/plugins/webreport/basepage.py:3494
 msgid "Alternate Locations"
 msgstr "Заместващи местоположения"
-
-#: ../gramps/gen/lib/place.py:186 ../gramps/gen/lib/repo.py:118
-msgid "URLs"
-msgstr ""
 
 #: ../gramps/gen/lib/placename.py:94 ../gramps/gui/clipboard.py:593
 #: ../gramps/gui/editors/editplacename.py:135
@@ -17449,18 +17446,6 @@ msgstr ""
 #, fuzzy
 msgid "Person Filter"
 msgstr "_Филтър за лицата"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy, python-format
-#| msgid "All files"
-msgid "All %s"
-msgstr "Всички файлове"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy
-#| msgid "Person"
-msgid "Persons"
-msgstr "Лице"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
@@ -43140,6 +43125,21 @@ msgstr "Небраска"
 #: ../gramps/plugins/webstuff/webstuff.py:229
 msgid "No style sheet"
 msgstr "Без стил"
+
+#, fuzzy
+#~| msgid "Families with father with the <name>"
+#~ msgid "Families with a note with a tag of <type>"
+#~ msgstr "Семейства с баща с името <име>"
+
+#, fuzzy, python-format
+#~| msgid "All files"
+#~ msgid "All %s"
+#~ msgstr "Всички файлове"
+
+#, fuzzy
+#~| msgid "Person"
+#~ msgid "Persons"
+#~ msgstr "Лице"
 
 #~ msgid ""
 #~ "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "

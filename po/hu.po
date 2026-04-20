@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-19 20:42+0100\n"
+"POT-Creation-Date: 2026-04-20 21:11+0100\n"
 "PO-Revision-Date: 2025-11-20 19:51+0000\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
@@ -3712,9 +3712,12 @@ msgid "Wrong format of date-time"
 msgstr "Rossz dátum-idő formátum"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+#| "part is optional, are accepted. %s does not satisfy."
 msgid ""
-"Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+"Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
 "Csak az ISO éééé-hh-nn óó:pp:ss dátum-idő formátum - ahol az idő rész csak "
@@ -4123,7 +4126,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Citations with a note of type <type>"
-msgid "Citations with a note with a tag of <type>"
+msgid "Citations with a note with the <tag>"
 msgstr "Idézetek <type> típusú jegyzettel"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
@@ -4490,7 +4493,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Events with a note of type <type>"
-msgid "Events with a note with a tag of <type>"
+msgid "Events with a note with the <tag>"
 msgstr "Események <type> típusú jegyzettel"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
@@ -4793,9 +4796,9 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
 #, fuzzy
-#| msgid "Families with a note of type <type>"
-msgid "Families with a note with a tag of <type>"
-msgstr "Családok <type> típusú jegyzettel"
+#| msgid "Families with father with the <name>"
+msgid "Families with a note with the <tag>"
+msgstr "Családok, ahol az apa <name> nevű"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
 #, fuzzy
@@ -5107,7 +5110,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Citations with a note of type <type>"
-msgid "Media with a note with a tag of <type>"
+msgid "Media with a note with the <tag>"
 msgstr "Idézetek <type> típusú jegyzettel"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
@@ -5365,7 +5368,7 @@ msgstr ""
 "egyetlen más személyével sem"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:53
-#: ../gramps/gen/plug/_pluginreg.py:79
+#: ../gramps/gen/plug/_pluginreg.py:79 ../gramps/gui/fs/compare/options.py:68
 msgid "Everyone"
 msgstr "Mindenki"
 
@@ -5664,7 +5667,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
 #, fuzzy
 #| msgid "People with a note of type <type>"
-msgid "People with a note with a tag of <type>"
+msgid "People with a note with the <tag>"
 msgstr "Emberek <type> típusú jegyzettel"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
@@ -6336,7 +6339,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Places with a note of type <type>"
-msgid "Places with a note with a tag of <type>"
+msgid "Places with a note with the <tag>"
 msgstr "<type> típusú jegyzettel rendelkező helyek"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
@@ -6606,7 +6609,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Repositories with the <tag>"
-msgid "Repositories with a note with a tag of <type>"
+msgid "Repositories with a note with the <tag>"
 msgstr "<tag> címkéjű tárolók"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
@@ -6780,7 +6783,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Sources with a note of type <type>"
-msgid "Sources with a note with a tag of <type>"
+msgid "Sources with a note with the <tag>"
 msgstr "<type> típusú jegyzettel rendelkező források"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
@@ -9501,9 +9504,10 @@ msgstr "Kiinduló/gyökér családok"
 msgid "Addresses"
 msgstr "Lakcímek"
 
-#: ../gramps/gen/lib/person.py:250
-msgid "Urls"
-msgstr "Url-ek"
+#: ../gramps/gen/lib/person.py:250 ../gramps/gen/lib/place.py:186
+#: ../gramps/gen/lib/repo.py:118
+msgid "URLs"
+msgstr "URL-ek"
 
 #: ../gramps/gen/lib/person.py:277
 msgid "Person references"
@@ -9573,10 +9577,6 @@ msgstr "Kód"
 #: ../gramps/gen/lib/place.py:181 ../gramps/plugins/webreport/basepage.py:3494
 msgid "Alternate Locations"
 msgstr "Alternatív Helyszínek"
-
-#: ../gramps/gen/lib/place.py:186 ../gramps/gen/lib/repo.py:118
-msgid "URLs"
-msgstr "URL-ek"
 
 #: ../gramps/gen/lib/placename.py:94 ../gramps/gui/clipboard.py:593
 #: ../gramps/gui/editors/editplacename.py:135
@@ -16993,18 +16993,6 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
 msgid "Person Filter"
 msgstr "Személyszűrő"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy, python-format
-#| msgid "All files"
-msgid "All %s"
-msgstr "Az összes fájl"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy
-#| msgid "Person"
-msgid "Persons"
-msgstr "Személy"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
@@ -42117,6 +42105,24 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:229
 msgid "No style sheet"
 msgstr "Nincs stíluslap"
+
+#, fuzzy
+#~| msgid "Families with a note of type <type>"
+#~ msgid "Families with a note with a tag of <type>"
+#~ msgstr "Családok <type> típusú jegyzettel"
+
+#~ msgid "Urls"
+#~ msgstr "Url-ek"
+
+#, fuzzy, python-format
+#~| msgid "All files"
+#~ msgid "All %s"
+#~ msgstr "Az összes fájl"
+
+#, fuzzy
+#~| msgid "Person"
+#~ msgid "Persons"
+#~ msgstr "Személy"
 
 #~ msgid ""
 #~ "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "

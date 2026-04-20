@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-19 20:42+0100\n"
+"POT-Creation-Date: 2026-04-20 21:11+0100\n"
 "PO-Revision-Date: 2026-04-14 09:09+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -3584,9 +3584,12 @@ msgid "Wrong format of date-time"
 msgstr "错误的日期时间格式"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+#| "part is optional, are accepted. %s does not satisfy."
 msgid ""
-"Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+"Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
 "只接受 ISO 格式为 yyyy-mm-dd hh:mm:ss（时间部分可选）的日期时间。%s 不能满"
@@ -3991,7 +3994,7 @@ msgstr "匹配其注释内容匹配特定正则表达式的引用"
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Citations with a note of type <type>"
-msgid "Citations with a note with a tag of <type>"
+msgid "Citations with a note with the <tag>"
 msgstr "注释类型为 <type> 的引用"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
@@ -4348,7 +4351,7 @@ msgstr "匹配笔记符合特定表达式的事件"
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Events with a note of type <type>"
-msgid "Events with a note with a tag of <type>"
+msgid "Events with a note with the <tag>"
 msgstr "带有注释类型为 <type> 的事件"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
@@ -4642,9 +4645,9 @@ msgstr "匹配笔记中含有匹配特定表达文字的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
 #, fuzzy
-#| msgid "Families with a note of type <type>"
-msgid "Families with a note with a tag of <type>"
-msgstr "注释类型为 <type> 的家庭"
+#| msgid "Families with father with the <name>"
+msgid "Families with a note with the <tag>"
+msgstr "家庭中父亲的名字为<name>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
 #, fuzzy
@@ -4944,7 +4947,7 @@ msgstr "匹配媒体对象，笔记含有匹配正则表达式文本的"
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Citations with a note of type <type>"
-msgid "Media with a note with a tag of <type>"
+msgid "Media with a note with the <tag>"
 msgstr "注释类型为 <type> 的引用"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
@@ -5191,7 +5194,7 @@ msgid ""
 msgstr "匹配与数据库中其他人没有任何家庭关系的成员"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:53
-#: ../gramps/gen/plug/_pluginreg.py:79
+#: ../gramps/gen/plug/_pluginreg.py:79 ../gramps/gui/fs/compare/options.py:68
 msgid "Everyone"
 msgstr "所有人"
 
@@ -5486,7 +5489,7 @@ msgstr "匹配 笔记中的文本符合特定表达式的成员"
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
 #, fuzzy
 #| msgid "People with a note of type <type>"
-msgid "People with a note with a tag of <type>"
+msgid "People with a note with the <tag>"
 msgstr "带有注释类型为 <type> 的人员"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
@@ -6128,7 +6131,7 @@ msgstr "匹配地点，其中笔记含有符合特定表达式的文字"
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Places with a note of type <type>"
-msgid "Places with a note with a tag of <type>"
+msgid "Places with a note with the <tag>"
 msgstr "注释类型为 <type> 的地点"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
@@ -6387,7 +6390,7 @@ msgstr "匹配文库，笔记含有匹配正则表达式的文本"
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Repositories with the <tag>"
-msgid "Repositories with a note with a tag of <type>"
+msgid "Repositories with a note with the <tag>"
 msgstr "带 <tag> 标签的文库"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
@@ -6555,7 +6558,7 @@ msgstr "匹配"
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Sources with a note of type <type>"
-msgid "Sources with a note with a tag of <type>"
+msgid "Sources with a note with the <tag>"
 msgstr "注释类型为 <type> 的来源"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
@@ -9274,8 +9277,9 @@ msgstr "父母家庭"
 msgid "Addresses"
 msgstr "地址"
 
-#: ../gramps/gen/lib/person.py:250
-msgid "Urls"
+#: ../gramps/gen/lib/person.py:250 ../gramps/gen/lib/place.py:186
+#: ../gramps/gen/lib/repo.py:118
+msgid "URLs"
 msgstr "网址"
 
 #: ../gramps/gen/lib/person.py:277
@@ -9346,10 +9350,6 @@ msgstr "编码"
 #: ../gramps/gen/lib/place.py:181 ../gramps/plugins/webreport/basepage.py:3494
 msgid "Alternate Locations"
 msgstr "其他位置"
-
-#: ../gramps/gen/lib/place.py:186 ../gramps/gen/lib/repo.py:118
-msgid "URLs"
-msgstr "网址"
 
 #: ../gramps/gen/lib/placename.py:94 ../gramps/gui/clipboard.py:593
 #: ../gramps/gui/editors/editplacename.py:135
@@ -16668,18 +16668,6 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
 msgid "Person Filter"
 msgstr "人员筛选"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy, python-format
-#| msgid "All files"
-msgid "All %s"
-msgstr "所有文件"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy
-#| msgid "Person"
-msgid "Persons"
-msgstr "成员"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
@@ -41186,6 +41174,24 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:229
 msgid "No style sheet"
 msgstr "无样式表"
+
+#, fuzzy
+#~| msgid "Families with a note of type <type>"
+#~ msgid "Families with a note with a tag of <type>"
+#~ msgstr "注释类型为 <type> 的家庭"
+
+#~ msgid "Urls"
+#~ msgstr "网址"
+
+#, fuzzy, python-format
+#~| msgid "All files"
+#~ msgid "All %s"
+#~ msgstr "所有文件"
+
+#, fuzzy
+#~| msgid "Person"
+#~ msgid "Persons"
+#~ msgstr "成员"
 
 #~ msgid ""
 #~ "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "

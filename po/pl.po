@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-19 20:42+0100\n"
+"POT-Creation-Date: 2026-04-20 21:11+0100\n"
 "PO-Revision-Date: 2026-04-20 20:13+0000\n"
 "Last-Translator: Artur <wy66m6xm@anonaddy.me>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
@@ -3724,9 +3724,12 @@ msgid "Wrong format of date-time"
 msgstr "Zły format daty-czasu"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+#| "part is optional, are accepted. %s does not satisfy."
 msgid ""
-"Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+"Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
 "Tylko data/czas w formcie iso (yyyy-mm-dd hh-mm-ss, gdzie część czasu jest "
@@ -4136,7 +4139,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Citations with a note of type <type>"
-msgid "Citations with a note with a tag of <type>"
+msgid "Citations with a note with the <tag>"
 msgstr "Cytaty z notatką typu <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
@@ -4507,7 +4510,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Events with a note of type <type>"
-msgid "Events with a note with a tag of <type>"
+msgid "Events with a note with the <tag>"
 msgstr "Zdarzenia z notatką typu <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
@@ -4815,9 +4818,9 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
 #, fuzzy
-#| msgid "Families with a note of type <type>"
-msgid "Families with a note with a tag of <type>"
-msgstr "Rodziny z notatką typu <typ>"
+#| msgid "Families with father with the <name>"
+msgid "Families with a note with the <tag>"
+msgstr "Rodziny z ojcem noszącym <nazwisko>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
 #, fuzzy
@@ -5132,7 +5135,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Citations with a note of type <type>"
-msgid "Media with a note with a tag of <type>"
+msgid "Media with a note with the <tag>"
 msgstr "Cytaty z notatką typu <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
@@ -5394,7 +5397,7 @@ msgstr ""
 "osobami w bazie danych"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:53
-#: ../gramps/gen/plug/_pluginreg.py:79
+#: ../gramps/gen/plug/_pluginreg.py:79 ../gramps/gui/fs/compare/options.py:68
 msgid "Everyone"
 msgstr "Każdy"
 
@@ -5694,7 +5697,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
 #, fuzzy
 #| msgid "People with a note of type <type>"
-msgid "People with a note with a tag of <type>"
+msgid "People with a note with the <tag>"
 msgstr "Osoby z notatką typu <typ>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
@@ -6367,7 +6370,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Places with a note of type <type>"
-msgid "Places with a note with a tag of <type>"
+msgid "Places with a note with the <tag>"
 msgstr "Miejsca z notatką typu <typ>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
@@ -6638,7 +6641,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Repositories with the <tag>"
-msgid "Repositories with a note with a tag of <type>"
+msgid "Repositories with a note with the <tag>"
 msgstr "Repozytoria z <tagiem>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
@@ -6811,7 +6814,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Sources with a note of type <type>"
-msgid "Sources with a note with a tag of <type>"
+msgid "Sources with a note with the <tag>"
 msgstr "Źródła z notatką typu <typ>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
@@ -9536,8 +9539,9 @@ msgstr "Nadrzędne rodziny"
 msgid "Addresses"
 msgstr "Adresy"
 
-#: ../gramps/gen/lib/person.py:250
-msgid "Urls"
+#: ../gramps/gen/lib/person.py:250 ../gramps/gen/lib/place.py:186
+#: ../gramps/gen/lib/repo.py:118
+msgid "URLs"
 msgstr "Adresy URL"
 
 #: ../gramps/gen/lib/person.py:277
@@ -9608,10 +9612,6 @@ msgstr "Kod"
 #: ../gramps/gen/lib/place.py:181 ../gramps/plugins/webreport/basepage.py:3494
 msgid "Alternate Locations"
 msgstr "Alternatywne lokalizacje"
-
-#: ../gramps/gen/lib/place.py:186 ../gramps/gen/lib/repo.py:118
-msgid "URLs"
-msgstr "Adresy URL"
 
 #: ../gramps/gen/lib/placename.py:94 ../gramps/gui/clipboard.py:593
 #: ../gramps/gui/editors/editplacename.py:135
@@ -17045,18 +17045,6 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
 msgid "Person Filter"
 msgstr "Filtr osób"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy, python-format
-#| msgid "All files"
-msgid "All %s"
-msgstr "Wszystkie pliki"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy
-#| msgid "Person"
-msgid "Persons"
-msgstr "Osoba"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
@@ -42163,6 +42151,24 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:229
 msgid "No style sheet"
 msgstr "Bez arkusza stylów"
+
+#, fuzzy
+#~| msgid "Families with a note of type <type>"
+#~ msgid "Families with a note with a tag of <type>"
+#~ msgstr "Rodziny z notatką typu <typ>"
+
+#~ msgid "Urls"
+#~ msgstr "Adresy URL"
+
+#, fuzzy, python-format
+#~| msgid "All files"
+#~ msgid "All %s"
+#~ msgstr "Wszystkie pliki"
+
+#, fuzzy
+#~| msgid "Person"
+#~ msgid "Persons"
+#~ msgstr "Osoba"
 
 #~ msgid ""
 #~ "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "

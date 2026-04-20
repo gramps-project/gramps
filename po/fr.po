@@ -52,7 +52,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-19 20:42+0100\n"
+"POT-Creation-Date: 2026-04-20 21:11+0100\n"
 "PO-Revision-Date: 2026-04-20 20:13+0000\n"
 "Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
@@ -4008,9 +4008,12 @@ msgid "Wrong format of date-time"
 msgstr "Mauvais format de date-heure"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+#| "part is optional, are accepted. %s does not satisfy."
 msgid ""
-"Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+"Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
 "Seulement les dates dans le format iso tel que aaaa-mm-jj hh:mm:ss, où les "
@@ -4429,7 +4432,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Citations with a note of type <type>"
-msgid "Citations with a note with a tag of <type>"
+msgid "Citations with a note with the <tag>"
 msgstr "Citations avec une note de type <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
@@ -4817,7 +4820,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Events with a note of type <type>"
-msgid "Events with a note with a tag of <type>"
+msgid "Events with a note with the <tag>"
 msgstr "Événements avec une note de type <type>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -5151,9 +5154,9 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
 #, fuzzy
-#| msgid "Families with a note of type <type>"
-msgid "Families with a note with a tag of <type>"
-msgstr "Familles avec une note de type <type>"
+#| msgid "Families with father with the <name>"
+msgid "Families with a note with the <tag>"
+msgstr "Familles dont le père a pour <nom>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
@@ -5505,7 +5508,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Citations with a note of type <type>"
-msgid "Media with a note with a tag of <type>"
+msgid "Media with a note with the <tag>"
 msgstr "Citations avec une note de type <type>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -5788,7 +5791,7 @@ msgstr ""
 "Correspond aux individus n'ayant de relation avec aucun individu de la base"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:53
-#: ../gramps/gen/plug/_pluginreg.py:79
+#: ../gramps/gen/plug/_pluginreg.py:79 ../gramps/gui/fs/compare/options.py:68
 msgid "Everyone"
 msgstr "Tout le monde"
 
@@ -6118,7 +6121,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
 #, fuzzy
 #| msgid "People with a note of type <type>"
-msgid "People with a note with a tag of <type>"
+msgid "People with a note with the <tag>"
 msgstr "Individus avec une note de type <type>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -6856,7 +6859,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Places with a note of type <type>"
-msgid "Places with a note with a tag of <type>"
+msgid "Places with a note with the <tag>"
 msgstr "Lieux avec une note de type <type>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -7154,7 +7157,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Repositories with the <tag>"
-msgid "Repositories with a note with a tag of <type>"
+msgid "Repositories with a note with the <tag>"
 msgstr "Dépôts avec l'<étiquette>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -7341,7 +7344,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
 #, fuzzy
 #| msgid "Sources with a note of type <type>"
-msgid "Sources with a note with a tag of <type>"
+msgid "Sources with a note with the <tag>"
 msgstr "Sources avec une note de type <type>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -10166,8 +10169,9 @@ msgid "Addresses"
 msgstr "Adresses"
 
 # master
-#: ../gramps/gen/lib/person.py:250
-msgid "Urls"
+#: ../gramps/gen/lib/person.py:250 ../gramps/gen/lib/place.py:186
+#: ../gramps/gen/lib/repo.py:118
+msgid "URLs"
 msgstr "URL"
 
 # master
@@ -10240,11 +10244,6 @@ msgstr "Code"
 #: ../gramps/gen/lib/place.py:181 ../gramps/plugins/webreport/basepage.py:3494
 msgid "Alternate Locations"
 msgstr "Noms alternatifs"
-
-# master
-#: ../gramps/gen/lib/place.py:186 ../gramps/gen/lib/repo.py:118
-msgid "URLs"
-msgstr "URL"
 
 #: ../gramps/gen/lib/placename.py:94 ../gramps/gui/clipboard.py:593
 #: ../gramps/gui/editors/editplacename.py:135
@@ -18121,20 +18120,6 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
 msgid "Person Filter"
 msgstr "Filtre individu"
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy, python-format
-#| msgid "All files"
-msgid "All %s"
-msgstr "Tous les fichiers"
-
-# L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
-#: ../gramps/gui/fs/compare/options.py:68
-#, fuzzy
-#| msgid "Person"
-msgid "Persons"
-msgstr "Individu"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
@@ -44845,6 +44830,27 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:229
 msgid "No style sheet"
 msgstr "Aucune feuille de style"
+
+#, fuzzy
+#~| msgid "Families with a note of type <type>"
+#~ msgid "Families with a note with a tag of <type>"
+#~ msgstr "Familles avec une note de type <type>"
+
+# master
+#~ msgid "Urls"
+#~ msgstr "URL"
+
+#, fuzzy, python-format
+#~| msgid "All files"
+#~ msgid "All %s"
+#~ msgstr "Tous les fichiers"
+
+# L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
+#, fuzzy
+#~| msgid "Person"
+#~ msgid "Persons"
+#~ msgstr "Individu"
 
 # Substantif (GNOME fr)
 #~ msgid ""

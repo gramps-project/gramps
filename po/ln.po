@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-19 20:42+0100\n"
+"POT-Creation-Date: 2026-04-20 21:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3154,7 +3154,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
 #, python-format
 msgid ""
-"Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+"Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
 
@@ -3548,7 +3548,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-msgid "Citations with a note with a tag of <type>"
+msgid "Citations with a note with the <tag>"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
@@ -3896,7 +3896,7 @@ msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-msgid "Events with a note with a tag of <type>"
+msgid "Events with a note with the <tag>"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
@@ -4184,7 +4184,7 @@ msgid "Matches families whose notes contain text matching a regular expression"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-msgid "Families with a note with a tag of <type>"
+msgid "Families with a note with the <tag>"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
@@ -4479,7 +4479,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-msgid "Media with a note with a tag of <type>"
+msgid "Media with a note with the <tag>"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
@@ -4713,7 +4713,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:53
-#: ../gramps/gen/plug/_pluginreg.py:79
+#: ../gramps/gen/plug/_pluginreg.py:79 ../gramps/gui/fs/compare/options.py:68
 msgid "Everyone"
 msgstr ""
 
@@ -5006,7 +5006,7 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-msgid "People with a note with a tag of <type>"
+msgid "People with a note with the <tag>"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
@@ -5641,7 +5641,7 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-msgid "Places with a note with a tag of <type>"
+msgid "Places with a note with the <tag>"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
@@ -5892,7 +5892,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-msgid "Repositories with a note with a tag of <type>"
+msgid "Repositories with a note with the <tag>"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
@@ -6050,7 +6050,7 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-msgid "Sources with a note with a tag of <type>"
+msgid "Sources with a note with the <tag>"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
@@ -8728,8 +8728,9 @@ msgstr ""
 msgid "Addresses"
 msgstr ""
 
-#: ../gramps/gen/lib/person.py:250
-msgid "Urls"
+#: ../gramps/gen/lib/person.py:250 ../gramps/gen/lib/place.py:186
+#: ../gramps/gen/lib/repo.py:118
+msgid "URLs"
 msgstr ""
 
 #: ../gramps/gen/lib/person.py:277
@@ -8799,10 +8800,6 @@ msgstr ""
 
 #: ../gramps/gen/lib/place.py:181 ../gramps/plugins/webreport/basepage.py:3494
 msgid "Alternate Locations"
-msgstr ""
-
-#: ../gramps/gen/lib/place.py:186 ../gramps/gen/lib/repo.py:118
-msgid "URLs"
 msgstr ""
 
 #: ../gramps/gen/lib/placename.py:94 ../gramps/gui/clipboard.py:593
@@ -15794,15 +15791,6 @@ msgstr ""
 #: ../gramps/gui/fs/compare/options.py:62
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
 msgid "Person Filter"
-msgstr ""
-
-#: ../gramps/gui/fs/compare/options.py:68
-#, python-format
-msgid "All %s"
-msgstr ""
-
-#: ../gramps/gui/fs/compare/options.py:68
-msgid "Persons"
 msgstr ""
 
 #: ../gramps/gui/fs/compare/window.py:91
