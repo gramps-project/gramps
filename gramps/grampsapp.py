@@ -235,7 +235,9 @@ except ImportError:
 #
 # -------------------------------------------------------------------------
 try:
-    signal.signal(signal.SIGCHLD, signal.SIG_DFL)
+    # signal.SIGCHLD is only available on Unix
+    if sys.platform != "win32":
+        signal.signal(signal.SIGCHLD, signal.SIG_DFL)
 except:
     pass
 
