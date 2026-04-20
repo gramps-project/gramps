@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-19 20:42+0100\n"
-"PO-Revision-Date: 2026-04-10 19:09+0000\n"
+"PO-Revision-Date: 2026-04-20 20:13+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -757,14 +757,6 @@ msgstr ""
 "kunt u het filter negeren door de knop 'Alles weergeven' aan te vinken."
 
 #: ../data/tips.xml:65
-#, fuzzy
-#| msgid ""
-#| "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "
-#| "to Gramps. Requesting an enhancement can be done either through the "
-#| "gramps-users or gramps-devel mailing lists, or by going to https://gramps-"
-#| "project.org/bugs/ and creating a Feature Request. Filing a Feature "
-#| "Request is preferred but it can be good to discuss your ideas on the "
-#| "email lists."
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -775,9 +767,9 @@ msgstr ""
 "<b>Gramps verbeteren</b><br/>Gebruikers worden aangemoedigd om verbeteringen "
 "voor Gramps te vragen. Het aanvragen van een verbetering kan worden gedaan "
 "via de gramps-gebruikers- of gramps-devel-mailinglijsten, of door naar "
-"https://gramps-project.org/bugs/ te gaan en een functieverzoek in te dienen. "
-"Het indienen van een functieverzoek heeft de voorkeur, maar het kan goed "
-"zijn om uw ideeën in de e-maillijsten te bespreken."
+"&bugs_url; te gaan en een functieverzoek in te dienen. Het indienen van een "
+"functieverzoek heeft de voorkeur, maar het kan goed zijn om uw ideeën in de "
+"e-maillijsten te bespreken."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -1001,28 +993,18 @@ msgstr ""
 "die gereed zijn om te uploaden naar het World Wide Web."
 
 #: ../data/tips.xml:99
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at https://gramps-"
-#| "project.org/bugs/."
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
 "<b>Fouten in Gramps melden</b><br/>De beste manier om een fout in Gramps te "
-"melden, is door het Gramps-foutvolgsysteem te gebruiken op https://gramps-"
-"project.org/bugs/."
+"melden, is door het Gramps-foutvolgsysteem te gebruiken op &bugs_url;."
 
 #: ../data/tips.xml:101
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
-#| "project.org/."
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
 msgstr ""
-"<b>De Gramps-homepage</b><br/>De Gramps-homepage bevindt zich op https://"
-"gramps-project.org/."
+"&gramps_url;<b>De Gramps-homepage</b><br/>De Gramps-homepage bevindt zich op "
+"&gramps_url;."
 
 #: ../data/tips.xml:103
 msgid ""
@@ -1201,12 +1183,6 @@ msgstr ""
 "Initiative vinden."
 
 #: ../data/tips.xml:131
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see https://www.gnu.org/licenses/licenses.html#GPL to "
-#| "read about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1215,8 +1191,8 @@ msgid ""
 msgstr ""
 "<b>De Gramps-softwarelicentie</b><br/>U bent vrij om Gramps te gebruiken en "
 "te delen met anderen. Gramps is gratis distribueerbaar onder de GNU General "
-"Public License, zie https://www.gnu.org/licenses/licenses.html#GPL om te "
-"lezen over de rechten en beperkingen van deze licentie."
+"Public License, zie &gpl_url; om te lezen over de rechten en beperkingen van "
+"deze licentie."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -3898,16 +3874,12 @@ msgid "Tag:"
 msgstr "Label:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "Objecten met notities van een specifiek type"
+msgstr "Objecten met notities met een specifiek label."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
-#| msgid "Matches a note with a specified Gramps ID"
 msgid "Matches notes with a specified tag"
-msgstr "Overeenkomst met een notitie met een specifiek Gramps-ID"
+msgstr "Overeenkomst met notities met een specifiek label"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -4132,16 +4104,12 @@ msgstr ""
 "met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with a tag of <type>"
-msgstr "Citaten met notities van type <type>"
+msgstr "Citaten met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches citations with a note of the specified type"
 msgid "Matches citations with a note with a specified tag"
-msgstr "Overeenkomst met citaten met een notitie van het opgegeven type"
+msgstr "Overeenkomst met citaten met een notitie met een specifiek label"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4513,17 +4481,12 @@ msgstr ""
 "overeenkomt met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with a tag of <type>"
-msgstr "Gebeurtenissen met een notitie van het type <type>"
+msgstr "Gebeurtenissen met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches events with a note of the specified type"
 msgid "Matches events with a note with a specified tag"
-msgstr ""
-"Overeenkomst met gebeurtenissen met een notitie van het specifieke type"
+msgstr "Overeenkomst met gebeurtenissen met een notitie met een specifiek label"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4835,16 +4798,12 @@ msgstr ""
 "met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with a note of type <type>"
 msgid "Families with a note with a tag of <type>"
-msgstr "Gezinnen met een notitie van type <type>"
+msgstr "Gezinnen met een notitie meet en label van <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches families with a note with a specified tag"
-msgstr "Overeenkomst met gezinnen met een notitie van het specifieke type"
+msgstr "Overeenkomst met gezinnen met een notitie met een specifiek label"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -5161,28 +5120,20 @@ msgstr ""
 "overeenkomt met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with a tag of <type>"
-msgstr "Citaten met notities van type <type>"
+msgstr "Media met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "Overeenkomst met gezinnen met een notitie van het specifieke type"
+msgstr "Overeenkomst met media met een notitie met een specifiek label"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "Gebeurtenissen met een notitie van het type <type>"
+msgstr "Media met een notitie van het type <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "Overeenkomst met gezinnen met een notitie van het specifieke type"
+msgstr "Overeenkomst met media met een notitie van een specifiek type"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
@@ -5738,16 +5689,12 @@ msgstr ""
 "met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with a tag of <type>"
-msgstr "Personen met een notitie van het type <type>"
+msgstr "Personen met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "Overeenkomst met personen met een notitie van het specifieke type"
+msgstr "Overeenkomst met personen met een notitie met een specifiek label"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -6443,16 +6390,12 @@ msgstr ""
 "met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with a tag of <type>"
-msgstr "Plaatsen met een notitie van type <type>"
+msgstr "Plaatsen met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "Overeenkomst met locaties met een notitie van het specifieke type"
+msgstr "Overeenkomst met locaties met een notitie met een specifiek label"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6720,28 +6663,20 @@ msgstr ""
 "overeenkomt met een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with a tag of <type>"
-msgstr "Opslagplaatsen met het <label>"
+msgstr "Opslagplaatsen met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Overeenkomst met bronnen met een notitie van het specifieke type"
+msgstr "Overeenkomst met opslagplaatsen met een notitie met een specifiek label"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "Bronnen met een notitie van type <type>"
+msgstr "Opslagplaatsen met een notitie van type <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "Overeenkomst met bronnen met een notitie van het specifieke type"
+msgstr "Overeenkomst met opslagplaatsen met een notitie van een specifieke type"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6900,16 +6835,12 @@ msgstr ""
 "een reguliere expressie"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with a tag of <type>"
-msgstr "Bronnen met een notitie van type <type>"
+msgstr "Bronnen met een notitie met een label van <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "Overeenkomst met bronnen met een notitie van het specifieke type"
+msgstr "Overeenkomst met bronnen met een notitie met een specifiek label"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -7031,10 +6962,8 @@ msgstr "Overeenkomst met bronnen die als privé aangegeven zijn"
 #: ../gramps/gui/fs/person/mixins/helpers.py:68
 #: ../gramps/gui/fs/sync_directions.py:679 ../gramps/gui/viewmanager.py:406
 #: ../gramps/gui/viewmanager.py:552 ../gramps/gui/viewmanager.py:560
-#, fuzzy
-#| msgid "Family"
 msgid "FamilySearch"
-msgstr "Gezin"
+msgstr "FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:160
 #: ../gramps/gui/fs/compare/window.py:224
@@ -7042,19 +6971,17 @@ msgstr "Gezin"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:760
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:962
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "Niet verbonden met FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
 #, fuzzy
 #| msgid "initials"
 msgid "Essentials"
-msgstr "initialen"
+msgstr "Hoofdzaken"
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "Itemnaam"
+msgstr "Andere namen"
 
 #: ../gramps/gen/fs/compare/aggregate.py:211
 #: ../gramps/gui/merge/mergeperson.py:241
@@ -7094,7 +7021,7 @@ msgstr "Gezinnen"
 
 #: ../gramps/gen/fs/compare/aggregate.py:225
 msgid "Facts"
-msgstr ""
+msgstr "Feiten"
 
 #: ../gramps/gen/fs/compare/comparators.py:81
 #: ../gramps/gen/fs/compare/comparators.py:88 ../gramps/gen/utils/string.py:49
@@ -7273,54 +7200,43 @@ msgstr "Kind"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
-#, fuzzy
-#| msgid "the citation"
 msgid "Birth Registration"
-msgstr "het citaat"
+msgstr "Geboorteaangifte"
 
 #: ../gramps/gen/fs/constants.py:83 ../gramps/gen/fs/constants.py:84
-#, fuzzy
-#| msgid "the citation"
 msgid "Death Registration"
-msgstr "het citaat"
+msgstr "Overleidensregistratie"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "februari"
+msgstr "Overlijdensbericht"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "Verwantschap"
+msgstr "Burgerschap"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
-msgstr ""
+msgstr "Ongeldige relatie overgeslagen: kind is gelijk aan ouder"
 
 #: ../gramps/gen/fs/fs_import/importer.py:286
 msgid "Possibly parentless family - Need at least one known parent locally"
-msgstr ""
+msgstr "Mogelijk ouderloos gezin - Lokaal is minstens één bekende ouder nodig"
 
 #: ../gramps/gen/fs/fs_import/importer.py:333
 msgid "Skipping invalid couple: same person as both parents"
-msgstr ""
+msgstr "Ongeldig koppel overgeslagen: dezelfde persoon als beide ouders"
 
 #: ../gramps/gen/fs/fs_import/importer.py:375
 msgid "Possible parentless family?"
-msgstr ""
+msgstr "Mogelijk ouderloos gezin?"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
-#, fuzzy
-#| msgid "Building display"
 msgid "Building FSID list for places"
-msgstr "Weergave opbouwen"
+msgstr "FSID-lijst bouwen voor plaatsen"
 
 #: ../gramps/gen/fs/fs_import/sources.py:523
 #: ../gramps/gen/fs/fs_import/sources.py:526
@@ -7395,15 +7311,13 @@ msgstr "Internet Adres"
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
 msgid "Memory: {t}"
-msgstr ""
+msgstr "Geheugen: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:421
 #: ../gramps/gui/fs/sync_directions.py:599
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "Datum(s) ontbreekt"
+msgstr "(ontbreekt)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:304
@@ -7450,34 +7364,32 @@ msgstr "Notitie"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:653
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Bijgewerkt vanuit Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
-#, fuzzy
-#| msgid "Created for %(author)s"
 msgid "Created from Gramps"
-msgstr "Gemaakt voor %(author)s"
+msgstr "Aangemaakt vanuit Gramps"
 
 #: ../gramps/gen/fs/tags.py:317
 #, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "Groep %(num)d"
 
 #: ../gramps/gen/fs/tags.py:328
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Overzicht ? %(title)s ? rij %(row)d niet groen (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:338
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Notities ? rij %(row)d niet groen (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:348
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Bronnen ? rij %(row)d niet groen (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:358
 msgid ""
@@ -7485,12 +7397,14 @@ msgid ""
 "This add-on only sets default colors when the tags are first created and "
 "will not override your custom choices."
 msgstr ""
+"FamilySearch statuslabel-kleuren kunnen in Gramps worden aangepast via "
+"Labels bewerken. Deze uitbreiding stelt alleen standaardkleuren in wanneer "
+"de tags voor het eerst worden gemaakt en zal uw aangepaste keuzes niet "
+"overschrijven."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch tags"
-msgstr "Familie is gewijzigd"
+msgstr "FamilySearch labels"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:721 ../gramps/gui/editors/editaddress.py:199
@@ -9034,46 +8948,40 @@ msgstr "Geregistreerd partnerschap"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
 msgid "FamilySearch sync"
-msgstr ""
+msgstr "FamilySearch synchronisatie"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "Gezins-ID"
+msgstr "FamilySearch-ID"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Is root"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Status bar"
 msgid "Status timestamp"
-msgstr "Statusbalk"
+msgstr "Status tijdstempel"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
-msgstr ""
+msgstr "Bevestigde tijdstempel"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
-msgstr ""
+msgstr "Gramps gewijzigde tijdstempel"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:92
 msgid "FamilySearch modified timestamp"
-msgstr ""
+msgstr "FamilySearch gewijzigde tijdstempel"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "Essentieel conflict"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "Instellingen"
+msgstr "Conflict"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -10463,17 +10371,14 @@ msgid "Font family"
 msgstr "Lettertypefamilie"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:165
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Choose the font family. If international characters don't show, use "
-#| "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+#, python-brace-format
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
 "Kies de lettertypefamilie. Als internationale tekens niet worden "
 "weergegeven, gebruik dan het FreeSans-lettertype. FreeSans is verkrijgbaar "
-"bij: http://www.nongnu.org/freefont/"
+"bij {freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:172
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -12815,21 +12720,16 @@ msgid "Media Object"
 msgstr "Media-object"
 
 #: ../gramps/gui/configure.py:869
-#, fuzzy, no-python-format
-#| msgid ""
-#| "Default Gramps ID formats containing a letter prefix followed by a "
-#| "numerical string. \"I%04d\" creates IDs from I0000 to I9999. Large "
-#| "databases may need larger IDs. \"I%06d\" creates IDs from I000000 to "
-#| "I999999.\n"
+#, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
 "string. \"I%05d\" creates IDs from I00000 to I99999. Large databases may "
 "need larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
 "Standaard Gramps-ID-indelingen die een lettervoorvoegsel bevatten, gevolgd "
-"door een numerieke tekenreeks. \"I%04d\" maakt ID's aan van I0000 tot I9999. "
-"Grote databases hebben mogelijk grotere ID's nodig. \"I%06d\" maakt ID's aan "
-"van I000000 tot I99999.\n"
+"door een numerieke tekenreeks. \"I%05d\" maakt ID's aan van I00000 tot "
+"I99999. Grote databases hebben mogelijk grotere ID's nodig. \"I%06d\" maakt "
+"ID's aan van I000000 tot I99999.\n"
 
 #: ../gramps/gui/configure.py:891
 msgid "Colors used for boxes in the graphical views"
@@ -12971,50 +12871,45 @@ msgid "Warnings"
 msgstr "Waarschuwingen"
 
 #: ../gramps/gui/configure.py:1085
+#, fuzzy
 msgid "Live"
-msgstr ""
+msgstr "Live"
 
 #: ../gramps/gui/configure.py:1093
 msgid "Server"
-msgstr ""
+msgstr "Server"
 
 #: ../gramps/gui/configure.py:1102
 msgid "Foundation middleware"
-msgstr ""
+msgstr "Foundation middleware"
 
 #: ../gramps/gui/configure.py:1104
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "Dubbel gezin"
+msgstr "Direct FamilySearch"
 
 #: ../gramps/gui/configure.py:1119
-#, fuzzy
-#| msgid "Author"
 msgid "Auth provider"
-msgstr "Auteur"
+msgstr "Auth-provider"
 
 #: ../gramps/gui/configure.py:1128
 msgid "App key (direct mode only)"
-msgstr ""
+msgstr "App-sleutel (alleen directe modus)"
 
 #: ../gramps/gui/configure.py:1149
 msgid "Redirect URL (direct mode only)"
-msgstr ""
+msgstr "URL omleiden (alleen directe modus)"
 
 #: ../gramps/gui/configure.py:1158
 msgid "Middleware base URL"
-msgstr ""
+msgstr "Middleware basis-URL"
 
 #: ../gramps/gui/configure.py:1167
 msgid "Middleware access code (issued secret)"
-msgstr ""
+msgstr "Middleware toegangscode (uitgegeven geheim)"
 
 #: ../gramps/gui/configure.py:1174
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "Generaties"
+msgstr "Integraties"
 
 #: ../gramps/gui/configure.py:1241 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -13279,16 +13174,17 @@ msgid "Maximum age probably alive"
 msgstr "Maximale leeftijd waarschijnlijk in leven"
 
 #: ../gramps/gui/configure.py:2057
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "Max. generaties voor verwantschappen"
+msgstr "Max. aantal generaties om de leeftijd te schatten"
 
 #: ../gramps/gui/configure.py:2062
 msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
+"Beperkt de schattingsdiepte van voorouders/afstammelingen. Vergroot de "
+"waarde als schattingen ontbreken als datums alleen in verre generaties "
+"voorkomen."
 
 #: ../gramps/gui/configure.py:2069
 msgid "Maximum sibling age difference"
@@ -13493,10 +13389,8 @@ msgstr ""
 "kader in."
 
 #: ../gramps/gui/configure.py:2341
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "Voorbeeld van notities"
+msgstr "Lente van notitievoorbeelden"
 
 #: ../gramps/gui/configure.py:2400
 msgid "Database Setting"
@@ -16293,14 +16187,10 @@ msgid "Internet Address Editor"
 msgstr "Internetadres-bewerker"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
 msgstr ""
-"Het internetadres dat nodig is om ernaartoe te navigeren, bijv. http://"
-"gramps-project.org"
+"Het internetadres dat nodig is om ernaartoe te navigeren, bijv. {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
