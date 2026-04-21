@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-20 20:13+0000\n"
+"PO-Revision-Date: 2026-04-21 09:20+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -3672,10 +3672,7 @@ msgid "Wrong format of date-time"
 msgstr "Fel format på datum-tid"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, fuzzy, python-format
-#| msgid ""
-#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#| "part is optional, are accepted. %s does not satisfy."
+#, python-format
 msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
@@ -4078,10 +4075,8 @@ msgstr ""
 "uttryck"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note with a tag of <type>"
 msgid "Citations with a note with the <tag>"
-msgstr "Citeringar med en notis med taggen <type>"
+msgstr "Citeringar med en notis med <tag>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
 msgid "Matches citations with a note with a specified tag"
@@ -4441,10 +4436,8 @@ msgstr ""
 "uttryck"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note with a tag of <type>"
 msgid "Events with a note with the <tag>"
-msgstr "Händelser med en notis med taggen <type>"
+msgstr "Händelser med en notis med <tag>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
 msgid "Matches events with a note with a specified tag"
@@ -4737,10 +4730,8 @@ msgstr ""
 "uttryck"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note with the <tag>"
-msgstr "Familjer vars far har namnet <namn>"
+msgstr "Familjer med en notis med <tag>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
 msgid "Matches families with a note with a specified tag"
@@ -5045,10 +5036,8 @@ msgstr ""
 "uttryck"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Media with a note with a tag of <type>"
 msgid "Media with a note with the <tag>"
-msgstr "Media med en notis med taggen <type>"
+msgstr "Media med en notis med <tag>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
 msgid "Matches media with a note with a specified tag"
@@ -5587,10 +5576,8 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Matchar personer vars notiser innehåller angivet reguljärt uttryck"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note with a tag of <type>"
 msgid "People with a note with the <tag>"
-msgstr "Personer med en notis med taggen <type>"
+msgstr "Personer med en notis med <tag>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
 msgid "Matches people with a note with a specified tag"
@@ -6248,10 +6235,8 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Matchar platser vars notiser innehåller angivet reguljärt uttryck"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note with a tag of <type>"
 msgid "Places with a note with the <tag>"
-msgstr "Platser med en notis med taggen <type>"
+msgstr "Platser med en notis med <tag>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
 msgid "Matches places with a note with a specified tag"
@@ -6511,10 +6496,8 @@ msgid ""
 msgstr "Matchar arkivplatser vars notiser matchar ett reguljärt uttryck"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with a note with a tag of <type>"
 msgid "Repositories with a note with the <tag>"
-msgstr "Arkivplatser med en notis med taggen <type>"
+msgstr "Arkivplatser med en notis med <tag>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
 msgid "Matches repositories with a note with a specified tag"
@@ -6673,10 +6656,8 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "Matchar källor vars notiser innehåller angivet reguljärt uttryck"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note with a tag of <type>"
 msgid "Sources with a note with the <tag>"
-msgstr "Källor med en notis med taggen <type>"
+msgstr "Källor med en notis med <tag>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
 msgid "Matches sources with a note with a specified tag"
@@ -12529,20 +12510,16 @@ msgid "Media Object"
 msgstr "Mediaobjekt"
 
 #: ../gramps/gui/configure.py:869
-#, fuzzy, no-python-format
-#| msgid ""
-#| "Default Gramps ID formats containing a letter prefix followed by a "
-#| "numerical string. \"I%04d\" creates IDs from I0000 to I9999. Large "
-#| "databases may need larger IDs. \"I%06d\" creates IDs from I000000 to "
-#| "I999999.\n"
+#, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
 "string. \"I%05d\" creates IDs from I00000 to I99999. Large databases may "
 "need larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
 "Standard Gramps-ID format som innehåller ett bokstavsprefix som följs av en "
-"numerisk sträng. \"I%04d\" skapar IDn från I0000 till I9999. Stora databaser "
-"kan behöva större IDn. \"I%06d\" skapar IDn från I000000 till I999999.\n"
+"numerisk sträng. \"I%05d\" skapar IDn från I00000 till I99999. Stora "
+"databaser kan behöva större IDn. \"I%06d\" skapar IDn från I000000 till "
+"I999999.\n"
 
 #: ../gramps/gui/configure.py:891
 msgid "Colors used for boxes in the graphical views"
@@ -12683,49 +12660,43 @@ msgstr "Varningar"
 
 #: ../gramps/gui/configure.py:1085
 msgid "Live"
-msgstr ""
+msgstr "Live"
 
 #: ../gramps/gui/configure.py:1093
 msgid "Server"
-msgstr ""
+msgstr "Server"
 
 #: ../gramps/gui/configure.py:1102
 msgid "Foundation middleware"
-msgstr ""
+msgstr "Foundation middleware"
 
 #: ../gramps/gui/configure.py:1104
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "Dubblerad familj"
+msgstr "Direkt FamilySearch"
 
 #: ../gramps/gui/configure.py:1119
-#, fuzzy
-#| msgid "Author"
 msgid "Auth provider"
-msgstr "Författare"
+msgstr "Auth-leverantör"
 
 #: ../gramps/gui/configure.py:1128
 msgid "App key (direct mode only)"
-msgstr ""
+msgstr "App-nyckel (endast direktläge)"
 
 #: ../gramps/gui/configure.py:1149
 msgid "Redirect URL (direct mode only)"
-msgstr ""
+msgstr "Omdirigerings-URL (endast direktläge)"
 
 #: ../gramps/gui/configure.py:1158
 msgid "Middleware base URL"
-msgstr ""
+msgstr "Middleware bas-URL"
 
 #: ../gramps/gui/configure.py:1167
 msgid "Middleware access code (issued secret)"
-msgstr ""
+msgstr "Åtkomstkod för middleware (utfärdad hemlighet)"
 
 #: ../gramps/gui/configure.py:1174
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "Generationer"
+msgstr "Integreringar"
 
 #: ../gramps/gui/configure.py:1241 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -12986,16 +12957,16 @@ msgid "Maximum age probably alive"
 msgstr "Maximal ålder för personer som troligen lever"
 
 #: ../gramps/gui/configure.py:2057
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "Största antal generationer för släktskap"
+msgstr "Maximalt antal generationer för att uppskatta ålder"
 
 #: ../gramps/gui/configure.py:2062
 msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
+"Begränsar djupet för uppskattningar av förfäder/ättlingar. Öka om "
+"uppskattningar saknas när datum endast finns i avlägsna generationer."
 
 #: ../gramps/gui/configure.py:2069
 msgid "Maximum sibling age difference"
@@ -13195,10 +13166,8 @@ msgstr ""
 "ruta. Den här inställningen anger storleken på denna ruta."
 
 #: ../gramps/gui/configure.py:2341
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "Förhandsgranskning av notis"
+msgstr "Längd för förhandsgranskning av anteckningar"
 
 #: ../gramps/gui/configure.py:2400
 msgid "Database Setting"
@@ -15970,14 +15939,10 @@ msgid "Internet Address Editor"
 msgstr "Internetadressredigerare"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
 msgstr ""
-"Den internetadress som behövs för att navigera till den, t. ex. http://"
-"gramps-project.org"
+"Den internetadress som behövs för att navigera till den, t. ex. {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
@@ -16525,13 +16490,12 @@ msgstr "Skapad av Filter gramplet den {today}"
 #: ../gramps/gui/fs/actions.py:132
 msgid "Please save/commit this person to the database first, then try again."
 msgstr ""
+"Spara/lägg till den här personen i databasen först och försök sedan igen."
 
 #: ../gramps/gui/fs/actions.py:148 ../gramps/gui/fs/actions.py:149
 #: ../gramps/gui/fs/tools_window.py:362
-#, fuzzy
-#| msgid "Family ID"
 msgid "Link FamilySearch ID"
-msgstr "Familje-ID"
+msgstr "Länka FamilySearch-ID"
 
 #: ../gramps/gui/fs/actions.py:151 ../gramps/gui/plug/_windows.py:1538
 #: ../gramps/gui/widgets/grampletbar.py:599
@@ -16540,180 +16504,160 @@ msgstr "OK"
 
 #: ../gramps/gui/fs/actions.py:157
 msgid "Enter FamilySearch Person ID (e.g. GSVF-SGV):"
-msgstr ""
+msgstr "Ange FamilySearch person-ID (t.ex. GSVF-SGV):"
 
 #: ../gramps/gui/fs/actions.py:188
 msgid ""
 "No FamilySearch ID linked.\n"
 "Click 'Link FamilySearch ID' first."
 msgstr ""
+"Inget FamilySearch-ID länkat.\n"
+"Klicka först på \"Länka FamilySearch-ID\"."
 
 #: ../gramps/gui/fs/actions.py:224
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:184
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import selected"
-msgstr "Import misslyckades"
+msgstr "Importera valda"
 
 #: ../gramps/gui/fs/actions.py:248
 #, python-brace-format
 msgid "{total} found - {new} new - {existing} already in tree"
-msgstr ""
+msgstr "{total} funna - {new} nya - {existing} redan i trädet"
 
 #: ../gramps/gui/fs/actions.py:255 ../gramps/gui/fs/sync_directions.py:659
 #: ../gramps/gui/fs/sync_directions.py:1283
-#, fuzzy
-#| msgid "Select _None"
 msgid "Select none"
-msgstr "Välj _inget"
+msgstr "Välj inget"
 
 #: ../gramps/gui/fs/actions.py:256
-#, fuzzy
-#| msgid "Select a file"
 msgid "Select all new"
-msgstr "Välj fil"
+msgstr "Välj alla nya"
 
 #: ../gramps/gui/fs/actions.py:303
-#, fuzzy
-#| msgid "Already dead"
 msgid "Already in tree"
-msgstr "Redan död"
+msgstr "Redan i trädet"
 
 #: ../gramps/gui/fs/actions.py:303
 msgid "New (will import)"
-msgstr ""
+msgstr "Nya (kommer att importera)"
 
 #: ../gramps/gui/fs/actions.py:304
 msgid "Tip: uncheck anything you don't want to import."
-msgstr ""
+msgstr "Tips: avmarkera allt du inte vill importera."
 
 #: ../gramps/gui/fs/actions.py:361 ../gramps/gui/fs/actions.py:489
 #: ../gramps/gui/fs/actions.py:646 ../gramps/gui/fs/actions.py:957
 #: ../gramps/gui/fs/actions.py:1156
 msgid "No FamilySearch ID linked. Click 'Link FamilySearch ID' first."
 msgstr ""
+"Inget FamilySearch-ID länkat. Klicka först på \"Länka FamilySearch-ID\"."
 
 #: ../gramps/gui/fs/actions.py:376
-#, fuzzy, python-brace-format
-#| msgid "Sealed to Parents"
+#, python-brace-format
 msgid "Failed to fetch parents: {e}"
-msgstr "Beseglad till föräldrarna"
+msgstr "Misslyckades med att hämta föräldrar: {e}"
 
 #: ../gramps/gui/fs/actions.py:398
 msgid "No parents found on FamilySearch for this person."
-msgstr ""
+msgstr "Inga föräldrar hittades på FamilySearch för den här personen."
 
 #: ../gramps/gui/fs/actions.py:407 ../gramps/gui/fs/actions.py:543
 #: ../gramps/gui/fs/actions.py:701
 msgid "  - already in tree"
-msgstr ""
+msgstr "  - redan i trädet"
 
 #: ../gramps/gui/fs/actions.py:410
-#, fuzzy
-#| msgid "Import Text"
 msgid "Import parents"
-msgstr "Importera text"
+msgstr "Importera föräldrar"
 
 #: ../gramps/gui/fs/actions.py:425
 msgid "Parents imported but could not be located in the local database."
-msgstr ""
+msgstr "Föräldrar importerade men kunde inte hittas i den lokala databasen."
 
 #: ../gramps/gui/fs/actions.py:429
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link parents"
-msgstr "Familjelänkar"
+msgstr "FamilySearch: Länka föräldrar"
 
 #: ../gramps/gui/fs/actions.py:478
 msgid "Parent(s) imported and linked."
-msgstr ""
+msgstr "Färälder(rar) importerade och länkade."
 
 #: ../gramps/gui/fs/actions.py:504
 #, python-brace-format
 msgid "Failed to fetch children: {e}"
-msgstr ""
+msgstr "Misslyckades med att hämta barn: {e}"
 
 #: ../gramps/gui/fs/actions.py:528
 msgid "No children found on FamilySearch for this person."
-msgstr ""
+msgstr "Inga barn hittades på FamilySearch för den här personen."
 
 #: ../gramps/gui/fs/actions.py:540
 #, python-brace-format
 msgid " (other parent: {name})"
-msgstr ""
+msgstr " (annan förälder: {name})"
 
 #: ../gramps/gui/fs/actions.py:547
-#, fuzzy
-#| msgid "List children"
 msgid "Import children"
-msgstr "Lista barn"
+msgstr "Importera barn"
 
 #: ../gramps/gui/fs/actions.py:562
 msgid "Children imported but could not be located in the local database."
-msgstr ""
+msgstr "Barn importerades men kunde inte hittas i den lokala databasen."
 
 #: ../gramps/gui/fs/actions.py:566
-#, fuzzy
-#| msgid "Family Children"
 msgid "FamilySearch: Link children"
-msgstr "Familjs barn"
+msgstr "FamilySearch: Länka barn"
 
 #: ../gramps/gui/fs/actions.py:629
 msgid "Child(ren) imported and linked."
-msgstr ""
+msgstr "Barn importerade och länkade."
 
 #: ../gramps/gui/fs/actions.py:661
 #, python-brace-format
 msgid "Failed to fetch spouses: {e}"
-msgstr ""
+msgstr "Misslyckades med att hämta makar: {e}"
 
 #: ../gramps/gui/fs/actions.py:692
 msgid "No spouses found on FamilySearch for this person."
-msgstr ""
+msgstr "Inga makar hittades på FamilySearch för denna person."
 
 #: ../gramps/gui/fs/actions.py:704
-#, fuzzy
-#| msgid "Import Objects"
 msgid "Import spouse(s)"
-msgstr "Importera objekt"
+msgstr "Importera make(ar)"
 
 #: ../gramps/gui/fs/actions.py:719
 msgid "Spouses imported but could not be located in the local database."
-msgstr ""
+msgstr "Makar importerade men kunde inte hittas i den lokala databasen."
 
 #: ../gramps/gui/fs/actions.py:723
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link spouses"
-msgstr "Familjelänkar"
+msgstr "FamilySearch: Länka makar"
 
 #: ../gramps/gui/fs/actions.py:770
 msgid "Spouse(s) imported and linked."
-msgstr ""
+msgstr "Make(ar) importerad(e) och länkad(e)."
 
 #: ../gramps/gui/fs/actions.py:860
 #, python-brace-format
 msgid "Cleared GEDCOMX in-memory indices: {n}"
-msgstr ""
+msgstr "Rensade GEDCOMX-index i minnet: {n}"
 
 #: ../gramps/gui/fs/actions.py:861
 msgid "Reset shared FS Tree cache: yes"
-msgstr ""
+msgstr "Återställ delad FS-trädcache: ja"
 
 #: ../gramps/gui/fs/actions.py:863
 #, python-brace-format
 msgid "Cleared on-disk cache: yes ({path})"
-msgstr ""
+msgstr "Rensade diskcachen: ja ({path})"
 
 #: ../gramps/gui/fs/actions.py:866
 msgid "Cleared on-disk cache: (not available / not supported by cache helper)"
-msgstr ""
+msgstr "Rensade diskcachen: (ej tillgänglig / stöds inte av cachehjälpen)"
 
 #: ../gramps/gui/fs/actions.py:875 ../gramps/gui/fs/actions.py:876
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch Tags"
-msgstr "Familjekällor"
+msgstr "FamilySearch-taggar"
 
 #: ../gramps/gui/fs/actions.py:877
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:559
@@ -16726,13 +16670,16 @@ msgstr "Stäng"
 
 #: ../gramps/gui/fs/actions.py:878
 msgid "Retag all (Linked/NotLinked)"
-msgstr ""
+msgstr "Tagga om alla (Länkade/Inte länkade)"
 
 #: ../gramps/gui/fs/actions.py:890
 msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
+"Detta kommer att skanna hela ditt träd och tillämpa FS_Länkade / FS_Ej "
+"länkade-taggar.\n"
+"Det ändrar INTE några personuppgifter."
 
 #: ../gramps/gui/fs/actions.py:910
 #, python-brace-format
@@ -16744,77 +16691,79 @@ msgid ""
 "Not linked: {not_linked}\n"
 "Changed: {changed}"
 msgstr ""
+"Omtaggning klar\n"
+"\n"
+"Totalt antal personer: {total}\n"
+"Länkade: {linked}\n"
+"Ej länkade: {not_linked}\n"
+"Ändrade: {changed}"
 
 #: ../gramps/gui/fs/actions.py:920
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "Omdöpning misslyckades"
+msgstr "Omtaggning misslyckades: {e}"
 
 #: ../gramps/gui/fs/actions.py:971
 msgid "FamilySearch: Update FSID after redirect"
-msgstr ""
+msgstr "FamilySearch: Uppdatera FSID efter omdirigering"
 
 #: ../gramps/gui/fs/actions.py:1015
 msgid ""
 "Could not load this person from FamilySearch (no GEDCOMX person object)."
 msgstr ""
+"Kunde inte ladda den här personen från FamilySearch (inget GEDCOMX-"
+"personobjekt)."
 
 #: ../gramps/gui/fs/actions.py:1024
 #, python-brace-format
 msgid "Failed to download from FamilySearch: {e}"
-msgstr ""
+msgstr "Misslyckades med att ladda ner från FamilySearch: {e}"
 
 #: ../gramps/gui/fs/actions.py:1029
-#, fuzzy
-#| msgid "Bookmark this person"
 msgid "FamilySearch: Sync this person"
-msgstr "Bokmärk denna person"
+msgstr "FamilySearch: Synka den här personen"
 
 #: ../gramps/gui/fs/actions.py:1089
-#, fuzzy, python-brace-format
-#| msgid "Saving failed"
+#, python-brace-format
 msgid "Sync failed: {e}"
-msgstr "Misslyckades att spara"
+msgstr "Synkronisering misslyckades: {e}"
 
 #: ../gramps/gui/fs/actions.py:1097
 msgid ""
 "Sync complete: facts/events, dates/places, and notes updated for this person."
 msgstr ""
+"Synkroniseringen är klar: fakta/händelser, datum/platser och anteckningar "
+"har uppdaterats för den här personen."
 
 #: ../gramps/gui/fs/actions.py:1142
 #, python-brace-format
 msgid "Export to FamilySearch failed: {e}"
-msgstr ""
+msgstr "Exporten till FamilySearch misslyckades: {e}"
 
 #: ../gramps/gui/fs/actions.py:1172
 #, python-brace-format
 msgid "Sync to FamilySearch failed: {e}"
-msgstr ""
+msgstr "Synkronisering med FamilySearch misslyckades: {e}"
 
 #: ../gramps/gui/fs/compare/options.py:46
-#, fuzzy
-#| msgid "Family Citations"
 msgid "FamilySearch Compare Options"
-msgstr "Familjeciteringar"
+msgstr "Jämför alternativ för FamilySearch"
 
 #: ../gramps/gui/fs/compare/options.py:49
 msgid "Days between comparisons"
-msgstr ""
+msgstr "Dagar mellan jämförelser"
 
 #: ../gramps/gui/fs/compare/options.py:50
 msgid "Number of days between two comparisons."
-msgstr ""
+msgstr "Antal dagar mellan två jämförelser."
 
 #: ../gramps/gui/fs/compare/options.py:54
-#, fuzzy
-#| msgid "Source Information"
 msgid "Force comparison"
-msgstr "Källinformation"
+msgstr "Tvinga jämförelse"
 
 #: ../gramps/gui/fs/compare/options.py:56
 msgid "Compare regardless of the number of days since the last run."
-msgstr ""
+msgstr "Jämför oavsett antalet dagar sedan senaste körningen."
 
 #: ../gramps/gui/fs/compare/options.py:62
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
@@ -16823,7 +16772,7 @@ msgstr "Personfilter"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
-msgstr ""
+msgstr "FamilySearch är inte konfigurerad (ingen session)."
 
 #: ../gramps/gui/fs/compare/window.py:204
 #, python-brace-format
@@ -16831,14 +16780,14 @@ msgid ""
 "Could not open compare window:\n"
 "{e}"
 msgstr ""
+"Kunde inte öppna jämförelsefönstret:\n"
+"{e}"
 
 #: ../gramps/gui/fs/compare/window.py:214
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:524
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:532
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch Compare"
-msgstr "Släktfärger"
+msgstr "FamilySearch Jämför"
 
 #: ../gramps/gui/fs/compare/window.py:217 ../gramps/gui/glade/rule.glade:509
 #: ../gramps/gui/glade/styleeditor.glade:416
@@ -16850,7 +16799,7 @@ msgstr "Alternativ"
 
 #: ../gramps/gui/fs/compare/window.py:228
 msgid "FamilySearch: Compare"
-msgstr ""
+msgstr "FamilySearch: Jämför"
 
 #: ../gramps/gui/fs/compare/window.py:229
 #: ../gramps/gui/fs/fs_import/importer.py:59
@@ -16863,7 +16812,7 @@ msgstr "Börjar"
 
 #: ../gramps/gui/fs/compare/window.py:253
 msgid "Building ordered list (1/2)"
-msgstr ""
+msgstr "Bygger ordnad lista (1/2)"
 
 #: ../gramps/gui/fs/compare/window.py:283
 #, fuzzy
