@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-14 09:09+0000\n"
+"PO-Revision-Date: 2026-04-21 09:20+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
@@ -32,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -3584,16 +3584,11 @@ msgid "Wrong format of date-time"
 msgstr "错误的日期时间格式"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, fuzzy, python-format
-#| msgid ""
-#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#| "part is optional, are accepted. %s does not satisfy."
+#, python-format
 msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
-msgstr ""
-"只接受 ISO 格式为 yyyy-mm-dd hh:mm:ss（时间部分可选）的日期时间。%s 不能满"
-"足。"
+msgstr "只接受 yyyy-mm-dd hh:mm:ss 的 ISO 日期时间格式，时间部分可选。%s 不满足。"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
 #: ../gramps/gen/fs/fs_import/sources.py:557
@@ -3992,10 +3987,8 @@ msgid ""
 msgstr "匹配其注释内容匹配特定正则表达式的引用"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with the <tag>"
-msgstr "注释类型为 <type> 的引用"
+msgstr "笔记中带有 <tag> 的引用"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
 #, fuzzy
@@ -4349,10 +4342,8 @@ msgid "Matches events whose notes contain text matching a regular expression"
 msgstr "匹配笔记符合特定表达式的事件"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with the <tag>"
-msgstr "带有注释类型为 <type> 的事件"
+msgstr "笔记中带有 <tag> 的事件"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
 #, fuzzy
@@ -4644,10 +4635,8 @@ msgid "Matches families whose notes contain text matching a regular expression"
 msgstr "匹配笔记中含有匹配特定表达文字的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note with the <tag>"
-msgstr "家庭中父亲的名字为<name>"
+msgstr "笔记中带有 <tag> 的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
 #, fuzzy
@@ -4945,10 +4934,8 @@ msgid ""
 msgstr "匹配媒体对象，笔记含有匹配正则表达式文本的"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with the <tag>"
-msgstr "注释类型为 <type> 的引用"
+msgstr "笔记中带有 <tag> 的媒体"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
 #, fuzzy
@@ -5487,10 +5474,8 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "匹配 笔记中的文本符合特定表达式的成员"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with the <tag>"
-msgstr "带有注释类型为 <type> 的人员"
+msgstr "笔记中带有 <tag> 的人员"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
 #, fuzzy
@@ -6129,10 +6114,8 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "匹配地点，其中笔记含有符合特定表达式的文字"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with the <tag>"
-msgstr "注释类型为 <type> 的地点"
+msgstr "笔记中带有 <tag> 的地点"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
 #, fuzzy
@@ -6388,10 +6371,8 @@ msgid ""
 msgstr "匹配文库，笔记含有匹配正则表达式的文本"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with the <tag>"
-msgstr "带 <tag> 标签的文库"
+msgstr "笔记中带有 <tag> 的文库"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
 #, fuzzy
@@ -6556,10 +6537,8 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "匹配"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with the <tag>"
-msgstr "注释类型为 <type> 的来源"
+msgstr "笔记中带有 <tag> 的来源"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
 #, fuzzy
