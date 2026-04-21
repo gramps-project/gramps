@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-07 13:45+0000\n"
+"PO-Revision-Date: 2026-04-21 20:14+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -454,8 +454,8 @@ msgstr ""
 "razna predodređena pravila. Na primjer, možeš odrediti filtar za "
 "pronalaženje sve usvojene osobe u rodoslovu. Osobe bez navedenog datuma "
 "rođenja također se mogu filtrirati. Za dobivanje rezultata, spremi filtar. "
-"Zatim odaberi ovaj filtar u polju „Filtar” u bočnoj traci i pritisni gumb "
-"„Pronađi”. Ako bočna traka nije vidljiva, odaberi „Prikaz > Bočna traka”."
+"Zatim odaberi ovaj filtar u polju „Filtar” u bočnoj traci i pritisni gumb „"
+"Pronađi”. Ako bočna traka nije vidljiva, odaberi „Prikaz > Bočna traka”."
 
 #: ../data/tips.xml:21
 msgid ""
@@ -500,8 +500,8 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Mijenjanje aktivne osobe</b><br/>Mijenjanje aktivne osobe u prikazima je "
-"jednostavno. U prikazu „Srodstva” pritisni mišem na bilo koga. U prikazu "
-"„Porijeklo” pritisni dvaput na osobu ili pritisni desni gumb miša za biranje "
+"jednostavno. U prikazu „Srodstva” pritisni mišem na bilo koga. U prikazu „"
+"Porijeklo” pritisni dvaput na osobu ili pritisni desni gumb miša za biranje "
 "supružnika, brata, sestre, djece ili roditelja."
 
 #: ../data/tips.xml:29
@@ -583,8 +583,8 @@ msgstr ""
 "<b>Grampsovi izvještaji</b><br/>Gramps nudi veliki izbor izvještaja. "
 "Grafički izvještaji i dijagrami prikazuju složene rodbinske odnose na "
 "jednostavan način. Tekstualni izvještaji su korisni za prikaz i razmjenu "
-"podataka s ostalim članovima tvoje obitelji, putem elektroničke pošte. Ako "
-"želiš izraditi web mjesto za tvoj rodoslov, i za to postoji prikladni "
+"podataka s ostalim članovima tvoje obitelji putem elektroničke pošte. Ako "
+"želiš izraditi web-stranicu za tvoj rodoslov, i za to postoji prikladni "
 "izvještaj."
 
 #: ../data/tips.xml:41
@@ -596,8 +596,8 @@ msgid ""
 "between people."
 msgstr ""
 "<b>Stvaranje novog rodoslova</b><br/>Dobar način za stvaranje novog "
-"rodoslova je zapisivanje svih članova obitelji u bazu podataka (u izborniku "
-"„Uredi > Dodaj …” ili pritisni gumb „Dodaj novu osobu” u prikazu „Osobe”). "
+"rodoslova je zapisivanje svih članova obitelji u bazu podataka (u izborniku „"
+"Uredi > Dodaj …” ili pritisni gumb „Dodaj novu osobu” u prikazu „Osobe”). "
 "Nakon toga otiđi u prikaz „Srodstva” i uredi uzajamne odnose osoba."
 
 #: ../data/tips.xml:43
@@ -618,8 +618,8 @@ msgid ""
 msgstr ""
 "<b>Ne znaš točan datum?</b><br/>Ako ne znaš točan datum, Gramps omogućuje "
 "unos raznih formata datuma, zasnovanih na pogađanjima ili procjenama. Na "
-"primjer, „oko 1908.” je valjani unos za datum rođenja u Grampsu. Pritisni "
-"„Otvori uređivač datuma” pokraj polja datuma. Saznaj više u Grampsovom "
+"primjer, „oko 1908.” je valjani unos za datum rođenja u Grampsu. Pritisni „"
+"Otvori uređivač datuma” pokraj polja datuma. Saznaj više u Grampsovom "
 "priručnik."
 
 #: ../data/tips.xml:47
@@ -628,7 +628,7 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Dupli unosi</b><br/>Alat „Alati > Obrada rodoslova > Nađi moguće duple "
+"<b>Dupli unosi</b><br/>Alat „Alati > Obrada rodoslova > Pronađi moguće duple "
 "osobe …”, omogućuje otkrivanje (i spajanje) zapisa istih osoba, koji su "
 "zabunom više puta upisani u bazu podataka."
 
@@ -657,8 +657,8 @@ msgid ""
 msgstr ""
 "<b>Postavke prikaza</b><br/>Mnogi prikazi mogu prikazati tvoje podatke u "
 "obliku stabla ili u obliku jednostavnog popisa. Svaki prikaz možeš dodatno "
-"prilagoditi tvojim željama u traci s alatima ili u glavnom izborniku "
-"„Prikaz”."
+"prilagoditi tvojim željama u traci s alatima ili u glavnom izborniku „Prikaz"
+"”."
 
 #: ../data/tips.xml:53
 msgid ""
@@ -690,8 +690,8 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Čitaj priručnik</b><br/>Nemoj zaboraviti pročitati Grampsov priručnik, "
-"„Pomoć > Korisnički priručnik”. Programeri su se trudili da se program može "
+"<b>Čitaj priručnik</b><br/>Nemoj zaboraviti pročitati Grampsov priručnik, „"
+"Pomoć > Korisnički priručnik”. Programeri su se trudili da se program može "
 "koristiti intuitivno, ali je priručnik pun informacija koje će ti pomoći još "
 "produktivniji rad."
 
@@ -733,14 +733,6 @@ msgstr ""
 "sve”."
 
 #: ../data/tips.xml:65
-#, fuzzy
-#| msgid ""
-#| "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "
-#| "to Gramps. Requesting an enhancement can be done either through the "
-#| "gramps-users or gramps-devel mailing lists, or by going to https://gramps-"
-#| "project.org/bugs/ and creating a Feature Request. Filing a Feature "
-#| "Request is preferred but it can be good to discuss your ideas on the "
-#| "email lists."
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -751,7 +743,7 @@ msgstr ""
 "<b>Poboljšanje Grampsa</b><br/>Podržavamo korisnike u njivom zahtjevima za "
 "poboljšavanjem i proširenjem Grampsa. Poboljšanja možeš zatražiti/predložiti "
 "putem pretplatničkih listi gramps-users i gramps-devel ili zahtjevom za "
-"poboljšanjem na https://bugs.gramps-project.org (što je najbolji način)."
+"poboljšanjem na &bugs_url; što je najbolji način."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -783,8 +775,8 @@ msgstr ""
 "s različitim vještinama. Doprinosi mogu varirati od pisanja dokumentacije do "
 "provjeravanja razvojnih verzija ili pri pomoći oko web mjesta. Započni s "
 "prijavom na pretplatničku listu za programere programa Gramps (gramps-devel) "
-"i predstavi se. Sve potrebne informacije za prijavu mogu se naći pod „Pomoć "
-"> Gramps pretplatničke liste”."
+"i predstavi se. Sve potrebne informacije za prijavu mogu se naći pod „"
+"Pomoć > Gramps pretplatničke liste”."
 
 #: ../data/tips.xml:71
 msgid ""
@@ -907,8 +899,8 @@ msgid ""
 "limited only by your imagination. Custom filters are created from \"Edit > "
 "Person Filter Editor\"."
 msgstr ""
-"<b>Filtri</b><br/>Filtri omogućuju ograničavanje popisa osoba u prikazu "
-"„Osobe”. Pored velikog izbora predodređenih filtara, prilagođene filtre "
+"<b>Filtri</b><br/>Filtri omogućuju ograničavanje popisa osoba u prikazu „"
+"Osobe”. Pored velikog izbora predodređenih filtara, prilagođene filtre "
 "ograničava samo tvoja mašta. Prilagođeni filtri mogu se izraditi putem "
 "izbornika „Uredi > Uređivač filtra za osobe”."
 
@@ -958,34 +950,23 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
-"<b>Izrada web stranice rodoslova</b><br/>Podatke tvog rodoslova možeš vrlo "
+"<b>Izrada geneaološke web-stranice</b><br/>Podatke tvog rodoslova možeš vrlo "
 "lako izvesti u obliku web stranice. Odaberi cijelu bazu podataka, obiteljske "
 "grane ili određene osobe za izradu zbirke web stranica, spremne za "
 "postavljanje u mrežu."
 
 #: ../data/tips.xml:99
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at https://gramps-"
-#| "project.org/bugs/."
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
 "<b>Prijava greške u Grampsu</b><br/>Najbolji način za prijavu greške u "
-"Grampsu je pomoću Grampsovog sustava za praćenje grešaka, na adresi: https://"
-"gramps-project.org/bugs/."
+"Grampsu je pomoću Grampsovog sustava za praćenje grešaka, na &bugs_url;."
 
 #: ../data/tips.xml:101
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
-#| "project.org/."
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
 msgstr ""
-"<b>Gramps web stranica</b><br/>Adresa Gramps web stranice je https://gramps-"
-"project.org/."
+"<b>Gramps web stranica</b><br/>Adresa Gramps web stranice je &gramps_url;."
 
 #: ../data/tips.xml:103
 msgid ""
@@ -1033,8 +1014,8 @@ msgid ""
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Knjiški izvještaji</b><br/>Knjiški izvještaj, pod „Izvještaji > Knjige "
-"…”, omogućuje spajanje raznih izvještaja u jedan dokument. Mnogo je lakše "
+"<b>Knjiški izvještaji</b><br/>Knjiški izvještaj, pod „Izvještaji > Knjige …"
+"”, omogućuje spajanje raznih izvještaja u jedan dokument. Mnogo je lakše "
 "slati jedan izvještaj nego više izvještaja, posebice kad se šalju u tiskanom "
 "obliku."
 
@@ -1045,8 +1026,8 @@ msgid ""
 "\"Help > Gramps Mailing Lists\"."
 msgstr ""
 "<b>Gramps obavijesti</b><br/>Ako želiš primati obavijesti o novim verzijama "
-"Grampsa, pretplati se na pretplatničku listu za Gramps-najave pomoću „Pomoć "
-"> Gramps pretplatničke liste”."
+"Grampsa, pretplati se na pretplatničku listu za Gramps-najave pomoću „"
+"Pomoć > Gramps pretplatničke liste”."
 
 #: ../data/tips.xml:113
 msgid ""
@@ -1156,12 +1137,6 @@ msgstr ""
 "stranice od Free Software Foundation i Open Source Initiative."
 
 #: ../data/tips.xml:131
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see https://www.gnu.org/licenses/licenses.html#GPL to "
-#| "read about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1169,9 +1144,9 @@ msgid ""
 "license."
 msgstr ""
 "<b>Softverska lincenca za Gramps</b><br/>Program se smije koristiti i "
-"dijeliti s drugima. Gramps je slobodno dostupan pod GPL lincencom. Pogledaj "
-"https://www.gnu.org/licenses/licenses.html#GPL, ako te zanima više o pravima "
-"i ograničenjima ove licence."
+"dijeliti s drugima. Gramps je slobodno dostupan pod GNU općom javnom "
+"lincencom. Pogledaj &gpl_url;, ako te zanima više o pravima i ograničenjima "
+"ove licence."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -1302,7 +1277,7 @@ msgstr "Čišćenje."
 
 #: ../gramps/cli/arghandler.py:532
 msgid "Created empty Family Tree successfully"
-msgstr "Prazan rodoslov je uspješno stvoren"
+msgstr "Uspješno je stvoren prazan rodoslov"
 
 #: ../gramps/cli/arghandler.py:535 ../gramps/cli/arghandler.py:562
 msgid "Error opening the file."
@@ -1539,11 +1514,11 @@ msgstr ""
 "\n"
 "Primjer korištenja Grampsovog sučelja linijskih naredbi.\n"
 "\n"
-"1. Za uvoz četiriju baza podataka (sufiks datoteke određuje njihove "
-"formate)\n"
+"1. Za uvoz četiriju baza podataka (sufiks datoteke određuje njihove formate)"
+"\n"
 "i naknadnu provjeru rezultirajućih baza podataka, može se pisati:\n"
-"gramps -i datoteka1.ged -i datoteka2.gpkg -i ~/db3.gramps -i datoteka4.wft "
-"-a tool -p name=check.\n"
+"gramps -i datoteka1.ged -i datoteka2.gpkg -i ~/db3.gramps -i datoteka4.wft -"
+"a tool -p name=check.\n"
 "\n"
 "2. Za izričito određivanje formata u gornjem primjeru, pridodaj imena "
 "datoteka odgovarujućom -f opcijom:\n"
@@ -1554,10 +1529,10 @@ msgstr ""
 "(koristi -f ako ime datoteke ne dozvoljava Grampsu pogađanje formata):\n"
 "gramps -i datoteka1.ged -i datoteka2.gpkg -e ~/novi-paket -f gramps-pkg\n"
 "\n"
-"4. Za spremanje svih poruka o greškama iz gornjeg primjera, u datoteke "
-"„outfile” i „errfile”, pokreni:\n"
-"gramps -i datoteka1.ged -i datoteka2.dpkg -e ~/novi-paket -f gramps-pkg "
-">outfile 2>errfile\n"
+"4. Za spremanje svih poruka o greškama iz gornjeg primjera, u datoteke „"
+"outfile” i „errfile”, pokreni:\n"
+"gramps -i datoteka1.ged -i datoteka2.dpkg -e ~/novi-paket -f gramps-pkg >"
+"outfile 2>errfile\n"
 "\n"
 "5. Za uvoz triju baza podataka i pokretanje interaktivne sesije Grampsa s "
 "rezultatom:\n"
@@ -1565,8 +1540,8 @@ msgstr ""
 "\n"
 "6. Za otvaranje baze podataka i, na osnovi tih podataka, izradu izvještaja s "
 "vremenskom\n"
-"crtom u PDF formatu, te spremanje ispisa u datoteku „moja_vremenska "
-"crta.pdf”:\n"
+"crtom u PDF formatu, te spremanje ispisa u datoteku „moja_vremenska crta.pdf"
+"”:\n"
 "gramps -O 'Rodoslov 1' -a report -p name=timeline,off=pdf,of=moja_vremenska "
 "crta.pdf\n"
 "\n"
@@ -2058,8 +2033,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using "
 "'%(notranslate1)s=%(notranslate3)s'."
 msgstr ""
-"Zanemaruje se „%(notranslate1)s=%(notranslate2)s” i koristi se "
-"„%(notranslate1)s=%(notranslate3)s”."
+"Zanemaruje se „%(notranslate1)s=%(notranslate2)s” i koristi se „%"
+"(notranslate1)s=%(notranslate3)s”."
 
 #: ../gramps/cli/plug/__init__.py:579
 #, python-format
@@ -2119,8 +2094,8 @@ msgstr ""
 "Gramps je otkrio grešku u bazi podataka. U pravilu se greške mogu popraviti "
 "pokretanjem alata „Provjeri i popravi bazu podataka”.\n"
 "\n"
-"Ako se greška pojavi i nakon pokretanja ovog alata, prijavi grešku na "
-"%(gramps_bugtracker_url)s\n"
+"Ako se greška pojavi i nakon pokretanja ovog alata, prijavi grešku na %"
+"(gramps_bugtracker_url)s\n"
 "\n"
 
 #: ../gramps/gen/config.py:305
@@ -2453,8 +2428,7 @@ msgstr "and"
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
-"{date_quality}između {date_start} i {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}između {date_start} i {date_stop}{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
@@ -3197,16 +3171,16 @@ msgstr ""
 "učitati ovaj rodoslov bez nadogradnje njegove verzije sheme.\n"
 "\n"
 "Ako nadogradiš, nećeš moći koristiti prethodnu Gramps verziju, čak niti ako "
-"naknadno %(wiki_manual_backup_html_start)sizradiš zaštitnu "
-"kopiju%(html_end)s ili %(wiki_manual_export_html_start)sizvezeš%(html_end)s "
-"tvoj nadograđeni rodoslov.\n"
+"naknadno %(wiki_manual_backup_html_start)sizradiš zaštitnu kopiju%(html_end)"
+"s ili %(wiki_manual_export_html_start)sizvezeš%(html_end)s tvoj nadograđeni "
+"rodoslov.\n"
 "\n"
 "Nadogradnja je kompliciran zadatak, te može nepovratno oštetiti tvoj "
 "rodoslov, ako se proces nadogradnje prekine ili ako ne uspije.\n"
 "\n"
-"Ako još nemaš zaštitnu kopiju tvog rodoslova, pokreni "
-"%(bold_start)sstaru%(bold_end)s verziju Grampsa i "
-"%(wiki_backup_html_start)sspremi zaštitnu kopiju%(html_end)s tvog rodoslova."
+"Ako još nemaš zaštitnu kopiju tvog rodoslova, pokreni %(bold_start)sstaru%"
+"(bold_end)s verziju Grampsa i %(wiki_backup_html_start)sspremi zaštitnu "
+"kopiju%(html_end)s tvog rodoslova."
 
 #: ../gramps/gen/db/exceptions.py:194
 #, python-format
@@ -3246,15 +3220,15 @@ msgstr ""
 "Stoga ne možeš učitati ovaj rodoslov bez nadogradnje njegove verzije sheme.\n"
 "\n"
 "Ako nadogradiš, nećeš moći koristiti prethodnu Gramps verziju, čak niti ako "
-"naknadno %(wiki_manual_backup_html_start)sizradiš zaštitnu "
-"kopiju%(html_end)s ili %(wiki_manual_export_html_start)sizvezeš%(html_end)s "
-"tvoj nadograđeni rodoslov.\n"
+"naknadno %(wiki_manual_backup_html_start)sizradiš zaštitnu kopiju%(html_end)"
+"s ili %(wiki_manual_export_html_start)sizvezeš%(html_end)s tvoj nadograđeni "
+"rodoslov.\n"
 "\n"
 "Preporučujemo da spremiš sigurnosnu kopiju tvog rodoslova.\n"
 "\n"
 "Ako još nemaš zaštitnu kopiju tvog rodoslova, pokreni tvoju prethodnu "
-"verziju Grampsa i %(wiki_backup_html_start)sspremi zaštitnu "
-"kopiju%(html_end)s tvog rodoslova."
+"verziju Grampsa i %(wiki_backup_html_start)sspremi zaštitnu kopiju%(html_end)"
+"s tvog rodoslova."
 
 #: ../gramps/gen/db/generic.py:229 ../gramps/gen/db/generic.py:279
 #: ../gramps/gen/db/generic.py:2311
@@ -3654,16 +3628,13 @@ msgid "Wrong format of date-time"
 msgstr "Pogrešan format za datum i vrijeme"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, fuzzy, python-format
-#| msgid ""
-#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#| "part is optional, are accepted. %s does not satisfy."
+#, python-format
 msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Dozvoljen je samo ISO format za datum i vrijeme u obliku yyyy-mm-dd "
-"hh:mm:ss, pri čemu vrijeme nije nužno zadati. %s ne odgovara formatu."
+"Dozvoljen je samo ISO format u obliku yyyy-mm-dd hh:mm:ss, pri čemu vrijeme "
+"nije nužno zadati. %s ne odgovara formatu."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
 #: ../gramps/gen/fs/fs_import/sources.py:557
@@ -3833,16 +3804,12 @@ msgid "Tag:"
 msgstr "Oznaka:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "Objekti sa zabilješkama određene vrste"
+msgstr "Objekti sa zabilješkama s određenom oznakom."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
-#| msgid "Matches a note with a specified Gramps ID"
 msgid "Matches notes with a specified tag"
-msgstr "Pronalazi bilješku s određenom Gramps ID oznakom"
+msgstr "Pronalazi zabilješke s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -4065,16 +4032,12 @@ msgstr ""
 "Pronalazi citate čije zabilješke sadrže tekst koji odgavara regularnom izrazu"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with the <tag>"
-msgstr "Citati sa zabilješkom vrste <vrsta>"
+msgstr "Citati sa zabilješkom s oznakom <tag>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches citations with a note of the specified type"
 msgid "Matches citations with a note with a specified tag"
-msgstr "Pronalazi citate sa zabilješkom određene vrste"
+msgstr "Pronalazi citate sa zabilješkom s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4160,7 +4123,7 @@ msgstr "Naslov:"
 #: ../gramps/gen/filters/rules/citation/_hassource.py:59
 #: ../gramps/gen/filters/rules/source/_hassource.py:50
 msgid "Sources matching parameters"
-msgstr "Izvori, koji odgovaraju parametrima"
+msgstr "Izvori koji odgovaraju parametrima"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:60
 msgid "Matches citations with a source of a particular value"
@@ -4183,7 +4146,7 @@ msgstr "Pronalazi citate s izvorom, koji ima određenu Gramps ID oznaku"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:61
 msgid "Citations having source notes containing <text>"
-msgstr "Citati, čije zabilješke izvora sadrže <tekst>"
+msgstr "Citati čije zabilješke izvora sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:63
 msgid ""
@@ -4431,16 +4394,12 @@ msgstr ""
 "izrazu"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with the <tag>"
-msgstr "Događaji sa zabilješkom vrste <vrsta>"
+msgstr "Događaji sa zabilješkom s <oznakom>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches events with a note of the specified type"
 msgid "Matches events with a note with a specified tag"
-msgstr "Pronalazi događaje sa zabilješkom određene vrste"
+msgstr "Pronalazi događaje sa zabilješkom s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4544,13 +4503,12 @@ msgstr "Pronalazi događaje, čiji izvori odgovaraju određenom filtru"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Events with Id containing <text>"
-msgstr "Događaji, čije ID oznake sadrži <tekst>"
+msgstr "Događaji čije ID oznake sadrži <tekst>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:49
 msgid "Matches events whose Gramps ID matches the regular expression"
 msgstr ""
-"Pronalazi događaje, čija Gramps ID oznaka odgovara određenom regularnom "
-"izrazu"
+"Pronalazi događaje čija Gramps ID oznaka odgovara određenom regularnom izrazu"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:45
 #: ../gramps/gen/plug/report/utils.py:413
@@ -4582,7 +4540,7 @@ msgstr "ID osobe:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:54
 msgid "Families having child with Id containing <text>"
-msgstr "Obitelji s djecom, čije ID oznake sadrže <tekst>"
+msgstr "Obitelji s djecom čije ID oznake sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:55
 msgid "Matches families where child has a specified Gramps ID"
@@ -4610,11 +4568,11 @@ msgstr "Obitelji označene kao privatne"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:44
 msgid "Matches families that are indicated as private"
-msgstr "Pronalazi obitelji, označene kao privatne"
+msgstr "Pronalazi obitelji označene kao privatne"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:54
 msgid "Families having father with Id containing <text>"
-msgstr "Obitelji s ocem, čije ID oznake sadrže <tekst>"
+msgstr "Obitelji s ocem s ID oznakom koja sardži <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:55
 msgid "Matches families whose father has a specified Gramps ID"
@@ -4734,16 +4692,12 @@ msgstr ""
 "izrazu"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note with the <tag>"
-msgstr "Obitelji u kojima otac ima <ime>"
+msgstr "Obitelji sa zabilješkom s <oznakom>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches families with a note with a specified tag"
-msgstr "Pronalazi obitelji sa zabilješkom određene vrste"
+msgstr "Pronalazi obitelji sa zabilješkom s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -4755,7 +4709,7 @@ msgstr "Pronalazi obitelji sa zabilješkom određene vrste"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:43
 msgid "Families with a reference count of <count>"
-msgstr "Obitelji ss brojem referenca od <broj>"
+msgstr "Obitelji s brojem referenca od <broj>"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
 msgid "Matches family objects with a certain reference count"
@@ -4848,7 +4802,7 @@ msgstr "Obitelji odgavaraju <filtru>"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:46
 msgid "Matches families matched by the specified filter name"
-msgstr "Pronalazi obitelji, koje odgovaraju određenom filtru"
+msgstr "Pronalazi obitelji koje odgovaraju određenom filtru"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:45
 msgid "Families with at least one direct source >= <confidence level>"
@@ -4863,7 +4817,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:54
 msgid "Families having mother with Id containing <text>"
-msgstr "Obitelji s majkom, čije ID oznake sadrže <tekst>"
+msgstr "Obitelji s majkom s ID oznakom koja sadrži <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:55
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -4909,13 +4863,12 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:48
 msgid "Families with Id containing <text>"
-msgstr "Obitelji, čije ID oznake sadrže <tekst>"
+msgstr "Obitelji čije ID oznake sadrže <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:50
 msgid "Matches families whose Gramps ID matches the regular expression"
 msgstr ""
-"Pronalazi obitelji, čija Gramps ID oznaka odgovara određenom regularnom "
-"izrazu"
+"Pronalazi obitelji čija Gramps ID oznaka odgovara određenom regularnom izrazu"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:53
 msgid "Families with mother matching the <regex_name>"
@@ -5048,28 +5001,20 @@ msgstr ""
 "regularnom izrazu"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with the <tag>"
-msgstr "Citati sa zabilješkom vrste <vrsta>"
+msgstr "Mediji sa zabilješkom s <oznakom>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "Pronalazi obitelji sa zabilješkom određene vrste"
+msgstr "Pronalazi medije sa zabilješkom s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "Događaji sa zabilješkom vrste <vrsta>"
+msgstr "Mediji sa zabilješkom vrste <vrsta>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "Pronalazi obitelji sa zabilješkom određene vrste"
+msgstr "Pronalazi medije sa zabilješkom s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
@@ -5144,7 +5089,7 @@ msgstr "Svaka zabilješka"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:46
 msgid "Matches every note in the database"
-msgstr "Pronalazi sve bilješke u bazi podataka"
+msgstr "Pronalazi sve zabilješke u bazi podataka"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:48
 msgid "Notes changed after <date time>"
@@ -5253,8 +5198,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr ""
-"Linija srodstva između <osobe> i drugih osoba, koje odgovaraju <filtru>"
+msgstr "Linija srodstva između <osobe> i drugih osoba, koje odgovaraju <filtru>"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:150
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:57
@@ -5606,16 +5550,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Pronalazi osobe, čije zabilješke sadrže tekst s regularnim izrazom"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with the <tag>"
-msgstr "Osobe sa zabilješkom vrste <vrsta>"
+msgstr "Osobe sa zabilješkom s <oznakom>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "Pronalazi osobe sa zabilješkom određene vrste"
+msgstr "Pronalazi osobe sa zabilješkom s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -5805,8 +5745,7 @@ msgstr "Filtri potomaka"
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
-msgstr ""
-"Pronalazi osobe, koje su potomci ili supružnici potomaka određene osobe"
+msgstr "Pronalazi osobe, koje su potomci ili supružnici potomaka određene osobe"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:52
 msgid "Descendant family members of <filter> match"
@@ -6274,16 +6213,12 @@ msgstr ""
 "izrazu"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with the <tag>"
-msgstr "Mjesta sa zabilješkom vrste <vrsta>"
+msgstr "Mjesta sa zabilješkom s <oznakom>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "Pronalazi mjesta sa zabilješkom određene vrste"
+msgstr "Pronalazi mjesta sa zabilješkom s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6545,28 +6480,20 @@ msgstr ""
 "izrazu"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with the <tag>"
-msgstr "Spremišta s <oznakom>"
+msgstr "Spremišta sa zabilješkom s <oznakom>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Pronalazi izvore sa zabilješkom određene vrste"
+msgstr "Pronalazi repozitorije sa zabilješkom s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "Izvori sa zabilješkom vrste <vrsta>"
+msgstr "Mediji sa zabilješkom vrste <vrsta>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "Pronalazi izvore sa zabilješkom određene vrste"
+msgstr "Pronalazi repozitorije sa zabilješkom s određenom vrstom"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6718,16 +6645,12 @@ msgstr ""
 "izrazu"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with the <tag>"
-msgstr "Izvori sa zabilješkom vrste <vrsta>"
+msgstr "Izvori sa zabilješkom s <oznakom>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "Pronalazi izvore sa zabilješkom određene vrste"
+msgstr "Pronalazi izvore sa zabilješkom s određenom oznakom"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6841,10 +6764,8 @@ msgstr "Pronalazi izvore, koji su označeni kao privatni"
 #: ../gramps/gui/fs/person/mixins/helpers.py:68
 #: ../gramps/gui/fs/sync_directions.py:679 ../gramps/gui/viewmanager.py:406
 #: ../gramps/gui/viewmanager.py:552 ../gramps/gui/viewmanager.py:560
-#, fuzzy
-#| msgid "Family"
 msgid "FamilySearch"
-msgstr "Obitelj"
+msgstr "FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:160
 #: ../gramps/gui/fs/compare/window.py:224
@@ -6852,19 +6773,15 @@ msgstr "Obitelj"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:760
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:962
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "Ne postoji veza s FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "inicijali"
+msgstr "Osnovno"
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "Ime stavke"
+msgstr "Druga imena"
 
 #: ../gramps/gen/fs/compare/aggregate.py:211
 #: ../gramps/gui/merge/mergeperson.py:241
@@ -6904,7 +6821,7 @@ msgstr "Obitelji"
 
 #: ../gramps/gen/fs/compare/aggregate.py:225
 msgid "Facts"
-msgstr ""
+msgstr "Činjenice"
 
 #: ../gramps/gen/fs/compare/comparators.py:81
 #: ../gramps/gen/fs/compare/comparators.py:88 ../gramps/gen/utils/string.py:49
@@ -7083,54 +7000,45 @@ msgstr "Dijete"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "Sažetak biografije"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
-#, fuzzy
-#| msgid "the citation"
 msgid "Birth Registration"
-msgstr "citat"
+msgstr "Registracija rođenja"
 
 #: ../gramps/gen/fs/constants.py:83 ../gramps/gen/fs/constants.py:84
-#, fuzzy
-#| msgid "the citation"
 msgid "Death Registration"
-msgstr "citat"
+msgstr "Registracija smrti"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "N=veljača|G=veljače"
+msgstr "Osmrtnica"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "Veza"
+msgstr "Državljanstvo"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
-msgstr ""
+msgstr "Preskakanje nevažećeg odnosa: dijete je jednako kao roditelj"
 
 #: ../gramps/gen/fs/fs_import/importer.py:286
 msgid "Possibly parentless family - Need at least one known parent locally"
 msgstr ""
+"Moguće obitelj bez roditelja – Potreban je barem jedan lokalno poznati "
+"roditelj"
 
 #: ../gramps/gen/fs/fs_import/importer.py:333
 msgid "Skipping invalid couple: same person as both parents"
-msgstr ""
+msgstr "Preskakanje nevažećeg para: ista osoba kao oba roditelja"
 
 #: ../gramps/gen/fs/fs_import/importer.py:375
 msgid "Possible parentless family?"
-msgstr ""
+msgstr "Moguća obitelj bez roditelja?"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
-#, fuzzy
-#| msgid "Building display"
 msgid "Building FSID list for places"
-msgstr "Stvaranje prikaza"
+msgstr "Izrada FSID popisa za mjesta"
 
 #: ../gramps/gen/fs/fs_import/sources.py:523
 #: ../gramps/gen/fs/fs_import/sources.py:526
@@ -7205,15 +7113,13 @@ msgstr "Internetske adrese"
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
 msgid "Memory: {t}"
-msgstr ""
+msgstr "Sjećanje: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:421
 #: ../gramps/gui/fs/sync_directions.py:599
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "Datum(i) nedostaju"
+msgstr "(nedostaje)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:304
@@ -7260,34 +7166,32 @@ msgstr "Zabilješka"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:653
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Aktualizirano iz Grampsa"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
-#, fuzzy
-#| msgid "Created for %(author)s"
 msgid "Created from Gramps"
-msgstr "Izrađeno za %(author)s"
+msgstr "Stvoreno od Grampsa"
 
 #: ../gramps/gen/fs/tags.py:317
 #, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "Grupa %(num)d"
 
 #: ../gramps/gen/fs/tags.py:328
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Pregled ? %(title)s ?redak %(row)d ne zelena (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:338
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Zabilješke ? crvene %(row)d ne zelene (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:348
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Izvori ? crvene %(row)d ne zelene (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:358
 msgid ""
@@ -7295,12 +7199,13 @@ msgid ""
 "This add-on only sets default colors when the tags are first created and "
 "will not override your custom choices."
 msgstr ""
+"Boje statusnih oznaka u FamilySearchu se mogu prilagoditi u Gramps-u putem „"
+"Uredi oznake”. Ovaj dodatak postavlja zadane boje samo prilikom prvog "
+"stvaranja oznaka i neće nadjačati tvoje prilagođene izbore."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch tags"
-msgstr "Obitelj je promijenjena"
+msgstr "FamilySearch oznake"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:721 ../gramps/gui/editors/editaddress.py:199
@@ -8856,46 +8761,40 @@ msgstr "Životno partnerstvo"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
 msgid "FamilySearch sync"
-msgstr ""
+msgstr "FamilySearch sinkronizacija"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "ID obitelji"
+msgstr "FamilySearch ID"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Je korijen"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Status bar"
 msgid "Status timestamp"
-msgstr "Traka stanja"
+msgstr "Vremenska oznaka stanja"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
-msgstr ""
+msgstr "Potvrđena vremenska oznaka"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
-msgstr ""
+msgstr "Promijenjena vremenska oznaka u Grampsu"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:92
 msgid "FamilySearch modified timestamp"
-msgstr ""
+msgstr "Promijenjena vremenska oznaka u FamilySearchu"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "Osnovni konflikt"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "Podešavanje"
+msgstr "Konflikt"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -10089,15 +9988,15 @@ msgid ""
 "\"%(gramps_target_version)s\" which is invalid for Gramps "
 "\"%(gramps_version)s\"."
 msgstr ""
-"GREŠKA: Datoteka dodatka %(filename)s sadrži verziju "
-"„%(gramps_target_version)s” koja ne vrijedi za Gramps „%(gramps_version)s”."
+"GREŠKA: Datoteka dodatka %(filename)s sadrži verziju „%"
+"(gramps_target_version)s” koja ne vrijedi za Gramps „%(gramps_version)s”."
 
 #: ../gramps/gen/plug/_pluginreg.py:1494
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
-"GREŠKA: Pogrešna python datoteka %(filename)s u konfiguracijskoj datoteci "
-"%(regfile)s"
+"GREŠKA: Pogrešna python datoteka %(filename)s u konfiguracijskoj datoteci %"
+"(regfile)s"
 
 #: ../gramps/gen/plug/_pluginreg.py:1507
 #, python-format
@@ -10283,17 +10182,13 @@ msgid "Font family"
 msgstr "Obitelj fontova"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:165
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Choose the font family. If international characters don't show, use "
-#| "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+#, python-brace-format
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
 "Odaberi obitelj fontova. Ako uočiš neispravnosti u prikazu međunarodnih "
-"slovnih znakova, koristi font „FreeSans”, dostupan na: http://www.nongnu.org/"
-"freefont/"
+"znakova, koristi font „FreeSans”, koji je dostupan na {freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:172
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -11165,15 +11060,15 @@ msgstr "Prijavljeno „%s”"
 #, python-brace-format
 msgid "Unable to save list of recent DBs file {fname}: {error}"
 msgstr ""
-"Nije moguće spremiti popis nedavno korištenih datoteka baze podataka "
-"{fname}: {error}"
+"Nije moguće spremiti popis nedavno korištenih datoteka baze podataka {fname}"
+": {error}"
 
 #: ../gramps/gen/recentfiles.py:249
 #, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
 msgstr ""
-"Nije moguće otvoriti popis nedavno korištenih datoteka baze podataka "
-"{fname}: {error}"
+"Nije moguće otvoriti popis nedavno korištenih datoteka baze podataka {fname}"
+": {error}"
 
 #: ../gramps/gen/recentfiles.py:256
 #, python-brace-format
@@ -12485,8 +12380,8 @@ msgstr ""
 "     <i>Edwin Jose</i>: cjelokupno ime, <i>von der</i>: prefiks, <i>Smith</"
 "i> and <i>Weston</i>: primarno prezime, <i>and</i>: veznik, <i>Wilson</i>: "
 "patronim,\n"
-"     <i>Dr.</i>: titula, <i>Sr</i>: sufiks, <i>Ed</i>: nadimak, "
-"<i>Underhills</i>: obiteljski nadimak, <i>Jose</i>: uobičajeno ime.\n"
+"     <i>Dr.</i>: titula, <i>Sr</i>: sufiks, <i>Ed</i>: nadimak, <i>"
+"Underhills</i>: obiteljski nadimak, <i>Jose</i>: uobičajeno ime.\n"
 
 #: ../gramps/gui/configure.py:163
 msgid " Name Editor"
@@ -12619,21 +12514,16 @@ msgid "Media Object"
 msgstr "Medijski objekt"
 
 #: ../gramps/gui/configure.py:869
-#, fuzzy, no-python-format
-#| msgid ""
-#| "Default Gramps ID formats containing a letter prefix followed by a "
-#| "numerical string. \"I%04d\" creates IDs from I0000 to I9999. Large "
-#| "databases may need larger IDs. \"I%06d\" creates IDs from I000000 to "
-#| "I999999.\n"
+#, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
 "string. \"I%05d\" creates IDs from I00000 to I99999. Large databases may "
 "need larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
 "Zadani formati Gramps ID oznaka sadrže slovo kao prefiks nakon kojeg slijedi "
-"numerički niz. „I%04d” stvara ID oznake od I0000 do I9999. Velike baze "
+"numerički niz. „I%05d” stvara ID oznake od I0.000 do I9.999. Velike baze "
 "podataka možda zahtijevaju veće ID oznake. „I%06d” stvara ID oznake od "
-"I000000 do I999999.\n"
+"I.000.000 do I.999.999.\n"
 
 #: ../gramps/gui/configure.py:891
 msgid "Colors used for boxes in the graphical views"
@@ -12778,49 +12668,43 @@ msgstr "Upozorenja"
 
 #: ../gramps/gui/configure.py:1085
 msgid "Live"
-msgstr ""
+msgstr "Uživo"
 
 #: ../gramps/gui/configure.py:1093
 msgid "Server"
-msgstr ""
+msgstr "Server"
 
 #: ../gramps/gui/configure.py:1102
 msgid "Foundation middleware"
-msgstr ""
+msgstr "Foundation middleware"
 
 #: ../gramps/gui/configure.py:1104
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "Dupla obitelj"
+msgstr "Izravni FamilySearch"
 
 #: ../gramps/gui/configure.py:1119
-#, fuzzy
-#| msgid "Author"
 msgid "Auth provider"
-msgstr "Autor"
+msgstr "Pružatelj autentifikacije"
 
 #: ../gramps/gui/configure.py:1128
 msgid "App key (direct mode only)"
-msgstr ""
+msgstr "Ključ aplikacije (samo izravni modus)"
 
 #: ../gramps/gui/configure.py:1149
 msgid "Redirect URL (direct mode only)"
-msgstr ""
+msgstr "Preusmjeravanje URL-a (samo izravni modus)"
 
 #: ../gramps/gui/configure.py:1158
 msgid "Middleware base URL"
-msgstr ""
+msgstr "Osnovni URL middlewarea"
 
 #: ../gramps/gui/configure.py:1167
 msgid "Middleware access code (issued secret)"
-msgstr ""
+msgstr "Pristupni kod middlewarea (izdana tajna)"
 
 #: ../gramps/gui/configure.py:1174
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "Generacije"
+msgstr "Integracije"
 
 #: ../gramps/gui/configure.py:1241 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -12911,8 +12795,7 @@ msgstr "Automatiziraj format mjesta"
 
 #: ../gramps/gui/configure.py:1574
 msgid "Enables automatic place title generation using specified format."
-msgstr ""
-"Aktivira automatsko generiranje imena mjesta koristeći određeni format."
+msgstr "Aktivira automatsko generiranje imena mjesta koristeći određeni format."
 
 #: ../gramps/gui/configure.py:1651
 msgid "Custom name display options are unique to each family tree."
@@ -13084,16 +12967,16 @@ msgid "Maximum age probably alive"
 msgstr "Maksimalna starost vjerojatno žive osobe"
 
 #: ../gramps/gui/configure.py:2057
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "Najveći broj generacija za srodstva"
+msgstr "Maksimalni broj generacija za procjenu starosti"
 
 #: ../gramps/gui/configure.py:2062
 msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
+"Ograničava dubinu procjene predaka/potomaka. Povećaj ako procjene nedostaju "
+"kada su datumi samo u dalekim generacijama."
 
 #: ../gramps/gui/configure.py:2069
 msgid "Maximum sibling age difference"
@@ -13292,10 +13175,8 @@ msgstr ""
 "u polju. Ova postavka postavlja veličinu ovog polja."
 
 #: ../gramps/gui/configure.py:2341
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "Pregled zabilješki"
+msgstr "Duljina pregleda zabilješki"
 
 #: ../gramps/gui/configure.py:2400
 msgid "Database Setting"
@@ -13888,8 +13769,7 @@ msgstr "Ukloni verziju „%(revision)s” baze podataka „%(database)s”"
 #: ../gramps/gui/dbman.py:756
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
-msgstr ""
-"Uklanjanjem ove verzije nećeš više moći doći do njenih podataka u njoj."
+msgstr "Uklanjanjem ove verzije nećeš više moći doći do njenih podataka u njoj."
 
 #: ../gramps/gui/dbman.py:759
 msgid "Remove version"
@@ -14007,8 +13887,8 @@ msgstr ""
 "%(gramps_wiki_recover_url)s\n"
 "Prije popravljanja, pokušaj otvoriti rodoslov normalnim putem. Nekolicina "
 "grešaka koje aktiviraju gumb za popravak, mogu se automatski popraviti. U "
-"tom slučaju možeš deaktivirati gumb za popravljanje, uklanjanjem datoteke "
-"%(recover_file)s u direktoriju rodoslova."
+"tom slučaju možeš deaktivirati gumb za popravljanje, uklanjanjem datoteke %"
+"(recover_file)s u direktoriju rodoslova."
 
 #: ../gramps/gui/dbman.py:996
 msgid "Proceed, I have taken a backup"
@@ -14016,7 +13896,7 @@ msgstr "Nastavi, zaštitna kopija je izrađena"
 
 #: ../gramps/gui/dbman.py:997
 msgid "Stop"
-msgstr "Prekid"
+msgstr "Prekini"
 
 #: ../gramps/gui/dbman.py:1017
 msgid "Rebuilding database from backup files"
@@ -14774,8 +14654,7 @@ msgstr "Pomakni odabrani događaj prema gore ili promijeni redoslijed obitelji"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:61
 msgid "Move the selected event downwards or change family order"
-msgstr ""
-"Pomakni odabrani događaji prema dolje ili promijeni redoslijed obitelji"
+msgstr "Pomakni odabrani događaji prema dolje ili promijeni redoslijed obitelji"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:144
 msgid "Cannot change Family"
@@ -15643,8 +15522,8 @@ msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
 msgstr ""
-"Možeš odrediti grupiranje svih imena %(surname)s zajedno s imenom "
-"%(group_name)s ili samo ovo određeno ime."
+"Možeš odrediti grupiranje svih imena %(surname)s zajedno s imenom %"
+"(group_name)s ili samo ovo određeno ime."
 
 #: ../gramps/gui/editors/editname.py:452
 msgid "Group all"
@@ -16068,13 +15947,9 @@ msgid "Internet Address Editor"
 msgstr "Uređivač internet adresa"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
-msgstr ""
-"Internetska adresa za navigaciju do stranice, npr. http://gramps-project.org"
+msgstr "Internetska adresa za navigaciju do stranice, npr. {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
@@ -16452,12 +16327,12 @@ msgstr "Ukloni zabilješku"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:77
 #: ../gramps/plugins/tool/removeunused.glade:213
 msgid "_Find"
-msgstr "_Nađi"
+msgstr "_Pronađi"
 
 #: ../gramps/gui/filters/_searchbar.py:60
 #: ../gramps/gui/glade/clipboard.glade:53 ../gramps/gui/undohistory.py:86
 msgid "_Clear"
-msgstr "_Ukloni"
+msgstr "_Izbriši"
 
 #: ../gramps/gui/filters/_searchbar.py:113
 #, python-format
@@ -16621,14 +16496,12 @@ msgstr "Stvoreno s grampletom „Filtar” {today}"
 
 #: ../gramps/gui/fs/actions.py:132
 msgid "Please save/commit this person to the database first, then try again."
-msgstr ""
+msgstr "Najprije spremi/pošalji ovu osobu u bazu podataka, pa pokušaj ponovo."
 
 #: ../gramps/gui/fs/actions.py:148 ../gramps/gui/fs/actions.py:149
 #: ../gramps/gui/fs/tools_window.py:362
-#, fuzzy
-#| msgid "Family ID"
 msgid "Link FamilySearch ID"
-msgstr "ID obitelji"
+msgstr "Poveži FamilySearch ID"
 
 #: ../gramps/gui/fs/actions.py:151 ../gramps/gui/plug/_windows.py:1538
 #: ../gramps/gui/widgets/grampletbar.py:599
@@ -16637,180 +16510,165 @@ msgstr "U redu"
 
 #: ../gramps/gui/fs/actions.py:157
 msgid "Enter FamilySearch Person ID (e.g. GSVF-SGV):"
-msgstr ""
+msgstr "Upiši FamilySearch ID osobe (npr. GSVF-SGV):"
 
 #: ../gramps/gui/fs/actions.py:188
 msgid ""
 "No FamilySearch ID linked.\n"
 "Click 'Link FamilySearch ID' first."
 msgstr ""
+"Nijedan FamilySearch ID nij povezan.\n"
+"Najprije klikni na „Poveži FamilySearch ID”."
 
 #: ../gramps/gui/fs/actions.py:224
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:184
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import selected"
-msgstr "Uvoz nije uspio"
+msgstr "Uvezi odabrane"
 
 #: ../gramps/gui/fs/actions.py:248
 #, python-brace-format
 msgid "{total} found - {new} new - {existing} already in tree"
-msgstr ""
+msgstr "pronađeno: {total} – novo: {new} – već u rodoslovu: {existing}"
 
 #: ../gramps/gui/fs/actions.py:255 ../gramps/gui/fs/sync_directions.py:659
 #: ../gramps/gui/fs/sync_directions.py:1283
-#, fuzzy
-#| msgid "Select _None"
 msgid "Select none"
-msgstr "_Poništi izbor"
+msgstr "Odaberi ništa"
 
 #: ../gramps/gui/fs/actions.py:256
-#, fuzzy
-#| msgid "Select a file"
 msgid "Select all new"
-msgstr "Odaberi datoteku"
+msgstr "Odaberi sve novo"
 
 #: ../gramps/gui/fs/actions.py:303
-#, fuzzy
-#| msgid "Already dead"
 msgid "Already in tree"
-msgstr "Pokojnik"
+msgstr "Već je u rososlovu"
 
 #: ../gramps/gui/fs/actions.py:303
 msgid "New (will import)"
-msgstr ""
+msgstr "Novo (uvest će se)"
 
 #: ../gramps/gui/fs/actions.py:304
 msgid "Tip: uncheck anything you don't want to import."
-msgstr ""
+msgstr "Savjet: odznači sve što ne želiš uvesti."
 
 #: ../gramps/gui/fs/actions.py:361 ../gramps/gui/fs/actions.py:489
 #: ../gramps/gui/fs/actions.py:646 ../gramps/gui/fs/actions.py:957
 #: ../gramps/gui/fs/actions.py:1156
 msgid "No FamilySearch ID linked. Click 'Link FamilySearch ID' first."
 msgstr ""
+"Nijedan FamilySearch ID nije povezan. Najprije klikni na „Poveži "
+"FamilySearch ID”."
 
 #: ../gramps/gui/fs/actions.py:376
-#, fuzzy, python-brace-format
-#| msgid "Sealed to Parents"
+#, python-brace-format
 msgid "Failed to fetch parents: {e}"
-msgstr "Vječno vezanje s roditeljima"
+msgstr "Neuspjelo dohvaćanje roditelja: {e}"
 
 #: ../gramps/gui/fs/actions.py:398
 msgid "No parents found on FamilySearch for this person."
-msgstr ""
+msgstr "Za ovu osobu nisu pronađeni roditelji u FamilySearchu."
 
 #: ../gramps/gui/fs/actions.py:407 ../gramps/gui/fs/actions.py:543
 #: ../gramps/gui/fs/actions.py:701
 msgid "  - already in tree"
-msgstr ""
+msgstr "  - već je u rososlovu"
 
 #: ../gramps/gui/fs/actions.py:410
-#, fuzzy
-#| msgid "Import Text"
 msgid "Import parents"
-msgstr "Uvezi tekst"
+msgstr "Uvezi roditelje"
 
 #: ../gramps/gui/fs/actions.py:425
 msgid "Parents imported but could not be located in the local database."
 msgstr ""
+"Roditelji su uvezeni, ali se nisu mogli pronaći u lokalnoj bazi podataka."
 
 #: ../gramps/gui/fs/actions.py:429
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link parents"
-msgstr "Obiteljske poveznice"
+msgstr "FamilySearch: Poveži roditelje"
 
 #: ../gramps/gui/fs/actions.py:478
 msgid "Parent(s) imported and linked."
-msgstr ""
+msgstr "Roditelj(i) su uvezeni i povezani."
 
 #: ../gramps/gui/fs/actions.py:504
 #, python-brace-format
 msgid "Failed to fetch children: {e}"
-msgstr ""
+msgstr "Neuspjelo dohvaćanje djece: {e}"
 
 #: ../gramps/gui/fs/actions.py:528
 msgid "No children found on FamilySearch for this person."
-msgstr ""
+msgstr "Za ovu osobu nisu pronađena djeca u FamilySearchu."
 
 #: ../gramps/gui/fs/actions.py:540
 #, python-brace-format
 msgid " (other parent: {name})"
-msgstr ""
+msgstr " (drugi roditelj: {name})"
 
 #: ../gramps/gui/fs/actions.py:547
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import children"
-msgstr "Uvoz nije uspio"
+msgstr "Uvezi djecu"
 
 #: ../gramps/gui/fs/actions.py:562
 msgid "Children imported but could not be located in the local database."
-msgstr ""
+msgstr "Djeca su uvezena, ali se nisu mogla pronaći u lokalnoj bazi podataka."
 
 #: ../gramps/gui/fs/actions.py:566
-#, fuzzy
-#| msgid "Family Children"
 msgid "FamilySearch: Link children"
-msgstr "Djeca obitelji"
+msgstr "FamilySearch: Poveži djecu"
 
 #: ../gramps/gui/fs/actions.py:629
 msgid "Child(ren) imported and linked."
-msgstr ""
+msgstr "Dijete/djeca su uvezena i povezana."
 
 #: ../gramps/gui/fs/actions.py:661
 #, python-brace-format
 msgid "Failed to fetch spouses: {e}"
-msgstr ""
+msgstr "Neuspjelo dohvaćanje supružnika: {e}"
 
 #: ../gramps/gui/fs/actions.py:692
 msgid "No spouses found on FamilySearch for this person."
-msgstr ""
+msgstr "Za ovu osobu nisu pronađeni supružnici u FamilySearchu."
 
 #: ../gramps/gui/fs/actions.py:704
-#, fuzzy
-#| msgid "Import Objects"
 msgid "Import spouse(s)"
-msgstr "Uvezi objekte"
+msgstr "Uvezi supružnike"
 
 #: ../gramps/gui/fs/actions.py:719
 msgid "Spouses imported but could not be located in the local database."
 msgstr ""
+"Supružnici su uvezeni, ali se nisu mogli pronaći u lokalnoj bazi podataka."
 
 #: ../gramps/gui/fs/actions.py:723
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link spouses"
-msgstr "Obiteljske poveznice"
+msgstr "FamilySearch: Poveži supružnike"
 
 #: ../gramps/gui/fs/actions.py:770
 msgid "Spouse(s) imported and linked."
-msgstr ""
+msgstr "Supružnik/supružnici su uvezeni i povezani."
 
 #: ../gramps/gui/fs/actions.py:860
 #, python-brace-format
 msgid "Cleared GEDCOMX in-memory indices: {n}"
-msgstr ""
+msgstr "Izbrisani GEDCOMX in-memory indeksi: {n}"
 
 #: ../gramps/gui/fs/actions.py:861
 msgid "Reset shared FS Tree cache: yes"
-msgstr ""
+msgstr "Resetiranje dijeljene predmemorije FS stabla: da"
 
 #: ../gramps/gui/fs/actions.py:863
 #, python-brace-format
 msgid "Cleared on-disk cache: yes ({path})"
-msgstr ""
+msgstr "Izbrisana predmemorija na disku: da ({path})"
 
 #: ../gramps/gui/fs/actions.py:866
 msgid "Cleared on-disk cache: (not available / not supported by cache helper)"
 msgstr ""
+"Izbrisana predmemorija na disku: (nije dostupna / nije podržana od strane "
+"pomoćnika predmemorije)"
 
 #: ../gramps/gui/fs/actions.py:875 ../gramps/gui/fs/actions.py:876
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch Tags"
-msgstr "Obitelj je promijenjena"
+msgstr "FamilySearch oznake"
 
 #: ../gramps/gui/fs/actions.py:877
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:559
@@ -16823,13 +16681,16 @@ msgstr "Zatvori"
 
 #: ../gramps/gui/fs/actions.py:878
 msgid "Retag all (Linked/NotLinked)"
-msgstr ""
+msgstr "Preoznači sve (Povezane/Nepovezane)"
 
 #: ../gramps/gui/fs/actions.py:890
 msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
+"Ovo će pretražiti cijelo stablo i dodijeliti FS_Linked / FS_NotLinked "
+"oznake.\n"
+"NE mijenja nikoje podatke o osobi."
 
 #: ../gramps/gui/fs/actions.py:910
 #, python-brace-format
@@ -16841,77 +16702,79 @@ msgid ""
 "Not linked: {not_linked}\n"
 "Changed: {changed}"
 msgstr ""
+"Ponovno označavanje je završeno.\n"
+"\n"
+"Ukupno osoba: {total}\n"
+"Povezano: {linked}\n"
+"Nepovezano: {not_linked}\n"
+"Promijenjeno: {changed}"
 
 #: ../gramps/gui/fs/actions.py:920
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "Preimenovanje nije uspjelo"
+msgstr "Ponovno označavanje nije uspjelo: {e}"
 
 #: ../gramps/gui/fs/actions.py:971
 msgid "FamilySearch: Update FSID after redirect"
-msgstr ""
+msgstr "FamilySearch: Aktualiziraj FSID nakon preusmjeravanja"
 
 #: ../gramps/gui/fs/actions.py:1015
 msgid ""
 "Could not load this person from FamilySearch (no GEDCOMX person object)."
 msgstr ""
+"Nije bilo moguće učitati ovu osobu iz FamilySearcha (nema GEDCOMX objekta "
+"osobe)."
 
 #: ../gramps/gui/fs/actions.py:1024
 #, python-brace-format
 msgid "Failed to download from FamilySearch: {e}"
-msgstr ""
+msgstr "Neuspjelo preuzimanje s FamilySearcha: {e}"
 
 #: ../gramps/gui/fs/actions.py:1029
-#, fuzzy
-#| msgid "Bookmark this person"
 msgid "FamilySearch: Sync this person"
-msgstr "Postavi knjižnu oznaku za ovu osobu"
+msgstr "FamilySearch: Sinkroniziraj ovu osobu"
 
 #: ../gramps/gui/fs/actions.py:1089
-#, fuzzy, python-brace-format
-#| msgid "Saving failed"
+#, python-brace-format
 msgid "Sync failed: {e}"
-msgstr "Spremanje nije uspjelo"
+msgstr "Sinkronizacija nije uspjela: {e}"
 
 #: ../gramps/gui/fs/actions.py:1097
 msgid ""
 "Sync complete: facts/events, dates/places, and notes updated for this person."
 msgstr ""
+"Sinkronizacija je završena: činjenice/događaji, datumi/mjesta i zabilješke "
+"su aktualizirane za ovu osobu."
 
 #: ../gramps/gui/fs/actions.py:1142
 #, python-brace-format
 msgid "Export to FamilySearch failed: {e}"
-msgstr ""
+msgstr "Izvoz u FamilySearch nije uspio: {e}"
 
 #: ../gramps/gui/fs/actions.py:1172
 #, python-brace-format
 msgid "Sync to FamilySearch failed: {e}"
-msgstr ""
+msgstr "Sinkronizacija u FamilySearch nije uspjela: {e}"
 
 #: ../gramps/gui/fs/compare/options.py:46
-#, fuzzy
-#| msgid "Family Citations"
 msgid "FamilySearch Compare Options"
-msgstr "Citati za obitelj"
+msgstr "Opcije usporedbe u FamilySearchu"
 
 #: ../gramps/gui/fs/compare/options.py:49
 msgid "Days between comparisons"
-msgstr ""
+msgstr "Dani između usporedbi"
 
 #: ../gramps/gui/fs/compare/options.py:50
 msgid "Number of days between two comparisons."
-msgstr ""
+msgstr "Broj dana između dvije usporedbe."
 
 #: ../gramps/gui/fs/compare/options.py:54
-#, fuzzy
-#| msgid "Source Information"
 msgid "Force comparison"
-msgstr "Informacije izvora"
+msgstr "Prisili usporedbu"
 
 #: ../gramps/gui/fs/compare/options.py:56
 msgid "Compare regardless of the number of days since the last run."
-msgstr ""
+msgstr "Usporedi bez obzira na broj dana od zadnjeg pokretanja."
 
 #: ../gramps/gui/fs/compare/options.py:62
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
@@ -16920,7 +16783,7 @@ msgstr "Filtar osoba"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
-msgstr ""
+msgstr "FamilySearch nije konfiguriran (nema sesije)."
 
 #: ../gramps/gui/fs/compare/window.py:204
 #, python-brace-format
@@ -16928,14 +16791,14 @@ msgid ""
 "Could not open compare window:\n"
 "{e}"
 msgstr ""
+"Nije bilo moguće otvoriti prozor usporedbe:\n"
+"{e}"
 
 #: ../gramps/gui/fs/compare/window.py:214
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:524
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:532
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch Compare"
-msgstr "Boje obitelji"
+msgstr "FamilySearch usporedba"
 
 #: ../gramps/gui/fs/compare/window.py:217 ../gramps/gui/glade/rule.glade:509
 #: ../gramps/gui/glade/styleeditor.glade:416
@@ -16947,7 +16810,7 @@ msgstr "Opcije"
 
 #: ../gramps/gui/fs/compare/window.py:228
 msgid "FamilySearch: Compare"
-msgstr ""
+msgstr "FamilySearch: Usporedi"
 
 #: ../gramps/gui/fs/compare/window.py:229
 #: ../gramps/gui/fs/fs_import/importer.py:59
@@ -16960,165 +16823,132 @@ msgstr "Početak"
 
 #: ../gramps/gui/fs/compare/window.py:253
 msgid "Building ordered list (1/2)"
-msgstr ""
+msgstr "Izgradnja razvrstanog popisa (1/2)"
 
 #: ../gramps/gui/fs/compare/window.py:283
 msgid "Processing list (2/2)"
-msgstr ""
+msgstr "Obrada popisa (2/2)"
 
 #: ../gramps/gui/fs/compare/window.py:320
-#, fuzzy, python-format
-#| msgid "not found"
+#, python-format
 msgid "FS ID %s not found"
-msgstr "nije pronađen"
+msgstr "FS ID %s pronađen"
 
 #: ../gramps/gui/fs/fs_import/importer.py:59
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "FamilySearch Import"
-msgstr "Izvještaj o obiteljskoj grupi"
+msgstr "FamilySearch uvoz"
 
 #: ../gramps/gui/fs/fs_import/importer.py:86
 msgid "Downloading persons… (3/11)"
-msgstr ""
+msgstr "Preuzimanje osoba … (3/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:88
-#, fuzzy
-#| msgid "Youngest living person"
 msgid "Downloading person…"
-msgstr "Najmlađa živa osoba"
+msgstr "Preuzimanje osoba …"
 
 #: ../gramps/gui/fs/fs_import/importer.py:98
 msgid "Downloading ancestors… (4/11)"
-msgstr ""
+msgstr "Preuzimanje predaka … (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:106
-#, fuzzy, python-format
-#| msgid "Submission: Generations of ancestors"
+#, python-format
 msgid "Downloading %d generations of ancestors…"
-msgstr "Prijava: generacije predaka"
+msgstr "Preuzimanje generacija predaka (%d) …"
 
 #: ../gramps/gui/fs/fs_import/importer.py:109
 msgid "Downloading descendants… (5/11)"
-msgstr ""
+msgstr "Preuzimanje potomaka … (5/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:117
-#, fuzzy, python-format
-#| msgid "Submission: Generations of descendants"
+#, python-format
 msgid "Downloading %d generations of descendants…"
-msgstr "Prijava: generacije potomaka"
+msgstr "Preuzimanje generacija potomaka (%d) …"
 
 #: ../gramps/gui/fs/fs_import/importer.py:122
 msgid "Downloading spouses… (6/11)"
-msgstr ""
+msgstr "Preuzimanje supružnika … (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:124
 msgid "Downloading spouses…"
-msgstr ""
+msgstr "Preuzimanje supružnika …"
 
 #: ../gramps/gui/fs/fs_import/importer.py:130
 msgid "Downloading notes… (7/11)"
-msgstr ""
+msgstr "Preuzimanje zabilješki … (7/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:133
 msgid "Downloading notes and sources…"
-msgstr ""
+msgstr "Preuzimanje zabilješki i izvora …"
 
 #: ../gramps/gui/fs/fs_import/importer.py:176
-#, fuzzy
-#| msgid "Import"
 msgid "Importing…"
-msgstr "Uvoz"
+msgstr "Uvoz …"
 
 #: ../gramps/gui/fs/fs_import/importer.py:188
 msgid "Importing places… (8/11)"
-msgstr ""
+msgstr "Uvoz mjesta … (8/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:189
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing places…"
-msgstr "Uvoz osoba."
+msgstr "Uvoz mjesta …"
 
 #: ../gramps/gui/fs/fs_import/importer.py:194
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons… (9/11)"
-msgstr "Uvoz osoba."
+msgstr "Uvoz osoba … (9/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons…"
-msgstr "Uvoz osoba."
+msgstr "Uvoz osoba …"
 
 #: ../gramps/gui/fs/fs_import/importer.py:201
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families… (10/11)"
-msgstr "Uvoz obitelji."
+msgstr "Uvoz obitelji … (10/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:203
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families…"
-msgstr "Uvoz obitelji."
+msgstr "Uvoz obitelji …"
 
 #: ../gramps/gui/fs/fs_import/importer.py:211
 #: ../gramps/gui/fs/fs_import/importer.py:223
 msgid "Importing children… (11/11)"
-msgstr ""
+msgstr "Uvoz djece … (11/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:214
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Importing children…"
-msgstr "Uvoz arhive ..."
+msgstr "Uvoz djece …"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
-#, fuzzy
-#| msgid "Web Family Tree export options"
 msgid "FamilySearch Import Options"
-msgstr "Opcije za Web Family Tree izvoz (web rodoslov)"
+msgstr "Opcije uvoza u FamilySearchu"
 
 #: ../gramps/gui/fs/fs_import/options.py:39
 msgid "identifier to be copied from the FamilySearch website"
-msgstr ""
+msgstr "identifikator koji se kopira s FamilySearch web-stranice"
 
 #: ../gramps/gui/fs/fs_import/options.py:42
-#, fuzzy
-#| msgid "Max ancestor generations"
 msgid "Ancestor generations"
-msgstr "Najviše generacija predaka"
+msgstr "Generacije predaka"
 
 #: ../gramps/gui/fs/fs_import/options.py:43
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch upwards"
-msgstr "Broj generacija:"
+msgstr "Broj generacija za dohvaćanje prema gore"
 
 #: ../gramps/gui/fs/fs_import/options.py:46
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "Descendant generations"
-msgstr "Najviše generacija potomaka"
+msgstr "Generacije potomaka"
 
 #: ../gramps/gui/fs/fs_import/options.py:47
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch downwards"
-msgstr "Broj generacija:"
+msgstr "Broj generacija za dohvaćanje prema dolje"
 
 #: ../gramps/gui/fs/fs_import/options.py:51
-#, fuzzy
-#| msgid "Non existing person"
 msgid "Do not re-import existing persons"
-msgstr "Nepostojeća osoba"
+msgstr "Nemoj ponovo uvoziti postojeće osobe"
 
 #: ../gramps/gui/fs/fs_import/options.py:53
 msgid "Only import persons not already present"
-msgstr ""
+msgstr "Uvezi samo osobe kojih još nema"
 
 #: ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -17127,10 +16957,8 @@ msgid "Include spouses"
 msgstr "Uključi supružnike"
 
 #: ../gramps/gui/fs/fs_import/options.py:57
-#, fuzzy
-#| msgid "Include Source Information"
 msgid "Include spouse information"
-msgstr "Uključi informacije o izvoru"
+msgstr "Uključi podatke supružnika"
 
 #: ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -17139,10 +16967,8 @@ msgid "Include sources"
 msgstr "Uključi izvore"
 
 #: ../gramps/gui/fs/fs_import/options.py:61
-#, fuzzy
-#| msgid "Birth source"
 msgid "Import sources"
-msgstr "Izvor rođenja"
+msgstr "Uvezi izvore"
 
 #: ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -17151,97 +16977,79 @@ msgid "Include notes"
 msgstr "Uključi zabilješke"
 
 #: ../gramps/gui/fs/fs_import/options.py:65
-#, fuzzy
-#| msgid "Importer"
 msgid "Import notes"
-msgstr "Uvoznik"
+msgstr "Uvezi zabilješke"
 
 #: ../gramps/gui/fs/fs_import/options.py:68
-#, fuzzy
-#| msgid "Repository"
 msgid "Verbosity"
-msgstr "Spremište"
+msgstr "Opširnost"
 
 #: ../gramps/gui/fs/fs_import/options.py:70
 msgid "Verbosity level from 0 (min) to 3 (very verbose)"
-msgstr ""
+msgstr "Razina opširnosti od 0 (minimalno) do 3 (vrlo opširno)"
 
 #: ../gramps/gui/fs/fs_import/tool.py:39
 msgid "FamilySearch Import Tool"
-msgstr ""
+msgstr "Alat za FamilySearch uvoz"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:465
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:637
 msgid "Match"
-msgstr ""
+msgstr "Poklapanje"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:466
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:638
-#, fuzzy
-#| msgid "Different database"
 msgid "Different"
-msgstr "Druga baza podataka"
+msgstr "Različito"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:467
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in Gramps"
-msgstr "Samo prijestupne godine"
+msgstr "Samo u Grampsu"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:468
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:639
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in FamilySearch"
-msgstr "Samo prijestupne godine"
+msgstr "Samo u FamilySearchu"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:469
 msgid "Critical mismatch"
-msgstr ""
+msgstr "Kritično nepodudaranje"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:473
 msgid ""
 "Tip: resize columns by dragging headers | scroll inside tabs | refresh to re-"
 "check FamilySearch"
 msgstr ""
+"Savjet: promijeni veličinu stupaca povlačenjem zaglavlja | kliži unutar "
+"kartica | osvježi za ponovnu provjeru FamilySearcha"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:487
-#, fuzzy
-#| msgid "Select a person for the report"
 msgid "Select a person first."
-msgstr "Odaberi jednu osobu za izvještaj"
+msgstr "Najprije odaberi jednu osobu."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:491
 msgid "You must login first."
-msgstr ""
+msgstr "Najprije se moraš prijaviti."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:507
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve the selected person in the database."
-msgstr "Brisanje osobe će ukloniti osobu iz baze podataka."
+msgstr "Nije bilo moguće razlučiti odabranu osobu u bazi podataka."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:514
 msgid ""
 "This Gramps person is not linked to FamilySearch yet. Use 'Link person'."
-msgstr ""
+msgstr "Ovaj Gramps još nije povezan s FamilySearchom. Koristi „Poveži osobu”."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:543
-#, fuzzy
-#| msgid "Remove child from family"
 msgid "Refresh from FamilySearch"
-msgstr "Ukloni dijete iz obitelji"
+msgstr "Aktualiziraj iz FamilySearcha"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:550
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:610
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Import sources..."
-msgstr "Uvoz arhive ..."
+msgstr "Uvoz izvora …"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:580
-#, fuzzy
-#| msgid "Preview"
 msgid "Overview"
 msgstr "Pregled"
 
@@ -17275,152 +17083,123 @@ msgstr "Aktualiziraj"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:693
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:727
 #: ../gramps/gui/fs/sync_directions.py:275
-#, fuzzy
-#| msgid "Gramps database"
 msgid "Gramps date"
-msgstr "Gramps baza podataka"
+msgstr "Gramps datum"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:694
 #: ../gramps/gui/fs/sync_directions.py:276
-#, fuzzy
-#| msgid "Gramplet"
 msgid "Gramps value"
-msgstr "Gramplet"
+msgstr "Gramps vrijednost"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:695
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:730
 #: ../gramps/gui/fs/sync_directions.py:277
-#, fuzzy
-#| msgid "date"
 msgid "FS date"
-msgstr "datum"
+msgstr "FamilySearch datum"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:696
 #: ../gramps/gui/fs/sync_directions.py:278
-#, fuzzy
-#| msgid "Family Gallery"
 msgid "FamilySearch value"
-msgstr "Galerija obitelji"
+msgstr "FamilySearch vrijednost"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:699
 #: ../gramps/gui/fs/sync_directions.py:281
-#, fuzzy
-#| msgid "Type"
 msgid "xType"
-msgstr "Vrsta"
+msgstr "xVrsta"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:700
 #: ../gramps/gui/fs/sync_directions.py:282
 msgid "xGr"
-msgstr ""
+msgstr "xGr"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:701
 #: ../gramps/gui/fs/sync_directions.py:283
 msgid "xFs"
-msgstr ""
+msgstr "xFs"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:702
 #: ../gramps/gui/fs/sync_directions.py:284
 msgid "xGr2"
-msgstr ""
+msgstr "xGr2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:703
 #: ../gramps/gui/fs/sync_directions.py:285
 msgid "xFs2"
-msgstr ""
+msgstr "xFs2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:713
 msgid "Scope"
-msgstr ""
+msgstr "Opseg"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:716
-#, fuzzy
-#| msgid "Title"
 msgid "FS Title"
-msgstr "Titula"
+msgstr "FS naslov"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:726
 msgid "Kind"
-msgstr ""
+msgstr "Vrsta"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:728
-#, fuzzy
-#| msgid "Gramps item:"
 msgid "Gramps title"
-msgstr "Gramps stavka:"
+msgstr "Gramps naslov"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:729
-#, fuzzy
-#| msgid "Gramps"
 msgid "Gramps URL"
-msgstr "Gramps"
+msgstr "Gramps URL"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:731
-#, fuzzy
-#| msgid "title"
 msgid "FS title"
-msgstr "naslov"
+msgstr "FS naslov"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:732
-#, fuzzy
-#| msgid "Search URL"
 msgid "FS URL"
-msgstr "Traži URL"
+msgstr "FS URL"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:734
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:303
-#, fuzzy
-#| msgid "Contributions by"
 msgid "Contributor"
-msgstr "Doprinositelji"
+msgstr "Doprinositelj"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:735
-#, fuzzy
-#| msgid "Modifier"
 msgid "Modified"
-msgstr "Modifikator"
+msgstr "Izmijenjeno"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:736
 msgid "FS ID"
-msgstr ""
+msgstr "FS ID"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:750
-#, fuzzy, python-brace-format
-#| msgid "Import failed"
+#, python-brace-format
 msgid "Compare failed: {e}"
-msgstr "Uvoz nije uspio"
+msgstr "Usporedba neuspjela: {e}"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:842
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:933
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:948
-#, fuzzy
-#| msgid "Missing Given Name"
 msgid "(missing in Gramps)"
-msgstr "Nedostaje ime"
+msgstr "(nedostaje u Grampsu)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1133
-#, fuzzy
-#| msgid "No mention"
 msgid "Mention"
-msgstr "Nije spomenuto"
+msgstr "Spominjanje"
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:69
 msgid "FamilySearch is not configured (missing app key / redirect)."
 msgstr ""
+"FamilySearch nije konfiguriran (nedostaje ključ aplikacije / preusmjeravanje)"
+"."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:82
 msgid "Already logged in to FamilySearch."
-msgstr ""
+msgstr "Već si prijavljen/a na FamilySearch."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:86
 msgid "Logged in to FamilySearch."
-msgstr ""
+msgstr "Prijavljen/a si na FamilySearch."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:89
-#, fuzzy
-#| msgid "Saving failed"
 msgid "Login failed."
-msgstr "Spremanje nije uspjelo"
+msgstr "Prijava nije uspjela."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:92
 #, python-brace-format
@@ -17428,44 +17207,39 @@ msgid ""
 "Login failed:\n"
 "{err}"
 msgstr ""
+"Prijava nije uspjela:\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:338
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:176
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:181
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Import FamilySearch sources"
-msgstr "Uvezi rodoslov"
+msgstr "Uvezi FamilySearch izvore"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:468
-#, fuzzy, python-brace-format
-#| msgid "%s could not be imported"
+#, python-brace-format
 msgid ""
 "Some sources could not be imported:\n"
 "{errs}"
-msgstr "Nije bilo moguće uvesti %s"
+msgstr ""
+"Neki se izvori nisu mogli uvesti:\n"
+"{errs}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:115
 msgid "No FamilySearch sources found to import."
-msgstr ""
+msgstr "Nije pronađen nijedan FamilySearch izvor za uvoz."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:256
-#, fuzzy
-#| msgid "Selected"
 msgid "Detected"
-msgstr "Odabrano"
+msgstr "Otkriveno"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:274
-#, fuzzy
-#| msgid "Import"
 msgid "Import as"
-msgstr "Uvoz"
+msgstr "Uvezi kao"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:285
-#, fuzzy
-#| msgid "Date"
 msgid "FS Date"
-msgstr "Datum"
+msgstr "FS Datum"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:304
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:510
@@ -17474,73 +17248,53 @@ msgid "Images"
 msgstr "Slike"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:312
-#, fuzzy
-#| msgid "Person Gallery"
 msgid "To Person gallery"
-msgstr "Galerija osobe"
+msgstr "U galeriju osobe"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:329
-#, fuzzy
-#| msgid "Action"
 msgid "Actions"
-msgstr "Akcija"
+msgstr "Radnje"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:332
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage Images…"
-msgstr "Upravljaj bazama podataka"
+msgstr "Upravljaj slikama …"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:372
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:374
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage images"
-msgstr "Upravljaj bazama podataka"
+msgstr "Upravljaj slikama"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:380
-#, fuzzy
-#| msgid "Add a new source"
 msgid "Add from source…"
-msgstr "Dodaj novi izvor"
+msgstr "Dodaj iz izvora …"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:381
 msgid "Open the source page and download images"
-msgstr ""
+msgstr "Otvori stranicu izvora i preuzmi slike"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:383
-#, fuzzy
-#| msgid "Choose font"
 msgid "Choose file…"
-msgstr "Odaberi font"
+msgstr "Odaberi datoteku …"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:384
 msgid "Pick existing files from disk"
-msgstr ""
+msgstr "Odaberi postojeće datoteke s diska"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:386
-#, fuzzy
-#| msgid "Rename failed"
 msgid "Rename files"
-msgstr "Preimenovanje nije uspjelo"
+msgstr "Preimenuj datoteke"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:387
-#, fuzzy
-#| msgid "Remove the selected family event"
 msgid "Rename selected files on disk"
-msgstr "Ukloni odabrani obiteljski događaj"
+msgstr "Preimenuj odabrane datoteke na disku"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:426
-#, fuzzy
-#| msgid "File extension"
 msgid "Filename (without extension)"
-msgstr "Datotečni sufiks"
+msgstr "Ime datoteke (bez ekstenzije)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:430
-#, fuzzy
-#| msgid "File extension"
 msgid "Extension"
-msgstr "Datotečni sufiks"
+msgstr "Extenzija"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:443
 msgid ""
@@ -17549,32 +17303,31 @@ msgid ""
 "• Extensions are preserved.\n"
 "• If a file with the new name exists, a numeric suffix will be added."
 msgstr ""
+"Savjeti:\n"
+"• Dvaput klikni na ime za uređivanje.\n"
+"• Proširenja su zadržana.\n"
+"• Ako postoji datoteka s novim imenom, dodat će se numerički sufiks."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:464
-#, fuzzy
-#| msgid "No map service is available."
 msgid "Image picker module is not available."
-msgstr "Nijedna kartografska usluga nije dostupna."
+msgstr "Modul za biranje slika nije dostupan."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:471
-#, fuzzy
-#| msgid "Add Source (%s)"
 msgid "Add Source Image"
-msgstr "Dodaj izvor (%s)"
+msgstr "Dodaj sliku izvora"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:475
-#, fuzzy, python-brace-format
-#| msgid "Could not open file: %s"
+#, python-brace-format
 msgid ""
 "Could not open image picker:\n"
 "{e}"
-msgstr "Nije bilo moguće otvoriti datoteku: %s"
+msgstr ""
+"Nije bilo moguće otvoriti birač slika:\n"
+"{e}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:493
-#, fuzzy
-#| msgid "Close file first"
 msgid "Choose image file(s)"
-msgstr "Najprije zatvori datoteku"
+msgstr "Odaberi slikovnu datoteku(e)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:499
 #: ../gramps/gui/glade/mergedata.glade:170
@@ -17585,99 +17338,86 @@ msgid "Select"
 msgstr "Odaberi"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:588
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid ""
 "Rename failed for:\n"
 "{p}\n"
 "\n"
 "{err}"
-msgstr "Preimenovanje nije uspjelo"
+msgstr ""
+"Preimenovanje nije uspjelo zbog:\n"
+"{p}\n"
+"\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:621
 #: ../gramps/gui/fs/sync_directions.py:658
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select all"
-msgstr "Odaberi _sve"
+msgstr "Odaberi sve"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:642
 msgid ""
 "Tip: click “Manage Images…” to add/choose/rename files before importing."
 msgstr ""
+"Savjet: klikni „Upravljaj slikama …” za dodavanje/biranje/preimenovanje "
+"datoteka prije uvoza."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:684
 #, python-brace-format
 msgid "{n} source(s) imported."
-msgstr ""
+msgstr "Broj uvezenih izvora: {n}."
 
 #: ../gramps/gui/fs/sync_directions.py:337
-#, fuzzy
-#| msgid "Primary"
 msgid "Primary Name"
-msgstr "Primarno"
+msgstr "Primarno ime"
 
 #: ../gramps/gui/fs/sync_directions.py:417
 #: ../gramps/gui/fs/sync_directions.py:443
-#, fuzzy, python-brace-format
-#| msgid "Note Filter"
+#, python-brace-format
 msgid "Note: {title}"
-msgstr "Filtar zabilješki"
+msgstr "Zabilješka: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:418
 #: ../gramps/gui/fs/sync_directions.py:444
-#, fuzzy
-#| msgid "title"
 msgid "(untitled)"
-msgstr "naslov"
+msgstr "(bez naslova)"
 
 #: ../gramps/gui/fs/sync_directions.py:422
 #: ../gramps/gui/fs/sync_directions.py:447
 #: ../gramps/gui/fs/sync_directions.py:448
 #: ../gramps/gui/fs/sync_directions.py:700
 msgid "(empty)"
-msgstr ""
+msgstr "(prazno)"
 
 #: ../gramps/gui/fs/sync_directions.py:582
 #: ../gramps/gui/fs/sync_directions.py:980
-#, fuzzy
-#| msgid "Source filter name:"
 msgid "Source from Gramps"
-msgstr "Ime filtra izvora:"
+msgstr "Izvor od Grampsa"
 
 #: ../gramps/gui/fs/sync_directions.py:593
-#, fuzzy
-#| msgid "_Delete Family"
 msgid "(deleted on FamilySearch)"
-msgstr "O_briši obitelj"
+msgstr "(izbrisano u FamilySearchu)"
 
 #: ../gramps/gui/fs/sync_directions.py:595
-#, fuzzy
-#| msgid "Submission: Family file"
 msgid "(missing on FamilySearch)"
-msgstr "Prijava: obiteljski zapis"
+msgstr "(nedostaje u FamilySearchu)"
 
 #: ../gramps/gui/fs/sync_directions.py:597
 msgid "(not attached to this person on FamilySearch)"
-msgstr ""
+msgstr "(nije povezano s ovom osobom u FamilySearchu)"
 
 #: ../gramps/gui/fs/sync_directions.py:604
-#, fuzzy, python-brace-format
-#| msgid "Source: Title"
+#, python-brace-format
 msgid "Source: {title}"
-msgstr "Izvor: naslov"
+msgstr "Izvor: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:625
-#, fuzzy
-#| msgid "Select Family"
 msgid "Sync to FamilySearch"
-msgstr "Odaberi obitelj"
+msgstr "Sinkroniziraj u FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:629
-#, fuzzy
-#| msgid "Selected"
 msgid "Apply Selected"
-msgstr "Odabrano"
+msgstr "Primijeni odabrano"
 
 #: ../gramps/gui/fs/sync_directions.py:641
 msgid ""
@@ -17685,51 +17425,46 @@ msgid ""
 "Default is to keep FamilySearch.\n"
 "<i>No deletions are performed.</i>"
 msgstr ""
+"<b>Odaberi što treba promijeniti u FamilySearchu</b>\n"
+"Standardno je da se zadrži FamilySearch.\n"
+"<i>Ništa se ne briše.</i>"
 
 #: ../gramps/gui/fs/sync_directions.py:649
-#, fuzzy
-#| msgid "Change Name"
 msgid "Change message:"
-msgstr "Promjena imena"
+msgstr "Promijeni poruku:"
 
 #: ../gramps/gui/fs/sync_directions.py:678
 msgid "Field"
-msgstr ""
+msgstr "Polje"
 
 #: ../gramps/gui/fs/sync_directions.py:681 ../gramps/gui/undohistory.py:115
 msgid "Action"
 msgstr "Akcija"
 
 #: ../gramps/gui/fs/sync_directions.py:719
-#, fuzzy
-#| msgid "Merge Family"
 msgid "Keep FamilySearch"
-msgstr "Spoji obitelj"
+msgstr "Zadrži FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:722
-#, fuzzy
-#| msgid "Produced with Gramps"
 msgid "Overwrite with Gramps"
-msgstr "Izrađeno s programom Gramps"
+msgstr "Prepiši s Grampsom"
 
 #: ../gramps/gui/fs/sync_directions.py:724
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Add from Gramps"
-msgstr "Dodaj gramplet"
+msgstr "Dodaj iz Grampsa"
 
 #: ../gramps/gui/fs/sync_directions.py:726
 msgid "Apply from Gramps"
-msgstr ""
+msgstr "Primijeni iz Grampsa"
 
 #: ../gramps/gui/fs/sync_directions.py:777
 #: ../gramps/gui/fs/sync_directions.py:1342
 msgid "Not connected to FamilySearch."
-msgstr ""
+msgstr "Ne postoji veza s FamilySearch."
 
 #: ../gramps/gui/fs/sync_directions.py:789
 msgid "No FamilySearch Person ID is set for this person."
-msgstr ""
+msgstr "Za ovu osobu nije postavljen FamilySearch ID osobe."
 
 #: ../gramps/gui/fs/sync_directions.py:798
 msgid ""
@@ -17738,6 +17473,10 @@ msgid ""
 "Clear or replace the saved FSID before exporting again, or restore that "
 "FamilySearch person first."
 msgstr ""
+"Ova je povezana FamilySearch osoba izbrisana/neaktivna.\n"
+"\n"
+"Isprazni ili zamijeni spremljeni FSID prije ponovnog izvoza ili naprije "
+"obnoci tu FamilySearch osobu."
 
 #: ../gramps/gui/fs/sync_directions.py:809
 msgid ""
@@ -17745,22 +17484,26 @@ msgid ""
 "\n"
 "Clear or replace the saved FSID before exporting again."
 msgstr ""
+"Ova povezana FamilySearch osoba nije pronađena.\n"
+"\n"
+"Isprazni ili zamijeni spremljeni FSID prije ponovnog izvoza."
 
 #: ../gramps/gui/fs/sync_directions.py:819
 msgid "FamilySearch: Refresh merged ID"
-msgstr ""
+msgstr "FamilySearch: Osvježi spojeni ID"
 
 #: ../gramps/gui/fs/sync_directions.py:834
 msgid ""
 "FamilySearch person could not be loaded fresh from the API.\n"
 "Try 'Sync from FamilySearch' or clear the cache, then try again."
 msgstr ""
+"Osoba u FamilySearchu se nije mogla učitati izravno iz API-ja.\n"
+"Pokušaj „Sinkroniziraj iz FamilySearcha” ili isprazni predmemoriju, pa "
+"pokušaj ponovo."
 
 #: ../gramps/gui/fs/sync_directions.py:862
-#, fuzzy
-#| msgid "No parents found"
 msgid "No pushable differences found."
-msgstr "Roditelji nisu pronađeni"
+msgstr "Nijedna razlia za slanje nije pronađena."
 
 #: ../gramps/gui/fs/sync_directions.py:897
 msgid ""
@@ -17768,27 +17511,30 @@ msgid ""
 "FamilySearch payload. This usually means the fact type could not be "
 "determined."
 msgstr ""
+"Pronađene su razlike, međutim se nijedna nije mogla pretvoriti u valjane "
+"FamilySearch podatke. To obično znači da se vrsta činjenice nije mogla "
+"odrediti."
 
 #: ../gramps/gui/fs/sync_directions.py:938
 msgid "FamilySearch update failed (names/facts)."
-msgstr ""
+msgstr "FamilySearch aktualiziranje nije uspjelo (imena/činjenice)."
 
 #: ../gramps/gui/fs/sync_directions.py:961
 msgid "FamilySearch update failed (notes)."
-msgstr ""
+msgstr "FamilySearch aktualiziranje nije uspjelo (zablilješke)."
 
 #: ../gramps/gui/fs/sync_directions.py:996
 #, python-brace-format
 msgid "FamilySearch source creation failed for: {t}"
-msgstr ""
+msgstr "Stvaranje izvora u FamilySearchu nije uspjelo: {t}"
 
 #: ../gramps/gui/fs/sync_directions.py:1054
 msgid "FamilySearch update failed (sources)."
-msgstr ""
+msgstr "FamilySearch aktualiziranje nije uspjelo (izvori)."
 
 #: ../gramps/gui/fs/sync_directions.py:1097
 msgid "FamilySearch: Link uploaded memories"
-msgstr ""
+msgstr "FamilySearch: Poveži prenesena sjećanja"
 
 #: ../gramps/gui/fs/sync_directions.py:1159
 #, python-format
@@ -17797,25 +17543,26 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Neka sjećanja se nisu uspjela učitati:\n"
+"\n"
+"%s"
 
 #: ../gramps/gui/fs/sync_directions.py:1165
 msgid "FamilySearch updated successfully."
-msgstr ""
+msgstr "FamilySearch aktualiziranje je uspjelo."
 
 #: ../gramps/gui/fs/sync_directions.py:1169
 #, python-brace-format
 msgid "FamilySearch sync failed: {e}"
-msgstr ""
+msgstr "FamilySearch sinkronizacija nije uspjela: {e}"
 
 #: ../gramps/gui/fs/sync_directions.py:1181
 msgid "Export to FamilySearch (basic)"
-msgstr ""
+msgstr "Izvoz u FamilySearch (osnovno)"
 
 #: ../gramps/gui/fs/sync_directions.py:1186
-#, fuzzy
-#| msgid "Exporter"
 msgid "Export"
-msgstr "Izvoznik"
+msgstr "Izvezi"
 
 #: ../gramps/gui/fs/sync_directions.py:1198
 msgid ""
@@ -17823,18 +17570,17 @@ msgid ""
 "Basic export only: name + birth/death facts.\n"
 "<i>No deletions. Existing active linked people are not overwritten here.</i>"
 msgstr ""
+"<b>Stvori nedostajuće osobe u FamilySearchu i poveži odnose.</b>\n"
+"Samo osnovni izvoz: ime + činjenice o rođenju/smrti.\n"
+"<i>Nema brisanja. Postojeće aktivne povezane osobe se ne prepisuju.</i>"
 
 #: ../gramps/gui/fs/sync_directions.py:1205
-#, fuzzy
-#| msgid "Include places"
 msgid "Include parents"
-msgstr "Uključi mjesta"
+msgstr "Uključi roditelje"
 
 #: ../gramps/gui/fs/sync_directions.py:1206
-#, fuzzy
-#| msgid "Include spouses"
 msgid "Include spouse(s)"
-msgstr "Uključi supružnike"
+msgstr "Uključi supružnika(e)"
 
 #: ../gramps/gui/fs/sync_directions.py:1207
 #: ../gramps/plugins/export/exportcsv.py:148
@@ -17844,197 +17590,161 @@ msgid "Include children"
 msgstr "Uključi djecu"
 
 #: ../gramps/gui/fs/sync_directions.py:1229
-#, fuzzy
-#| msgid "person"
 msgid "(person)"
-msgstr "osoba"
+msgstr "(osoba)"
 
 #: ../gramps/gui/fs/sync_directions.py:1248
-#, fuzzy
-#| msgid "the person"
 msgid "This person: "
-msgstr "osoba"
+msgstr "Ova osoba: "
 
 #: ../gramps/gui/fs/sync_directions.py:1276
 msgid "Create"
-msgstr ""
+msgstr "Stvori"
 
 #: ../gramps/gui/fs/sync_directions.py:1282
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select all missing"
-msgstr "Odaberi jednu postojeću zabilješku"
+msgstr "Odaberi sve nedostajuće"
 
 #: ../gramps/gui/fs/sync_directions.py:1349
 msgid "Please save this person first."
-msgstr ""
+msgstr "Najprije spremi ovu osobu."
 
 #: ../gramps/gui/fs/sync_directions.py:1355
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve this person from the database."
-msgstr "Brisanje osobe će ukloniti osobu iz baze podataka."
+msgstr "Nije bilo moguće razlučiti ovu osobu iz baze podataka."
 
 #: ../gramps/gui/fs/sync_directions.py:1396
 msgid "FamilySearch: Export basic people"
-msgstr ""
+msgstr "FamilySearch: Izvezi osnovne osobe"
 
 #: ../gramps/gui/fs/sync_directions.py:1435
 msgid "FamilySearch create failed for a person. Check name and connection."
-msgstr ""
+msgstr "FamilySearch stvaranje nije uspjelo za osobu. Provjeri ime i vezu."
 
 #: ../gramps/gui/fs/sync_directions.py:1557
 msgid ""
 "Export complete: created people and linked relationships on FamilySearch."
-msgstr ""
+msgstr "Izvoz završen: osobe su stvorene i odnosi povezani u FamilySearchu."
 
 #: ../gramps/gui/fs/sync_directions.py:1564
 msgid ""
 "Export complete: no new people were created; relationships were attempted."
-msgstr ""
+msgstr "Izvoz završen: nijedna osoba nije stvorena; povezivanje je pokušano."
 
 #: ../gramps/gui/fs/sync_directions.py:1569
-#, fuzzy
-#| msgid "No matching addons found."
 msgid "Nothing was exported."
-msgstr "Nisu pronađeni odgovarajući dodaci."
+msgstr "Ništa nije izvezeno."
 
 #: ../gramps/gui/fs/sync_directions.py:1573
 #, python-brace-format
 msgid "FamilySearch export failed: {e}"
-msgstr ""
+msgstr "FamilySearch izvoz nije uspio: {e}"
 
 #: ../gramps/gui/fs/tools_window.py:314
-#, fuzzy
-#| msgid "Family To Do"
 msgid "FamilySearch Tools"
-msgstr "Zadaci (obitelj)"
+msgstr "FamilySearch alati"
 
 #: ../gramps/gui/fs/tools_window.py:342 ../gramps/gui/fs/tools_window.py:661
-#, fuzzy
-#| msgid "Edit Person (%s)"
 msgid "Editor person: (none)"
-msgstr "Uredi osobu (%s)"
+msgstr "Uređivač osoba: (ništa)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Person Citations"
 msgid "Person actions"
-msgstr "Citati za osobu"
+msgstr "Radnje osobe"
 
 #: ../gramps/gui/fs/tools_window.py:363
-#, fuzzy
-#| msgid "Co_mpare"
 msgid "Compare"
-msgstr "_Usporedi"
+msgstr "Usporedi"
 
 #: ../gramps/gui/fs/tools_window.py:364
 msgid "Sync from FamilySearch"
-msgstr ""
+msgstr "Sinkroniziraj iz FamilySearcha"
 
 #: ../gramps/gui/fs/tools_window.py:367
 msgid "Sync to FamilySearch..."
-msgstr ""
+msgstr "Sinkroniziraj u FamilySearch …"
 
 #: ../gramps/gui/fs/tools_window.py:369
 msgid "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
 msgstr ""
+"Prepiši odabrana FamilySearch polja s Gramps vrijednostima (bez brisanja)."
 
 #: ../gramps/gui/fs/tools_window.py:372
 msgid "Export to FamilySearch (basic)..."
-msgstr ""
+msgstr "Izvoz u FamilySearch (osnovno) …"
 
 #: ../gramps/gui/fs/tools_window.py:375
 msgid ""
 "Create missing people on FamilySearch and link relationships (name + birth/"
 "death)."
 msgstr ""
+"Stvori nedostajuće osobe u FamilySearchu i poveži odnose (ime + rođenje/smrt)"
+"."
 
 #: ../gramps/gui/fs/tools_window.py:389
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import relatives"
-msgstr "Uvoz nije uspio"
+msgstr "Uvezi srodnike"
 
 #: ../gramps/gui/fs/tools_window.py:393
-#, fuzzy
-#| msgid "Import Pro-Gen"
 msgid "Import Parents"
-msgstr "Uvezi Pro-Gen"
+msgstr "Uvezi roditelje"
 
 #: ../gramps/gui/fs/tools_window.py:394
-#, fuzzy
-#| msgid "Indent Spouses"
 msgid "Import Spouse"
-msgstr "Uvuci supružnike"
+msgstr "Uvezi supružnike"
 
 #: ../gramps/gui/fs/tools_window.py:395
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import Children"
-msgstr "Uvoz nije uspio"
+msgstr "Uvezi djecu"
 
 #: ../gramps/gui/fs/tools_window.py:400 ../gramps/gui/plug/tool.py:71
 msgid "Utilities"
 msgstr "Pomoćni programi"
 
 #: ../gramps/gui/fs/tools_window.py:403
-#, fuzzy
-#| msgid "Tags"
 msgid "Tags..."
-msgstr "Oznake"
+msgstr "Oznake …"
 
 #: ../gramps/gui/fs/tools_window.py:404
-#, fuzzy
-#| msgid "Cleared"
 msgid "Clear Cache"
-msgstr "Odobreno"
+msgstr "Isparzni predmemoriju"
 
 #: ../gramps/gui/fs/tools_window.py:674
-#, fuzzy, python-format
-#| msgid "%(persons)s and %(name)s (%(id)s)"
+#, python-format
 msgid "Editor person: %(name)s  [%(gid)s]"
-msgstr "%(persons)s i %(name)s (%(id)s)"
+msgstr "Uređivač osobe: %(name)s [%(gid)s]"
 
 #: ../gramps/gui/fs/tools_window.py:682
-#, fuzzy, python-format
-#| msgid "Person: %(name)s"
+#, python-format
 msgid "Editor person: %(name)s"
-msgstr "Osoba: %(name)s"
+msgstr "Uređivač osobe: %(name)s"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
 msgid "Build FSID list (1/%(total)d)"
-msgstr ""
+msgstr "Izgradi popis FSID-a (1/%(total)d)"
 
 #: ../gramps/gui/fs/utils/index.py:57 ../gramps/gui/fs/utils/index.py:61
-#, fuzzy, python-format
-#| msgid "Family places for %s"
+#, python-format
 msgid "FamilySearch duplicate ID: %s "
-msgstr "Mjesta obitelji za %s"
+msgstr "Dupli FamilySearch ID: %s "
 
 #: ../gramps/gui/fs/utils/index.py:60
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Duplicate FSFTID"
-msgstr "Dupla obitelj"
+msgstr "Dupli FSFTID"
 
 #: ../gramps/gui/fs/utils/index.py:62
-#, fuzzy
-#| msgid "Continue"
 msgid "_Continue warning"
-msgstr "Nastavi"
+msgstr "Upozorenje za _Nastavi"
 
 #: ../gramps/gui/fs/utils/index.py:63
-#, fuzzy
-#| msgid "Undo history warning"
 msgid "_Stop warning"
-msgstr "Upozorenje za povijest poništavanja"
+msgstr "Upozorenje za _Prekini"
 
 #: ../gramps/gui/fs/utils/index.py:73
 #, python-format
 msgid "Build FSID list for places (2/%(total)d)"
-msgstr ""
+msgstr "Izgradi popis FSID-a za mjesta (2/%(total)d)"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19038,8 +18748,7 @@ msgstr "Dijeljene informacije"
 #: ../gramps/gui/glade/editperson.glade:314
 msgid ""
 "An identification of what type of Name this is, eg. Birth Name, Married Name."
-msgstr ""
-"Identifikacija vrste imena, npr. rođeno ime, ime nakon sklapanja braka."
+msgstr "Identifikacija vrste imena, npr. rođeno ime, ime nakon sklapanja braka."
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
@@ -19232,8 +18941,8 @@ msgid ""
 msgstr ""
 "Koristi više od jednog prezimena\n"
 "Označuje, da je prezime sastavljeno od više dijelova. Svako prezime ima svoj "
-"vlastiti prefiks i mogući poveznik sa slijedećim prezimenom. Npr., prezime "
-"„Ramón y Cajal” može biti upisano kao „Ramón”, koje je naslijeđeno od oca, "
+"vlastiti prefiks i mogući poveznik sa slijedećim prezimenom. Npr., prezime „"
+"Ramón y Cajal” može biti upisano kao „Ramón”, koje je naslijeđeno od oca, "
 "poveznika „y”, te „Cajal”, koje je naslijeđeno od majke."
 
 #: ../gramps/gui/glade/editperson.glade:395
@@ -19249,8 +18958,8 @@ msgid ""
 "An optional prefix for the family that is not used in sorting, such as "
 "\"de\" or \"van\"."
 msgstr ""
-"Opcionalni prefiks prezimena, koji se ne koristi za svrstavanje, kao npr. "
-"„de” ili „van”."
+"Opcionalni prefiks prezimena, koji se ne koristi za svrstavanje, kao npr. „de"
+"” ili „van”."
 
 #: ../gramps/gui/glade/editperson.glade:481
 msgid ""
@@ -20339,7 +20048,7 @@ msgstr ""
 "Međutim, ovu funkcionalnost možeš proširiti s dodatnim dodacima. Ovi dodaci "
 "omogućuju izvještaje, popise, prikaze, gramplete i razne druge funkcije. "
 "Ovdje možeš odabrati i instalirati dostupne dodatke preuzetih s Grampsove "
-"internetske web stranice. Ako sada zatvoriš ovaj prozor, dodatke možeš "
+"internetske web-stranice. Ako sada zatvoriš ovaj prozor, dodatke možeš "
 "instalirati i kasnije putem izbornika „Pomoć > Upravljač dodataka”."
 
 #: ../gramps/gui/glade/updateaddons.glade:103
@@ -20432,10 +20141,8 @@ msgid "_Family Trees"
 msgstr "_Rodoslovi"
 
 #: ../gramps/gui/grampsgui.py:57
-#, fuzzy
-#| msgid "Searching..."
 msgid "_FamilySearch Sign in..."
-msgstr "Traženje ..."
+msgstr "_FamilySearch prijava …"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Go"
@@ -20515,8 +20222,8 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "Tvoja PyGObject verzija ne zadovoljava uvjete.\n"
-"Za pokretanje Grampsa potrebna je barem pygobject verzija %(major)d."
-"%(feature)d.%(minor)d.\n"
+"Za pokretanje Grampsa potrebna je barem pygobject verzija %(major)d.%"
+"(feature)d.%(minor)d.\n"
 "\n"
 "Gramps će sada isključiti."
 
@@ -20569,6 +20276,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Python kompiliran bez podrške za gettext u locale modulu.\n"
+"\n"
+"Gramps će sada zatvoriti."
 
 #: ../gramps/gui/grampsgui.py:507
 msgid "Gramps detected an incomplete GTK installation"
@@ -21253,7 +20963,7 @@ msgstr "Obnovi zadane vrijednosti projekta"
 
 #: ../gramps/gui/plug/_windows.py:944
 msgid "Are you sure?"
-msgstr "Sigurno?"
+msgstr "Stvarno?"
 
 #: ../gramps/gui/plug/_windows.py:968
 msgid "Checking Addons Failed"
@@ -21551,8 +21261,8 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"Kopija tvojih podataka je uspješno spremljena. Možeš pritisnuti gumb "
-"„Zatvori” za nastavak rada.\n"
+"Kopija tvojih podataka je uspješno spremljena. Možeš pritisnuti gumb „Zatvori"
+"” za nastavak rada.\n"
 "\n"
 "Napomena: baza podataka koja je trenutačno otvorena u tvom Grampsu, NIJE "
 "datoteka koja je upravo spremljena. Svako daljnje mijenjanje podataka u njoj "
@@ -22341,7 +22051,7 @@ msgstr "Potvrda brisanja"
 
 #: ../gramps/gui/undohistory.py:196
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "Zaista želiš isprazniti povijest poništavanja?"
+msgstr "Stvarno želiš isprazniti povijest poništavanja?"
 
 #: ../gramps/gui/undohistory.py:197 ../gramps/plugins/gramplet/eval.py:83
 msgid "Clear"
@@ -22399,10 +22109,8 @@ msgid "Cannot open new citation editor"
 msgstr "Nije moguće otvoriti uređivač novog citata"
 
 #: ../gramps/gui/viewmanager.py:348
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch tools"
-msgstr "Boje obitelji"
+msgstr "FamilySearch alati"
 
 #: ../gramps/gui/viewmanager.py:391 ../gramps/gui/viewmanager.py:1237
 msgid "No Family Tree"
@@ -22410,19 +22118,15 @@ msgstr "Nema rodoslova"
 
 #: ../gramps/gui/viewmanager.py:407
 msgid "Not logged in to FamilySearch."
-msgstr ""
+msgstr "Nisi prijavljen/a na FamilySearch."
 
 #: ../gramps/gui/viewmanager.py:553
-#, fuzzy
-#| msgid "Use complete sentences"
 msgid "User consent declined"
-msgstr "Koristi potpune rečenice"
+msgstr "Pristanak korisnika je odbijen"
 
 #: ../gramps/gui/viewmanager.py:561
-#, fuzzy
-#| msgid "Configuration error:"
 msgid "Authorization error"
-msgstr "Greška u konfiguraciji:"
+msgstr "Greška autorizacije"
 
 #: ../gramps/gui/viewmanager.py:681
 msgid "Registering plugins..."
@@ -22515,9 +22219,9 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Ako nisi u stanju ispraviti grešku, onda možeš prijaviti grešku na "
-"%(gramps_bugtracker_url)s ili kontaktiraj tvorca ovog prikaza "
-"(%(firstauthoremail)s).\n"
+"Ako nisi u stanju ispraviti grešku, onda možeš prijaviti grešku na %"
+"(gramps_bugtracker_url)s ili kontaktiraj tvorca ovog prikaza (%"
+"(firstauthoremail)s).\n"
 "\n"
 "Ako ne želiš da Gramps ponovo pokuša učitatati prikaz, možeš ga sakriti "
 "pomoću funikcije „Upravljač dodataka” u izborniku „Pomoć”."
@@ -22544,9 +22248,9 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Ako nisi u stanju ispraviti grešku, onda možeš prijaviti grešku na "
-"%(gramps_bugtracker_url)s ili kontaktiraj tvorca ovog dodatka "
-"(%(firstauthoremail)s).\n"
+"Ako nisi u stanju ispraviti grešku, onda možeš prijaviti grešku na %"
+"(gramps_bugtracker_url)s ili kontaktiraj tvorca ovog dodatka (%"
+"(firstauthoremail)s).\n"
 "\n"
 "Ako ne želiš da Gramps ponovo pokuša učitatati ovaj dodatak, možeš ga "
 "sakriti pomoću funikcije „Upravljač dodataka” u izborniku „Pomoć”."
@@ -22736,8 +22440,8 @@ msgid ""
 "person you want as 'Home Person', then confirm your choice via the menu Edit "
 "-> Set Home Person."
 msgstr ""
-"Moraš postaviti jednu „početnu osobu” do koje želiš ići. Odaberi prikaz "
-"„Osobe”, odaberi osobu koju želiš imati kao „početnu osobu”, zatim potvrdi "
+"Moraš postaviti jednu „početnu osobu” do koje želiš ići. Odaberi prikaz „"
+"Osobe”, odaberi osobu koju želiš imati kao „početnu osobu”, zatim potvrdi "
 "tvoj izbor putem izbornika „Uredi > Postavi početnu osobu”."
 
 #: ../gramps/gui/views/navigationview.py:338
@@ -23456,8 +23160,8 @@ msgid ""
 "pillow or python3-pillow"
 msgstr ""
 "Izrada jpg slika iz ne-jpg slika u LaTex dokumentima neće biti moguća. "
-"Koristi tvoj upravljač paketa za instalaciju paketa „python-imaging”, "
-"„python-pillow” ili „python3-pillow”"
+"Koristi tvoj upravljač paketa za instalaciju paketa „python-imaging”, „"
+"python-pillow” ili „python3-pillow”"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1217
 #, python-format
@@ -25247,7 +24951,7 @@ msgstr "Neuspio GEDCOM izvoz"
 
 #: ../gramps/plugins/export/exportgeneweb.py:98
 msgid "No families matched by selected filter"
-msgstr "Nema obitelji, koje odgovaraju odabranom filtru"
+msgstr "Nema obitelji koje odgovaraju odabranom filtru"
 
 #: ../gramps/plugins/export/exportpkg.py:212
 #: ../gramps/plugins/export/exportxml.py:150
@@ -25285,10 +24989,10 @@ msgid ""
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"Upiši ispravan datum (u obliku YYYY-MM-DD) u polje i pritisni gumb "
-"„Pokreni”. To će izračunati starost svih osoba u rodoslovu na taj datum. "
-"Nakon toga možeš svrstati podatke po starosti. Za prikaz ili uređivanje "
-"pritisni dvaput na redak."
+"Upiši ispravan datum (u obliku YYYY-MM-DD) u polje i pritisni gumb „Pokreni"
+"”. To će izračunati starost svih osoba u rodoslovu na taj datum. Nakon toga "
+"možeš svrstati podatke po starosti. Za prikaz ili uređivanje pritisni dvaput "
+"na redak."
 
 #: ../gramps/plugins/gramplet/agestats.py:84
 #: ../gramps/plugins/gramplet/agestats.py:97
@@ -25505,8 +25209,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
-"  2. %(gramps_FAQ_html_start)s%(faq_section)sKako upisati dodatne supružnike?"
-"%(html_end)s\n"
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sKako upisati dodatne "
+"supružnike?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:94
 #, python-format
@@ -25514,8 +25218,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  3. %(gramps_FAQ_html_start)s%(faq_section)sKako ukloniti supružnika?"
-"%(html_end)s\n"
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sKako ukloniti supružnika?%"
+"(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:101
 msgid "Backups and Updates"
@@ -25527,8 +25231,8 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
-"  4. %(gramps_FAQ_html_start)s%(faq_section)sKako stvoriti sigurnosnu kopiju?"
-"%(html_end)s\n"
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sKako stvoriti sigurnosnu "
+"kopiju?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:115
 #, python-format
@@ -25549,8 +25253,8 @@ msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
 msgstr ""
-"  6. %(gramps_manual_html_start)s%(section)sKako unijeti podatke o brakovima?"
-"%(html_end)s\n"
+"  6. %(gramps_manual_html_start)s%(section)sKako unijeti podatke o "
+"brakovima?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:147
 #, python-format
@@ -25667,16 +25371,12 @@ msgid "Total people"
 msgstr "Ukupni broj osoba"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:29
-#, fuzzy
-#| msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
+msgstr "Gramps_6.1_Wiki_Priručnik_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
+msgstr "Gramps_6.1_Wiki_Manual_–_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:50
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:58
@@ -25703,55 +25403,39 @@ msgstr "Gramplet prikazuje kalendar i događaje na određeni dan u prošlosti"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:98
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:105
-#, fuzzy
-#| msgid "Web Calendar"
 msgid "Person's birth Calendar"
-msgstr "Web kalendar"
+msgstr "Kalendar rođenja osobe"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:99
-#, fuzzy
-#| msgid "Gramplet showing the notes for a person"
 msgid "Gramplet showing the birth for a person on the calendar"
-msgstr "Gramplet prikazuje zabilješke za osobu"
+msgstr "Gramplet prikazuje rođenje osobe u kalendaru"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:113
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:120
-#, fuzzy
-#| msgid "person's death"
 msgid "Person's death Calendar"
-msgstr "smrt osobe"
+msgstr "Kalendar smrti osobe"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:114
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the death for a person on the calendar"
-msgstr "Gramplet prikazuje događaje za osobu"
+msgstr "Gramplet prikazuje smrt osobe u kalendaru"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:128
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
-#, fuzzy
-#| msgid "My Family Calendar"
 msgid "Family Calendar"
-msgstr "Moj obiteljski kalendar"
+msgstr "Obiteljski kalendar"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:129
-#, fuzzy
-#| msgid "Gramplet showing the notes for a family"
 msgid "Gramplet showing the marriage for a family on the calendar"
-msgstr "Gramplet prikazuje zabilješke za obitelj"
+msgstr "Gramplet prikazuje vjenčanje obitelji u kalendaru"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:143
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:150
-#, fuzzy
-#| msgid "vCalendar"
 msgid "Event Calendar"
-msgstr "vCalendar"
+msgstr "Kalendar događaja"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:144
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Gramplet showing the date for an event on the calendar"
-msgstr "Gramplet prikazuje zabilješke za događaj"
+msgstr "Gramplet prikazuje datum događaja u kalendaru"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:158
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
@@ -27002,8 +26686,8 @@ msgstr ""
 "rodoslov.\n"
 "\n"
 "Za stvaranje novog rodoslova (koji se ponekad zove i „baza podataka”) "
-"odaberi „Rodoslovi” u izborniku, odaberi „Upravljaj rodoslovima”, pritisni "
-"„Novi” i imenuj rodoslov. Pritisni gumb „Učitaj rodoslov” za aktiviranje "
+"odaberi „Rodoslovi” u izborniku, odaberi „Upravljaj rodoslovima”, pritisni „"
+"Novi” i imenuj rodoslov. Pritisni gumb „Učitaj rodoslov” za aktiviranje "
 "rodoslova i prihvaćanje podataka unosom prve obitelji ili uvozom rodoslova. "
 "Za detaljne informacije, koristi doljnje poveznice.\n"
 "\n"
@@ -27045,8 +26729,8 @@ msgstr ""
 "Sada ćeš htjeti početi unijeti svoju prvu obitelj, a to počinje s prvom "
 "osobom.\n"
 "\n"
-"Prijeđi na prikaz „Osobe” i u izborniku pritisni \"Dodaj\", zatim pritisni "
-"„Osoba” (ili pomoću ikone [+]) otvorit će se prozor za unos osobe. Unos "
+"Prijeđi na prikaz „Osobe” i u izborniku pritisni \"Dodaj\", zatim pritisni „"
+"Osoba” (ili pomoću ikone [+]) otvorit će se prozor za unos osobe. Unos "
 "osnovnih podataka i spremanje zapisa daje vam početnu točku. Odaberi zapis "
 "ove osobe i prijeđi na prikaz „Srodstva”.\n"
 "\n"
@@ -27382,7 +27066,7 @@ msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
 msgstr ""
-"Osobe i obitelji, koje nisu u izravnom srodtsvu s odabranim osobama, će biti "
+"Osobe i obitelji koje nisu u izravnom srodtsvu s odabranim osobama, će biti "
 "izuzete pri utvrđivanju obiteljskih grana."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:171
@@ -27792,16 +27476,12 @@ msgid "Whether to include dates and/or places"
 msgstr "Da li uključiti datume i/ili mjesta"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:984
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only valid dates"
-msgstr "_Pronađi neispravne datume"
+msgstr "Samo valjani datumi"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:985
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only show valid dates."
-msgstr "_Pronađi neispravne datume"
+msgstr "Prikaži samo valjane datume."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:988
 msgid "Show all family nodes"
@@ -27825,8 +27505,8 @@ msgid ""
 "Web Site' report."
 msgstr ""
 "Uključi URL u svako čvorište dijagrama, za generiranje PDF i imagemap "
-"datoteka s aktivnim poveznicama na stranice koje su generirane izvještajem "
-"„Narativna web stranica”."
+"datoteka s aktivnim poveznicama na stranice koje su generirane izvještajem „"
+"Narativna web stranica”."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1010
 #: ../gramps/plugins/textreport/birthdayreport.py:656
@@ -27889,8 +27569,7 @@ msgstr "Prikaži obiteljska čvorišta"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1092
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
-"Obitelji će biti prikazane kao elipse, povezane s roditeljima i djecom."
+msgstr "Obitelji će biti prikazane kao elipse, povezane s roditeljima i djecom."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1096
 msgid "Parent grouping"
@@ -28517,9 +28196,9 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"Rodoslov u koji su uvezeni podatci, koristi osnovnu stazu do medija: "
-"%(orig_path)s. Uvezeni medijski objekti koriste relativnu stazu u odnosu na: "
-"%(path)s. Možeš promijeniti stazu do medija u postavkama ili ju pretvoriti u "
+"Rodoslov u koji su uvezeni podatci, koristi osnovnu stazu do medija: %"
+"(orig_path)s. Uvezeni medijski objekti koriste relativnu stazu u odnosu na: %"
+"(path)s. Možeš promijeniti stazu do medija u postavkama ili ju pretvoriti u "
 "već postojeću osnovnu stazu medija. Možeš to učiniti premještanjem medijskih "
 "datoteka na novo mjesto, te u upravljaču medija koristiti opciju „Zamijeni "
 "podniz znakova u stazi”, za postavljanje točne staze do tvojih medijskih "
@@ -28547,8 +28226,8 @@ msgstr ""
 "kopiju Grampsa verzije 3.0.x i uvezi tvoju bazu podataka u tu verziju. Zatim "
 "izvezi kopiju tvojih podataka u Gramps XML (Rodoslov). Zatim nadogradi na "
 "najnoviju Gramps verziju (npr. ovu verziju), stvori novu praznu bazu "
-"podataka te uvezi Gramps XML u tu verziju. Pogledaj: "
-"%(gramps_wiki_migrate_two_to_three_url)s"
+"podataka te uvezi Gramps XML u tu verziju. Pogledaj: %"
+"(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:44
 msgid "_Ok"
@@ -29029,9 +28708,9 @@ msgid ""
 "while you are running an older version %(older)s. The file will not be "
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
-".gramps datoteka koju pokušavaš uvesti je stvorena s Gramps verzijom "
-"%(newer)s. Ti koristiš stariju verziju %(older)s. Datoteka se neće uvesti. "
-"Nadogradi Gramps na najnoviju verziju i pokušaj ponovo."
+".gramps datoteka koju pokušavaš uvesti je stvorena s Gramps verzijom %(newer)"
+"s. Ti koristiš stariju verziju %(older)s. Datoteka se neće uvesti. Nadogradi "
+"Gramps na najnoviju verziju i pokušaj ponovo."
 
 #: ../gramps/plugins/importer/importxml.py:1169
 #, python-format
@@ -29045,8 +28724,8 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 " for more info."
 msgstr ""
-".gramps datoteka koju pokušavaš uvesti je stvorena s Gramps verzijom "
-"%(oldgramps)s. Ti koristiš noviju verziju %(newgramps)s.\n"
+".gramps datoteka koju pokušavaš uvesti je stvorena s Gramps verzijom %"
+"(oldgramps)s. Ti koristiš noviju verziju %(newgramps)s.\n"
 "\n"
 "Datoteka se neće uvesti. Koristi stariju Gramps verziju, koja podržava "
 "verziju %(xmlversion)s xml formata.\n"
@@ -29070,8 +28749,8 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 "for more info."
 msgstr ""
-".gramps datoteka koju pokušavaš uvesti je stvorena s Gramps verzijom "
-"%(oldgramps)s. Ti koristiš noviju verziju %(newgramps)s.\n"
+".gramps datoteka koju pokušavaš uvesti je stvorena s Gramps verzijom %"
+"(oldgramps)s. Ti koristiš noviju verziju %(newgramps)s.\n"
 "\n"
 "Provjeri ispravnost i cjelovitost uvezenih podataka. U slučaju problema "
 "prijavi grešku, a u međuvremenu koristi stariju verziju Grampsa za uvoz "
@@ -29301,9 +28980,9 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
-"Greška: obitelj „%(family)s” (učitano kao @%(orig_family)s@) osoba "
-"%(person)s (učitano kao %(orig_person)s) nije član referencirane obitelji. "
-"Obiteljska referenca je uklonjena od osobe"
+"Greška: obitelj „%(family)s” (učitano kao @%(orig_family)s@) osoba %(person)"
+"s (učitano kao %(orig_person)s) nije član referencirane obitelji. Obiteljska "
+"referenca je uklonjena od osobe"
 
 #: ../gramps/plugins/lib/libgedcom.py:3791
 #, python-format
@@ -29725,8 +29404,8 @@ msgstr "Rođenje %(birth_date)s u mjestu %(birth_place)s."
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
-"%(unknown_gender_name)s je rođen/a %(modified_date)s u mjestu "
-"%(birth_place)s."
+"%(unknown_gender_name)s je rođen/a %(modified_date)s u mjestu %(birth_place)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:130
 #, python-format
@@ -29962,8 +29641,8 @@ msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(male_name)s je umro %(death_date)s u mjestu %(death_place)s u dobi od "
-"%(age)s."
+"%(male_name)s je umro %(death_date)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:237
 #, python-format
@@ -29976,8 +29655,8 @@ msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(female_name)s je umrla %(death_date)s u mjestu %(death_place)s u dobi od "
-"%(age)s."
+"%(female_name)s je umrla %(death_date)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:245
 #, python-format
@@ -30048,8 +29727,8 @@ msgstr "%(male_name)s je umro %(death_date)s u mjestu %(death_place)s."
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(male_name)s je umro %(death_date)s u mjestu %(death_place)s u dobi od "
-"%(age)s."
+"%(male_name)s je umro %(death_date)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:280
 #, python-format
@@ -30061,8 +29740,8 @@ msgstr "%(female_name)s je umrla %(death_date)s u mjestu %(death_place)s."
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(female_name)s je umrla %(death_date)s u mjestu %(death_place)s u dobi od "
-"%(age)s."
+"%(female_name)s je umrla %(death_date)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:288
 #, python-format
@@ -30256,8 +29935,8 @@ msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(male_name)s je umro %(month_year)s u mjestu %(death_place)s u dobi od "
-"%(age)s."
+"%(male_name)s je umro %(month_year)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:393
 #, python-format
@@ -30270,8 +29949,8 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(female_name)s je umrla %(month_year)s u mjestu %(death_place)s u dobi od "
-"%(age)s."
+"%(female_name)s je umrla %(month_year)s u mjestu %(death_place)s u dobi od %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:401
 #, python-format
@@ -30394,8 +30073,8 @@ msgstr "%(unknown_gender_name)s je umro/la u mjestu %(death_place)s."
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s je umro/la u mjestu %(death_place)s u dobi od "
-"%(age)s."
+"%(unknown_gender_name)s je umro/la u mjestu %(death_place)s u dobi od %(age)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:463
 #, python-format
@@ -30497,8 +30176,8 @@ msgstr "Smrt (%(age)s)."
 msgid ""
 "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je pokopan %(burial_date)s u mjestu "
-"%(burial_place)s%(endnotes)s."
+"%(male_name)s je pokopan %(burial_date)s u mjestu %(burial_place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:536
 #, python-format
@@ -30511,8 +30190,8 @@ msgid ""
 "%(female_name)s was buried on %(burial_date)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je pokopana %(burial_date)s u mjestu "
-"%(burial_place)s%(endnotes)s."
+"%(female_name)s je pokopana %(burial_date)s u mjestu %(burial_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:542
 #, python-format
@@ -30525,8 +30204,8 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je pokopan/a %(burial_date)s u mjestu "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s je pokopan/a %(burial_date)s u mjestu %(burial_place)"
+"s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:548
 #, python-format
@@ -30580,8 +30259,8 @@ msgstr "Pokopan/a %(burial_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je pokopan %(month_year)s u mjestu "
-"%(burial_place)s%(endnotes)s."
+"%(male_name)s je pokopan %(month_year)s u mjestu %(burial_place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:574
 #, python-format
@@ -30593,8 +30272,8 @@ msgstr "Pokopan je %(month_year)s u mjestu %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je pokopana %(month_year)s u mjestu "
-"%(burial_place)s%(endnotes)s."
+"%(female_name)s je pokopana %(month_year)s u mjestu %(burial_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:580
 #, python-format
@@ -30607,8 +30286,8 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je pokopan/a %(month_year)s u mjestu "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s je pokopan/a %(month_year)s u mjestu %(burial_place)"
+"s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:586
 #, python-format
@@ -30662,8 +30341,8 @@ msgstr "Pokop %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je pokopan %(modified_date)s u mjestu "
-"%(burial_place)s%(endnotes)s."
+"%(male_name)s je pokopan %(modified_date)s u mjestu %(burial_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:612
 #, python-format
@@ -30675,8 +30354,8 @@ msgstr "Pokopan je %(modified_date)s u mjestu %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je pokopana %(modified_date)s u mjestu "
-"%(burial_place)s%(endnotes)s."
+"%(female_name)s je pokopana %(modified_date)s u mjestu %(burial_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:618
 #, python-format
@@ -30689,16 +30368,16 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je pokopan/a %(modified_date)s u mjestu "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s je pokopan/a %(modified_date)s u mjestu %"
+"(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:624
 #, python-format
 msgid ""
 "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba pokopana %(modified_date)s u mjestu "
-"%(burial_place)s%(endnotes)s."
+"Ova je osoba pokopana %(modified_date)s u mjestu %(burial_place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:626
 #, python-format
@@ -30817,8 +30496,8 @@ msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je kršten %(baptism_date)s u mjestu "
-"%(baptism_place)s%(endnotes)s."
+"%(male_name)s je kršten %(baptism_date)s u mjestu %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:686
 #, python-format
@@ -30831,8 +30510,8 @@ msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je krštena %(baptism_date)s u mjestu "
-"%(baptism_place)s%(endnotes)s."
+"%(female_name)s je krštena %(baptism_date)s u mjestu %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:692
 #, python-format
@@ -30845,8 +30524,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je kršten/a %(baptism_date)s u mjestu "
-"%(baptism_place)s%(endnotes)s."
+"%(unknown_gender_name)s je kršten/a %(baptism_date)s u mjestu %"
+"(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:699
 #, python-format
@@ -30902,8 +30581,8 @@ msgid ""
 "%(male_name)s was baptized in %(month_year)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je kršten %(month_year)s u mjestu "
-"%(baptism_place)s%(endnotes)s."
+"%(male_name)s je kršten %(month_year)s u mjestu %(baptism_place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:726
 #, python-format
@@ -30916,8 +30595,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je krštena %(month_year)s u mjestu "
-"%(baptism_place)s%(endnotes)s."
+"%(female_name)s je krštena %(month_year)s u mjestu %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:732
 #, python-format
@@ -30930,8 +30609,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je kršten/a %(month_year)s u mjestu "
-"%(baptism_place)s%(endnotes)s."
+"%(unknown_gender_name)s je kršten/a %(month_year)s u mjestu %(baptism_place)"
+"s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:739
 #, python-format
@@ -30986,8 +30665,8 @@ msgid ""
 "%(male_name)s was baptized %(modified_date)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je kršten %(modified_date)s u mjestu "
-"%(baptism_place)s%(endnotes)s."
+"%(male_name)s je kršten %(modified_date)s u mjestu %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:766
 #, python-format
@@ -31000,8 +30679,8 @@ msgid ""
 "%(female_name)s was baptized %(modified_date)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je krštena %(modified_date)s u mjestu "
-"%(baptism_place)s%(endnotes)s."
+"%(female_name)s je krštena %(modified_date)s u mjestu %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:772
 #, python-format
@@ -31014,16 +30693,16 @@ msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je kršten/a %(modified_date)s u mjestu "
-"%(baptism_place)s%(endnotes)s."
+"%(unknown_gender_name)s je kršten/a %(modified_date)s u mjestu %"
+"(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:779
 #, python-format
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba krštena %(modified_date)s u mjestu "
-"%(baptism_place)s%(endnotes)s."
+"Ova je osoba krštena %(modified_date)s u mjestu %(baptism_place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:782
 #, python-format
@@ -31142,8 +30821,8 @@ msgid ""
 "%(male_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je kršten %(christening_date)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"%(male_name)s je kršten %(christening_date)s u mjestu %(christening_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:844
 #, python-format
@@ -31159,8 +30838,8 @@ msgid ""
 "%(female_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je krštena %(christening_date)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"%(female_name)s je krštena %(christening_date)s u mjestu %(christening_place)"
+"s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:852
 #, python-format
@@ -31176,8 +30855,8 @@ msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je kršten/a %(christening_date)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s je kršten/a %(christening_date)s u mjestu %"
+"(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:860
 #, python-format
@@ -31185,8 +30864,8 @@ msgid ""
 "This person was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba krštena %(christening_date)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"Ova je osoba krštena %(christening_date)s u mjestu %(christening_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:864
 #, python-format
@@ -31236,8 +30915,8 @@ msgid ""
 "%(male_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je kršten %(month_year)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"%(male_name)s je kršten %(month_year)s u mjestu %(christening_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:891
 #, python-format
@@ -31251,8 +30930,8 @@ msgid ""
 "%(female_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je krštena %(month_year)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"%(female_name)s je krštena %(month_year)s u mjestu %(christening_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:897
 #, python-format
@@ -31266,8 +30945,8 @@ msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je kršten/a %(month_year)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s je kršten/a %(month_year)s u mjestu %"
+"(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:904
 #, python-format
@@ -31275,8 +30954,8 @@ msgid ""
 "This person was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba krštena %(month_year)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"Ova je osoba krštena %(month_year)s u mjestu %(christening_place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:907
 #, python-format
@@ -31324,15 +31003,14 @@ msgid ""
 "%(male_name)s was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s je kršten %(modified_date)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"%(male_name)s je kršten %(modified_date)s u mjestu %(christening_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:931
 #, python-format
 msgid ""
 "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr ""
-"Kršten je %(modified_date)s u mjestu %(christening_place)s%(endnotes)s."
+msgstr "Kršten je %(modified_date)s u mjestu %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:935
 #, python-format
@@ -31340,8 +31018,8 @@ msgid ""
 "%(female_name)s was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s je krštena %(modified_date)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"%(female_name)s je krštena %(modified_date)s u mjestu %(christening_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:937
 #, python-format
@@ -31356,8 +31034,8 @@ msgid ""
 "%(unknown_gender_name)s was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je kršten/a %(modified_date)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s je kršten/a %(modified_date)s u mjestu %"
+"(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:944
 #, python-format
@@ -31365,8 +31043,8 @@ msgid ""
 "This person was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba krštena %(modified_date)s u mjestu "
-"%(christening_place)s%(endnotes)s."
+"Ova je osoba krštena %(modified_date)s u mjestu %(christening_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:947
 #, python-format
@@ -31433,8 +31111,8 @@ msgstr "Krštena je u mjestu %(christening_place)s%(endnotes)s."
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s je kršten/a u mjestu "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s je kršten/a u mjestu %(christening_place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:979
 #, python-format
@@ -31711,24 +31389,24 @@ msgstr "Kći od %(mother)s."
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba sklopila brak sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba sklopila brak sa %(spouse)s %(partial_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1123
 #, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba sklopila brak sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba sklopila brak sa %(spouse)s %(full_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1124
 #, python-format
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba sklopila brak sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba sklopila brak sa %(spouse)s %(modified_date)s u mjestu %(place)"
+"s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
@@ -31748,8 +31426,7 @@ msgstr "Oženio je %(spouse)s %(modified_date)s u mjestu %(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1132
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Udala se za %(spouse)s %(partial_date)s u mjestu %(place)s%(endnotes)s."
+msgstr "Udala se za %(spouse)s %(partial_date)s u mjestu %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1133
 #, python-format
@@ -31778,8 +31455,8 @@ msgstr ""
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Sklopljen brak sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Sklopljen brak sa %(spouse)s %(modified_date)s u mjestu %(place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -31787,8 +31464,8 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba sklopila brak i sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba sklopila brak i sa %(spouse)s %(partial_date)s u mjestu %(place)"
+"s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1149
 #, python-format
@@ -31796,8 +31473,8 @@ msgid ""
 "This person also married %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba sklopila brak i sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba sklopila brak i sa %(spouse)s %(full_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1152
 #, python-format
@@ -31805,15 +31482,14 @@ msgid ""
 "This person also married %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba sklopila brak i sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba sklopila brak i sa %(spouse)s %(modified_date)s u mjestu %"
+"(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1156
 #, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Oženio je i %(spouse)s %(partial_date)s u mjestu %(place)s%(endnotes)s."
+msgstr "Oženio je i %(spouse)s %(partial_date)s u mjestu %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1157
 #, python-format
@@ -31848,22 +31524,22 @@ msgstr ""
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Osim toga, sklopljen brak sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Osim toga, sklopljen brak sa %(spouse)s %(partial_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1167
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Osim toga, sklopljen brak sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Osim toga, sklopljen brak sa %(spouse)s %(full_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1168
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Osim toga, sklopljen brak sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Osim toga, sklopljen brak sa %(spouse)s %(modified_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1174
 #, python-format
@@ -31878,8 +31554,7 @@ msgstr "Ova je osoba sklopila brak sa %(spouse)s %(full_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1176
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Ova je osoba sklopila brak sa %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Ova je osoba sklopila brak sa %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1179
 #, python-format
@@ -32028,8 +31703,7 @@ msgstr "Udala se i za %(spouse)s u mjestu %(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1229
 #, python-format
 msgid "Also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Osim toga, sklopljen brak sa %(spouse)s u mjestu %(place)s%(endnotes)s."
+msgstr "Osim toga, sklopljen brak sa %(spouse)s u mjestu %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1233
 #, python-format
@@ -32077,8 +31751,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala nevjenčanu vezu sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala nevjenčanu vezu sa %(spouse)s %(partial_date)s u mjestu %"
+"(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1257
 #, python-format
@@ -32086,8 +31760,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala nevjenčanu vezu sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala nevjenčanu vezu sa %(spouse)s %(full_date)s u mjestu %"
+"(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1260
 #, python-format
@@ -32095,8 +31769,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala nevjenčanu vezu sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala nevjenčanu vezu sa %(spouse)s %(modified_date)s u mjestu %"
+"(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1265
 #, python-format
@@ -32104,8 +31778,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imao je nevjenčanu vezu sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imao je nevjenčanu vezu sa %(spouse)s %(partial_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1268
 #, python-format
@@ -32113,8 +31787,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imao je nevjenčanu vezu sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imao je nevjenčanu vezu sa %(spouse)s %(full_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1271
 #, python-format
@@ -32122,8 +31796,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imao je nevjenčanu vezu sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imao je nevjenčanu vezu sa %(spouse)s %(modified_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1276
 #, python-format
@@ -32131,8 +31805,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imala je nevjenčanu vezu sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imala je nevjenčanu vezu sa %(spouse)s %(partial_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1279
 #, python-format
@@ -32140,8 +31814,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imala je nevjenčanu vezu sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imala je nevjenčanu vezu sa %(spouse)s %(full_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1282
 #, python-format
@@ -32149,8 +31823,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imala je nevjenčanu vezu sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imala je nevjenčanu vezu sa %(spouse)s %(modified_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1287
 #: ../gramps/plugins/lib/libnarrate.py:1334
@@ -32159,8 +31833,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Nevjenčana veza sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Nevjenčana veza sa %(spouse)s %(partial_date)s u mjestu %(place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1290
 #: ../gramps/plugins/lib/libnarrate.py:1337
@@ -32178,8 +31852,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Nevjenčana veza sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Nevjenčana veza sa %(spouse)s %(modified_date)s u mjestu %(place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1301
 #, python-format
@@ -32196,8 +31870,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala nevjenčanu vezu i sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala nevjenčanu vezu i sa %(spouse)s %(full_date)s u mjestu %"
+"(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1307
 #, python-format
@@ -32214,8 +31888,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imao je nevjenčanu vezu i sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imao je nevjenčanu vezu i sa %(spouse)s %(partial_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1315
 #, python-format
@@ -32223,8 +31897,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imao je nevjenčanu vezu i sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imao je nevjenčanu vezu i sa %(spouse)s %(full_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1318
 #, python-format
@@ -32232,8 +31906,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imao je nevjenčanu vezu i sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imao je nevjenčanu vezu i sa %(spouse)s %(modified_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1323
 #, python-format
@@ -32241,8 +31915,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Imala je nevjenčanu vezu i sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imala je nevjenčanu vezu i sa %(spouse)s %(partial_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1326
 #, python-format
@@ -32250,8 +31924,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imala je nevjenčanu vezu i sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imala je nevjenčanu vezu i sa %(spouse)s %(full_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1329
 #, python-format
@@ -32259,8 +31933,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imala je nevjenčanu vezu i sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imala je nevjenčanu vezu i sa %(spouse)s %(modified_date)s u mjestu %(place)"
+"s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1348
 #, python-format
@@ -32268,8 +31942,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala nevjenčanu vezu sa %(spouse)s "
-"%(partial_date)s%(endnotes)s."
+"Ova je osoba imala nevjenčanu vezu sa %(spouse)s %(partial_date)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1351
 #, python-format
@@ -32285,8 +31959,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala nevjenčanu vezu sa %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"Ova je osoba imala nevjenčanu vezu sa %(spouse)s %(modified_date)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1359
 #, python-format
@@ -32351,8 +32025,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala nevjenčanu vezu i sa %(spouse)s "
-"%(partial_date)s%(endnotes)s."
+"Ova je osoba imala nevjenčanu vezu i sa %(spouse)s %(partial_date)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1392
 #, python-format
@@ -32368,8 +32042,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala nevjenčanu vezu i sa %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"Ova je osoba imala nevjenčanu vezu i sa %(spouse)s %(modified_date)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1400
 #, python-format
@@ -32411,8 +32085,7 @@ msgstr "Imala je nevjenčanu vezu i sa %(spouse)s %(full_date)s%(endnotes)s."
 msgid ""
 "She also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
-msgstr ""
-"Imala je nevjenčanu vezu i sa %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Imala je nevjenčanu vezu i sa %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1421
 #, python-format
@@ -32429,8 +32102,7 @@ msgstr "Osim toga, nevjenčana veza sa %(spouse)s %(full_date)s%(endnotes)s."
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Osim toga, nevjenčana veza sa %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Osim toga, nevjenčana veza sa %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1429
 #, python-format
@@ -32438,8 +32110,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala nevjenčanu vezu sa %(spouse)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala nevjenčanu vezu sa %(spouse)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1432
 #, python-format
@@ -32465,16 +32137,15 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala nevjenčanu vezu i sa %(spouse)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala nevjenčanu vezu i sa %(spouse)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1445
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in "
 "%(place)s%(endnotes)s."
-msgstr ""
-"Imao je nevjenčanu vezu i sa %(spouse)s u mjestu %(place)s%(endnotes)s."
+msgstr "Imao je nevjenčanu vezu i sa %(spouse)s u mjestu %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1448
 #, python-format
@@ -32527,8 +32198,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala vezu sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala vezu sa %(spouse)s %(partial_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1487
 #, python-format
@@ -32536,8 +32207,8 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala vezu sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala vezu sa %(spouse)s %(full_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1490
 #, python-format
@@ -32545,8 +32216,8 @@ msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala vezu sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala vezu sa %(spouse)s %(modified_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1495
 #, python-format
@@ -32618,8 +32289,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala vezu i sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala vezu i sa %(spouse)s %(partial_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1528
 #, python-format
@@ -32627,8 +32298,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala vezu i sa %(spouse)s %(full_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala vezu i sa %(spouse)s %(full_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1531
 #, python-format
@@ -32636,8 +32307,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ova je osoba imala vezu i sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Ova je osoba imala vezu i sa %(spouse)s %(modified_date)s u mjestu %(place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1536
 #, python-format
@@ -32661,8 +32332,8 @@ msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imao je vezu i sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imao je vezu i sa %(spouse)s %(modified_date)s u mjestu %(place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1547
 #, python-format
@@ -32670,8 +32341,8 @@ msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imala je vezu i sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imala je vezu i sa %(spouse)s %(partial_date)s u mjestu %(place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1550
 #, python-format
@@ -32687,16 +32358,16 @@ msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Imala je vezu i sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Imala je vezu i sa %(spouse)s %(modified_date)s u mjestu %(place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1558
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Osim toga, veza sa %(spouse)s %(partial_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Osim toga, veza sa %(spouse)s %(partial_date)s u mjestu %(place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1560
 #, python-format
@@ -32710,8 +32381,8 @@ msgstr ""
 msgid ""
 "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Osim toga, veza sa %(spouse)s %(modified_date)s u mjestu "
-"%(place)s%(endnotes)s."
+"Osim toga, veza sa %(spouse)s %(modified_date)s u mjestu %(place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1570
 #, python-format
@@ -32874,8 +32545,7 @@ msgstr "Veza sa %(spouse)s u mjestu %(place)s%(endnotes)s."
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Ova je osoba imala vezu i sa %(spouse)s u mjestu %(place)s%(endnotes)s."
+msgstr "Ova je osoba imala vezu i sa %(spouse)s u mjestu %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1645
 #, python-format
@@ -33809,8 +33479,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/placeselection.py:177
 msgid "The green values in the row correspond to the current place values."
-msgstr ""
-"Zelene vrijednosti u retku odgovaraju vrijednostima trenutačnog mjesta."
+msgstr "Zelene vrijednosti u retku odgovaraju vrijednostima trenutačnog mjesta."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:243
 msgid "New place with empty fields"
@@ -34123,7 +33792,7 @@ msgstr "svi mediji"
 #: ../gramps/plugins/quickview/filterbyname.py:58
 msgctxt "Filtering_on"
 msgid "all notes"
-msgstr "sve bilješke"
+msgstr "sve zabilješke"
 
 #: ../gramps/plugins/quickview/filterbyname.py:59
 msgctxt "Filtering_on"
@@ -34728,10 +34397,8 @@ msgstr "Pritisni za biranje prikaza"
 #: ../gramps/plugins/sidebar/favoritessidebar.py:79
 #: ../gramps/plugins/sidebar/favoritessidebar.py:81
 #: ../gramps/plugins/sidebar/favoritessidebar.py:219
-#, fuzzy
-#| msgid "Choose your dialect"
 msgid "Choose your favorite views"
-msgstr "Odaberi dijalekt"
+msgstr "Odaberi svoje omiljene prikaze"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:85
 #: ../gramps/plugins/tool/mediamanager.py:94
@@ -34740,20 +34407,16 @@ msgid "Help"
 msgstr "Pomoć"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:86
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select All"
-msgstr "Odaberi _sve"
+msgstr "Odaberi sve"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:87
-#, fuzzy
-#| msgid "Clear _All"
 msgid "Clear All"
-msgstr "Ukloni _sve"
+msgstr "Ukloni sve"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:136
 msgid "Switching_Navigator_modes"
-msgstr ""
+msgstr "Switching_Navigator_modes"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
 msgid "Category Sidebar"
@@ -34792,20 +34455,16 @@ msgid "Expander"
 msgstr "Stablasti izbornik"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:82
-#, fuzzy
-#| msgid "Category Sidebar"
 msgid "Favorites Sidebar"
-msgstr "Bočna traka kategorija"
+msgstr "Bočna traka favorita"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:83
-#, fuzzy
-#| msgid "Selection of views from lists with expanders"
 msgid "Selection of views from a views selector"
-msgstr "Odabir prikaza iz stablastih popisa"
+msgstr "Odabir prikaza iz selektora prikaza"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:91
 msgid "Favorites"
-msgstr ""
+msgstr "Favoriti"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:73
 #: ../gramps/plugins/textreport/textplugins.gpr.py:412
@@ -35191,8 +34850,7 @@ msgstr "%s, "
 #: ../gramps/plugins/textreport/detancestralreport.py:507
 #, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
-msgstr ""
-"%(event_role)s pri %(event_name)s od %(primary_person)s: %(event_text)s"
+msgstr "%(event_role)s pri %(event_name)s od %(primary_person)s: %(event_text)s"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:527
@@ -35780,8 +35438,6 @@ msgid "Include Attributes"
 msgstr "Uključi svojstva"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
-#, fuzzy
-#| msgid "Include addresses"
 msgid "Include Addresses"
 msgstr "Uključi adrese"
 
@@ -36418,8 +36074,8 @@ msgid ""
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
 "Ovaj alat će zamijeniti sve događaje jedne vrste, drugom vrstom događaja. "
-"Izvršene promjene se ne mogu poništiti korištenjem normalne funkcije "
-"„Poništi”."
+"Izvršene promjene se ne mogu poništiti korištenjem normalne funkcije „Poništi"
+"”."
 
 #: ../gramps/plugins/tool/changetypes.glade:110
 msgid "Original event type:"
@@ -36720,12 +36376,9 @@ msgstr[2] "{quantity} duplih poveznica supružnik/obitelj je nađeno\n"
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
-msgstr[0] ""
-"{quantity} obitelj bez roditelja ili djece je pronađena i uklonjena.\n"
-msgstr[1] ""
-"{quantity} obitelji bez roditelja ili djece su pronađene i uklonjene.\n"
-msgstr[2] ""
-"{quantity} obitelji bez roditelja ili djece je pronađeno i uklonjeno.\n"
+msgstr[0] "{quantity} obitelj bez roditelja ili djece je pronađena i uklonjena.\n"
+msgstr[1] "{quantity} obitelji bez roditelja ili djece su pronađene i uklonjene.\n"
+msgstr[2] "{quantity} obitelji bez roditelja ili djece je pronađeno i uklonjeno.\n"
 
 #: ../gramps/plugins/tool/check.py:2890
 #, python-brace-format
@@ -36789,8 +36442,7 @@ msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "Referenca na {quantity} nedostajući medijski objekt je zadržana\n"
 msgstr[1] "Reference na {quantity} nedostajuća medijska objekta su zadržane\n"
-msgstr[2] ""
-"Reference na {quantity} nedostajućih medijskih objekata su zadržane\n"
+msgstr[2] "Reference na {quantity} nedostajućih medijskih objekata su zadržane\n"
 
 #: ../gramps/plugins/tool/check.py:2970
 #, python-brace-format
@@ -36936,11 +36588,11 @@ msgid "%d bad Note Links were fixed;\n"
 msgstr "%d neispravne poveznice u zabilješkama su ispravljene;\n"
 
 #: ../gramps/plugins/tool/check.py:3155
-#, fuzzy, python-format
-#| msgid "%d duplicate event role names coalesced. %d references updated\n"
+#, python-format
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
-msgstr "Broj spojenih duplih imena: %d. Broj aktualiziranih referenca: %d\n"
+msgstr ""
+"Spojene duple uloge događaja: %(names)d. Aktualizirane reference: %(refs)d\n"
 
 #: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
@@ -37115,11 +36767,11 @@ msgstr "Nađi_moguće_duple_osobe"
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:171
 msgid "Find Possible Duplicate People"
-msgstr "Nađi moguće duple osobe"
+msgstr "Pronađi moguće duple osobe"
 
 #: ../gramps/plugins/tool/finddupes.py:146
 msgid "Find Duplicates tool"
-msgstr "Alat za otkrivanje duplikata"
+msgstr "Alat za pronalaćenje duplikata"
 
 #: ../gramps/plugins/tool/finddupes.py:146
 #: ../gramps/plugins/tool/mergecitations.py:169
@@ -37137,7 +36789,7 @@ msgstr "Nisu pronađene moguće duple osobe"
 
 #: ../gramps/plugins/tool/finddupes.py:199
 msgid "Find Duplicates"
-msgstr "Nađi duplikate"
+msgstr "Pronađi duplikate"
 
 #: ../gramps/plugins/tool/finddupes.py:199
 msgid "Looking for duplicate people"
@@ -37178,12 +36830,12 @@ msgstr "Spoji osobe"
 #: ../gramps/plugins/tool/findloop.py:58
 msgctxt "manual"
 msgid "Find_database_loop"
-msgstr "Nađi_petlju_u_bazi_podataka"
+msgstr "Pronađi_petlju_u_bazi_podataka"
 
 #: ../gramps/plugins/tool/findloop.py:74
 #: ../gramps/plugins/tool/tools.gpr.py:517
 msgid "Find database loop"
-msgstr "Nađi petlju u bazi podataka"
+msgstr "Pronađi petlju u bazi podataka"
 
 #: ../gramps/plugins/tool/findloop.py:98
 msgid "Looking for possible loop for each person"
@@ -38103,7 +37755,7 @@ msgstr "Bez srodstva"
 
 #: ../gramps/plugins/tool/tools.gpr.py:224
 msgid "Find people who are not in any way related to the selected person"
-msgstr "Nađi osobe, koje ni na koji način nisu u srodstvu s odabranom osobom"
+msgstr "Pronađi osobe koje ni na koji način nisu u srodstvu s odabranom osobom"
 
 #: ../gramps/plugins/tool/tools.gpr.py:248
 msgid "Edit Database Owner Information"
@@ -38638,8 +38290,7 @@ msgstr "Nije moguće izvršiti spajanje."
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
-msgstr ""
-"Oba objekta moraju biti iste vrste – moraju biti ili izvori ili citati."
+msgstr "Oba objekta moraju biti iste vrste – moraju biti ili izvori ili citati."
 
 #: ../gramps/plugins/view/dashboardview.py:52
 #: ../gramps/plugins/view/dashboardview.py:85
@@ -39068,7 +38719,7 @@ msgid ""
 "Go to the family view and select the families you want to compare. Return to "
 "this view and use the history."
 msgstr ""
-"Idi u prikaz obitelj i odaberi obitelji, koje želiš usporediti. Vrati se na "
+"Idi u prikaz obitelj i odaberi obitelji koje želiš usporediti. Vrati se na "
 "ovaj prikaz i koristi povijest."
 
 #: ../gramps/plugins/view/geofamclose.py:723
@@ -39944,8 +39595,8 @@ msgstr "Država/Pokrajina"
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 msgstr ""
-"Generirano s programom %(gramps_home_html_start)sGramps%(html_end)s "
-"%(version)s"
+"Generirano s programom %(gramps_home_html_start)sGramps%(html_end)s %"
+"(version)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1712
 #, python-format
@@ -40323,8 +39974,8 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
-"Sljedeći odjeljak sadrži kartu svih osoba s događajem: {event_type} "
-"({selected_filter})"
+"Sljedeći odjeljak sadrži kartu svih osoba s događajem: {event_type} ("
+"{selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #: ../gramps/plugins/webreport/heatmap.py:630
@@ -40346,8 +39997,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
-"Ovaj odjeljak sadrži kartu za sve osobe, događaje s oznakom: {tag} "
-"({selected_filter})"
+"Ovaj odjeljak sadrži kartu za sve osobe, događaje s oznakom: {tag} ("
+"{selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -40396,8 +40047,8 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of "
 "%(strong2_strt)s%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_strt)s%(page_number)d%(strong_end)s od "
-"%(strong2_strt)s%(total_pages)d%(strong_end)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s od %(strong2_strt)s%"
+"(total_pages)d%(strong_end)s"
 
 #: ../gramps/plugins/webreport/media.py:458
 msgid "The file has been moved or deleted."
@@ -40416,40 +40067,37 @@ msgstr "Vrsta datoteke"
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for people: %(people)s"
-msgstr ""
+msgstr "%(idx)s – za osobe: %(people)s"
 
 #: ../gramps/plugins/webreport/media.py:736
-#, fuzzy, python-format
-#| msgid "%(person)s was restored to the family of %(family)s\n"
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for family: %(family)s"
-msgstr "%(person)s je obnovljen/a u obitelj od %(family)s\n"
+msgstr "%(idx)s – za obitelj: %(family)s"
 
 #: ../gramps/plugins/webreport/media.py:760
-#, fuzzy, python-format
-#| msgid "%(eventtype)s : %(name)s"
+#, python-format
 msgctxt "name"
 msgid "%(idx)s - for event: %(event)s: %(name)s"
-msgstr "%(eventtype)s : %(name)s"
+msgstr "%(idx)s – za događaj: %(event)s: %(name)s"
 
 #: ../gramps/plugins/webreport/media.py:775
-#, fuzzy, python-format
-#| msgid "%(date)s - %(place)s."
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for place: %(place)s"
-msgstr "%(date)s – %(place)s."
+msgstr "%(idx)s – za mjesta: %(place)s"
 
 #: ../gramps/plugins/webreport/media.py:790
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for source: %(source)s"
-msgstr ""
+msgstr "%(idx)s – za izvore: %(source)s"
 
 #: ../gramps/plugins/webreport/media.py:808
 #, python-format
 msgctxt "source"
 msgid "%(idx)s - for citation: %(citation)s from %(source)s"
-msgstr ""
+msgstr "%(idx)s – za citate: %(citation)s iz %(source)s"
 
 #: ../gramps/plugins/webreport/media.py:919
 msgid "Missing media object:"
@@ -40683,14 +40331,13 @@ msgid "The maximum number of rows to include in an index page"
 msgstr "Maksimalni broj redaka za uključivanje u stranicu indeksa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2259
-#, fuzzy
-#| msgid "Allow editing database owner information."
 msgid "Allow internet indexation."
-msgstr "Omogućuje uređivanje podataka o vlasniku baze podataka."
+msgstr "Dozvoli internetsko indeksiranje."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Allow search engines (Google, Bing, etc.) to index your website."
 msgstr ""
+"Dozvoli tražilicama (Google, Bing itd.) da indeksiraju tvoju web stranicu."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2272
 msgid "Extra Pages"
@@ -41266,13 +40913,7 @@ msgid "openlayers version to use"
 msgstr "openlayers verzija koja će se koristiti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2800
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "You should use this option only if you can't see the maps in your website "
-#| "for OpenStreetMap or Stamen maps\n"
-#| "You can change the value in the specified file. The option name to modify "
-#| "is openlayers_version.\n"
-#| "See OLDER VERSIONS in https://openlayers.org/"
+#, python-brace-format
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -41280,11 +40921,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in {openlayers_url}"
 msgstr ""
-"Koristi ovu opciju samo ako ne vidiš karte na svojoj web stranici za "
-"„OpenStreetMap” ili „Stamen” karte.\n"
+"Koristi ovu opciju samo ako ne vidiš karte na svojoj web-stranici za „"
+"OpenStreetMap” ili „Stamen” karte.\n"
 "Vrijednost možeš promijeniti u navedenoj datoteci. Opcija za mijenjanje se "
 "zove openlayers_version.\n"
-"Pogledaj STARIJE VERZIJE na https://openlayers.org/"
+"Pogledaj STARIJE VERZIJE na {openlayers_url}"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2817
 msgid "Other inclusion (CMS, web calendar, PHP)"
