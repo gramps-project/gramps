@@ -216,7 +216,7 @@ UIDEFAULT = (
         </item>
         <placeholder id='Bars'>
         </placeholder>
-        <item>
+        <item groups="SidePanel">
           <attribute name="action">win.SidePanel</attribute>
           <attribute name="label" translatable="yes">_Side Panel</attribute>
         </item>

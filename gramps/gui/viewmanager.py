@@ -664,6 +664,8 @@ class ViewManager(CLIManager):
 
         self.side_panel_manager.load_plugins(self.dbstate, self.uistate)
         if self.side_panel_manager.has_plugins():
+            if "SidePanel" not in self.uimanager.show_groups:
+                self.uimanager.show_groups.append("SidePanel")
             panel_widget = self.side_panel_manager.get_top()
             self.right_hpane.add2(panel_widget)
             panel_widget.show()
@@ -698,9 +700,8 @@ class ViewManager(CLIManager):
                 "destroy", lambda pane: _save_panel_width(pane, None)
             )
         else:
-            action = self.uimanager.get_action(self.fileactions, "SidePanel")
-            if action:
-                action.set_enabled(False)
+            if "SidePanel" in self.uimanager.show_groups:
+                self.uimanager.show_groups.remove("SidePanel")
         self.__setup_side_panel()
 
         self.goto_page(defaults[0], defaults[1])
