@@ -33,7 +33,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-20 20:13+0000\n"
+"PO-Revision-Date: 2026-04-21 20:14+0000\n"
 "Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -780,11 +780,11 @@ msgid ""
 "a Feature Request. Filing a Feature Request is preferred but it can be good "
 "to discuss your ideas on the email lists."
 msgstr ""
-"<b>Mejorando GRAMPS</b><br/>Se anima a los usuarios a solicitar mejoras a "
+"<b>Mejorando Gramps</b><br/>Se anima a los usuarios a solicitar mejoras a "
 "Gramps. Se puede solicitar una mejora a través de las listas de correo "
 "gramps-users o gramps-devel o yendo a &bugs_url; y creando una solicitud de "
 "mejora (Feature Request). Completar una solicitud de mejora es lo preferido "
-"pero pero puede ser bueno discutir tus ideas en las listas de correo."
+"pero puede ser bueno discutir tus ideas en las listas de correo."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -1083,7 +1083,7 @@ msgid ""
 msgstr ""
 "<b>Noticias de Gramps</b><br/>¿Está interesado en enterarse cuando se "
 "publica una nueva versión de Gramps? Únase a la lista de correo gramps-"
-"announce en \"Ayuda > Listas de correo de Gramps\"."
+"announce en «Ayuda > Listas de correo de Gramps»."
 
 #: ../data/tips.xml:113
 msgid ""
@@ -3726,15 +3726,12 @@ msgid "Wrong format of date-time"
 msgstr "Formato incorrecto de fecha-hora"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, fuzzy, python-format
-#| msgid ""
-#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#| "part is optional, are accepted. %s does not satisfy."
+#, python-format
 msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Solo se aceptan valores de fecha-hora en el formato iso aaaa-mm-dd hh:mm:ss "
+"Solo se aceptan valores de fecha-hora en el formato ISO aaaa-mm-dd hh:mm:ss "
 "(la parte hh:mm:ss es opcional). %s no tiene ese formato."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
@@ -3905,16 +3902,12 @@ msgid "Tag:"
 msgstr "Etiqueta:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "Objectos con las notas que tienen un tipo particular"
+msgstr "Objetos con notas con una etiqueta especificada."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
-#| msgid "Matches a note with a specified Gramps ID"
 msgid "Matches notes with a specified tag"
-msgstr "Coincide con una nota con el ID Gramps especificado"
+msgstr "Coincide notas con una etiqueta especificada"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -4139,16 +4132,12 @@ msgstr ""
 "expresión regular"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with the <tag>"
-msgstr "Citas con una nota de tipo <tipo>"
+msgstr "Citaciones con una nota con la <etiqueta>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches citations with a note of the specified type"
 msgid "Matches citations with a note with a specified tag"
-msgstr "Coinciden citas con una nota del tipo especificado"
+msgstr "Coinciden citaciones con una nota con una etiqueta especificada"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4514,16 +4503,12 @@ msgstr ""
 "expresión regular"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with the <tag>"
-msgstr "Eventos con una nota de tipo <tipo>"
+msgstr "Eventos con una nota con la <etiqueta>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches events with a note of the specified type"
 msgid "Matches events with a note with a specified tag"
-msgstr "Coincide con los eventos que tienen una nota del tipo especificado"
+msgstr "Coincide eventos con una nota con una etiqueta especificada"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4833,16 +4818,12 @@ msgstr ""
 "expresión regular"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note with the <tag>"
-msgstr "Familias con padre con <nombre>"
+msgstr "Familias con una nota con la <etiqueta>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches families with a note with a specified tag"
-msgstr "Coincide con las familias que tienen una nota del tipo especificado"
+msgstr "Coincide con familias con una nota con una etiqueta especificada"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -5159,28 +5140,20 @@ msgstr ""
 "ajusta a una expresión regular"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with the <tag>"
-msgstr "Citas con una nota de tipo <tipo>"
+msgstr "Medio con una nota con la <etiqueta>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "Coincide con las familias que tienen una nota del tipo especificado"
+msgstr "Coincide con el medio con una nota con una etiqueta especificada"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "Eventos con una nota de tipo <tipo>"
+msgstr "Medio con una nota de tipo <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "Coincide con las familias que tienen una nota del tipo especificado"
+msgstr "Coincide con medio con una nota de un tipo especificado"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
@@ -5746,16 +5719,12 @@ msgstr ""
 "expresión regular"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with the <tag>"
-msgstr "Personas con una nota del tipo <tipo>"
+msgstr "Gente con una nota con la <etiqueta>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "Coincide con las personas que tienen una nota del tipo especificado"
+msgstr "Coincide gente con una nota con una etiqueta especificada"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -6445,16 +6414,12 @@ msgstr ""
 "expresión regular"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with the <tag>"
-msgstr "Lugares con una nota de tipo <tipo>"
+msgstr "Lugares con una nota con la <etiqueta>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "Coincide con los lugares que tienen una nota del tipo especificado"
+msgstr "Coincide con lugares con una nota con una etiqueta especificada"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6720,28 +6685,20 @@ msgstr ""
 "una expresión regular"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with the <tag>"
-msgstr "Repositorios con la <etiqueta>"
+msgstr "Repositorios con la nota con la <etiqueta>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Coincide con las fuentes que tienen una nota del tipo especificado"
+msgstr "Coinciden repositorios con una nota con una etiqueta especificada"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "Fuentes con una nota del tipo <tipo>"
+msgstr "Repositorios con una nota del tipo <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "Coincide con las fuentes que tienen una nota del tipo especificado"
+msgstr "Coincide repositorios con una nota de un tipo especificado"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6897,16 +6854,12 @@ msgstr ""
 "expresión regular"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with the <tag>"
-msgstr "Fuentes con una nota del tipo <tipo>"
+msgstr "Fuentes con una nota con la <etiqueta>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "Coincide con las fuentes que tienen una nota del tipo especificado"
+msgstr "Coincide fuentes con una nota con una etiqueta especificada"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -7026,10 +6979,8 @@ msgstr "Coincide con las fuentes marcadas como privadas"
 #: ../gramps/gui/fs/person/mixins/helpers.py:68
 #: ../gramps/gui/fs/sync_directions.py:679 ../gramps/gui/viewmanager.py:406
 #: ../gramps/gui/viewmanager.py:552 ../gramps/gui/viewmanager.py:560
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch"
-msgstr "Fuentes familiares"
+msgstr "FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:160
 #: ../gramps/gui/fs/compare/window.py:224
@@ -7037,19 +6988,15 @@ msgstr "Fuentes familiares"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:760
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:962
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "No conectado a FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "iniciales"
+msgstr "Esenciales"
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "Nombre del elemento"
+msgstr "Otros nombres"
 
 #: ../gramps/gen/fs/compare/aggregate.py:211
 #: ../gramps/gui/merge/mergeperson.py:241
@@ -7089,7 +7036,7 @@ msgstr "Familias"
 
 #: ../gramps/gen/fs/compare/aggregate.py:225
 msgid "Facts"
-msgstr ""
+msgstr "Hechos"
 
 #: ../gramps/gen/fs/compare/comparators.py:81
 #: ../gramps/gen/fs/compare/comparators.py:88 ../gramps/gen/utils/string.py:49
@@ -7267,55 +7214,47 @@ msgid "Child"
 msgstr "Hijo"
 
 #: ../gramps/gen/fs/constants.py:80
+#, fuzzy
 msgid "LifeSketch"
-msgstr ""
+msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
-#, fuzzy
-#| msgid "the citation"
 msgid "Birth Registration"
-msgstr "la cita"
+msgstr "Registro de nacimiento"
 
 #: ../gramps/gen/fs/constants.py:83 ../gramps/gen/fs/constants.py:84
-#, fuzzy
-#| msgid "the citation"
 msgid "Death Registration"
-msgstr "la cita"
+msgstr "Registro de fallecimiento"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "Febrero"
+msgstr "Obituario"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "Relación"
+msgstr "Ciudadanía"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
-msgstr ""
+msgstr "Descartando relaciones no válidas: hijo igual a antecesor"
 
 #: ../gramps/gen/fs/fs_import/importer.py:286
 msgid "Possibly parentless family - Need at least one known parent locally"
 msgstr ""
+"Posibilidad de familia sin parentesco – Necesita al menos un antecesor "
+"conocido localmente"
 
 #: ../gramps/gen/fs/fs_import/importer.py:333
 msgid "Skipping invalid couple: same person as both parents"
-msgstr ""
+msgstr "Se omite pareja no válida: la misma persona en ambos parientes"
 
 #: ../gramps/gen/fs/fs_import/importer.py:375
 msgid "Possible parentless family?"
-msgstr ""
+msgstr "¿Familia con parentescos posibles?"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
-#, fuzzy
-#| msgid "Building display"
 msgid "Building FSID list for places"
-msgstr "Preparando la presentación"
+msgstr "Creando listado FSID para lugares"
 
 #: ../gramps/gen/fs/fs_import/sources.py:523
 #: ../gramps/gen/fs/fs_import/sources.py:526
@@ -7390,15 +7329,13 @@ msgstr "Dirección de Internet"
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
 msgid "Memory: {t}"
-msgstr ""
+msgstr "Memoria: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:421
 #: ../gramps/gui/fs/sync_directions.py:599
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "Falta(n) fecha(s)"
+msgstr "(ausente)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:304
@@ -7445,19 +7382,17 @@ msgstr "Nota"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:653
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Actualizado desde Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
-#, fuzzy
-#| msgid "Created for %(author)s"
 msgid "Created from Gramps"
-msgstr "Creado para %(author)s"
+msgstr "Creado desde Gramps"
 
 #: ../gramps/gen/fs/tags.py:317
 #, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "Grupo %(num)d"
 
 #: ../gramps/gen/fs/tags.py:328
 #, python-format
@@ -7480,12 +7415,14 @@ msgid ""
 "This add-on only sets default colors when the tags are first created and "
 "will not override your custom choices."
 msgstr ""
+"Los colores etiquetados de estado en FamilySearch puede personalizarse en "
+"Gramps vía Editar Etiquetas. Este conjunto solo establece colores por "
+"defecto cuando las etiquetas primero son creadas y no superan sus elecciones "
+"personales."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch tags"
-msgstr "Fuentes familiares"
+msgstr "Etiquetas de FamilySearch"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:721 ../gramps/gui/editors/editaddress.py:199
@@ -9031,49 +8968,41 @@ msgid "Civil Union"
 msgstr "Unión civil"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch sync"
-msgstr "Fuentes familiares"
+msgstr "Sincr. FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "ID de la familia"
+msgstr "ID de FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Es raíz"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Status bar"
 msgid "Status timestamp"
-msgstr "Barra de estado"
+msgstr "Sello temporal de estado"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
-msgstr ""
+msgstr "Sello temporal confirmado"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
-msgstr ""
+msgstr "Gramp modifió sello temporal"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:92
 msgid "FamilySearch modified timestamp"
-msgstr ""
+msgstr "FamilySearch modificó sello temporal"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "Conflicto esencial"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "Configuración"
+msgstr "Conflicto"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -10462,17 +10391,13 @@ msgid "Font family"
 msgstr "Familia de letra"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:165
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Choose the font family. If international characters don't show, use "
-#| "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+#, python-brace-format
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
 "Elija la familia tipográfica. Si no se muestran los caracteres "
-"internacionales, utilice el tipo FreeSans, disponible en: http://"
-"www.nongnu.org/freefont/"
+"internacionales, utilice el tipo FreeSans, disponible en: {freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:172
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -11429,7 +11354,7 @@ msgstr "exesposo"
 
 #: ../gramps/gen/relationship.py:2475
 msgid "ex-wife"
-msgstr "exesposa"
+msgstr "ex‐esposa"
 
 #: ../gramps/gen/relationship.py:2477
 msgctxt "gender unknown"
@@ -12812,19 +12737,14 @@ msgid "Media Object"
 msgstr "Objeto audiovisual"
 
 #: ../gramps/gui/configure.py:869
-#, fuzzy, no-python-format
-#| msgid ""
-#| "Default Gramps ID formats containing a letter prefix followed by a "
-#| "numerical string. \"I%04d\" creates IDs from I0000 to I9999. Large "
-#| "databases may need larger IDs. \"I%06d\" creates IDs from I000000 to "
-#| "I999999.\n"
+#, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
 "string. \"I%05d\" creates IDs from I00000 to I99999. Large databases may "
 "need larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
 "Formatos de identificador Gramps predeterminados que contienen un prefijo de "
-"letra seguido de una cadena numérica. «I%04d» crea identificadores de I0000 "
+"letra seguido de una cadena numérica. «I%05d» crea identificadores de I00000 "
 "a I9999. Las bases de datos grandes pueden necesitar identificadores más "
 "grandes. «I%06d» crea identificadores de I000000 a I999999.\n"
 
@@ -12971,49 +12891,43 @@ msgstr "Advertencias"
 
 #: ../gramps/gui/configure.py:1085
 msgid "Live"
-msgstr ""
+msgstr "Vivo"
 
 #: ../gramps/gui/configure.py:1093
 msgid "Server"
-msgstr ""
+msgstr "Servidor"
 
 #: ../gramps/gui/configure.py:1102
 msgid "Foundation middleware"
-msgstr ""
+msgstr "Middleware de Fundación"
 
 #: ../gramps/gui/configure.py:1104
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "Duplicar Familia"
+msgstr "FamilySearch directa"
 
 #: ../gramps/gui/configure.py:1119
-#, fuzzy
-#| msgid "Author"
 msgid "Auth provider"
-msgstr "Autor"
+msgstr "Autoridad del proveedor"
 
 #: ../gramps/gui/configure.py:1128
 msgid "App key (direct mode only)"
-msgstr ""
+msgstr "Clave app (solo modo directo)"
 
 #: ../gramps/gui/configure.py:1149
 msgid "Redirect URL (direct mode only)"
-msgstr ""
+msgstr "Redirección URL (solo modo directo)"
 
 #: ../gramps/gui/configure.py:1158
 msgid "Middleware base URL"
-msgstr ""
+msgstr "URL base Middleware"
 
 #: ../gramps/gui/configure.py:1167
 msgid "Middleware access code (issued secret)"
-msgstr ""
+msgstr "Código de acceso middleware (incidencia secreta)"
 
 #: ../gramps/gui/configure.py:1174
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "Generaciones"
+msgstr "Integraciones"
 
 #: ../gramps/gui/configure.py:1241 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -13280,16 +13194,17 @@ msgid "Maximum age probably alive"
 msgstr "Edad máxima para presumir a persona viva"
 
 #: ../gramps/gui/configure.py:2057
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "Número de generaciones para la búsqueda de parentesco"
+msgstr "Generaciones máximas para edad estimada"
 
 #: ../gramps/gui/configure.py:2062
 msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
+"Limita la profundidad de estimación dependiente de ancestro/descendente.. "
+"Incremente si faltan estimaciones cuando las fechas solo son en generaciones "
+"distantes."
 
 #: ../gramps/gui/configure.py:2069
 msgid "Maximum sibling age difference"
@@ -13497,10 +13412,8 @@ msgstr ""
 "esta caja."
 
 #: ../gramps/gui/configure.py:2341
-#, fuzzy
-#| msgid "Note Preview"
 msgid "Note preview length"
-msgstr "Previsualización de la nota"
+msgstr "Nota de longitud previsualizadadas"
 
 #: ../gramps/gui/configure.py:2400
 msgid "Database Setting"
@@ -16292,14 +16205,11 @@ msgid "Internet Address Editor"
 msgstr "Editor de direcciones internet"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
 msgstr ""
 "La dirección internet escrita como se requiere para navegar a ella, p.ej. "
-"http://gramps-project.org"
+"{gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
@@ -16849,13 +16759,13 @@ msgstr "Creado por el gramplete Filtro el {today}"
 #: ../gramps/gui/fs/actions.py:132
 msgid "Please save/commit this person to the database first, then try again."
 msgstr ""
+"Primero guarde/confirma esta persona para la base de datos, después intente "
+"de nuevo."
 
 #: ../gramps/gui/fs/actions.py:148 ../gramps/gui/fs/actions.py:149
 #: ../gramps/gui/fs/tools_window.py:362
-#, fuzzy
-#| msgid "Family ID"
 msgid "Link FamilySearch ID"
-msgstr "ID de la familia"
+msgstr "Enlace ID de FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:151 ../gramps/gui/plug/_windows.py:1538
 #: ../gramps/gui/widgets/grampletbar.py:599
@@ -16864,180 +16774,165 @@ msgstr "Aceptar"
 
 #: ../gramps/gui/fs/actions.py:157
 msgid "Enter FamilySearch Person ID (e.g. GSVF-SGV):"
-msgstr ""
+msgstr "Introduzca el ID de la persona de FamilySearch (p.e. GSVF-SGV):"
 
 #: ../gramps/gui/fs/actions.py:188
 msgid ""
 "No FamilySearch ID linked.\n"
 "Click 'Link FamilySearch ID' first."
 msgstr ""
+"No nay ninguna ID de FamilySeach enlazada.\n"
+"Primero pulse 'Enlace de ID FamilySearch»."
 
 #: ../gramps/gui/fs/actions.py:224
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:184
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import selected"
-msgstr "Falló la importación"
+msgstr "Importación seleccionada"
 
 #: ../gramps/gui/fs/actions.py:248
 #, python-brace-format
 msgid "{total} found - {new} new - {existing} already in tree"
-msgstr ""
+msgstr "{total} encontrado – {new} nuevo – {existing} ya en el árbol"
 
 #: ../gramps/gui/fs/actions.py:255 ../gramps/gui/fs/sync_directions.py:659
 #: ../gramps/gui/fs/sync_directions.py:1283
-#, fuzzy
-#| msgid "Select _None"
 msgid "Select none"
 msgstr "No seleccionar ninguna"
 
 #: ../gramps/gui/fs/actions.py:256
-#, fuzzy
-#| msgid "Select a file"
 msgid "Select all new"
-msgstr "Seleccionar un archivo"
+msgstr "Selecciona todo nuevo"
 
 #: ../gramps/gui/fs/actions.py:303
-#, fuzzy
-#| msgid "Already dead"
 msgid "Already in tree"
-msgstr "Ya fallecido"
+msgstr "Ya en el árbol"
 
 #: ../gramps/gui/fs/actions.py:303
 msgid "New (will import)"
-msgstr ""
+msgstr "Nuevo (importará)"
 
 #: ../gramps/gui/fs/actions.py:304
 msgid "Tip: uncheck anything you don't want to import."
-msgstr ""
+msgstr "Consejo: desmarque cualquier cosa que no desee importar."
 
 #: ../gramps/gui/fs/actions.py:361 ../gramps/gui/fs/actions.py:489
 #: ../gramps/gui/fs/actions.py:646 ../gramps/gui/fs/actions.py:957
 #: ../gramps/gui/fs/actions.py:1156
 msgid "No FamilySearch ID linked. Click 'Link FamilySearch ID' first."
 msgstr ""
+"Ningún ID de FamilySearch enlazado. Primero pulse 'Enlace de ID de "
+"FamilySearch'."
 
 #: ../gramps/gui/fs/actions.py:376
-#, fuzzy, python-brace-format
-#| msgid "Sealed to Parents"
+#, python-brace-format
 msgid "Failed to fetch parents: {e}"
-msgstr "Sellado a los padres"
+msgstr "Ha fallado al obtener parentescos: {e}"
 
 #: ../gramps/gui/fs/actions.py:398
 msgid "No parents found on FamilySearch for this person."
-msgstr ""
+msgstr "Sin parentesco encontrado en FamilySearch para esta persona."
 
 #: ../gramps/gui/fs/actions.py:407 ../gramps/gui/fs/actions.py:543
 #: ../gramps/gui/fs/actions.py:701
 msgid "  - already in tree"
-msgstr ""
+msgstr "  - ya dentro del árbol"
 
 #: ../gramps/gui/fs/actions.py:410
-#, fuzzy
-#| msgid "Import Text"
 msgid "Import parents"
-msgstr "Importar Texto"
+msgstr "Importar parientes"
 
 #: ../gramps/gui/fs/actions.py:425
 msgid "Parents imported but could not be located in the local database."
 msgstr ""
+"Parientes importados pero no pudo ser localizado en la base de datos local."
 
 #: ../gramps/gui/fs/actions.py:429
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link parents"
-msgstr "Enlaces a familias"
+msgstr "FamilySearch: enlazar parentescos"
 
 #: ../gramps/gui/fs/actions.py:478
 msgid "Parent(s) imported and linked."
-msgstr ""
+msgstr "Pariente(s) importado(s) y enlazado(s)."
 
 #: ../gramps/gui/fs/actions.py:504
 #, python-brace-format
 msgid "Failed to fetch children: {e}"
-msgstr ""
+msgstr "Incorrecto al obtener hijo: {e}"
 
 #: ../gramps/gui/fs/actions.py:528
 msgid "No children found on FamilySearch for this person."
-msgstr ""
+msgstr "Ningún hijo encontrado en FamilySeach para esta persona."
 
 #: ../gramps/gui/fs/actions.py:540
 #, python-brace-format
 msgid " (other parent: {name})"
-msgstr ""
+msgstr " (otro pariente: {name})"
 
 #: ../gramps/gui/fs/actions.py:547
-#, fuzzy
-#| msgid "List children"
 msgid "Import children"
-msgstr "Listar hijos"
+msgstr "Importar hijo"
 
 #: ../gramps/gui/fs/actions.py:562
 msgid "Children imported but could not be located in the local database."
-msgstr ""
+msgstr "Hijo importado pero no pudo ser localizado en la base de datos local."
 
 #: ../gramps/gui/fs/actions.py:566
-#, fuzzy
-#| msgid "Family Children"
 msgid "FamilySearch: Link children"
-msgstr "Hijos de la familia"
+msgstr "FamilySearch: enlazar hijo"
 
 #: ../gramps/gui/fs/actions.py:629
 msgid "Child(ren) imported and linked."
-msgstr ""
+msgstr "Hijo(s) importados y enlazados."
 
 #: ../gramps/gui/fs/actions.py:661
 #, python-brace-format
 msgid "Failed to fetch spouses: {e}"
-msgstr ""
+msgstr "Ha fallado al obtener esposas: {e}"
 
 #: ../gramps/gui/fs/actions.py:692
 msgid "No spouses found on FamilySearch for this person."
-msgstr ""
+msgstr "Ninguna esposa encontrada en FamilySearch para esta persona."
 
 #: ../gramps/gui/fs/actions.py:704
-#, fuzzy
-#| msgid "Import Objects"
 msgid "Import spouse(s)"
-msgstr "Importar Objetos"
+msgstr "Importar esposa(s)"
 
 #: ../gramps/gui/fs/actions.py:719
 msgid "Spouses imported but could not be located in the local database."
 msgstr ""
+"Esposas importadas pero no pudieron ser localizadas en la base de datos "
+"local."
 
 #: ../gramps/gui/fs/actions.py:723
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link spouses"
-msgstr "Enlaces a familias"
+msgstr "FamilySearch: enlazar esposas"
 
 #: ../gramps/gui/fs/actions.py:770
 msgid "Spouse(s) imported and linked."
-msgstr ""
+msgstr "Esposa(s) importadas y enlazadas."
 
 #: ../gramps/gui/fs/actions.py:860
 #, python-brace-format
 msgid "Cleared GEDCOMX in-memory indices: {n}"
-msgstr ""
+msgstr "GEDCOMX vaciado en índices dentro de memoria: {n}"
 
 #: ../gramps/gui/fs/actions.py:861
 msgid "Reset shared FS Tree cache: yes"
-msgstr ""
+msgstr "Restablecer caché de Árbol FS compartido: sí"
 
 #: ../gramps/gui/fs/actions.py:863
 #, python-brace-format
 msgid "Cleared on-disk cache: yes ({path})"
-msgstr ""
+msgstr "Vaciada caché en disco: sí ({path})"
 
 #: ../gramps/gui/fs/actions.py:866
 msgid "Cleared on-disk cache: (not available / not supported by cache helper)"
 msgstr ""
+"Caché vaciada en disco: (no disponible / no mantenido por caché ayudante)"
 
 #: ../gramps/gui/fs/actions.py:875 ../gramps/gui/fs/actions.py:876
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch Tags"
-msgstr "Fuentes familiares"
+msgstr "Etiquetas FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:877
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:559
@@ -17050,13 +16945,16 @@ msgstr "Cerrar"
 
 #: ../gramps/gui/fs/actions.py:878
 msgid "Retag all (Linked/NotLinked)"
-msgstr ""
+msgstr "Reetiquetar todo (Enlazado/No‐Enlazado)"
 
 #: ../gramps/gui/fs/actions.py:890
 msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
+"Esto examinará su árbol completo y aplicará etiquetas FS_Linked / "
+"FS_NotLinked.\n"
+"NO cambia ningún dato de persona."
 
 #: ../gramps/gui/fs/actions.py:910
 #, python-brace-format
@@ -17068,48 +16966,54 @@ msgid ""
 "Not linked: {not_linked}\n"
 "Changed: {changed}"
 msgstr ""
+"Re‐etiquetado completo.\n"
+"\n"
+"Personas en total: {total}\n"
+"Enlazadas: {linked}\n"
+"No enlazadas: {not_linked}\n"
+"Cambiadas: {changed}"
 
 #: ../gramps/gui/fs/actions.py:920
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "No se pudo cambiar el nombre"
+msgstr "Re‐etiquetar incorrecto: {e}"
 
 #: ../gramps/gui/fs/actions.py:971
 msgid "FamilySearch: Update FSID after redirect"
-msgstr ""
+msgstr "FamilySearch: actualiza FSID tras re‐direccionar"
 
 #: ../gramps/gui/fs/actions.py:1015
 msgid ""
 "Could not load this person from FamilySearch (no GEDCOMX person object)."
 msgstr ""
+"No pudo cargar esta persona desde FamilySearch (ningún objeto de persona "
+"GEDCOMX)."
 
 #: ../gramps/gui/fs/actions.py:1024
 #, python-brace-format
 msgid "Failed to download from FamilySearch: {e}"
-msgstr ""
+msgstr "Error al descargar desde FamilySearch: {e}"
 
 #: ../gramps/gui/fs/actions.py:1029
-#, fuzzy
-#| msgid "Bookmark this person"
 msgid "FamilySearch: Sync this person"
-msgstr "Agregue un marcador a esta persona"
+msgstr "FamilySearch: sincroniza esta persona"
 
 #: ../gramps/gui/fs/actions.py:1089
-#, fuzzy, python-brace-format
-#| msgid "Saving failed"
+#, python-brace-format
 msgid "Sync failed: {e}"
-msgstr "Falló la operación de guardar"
+msgstr "Sincr. incorrecta: {e}"
 
 #: ../gramps/gui/fs/actions.py:1097
 msgid ""
 "Sync complete: facts/events, dates/places, and notes updated for this person."
 msgstr ""
+"Sincr. completa: hechos/eventos, fechas/lugares, y notas actualizados para "
+"esta persona."
 
 #: ../gramps/gui/fs/actions.py:1142
 #, python-brace-format
 msgid "Export to FamilySearch failed: {e}"
-msgstr ""
+msgstr "Exportación a FamilySearch incorrecta: {e}"
 
 #: ../gramps/gui/fs/actions.py:1172
 #, python-brace-format
@@ -17196,10 +17100,9 @@ msgid "Processing list (2/2)"
 msgstr "Procesando el archivo"
 
 #: ../gramps/gui/fs/compare/window.py:320
-#, fuzzy, python-format
-#| msgid "not found"
+#, python-format
 msgid "FS ID %s not found"
-msgstr "no encontrado"
+msgstr "FS ID %s no encontrado"
 
 #: ../gramps/gui/fs/fs_import/importer.py:59
 #, fuzzy
@@ -17222,130 +17125,104 @@ msgid "Downloading ancestors… (4/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:106
-#, fuzzy, python-format
-#| msgid "Submission: Generations of ancestors"
+#, python-format
 msgid "Downloading %d generations of ancestors…"
-msgstr "Remesa: Generaciones de ascendientes"
+msgstr "Descargando %d generaciones de ancestros…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:109
 msgid "Downloading descendants… (5/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:117
-#, fuzzy, python-format
-#| msgid "Submission: Generations of descendants"
+#, python-format
 msgid "Downloading %d generations of descendants…"
-msgstr "Remesa: Generaciones de descendientes"
+msgstr "Descargando %d generaciones de descendientes…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:122
 msgid "Downloading spouses… (6/11)"
-msgstr ""
+msgstr "Descargando esposas… (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:124
 msgid "Downloading spouses…"
-msgstr ""
+msgstr "Descargando esposas…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:130
 msgid "Downloading notes… (7/11)"
-msgstr ""
+msgstr "Descargando notas… (7/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:133
 msgid "Downloading notes and sources…"
-msgstr ""
+msgstr "Descargando notas y fuentes…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:176
-#, fuzzy
-#| msgid "Import"
 msgid "Importing…"
-msgstr "Importar"
+msgstr "Importando…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:188
 msgid "Importing places… (8/11)"
-msgstr ""
+msgstr "Importar lugares… (8/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:189
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing places…"
-msgstr "Importando personas."
+msgstr "Importar lugares…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:194
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons… (9/11)"
-msgstr "Importando personas."
+msgstr "Importar personas… (9/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons…"
-msgstr "Importando personas."
+msgstr "Importando personas…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:201
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families… (10/11)"
-msgstr "Importando familias."
+msgstr "Importando familias… (10/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:203
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families…"
-msgstr "Importando familias."
+msgstr "Importando familias…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:211
 #: ../gramps/gui/fs/fs_import/importer.py:223
 msgid "Importing children… (11/11)"
-msgstr ""
+msgstr "Importando hijos… (11/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:214
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Importing children…"
-msgstr "Importando archivo..."
+msgstr "Importando hijos…"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
-#, fuzzy
-#| msgid "Web Family Tree export options"
 msgid "FamilySearch Import Options"
-msgstr "Opciones de exportación a Web Family Tree"
+msgstr "Opciones de importación de FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/options.py:39
 msgid "identifier to be copied from the FamilySearch website"
-msgstr ""
+msgstr "identificador para ser copiado desde el sitio web de FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/options.py:42
 msgid "Ancestor generations"
 msgstr "Generaciones de ancestro"
 
 #: ../gramps/gui/fs/fs_import/options.py:43
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch upwards"
-msgstr "Número de generaciones:"
+msgstr "Número de generaciones recoger hacia arriba"
 
 #: ../gramps/gui/fs/fs_import/options.py:46
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "Descendant generations"
-msgstr "Número máximo de generaciones de descendientes"
+msgstr "Generaciones descendientes"
 
 #: ../gramps/gui/fs/fs_import/options.py:47
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch downwards"
-msgstr "Número de generaciones:"
+msgstr "Número de generaciones para obtener hacia abajo"
 
 #: ../gramps/gui/fs/fs_import/options.py:51
-#, fuzzy
-#| msgid "Non existing person"
 msgid "Do not re-import existing persons"
-msgstr "Persona inexistente"
+msgstr "No re‐importar personas existentes"
 
 #: ../gramps/gui/fs/fs_import/options.py:53
 msgid "Only import persons not already present"
-msgstr ""
+msgstr "Solo personas importadas que no estén ya presentes"
 
 #: ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -17600,20 +17477,17 @@ msgid "Contributor"
 msgstr "Contribuciones por"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:735
-#, fuzzy
-#| msgid "Modified: "
 msgid "Modified"
-msgstr "Modificado: "
+msgstr "Modificado"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:736
 msgid "FS ID"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:750
-#, fuzzy, python-brace-format
-#| msgid "Import failed"
+#, python-brace-format
 msgid "Compare failed: {e}"
-msgstr "Falló la importación"
+msgstr "Comparación incorrecta: {e}"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:842
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:933
@@ -17663,12 +17537,13 @@ msgid "Import FamilySearch sources"
 msgstr "Importar Árbol Genealógico"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:468
-#, fuzzy, python-brace-format
-#| msgid "%s could not be imported"
+#, python-brace-format
 msgid ""
 "Some sources could not be imported:\n"
 "{errs}"
-msgstr "No se pudo importar %s"
+msgstr ""
+"Algunas fuentes no pudieron ser importadas:\n"
+"{errs}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:115
 msgid "No FamilySearch sources found to import."
@@ -17788,12 +17663,13 @@ msgid "Add Source Image"
 msgstr "Agregar fuente (%s)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:475
-#, fuzzy, python-brace-format
-#| msgid "Could not open file: %s"
+#, python-brace-format
 msgid ""
 "Could not open image picker:\n"
 "{e}"
-msgstr "No se pudo abrir el archivo: %s"
+msgstr ""
+"No se pudo abrir imagen tomada:\n"
+"{e}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:493
 #, fuzzy
@@ -17810,14 +17686,17 @@ msgid "Select"
 msgstr "Seleccionar"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:588
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid ""
 "Rename failed for:\n"
 "{p}\n"
 "\n"
 "{err}"
-msgstr "No se pudo cambiar el nombre"
+msgstr ""
+"Renombrado incorrecto para:\n"
+"{p}\n"
+"\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:621
 #: ../gramps/gui/fs/sync_directions.py:658
@@ -17843,10 +17722,9 @@ msgstr "Primario"
 
 #: ../gramps/gui/fs/sync_directions.py:417
 #: ../gramps/gui/fs/sync_directions.py:443
-#, fuzzy, python-brace-format
-#| msgid "Note Filter"
+#, python-brace-format
 msgid "Note: {title}"
-msgstr "Filtro de notas"
+msgstr "Nota: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:418
 #: ../gramps/gui/fs/sync_directions.py:444
@@ -17886,10 +17764,9 @@ msgid "(not attached to this person on FamilySearch)"
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:604
-#, fuzzy, python-brace-format
-#| msgid "Source: Title"
+#, python-brace-format
 msgid "Source: {title}"
-msgstr "Fuente: Título"
+msgstr "Fuente: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:625
 #, fuzzy
@@ -18072,10 +17949,8 @@ msgid "(person)"
 msgstr "persona"
 
 #: ../gramps/gui/fs/sync_directions.py:1248
-#, fuzzy
-#| msgid "the person"
 msgid "This person: "
-msgstr "la persona"
+msgstr "Esta persona: "
 
 #: ../gramps/gui/fs/sync_directions.py:1276
 #, fuzzy
@@ -18232,10 +18107,9 @@ msgid "Build FSID list (1/%(total)d)"
 msgstr ""
 
 #: ../gramps/gui/fs/utils/index.py:57 ../gramps/gui/fs/utils/index.py:61
-#, fuzzy, python-format
-#| msgid "Family places for %s"
+#, python-format
 msgid "FamilySearch duplicate ID: %s "
-msgstr "Lugares para la familia %s"
+msgstr "ID duplica FamilySearch: %s "
 
 #: ../gramps/gui/fs/utils/index.py:60
 #, fuzzy
@@ -20615,7 +20489,7 @@ msgstr "Seleccionar todas"
 
 #: ../gramps/gui/glade/updateaddons.glade:117
 msgid "Select _None"
-msgstr "No seleccionar ninguna"
+msgstr "_No seleccionar ninguna"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "Books..."
@@ -24161,7 +24035,7 @@ msgid ""
 "United States of America/U.S.A."
 msgstr ""
 "es decir\n"
-"Estados Unidos de América/EE.UU."
+"Estados Unidos de América/E.U.A."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1030
 #: ../gramps/plugins/drawreport/descendtree.py:1749
@@ -38783,7 +38657,7 @@ msgstr "Mujer como esposo"
 
 #: ../gramps/plugins/tool/verify.py:1662
 msgid "Male wife"
-msgstr "Hombre como esposa"
+msgstr "Hombre esposo"
 
 #: ../gramps/plugins/tool/verify.py:1696
 msgid "Husband and wife with the same surname"
@@ -40043,7 +39917,7 @@ msgstr "Editar la persona activa"
 
 #: ../gramps/plugins/view/relview.py:800
 msgid "Alive"
-msgstr "Vivo"
+msgstr "Aún vivo"
 
 #: ../gramps/plugins/view/relview.py:876 ../gramps/plugins/view/relview.py:903
 #, python-format
@@ -40864,25 +40738,22 @@ msgid "%(idx)s - for people: %(people)s"
 msgstr ""
 
 #: ../gramps/plugins/webreport/media.py:736
-#, fuzzy, python-format
-#| msgid "%(person)s was restored to the family of %(family)s\n"
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for family: %(family)s"
-msgstr "%(person)s fue restaurado a la familia de %(family)s\n"
+msgstr "%(idx)s – para familia: %(family)s"
 
 #: ../gramps/plugins/webreport/media.py:760
-#, fuzzy, python-format
-#| msgid "%(eventtype)s : %(name)s"
+#, python-format
 msgctxt "name"
 msgid "%(idx)s - for event: %(event)s: %(name)s"
-msgstr "%(eventtype)s : %(name)s"
+msgstr "%(idx)s – para evento: %(event)s: %(name)s"
 
 #: ../gramps/plugins/webreport/media.py:775
-#, fuzzy, python-format
-#| msgid "%(date)s - %(place)s."
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for place: %(place)s"
-msgstr "%(date)s - %(place)s."
+msgstr "%(idx)s – para lugar: %(place)s"
 
 #: ../gramps/plugins/webreport/media.py:790
 #, python-format
@@ -41728,13 +41599,7 @@ msgid "openlayers version to use"
 msgstr "versión de openlayers a usar"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2800
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "You should use this option only if you can't see the maps in your website "
-#| "for OpenStreetMap or Stamen maps\n"
-#| "You can change the value in the specified file. The option name to modify "
-#| "is openlayers_version.\n"
-#| "See OLDER VERSIONS in https://openlayers.org/"
+#, python-brace-format
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -41746,7 +41611,7 @@ msgstr ""
 "OpenStreetMpa o Stamen maps\n"
 "Puede cambiar el valor en el archivo especificado. El nombre de la opción a "
 "modificar es openlayers_version.\n"
-"Vea OLDER VERSIONS en https://openlayers.org/"
+"Vea OLDER VERSIONS en {openlayers_url}"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2817
 msgid "Other inclusion (CMS, web calendar, PHP)"
