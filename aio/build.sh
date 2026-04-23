@@ -80,7 +80,7 @@ source $pythonvenv/bin/activate
 
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade orjson pydot pydotplus pygraphviz requests selenium
+pip install --upgrade orjson==3.11.7 pydot pydotplus pygraphviz requests selenium
 
 ## download dictionaries
 mkdir -p /ucrt64/share/enchant/hunspell
