@@ -50,8 +50,10 @@ jobs:
         cd aio
         ./build.sh ${{ inputs.cleanup }} ${{ inputs.build-number }}
     - name: Run unit test suite
+      if: ${{ ! inputs.cleanup }} # can only run unit tests if python venv was preserved
       run: |
         export GRAMPS_RESOURCES=build/share
+        source /tmp/grampspythonenv/bin/activate
         python3 -m unittest discover -p "*_test.py"
     - uses: actions/upload-artifact@v6
       with:
