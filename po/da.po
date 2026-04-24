@@ -49,7 +49,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-21 20:12+0000\n"
+"PO-Revision-Date: 2026-04-24 21:23+0000\n"
 "Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -6826,8 +6826,6 @@ msgstr "Matcher kilder der er markeret private"
 #: ../gramps/gui/fs/person/mixins/helpers.py:68
 #: ../gramps/gui/fs/sync_directions.py:679 ../gramps/gui/viewmanager.py:406
 #: ../gramps/gui/viewmanager.py:552 ../gramps/gui/viewmanager.py:560
-#, fuzzy
-#| msgid "Family"
 msgid "FamilySearch"
 msgstr "FamilySearch"
 
@@ -7063,7 +7061,6 @@ msgid "Child"
 msgstr "Barn"
 
 #: ../gramps/gen/fs/constants.py:80
-#, fuzzy
 msgid "LifeSketch"
 msgstr "LifeSketch"
 
@@ -7183,10 +7180,8 @@ msgstr "Hukommelse: {t}"
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:421
 #: ../gramps/gui/fs/sync_directions.py:599
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "Dato(er) mangler"
+msgstr "(mangler)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:304
@@ -7233,34 +7228,32 @@ msgstr "Note"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:653
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Opdateret fra Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
-#, fuzzy
-#| msgid "Created for %(author)s"
 msgid "Created from Gramps"
-msgstr "Lavet til %(author)s"
+msgstr "Dannet fra Gramps"
 
 #: ../gramps/gen/fs/tags.py:317
-#, python-format
+#, fuzzy, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "Gruppe %(num)d"
 
 #: ../gramps/gen/fs/tags.py:328
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Oversigt ? %(title)s ? række %(row)d ikke grøn (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:338
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Noter ? række %(row)d ikke grøn (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:348
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Kilder ? række %(row)d ikke grøn (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:358
 msgid ""
@@ -7268,12 +7261,13 @@ msgid ""
 "This add-on only sets default colors when the tags are first created and "
 "will not override your custom choices."
 msgstr ""
+"Farverne på FamilySearch status mærkat kan blive tilpasset i Gramps via "
+"Rediger Mærkater. Dette tillæg sætter kun standardfarver når mærkaterne "
+"bliver dannet og vil ikke overskrive dine tilpassede valg."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch tags"
-msgstr "Familien er ændret"
+msgstr "FamilySearch mærkater"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:721 ../gramps/gui/editors/editaddress.py:199
@@ -8833,24 +8827,22 @@ msgstr "Borgerlig vielse"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
 msgid "FamilySearch sync"
-msgstr ""
+msgstr "FamilySearch synkronisering"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76
 #: ../gramps/gui/fs/fs_import/options.py:38
 #, fuzzy
 #| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "Familie-id"
+msgstr "FamilySearch ID"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Er root"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Status bar"
 msgid "Status timestamp"
-msgstr "Statuspanel"
+msgstr "Statusens tidsstempel"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
@@ -12742,7 +12734,6 @@ msgid "Warnings"
 msgstr "Advarsler"
 
 #: ../gramps/gui/configure.py:1085
-#, fuzzy
 msgid "Live"
 msgstr "Live"
 
@@ -12779,13 +12770,11 @@ msgstr "Middleware base URL"
 
 #: ../gramps/gui/configure.py:1167
 msgid "Middleware access code (issued secret)"
-msgstr ""
+msgstr "Middlewares adgangskode (tildelt hemlighed)"
 
 #: ../gramps/gui/configure.py:1174
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "Generationer"
+msgstr "Integrationer"
 
 #: ../gramps/gui/configure.py:1241 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -13047,16 +13036,16 @@ msgid "Maximum age probably alive"
 msgstr "Sandsynligvis i live ved højeste alder"
 
 #: ../gramps/gui/configure.py:2057
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "Største antal generationer til fastsættelse af slægtskaber"
+msgstr "Største antal generationer til fastsættelse af alder"
 
 #: ../gramps/gui/configure.py:2062
 msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
+"Begrænser dybde for skønnet over aner/efterkommere. Øg hvis skøn mangler, "
+"når datoer kun findes i fjerne generationer."
 
 #: ../gramps/gui/configure.py:2069
 msgid "Maximum sibling age difference"
@@ -13256,10 +13245,8 @@ msgstr ""
 "en firkant. Denne indstilling bestemmer højden af firkanten."
 
 #: ../gramps/gui/configure.py:2341
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "Forhåndsvisning af Noter"
+msgstr "Længde af forhåndsvisning af Noter"
 
 #: ../gramps/gui/configure.py:2400
 msgid "Database Setting"
@@ -16037,14 +16024,10 @@ msgid "Internet Address Editor"
 msgstr "Redigering af internetadresser"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
 msgstr ""
-"Internetadressen der behøves for at navigere til den, f.eks. http://gramps-"
-"project.org"
+"Internetadressen der behøves for at navigere til den, f.eks. {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
