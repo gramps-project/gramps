@@ -23,6 +23,24 @@
 #   clean-up     : [true|false]. clean the python venv on completion
 #   build-number : the build number to use when DEV_VERSION is not True
 #
+handle_error() {
+    # Get information about the error
+    local error_code=$?
+    local error_line=$BASH_LINENO
+    local error_command=$BASH_COMMAND
+
+    # Log the error details
+    echo "$BASH_ARGV0: Error on line $error_line"
+    echo "    command: $error_command"
+    echo "    exit code: $error_code"
+
+    # exit with the same error code
+    exit $error_code
+}
+
+# trap any non-zero exit code from commands and handle
+trap 'handle_error' ERR
+
 # install prerequisites
 ## prerequisites in msys packages
 pacman -S --needed --noconfirm \
