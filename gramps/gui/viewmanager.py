@@ -604,8 +604,15 @@ class ViewManager(CLIManager):
             return False
         self.goto_page(cat, None)
 
-    def _get_cat_num_from_page(self, page_num):
-        """Return the category number for the given notebook page number."""
+    def _get_cat_num_from_page(self, page_num: int) -> int | None:
+        """
+        Return the category number for the given notebook page number.
+
+        :param page_num: Gtk notebook page index to look up.
+        :type page_num: int
+        :returns: Category number, or ``None`` if not found.
+        :rtype: int | None
+        """
         for key, pnum in self.page_lookup.items():
             if pnum == page_num:
                 return key if self.use_simplified else key[0]
@@ -1060,7 +1067,7 @@ class ViewManager(CLIManager):
         except:
             import traceback
 
-            print("ERROR: '%s' failed to create view" % pdata.name)
+            LOG.error("View '%s' failed to create display", pdata.name)
             traceback.print_exc()
             page = self.__create_dummy_page(pdata, traceback.format_exc())
             page.sidebar = container.sidebar
@@ -1117,11 +1124,21 @@ class ViewManager(CLIManager):
 
         return container
 
-    def __create_viewmode_notebook_page(self, cat_num, view_num, page_view):
+    def __create_viewmode_notebook_page(
+        self, cat_num: int, view_num: int, page_view
+    ) -> CategoryContainer:
         """
         Classic mode: add a CategoryContainer for (cat_num, view_num) to the
         notebook as its own page.  The container is reused from
         category_containers if already created by __create_page_view.
+
+        :param cat_num: Category index.
+        :type cat_num: int
+        :param view_num: View-mode index within the category.
+        :type view_num: int
+        :param page_view: The PageView whose content will be displayed.
+        :returns: The CategoryContainer added to the notebook.
+        :rtype: :py:class:`CategoryContainer`
         """
         container = self.category_containers[(cat_num, view_num)]
         container.set_view(page_view)

@@ -320,6 +320,7 @@ gramps/gen/utils/test/place_test.py
 #
 gramps/gui/__init__.py
 gramps/gui/basesidebar.py
+gramps/gui/categorycontainer.py
 gramps/gui/dbguielement.py
 gramps/gui/ddtargets.py
 gramps/gui/display.py
