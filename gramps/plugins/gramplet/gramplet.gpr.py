@@ -458,10 +458,11 @@ try:
     from gi import Repository
 
     repository = Repository.get_default()
-    if repository.enumerate_versions("GExiv2"):
+    v_array = repository.enumerate_versions("GExiv2")
+    if v_array:
         import gi
 
-        gi.require_version("GExiv2", "0.10")
+        gi.require_version("GExiv2", v_array[-1])
         from gi.repository import GExiv2
 
         available = True
