@@ -218,7 +218,9 @@ class ViewManager(CLIManager):
         self._active_key = None
         self.pages = []  # List[CategoryContainer], indexed by notebook page
         self.page_views = {}  # Dict[(cat_num, view_num), PageView]
-        self.category_containers = {}  # Dict[cat_num | (cat_num,view_num), CategoryContainer]
+        self.category_containers = (
+            {}
+        )  # Dict[cat_num | (cat_num,view_num), CategoryContainer]
         self.page_lookup = {}  # Dict[cat_num | (cat_num,view_num), notebook_page_num]
         self.views = None
         self.current_views = []  # The current view in each category
@@ -1026,7 +1028,11 @@ class ViewManager(CLIManager):
             container_name = page.ident  # preserves pre-branch per-view gramplet state
 
         if container_key not in self.category_containers:
-            if self.use_simplified and view_num != 0 and (cat_num, 0) not in self.page_views:
+            if (
+                self.use_simplified
+                and view_num != 0
+                and (cat_num, 0) not in self.page_views
+            ):
                 # In simplified mode always seed the container from the primary
                 # view (view_num=0) so defaults come from the list/tree view,
                 # not from a chart view that may return an empty bottombar.
