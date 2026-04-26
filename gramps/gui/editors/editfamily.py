@@ -1315,18 +1315,18 @@ class EditFamily(EditPrimary):
                     original.get_mother_handle(), self.obj.get_mother_handle(), trans
                 )
 
-                orig_set = set(original.get_child_ref_list())
-                new_set = set(self.obj.get_child_ref_list())
+                orig_handles = set(ref.ref for ref in original.get_child_ref_list())
+                new_handles = set(ref.ref for ref in self.obj.get_child_ref_list())
 
                 # remove the family from children which have been removed
-                for ref in orig_set.difference(new_set):
-                    person = self.db.get_person_from_handle(ref.ref)
+                for handle in orig_handles.difference(new_handles):
+                    person = self.db.get_person_from_handle(handle)
                     person.remove_parent_family_handle(self.obj.handle)
                     self.db.commit_person(person, trans)
 
                 # add the family to children which have been added
-                for ref in new_set.difference(orig_set):
-                    person = self.db.get_person_from_handle(ref.ref)
+                for handle in new_handles.difference(orig_handles):
+                    person = self.db.get_person_from_handle(handle)
                     person.add_parent_family_handle(self.obj.handle)
                     self.db.commit_person(person, trans)
 
