@@ -37,6 +37,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.const import URL_MANUAL_SECT2
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Place
+from ..editors import EditPlace
 from ..views.treemodels.placemodel import PlaceTreeModel
 from .baseselector import BaseSelector
 
@@ -70,8 +71,6 @@ class SelectPlace(BaseSelector):
         :param obj: The 'New' button that was clicked.
         :type obj: Gtk.Button
         """
-        from gramps.gui.editors import EditPlace
-
         try:
             EditPlace(
                 self.dbstate,

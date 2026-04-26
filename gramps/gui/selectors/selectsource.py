@@ -36,6 +36,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.const import URL_MANUAL_SECT2
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Source
+from ..editors import EditSource
 from ..views.treemodels import SourceModel
 from .baseselector import BaseSelector
 
@@ -69,8 +70,6 @@ class SelectSource(BaseSelector):
         :param obj: The 'New' button that was clicked.
         :type obj: Gtk.Button
         """
-        from gramps.gui.editors import EditSource
-
         try:
             EditSource(
                 self.dbstate,

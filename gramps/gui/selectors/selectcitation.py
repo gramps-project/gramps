@@ -41,6 +41,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.const import URL_MANUAL_SECT2
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Citation, Source
+from ..editors import EditCitation, EditSource
 from ..views.treemodels import CitationTreeModel
 from .baseselector import BaseSelector
 
@@ -97,8 +98,6 @@ class SelectCitation(BaseSelector):
         """
         Open the Edit Source dialog to create a new source.
         """
-        from gramps.gui.editors import EditSource
-
         try:
             EditSource(
                 self.dbstate,
@@ -114,8 +113,6 @@ class SelectCitation(BaseSelector):
         """
         Open the Edit Citation dialog to create a new citation.
         """
-        from gramps.gui.editors import EditCitation
-
         try:
             EditCitation(
                 self.dbstate,
