@@ -389,11 +389,11 @@ def show_settings():
         vers_str = _("not found because exiv2 is not installed")
 
     try:
-        import PyICU
+        import icu
 
         try:
-            pyicu_str = PyICU.VERSION
-            icu_str = PyICU.ICU_VERSION
+            pyicu_str = icu.VERSION
+            icu_str = icu.ICU_VERSION
         except:  # any failure to 'get' the version
             pyicu_str = "unknown version"
             icu_str = "unknown version"
@@ -401,13 +401,6 @@ def show_settings():
     except ImportError:
         pyicu_str = "not found"
         icu_str = "not found"
-
-    try:
-        import icu
-
-        icu_str = icu.PY_VERSION
-    except Exception:
-        icu_str = _("not found")
 
     try:
         import PIL
