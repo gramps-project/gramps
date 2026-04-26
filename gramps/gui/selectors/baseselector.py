@@ -125,6 +125,8 @@ class BaseSelector(ManagedWindow):
         self.define_help_button(
             self.glade.get_object("help"), self.WIKI_HELP_PAGE, self.WIKI_HELP_SEC
         )
+        self.new_button = self.glade.get_object("newbutton")
+        self.new_button.connect("clicked", self.cb_new_button_clicked)
 
         # connect to signal for custom interactive-search
         self.searchbox = InteractiveSearchBox(self.tree)
@@ -261,6 +263,24 @@ class BaseSelector(ManagedWindow):
 
     def _on_row_activated(self, treeview, path, view_col):
         self.window.response(Gtk.ResponseType.OK)
+
+    def enable_new_button(self) -> None:
+        """
+        Show the 'New' button. Call from ``_local_init()`` in subclasses
+        that want to offer in-place object creation.
+        """
+        self.new_button.show()
+
+    def cb_new_button_clicked(self, obj: Gtk.Button) -> None:
+        """
+        Handle a click on the 'New' button.
+
+        The default implementation is a no-op.  Subclasses should override
+        this to open the appropriate editor for creating a new object.
+
+        :param obj: The 'New' button that was clicked.
+        :type obj: Gtk.Button
+        """
 
     def _local_init(self):
         # define selector-specific init routine

@@ -429,6 +429,8 @@ gramps/gui/selectors/__init__.py
 gramps/gui/selectors/baseselector.py
 gramps/gui/selectors/selectorexceptions.py
 gramps/gui/selectors/selectorfactory.py
+gramps/gui/selectors/test/__init__.py
+gramps/gui/selectors/test/baseselector_test.py
 #
 # gui.test package
 #

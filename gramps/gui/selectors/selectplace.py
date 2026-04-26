@@ -21,21 +21,24 @@
 
 # -------------------------------------------------------------------------
 #
-# internationalization
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
+from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
+from gramps.gen.const import URL_MANUAL_SECT2
+from gramps.gen.errors import WindowActiveError
+from gramps.gen.lib import Place
 from ..views.treemodels.placemodel import PlaceTreeModel
 from .baseselector import BaseSelector
-from gramps.gen.const import URL_MANUAL_SECT2
 
 # -------------------------------------------------------------------------
 #
@@ -50,19 +53,71 @@ from gramps.gen.const import URL_MANUAL_SECT2
 #
 # -------------------------------------------------------------------------
 class SelectPlace(BaseSelector):
-    def _local_init(self):
+    def _local_init(self) -> None:
         """
-        Perform local initialisation for this class
+        Perform local initialisation for this class.
         """
         self.setup_configs("interface.place-sel", 600, 450)
+        self.enable_new_button()
 
-    def get_window_title(self):
+    def cb_new_button_clicked(self, obj: Gtk.Button) -> None:
+        """
+        Open the Edit Place dialog to create a new place.
+
+        On save the tree is rebuilt and the new place is selected so
+        the user can confirm with OK without closing the selector first.
+
+        :param obj: The 'New' button that was clicked.
+        :type obj: Gtk.Button
+        """
+        from gramps.gui.editors import EditPlace
+
+        try:
+            EditPlace(
+                self.dbstate,
+                self.uistate,
+                self.track,
+                Place(),
+                self.cb_after_new_saved,
+            )
+        except WindowActiveError:
+            pass
+
+    def cb_after_new_saved(self, place: Place) -> None:
+        """
+        Rebuild the selector tree and select the newly created place.
+
+        :param place: The newly created Place object.
+        :type place: Place
+        """
+        self.build_tree()
+        self.goto_handle(place.get_handle())
+
+    def get_window_title(self) -> str:
+        """
+        Return the window title for this selector.
+
+        :returns: Translated window title.
+        :rtype: str
+        """
         return _("Select Place")
 
-    def get_model_class(self):
+    def get_model_class(self) -> type:
+        """
+        Return the tree model class used to populate the selector.
+
+        :returns: PlaceTreeModel class.
+        :rtype: type
+        """
         return PlaceTreeModel
 
-    def get_column_titles(self):
+    def get_column_titles(self) -> list:
+        """
+        Return column definitions for the selector tree view.
+
+        :returns: List of (header, width, type, model_column) tuples.
+        :rtype: list
+        """
         return [
             (_("Name"), 200, BaseSelector.TEXT, 0),
             (_("ID"), 75, BaseSelector.TEXT, 1),
@@ -71,14 +126,22 @@ class SelectPlace(BaseSelector):
             (_("Last Change"), 150, BaseSelector.TEXT, 9),
         ]
 
-    def get_from_handle_func(self):
+    def get_from_handle_func(self) -> object:
+        """
+        Return the database function for retrieving a place by handle.
+
+        :returns: Callable that takes a handle and returns a Place.
+        :rtype: callable
+        """
         return self.db.get_place_from_handle
 
-    def setup_searches(self):
-        """Build the default searches and add them to the search bar.
-        This overrides the baseselector method because we use the hidden
-        COL_SEARCH (11) that has alt names as well as primary name for name
-        searching"""
+    def setup_searches(self) -> None:
+        """
+        Build the default searches and add them to the search bar.
+
+        Overrides the base class method to use the hidden COL_SEARCH (11)
+        column that includes alternate names as well as the primary name.
+        """
         cols = [
             (pair[3], pair[1] if pair[1] else 11, pair[0] in self.exact_search())
             for pair in self.column_order()
@@ -86,7 +149,13 @@ class SelectPlace(BaseSelector):
         ]
         self.search_bar.setup_searches(cols)
 
-    def get_config_name(self):
+    def get_config_name(self) -> str:
+        """
+        Return the config key used to persist column widths and positions.
+
+        :returns: Module name used as config key.
+        :rtype: str
+        """
         return __name__
 
     WIKI_HELP_PAGE = URL_MANUAL_SECT2
