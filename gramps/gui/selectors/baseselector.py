@@ -223,8 +223,20 @@ class BaseSelector(ManagedWindow):
             self.columns.append(column)
             tree.append_column(column)
 
-    def build_menu_names(self, obj):
-        return (self.title, None)
+    def build_menu_names(self, obj: object) -> tuple[str, str]:
+        """
+        Return the menu label and submenu label for the Windows menu.
+
+        Returning a non-None submenu label registers this window as a
+        branch in the GrampsWindowManager tree, which allows child
+        windows (such as the editor opened by the 'New' button) to be
+        attached to it.
+
+        :param obj: Unused; required by the ManagedWindow interface.
+        :returns: Tuple of (menu_label, submenu_label).
+        :rtype: tuple[str, str]
+        """
+        return (self.title, self.title)
 
     def get_selected_ids(self):
         mlist = []
