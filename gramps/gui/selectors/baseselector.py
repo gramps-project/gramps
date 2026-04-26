@@ -425,6 +425,7 @@ class BaseSelector(ManagedWindow):
         Finalize rest
         """
         self.clear_model()
+        self.dbstate = None
         self.db = None
         self.tree = None
         self.columns = None
