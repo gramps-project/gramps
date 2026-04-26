@@ -62,7 +62,7 @@ class AllRelReport:
         self.person = person
         self.sdb = SimpleAccess(database)
         self.sdoc = SimpleDoc(document)
-        self.rel_class = get_relationship_calculator(glocale)
+        self.rel_class = get_relationship_calculator()
 
         self.msg_list = []
 
