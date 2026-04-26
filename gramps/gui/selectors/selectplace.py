@@ -89,8 +89,19 @@ class SelectPlace(BaseSelector):
         :param place: The newly created Place object.
         :type place: Place
         """
+        handle = place.get_handle()
         self.build_tree()
-        self.goto_handle(place.get_handle())
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+        self.goto_handle(handle)
+        # goto_handle expands parent rows then immediately calls
+        # scroll_to_cell before GTK finishes the expansion.  Flush
+        # events so the rows are realised, then scroll again.
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+        iter_ = self.model.get_iter_from_handle(handle)
+        if iter_:
+            self.tree.scroll_to_cell(self.model.get_path(iter_), None, True, 0.5, 0)
 
     def get_window_title(self) -> str:
         """
