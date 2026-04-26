@@ -139,6 +139,14 @@ class SelectPlace(BaseSelector):
             Gtk.main_iteration()
         if new_handle:
             self.goto_handle(new_handle)
+            # goto_handle expands parent rows and immediately calls
+            # scroll_to_cell before GTK finishes the expansion.  Flush
+            # events so the rows are realised, then scroll again.
+            while Gtk.events_pending():
+                Gtk.main_iteration()
+            iter_ = self.model.get_iter_from_handle(new_handle)
+            if iter_:
+                self.tree.scroll_to_cell(self.model.get_path(iter_), None, True, 0.5, 0)
 
     def get_window_title(self) -> str:
         """
