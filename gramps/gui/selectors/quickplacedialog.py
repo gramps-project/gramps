@@ -26,7 +26,7 @@ Usage::
     from gramps.gui.selectors.quickplacedialog import QuickPlaceDialog
     from gramps.gui.selectors.quickplaceparser import parse_place_hierarchy
 
-    parsed = parse_place_hierarchy(db, "Springfield, Illinois, USA")
+    parsed = parse_place_hierarchy(db, "USA, Illinois, Springfield")
     dlg = QuickPlaceDialog(db, parsed, parent=parent_window)
     response = dlg.run()
     dlg.destroy()

@@ -13,11 +13,16 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, see <https://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-"""Tests for quickplaceparser — no GTK required."""
+"""Tests for quickplaceparser — no GTK required.
+
+Input convention: most-general first, most-specific last.
+Example: "USA, Illinois, Springfield"
+"""
 
 import unittest
 
@@ -107,7 +112,7 @@ class TestFindPlaceChild(unittest.TestCase):
 
 
 # ---------------------------------------------------------------------------
-# Tests for parse_place_hierarchy
+# Tests for parse_place_hierarchy  (most-general first)
 # ---------------------------------------------------------------------------
 
 
@@ -124,25 +129,28 @@ class TestParsePlaceHierarchy(unittest.TestCase):
         self.assertEqual(parse_place_hierarchy(self.db, "   ,  , "), [])
 
     def test_all_existing(self):
-        result = parse_place_hierarchy(self.db, "Illinois, USA")
+        result = parse_place_hierarchy(self.db, "USA, Illinois")
         self.assertEqual(len(result), 2)
-        self.assertEqual(result[0]["name"], "Illinois")
-        self.assertEqual(result[0]["handle"], self.il_h)
+        self.assertEqual(result[0]["name"], "USA")
+        self.assertEqual(result[0]["handle"], self.usa_h)
         self.assertEqual(result[0]["status"], "existing")
-        self.assertEqual(result[1]["name"], "USA")
-        self.assertEqual(result[1]["handle"], self.usa_h)
+        self.assertEqual(result[1]["name"], "Illinois")
+        self.assertEqual(result[1]["handle"], self.il_h)
         self.assertEqual(result[1]["status"], "existing")
 
     def test_new_innermost(self):
-        result = parse_place_hierarchy(self.db, "Springfield, Illinois, USA")
-        self.assertEqual(result[0]["name"], "Springfield")
-        self.assertIsNone(result[0]["handle"])
-        self.assertEqual(result[0]["status"], "new")
+        # Springfield is new; USA and Illinois already exist
+        result = parse_place_hierarchy(self.db, "USA, Illinois, Springfield")
+        self.assertEqual(result[0]["name"], "USA")
+        self.assertEqual(result[0]["status"], "existing")
+        self.assertEqual(result[1]["name"], "Illinois")
         self.assertEqual(result[1]["status"], "existing")
-        self.assertEqual(result[2]["status"], "existing")
+        self.assertEqual(result[2]["name"], "Springfield")
+        self.assertIsNone(result[2]["handle"])
+        self.assertEqual(result[2]["status"], "new")
 
     def test_all_new(self):
-        result = parse_place_hierarchy(self.db, "Paris, France")
+        result = parse_place_hierarchy(self.db, "France, Paris")
         for entry in result:
             self.assertEqual(entry["status"], "new")
             self.assertIsNone(entry["handle"])
@@ -158,13 +166,18 @@ class TestParsePlaceHierarchy(unittest.TestCase):
         self.assertIsNone(result[0]["handle"])
 
     def test_strips_whitespace(self):
-        result = parse_place_hierarchy(self.db, "  Illinois  ,  USA  ")
-        self.assertEqual(result[0]["name"], "Illinois")
-        self.assertEqual(result[1]["name"], "USA")
+        result = parse_place_hierarchy(self.db, "  USA  ,  Illinois  ")
+        self.assertEqual(result[0]["name"], "USA")
+        self.assertEqual(result[1]["name"], "Illinois")
+
+    def test_wrong_parent_not_matched(self):
+        # "Illinois" exists as child of USA, not as root — should be "new"
+        result = parse_place_hierarchy(self.db, "Illinois")
+        self.assertEqual(result[0]["status"], "new")
 
 
 # ---------------------------------------------------------------------------
-# Tests for commit_place_hierarchy
+# Tests for commit_place_hierarchy  (most-general first)
 # ---------------------------------------------------------------------------
 
 
@@ -174,30 +187,35 @@ class TestCommitPlaceHierarchy(unittest.TestCase):
         self.usa_h = self.db._add("USA")
 
     def test_commit_all_new(self):
+        # France → Lyon
         parsed = [
-            {"name": "Lyon", "handle": None, "status": "new"},
             {"name": "France", "handle": None, "status": "new"},
+            {"name": "Lyon", "handle": None, "status": "new"},
         ]
         handle = commit_place_hierarchy(self.db, parsed, None)
+        # Returns the leaf (last entry)
         self.assertIsNotNone(handle)
-        self.assertEqual(handle, parsed[0]["handle"])
-        # France should exist now
-        france_h = parsed[1]["handle"]
+        self.assertEqual(handle, parsed[-1]["handle"])
+        # France was created
+        france_h = parsed[0]["handle"]
         self.assertIsNotNone(france_h)
         france = self.db.get_place_from_handle(france_h)
         self.assertEqual(france.get_name().get_value(), "France")
-        # Lyon should be a child of France
+        # Lyon is a child of France
         lyon = self.db.get_place_from_handle(handle)
         self.assertEqual(lyon.get_name().get_value(), "Lyon")
         parent_refs = [ref.ref for ref in lyon.get_placeref_list()]
         self.assertIn(france_h, parent_refs)
 
     def test_commit_with_existing_parent(self):
+        # USA (existing) → California (new)
         parsed = [
-            {"name": "California", "handle": None, "status": "new"},
             {"name": "USA", "handle": self.usa_h, "status": "existing"},
+            {"name": "California", "handle": None, "status": "new"},
         ]
         handle = commit_place_hierarchy(self.db, parsed, None)
+        # Returns the leaf
+        self.assertEqual(handle, parsed[-1]["handle"])
         cal = self.db.get_place_from_handle(handle)
         parent_refs = [ref.ref for ref in cal.get_placeref_list()]
         self.assertIn(self.usa_h, parent_refs)

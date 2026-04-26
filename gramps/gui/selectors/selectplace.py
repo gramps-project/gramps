@@ -82,9 +82,7 @@ class SelectPlace(BaseSelector):
         bar.pack_start(label, False, False, 0)
 
         self._quick_entry = Gtk.Entry()
-        self._quick_entry.set_placeholder_text(
-            _("Most specific first: City, Region, Country")
-        )
+        self._quick_entry.set_placeholder_text(_("Country, Region, City"))
         self._quick_entry.set_hexpand(True)
         self._quick_entry.connect("activate", self.cb_quick_add)
         bar.pack_start(self._quick_entry, True, True, 0)
@@ -128,11 +126,11 @@ class SelectPlace(BaseSelector):
         with DbTxn(_("Quick add place: %s") % leaf_name, self.db) as trans:
             commit_place_hierarchy(self.db, parsed, trans)
 
-        # Scroll to the most-specific newly created place; fall back to
-        # the most-specific place overall if all were already existing.
+        # Scroll to the most-specific newly created place (last new entry);
+        # fall back to the last (most-specific) entry if all already existed.
         new_handle = (
-            next((e["handle"] for e in parsed if e["status"] == "new"), None)
-            or parsed[0]["handle"]
+            next((e["handle"] for e in reversed(parsed) if e["status"] == "new"), None)
+            or parsed[-1]["handle"]
         )
 
         self._quick_entry.set_text("")
