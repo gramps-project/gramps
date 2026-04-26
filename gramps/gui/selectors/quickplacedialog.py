@@ -151,6 +151,7 @@ class QuickPlaceDialog(Gtk.Dialog):
         content.pack_start(grid, True, True, 0)
 
         self.connect("response", self.cb_response)
+        content.show_all()
 
     def _build_grid(self) -> Gtk.Grid:
         """
