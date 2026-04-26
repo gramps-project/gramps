@@ -145,10 +145,10 @@ class QuickPlaceDialog(Gtk.Dialog):
         )
         intro.set_xalign(0.0)
         intro.set_line_wrap(True)
-        content.append(intro)
+        content.pack_start(intro, False, False, 0)
 
         grid = self._build_grid()
-        content.append(grid)
+        content.pack_start(grid, True, True, 0)
 
         self.connect("response", self.cb_response)
 
