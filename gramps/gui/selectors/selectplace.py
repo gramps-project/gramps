@@ -21,9 +21,10 @@
 
 # -------------------------------------------------------------------------
 #
-# internationalization
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
+from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
@@ -33,9 +34,12 @@
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
+from gramps.gen.const import URL_MANUAL_SECT2
+from gramps.gen.db import DbTxn
 from ..views.treemodels.placemodel import PlaceTreeModel
 from .baseselector import BaseSelector
-from gramps.gen.const import URL_MANUAL_SECT2
+from .quickplacedialog import QuickPlaceDialog
+from .quickplaceparser import commit_place_hierarchy, parse_place_hierarchy
 
 # -------------------------------------------------------------------------
 #
@@ -52,9 +56,62 @@ from gramps.gen.const import URL_MANUAL_SECT2
 class SelectPlace(BaseSelector):
     def _local_init(self):
         """
-        Perform local initialisation for this class
+        Perform local initialisation for this class.
         """
         self.setup_configs("interface.place-sel", 600, 450)
+        self._build_quick_add_bar()
+
+    def _build_quick_add_bar(self):
+        """Add a 'Quick Add' entry bar below the tree list."""
+        vbox = self.glade.get_object("select_person_vbox")
+
+        bar = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        bar.set_margin_top(4)
+        bar.set_margin_bottom(4)
+        bar.set_margin_start(6)
+        bar.set_margin_end(6)
+
+        label = Gtk.Label(label=_("Quick Add:"))
+        bar.pack_start(label, False, False, 0)
+
+        self._quick_entry = Gtk.Entry()
+        self._quick_entry.set_placeholder_text(_("City, Region, Country"))
+        self._quick_entry.set_hexpand(True)
+        self._quick_entry.connect("activate", self._on_quick_add)
+        bar.pack_start(self._quick_entry, True, True, 0)
+
+        btn = Gtk.Button(label=_("Quick Add"))
+        btn.connect("clicked", self._on_quick_add)
+        bar.pack_start(btn, False, False, 0)
+
+        bar.show_all()
+        vbox.pack_end(bar, False, False, 0)
+
+    def _on_quick_add(self, _obj):
+        """Parse the quick-entry text, confirm with the user, then commit."""
+        text = self._quick_entry.get_text().strip()
+        if not text:
+            return
+
+        parsed = parse_place_hierarchy(self.db, text)
+        if not parsed:
+            return
+
+        dlg = QuickPlaceDialog(self.db, parsed, parent=self.window)
+        response = dlg.run()
+        dlg.destroy()
+
+        if response != Gtk.ResponseType.OK:
+            return
+
+        leaf_name = parsed[0]["name"]
+        with DbTxn(_("Quick add place: %s") % leaf_name, self.db) as trans:
+            handle = commit_place_hierarchy(self.db, parsed, trans)
+
+        self._quick_entry.set_text("")
+        self.build_tree()
+        if handle:
+            self.goto_handle(handle)
 
     def get_window_title(self):
         return _("Select Place")
