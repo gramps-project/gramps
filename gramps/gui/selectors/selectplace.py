@@ -99,9 +99,10 @@ class SelectPlace(BaseSelector):
         # events so the rows are realised, then scroll again.
         while Gtk.events_pending():
             Gtk.main_iteration()
-        iter_ = self.model.get_iter_from_handle(handle)
-        if iter_:
-            self.tree.scroll_to_cell(self.model.get_path(iter_), None, True, 0.5, 0)
+        if self.model and self.tree:
+            iter_ = self.model.get_iter_from_handle(handle)
+            if iter_:
+                self.tree.scroll_to_cell(self.model.get_path(iter_), None, True, 0.5, 0)
 
     def get_window_title(self) -> str:
         """
