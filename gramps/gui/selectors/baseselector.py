@@ -45,6 +45,7 @@ from ..glade import Glade
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.dbstate import DbState
 from gramps.gen.filters import GenericFilter
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 from gramps.gui.widgets.multitreeview import MultiTreeView
@@ -96,6 +97,7 @@ class BaseSelector(ManagedWindow):
         self.track_ref_for_deletion("renderer")
         self.renderer.set_property("ellipsize", Pango.EllipsizeMode.END)
 
+        self.dbstate: DbState = dbstate
         self.db = dbstate.db
         self.tree = None
         self.model = None
