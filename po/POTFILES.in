@@ -592,6 +592,7 @@ gramps/gui/selectors/selectfamily.py
 gramps/gui/selectors/selectnote.py
 gramps/gui/selectors/selectobject.py
 gramps/gui/selectors/selectperson.py
+gramps/gui/selectors/quickplacedialog.py
 gramps/gui/selectors/selectplace.py
 gramps/gui/selectors/selectrepository.py
 gramps/gui/selectors/selectsource.py

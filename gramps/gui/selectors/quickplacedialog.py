@@ -13,8 +13,9 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, see <https://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
 """
@@ -34,12 +35,28 @@ Usage::
         handle = commit_place_hierarchy(db, parsed, transaction)
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+import logging
 from typing import TYPE_CHECKING
 
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import PlaceType
 
@@ -48,22 +65,37 @@ if TYPE_CHECKING:
 
 _ = glocale.translation.gettext
 
-# Map from combo row index → (int_value, PlaceType label)
+LOG = logging.getLogger(__name__)
+
+# Map from combo row index → (int_value, translated label)
 _TYPE_ROWS: list[tuple[int, str]] = [
     (val, label) for val, label, _xml in PlaceType._DATAMAP
 ]
 
 
+# -------------------------------------------------------------------------
+#
+# QuickPlaceDialog
+#
+# -------------------------------------------------------------------------
 class QuickPlaceDialog(Gtk.Dialog):
     """
     Confirmation dialog that shows a parsed place hierarchy.
 
-    Rows marked "existing" are displayed read-only.
-    Rows marked "new" have an editable PlaceType combo.
+    Rows marked ``"existing"`` are displayed read-only with the current
+    place type.  Rows marked ``"new"`` have an editable PlaceType combo.
 
-    After :meth:`run` returns ``Gtk.ResponseType.OK``, every "new" entry in
-    *parsed* will have a ``place_type`` key set to a :class:`PlaceType`
-    instance reflecting the user's selection.
+    After :meth:`run` returns ``Gtk.ResponseType.OK``, every ``"new"``
+    entry in *parsed* will carry a ``place_type`` key set to a
+    :class:`PlaceType` instance reflecting the user's selection.
+
+    :param db: The Gramps database (used to look up existing place types).
+    :type db: DbGeneric
+    :param parsed: List of entry dicts from
+        :func:`~gramps.gui.selectors.quickplaceparser.parse_place_hierarchy`.
+    :type parsed: list[dict]
+    :param parent: Optional transient parent window.
+    :type parent: Gtk.Window | None
     """
 
     def __init__(
@@ -71,7 +103,17 @@ class QuickPlaceDialog(Gtk.Dialog):
         db: "DbGeneric",
         parsed: list[dict],
         parent: Gtk.Window | None = None,
-    ):
+    ) -> None:
+        """
+        Initialise the dialog and build the place hierarchy table.
+
+        :param db: The Gramps database.
+        :type db: DbGeneric
+        :param parsed: List of entry dicts from parse_place_hierarchy().
+        :type parsed: list[dict]
+        :param parent: Optional transient parent window.
+        :type parent: Gtk.Window | None
+        """
         super().__init__(
             title=_("Confirm Place Hierarchy"),
             transient_for=parent,
@@ -80,7 +122,7 @@ class QuickPlaceDialog(Gtk.Dialog):
         )
         self._db = db
         self._parsed = parsed
-        # combo widget → list index; filled in _build_grid
+        # Maps each combo widget to its 0-based index in _parsed.
         self._combos: dict[Gtk.ComboBoxText, int] = {}
 
         self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
@@ -108,17 +150,23 @@ class QuickPlaceDialog(Gtk.Dialog):
         grid = self._build_grid()
         content.append(grid)
 
-        self.connect("response", self._on_response)
-
-    # ------------------------------------------------------------------
+        self.connect("response", self.cb_response)
 
     def _build_grid(self) -> Gtk.Grid:
+        """
+        Build and return the table widget showing each place in *parsed*.
+
+        Existing places get read-only labels; new places get a PlaceType
+        combo.
+
+        :returns: Populated grid widget.
+        :rtype: Gtk.Grid
+        """
         grid = Gtk.Grid()
         grid.set_column_spacing(12)
         grid.set_row_spacing(6)
         grid.set_margin_top(8)
 
-        # Header
         for col, text in enumerate((_("Place Name"), _("Status"), _("Type"))):
             lbl = Gtk.Label(label=f"<b>{text}</b>")
             lbl.set_use_markup(True)
@@ -136,7 +184,6 @@ class QuickPlaceDialog(Gtk.Dialog):
                 status_lbl.set_xalign(0.0)
                 grid.attach(status_lbl, 1, row_idx, 1, 1)
 
-                # Show the existing place's type (read-only)
                 place = self._db.get_place_from_handle(entry["handle"])
                 type_lbl = Gtk.Label(label=str(place.get_type()))
                 type_lbl.set_xalign(0.0)
@@ -149,22 +196,38 @@ class QuickPlaceDialog(Gtk.Dialog):
 
                 combo = self._make_type_combo()
                 grid.attach(combo, 2, row_idx, 1, 1)
-                # Remember which parsed entry this combo controls
-                self._combos[combo] = row_idx - 1  # 0-based index into parsed
+                self._combos[combo] = row_idx - 1
 
         return grid
 
     def _make_type_combo(self) -> Gtk.ComboBoxText:
+        """
+        Build and return a ComboBoxText populated with all PlaceType values.
+
+        The first entry ("Unknown") is selected by default.
+
+        :returns: Populated combo widget.
+        :rtype: Gtk.ComboBoxText
+        """
         combo = Gtk.ComboBoxText()
         for _val, label in _TYPE_ROWS:
             combo.append_text(label)
-        # Default to "Unknown" (first entry)
         combo.set_active(0)
         return combo
 
-    # ------------------------------------------------------------------
+    def cb_response(self, _dialog: Gtk.Dialog, response_id: int) -> None:
+        """
+        Handle the dialog response.
 
-    def _on_response(self, _dialog, response_id: int) -> None:
+        On ``Gtk.ResponseType.OK``, write the selected :class:`PlaceType`
+        back into each ``"new"`` entry's dict so the caller can pass
+        *parsed* directly to ``commit_place_hierarchy()``.
+
+        :param _dialog: The dialog emitting the signal (unused).
+        :type _dialog: Gtk.Dialog
+        :param response_id: The response identifier.
+        :type response_id: int
+        """
         if response_id != Gtk.ResponseType.OK:
             return
         for combo, idx in self._combos.items():
