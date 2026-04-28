@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-24 21:23+0000\n"
+"PO-Revision-Date: 2026-04-25 22:09+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19137,7 +19137,7 @@ msgstr "Broj i ulica"
 
 #: ../gramps/gui/glade/editplaceformat.glade:188
 msgid "Street Number"
-msgstr "Ulica i broj"
+msgstr "Broj ulice"
 
 #: ../gramps/gui/glade/editplacename.glade:157
 #: ../gramps/plugins/webreport/basepage.py:3460
