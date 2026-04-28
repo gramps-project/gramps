@@ -200,9 +200,15 @@ def model_contains(model, data):
 # wrapper classes to provide object specific listing in the ListView
 #
 # -------------------------------------------------------------------------
+class _NullDragTarget:
+    """Null-object sentinel used as the base-class default for DRAG_TARGET."""
+
+    drag_type = None
+
+
 class ClipWrapper:
     UNAVAILABLE_ICON = "dialog-error"
-    DRAG_TARGET = None
+    DRAG_TARGET = _NullDragTarget()
     ICON = None
 
     def __init__(self, obj):
@@ -909,7 +915,9 @@ def _build_drag_type_map() -> dict:
         ClipText,
     ]
     return {
-        cls.DRAG_TARGET.drag_type: cls for cls in classes if cls.DRAG_TARGET is not None
+        cls.DRAG_TARGET.drag_type: cls
+        for cls in classes
+        if cls.DRAG_TARGET.drag_type is not None
     }
 
 
