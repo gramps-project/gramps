@@ -13,7 +13,7 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # R. B. <weblate@macdefender.org>, 2021.
 # RiseT <tareiss1971@yahoo.de>, 2021.
-# David Straub <straub@protonmail.com>, 2021, 2024.
+# David Straub <straub@protonmail.com>, 2021, 2024, 2026.
 # nautilusx <translate@disroot.org>, 2021, 2023.
 # Andreas Abraham <andreas.abraham@gmx.de>, 2021.
 # RiseT <twilite505-4bf24909@yahoo.com>, 2022.
@@ -25,7 +25,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
 "PO-Revision-Date: 2026-04-27 05:09+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"Last-Translator: David Straub <straub@protonmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -9942,7 +9942,7 @@ msgstr "E-Mail"
 
 #: ../gramps/gen/lib/urltype.py:59
 msgid "Web Home"
-msgstr "Web Startseite"
+msgstr "Web-Startseite"
 
 #: ../gramps/gen/lib/urltype.py:60
 msgid "Web Search"
