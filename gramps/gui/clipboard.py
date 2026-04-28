@@ -84,7 +84,7 @@ CLIPBOARD_FILE = os.path.join(USER_DATA_VERSION, "clipboard.json")
 # -------------------------------------------------------------------------
 
 theme = Gtk.IconTheme.get_default()
-LINK_PIC = theme.load_icon("stock_link", 16, 0)
+LINK_PIC = theme.load_icon("stock_link", 16, 0) if theme else None
 OBJ2ICON = {
     "media": "gramps-media",
     "note": "gramps-notes",
@@ -110,8 +110,9 @@ def obj2icon(target):
 
 
 ICONS = {}
-for name, icon in OBJ2ICON.items():
-    ICONS[name] = theme.load_icon(icon, 16, 0)
+if theme:
+    for name, icon in OBJ2ICON.items():
+        ICONS[name] = theme.load_icon(icon, 16, 0)
 
 
 # -------------------------------------------------------------------------
