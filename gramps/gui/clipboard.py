@@ -202,6 +202,8 @@ def model_contains(model, data):
 # -------------------------------------------------------------------------
 class ClipWrapper:
     UNAVAILABLE_ICON = "dialog-error"
+    DRAG_TARGET = None
+    ICON = None
 
     def __init__(self, obj):
         self._obj = obj
@@ -1364,7 +1366,9 @@ class ClipboardListView:
 
     # proxy methods to provide access to the real widget functions.
 
-    def _row_visible(self, model: object, iter: object, data: object) -> bool:
+    def _row_visible(
+        self, model: Gtk.TreeModel, iter: Gtk.TreeIter, data: object
+    ) -> bool:
         """
         Return True if a clipboard row should be shown in the current view.
 
@@ -1526,6 +1530,7 @@ class ClipboardWindow(ManagedWindow):
                 wrapper._dbid,
                 wrapper._title,
             )
+            assert cls.otree is not None
             cls.otree.append(
                 [
                     wrapper_class.DRAG_TARGET.drag_type,

@@ -25,7 +25,7 @@ for _mod in (
     sys.modules.setdefault(_mod, MagicMock())
 
 # Gtk.ListStore must be a real class so ClipboardListModel can subclass it.
-sys.modules["gi.repository.Gtk"].ListStore = object
+sys.modules["gi.repository.Gtk"].ListStore = object  # type: ignore[attr-defined]
 
 
 # ---------------------------------------------------------------------------
@@ -93,7 +93,7 @@ _dd.RAW_LIST = _make_target("raw-list")
 _dd.HANDLE_LIST = _make_target("handle-list")
 _dd.all_targets = MagicMock(return_value=[])
 _dd.all_text = MagicMock(return_value=[_dd.TEXT])
-sys.modules["gramps.gui.ddtargets"].DdTargets = _dd
+sys.modules["gramps.gui.ddtargets"].DdTargets = _dd  # type: ignore[attr-defined]
 
 # ---------------------------------------------------------------------------
 # Now import the module under test.
