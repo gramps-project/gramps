@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-23 02:10+0000\n"
+"PO-Revision-Date: 2026-04-25 22:09+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -10699,7 +10699,7 @@ msgstr "Slingerend"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:114
 msgid "Mesh"
-msgstr "Netwerk"
+msgstr "Maasnetwerk"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:120
 msgid "Tiny"
