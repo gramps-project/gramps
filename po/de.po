@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-24 21:24+0000\n"
+"PO-Revision-Date: 2026-04-27 05:09+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -7184,7 +7184,7 @@ msgstr "Kind"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "Lebenslauf"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
 msgid "Birth Registration"
@@ -8943,7 +8943,7 @@ msgstr "FamilySearch ID"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Ist Root"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
 msgid "Status timestamp"
@@ -13376,7 +13376,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2341
 msgid "Note preview length"
-msgstr "Angabe zur Länge der Vorschau"
+msgstr "Länge der Notizenvorschau"
 
 #: ../gramps/gui/configure.py:2400
 msgid "Database Setting"
@@ -17288,6 +17288,9 @@ msgid ""
 "Tip: resize columns by dragging headers | scroll inside tabs | refresh to re-"
 "check FamilySearch"
 msgstr ""
+"Tipp: Ändere die Spaltenbreite durch Ziehen der Spaltenüberschriften | "
+"Blättere innerhalb der Registerkarten | Aktualisiere die Seite, um "
+"FamilySearch erneut zu überprüfen"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:487
 msgid "Select a person first."
@@ -17295,37 +17298,31 @@ msgstr "Wähle zuerst eine Person aus."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:491
 msgid "You must login first."
-msgstr ""
+msgstr "Du musst dich zuerst anmelden."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:507
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve the selected person in the database."
-msgstr "Das Löschen der Person entfernt diese aus der Datenbank."
+msgstr "Die ausgewählte Person konnte in der Datenbank nicht gefunden werden."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:514
 msgid ""
 "This Gramps person is not linked to FamilySearch yet. Use 'Link person'."
 msgstr ""
+"Diese Person in Gramps ist noch nicht mit FamilySearch verknüpft. Verwende „"
+"Person verknüpfen“."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:543
-#, fuzzy
-#| msgid "Remove child from family"
 msgid "Refresh from FamilySearch"
-msgstr "Kind aus der Familie entfernen"
+msgstr "Von FamilySearch aktualisieren"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:550
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:610
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Import sources..."
-msgstr "Archiv importieren..."
+msgstr "Quellen importieren..."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:580
-#, fuzzy
-#| msgid "Preview"
 msgid "Overview"
-msgstr "Vorschau"
+msgstr "Übersicht"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:600
 #: ../gramps/plugins/importer/importxml.py:351
@@ -17357,95 +17354,77 @@ msgstr "Aktualisieren"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:693
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:727
 #: ../gramps/gui/fs/sync_directions.py:275
-#, fuzzy
-#| msgid "Gramps database"
 msgid "Gramps date"
-msgstr "Gramps-Datenbank"
+msgstr "Gramps-Datum"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:694
 #: ../gramps/gui/fs/sync_directions.py:276
-#, fuzzy
-#| msgid "Gramplet"
 msgid "Gramps value"
-msgstr "Gramplet"
+msgstr "Gramps-Wert"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:695
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:730
 #: ../gramps/gui/fs/sync_directions.py:277
-#, fuzzy
-#| msgid "date"
 msgid "FS date"
-msgstr "Datum"
+msgstr "FS-Datum"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:696
 #: ../gramps/gui/fs/sync_directions.py:278
-#, fuzzy
-#| msgid "Family Sources Gramplet"
 msgid "FamilySearch value"
-msgstr "Familiequellen Gramplet"
+msgstr "FamilySearch-Wert"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:699
 #: ../gramps/gui/fs/sync_directions.py:281
-#, fuzzy
-#| msgid "Type"
 msgid "xType"
-msgstr "Art"
+msgstr "xArt"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:700
 #: ../gramps/gui/fs/sync_directions.py:282
 msgid "xGr"
-msgstr ""
+msgstr "xGr"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:701
 #: ../gramps/gui/fs/sync_directions.py:283
 msgid "xFs"
-msgstr ""
+msgstr "xFs"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:702
 #: ../gramps/gui/fs/sync_directions.py:284
 msgid "xGr2"
-msgstr ""
+msgstr "xGr2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:703
 #: ../gramps/gui/fs/sync_directions.py:285
 msgid "xFs2"
-msgstr ""
+msgstr "xFs2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:713
 msgid "Scope"
-msgstr ""
+msgstr "Geltungsbereich"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:716
-#, fuzzy
-#| msgid "Title"
 msgid "FS Title"
-msgstr "Titel"
+msgstr "FS-Titel"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:726
 msgid "Kind"
-msgstr ""
+msgstr "Art"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:728
 msgid "Gramps title"
 msgstr "Gramps Titel"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:729
-#, fuzzy
-#| msgid "Gramps"
 msgid "Gramps URL"
-msgstr "Gramps"
+msgstr "Gramps-URL"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:731
-#, fuzzy
-#| msgid "title"
 msgid "FS title"
-msgstr "Titel"
+msgstr "FS-Titel"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:732
-#, fuzzy
-#| msgid "Search URL"
 msgid "FS URL"
-msgstr "Such-URL"
+msgstr "FS-URL"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:734
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:303
@@ -17453,14 +17432,12 @@ msgid "Contributor"
 msgstr "Beitragender"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:735
-#, fuzzy
-#| msgid "Modifier"
 msgid "Modified"
-msgstr "Modifikator"
+msgstr "Verändert"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:736
 msgid "FS ID"
-msgstr ""
+msgstr "FS-ID"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:750
 #, python-brace-format
@@ -17470,28 +17447,25 @@ msgstr "Vergleich fehlgeschlagen: {e}"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:842
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:933
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:948
-#, fuzzy
-#| msgid "Missing Given Name"
 msgid "(missing in Gramps)"
-msgstr "Fehlender Vorname"
+msgstr "(fehlt in Gramps)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1133
-#, fuzzy
-#| msgid "Section"
 msgid "Mention"
-msgstr "Abschnitt"
+msgstr "Erwähnung"
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:69
 msgid "FamilySearch is not configured (missing app key / redirect)."
 msgstr ""
+"FamilySearch ist nicht konfiguriert (App-Schlüssel fehlt / Weiterleitung)."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:82
 msgid "Already logged in to FamilySearch."
-msgstr ""
+msgstr "Bereits bei FamilySearch angemeldet."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:86
 msgid "Logged in to FamilySearch."
-msgstr ""
+msgstr "Bei FamilySearch angemeldet."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:89
 msgid "Login failed."
@@ -17503,14 +17477,14 @@ msgid ""
 "Login failed:\n"
 "{err}"
 msgstr ""
+"Anmeldung fehlgeschlagen:\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:338
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:176
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:181
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Import FamilySearch sources"
-msgstr "Stammbaum importieren"
+msgstr "FamilySearch-Quellen importieren"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:468
 #, python-brace-format
@@ -17523,19 +17497,15 @@ msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:115
 msgid "No FamilySearch sources found to import."
-msgstr ""
+msgstr "Keine FamilySearch-Quellen zum Importieren gefunden."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:256
-#, fuzzy
-#| msgid "Selected"
 msgid "Detected"
-msgstr "Ausgewählt"
+msgstr "Erkannt"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:274
-#, fuzzy
-#| msgid "Import"
 msgid "Import as"
-msgstr "Importieren"
+msgstr "Importieren als"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:285
 msgid "FS Date"
@@ -17548,16 +17518,12 @@ msgid "Images"
 msgstr "Bilder"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:312
-#, fuzzy
-#| msgid "Person Gallery"
 msgid "To Person gallery"
-msgstr "Person Galerie"
+msgstr "Zur Person-Galerie"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:329
-#, fuzzy
-#| msgid "Action"
 msgid "Actions"
-msgstr "Aktion"
+msgstr "Aktionen"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:332
 msgid "Manage Images…"
@@ -17565,10 +17531,8 @@ msgstr "Bilder verwalten…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:372
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:374
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage images"
-msgstr "Datenbanken verwalten"
+msgstr "Bilder verwalten"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:380
 msgid "Add from source…"
@@ -17576,7 +17540,7 @@ msgstr "Von Quelle hinzufügen…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:381
 msgid "Open the source page and download images"
-msgstr ""
+msgstr "Öffne die Quellseite und lade die Bilder herunter"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:383
 msgid "Choose file…"
@@ -17584,23 +17548,19 @@ msgstr "Datei wählen…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:384
 msgid "Pick existing files from disk"
-msgstr ""
+msgstr "Vorhandene Dateien von der Festplatte auswählen"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:386
-#, fuzzy
-#| msgid "Rename failed"
 msgid "Rename files"
-msgstr "Umbenennen fehlgeschlagen"
+msgstr "Dateien umbenennen"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:387
 msgid "Rename selected files on disk"
 msgstr "Ausgewählte Dateien auf der Festplatte umbenennen"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:426
-#, fuzzy
-#| msgid "File extension"
 msgid "Filename (without extension)"
-msgstr "Dateierweiterung"
+msgstr "Dateiname (ohne Dateiendung)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:430
 msgid "Extension"
@@ -17613,18 +17573,19 @@ msgid ""
 "• Extensions are preserved.\n"
 "• If a file with the new name exists, a numeric suffix will be added."
 msgstr ""
+"Tipps:\n"
+"• Doppelklicke auf den Namen, um ihn zu bearbeiten.\n"
+"• Dateiendungen bleiben erhalten.\n"
+"• Wenn bereits eine Datei mit dem neuen Namen vorhanden ist, wird ein "
+"numerischer Zusatz angehängt."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:464
-#, fuzzy
-#| msgid "No map service is available."
 msgid "Image picker module is not available."
-msgstr "Es ist kein Kartendienst verfügbar."
+msgstr "Das Bildauswahlmodul ist nicht verfügbar."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:471
-#, fuzzy
-#| msgid "Add Source (%s)"
 msgid "Add Source Image"
-msgstr "Quelle hinzufügen (%s)"
+msgstr "Quellbild hinzufügen"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:475
 #, python-brace-format
@@ -17636,10 +17597,8 @@ msgstr ""
 "{e}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:493
-#, fuzzy
-#| msgid "Close file first"
 msgid "Choose image file(s)"
-msgstr "Datei zuerst schließen"
+msgstr "Bilddatei(en) auswählen"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:499
 #: ../gramps/gui/glade/mergedata.glade:170
@@ -17664,24 +17623,22 @@ msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:621
 #: ../gramps/gui/fs/sync_directions.py:658
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select all"
-msgstr "Alle au_swählen"
+msgstr "Alle auswählen"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:642
 msgid ""
 "Tip: click “Manage Images…” to add/choose/rename files before importing."
 msgstr ""
+"Tipp: Klick auf „Bilder verwalten…“, um vor dem Importieren Dateien "
+"hinzuzufügen, auszuwählen oder umzubenennen."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:684
 #, python-brace-format
 msgid "{n} source(s) imported."
-msgstr ""
+msgstr "{n} Quelle(n) importiert."
 
 #: ../gramps/gui/fs/sync_directions.py:337
-#, fuzzy
-#| msgid "Primary name"
 msgid "Primary Name"
 msgstr "Primärer Name"
 
@@ -17693,40 +17650,32 @@ msgstr "Notiz: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:418
 #: ../gramps/gui/fs/sync_directions.py:444
-#, fuzzy
-#| msgid "title"
 msgid "(untitled)"
-msgstr "Titel"
+msgstr "(ohne Titel)"
 
 #: ../gramps/gui/fs/sync_directions.py:422
 #: ../gramps/gui/fs/sync_directions.py:447
 #: ../gramps/gui/fs/sync_directions.py:448
 #: ../gramps/gui/fs/sync_directions.py:700
 msgid "(empty)"
-msgstr ""
+msgstr "(leer)"
 
 #: ../gramps/gui/fs/sync_directions.py:582
 #: ../gramps/gui/fs/sync_directions.py:980
-#, fuzzy
-#| msgid "Source Notes Gramplet"
 msgid "Source from Gramps"
-msgstr "Quellennotiz Gramplet"
+msgstr "Quelle aus Gramps"
 
 #: ../gramps/gui/fs/sync_directions.py:593
-#, fuzzy
-#| msgid "_Delete Family"
 msgid "(deleted on FamilySearch)"
-msgstr "Familie _löschen"
+msgstr "(auf FamilySearch gelöscht)"
 
 #: ../gramps/gui/fs/sync_directions.py:595
-#, fuzzy
-#| msgid "Submission: Family file"
 msgid "(missing on FamilySearch)"
-msgstr "Einreichung: Familiendatei"
+msgstr "(fehlt auf FamilySearch)"
 
 #: ../gramps/gui/fs/sync_directions.py:597
 msgid "(not attached to this person on FamilySearch)"
-msgstr ""
+msgstr "(auf FamilySearch nicht mit dieser Person verknüpft)"
 
 #: ../gramps/gui/fs/sync_directions.py:604
 #, python-brace-format
@@ -17734,16 +17683,12 @@ msgid "Source: {title}"
 msgstr "Quelle: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:625
-#, fuzzy
-#| msgid "Select Family"
 msgid "Sync to FamilySearch"
-msgstr "Familie wählen"
+msgstr "Mit FamilySearch synchronisieren"
 
 #: ../gramps/gui/fs/sync_directions.py:629
-#, fuzzy
-#| msgid "Selected"
 msgid "Apply Selected"
-msgstr "Ausgewählt"
+msgstr "Auswahl übernehmen"
 
 #: ../gramps/gui/fs/sync_directions.py:641
 msgid ""
@@ -17751,6 +17696,9 @@ msgid ""
 "Default is to keep FamilySearch.\n"
 "<i>No deletions are performed.</i>"
 msgstr ""
+"<b>Wähle aus, was auf FamilySearch geändert werden soll</b>\n"
+"Standardmäßig bleibt FamilySearch erhalten.\n"
+"<i>Es werden keine Löschungen vorgenommen.</i>"
 
 #: ../gramps/gui/fs/sync_directions.py:649
 msgid "Change message:"
@@ -17758,42 +17706,36 @@ msgstr "Nachricht ändern:"
 
 #: ../gramps/gui/fs/sync_directions.py:678
 msgid "Field"
-msgstr ""
+msgstr "Feld"
 
 #: ../gramps/gui/fs/sync_directions.py:681 ../gramps/gui/undohistory.py:115
 msgid "Action"
 msgstr "Aktion"
 
 #: ../gramps/gui/fs/sync_directions.py:719
-#, fuzzy
-#| msgid "Merge Family"
 msgid "Keep FamilySearch"
-msgstr "Familien zusammenführen"
+msgstr "FamilySearch behalten"
 
 #: ../gramps/gui/fs/sync_directions.py:722
-#, fuzzy
-#| msgid "Produced with Gramps"
 msgid "Overwrite with Gramps"
-msgstr "Erstellt mit Gramps"
+msgstr "Mit Gramps überschreiben"
 
 #: ../gramps/gui/fs/sync_directions.py:724
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Add from Gramps"
-msgstr "Ein Gramplet hinzufügen"
+msgstr "Aus Gramps hinzufügen"
 
 #: ../gramps/gui/fs/sync_directions.py:726
 msgid "Apply from Gramps"
-msgstr ""
+msgstr "Aus Gramps anwenden"
 
 #: ../gramps/gui/fs/sync_directions.py:777
 #: ../gramps/gui/fs/sync_directions.py:1342
 msgid "Not connected to FamilySearch."
-msgstr ""
+msgstr "Keine Verbindung zu FamilySearch."
 
 #: ../gramps/gui/fs/sync_directions.py:789
 msgid "No FamilySearch Person ID is set for this person."
-msgstr ""
+msgstr "Für diese Person ist keine FamilySearch-Person-ID vergeben."
 
 #: ../gramps/gui/fs/sync_directions.py:798
 msgid ""
@@ -17802,6 +17744,10 @@ msgid ""
 "Clear or replace the saved FSID before exporting again, or restore that "
 "FamilySearch person first."
 msgstr ""
+"Die verknüpfte FamilySearch-Person wurde gelöscht oder ist inaktiv.\n"
+"\n"
+"Lösche oder ersetze die gespeicherte FSID, bevor du erneut exportierst, oder "
+"stelle die FamilySearch-Person zunächst wieder her."
 
 #: ../gramps/gui/fs/sync_directions.py:809
 msgid ""
@@ -17809,16 +17755,23 @@ msgid ""
 "\n"
 "Clear or replace the saved FSID before exporting again."
 msgstr ""
+"Die verknüpfte Person auf FamilySearch konnte nicht gefunden werden.\n"
+"\n"
+"Lösche die gespeicherte FSID oder ersetze sie, bevor du den Export erneut "
+"versuchst."
 
 #: ../gramps/gui/fs/sync_directions.py:819
 msgid "FamilySearch: Refresh merged ID"
-msgstr ""
+msgstr "FamilySearch: Zusammengeführte ID aktualisieren"
 
 #: ../gramps/gui/fs/sync_directions.py:834
 msgid ""
 "FamilySearch person could not be loaded fresh from the API.\n"
 "Try 'Sync from FamilySearch' or clear the cache, then try again."
 msgstr ""
+"Die Person aus FamilySearch konnte nicht neu über die API geladen werden.\n"
+"Versuche es mit „Von FamilySearch synchronisieren“ oder leere den Cache und "
+"versuche es erneut."
 
 #: ../gramps/gui/fs/sync_directions.py:862
 msgid "No pushable differences found."
@@ -17830,27 +17783,30 @@ msgid ""
 "FamilySearch payload. This usually means the fact type could not be "
 "determined."
 msgstr ""
+"Es wurden Abweichungen festgestellt, aber keine davon konnte in eine gültige "
+"FamilySearch-Datenübertragung umgewandelt werden. Dies bedeutet in der "
+"Regel, dass der Faktentyp nicht ermittelt werden konnte."
 
 #: ../gramps/gui/fs/sync_directions.py:938
 msgid "FamilySearch update failed (names/facts)."
-msgstr ""
+msgstr "Die Aktualisierung bei FamilySearch ist fehlgeschlagen (Namen/Fakten)."
 
 #: ../gramps/gui/fs/sync_directions.py:961
 msgid "FamilySearch update failed (notes)."
-msgstr ""
+msgstr "Die Aktualisierung von FamilySearch ist fehlgeschlagen (Notizen)."
 
 #: ../gramps/gui/fs/sync_directions.py:996
 #, python-brace-format
 msgid "FamilySearch source creation failed for: {t}"
-msgstr ""
+msgstr "Die Erstellung der FamilySearch-Quelle ist fehlgeschlagen für: {t}"
 
 #: ../gramps/gui/fs/sync_directions.py:1054
 msgid "FamilySearch update failed (sources)."
-msgstr ""
+msgstr "Die Aktualisierung von FamilySearch ist fehlgeschlagen (Quellen)."
 
 #: ../gramps/gui/fs/sync_directions.py:1097
 msgid "FamilySearch: Link uploaded memories"
-msgstr ""
+msgstr "FamilySearch: Hochgeladene Erinnerungen verknüpfen"
 
 #: ../gramps/gui/fs/sync_directions.py:1159
 #, python-format
@@ -17859,19 +17815,22 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Einige Erinnerungen konnten nicht hochgeladen werden:\n"
+"\n"
+"%s"
 
 #: ../gramps/gui/fs/sync_directions.py:1165
 msgid "FamilySearch updated successfully."
-msgstr ""
+msgstr "FamilySearch wurde erfolgreich aktualisiert."
 
 #: ../gramps/gui/fs/sync_directions.py:1169
 #, python-brace-format
 msgid "FamilySearch sync failed: {e}"
-msgstr ""
+msgstr "FamilySearch-Synchronisierung fehlgeschlagen: {e}"
 
 #: ../gramps/gui/fs/sync_directions.py:1181
 msgid "Export to FamilySearch (basic)"
-msgstr ""
+msgstr "Nach FamilySearch exportieren (Basis)"
 
 #: ../gramps/gui/fs/sync_directions.py:1186
 msgid "Export"
@@ -17883,18 +17842,19 @@ msgid ""
 "Basic export only: name + birth/death facts.\n"
 "<i>No deletions. Existing active linked people are not overwritten here.</i>"
 msgstr ""
+"<b>Erstelle fehlende Personen auf FamilySearch und verknüpfe "
+"Verwandtschaftsbeziehungen.</b>\n"
+"Nur Basisexport: Name + Geburts-/Sterbedaten.\n"
+"<i>Keine Löschungen. Vorhandene aktive verknüpfte Personen werden hier nicht "
+"überschrieben.</i>"
 
 #: ../gramps/gui/fs/sync_directions.py:1205
-#, fuzzy
-#| msgid "Include places"
 msgid "Include parents"
-msgstr "Orte einbeziehen"
+msgstr "Eltern einbeziehen"
 
 #: ../gramps/gui/fs/sync_directions.py:1206
-#, fuzzy
-#| msgid "Include spouses"
 msgid "Include spouse(s)"
-msgstr "Ehepartner einbeziehen"
+msgstr "Ehepartner mit einbeziehen"
 
 #: ../gramps/gui/fs/sync_directions.py:1207
 #: ../gramps/plugins/export/exportcsv.py:148
@@ -17904,134 +17864,119 @@ msgid "Include children"
 msgstr "Kinder einbeziehen"
 
 #: ../gramps/gui/fs/sync_directions.py:1229
-#, fuzzy
-#| msgid "person"
 msgid "(person)"
-msgstr "Person"
+msgstr "(Person)"
 
 #: ../gramps/gui/fs/sync_directions.py:1248
 msgid "This person: "
 msgstr "Diese Person "
 
 #: ../gramps/gui/fs/sync_directions.py:1276
-#, fuzzy
 msgid "Create"
-msgstr "Dok Ersteller"
+msgstr "Erstellen"
 
 #: ../gramps/gui/fs/sync_directions.py:1282
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select all missing"
-msgstr "Wähle eine vorhandene Notiz"
+msgstr "Alle fehlenden auswählen"
 
 #: ../gramps/gui/fs/sync_directions.py:1349
 msgid "Please save this person first."
-msgstr ""
+msgstr "Bitte speichere zuerst die Person."
 
 #: ../gramps/gui/fs/sync_directions.py:1355
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve this person from the database."
-msgstr "Das Löschen der Person entfernt diese aus der Datenbank."
+msgstr "Diese Person konnte nicht aus der Datenbank ermittelt werden."
 
 #: ../gramps/gui/fs/sync_directions.py:1396
 msgid "FamilySearch: Export basic people"
-msgstr ""
+msgstr "FamilySearch: Personen mit Basisdaten exportieren"
 
 #: ../gramps/gui/fs/sync_directions.py:1435
 msgid "FamilySearch create failed for a person. Check name and connection."
 msgstr ""
+"Die Erstellung eines FamilySearch-Eintrags für eine Person ist "
+"fehlgeschlagen. Bitte überprüfe den Namen und die Verbindung."
 
 #: ../gramps/gui/fs/sync_directions.py:1557
 msgid ""
 "Export complete: created people and linked relationships on FamilySearch."
 msgstr ""
+"Export abgeschlossen: Personen angelegt und Beziehungen auf FamilySearch "
+"verknüpft."
 
 #: ../gramps/gui/fs/sync_directions.py:1564
 msgid ""
 "Export complete: no new people were created; relationships were attempted."
 msgstr ""
+"Export abgeschlossen: Es wurden keine neuen Personen angelegt; es wurde "
+"versucht, Beziehungen herzustellen."
 
 #: ../gramps/gui/fs/sync_directions.py:1569
-#, fuzzy
-#| msgid "No matching addons found."
 msgid "Nothing was exported."
-msgstr "Keine passenden Erweiterungen gefunden."
+msgstr "Es wurde nichts exportiert."
 
 #: ../gramps/gui/fs/sync_directions.py:1573
 #, python-brace-format
 msgid "FamilySearch export failed: {e}"
-msgstr ""
+msgstr "FamilySearch-Export fehlgeschlagen: {e}"
 
 #: ../gramps/gui/fs/tools_window.py:314
-#, fuzzy
-#| msgid "Family To Do"
 msgid "FamilySearch Tools"
-msgstr "Familie 'zu erledigen'"
+msgstr "FamilySearch-Werkzeuge"
 
 #: ../gramps/gui/fs/tools_window.py:342 ../gramps/gui/fs/tools_window.py:661
-#, fuzzy
-#| msgid "Edit Person (%s)"
 msgid "Editor person: (none)"
-msgstr "Person bearbeiten (%s)"
+msgstr "Personen-Editor: (keine)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Person Citations"
 msgid "Person actions"
-msgstr "Person Fundstellen"
+msgstr "Handlungen von Personen"
 
 #: ../gramps/gui/fs/tools_window.py:363
-#, fuzzy
-#| msgid "Co_mpare"
 msgid "Compare"
-msgstr "_Vergleichen"
+msgstr "Vergleichen"
 
 #: ../gramps/gui/fs/tools_window.py:364
 msgid "Sync from FamilySearch"
-msgstr ""
+msgstr "Von FamilySearch synchronisieren"
 
 #: ../gramps/gui/fs/tools_window.py:367
 msgid "Sync to FamilySearch..."
-msgstr ""
+msgstr "Nach FamilySearch synchronisieren..."
 
 #: ../gramps/gui/fs/tools_window.py:369
 msgid "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
 msgstr ""
+"Ausgewählte FamilySearch-Felder mit Gramps-Werten überschreiben (keine "
+"Löschungen)."
 
 #: ../gramps/gui/fs/tools_window.py:372
 msgid "Export to FamilySearch (basic)..."
-msgstr ""
+msgstr "Nach FamilySearch exportieren (Basis)..."
 
 #: ../gramps/gui/fs/tools_window.py:375
 msgid ""
 "Create missing people on FamilySearch and link relationships (name + birth/"
 "death)."
 msgstr ""
+"Erstelle fehlende Personen auf FamilySearch und verknüpfe Beziehungen (Name "
+"+ Geburt/Tod)."
 
 #: ../gramps/gui/fs/tools_window.py:389
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import relatives"
-msgstr "Import fehlgeschlagen"
+msgstr "Verwandte importieren"
 
 #: ../gramps/gui/fs/tools_window.py:393
-#, fuzzy
-#| msgid "Import Pro-Gen"
 msgid "Import Parents"
-msgstr "Pro-Gen importieren"
+msgstr "Eltern importieren"
 
 #: ../gramps/gui/fs/tools_window.py:394
-#, fuzzy
-#| msgid "Indent Spouses"
 msgid "Import Spouse"
-msgstr "Ehegatten einrücken"
+msgstr "Ehepartner importieren"
 
 #: ../gramps/gui/fs/tools_window.py:395
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import Children"
-msgstr "Import fehlgeschlagen"
+msgstr "Kinder importieren"
 
 #: ../gramps/gui/fs/tools_window.py:400 ../gramps/gui/plug/tool.py:71
 msgid "Utilities"
@@ -18042,27 +17987,23 @@ msgid "Tags..."
 msgstr "Etiketten..."
 
 #: ../gramps/gui/fs/tools_window.py:404
-#, fuzzy
-#| msgid "Cleared"
 msgid "Clear Cache"
-msgstr "Freigegeben"
+msgstr "Cache leeren"
 
 #: ../gramps/gui/fs/tools_window.py:674
-#, fuzzy, python-format
-#| msgid "%(name)s [%(gid)s]"
+#, python-format
 msgid "Editor person: %(name)s  [%(gid)s]"
-msgstr "%(name)s [%(gid)s]"
+msgstr "Personen-Editor: %(name)s  [%(gid)s]"
 
 #: ../gramps/gui/fs/tools_window.py:682
-#, fuzzy, python-format
-#| msgid "Person: %(name)s"
+#, python-format
 msgid "Editor person: %(name)s"
-msgstr "Person: %(name)s"
+msgstr "Personen-Editor: %(name)s"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
 msgid "Build FSID list (1/%(total)d)"
-msgstr ""
+msgstr "FSID-Liste erstellen (1/%(total)d)"
 
 #: ../gramps/gui/fs/utils/index.py:57 ../gramps/gui/fs/utils/index.py:61
 #, python-format
@@ -18070,27 +18011,21 @@ msgid "FamilySearch duplicate ID: %s "
 msgstr "FamilySearch doppelte ID: %s "
 
 #: ../gramps/gui/fs/utils/index.py:60
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Duplicate FSFTID"
-msgstr "Doppelte Familie"
+msgstr "Doppelte FSFTID"
 
 #: ../gramps/gui/fs/utils/index.py:62
-#, fuzzy
-#| msgid "_Continue anyway"
 msgid "_Continue warning"
-msgstr "_Trotzdem fortfahren"
+msgstr "_Warnung fortsetzen"
 
 #: ../gramps/gui/fs/utils/index.py:63
-#, fuzzy
-#| msgid "Undo history warning"
 msgid "_Stop warning"
-msgstr "Warnung: Zurücksetzen des Bearbeitungsverlaufs"
+msgstr "Warnung _beenden"
 
 #: ../gramps/gui/fs/utils/index.py:73
 #, python-format
 msgid "Build FSID list for places (2/%(total)d)"
-msgstr ""
+msgstr "FSID-Liste für Orte erstellen (2/%(total)d)"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -20541,10 +20476,8 @@ msgid "_Family Trees"
 msgstr "_Stammbäume"
 
 #: ../gramps/gui/grampsgui.py:57
-#, fuzzy
-#| msgid "Searching..."
 msgid "_FamilySearch Sign in..."
-msgstr "Suche..."
+msgstr "Bei _FamilySearch anmelden..."
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Go"
@@ -20678,6 +20611,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Python wurde ohne gettext-Unterstützung im locale-Modul kompiliert.\n"
+"\n"
+"Gramps wird nun beendet."
 
 #: ../gramps/gui/grampsgui.py:507
 msgid "Gramps detected an incomplete GTK installation"
@@ -22544,10 +22480,8 @@ msgid "Cannot open new citation editor"
 msgstr "Neuer Fundstelleneditor kann nicht geöffnet werden"
 
 #: ../gramps/gui/viewmanager.py:348
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch tools"
-msgstr "Familienfarben"
+msgstr "FamilySearch-Werkzeuge"
 
 #: ../gramps/gui/viewmanager.py:391 ../gramps/gui/viewmanager.py:1237
 msgid "No Family Tree"
@@ -22555,13 +22489,11 @@ msgstr "Kein Stammbaum"
 
 #: ../gramps/gui/viewmanager.py:407
 msgid "Not logged in to FamilySearch."
-msgstr ""
+msgstr "Du bist nicht bei FamilySearch angemeldet."
 
 #: ../gramps/gui/viewmanager.py:553
-#, fuzzy
-#| msgid "Use complete sentences"
 msgid "User consent declined"
-msgstr "Vollständige Sätze verwenden"
+msgstr "Benutzer hat die Zustimmung verweigert"
 
 #: ../gramps/gui/viewmanager.py:561
 msgid "Authorization error"
@@ -25848,16 +25780,12 @@ msgid "Total people"
 msgstr "Personen insgesamt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:29
-#, fuzzy
-#| msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "De:Gramps_6.0_Wiki_Handbuch_-_Gramplets#Gramplet-Liste"
+msgstr "De:Gramps_6.1_Wiki_Handbuch_-_Gramplets#Gramplet-Liste"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
-msgstr "De:Gramps_6.0_Wiki_Handbuch_-_Werkzeuge#Fehlersuche"
+msgstr "De:Gramps_6.1_Wiki_Handbuch_-_Werkzeuge#Fehlersuche"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:50
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:58
@@ -25885,55 +25813,39 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:98
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:105
-#, fuzzy
-#| msgid "Web Calendar"
 msgid "Person's birth Calendar"
-msgstr "Webkalender"
+msgstr "Geburtstagskalender"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:99
-#, fuzzy
-#| msgid "Gramplet showing the notes for a person"
 msgid "Gramplet showing the birth for a person on the calendar"
-msgstr "Gramplet zeigt die Notizen für eine Person"
+msgstr "Gramplet, das den Geburtstag einer Person im Kalender anzeigt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:113
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:120
-#, fuzzy
-#| msgid "person's death"
 msgid "Person's death Calendar"
-msgstr "Tod einer Person"
+msgstr "Sterbekalender"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:114
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the death for a person on the calendar"
-msgstr "Gramplet zeigt die Ereignisse für eine Person"
+msgstr "Gramplet, das den Tod einer Person im Kalender anzeigt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:128
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
-#, fuzzy
-#| msgid "My Family Calendar"
 msgid "Family Calendar"
-msgstr "Mein Familienkalender"
+msgstr "Familienkalender"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:129
-#, fuzzy
-#| msgid "Gramplet showing the sources for a family"
 msgid "Gramplet showing the marriage for a family on the calendar"
-msgstr "Gramplet zeigt die Quellen einer Familie"
+msgstr "Gramplet, das die Eheschließungen einer Familie im Kalender anzeigt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:143
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:150
-#, fuzzy
-#| msgid "vCalendar"
 msgid "Event Calendar"
-msgstr "vCalendar"
+msgstr "Ereigniskalender"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:144
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Gramplet showing the date for an event on the calendar"
-msgstr "Gramplet zeigt die Notizen für ein Ereignis"
+msgstr "Gramplet, das das Datum eines Ereignisses im Kalender anzeigt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:158
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
@@ -28012,10 +27924,8 @@ msgid "Whether to include dates and/or places"
 msgstr "Ob Daten und/oder Orte einbezogen werden sollen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:984
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only valid dates"
-msgstr "Ungültige Daten _identifizieren"
+msgstr "Nur gültige Daten"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:985
 msgid "Only show valid dates."
@@ -35016,10 +34926,8 @@ msgstr "Klicke, um eine Ansicht auszuwählen"
 #: ../gramps/plugins/sidebar/favoritessidebar.py:79
 #: ../gramps/plugins/sidebar/favoritessidebar.py:81
 #: ../gramps/plugins/sidebar/favoritessidebar.py:219
-#, fuzzy
-#| msgid "Choose your dialect"
 msgid "Choose your favorite views"
-msgstr "Wähle deinen Dialekt"
+msgstr "Wähle deine Lieblingsansichten aus"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:85
 #: ../gramps/plugins/tool/mediamanager.py:94
@@ -35028,20 +34936,16 @@ msgid "Help"
 msgstr "Hilfe"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:86
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select All"
-msgstr "Alle au_swählen"
+msgstr "Alle Auswählen"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:87
-#, fuzzy
-#| msgid "Clear _All"
 msgid "Clear All"
-msgstr "_Alles löschen"
+msgstr "Alles löschen"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:136
 msgid "Switching_Navigator_modes"
-msgstr ""
+msgstr "Navigatiormodi_wechseln"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
 msgid "Category Sidebar"
@@ -35081,20 +34985,16 @@ msgid "Expander"
 msgstr "Expander"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:82
-#, fuzzy
-#| msgid "Category Sidebar"
 msgid "Favorites Sidebar"
-msgstr "Kategorie Seitenleiste"
+msgstr "Favoriten-Seitenleiste"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:83
-#, fuzzy
-#| msgid "Selection of views from lists with expanders"
 msgid "Selection of views from a views selector"
-msgstr "Auswahl von Ansichten aus Listen mit Erweiterungen"
+msgstr "Auswahl von Ansichten aus einem Ansichtsauswahlmenü"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:91
 msgid "Favorites"
-msgstr ""
+msgstr "Favoriten"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:73
 #: ../gramps/plugins/textreport/textplugins.gpr.py:412
@@ -36082,10 +35982,8 @@ msgid "Include Attributes"
 msgstr "Attribute einbeziehen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
-#, fuzzy
-#| msgid "Include addresses"
 msgid "Include Addresses"
-msgstr "Adressen einbeziehen"
+msgstr "Adressen Einbeziehen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1194
 msgid "Include Census Events"
@@ -40757,7 +40655,7 @@ msgstr "Dateityp"
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for people: %(people)s"
-msgstr ""
+msgstr "%(idx)s - für Personen: %(people)s"
 
 #: ../gramps/plugins/webreport/media.py:736
 #, python-format
@@ -40781,13 +40679,13 @@ msgstr "%(idx)s - für Orte: %(place)s"
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for source: %(source)s"
-msgstr ""
+msgstr "%(idx)s - für Quellen: %(source)s"
 
 #: ../gramps/plugins/webreport/media.py:808
 #, python-format
 msgctxt "source"
 msgid "%(idx)s - for citation: %(citation)s from %(source)s"
-msgstr ""
+msgstr "%(idx)s - für Fundstellen: %(citation)s aus %(source)s"
 
 #: ../gramps/plugins/webreport/media.py:919
 msgid "Missing media object:"
@@ -41027,14 +40925,12 @@ msgstr ""
 "Die maximale Anzahl von Zeilen, die in eine Indexseite aufgenommen werden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2259
-#, fuzzy
-#| msgid "Allow editing database owner information."
 msgid "Allow internet indexation."
-msgstr "Erlaubt die Bearbeitung von Datenbankbesitzerinformationen."
+msgstr "Internet-Indexierung zulassen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Allow search engines (Google, Bing, etc.) to index your website."
-msgstr ""
+msgstr "Erlaube Suchmaschinen (Google, Bing usw.), deine Website zu indexieren."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2272
 msgid "Extra Pages"
