@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-24 21:24+0000\n"
+"PO-Revision-Date: 2026-04-28 04:37+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -590,8 +590,8 @@ msgstr ""
 "<b>Zostavy Gramps</b><br/>Gramps ponúka široký výber zostáv. Grafické "
 "zostavy a Grafy zobrazia komplexné vzťahy jednoduchou formou. Textové "
 "zostavy sú obzvlášť vhodné v prípade, ak chcete poslať výstupy vášho "
-"rodinného stromu členom rodiny e-mailom. Ak ste pripravení vytvoriť webovú "
-"stránku pre váš rodinný strom, potom tu existuje zostava aj pre tento účel."
+"rodinného stromu členom rodiny e-mailom. Ak ste pripravení vytvoriť webové "
+"sídlo pre váš rodinný strom, potom tu existuje zostava aj pre tento účel."
 
 #: ../data/tips.xml:41
 msgid ""
@@ -739,14 +739,6 @@ msgstr ""
 "tento filter vyradiť voľbou Ukázať všetkých."
 
 #: ../data/tips.xml:65
-#, fuzzy
-#| msgid ""
-#| "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "
-#| "to Gramps. Requesting an enhancement can be done either through the "
-#| "gramps-users or gramps-devel mailing lists, or by going to http://"
-#| "bugs.gramps-project.org and creating a Feature Request. Filing a Feature "
-#| "Request is preferred but it can be good to discuss your ideas on the "
-#| "email lists."
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -754,12 +746,12 @@ msgid ""
 "a Feature Request. Filing a Feature Request is preferred but it can be good "
 "to discuss your ideas on the email lists."
 msgstr ""
-"<b>Zlepšovanie Grampsu</b><br/>Požiadavky používateľov na zlepšovanie "
-"Grampsuvsú vítané. Môžete to vykonať priamo prostredníctvom gramps-user "
-"alebo gramps-devel konferencie, alebo môžete na adrese http://bugs.gramps-"
-"project.org vytvoriť požiadavku. Vytvorenie požiadavky je preferovaný "
-"variant ale môže byť užitočné diskutovať o Vašich nápadoch na e-mail "
-"konferenciách."
+"<b>Vylepšovanie programu Gramps</b><br/>Používateľov vyzývame, aby "
+"navrhovali vylepšenia programu Gramps. Návrhy na vylepšenia môžete zasielať "
+"buď prostredníctvom diskusných skupín gramps-users alebo gramps-devel, alebo "
+"tak, že prejdete na stránku &bugs_url; a vytvoríte žiadosť o novú funkciu. "
+"Uprednostňujeme podávanie žiadostí o nové funkcie, ale môže byť užitočné "
+"prediskutovať svoje nápady aj v e-mailových diskusných skupinách."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -967,22 +959,17 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
-"<b>Tvorba genealogického webu</b><br/>Váš rodinný strom môžete ľahko "
-"exportovať do web stránky. Vyberte celú databázu, rodové línie či vybraných "
-"jedincov do kolekcie stránok, pripravenej pre odoslanie na web."
+"<b>Tvorba genealogického webového sídla</b><br/>Váš rodinný strom môžete "
+"ľahko exportovať do webovej stránky. Vyberte celú databázu, rodové línie či "
+"vybraných jedincov do kolekcie stránok, pripravenej pre umiestnenie na web."
 
 #: ../data/tips.xml:99
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at http://bugs.gramps-"
-#| "project.org"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
-"<b>Hlásenie chýb v Gramps</b><br/>Chyby nájdené v Grampse je najlepšie "
-"oznamovať cez Bug Tracker Grampsu na http://bugs.gramps-project.org"
+"<b>Hlásenie chýb v Gramps</b><br/>Najlepší spôsob, ako nahlásiť chybu v "
+"Gramps, je použiť systém sledovania chýb Gramps na &bugs_url;.."
 
 #: ../data/tips.xml:101
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
@@ -1158,22 +1145,16 @@ msgstr ""
 "Foundation a Open Source Initiative."
 
 #: ../data/tips.xml:131
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see https://www.gnu.org/licenses/licenses.html#GPL to "
-#| "read about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see &gpl_url; to read about the rights and restrictions of this "
 "license."
 msgstr ""
-"<b>Licencia softvéru Gramps</b><br/>Gramps môžete voľne používať a zdieľať s "
-"ostatnými. Gramps je voľne šíriteľný podľa General Public License, viď "
-"https://www.gnu.org/licenses/licenses.html#GPL pre viac informácií ohľadom "
-"práv a obmedzení v rámci tejto licencie."
+"<<b>Licencia softvéru Gramps</b><br/>Môžete Gramps voľne používať a zdieľať "
+"s ostatnými. Gramps je voľne distribuovateľný pod licenciou GNU General "
+"Public License, pozrite si &gpl_url; kde sa dozviete o právach a "
+"obmedzeniach tejto licencie."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -3319,7 +3300,7 @@ msgstr "Počet miest"
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
-msgstr "Počet archívov"
+msgstr "Počet repozitárov"
 
 #: ../gramps/gen/db/generic.py:2710
 msgid "Number of notes"
@@ -3376,7 +3357,7 @@ msgstr ""
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Archívov  aktualizovaných s %(n2)6d citáciami za %(n3)6d sekúnd\n"
+"%(n1)6d  repozitárov  aktualizovaných s %(n2)6d citáciami za %(n3)6d sekúnd\n"
 
 #: ../gramps/gen/db/upgrade.py:743
 #, python-format
@@ -3674,10 +3655,7 @@ msgid "Wrong format of date-time"
 msgstr "Nesprávny formát dátumu a času"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, fuzzy, python-format
-#| msgid ""
-#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#| "part is optional, are accepted. %s does not satisfy."
+#, python-format
 msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
@@ -3853,16 +3831,12 @@ msgid "Tag:"
 msgstr "Štítok:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "Objekty s poznámkami konkrétneho typu"
+msgstr "Objekty s poznámkami so špecifikovaným štítkom"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
-#| msgid "Matches a note with a specified Gramps ID"
 msgid "Matches notes with a specified tag"
-msgstr "Porovnáva poznámku so špecifikovaným Gramps ID"
+msgstr "Porovnáva poznámky so špecifikovaným štítkom"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -4084,16 +4058,12 @@ msgstr ""
 "výrazu"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with the <tag>"
-msgstr "Citácie s poznámkou typu<type>"
+msgstr "Citácie s poznámkou so štítkom<tag>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches citations with a note of the specified type"
 msgid "Matches citations with a note with a specified tag"
-msgstr "Porovnáva citácie s poznámkou špecifikovaného typu"
+msgstr "Porovnáva citácie s poznámkou so špecifikovaným štítkom"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4240,22 +4210,23 @@ msgstr "Porovnáva citácie, ktorých zväzok/strana obsahuje určitý podreťaz
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:52
 #: ../gramps/gui/editors/filtereditor.py:573
 msgid "Repository filter name:"
-msgstr "Názov filtra archívu:"
+msgstr "Názov filtra repozitára:"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:57
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Citácie so zdrojom s odkazom archívu zodpovedajúcim filtru <filter archívu>"
+"Citácie so zdrojom s odkazom repozitárazodpovedajúcim filtru <filter "
+"repozitára>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:61
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Porovnáva citácie so zdrojmi s odkazom archívu, ktoré zodpovedajú určitému "
-"filtru archívu"
+"Porovnáva citácie so zdrojmi s odkazom repozitára, ktoré zodpovedajú "
+"určitému filtru repozitára"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:58
 msgid "Citations with source matching the <source filter>"
@@ -4450,16 +4421,12 @@ msgstr ""
 "výrazu"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with the <tag>"
-msgstr "Udalosti s poznámkou typu <type>"
+msgstr "Udalosti s poznámkou so štítkom <tag>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches events with a note of the specified type"
 msgid "Matches events with a note with a specified tag"
-msgstr "Porovnáva udalosti s poznámkou špecifikovaného typu"
+msgstr "Porovnáva udalosti s poznámkou so špecifikovanémým štítkom"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4753,16 +4720,12 @@ msgstr ""
 "výrazu"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note with the <tag>"
-msgstr "Rodiny s otcom menom <meno>"
+msgstr "Rodiny s poznámkou so štítkom <tag>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches families with a note with a specified tag"
-msgstr "Porovnáva rodiny s poznámkou špecifikovaného typu"
+msgstr "Porovnáva rodiny s poznámkou so špecifikovaným štítkom"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -4958,7 +4921,7 @@ msgstr "Porovnáva rodiny, kde nejaké dieťa má zadané (neúplné) meno"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:53
 msgid "Families with father matching the <name>"
-msgstr "Rodiny s otcom menom <meno>"
+msgstr "Rodiny s otcom zodpovedajúce menu <meno>"
 
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:53
 msgid "Families with mother matching the <name>"
@@ -5066,28 +5029,20 @@ msgstr ""
 "regulárnemu výrazu"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with the <tag>"
-msgstr "Citácie s poznámkou typu<type>"
+msgstr "Médiá s poznámkou so štítkom<tag>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "Porovnáva rodiny s poznámkou špecifikovaného typu"
+msgstr "Porovnáva médiá s poznámkou so špecifikovaným štítkom"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "Udalosti s poznámkou typu <type>"
+msgstr "Médiá s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "Porovnáva rodiny s poznámkou špecifikovaného typu"
+msgstr "Porovnáva médiá s poznámkou špecifikovaného typu"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
@@ -5621,16 +5576,12 @@ msgstr ""
 "výrazu"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with the <tag>"
-msgstr "Ľudia s poznámkou typu <type>"
+msgstr "Ľudia s poznámkou so štítkom <tag>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "Porovnáva ľudí s poznámkou špecifikovaného typu"
+msgstr "Porovnáva ľudí s poznámkou so špecifikovaným štítkom"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -6292,16 +6243,12 @@ msgstr ""
 "výrazu"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with the <tag>"
-msgstr "Miesta s poznámkou typu <type>"
+msgstr "Miesta s poznámkou so štítkom <tag>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "Porovnáva miesta s poznámkou špecifikovaného typu"
+msgstr "Porovnáva miesta s poznámkou so špecifikovaným štítkom"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6502,95 +6449,87 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:45
 msgid "Every repository"
-msgstr "Každý archív"
+msgstr "Každý repozitár"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:46
 msgid "Matches every repository in the database"
-msgstr "Porovnáva každý archív v databáze"
+msgstr "Porovnáva každý repozitár v databáze"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:48
 msgid "Repositories changed after <date time>"
-msgstr "Archívy zmenené po <dátum čas>"
+msgstr "Repozitáre zmenené po <dátum čas>"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:50
 msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Porovnáva záznamy archívov zmenené po špecifikovanom dátume/čase (rrrr-mm-dd "
-"hh:mm:ss) alebo v rozmedzí, ak je zadaný aj druhý dátum/čas."
+"Porovnáva záznamy repozitárov zmenené po špecifikovanom dátume/čase (rrrr-mm-"
+"dd hh:mm:ss) alebo v rozmedzí, ak je zadaný aj druhý dátum/čas."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
 msgid "Repository attribute:"
-msgstr "Atribút archívu:"
+msgstr "Atribút repozitára:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 msgid "Repositories with the attribute <attribute>"
-msgstr "Archívy s atribútom <atribút>"
+msgstr "Repozitáre s atribútom <atribút>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Porovnáva archívy s atribútom konkrétnej hodnoty"
+msgstr "Porovnáva repozitáre s atribútom konkrétnej hodnoty"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:46
 msgid "Repository with <Id>"
-msgstr "Archív s <Id>"
+msgstr "Repozitár s <Id>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Porovnáva archív so špecifikovaným Gramps ID"
+msgstr "Porovnáva repozitár so špecifikovaným Gramps ID"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr "Archívy, ktoré majú poznámky obsahujúce <podreťazec>"
+msgstr "Repozitáre, ktoré majú poznámky obsahujúce <podreťazec>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:45
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Porovnáva archívy, ktorých poznámky obsahujú text zodpovedajúci podreťazcu"
+"Porovnáva repozitáre, ktorých poznámky obsahujú text zodpovedajúci podreťazcu"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:41
 msgid "Repositories having notes containing <text>"
-msgstr "Archívy s poznámkami obsahujúcimi <text>"
+msgstr "Repozitáre s poznámkami obsahujúcimi <text>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:43
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Porovnáva archívy, ktorých poznámky obsahujú text zodpovedajúci regulárnemu "
-"výrazu"
+"Porovnáva repozitáre, ktorých poznámky obsahujú text zodpovedajúci "
+"regulárnemu výrazu"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with the <tag>"
-msgstr "Archívy so značkou <značka>"
+msgstr "Repozitáre s poznámkou so štítkom <tag>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Porovnáva zdroje s poznámkou špecifikovaného typu"
+msgstr "Porovnáva repozitáre s poznámkou so špecifikovaným štítkom"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "Zdroje s poznámkou typu <type>"
+msgstr "Repozitáre s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "Porovnáva zdroje s poznámkou špecifikovaného typu"
+msgstr "Porovnáva repozitáre s poznámkou špecifikovaného typu"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
-msgstr "Archívy s počtom odkazov <počet>"
+msgstr "Repozitáre s počtom odkazov <počet>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Matches repositories with a certain reference count"
-msgstr "Porovnáva archívy s určitým počtom odkazov"
+msgstr "Porovnáva repozitáre s určitým počtom odkazov"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:55
 #: ../gramps/gui/glade/mergerepository.glade:208
@@ -6610,51 +6549,51 @@ msgstr "URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:60
 msgid "Repositories matching parameters"
-msgstr "Archívy vyhovujúce parametrom"
+msgstr "Repozitáre vyhovujúce parametrom"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:61
 msgid "Matches Repositories with particular parameters"
-msgstr "Porovnáva archívy s konkrétnymi parametrami"
+msgstr "Porovnáva repozitáre s konkrétnymi parametrami"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:51
 msgid "Repositories with the <tag>"
-msgstr "Archívy so značkou <značka>"
+msgstr "Repozitáre so štítkom <tag>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Matches repositories with the particular tag"
-msgstr "Porovnáva archívy s konkrétnou značkou"
+msgstr "Porovnáva repozitáre s konkrétnym štítkom"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
 msgid "Repositories matching the <filter>"
-msgstr "Archívy vyhovujúce filtru <filter>"
+msgstr "Repozitáre vyhovujúce filtru <filter>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Porovnáva archívy párované špecifikovaným filtrom s názvom"
+msgstr "Porovnáva repozitáre, ktoré zodpovedajú špecifikovanému názvu filtra"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:52
 msgid "Repositories with name containing <text>"
-msgstr "Archívy s názvom obsahujúcim <text>"
+msgstr "Repozitáre s názvom obsahujúcim <text>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:53
 msgid "Matches repositories whose name contains a certain substring"
-msgstr "Porovnáva archívy, ktorých názov obsahuje určitý podreťazec"
+msgstr "Porovnáva repozitáre, ktorých názov obsahuje určitý podreťazec"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Repositories with Id containing <text>"
-msgstr "Archívy s Id obsahujúcim <text>"
+msgstr "Repozitáre s Id obsahujúcim <text>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:50
 msgid "Matches repositories whose Gramps ID matches the regular expression"
-msgstr "Porovnáva archívy, ktorých Gramps ID zodpovedá regulárnemu výrazu"
+msgstr "Porovnáva repozitáre, ktorých Gramps ID zodpovedá regulárnemu výrazu"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:43
 msgid "Repositories marked private"
-msgstr "Archívy označené ako súkromné"
+msgstr "Repozitáre označené ako súkromné"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:44
 msgid "Matches repositories that are indicated as private"
-msgstr "Porovnáva archívy, ktoré sú označené ako súkromné"
+msgstr "Porovnáva repozitáre, ktoré sú označené ako súkromné"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:45
 msgid "Every source"
@@ -6732,16 +6671,12 @@ msgstr ""
 "výrazu"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with the <tag>"
-msgstr "Zdroje s poznámkou typu <type>"
+msgstr "Zdroje s poznámkou so štítkom <tag>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "Porovnáva zdroje s poznámkou špecifikovaného typu"
+msgstr "Porovnáva zdroje s poznámkou so špecifikovaným štítkom"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6761,22 +6696,22 @@ msgstr "Porovnáva zdroje s určitým počtom odkazov"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:56
 msgid "Sources with <count> Repository references"
-msgstr "Zdroje s počtom <počet> odkazov archívu"
+msgstr "Zdroje s počtom <počet> odkazov repozitára"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:57
 msgid "Matches sources with a certain number of repository references"
-msgstr "Porovnáva zdroje s určitým počtom odkazov archívu"
+msgstr "Porovnáva zdroje s určitým počtom odkazov repozitára"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:53
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr "Zdroje s odkazom archívu obsahujúcim <text> v položke \"Signatúra\""
+msgstr "Zdroje s odkazom repozitára obsahujúcim <text> v položke \"Signatúra\""
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:55
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"Porovnáva zdroje s odkazom archívu\n"
+"Porovnáva zdroje s odkazom repozitára \n"
 "obsahujúcim podreťazec v položke \"Signatúra\""
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
@@ -6801,15 +6736,15 @@ msgstr "Porovnáva zdroje párované špecifikovaným filtrom s názvom"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:53
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "Zdroje s odkazom archívu zodpovedajúcim filtru <filter archívu>"
+msgstr "Zdroje s odkazom repozitára zodpovedajúcim filtru <filter repozitára>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:55
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"Porovnáva zdroje s odkazom archívu, ktorý zodpovedá určitému\n"
-"filtru archívu"
+"Porovnáva zdroje s odkazom repozitára, ktorý zodpovedá určitému\n"
+"filtru repozitára"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:52
 msgid "Sources with title containing <text>"
@@ -6854,10 +6789,8 @@ msgstr "Porovnáva zdroje označené ako súkromné"
 #: ../gramps/gui/fs/person/mixins/helpers.py:68
 #: ../gramps/gui/fs/sync_directions.py:679 ../gramps/gui/viewmanager.py:406
 #: ../gramps/gui/viewmanager.py:552 ../gramps/gui/viewmanager.py:560
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch"
-msgstr "Zdroje k rodine"
+msgstr "FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:160
 #: ../gramps/gui/fs/compare/window.py:224
@@ -6868,10 +6801,8 @@ msgid "Not connected to FamilySearch"
 msgstr "Nepripojené k FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "iniciály"
+msgstr "Základy"
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
 msgid "Other names"
@@ -7094,7 +7025,7 @@ msgstr "Dieťa"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr "Náčrt života"
+msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
 msgid "Birth Registration"
@@ -7148,7 +7079,7 @@ msgstr "Vytváranie zoznamu FSID pre miesta"
 #: ../gramps/plugins/quickview/filterbyname.py:346
 #: ../gramps/plugins/tool/reorderids.glade:836
 msgid "Repository"
-msgstr "Archív"
+msgstr "Repozitár"
 
 #: ../gramps/gen/fs/fs_import/sources.py:535
 #: ../gramps/gen/fs/fs_import/sources.py:537
@@ -7298,10 +7229,8 @@ msgstr ""
 "farby len pri prvom vytvorení štítkov a neprepíše váš vlastný výber."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch tags"
-msgstr "Zdroje k rodine"
+msgstr "Štítky FamilySearch"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:721 ../gramps/gui/editors/editaddress.py:199
@@ -8849,17 +8778,13 @@ msgid "Civil Union"
 msgstr "Registrované partnerstvo"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch sync"
-msgstr "Zdroje k rodine"
+msgstr "Synchronizácia FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "ID rodiny"
+msgstr "ID FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
@@ -8886,10 +8811,8 @@ msgid "Essential conflict"
 msgstr "Zásadný konflikt"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "Konfigurácia"
+msgstr "Konflikt"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -9381,11 +9304,11 @@ msgstr "Poznámka k miestu"
 
 #: ../gramps/gen/lib/notetype.py:110
 msgid "Repository Note"
-msgstr "Poznámka k archívu"
+msgstr "Poznámka k repozitáru"
 
 #: ../gramps/gen/lib/notetype.py:111
 msgid "Repository Reference Note"
-msgstr "Poznámka odkazu archívu"
+msgstr "Poznámka k odkazu na repozitár"
 
 #: ../gramps/gen/lib/notetype.py:112
 msgid "Media Note"
@@ -9584,7 +9507,7 @@ msgstr "Číslo"
 
 #: ../gramps/gen/lib/reporef.py:98 ../gramps/gui/clipboard.py:523
 msgid "Repository ref"
-msgstr "Odk. archívu"
+msgstr "Odk. repozitára"
 
 #: ../gramps/gen/lib/reporef.py:111
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
@@ -9669,7 +9592,7 @@ msgstr "Skratka"
 #: ../gramps/plugins/webreport/repository.py:243
 #: ../gramps/plugins/webreport/updates.py:141
 msgid "Repositories"
-msgstr "Archívy"
+msgstr "Repozitáre"
 
 #: ../gramps/gen/lib/srcmediatype.py:67
 msgid "Audio"
@@ -9941,7 +9864,7 @@ msgstr "Zlúčiť miesta"
 #: ../gramps/gen/merge/mergerepositoryquery.py:61
 #: ../gramps/gui/merge/mergerepository.py:70
 msgid "Merge Repositories"
-msgstr "Zlúčiť archívy"
+msgstr "Zlúčiť repozitáre"
 
 #: ../gramps/gen/merge/mergesourcequery.py:63
 msgid "Merge Source"
@@ -10276,16 +10199,13 @@ msgid "Font family"
 msgstr "Typ písma"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:165
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Choose the font family. If international characters don't show, use "
-#| "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+#, python-brace-format
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
 "Vyberte typ písma. Ak sa nezobrazujú niektoré medzinárodné znaky, použite "
-"písmo FreeSans. Písmo FreeSans je dostupné na http://www.nongnu.org/freefont/"
+"písmo FreeSans. Písmo FreeSans je dostupné na: {freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:172
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -11517,7 +11437,7 @@ msgstr "udalosť"
 
 #: ../gramps/gen/utils/grampslocale.py:782
 msgid "the repository"
-msgstr "archív"
+msgstr "repozitár"
 
 #: ../gramps/gen/utils/grampslocale.py:784
 msgid "the note"
@@ -12255,7 +12175,7 @@ msgstr "Domovská stránka Gramps"
 
 #: ../gramps/gui/aboutdialog.py:149
 msgid "Contributions by"
-msgstr "Príspievatelia"
+msgstr "Príspevky od"
 
 #. Translators: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:152
@@ -12606,19 +12526,14 @@ msgid "Media Object"
 msgstr "Objekt média"
 
 #: ../gramps/gui/configure.py:869
-#, fuzzy, no-python-format
-#| msgid ""
-#| "Default Gramps ID formats containing a letter prefix followed by a "
-#| "numerical string. \"I%04d\" creates IDs from I0000 to I9999. Large "
-#| "databases may need larger IDs. \"I%06d\" creates IDs from I000000 to "
-#| "I999999.\n"
+#, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
 "string. \"I%05d\" creates IDs from I00000 to I99999. Large databases may "
 "need larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
 "Predvolené formáty ID Gramps obsahujúce predponu písmena, za ktorou "
-"nasleduje číselný reťazec. \"I%04d\" vytvára ID od I0000 do I9999. Veľké "
+"nasleduje číselný reťazec. \"I%05d\" vytvára ID od I00000 do I99999. Veľké "
 "databázy môžu potrebovať väčšie ID. \"I%06d\" vytvára ID od I000000 do "
 "I999999.\n"
 
@@ -12761,7 +12676,7 @@ msgstr "Varovania"
 
 #: ../gramps/gui/configure.py:1085
 msgid "Live"
-msgstr ""
+msgstr "Naživo"
 
 #: ../gramps/gui/configure.py:1093
 msgid "Server"
@@ -12772,16 +12687,12 @@ msgid "Foundation middleware"
 msgstr "Základná vrstva aplikačného programového vybavenia"
 
 #: ../gramps/gui/configure.py:1104
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "Duplicitná rodina"
+msgstr "Priamo na FamilySearch"
 
 #: ../gramps/gui/configure.py:1119
-#, fuzzy
-#| msgid "Author"
 msgid "Auth provider"
-msgstr "Autor"
+msgstr "Poskytovateľ autentifikácie"
 
 #: ../gramps/gui/configure.py:1128
 msgid "App key (direct mode only)"
@@ -12800,10 +12711,8 @@ msgid "Middleware access code (issued secret)"
 msgstr "Prístupový kód aplikačného programového vybavenia (vydaný tajný)"
 
 #: ../gramps/gui/configure.py:1174
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "Generácie"
+msgstr "Integrácie"
 
 #: ../gramps/gui/configure.py:1241 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -13067,10 +12976,8 @@ msgid "Maximum age probably alive"
 msgstr "Maximálny vek pravdepodobne žijúcej osoby"
 
 #: ../gramps/gui/configure.py:2057
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "Max. počet generácií pre vzťahy"
+msgstr "Maximálny počet generácií na odhad veku"
 
 #: ../gramps/gui/configure.py:2062
 msgid ""
@@ -13280,10 +13187,8 @@ msgstr ""
 "zobrazia v kolónke. Toto nastavenie určuje veľkosť kolónky."
 
 #: ../gramps/gui/configure.py:2341
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "Poznámky náhľad"
+msgstr "Dĺžka náhľadu poznámok"
 
 #: ../gramps/gui/configure.py:2400
 msgid "Database Setting"
@@ -14051,7 +13956,7 @@ msgstr "Vytváranie údajov na archiváciu..."
 
 #: ../gramps/gui/dbman.py:1249
 msgid "Saving archive..."
-msgstr "Uloženie archívu..."
+msgstr "Ukladanie archívu..."
 
 #: ../gramps/gui/dbman.py:1263
 #, python-format
@@ -14144,7 +14049,7 @@ msgstr "Žiadna aktívna citácia"
 
 #: ../gramps/gui/displaystate.py:455
 msgid "No active repository"
-msgstr "Žiadny aktívny archív"
+msgstr "Žiadny aktívny repozitár"
 
 #: ../gramps/gui/displaystate.py:456
 msgid "No active media"
@@ -14838,32 +14743,32 @@ msgstr "Miesto, ktoré pridávate, už prilieha tomuto miestu"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
-msgstr "Vytvoriť a pridať nový archív"
+msgstr "Vytvoriť a pridať nový repozitár"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Remove the existing repository"
-msgstr "Odstrániť existujúci archív"
+msgstr "Odstrániť existujúci repozitár"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:57
 #: ../gramps/plugins/view/repoview.py:139
 msgid "Edit the selected repository"
-msgstr "Upraviť vybraný archív"
+msgstr "Upraviť vybraný repozitár"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
 msgid "Add an existing repository"
-msgstr "Pridať existujúci archív"
+msgstr "Pridať existujúci repozitár"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Move the selected repository upwards"
-msgstr "Presunúť označený archív vyššie"
+msgstr "Presunúť označený repozitár vyššie"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:60
 msgid "Move the selected repository downwards"
-msgstr "Presunúť označený archív nižšie"
+msgstr "Presunúť označený repozitár nižšie"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:80
 msgid "_Repositories"
-msgstr "_Archívy"
+msgstr "_Repozitáre"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:183
 msgid ""
@@ -14873,11 +14778,11 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"Tento odkaz archívu nie je možné teraz upravovať. Buď sa už upravuje "
-"súvisiaci archív, alebo sa upravuje iný odkaz archívu, ktorý je spojený s "
-"tým istým archívom.\n"
+"Tento odkaz repozitára nie je možné teraz upravovať. Buď sa už upravuje "
+"súvisiaci repozitár, alebo sa upravuje iný odkaz repozitára, ktorý je "
+"spojený s tým istým repozitárom.\n"
 "\n"
-"Ak chcete upraviť tento odkaz archívu, musíte archív zatvoriť."
+"Ak chcete upraviť tento odkaz repozitára, musíte repozitár zatvoriť."
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:68
 msgid "Create and add a new surname"
@@ -15934,7 +15839,7 @@ msgstr "Ak zatvoríte bez uloženia, vykonané zmeny sa stratia"
 #: ../gramps/gui/editors/editreference.py:294
 #: ../gramps/gui/editors/editrepository.py:219
 msgid "Cannot save repository. ID already exists."
-msgstr "Archív sa nedá uložiť. ID už existuje."
+msgstr "Repozitár sa nedá uložiť. ID už existuje."
 
 #: ../gramps/gui/editors/editreference.py:297
 msgid "Cannot save item. ID already exists."
@@ -15942,17 +15847,17 @@ msgstr "Položka sa nedá uložiť. ID už existuje."
 
 #: ../gramps/gui/editors/editreporef.py:70
 msgid "Repository Reference Editor"
-msgstr "Editor odkazu archívu"
+msgstr "Editor odkazu repozitára"
 
 #: ../gramps/gui/editors/editreporef.py:225
 #, python-format
 msgid "Repository: %s"
-msgstr "Archív: %s"
+msgstr "Repozitár: %s"
 
 #: ../gramps/gui/editors/editreporef.py:227
 #: ../gramps/gui/editors/editrepository.py:86
 msgid "New Repository"
-msgstr "Nový archív"
+msgstr "Nový repozitár"
 
 #: ../gramps/gui/editors/editreporef.py:228
 msgid "Repo Reference Editor"
@@ -15960,11 +15865,11 @@ msgstr "Editor odkazu archívu"
 
 #: ../gramps/gui/editors/editreporef.py:234
 msgid "Modify Repository"
-msgstr "Pozmeniť archív"
+msgstr "Modifikácia repozitára"
 
 #: ../gramps/gui/editors/editreporef.py:239
 msgid "Add Repository"
-msgstr "Pridať archív"
+msgstr "Pridanie repozitára"
 
 #: ../gramps/gui/editors/editrepository.py:59
 msgctxt "manual"
@@ -15973,27 +15878,28 @@ msgstr "Dialógové_okno_Nový_archív"
 
 #: ../gramps/gui/editors/editrepository.py:96
 msgid "Edit Repository"
-msgstr "Upraviť archív"
+msgstr "Úprava repozitára"
 
 #: ../gramps/gui/editors/editrepository.py:205
 msgid "Cannot save repository"
-msgstr "Archív sa nedá uložiť"
+msgstr "Repozitár sa nedá uložiť"
 
 #: ../gramps/gui/editors/editrepository.py:207
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Pre tento archív neexistujú žiadne údaje. Zadajte údaje alebo zrušte úpravu."
+"Pre tento repozitár neexistujú žiadne údaje. Zadajte údaje alebo zrušte "
+"úpravu."
 
 #: ../gramps/gui/editors/editrepository.py:232
 #, python-format
 msgid "Add Repository (%s)"
-msgstr "Pridať archív (%s)"
+msgstr "Pridanie repozitára (%s)"
 
 #: ../gramps/gui/editors/editrepository.py:238
 #, python-format
 msgid "Edit Repository (%s)"
-msgstr "Upraviť archív (%s)"
+msgstr "Úprava repozitára (%s)"
 
 #: ../gramps/gui/editors/editsource.py:70
 msgctxt "manual"
@@ -16051,14 +15957,9 @@ msgid "Internet Address Editor"
 msgstr "Editor internetovej adresy"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
-msgstr ""
-"Internetová adresa podľa potreby na navigáciu, napr. http://gramps-"
-"project.org"
+msgstr "Internetová adresa podľa potreby na navigáciu, napr. {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
@@ -16101,7 +16002,7 @@ msgstr "Filtre média"
 
 #: ../gramps/gui/editors/filtereditor.py:104
 msgid "Repository Filters"
-msgstr "Filtre archívu"
+msgstr "Filtre repozitárov"
 
 #: ../gramps/gui/editors/filtereditor.py:105
 msgid "Note Filters"
@@ -16615,10 +16516,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:148 ../gramps/gui/fs/actions.py:149
 #: ../gramps/gui/fs/tools_window.py:362
-#, fuzzy
-#| msgid "Family ID"
 msgid "Link FamilySearch ID"
-msgstr "ID rodiny"
+msgstr "Prepojiť ID FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:151 ../gramps/gui/plug/_windows.py:1538
 #: ../gramps/gui/widgets/grampletbar.py:599
@@ -16639,10 +16538,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:224
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:184
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import selected"
-msgstr "Import zlyhal"
+msgstr "Importovať vybrané"
 
 #: ../gramps/gui/fs/actions.py:248
 #, python-brace-format
@@ -16651,22 +16548,16 @@ msgstr "{total} nájdených – {new} nových – {existing} už v strome"
 
 #: ../gramps/gui/fs/actions.py:255 ../gramps/gui/fs/sync_directions.py:659
 #: ../gramps/gui/fs/sync_directions.py:1283
-#, fuzzy
-#| msgid "Select _None"
 msgid "Select none"
-msgstr "Vybrať _Žiadne"
+msgstr "Nevybrať nič"
 
 #: ../gramps/gui/fs/actions.py:256
-#, fuzzy
-#| msgid "Select a file"
 msgid "Select all new"
-msgstr "Vybrať súbor"
+msgstr "Vybrať všetky nové"
 
 #: ../gramps/gui/fs/actions.py:303
-#, fuzzy
-#| msgid "Already dead"
 msgid "Already in tree"
-msgstr "Už po smrti"
+msgstr "Už je v strome"
 
 #: ../gramps/gui/fs/actions.py:303
 msgid "New (will import)"
@@ -16685,10 +16576,9 @@ msgstr ""
 "FamilySearch“."
 
 #: ../gramps/gui/fs/actions.py:376
-#, fuzzy, python-brace-format
-#| msgid "Sealed to Parents"
+#, python-brace-format
 msgid "Failed to fetch parents: {e}"
-msgstr "Pečatený k rodičom"
+msgstr "Nepodarilo sa načítať rodičov: {e}"
 
 #: ../gramps/gui/fs/actions.py:398
 msgid "No parents found on FamilySearch for this person."
@@ -16701,11 +16591,12 @@ msgstr "  - už v strome"
 
 #: ../gramps/gui/fs/actions.py:410
 msgid "Import parents"
-msgstr "Import rodičov"
+msgstr "Importovať rodičov"
 
 #: ../gramps/gui/fs/actions.py:425
 msgid "Parents imported but could not be located in the local database."
 msgstr ""
+"Rodičia boli importovaní, ale nepodarilo sa ich nájsť v lokálnej databáze."
 
 #: ../gramps/gui/fs/actions.py:429
 msgid "FamilySearch: Link parents"
@@ -16731,11 +16622,11 @@ msgstr " (druhý rodič: {name})"
 
 #: ../gramps/gui/fs/actions.py:547
 msgid "Import children"
-msgstr "Import detí"
+msgstr "Importovať deti"
 
 #: ../gramps/gui/fs/actions.py:562
 msgid "Children imported but could not be located in the local database."
-msgstr ""
+msgstr "Deti boli importované, ale nepodarilo sa ich nájsť v lokálnej databáze."
 
 #: ../gramps/gui/fs/actions.py:566
 msgid "FamilySearch: Link children"
@@ -16762,6 +16653,8 @@ msgstr "Import manželských partnerov"
 #: ../gramps/gui/fs/actions.py:719
 msgid "Spouses imported but could not be located in the local database."
 msgstr ""
+"Manželia/manželky boli importovaní, ale nepodarilo sa ich nájsť v lokálnej "
+"databáze."
 
 #: ../gramps/gui/fs/actions.py:723
 msgid "FamilySearch: Link spouses"
@@ -16769,7 +16662,7 @@ msgstr "FamilySearch: Prepojiť manželských partnerov"
 
 #: ../gramps/gui/fs/actions.py:770
 msgid "Spouse(s) imported and linked."
-msgstr ""
+msgstr "Manžel(ia)/manželka(y) boli importovaní a prepojení."
 
 #: ../gramps/gui/fs/actions.py:860
 #, python-brace-format
@@ -16792,10 +16685,8 @@ msgstr ""
 "podporované)"
 
 #: ../gramps/gui/fs/actions.py:875 ../gramps/gui/fs/actions.py:876
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch Tags"
-msgstr "Zdroje k rodine"
+msgstr "štítky FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:877
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:559
@@ -16815,6 +16706,9 @@ msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
+"Táto funkcia prehľadá celý váš strom a priradí k nim značky FS_Linked / "
+"FS_NotLinked.\n"
+"NEZMENÍ žiadne údaje o osobách."
 
 #: ../gramps/gui/fs/actions.py:910
 #, python-brace-format
@@ -16826,77 +16720,79 @@ msgid ""
 "Not linked: {not_linked}\n"
 "Changed: {changed}"
 msgstr ""
+"Preznačenie dokončené.\n"
+"\n"
+"Celkový počet osôb: {total}\n"
+"Prepojené: {linked}\n"
+"Neprepojené: {not_linked}\n"
+"Zmenené: {changed}"
 
 #: ../gramps/gui/fs/actions.py:920
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "Premenovanie zlyhalo"
+msgstr "Preznačenie zlyhalo: {e}"
 
 #: ../gramps/gui/fs/actions.py:971
 msgid "FamilySearch: Update FSID after redirect"
-msgstr ""
+msgstr "FamilySearch: Aktualizovať FSID po presmerovaní"
 
 #: ../gramps/gui/fs/actions.py:1015
 msgid ""
 "Could not load this person from FamilySearch (no GEDCOMX person object)."
 msgstr ""
+"Túto osobu sa nepodarilo načítať z FamilySearch (žiadny objekt osoby GEDCOMX)"
+"."
 
 #: ../gramps/gui/fs/actions.py:1024
 #, python-brace-format
 msgid "Failed to download from FamilySearch: {e}"
-msgstr ""
+msgstr "Stiahnutie z FamilySearch zlyhalo: {e}"
 
 #: ../gramps/gui/fs/actions.py:1029
-#, fuzzy
-#| msgid "Bookmark this person"
 msgid "FamilySearch: Sync this person"
-msgstr "Pridať záložku pre túto osobu"
+msgstr "FamilySearch: Synchronizovať túto osobu"
 
 #: ../gramps/gui/fs/actions.py:1089
-#, fuzzy, python-brace-format
-#| msgid "Saving failed"
+#, python-brace-format
 msgid "Sync failed: {e}"
-msgstr "Uloženie zlyhalo"
+msgstr "Synchronizácia zlyhala: {e}"
 
 #: ../gramps/gui/fs/actions.py:1097
 msgid ""
 "Sync complete: facts/events, dates/places, and notes updated for this person."
 msgstr ""
+"Synchronizácia dokončená: fakty/udalosti, dátumy/miesta a poznámky "
+"aktualizované pre túto osobu."
 
 #: ../gramps/gui/fs/actions.py:1142
 #, python-brace-format
 msgid "Export to FamilySearch failed: {e}"
-msgstr ""
+msgstr "Export do FamilySearch zlyhal: {e}"
 
 #: ../gramps/gui/fs/actions.py:1172
 #, python-brace-format
 msgid "Sync to FamilySearch failed: {e}"
-msgstr ""
+msgstr "Synchronizácia s FamilySearch zlyhala: {e}"
 
 #: ../gramps/gui/fs/compare/options.py:46
-#, fuzzy
-#| msgid "Family Citations"
 msgid "FamilySearch Compare Options"
-msgstr "Citácie rodiny"
+msgstr "Možnosti porovnania FamilySearch"
 
 #: ../gramps/gui/fs/compare/options.py:49
 msgid "Days between comparisons"
-msgstr ""
+msgstr "Dni medzi porovnaniami"
 
 #: ../gramps/gui/fs/compare/options.py:50
 msgid "Number of days between two comparisons."
-msgstr ""
+msgstr "Počet dní medzi dvoma porovnaniami."
 
 #: ../gramps/gui/fs/compare/options.py:54
-#, fuzzy
-#| msgid "Source Information"
 msgid "Force comparison"
-msgstr "Informácie o zdroji"
+msgstr "Vynútiť porovnanie"
 
 #: ../gramps/gui/fs/compare/options.py:56
 msgid "Compare regardless of the number of days since the last run."
-msgstr ""
+msgstr "Porovnať bez ohľadu na počet dní od posledného spustenia."
 
 #: ../gramps/gui/fs/compare/options.py:62
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
@@ -16905,7 +16801,7 @@ msgstr "Filter osoby"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
-msgstr ""
+msgstr "FamilySearch nie je nakonfigurovaný (žiadna relácia)."
 
 #: ../gramps/gui/fs/compare/window.py:204
 #, python-brace-format
@@ -16913,14 +16809,14 @@ msgid ""
 "Could not open compare window:\n"
 "{e}"
 msgstr ""
+"Nepodarilo sa otvoriť okno porovnania:\n"
+"{e}"
 
 #: ../gramps/gui/fs/compare/window.py:214
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:524
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:532
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch Compare"
-msgstr "Farby rodiny"
+msgstr "Porovnanie FamilySearch"
 
 #: ../gramps/gui/fs/compare/window.py:217 ../gramps/gui/glade/rule.glade:509
 #: ../gramps/gui/glade/styleeditor.glade:416
@@ -16932,7 +16828,7 @@ msgstr "Voľby"
 
 #: ../gramps/gui/fs/compare/window.py:228
 msgid "FamilySearch: Compare"
-msgstr ""
+msgstr "FamilySearch: Porovnať"
 
 #: ../gramps/gui/fs/compare/window.py:229
 #: ../gramps/gui/fs/fs_import/importer.py:59
@@ -16945,163 +16841,132 @@ msgstr "Spúšťanie"
 
 #: ../gramps/gui/fs/compare/window.py:253
 msgid "Building ordered list (1/2)"
-msgstr ""
+msgstr "Vytváranie usporiadaného zoznamu (1/2)"
 
 #: ../gramps/gui/fs/compare/window.py:283
-#, fuzzy
-#| msgid "Processing File"
 msgid "Processing list (2/2)"
-msgstr "Spracovanie záznamu"
+msgstr "Spracovanie zoznamu (2/2)"
 
 #: ../gramps/gui/fs/compare/window.py:320
-#, fuzzy, python-format
-#| msgid "not found"
+#, python-format
 msgid "FS ID %s not found"
-msgstr "nenájdený"
+msgstr "ID FS %s nebolo nájdené"
 
 #: ../gramps/gui/fs/fs_import/importer.py:59
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "FamilySearch Import"
-msgstr "Skupinová zostava o rodine"
+msgstr "Import FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/importer.py:86
 msgid "Downloading persons… (3/11)"
-msgstr ""
+msgstr "Sťahovanie osôb… (3/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:88
-#, fuzzy
-#| msgid "Youngest living person"
 msgid "Downloading person…"
-msgstr "Najmladšia žijúca osoba"
+msgstr "Sťahovanie osoby…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:98
 msgid "Downloading ancestors… (4/11)"
-msgstr ""
+msgstr "Sťahovanie predkov… (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:106
-#, fuzzy, python-format
-#| msgid "Submission: Generations of ancestors"
+#, python-format
 msgid "Downloading %d generations of ancestors…"
-msgstr "Zaradenie: Generácie predkov"
+msgstr "Sťahovanie %d generácií predkov…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:109
 msgid "Downloading descendants… (5/11)"
-msgstr ""
+msgstr "Sťahovanie potomkov… (5/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:117
-#, fuzzy, python-format
-#| msgid "Submission: Generations of descendants"
+#, python-format
 msgid "Downloading %d generations of descendants…"
-msgstr "Zaradenie: Generácie potomkov"
+msgstr "Sťahovanie %d generácií potomkov…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:122
 msgid "Downloading spouses… (6/11)"
-msgstr ""
+msgstr "Sťahovanie manželských partnerov… (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:124
 msgid "Downloading spouses…"
-msgstr ""
+msgstr "Sťahovanie manželských partnerov…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:130
 msgid "Downloading notes… (7/11)"
-msgstr ""
+msgstr "Sťahovanie poznámok… (7/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:133
 msgid "Downloading notes and sources…"
-msgstr ""
+msgstr "Sťahovanie poznámok a zdrojov…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:176
-#, fuzzy
-#| msgid "Import"
 msgid "Importing…"
-msgstr "Import"
+msgstr "Importovanie…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:188
 msgid "Importing places… (8/11)"
-msgstr ""
+msgstr "Importovanie miest… (8/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:189
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing places…"
-msgstr "Importovanie osôb."
+msgstr "Importovanie miest…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:194
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons… (9/11)"
-msgstr "Importovanie osôb."
+msgstr "Importovanie osôb.... (9/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons…"
-msgstr "Importovanie osôb."
+msgstr "Importovanie osôb…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:201
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families… (10/11)"
-msgstr "Importovanie rodín."
+msgstr "Importovanie rodín... (10/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:203
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families…"
-msgstr "Importovanie rodín."
+msgstr "Importovanie rodín…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:211
 #: ../gramps/gui/fs/fs_import/importer.py:223
 msgid "Importing children… (11/11)"
-msgstr ""
+msgstr "Importovanie detí… (11/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:214
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Importing children…"
-msgstr "Importovanie archívu..."
+msgstr "Importovanie detí…"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
-#, fuzzy
-#| msgid "Web Family Tree export options"
 msgid "FamilySearch Import Options"
-msgstr "Voľby exportu Web Family Tree"
+msgstr "Voľby importu FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/options.py:39
 msgid "identifier to be copied from the FamilySearch website"
-msgstr ""
+msgstr "identifikátor, ktorý sa má skopírovať z webového sídla FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/options.py:42
-#, fuzzy
-#| msgid "Max ancestor generations"
 msgid "Ancestor generations"
-msgstr "Max. generácií predkov"
+msgstr "Generácie predkov"
 
 #: ../gramps/gui/fs/fs_import/options.py:43
 msgid "Number of generations to fetch upwards"
 msgstr "Počet generácií, ktoré sa majú načítať smerom nahor"
 
 #: ../gramps/gui/fs/fs_import/options.py:46
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "Descendant generations"
-msgstr "Max. generácií potomkov"
+msgstr "Generácie potomkov"
 
 #: ../gramps/gui/fs/fs_import/options.py:47
 msgid "Number of generations to fetch downwards"
 msgstr "Počet generácií, ktoré sa majú načítať smerom nadol"
 
 #: ../gramps/gui/fs/fs_import/options.py:51
-#, fuzzy
-#| msgid "Non existing person"
 msgid "Do not re-import existing persons"
-msgstr "Neexistujúca osoba"
+msgstr "Neimportovať existujúce osoby"
 
 #: ../gramps/gui/fs/fs_import/options.py:53
 msgid "Only import persons not already present"
-msgstr ""
+msgstr "Importovať len osoby, ktoré ešte nie sú prítomné"
 
 #: ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -17110,10 +16975,8 @@ msgid "Include spouses"
 msgstr "Zahrnúť partnerov"
 
 #: ../gramps/gui/fs/fs_import/options.py:57
-#, fuzzy
-#| msgid "Include Source Information"
 msgid "Include spouse information"
-msgstr "Zahrnúť informáciu o zdroji"
+msgstr "Zahrnúť informácie o manželovi/manželke"
 
 #: ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -17122,10 +16985,8 @@ msgid "Include sources"
 msgstr "Zahrnúť zdroje"
 
 #: ../gramps/gui/fs/fs_import/options.py:61
-#, fuzzy
-#| msgid "Birth source"
 msgid "Import sources"
-msgstr "Zdroj narodenia"
+msgstr "Importovať zdroje"
 
 #: ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -17134,99 +16995,83 @@ msgid "Include notes"
 msgstr "Zahrnúť poznámky"
 
 #: ../gramps/gui/fs/fs_import/options.py:65
-#, fuzzy
-#| msgid "Importer"
 msgid "Import notes"
-msgstr "Importér"
+msgstr "Importovať poznámky"
 
 #: ../gramps/gui/fs/fs_import/options.py:68
-#, fuzzy
-#| msgid "Repository"
 msgid "Verbosity"
-msgstr "Archív"
+msgstr "Úroveň podrobností"
 
 #: ../gramps/gui/fs/fs_import/options.py:70
 msgid "Verbosity level from 0 (min) to 3 (very verbose)"
-msgstr ""
+msgstr "Úroveň podrobnosti od 0 (min.) do 3 (veľmi podrobné)"
 
 #: ../gramps/gui/fs/fs_import/tool.py:39
 msgid "FamilySearch Import Tool"
-msgstr ""
+msgstr "Nástroj na import FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:465
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:637
 msgid "Match"
-msgstr ""
+msgstr "Zhoda"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:466
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:638
-#, fuzzy
-#| msgid "Different database"
 msgid "Different"
-msgstr "Iná databáza"
+msgstr "Rozdielne"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:467
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in Gramps"
-msgstr "Len v priestupných rokoch"
+msgstr "Len v programe Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:468
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:639
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in FamilySearch"
-msgstr "Len v priestupných rokoch"
+msgstr "Len vo FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:469
 msgid "Critical mismatch"
-msgstr ""
+msgstr "Kritická nezhoda"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:473
 msgid ""
 "Tip: resize columns by dragging headers | scroll inside tabs | refresh to re-"
 "check FamilySearch"
 msgstr ""
+"Tip: zmeňte veľkosť stĺpcov ťahaním záhlaví | posúvajte v rámci kariet | "
+"obnovte a znovu skontrolujte FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:487
-#, fuzzy
-#| msgid "Select a person for the report"
 msgid "Select a person first."
-msgstr "Vybrať osobu pre zostavu"
+msgstr "Najprv vyberte osobu."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:491
 msgid "You must login first."
-msgstr ""
+msgstr "Najprv sa musíte prihlásiť."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:507
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve the selected person in the database."
-msgstr "Vymazaním osoby sa táto osoba odstráni z databázy."
+msgstr "Nepodarilo sa nájsť vybranú osobu v databáze."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:514
 msgid ""
 "This Gramps person is not linked to FamilySearch yet. Use 'Link person'."
 msgstr ""
+"Táto osoba v Gramps ešte nie je prepojená s FamilySearch. Použite 'Prepojiť "
+"osobu'."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:543
-#, fuzzy
-#| msgid "Remove child from family"
 msgid "Refresh from FamilySearch"
-msgstr "Odstrániť dieťa z rodiny"
+msgstr "Obnoviť z FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:550
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:610
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Import sources..."
-msgstr "Importovanie archívu..."
+msgstr "Import zdrojov..."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:580
-#, fuzzy
-#| msgid "Preview"
 msgid "Overview"
-msgstr "Náhľad"
+msgstr "Prehľad"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:600
 #: ../gramps/plugins/importer/importxml.py:351
@@ -17258,39 +17103,29 @@ msgstr "Obnoviť"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:693
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:727
 #: ../gramps/gui/fs/sync_directions.py:275
-#, fuzzy
-#| msgid "Gramps database"
 msgid "Gramps date"
-msgstr "Databáza Gramps"
+msgstr "Dátum Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:694
 #: ../gramps/gui/fs/sync_directions.py:276
-#, fuzzy
-#| msgid "Gramplet"
 msgid "Gramps value"
-msgstr "Gramplet"
+msgstr "Hodnota Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:695
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:730
 #: ../gramps/gui/fs/sync_directions.py:277
-#, fuzzy
-#| msgid "date"
 msgid "FS date"
-msgstr "dátum"
+msgstr "dátum FS"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:696
 #: ../gramps/gui/fs/sync_directions.py:278
-#, fuzzy
-#| msgid "Family Gallery"
 msgid "FamilySearch value"
-msgstr "Galéria rodiny"
+msgstr "Hodnota FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:699
 #: ../gramps/gui/fs/sync_directions.py:281
-#, fuzzy
-#| msgid "Type"
 msgid "xType"
-msgstr "Typ"
+msgstr "xType"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:700
 #: ../gramps/gui/fs/sync_directions.py:282
@@ -17314,46 +17149,36 @@ msgstr "xFs2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:713
 msgid "Scope"
-msgstr ""
+msgstr "Rozsah"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:716
-#, fuzzy
-#| msgid "Title"
 msgid "FS Title"
-msgstr "Titul"
+msgstr "Názov FS"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:726
 msgid "Kind"
-msgstr ""
+msgstr "Druh"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:728
 msgid "Gramps title"
 msgstr "Názov v programe Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:729
-#, fuzzy
-#| msgid "Gramps"
 msgid "Gramps URL"
-msgstr "Gramps"
+msgstr "URL Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:731
-#, fuzzy
-#| msgid "title"
 msgid "FS title"
-msgstr "titul"
+msgstr "názov FS"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:732
-#, fuzzy
-#| msgid "Search URL"
 msgid "FS URL"
-msgstr "Vyhľadať URL"
+msgstr "URL FS"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:734
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:303
-#, fuzzy
-#| msgid "Contributions by"
 msgid "Contributor"
-msgstr "Príspievatelia"
+msgstr "Prispievateľ"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:735
 msgid "Modified"
@@ -17364,42 +17189,36 @@ msgid "FS ID"
 msgstr "FS ID"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:750
-#, fuzzy, python-brace-format
-#| msgid "Import failed"
+#, python-brace-format
 msgid "Compare failed: {e}"
-msgstr "Import zlyhal"
+msgstr "Porovnanie zlyhalo: {e}"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:842
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:933
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:948
-#, fuzzy
-#| msgid "Missing Given Name"
 msgid "(missing in Gramps)"
-msgstr "Chýbajúce dané (krstné) meno"
+msgstr "(chýba v Gramps)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1133
-#, fuzzy
-#| msgid "No mention"
 msgid "Mention"
-msgstr "Žiadna zmienka"
+msgstr "Zmienka"
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:69
 msgid "FamilySearch is not configured (missing app key / redirect)."
 msgstr ""
+"FamilySearch nie je nakonfigurovaný (chýba kľúč aplikácie / presmerovanie)."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:82
 msgid "Already logged in to FamilySearch."
-msgstr ""
+msgstr "Už ste prihlásení do FamilySearch."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:86
 msgid "Logged in to FamilySearch."
-msgstr ""
+msgstr "Prihlásení do FamilySearch."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:89
-#, fuzzy
-#| msgid "Saving failed"
 msgid "Login failed."
-msgstr "Uloženie zlyhalo"
+msgstr "Prihlásenie zlyhalo."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:92
 #, python-brace-format
@@ -17407,44 +17226,39 @@ msgid ""
 "Login failed:\n"
 "{err}"
 msgstr ""
+"Prihlásenie zlyhalo:\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:338
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:176
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:181
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Import FamilySearch sources"
-msgstr "Importovať rodinný strom"
+msgstr "Importovať zdroje FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:468
-#, fuzzy, python-brace-format
-#| msgid "%s could not be imported"
+#, python-brace-format
 msgid ""
 "Some sources could not be imported:\n"
 "{errs}"
-msgstr "%s sa nepodarilo importovať"
+msgstr ""
+"Niektoré zdroje sa nepodarilo importovať:\n"
+"{errs}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:115
 msgid "No FamilySearch sources found to import."
-msgstr ""
+msgstr "Nenašli sa žiadne zdroje FamilySearch na import."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:256
-#, fuzzy
-#| msgid "Selected"
 msgid "Detected"
-msgstr "Vybrané"
+msgstr "Zistené"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:274
-#, fuzzy
-#| msgid "Import"
 msgid "Import as"
-msgstr "Import"
+msgstr "Importovať ako"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:285
-#, fuzzy
-#| msgid "Date"
 msgid "FS Date"
-msgstr "Dátum"
+msgstr "Dátum FS"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:304
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:510
@@ -17453,67 +17267,49 @@ msgid "Images"
 msgstr "Obrázky"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:312
-#, fuzzy
-#| msgid "Person Gallery"
 msgid "To Person gallery"
-msgstr "Galéria osoby"
+msgstr "Do galérie osoby"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:329
-#, fuzzy
-#| msgid "Action"
 msgid "Actions"
-msgstr "Akcia"
+msgstr "Akcie"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:332
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage Images…"
-msgstr "Spravovať databázy"
+msgstr "Spravovať obrázky…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:372
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:374
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage images"
-msgstr "Spravovať databázy"
+msgstr "Spravovať obrázky"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:380
-#, fuzzy
-#| msgid "Add a new source"
 msgid "Add from source…"
-msgstr "Pridať nový zdroj"
+msgstr "Pridať zo zdroja…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:381
 msgid "Open the source page and download images"
-msgstr ""
+msgstr "Otvorte stránku zdroja a stiahnite obrázky"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:383
-#, fuzzy
-#| msgid "Choose font"
 msgid "Choose file…"
-msgstr "Výber písma"
+msgstr "Vybrať súbor…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:384
 msgid "Pick existing files from disk"
-msgstr ""
+msgstr "Vyberte existujúce súbory z disku"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:386
-#, fuzzy
-#| msgid "Rename failed"
 msgid "Rename files"
-msgstr "Premenovanie zlyhalo"
+msgstr "Premenovať súbory"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:387
-#, fuzzy
-#| msgid "Remove selected items?"
 msgid "Rename selected files on disk"
-msgstr "Zmazať označené položky?"
+msgstr "Pomenovať vybrané súbory na disku"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:426
-#, fuzzy
-#| msgid "File extension"
 msgid "Filename (without extension)"
-msgstr "Prípona súboru"
+msgstr "Názov súboru (bez rozšírenia)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:430
 msgid "Extension"
@@ -17526,32 +17322,31 @@ msgid ""
 "• Extensions are preserved.\n"
 "• If a file with the new name exists, a numeric suffix will be added."
 msgstr ""
+"Tipy:\n"
+"• Dvojklikom na názov môžete údaje upraviť.\n"
+"• Prípony zostanú zachované.\n"
+"• Ak už existuje súbor s novým názvom, bude k nemu pridaná číselná prípona."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:464
-#, fuzzy
-#| msgid "No map service is available."
 msgid "Image picker module is not available."
-msgstr "Mapová služba nie je dostupná."
+msgstr "Modul výberu obrázkov nie je k dispozícii."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:471
-#, fuzzy
-#| msgid "Add Source (%s)"
 msgid "Add Source Image"
-msgstr "Pridať zdroj (%s)"
+msgstr "Pridať zdrojový obrázok"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:475
-#, fuzzy, python-brace-format
-#| msgid "Could not open file: %s"
+#, python-brace-format
 msgid ""
 "Could not open image picker:\n"
 "{e}"
-msgstr "Nedá sa otvoriť súbor: %s"
+msgstr ""
+"Nepodarilo sa otvoriť výber obrázkov:\n"
+"{e}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:493
-#, fuzzy
-#| msgid "Close file first"
 msgid "Choose image file(s)"
-msgstr "Najprv zatvoriť súbor"
+msgstr "Vybrať súbory s obrázkami"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:499
 #: ../gramps/gui/glade/mergedata.glade:170
@@ -17562,31 +17357,34 @@ msgid "Select"
 msgstr "Vybrať"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:588
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid ""
 "Rename failed for:\n"
 "{p}\n"
 "\n"
 "{err}"
-msgstr "Premenovanie zlyhalo"
+msgstr ""
+"Premenovanie zlyhalo pre:\n"
+"{p}\n"
+"\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:621
 #: ../gramps/gui/fs/sync_directions.py:658
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select all"
-msgstr "_Vybrať všetky"
+msgstr "Vybrať všetko"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:642
 msgid ""
 "Tip: click “Manage Images…” to add/choose/rename files before importing."
 msgstr ""
+"Tip: kliknite na „Spravovať obrázky…“, aby ste pred importovaním pridali/"
+"vybrali/premenovali súbory."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:684
 #, python-brace-format
 msgid "{n} source(s) imported."
-msgstr ""
+msgstr "Počet importovaných zdrojov: {n}."
 
 #: ../gramps/gui/fs/sync_directions.py:337
 msgid "Primary Name"
@@ -17594,24 +17392,21 @@ msgstr "Primárna meno"
 
 #: ../gramps/gui/fs/sync_directions.py:417
 #: ../gramps/gui/fs/sync_directions.py:443
-#, fuzzy, python-brace-format
-#| msgid "Note Filter"
+#, python-brace-format
 msgid "Note: {title}"
-msgstr "Filter poznámky"
+msgstr "Poznámka: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:418
 #: ../gramps/gui/fs/sync_directions.py:444
-#, fuzzy
-#| msgid "title"
 msgid "(untitled)"
-msgstr "titul"
+msgstr "(bez názvu)"
 
 #: ../gramps/gui/fs/sync_directions.py:422
 #: ../gramps/gui/fs/sync_directions.py:447
 #: ../gramps/gui/fs/sync_directions.py:448
 #: ../gramps/gui/fs/sync_directions.py:700
 msgid "(empty)"
-msgstr ""
+msgstr "(prázdne)"
 
 #: ../gramps/gui/fs/sync_directions.py:582
 #: ../gramps/gui/fs/sync_directions.py:980
@@ -17619,38 +17414,29 @@ msgid "Source from Gramps"
 msgstr "Zdroj z programu Gramps"
 
 #: ../gramps/gui/fs/sync_directions.py:593
-#, fuzzy
-#| msgid "_Delete Family"
 msgid "(deleted on FamilySearch)"
-msgstr "_Vymazať rodinu"
+msgstr "(vymazané na FamilySearch)"
 
 #: ../gramps/gui/fs/sync_directions.py:595
-#, fuzzy
-#| msgid "Submission: Family file"
 msgid "(missing on FamilySearch)"
-msgstr "Zaradenie: súbor rodiny"
+msgstr "(chýba na FamilySearch)"
 
 #: ../gramps/gui/fs/sync_directions.py:597
 msgid "(not attached to this person on FamilySearch)"
-msgstr ""
+msgstr "(nie je priradené k tejto osobe na FamilySearch)"
 
 #: ../gramps/gui/fs/sync_directions.py:604
-#, fuzzy, python-brace-format
-#| msgid "Source: Title"
+#, python-brace-format
 msgid "Source: {title}"
-msgstr "Zdroj: Názov"
+msgstr "Zdroj: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:625
-#, fuzzy
-#| msgid "Select Family"
 msgid "Sync to FamilySearch"
-msgstr "Vybrať rodinu"
+msgstr "Synchronizovať do FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:629
-#, fuzzy
-#| msgid "Selected"
 msgid "Apply Selected"
-msgstr "Vybrané"
+msgstr "Použiť vybrané"
 
 #: ../gramps/gui/fs/sync_directions.py:641
 msgid ""
@@ -17658,6 +17444,9 @@ msgid ""
 "Default is to keep FamilySearch.\n"
 "<i>No deletions are performed.</i>"
 msgstr ""
+"<b>Vyberte, čo chcete zmeniť na FamilySearch</b>\n"
+"Predvolené nastavenie je zachovať FamilySearch.\n"
+"<i>Neuskutočňujú sa žiadne vymazania.</i>"
 
 #: ../gramps/gui/fs/sync_directions.py:649
 msgid "Change message:"
@@ -17665,33 +17454,27 @@ msgstr "Správa o zmene:"
 
 #: ../gramps/gui/fs/sync_directions.py:678
 msgid "Field"
-msgstr ""
+msgstr "Pole"
 
 #: ../gramps/gui/fs/sync_directions.py:681 ../gramps/gui/undohistory.py:115
 msgid "Action"
 msgstr "Akcia"
 
 #: ../gramps/gui/fs/sync_directions.py:719
-#, fuzzy
-#| msgid "Merge Family"
 msgid "Keep FamilySearch"
-msgstr "Zlúčiť rodinu"
+msgstr "Zachovať FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:722
-#, fuzzy
-#| msgid "Produced with Gramps"
 msgid "Overwrite with Gramps"
-msgstr "Vytvorené pomocou Gramps"
+msgstr "Prepísať pomocou Gramps"
 
 #: ../gramps/gui/fs/sync_directions.py:724
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Add from Gramps"
-msgstr "Pridať gramplet"
+msgstr "Pridať z Gramps"
 
 #: ../gramps/gui/fs/sync_directions.py:726
 msgid "Apply from Gramps"
-msgstr ""
+msgstr "Použiť z Gramps"
 
 #: ../gramps/gui/fs/sync_directions.py:777
 #: ../gramps/gui/fs/sync_directions.py:1342
@@ -17700,7 +17483,7 @@ msgstr "Nie je pripojené k FamilySearch."
 
 #: ../gramps/gui/fs/sync_directions.py:789
 msgid "No FamilySearch Person ID is set for this person."
-msgstr ""
+msgstr "Pre túto osobu nie je nastavené žiadne ID osoby FamilySearch."
 
 #: ../gramps/gui/fs/sync_directions.py:798
 msgid ""
@@ -17720,22 +17503,26 @@ msgid ""
 "\n"
 "Clear or replace the saved FSID before exporting again."
 msgstr ""
+"Túto prepojenú osobu FamilySearch nebolo možné nájsť.\n"
+"\n"
+"Pred opätovným exportovaním vymažte alebo nahraďte uložené FSID."
 
 #: ../gramps/gui/fs/sync_directions.py:819
 msgid "FamilySearch: Refresh merged ID"
-msgstr ""
+msgstr "FamilySearch: Obnoviť zlúčené ID"
 
 #: ../gramps/gui/fs/sync_directions.py:834
 msgid ""
 "FamilySearch person could not be loaded fresh from the API.\n"
 "Try 'Sync from FamilySearch' or clear the cache, then try again."
 msgstr ""
+"Osobu z FamilySearch sa nepodarilo načítať z API.\n"
+"Skúste „Synchronizovať z FamilySearch“ alebo vymazať vyrovnávaciu pamäť a "
+"potom to skúste znova."
 
 #: ../gramps/gui/fs/sync_directions.py:862
-#, fuzzy
-#| msgid "No parents found"
 msgid "No pushable differences found."
-msgstr "Rodičia nenájdení"
+msgstr "Nenašli sa žiadne rozdiely, ktoré by sa dali preniesť."
 
 #: ../gramps/gui/fs/sync_directions.py:897
 msgid ""
@@ -17807,16 +17594,12 @@ msgstr ""
 "i>"
 
 #: ../gramps/gui/fs/sync_directions.py:1205
-#, fuzzy
-#| msgid "Include places"
 msgid "Include parents"
-msgstr "Zahrnúť miesta"
+msgstr "Zahrnúť rodičov"
 
 #: ../gramps/gui/fs/sync_directions.py:1206
-#, fuzzy
-#| msgid "Include spouses"
 msgid "Include spouse(s)"
-msgstr "Zahrnúť partnerov"
+msgstr "Zahrnúť manželských partnerov"
 
 #: ../gramps/gui/fs/sync_directions.py:1207
 #: ../gramps/plugins/export/exportcsv.py:148
@@ -17826,10 +17609,8 @@ msgid "Include children"
 msgstr "Zahrnúť deti"
 
 #: ../gramps/gui/fs/sync_directions.py:1229
-#, fuzzy
-#| msgid "person"
 msgid "(person)"
-msgstr "osoba"
+msgstr "(osoba)"
 
 #: ../gramps/gui/fs/sync_directions.py:1248
 msgid "This person: "
@@ -17840,20 +17621,16 @@ msgid "Create"
 msgstr "Vytvoriť"
 
 #: ../gramps/gui/fs/sync_directions.py:1282
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select all missing"
-msgstr "Vybrať existujúcu poznámku"
+msgstr "Vybrať všetky chýbajúce"
 
 #: ../gramps/gui/fs/sync_directions.py:1349
 msgid "Please save this person first."
 msgstr "Najprv prosím uložte túto osobu."
 
 #: ../gramps/gui/fs/sync_directions.py:1355
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve this person from the database."
-msgstr "Vymazaním osoby sa táto osoba odstráni z databázy."
+msgstr "Nepodarilo sa nájsť túto osobu z databázy."
 
 #: ../gramps/gui/fs/sync_directions.py:1396
 msgid "FamilySearch: Export basic people"
@@ -17877,10 +17654,8 @@ msgstr ""
 "vzťahov."
 
 #: ../gramps/gui/fs/sync_directions.py:1569
-#, fuzzy
-#| msgid "No matching addons found."
 msgid "Nothing was exported."
-msgstr "Nenájdené žiadne vhodné doplnky."
+msgstr "Nič nebolo exportované."
 
 #: ../gramps/gui/fs/sync_directions.py:1573
 #, python-brace-format
@@ -17892,22 +17667,16 @@ msgid "FamilySearch Tools"
 msgstr "FamilySearch nástroje"
 
 #: ../gramps/gui/fs/tools_window.py:342 ../gramps/gui/fs/tools_window.py:661
-#, fuzzy
-#| msgid "Edit Person (%s)"
 msgid "Editor person: (none)"
-msgstr "Upraviť osobu (%s)"
+msgstr "Osoba v editore: (žiadna)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Person Citations"
 msgid "Person actions"
-msgstr "Citácie osoby"
+msgstr "Akcie osoby"
 
 #: ../gramps/gui/fs/tools_window.py:363
-#, fuzzy
-#| msgid "Co_mpare"
 msgid "Compare"
-msgstr "_Porovnať"
+msgstr "Porovnať"
 
 #: ../gramps/gui/fs/tools_window.py:364
 msgid "Sync from FamilySearch"
@@ -17934,56 +17703,42 @@ msgstr ""
 "úmrtie)."
 
 #: ../gramps/gui/fs/tools_window.py:389
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import relatives"
-msgstr "Import zlyhal"
+msgstr "Importovať príbuzných"
 
 #: ../gramps/gui/fs/tools_window.py:393
-#, fuzzy
-#| msgid "Import Pro-Gen"
 msgid "Import Parents"
-msgstr "Import Pro-Gen"
+msgstr "Import rodičov"
 
 #: ../gramps/gui/fs/tools_window.py:394
-#, fuzzy
-#| msgid "Indent Spouses"
 msgid "Import Spouse"
-msgstr "Odsadiť partnerov"
+msgstr "Import manžela/manželky"
 
 #: ../gramps/gui/fs/tools_window.py:395
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import Children"
-msgstr "Import zlyhal"
+msgstr "Import detí"
 
 #: ../gramps/gui/fs/tools_window.py:400 ../gramps/gui/plug/tool.py:71
 msgid "Utilities"
 msgstr "Pomôcky"
 
 #: ../gramps/gui/fs/tools_window.py:403
-#, fuzzy
-#| msgid "Tags"
 msgid "Tags..."
-msgstr "Štítky"
+msgstr "Štítky..."
 
 #: ../gramps/gui/fs/tools_window.py:404
-#, fuzzy
-#| msgid "Cleared"
 msgid "Clear Cache"
-msgstr "Schválené"
+msgstr "Vymazať vyrovnávaciu pamäť"
 
 #: ../gramps/gui/fs/tools_window.py:674
-#, fuzzy, python-format
-#| msgid "%(name)s [%(gid)s]"
+#, python-format
 msgid "Editor person: %(name)s  [%(gid)s]"
-msgstr "%(name)s [%(gid)s]"
+msgstr "Osoba v editore: %(name)s  [%(gid)s]"
 
 #: ../gramps/gui/fs/tools_window.py:682
-#, fuzzy, python-format
-#| msgid "Person: %(name)s"
+#, python-format
 msgid "Editor person: %(name)s"
-msgstr "Osoba: %(name)s"
+msgstr "Osoba v editore: %(name)s"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
@@ -17996,22 +17751,16 @@ msgid "FamilySearch duplicate ID: %s "
 msgstr "Duplicitné ID FamilySearch: %s "
 
 #: ../gramps/gui/fs/utils/index.py:60
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Duplicate FSFTID"
-msgstr "Duplicitná rodina"
+msgstr "Duplicitné FSFTID"
 
 #: ../gramps/gui/fs/utils/index.py:62
-#, fuzzy
-#| msgid "Continue"
 msgid "_Continue warning"
-msgstr "Pokračovať"
+msgstr "_Pokračovať v upozornení"
 
 #: ../gramps/gui/fs/utils/index.py:63
-#, fuzzy
-#| msgid "Undo history warning"
 msgid "_Stop warning"
-msgstr "Varovanie pred odvolaním histórie"
+msgstr "_Zastaviť upozornenie"
 
 #: ../gramps/gui/fs/utils/index.py:73
 #, python-format
@@ -19462,11 +19211,11 @@ msgstr "_Signatúra:"
 
 #: ../gramps/gui/glade/editreporef.glade:155
 msgid "On what type of media this source is available in the repository."
-msgstr "Na akom type média je tento zdroj dostupný v archíve."
+msgstr "Na akom type média je tento zdroj dostupný v repozitári."
 
 #: ../gramps/gui/glade/editreporef.glade:207
 msgid "Id number of the source in the repository."
-msgstr "Id číslo zdroja v archíve."
+msgstr "Id číslo zdroja v repozitári."
 
 #: ../gramps/gui/glade/editreporef.glade:272
 #: ../gramps/gui/glade/editrepository.glade:98
@@ -19478,7 +19227,7 @@ msgstr "_Meno:"
 #: ../gramps/gui/glade/editreporef.glade:301
 #: ../gramps/gui/glade/editrepository.glade:127
 msgid "Name of the repository (where sources are stored)."
-msgstr "Názov archívu (kde sú uložené zdroje)."
+msgstr "Názov repozitára (kde sú uložené zdroje)."
 
 #: ../gramps/gui/glade/editreporef.glade:337
 msgid ""
@@ -19486,18 +19235,19 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>Poznámka:</b> Akékoľvek zmeny v informácií zdieľaného archívu sa prejavia "
-"v archíve samotnom, ako aj pri všetkých položkách, ktoré na archív odkazujú."
+"<b>Poznámka:</b> Akékoľvek zmeny v informácií zdieľaného repozitára sa "
+"prejavia v repozitári samotnom, ako aj pri všetkých položkách, ktoré na "
+"repozitár odkazujú."
 
 #: ../gramps/gui/glade/editreporef.glade:378
 #: ../gramps/gui/glade/editrepository.glade:180
 msgid "A unique ID to identify the repository."
-msgstr "Jedinečný ID na identifikáciu archívu."
+msgstr "Jedinečný ID na identifikáciu repozitára."
 
 #: ../gramps/gui/glade/editreporef.glade:431
 #: ../gramps/gui/glade/editrepository.glade:145
 msgid "Type of repository, eg., 'Library', 'Album', ..."
-msgstr "Typ archívu, napr. 'Knižnica', 'Album', ..."
+msgstr "Typ repozitára, napr. 'Knižnica', 'Album', ..."
 
 #: ../gramps/gui/glade/editsource.glade:113
 msgid "_Author:"
@@ -19830,20 +19580,20 @@ msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
-"Vybrať archív, ktorý poskytne primárne\n"
-"údaje pre zlúčený archív."
+"Vyberte repozitár, ktorý bude poskytovať\n"
+"primárne údaje pre zlúčený repozitár."
 
 #: ../gramps/gui/glade/mergerepository.glade:182
 msgid "Repository 1"
-msgstr "Archív 1"
+msgstr "Repozitár 1"
 
 #: ../gramps/gui/glade/mergerepository.glade:196
 msgid "Repository 2"
-msgstr "Archív 2"
+msgstr "Repozitár 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:388
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Adresy, adresy url a poznámky oboch archívov sa skombinujú."
+msgstr "Adresy, adresy url a poznámky oboch repozitárov sa skombinujú."
 
 #: ../gramps/gui/glade/mergesource.glade:94
 msgid ""
@@ -19858,8 +19608,8 @@ msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
 msgstr ""
-"Poznámky, mediálne objekty, dátové položky a odkazy archívu z oboch zdrojov "
-"sa skombinujú."
+"Poznámky, mediálne objekty, dátové položky a odkazy repozitára z oboch "
+"zdrojov budú skombinované."
 
 #: ../gramps/gui/glade/papermenu.glade:8
 msgid "Paper Settings"
@@ -20333,7 +20083,7 @@ msgstr ""
 "potrebné funkcie. Tieto funkcie však môžete rozšíriť pomocou ďalších "
 "Doplnkov. Tieto doplnky poskytujú prehľady, výpisy, zobrazenia, gramplety a "
 "ďalšie funkcie. Tu si môžete vybrať z dostupných doplnkov, ktoré sa načítajú "
-"z internetu z webovej stránky Gramps a nainštalujú sa lokálne do vášho "
+"z internetu z webového sídla Gramps a nainštalujú sa lokálne do vášho "
 "počítača. Ak teraz tento dialóg zatvoríte, môžete doplnky nainštalovať "
 "neskôr z menu v časti Upraviť -> Správca doplnkov."
 
@@ -20427,10 +20177,8 @@ msgid "_Family Trees"
 msgstr "_Stromy rodiny"
 
 #: ../gramps/gui/grampsgui.py:57
-#, fuzzy
-#| msgid "Searching..."
 msgid "_FamilySearch Sign in..."
-msgstr "Vyhľadávanie..."
+msgstr "_Prihlásenie do FamilySearch......"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Go"
@@ -20641,9 +20389,9 @@ msgstr ""
 "\n"
 "Pomocník Vám položi niekoľko otázok a zhromaždí informácie o chybe, ktorá sa "
 "vyskytla, ako aj o operačnom systéme. Na konci Vás požiada, aby ste poslali "
-"správu do systému pre sledovanie chýb Gramps. Pomocník Vašu správu o chybe "
-"zobrazí aby ste videli aké informácie sa zašlú, a mohli ich skopírovať do "
-"formulára na web stránke systému."
+"správu do systému pre sledovanie chýb Gramps. Pomocník umiestni hlásenie o "
+"chybe do schránky, aby ste ho mohli vložiť do formulára na webovom sídle "
+"sledovania chýb a skontrolovať, aké informácie chcete presne zahrnúť."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:327
 msgid ""
@@ -20728,8 +20476,8 @@ msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
 msgstr ""
-"Toto je kompletné hlásenie o chybe. Nasledujúca stránka pomocníka Vám pomôže "
-"odoslať správu do systému sledovania chýb Gramps."
+"Toto je vyplnené hlásenie o chybe. Ďalšia stránka pomocníka vám pomôže "
+"nahlásiť chybu na webovom sídle systému sledovania chýb Gramps."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:658
 msgid ""
@@ -20755,8 +20503,8 @@ msgid ""
 "submit report"
 msgstr ""
 "Toto tlačidlo slúži na skopírovanie hlásenia o chybe do schránky. Potom "
-"prejdite na webovú stránku na sledovanie chýb pomocou tlačidla nižšie, "
-"vložte hlásenie a kliknite na tlačidlo pre odoslanie hlásenia"
+"prejdite na webové sídlo sledovaniela chýb pomocou tlačidla nižšie, vložte "
+"hlásenie a kliknite na tlačidlo pre odoslanie hlásenia"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:734
 #: ../gramps/gui/logger/_errorreportassistant.py:765
@@ -20937,7 +20685,7 @@ msgstr "Zlúčenie_miest"
 #: ../gramps/gui/merge/mergerepository.py:44
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "Zlúčenie_archívov"
+msgstr "Zlúčenie_repozitárov"
 
 #: ../gramps/gui/merge/mergesource.py:45
 msgctxt "manual"
@@ -21262,7 +21010,7 @@ msgstr "Kontrola doplnkov zlyhala"
 
 #: ../gramps/gui/plug/_windows.py:970
 msgid "The addon repository appears to be unavailable. Please try again later."
-msgstr "Zdá sa, že archív doplnkov nie je dostupný. Skúste to prosím neskôr."
+msgstr "Zdá sa, že repozitár doplnkov nie je dostupný. Skúste to prosím neskôr."
 
 #: ../gramps/gui/plug/_windows.py:985
 msgid "There are no available addons of this type"
@@ -22278,7 +22026,7 @@ msgstr "Selektor_Výber_miesta"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
-msgstr "Vybrať archív"
+msgstr "Výber repozitára"
 
 #: ../gramps/gui/selectors/selectrepository.py:78
 msgctxt "manual"
@@ -22410,10 +22158,8 @@ msgid "Not logged in to FamilySearch."
 msgstr "Nie ste prihlásený/á na FamilySearch."
 
 #: ../gramps/gui/viewmanager.py:553
-#, fuzzy
-#| msgid "Use complete sentences"
 msgid "User consent declined"
-msgstr "Použiť celé vety"
+msgstr "Súhlas používateľa odmietnutý"
 
 #: ../gramps/gui/viewmanager.py:561
 msgid "Authorization error"
@@ -25228,7 +24974,7 @@ msgstr "Zapisovanie poznámok"
 
 #: ../gramps/plugins/export/exportgedcom.py:1131
 msgid "Writing repositories"
-msgstr "Zapisovanie archívov"
+msgstr "Zapisovanie repozitárov"
 
 #: ../gramps/plugins/export/exportgedcom.py:1257
 #: ../gramps/plugins/lib/libgedcom.py:6413
@@ -25592,8 +25338,8 @@ msgid ""
 " 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with "
 "Gramps and my tree?%(html_end)s\n"
 msgstr ""
-" 10. %(gramps_FAQ_html_start)s%(faq_section)sAko môžem vytvoriť webovú "
-"stránku s Gramps a mojím stromom?%(html_end)s\n"
+" 10. %(gramps_FAQ_html_start)s%(faq_section)sAko môžem vytvoriť webové sídlo "
+"s Gramps a mojím stromom?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:196
 #, python-format
@@ -25708,55 +25454,39 @@ msgstr "Gramplet zobrazujúci kalendár a udalosti k určitému dátumu v histó
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:98
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:105
-#, fuzzy
-#| msgid "Web Calendar"
 msgid "Person's birth Calendar"
-msgstr "Webový kalendár"
+msgstr "Kalendár narodenia osôb"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:99
-#, fuzzy
-#| msgid "Gramplet showing the notes for a person"
 msgid "Gramplet showing the birth for a person on the calendar"
-msgstr "Gramplet zobrazujúci poznámky pre osobu"
+msgstr "Gramplet zobrazujúci narodenie osoby v kalendári"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:113
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:120
-#, fuzzy
-#| msgid "person's death"
 msgid "Person's death Calendar"
-msgstr "úmrtie osoby"
+msgstr "Kalendár úmrtí osôb"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:114
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the death for a person on the calendar"
-msgstr "Gramplet zobrazujúci udalosti pre osobu"
+msgstr "Gramplet zobrazujúci úmrtie osoby v kalendári"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:128
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
-#, fuzzy
-#| msgid "My Family Calendar"
 msgid "Family Calendar"
-msgstr "Kalendár mojej rodiny"
+msgstr "Kalendár rodiny"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:129
-#, fuzzy
-#| msgid "Gramplet showing the sources for a family"
 msgid "Gramplet showing the marriage for a family on the calendar"
-msgstr "Gramplet so zdrojmi k rodine"
+msgstr "Gramplet zobrazujúci sobáš rodiny v kalendári"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:143
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:150
-#, fuzzy
-#| msgid "vCalendar"
 msgid "Event Calendar"
-msgstr "vCalendar"
+msgstr "Kalendár udalostí"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:144
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Gramplet showing the date for an event on the calendar"
-msgstr "Gramplet zobrazujúci poznámky pre udalosť"
+msgstr "Gramplet zobrazujúci dátum udalosti v kalendári"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:158
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
@@ -25932,11 +25662,11 @@ msgstr "Podrobnosti"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:472
 msgid "Repository Details"
-msgstr "Podrobnosti archívu"
+msgstr "Podrobnosti repozitára"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:473
 msgid "Gramplet showing details of a repository"
-msgstr "Gramplet zobrazujúci podrobnosti o archíve"
+msgstr "Gramplet zobrazujúci podrobnosti o repozitári"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:488
 msgid "Place Details"
@@ -26154,11 +25884,11 @@ msgstr "Gramplet zobrazujúci poznámky pre citáciu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:916
 msgid "Repository Notes"
-msgstr "Poznámky archívu"
+msgstr "Poznámky repozitára"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:917
 msgid "Gramplet showing the notes for a repository"
-msgstr "Gramplet zobrazujúci poznámky pre archív"
+msgstr "Gramplet zobrazujúci poznámky pre repozitár"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:932
 msgid "Media Notes"
@@ -26295,11 +26025,11 @@ msgstr "Gramplet zobrazujúci spätné odkazy pre citáciu"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1172
 #: ../gramps/plugins/quickview/quickview.gpr.py:275
 msgid "Repository References"
-msgstr "Odkazy archívu"
+msgstr "Odkazy repozitára"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1173
 msgid "Gramplet showing the backlink references for a repository"
-msgstr "Gramplet zobrazujúci spätné odkazy pre archív"
+msgstr "Gramplet zobrazujúci spätné odkazy pre repozitár"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1188
 msgid "Media References"
@@ -26371,11 +26101,11 @@ msgstr "Gramplet poskytujúci filter média"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1332
 msgid "Repository Filter"
-msgstr "Filter archívu"
+msgstr "Filter repozitárov"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1333
 msgid "Gramplet providing a repository filter"
-msgstr "Gramplet poskytujúci filter archívu"
+msgstr "Gramplet poskytujúci filter repozitára"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1348
 msgid "Note Filter"
@@ -26446,11 +26176,11 @@ msgstr "Gramplet zobrazujúci poznámky úloh pre citáciu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1478
 msgid "Repository To Do"
-msgstr "Úlohy archívu"
+msgstr "Repozitár úloh"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1479
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet zobrazujúci poznámky úloh pre archív"
+msgstr "Gramplet zobrazujúci poznámky o úlohách pre repozitár"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1494
 msgid "Media To Do"
@@ -27809,16 +27539,12 @@ msgid "Whether to include dates and/or places"
 msgstr "Či chcete uviesť dátumy a/alebo miesta"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:984
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only valid dates"
-msgstr "_Zistiť neplatné dátumy"
+msgstr "Iba platné dátumy"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:985
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only show valid dates."
-msgstr "_Zistiť neplatné dátumy"
+msgstr "Zobrazí iba platné dátumy."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:988
 msgid "Show all family nodes"
@@ -29019,9 +28745,9 @@ msgid ""
 "Copy the files to a correct directory or change the media path in the "
 "Preferences."
 msgstr ""
-"Otvorený súbor má uvedenú cestu k médiám %s, čo je v konflikte s cestou v "
+"Otvorený súbor má uvedenú cestu k médiám %s, ktorá je v konflikte s cestou v "
 "rodinnom strome do ktorého importujete. Pôvodná cesta ostala nezmenená. "
-"Súbory skopírujte na správne miesto, alebo upravte cestu k médiám v "
+"Súbory skopírujte do správneho adresára, alebo upravte cestu k médiám v "
 "Predvoľbách."
 
 #: ../gramps/plugins/importer/importxml.py:1153
@@ -29449,7 +29175,7 @@ msgstr "OBJE (multimediálny objekt) Gramps ID %s"
 #: ../gramps/plugins/lib/libgedcom.py:7467
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "REPO (archív) Gramps ID %s"
+msgstr "REPO (repozitár) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7528
 #: ../gramps/plugins/lib/libgedcom.py:8550
@@ -29579,11 +29305,11 @@ msgstr "Zaradenie: kód chrámu"
 
 #: ../gramps/plugins/lib/libgedcom.py:8223
 msgid "Submission: Generations of ancestors"
-msgstr "Zaradenie: Generácie predkov"
+msgstr "Predloženie: Generácie predkov"
 
 #: ../gramps/plugins/lib/libgedcom.py:8225
 msgid "Submission: Generations of descendants"
-msgstr "Zaradenie: Generácie potomkov"
+msgstr "Predloženie: Generácie potomkov"
 
 #: ../gramps/plugins/lib/libgedcom.py:8227
 msgid "Submission: Ordinance process flag"
@@ -34052,7 +33778,7 @@ msgstr "Opačný zdroj"
 #: ../gramps/plugins/quickview/filterbyname.py:48
 msgctxt "Filtering_on"
 msgid "Inverse Repository"
-msgstr "Opačný archív"
+msgstr "Opačný repozitár"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49
 msgctxt "Filtering_on"
@@ -34092,7 +33818,7 @@ msgstr "všetky zdroje"
 #: ../gramps/plugins/quickview/filterbyname.py:56
 msgctxt "Filtering_on"
 msgid "all repositories"
-msgstr "všetky archívy"
+msgstr "všetky repozitáre"
 
 #: ../gramps/plugins/quickview/filterbyname.py:57
 msgctxt "Filtering_on"
@@ -34468,7 +34194,7 @@ msgstr "Zobrazí pripojené odkazy pre poznámku"
 #: ../gramps/plugins/quickview/quickview.gpr.py:277
 msgid ""
 "Display the repository reference for sources related to the active repository"
-msgstr "Zobrazí odkaz archívu pre zdroje súvisiace s aktívnym archívom"
+msgstr "Zobrazí odkaz repozitára pre zdroje súvisiace s aktívnym repozitárom"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:300
 msgid "Same Surnames"
@@ -34713,10 +34439,8 @@ msgstr "Kliknutím vybrať pohľad"
 #: ../gramps/plugins/sidebar/favoritessidebar.py:79
 #: ../gramps/plugins/sidebar/favoritessidebar.py:81
 #: ../gramps/plugins/sidebar/favoritessidebar.py:219
-#, fuzzy
-#| msgid "Choose your dialect"
 msgid "Choose your favorite views"
-msgstr "Vyberte si svoj dialekt"
+msgstr "Vyberte si svoje obľúbené zobrazenia"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:85
 #: ../gramps/plugins/tool/mediamanager.py:94
@@ -34725,20 +34449,16 @@ msgid "Help"
 msgstr "Pomoc"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:86
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select All"
-msgstr "_Vybrať všetky"
+msgstr "Vybrať všetky"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:87
-#, fuzzy
-#| msgid "Clear _All"
 msgid "Clear All"
-msgstr "Vyčistiť _všetko"
+msgstr "Vyčistiť všetko"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:136
 msgid "Switching_Navigator_modes"
-msgstr ""
+msgstr "Prepínanie_režimov_navigátora"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
 msgid "Category Sidebar"
@@ -34766,27 +34486,23 @@ msgstr "Rozbaľovač"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:66
 msgid "Expander Sidebar"
-msgstr "Bočný panel rozšírení"
+msgstr "Bočný panel rozbaľovača"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:67
 msgid "Selection of views from lists with expanders"
-msgstr "Výber pohľadov zo zoznamov s rozpínačmi"
+msgstr "Výber pohľadov zo zoznamov s rozbaľovačmi"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:75
 msgid "Expander"
-msgstr "Rozšírenie"
+msgstr "Rozbaľovač"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:82
-#, fuzzy
-#| msgid "Category Sidebar"
 msgid "Favorites Sidebar"
-msgstr "Bočný panel kategórií"
+msgstr "Bočný panel obľúbených"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:83
-#, fuzzy
-#| msgid "Selection of views from lists with expanders"
 msgid "Selection of views from a views selector"
-msgstr "Výber pohľadov zo zoznamov s rozpínačmi"
+msgstr "Výber pohľadov zo selektora zobrazení"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:91
 msgid "Favorites"
@@ -35586,7 +35302,7 @@ msgstr "Skupinová zostava o rodine - Generácia %d"
 #: ../gramps/plugins/textreport/familygroup.py:682
 #: ../gramps/plugins/textreport/textplugins.gpr.py:199
 msgid "Family Group Report"
-msgstr "Skupinová zostava o rodine"
+msgstr "Správa o rodinnej skupine"
 
 #: ../gramps/plugins/textreport/familygroup.py:726
 msgid "Center Family"
@@ -35766,8 +35482,6 @@ msgid "Include Attributes"
 msgstr "Zahrnúť atribúty"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
-#, fuzzy
-#| msgid "Include addresses"
 msgid "Include Addresses"
 msgstr "Zahrnúť adresy"
 
@@ -36146,12 +35860,12 @@ msgstr "Počet citácií:%d"
 
 #: ../gramps/plugins/textreport/summary.py:302
 msgid "Repository Information"
-msgstr "Informácie o archíve"
+msgstr "Informácie o repozitári"
 
 #: ../gramps/plugins/textreport/summary.py:307
 #, python-format
 msgid "Number of repositories: %d"
-msgstr "Počet archívov:%d"
+msgstr "Počet repozitárov: %d"
 
 #: ../gramps/plugins/textreport/summary.py:341
 #, python-format
@@ -36564,7 +36278,7 @@ msgstr "Hľadanie prázdnych záznamov médií"
 
 #: ../gramps/plugins/tool/check.py:1016
 msgid "Looking for empty repository records"
-msgstr "Hľadanie prázdnych záznamov archívov"
+msgstr "Hľadanie prázdnych záznamov repozitárov"
 
 #: ../gramps/plugins/tool/check.py:1025
 msgid "Looking for empty note records"
@@ -36597,7 +36311,7 @@ msgstr "Hľadanie problémov s odkazom rodiny"
 
 #: ../gramps/plugins/tool/check.py:1520
 msgid "Looking for repository reference problems"
-msgstr "Hľadanie problémov s odkazom archívu"
+msgstr "Hľadanie problémov s odkazom repozitára"
 
 #: ../gramps/plugins/tool/check.py:1560
 msgid "Looking for place reference problems"
@@ -36755,9 +36469,9 @@ msgstr[2] "{quantity} dátumov bolo opravených\n"
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "{quantity} archív bol odkazovaný, ale nebol nájdený\n"
-msgstr[1] "{quantity} archívy boli odkazované, ale neboli nájdené\n"
-msgstr[2] "{quantity} archívov bolo odkazovaných, ale nebolo nájdených\n"
+msgstr[0] "{quantity} repozitár bol odkazovaný, ale nebol nájdený\n"
+msgstr[1] "{quantity} repozitáre boli odkazované, ale neboli nájdené\n"
+msgstr[2] "{quantity} repozitárov bolo odkazovaných, ale nebolo nájdených\n"
 
 #: ../gramps/plugins/tool/check.py:2950 ../gramps/plugins/tool/check.py:3050
 #, python-brace-format
@@ -36900,7 +36614,7 @@ msgstr ""
 "   %(source)d objekty zdrojov\n"
 "   %(media)d objekty médií\n"
 "   %(place)d objekty miest\n"
-"   %(repo)d objekty archívov\n"
+"   %(repo)d objekty repozitárov \n"
 "   %(note)d objekty poznámok\n"
 
 #: ../gramps/plugins/tool/check.py:3144
@@ -37766,7 +37480,7 @@ msgstr "Hľadať médiá"
 
 #: ../gramps/plugins/tool/removeunused.glade:169
 msgid "Search for repositories"
-msgstr "Hľadať archívy"
+msgstr "Hľadať repozitáre"
 
 #: ../gramps/plugins/tool/removeunused.glade:185
 msgid "Search for notes"
@@ -39722,7 +39436,7 @@ msgstr "Zobraziť tlačidlá úprav"
 
 #: ../gramps/plugins/view/relview.py:1947
 msgid "View links as website links"
-msgstr "Zobraziť odkazy ako odkazy webových stránok"
+msgstr "Zobraziť odkazy ako odkazy webových sídiel"
 
 #: ../gramps/plugins/view/relview.py:1964
 msgid "Show Details"
@@ -39742,7 +39456,7 @@ msgstr "Vyhľadať URL"
 
 #: ../gramps/plugins/view/repoview.py:138
 msgid "Add a new repository"
-msgstr "Pridať nový archív"
+msgstr "Pridať nový repozitár"
 
 #: ../gramps/plugins/view/repoview.py:140
 msgid "Delete the selected repository"
@@ -39750,15 +39464,15 @@ msgstr "Vymazať vybraný archív"
 
 #: ../gramps/plugins/view/repoview.py:141
 msgid "Merge the selected repositories"
-msgstr "Zlúčiť vybrané archívy"
+msgstr "Zlúčiť vybrané repozitáre"
 
 #: ../gramps/plugins/view/repoview.py:233
 msgid "Repository Filter Editor"
-msgstr "Editor filtra archívu"
+msgstr "Editor filtra repozitára"
 
 #: ../gramps/plugins/view/repoview.py:392
 msgid "Cannot merge repositories."
-msgstr "Archívy sa nedajú zlúčiť."
+msgstr "Repozitáre sa nedajú zlúčiť."
 
 #: ../gramps/plugins/view/repoview.py:394
 msgid ""
@@ -39766,8 +39480,8 @@ msgid ""
 "repository can be selected by holding down the control key while clicking on "
 "the desired repository."
 msgstr ""
-"Na zlúčenie musia byť vybrané presne dva archívy. Druhý archív môžete vybrať "
-"podržaním klávesu Ctrl a zároveň kliknutím na požadovaný archív."
+"Na zlúčenie musia byť vybrané presne dva repozitáre. Druhý repozitár môžete "
+"vybrať podržaním klávesu Ctrl a zároveň kliknutím na požadovaný repozitár."
 
 #: ../gramps/plugins/view/sourceview.py:111
 msgid "Edit the selected source"
@@ -39873,7 +39587,7 @@ msgstr "Pohľad zobrazujúci miesta vo formáte stromu."
 
 #: ../gramps/plugins/view/view.gpr.py:268
 msgid "The view showing all the repositories"
-msgstr "Pohľad zobrazujúci všetky archívy"
+msgstr "Pohľad zobrazujúci všetky repozitáre"
 
 #: ../gramps/plugins/view/view.gpr.py:284
 msgid "The view showing all the sources"
@@ -40191,7 +39905,7 @@ msgid ""
 "download page and files have the same copyright as the remainder of these "
 "web pages."
 msgstr ""
-"Táto stránka je pre používateľa/ tvorcu tejto webovej stránky Family Tree/ "
+"Táto stránka je pre používateľa/ tvorcu tohoto webového sídla Family Tree/ "
 "Narrative, aby s vami zdieľal niekoľko súborov týkajúcich sa ich rodiny. Ak "
 "existujú nižšie uvedené súbory, kliknutím na ne ich stiahnete. Stránka pre "
 "sťahovanie a súbory sú chránené rovnakým autorským právom ako zvyšok týchto "
@@ -40417,18 +40131,16 @@ msgid "%(idx)s - for family: %(family)s"
 msgstr "%(idx)s – pre rodinu: %(family)s"
 
 #: ../gramps/plugins/webreport/media.py:760
-#, fuzzy, python-format
-#| msgid "%(eventtype)s : %(name)s"
+#, python-format
 msgctxt "name"
 msgid "%(idx)s - for event: %(event)s: %(name)s"
-msgstr "%(eventtype)s : %(name)s"
+msgstr "%(idx)s - pre udalosť: %(event)s: %(name)s"
 
 #: ../gramps/plugins/webreport/media.py:775
-#, fuzzy, python-format
-#| msgid "%(date)s - %(place)s."
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for place: %(place)s"
-msgstr "%(date)s - %(place)s."
+msgstr "%(idx)s - pre miesto: %(place)s"
 
 #: ../gramps/plugins/webreport/media.py:790
 #, python-format
@@ -40518,19 +40230,19 @@ msgstr "Vytváranie stránok adresára ..."
 #: ../gramps/plugins/webreport/narrativeweb.py:1989
 #, python-format
 msgid "Narrative Website Report for the %s language"
-msgstr "Naratívna webová zostava pre jazyk %s"
+msgstr "Naratívna zostava webového sídla pre jazyk %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1991
 msgid "Narrative Website Report"
-msgstr "Naratívna správa o webovej stránke"
+msgstr "Naratívna správa webového sídla"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2111
 msgid "Store website in .tar.gz archive"
-msgstr "Uložiť webovú stránku v archíve .tar.gz"
+msgstr "Uložiť webové sídlo do archívu .tar.gz"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid "Whether to store the website in an archive file"
-msgstr "Či uložiť webovú stránku v archívnom súbore"
+msgstr "Či uložiť webové sídlo v archívnom súbore"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2122
 #: ../gramps/plugins/webreport/webcal.py:1839
@@ -40543,15 +40255,15 @@ msgstr "Môj rodinný strom"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "Website title"
-msgstr "Titul web sídla"
+msgstr "Pomenovanie webového sídla"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2128
 msgid "The title of the website"
-msgstr "Názov web sídla"
+msgstr "Názov webového sídla"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "Select filter to restrict people that appear on the website"
-msgstr "Vybrať filter na obmedzenie ľudí, ktorí sa objavia na webovej stránke"
+msgstr "Vybrať filter na obmedzenie ľudí, ktorí sa objavia na webovom sídle"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2145
 msgid "Show the relationship between the current person and the active person"
@@ -40567,7 +40279,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:2176
 #: ../gramps/plugins/webreport/webcal.py:1861
 msgid "File extension"
-msgstr "Prípona súboru"
+msgstr "Rozšírenie súboru"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2179
 #: ../gramps/plugins/webreport/webcal.py:1864
@@ -40675,14 +40387,12 @@ msgid "The maximum number of rows to include in an index page"
 msgstr "Maximálny počet riadkov, ktoré sa majú zahrnúť do indexovej stránky"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2259
-#, fuzzy
-#| msgid "Allow editing database owner information."
 msgid "Allow internet indexation."
-msgstr "Umožňuje upravovanie informácií o vlastníkovi databázy."
+msgstr "Povoliť indexáciu na internete."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Allow search engines (Google, Bing, etc.) to index your website."
-msgstr "Povoliť vyhľadávačom (Google, Bing atď.) indexovať vaše webové miesto."
+msgstr "Povoľte vyhľadávačom (Google, Bing atď.) indexovať vaše webové sídlo."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2272
 msgid "Extra Pages"
@@ -41073,11 +40783,11 @@ msgstr "Či zahrnúť stránky zdrojov alebo nie."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2627
 msgid "Include repository pages"
-msgstr "Zahrnúť stránky archívov"
+msgstr "Zahrnúť stránky repozitárov"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2628
 msgid "Whether or not to include the repository pages."
-msgstr "Či zahrnúť stránky archívov alebo nie."
+msgstr "Či zahrnúť stránky repozitárov alebo nie."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2631
 msgid "Include GENDEX file (/gendex.txt)"
@@ -41257,13 +40967,7 @@ msgid "openlayers version to use"
 msgstr "verzia openlayers na použitie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2800
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "You should use this option only if you can't see the maps in your website "
-#| "for OpenStreetMap or Stamen maps\n"
-#| "You can change the value in the specified file. The option name to modify "
-#| "is openlayers_version.\n"
-#| "See OLDER VERSIONS in https://openlayers.org/"
+#, python-brace-format
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -41271,11 +40975,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in {openlayers_url}"
 msgstr ""
-"Túto možnosť by ste mali použiť len vtedy, ak na svojej webovej stránke "
+"Túto možnosť by ste mali použiť len vtedy, ak na svojom webovom sídle "
 "nevidíte mapy OpenStreetMap alebo mapy Stamen\n"
 "Hodnotu môžete zmeniť v uvedenom súbore. Názov možnosti, ktorú treba zmeniť, "
 "je openlayers_version.\n"
-"Pozri časť OLDER VERSIONS na stránke https://openlayers.org/"
+"Pozri časť OLDER VERSIONS na {openlayers_url}"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2817
 msgid "Other inclusion (CMS, web calendar, PHP)"
@@ -41291,7 +40995,7 @@ msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2830
 msgid "Where do you place your website? default = /NAVWEB"
-msgstr "Kam umiestnite svoju webovú stránku? predvolené = /NAVWEB"
+msgstr "Kam umiestnite svoje webové sídlo? predvolené = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 msgid "Include the news and updates page"
@@ -41583,7 +41287,7 @@ msgstr "Mapa miesta"
 
 #: ../gramps/plugins/webreport/repository.py:107
 msgid "Creating repository pages"
-msgstr "Vytváranie stránok archívu"
+msgstr "Vytváranie stránok repozitára"
 
 #: ../gramps/plugins/webreport/repository.py:155
 msgid ""
@@ -41591,9 +41295,9 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
-"Táto stránka obsahuje register všetkých archívov v databáze, zoradených "
-"podľa názvu. Po kliknutí na názov archívu sa dostanete na stránku tohto "
-"archívu."
+"Táto stránka obsahuje register všetkých repozitárov v databáze, zoradených "
+"podľa názvu. Po kliknutí na názov repozitára sa dostanete na stránku tohto "
+"repozitára."
 
 #: ../gramps/plugins/webreport/repository.py:177
 msgctxt "Repository"
