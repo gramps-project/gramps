@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-07 13:45+0000\n"
+"PO-Revision-Date: 2026-04-28 04:37+0000\n"
 "Last-Translator: \"Batsaihan P.\" <batsaihan.p@gmail.com>\n"
 "Language-Team: Mongolian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/mn/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -134,11 +134,11 @@ msgstr "Sukot"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
-msgstr ""
+msgstr "2 of Sukot"
 
 #: ../data/holidays.xml:373
 msgid "3 of Sukot"
-msgstr ""
+msgstr "3 of Sukot"
 
 #: ../data/holidays.xml:374
 #, fuzzy
@@ -192,20 +192,19 @@ msgstr "5 of Hanuka"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "6 of Hanuka"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "7 of Hanuka"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "8 of Hanuka"
 
 #: ../data/holidays.xml:388
-#, fuzzy
 msgid "Italy"
-msgstr "Итали"
+msgstr "Итал"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -216,18 +215,16 @@ msgid "Russia"
 msgstr "Орос"
 
 #: ../data/holidays.xml:434
-#, fuzzy
 msgid "Serbia"
-msgstr "Сереб"
+msgstr "Серби"
 
 #: ../data/holidays.xml:449
 msgid "Serbia (Latin)"
 msgstr "Сереб"
 
 #: ../data/holidays.xml:464
-#, fuzzy
 msgid "Slovakia"
-msgstr "Славак"
+msgstr "Словак"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:48
 msgid "Sweden"
@@ -254,16 +251,14 @@ msgid "Gramps"
 msgstr "Gramps"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
-#, fuzzy
 msgid "Genealogy System"
-msgstr "Генийн систем"
+msgstr "Удам судлалын систем"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:5
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
-#, fuzzy
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr "Удмын мэдээллийг удирдах, удмын судалгаа, шинжилгээ хийх"
+msgstr "Ургийн мэдээллийг удирдах, угийн бичгийн судалгаа болон шинжилгээ хийх"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
@@ -325,13 +320,13 @@ msgstr "Хойч үеэ Дэмжигч"
 #: ../gramps/plugins/view/view.gpr.py:226
 #: ../gramps/plugins/webreport/updates.py:106
 msgid "People"
-msgstr ""
+msgstr "Хүмүүс"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
 #: ../gramps/plugins/view/relview.py:147 ../gramps/plugins/view/view.gpr.py:118
 #: ../gramps/plugins/view/view.gpr.py:126
 msgid "Relationships"
-msgstr ""
+msgstr "Холбоосууд"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:192 ../gramps/gui/clipboard.py:722
@@ -376,23 +371,23 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:314
 #: ../gramps/plugins/webreport/person.py:1639
 msgid "Person"
-msgstr ""
+msgstr "Хүн"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
-msgstr ""
+msgstr "Gramps датабааз"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
 msgid "Gramps package"
-msgstr ""
+msgstr "Gramps багц"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
 msgid "Gramps XML database"
-msgstr ""
+msgstr "Gramps XML датабааз"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
-msgstr ""
+msgstr "GeneWeb сурвалж файл"
 
 #: ../data/tips.xml:9
 msgid ""
@@ -401,6 +396,11 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
+"<b>Огноотой ажиллах</b><br/>Огнооны хоорондох хугацааг \"2000 оны 1 дүгээр "
+"сарын 4-ний өдрөөс 2003 оны 3 дугаар сарын 20-ны өдөр хүртэл\" форматыг "
+"ашиглан зааж өгч болно. Мөн огноонд итгэх итгэлийн түвшинг зааж, долоон өөр "
+"хуанлигаас сонгох боломжтой. Events Editor-ийн огнооны талбайн хажууд "
+"байрлах товчийг дарж үзээрэй."
 
 #: ../data/tips.xml:11
 msgid ""
@@ -409,6 +409,11 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
+"<b>Объектыг засах</b><br/>Ихэнх тохиолдолд нэр, эх сурвалж, байршил эсвэл "
+"медиа бичлэг дээр хоёр удаа дарвал тухайн объектыг засах боломжтой цонх гарч "
+"ирнэ. Үр дүн нь нөхцөл байдлаас хамаарч болно гэдгийг анхаарна уу. "
+"Жишээлбэл, Гэр бүлийн харагдацад эцэг эсвэл хүүхэд дээр дарвал Харилцааны "
+"засах цонх гарч ирнэ."
 
 #: ../data/tips.xml:13
 msgid ""
@@ -417,6 +422,10 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
+"<b>Зураг нэмэх</b><br/>Зургийг файл менежер эсвэл вэб хөтөчөөс чирж, суллах "
+"замаар ямар ч галерей эсвэл медиа харагдац руу нэмж болно. Үнэндээ та ийм "
+"байдлаар ямар ч төрлийн файлыг нэмж чадна. Энэ нь баримт бичгийн скан болон "
+"бусад дижитал эх сурвалжид тохиромжтой."
 
 #: ../data/tips.xml:15
 msgid ""
@@ -424,6 +433,9 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
+"<b>Гэр бүл дэхь хүүхдүүдийн дарааллыг тохируулах</b><br/>Гэр бүлийн "
+"хүүхдүүдийн төрсөн дарааллыг чирж байрлуулах аргаар тохируулж болно. Төрсөн "
+"огноо байхгүй байсан ч энэ дараалал хадгалагдана."
 
 #: ../data/tips.xml:17
 msgid ""
@@ -434,6 +446,12 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
+"<b>Хэт оройтохоос өмнө төрөл садантайгаа ярилц</b><br/>Таны хамгийн ахмад "
+"төрөл садангууд мэдээллийн хамгийн чухал эх сурвалж байж чадна. Тэд ихэвчлэн "
+"бичигдээгүй үлдсэн гэр бүлийн олон зүйлийг мэддэг. Мөн тэдний ярьсан жижиг "
+"мэдээллүүд хожим шинэ судалгааны чиглэл нээхэд хүргэж магадгүй. Ядаж л та "
+"сонирхолтой сайхан түүхүүдийг сонсох болно. Ярилцлагуудаа заавал бичиж "
+"авахаа бүү мартаарай!"
 
 #: ../data/tips.xml:19
 msgid ""
@@ -446,6 +464,13 @@ msgid ""
 "the Filter field on Sidebar, then click Find button. If the Sidebar is not "
 "visible, select View > Sidebar."
 msgstr ""
+"<b>Хүмүүсийг шүүх</b><br/>Хүмүүсийн харагдац дээр хүмүүсийг олон шалгуураар "
+"шүүх боломжтой. Шинэ шүүлт үүсгэхийн тулд \"Засах > Хүний шүүлт засварлагч\" "
+"руу орно. Тэнд шүүлтдээ нэр өгч, бэлэн дүрмүүдийг нэмж, хослуулж болно. "
+"Жишээ нь, удамд байгаа үрчлэгдсэн хүмүүсийг олох шүүлт үүсгэж болно. Мөн "
+"төрсөн огноогүй хүмүүсийг шүүж болно. Үр дүн харахын тулд шүүлтээ хадгална. "
+"Дараа нь \"Хажуу самбар\" дахь \"Шүүлт\" талбараас сонгоод \"Хайх\" товчийг "
+"дарна. \"Хажуу самбар\" харагдахгүй бол \"Харах > Хажуу самбар\"-ыг сонгоно."
 
 #: ../data/tips.xml:21
 msgid ""
@@ -454,6 +479,9 @@ msgid ""
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
+"<b>Эсрэг шүүлт</b><br/>Шүүлтийг \"эсрэг\" сонголтоор амархан урвуулж болно "
+"\"Шүүлтийн дүрэмд таарахгүй утгуудыг буцаах\". Жишээ нь, \"Хүүхэдтэй "
+"хүмүүс\" шүүлтийг урвуулахад хүүхэдгүй бүх хүмүүсийг сонгож болно."
 
 #: ../data/tips.xml:23
 msgid ""
@@ -464,12 +492,19 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
+"<b>Хүмүүсийн байршил</b><br/>Бүлэглэсэн хүмүүсийн үзэмжид овог бүр зөвхөн "
+"нэг удаа жагсагдана. Нэрний зүүн талд байгаа сум дээр дарвал тухайн овготой "
+"бүх хүмүүсийн жагсаалт өргөжиж гарна. Урт жагсаалтаас ямар ч овгийг олохын "
+"тулд хүнийг биш, овгийг сонгож, бичиж эхлээрэй. Үзэмж нь таны оруулсан "
+"үсгүүдтэй таарч буй анхны овог руу шилжинэ."
 
 #: ../data/tips.xml:25
 msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
+"<b>Гэр бүл Харагдац</b><br/>Гэр бүлийн харагдацыг хоёр эцэг эх болон тэдний "
+"хүүхдүүдээс бүрдэх ердийн гэр бүлийн нэгжийг харуулахад ашиглана."
 
 #: ../data/tips.xml:27
 msgid ""
@@ -478,6 +513,10 @@ msgid ""
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
+"<b>Идэвхтэй хүнийг солих</b><br/> View-үүдэд идэвхтэй <b>хүнийг</b> солих нь "
+"хялбар. Харилцааны харагдацад зүгээр л хэн нэгнийг дарна. Удам угсааны "
+"харагдацад тухайн хүнийг хоёр удаа дарахад эсвэл баруун товчоор дарж түүний "
+"гэр бүлийн гишүүд, ах дүүс, хүүхдүүд эсвэл эцэг эхийн аль нэгийг сонгоно."
 
 #: ../data/tips.xml:29
 msgid ""
@@ -486,6 +525,11 @@ msgid ""
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
+"<b>Хэн хэзээ төрсөн бэ?</b><br/>\"Хэрэгсэл > Шинжилгээ ба судалгаа > Хувь "
+"хүний үйл явдлыг харьцуулах...\" хэсэгт өгөгдлийн санд байгаа хүмүүсийн "
+"мэдээллийг харьцуулж болно. Энэ нь жишээлбэл, бүх хүмүүсийн төрсөн огноог "
+"жагсаахад хэрэгтэй. Үр дүнг нарийсгахын тулд хэрэглэгчийн шүүлт ашиглаж "
+"болно."
 
 #: ../data/tips.xml:31
 msgid ""
@@ -495,6 +539,11 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
+"<b>Gramps Хэрэгсэл</b><br/>Gramps нь олон төрлийн хэрэгсэлтэй. Эдгээр нь "
+"өгөгдлийн сангийн алдаа болон нийцтэй байдлыг шалгах зэрэг үйлдлийг хийх "
+"боломж олгодог. Мөн үйл явдлын харьцуулалт, давхардсан хүмүүсийг олох, "
+"интерактив удам угсааны харагч зэрэг судалгаа, шинжилгээний хэрэгслүүд бий. "
+"Бүх хэрэгслүүдийг \"Хэрэгсэл\" цэснээс нээж болно."
 
 #: ../data/tips.xml:33
 msgid ""
@@ -503,6 +552,10 @@ msgid ""
 "> Relationship Calculator...\". The exact relationship as well as all common "
 "ancestors are reported."
 msgstr ""
+"<b>Хамаарлыг тооцоолох</b><br/>Өгөгдлийн санд байгаа хоёр хүн цусан төрлөөр "
+"(гэрлэлтээр биш) хамааралтай эсэхийг шалгахын тулд \"Хэрэгсэл > Туслах "
+"хэрэгсэл > Хамаарлын тооцоолуур...\"-ыг ашиглана. Үр дүнд нь яг ямар "
+"хамааралтай болох болон бүх нийтлэг өвөг дээдсийг харуулна."
 
 #: ../data/tips.xml:35
 msgid ""
@@ -514,6 +567,13 @@ msgid ""
 "library or other research facility. To view the SoundEx codes for surnames "
 "in your database, add the SoundEx Gramplet."
 msgstr ""
+"<b>SoundEx нь удам судлалд тусалж чадна</b><br/>SoundEx нь удам судлалд "
+"удаан хугацаанд тулгарч ирсэн нэрийн бичлэгийн ялгааг шийдвэрлэхэд тусалдаг. "
+"SoundEx Gramplet нь овгийг авч, адилхан сонсогдох нэрсийг нэгтгэх "
+"хялбарчилсан код үүсгэнэ. Овгийн SoundEx кодыг мэдэх нь номын сан болон "
+"судалгааны байгууллагад байдаг хүн амын тооллогын мэдээлэл (microfiche)-ийг "
+"хайхад ихээхэн тустай. Өгөгдлийн санд байгаа овгуудын SoundEx кодыг харахын "
+"тулд SoundEx Gramplet-ийг нэмнэ."
 
 #: ../data/tips.xml:37
 msgid ""
@@ -522,6 +582,10 @@ msgid ""
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
+"<b>Тохиргоо хийх</b><br/>\"Засах > Тохиргоо...\" хэсэгт медиа файлуудын зам "
+"зэрэг олон тохиргоог өөрчлөх, мөн Gramps-ийн харагдацыг өөрийн хэрэгцээнд "
+"тохируулах боломжтой. Мөн харагдац бүрийг \"Харах > Харагдац тохируулах...\" "
+"хэсэгт тусад нь тохируулж болно."
 
 #: ../data/tips.xml:39
 msgid ""
@@ -531,6 +595,11 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
+"<b>Gramps тайлангууд</b><br/>Gramps нь олон төрлийн тайланг санал болгодог. "
+"График тайлан болон графикууд нь нарийн төвөгтэй хамаарлыг ойлгомжтой "
+"харуулдаг бол текстэн тайлан нь удам угсааны мэдээллийг гэр бүлийн гишүүдэд "
+"имэйлээр илгээхэд тохиромжтой. Мөн Угийн модондоо зориулсан вэб сайт үүсгэх "
+"тайлан ч бий."
 
 #: ../data/tips.xml:41
 msgid ""
@@ -540,12 +609,18 @@ msgid ""
 "People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
+"<b>Шинэ удам мод эхлүүлэх</b><br/>Шинэ удам мод эхлүүлэхийн тулд эхлээд "
+"Хүмүүсийн харагдац дээр бүх гэр бүлийн гишүүдийг өгөгдлийн санд бүртгэнэ "
+"(\"Засах > Нэмэх...\" эсвэл Шинэ хүн нэмэх товчийг дарна). Дараа нь "
+"Хамаарлын харагдац руу орж хүмүүсийн хоорондын хамаарлыг үүсгэнэ."
 
 #: ../data/tips.xml:43
 msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
 msgstr ""
+"<b>Энэ юуны зориулалттай вэ?</b><br/>Товч ямар үүрэгтэйг мэдэхгүй байна уу? "
+"Хулганаа товч дээр байрлуулахад тайлбар гарч ирнэ."
 
 #: ../data/tips.xml:45
 msgid ""
@@ -555,6 +630,11 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
+"<b>Огноо тодорхойгүй байна уу?</b><br/>Хэрэв үйл явдлын огноо тодорхойгүй "
+"бол Gramps нь таамаг, ойролцоололд суурилсан олон төрлийн огнооны форматыг "
+"оруулах боломж олгодог. Жишээлбэл, \"1908 орчим\" нь төрсөн огноонд хүчинтэй "
+"утга юм. Огнооны талбарын хажууд байгаа \"Огноо засварлагчийг нээх\" товчийг "
+"дарна. Дэлгэрэнгүйг Gramps-ийн гарын авлагаас үзнэ үү."
 
 #: ../data/tips.xml:47
 msgid ""
@@ -562,6 +642,9 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
+"<b>Давхардсан бүртгэл</b><br/>\"Хэрэгсэл > Удамын мод боловсруулах > "
+"Боломжит давхардсан хүмүүсийг олох...\" хэрэгсэл нь өгөгдлийн санд нэг "
+"хүнийг олон удаа бүртгэсэн тохиолдлуудыг олж (мөн нэгтгэх) боломж олгодог."
 
 #: ../data/tips.xml:49
 msgid ""
@@ -572,6 +655,12 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
+"<b>Бүртгэл нэгтгэх</b><br/>\"Засах > Нэгтгэх...\" функц нь тусдаа "
+"бүртгэгдсэн хүмүүсийг нэг болгон нэгтгэх боломж олгодог. Хоёр дахь "
+"бүртгэлийг сонгохдоо Control товчийг дарж байгаад дарна. Энэ нь давхардсан "
+"хүмүүс бүхий хоёр өгөгдлийн санг нэгтгэх, эсвэл нэг хүний буруу өөр өөр "
+"нэрээр орсон бүртгэлийг нэгтгэхэд хэрэгтэй. Нэгтгэх үйлдэл нь бүх жагсаалтын "
+"харагдац дээр, бүх үндсэн объектын төрөлд боломжтой."
 
 #: ../data/tips.xml:51
 msgid ""
@@ -580,6 +669,10 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
+"<b>Харагдацыг зохион байгуулах</b><br/>Олон харагдац нь өгөгдлийг мод бүтэц "
+"эсвэл жагсаалт хэлбэрээр харуулах боломжтой. Мөн харагдац бүрийг өөрийн "
+"хүссэнээр тохируулж болно. Дээд хэрэгслийн мөрийн баруун тал эсвэл \"Харах\" "
+"цэсийг шалгана уу."
 
 #: ../data/tips.xml:53
 msgid ""
@@ -588,6 +681,10 @@ msgid ""
 "through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 msgstr ""
+"<b>Урагш, хойш шилжих</b><br/>Gramps нь өмнө идэвхтэй байсан объектуудын "
+"(жишээ нь Хүмүүс, Үйл явдлууд) жагсаалтыг хадгалдаг. Та энэ жагсаалтаар "
+"\"Очих > Урагш\", \"Очих > Буцах\" цэс эсвэл сум товчуудаар урагш, хойш "
+"шилжиж болно."
 
 #: ../data/tips.xml:55
 msgid ""
@@ -595,6 +692,9 @@ msgid ""
 "keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
 "If one exists for a function it is displayed on the right side of the menu."
 msgstr ""
+"<b>Гарын товчлол</b><br/>Хулгана ашиглахын тулд гараа гарнаас авахад "
+"төвөгтэй байна уу? Gramps-д олон үйлдэлд гарын товчлол бий. Хэрэв тухайн "
+"үйлдэлд товчлол байвал цэсний баруун талд харагдана."
 
 #: ../data/tips.xml:57
 msgid ""
@@ -603,6 +703,10 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
+"<b>Гарын авлага унших</b><br/>Gramps-ийн гарын авлагыг уншихаа бүү "
+"мартаарай: \"Тусламж > Хэрэглэгчийн гарын авлага\". Хөгжүүлэгчид ихэнх "
+"үйлдлийг ойлгомжтой болгохоор ажилласан ч гарын авлага нь удам судлалын "
+"ажлыг илүү үр дүнтэй болгох олон хэрэгтэй мэдээллийг агуулдаг."
 
 #: ../data/tips.xml:59
 msgid ""
@@ -611,6 +715,10 @@ msgid ""
 "Then choose to create a new person or add an existing person. You can also "
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
+"<b>Хүүхэд нэмэх</b><br/>Gramps-д хүүхэд нэмэх хоёр арга бий. Та Гэр "
+"бүлүүдийн харагдац дээр эцэг, эхийн аль нэгийг олж, гэр бүлийг нээнэ. Дараа "
+"нь шинэ хүн үүсгэх эсвэл байгаа хүнийг нэмнэ. Мөн Гэр бүл засварлагч "
+"дотороос хүүхэд (эсвэл ах, дүү) нэмж болно."
 
 #: ../data/tips.xml:61
 msgid ""
@@ -619,6 +727,10 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
+"<b>Эцэг эх–хүүхдийн хамаарлыг засах</b><br/>Хүүхдийг Гэр бүл засварлагч "
+"дотор давхар дарж, эцэг эхтэйгээ хамаарлыг засаж болно. Хамаарлын төрөл нь: "
+"Үрчлэгдсэн, Төрсөн, Асрамжийн, Байхгүй, Ивээн тэтгэсэн, Хойд хүүхэд, "
+"Тодорхойгүй байж болно."
 
 #: ../data/tips.xml:63
 msgid ""
@@ -628,6 +740,11 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
+"<b>“Бүгдийг харуулах” сонголт</b><br/>Одоо байгаа хүнийг эхнэр/нөхөр болгон "
+"нэмэхэд, харагдах хүмүүсийн жагсаалт нь зөвхөн тухайн үүрэгт тохирох "
+"боломжтой хүмүүсээр (өгөгдлийн сан дахь огноонд үндэслэн) шүүгдсэн байдаг. "
+"Хэрэв энэ шүүлт буруу гэж үзвэл “Бүгдийг харуулах” сонголтыг идэвхжүүлж "
+"шүүлтийг хүчингүй болгож болно."
 
 #: ../data/tips.xml:65
 msgid ""
@@ -637,6 +754,11 @@ msgid ""
 "a Feature Request. Filing a Feature Request is preferred but it can be good "
 "to discuss your ideas on the email lists."
 msgstr ""
+"<b>Gramps-ийг сайжруулах</b><br/>Хэрэглэгчид Gramps-д сайжруулалтын хүсэлт "
+"гаргахыг дэмждэг. Сайжруулалтын хүсэлтийг gramps-users эсвэл gramps-devel "
+"имэйл жагсаалтаар дамжуулан, эсвэл &bugs_url; хаягаар орж Feature Request "
+"үүсгэх замаар гаргаж болно. Feature Request үүсгэх нь илүү тохиромжтой "
+"боловч санаагаа эхлээд имэйл жагсаалтаар хэлэлцэх нь бас тустай байж болно."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -646,6 +768,11 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
+"<b>Gramps имэйл жагсаалтууд</b><br/>Gramps-ийн талаар асуулт байна уу? "
+"gramps-хэрэглэгчид имэйл жагсаалтыг үзнэ үү. Олон туслахад бэлэн хүмүүс "
+"байдаг тул хурдан хариулт авах боломжтой. Хэрэв хөгжүүлэлттэй холбоотой "
+"асуулт байвал gramps-devel жагсаалтыг ашиглана. Имэйл жагсаалтуудыг "
+"\"Тусламж > Gramps имэйл жагсаалтууд\" хэсгээс харж болно."
 
 #: ../data/tips.xml:69
 msgid ""
@@ -657,6 +784,13 @@ msgid ""
 "and introducing yourself. Subscription information can be found at \"Help > "
 "Gramps Mailing Lists\"."
 msgstr ""
+"<b>Gramps-д хувь нэмэр оруулах</b><br/>Gramps-д туслахыг хүсэж байна уу, "
+"гэхдээ програм бичиж чаддаггүй юу? Асуудал биш! Gramps шиг том төсөлд олон "
+"төрлийн ур чадвартай хүмүүс хэрэгтэй. Хувь нэмэр нь баримт бичиг бичихээс "
+"эхлээд хөгжүүлэлтийн хувилбарыг турших, вэб сайтад туслах зэрэг байж болно. "
+"Эхлэхийн тулд gramps-хөгжүүлэгчид хөгжүүлэгчдийн имэйл жагсаалтад бүртгүүлж, "
+"өөрийгөө танилцуулна. Бүртгэлийн мэдээллийг \"Тусламж > Gramps имэйл "
+"жагсаалтууд\" хэсгээс харна."
 
 #: ../data/tips.xml:71
 msgid ""
@@ -667,6 +801,12 @@ msgid ""
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
+"<b>Gramps нэр ямар утгатай вэ?</b><br/>Gramps нэрийг анхны хөгжүүлэгч Don "
+"Allingham-д түүний аав санал болгосон. Энэ нь <i>Genealogical Research and "
+"Analysis Management Program System</i> гэсэн үгийн товчлол юм. Энэ нь удам "
+"судлалын өгөгдлийг хадгалах, засах, судлах боломжтой бүрэн боломжтой програм "
+"юм. Gramps-ийн өгөгдлийн сангийн суурь нь маш найдвартай тул зарим "
+"хэрэглэгчид хэдэн зуун мянган хүнийг багтаасан удам модыг удирдаж байна."
 
 #: ../data/tips.xml:73
 msgid ""
@@ -676,6 +816,11 @@ msgid ""
 "Person then go to \"Bookmarks > Add Bookmark\" or press Ctrl+D. You can also "
 "bookmark most of the other objects."
 msgstr ""
+"<b>Хүнийг хавчуурга хийх</b><br/>Хавчуурга цэс нь байнга ашигладаг хүмүүсийг "
+"хадгалах тохиромжтой газар юм. Хавчуургыг сонгоход тухайн хүн идэвхтэй хүн "
+"болно. Хүнийг хавчуурга хийхийн тулд эхлээд идэвхтэй хүн болгоод "
+"\"Хавчуурга > Хавчуурга нэмэх\" рүү орно, эсвэл Ctrl+D дарна. Мөн бусад "
+"ихэнх объектуудыг ч хавчуурга хийж болно."
 
 #: ../data/tips.xml:75
 msgid ""
@@ -686,6 +831,11 @@ msgid ""
 "on the date button. The format of the date is set under \"Edit > Preferences "
 "> Data\"."
 msgstr ""
+"<b>Буруу огноо</b><br/>Хааяа буруу форматтай огноо оруулах тохиолдол гардаг. "
+"Буруу форматтай огноо нь Gramps-д улаандуу дэвсгэртэй эсвэл талбарын баруун "
+"талд улаан цэгээр тэмдэглэгдэнэ. Огнооны товчийг дарж нээгдэх Огноо сонгох "
+"цонхоор засах боломжтой. Огнооны форматыг \"Засах > Тохиргоо > Өгөгдөл\" "
+"хэсэгт тохируулна."
 
 #: ../data/tips.xml:77
 msgid ""
@@ -694,6 +844,10 @@ msgid ""
 "types. You can add your own event types by typing in the text field, they "
 "will be added to the available events, but not translated."
 msgstr ""
+"<b>Үйл явдал бүртгэх</b><br/>Үйл явдлыг \"Хүн > Хүнийг засах > Үйл явдлууд\" "
+"хэсгээс нээгдэх засварлагчаар нэмнэ. Олон төрлийн бэлэн үйл явдлын жагсаалт "
+"байдаг. Та текст талбарт бичиж өөрийн үйл явдлын төрлийг нэмэх боломжтой. "
+"Тэдгээр нь жагсаалтад нэмэгдэх боловч орчуулагдахгүй."
 
 #: ../data/tips.xml:79
 msgid ""
@@ -702,6 +856,10 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
+"<b>Нэрсийг удирдах</b><br/>Gramps-д нэг хүний олон нэрийг хялбар удирдаж "
+"болно. Хүний засварлагч дээр Нэрс табыг сонгоно. Өөр өөр төрлийн нэрс нэмэх "
+"боломжтой бөгөөд хүссэн нэрийг Давуу нэр хэсэг рүү чирж байрлуулан үндсэн "
+"нэр болгож тохируулна."
 
 #: ../data/tips.xml:81
 msgid ""
@@ -710,6 +868,10 @@ msgid ""
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
+"<b>Удам модны харагдац</b><br/>Удам модны харагдац нь уламжлалт удам "
+"судлалын схемийг харуулна. Хүний дээр хулганаа байрлуулбал нэмэлт мэдээлэл "
+"харагдана, эсвэл баруун товч дарж бусад гэр бүлийн гишүүд болон тохиргоонд "
+"хандана. Тохиргоонуудыг өөрчилж янз бүрийн хувилбарыг туршиж үзээрэй."
 
 #: ../data/tips.xml:83
 msgid ""
@@ -718,6 +880,10 @@ msgid ""
 "see which individuals reference each source. You can use filters to group "
 "your sources."
 msgstr ""
+"<b>Эх сурвалжийг удирдах</b><br/>Эх сурвалжийн харагдац нь бүх эх сурвалжийг "
+"нэг цонхонд жагсаан харуулна. Эндээс эх сурвалжаа засах, давхардлыг нэгтгэх, "
+"мөн аль хүмүүс тухайн эх сурвалжийг ашиглаж байгааг харах боломжтой. Мөн "
+"шүүлт ашиглан эх сурвалжуудыг бүлэглэж болно."
 
 #: ../data/tips.xml:85
 msgid ""
@@ -725,6 +891,9 @@ msgid ""
 "database. The list can be sorted by a number of different criteria, such as "
 "City, County or State."
 msgstr ""
+"<b>Байршлуудыг удирдах</b><br/>Байршлын харагдац нь өгөгдлийн сан дахь бүх "
+"байршлуудыг жагсаан харуулна. Жагсаалтыг хот, дүүрэг, муж зэрэг олон төрлийн "
+"шалгуураар эрэмбэлж болно."
 
 #: ../data/tips.xml:87
 msgid ""
@@ -732,6 +901,9 @@ msgid ""
 "the database. These can be graphic images, videos, sound clips, "
 "spreadsheets, documents, and more."
 msgstr ""
+"<b>Медиа харагдац</b><br/>Медиа харагдац нь өгөгдлийн санд орсон бүх медиа "
+"файлуудыг жагсаан харуулна. Үүнд зураг, видео, дуу, хүснэгт, баримт бичиг "
+"зэрэг орно."
 
 #: ../data/tips.xml:89
 msgid ""
@@ -740,6 +912,10 @@ msgid ""
 "limited only by your imagination. Custom filters are created from \"Edit > "
 "Person Filter Editor\"."
 msgstr ""
+"<b>Шүүлт</b><br/>Шүүлт нь Хүний харагдац дээр харагдах хүмүүсийг хязгаарлах "
+"боломж олгодог. Олон бэлэн шүүлтээс гадна өөрийн хүссэнээр хэрэглэгчийн "
+"шүүлт үүсгэж болно. Хэрэглэгчийн шүүлтийг \"Засах > Хүний шүүлт засварлагч\" "
+"хэсэгт үүсгэнэ."
 
 #: ../data/tips.xml:91
 msgid ""
@@ -749,6 +925,11 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
+"<b>GEDCOM файлын формат</b><br/>Gramps нь GEDCOM форматаас импортлох, мөн "
+"түүнд экспортлох боломжтой. Салбарын стандарт болох GEDCOM 5.5 хувилбарыг "
+"өргөн дэмждэг тул бусад удам судлалын програмуудтай мэдээлэл солилцох "
+"боломжтой. GEDCOM файлыг импортлох, экспортлох ажлыг хялбар болгох шүүлтүүд "
+"мөн бий."
 
 #: ../data/tips.xml:93
 msgid ""
@@ -759,6 +940,12 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
+"<b>Gramps XML багц</b><br/>Та ургийн бичгээ Gramps XML багц хэлбэрээр "
+"экспортлох боломжтой. Энэ нь таны ургийн бичгийн өгөгдөл болон холбогдсон "
+"бүх медиа файлуудыг (жишээ нь зураг) агуулсан шахсан файл юм. Энэ файл нь "
+"бүрэн зөөврийн тул нөөцлөх эсвэл бусад Gramps хэрэглэгчидтэй хуваалцахад "
+"тохиромжтой. GEDCOM-оос ялгаатай нь энэ формат нь экспорт, импорт хийх үед "
+"мэдээлэл алдагдахгүй давуу талтай."
 
 #: ../data/tips.xml:95
 msgid ""
@@ -766,6 +953,9 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
+"<b>Web Family Tree формат</b><br/>Gramps нь өгөгдлийг Web Family Tree (WFT) "
+"формат руу экспортлох боломжтой. Энэ формат нь олон HTML файл ашиглахын "
+"оронд нэг файл ашиглан ургийн бичгийг онлайнаар харуулах боломж олгодог."
 
 #: ../data/tips.xml:97
 msgid ""
@@ -774,12 +964,17 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
+"<b>Удам судлалын вэб сайт хийх</b><br/>Та ургийн бичгээ вэб хуудас хэлбэрээр "
+"хялбар экспортлох боломжтой. Бүх өгөгдлийн сан, гэр бүлийн шугамууд эсвэл "
+"сонгосон хүмүүсийг вэбд байрлуулахад бэлэн хуудаснууд болгон гаргаж болно."
 
 #: ../data/tips.xml:99
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
+"<b>Gramps-д алдаа мэдээлэх</b><br/>Gramps-д гарсан алдааг мэдээлэх хамгийн "
+"зөв арга бол &bugs_url; дахь алдаа бүртгэлийн системийг ашиглах явдал юм."
 
 #: ../data/tips.xml:101
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
@@ -792,6 +987,10 @@ msgid ""
 "private can be excluded from reports and data exports. Look for the padlock "
 "which toggles records between private and public."
 msgstr ""
+"<b>Gramps дахь нууцлал</b><br/>Gramps нь мэдээллийг хувийн гэж тэмдэглэх "
+"боломж олгосноор таны хувийн мэдээллийг хамгаалахад тусалдаг. Хувийн гэж "
+"тэмдэглэсэн өгөгдлийг тайлан болон экспортод оруулахгүй байж болно. "
+"Бичлэгийг хувийн/нээлттэй болгох цоожны тэмдгийг ашиглана."
 
 #: ../data/tips.xml:105
 msgid ""
@@ -802,6 +1001,11 @@ msgid ""
 "confirm the accurate transcription of what appears to be an error in a "
 "source."
 msgstr ""
+"<b>Зөв бүртгэл хөтлөх</b><br/>Удам судлалын мэдээлэл бүртгэхдээ аль болох "
+"нарийвчлалтай бай. Үндсэн мэдээллийг бүртгэхдээ таамаг бүү хий, харж буйгаар "
+"нь яг таг бич. Өөрийн нэмэлт, хасалт эсвэл тайлбарыг тэмдэглэхдээ хаалтанд "
+"бичнэ. Эх сурвалж дээр алдаа мэт харагдах зүйлийг зөв хуулбарласныг батлахын "
+"тулд латин “sic” тэмдэглэгээг ашиглахыг зөвлөдөг."
 
 #: ../data/tips.xml:107
 msgid ""
@@ -810,6 +1014,10 @@ msgid ""
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
+"<b>Нэмэлт тайлан ба хэрэгслүүд</b><br/>Нэмэлт тайлан болон хэрэгслүүдийг "
+"Gramps-д \"Addon\" системээр нэмэх боломжтой. Тэдгээрийг \"Тусламж > Нэмэлт "
+"тайлан/хэрэгслүүд\" хэсгээс харна. Энэ нь ахисан түвшний хэрэглэгчдэд шинэ "
+"боломж турших, үүсгэх хамгийн тохиромжтой арга юм."
 
 #: ../data/tips.xml:109
 msgid ""
@@ -818,6 +1026,10 @@ msgid ""
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
+"<b>Ном тайлан</b><br/>\"Тайлан > Номууд...\" хэсгийн Ном тайлан нь олон "
+"төрлийн тайланг нэг баримт бичигт нэгтгэх боломж олгодог. Ингэснээр олон "
+"тайлангаас илүүтэй нэг тайланг тараахад (ялангуяа хэвлэхэд) илүү хялбар "
+"болно."
 
 #: ../data/tips.xml:111
 msgid ""
@@ -825,6 +1037,9 @@ msgid ""
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help > Gramps Mailing Lists\"."
 msgstr ""
+"<b>Gramps Мэдэгдэл</b><br/>Gramps-ийн шинэ хувилбар гарсан үед мэдэгдэл "
+"авахыг хүсэж байна уу? \"Тусламж > Gramps имэйл жагсаалтууд\" хэсэгт байгаа "
+"Gramps-мэдэгдэл жагсаалтад бүртгүүлнэ."
 
 #: ../data/tips.xml:113
 msgid ""
@@ -833,6 +1048,10 @@ msgid ""
 "all the details of where the information came from. Whenever possible get a "
 "copy of original documents."
 msgstr ""
+"<b>Эх сурвалжаа бүртгэх</b><br/>Гэр бүлийн талаарх цуглуулсан мэдээлэл нь эх "
+"сурвалжаасаа хамаарч үнэ цэнтэй байдаг. Мэдээлэл хаанаас авсныг бүх "
+"дэлгэрэнгүйтэй нь бүртгэхэд цаг гарга. Боломжтой бол эх баримтын хуулбарыг "
+"авч хадгал."
 
 #: ../data/tips.xml:115
 msgid ""
@@ -842,6 +1061,10 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
+"<b>Судалгаагааны чиглүүлэг</b><br/>Мэдэж байгаагаасаа мэдэхгүй рүү шилж. "
+"Таамаг дэвшүүлэхээсээ өмнө мэдэгдэж байгаа бүх мэдээллийг бүртгэ. Ихэнхдээ "
+"байгаа баримтууд цааш судлах чиглэлийг өөрөө зааж өгдөг. Өөр судлаагүй "
+"боломжууд байхад олон мянган бичлэг дундаас мөр хайж цаг бүү үр."
 
 #: ../data/tips.xml:117
 msgid ""
@@ -850,6 +1073,10 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
+"<b>Таны удам судлалын “Яаж ба Яагаад”</b><br/>Удам судлал нь зөвхөн огноо, "
+"нэрс биш. Энэ нь хүмүүсийн тухай юм. Аль болох дэлгэрэнгүй бич. Юу яагаад "
+"болсон, тухайн үйл явдлууд үр удамд хэрхэн нөлөөлсөн байж болохыг оруул. "
+"Өгүүлэмж нь таны гэр бүлийн түүхийг амилуулахад ихээхэн ач холбогдолтой."
 
 #: ../data/tips.xml:119
 msgid ""
@@ -858,6 +1085,9 @@ msgid ""
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
+"<b>Англи хэл мэдэхгүй юу?</b><br/>Сайн дурынхан Gramps-ийг 40 гаруй хэл рүү "
+"орчуулсан. Хэрэв таны хэл дэмжигдэж байгаа ч харагдахгүй байвал үйлдлийн "
+"системийн анхдагч хэлийг тохируулаад Gramps-ийг дахин эхлүүлнэ."
 
 #: ../data/tips.xml:121
 msgid ""
@@ -865,12 +1095,17 @@ msgid ""
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
+"<b>Gramps орчуулагчид</b><br/>Gramps нь шинэ орчуулгыг багахан хөгжүүлэлтийн "
+"ажилтайгаар хялбар нэмэх боломжтойгоор бүтээгдсэн. Хэрэв оролцох сонирхолтой "
+"бол gramps-devel@lists.sf.net хаягаар имэйл илгээнэ үү."
 
 #: ../data/tips.xml:123
 msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
+"<b>Hello, привет эсвэл 喂</b><br/>Ямарч бичгийн систем ашиглаж байсан ч "
+"Gramps нь бүрэн Unicode дэмждэг. Бүх хэлний тэмдэгтүүд зөв харагдана."
 
 #: ../data/tips.xml:125
 msgid ""
@@ -879,6 +1114,10 @@ msgid ""
 "is the person who is selected when the database is opened or when the home "
 "button is pressed."
 msgstr ""
+"<b>Гол хүн</b><br/>Gramps-д дурын хүнийг Гол хүн болгон сонгож болно. "
+"Хүмүүсийн харагдац дээр \"Засах > Гол хүн болгох\"-ыг ашиглана. Гол хүн нь "
+"өгөгдлийн сан нээгдэх үед эсвэл Нүүр товчийг дарахад автоматаар сонгогдох "
+"хүн юм."
 
 #: ../data/tips.xml:127
 msgid ""
@@ -887,6 +1126,10 @@ msgid ""
 "is supported on any computer system where these programs have been ported. "
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr ""
+"<b>Gramps-ийн код</b><br/>Gramps нь Python програмчлалын хэл дээр бичигдсэн "
+"бөгөөд график интерфэйсдээ GTK болон GNOME сангуудыг ашигладаг. Эдгээрийг "
+"дэмждэг ямар ч систем дээр Gramps ажиллах боломжтой. Үүнд Linux, BSD, "
+"Solaris, Windows болон Mac OS X орно."
 
 #: ../data/tips.xml:129
 msgid ""
@@ -897,6 +1140,12 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
+"<b>Нээлттэй эхийн програм</b><br/>Чөлөөт/Нээлттэй эхийн програм хангамж "
+"(FLOSS) хөгжүүлэлтийн загвар нь Gramps-ийг ямар ч программист өргөтгөх "
+"боломжтой гэсэн үг бөгөөд бүх эх код нь лицензийн дагуу нээлттэй байдаг. Энэ "
+"нь зөвхөн үнэгүй ашиглах тухай биш, мөн судлах, өөрчлөх эрх чөлөөтэй байх "
+"тухай юм. Нээлттэй эхийн талаар дэлгэрэнгүйг Free Software Foundation болон "
+"Open Source Initiative-ээс үзнэ үү."
 
 #: ../data/tips.xml:131
 msgid ""
@@ -912,6 +1161,9 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
+"<b>Gramps – Gnome уу эсвэл KDE юу?</b><br/>Linux хэрэглэгчдийн хувьд Gramps "
+"нь таны сонгосон аль ч ширээний орчинтой ажиллана. Шаардлагатай GTK сангууд "
+"суусан байхад хэвийн ажиллана."
 
 #: ../gramps/cli/arghandler.py:232
 #, python-format
@@ -919,6 +1171,8 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
+"Алдаа: '%s' ургийн бичиг аль хэдийн оршиж байна.\n"
+"'-C' сонголтыг ашиглаж болохгүй."
 
 #: ../gramps/cli/arghandler.py:247
 #, python-format
@@ -927,16 +1181,21 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
+"Алдаа: Оруулсан “%s” нэртэй ургийн бичиг (Family Tree) олдсонгүй.\n"
+"Хэрэв GEDCOM, Gramps-xml эсвэл grdb бол оронд нь ургийн бичиг руу "
+"импортлохын тулд -i сонголтыг ашиглана уу."
 
 #: ../gramps/cli/arghandler.py:263
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr ""
+msgstr "Алдаа: Импорт хийх файл “%s” олдсонгүй."
 
 #: ../gramps/cli/arghandler.py:283
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr ""
+"Алдаа: Импорт хийх файлын төрөл танигдсангүй — “%(filename)s” (төрөл: %"
+"(format)s)"
 
 #: ../gramps/cli/arghandler.py:306
 #, python-format
@@ -945,48 +1204,51 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
+"АНХААРУУЛГА: Гаралтын файл аль хэдийн байна!\n"
+"АНХААРУУЛГА: Дараах файл дээр дарж бичигдэнэ:\n"
+"   %s"
 
 #: ../gramps/cli/arghandler.py:312
 msgid "OK to overwrite?"
-msgstr ""
+msgstr "дарж хуулах нь ЗӨВ?"
 
 #: ../gramps/cli/arghandler.py:314 ../gramps/cli/arghandler.py:316
 #: ../gramps/cli/clidbman.py:468
 msgid "yes"
-msgstr ""
+msgstr "тийм"
 
 #: ../gramps/cli/arghandler.py:315 ../gramps/cli/clidbman.py:469
 #: ../gramps/cli/clidbman.py:470
 msgid "no"
-msgstr ""
+msgstr "үгүй"
 
 #: ../gramps/cli/arghandler.py:319
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr ""
+msgstr "Will overwrite the existing file: %s"
 
 #: ../gramps/cli/arghandler.py:338
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr ""
+msgstr "АЛДАА: %s файлын формат танигдсангүй"
 
 #: ../gramps/cli/arghandler.py:402 ../gramps/gen/plug/utils.py:373
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr ""
+msgstr "Алдаа: '%s' нээгдэхгүй байна"
 
 #: ../gramps/cli/arghandler.py:421
 msgid "List of known Family Trees in your database path\n"
-msgstr ""
+msgstr "Таны өгөгдлийн сангийн зам дахь мэдэгдсэн Ургийн бичгийн жагсаалт\n"
 
 #: ../gramps/cli/arghandler.py:433
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr ""
+msgstr "%(full_DB_path)s нэртэй \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:451 ../gramps/cli/clidbman.py:196
 msgid "Gramps Family Trees:"
-msgstr ""
+msgstr "Gramps Ургийн бичиг:"
 
 #: ../gramps/cli/arghandler.py:457 ../gramps/cli/arghandler.py:459
 #: ../gramps/cli/arghandler.py:463 ../gramps/cli/arghandler.py:465
@@ -994,85 +1256,87 @@ msgstr ""
 #: ../gramps/cli/clidbman.py:176 ../gramps/cli/clidbman.py:215
 #: ../gramps/gui/clipboard.py:919 ../gramps/gui/configure.py:2538
 msgid "Family Tree"
-msgstr ""
+msgstr "Ургийн бичиг"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:465 ../gramps/cli/arghandler.py:469
 #: ../gramps/plugins/cite/legacy.py:90
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "\"%s\""
 
 #: ../gramps/cli/arghandler.py:477
 #, python-format
 msgid "Performing action: %s."
-msgstr ""
+msgstr "Гүйцэтгэх үйлдэл: %s."
 
 #: ../gramps/cli/arghandler.py:479 ../gramps/gen/plug/report/stdoptions.py:337
 #, python-format
 msgid "Using options string: %s"
-msgstr ""
+msgstr "Сонголтын мөрийг ашигласан: %s"
 
 #: ../gramps/cli/arghandler.py:484
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Экспортлох: %(filename)s файл, %(format)s формат."
 
 #: ../gramps/cli/arghandler.py:495
 msgid "Cleaning up."
-msgstr ""
+msgstr "Цэвэрлэж байна."
 
 #: ../gramps/cli/arghandler.py:532
 msgid "Created empty Family Tree successfully"
-msgstr ""
+msgstr "Хоосон ургийн бичиг ажилттай үүсгэлээ"
 
 #: ../gramps/cli/arghandler.py:535 ../gramps/cli/arghandler.py:562
 msgid "Error opening the file."
-msgstr ""
+msgstr "Файлыг нээхэд алдаа гарлаа."
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Exiting..."
-msgstr ""
+msgstr "Гарах..."
 
 #: ../gramps/cli/arghandler.py:540
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Импортлох: файл %(filename)s, төрөл %(format)s."
 
 #: ../gramps/cli/arghandler.py:560
 msgid "Opened successfully!"
-msgstr ""
+msgstr "Амжилттай нээгдлээ!"
 
 #: ../gramps/cli/arghandler.py:575
 #, python-format
 msgid "  Info: %s"
-msgstr ""
+msgstr "  Мэдээлэл: %s"
 
 #: ../gramps/cli/arghandler.py:575
 msgid "Database is locked, cannot open it!"
-msgstr ""
+msgstr "Өгөгдлийн сан түгжээтэй байна, нээж чадсангүй!"
 
 #: ../gramps/cli/arghandler.py:580
 msgid "Database needs recovery, cannot open it!"
-msgstr ""
+msgstr "Өгөгдлийн сан сэргээх шаардлагатай, нээж чадсангүй!"
 
 #: ../gramps/cli/arghandler.py:583
 msgid "Database backend unavailable, cannot open it!"
-msgstr ""
+msgstr "Өгөгдлийн сангийн backend боломжгүй байна, нээж чадсангүй!"
 
 #: ../gramps/cli/arghandler.py:634 ../gramps/cli/arghandler.py:691
 #: ../gramps/cli/arghandler.py:739
 msgid "Ignoring invalid options string."
-msgstr ""
+msgstr "Тохиргооны алдаатай утгыг алгаслаа."
 
 #: ../gramps/cli/arghandler.py:663
 msgid "Unknown report name."
-msgstr ""
+msgstr "Тайлангийн нэр танигдсангүй."
 
 #: ../gramps/cli/arghandler.py:666
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
+"Тайлангийн нэр өгөгдөөгүй байна. %(donottranslate)s=reportname сонголтыг "
+"ашиглана уу"
 
 #: ../gramps/cli/arghandler.py:670 ../gramps/cli/arghandler.py:722
 #: ../gramps/cli/arghandler.py:759
@@ -1081,29 +1345,35 @@ msgid ""
 "%s\n"
 " Available names are:"
 msgstr ""
+"%s\n"
+"Боломжтой нэрс:"
 
 #: ../gramps/cli/arghandler.py:715
 msgid "Unknown tool name."
-msgstr ""
+msgstr "Хэрэгсэлийн нэр танигдсангүй."
 
 #: ../gramps/cli/arghandler.py:718
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
+"Хэрэгслийн нэр өгөгдөөгүй байна. %(donottranslate)s=toolname сонголтыг "
+"ашиглана уу."
 
 #: ../gramps/cli/arghandler.py:752
 msgid "Unknown book name."
-msgstr ""
+msgstr "Номын нэр танигдсангүй."
 
 #: ../gramps/cli/arghandler.py:755
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
+"Номын нэр өгөгдөөгүй байна. %(donottranslate)s=bookname сонголтыг ашиглана "
+"уу."
 
 #: ../gramps/cli/arghandler.py:764
 #, python-format
 msgid "Unknown action: %s."
-msgstr ""
+msgstr "Үйлдэл танигдсангүй: %s."
 
 #: ../gramps/cli/argparser.py:65
 msgid ""
@@ -1151,6 +1421,50 @@ msgid ""
 "                 F - filters are cleared\n"
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
+"\n"
+"Хэрэглээ: gramps [СОНГОЛТ...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Динамик модулиудыг ачаалах\n"
+"\n"
+"Тусламжийн сонголтууд\n"
+"  -?, --help                             Энэ тусламжийн мэдээллийг харуулах\n"
+"  --usage                                Товч хэрэглээний мэдээлэл харуулах\n"
+"\n"
+"Програмын сонголтууд\n"
+"  -O, --open=FAMILY_TREE                 Ургийн бичиг нээх\n"
+"  -U, --username=USERNAME                Өгөгдлийн сангийн хэрэглэгчийн нэр\n"
+"  -P, --password=PASSWORD                Өгөгдлийн сангийн нууц үг\n"
+"  -C, --create=FAMILY_TREE               Байхгүй бол нээх үед үүсгэх\n"
+"  -i, --import=FILENAME                  Файл импортлох\n"
+"  -e, --export=FILENAME                  Файл экспортлох\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Таарах ургийн бичиг(үүд)-ыг устгах "
+"(regex ашиглана)\n"
+"  -f, --format=FORMAT                    Ургийн бичгийн форматыг заах\n"
+"  -a, --action=ACTION                    Үйлдэл заах\n"
+"  -p, --options=OPTIONS_STRING           Тохиргооны мөр заах\n"
+"  -d, --debug=LOGGER_NAME                Debug лог идэвхжүүлэх\n"
+"  -l [FAMILY_TREE_PATTERN...]            Ургийн бичгүүдийн жагсаалт\n"
+"  -L [FAMILY_TREE_PATTERN...]            Ургийн бичгүүдийн дэлгэрэнгүй "
+"жагсаалт\n"
+"  -t [FAMILY_TREE_PATTERN...]            Ургийн бичгүүдийн жагсаалт (tab-аар "
+"тусгаарласан)\n"
+"  -u, --force-unlock                     Ургийн бичгийн түгжээг хүчээр "
+"тайлах\n"
+"  -s, --show                             Тохиргоог харуулах\n"
+"  -c, --config=[config.setting[:value]]  Тохиргоо өөрчлөөд Gramps эхлүүлэх\n"
+"  -y, --yes                              Аюултай үйлдэл баталгаажуулахгүй "
+"(зөвхөн non-GUI)\n"
+"  -q, --quiet                            Явцын мэдээлэл харуулахгүй (зөвхөн "
+"non-GUI)\n"
+"  -v, --version                          Хувилбарын мэдээлэл харуулах\n"
+"  -S, --safe                             \"Аюулгүй горим\"-оор эхлүүлэх\n"
+"                                          (түр хугацаанд default тохиргоо "
+"ашиглана)\n"
+"  -D, --default=[APXFE]                  Тохиргоог default болгох;\n"
+"                 A - нэмэлтүүдийг цэвэрлэнэ\n"
+"                 P - тохиргоог default болгоно\n"
+"                 X - ном, тайлан, хэрэгслийн тохиргоог цэвэрлэнэ\n"
+"                 F - шүүлтүүрүүдийг цэвэрлэнэ\n"
+"                 E - бүх зүйлийг default болгох эсвэл цэвэрлэнэ\n"
 
 #: ../gramps/cli/argparser.py:104
 msgid ""
@@ -1210,11 +1524,63 @@ msgid ""
 "Note: These examples are for bash shell.\n"
 "Syntax may be different for other shells and for Windows.\n"
 msgstr ""
+"\n"
+"Gramps командын мөрийн интерфэйс ашиглах жишээ\n"
+"\n"
+"1. Дөрвөн өгөгдлийн сан импортлоод (форматыг нь нэрээр нь танина),\n"
+"дараа нь алдаа шалгах бол:\n"
+"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
+"name=check.\n"
+"\n"
+"2. Дээрх жишээнд форматыг гараар заах бол:\n"
+"gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
+"gramps -i file4.wft -f wft -a tool -p name=check.\n"
+"\n"
+"3. Импортын дараах өгөгдлийн санг хадгалах бол -e ашиглана\n"
+"(файлын нэрээс формат танигдахгүй бол -f ашиглана):\n"
+"gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
+"\n"
+"4. Алдааны мэдээллийг outfile, errfile файлд хадгалах бол:\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
+"\n"
+"5. Гурван өгөгдлийн сан импортлоод интерактив горим эхлүүлэх:\n"
+"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
+"\n"
+"6. Өгөгдлийн сан нээгээд timeline тайланг PDF хэлбэрээр үүсгэх:\n"
+"gramps -O 'Family Tree 1' -a report -p "
+"name=timeline,off=pdf,of=my_timeline.pdf\n"
+"\n"
+"7. Өгөгдлийн сангийн хураангуй тайлан гаргах:\n"
+"gramps -O 'Family Tree 1' -a report -p name=summary\n"
+"\n"
+"8. Тайлангийн сонголтуудыг жагсаах:\n"
+"timeline тайлангийн бүх сонголтыг харах:\n"
+"name=timeline,show=all\n"
+"\n"
+"Тухайн нэг сонголтын дэлгэрэнгүйг харах:\n"
+"name=timeline,show=option_name  (жишээ: name=timeline,show=off)\n"
+"\n"
+"Боломжит тайлангийн нэрсийг харах:\n"
+"name=show\n"
+"\n"
+"9. Ургийн бичгийг шууд .gramps xml файл болгох:\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
+"\n"
+"10. Вэб тайланг өөр хэл дээр (жишээ: герман) үүсгэх:\n"
+"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
+"name=navwebpage,target=/../de\n"
+"\n"
+"11. Энгийн интерактив горим эхлүүлэх:\n"
+"gramps\n"
+"\n"
+"Тайлбар: Эдгээр жишээ нь bash shell-д зориулагдсан.\n"
+"Бусад shell болон Windows дээр синтакс өөр байж болно.\n"
 
 #: ../gramps/cli/argparser.py:276
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr ""
+msgstr "Нээхээр оролдож байна: %s ..."
 
 #: ../gramps/cli/argparser.py:321
 #, python-format
@@ -1222,49 +1588,51 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"АНХААРУУЛГА: %(strerr)s (алдааны код=%(errno)s):\n"
+"АНХААРУУЛГА: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:331
 #, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr ""
+msgstr "Үйлдэл танигдсангүй: %s. Алгаслаа."
 
 #: ../gramps/cli/argparser.py:341
 msgid "setup debugging"
-msgstr ""
+msgstr "debug тохируулах"
 
 #: ../gramps/cli/argparser.py:354
 #, python-format
 msgid "Gramps config settings from %s:"
-msgstr ""
+msgstr "%s-ээс авсан Gramps тохиргооны утгууд:"
 
 #: ../gramps/cli/argparser.py:372
 #, python-format
 msgid "Current Gramps config setting: %(name)s:%(value)s"
-msgstr ""
+msgstr "Одоогийн Gramps тохиргоо: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:378
 msgid "DEFAULT"
-msgstr ""
+msgstr "АНХДАГЧ"
 
 #: ../gramps/cli/argparser.py:387
 #, python-format
 msgid "    New Gramps config setting: %(name)s:%(value)s"
-msgstr ""
+msgstr "    Шинэ Gramps тохиргоо: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:400
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr ""
+msgstr "Gramps: ийм тохиргоо байхгүй: '%s'"
 
 #: ../gramps/cli/argparser.py:493
 msgid "Error parsing the arguments"
-msgstr ""
+msgstr "Аргументуудыг задлахад алдаа гарлаа"
 
 #: ../gramps/cli/clidbman.py:72 ../gramps/cli/clidbman.py:171
 #: ../gramps/cli/clidbman.py:173 ../gramps/gui/clipboard.py:207
 #: ../gramps/gui/clipboard.py:208 ../gramps/gui/plug/_windows.py:1504
 msgid "Unavailable"
-msgstr ""
+msgstr "Боломжгүй"
 
 #: ../gramps/cli/clidbman.py:85
 #, python-format
@@ -1272,6 +1640,8 @@ msgid ""
 "ERROR: %(title)s \n"
 "       %(message)s"
 msgstr ""
+"АЛДАА: %(title)s\n"
+"       %(message)s"
 
 #: ../gramps/cli/clidbman.py:177 ../gramps/gen/lib/media.py:151
 #: ../gramps/gen/lib/url.py:93
@@ -1282,24 +1652,24 @@ msgstr ""
 #: ../gramps/gui/selectors/selectobject.py:83
 #: ../gramps/plugins/view/mediaview.py:102
 msgid "Path"
-msgstr ""
+msgstr "Зам"
 
 #: ../gramps/cli/clidbman.py:178 ../gramps/gen/plug/_pluginreg.py:130
 msgid "Database"
-msgstr ""
+msgstr "Өгөгдлийн сан"
 
 #: ../gramps/cli/clidbman.py:179 ../gramps/gui/dbman.py:433
 msgid "Last accessed"
-msgstr ""
+msgstr "Сүүлд хандсан"
 
 #: ../gramps/cli/clidbman.py:180
 msgid "Locked?"
-msgstr ""
+msgstr "Түгжээтэй юу?"
 
 #: ../gramps/cli/clidbman.py:215
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr ""
+msgstr "\"%s\" Ургийн бичиг:"
 
 #. Translators: needed for French, ignore otherwise
 #. Translators: for French, else ignore
@@ -1323,24 +1693,24 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3115
 #, python-format
 msgid "%(str1)s: %(str2)s"
-msgstr ""
+msgstr "%(str1)s: %(str2)s"
 
 #: ../gramps/cli/clidbman.py:314
 #, python-format
 msgid "Starting Import, %s"
-msgstr ""
+msgstr "Импорт эхэлж байна, %s"
 
 #: ../gramps/cli/clidbman.py:320
 msgid "Import finished..."
-msgstr ""
+msgstr "Импорт дууслаа..."
 
 #: ../gramps/cli/clidbman.py:405 ../gramps/plugins/importer/importcsv.py:536
 msgid "Importing data..."
-msgstr ""
+msgstr "Өгөгдөл оруулж байна..."
 
 #: ../gramps/cli/clidbman.py:465
 msgid "Remove family tree warning"
-msgstr ""
+msgstr "Ургийн бичгийг устгах анхааруулга"
 
 #: ../gramps/cli/clidbman.py:466
 #, python-format
@@ -1348,14 +1718,16 @@ msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
 msgstr ""
+"\"%s\" нэртэй ургийн бичгийг устгахдаа \n"
+"итгэлтэй байна уу?"
 
 #: ../gramps/cli/clidbman.py:478 ../gramps/gui/dbman.py:790
 msgid "Could not delete Family Tree"
-msgstr ""
+msgstr "Ургийн бичгийг устгаж чадсангүй"
 
 #: ../gramps/cli/clidbman.py:491
 msgid "Could not rename Family Tree"
-msgstr ""
+msgstr "Ургийн бичгийн нэрийг сольж чадсангүй"
 
 #: ../gramps/cli/clidbman.py:527
 #, python-format
@@ -1368,16 +1740,23 @@ msgid ""
 "    %s\n"
 "\n"
 msgstr ""
+"\n"
+"АЛДАА: Тохиргоонд буруу өгөгдлийн сангийн зам байна.\n"
+"Засах → Тохиргоо (Preferences) цэс рүү орж зөв зам тохируулна уу.\n"
+"\n"
+"Дэлгэрэнгүй: Өгөгдлийн сангийн хавтас үүсгэж чадсангүй:\n"
+"    %s\n"
+"\n"
 
 #: ../gramps/cli/clidbman.py:584 ../gramps/gui/configure.py:2483
 #: ../gramps/gui/plug/_windows.py:779
 msgid "Never"
-msgstr ""
+msgstr "Хэзээ ч"
 
 #: ../gramps/cli/clidbman.py:601
 #, python-format
 msgid "Locked by %s"
-msgstr ""
+msgstr "%s-р түгжигдсэн"
 
 #: ../gramps/cli/clidbman.py:603 ../gramps/gen/lib/attrtype.py:73
 #: ../gramps/gen/lib/childreftype.py:79 ../gramps/gen/lib/eventroletype.py:70
@@ -1456,22 +1835,22 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3048
 #: ../gramps/plugins/webreport/basepage.py:3239
 msgid "Unknown"
-msgstr ""
+msgstr "Тодорхойгүй"
 
 #: ../gramps/cli/grampscli.py:85
 #, python-format
 msgid "WARNING: %s"
-msgstr ""
+msgstr "АНХААР: %s"
 
 #: ../gramps/cli/grampscli.py:92 ../gramps/cli/grampscli.py:246
 #, python-format
 msgid "ERROR: %s"
-msgstr ""
+msgstr "АЛДАА: %s"
 
 #: ../gramps/cli/grampscli.py:106 ../gramps/cli/user.py:218
 #: ../gramps/gui/dialog.py:316
 msgid "Low level database corruption detected"
-msgstr ""
+msgstr "Өгөгдлийн сангийн доод түвшний гэмтэл илэрлээ"
 
 #: ../gramps/cli/grampscli.py:109 ../gramps/cli/user.py:220
 #: ../gramps/gui/dialog.py:318
@@ -1480,149 +1859,154 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
+"Gramps програм суурь өгөгдлийн санд асуудал илрүүллээ. Энэ асуудлыг зарим "
+"тохиолдолд Ургийн бичгийн менежер хэсгээс засах боломжтой. Өгөгдлийн санг "
+"сонгоод Засах (Repair) товчийг дарна уу"
 
 #: ../gramps/cli/grampscli.py:158 ../gramps/gui/dbloader.py:164
 msgid "Read only database"
-msgstr ""
+msgstr "Зөвхөн унших горимтой өгөгдлийн сан"
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 #: ../gramps/gui/dbloader.py:509
 msgid "You do not have write access to the selected file."
-msgstr ""
+msgstr "Сонгосон файлд бичих эрх байхгүй байна."
 
 #: ../gramps/cli/grampscli.py:197 ../gramps/gui/dbloader.py:237
 #: ../gramps/gui/dbloader.py:240 ../gramps/gui/dbloader.py:243
 msgid "Cannot open database"
-msgstr ""
+msgstr "Өгөгдлийн санг нээж чадсангүй"
 
 #: ../gramps/cli/grampscli.py:200 ../gramps/gui/dbloader.py:246
 #: ../gramps/gui/dbloader.py:460
 #, python-format
 msgid "Could not open file: %s"
-msgstr ""
+msgstr "Файлыг нээж чадсангүй: %s"
 
 #: ../gramps/cli/grampscli.py:259
 msgid "Could not load a recent Family Tree."
-msgstr ""
+msgstr "Сүүлд нээсэн Ургийн бичгийг ачаалж чадсангүй."
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr ""
+msgstr "Устгагдсан тул Ургийн бичиг олдсонгүй."
 
 #: ../gramps/cli/grampscli.py:266
 msgid "The database is locked."
-msgstr ""
+msgstr "Өгөгдлийн сан түгжигдсэн."
 
 #: ../gramps/cli/grampscli.py:268
 msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
 msgstr ""
+"Өгөгдлийн сан ашиглагдаагүй гэдэгт баттай бол --force-unlock тохиргоог "
+"хэрэглэнэ үү."
 
 #: ../gramps/cli/grampscli.py:347
 #, python-format
 msgid "Error encountered: %s"
-msgstr ""
+msgstr "Алдаа гарлаа: %s"
 
 #: ../gramps/cli/grampscli.py:349 ../gramps/cli/grampscli.py:356
 #, python-format
 msgid "  Details: %s"
-msgstr ""
+msgstr "  Дэлгэрэнгүй: %s"
 
 #: ../gramps/cli/grampscli.py:354
 #, python-format
 msgid "Error encountered in argument parsing: %s"
-msgstr ""
+msgstr "Аргумент задлан боловсруулах үед алдаа гарлаа: %s"
 
 #: ../gramps/cli/plug/__init__.py:197
 msgid "ERROR: Please specify a person"
-msgstr ""
+msgstr "АЛДАА: Хүнийг зааж өгнө үү"
 
 #: ../gramps/cli/plug/__init__.py:221
 msgid "ERROR: Please specify a family"
-msgstr ""
+msgstr "АЛДАА: Гэр бүлийг зааж өгнө үү"
 
 #: ../gramps/cli/plug/__init__.py:322
 msgid "=filename"
-msgstr ""
+msgstr "=файлын нэр"
 
 #: ../gramps/cli/plug/__init__.py:322
 msgid "Output file name. MANDATORY"
-msgstr ""
+msgstr "Гаралтын файл нэр (заавал бөглөх)"
 
 #: ../gramps/cli/plug/__init__.py:323
 msgid "=format"
-msgstr ""
+msgstr "=формат"
 
 #: ../gramps/cli/plug/__init__.py:323
 msgid "Output file format."
-msgstr ""
+msgstr "Гаралтын файлын формат."
 
 #: ../gramps/cli/plug/__init__.py:324 ../gramps/cli/plug/__init__.py:325
 msgid "=name"
-msgstr ""
+msgstr "=нэр"
 
 #: ../gramps/cli/plug/__init__.py:324
 msgid "Style name."
-msgstr ""
+msgstr "Загварын нэр."
 
 #: ../gramps/cli/plug/__init__.py:325
 msgid "Paper size name."
-msgstr ""
+msgstr "Цаасны хэмжээ."
 
 #: ../gramps/cli/plug/__init__.py:326 ../gramps/cli/plug/__init__.py:327
 #: ../gramps/cli/plug/__init__.py:328 ../gramps/cli/plug/__init__.py:329
 #: ../gramps/cli/plug/__init__.py:330
 msgid "=number"
-msgstr ""
+msgstr "=тоо"
 
 #: ../gramps/cli/plug/__init__.py:326
 msgid "Paper orientation number."
-msgstr ""
+msgstr "Хуудасны чиглэлийн код."
 
 #: ../gramps/cli/plug/__init__.py:327
 msgid "Left paper margin"
-msgstr ""
+msgstr "Хуудасны зүүн захын зай"
 
 #: ../gramps/cli/plug/__init__.py:327 ../gramps/cli/plug/__init__.py:328
 #: ../gramps/cli/plug/__init__.py:329 ../gramps/cli/plug/__init__.py:330
 msgid "Size in cm"
-msgstr ""
+msgstr "Хэмжээ (см)"
 
 #: ../gramps/cli/plug/__init__.py:328
 msgid "Right paper margin"
-msgstr ""
+msgstr "Хуудасны баруун захын зай"
 
 #: ../gramps/cli/plug/__init__.py:329
 msgid "Top paper margin"
-msgstr ""
+msgstr "Хуудасны дээд захын зай"
 
 #: ../gramps/cli/plug/__init__.py:330
 msgid "Bottom paper margin"
-msgstr ""
+msgstr "Хуудасны доод захын зай"
 
 #: ../gramps/cli/plug/__init__.py:331
 msgid "=css filename"
-msgstr ""
+msgstr "=css файлын нэр"
 
 #: ../gramps/cli/plug/__init__.py:331
 msgid "CSS filename to use, html format only"
-msgstr ""
+msgstr "Ашиглах CSS файлын нэр (зөвхөн HTML форматад)"
 
 #. Translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:446
-#, python-format
+#, fuzzy, python-format
 msgid "%(id)s:\t%(father)s, %(mother)s"
-msgstr ""
+msgstr "%(id)s:\t%(father)s, %(mother)s"
 
 #: ../gramps/cli/plug/__init__.py:494
 #, python-format
 msgid "Unknown option: %s"
-msgstr ""
+msgstr "Тодорхойгүй сонголт: %s"
 
 #: ../gramps/cli/plug/__init__.py:496 ../gramps/cli/plug/__init__.py:601
 msgid "   Valid options are:"
-msgstr ""
+msgstr "   Зөвшөөрөгдөх сонголтууд:"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/cli/plug/__init__.py:497 ../gramps/cli/plug/__init__.py:602
@@ -1645,13 +2029,15 @@ msgstr ""
 #: ../gramps/plugins/textreport/descendreport.py:313
 #: ../gramps/plugins/textreport/placereport.py:202
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: ../gramps/cli/plug/__init__.py:502 ../gramps/cli/plug/__init__.py:607
 #: ../gramps/cli/plug/__init__.py:690
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
+"   Тайлбар болон зөвшөөрөгдөх утгуудыг харахын тулд %(donottranslate)s-г "
+"ашиглана уу"
 
 #: ../gramps/cli/plug/__init__.py:568
 #, python-format
@@ -1659,29 +2045,31 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using "
 "'%(notranslate1)s=%(notranslate3)s'."
 msgstr ""
+"%(notranslate1)s=%(notranslate2)s-г үл тоомсорлож, %(notranslate1)s=%"
+"(notranslate3)s-г ашиглаж байна."
 
 #: ../gramps/cli/plug/__init__.py:579
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr ""
+msgstr "Зөвшөөрөгдөх утгуудыг харахын тулд %(notranslate)s-г ашиглана уу."
 
 #: ../gramps/cli/plug/__init__.py:599
 #: ../gramps/gen/plug/report/stdoptions.py:333
 #, python-format
 msgid "Ignoring unknown option: %s"
-msgstr ""
+msgstr "Тодорхойгүй сонголтыг алгаслаа: %s"
 
 #: ../gramps/cli/plug/__init__.py:678
 msgid "   Available options:"
-msgstr ""
+msgstr "   . . . Боломжит сонголтууд:"
 
 #: ../gramps/cli/plug/__init__.py:686
 msgid "(no help available)"
-msgstr ""
+msgstr "(тусламж байхгүй)"
 
 #: ../gramps/cli/plug/__init__.py:698
 msgid "   Available values are:"
-msgstr ""
+msgstr "   . . . Боломжит утгууд:"
 
 #: ../gramps/cli/plug/__init__.py:711
 #, python-format
@@ -1689,19 +2077,21 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
+"%(optionname)s сонголт хүчингүй байна. Бүх зөвшөөрөгдөх сонголтыг харахын "
+"тулд %(donottranslate)s-г ашиглана уу."
 
 #: ../gramps/cli/plug/__init__.py:729
 msgid "Failed to write report. "
-msgstr ""
+msgstr "Тайланг бичиж чадсангүй. "
 
 #: ../gramps/cli/plug/__init__.py:904
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr ""
+msgstr "%s тайланг үүсгэж чадсангүй."
 
 #: ../gramps/cli/user.py:240 ../gramps/gui/dialog.py:297
 msgid "Error detected in database"
-msgstr ""
+msgstr "Өгөгдлийн санд алдаа илэрлээ"
 
 #: ../gramps/cli/user.py:242 ../gramps/gui/dialog.py:299
 #, python-format
@@ -1713,30 +2103,37 @@ msgid ""
 "bug report at %(gramps_bugtracker_url)s\n"
 "\n"
 msgstr ""
+"Gramps програм өгөгдлийн санд алдаа илрүүллээ. Энэ асуудлыг ихэвчлэн “"
+"Өгөгдлийн санг шалгах ба засах” хэрэгслийг ажиллуулснаар шийдвэрлэх "
+"боломжтой.\n"
+"\n"
+"Хэрэв энэ хэрэгслийг ажиллуулсны дараа ч асуудал хэвээр байвал %"
+"(gramps_bugtracker_url)s хаягаар алдааны тайлан илгээнэ үү.\n"
+"\n"
 
 #: ../gramps/gen/config.py:305
 msgid "Imported %Y/%m/%d %H:%M:%S"
-msgstr ""
+msgstr "Импорт хийсэн: %Y/%m/%d %H:%M:%S"
 
 #: ../gramps/gen/config.py:317
 msgid "Missing Given Name"
-msgstr ""
+msgstr "Өгөгдсөн нэр дутуу байна"
 
 #: ../gramps/gen/config.py:318
 msgid "Missing Record"
-msgstr ""
+msgstr "Бүртгэл дутуу байна"
 
 #: ../gramps/gen/config.py:319
 msgid "Missing Surname"
-msgstr ""
+msgstr "Овог дутуу байна"
 
 #: ../gramps/gen/config.py:326 ../gramps/gen/config.py:328
 msgid "[Living]"
-msgstr ""
+msgstr "[Амьд]"
 
 #: ../gramps/gen/config.py:327
 msgid "Private Record"
-msgstr ""
+msgstr "Хувийн бүртгэл"
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1745,17 +2142,17 @@ msgstr ""
 #: ../gramps/gen/config.py:402 ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
 msgid "January"
-msgstr ""
+msgstr "Нэгдүгээр сар"
 
 #: ../gramps/gen/const.py:297
 msgctxt "surname"
 msgid "none"
-msgstr ""
+msgstr "хоосон"
 
 #: ../gramps/gen/const.py:298
 msgctxt "given-name"
 msgid "none"
-msgstr ""
+msgstr "хоосон"
 
 #: ../gramps/gen/const.py:302 ../gramps/plugins/gramplet/todo.py:207
 #: ../gramps/plugins/webreport/basepage.py:235
@@ -1767,54 +2164,54 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:862
 #: ../gramps/plugins/webreport/person.py:864
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: ../gramps/gen/datehandler/__init__.py:94
 #, python-format
 msgid "Date parser for '%s' not available, using default"
-msgstr ""
+msgstr "%s-д зориулсан огноо задлагч байхгүй тул анхдагчийг ашиглаж байна"
 
 #: ../gramps/gen/datehandler/__init__.py:111
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
-msgstr ""
+msgstr "%s-д зориулсан огноо харуулагч байхгүй тул анхдагчийг ашиглаж байна"
 
 #. Translators: Numeric year, month, day
 #: ../gramps/gen/datehandler/_datedisplay.py:74
 msgid "YYYY-MM-DD (ISO)"
-msgstr ""
+msgstr "YYYY-MM-DD (ISO)"
 
 #. Translators: You may translate this as "Numerical",
 #. "System preferred", or similar.
 #: ../gramps/gen/datehandler/_datedisplay.py:81
 msgctxt "date format"
 msgid "Numerical"
-msgstr ""
+msgstr "Тоон"
 
 #. Translators: Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:83
 msgid "Month Day, Year"
-msgstr ""
+msgstr "Сар өдөр, Жил"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:85
 msgid "Mon Day, Year"
-msgstr ""
+msgstr "Сар (товчлол) өдөр, Жил"
 
 #. Translators: Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:87
 msgid "Day Month Year"
-msgstr ""
+msgstr "Өдөр Сар Жил"
 
 #. Translators: Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:89
 msgid "Day Mon Year"
-msgstr ""
+msgstr "Өдөр Сар (товчлол) Жил"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:182
 #, python-brace-format
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1824,7 +2221,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1834,7 +2231,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1844,7 +2241,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1854,7 +2251,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1864,7 +2261,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1874,7 +2271,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1884,7 +2281,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1894,7 +2291,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -1904,12 +2301,12 @@ msgstr ""
 #, python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:244
 #, python-brace-format
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1919,7 +2316,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1929,7 +2326,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1939,7 +2336,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1949,7 +2346,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1959,7 +2356,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1969,7 +2366,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1979,7 +2376,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1989,7 +2386,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -1999,7 +2396,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
@@ -2022,7 +2419,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:423
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}{date_start}–{date_stop}{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
@@ -2044,7 +2441,7 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}{date_start}–{date_stop}{nonstd_calendar_and_ny} хооронд"
 
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
@@ -2089,90 +2486,90 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:539
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:675
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
-msgstr ""
+msgstr "{long_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:701
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
-msgstr ""
+msgstr "{short_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:727
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
-msgstr ""
+msgstr "{day:d} {long_month} {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:753
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
-msgstr ""
+msgstr "{day:d} {short_month} {year}"
 
 #: ../gramps/gen/datehandler/_dateparser.py:508
 msgid "today"
-msgstr ""
+msgstr "өнөөдөр"
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
 msgid "February"
-msgstr ""
+msgstr "Хоёрдугаар сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:91
 msgctxt "localized lexeme inflections"
 msgid "March"
-msgstr ""
+msgstr "Гуравдугаар сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:92
 msgctxt "localized lexeme inflections"
 msgid "April"
-msgstr ""
+msgstr "Дөрөвдүгээр сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:93
 msgctxt "localized lexeme inflections"
 msgid "May"
-msgstr ""
+msgstr "Тавдугаар сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:94
 msgctxt "localized lexeme inflections"
 msgid "June"
-msgstr ""
+msgstr "Зургаадугаар сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:95
 msgctxt "localized lexeme inflections"
 msgid "July"
-msgstr ""
+msgstr "Долоодугаар сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:96
 msgctxt "localized lexeme inflections"
 msgid "August"
-msgstr ""
+msgstr "Наймдугаар сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections"
 msgid "September"
-msgstr ""
+msgstr "Есдүгээр сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections"
 msgid "October"
-msgstr ""
+msgstr "Аравдугаар сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections"
 msgid "November"
-msgstr ""
+msgstr "Арван нэгдүгээр сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections"
 msgid "December"
-msgstr ""
+msgstr "Арван хоёрдугаар сар"
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2181,62 +2578,62 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:109
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jan"
-msgstr ""
+msgstr "1 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:110
 msgctxt "localized lexeme inflections - short month form"
 msgid "Feb"
-msgstr ""
+msgstr "2 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
 msgctxt "localized lexeme inflections - short month form"
 msgid "Mar"
-msgstr ""
+msgstr "3 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
 msgctxt "localized lexeme inflections - short month form"
 msgid "Apr"
-msgstr ""
+msgstr "4 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:113
 msgctxt "localized lexeme inflections - short month form"
 msgid "May"
-msgstr ""
+msgstr "5 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:114
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jun"
-msgstr ""
+msgstr "6 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:115
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jul"
-msgstr ""
+msgstr "7 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "localized lexeme inflections - short month form"
 msgid "Aug"
-msgstr ""
+msgstr "8 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "localized lexeme inflections - short month form"
 msgid "Sep"
-msgstr ""
+msgstr "9 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "localized lexeme inflections - short month form"
 msgid "Oct"
-msgstr ""
+msgstr "10 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "localized lexeme inflections - short month form"
 msgid "Nov"
-msgstr ""
+msgstr "11 сар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "localized lexeme inflections - short month form"
 msgid "Dec"
-msgstr ""
+msgstr "12 сар"
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2305,37 +2702,37 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:146 ../gramps/gen/lib/date.py:656
 msgctxt "calendar"
 msgid "Gregorian"
-msgstr ""
+msgstr "Грегорийн"
 
 #: ../gramps/gen/datehandler/_datestrings.py:147 ../gramps/gen/lib/date.py:657
 msgctxt "calendar"
 msgid "Julian"
-msgstr ""
+msgstr "Юлиан"
 
 #: ../gramps/gen/datehandler/_datestrings.py:148 ../gramps/gen/lib/date.py:658
 msgctxt "calendar"
 msgid "Hebrew"
-msgstr ""
+msgstr "Еврейн"
 
 #: ../gramps/gen/datehandler/_datestrings.py:149 ../gramps/gen/lib/date.py:659
 msgctxt "calendar"
 msgid "French Republican"
-msgstr ""
+msgstr "Францын"
 
 #: ../gramps/gen/datehandler/_datestrings.py:150 ../gramps/gen/lib/date.py:660
 msgctxt "calendar"
 msgid "Persian"
-msgstr ""
+msgstr "Персийн"
 
 #: ../gramps/gen/datehandler/_datestrings.py:151 ../gramps/gen/lib/date.py:661
 msgctxt "calendar"
 msgid "Islamic"
-msgstr ""
+msgstr "Исламын"
 
 #: ../gramps/gen/datehandler/_datestrings.py:152 ../gramps/gen/lib/date.py:662
 msgctxt "calendar"
 msgid "Swedish"
-msgstr ""
+msgstr "Шведийн"
 
 #. Translators: see
 #. /wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2344,67 +2741,67 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:162
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr ""
+msgstr "Tishri"
 
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr ""
+msgstr "Heshvan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgctxt "Hebrew month lexeme"
 msgid "Kislev"
-msgstr ""
+msgstr "Kislev"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgctxt "Hebrew month lexeme"
 msgid "Tevet"
-msgstr ""
+msgstr "Tevet"
 
 #: ../gramps/gen/datehandler/_datestrings.py:166
 msgctxt "Hebrew month lexeme"
 msgid "Shevat"
-msgstr ""
+msgstr "Shevat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgctxt "Hebrew month lexeme"
 msgid "AdarI"
-msgstr ""
+msgstr "AdarI"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
 msgctxt "Hebrew month lexeme"
 msgid "AdarII"
-msgstr ""
+msgstr "AdarII"
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
 msgctxt "Hebrew month lexeme"
 msgid "Nisan"
-msgstr ""
+msgstr "Nisan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgctxt "Hebrew month lexeme"
 msgid "Iyyar"
-msgstr ""
+msgstr "Iyyar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgctxt "Hebrew month lexeme"
 msgid "Sivan"
-msgstr ""
+msgstr "Sivan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
 msgctxt "Hebrew month lexeme"
 msgid "Tammuz"
-msgstr ""
+msgstr "Tammuz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:173
 msgctxt "Hebrew month lexeme"
 msgid "Av"
-msgstr ""
+msgstr "Av"
 
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgctxt "Hebrew month lexeme"
 msgid "Elul"
-msgstr ""
+msgstr "Elul"
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2413,67 +2810,67 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:183
 msgctxt "French month lexeme"
 msgid "Vendémiaire"
-msgstr ""
+msgstr "Vendémiaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgctxt "French month lexeme"
 msgid "Brumaire"
-msgstr ""
+msgstr "Brumaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgctxt "French month lexeme"
 msgid "Frimaire"
-msgstr ""
+msgstr "Frimaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:186
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr ""
+msgstr "Nivôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:187
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr ""
+msgstr "Pluviôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr ""
+msgstr "Ventôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "French month lexeme"
 msgid "Germinal"
-msgstr ""
+msgstr "Germinal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr ""
+msgstr "Floréal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr ""
+msgstr "Prairial"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "French month lexeme"
 msgid "Messidor"
-msgstr ""
+msgstr "Messidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr ""
+msgstr "Thermidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "French month lexeme"
 msgid "Fructidor"
-msgstr ""
+msgstr "Fructidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "French month lexeme"
 msgid "Extra"
-msgstr ""
+msgstr "Extra"
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2482,62 +2879,62 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:204
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr ""
+msgstr "Muharram"
 
 #: ../gramps/gen/datehandler/_datestrings.py:205
 msgctxt "Islamic month lexeme"
 msgid "Safar"
-msgstr ""
+msgstr "Safar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:206
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr ""
+msgstr "Rabi`al-Awwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:207
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr ""
+msgstr "Rabi`ath-Thani"
 
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr ""
+msgstr "Jumada l-Ula"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Islamic month lexeme"
 msgid "Jumada t-Tania"
-msgstr ""
+msgstr "Jumada t-Tania"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr ""
+msgstr "Rajab"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr ""
+msgstr "Sha`ban"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Islamic month lexeme"
 msgid "Ramadan"
-msgstr ""
+msgstr "Ramadan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
 msgctxt "Islamic month lexeme"
 msgid "Shawwal"
-msgstr ""
+msgstr "Shawwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Qa`da"
-msgstr ""
+msgstr "Dhu l-Qa`da"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
-msgstr ""
+msgstr "Dhu l-Hijja"
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2546,183 +2943,183 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:224
 msgctxt "Persian month lexeme"
 msgid "Farvardin"
-msgstr ""
+msgstr "Farvardin"
 
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "Persian month lexeme"
 msgid "Ordibehesht"
-msgstr ""
+msgstr "Ordibehesht"
 
 #: ../gramps/gen/datehandler/_datestrings.py:226
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr ""
+msgstr "Khordad"
 
 #: ../gramps/gen/datehandler/_datestrings.py:227
 msgctxt "Persian month lexeme"
 msgid "Tir"
-msgstr ""
+msgstr "Tir"
 
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "Persian month lexeme"
 msgid "Mordad"
-msgstr ""
+msgstr "Mordad"
 
 #: ../gramps/gen/datehandler/_datestrings.py:229
 msgctxt "Persian month lexeme"
 msgid "Shahrivar"
-msgstr ""
+msgstr "Shahrivar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:230
 msgctxt "Persian month lexeme"
 msgid "Mehr"
-msgstr ""
+msgstr "Mehr"
 
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgctxt "Persian month lexeme"
 msgid "Aban"
-msgstr ""
+msgstr "Aban"
 
 #: ../gramps/gen/datehandler/_datestrings.py:232
 msgctxt "Persian month lexeme"
 msgid "Azar"
-msgstr ""
+msgstr "Azar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:233
 msgctxt "Persian month lexeme"
 msgid "Dey"
-msgstr ""
+msgstr "Dey"
 
 #: ../gramps/gen/datehandler/_datestrings.py:234
 msgctxt "Persian month lexeme"
 msgid "Bahman"
-msgstr ""
+msgstr "Bahman"
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
 msgctxt "Persian month lexeme"
 msgid "Esfand"
-msgstr ""
+msgstr "Esfand"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:242
 msgctxt "date modifier"
 msgid "before "
-msgstr ""
+msgstr "өмнө "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:245
 msgctxt "date modifier"
 msgid "after "
-msgstr ""
+msgstr "дараа "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:248
 msgctxt "date modifier"
 msgid "about "
-msgstr ""
+msgstr "орчим "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "эхлэх "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:257
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "хүртэл "
 
 #: ../gramps/gen/datehandler/_datestrings.py:262
 msgctxt "date quality"
 msgid "estimated "
-msgstr ""
+msgstr "ойролцоо "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
 msgid "calculated "
-msgstr ""
+msgstr "тооцоолсон "
 
 #: ../gramps/gen/datehandler/_datestrings.py:270
 msgid "Sunday"
-msgstr ""
+msgstr "Ням"
 
 #: ../gramps/gen/datehandler/_datestrings.py:271
 msgid "Monday"
-msgstr ""
+msgstr "Даваа"
 
 #: ../gramps/gen/datehandler/_datestrings.py:272
 msgid "Tuesday"
-msgstr ""
+msgstr "Мягмар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:273
 msgid "Wednesday"
-msgstr ""
+msgstr "Лхагва"
 
 #: ../gramps/gen/datehandler/_datestrings.py:274
 msgid "Thursday"
-msgstr ""
+msgstr "Пүрэв"
 
 #: ../gramps/gen/datehandler/_datestrings.py:275
 msgid "Friday"
-msgstr ""
+msgstr "Баасан"
 
 #: ../gramps/gen/datehandler/_datestrings.py:276
 msgid "Saturday"
-msgstr ""
+msgstr "Бямба"
 
 #: ../gramps/gen/datehandler/_datestrings.py:281
 msgid "Sun"
-msgstr ""
+msgstr "Ня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:282
 msgid "Mon"
-msgstr ""
+msgstr "Да"
 
 #: ../gramps/gen/datehandler/_datestrings.py:283
 msgid "Tue"
-msgstr ""
+msgstr "Мя"
 
 #: ../gramps/gen/datehandler/_datestrings.py:284
 msgid "Wed"
-msgstr ""
+msgstr "Лх"
 
 #: ../gramps/gen/datehandler/_datestrings.py:285
 msgid "Thu"
-msgstr ""
+msgstr "Пү"
 
 #: ../gramps/gen/datehandler/_datestrings.py:286
 msgid "Fri"
-msgstr ""
+msgstr "Ба"
 
 #: ../gramps/gen/datehandler/_datestrings.py:287
 msgid "Sat"
-msgstr ""
+msgstr "Бя"
 
 #: ../gramps/gen/db/base.py:1840 ../gramps/gui/widgets/fanchart.py:2310
 msgid "Add child to family"
-msgstr ""
+msgstr "Гэр бүлд хүүхэд нэмэх"
 
 #: ../gramps/gen/db/base.py:1853 ../gramps/gen/db/base.py:1859
 msgid "Remove child from family"
-msgstr ""
+msgstr "Гэр бүлээс хүүхэд хасах"
 
 #: ../gramps/gen/db/base.py:1938 ../gramps/gen/db/base.py:1942
 msgid "Remove Family"
-msgstr ""
+msgstr "Гэр бүлийг хасах"
 
 #: ../gramps/gen/db/base.py:1981
 msgid "Remove father from family"
-msgstr ""
+msgstr "Гэр бүлээс эцгийг хасах"
 
 #: ../gramps/gen/db/base.py:1983
 msgid "Remove mother from family"
-msgstr ""
+msgstr "Гэр бүлээс эхийг хасах"
 
 #: ../gramps/gen/db/exceptions.py:98
 #, python-format
@@ -2735,6 +3132,13 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different schema versions."
 msgstr ""
+"Энэ схемийн хувилбарыг Gramps-ийн хувилбар дэмжихгүй байна.\n"
+"\n"
+"Энэхүү Ургийн бичиг нь %(tree_vers)s схемийн хувилбартай бөгөөд Gramps-ийн "
+"энэ хувилбар нь %(min_vers)s – %(max_vers)s хувилбаруудыг дэмжинэ.\n"
+"\n"
+"Тохирох хувилбар руу шинэчилнэ үү, эсвэл өөр өөр схемийн хувилбар хооронд "
+"өгөгдөл шилжүүлэхдээ XML ашиглана уу."
 
 #: ../gramps/gen/db/exceptions.py:126
 #, python-format
@@ -2747,6 +3151,13 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different Python versions."
 msgstr ""
+"Энэ Python-ийн хувилбарыг Gramps-ийн энэ хувилбар дэмжихгүй байна.\n"
+"\n"
+"Энэхүү Ургийн бичиг нь %(tree_vers)s Python хувилбартай бөгөөд Gramps-ийн "
+"энэ хувилбар нь %(min_vers)s – %(max_vers)s хувилбаруудыг дэмжинэ.\n"
+"\n"
+"Тохирох хувилбар руу шинэчилнэ үү, эсвэл өөр өөр Python хувилбар хооронд "
+"өгөгдөл шилжүүлэхдээ XML ашиглана уу."
 
 #: ../gramps/gen/db/exceptions.py:153
 #, python-format
@@ -2768,6 +3179,20 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
+"Ачаалах гэж буй Ургийн бичиг нь %(oldschema)s схемийн хувилбар дээр байна. "
+"Харин энэ Gramps нь %(newschema)s схемийн хувилбарыг ашигладаг. Иймээс "
+"схемийн хувилбарыг шинэчлэхгүйгээр энэ Ургийн бичгийг ачаалах боломжгүй.\n"
+"\n"
+"Хэрэв шинэчилбэл, дараа нь %(wiki_manual_backup_html_start)s нөөцлөх %"
+"(html_end)s эсвэл %(wiki_manual_export_html_start)s экспортлох %(html_end)s "
+"хийсэн ч өмнөх Gramps хувилбарыг ашиглах боломжгүй болно.\n"
+"\n"
+"Шинэчлэлт нь төвөгтэй процесс бөгөөд тасалдах эсвэл алдаа гарвал ургийн "
+"бичгийн өгөгдөл бүрэн гэмтэх эрсдэлтэй.\n"
+"\n"
+"Хэрэв та одоогоор нөөц хийгээгүй бол эхлээд %(bold_start)s хуучин %(bold_end)"
+"s Gramps хувилбараа нээгээд, ургийн бичгээ %(wiki_backup_html_start)s "
+"нөөцлөнө үү %(html_end)s."
 
 #: ../gramps/gen/db/exceptions.py:194
 #, python-format
@@ -2778,6 +3203,11 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
+"Өгөгдлийн сантай холбогдож чадсангүй.\n"
+"\n"
+"%(message)s\n"
+"Холболтын тохиргооны файлаа шалгана уу:\n"
+"%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:212
 #, python-format
@@ -2797,56 +3227,67 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
+"Ачаалах гэж буй ургийн бичиг нь одоо дэмжигдэхээ больсон %(dbtype)s "
+"өгөгдлийн сан дээр байна. Иймээс шинэчлэхгүйгээр ачаалах боломжгүй.\n"
+"\n"
+"Хэрэв шинэчилбэл, дараа нь %(wiki_manual_backup_html_start)s нөөцлөх %"
+"(html_end)s эсвэл %(wiki_manual_export_html_start)s экспортлох %(html_end)s "
+"хийсэн ч өмнөх Gramps хувилбарыг ашиглах боломжгүй болно.\n"
+"\n"
+"Ургийн бичгийг заавал нөөцлөхийг зөвлөж байна.\n"
+"\n"
+"Хэрэв та нөөц хийгээгүй бол өмнөх Gramps хувилбараа нээгээд, ургийн бичгээ %"
+"(wiki_backup_html_start)s нөөцлөнө үү %(html_end)s."
 
 #: ../gramps/gen/db/generic.py:229 ../gramps/gen/db/generic.py:279
 #: ../gramps/gen/db/generic.py:2311
 #, python-format
 msgid "_Undo %s"
-msgstr ""
+msgstr "%s-г Буцаах"
 
 #: ../gramps/gen/db/generic.py:234 ../gramps/gen/db/generic.py:284
 #, python-format
 msgid "_Redo %s"
-msgstr ""
+msgstr "%s-г Давтах"
 
 #: ../gramps/gen/db/generic.py:2702
 msgid "Number of people"
-msgstr ""
+msgstr "Хүний тоо"
 
 #: ../gramps/gen/db/generic.py:2703
 #: ../gramps/plugins/gramplet/statsgramplet.py:186
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
-msgstr ""
+msgstr "Гэр бүлийн тоо"
 
 #: ../gramps/gen/db/generic.py:2704
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
-msgstr ""
+msgstr "Эх сурвалжийн тоо"
 
 #: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
-msgstr ""
+msgstr "Ишлэлийн тоо"
 
 #: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
-msgstr ""
+msgstr "Үйл явдлын тоо"
 
 #: ../gramps/gen/db/generic.py:2707
 msgid "Number of media"
-msgstr ""
+msgstr "Медиагийн тоо"
 
 #: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
-msgstr ""
+msgstr "Байршлын тоо"
 
 #: ../gramps/gen/db/generic.py:2709
 #: ../gramps/plugins/webreport/statistics.py:214
@@ -2864,49 +3305,52 @@ msgstr ""
 
 #: ../gramps/gen/db/generic.py:2712
 msgid "Schema version"
-msgstr ""
+msgstr "Схемийн хувилбар"
 
 #: ../gramps/gen/db/upgrade.py:719
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d хүн %(n2)6d ишлэлтэйгээр %(n3)6d секундэд шинэчлэгдлээ\n"
 
 #: ../gramps/gen/db/upgrade.py:723
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d гэр бүл %(n2)6d ишлэлтэйгээр %(n3)6d секундэд шинэчлэгдлээ\n"
 
 #: ../gramps/gen/db/upgrade.py:727
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d үйл явдал %(n2)6d ишлэлтэйгээр %(n3)6d секундэд шинэчлэгдлээ\n"
 
 #: ../gramps/gen/db/upgrade.py:731
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"%(n1)6d медиа объект %(n2)6d ишлэлтэйгээр %(n3)6d секундэд шинэчлэгдлээ\n"
 
 #: ../gramps/gen/db/upgrade.py:735
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d байршил %(n2)6d ишлэлтэйгээр %(n3)6d секундэд шинэчлэгдлээ\n"
 
 #: ../gramps/gen/db/upgrade.py:739
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"%(n1)6d хадгалах байгууллага %(n2)6d ишлэлтэйгээр %(n3)6d секундэд "
+"шинэчлэгдлээ\n"
 
 #: ../gramps/gen/db/upgrade.py:743
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
+msgstr "%(n1)6d эх сурвалж %(n2)6d ишлэлтэйгээр %(n3)6d секундэд шинэчлэгдлээ\n"
 
 #: ../gramps/gen/db/upgrade.py:1308
 msgid "Number of new objects upgraded:\n"
@@ -2921,23 +3365,28 @@ msgid ""
 "in order to merge citations that contain similar\n"
 "information"
 msgstr ""
+"\n"
+"\n"
+"Ижил төстэй мэдээлэл агуулсан ишлэлүүдийг нэгтгэхийн тулд\n"
+"Хэрэгсэл → Ургийн бичгийн боловсруулалт → Нэгтгэх\n"
+"командыг ажиллуулахыг зөвлөж байна"
 
 #: ../gramps/gen/db/upgrade.py:1324
 msgid "Upgrade Statistics"
-msgstr ""
+msgstr "Шинэчлэлийн үзүүлэлт"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:392 ../gramps/plugins/lib/libtreebase.py:724
 msgid ","
-msgstr ""
+msgstr ","
 
 #: ../gramps/gen/display/name.py:395
 msgid "Default format (defined by Gramps preferences)"
-msgstr ""
+msgstr "Анхдагч формат (Gramps-ийн тохиргоогоор)"
 
 #: ../gramps/gen/display/name.py:396
 msgid "Surname, Given Suffix"
-msgstr ""
+msgstr "Овог, Нэр Дагавар"
 
 #: ../gramps/gen/display/name.py:397 ../gramps/gen/utils/keyword.py:56
 #: ../gramps/gui/configure.py:1235 ../gramps/gui/configure.py:1237
@@ -2950,121 +3399,121 @@ msgstr ""
 #: ../gramps/plugins/export/exportcsv.py:420
 #: ../gramps/plugins/importer/importcsv.py:205
 msgid "Given"
-msgstr ""
+msgstr "Нэр"
 
 #: ../gramps/gen/display/name.py:398
 msgid "Given Surname Suffix"
-msgstr ""
+msgstr "Нэр Овог Дагавар"
 
 #: ../gramps/gen/display/name.py:403
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr ""
+msgstr "Ургийн овог, Нэр Эцэг эхийн нэр Дагавар Угтвар"
 
 #: ../gramps/gen/display/name.py:408
 msgid "Patronymic, Given"
-msgstr ""
+msgstr "Эцэг эхийн нэр, Нэр"
 
 #: ../gramps/gen/display/name.py:639 ../gramps/gen/display/name.py:770
 msgctxt "Person"
 msgid "title"
-msgstr ""
+msgstr "цол"
 
 #: ../gramps/gen/display/name.py:640 ../gramps/gen/display/name.py:771
 #: ../gramps/plugins/importer/importcsv.py:204
 msgid "given"
-msgstr ""
+msgstr "нэр"
 
 #: ../gramps/gen/display/name.py:644 ../gramps/gen/display/name.py:772
 #: ../gramps/plugins/importer/importcsv.py:196
 #: ../gramps/plugins/tool/removespaces.py:148
 msgid "surname"
-msgstr ""
+msgstr "овог"
 
 #: ../gramps/gen/display/name.py:646 ../gramps/gen/display/name.py:773
 #: ../gramps/gui/editors/editperson.py:407
 #: ../gramps/plugins/importer/importcsv.py:232
 msgid "suffix"
-msgstr ""
+msgstr "дагавар"
 
 #: ../gramps/gen/display/name.py:647 ../gramps/gen/display/name.py:774
 msgctxt "Name"
 msgid "call"
-msgstr ""
+msgstr "дуудах нэр"
 
 #: ../gramps/gen/display/name.py:651 ../gramps/gen/display/name.py:778
 msgctxt "Name"
 msgid "common"
-msgstr ""
+msgstr "нийтлэг"
 
 #: ../gramps/gen/display/name.py:657 ../gramps/gen/display/name.py:783
 msgid "initials"
-msgstr ""
+msgstr "нэрийн товчлол"
 
 #: ../gramps/gen/display/name.py:662 ../gramps/gen/display/name.py:788
 msgctxt "Name"
 msgid "primary"
-msgstr ""
+msgstr "үндсэн"
 
 #: ../gramps/gen/display/name.py:667 ../gramps/gen/display/name.py:793
 msgid "primary[pre]"
-msgstr ""
+msgstr "үндсэн[pre]"
 
 #: ../gramps/gen/display/name.py:672 ../gramps/gen/display/name.py:798
 msgid "primary[sur]"
-msgstr ""
+msgstr "үндсэн[sur]"
 
 #: ../gramps/gen/display/name.py:677 ../gramps/gen/display/name.py:803
 msgid "primary[con]"
-msgstr ""
+msgstr "үндсэн[con]"
 
 #: ../gramps/gen/display/name.py:682 ../gramps/gen/display/name.py:808
 msgid "patronymic"
-msgstr ""
+msgstr "эцэг эхийн нэр"
 
 #: ../gramps/gen/display/name.py:687 ../gramps/gen/display/name.py:813
 msgid "patronymic[pre]"
-msgstr ""
+msgstr "эцэг эхийн нэр [pre]"
 
 #: ../gramps/gen/display/name.py:692 ../gramps/gen/display/name.py:818
 msgid "patronymic[sur]"
-msgstr ""
+msgstr "эцэг эхийн нэр [sur]"
 
 #: ../gramps/gen/display/name.py:697 ../gramps/gen/display/name.py:823
 msgid "patronymic[con]"
-msgstr ""
+msgstr "эцэг эхийн нэр [con]"
 
 #: ../gramps/gen/display/name.py:702 ../gramps/gen/display/name.py:828
 msgid "notpatronymic"
-msgstr ""
+msgstr "эцэг эхийн нэр биш"
 
 #: ../gramps/gen/display/name.py:707 ../gramps/gen/display/name.py:833
 msgctxt "Remaining names"
 msgid "rest"
-msgstr ""
+msgstr "бусад"
 
 #: ../gramps/gen/display/name.py:712 ../gramps/gen/display/name.py:835
 #: ../gramps/gui/editors/editperson.py:431
 #: ../gramps/plugins/importer/importcsv.py:231
 msgid "prefix"
-msgstr ""
+msgstr "угтвар"
 
 #: ../gramps/gen/display/name.py:717 ../gramps/gen/display/name.py:839
 msgid "rawsurnames"
-msgstr ""
+msgstr "rawsurnames"
 
 #: ../gramps/gen/display/name.py:719 ../gramps/gen/display/name.py:841
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "nickname"
-msgstr ""
+msgstr "хоч"
 
 #: ../gramps/gen/display/name.py:720 ../gramps/gen/display/name.py:842
 msgid "familynick"
-msgstr ""
+msgstr "гэр бүлийн хоч"
 
 #: ../gramps/gen/display/name.py:1276
 #, python-format
 msgid "Wrong name format string %s"
-msgstr ""
+msgstr "Нэрийн формат буруу: %s"
 
 #: ../gramps/gen/display/name.py:1283
 msgid "ERROR, Edit Name format in Preferences"
@@ -3077,7 +3526,7 @@ msgstr ""
 
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/docgen/treedoc.py:66
 msgid "Full"
-msgstr ""
+msgstr "Бүтэн"
 
 #: ../gramps/gen/filters/_filterparser.py:131
 #, python-format
@@ -3085,6 +3534,8 @@ msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
+"АНХААРУУЛГА: ‘%s’ шүүлтүүрт хэт олон параметр байна!\n"
+"Параметрийн хэсэгчилсэн багцтайгаар ачааллахыг оролдож байна."
 
 #: ../gramps/gen/filters/_filterparser.py:143
 #, python-format
@@ -3092,11 +3543,13 @@ msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
+"АНХААРУУЛГА: ‘%s’ шүүлтүүрт параметр дутуу байна!\n"
+"         Шинэчлэгдэнэ гэж найдан ачааллахыг оролдож байна."
 
 #: ../gramps/gen/filters/_filterparser.py:155
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
-msgstr ""
+msgstr "АЛДАА: %s шүүлтүүрийг зөв ачаалж чадсангүй. Шүүлтүүрийг засна уу!"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:68
 #: ../gramps/gen/filters/rules/_everything.py:54
@@ -3179,11 +3632,11 @@ msgstr ""
 #: ../gramps/plugins/quickview/samesurnames.py:74
 #: ../gramps/plugins/quickview/samesurnames.py:101
 msgid "General filters"
-msgstr ""
+msgstr "Ерөнхий шүүлтүүрүүд"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:94
 msgid "Wrong format of date-time"
-msgstr ""
+msgstr "Огноо, цагийн формат буруу байна"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
 #, python-format
@@ -3199,7 +3652,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergecitation.glade:270
 #: ../gramps/gui/glade/mergecitation.glade:285
 msgid "Confidence:"
-msgstr ""
+msgstr "Итгэлцлийн түвшин:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:58
@@ -3224,7 +3677,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergemedia.glade:270
 #: ../gramps/gui/glade/mergemedia.glade:285
 msgid "Date:"
-msgstr ""
+msgstr "Огноо:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:58
@@ -3239,7 +3692,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergecitation.glade:208
 #: ../gramps/gui/glade/mergecitation.glade:223
 msgid "Volume/Page:"
-msgstr ""
+msgstr "Боть/Хуудас:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:60
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:59
@@ -3249,7 +3702,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/_hascitationbase.py:61
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:61
 msgid "Matches citations with particular parameters"
-msgstr ""
+msgstr "Тодорхой параметрүүдтай ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:62
 #: ../gramps/gen/filters/rules/_hassourcebase.py:57
@@ -3274,7 +3727,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:57
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:53
 msgid "Event filters"
-msgstr ""
+msgstr "Үйл явдлын шүүлтүүрс"
 
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:54
 #: ../gramps/gen/filters/rules/_hasldsbase.py:57
@@ -3319,7 +3772,7 @@ msgstr ""
 #: ../gramps/gui/editors/filtereditor.py:556
 #: ../gramps/gui/glade/editplaceref.glade:264
 msgid "ID:"
-msgstr ""
+msgstr "ID:"
 
 #: ../gramps/gen/filters/rules/_hasnoteregexbase.py:52
 #: ../gramps/gen/filters/rules/_regexpidbase.py:57
@@ -3334,7 +3787,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergenote.glade:208
 #: ../gramps/gui/glade/mergenote.glade:223
 msgid "Text:"
-msgstr ""
+msgstr "Бичвэр:"
 
 #: ../gramps/gen/filters/rules/_hasnotesubstrbase.py:51
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:52
@@ -3343,7 +3796,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/samesurnames.py:55
 #: ../gramps/plugins/quickview/samesurnames.py:71
 msgid "Substring:"
-msgstr ""
+msgstr "Дотор бичвэр:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:54
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
@@ -3357,7 +3810,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 #: ../gramps/gui/editors/filtereditor.py:616
 msgid "Tag:"
-msgstr ""
+msgstr "Шошго:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
 msgid "Objects with notes with a specified tag."
@@ -3373,26 +3826,26 @@ msgstr ""
 #: ../gramps/gui/editors/filtereditor.py:118
 #: ../gramps/gui/editors/filtereditor.py:595
 msgid "Note type:"
-msgstr ""
+msgstr "Тэмдэглэлийн төрөл:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:55
 msgid "Objects with notes with the particular type"
-msgstr ""
+msgstr "Тухайн төрөлтэй тэмдэглэлтэй объектууд"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:56
 #: ../gramps/gen/filters/rules/note/_hastype.py:57
 msgid "Matches notes with the particular type "
-msgstr ""
+msgstr "Тухайн төрөлтэй тэмдэглэлүүдийг шүүх "
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:51
 #: ../gramps/gui/editors/filtereditor.py:550
 msgid "Reference count must be:"
-msgstr ""
+msgstr "Лавлагааны тоо дараах байх ёстой:"
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:51
 #: ../gramps/gui/editors/filtereditor.py:548
 msgid "Reference count:"
-msgstr ""
+msgstr "Лавлагааны тоо:"
 
 #: ../gramps/gen/filters/rules/_hassourceofbase.py:54
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:46
@@ -3415,13 +3868,13 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:55
 #: ../gramps/gui/editors/filtereditor.py:560
 msgid "Filter name:"
-msgstr ""
+msgstr "Шүүлтүүрийн нэр:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:81
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:86
 #, python-format
 msgid "Can't find filter %s in the defined custom filters"
-msgstr ""
+msgstr "Тодорхойлсон хэрэглэгчийн шүүлтүүрүүдээс %s шүүлтүүр олдсонгүй"
 
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:56
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:57
@@ -3432,7 +3885,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/_rule.py:67
 msgid "Miscellaneous filters"
-msgstr ""
+msgstr "Бусад шүүлтүүрүүд"
 
 #: ../gramps/gen/filters/rules/_rule.py:68 ../gramps/gui/glade/rule.glade:933
 #: ../gramps/plugins/view/geoclose.py:667
@@ -3441,23 +3894,23 @@ msgstr ""
 #: ../gramps/plugins/view/geomoves.py:729
 #: ../gramps/plugins/view/geoperson.py:597
 msgid "No description"
-msgstr ""
+msgstr "Тайлбаргүй"
 
 #: ../gramps/gen/filters/rules/_rule.py:111
 msgid "The filter definition contains a loop."
-msgstr ""
+msgstr "Шүүлтүүрийн тодорхойлолт давталт агуулж байна."
 
 #: ../gramps/gen/filters/rules/_rule.py:113
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "Нэг дүрэм нь өөр дүрмийг зааж, эцэстээ эхний дүрмээ дахин зааж байна."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:46
 msgid "Every citation"
-msgstr ""
+msgstr "Бүх ишлэл"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 msgid "Matches every citation in the database"
-msgstr ""
+msgstr "Өгөгдлийн сан дахь бүх ишлэлийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:46
 #: ../gramps/gen/filters/rules/event/_changedsince.py:47
@@ -3469,7 +3922,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:47
 #: ../gramps/gen/filters/rules/source/_changedsince.py:47
 msgid "Changed after:"
-msgstr ""
+msgstr "Дараа өөрчлөгдсөн:"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:46
 #: ../gramps/gen/filters/rules/event/_changedsince.py:47
@@ -3481,17 +3934,20 @@ msgstr ""
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:47
 #: ../gramps/gen/filters/rules/source/_changedsince.py:47
 msgid "but before:"
-msgstr ""
+msgstr "харин өмнө нь:"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:47
 msgid "Citations changed after <date time>"
-msgstr ""
+msgstr "<date time> хойш өөрчлөгдсөн ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:49
 msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
+"Заасан огноо, цагаас (yyyy-mm-dd hh:mm:ss) хойш өөрчлөгдсөн, эсвэл хоёр дахь "
+"огноо, цаг өгөгдсөн тохиолдолд тухайн хугацаанд багтах ишлэлийн бичлэгүүдтэй "
+"таарах."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:44
 msgid "Citations marked private"
@@ -3499,11 +3955,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:45
 msgid "Matches citations that are indicated as private"
-msgstr ""
+msgstr "Хувийн гэж тэмдэглэгдсэн ишлэлүүдтэй таарах"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 msgid "Citation attribute:"
-msgstr ""
+msgstr "Ишлэлийн шинж чанар:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
@@ -3515,15 +3971,15 @@ msgstr ""
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
 msgid "Value:"
-msgstr ""
+msgstr "Утга:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citations with the attribute <attribute>"
-msgstr ""
+msgstr "<attribute> шинж чанартай ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
 msgid "Matches citations with the attribute of a particular value"
-msgstr ""
+msgstr "Тодорхой утгатай шинж чанартай ишлэлүүдыг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:58
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -3538,7 +3994,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:44
 #: ../gramps/gui/editors/filtereditor.py:622
 msgid "Confidence level:"
-msgstr ""
+msgstr "Итгэлцлийн түвшин:"
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:46
 msgid "Citations with <count> media"
@@ -3546,15 +4002,15 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:47
 msgid "Matches citations with a certain number of items in the gallery"
-msgstr ""
+msgstr "Галерей дахь тодорхой тооны элементтэй ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:47
 msgid "Citation with <Id>"
-msgstr ""
+msgstr "<Id>-тай ишлэл"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:48
 msgid "Matches a citation with a specified Gramps ID"
-msgstr ""
+msgstr "Заасан Gramps ID-тай ишлэлд таарах"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:47
 msgid "Citations having <count> notes"
@@ -3562,24 +4018,25 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:48
 msgid "Matches citations having a certain number of notes"
-msgstr ""
+msgstr "Тодорхой тооны тэмдэглэлтэй ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:44
 msgid "Citations having notes containing <substring>"
-msgstr ""
+msgstr "<substring> агуулсан тэмдэглэлтэй ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:46
 msgid "Matches citations whose notes contain text matching a substring"
-msgstr ""
+msgstr "Тэмдэглэл доторх бичвэр нь дэд мөртэй нийцэх ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:42
 msgid "Citations having notes containing <text>"
-msgstr ""
+msgstr "<text> агуулсан тэмдэглэлтэй ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:44
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
+"Тэмдэглэл доторх бичвэр нь регуляр илэрхийлэлтэй нийцэх ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
 msgid "Citations with a note with the <tag>"
@@ -3606,23 +4063,23 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:49
 msgid "Note filters"
-msgstr ""
+msgstr "Тэмдэглэлийн шүүлтүүрүүд"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:47
 msgid "Citations with a note of type <type>"
-msgstr ""
+msgstr "<type> төрөлтэй тэмдэглэлтэй ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
 msgid "Matches citations with a note of the specified type"
-msgstr ""
+msgstr "Заасан төрөлтэй тэмдэглэлтэй ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:44
 msgid "Citations with a reference count of <count>"
-msgstr ""
+msgstr "Ишлэлийн тоо нь <count> байх ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
 msgid "Matches citations with a certain reference count"
-msgstr ""
+msgstr "Тодорхой ишлэлийн тоотой ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:58
 #: ../gramps/gen/filters/rules/source/_hassource.py:49
@@ -3631,7 +4088,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:270
 #: ../gramps/gui/glade/mergesource.glade:285
 msgid "Abbreviation:"
-msgstr ""
+msgstr "Товчлол:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:58
 #: ../gramps/gen/filters/rules/source/_hassource.py:49
@@ -3642,7 +4099,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:254
 #: ../gramps/gui/glade/plugins.glade:206
 msgid "Author:"
-msgstr ""
+msgstr "Зохиогч:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:58
 #: ../gramps/gen/filters/rules/source/_hassource.py:49
@@ -3651,7 +4108,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:301
 #: ../gramps/gui/glade/mergesource.glade:316
 msgid "Publication:"
-msgstr ""
+msgstr "Хэвлэл:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:58
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:55
@@ -3668,7 +4125,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:208
 #: ../gramps/gui/glade/mergesource.glade:223
 msgid "Title:"
-msgstr ""
+msgstr "Гарчиг:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:59
 #: ../gramps/gen/filters/rules/source/_hassource.py:50
@@ -3677,7 +4134,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:60
 msgid "Matches citations with a source of a particular value"
-msgstr ""
+msgstr "Тодорхой утгатай эх сурвалжтай ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:61
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:57
@@ -3692,17 +4149,19 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:56
 msgid "Matches a citation with a source with a specified Gramps ID"
-msgstr ""
+msgstr "Заасан Gramps ID-тай эх сурвалжтай ишлэлд таарах"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:61
 msgid "Citations having source notes containing <text>"
-msgstr ""
+msgstr "Эх сурвалжийн тэмдэглэл нь <text> агуулсан ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:63
 msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
 "expression"
 msgstr ""
+"Эх сурвалжийн тэмдэглэл нь дэд мөртэй таарах эсвэл регуляр илэрхийлэлд "
+"нийцэх ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
 msgid "Citations with the <tag>"
@@ -3710,7 +4169,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Matches citations with the particular tag"
-msgstr ""
+msgstr "Тухайн шошготой ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:46
 msgid "Citations matching the <filter>"
@@ -3718,42 +4177,46 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Matches citations matched by the specified filter name"
-msgstr ""
+msgstr "Заасан шүүлтүүрийн нэрээр шүүгдсэн ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:52
 msgid "Citations with Volume/Page containing <text>"
-msgstr ""
+msgstr "Боть/Хуудас нь <text> агуулсан ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:54
 msgid "Matches citations whose Volume/Page contains a certain substring"
-msgstr ""
+msgstr "Боть/Хуудас доторх утга нь дэд мөртэй нийцэх ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:55
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:52
 #: ../gramps/gui/editors/filtereditor.py:573
 msgid "Repository filter name:"
-msgstr ""
+msgstr "Хадгалах байгууллагын шүүлтүүрийн нэр:"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:57
 msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
+"Эх сурвалжийн хадгалах байгууллагын лавлагаа нь <repository filter>-тэй "
+"нийцэх ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:61
 msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
+"Хадгалах байгууллагын тодорхой шүүлтүүрт нийцэх лавлагаатай эх сурвалж бүхий "
+"ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:58
 msgid "Citations with source matching the <source filter>"
-msgstr ""
+msgstr "Эх сурвалж нь <source filter>-тэй нийцэх ишлэлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:60
 msgid ""
 "Matches citations with sources that match the specified source filter name"
-msgstr ""
+msgstr "Заасан эх сурвалжийн шүүлтүүрээр таарах эх сурвалж бүхий ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Citations with Id containing <text>"
@@ -3761,65 +4224,68 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:51
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr ""
+msgstr "Gramps ID нь регуляр илэрхийлэлд нийцэх ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:57
 msgid "Citations with Source Id containing <text>"
-msgstr ""
+msgstr "Эх сурвалжийн ID нь <text> агуулсан ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:59
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
-msgstr ""
+msgstr "Эх сурвалжийн Gramps ID нь регуляр илэрхийлэлд нийцэх ишлэлүүд"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:45
 msgid "Every event"
-msgstr ""
+msgstr "Бүх үйл явдал"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
 msgid "Matches every event in the database"
-msgstr ""
+msgstr "Өгөгдлийн сан дахь бүх үйл явдлыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:48
 msgid "Events changed after <date time>"
-msgstr ""
+msgstr "<date time>-с хойш өөрчлөгдсөн үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:50
 msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
+"Заасан огноо, цагаас (yyyy-mm-dd hh:mm:ss) хойш өөрчлөгдсөн, эсвэл хоёр дахь "
+"огноо, цаг өгөгдсөн тохиолдолд тухайн хугацаанд багтах үйл явдлын "
+"бичлэгүүдэд таарах."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:43
 msgid "Events marked private"
-msgstr ""
+msgstr "Хувийн гэж тэмдэглэгдсэн үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:44
 msgid "Matches events that are indicated as private"
-msgstr ""
+msgstr "Хувийн гэж тэмдэглэгдсэн үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:115
 #: ../gramps/gui/editors/filtereditor.py:589
 msgid "Event attribute:"
-msgstr ""
+msgstr "Үйл явдлын шинж чанар:"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
 msgid "Events with the attribute <attribute>"
-msgstr ""
+msgstr "<attribute> шинж чанартай үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:47
 msgid "Matches events with the event attribute of a particular value"
-msgstr ""
+msgstr "Тодорхой утгатай шинж чанартай үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Events with the <citation>"
-msgstr ""
+msgstr "<citation>-тай үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:52
 msgid "Matches events with a citation of a particular value"
-msgstr ""
+msgstr "Тодорхой утгатай ишлэлтэй үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:57
 #: ../gramps/gen/filters/rules/event/_hasevent.py:53
@@ -3831,7 +4297,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeevent.glade:301
 #: ../gramps/gui/glade/mergeevent.glade:316
 msgid "Description:"
-msgstr ""
+msgstr "Тайлбар:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:57
 #: ../gramps/gen/filters/rules/event/_hasevent.py:50
@@ -3840,7 +4306,7 @@ msgstr ""
 #: ../gramps/gui/editors/filtereditor.py:112
 #: ../gramps/gui/editors/filtereditor.py:580
 msgid "Event type:"
-msgstr ""
+msgstr "Үйл явдлын төрөл:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:57
 #: ../gramps/gen/filters/rules/event/_hasevent.py:52
@@ -3853,81 +4319,81 @@ msgstr ""
 #: ../gramps/gui/glade/mergeevent.glade:270
 #: ../gramps/gui/glade/mergeevent.glade:285
 msgid "Place:"
-msgstr ""
+msgstr "Байршил:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:58
 msgid "Events with <data>"
-msgstr ""
+msgstr "<data>-тай үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:59
 msgid "Matches events with data of a particular value"
-msgstr ""
+msgstr "Тодорхой утгатай өгөгдөлтэй үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:48
 #: ../gramps/gui/editors/filtereditor.py:629
 msgid "Day of Week:"
-msgstr ""
+msgstr "Долоо хоногийн гараг:"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:49
 msgid "Events occurring on a particular day of the week"
-msgstr ""
+msgstr "Тодорхой гарагт тохиолддог үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:50
 msgid "Matches events occurring on a particular day of the week"
-msgstr ""
+msgstr "Тодорхой гарагт тохиолддог үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:54
 #: ../gramps/gen/filters/rules/person/_hasevent.py:60
 msgid "Main Participants:"
-msgstr ""
+msgstr "Үндсэн оролцогчид:"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:56
 msgid "Events matching parameters"
-msgstr ""
+msgstr "Параметрт таарах үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
 msgid "Matches events with particular parameters"
-msgstr ""
+msgstr "Тодорхой параметртэй үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:46
 msgid "Events with <count> media"
-msgstr ""
+msgstr "<count> медиа файлтай үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Matches events with a certain number of items in the gallery"
-msgstr ""
+msgstr "Галерей дахь тодорхой тооны элементтэй үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:46
 msgid "Event with <Id>"
-msgstr ""
+msgstr "<Id>-тай үйл явдал"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:47
 msgid "Matches an event with a specified Gramps ID"
-msgstr ""
+msgstr "Заасан Gramps ID-тай үйл явдлыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:46
 msgid "Events having <count> notes"
-msgstr ""
+msgstr "<count> тэмдэглэлтэй үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:47
 msgid "Matches events having a certain number of notes"
-msgstr ""
+msgstr "Тодорхой тооны тэмдэглэлтэй үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:43
 msgid "Events having notes containing <substring>"
-msgstr ""
+msgstr "Тэмдэглэл нь <substring> агуулсан үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:44
 msgid "Matches events whose notes contain text matching a substring"
-msgstr ""
+msgstr "Тэмдэглэл доторх текст нь дэд мөртэй нийцэх үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:41
 msgid "Events having notes containing <text>"
-msgstr ""
+msgstr "Тэмдэглэл нь <text> агуулсан үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "Тэмдэглэл доторх текст нь регуляр илэрхийлэлд нийцэх үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
 msgid "Events with a note with the <tag>"
@@ -3939,19 +4405,19 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
-msgstr ""
+msgstr "<type> төрөлтэй тэмдэглэлтэй үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
 msgid "Matches events with a note of the specified type"
-msgstr ""
+msgstr "Заасан төрөлтэй тэмдэглэлтэй үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:43
 msgid "Events with a reference count of <count>"
-msgstr ""
+msgstr "Ишлэлийн тоо нь <count> байх үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:44
 msgid "Matches events with a certain reference count"
-msgstr ""
+msgstr "Тодорхой ишлэлийн тоотой үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:45
 msgid "Events with <count> sources"
@@ -3959,88 +4425,88 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:46
 msgid "Matches events with a certain number of sources connected to it"
-msgstr ""
+msgstr "Тодорхой тооны эх сурвалж холбогдсон үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:51
 msgid "Events with the <tag>"
-msgstr ""
+msgstr "<tag>-тай үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Matches events with the particular tag"
-msgstr ""
+msgstr "Тухайн шошготой үйл явдлуудыг шүүх"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:56
 msgid "Events with the particular type"
-msgstr ""
+msgstr "Тухайн төрөлтэй үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:57
 msgid "Matches events with the particular type "
-msgstr ""
+msgstr "Тухайн төрөлтэй үйл явдлуудыг шүүх "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:45
 msgid "Events matching the <filter>"
-msgstr ""
+msgstr "<filter>-т таарах үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:46
 msgid "Matches events matched by the specified filter name"
-msgstr ""
+msgstr "Заасан шүүлтүүрээр шүүгдсэн үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:59
 #: ../gramps/gui/editors/filtereditor.py:612
 msgid "Include Family events:"
-msgstr ""
+msgstr "Гэр бүлийн үйл явдлуудыг оруулах:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:59
 #: ../gramps/gui/editors/filtereditor.py:565
 msgid "Person filter name:"
-msgstr ""
+msgstr "Хүний шүүлтүүрийн нэр:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:60
 msgid "Events of persons matching the <person filter>"
-msgstr ""
+msgstr "<person filter>-т нийцэх хүмүүсийн үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:62
 msgid "Matches events of persons matched by the specified person filter name"
-msgstr ""
+msgstr "Заасан хүний шүүлтүүрээр шүүгдсэн хүмүүсийн үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:58
 #: ../gramps/gui/editors/filtereditor.py:575
 msgid "Place filter name:"
-msgstr ""
+msgstr "Байршлын шүүлтүүрийн нэр:"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:59
 msgid "Events of places matching the <place filter>"
-msgstr ""
+msgstr "<place filter>-т тохирсон байршлын үйл явдлуудыг харуулах"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:61
 msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
-msgstr ""
+msgstr "Заасан байршлын шүүлтүүрт тохирсон байршлуудын үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:46
 msgid "Events with at least one direct source >= <confidence level>"
-msgstr ""
+msgstr "<confidence level> =< итгэлцэлтэй шууд эх сурвалжтай үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:48
 msgid "Matches events with at least one direct source with confidence level(s)"
-msgstr ""
+msgstr "Итгэлцлийн түвшин(үүд)-тэй шууд эх сурвалжтай үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:50
 msgid "Events with source matching the <source filter>"
-msgstr ""
+msgstr "<source filter>-т тохирсон эх сурвалжтай үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:52
 msgid "Matches events with sources that match the specified source filter name"
-msgstr ""
+msgstr "Заасан эх сурвалжийн шүүлтүүрт тохирсон эх сурвалжтай үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Events with Id containing <text>"
-msgstr ""
+msgstr "ID нь <text> агуулсан үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:49
 msgid "Matches events whose Gramps ID matches the regular expression"
-msgstr ""
+msgstr "Regular expression-д нийцсэн Gramps ID-тай үйл явдлууд"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:45
 #: ../gramps/gen/plug/report/utils.py:413
@@ -4049,31 +4515,33 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:46
 msgid "Matches every family in the database"
-msgstr ""
+msgstr "Өгөгдлийн сан дахь бүх гэр бүлүүд"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:48
 msgid "Families changed after <date time>"
-msgstr ""
+msgstr "<date time>-аас хойш өөрчлөгдсөн гэр бүлүүд"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:50
 msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
+"Заасан огноо, цагаас хойш өөрчлөгдсөн, эсвэл хоёр дахь огноо, цаг өгөгдсөн "
+"бол тухайн хугацааны мужийн хүрээнд өөрчлөгдсөн гэр бүлийн бүртгэлүүд."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:53
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:53
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:53
 msgid "Person ID:"
-msgstr ""
+msgstr "Хүний ID:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:54
 msgid "Families having child with Id containing <text>"
-msgstr ""
+msgstr "Id-дээ <text> агуулсан хүүхэдтэй гэр бүлүүд"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:55
 msgid "Matches families where child has a specified Gramps ID"
-msgstr ""
+msgstr "Хүүхэд нь заасан Gramps ID-тай гэр бүлүүд"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:56
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:56
@@ -4085,11 +4553,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:54
 msgid "Families with child with the <name>"
-msgstr ""
+msgstr "<name> нэртэй хүүхэдтэй гэр бүлүүдийг шүүх"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:55
 msgid "Matches families where child has a specified (partial) name"
-msgstr ""
+msgstr "Заасан (хэсэгчилсэн) нэртэй хүүхэдтэй гэр бүлүүд"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:43
 msgid "Families marked private"
@@ -4101,7 +4569,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:54
 msgid "Families having father with Id containing <text>"
-msgstr ""
+msgstr "Эцгийн ID нь <text> агуулсан гэр бүлүүд"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:55
 msgid "Matches families whose father has a specified Gramps ID"
@@ -7413,7 +7881,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/date.py:1976
 msgid "calculated"
-msgstr ""
+msgstr "тооцоолсон"
 
 #: ../gramps/gen/lib/date.py:2000
 msgctxt "date-modifier"
@@ -7566,7 +8034,7 @@ msgstr ""
 #: ../gramps/gen/lib/eventroletype.py:79
 msgctxt "Role"
 msgid "Family"
-msgstr ""
+msgstr "Гэр бүл"
 
 #: ../gramps/gen/lib/eventroletype.py:80
 msgid "Informant"
@@ -7633,7 +8101,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/family.py:315
 #: ../gramps/plugins/webreport/updates.py:228
 msgid "Family"
-msgstr ""
+msgstr "Гэр бүл"
 
 #: ../gramps/gen/lib/eventtype.py:170
 msgid "Religious"
@@ -9582,7 +10050,7 @@ msgstr ""
 #: ../gramps/gen/plug/docgen/graphdoc.py:160
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Font family"
-msgstr ""
+msgstr "Фонтын бүлэг"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:165
 #, python-brace-format
@@ -9981,7 +10449,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:839
 #: ../gramps/plugins/drawreport/descendtree.py:1573
 msgid "Tree Options"
-msgstr ""
+msgstr "Модны Тохируулга"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:263
 msgid "Timeflow"
@@ -10354,7 +10822,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/report/utils.py:404
 msgid "FAMILY"
-msgstr ""
+msgstr "ГЭР БҮЛ"
 
 #: ../gramps/gen/plug/report/utils.py:421
 #, python-format
@@ -11293,7 +11761,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/win32locale.py:67
 msgid "Hebrew"
-msgstr ""
+msgstr "Еврейн"
 
 #: ../gramps/gen/utils/win32locale.py:68
 msgid "Croatian"
@@ -11381,7 +11849,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/win32locale.py:90
 msgid "Swedish"
-msgstr ""
+msgstr "Шведийн"
 
 #: ../gramps/gen/utils/win32locale.py:92
 msgid "Tamil"
@@ -13703,7 +14171,7 @@ msgstr ""
 #: ../gramps/gui/viewmanager.py:1203 ../gramps/gui/views/tags.py:570
 #: ../gramps/plugins/quickview/all_relations.py:365
 msgid "Yes"
-msgstr ""
+msgstr "Тийм"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
 #: ../gramps/gui/plug/_guioptions.py:1270 ../gramps/gui/plug/_windows.py:946
@@ -14011,12 +14479,12 @@ msgstr ""
 #: ../gramps/gui/editors/editchildref.py:66
 msgctxt "manual"
 msgid "Child_Reference_Editor"
-msgstr ""
+msgstr "Хүүхдийн холбоос засварлагч"
 
 #: ../gramps/gui/editors/editchildref.py:99
 #: ../gramps/gui/editors/editchildref.py:201
 msgid "Child Reference Editor"
-msgstr ""
+msgstr "Хүүхдийн холбоос засварлагч"
 
 #: ../gramps/gui/editors/editcitation.py:74
 msgctxt "manual"
@@ -14112,7 +14580,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editdate.py:90
 msgid "Calculated"
-msgstr ""
+msgstr "Тооцоолсон"
 
 #: ../gramps/gui/editors/editdate.py:104
 msgctxt "manual"
@@ -14222,7 +14690,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:128
 msgid "Remove the child from the family"
-msgstr ""
+msgstr "Хүүхдийг энэ гэр бүлээс хасах"
 
 #: ../gramps/gui/editors/editfamily.py:129
 msgid "Edit the child reference"
@@ -16990,7 +17458,7 @@ msgstr ""
 #: ../gramps/gui/glade/dialog.glade:485 ../gramps/gui/views/listview.py:730
 #: ../gramps/plugins/tool/reorderids.glade:37
 msgid "_Yes"
-msgstr ""
+msgstr "_Тийм"
 
 #: ../gramps/gui/glade/dialog.glade:492
 #: ../gramps/plugins/tool/reorderids.glade:44
@@ -19348,7 +19816,7 @@ msgstr ""
 #: ../gramps/gui/merge/mergeperson.py:58
 msgctxt "manual"
 msgid "Merge_People"
-msgstr ""
+msgstr "Хүмүүсийн_нэгтгэл"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -19364,7 +19832,7 @@ msgstr ""
 
 #: ../gramps/gui/merge/mergeperson.py:102
 msgid "Merge People"
-msgstr ""
+msgstr "Хүмүүсийг нэгтгэх"
 
 #: ../gramps/gui/merge/mergeperson.py:244
 #: ../gramps/gui/merge/mergeperson.py:262
@@ -20499,7 +20967,7 @@ msgstr ""
 #: ../gramps/gui/plug/report/_styleeditor.py:209
 #: ../gramps/plugins/importer/importgedcom.glade:12
 msgid "default"
-msgstr ""
+msgstr "анхдагч"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:107
 #: ../gramps/gui/plug/report/_styleeditor.py:142
@@ -23398,7 +23866,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/exportcsv.py:146
 msgid "Include people"
-msgstr ""
+msgstr "Хамруулах хүмүүс"
 
 #: ../gramps/plugins/export/exportcsv.py:147
 msgid "Include marriages"
@@ -23889,7 +24357,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:186
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:124
 msgid "Total people"
-msgstr ""
+msgstr "Нийт хүний тоо"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:29
 msgid "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
@@ -25546,11 +26014,11 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:227
 msgid "People of Interest"
-msgstr ""
+msgstr "Сонгосон хүмүүс"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:230
 msgid "People of interest"
-msgstr ""
+msgstr "Анхааралд авсан хүмүүс"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:233
 msgid ""
@@ -25700,11 +26168,11 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:530
 msgid "Number of people in database:"
-msgstr ""
+msgstr "Нийт хүмүүсийн тоо:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:533
 msgid "Number of people of interest:"
-msgstr ""
+msgstr "Сонирхсон хүмүүсийн тоо:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:538
 msgid "Number of families in database:"
@@ -25716,7 +26184,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:547
 msgid "Additional people removed:"
-msgstr ""
+msgstr "Нэмэлт хүмүүсийг хаслаа:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:551
 msgid "Additional families removed:"
@@ -27585,7 +28053,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libmetadata.py:120
 msgid "People Tags"
-msgstr ""
+msgstr "Хүмүүсийн шошго"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
 msgid "Event Tags"
@@ -29290,7 +29758,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:990
 #, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s ариун ёслолоор нэр өгсөн%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:991
 #, python-format
@@ -29440,12 +29908,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1066
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
-msgstr ""
+msgstr "%(female_name)s нь %(father)s-ийн охин юм."
 
 #: ../gramps/plugins/lib/libnarrate.py:1067
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
-msgstr ""
+msgstr "%(father)s-ийн охин нь %(female_name)s байсан."
 
 #: ../gramps/plugins/lib/libnarrate.py:1070
 #, python-format
@@ -29515,12 +29983,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1102
 #, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
-msgstr ""
+msgstr "%(female_name)s нь %(mother)s-ийн охин юм."
 
 #: ../gramps/plugins/lib/libnarrate.py:1103
 #, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr ""
+msgstr "%(female_name)s нь %(mother)s-ийн охин байв."
 
 #: ../gramps/plugins/lib/libnarrate.py:1106
 #, python-format
@@ -31789,7 +32257,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:61
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr ""
+msgstr "өөр хүйстэй хүмүүс"
 
 #: ../gramps/plugins/quickview/filterbyname.py:62
 msgctxt "Filtering_on"
@@ -31809,7 +32277,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:67
 msgctxt "Filtering_on"
 msgid "disconnected people"
-msgstr ""
+msgstr "бусадтай холбогдоогүй хүмүүс"
 
 #: ../gramps/plugins/quickview/filterbyname.py:68
 msgctxt "Filtering_on"
@@ -31844,7 +32312,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:74
 msgctxt "Filtering_on"
 msgid "list of people"
-msgstr ""
+msgstr "хүмүүсийн жагсаалт"
 
 #: ../gramps/plugins/quickview/filterbyname.py:88
 msgid "Summary counts of current selection"
@@ -32827,7 +33295,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detdescendantreport.py:714
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
-msgstr ""
+msgstr "%(mother_name)s, %(father_name)s нарын хүүхдүүд"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:724
 #: ../gramps/plugins/textreport/detdescendantreport.py:827
@@ -33110,7 +33578,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detdescendantreport.py:803
 #, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
-msgstr ""
+msgstr "%(mother_name)s ба %(father_name)s-ийн тэмдэглэл:"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1067
 msgid "Record (Modified Register) numbering"
@@ -33122,11 +33590,11 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1077
 msgid "show people by generations"
-msgstr ""
+msgstr "үе үеэр нь харуулах"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1078
 msgid "show people by lineage"
-msgstr ""
+msgstr "удам угсаагаар нь харуулах"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1081
 msgid "How people are organized in the report"
@@ -34193,7 +34661,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/check.py:1489
 msgid "Looking for family reference problems"
-msgstr ""
+msgstr "Гэр бүлийн харилцааны зөрчил шалгаж байна"
 
 #: ../gramps/plugins/tool/check.py:1520
 msgid "Looking for repository reference problems"
@@ -34579,7 +35047,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/eventcmp.py:184
 msgid "Selecting people"
-msgstr ""
+msgstr "Хүмүүсийг сонгох"
 
 #: ../gramps/plugins/tool/eventcmp.py:195
 msgid "No matches were found"
@@ -34785,7 +35253,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:407
 msgid "Operation successfully finished"
-msgstr ""
+msgstr "Үйлдэл амжилттай дууслаа"
 
 #: ../gramps/plugins/tool/mediamanager.py:409
 msgid ""
@@ -35403,7 +35871,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/sortevents.py:177
 msgid "Select the people to sort"
-msgstr ""
+msgstr "Эрэмбэлэх хүмүүсийг сонгох"
 
 #: ../gramps/plugins/tool/sortevents.py:196
 msgid "Sort descending"
@@ -36370,12 +36838,12 @@ msgstr ""
 #: ../gramps/plugins/view/geoclose.py:319
 #, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
-msgstr ""
+msgstr "Лавлагаа: %(name)s ( %(birth)s – %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:328
 #, python-format
 msgid "The other : %(name)s ( %(birth)s - %(death)s )"
-msgstr ""
+msgstr "Нөгөө хүн: %(name)s ( %(birth)s – %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:336
 msgid "The other person is unknown"
@@ -37245,7 +37713,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/view.gpr.py:199
 msgid "Grouped People"
-msgstr ""
+msgstr "Бүлэглэсэн хүмүүс"
 
 #: ../gramps/plugins/view/view.gpr.py:201
 msgid "The view showing all people in the Family Tree grouped per family name"
@@ -38933,7 +39401,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/surnamelist.py:192
 msgid "Number of People"
-msgstr ""
+msgstr "Хүмүүсийн тоо"
 
 #: ../gramps/plugins/webreport/surnamelist.py:302
 #, python-brace-format
@@ -39032,7 +39500,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/webcal.py:1994
 msgid "February Note"
-msgstr ""
+msgstr "Хоёрдугаар сарын Тэмдэглэл"
 
 #: ../gramps/plugins/webreport/webcal.py:1995
 msgid "The note for the month of February"
@@ -39100,7 +39568,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/webcal.py:2028
 msgid "October Note"
-msgstr ""
+msgstr "Аравдугаар сарын тэмдэглэл"
 
 #: ../gramps/plugins/webreport/webcal.py:2029
 msgid "The note for the month of October"
@@ -39108,7 +39576,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/webcal.py:2032
 msgid "November Note"
-msgstr ""
+msgstr "Арван нэгдүгээр сарын тэмдэглэл"
 
 #: ../gramps/plugins/webreport/webcal.py:2033
 msgid "The note for the month of November"
@@ -39116,7 +39584,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/webcal.py:2036
 msgid "December Note"
-msgstr ""
+msgstr "Арван хоёрдугаар сарын тэмдэглэл"
 
 #: ../gramps/plugins/webreport/webcal.py:2037
 msgid "The note for the month of December"
