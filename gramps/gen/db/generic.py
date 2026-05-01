@@ -49,6 +49,8 @@ from ..const import GRAMPS_LOCALE as glocale
 from ..errors import HandleError
 from ..lib import (
     Citation,
+    DNAMatch,
+    DNATest,
     Event,
     Family,
     Media,
@@ -65,27 +67,31 @@ from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher
 from ..types import (
     AnyHandle,
-    PersonHandle,
+    CitationGrampsID,
+    CitationHandle,
+    DNAMatchGrampsID,
+    DNAMatchHandle,
+    DNATestGrampsID,
+    DNATestHandle,
+    EventGrampsID,
     EventHandle,
+    FamilyGrampsID,
     FamilyHandle,
+    MediaGrampsID,
+    MediaHandle,
+    NoteGrampsID,
+    NoteHandle,
+    PersonGrampsID,
+    PersonHandle,
+    PlaceGrampsID,
     PlaceHandle,
     PrimaryObject,
-    SourceHandle,
-    RepositoryHandle,
-    CitationHandle,
-    MediaHandle,
-    NoteHandle,
-    TagHandle,
-    TableObjectType,
-    PersonGrampsID,
-    EventGrampsID,
-    FamilyGrampsID,
-    PlaceGrampsID,
-    SourceGrampsID,
     RepositoryGrampsID,
-    CitationGrampsID,
-    MediaGrampsID,
-    NoteGrampsID,
+    RepositoryHandle,
+    SourceGrampsID,
+    SourceHandle,
+    TableObjectType,
+    TagHandle,
 )
 from ..updatecallback import UpdateCallback
 from ..utils.callback import Callback
@@ -96,6 +102,8 @@ from . import (
     DBMODE_R,
     DBMODE_W,
     DBUNDOFN,
+    DNAMATCH_KEY,
+    DNATEST_KEY,
     EVENT_KEY,
     FAMILY_KEY,
     KEY_TO_NAME_MAP,
@@ -134,6 +142,8 @@ SIGBASE = (
     "note",
     "tag",
     "citation",
+    "dnatest",
+    "dnamatch",
 )
 
 
@@ -419,7 +429,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     __callback_map = {}
 
-    VERSION = (22, 0, 0)
+    VERSION = (23, 0, 0)
 
     def __init__(self, directory=None):
         DbReadBase.__init__(self)
@@ -593,6 +603,40 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self.get_raw_tag_data,
                 "del_func": self.remove_tag,
             },
+            "DNATest": {
+                "handle_func": self.get_dnatest_from_handle,
+                "gramps_id_func": self.get_dnatest_from_gramps_id,
+                "class_func": DNATest,
+                "cursor_func": self.get_dnatest_cursor,
+                "handles_func": self.get_dnatest_handles,
+                "add_func": self.add_dnatest,
+                "commit_func": self.commit_dnatest,
+                "iter_func": self.iter_dnatests,
+                "ids_func": self.get_dnatest_gramps_ids,
+                "has_handle_func": self.has_dnatest_handle,
+                "has_gramps_id_func": self.has_dnatest_gramps_id,
+                "count_func": self.get_number_of_dnatests,
+                "raw_func": self.get_raw_dnatest_data,
+                "raw_id_func": self._get_raw_dnatest_from_id_data,
+                "del_func": self.remove_dnatest,
+            },
+            "DNAMatch": {
+                "handle_func": self.get_dnamatch_from_handle,
+                "gramps_id_func": self.get_dnamatch_from_gramps_id,
+                "class_func": DNAMatch,
+                "cursor_func": self.get_dnamatch_cursor,
+                "handles_func": self.get_dnamatch_handles,
+                "add_func": self.add_dnamatch,
+                "commit_func": self.commit_dnamatch,
+                "iter_func": self.iter_dnamatches,
+                "ids_func": self.get_dnamatch_gramps_ids,
+                "has_handle_func": self.has_dnamatch_handle,
+                "has_gramps_id_func": self.has_dnamatch_gramps_id,
+                "count_func": self.get_number_of_dnamatches,
+                "raw_func": self.get_raw_dnamatch_data,
+                "raw_id_func": self._get_raw_dnamatch_from_id_data,
+                "del_func": self.remove_dnamatch,
+            },
         }
         self._directory = None
         self.path = None
@@ -611,6 +655,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.repo_bookmarks = DbBookmarks()
         self.media_bookmarks = DbBookmarks()
         self.note_bookmarks = DbBookmarks()
+        self.dnatest_bookmarks = DbBookmarks()
+        self.dnamatch_bookmarks = DbBookmarks()
         self.set_person_id_prefix("I%05d")
         self.set_media_id_prefix("O%05d")
         self.set_family_id_prefix("F%05d")
@@ -620,6 +666,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.set_event_id_prefix("E%05d")
         self.set_repository_id_prefix("R%05d")
         self.set_note_id_prefix("N%05d")
+        self.set_dnatest_id_prefix("T%05d")
+        self.set_dnamatch_id_prefix("M%05d")
         # Custom type values
         self.event_names = set()
         self.family_attributes = set()
@@ -649,6 +697,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.omap_index = 0
         self.rmap_index = 0
         self.nmap_index = 0
+        self.tmap_index = 0
+        self.mmap_index = 0
         self.undo_callback = None
         self.redo_callback = None
         self.undo_history_callback = None
@@ -757,6 +807,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.media_bookmarks.load(self._get_metadata("media_bookmarks"))
         self.place_bookmarks.load(self._get_metadata("place_bookmarks"))
         self.note_bookmarks.load(self._get_metadata("note_bookmarks"))
+        self.dnatest_bookmarks.load(self._get_metadata("dnatest_bookmarks"))
+        self.dnamatch_bookmarks.load(self._get_metadata("dnamatch_bookmarks"))
 
         # Custom type values
         self.event_names = self._get_metadata("event_names", set())
@@ -803,6 +855,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.omap_index = self._get_metadata("omap_index", 0)
         self.rmap_index = self._get_metadata("rmap_index", 0)
         self.nmap_index = self._get_metadata("nmap_index", 0)
+        self.tmap_index = self._get_metadata("tmap_index", 0)
+        self.mmap_index = self._get_metadata("mmap_index", 0)
 
         if need_to_set_metadata:
             # for new db we always need blob metadata to allow prior Gramps versions
@@ -893,6 +947,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._set_metadata("citation_bookmarks", self.citation_bookmarks.get())
         self._set_metadata("media_bookmarks", self.media_bookmarks.get())
         self._set_metadata("note_bookmarks", self.note_bookmarks.get())
+        self._set_metadata("dnatest_bookmarks", self.dnatest_bookmarks.get())
+        self._set_metadata("dnamatch_bookmarks", self.dnamatch_bookmarks.get())
 
         # Custom type values, sets
         self._set_metadata("event_names", self.event_names)
@@ -927,6 +983,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._set_metadata("omap_index", self.omap_index)
         self._set_metadata("rmap_index", self.rmap_index)
         self._set_metadata("nmap_index", self.nmap_index)
+        self._set_metadata("tmap_index", self.tmap_index)
+        self._set_metadata("mmap_index", self.mmap_index)
 
     def get_dbid(self):
         """
@@ -1173,6 +1231,28 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.note_prefix = self._validated_id_prefix(val, "N")
         self.nid2user_format = self.__id2user_format(self.note_prefix)
 
+    def set_dnatest_id_prefix(self, val):
+        """
+        Set the naming template for Gramps DNATest ID values.
+
+        The string is expected to be in the form of a simple text string, or
+        in a format that contains a C/Python style format string using %d,
+        such as T%d or T%05d.
+        """
+        self.dnatest_prefix = self._validated_id_prefix(val, "T")
+        self.tid2user_format = self.__id2user_format(self.dnatest_prefix)
+
+    def set_dnamatch_id_prefix(self, val):
+        """
+        Set the naming template for Gramps DNAMatch ID values.
+
+        The string is expected to be in the form of a simple text string, or
+        in a format that contains a C/Python style format string using %d,
+        such as M%d or M%05d.
+        """
+        self.dnamatch_prefix = self._validated_id_prefix(val, "M")
+        self.mid2user_format = self.__id2user_format(self.dnamatch_prefix)
+
     def set_prefixes(
         self, person, media, family, source, citation, place, event, repository, note
     ):
@@ -1293,6 +1373,26 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         )
         return gid
 
+    def find_next_dnatest_gramps_id(self) -> DNATestGrampsID:
+        """
+        Return the next available GRAMPS' ID for a DNATest object based off the
+        dnatest ID prefix.
+        """
+        self.tmap_index, gid = self._find_next_gramps_id(
+            self.dnatest_prefix, self.tmap_index, DNATEST_KEY
+        )
+        return gid
+
+    def find_next_dnamatch_gramps_id(self) -> DNAMatchGrampsID:
+        """
+        Return the next available GRAMPS' ID for a DNAMatch object based off the
+        dnamatch ID prefix.
+        """
+        self.mmap_index, gid = self._find_next_gramps_id(
+            self.dnamatch_prefix, self.mmap_index, DNAMATCH_KEY
+        )
+        return gid
+
     ################################################################
     #
     # get_number_of_* methods
@@ -1364,6 +1464,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return the number of source repositories currently in the database.
         """
         return self._get_number_of(REPOSITORY_KEY)
+
+    def get_number_of_dnatests(self):
+        """
+        Return the number of DNA tests currently in the database.
+        """
+        return self._get_number_of(DNATEST_KEY)
+
+    def get_number_of_dnamatches(self):
+        """
+        Return the number of DNA matches currently in the database.
+        """
+        return self._get_number_of(DNAMATCH_KEY)
 
     ################################################################
     #
@@ -1441,6 +1553,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return self._get_gramps_ids(NOTE_KEY)
 
+    def get_dnatest_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each DNATest in the
+        database.
+        """
+        return self._get_gramps_ids(DNATEST_KEY)
+
+    def get_dnamatch_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each DNAMatch in the
+        database.
+        """
+        return self._get_gramps_ids(DNAMATCH_KEY)
+
     ################################################################
     #
     # get_*_from_handle methods
@@ -1490,6 +1616,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_tag_from_handle(self, handle: TagHandle) -> Tag:
         return self._get_from_handle(TAG_KEY, Tag, handle)
 
+    def get_dnatest_from_handle(self, handle: DNATestHandle) -> DNATest:
+        return self._get_from_handle(DNATEST_KEY, DNATest, handle)
+
+    def get_dnamatch_from_handle(self, handle: DNAMatchHandle) -> DNAMatch:
+        return self._get_from_handle(DNAMATCH_KEY, DNAMatch, handle)
+
     ################################################################
     #
     # get_*_from_gramps_id methods
@@ -1534,6 +1666,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         data = self._get_raw_note_from_id_data(gramps_id)
         return self.serializer.data_to_object(data, Note)
 
+    def get_dnatest_from_gramps_id(self, gramps_id: DNATestGrampsID) -> DNATest:
+        data = self._get_raw_dnatest_from_id_data(gramps_id)
+        return self.serializer.data_to_object(data, DNATest)
+
+    def get_dnamatch_from_gramps_id(self, gramps_id: DNAMatchGrampsID) -> DNAMatch:
+        data = self._get_raw_dnamatch_from_id_data(gramps_id)
+        return self.serializer.data_to_object(data, DNAMatch)
+
     ################################################################
     #
     # has_*_handle methods
@@ -1576,6 +1716,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def has_tag_handle(self, handle: TagHandle) -> bool:
         return self._has_handle(TAG_KEY, handle)
 
+    def has_dnatest_handle(self, handle: DNATestHandle) -> bool:
+        return self._has_handle(DNATEST_KEY, handle)
+
+    def has_dnamatch_handle(self, handle: DNAMatchHandle) -> bool:
+        return self._has_handle(DNAMATCH_KEY, handle)
+
     ################################################################
     #
     # has_*_gramps_id methods
@@ -1611,6 +1757,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def has_note_gramps_id(self, gramps_id: NoteGrampsID) -> bool:
         return self._has_gramps_id(NOTE_KEY, gramps_id)
+
+    def has_dnatest_gramps_id(self, gramps_id: DNATestGrampsID) -> bool:
+        return self._has_gramps_id(DNATEST_KEY, gramps_id)
+
+    def has_dnamatch_gramps_id(self, gramps_id: DNAMatchGrampsID) -> bool:
+        return self._has_gramps_id(DNAMATCH_KEY, gramps_id)
 
     ################################################################
     #
@@ -1650,6 +1802,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_source_cursor(self) -> Cursor:
         return Cursor(self._iter_raw_source_data)
+
+    def get_dnatest_cursor(self) -> Cursor:
+        return Cursor(self._iter_raw_dnatest_data)
+
+    def get_dnamatch_cursor(self) -> Cursor:
+        return Cursor(self._iter_raw_dnamatch_data)
 
     ################################################################
     #
@@ -1721,6 +1879,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return self._iter_handles(TAG_KEY)
 
+    def iter_dnatest_handles(self) -> Generator[DNATestHandle]:
+        """
+        Return an iterator over handles for DNATests in the database
+        """
+        return self._iter_handles(DNATEST_KEY)
+
+    def iter_dnamatch_handles(self) -> Generator[DNAMatchHandle]:
+        """
+        Return an iterator over handles for DNAMatches in the database
+        """
+        return self._iter_handles(DNAMATCH_KEY)
+
     ################################################################
     #
     # iter_* methods
@@ -1774,6 +1944,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def iter_tags(self) -> Generator[Tag]:
         """Iterate over Tag objects."""
         return self._iter_objects(Tag)
+
+    def iter_dnatests(self) -> Generator[DNATest]:
+        """Iterate over DNATest objects."""
+        return self._iter_objects(DNATest)
+
+    def iter_dnamatches(self) -> Generator[DNAMatch]:
+        """Iterate over DNAMatch objects."""
+        return self._iter_objects(DNAMatch)
 
     ################################################################
     #
@@ -1844,6 +2022,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return self._iter_raw_data(TAG_KEY)
 
+    def _iter_raw_dnatest_data(self):
+        """
+        Return an iterator over raw DNATest data.
+        """
+        return self._iter_raw_data(DNATEST_KEY)
+
+    def _iter_raw_dnamatch_data(self):
+        """
+        Return an iterator over raw DNAMatch data.
+        """
+        return self._iter_raw_data(DNAMATCH_KEY)
+
     def _iter_raw_place_tree_data(self):
         """
         Return an iterator over raw data in the place hierarchy.
@@ -1892,6 +2082,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_raw_tag_data(self, handle):
         return self._get_raw_data(TAG_KEY, handle)
 
+    def get_raw_dnatest_data(self, handle):
+        return self._get_raw_data(DNATEST_KEY, handle)
+
+    def get_raw_dnamatch_data(self, handle):
+        return self._get_raw_data(DNAMATCH_KEY, handle)
+
     ################################################################
     #
     # get_raw_*_from_id_data methods
@@ -1927,6 +2123,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def _get_raw_note_from_id_data(self, gramps_id: NoteGrampsID):
         return self._get_raw_from_id_data(NOTE_KEY, gramps_id)
+
+    def _get_raw_dnatest_from_id_data(self, gramps_id: DNATestGrampsID):
+        return self._get_raw_from_id_data(DNATEST_KEY, gramps_id)
+
+    def _get_raw_dnamatch_from_id_data(self, gramps_id: DNAMatchGrampsID):
+        return self._get_raw_from_id_data(DNAMATCH_KEY, gramps_id)
 
     ################################################################
     #
@@ -2027,6 +2229,24 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             tag.handle = create_id()
         self.commit_tag(tag, transaction)
         return tag.handle
+
+    def add_dnatest(self, dnatest: DNATest, transaction, set_gid=True):
+        return self._add_base(
+            dnatest,
+            transaction,
+            set_gid,
+            self.find_next_dnatest_gramps_id,
+            self.commit_dnatest,
+        )
+
+    def add_dnamatch(self, dnamatch: DNAMatch, transaction, set_gid=True):
+        return self._add_base(
+            dnamatch,
+            transaction,
+            set_gid,
+            self.find_next_dnamatch_gramps_id,
+            self.commit_dnamatch,
+        )
 
     ################################################################
     #
@@ -2302,6 +2522,38 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             ]
         )
 
+    def commit_dnatest(self, dnatest, transaction, change_time=None):
+        """
+        Commit the specified DNATest to the database, storing the changes as
+        part of the transaction.
+        """
+        self._commit_base(dnatest, DNATEST_KEY, transaction, change_time)
+
+        attr_list = []
+        for mref in dnatest.media_list:
+            attr_list += [
+                str(attr.type)
+                for attr in mref.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
+        self.media_attributes.update(attr_list)
+
+    def commit_dnamatch(self, dnamatch, transaction, change_time=None):
+        """
+        Commit the specified DNAMatch to the database, storing the changes as
+        part of the transaction.
+        """
+        self._commit_base(dnamatch, DNAMATCH_KEY, transaction, change_time)
+
+        attr_list = []
+        for mref in dnamatch.media_list:
+            attr_list += [
+                str(attr.type)
+                for attr in mref.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
+        self.media_attributes.update(attr_list)
+
     def _after_commit(self, transaction):
         """
         Post-transaction commit processing
@@ -2394,6 +2646,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction.
         """
         self._do_remove(handle, transaction, TAG_KEY)
+
+    def remove_dnatest(self, handle, transaction):
+        """
+        Remove the DNATest specified by the database handle from the
+        database, preserving the change in the passed transaction.
+        """
+        self._do_remove(handle, transaction, DNATEST_KEY)
+
+    def remove_dnamatch(self, handle, transaction):
+        """
+        Remove the DNAMatch specified by the database handle from the
+        database, preserving the change in the passed transaction.
+        """
+        self._do_remove(handle, transaction, DNAMATCH_KEY)
 
     ################################################################
     #
@@ -2556,6 +2822,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_source_bookmarks(self):
         return self.source_bookmarks
+
+    def get_dnatest_bookmarks(self):
+        return self.dnatest_bookmarks
+
+    def get_dnamatch_bookmarks(self):
+        return self.dnamatch_bookmarks
 
     ################################################################
     #
@@ -2779,6 +3051,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_20,
             gramps_upgrade_21,
             gramps_upgrade_22,
+            gramps_upgrade_23,
         )
 
         if version < 14:
@@ -2799,6 +3072,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_21(self)
         if version < 22:
             gramps_upgrade_22(self)
+        if version < 23:
+            gramps_upgrade_23(self)
 
         self.rebuild_secondary(callback)
         self.reindex_reference_map(callback)

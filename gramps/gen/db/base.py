@@ -180,6 +180,20 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def find_next_dnatest_gramps_id(self):
+        """
+        Return the next available Gramps ID for a DNATest object based off the
+        dnatest ID prefix.
+        """
+        raise NotImplementedError
+
+    def find_next_dnamatch_gramps_id(self):
+        """
+        Return the next available Gramps ID for a DNAMatch object based off the
+        dnamatch ID prefix.
+        """
+        raise NotImplementedError
+
     def find_next_person_gramps_id(self):
         """
         Return the next available Gramps ID for a Person object based off the
@@ -241,6 +255,18 @@ class DbReadBase:
     def get_note_bookmarks(self):
         """
         Return the list of Note handles in the bookmarks.
+        """
+        raise NotImplementedError
+
+    def get_dnatest_bookmarks(self):
+        """
+        Return the list of DNATest handles in the bookmarks.
+        """
+        raise NotImplementedError
+
+    def get_dnamatch_bookmarks(self):
+        """
+        Return the list of DNAMatch handles in the bookmarks.
         """
         raise NotImplementedError
 
@@ -373,6 +399,26 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_dnatest_cursor(self):
+        """
+        Return a reference to a cursor over DNATest objects.  Example use::
+
+            with get_dnatest_cursor() as cursor:
+                for handle, dnatest in cursor:
+                    # process dnatest object pointed to by the handle
+        """
+        raise NotImplementedError
+
+    def get_dnamatch_cursor(self):
+        """
+        Return a reference to a cursor over DNAMatch objects.  Example use::
+
+            with get_dnamatch_cursor() as cursor:
+                for handle, dnamatch in cursor:
+                    # process dnamatch object pointed to by the handle
+        """
+        raise NotImplementedError
+
     def get_citation_from_gramps_id(self, gramps_id):
         """
         Find a Citation in the database from the passed Gramps ID.
@@ -469,6 +515,28 @@ class DbReadBase:
         :type val: str or bytes
 
         If no such Source exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_dnatest_from_gramps_id(self, gramps_id):
+        """
+        Find a DNATest in the database from the passed Gramps ID.
+
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
+        If no such DNATest exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_dnamatch_from_gramps_id(self, gramps_id):
+        """
+        Find a DNAMatch in the database from the passed Gramps ID.
+
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
+        If no such DNAMatch exists, None is returned.
         """
         raise NotImplementedError
 
@@ -602,6 +670,32 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_dnatest_from_handle(self, handle):
+        """
+        Return a DNATest in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such DNATest exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the DNATest is filtered out.
+        """
+        raise NotImplementedError
+
+    def get_dnamatch_from_handle(self, handle):
+        """
+        Return a DNAMatch in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such DNAMatch exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the DNAMatch is filtered out.
+        """
+        raise NotImplementedError
+
     def get_citation_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Citation in
@@ -728,6 +822,26 @@ class DbReadBase:
         :type sort_handles: bool
         :param locale: The locale to use for collation.
         :type locale: A GrampsLocale object.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
+        """
+        raise NotImplementedError
+
+    def get_dnatest_handles(self):
+        """
+        Return a list of database handles, one handle for each DNATest in the
+        database.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
+        """
+        raise NotImplementedError
+
+    def get_dnamatch_handles(self):
+        """
+        Return a list of database handles, one handle for each DNAMatch in the
+        database.
 
         .. warning:: For speed the keys are directly returned, so handles are
                      bytes type
@@ -922,6 +1036,18 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_number_of_dnatests(self):
+        """
+        Return the number of DNA tests currently in the database.
+        """
+        raise NotImplementedError
+
+    def get_number_of_dnamatches(self):
+        """
+        Return the number of DNA matches currently in the database.
+        """
+        raise NotImplementedError
+
     def get_person_event_types(self):
         """
         Deprecated:  Use get_event_types
@@ -985,6 +1111,18 @@ class DbReadBase:
     def get_raw_tag_data(self, handle):
         """
         Return raw (serialized and pickled) Tag object from handle
+        """
+        raise NotImplementedError
+
+    def get_raw_dnatest_data(self, handle):
+        """
+        Return raw (serialized and pickled) DNATest object from handle
+        """
+        raise NotImplementedError
+
+    def get_raw_dnamatch_data(self, handle):
+        """
+        Return raw (serialized and pickled) DNAMatch object from handle
         """
         raise NotImplementedError
 
@@ -1069,6 +1207,18 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def has_dnatest_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the DNATest table.
+        """
+        raise NotImplementedError
+
+    def has_dnamatch_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the DNAMatch table.
+        """
+        raise NotImplementedError
+
     def has_event_handle(self, handle):
         """
         Return True if the handle exists in the current Event database.
@@ -1126,6 +1276,18 @@ class DbReadBase:
     def has_tag_handle(self, handle):
         """
         Return True if the handle exists in the current Tag database.
+        """
+        raise NotImplementedError
+
+    def has_dnatest_handle(self, handle):
+        """
+        Return True if the handle exists in the current DNATest database.
+        """
+        raise NotImplementedError
+
+    def has_dnamatch_handle(self, handle):
+        """
+        Return True if the handle exists in the current DNAMatch database.
         """
         raise NotImplementedError
 
@@ -1201,6 +1363,18 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def iter_dnatests(self):
+        """
+        Return an iterator over objects for DNATests in the database
+        """
+        raise NotImplementedError
+
+    def iter_dnamatches(self):
+        """
+        Return an iterator over objects for DNAMatches in the database
+        """
+        raise NotImplementedError
+
     def iter_citation_handles(self):
         """
         Return an iterator over handles for Citations in the database
@@ -1258,6 +1432,18 @@ class DbReadBase:
     def iter_tag_handles(self):
         """
         Return an iterator over handles for Tags in the database
+        """
+        raise NotImplementedError
+
+    def iter_dnatest_handles(self):
+        """
+        Return an iterator over handles for DNATests in the database
+        """
+        raise NotImplementedError
+
+    def iter_dnamatch_handles(self):
+        """
+        Return an iterator over handles for DNAMatches in the database
         """
         raise NotImplementedError
 
@@ -1590,6 +1776,24 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
+    def add_dnatest(self, dnatest, transaction, set_gid=True):
+        """
+        Add a DNATest to the database, assigning internal IDs if they have
+        not already been defined.
+
+        If not set_gid, then gramps_id is not set.
+        """
+        raise NotImplementedError
+
+    def add_dnamatch(self, dnamatch, transaction, set_gid=True):
+        """
+        Add a DNAMatch to the database, assigning internal IDs if they have
+        not already been defined.
+
+        If not set_gid, then gramps_id is not set.
+        """
+        raise NotImplementedError
+
     def add_to_surname_list(self, person, batch_transaction, name):
         """
         Add surname from given person to list of surnames
@@ -1662,6 +1866,20 @@ class DbWriteBase(DbReadBase):
     def commit_tag(self, tag, transaction, change_time=None):
         """
         Commit the specified Tag to the database, storing the changes as
+        part of the transaction.
+        """
+        raise NotImplementedError
+
+    def commit_dnatest(self, dnatest, transaction, change_time=None):
+        """
+        Commit the specified DNATest to the database, storing the changes as
+        part of the transaction.
+        """
+        raise NotImplementedError
+
+    def commit_dnamatch(self, dnamatch, transaction, change_time=None):
+        """
+        Commit the specified DNAMatch to the database, storing the changes as
         part of the transaction.
         """
         raise NotImplementedError
@@ -1750,6 +1968,20 @@ class DbWriteBase(DbReadBase):
     def remove_tag(self, handle, transaction):
         """
         Remove the Tag specified by the database handle from the
+        database, preserving the change in the passed transaction.
+        """
+        raise NotImplementedError
+
+    def remove_dnatest(self, handle, transaction):
+        """
+        Remove the DNATest specified by the database handle from the
+        database, preserving the change in the passed transaction.
+        """
+        raise NotImplementedError
+
+    def remove_dnamatch(self, handle, transaction):
+        """
+        Remove the DNAMatch specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         raise NotImplementedError

@@ -38,7 +38,15 @@ import logging
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
-from gramps.gen.lib import EventType, FamilySearchSync, NameOriginType, Tag, MarkerType
+from gramps.gen.lib import (
+    DNAMatch,
+    DNATest,
+    EventType,
+    FamilySearchSync,
+    MarkerType,
+    NameOriginType,
+    Tag,
+)
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
 from gramps.gui.dialog import InfoDialog
@@ -79,6 +87,52 @@ def _upgrade_person_json_22(person_data):
     person_data["familysearch_sync"] = _default_familysearch_sync_json_22()
 
     return True
+
+
+def gramps_upgrade_23(self):
+    """
+    Upgrade database from version 22 to 23.
+
+    Add dnatest and dnamatch tables.
+    """
+    col_data = (
+        "json_data TEXT" if self.use_json_data() else "blob_data BLOB"
+    )
+    self._txn_begin()
+    try:
+        self.dbapi.execute(
+            "CREATE TABLE IF NOT EXISTS dnatest "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE IF NOT EXISTS dnamatch "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        for cls in (DNATest, DNAMatch):
+            table_name = cls.__name__.lower()
+            for field, schema_type, max_length in cls.get_secondary_fields():
+                if field != "handle":
+                    sql_type = self._sql_type(schema_type, max_length)
+                    self.dbapi.execute(
+                        f"ALTER TABLE {table_name} ADD COLUMN {field} {sql_type}"
+                    )
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS dnatest_gramps_id ON dnatest(gramps_id)"
+        )
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS dnamatch_gramps_id ON dnamatch(gramps_id)"
+        )
+        self._set_metadata("version", 23, use_txn=False)
+        self._txn_commit()
+    except Exception:
+        self._txn_abort()
+        raise
 
 
 def gramps_upgrade_22(self):
