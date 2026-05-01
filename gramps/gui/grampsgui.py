@@ -632,7 +632,7 @@ class Gramps:
         if hasattr(self, "_vm"):
             if hasattr(self._vm, "window"):
                 parent = self._vm.window
-        ErrorDialog(_("Error parsing arguments"), string, parent=parent)
+        ErrorDialog(_("Cannot process as requested"), string, parent=parent)
 
 
 # -------------------------------------------------------------------------
