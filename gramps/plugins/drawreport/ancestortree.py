@@ -5,7 +5,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2014       Paul Franklin
 # Copyright (C) 2010-2015  Craig J. Anderson
-# Copyright (C) 2025       Dave Khuon
+# Copyright (C) 2025-2026  Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -78,12 +78,6 @@ _MARR = (_("m.", "marriage abbreviation"),)
 
 LVL_GEN, LVL_INDX, LVL_Y = range(3)
 
-
-_fill_box_color = True  # value set by user option selection
-_gender_color_box_names: list[str] = []
-_family_color_box_name = ""
-
-
 # ------------------------------------------------------------------------
 #
 # Box classes
@@ -100,12 +94,13 @@ class PersonBox(BoxBase):
         # self.level = (level[0]-1, level[1])
         self.level = level
         self.idx = 0
+        self.report_gender_colors = utils.get_report_gender_colors()
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
     def set_person_color(self, person):
-        self.boxstr = utils.get_gender_color_box_name(_gender_color_box_names, person)
+        self.boxstr = utils.get_gender_color_box_name(person, "AC2-box", self.report_gender_colors)
 
     def display(self):
         BoxBase.display(self)
@@ -130,12 +125,13 @@ class FamilyBox(BoxBase):
         self.boxstr = "AC2-fam-box"
         # self.level = (level[0]-1, level[1])
         self.level = level
+        self.report_family_colors = utils.get_report_family_colors()
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
     def set_family_color(self):
-        self.boxstr = _family_color_box_name
+        self.boxstr = utils.get_family_color_box_name("AC2-fam-box", self.report_family_colors)
 
 
 # ------------------------------------------------------------------------
@@ -261,8 +257,7 @@ class MakeAncestorTree(AscendPerson):
         self.inc_sib = _gui.inc_sib()
         self.compress_tree = _gui.compress_tree()
 
-        global _fill_box_color
-        _fill_box_color = _gui.get_val("fill_box_color")
+        self.fill_box_color = _gui.get_val("fill_box_color")
 
         self.center_family = None
         self.lines = [None] * (_gui.maxgen() + 1)
@@ -274,6 +269,7 @@ class MakeAncestorTree(AscendPerson):
         self.max_generation = 0
 
         self.calc_items = CalcItems(self.database)
+
 
     def add_person(self, index, indi_handle, fams_handle):
         """Makes a person box and add that person into the Canvas."""
@@ -314,7 +310,7 @@ class MakeAncestorTree(AscendPerson):
                 line = self.lines[indx - 1].line_to
             line.add_to(myself)
 
-        if _fill_box_color and person:
+        if self.fill_box_color and person:
             myself.set_person_color(person)
 
         return myself
@@ -335,7 +331,7 @@ class MakeAncestorTree(AscendPerson):
 
         self.canvas.add_box(myself)
 
-        if _fill_box_color:
+        if self.fill_box_color:
             myself.set_family_color()
 
     def y_index(self, x_level, index):
@@ -500,6 +496,7 @@ class MakeReport:
 
         self.max_generations = 0
 
+
     def get_height_width(self, box):
         """
         obtain width information for each level (x)
@@ -554,7 +551,7 @@ class MakeReport:
 class GUIConnect:
     """This is a BORG object.  There is ONLY one.
     This give some common routines that EVERYONE can use like
-      get the value from a GUI variable
+    get the value from a GUI variable
     """
 
     __shared_state: dict[str, Any] = {}
@@ -911,7 +908,7 @@ class AncestorTreeOptions(MenuReportOptions):
         )
         fill_box_color.set_help(
             _(
-                "Whether to Fill color in the person and marriage boxes."
+                "Whether to fill color in the person and marriage boxes."
                 "  You may change the color scheme by creating a new style."
             )
         )
@@ -1144,6 +1141,9 @@ class AncestorTreeOptions(MenuReportOptions):
     def make_default_style(self, default_style):
         """Make the default output style for the Ancestor Tree."""
 
+        self.report_gender_colors = utils.get_report_gender_colors()
+        self.report_family_colors = utils.get_report_family_colors()
+
         # Paragraph Styles:
         font = FontStyle()
         font.set_size(9)
@@ -1177,9 +1177,10 @@ class AncestorTreeOptions(MenuReportOptions):
         graph_style.set_shadow(1, box_shadow)  # shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-box", graph_style)
-        global _gender_color_box_names
-        _gender_color_box_names = utils.generate_gender_color_styles(
-            default_style, "AC2-box", graph_style
+
+        # generate color box based on gender
+        utils.generate_gender_color_styles(
+            default_style, "AC2-box", graph_style, self.report_gender_colors
         )
 
         graph_style = GraphicsStyle()
@@ -1187,9 +1188,10 @@ class AncestorTreeOptions(MenuReportOptions):
         # graph_style.set_shadow(0, PT2CM(9))  # shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-fam-box", graph_style)
-        global _family_color_box_name
-        _family_color_box_name = utils.generate_family_color_style(
-            default_style, "AC2-fam-box", graph_style
+
+        # generate color box based for family
+        utils.generate_family_color_style(
+            default_style, "AC2-fam-box", graph_style, self.report_family_colors
         )
 
         graph_style = GraphicsStyle()
