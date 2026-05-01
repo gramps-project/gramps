@@ -64,3 +64,6 @@ from .surnametab import SurnameTab
 from .sourcebackreflist import SourceBackRefList
 from .srcattrembedlist import SrcAttrEmbedList
 from .webembedlist import WebEmbedList
+from .dnatestbackreflist import DNATestBackRefList
+from .sharedancestorembedlist import SharedAncestorEmbedList
+from .dnasegmentembedlist import DNASegmentEmbedList

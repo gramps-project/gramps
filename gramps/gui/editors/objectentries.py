@@ -652,3 +652,52 @@ class NoteEntry(ObjEntry):
     def call_selector(self):
         cls = SelectorFactory("Note")
         return cls(self.dbstate, self.uistate, self.track)
+
+
+class DNATestEntry(ObjEntry):
+    """
+    Handles the selection of an existing DNATest kit.
+    No drag-and-drop support in this prototype.
+    """
+
+    EMPTY_TEXT = "<i>%s</i>" % _("To select a DNA test kit, use the buttons")
+    EMPTY_TEXT_RED = "<i>%s</i>" % _("No kit given, click button to select one")
+    EDIT_STR = _("Edit DNA test")
+    SHARE_STR = _("Select an existing DNA test")
+    ADD_STR = _("Add a new DNA test")
+    DEL_STR = _("Remove DNA test")
+    _DND_TYPE = None
+    _DND_ICON = ""
+
+    def get_from_handle(self, handle):
+        return self.db.get_dnatest_from_handle(handle)
+
+    def get_label(self, test):
+        account = test.get_account_name()
+        provider = str(test.get_provider())
+        parts = "%s (%s)" % (account, provider) if provider else account
+        handle = test.get_person_handle()
+        if handle:
+            person = self.db.get_person_from_handle(handle)
+            if person:
+                return "%s • %s" % (name_displayer.display(person), parts)
+        return parts
+
+    def call_editor(self, obj=None):
+        from .editdnatest import EditDNATest
+        from gramps.gen.lib import DNATest
+
+        if obj is None:
+            test = DNATest()
+            func = self.obj_added
+        else:
+            test = obj
+            func = self.after_edit
+        try:
+            EditDNATest(self.dbstate, self.uistate, self.track, test, func)
+        except WindowActiveError:
+            pass
+
+    def call_selector(self):
+        cls = SelectorFactory("DNATest")
+        return cls(self.dbstate, self.uistate, self.track)
