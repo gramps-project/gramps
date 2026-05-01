@@ -211,7 +211,7 @@ class DbGenericUndo(DbUndo):
         db = self.db
         subitems = transaction.get_recnos()
         # sigs[obj_type][trans_type]
-        sigs = [[[] for trans_type in range(3)] for key in range(11)]
+        sigs = [[[] for trans_type in range(3)] for key in range(DNAMATCH_KEY + 1)]
 
         # Process all records in the transaction
         try:
@@ -260,7 +260,7 @@ class DbGenericUndo(DbUndo):
         db = self.db
         subitems = transaction.get_recnos(reverse=True)
         # sigs[obj_type][trans_type]
-        sigs = [[[] for trans_type in range(3)] for key in range(11)]
+        sigs = [[[] for trans_type in range(3)] for key in range(DNAMATCH_KEY + 1)]
 
         # Process all records in the transaction
         try:
@@ -304,7 +304,7 @@ class DbGenericUndo(DbUndo):
         Note that if 'undo' we swap emits
         """
         for trans_type in [TXNDEL, TXNADD, TXNUPD]:
-            for obj_type in range(11):
+            for obj_type in range(DNAMATCH_KEY + 1):
                 handles = sigs[obj_type][trans_type]
                 if handles:
                     if (

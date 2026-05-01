@@ -39,6 +39,7 @@ import copy
 # ------------------------------------------------------------------------
 from gramps.gen.db.dbconst import (
     DBLOGNAME,
+    DNAMATCH_KEY,
     KEY_TO_CLASS_MAP,
     KEY_TO_NAME_MAP,
     PERSON_KEY,
@@ -379,7 +380,7 @@ class DBAPI(DbGeneric):
             # Now, emit signals:
             # do deletes and adds first
             for trans_type in [TXNDEL, TXNADD, TXNUPD]:
-                for obj_type in range(11):
+                for obj_type in range(DNAMATCH_KEY + 1):
                     if (
                         obj_type != REFERENCE_KEY
                         and (obj_type, trans_type) in transaction

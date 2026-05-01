@@ -358,6 +358,24 @@ def navigation_label(db, nav_type, handle_or_obj):
         label = " ".join(label.split())
         if len(label) > 40:
             label = label[:40] + "..."
+    elif nav_type == "DNATest":
+        account = obj.get_account_name()
+        provider = str(obj.get_provider())
+        label = f"{account} ({provider})" if account else f"({provider})"
+    elif nav_type == "DNAMatch":
+        subj_handle = obj.get_subject_test_handle()
+        match_handle = obj.get_match_test_handle()
+        subj_label = ""
+        match_label = ""
+        if subj_handle:
+            subj_test = db.get_dnatest_from_handle(subj_handle)
+            if subj_test:
+                subj_label = subj_test.get_account_name()
+        if match_handle:
+            match_test = db.get_dnatest_from_handle(match_handle)
+            if match_test:
+                match_label = match_test.get_account_name()
+        label = f"{subj_label} - {match_label}" if subj_label or match_label else None
 
     if label and obj:
         label = f"[{obj.get_gramps_id()}] {label}"

@@ -139,13 +139,31 @@ class BackRefModel(Gtk.ListStore):
                 name = p.get_preview()
                 gid = p.gramps_id
                 handle = p.handle
-            else:
+            elif dtype == "Media":
                 p = self.db.get_media_from_handle(ref[1])
                 if not p:
                     continue
                 name = p.get_description()
                 gid = p.gramps_id
                 handle = p.handle
+            elif dtype == "DNATest":
+                p = self.db.get_dnatest_from_handle(ref[1])
+                if not p:
+                    continue
+                account = p.get_account_name()
+                provider = str(p.get_provider())
+                name = f"{account} ({provider})" if account else f"({provider})"
+                gid = p.gramps_id
+                handle = p.handle
+            elif dtype == "DNAMatch":
+                p = self.db.get_dnamatch_from_handle(ref[1])
+                if not p:
+                    continue
+                name = p.gramps_id
+                gid = p.gramps_id
+                handle = p.handle
+            else:
+                continue
 
             # dtype is the class name, i.e. is English
             # We need to use localized string in the model.
