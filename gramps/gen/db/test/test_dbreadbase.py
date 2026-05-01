@@ -55,53 +55,68 @@ class TestIsProxy(unittest.TestCase):
         self.assertFalse(db.is_proxy())
 
 
-class TestRegisterRuleOverride(unittest.TestCase):
-    def test_handler_stored_in_registry(self):
-        """register_rule_override stores handlers under the 'rule' namespace."""
-        db = _MinimalDb()
-        fn = lambda s, orig, d, obj: True
-        db.register_rule_override(("person", "MyRule"), apply_to_one=fn)
-        self.assertIs(
-            db._override_registry["rule"][("person", "MyRule")]["apply_to_one"], fn
-        )
+class _SimpleOverride:
+    def __init__(self, rule):
+        self.rule = rule
 
-    def test_multiple_handlers_stored(self):
-        """Both apply_to_one and prepare can be registered together."""
+    def apply_to_one(self, original, db, obj):
+        return True
+
+
+class TestRegisterRuleOverride(unittest.TestCase):
+    def test_class_stored_in_registry(self):
+        """register_rule_override stores the class under the 'rule' namespace."""
         db = _MinimalDb()
-        apply_fn = lambda s, orig, d, obj: True
-        prepare_fn = lambda s, orig, d, u: None
-        db.register_rule_override(
-            ("person", "MyRule"),
-            apply_to_one=apply_fn,
-            prepare=prepare_fn,
+        db.register_rule_override(("person", "MyRule"), _SimpleOverride)
+        self.assertIs(
+            db._override_registry["rule"][("person", "MyRule")], _SimpleOverride
         )
-        handlers = db._override_registry["rule"][("person", "MyRule")]
-        self.assertIs(handlers["apply_to_one"], apply_fn)
-        self.assertIs(handlers["prepare"], prepare_fn)
 
     def test_different_keys_stored_independently(self):
         """Two keys in the 'rule' namespace do not interfere."""
+
+        class _OverrideA:
+            def __init__(self, rule):
+                pass
+
+            def apply_to_one(self, original, db, obj):
+                return True
+
+        class _OverrideB:
+            def __init__(self, rule):
+                pass
+
+            def apply_to_one(self, original, db, obj):
+                return False
+
         db = _MinimalDb()
-        fn_a = lambda s, orig, d, obj: True
-        fn_b = lambda s, orig, d, obj: False
-        db.register_rule_override(("person", "RuleA"), apply_to_one=fn_a)
-        db.register_rule_override(("person", "RuleB"), apply_to_one=fn_b)
-        self.assertIs(
-            db._override_registry["rule"][("person", "RuleA")]["apply_to_one"], fn_a
-        )
-        self.assertIs(
-            db._override_registry["rule"][("person", "RuleB")]["apply_to_one"], fn_b
-        )
+        db.register_rule_override(("person", "RuleA"), _OverrideA)
+        db.register_rule_override(("person", "RuleB"), _OverrideB)
+        self.assertIs(db._override_registry["rule"][("person", "RuleA")], _OverrideA)
+        self.assertIs(db._override_registry["rule"][("person", "RuleB")], _OverrideB)
 
     def test_registration_overwrites_existing_entry(self):
-        """Re-registering the same key replaces previous handlers."""
+        """Re-registering the same key replaces the previous class."""
+
+        class _OldOverride:
+            def __init__(self, rule):
+                pass
+
+            def apply_to_one(self, original, db, obj):
+                return False
+
+        class _NewOverride:
+            def __init__(self, rule):
+                pass
+
+            def apply_to_one(self, original, db, obj):
+                return True
+
         db = _MinimalDb()
-        fn_old = lambda s, orig, d, obj: False
-        fn_new = lambda s, orig, d, obj: True
-        db.register_rule_override(("person", "MyRule"), apply_to_one=fn_old)
-        db.register_rule_override(("person", "MyRule"), apply_to_one=fn_new)
+        db.register_rule_override(("person", "MyRule"), _OldOverride)
+        db.register_rule_override(("person", "MyRule"), _NewOverride)
         self.assertIs(
-            db._override_registry["rule"][("person", "MyRule")]["apply_to_one"], fn_new
+            db._override_registry["rule"][("person", "MyRule")], _NewOverride
         )
 
     def test_empty_registry_on_new_db(self):
@@ -127,7 +142,7 @@ class TestIsFilterOverride(unittest.TestCase):
         set_custom_filters(_MockCustomFilters({"person": {"MyFilter": filt}}))
 
         db = _MinimalDb()
-        db.register_rule_override(("person", "HasTag"), apply_to_one=lambda *a: True)
+        db.register_rule_override(("person", "HasTag"), _SimpleOverride)
 
         self.assertTrue(db.is_filter_override("person", "MyFilter"))
 
@@ -148,7 +163,7 @@ class TestIsFilterOverride(unittest.TestCase):
 
         db = _MinimalDb()
         # override registered under "event", not "person"
-        db.register_rule_override(("event", "HasTag"), apply_to_one=lambda *a: True)
+        db.register_rule_override(("event", "HasTag"), _SimpleOverride)
 
         result = db.is_filter_override("person", "MyFilter")
         self.assertIsNone(result)

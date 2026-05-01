@@ -70,7 +70,7 @@ class DbReadBase:
         """
         self.basedb = self
         self.__feature = {}  # {"feature": VALUE, ...}
-        self._override_registry = {}  # {namespace: {key: {handler_name: fn}}}
+        self._override_registry = {}  # {namespace: {key: override_class}}
 
     def is_proxy(self):
         """
@@ -106,33 +106,30 @@ class DbReadBase:
             if (table, rule_name) in self._override_registry.get("rule", {}):
                 return True
 
-    def register_rule_override(self, key, **handlers):
+    def register_rule_override(self, key, override_class) -> None:
         """
-        Register database-optimised handler callables under 'rule' namespace.
+        Register a database-optimised override class for a filter rule.
 
         Parameters
         ----------
-        key : hashable
-            Identifies the specific target within the namespace.
-            For filter rules this is the ``(category, rule_name)`` tuple
-            returned by ``gramps.gen.filters.rules._rule._rule_key()``.
-        **handlers : callable
-            Named callables whose names and signatures are defined by the
-            consuming subsystem.
+        key : tuple[str, str]
+            ``(category, rule_name)`` identifying the target rule, e.g.
+            ``("person", "MyRule")``.
+        override_class : type
+            A class (typically a subclass of
+            ``gramps.gen.filters.rules.RuleOverride``) with ``prepare``
+            and/or ``apply_to_one`` methods.  The class is instantiated
+            once per Rule instance when the rule is first executed.
 
-            For the ``"rule"`` namespace the recognised names and their
-            signatures are:
-
-            ``apply_to_one(rule, original, db, obj) -> bool``
-                Called instead of the rule's ``apply_to_one`` method.
-                *rule* is the ``Rule`` instance, *original* is the
-                unwrapped method that would otherwise have been called
-                (useful for delegation), *db* is the database, and *obj*
-                is the object being tested.
-
-            ``prepare(rule, original, db, user) -> None``
+            ``prepare(self, original, db, user) -> None``
                 Called instead of the rule's ``prepare`` method.
-                Arguments follow the same convention as ``apply_to_one``.
+                *original* is the unwrapped rule method, callable as
+                ``original(self.rule, db, user)`` to delegate.
+
+            ``apply_to_one(self, original, db, obj) -> bool``
+                Called instead of the rule's ``apply_to_one`` method.
+                *original* is the unwrapped rule method, callable as
+                ``original(self.rule, db, obj)`` to delegate.
 
             Overrides are bypassed automatically when ``db.is_proxy()``
             returns ``True`` (e.g. Living or Privacy proxy databases).
@@ -145,21 +142,20 @@ class DbReadBase:
 
         Examples
         --------
-        Register fast implementations (such as SQL) for the person ``MyRule`` rule::
+        Register a fast SQL implementation for the person ``MyRule`` rule::
 
-            def fast_prepare(rule, original, db, user):
-                rule.selected_handles = db.sql_select(...)
+            from gramps.gen.filters.rules import RuleOverride
 
-            def fast_apply_to_one(rule, original, db, person):
-                return person.handle in rule.selected_handles
+            class MyRuleOverride(RuleOverride):
+                def prepare(self, original, db, user):
+                    self.selected_handles = set(db.sql_select(...))
 
-            db.register_rule_override(
-                ("person", "MyRule"),
-                apply_to_one=fast_apply_to_one,
-                prepare=fast_prepare,
-            )
+                def apply_to_one(self, original, db, person):
+                    return person.handle in self.selected_handles
+
+            db.register_rule_override(("person", "MyRule"), MyRuleOverride)
         """
-        self._override_registry.setdefault("rule", {})[key] = handlers
+        self._override_registry.setdefault("rule", {})[key] = override_class
 
     def close(self):
         """

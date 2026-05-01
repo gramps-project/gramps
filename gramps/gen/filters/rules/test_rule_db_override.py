@@ -11,7 +11,7 @@ inheritance depth is not a concern.
 
 import unittest
 
-from gramps.gen.filters.rules._rule import Rule
+from gramps.gen.filters.rules._rule import Rule, RuleOverride
 
 
 def _key(cls):
@@ -29,8 +29,8 @@ class _MockDB:
     def is_proxy(self):
         return False
 
-    def register_override(self, namespace, key, **handlers):
-        self._override_registry.setdefault(namespace, {})[key] = handlers
+    def register_override(self, namespace, key, override_class):
+        self._override_registry.setdefault(namespace, {})[key] = override_class
 
 
 class _FakeRule(Rule):
@@ -51,8 +51,12 @@ class TestApplyToOneDbOverride(unittest.TestCase):
         rule = _FakeRule([])
         key = _key(type(rule))
 
+        class _Override(RuleOverride):
+            def apply_to_one(self, original, db, obj):
+                return True
+
         db = _MockDB()
-        db.register_override("rule", key, apply_to_one=lambda self, orig, db, obj: True)
+        db.register_override("rule", key, _Override)
 
         result = rule.apply_to_one(db, None)
         self.assertTrue(result)
@@ -62,12 +66,12 @@ class TestApplyToOneDbOverride(unittest.TestCase):
         rule = _FakeRule([])
         key = _key(type(rule))
 
+        class _Override(RuleOverride):
+            def apply_to_one(self, original, db, obj):
+                return original(self.rule, db, obj)
+
         db = _MockDB()
-        db.register_override(
-            "rule",
-            key,
-            apply_to_one=lambda self, orig, db, obj: orig(self, db, obj),
-        )
+        db.register_override("rule", key, _Override)
 
         # _FakeRule.apply_to_one returns False; the override delegates to it
         result = rule.apply_to_one(db, None)
@@ -99,8 +103,12 @@ class TestApplyToOneDbOverride(unittest.TestCase):
         rule = _ConcreteRule([])
         key = _key(type(rule))
 
+        class _Override(RuleOverride):
+            def apply_to_one(self, original, db, obj):
+                return True
+
         db = _MockDB()
-        db.register_override("rule", key, apply_to_one=lambda s, orig, d, obj: True)
+        db.register_override("rule", key, _Override)
 
         result = rule.apply_to_one(db, None)
         self.assertTrue(result)
@@ -113,12 +121,13 @@ class TestPrepareDbOverride(unittest.TestCase):
         key = _key(type(rule))
 
         called = []
+
+        class _Override(RuleOverride):
+            def prepare(self, original, db, user):
+                called.append(True)
+
         db = _MockDB()
-        db.register_override(
-            "rule",
-            key,
-            prepare=lambda s, orig, d, u: called.append(True),
-        )
+        db.register_override("rule", key, _Override)
 
         rule.prepare(db, None)
         self.assertEqual(called, [True])
@@ -151,14 +160,36 @@ class TestPrepareDbOverride(unittest.TestCase):
         key = _key(type(rule))
 
         called = []
+
+        class _Override(RuleOverride):
+            def prepare(self, original, db, user):
+                called.append(True)
+
         db = _MockDB()
-        db.register_override(
-            "rule", key, prepare=lambda s, orig, d, u: called.append(True)
-        )
+        db.register_override("rule", key, _Override)
 
         rule.prepare(db, None)
         self.assertEqual(called, [True])
         self.assertFalse(getattr(db, "_base_prepare_called", False))
+
+    def test_override_instance_shared_between_prepare_and_apply(self):
+        """State set in prepare is available during apply_to_one."""
+        rule = _FakeRule([])
+        key = _key(type(rule))
+
+        class _Override(RuleOverride):
+            def prepare(self, original, db, user):
+                self.selected = {42}
+
+            def apply_to_one(self, original, db, obj):
+                return obj in self.selected
+
+        db = _MockDB()
+        db.register_override("rule", key, _Override)
+
+        rule.prepare(db, None)
+        self.assertTrue(rule.apply_to_one(db, 42))
+        self.assertFalse(rule.apply_to_one(db, 99))
 
 
 class TestProxyBypassesOverride(unittest.TestCase):
@@ -173,10 +204,12 @@ class TestProxyBypassesOverride(unittest.TestCase):
             def is_proxy(self):
                 return True
 
+        class _Override(RuleOverride):
+            def apply_to_one(self, original, db, obj):
+                return "override_result"
+
         db = _ProxyDB()
-        db.register_override(
-            "rule", key, apply_to_one=lambda s, orig, d, obj: "override_result"
-        )
+        db.register_override("rule", key, _Override)
 
         # _FakeRule.apply_to_one returns False; override must not be called
         result = rule.apply_to_one(db, None)
@@ -193,10 +226,12 @@ class TestProxyBypassesOverride(unittest.TestCase):
             def is_proxy(self):
                 return True
 
+        class _Override(RuleOverride):
+            def prepare(self, original, db, user):
+                called.append("override")
+
         db = _ProxyDB()
-        db.register_override(
-            "rule", key, prepare=lambda s, orig, d, u: called.append("override")
-        )
+        db.register_override("rule", key, _Override)
 
         rule.prepare(db, None)
         self.assertEqual(called, [])
@@ -228,14 +263,13 @@ class TestNoDoubleDispatch(unittest.TestCase):
         rule = _ConcreteRule([])
         key = _key(type(rule))
 
+        class _Override(RuleOverride):
+            def apply_to_one(self, original, db, obj):
+                call_log.append("override")
+                return original(self.rule, db, obj)
+
         db = _MockDB()
-        db.register_override(
-            "rule",
-            key,
-            apply_to_one=lambda s, orig, d, obj: (
-                call_log.append("override") or orig(s, d, obj)
-            ),
-        )
+        db.register_override("rule", key, _Override)
 
         result = rule.apply_to_one(db, None)
 
