@@ -115,7 +115,9 @@ class PersonBox(DescendantBoxBase):
         self.boldable = boldable
 
     def set_person_color(self, person, base_name):
-        self.boxstr = utils.get_gender_color_box_name(person, base_name, self.report_gender_colors)
+        self.boxstr = utils.get_gender_color_box_name(
+            person, base_name, self.report_gender_colors
+        )
 
 
 class FamilyBox(DescendantBoxBase):
@@ -128,7 +130,9 @@ class FamilyBox(DescendantBoxBase):
         self.level = level
 
     def set_family_color(self):
-        self.boxstr = utils.get_family_color_box_name("CG2-fam-box", self.report_family_colors)
+        self.boxstr = utils.get_family_color_box_name(
+            "CG2-fam-box", self.report_family_colors
+        )
 
 
 class PlaceHolderBox(BoxBase):
@@ -1265,7 +1269,7 @@ class MakeReport:
 class GuiConnect:
     """This is a BORG object.  There is ONLY one.
     This give some common routines that EVERYONE can use like
-      get the value from a GUI variable
+    get the value from a GUI variable
     """
 
     __shared_state: dict[str, Any] = {}
