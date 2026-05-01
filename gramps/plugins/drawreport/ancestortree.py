@@ -100,7 +100,9 @@ class PersonBox(BoxBase):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
     def set_person_color(self, person):
-        self.boxstr = utils.get_gender_color_box_name(person, "AC2-box", self.report_gender_colors)
+        self.boxstr = utils.get_gender_color_box_name(
+            person, "AC2-box", self.report_gender_colors
+        )
 
     def display(self):
         BoxBase.display(self)
@@ -131,7 +133,9 @@ class FamilyBox(BoxBase):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
     def set_family_color(self):
-        self.boxstr = utils.get_family_color_box_name("AC2-fam-box", self.report_family_colors)
+        self.boxstr = utils.get_family_color_box_name(
+            "AC2-fam-box", self.report_family_colors
+        )
 
 
 # ------------------------------------------------------------------------
