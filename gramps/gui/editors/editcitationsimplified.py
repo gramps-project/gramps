@@ -147,6 +147,13 @@ class EditCitationSimplified(EditCitation):
         self._note_editor.set_wrap_mode(Gtk.WrapMode.WORD)
         self._note_editor.set_editable(not self.db.readonly)
 
+        if not self.db.readonly:
+            toolbar, self._note_action_group = self._note_editor.create_toolbar(
+                self.uistate.uimanager, self.window
+            )
+            self._note_box.pack_start(toolbar, False, False, 0)
+            self._note_editor.set_transient_parent(self.window)
+
         sw = Gtk.ScrolledWindow()
         sw.set_shadow_type(Gtk.ShadowType.IN)
         sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
