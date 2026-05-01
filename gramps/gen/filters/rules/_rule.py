@@ -65,7 +65,9 @@ def _wrap_prepare(method):
                 key = (parts[parts.index("rules") + 1], cls.__name__)
             except (ValueError, IndexError):
                 key = (None, cls.__name__)
-            override_class = getattr(db, "_override_registry", {}).get("rule", {}).get(key)
+            override_class = (
+                getattr(db, "_override_registry", {}).get("rule", {}).get(key)
+            )
             if override_class is not None:
                 LOG.debug("%s using optimized prepare", cls.__name__)
                 self._in_prepare_override = True
@@ -91,7 +93,9 @@ def _wrap_apply_to_one(method):
                 key = (parts[parts.index("rules") + 1], cls.__name__)
             except (ValueError, IndexError):
                 key = (None, cls.__name__)
-            override_class = getattr(db, "_override_registry", {}).get("rule", {}).get(key)
+            override_class = (
+                getattr(db, "_override_registry", {}).get("rule", {}).get(key)
+            )
             if override_class is not None:
                 LOG.debug("%s using optimized apply_to_one", cls.__name__)
                 self._in_apply_override = True
@@ -109,11 +113,11 @@ def _wrap_apply_to_one(method):
     return wrapper
 
 
-#------------------------------------------------------------
+# ------------------------------------------------------------
 #
 # RuleOverride
 #
-#------------------------------------------------------------
+# ------------------------------------------------------------
 class RuleOverride:
     """Base class for database-optimised rule overrides.
 

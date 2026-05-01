@@ -115,9 +115,7 @@ class TestRegisterRuleOverride(unittest.TestCase):
         db = _MinimalDb()
         db.register_rule_override(("person", "MyRule"), _OldOverride)
         db.register_rule_override(("person", "MyRule"), _NewOverride)
-        self.assertIs(
-            db._override_registry["rule"][("person", "MyRule")], _NewOverride
-        )
+        self.assertIs(db._override_registry["rule"][("person", "MyRule")], _NewOverride)
 
     def test_empty_registry_on_new_db(self):
         """A fresh database has an empty override registry."""
