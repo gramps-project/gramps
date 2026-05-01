@@ -46,7 +46,6 @@ from ...datehandler import get_date
 from ...display.place import displayer as _pd
 from ...utils.file import media_path_full
 from ...utils.symbols import Symbols
-from ...config import config
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 from ...lib.person import Person
 
@@ -69,16 +68,31 @@ def get_rgb_color(color_name):
 # -------------------------------------------------------------------------
 def get_report_gender_colors():
     return {
-        Person.FEMALE: { 'color': get_rgb_color("colors.female-alive"), 'suffix': "_FEMALE" },
-        Person.MALE: { 'color': get_rgb_color("colors.male-alive"), 'suffix': "_MALE" },
-        Person.UNKNOWN: { 'color': get_rgb_color("colors.unknown-alive"), 'suffix': "_UNKNOWN" },
-        Person.OTHER: { 'color': get_rgb_color("colors.other-alive"), 'suffix': "_OTHER" },
+        Person.FEMALE: {
+            "color": get_rgb_color("colors.female-alive"),
+            "suffix": "_FEMALE"
+        },
+        Person.MALE: {
+            "color": get_rgb_color("colors.male-alive"),
+            "suffix": "_MALE"
+        },
+        Person.UNKNOWN: {
+            "color": get_rgb_color("colors.unknown-alive"),
+            "suffix": "_UNKNOWN"
+        },
+        Person.OTHER: {
+            "color": get_rgb_color("colors.other-alive"),
+            "suffix": "_OTHER"
+        },
     }
 
 def get_report_family_colors():
     return {
         # currently only one color for family boxes, but this allows for more in the future
-        0: { 'color': get_rgb_color("colors.family"), 'suffix': "_FAMILY" },
+        0: {
+            "color": get_rgb_color("colors.family"),
+            "suffix": "_FAMILY"
+        },
     }
 
 SYMBOLS = Symbols()
@@ -475,8 +489,8 @@ def get_gender_symbol(person):
 # -------------------------------------------------------------------------
 def generate_gender_color_styles(style, base_draw_name, graph_style, report_gender_colors):
     for gen in [Person.FEMALE, Person.MALE, Person.UNKNOWN, Person.OTHER]:
-        gen_color = report_gender_colors[gen]['color']
-        gen_suffix = report_gender_colors[gen]['suffix']
+        gen_color = report_gender_colors[gen]["color"]
+        gen_suffix = report_gender_colors[gen]["suffix"]
         graph_style.set_fill_color(gen_color)
         graph_style.set_description(_("The style for the person box for " + gen_suffix + "."))
         box_name = base_draw_name + gen_suffix
@@ -490,7 +504,7 @@ def generate_gender_color_styles(style, base_draw_name, graph_style, report_gend
 # -------------------------------------------------------------------------
 def get_gender_color_box_name(person, base_draw_name, report_gender_colors):
     """generate gender box name"""
-    return base_draw_name + report_gender_colors[person.gender]['suffix']
+    return base_draw_name + report_gender_colors[person.gender]["suffix"]
 
 # -------------------------------------------------------------------------
 #
@@ -499,8 +513,8 @@ def get_gender_color_box_name(person, base_draw_name, report_gender_colors):
 #
 # -------------------------------------------------------------------------
 def generate_family_color_style(style, base_draw_name, graph_style, report_family_colors):
-    fam_color = report_family_colors[0]['color']
-    fam_suffix = report_family_colors[0]['suffix']
+    fam_color = report_family_colors[0]["color"]
+    fam_suffix = report_family_colors[0]["suffix"]
     graph_style.set_fill_color(fam_color)
     graph_style.set_description(_("The style for the family box."))
     box_name = base_draw_name + fam_suffix
@@ -514,4 +528,4 @@ def generate_family_color_style(style, base_draw_name, graph_style, report_famil
 # -------------------------------------------------------------------------
 def get_family_color_box_name(base_draw_name, report_family_colors):
     """generate family box name"""
-    return base_draw_name + report_family_colors[0]['suffix']
+    return base_draw_name + report_family_colors[0]["suffix"]
