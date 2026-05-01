@@ -27,6 +27,8 @@ from ...db.utils import import_as_dict
 from ...user import User
 from .. import (
     Citation,
+    DNAMatch,
+    DNATest,
     Event,
     Family,
     Media,
@@ -109,6 +111,18 @@ class NoteCheck(unittest.TestCase, BaseCheck):
 class TagCheck(unittest.TestCase, BaseCheck):
     def setUp(self):
         self.cls = Tag
+        self.object = self.cls()
+
+
+class DNATestCheck(unittest.TestCase, BaseCheck):
+    def setUp(self):
+        self.cls = DNATest
+        self.object = self.cls()
+
+
+class DNAMatchCheck(unittest.TestCase, BaseCheck):
+    def setUp(self):
+        self.cls = DNAMatch
         self.object = self.cls()
 
 

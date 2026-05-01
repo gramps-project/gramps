@@ -77,6 +77,13 @@ from .nameorigintype import NameOriginType
 from .notetype import NoteType
 from .styledtexttagtype import StyledTextTagType
 from .placetype import PlaceType
+from .dnaprovidertype import DNAProviderType
+from .dnatesttype import DNATestType
+from .dnagenomebuildtype import DNAGenomeBuildType
+from .dnatest import DNATest
+from .dnasegment import DNASegment
+from .sharedancestor import SharedAncestor
+from .dnamatch import DNAMatch
 
 # Text
 from .styledtexttag import StyledTextTag
