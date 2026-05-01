@@ -50,9 +50,11 @@ from ...config import config
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 from ...lib.person import Person
 
+
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value, context=""):  # enable deferred translations
     return "%s\x04%s" % (context, value) if context else value
+
 
 def get_rgb_color(color_name):
     hex_color = config.get(color_name)[0].lstrip("#")
@@ -69,32 +71,19 @@ def get_rgb_color(color_name):
 # -------------------------------------------------------------------------
 def get_report_gender_colors():
     return {
-        Person.FEMALE: [
-            get_rgb_color("colors.female-alive"),
-            "_FEMALE"
-        ],
-        Person.MALE: [
-            get_rgb_color("colors.male-alive"),
-            "_MALE"
-        ],
-        Person.UNKNOWN: [
-            get_rgb_color("colors.unknown-alive"),
-            "_UNKNOWN"
-        ],
-        Person.OTHER: [
-            get_rgb_color("colors.other-alive"),
-            "_OTHER"
-        ],
+        Person.FEMALE: [get_rgb_color("colors.female-alive"), "_FEMALE"],
+        Person.MALE: [get_rgb_color("colors.male-alive"), "_MALE"],
+        Person.UNKNOWN: [get_rgb_color("colors.unknown-alive"), "_UNKNOWN"],
+        Person.OTHER: [get_rgb_color("colors.other-alive"), "_OTHER"],
     }
+
 
 def get_report_family_colors():
     return {
         # currently only one color for family boxes, but this allows for more in the future
-        0: [
-            get_rgb_color("colors.family"),
-            "_FAMILY"
-        ],
+        0: [get_rgb_color("colors.family"), "_FAMILY"],
     }
+
 
 SYMBOLS = Symbols()
 
@@ -488,12 +477,16 @@ def get_gender_symbol(person):
 # and its graph and return their name set
 #
 # -------------------------------------------------------------------------
-def generate_gender_color_styles(style, base_draw_name, graph_style, report_gender_colors):
+def generate_gender_color_styles(
+    style, base_draw_name, graph_style, report_gender_colors
+):
     for gen in report_gender_colors.keys():
         gen_color = report_gender_colors[gen][0]
         gen_suffix = report_gender_colors[gen][1]
         graph_style.set_fill_color(gen_color)
-        graph_style.set_description(_("The style for the person box for " + gen_suffix + "."))
+        graph_style.set_description(
+            _("The style for the person box for " + gen_suffix + ".")
+        )
         box_name = base_draw_name + gen_suffix
         style.add_draw_style(box_name, graph_style)
 
@@ -507,13 +500,16 @@ def get_gender_color_box_name(person, base_draw_name, report_gender_colors):
     """generate gender box name"""
     return base_draw_name + report_gender_colors[person.gender][1]
 
+
 # -------------------------------------------------------------------------
 #
 # Generate the color family for the given style
 # and its graph and return its name
 #
 # -------------------------------------------------------------------------
-def generate_family_color_style(style, base_draw_name, graph_style, report_family_colors):
+def generate_family_color_style(
+    style, base_draw_name, graph_style, report_family_colors
+):
     fam_color = report_family_colors[0][0]
     fam_suffix = report_family_colors[0][1]
     graph_style.set_fill_color(fam_color)

@@ -78,6 +78,7 @@ _MARR = (_("m.", "marriage abbreviation"),)
 
 LVL_GEN, LVL_INDX, LVL_Y = range(3)
 
+
 # ------------------------------------------------------------------------
 #
 # Box classes
@@ -273,7 +274,6 @@ class MakeAncestorTree(AscendPerson):
         self.max_generation = 0
 
         self.calc_items = CalcItems(self.database)
-
 
     def add_person(self, index, indi_handle, fams_handle):
         """Makes a person box and add that person into the Canvas."""
@@ -499,7 +499,6 @@ class MakeReport:
         self.mother_ht = self.father_ht = 0
 
         self.max_generations = 0
-
 
     def get_height_width(self, box):
         """
