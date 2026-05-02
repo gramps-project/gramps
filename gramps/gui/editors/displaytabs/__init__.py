@@ -67,3 +67,5 @@ from .webembedlist import WebEmbedList
 from .dnatestbackreflist import DNATestBackRefList
 from .sharedancestorembedlist import SharedAncestorEmbedList
 from .dnasegmentembedlist import DNASegmentEmbedList
+from .dnatestattr import DNATestAttrEmbedList
+from .dnamatchattr import DNAMatchAttrEmbedList

@@ -29,6 +29,7 @@ from .address import Address
 from .location import Location
 from .attribute import Attribute
 from .srcattribute import SrcAttribute
+from .dnaattr import DNAAttribute
 from .eventref import EventRef
 from .ldsord import LdsOrd
 from .mediaref import MediaRef
@@ -65,6 +66,7 @@ from .grampstype import GrampsType
 from .nametype import NameType
 from .attrtype import AttributeType
 from .srcattrtype import SrcAttributeType
+from .dnaattrtype import DNAAttributeType
 from .urltype import UrlType
 from .childreftype import ChildRefType
 from .repotype import RepositoryType

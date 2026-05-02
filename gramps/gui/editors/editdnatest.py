@@ -36,7 +36,7 @@ from .objectentries import PersonEntry
 from ..glade import Glade
 from ..dialog import ErrorDialog
 from .displaytabs import (
-    AttrEmbedList,
+    DNATestAttrEmbedList,
     CitationEmbedList,
     NoteTab,
     GalleryTab,
@@ -196,7 +196,7 @@ class EditDNATest(EditPrimary):
     def _create_tabbed_pages(self):
         notebook = Gtk.Notebook()
 
-        self.attr_list = AttrEmbedList(
+        self.attr_list = DNATestAttrEmbedList(
             self.dbstate,
             self.uistate,
             self.track,

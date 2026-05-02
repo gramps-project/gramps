@@ -37,7 +37,7 @@ from .objectentries import DNATestEntry, PersonEntry
 from ..glade import Glade
 from ..dialog import ErrorDialog
 from .displaytabs import (
-    AttrEmbedList,
+    DNAMatchAttrEmbedList,
     CitationEmbedList,
     NoteTab,
     GalleryTab,
@@ -464,7 +464,7 @@ class EditDNAMatch(EditPrimary):
         )
         self._add_tab(notebook, self.segment_list)
 
-        self.attr_list = AttrEmbedList(
+        self.attr_list = DNAMatchAttrEmbedList(
             self.dbstate,
             self.uistate,
             self.track,

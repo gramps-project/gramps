@@ -890,6 +890,20 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_dnatest_attribute_types(self):
+        """
+        Return a list of all Attribute types associated with DNATest instances
+        in the database.
+        """
+        raise NotImplementedError
+
+    def get_dnamatch_attribute_types(self):
+        """
+        Return a list of all Attribute types associated with DNAMatch instances
+        in the database.
+        """
+        raise NotImplementedError
+
     def get_event_types(self):
         """
         Return a list of all event types in the database.

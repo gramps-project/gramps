@@ -688,6 +688,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.media_attributes = set()
         self.event_attributes = set()
         self.place_types = set()
+        self.dnatest_attributes = set()
+        self.dnamatch_attributes = set()
         # ----------------------------------
         self.undodb = None
         self.cmap_index = 0
@@ -830,6 +832,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.media_attributes = self._get_metadata("mattr_names", set())
         self.event_attributes = self._get_metadata("eattr_names", set())
         self.place_types = self._get_metadata("place_types", set())
+        self.dnatest_attributes = self._get_metadata("dnatest_attr_names", set())
+        self.dnamatch_attributes = self._get_metadata("dnamatch_attr_names", set())
 
         # surname list
         self.surname_list = self.get_surname_list()
@@ -970,6 +974,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._set_metadata("mattr_names", self.media_attributes)
         self._set_metadata("eattr_names", self.event_attributes)
         self._set_metadata("place_types", self.place_types)
+        self._set_metadata("dnatest_attr_names", self.dnatest_attributes)
+        self._set_metadata("dnamatch_attr_names", self.dnamatch_attributes)
 
         # Save misc items:
         if self.has_changed:
@@ -2540,6 +2546,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             ]
         self.media_attributes.update(attr_list)
 
+        self.dnatest_attributes.update(
+            [
+                str(attr.type)
+                for attr in dnatest.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
+        )
+
     def commit_dnamatch(self, dnamatch, transaction, change_time=None):
         """
         Commit the specified DNAMatch to the database, storing the changes as
@@ -2555,6 +2569,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 if attr.type.is_custom() and str(attr.type)
             ]
         self.media_attributes.update(attr_list)
+
+        self.dnamatch_attributes.update(
+            [
+                str(attr.type)
+                for attr in dnamatch.attribute_list
+                if attr.type.is_custom() and str(attr.type)
+            ]
+        )
 
     def _after_commit(self, transaction):
         """
@@ -2770,6 +2792,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         instances in the database.
         """
         return list(self.source_attributes)
+
+    def get_dnatest_attribute_types(self):
+        """
+        Return a list of all Attribute types associated with DNATest instances
+        in the database.
+        """
+        return list(self.dnatest_attributes)
+
+    def get_dnamatch_attribute_types(self):
+        """
+        Return a list of all Attribute types associated with DNAMatch instances
+        in the database.
+        """
+        return list(self.dnamatch_attributes)
 
     def get_source_media_types(self):
         """

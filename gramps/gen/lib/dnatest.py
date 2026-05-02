@@ -34,7 +34,7 @@ import logging
 #
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
-from .attrbase import AttributeBase
+from .attrbase import DNAAttributeBase
 from .citationbase import CitationBase
 from .datebase import DateBase
 from .dnagenomebuildtype import DNAGenomeBuildType
@@ -59,7 +59,7 @@ class DNATest(
     CitationBase,
     NoteBase,
     MediaBase,
-    AttributeBase,
+    DNAAttributeBase,
     DateBase,
     PrimaryObject,
 ):
@@ -83,7 +83,7 @@ class DNATest(
         CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         MediaBase.__init__(self, source)
-        AttributeBase.__init__(self)
+        DNAAttributeBase.__init__(self)
         DateBase.__init__(self, source)
 
         if source:
@@ -125,7 +125,7 @@ class DNATest(
             CitationBase.serialize(self),
             NoteBase.serialize(self),
             MediaBase.serialize(self),
-            AttributeBase.serialize(self),
+            DNAAttributeBase.serialize(self),
             self.change,
             TagBase.serialize(self),
             self.private,
@@ -167,8 +167,8 @@ class DNATest(
         :rtype: dict
         """
         # pylint: disable=import-outside-toplevel
-        from .attribute import Attribute
         from .date import Date
+        from .dnaattr import DNAAttribute
         from .mediaref import MediaRef
 
         return {
@@ -211,7 +211,7 @@ class DNATest(
                 },
                 "attribute_list": {
                     "type": "array",
-                    "items": Attribute.get_schema(),
+                    "items": DNAAttribute.get_schema(),
                     "title": _("Attributes"),
                 },
                 "change": {"type": "integer", "title": _("Last changed")},
@@ -262,7 +262,7 @@ class DNATest(
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
-        AttributeBase.unserialize(self, attribute_list)
+        DNAAttributeBase.unserialize(self, attribute_list)
         TagBase.unserialize(self, tag_list)
         return self
 

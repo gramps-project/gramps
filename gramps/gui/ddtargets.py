@@ -151,6 +151,7 @@ class _DdTargets:
         self.SOURCEREF = _DdType(self, "srcref")
         self.SOURCE_LINK = _DdType(self, "source-link")
         self.SRCATTRIBUTE = _DdType(self, "sattr")
+        self.DNAATTRIBUTE = _DdType(self, "dnaattr")
         self.URL = _DdType(self, "url")
         self.SURNAME = _DdType(self, "surname")
         self.CITATION_LINK = _DdType(self, "citation-link")
@@ -183,6 +184,7 @@ class _DdTargets:
             self.SOURCEREF,
             self.SOURCE_LINK,
             self.SRCATTRIBUTE,
+            self.DNAATTRIBUTE,
             self.URL,
             self.SURNAME,
             self.CITATION_LINK,

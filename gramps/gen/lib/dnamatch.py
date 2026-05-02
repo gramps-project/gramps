@@ -34,7 +34,7 @@ import logging
 #
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
-from .attrbase import AttributeBase
+from .attrbase import DNAAttributeBase
 from .citationbase import CitationBase
 from .dnasegment import DNASegment
 from .mediabase import MediaBase
@@ -57,7 +57,7 @@ class DNAMatch(
     CitationBase,
     NoteBase,
     MediaBase,
-    AttributeBase,
+    DNAAttributeBase,
     PrimaryObject,
 ):
     """
@@ -83,7 +83,7 @@ class DNAMatch(
         CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         MediaBase.__init__(self, source)
-        AttributeBase.__init__(self)
+        DNAAttributeBase.__init__(self)
 
         if source:
             self.__subject_test_handle = source.__subject_test_handle
@@ -136,7 +136,7 @@ class DNAMatch(
             CitationBase.serialize(self),
             NoteBase.serialize(self),
             MediaBase.serialize(self),
-            AttributeBase.serialize(self),
+            DNAAttributeBase.serialize(self),
             self.change,
             TagBase.serialize(self),
             self.private,
@@ -184,7 +184,7 @@ class DNAMatch(
         :rtype: dict
         """
         # pylint: disable=import-outside-toplevel
-        from .attribute import Attribute
+        from .dnaattr import DNAAttribute
         from .mediaref import MediaRef
 
         return {
@@ -256,7 +256,7 @@ class DNAMatch(
                 },
                 "attribute_list": {
                     "type": "array",
-                    "items": Attribute.get_schema(),
+                    "items": DNAAttribute.get_schema(),
                     "title": _("Attributes"),
                 },
                 "change": {"type": "integer", "title": _("Last changed")},
@@ -308,7 +308,7 @@ class DNAMatch(
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
-        AttributeBase.unserialize(self, attribute_list)
+        DNAAttributeBase.unserialize(self, attribute_list)
         TagBase.unserialize(self, tag_list)
         return self
 
