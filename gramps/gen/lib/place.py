@@ -515,6 +515,20 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                     return True
         return False
 
+    def _remove_handle_references(self, classname, handle_list):
+        """
+        Remove all references in this object to object handles in the list.
+
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle_list: The list of handles to be removed.
+        :type handle_list: list
+        """
+        if classname == "Place":
+            self.placeref_list = [
+                ref for ref in self.placeref_list if ref.ref not in handle_list
+            ]
+
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         """
         Replace all references to old handle with those to the new handle.
