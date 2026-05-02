@@ -44,7 +44,7 @@ from gi.repository import Gtk
 # -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.utils.db import dnatest_short_label
 from .flatbasemodel import FlatBaseModel
 
 
@@ -59,19 +59,18 @@ class DNAMatchModel(FlatBaseModel):
 
     Column order matches the COL_* constants in DNAMatchView:
       0  Gramps ID
-      1  Subject person (via subject_test_handle -> DNATest -> person)
-      2  Match account name (via match_test_handle -> DNATest.account_name)
-      3  Match person (via match_test_handle -> DNATest -> person)
-      4  Shared cM
-      5  Largest segment cM
-      6  Segment count
-      7  Predicted relationship
-      8  Predicted generations
-      9  Shared ancestors count
-     10  Private
-     11  Tags
-     12  Last changed
-     13  Tag color (model-only, not displayed)
+      1  Subject test (person name or account name + provider)
+      2  Match test (person name or account name + provider)
+      3  Shared cM
+      4  Largest segment cM
+      5  Segment count
+      6  Predicted relationship
+      7  Predicted generations
+      8  Shared ancestors count
+      9  Private
+     10  Tags
+     11  Last changed
+     12  Tag color (model-only, not displayed)
     """
 
     def __init__(
@@ -89,9 +88,8 @@ class DNAMatchModel(FlatBaseModel):
         self.map = db.get_raw_dnamatch_data
         self.fmap = [
             self.column_id,
-            self.column_subject_person,
-            self.column_match_account,
-            self.column_match_person,
+            self.column_subject_test,
+            self.column_match_test,
             self.column_shared_cm,
             self.column_largest_seg,
             self.column_seg_count,
@@ -105,9 +103,8 @@ class DNAMatchModel(FlatBaseModel):
         ]
         self.smap = [
             self.column_id,
-            self.column_subject_person,
-            self.column_match_account,
-            self.column_match_person,
+            self.column_subject_test,
+            self.column_match_test,
             self.sort_shared_cm,
             self.sort_largest_seg,
             self.sort_seg_count,
@@ -139,7 +136,7 @@ class DNAMatchModel(FlatBaseModel):
         """
         Return the color column index.
         """
-        return 13
+        return 12
 
     def on_get_n_columns(self):
         return len(self.fmap) + 1
@@ -147,48 +144,20 @@ class DNAMatchModel(FlatBaseModel):
     def column_id(self, data):
         return data.gramps_id
 
-    def _get_dnatest_person_name(self, test_handle):
-        """
-        Return the primary name of the person linked to a DNATest handle.
-        """
-        if not test_handle:
-            return ""
-        test = self.db.get_dnatest_from_handle(test_handle)
-        if test:
-            person_handle = test.get_person_handle()
-            if person_handle:
-                person = self.db.get_person_from_handle(person_handle)
-                if person:
-                    return name_displayer.display(person)
-        return ""
-
-    def column_subject_person(self, data):
+    def column_subject_test(self, data):
         handle = data.handle
-        cached, value = self.get_cached_value(handle, "SUBJ_PERSON")
+        cached, value = self.get_cached_value(handle, "SUBJ_TEST")
         if not cached:
-            value = self._get_dnatest_person_name(data.subject_test_handle)
-            self.set_cached_value(handle, "SUBJ_PERSON", value)
+            value = dnatest_short_label(self.db, data.subject_test_handle) if data.subject_test_handle else ""
+            self.set_cached_value(handle, "SUBJ_TEST", value)
         return value
 
-    def column_match_account(self, data):
+    def column_match_test(self, data):
         handle = data.handle
-        cached, value = self.get_cached_value(handle, "MATCH_ACCOUNT")
+        cached, value = self.get_cached_value(handle, "MATCH_TEST")
         if not cached:
-            value = ""
-            test_handle = data.match_test_handle
-            if test_handle:
-                test = self.db.get_dnatest_from_handle(test_handle)
-                if test:
-                    value = test.get_account_name()
-            self.set_cached_value(handle, "MATCH_ACCOUNT", value)
-        return value
-
-    def column_match_person(self, data):
-        handle = data.handle
-        cached, value = self.get_cached_value(handle, "MATCH_PERSON")
-        if not cached:
-            value = self._get_dnatest_person_name(data.match_test_handle)
-            self.set_cached_value(handle, "MATCH_PERSON", value)
+            value = dnatest_short_label(self.db, data.match_test_handle) if data.match_test_handle else ""
+            self.set_cached_value(handle, "MATCH_TEST", value)
         return value
 
     def _fmt_float(self, val):

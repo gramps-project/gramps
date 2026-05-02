@@ -409,6 +409,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             "media",
             "note",
             "tag",
+            "dnatest",
+            "dnamatch",
         ]
         for op, signal in zip(
             ["add", "update", "delete", "rebuild"], [(list,), (list,), (list,), None]

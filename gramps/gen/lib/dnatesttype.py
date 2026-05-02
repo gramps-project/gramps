@@ -54,7 +54,7 @@ class DNATestType(GrampsType):
     MTDNA_FULL = 8
 
     _CUSTOM = CUSTOM
-    _DEFAULT = AUTOSOMAL
+    _DEFAULT = UNKNOWN
 
     _DATAMAP = [
         (UNKNOWN, _("Unknown"), "Unknown"),

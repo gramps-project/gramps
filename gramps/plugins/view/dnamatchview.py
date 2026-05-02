@@ -59,24 +59,22 @@ class DNAMatchView(ListView):
     """
 
     COL_ID = 0
-    COL_SUBJECT_PERSON = 1
-    COL_MATCH_ACCOUNT = 2
-    COL_MATCH_PERSON = 3
-    COL_SHARED_CM = 4
-    COL_LARGEST_SEG = 5
-    COL_SEG_COUNT = 6
-    COL_PREDICTED_REL = 7
-    COL_PRED_GEN = 8
-    COL_SHARED_ANCS = 9
-    COL_PRIV = 10
-    COL_TAGS = 11
-    COL_CHAN = 12
+    COL_SUBJECT_TEST = 1
+    COL_MATCH_TEST = 2
+    COL_SHARED_CM = 3
+    COL_LARGEST_SEG = 4
+    COL_SEG_COUNT = 5
+    COL_PREDICTED_REL = 6
+    COL_PRED_GEN = 7
+    COL_SHARED_ANCS = 8
+    COL_PRIV = 9
+    COL_TAGS = 10
+    COL_CHAN = 11
 
     COLUMNS = [
         (_("ID"), TEXT, None),
-        (_("Subject person"), TEXT, None),
-        (_("Match account name"), TEXT, None),
-        (_("Match person"), TEXT, None),
+        (_("Subject test"), TEXT, None),
+        (_("Match test"), TEXT, None),
         (_("Shared cM"), TEXT, None),
         (_("Largest segment cM"), TEXT, None),
         (_("Segment count"), TEXT, None),
@@ -92,9 +90,8 @@ class DNAMatchView(ListView):
         (
             "columns.visible",
             [
-                COL_SUBJECT_PERSON,
-                COL_MATCH_ACCOUNT,
-                COL_MATCH_PERSON,
+                COL_SUBJECT_TEST,
+                COL_MATCH_TEST,
                 COL_SHARED_CM,
                 COL_LARGEST_SEG,
                 COL_PREDICTED_REL,
@@ -104,9 +101,8 @@ class DNAMatchView(ListView):
             "columns.rank",
             [
                 COL_ID,
-                COL_SUBJECT_PERSON,
-                COL_MATCH_ACCOUNT,
-                COL_MATCH_PERSON,
+                COL_SUBJECT_TEST,
+                COL_MATCH_TEST,
                 COL_SHARED_CM,
                 COL_LARGEST_SEG,
                 COL_SEG_COUNT,
@@ -118,7 +114,7 @@ class DNAMatchView(ListView):
                 COL_CHAN,
             ],
         ),
-        ("columns.size", [75, 200, 150, 150, 75, 75, 75, 120, 75, 75, 40, 100, 100]),
+        ("columns.size", [75, 200, 200, 75, 75, 75, 120, 75, 75, 40, 100, 100]),
     )
 
     ADD_MSG = _("Add a new DNA match")
