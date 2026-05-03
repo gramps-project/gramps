@@ -50,6 +50,11 @@ from ...config import config
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 from ...lib.person import Person
 
+# just to borrow these constants from Person, so we don't have to import the whole class
+G_FEMALE, G_MALE, G_UNKNOWN, G_OTHER = (
+    Person.FEMALE, Person.MALE, Person.UNKNOWN, Person.OTHER
+)
+
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value, context=""):  # enable deferred translations
@@ -57,24 +62,24 @@ def _T_(value, context=""):  # enable deferred translations
 
 
 def get_rgb_color(color_name):
+    # Converts a hex string (e.g., "#FFFFFF" or "FFFFFF") to an RGB tuple.
     hex_color = config.get(color_name)[0].lstrip("#")
-    rgb_tuple = (0, 0, 0)  # default
     try:
-        rgb_tuple = tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
+        # convert each hex to integer
+        return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
     except (ValueError, IndexError):
-        rgb_tuple = (0, 0, 0)  # default
-    return rgb_tuple
+        return (0, 0, 0)  # use default if error occurs
 
 
 # -------------------------------------------------------------------------
-#  Fetch current color preferences from configuration at runtime
+#  Fetch current color preferences from configuration at runtime of report
 # -------------------------------------------------------------------------
 def get_report_gender_colors():
     return {
-        Person.FEMALE: [get_rgb_color("colors.female-alive"), "_FEMALE"],
-        Person.MALE: [get_rgb_color("colors.male-alive"), "_MALE"],
-        Person.UNKNOWN: [get_rgb_color("colors.unknown-alive"), "_UNKNOWN"],
-        Person.OTHER: [get_rgb_color("colors.other-alive"), "_OTHER"],
+        G_FEMALE: [get_rgb_color("colors.female-alive"), "_FEMALE"],
+        G_MALE: [get_rgb_color("colors.male-alive"), "_MALE"],
+        G_UNKNOWN: [get_rgb_color("colors.unknown-alive"), "_UNKNOWN"],
+        G_OTHER: [get_rgb_color("colors.other-alive"), "_OTHER"],
     }
 
 
@@ -480,12 +485,10 @@ def get_gender_symbol(person):
 def generate_gender_color_styles(
     style, base_draw_name, graph_style, report_gender_colors
 ):
-    for gen in report_gender_colors.keys():
-        gen_color = report_gender_colors[gen][0]
-        gen_suffix = report_gender_colors[gen][1]
+    for gen_id, (gen_color, gen_suffix) in report_gender_colors.items():
         graph_style.set_fill_color(gen_color)
-        graph_style.set_description(
-            _("The style for the person box for " + gen_suffix + ".")
+        graph_style.set_description (
+            _("The style for the person box for %s.") % gen_suffix
         )
         box_name = base_draw_name + gen_suffix
         style.add_draw_style(box_name, graph_style)
@@ -498,7 +501,8 @@ def generate_gender_color_styles(
 # -------------------------------------------------------------------------
 def get_gender_color_box_name(person, base_draw_name, report_gender_colors):
     """generate gender box name"""
-    return base_draw_name + report_gender_colors[person.gender][1]
+    gen_color, gen_suffix = report_gender_colors[person.gender]
+    return base_draw_name + gen_suffix
 
 
 # -------------------------------------------------------------------------
@@ -510,8 +514,8 @@ def get_gender_color_box_name(person, base_draw_name, report_gender_colors):
 def generate_family_color_style(
     style, base_draw_name, graph_style, report_family_colors
 ):
-    fam_color = report_family_colors[0][0]
-    fam_suffix = report_family_colors[0][1]
+    # there is only 1 family entry
+    fam_color, fam_suffix = report_family_colors[0]
     graph_style.set_fill_color(fam_color)
     graph_style.set_description(_("The style for the family box."))
     box_name = base_draw_name + fam_suffix
@@ -525,4 +529,5 @@ def generate_family_color_style(
 # -------------------------------------------------------------------------
 def get_family_color_box_name(base_draw_name, report_family_colors):
     """generate family box name"""
-    return base_draw_name + report_family_colors[0][1]
+    fam_color, fam_suffix = report_family_colors[0]
+    return base_draw_name + fam_suffix

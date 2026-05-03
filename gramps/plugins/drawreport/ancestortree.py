@@ -95,7 +95,7 @@ class PersonBox(BoxBase):
         # self.level = (level[0]-1, level[1])
         self.level = level
         self.idx = 0
-        self.report_gender_colors = utils.get_report_gender_colors()
+        self.report_gender_colors = GUIConnect().get_gender_colors()
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
@@ -128,7 +128,7 @@ class FamilyBox(BoxBase):
         self.boxstr = "AC2-fam-box"
         # self.level = (level[0]-1, level[1])
         self.level = level
-        self.report_family_colors = utils.get_report_family_colors()
+        self.report_family_colors = GUIConnect().get_family_colors()
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
@@ -563,18 +563,37 @@ class GUIConnect:
         self.__dict__ = self.__shared_state
 
     def set__opts(self, options, locale, name_displayer):
-        """Set only once as we are BORG."""
-        self.__opts = options
+        # This is now the Full Options object, not just .menu
+        self._opts = options
         self.locale = locale
         self.n_d = name_displayer
 
     def get_val(self, val):
         """Get a GUI value."""
-        value = self.__opts.get_option_by_name(val)
+        # Look for the option inside the .menu attribute of self._opts
+        value = self._opts.menu.get_option_by_name(val)
         if value:
             return value.get_value()
         else:
-            False
+            return False
+
+    # to bridge the gap between the GUI and the rest of the code, we have these two functions
+    def get_gender_colors(self):
+        """Retrieve the colors stored in the options instance."""
+        return self._opts.report_gender_colors
+
+    def get_family_colors(self):
+        """Retrieve the family colors stored in the options instance."""
+        return self._opts.report_family_colors
+
+
+    def get_gender_colors(self):
+        """Access the colors stored on the Options instance."""
+        return self._opts.report_gender_colors
+
+    def get_family_colors(self):
+        """Access the colors stored on the Options instance."""
+        return self._opts.report_family_colors
 
     def title_class(self, doc):
         """Return a class that holds the proper title based off of the
@@ -599,7 +618,6 @@ class GUIConnect:
 
     def compress_tree(self):
         return self.get_val("compress_tree")
-
 
 # ------------------------------------------------------------------------
 #
@@ -632,6 +650,7 @@ class AncestorTree(Report):
         stdoptions.run_name_format_option(self, options.menu)
         self._nd = self._name_display
 
+
     def begin_report(self):
         """
         This report needs the following parameters (class variables)
@@ -657,7 +676,8 @@ class AncestorTree(Report):
         database = self.database
 
         self.connect = GUIConnect()
-        self.connect.set__opts(self.options.menu, self._locale, self._nd)
+        # CHANGE THIS LINE: pass self.options instead of self.options.menu
+        self.connect.set__opts(self.options, self._locale, self._nd)
 
         # Set up the canvas that we will print on.
         style_sheet = self.doc.get_style_sheet()
@@ -850,6 +870,11 @@ class AncestorTreeOptions(MenuReportOptions):
         self.__pid = None
         self.box_Y_sf = None
         self.box_shadow_sf = None
+
+        # THE ONLY PLACE utils is called for these colors:
+        self.report_gender_colors = utils.get_report_gender_colors()
+        self.report_family_colors = utils.get_report_family_colors()
+
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
@@ -1143,9 +1168,6 @@ class AncestorTreeOptions(MenuReportOptions):
 
     def make_default_style(self, default_style):
         """Make the default output style for the Ancestor Tree."""
-
-        self.report_gender_colors = utils.get_report_gender_colors()
-        self.report_family_colors = utils.get_report_family_colors()
 
         # Paragraph Styles:
         font = FontStyle()

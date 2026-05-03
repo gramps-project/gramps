@@ -93,8 +93,11 @@ class DescendantBoxBase(BoxBase):
         self.boxstr = boxstr
         self.linked_box = None
         self.father = None
-        self.report_gender_colors = utils.get_report_gender_colors()
-        self.report_family_colors = utils.get_report_family_colors()
+
+        # Get colors from the Borg instead of calling utils again
+        gui = GuiConnect()
+        self.report_gender_colors = gui.get_gender_colors()
+        self.report_family_colors = gui.get_family_colors()
 
     def calc_text(self, database, person, family):
         """A single place to calculate box text"""
@@ -585,8 +588,8 @@ class RecurseDown:
         marr = None
         spouse = None
 
+        save_bold = self.bold_now
         if s_level == 1:
-            tmp_bold = self.bold_now
             self.bold_now = 0
 
         for family_handle in family_handles:
@@ -642,8 +645,9 @@ class RecurseDown:
                     # spouse_handle = utils.find_spouse(person,family)
                     self.recurse(spouse_handle, x_level, s_level + 1, spouse)
 
+        # for level 1, keep all the siblings with the same boldness
         if s_level == 1:
-            self.bold_now = tmp_bold
+            self.bold_now = save_bold
 
     def add_family(self, level, family, father2):
         """
@@ -1278,18 +1282,27 @@ class GuiConnect:
         self.__dict__ = self.__shared_state
 
     def set__opts(self, options, which, locale, name_displayer):
-        self._opts = options
+        self._opts = options # This is now the Full Options object, not just .menu
         self._which_report = which.split(",")[0]
         self._locale = locale
         self._nd = name_displayer
 
     def get_val(self, val):
         """Get a GUI value."""
-        value = self._opts.get_option_by_name(val)
+        # Look for the option inside the .menu attribute of self._opts
+        value = self._opts.menu.get_option_by_name(val)
         if value:
             return value.get_value()
         else:
-            False
+            return False
+
+    def get_gender_colors(self):
+        """Access the colors stored on the Options instance."""
+        return self._opts.report_gender_colors
+
+    def get_family_colors(self):
+        """Access the colors stored on the Options instance."""
+        return self._opts.report_family_colors
 
     def Title_class(self, database, doc):
         Title_type = self.get_val("report_title")
@@ -1384,7 +1397,7 @@ class DescendTree(Report):
 
         self.Connect = GuiConnect()
         self.Connect.set__opts(
-            self.options.menu, self.options.name, self._locale, self._nd
+            self.options, self.options.name, self._locale, self._nd
         )
 
         style_sheet = self.doc.get_style_sheet()
@@ -1843,6 +1856,7 @@ class DescendTreeOptions(MenuReportOptions):
     def make_default_style(self, default_style):
         """Make the default output style for the Descendant Tree."""
 
+        # Store these on 'self' so GuiConnect can find them later
         self.report_gender_colors = utils.get_report_gender_colors()
         self.report_family_colors = utils.get_report_family_colors()
 
