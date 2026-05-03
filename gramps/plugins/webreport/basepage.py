@@ -566,16 +566,21 @@ class BasePage:
                 children = add_birthdate(self.r_db, childlist, self.rlocale)
                 if birthorder:
                     children = sorted(children)
-
-                tbody.extend(
-                    (
-                        Html("tr", inline=True)
-                        + Html("td", inline=True, close=False)
-                        + self.display_child_link(chandle)
-                        + Html("td", birth, inline=True)
-                        + Html("td", death, inline=True)
-                    )
-                    for birth_date, birth, death, chandle in children
+                
+                for birth_date, birth, birth_fallback, death, death_fallback, chandle in children:
+                    if birth_fallback:
+                        birth = Html("em", birth, inline=True)
+                    if death_fallback:
+                        death = Html("em", death, inline=True)
+                    tbody.extend(
+                        (
+                            Html("tr", inline=True)
+                            + Html("td", inline=True, close=False)
+                            + self.display_child_link(chandle)
+                            + Html("td", birth, inline=True)
+                            + Html("td", death, inline=True)
+                        )
+                    
                 )
             trow += table2
 

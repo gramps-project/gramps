@@ -37,7 +37,6 @@ from xml.sax.saxutils import escape
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
-from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.lib import EventType, Date
 from gramps.gen.plug import BasePluginManager
 from gramps.plugins.lib.libgedcom import make_gedcom_date, DATE_QUALITY
@@ -875,7 +874,9 @@ def add_birthdate(dbase, ppl_handle_list, rlocale):
     For each entry in the list, we'll have :
          birth date
          The transtated birth date for the configured locale
+         Whether the birth date is a fallback
          The transtated death date for the configured locale
+         Whether the death date is a fallback
          The handle for the child
 
     @param: dbase           -- The database to use
@@ -887,16 +888,18 @@ def add_birthdate(dbase, ppl_handle_list, rlocale):
         birth_date = 0  # dummy value in case none is found
         person = dbase.get_person_from_handle(person_handle)
         if person:
-            birth_event = get_birth_or_fallback(dbase, person)
-            if birth_event:
-                birth = rlocale.get_date(birth_event.get_date_object())
-                birth_date = birth_event.get_date_object().get_sort_value()
-            death_event = get_death_or_fallback(dbase, person)
-            if death_event:
-                death = rlocale.get_date(death_event.get_date_object())
+            birth = _find_birth_date(dbase, person)
+            if birth:
+                birth1 = rlocale.get_date(birth)
+                birth_date = birth.get_sort_value()
+                birth_fallback = birth.fallback
+            death = _find_death_date(dbase, person)
+            if death:
+                death1 = rlocale.get_date(death)
+                death_fallback = death.fallback
             else:
-                death = ""
-        sortable_individuals.append((birth_date, birth, death, person_handle))
+                death1 = ""
+        sortable_individuals.append((birth_date, birth1, birth_fallback, death1, death_fallback, person_handle))
 
     # return a list of handles with the individual's birthdate attached
     return sortable_individuals
