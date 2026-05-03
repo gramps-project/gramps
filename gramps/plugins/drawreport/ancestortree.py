@@ -586,14 +586,6 @@ class GUIConnect:
         """Retrieve the family colors stored in the options instance."""
         return self._opts.report_family_colors
 
-    def get_gender_colors(self):
-        """Access the colors stored on the Options instance."""
-        return self._opts.report_gender_colors
-
-    def get_family_colors(self):
-        """Access the colors stored on the Options instance."""
-        return self._opts.report_family_colors
-
     def title_class(self, doc):
         """Return a class that holds the proper title based off of the
         GUI options"""
