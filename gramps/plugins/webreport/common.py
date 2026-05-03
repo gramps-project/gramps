@@ -37,7 +37,7 @@ from xml.sax.saxutils import escape
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
-from gramps.gen.utils.db import get_death_or_fallback
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.lib import EventType, Date
 from gramps.gen.plug import BasePluginManager
 from gramps.plugins.lib.libgedcom import make_gedcom_date, DATE_QUALITY
@@ -887,19 +887,16 @@ def add_birthdate(dbase, ppl_handle_list, rlocale):
         birth_date = 0  # dummy value in case none is found
         person = dbase.get_person_from_handle(person_handle)
         if person:
-            birth_ref = person.get_birth_ref()
-            birth1 = ""
-            if birth_ref:
-                birth = dbase.get_event_from_handle(birth_ref.ref)
-                if birth:
-                    birth1 = rlocale.get_date(birth.get_date_object())
-                    birth_date = birth.get_date_object().get_sort_value()
+            birth_event = get_birth_or_fallback(dbase, person)
+            if birth_event:
+                birth = rlocale.get_date(birth_event.get_date_object())
+                birth_date = birth_event.get_date_object().get_sort_value()
             death_event = get_death_or_fallback(dbase, person)
             if death_event:
                 death = rlocale.get_date(death_event.get_date_object())
             else:
                 death = ""
-        sortable_individuals.append((birth_date, birth1, death, person_handle))
+        sortable_individuals.append((birth_date, birth, death, person_handle))
 
     # return a list of handles with the individual's birthdate attached
     return sortable_individuals
