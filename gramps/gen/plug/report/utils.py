@@ -87,10 +87,7 @@ def get_report_gender_colors():
 
 
 def get_report_family_colors():
-    return {
-        # currently only one color for family boxes, but this allows for more in the future
-        0: [get_rgb_color("colors.family"), "_FAMILY"],
-    }
+    return [get_rgb_color("colors.family"), "_FAMILY"]
 
 
 SYMBOLS = Symbols()
@@ -518,7 +515,7 @@ def generate_family_color_style(
     style, base_draw_name, graph_style, report_family_colors
 ):
     # there is only 1 family entry
-    fam_color, fam_suffix = report_family_colors[0]
+    fam_color, fam_suffix = report_family_colors
     graph_style.set_fill_color(fam_color)
     graph_style.set_description(_("The style for the family box."))
     box_name = base_draw_name + fam_suffix
@@ -532,5 +529,5 @@ def generate_family_color_style(
 # -------------------------------------------------------------------------
 def get_family_color_box_name(base_draw_name, report_family_colors):
     """generate family box name"""
-    fam_color, fam_suffix = report_family_colors[0]
+    fam_color, fam_suffix = report_family_colors
     return base_draw_name + fam_suffix

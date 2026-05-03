@@ -1503,7 +1503,6 @@ class DescendTree(Report):
             if prnnum:
                 page_num_box.display(page)
 
-            # box.change_box_color(page, boxstr, color)
             page.display()
 
             self.doc.end_page()
