@@ -586,7 +586,6 @@ class GUIConnect:
         """Retrieve the family colors stored in the options instance."""
         return self._opts.report_family_colors
 
-
     def get_gender_colors(self):
         """Access the colors stored on the Options instance."""
         return self._opts.report_gender_colors
@@ -619,6 +618,7 @@ class GUIConnect:
     def compress_tree(self):
         return self.get_val("compress_tree")
 
+
 # ------------------------------------------------------------------------
 #
 # AncestorTree
@@ -649,7 +649,6 @@ class AncestorTree(Report):
         self.database = CacheProxyDb(self.database)
         stdoptions.run_name_format_option(self, options.menu)
         self._nd = self._name_display
-
 
     def begin_report(self):
         """

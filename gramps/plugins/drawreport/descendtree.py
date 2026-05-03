@@ -1282,7 +1282,7 @@ class GuiConnect:
         self.__dict__ = self.__shared_state
 
     def set__opts(self, options, which, locale, name_displayer):
-        self._opts = options # This is now the Full Options object, not just .menu
+        self._opts = options  # This is now the Full Options object, not just .menu
         self._which_report = which.split(",")[0]
         self._locale = locale
         self._nd = name_displayer
@@ -1396,9 +1396,7 @@ class DescendTree(Report):
         database = self.database
 
         self.Connect = GuiConnect()
-        self.Connect.set__opts(
-            self.options, self.options.name, self._locale, self._nd
-        )
+        self.Connect.set__opts(self.options, self.options.name, self._locale, self._nd)
 
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("CG2-Normal").get_font()

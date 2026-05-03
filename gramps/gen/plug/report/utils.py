@@ -52,7 +52,10 @@ from ...lib.person import Person
 
 # just to borrow these constants from Person, so we don't have to import the whole class
 G_FEMALE, G_MALE, G_UNKNOWN, G_OTHER = (
-    Person.FEMALE, Person.MALE, Person.UNKNOWN, Person.OTHER
+    Person.FEMALE,
+    Person.MALE,
+    Person.UNKNOWN,
+    Person.OTHER,
 )
 
 
@@ -487,7 +490,7 @@ def generate_gender_color_styles(
 ):
     for gen_id, (gen_color, gen_suffix) in report_gender_colors.items():
         graph_style.set_fill_color(gen_color)
-        graph_style.set_description (
+        graph_style.set_description(
             _("The style for the person box for %s.") % gen_suffix
         )
         box_name = base_draw_name + gen_suffix
