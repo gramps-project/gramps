@@ -117,6 +117,10 @@ class PersonBox(DescendantBoxBase):
         self.level = level
         self.boldable = boldable
 
+    def set_bold(self):
+        """update me to a bolded box"""
+        self.boxstr = "CG2b-box"
+
     def set_person_color(self, person, base_name):
         self.boxstr = utils.get_gender_color_box_name(
             person, base_name, self.report_gender_colors
@@ -512,6 +516,11 @@ class RecurseDown:
         myself = PersonBox(level)
         myself.father = father
 
+        if myself.level[1] == 0 and self.bold_direct and self.bold_now:
+            if self.bold_now == 1:
+                self.bold_now = 0
+            myself.set_bold()
+
         if level[1] == 0 and father and myself.level[0] != father.level[0]:
             # I am a child
             if father.line_to:
@@ -534,12 +543,9 @@ class RecurseDown:
 
         self.canvas.add_box(myself)
 
-        base_name = "CG2-box"
-        if myself.level[1] == 0 and self.bold_direct and self.bold_now:
-            base_name = "CG2b-box"
-            self.bold_now = 0
-
         if self.fill_box_color and person:
+            # base_name of the colored box is based on value in PersonBox. __init__ and set_bold()
+            base_name = myself.boxstr
             myself.set_person_color(person, base_name)
 
         return myself
