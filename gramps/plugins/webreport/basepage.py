@@ -566,7 +566,7 @@ class BasePage:
                 children = add_birthdate(self.r_db, childlist, self.rlocale)
                 if birthorder:
                     children = sorted(children)
-                
+
                 for (
                     birth_date,
                     birth,
