@@ -96,7 +96,7 @@ from gramps.plugins.webreport.common import (
     DROPMASTERS,
     FAMILYLINKS,
     get_surname_from_person,
-    AlphabeticIndex
+    AlphabeticIndex,
 )
 from gramps.plugins.webreport.layout import LayoutTree
 from gramps.plugins.webreport.buchheim import buchheim
@@ -1696,7 +1696,14 @@ class PersonPages(BasePage):
                 if birthorder:
                     children = sorted(children)
 
-                for dummy_birthdate, dummy_birth, dummy_birth_fallback, dummy_death, dummy_death_fallback, handle in children:
+                for (
+                    dummy_birthdate,
+                    dummy_birth,
+                    dummy_birth_fallback,
+                    dummy_death,
+                    dummy_death_fallback,
+                    handle,
+                ) in children:
                     if handle == self.person.get_handle():
                         child_ped(ol_html)
                     elif handle:

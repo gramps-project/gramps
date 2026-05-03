@@ -901,7 +901,9 @@ def add_birthdate(dbase, ppl_handle_list, rlocale):
             if death:
                 death1 = rlocale.get_date(death)
                 death_fallback = death.fallback
-        sortable_individuals.append((birth_date, birth1, birth_fallback, death1, death_fallback, person_handle))
+        sortable_individuals.append(
+            (birth_date, birth1, birth_fallback, death1, death_fallback, person_handle)
+        )
 
     # return a list of handles with the individual's birthdate attached
     return sortable_individuals

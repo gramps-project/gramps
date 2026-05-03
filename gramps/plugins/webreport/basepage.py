@@ -567,7 +567,14 @@ class BasePage:
                 if birthorder:
                     children = sorted(children)
                 
-                for birth_date, birth, birth_fallback, death, death_fallback, chandle in children:
+                for (
+                    birth_date,
+                    birth,
+                    birth_fallback,
+                    death,
+                    death_fallback,
+                    chandle,
+                ) in children:
                     if birth_fallback:
                         birth = Html("em", birth, inline=True)
                     if death_fallback:
@@ -580,8 +587,7 @@ class BasePage:
                             + Html("td", birth, inline=True)
                             + Html("td", death, inline=True)
                         )
-                    
-                )
+                    )
             trow += table2
 
         # family LDS ordinance list
