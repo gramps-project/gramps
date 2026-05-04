@@ -604,7 +604,7 @@ class Gramps:
         arg_h.handle_args_gui()
         if arg_h.open or arg_h.imp_db_path:
             # if we opened or imported something, only show the interface
-            self._vm.post_init_interface(show_manager=False)
+            self._vm.post_init_interface(show_manager=arg_h.locked)
         elif config.get("paths.recent-file") and config.get("behavior.autoload"):
             # if we need to autoload last seen file, do so
             filename = config.get("paths.recent-file")
