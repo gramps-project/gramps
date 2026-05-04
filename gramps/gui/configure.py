@@ -1670,6 +1670,28 @@ class GrampsPreferences(ConfigureDialog):
         label.set_margin_top(10)
 
         row += 1
+        # Date format:
+        # April 21, 2001 — date of the first public release of GRAMPS
+        # (Genealogical Research and Analysis Management Programming System)
+        # for the RedHat 7.X Linux operating system.
+        _GRAMPS_BIRTHDAY = Date(2001, 4, 21)
+        obox = Gtk.ComboBoxText()
+        formats = get_date_formats()
+        for i, fmt_name in enumerate(formats):
+            # Render the example using a temporary displayer instance so the
+            # global displayer's format state is never mutated.
+            tmp_displayer = glocale.date_displayer.__class__(format=i)
+            example = tmp_displayer.display(_GRAMPS_BIRTHDAY)
+            obox.append_text("%s  (%s)" % (fmt_name, example))
+        active = config.get("preferences.date-format")
+        if active >= len(formats):
+            active = 0
+        obox.set_active(active)
+        obox.connect("changed", self.date_format_changed)
+        lwidget = BasicLabel(_("%s: ") % _("Date format *"))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(obox, 2, row, 2, 1)
+        
         # Surname guessing:
         obox = Gtk.ComboBoxText()
         formats = _surname_styles
