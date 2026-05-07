@@ -62,6 +62,7 @@ from gramps.gen.plug.docgen import (
 from gramps.plugins.lib.libtreebase import *
 from gramps.plugins.lib.librecurse import AscendPerson
 from gramps.gen.proxy import CacheProxyDb
+#from gramps.gen.proxy import LivingProxyDb  # dk: planned for life_status color
 from gramps.gen.display.name import displayer as _nd
 
 PT2CM = utils.pt2cm
@@ -89,11 +90,13 @@ class PersonBox(BoxBase):
     Calculates information about the box that will print on a page
     """
 
+    #def __init__(self, level, database):  # dk: planned for life_status color
     def __init__(self, level):
         BoxBase.__init__(self)
         self.boxstr = "AC2-box"
         # self.level = (level[0]-1, level[1])
         self.level = level
+        # self.database = database  # Store the database reference # dk: planned for life_status color
         self.idx = 0
         self.report_gender_colors = GUIConnect().get_gender_colors()
 
@@ -101,8 +104,9 @@ class PersonBox(BoxBase):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
     def set_person_color(self, person):
+        is_alive = True # dk LivingProxyDb._LivingProxyDb__is_living(self.database, person) # not working dk: planned for life_status color
         self.boxstr = utils.get_gender_color_box_name(
-            person, "AC2-box", self.report_gender_colors
+            person.gender, is_alive, "AC2-box", self.report_gender_colors
         )
 
     def display(self):
@@ -123,11 +127,13 @@ class FamilyBox(BoxBase):
     Calculates information about the box that will print on a page
     """
 
+    # def __init__(self, level, database):  # dk: planned for family type color
     def __init__(self, level):
         BoxBase.__init__(self)
         self.boxstr = "AC2-fam-box"
         # self.level = (level[0]-1, level[1])
         self.level = level
+        # self.database = database  # Store the database reference  # dk: planned for family type color
         self.report_family_colors = GUIConnect().get_family_colors()
 
     def __lt__(self, other):
@@ -280,6 +286,7 @@ class MakeAncestorTree(AscendPerson):
 
         # print str(index) + " add_person " + str(indi_handle)
         myself = PersonBox((index[0] - 1,) + index[1:])
+        # myself = PersonBox((index[0] - 1,) + index[1:], self.database) # dk: planned for life_status color
 
         if index[LVL_GEN] == 1:  # Center Person
             self.center_family = fams_handle
@@ -329,6 +336,7 @@ class MakeAncestorTree(AscendPerson):
             return
 
         myself = FamilyBox((index[0] - 1,) + index[1:])
+        # myself = FamilyBox((index[0] - 1,) + index[1:], self.database) # dk: planned for life_family types color
 
         # calculate the text.
         myself.text = self.calc_items.calc_marriage(indi_handle, fams_handle)

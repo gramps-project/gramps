@@ -60,6 +60,7 @@ from gramps.gen.plug.docgen import (
 )
 from gramps.plugins.lib.libtreebase import *
 from gramps.gen.proxy import CacheProxyDb
+# from gramps.gen.proxy import LivingProxyDb # dk: planned for life_status color
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.db import family_name
 
@@ -112,9 +113,11 @@ class PersonBox(DescendantBoxBase):
     Calculates information about the box that will print on a page
     """
 
+    #def __init__(self, level, database, boldable=0): # dk planned for life_status color
     def __init__(self, level, boldable=0):
         DescendantBoxBase.__init__(self, "CG2-box")
         self.level = level
+        # self.database = database  # Store the database reference # dk: planned for life_status color
         self.boldable = boldable
 
     def set_bold(self):
@@ -122,8 +125,9 @@ class PersonBox(DescendantBoxBase):
         self.boxstr = "CG2b-box"
 
     def set_person_color(self, person, base_name):
+        is_alive = True # dk LivingProxyDb._LivingProxyDb__is_living(self.database, person)  # dk: not working planned for life_status color
         self.boxstr = utils.get_gender_color_box_name(
-            person, base_name, self.report_gender_colors
+            person.gender, is_alive, base_name, self.report_gender_colors
         )
 
 
@@ -132,9 +136,11 @@ class FamilyBox(DescendantBoxBase):
     Calculates information about the box that will print on a page
     """
 
+    #def __init__(self, level, database, boldable=0): # dk: planned for family color
     def __init__(self, level):
         DescendantBoxBase.__init__(self, "CG2-fam-box")
         self.level = level
+        # self.database = database  # Store the database reference # dk: planned for family color
 
     def set_family_color(self):
         self.boxstr = utils.get_family_color_box_name(
@@ -514,6 +520,7 @@ class RecurseDown:
     def add_person_box(self, level, indi_handle, fams_handle, father):
         """Makes a person box and add that person into the Canvas."""
         myself = PersonBox(level)
+        # myself = PersonBox(level, self.database) # Pass self.database here # dk: planned for life_status color
         myself.father = father
 
         if myself.level[1] == 0 and self.bold_direct and self.bold_now:
@@ -529,6 +536,7 @@ class RecurseDown:
                 line = LineBase(father)
                 father.line_to = line
                 # self.canvas.add_line(line)
+
             line.end.append(myself)
 
         # calculate the text.
@@ -544,16 +552,15 @@ class RecurseDown:
         self.canvas.add_box(myself)
 
         if self.fill_box_color and person:
-            # base_name of the colored box is based on value in PersonBox. __init__ and set_bold()
-            base_name = myself.boxstr
+            base_name = myself.boxstr  # use value based on prev boldness assessment
             myself.set_person_color(person, base_name)
 
         return myself
 
     def add_marriage_box(self, level, indi_handle, fams_handle, father):
         """Makes a marriage box and add that person into the Canvas."""
-        myself = FamilyBox(level)
-
+        myself = FamilyBox(level) # Pass self.database here
+        # myself = FamilyBox(level, self.database) # Pass self.database here # dk
         # if father is not None:
         #    myself.father = father
         # calculate the text.
@@ -651,7 +658,7 @@ class RecurseDown:
                     # spouse_handle = utils.find_spouse(person,family)
                     self.recurse(spouse_handle, x_level, s_level + 1, spouse)
 
-        # for level 1, keep all the siblings with the same boldness
+        # for level 1, restore the original bold_now
         if s_level == 1:
             self.bold_now = save_bold
 
