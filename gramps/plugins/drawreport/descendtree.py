@@ -60,6 +60,7 @@ from gramps.gen.plug.docgen import (
 )
 from gramps.plugins.lib.libtreebase import *
 from gramps.gen.proxy import CacheProxyDb
+
 # from gramps.gen.proxy import LivingProxyDb # dk: planned for life_status color
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.db import family_name
@@ -113,7 +114,7 @@ class PersonBox(DescendantBoxBase):
     Calculates information about the box that will print on a page
     """
 
-    #def __init__(self, level, database, boldable=0): # dk planned for life_status color
+    # def __init__(self, level, database, boldable=0): # dk planned for life_status color
     def __init__(self, level, boldable=0):
         DescendantBoxBase.__init__(self, "CG2-box")
         self.level = level
@@ -125,7 +126,7 @@ class PersonBox(DescendantBoxBase):
         self.boxstr = "CG2b-box"
 
     def set_person_color(self, person, base_name):
-        is_alive = True # dk LivingProxyDb._LivingProxyDb__is_living(self.database, person)  # dk: not working planned for life_status color
+        is_alive = True  # dk LivingProxyDb._LivingProxyDb__is_living(self.database, person)  # dk: not working planned for life_status color
         self.boxstr = utils.get_gender_color_box_name(
             person.gender, is_alive, base_name, self.report_gender_colors
         )
@@ -136,7 +137,7 @@ class FamilyBox(DescendantBoxBase):
     Calculates information about the box that will print on a page
     """
 
-    #def __init__(self, level, database, boldable=0): # dk: planned for family color
+    # def __init__(self, level, database, boldable=0): # dk: planned for family color
     def __init__(self, level):
         DescendantBoxBase.__init__(self, "CG2-fam-box")
         self.level = level
@@ -559,7 +560,7 @@ class RecurseDown:
 
     def add_marriage_box(self, level, indi_handle, fams_handle, father):
         """Makes a marriage box and add that person into the Canvas."""
-        myself = FamilyBox(level) # Pass self.database here
+        myself = FamilyBox(level)  # Pass self.database here
         # myself = FamilyBox(level, self.database) # Pass self.database here # dk
         # if father is not None:
         #    myself.father = father

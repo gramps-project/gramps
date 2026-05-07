@@ -49,7 +49,8 @@ from ...utils.symbols import Symbols
 from ...config import config
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 from ...lib.person import Person
-#from ...lib.familyreltype import FamRT
+
+# from ...lib.familyreltype import FamRT
 
 # just to borrow these constants from Person, so we don't have to import the whole class
 
@@ -63,7 +64,8 @@ _G_FEMALE, _G_MALE, _G_UNKNOWN, _G_OTHER = (
 _G_ALIVE = True
 _G_DEAD = False
 
-#_F_DATAMAP = FamRT._DATAMAP
+# _F_DATAMAP = FamRT._DATAMAP
+
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value, context=""):  # enable deferred translations
@@ -87,7 +89,10 @@ def get_report_gender_colors():
     return {
         (_G_FEMALE, _G_ALIVE): [get_rgb_color("colors.female-alive"), "_FEMALE_ALIVE"],
         (_G_MALE, _G_ALIVE): [get_rgb_color("colors.male-alive"), "_MALE_ALIVE"],
-        (_G_UNKNOWN, _G_ALIVE): [get_rgb_color("colors.unknown-alive"), "_UNKNOWN_ALIVE"],
+        (_G_UNKNOWN, _G_ALIVE): [
+            get_rgb_color("colors.unknown-alive"),
+            "_UNKNOWN_ALIVE",
+        ],
         (_G_OTHER, _G_ALIVE): [get_rgb_color("colors.other-alive"), "_OTHER_ALIVE"],
         (_G_FEMALE, _G_DEAD): [get_rgb_color("colors.female-dead"), "_FEMALE_DEAD"],
         (_G_MALE, _G_DEAD): [get_rgb_color("colors.male-dead"), "_MALE_DEAD"],
@@ -495,7 +500,7 @@ def get_gender_symbol(person):
 def generate_gender_color_styles(
     style, base_draw_name, graph_style, report_gender_colors
 ):
-    for (gender, life_status),(gen_color, gen_suffix) in report_gender_colors.items():
+    for (gender, life_status), (gen_color, gen_suffix) in report_gender_colors.items():
         graph_style.set_fill_color(gen_color)
         graph_style.set_description(
             _("The style for the person box for %s.") % gen_suffix
@@ -509,7 +514,9 @@ def generate_gender_color_styles(
 # Get color box name based on the person's gender
 #
 # -------------------------------------------------------------------------
-def get_gender_color_box_name(gender, life_status, base_draw_name, report_gender_colors):
+def get_gender_color_box_name(
+    gender, life_status, base_draw_name, report_gender_colors
+):
     """generate gender box name"""
     try:
         gen_color, gen_suffix = report_gender_colors[(gender, life_status)]

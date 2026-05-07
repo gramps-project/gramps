@@ -62,7 +62,8 @@ from gramps.gen.plug.docgen import (
 from gramps.plugins.lib.libtreebase import *
 from gramps.plugins.lib.librecurse import AscendPerson
 from gramps.gen.proxy import CacheProxyDb
-#from gramps.gen.proxy import LivingProxyDb  # dk: planned for life_status color
+
+# from gramps.gen.proxy import LivingProxyDb  # dk: planned for life_status color
 from gramps.gen.display.name import displayer as _nd
 
 PT2CM = utils.pt2cm
@@ -90,7 +91,7 @@ class PersonBox(BoxBase):
     Calculates information about the box that will print on a page
     """
 
-    #def __init__(self, level, database):  # dk: planned for life_status color
+    # def __init__(self, level, database):  # dk: planned for life_status color
     def __init__(self, level):
         BoxBase.__init__(self)
         self.boxstr = "AC2-box"
@@ -104,7 +105,7 @@ class PersonBox(BoxBase):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
     def set_person_color(self, person):
-        is_alive = True # dk LivingProxyDb._LivingProxyDb__is_living(self.database, person) # not working dk: planned for life_status color
+        is_alive = True  # dk LivingProxyDb._LivingProxyDb__is_living(self.database, person) # not working dk: planned for life_status color
         self.boxstr = utils.get_gender_color_box_name(
             person.gender, is_alive, "AC2-box", self.report_gender_colors
         )
