@@ -141,8 +141,11 @@ class FamilyBox(BoxBase):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
     def set_family_color(self):
+        fam_reltype = 0  # dk: planned for family type color, need to get the family relationship type
         self.boxstr = utils.get_family_color_box_name(
-            "AC2-fam-box", self.report_family_colors
+            fam_reltype,
+            "AC2-fam-box",
+            self.report_family_colors,  # dk: planned for family type color
         )
 
 

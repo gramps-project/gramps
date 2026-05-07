@@ -144,8 +144,11 @@ class FamilyBox(DescendantBoxBase):
         # self.database = database  # Store the database reference # dk: planned for family color
 
     def set_family_color(self):
+        fam_rel_type = 0  # dk: planned for family type color, need to get the family relationship type
         self.boxstr = utils.get_family_color_box_name(
-            "CG2-fam-box", self.report_family_colors
+            fam_rel_type,
+            "CG2-fam-box",
+            self.report_family_colors,  # dk: planned for family type color
         )
 
 
