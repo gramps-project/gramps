@@ -64,6 +64,7 @@ from gramps.gen.proxy import CacheProxyDb
 # from gramps.gen.proxy import LivingProxyDb # dk: planned for life_status color
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.db import family_name
+from gramps.gen.lib import family as Family
 
 PT2CM = utils.pt2cm
 
@@ -126,7 +127,8 @@ class PersonBox(DescendantBoxBase):
         self.boxstr = "CG2b-box"
 
     def set_person_color(self, person, base_name):
-        is_alive = True  # dk LivingProxyDb._LivingProxyDb__is_living(self.database, person)  # dk: not working planned for life_status color
+        is_alive = utils._G_ALIVE  # dk for time being
+        # dk LivingProxyDb._LivingProxyDb__is_living(self.database, person)  # dk not working
         self.boxstr = utils.get_gender_color_box_name(
             person.gender, is_alive, base_name, self.report_gender_colors
         )
@@ -143,12 +145,11 @@ class FamilyBox(DescendantBoxBase):
         self.level = level
         # self.database = database  # Store the database reference # dk: planned for family color
 
-    def set_family_color(self):
-        fam_rel_type = 0  # dk: planned for family type color, need to get the family relationship type
+    def set_family_color(self, marr_type):
         self.boxstr = utils.get_family_color_box_name(
-            fam_rel_type,
+            marr_type,
             "CG2-fam-box",
-            self.report_family_colors,  # dk: planned for family type color
+            self.report_family_colors
         )
 
 
@@ -575,8 +576,15 @@ class RecurseDown:
         self.canvas.add_box(myself)
 
         if self.fill_box_color:
-            myself.set_family_color()
-
+            this_marr = self.database.get_family_from_handle(fams_handle)
+            if this_marr:
+                try:
+                    marr_type = int(this_marr.get_relationship())
+                except (ValueError, TypeError):
+                    marr_type = utils._F_UNKNOWN
+            else:
+                marr_type = utils._F_UNKNOWN
+            myself.set_family_color(marr_type)
         return myself
 
     def recurse(self, person_handle, x_level, s_level, father):

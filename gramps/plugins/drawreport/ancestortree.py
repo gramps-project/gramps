@@ -63,8 +63,9 @@ from gramps.plugins.lib.libtreebase import *
 from gramps.plugins.lib.librecurse import AscendPerson
 from gramps.gen.proxy import CacheProxyDb
 
-# from gramps.gen.proxy import LivingProxyDb  # dk: planned for life_status color
+from gramps.gen.proxy import LivingProxyDb
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.lib import family as Family
 
 PT2CM = utils.pt2cm
 # cm2pt = utils.cm2pt
@@ -105,9 +106,12 @@ class PersonBox(BoxBase):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
     def set_person_color(self, person):
-        is_alive = True  # dk LivingProxyDb._LivingProxyDb__is_living(self.database, person) # not working dk: planned for life_status color
+        try:
+            is_alive = LivingProxyDb._LivingProxyDb__is_living(self.database, person)
+        except:
+            is_alive = utils._G_ALIVE
         self.boxstr = utils.get_gender_color_box_name(
-            person.gender, is_alive, "AC2-box", self.report_gender_colors
+        person.gender, is_alive, "AC2-box", self.report_gender_colors
         )
 
     def display(self):
@@ -140,10 +144,9 @@ class FamilyBox(BoxBase):
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
-    def set_family_color(self):
-        fam_reltype = 0  # dk: planned for family type color, need to get the family relationship type
+    def set_family_color(self, marr_type):
         self.boxstr = utils.get_family_color_box_name(
-            fam_reltype,
+            marr_type,
             "AC2-fam-box",
             self.report_family_colors,  # dk: planned for family type color
         )
@@ -348,7 +351,15 @@ class MakeAncestorTree(AscendPerson):
         self.canvas.add_box(myself)
 
         if self.fill_box_color:
-            myself.set_family_color()
+            this_marr = self.database.get_family_from_handle(fams_handle)
+            if this_marr:
+                try:
+                    marr_type = int(this_marr.get_relationship())
+                except (ValueError, TypeError):
+                    marr_type = utils._F_UNKNOWN
+            else:
+                marr_type = utils._F_UNKNOWN
+            myself.set_family_color(marr_type)
 
     def y_index(self, x_level, index):
         """Calculate the column or generation that this person is in.
