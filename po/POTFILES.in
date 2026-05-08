@@ -324,6 +324,14 @@ gramps/gen/lib/attribute.py
 gramps/gen/lib/attrtype.py
 gramps/gen/lib/childref.py
 gramps/gen/lib/childreftype.py
+gramps/gen/lib/dnaattr.py
+gramps/gen/lib/dnaattrtype.py
+gramps/gen/lib/dnagenomebuildtype.py
+gramps/gen/lib/dnamatch.py
+gramps/gen/lib/dnaprovidertype.py
+gramps/gen/lib/dnasegment.py
+gramps/gen/lib/dnatest.py
+gramps/gen/lib/dnatesttype.py
 gramps/gen/lib/citation.py
 gramps/gen/lib/date.py
 gramps/gen/lib/event.py
@@ -353,6 +361,7 @@ gramps/gen/lib/placetype.py
 gramps/gen/lib/repo.py
 gramps/gen/lib/reporef.py
 gramps/gen/lib/repotype.py
+gramps/gen/lib/sharedancestor.py
 gramps/gen/lib/src.py
 gramps/gen/lib/srcattribute.py
 gramps/gen/lib/srcattrtype.py
@@ -446,7 +455,12 @@ gramps/gui/editors/displaytabs/personeventembedlist.py
 gramps/gui/editors/displaytabs/personrefembedlist.py
 gramps/gui/editors/displaytabs/placenameembedlist.py
 gramps/gui/editors/displaytabs/placerefembedlist.py
+gramps/gui/editors/displaytabs/dnamatchattr.py
+gramps/gui/editors/displaytabs/dnasegmentembedlist.py
+gramps/gui/editors/displaytabs/dnatestattr.py
+gramps/gui/editors/displaytabs/dnatestbackreflist.py
 gramps/gui/editors/displaytabs/repoembedlist.py
+gramps/gui/editors/displaytabs/sharedancestorembedlist.py
 gramps/gui/editors/displaytabs/srcattrembedlist.py
 gramps/gui/editors/displaytabs/surnametab.py
 gramps/gui/editors/displaytabs/webembedlist.py
@@ -458,6 +472,8 @@ gramps/gui/editors/editdate.py
 gramps/gui/editors/editevent.py
 gramps/gui/editors/editeventref.py
 gramps/gui/editors/editfamily.py
+gramps/gui/editors/editdnamatch.py
+gramps/gui/editors/editdnatest.py
 gramps/gui/editors/editldsord.py
 gramps/gui/editors/editlink.py
 gramps/gui/editors/editlocation.py
@@ -589,6 +605,7 @@ gramps/gui/plug/report/_reportdialog.py
 gramps/gui/plug/report/_stylecombobox.py
 gramps/gui/plug/report/_styleeditor.py
 gramps/gui/plug/tool.py
+gramps/gui/selectors/selectdnatest.py
 gramps/gui/selectors/selectcitation.py
 gramps/gui/selectors/selectevent.py
 gramps/gui/selectors/selectfamily.py
@@ -608,6 +625,8 @@ gramps/gui/views/listview.py
 gramps/gui/views/navigationview.py
 gramps/gui/views/pageview.py
 gramps/gui/views/tags.py
+gramps/gui/views/treemodels/dnamatchmodel.py
+gramps/gui/views/treemodels/dnatestmodel.py
 gramps/gui/views/treemodels/citationbasemodel.py
 gramps/gui/views/treemodels/citationtreemodel.py
 gramps/gui/views/treemodels/mediamodel.py
@@ -826,6 +845,8 @@ gramps/plugins/view/geomoves.py
 gramps/plugins/view/geoperson.py
 gramps/plugins/view/geoplaces.py
 gramps/plugins/view/mediaview.py
+gramps/plugins/view/dnamatchview.py
+gramps/plugins/view/dnatestview.py
 gramps/plugins/view/noteview.py
 gramps/plugins/view/pedigreeview.py
 gramps/plugins/view/personlistview.py
