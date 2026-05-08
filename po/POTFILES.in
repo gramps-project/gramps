@@ -314,6 +314,7 @@ gramps/gen/fs/constants.py
 gramps/gen/fs/fs_import/importer.py
 gramps/gen/fs/fs_import/places.py
 gramps/gen/fs/fs_import/sources.py
+gramps/gen/fs/person/mixins/cache.py
 gramps/gen/fs/sync_directions.py
 gramps/gen/fs/tags.py
 gramps/gen/fs/utils/attributes.py

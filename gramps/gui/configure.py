@@ -660,7 +660,23 @@ class ConfigureDialog(ManagedWindow):
 #
 # -------------------------------------------------------------------------
 class GrampsPreferences(ConfigureDialog):
-    def __init__(self, uistate, dbstate):
+    PANEL_INTEGRATIONS = "integrations"
+    _PANEL_IDS = (
+        "data",
+        "general",
+        "family_tree",
+        "import",
+        "limits",
+        "colors",
+        "symbols",
+        "id_formats",
+        "text",
+        "warnings",
+        "researcher",
+        PANEL_INTEGRATIONS,
+    )
+
+    def __init__(self, uistate, dbstate, initial_panel: str | None = None) -> None:
         page_funcs = (
             self.add_data_panel,
             self.add_general_panel,
@@ -689,6 +705,18 @@ class GrampsPreferences(ConfigureDialog):
             "clicked", lambda x: display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
         )
         self.setup_configs("interface.grampspreferences", 700, 450)
+        if initial_panel:
+            self.select_panel(initial_panel)
+
+    def select_panel(self, panel_name: str) -> None:
+        """
+        Select a preferences panel by identifier.
+        """
+        try:
+            page_num = self._PANEL_IDS.index(panel_name)
+        except ValueError:
+            return
+        self.panel.set_current_page(page_num)
 
     def create_grid(self):
         """
@@ -1168,6 +1196,16 @@ class GrampsPreferences(ConfigureDialog):
             row,
             "familysearch.middleware.access-code",
             col_attach=1,
+        )
+        row += 1
+
+        self.add_checkbox(
+            grid,
+            _("Enable FamilySearch integration"),
+            row,
+            "familysearch.enable",
+            start=1,
+            stop=4,
         )
         row += 1
 

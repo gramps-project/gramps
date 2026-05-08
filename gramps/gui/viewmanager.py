@@ -8,6 +8,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Gary Burton
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2026       Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -133,9 +134,8 @@ from gramps.gui.editors import (
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.gen.filters import reload_custom_filters
 from .managedwindow import ManagedWindow
-from .fs.manager import get_session
-from .fs.session import Session
-from .fs.tools_window import toggle_tools_window
+from .fs.manager import get_session, needs_access_code
+from .fs.tools_window import close_tools_window, toggle_tools_window
 
 # -------------------------------------------------------------------------
 #
@@ -349,6 +349,7 @@ class ViewManager(CLIManager):
             fs_btn.connect("clicked", self._on_fs_status_clicked)
         except Exception:
             LOG.warning("Failed to connect FamilySearch status button", exc_info=True)
+        self._update_familysearch_ui()
 
         # Create history objects
         for nav_type in (
@@ -394,24 +395,95 @@ class ViewManager(CLIManager):
     def _on_fs_status_clicked(self, *_args):
         """
         Toggle the FamilySearch Tools window.
-        Only works after login (token present).
+        Prompt for login when needed before opening the tools window.
         """
+        if not self._familysearch_enabled():
+            return
+
         sess = get_session(dbstate=self.dbstate, uistate=self.uistate)
+        if not sess and self._familysearch_needs_access_code():
+            self._show_preferences_panel(GrampsPreferences.PANEL_INTEGRATIONS)
+            return
+
         if not sess or not (
             getattr(sess, "access_token", None) or getattr(sess, "connected", False)
         ):
-            # You said: only after login. So we just show info.
             try:
-                ErrorDialog(
+                dialog = QuestionDialog2(
                     _("FamilySearch"),
-                    _("Not logged in to FamilySearch."),
+                    _(
+                        "You are not logged in to FamilySearch. Would you like "
+                        "to sign in now?"
+                    ),
+                    _("Sign in"),
+                    _("Cancel"),
                     parent=self.uistate.window,
                 )
+                if dialog.run():
+                    self.login()
             except Exception:
                 LOG.warning("Failed to show FamilySearch login dialog", exc_info=True)
             return
 
         toggle_tools_window(sess)
+
+    def _familysearch_needs_access_code(self) -> bool:
+        """
+        Return whether foundation middleware is missing its access code.
+        """
+        return needs_access_code()
+
+    def _show_preferences_panel(self, panel_name: str | None = None) -> None:
+        """
+        Open preferences and optionally select a panel.
+        """
+        try:
+            gwm = getattr(getattr(self, "uistate", None), "gwm", None)
+            preferences = None
+            if gwm is not None:
+                preferences = gwm.get_item_from_id(id(GrampsPreferences))
+            if preferences is not None:
+                if panel_name and hasattr(preferences, "select_panel"):
+                    preferences.select_panel(panel_name)
+                preferences._present()
+                return
+        except Exception:
+            LOG.warning("Failed to select open preferences panel", exc_info=True)
+
+        try:
+            GrampsPreferences(self.uistate, self.dbstate, initial_panel=panel_name)
+        except WindowActiveError:
+            return
+
+    def _familysearch_enabled(self):
+        """
+        Return whether the FamilySearch integration is enabled.
+        """
+        return bool(config.get("familysearch.enable"))
+
+    def _update_familysearch_ui(self):
+        """
+        Update FamilySearch UI visibility to match configuration and db state.
+        """
+        enabled = self._familysearch_enabled()
+        has_database = bool(getattr(self, "file_loaded", False))
+        visible = enabled and has_database
+
+        try:
+            self.statusbar.set_fs_visible(visible)
+            if not visible:
+                self.statusbar.set_fs_online(False)
+        except Exception:
+            LOG.warning("Failed to update FamilySearch status button", exc_info=True)
+
+        if not visible:
+            close_tools_window()
+
+        if hasattr(self, "uimanager"):
+            if hasattr(self, "familysearchgroup"):
+                self.uimanager.set_actions_visible(self.familysearchgroup, enabled)
+                self.uimanager.set_actions_sensitive(self.familysearchgroup, visible)
+            self.uimanager.update_menu()
 
     def __setup_navigator(self):
         """
@@ -467,7 +539,6 @@ class ViewManager(CLIManager):
 
         self._readonly_action_list = [
             ("Close", self.close_database, "<control>w"),
-            ("Login", self.login, "<control>l"),
             ("Export", self.export_data, "<PRIMARY>e"),
             ("Backup", self.quick_backup),
             ("Abandon", self.abort),
@@ -536,11 +607,25 @@ class ViewManager(CLIManager):
             ("Redo", self.redo, "<shift><PRIMARY>z"),
         ]
 
+        self._familysearch_action_list = [
+            ("Login", self.login, "<control>l"),
+        ]
+
     def login(self, *action):
         """
         Login to FamilySearch.
         """
-        session = Session.from_config()
+        if not self._familysearch_enabled():
+            return
+
+        session = get_session(dbstate=self.dbstate, uistate=self.uistate)
+        if not session:
+            ErrorDialog(
+                _("FamilySearch"),
+                _("FamilySearch is not configured (no session)."),
+                parent=self.uistate.window,
+            )
+            return
 
         self.uistate.set_busy_cursor(True)
         self.statusbar.set_fs_online(False)
@@ -566,12 +651,77 @@ class ViewManager(CLIManager):
         finally:
             self.uistate.set_busy_cursor(False)
 
-        self.statusbar.set_fs_online(
-            bool(
-                getattr(session, "connected", False)
-                or getattr(session, "access_token", None)
-            )
+        online = bool(
+            getattr(session, "connected", False)
+            or getattr(session, "access_token", None)
         )
+        self.statusbar.set_fs_online(online)
+        if online:
+            self._maybe_offer_empty_tree_import(session)
+
+    def _database_is_empty_tree(self) -> bool:
+        """
+        Return whether the active database has no people.
+        """
+        if not getattr(self, "file_loaded", False):
+            return False
+
+        dbstate = getattr(self, "dbstate", None)
+        if dbstate is None:
+            return False
+
+        is_open = getattr(dbstate, "is_open", None)
+        if callable(is_open):
+            try:
+                if not is_open():
+                    return False
+            except Exception:
+                return False
+
+        db = getattr(dbstate, "db", None)
+        if db is None:
+            return False
+
+        count_people = getattr(db, "get_number_of_people", None)
+        if callable(count_people):
+            try:
+                return int(count_people() or 0) == 0
+            except Exception:
+                pass
+
+        get_person_handles = getattr(db, "get_person_handles", None)
+        if callable(get_person_handles):
+            try:
+                return len(list(get_person_handles())) == 0
+            except Exception:
+                return False
+
+        return False
+
+    def _maybe_offer_empty_tree_import(self, session) -> None:
+        """
+        Offer a FamilySearch starter import after login for an empty tree.
+        """
+        if not self._familysearch_enabled():
+            return
+        if getattr(self, "_fs_empty_tree_import_prompted", False):
+            return
+        if not self._database_is_empty_tree():
+            return
+
+        self._fs_empty_tree_import_prompted = True
+        try:
+            from .fs.actions import offer_empty_tree_import
+
+            offer_empty_tree_import(
+                self.dbstate,
+                self.uistate,
+                getattr(self.uistate, "track", None),
+                session,
+                self.uistate.window,
+            )
+        except Exception:
+            LOG.warning("Failed to show FamilySearch empty-tree import", exc_info=True)
 
     def run_book(self, *action):
         """
@@ -654,14 +804,21 @@ class ViewManager(CLIManager):
             self.uimanager.set_actions_visible(self.readonlygroup, False)
             self.uimanager.set_actions_visible(self.undoactions, False)
             self.uimanager.set_actions_visible(self.redoactions, False)
-        self.uimanager.update_menu()
         config.connect("interface.statusbar", self.__statusbar_key_update)
+        config.connect("familysearch.enable", self.__familysearch_key_update)
+        self._update_familysearch_ui()
 
     def __statusbar_key_update(self, client, cnxn_id, entry, data):
         """
         Callback function for statusbar key update
         """
         self.uistate.modify_statusbar(self.dbstate)
+
+    def __familysearch_key_update(self, client, cnxn_id, entry, data):
+        """
+        Callback function for FamilySearch enablement changes.
+        """
+        self._update_familysearch_ui()
 
     def post_init_interface(self, show_manager=True):
         """
@@ -782,6 +939,9 @@ class ViewManager(CLIManager):
 
         self.actiongroup = self.__init_action_group("RW", self._action_action_list)
         self.readonlygroup = self.__init_action_group("RO", self._readonly_action_list)
+        self.familysearchgroup = self.__init_action_group(
+            "FS", self._familysearch_action_list
+        )
         self.fileactions = self.__init_action_group(
             "FileWindow", self._file_action_list
         )
@@ -794,21 +954,24 @@ class ViewManager(CLIManager):
         self.appactions = ActionGroup("AppActions", self._app_actionlist, "app")
         self.uimanager.insert_action_group(self.appactions, gio_group=self.app)
 
-    def preferences_activate(self, *obj):
+    def preferences_activate(self, *obj, initial_panel: str | None = None) -> None:
         """
         Open the preferences dialog.
         """
-        try:
-            GrampsPreferences(self.uistate, self.dbstate)
-        except WindowActiveError:
-            return
+        self._show_preferences_panel(initial_panel)
 
     def load_css(self):
-        provider = Gtk.CssProvider()
-        provider.load_from_path(os.path.join(DATA_DIR, "gramps.css"))
-        Gtk.StyleContext.add_provider_for_screen(
-            self.window.get_screen(), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
+        for css_file in ("gramps.css", "familysearch.css"):
+            css_path = os.path.join(DATA_DIR, css_file)
+            if not os.path.isfile(css_path):
+                continue
+            provider = Gtk.CssProvider()
+            provider.load_from_path(css_path)
+            Gtk.StyleContext.add_provider_for_screen(
+                self.window.get_screen(),
+                provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+            )
 
     def reset_font(self):
         """
@@ -1006,6 +1169,7 @@ class ViewManager(CLIManager):
             self.uimanager.set_actions_visible(self.readonlygroup, False)
             self.uimanager.set_actions_visible(self.undoactions, False)
             self.uimanager.set_actions_visible(self.redoactions, False)
+            self.uimanager.set_actions_visible(self.familysearchgroup, False)
         return page
 
     def view_changed(self, notebook, page, page_num):
@@ -1223,6 +1387,7 @@ class ViewManager(CLIManager):
         self.uimanager.set_actions_visible(self.readonlygroup, isopen)
         self.uimanager.set_actions_visible(self.undoactions, rw)
         self.uimanager.set_actions_visible(self.redoactions, rw)
+        self._update_familysearch_ui()
 
         self.recent_manager.build()
 
@@ -1233,6 +1398,7 @@ class ViewManager(CLIManager):
         """
         Called after a database is closed to do GUI stuff.
         """
+        self._fs_empty_tree_import_prompted = False
         self.undo_history_close()
         self.uistate.window.set_title("%s - Gramps" % _("No Family Tree"))
         self.uistate.clear_filter_results()
@@ -1241,7 +1407,8 @@ class ViewManager(CLIManager):
         self.uimanager.set_actions_visible(self.readonlygroup, False)
         self.uimanager.set_actions_visible(self.undoactions, False)
         self.uimanager.set_actions_visible(self.redoactions, False)
-        self.uimanager.update_menu()
+        self.uimanager.set_actions_visible(self.familysearchgroup, False)
+        self._update_familysearch_ui()
         config.set("paths.recent-file", "")
         config.save()
 
