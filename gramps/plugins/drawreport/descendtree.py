@@ -147,9 +147,7 @@ class FamilyBox(DescendantBoxBase):
 
     def set_family_color(self, marr_type):
         self.boxstr = utils.get_family_color_box_name(
-            marr_type,
-            "CG2-fam-box",
-            self.report_family_colors
+            marr_type, "CG2-fam-box", self.report_family_colors
         )
 
 

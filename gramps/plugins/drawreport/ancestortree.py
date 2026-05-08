@@ -111,7 +111,7 @@ class PersonBox(BoxBase):
         except:
             is_alive = utils._G_ALIVE
         self.boxstr = utils.get_gender_color_box_name(
-        person.gender, is_alive, "AC2-box", self.report_gender_colors
+            person.gender, is_alive, "AC2-box", self.report_gender_colors
         )
 
     def display(self):
