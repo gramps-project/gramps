@@ -337,7 +337,7 @@ register(
     fname="dnatestview.py",
     authors=["The Gramps project"],
     authors_email=["https://gramps-project.org"],
-    category=("DNATests", _("DNA Tests")),
+    category=("DNA", _("DNA")),
     viewclass="DNATestView",
     order=START,
     stock_icon="gramps-dna-test",
@@ -354,9 +354,8 @@ register(
     fname="dnamatchview.py",
     authors=["The Gramps project"],
     authors_email=["https://gramps-project.org"],
-    category=("DNAMatches", _("DNA Matches")),
+    category=("DNA", _("DNA")),
     viewclass="DNAMatchView",
-    order=START,
     stock_icon="gramps-dna-match",
 )
 

@@ -68,8 +68,7 @@ CATEGORY_ICON = {
     "Media": "gramps-media",
     "Notes": "gramps-notes",
     "Citations": "gramps-citation",
-    "DNAMatches": "gramps-dna-match",
-    "DNATests": "gramps-dna-test",
+    "DNA": "gramps-dna-test",
 }
 
 
