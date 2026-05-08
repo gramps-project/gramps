@@ -36,4 +36,4 @@ ehthumbs.db
 .venv*/
 
 # coverage
-.coverage
+.coveragegramps/gen/fs/person/mixins/fs_cache/*.json

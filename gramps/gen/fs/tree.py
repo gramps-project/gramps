@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2024-2025  Gabriel Rios
+# Copyright (C) 2024-2026  Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,8 +21,6 @@
 from __future__ import annotations
 
 from typing import Iterable, Set
-
-import asyncio
 import email.utils
 import time
 
@@ -94,18 +92,13 @@ class Tree(deserialize.Gedcomx):
         self._persons[fsid] = fs_person
 
     def add_persons(self, fids: Iterable[str]) -> None:
-        async def _load_many(loop, ids: Iterable[str]):
-            tasks = set()
-            for fid in ids:
-                if fid not in self._persons:
-                    tasks.add(loop.run_in_executor(None, self.add_person, fid))
-            for t in tasks:
-                await t
+        requested_fids = list(fids)
 
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(_load_many(loop, fids))
+        for fid in requested_fids:
+            if fid not in self._persons:
+                self.add_person(fid)
 
-        for fid in fids:
+        for fid in requested_fids:
             if fid in deserialize.Person.index:
                 self._persons[fid] = deserialize.Person.index[fid]
 
