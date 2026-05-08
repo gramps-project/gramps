@@ -30,7 +30,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
-  ns="http://gramps-project.org/xml/1.7.2/"
+  ns="http://gramps-project.org/xml/1.8.0/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -118,6 +118,18 @@
       <optional><element name="notes">
           <zeroOrMore><element name="note">
               <ref name="note-content"/>
+          </element></zeroOrMore>
+      </element></optional>
+
+      <optional><element name="dnatests">
+          <zeroOrMore><element name="dnatest">
+              <ref name="dnatest-content"/>
+          </element></zeroOrMore>
+      </element></optional>
+
+      <optional><element name="dnamatches">
+          <zeroOrMore><element name="dnamatch">
+              <ref name="dnamatch-content"/>
           </element></zeroOrMore>
       </element></optional>
 
@@ -544,6 +556,8 @@
         <value>media</value>
         <value>repository</value>
         <value>note</value>
+        <value>dnatest</value>
+        <value>dnamatch</value>
     </choice></attribute>
     <attribute name="hlink"><data type="IDREF"/></attribute>
   </define>
@@ -768,6 +782,107 @@
       <attribute name="name"><text/></attribute>
       <attribute name="color"><text/></attribute>
       <attribute name="priority"><data type="integer"/></attribute>
+  </define>
+
+  <define name="dnatest-content">
+    <ref name="primary-object"/>
+    <optional><element name="person">
+        <attribute name="hlink"><data type="IDREF"/></attribute>
+    </element></optional>
+    <optional><element name="account_name"><text/></element></optional>
+    <optional><element name="provider"><text/></element></optional>
+    <optional><element name="kit_id"><text/></element></optional>
+    <optional><element name="test_type"><text/></element></optional>
+    <optional><element name="genome_build"><text/></element></optional>
+    <optional><ref name="date-content"/></optional>
+    <optional><element name="haplogroup"><text/></element></optional>
+    <zeroOrMore><element name="attribute">
+        <ref name="attribute-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="objref">
+        <ref name="objref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
+  </define>
+
+  <define name="dnamatch-content">
+    <ref name="primary-object"/>
+    <optional><element name="subject_test">
+        <attribute name="hlink"><data type="IDREF"/></attribute>
+    </element></optional>
+    <optional><element name="match_test">
+        <attribute name="hlink"><data type="IDREF"/></attribute>
+    </element></optional>
+    <optional><element name="shared_cm">
+        <attribute name="val"><text/></attribute>
+    </element></optional>
+    <optional><element name="percent_shared">
+        <attribute name="val"><text/></attribute>
+    </element></optional>
+    <optional><element name="segment_count">
+        <attribute name="val"><text/></attribute>
+    </element></optional>
+    <optional><element name="largest_segment_cm">
+        <attribute name="val"><text/></attribute>
+    </element></optional>
+    <optional><element name="predicted_relationship"><text/></element></optional>
+    <optional><element name="predicted_generations">
+        <attribute name="val"><text/></attribute>
+    </element></optional>
+    <zeroOrMore><element name="shared_ancestor">
+        <ref name="shared-ancestor-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="dna_segment">
+        <ref name="dna-segment-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="attribute">
+        <ref name="attribute-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="objref">
+        <ref name="objref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
+  </define>
+
+  <define name="shared-ancestor-content">
+    <attribute name="confidence"><text/></attribute>
+    <optional><element name="description"><text/></element></optional>
+    <optional><element name="person">
+        <attribute name="hlink"><data type="IDREF"/></attribute>
+    </element></optional>
+    <zeroOrMore><element name="noteref">
+        <ref name="noteref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="citationref">
+        <ref name="citationref-content"/>
+    </element></zeroOrMore>
+  </define>
+
+  <define name="dna-segment-content">
+    <attribute name="chromosome"><text/></attribute>
+    <attribute name="start_bp"><text/></attribute>
+    <attribute name="end_bp"><text/></attribute>
+    <attribute name="shared_cm"><text/></attribute>
+    <attribute name="snp_count"><text/></attribute>
+    <attribute name="phase"><text/></attribute>
+    <optional><attribute name="start_rsid"><text/></attribute></optional>
+    <optional><attribute name="end_rsid"><text/></attribute></optional>
   </define>
 
 </grammar>

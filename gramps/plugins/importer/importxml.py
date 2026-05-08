@@ -57,6 +57,9 @@ from gramps.gen.lib import (
     Citation,
     Date,
     DateError,
+    DNAMatch,
+    DNASegment,
+    DNATest,
     Event,
     EventRef,
     EventRoleType,
@@ -80,6 +83,7 @@ from gramps.gen.lib import (
     RepoRef,
     Repository,
     Researcher,
+    SharedAncestor,
     Source,
     SrcAttribute,
     SrcAttributeType,
@@ -102,17 +106,19 @@ from gramps.gen.utils.file import create_checksum, media_path, expand_media_path
 from gramps.gen.datehandler import parser, set_date
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.db.dbconst import (
-    PERSON_KEY,
-    FAMILY_KEY,
-    SOURCE_KEY,
-    EVENT_KEY,
-    MEDIA_KEY,
-    PLACE_KEY,
-    REPOSITORY_KEY,
-    NOTE_KEY,
-    TAG_KEY,
     CITATION_KEY,
     CLASS_TO_KEY_MAP,
+    DNAMATCH_KEY,
+    DNATEST_KEY,
+    EVENT_KEY,
+    FAMILY_KEY,
+    MEDIA_KEY,
+    NOTE_KEY,
+    PERSON_KEY,
+    PLACE_KEY,
+    REPOSITORY_KEY,
+    SOURCE_KEY,
+    TAG_KEY,
 )
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.version import VERSION
@@ -265,6 +271,8 @@ class ImportInfo:
         NOTE_KEY,
         TAG_KEY,
         CITATION_KEY,
+        DNATEST_KEY,
+        DNAMATCH_KEY,
     ]
     key2data = {
         PERSON_KEY: 0,
@@ -277,6 +285,8 @@ class ImportInfo:
         NOTE_KEY: 7,
         TAG_KEY: 8,
         CITATION_KEY: 9,
+        DNATEST_KEY: 10,
+        DNAMATCH_KEY: 11,
     }
 
     def __init__(self):
@@ -285,9 +295,9 @@ class ImportInfo:
 
         This creates the datastructures to hold info
         """
-        self.data_mergecandidate = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-        self.data_newobject = [0] * 10
-        self.data_unknownobject = [0] * 10
+        self.data_mergecandidate = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+        self.data_newobject = [0] * 12
+        self.data_unknownobject = [0] * 12
         self.data_families = ""
         self.expl_note = ""
         self.data_relpath = False
@@ -327,6 +337,8 @@ class ImportInfo:
             REPOSITORY_KEY: _("Repository"),
             NOTE_KEY: _("Note"),
             CITATION_KEY: _("Citation"),
+            DNATEST_KEY: _("DNA Test"),
+            DNAMATCH_KEY: _("DNA Match"),
         }
         if key == PERSON_KEY:
             return _("  {id1} - {text} with {id2}").format(
@@ -356,6 +368,8 @@ class ImportInfo:
             NOTE_KEY: _("Notes"),
             TAG_KEY: _("Tags"),
             CITATION_KEY: _("Citations"),
+            DNATEST_KEY: _("DNA Tests"),
+            DNAMATCH_KEY: _("DNA Matches"),
         }
         txt = [_("Number of new objects imported:")]
         table = []
@@ -647,7 +661,12 @@ class GrampsParser(UpdateCallback):
         self.ridswap = {}
         self.nidswap = {}
         self.eidswap = {}
+        self.tidswap = {}
+        self.midswap = {}
         self.import_handles = {}
+        self.dnatest = None
+        self.dnamatch = None
+        self.shared_ancestor = None
 
         if default_tag_format:
             name = time.strftime(default_tag_format)
@@ -790,6 +809,27 @@ class GrampsParser(UpdateCallback):
             "repository": (self.start_repo, self.stop_repo),
             "reporef": (self.start_reporef, self.stop_reporef),
             "rname": (None, self.stop_rname),
+            # DNA objects (new in 1.8.0)
+            "dnatests": (None, None),
+            "dnamatches": (None, None),
+            "dnatest": (self.start_dnatest, self.stop_dnatest),
+            "dnamatch": (self.start_dnamatch, self.stop_dnamatch),
+            "shared_ancestor": (self.start_shared_ancestor, self.stop_shared_ancestor),
+            "dna_segment": (self.start_dna_segment, None),
+            "subject_test": (self.start_subject_test, None),
+            "match_test": (self.start_match_test, None),
+            "account_name": (None, self.stop_account_name),
+            "provider": (None, self.stop_provider),
+            "kit_id": (None, self.stop_kit_id),
+            "test_type": (None, self.stop_test_type),
+            "genome_build": (None, self.stop_genome_build),
+            "haplogroup": (None, self.stop_haplogroup),
+            "shared_cm": (self.start_shared_cm, None),
+            "percent_shared": (self.start_percent_shared, None),
+            "segment_count": (self.start_segment_count, None),
+            "largest_segment_cm": (self.start_largest_segment_cm, None),
+            "predicted_relationship": (None, self.stop_predicted_relationship),
+            "predicted_generations": (self.start_predicted_generations, None),
         }
         self.grampsuri = re.compile(
             r"^gramps://(?P<object_class>[A-Z][a-z]+)/" r"handle/(?P<handle>\w+)$"
@@ -837,6 +877,8 @@ class GrampsParser(UpdateCallback):
                     "media": self.db.get_raw_media_data,
                     "note": self.db.get_raw_note_data,
                     "tag": self.db.get_raw_tag_data,
+                    "dnatest": self.db.get_raw_dnatest_data,
+                    "dnamatch": self.db.get_raw_dnamatch_data,
                 }[target]
                 raw = get_raw_obj_data(handle)
                 temp_obj = data_to_object(raw)
@@ -870,6 +912,8 @@ class GrampsParser(UpdateCallback):
                     "media": self.db.has_media_handle,
                     "note": self.db.has_note_handle,
                     "tag": self.db.has_tag_handle,
+                    "dnatest": self.db.has_dnatest_handle,
+                    "dnamatch": self.db.has_dnamatch_handle,
                 }[target]
                 while has_handle_func(handle):
                     handle = create_id()
@@ -893,6 +937,8 @@ class GrampsParser(UpdateCallback):
                 "repository": self.db.add_repository,
                 "media": self.db.add_media,
                 "note": self.db.add_note,
+                "dnatest": self.db.add_dnatest,
+                "dnamatch": self.db.add_dnamatch,
             }[target]
             add_func(prim_obj, self.trans, set_gid=False)
         return handle
@@ -1498,6 +1544,10 @@ class GrampsParser(UpdateCallback):
             self.event.add_attribute(self.attribute)
         elif self.eventref:
             self.eventref.add_attribute(self.attribute)
+        elif self.dnatest:
+            self.dnatest.add_attribute(self.attribute)
+        elif self.dnamatch:
+            self.dnamatch.add_attribute(self.attribute)
         elif self.person:
             self.person.add_attribute(self.attribute)
         elif self.family:
@@ -1594,6 +1644,18 @@ class GrampsParser(UpdateCallback):
                 and handle not in self.db.note_bookmarks.get()
             ):
                 self.db.note_bookmarks.append(handle)
+        elif target == "dnatest":
+            if (
+                self.db.get_dnatest_from_handle(handle) is not None
+                and handle not in self.db.dnatest_bookmarks.get()
+            ):
+                self.db.dnatest_bookmarks.append(handle)
+        elif target == "dnamatch":
+            if (
+                self.db.get_dnamatch_from_handle(handle) is not None
+                and handle not in self.db.dnamatch_bookmarks.get()
+            ):
+                self.db.dnamatch_bookmarks.append(handle)
 
     def start_format(self, attrs):
         number = int(attrs["number"])
@@ -1625,6 +1687,13 @@ class GrampsParser(UpdateCallback):
         Add a person to db if it doesn't exist yet and assign
         id, privacy and changetime.
         """
+        if "hlink" in attrs and "handle" not in attrs and "id" not in attrs:
+            handle = self.inaugurate(attrs["hlink"], "person", Person)
+            if self.shared_ancestor is not None:
+                self.shared_ancestor.set_person_handle(handle)
+            elif self.dnatest is not None:
+                self.dnatest.set_person_handle(handle)
+            return None
         self.update(self.p.CurrentLineNumber)
         self.person = Person()
         if "handle" in attrs:
@@ -2026,6 +2095,12 @@ class GrampsParser(UpdateCallback):
         if self.event:
             self.event.add_tag(handle)
 
+        if self.dnatest:
+            self.dnatest.add_tag(handle)
+
+        if self.dnamatch:
+            self.dnamatch.add_tag(handle)
+
         if self.placeobj:
             self.placeobj.add_tag(handle)
 
@@ -2203,6 +2278,12 @@ class GrampsParser(UpdateCallback):
             self.childref.add_note(handle)
         elif self.family:
             self.family.add_note(handle)
+        elif self.shared_ancestor:
+            self.shared_ancestor.add_note(handle)
+        elif self.dnatest:
+            self.dnatest.add_note(handle)
+        elif self.dnamatch:
+            self.dnamatch.add_note(handle)
         elif self.placeobj:
             self.placeobj.add_note(handle)
         elif self.repo:
@@ -2236,6 +2317,12 @@ class GrampsParser(UpdateCallback):
             self.childref.add_citation(citation_handle)
         elif self.family:
             self.family.add_citation(citation_handle)
+        elif self.shared_ancestor:
+            self.shared_ancestor.add_citation(citation_handle)
+        elif self.dnatest:
+            self.dnatest.add_citation(citation_handle)
+        elif self.dnamatch:
+            self.dnamatch.add_citation(citation_handle)
         elif self.personref:
             self.personref.add_citation(citation_handle)
         elif self.person:
@@ -2373,6 +2460,10 @@ class GrampsParser(UpdateCallback):
         self.objref.private = bool(attrs.get("priv"))
         if self.event:
             self.event.add_media_reference(self.objref)
+        elif self.dnatest:
+            self.dnatest.add_media_reference(self.objref)
+        elif self.dnamatch:
+            self.dnamatch.add_media_reference(self.objref)
         elif self.family:
             self.family.add_media_reference(self.objref)
         elif self.source:
@@ -2539,6 +2630,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.address.get_date_object()
         elif self.name:
             date_value = self.name.get_date_object()
+        elif self.dnatest:
+            date_value = self.dnatest.get_date_object()
         elif self.event:
             date_value = self.event.get_date_object()
         elif self.placeref:
@@ -2646,6 +2739,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.address.get_date_object()
         elif self.name:
             date_value = self.name.get_date_object()
+        elif self.dnatest:
+            date_value = self.dnatest.get_date_object()
         elif self.event:
             date_value = self.event.get_date_object()
         elif self.placeref:
@@ -2764,6 +2859,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.address.get_date_object()
         elif self.name:
             date_value = self.name.get_date_object()
+        elif self.dnatest:
+            date_value = self.dnatest.get_date_object()
         elif self.event:
             date_value = self.event.get_date_object()
         elif self.placeref:
@@ -3063,11 +3160,17 @@ class GrampsParser(UpdateCallback):
         self.family = None
 
     def stop_person(self, *tag):
+        if self.person is None:
+            # hlink-only <person hlink="..."/> reference element - nothing to commit
+            return
         self.db.commit_person(self.person, self.trans, self.person.get_change_time())
         self.person = None
 
     def stop_description(self, tag):
-        self.event.set_description(tag)
+        if self.shared_ancestor:
+            self.shared_ancestor.set_description(tag)
+        else:
+            self.event.set_description(tag)
 
     def stop_cause(self, tag):
         # The old event's cause is now an attribute
@@ -3247,6 +3350,162 @@ class GrampsParser(UpdateCallback):
     def stop_text(self, tag):
         self.note_text = tag
 
+    # -----------------------------------------------------------------------
+    # DNA object handlers (new in XML 1.8.0)
+    # -----------------------------------------------------------------------
+
+    def start_dnatest(self, attrs):
+        self.update(self.p.CurrentLineNumber)
+        self.dnatest = DNATest()
+        orig_handle = attrs["handle"].replace("_", "")
+        is_merge_candidate = (
+            self.replace_import_handle and self.db.has_dnatest_handle(orig_handle)
+        )
+        self.inaugurate(orig_handle, "dnatest", self.dnatest)
+        gramps_id = self.legalize_id(
+            attrs.get("id"),
+            DNATEST_KEY,
+            self.tidswap,
+            self.db.tid2user_format,
+            self.db.find_next_dnatest_gramps_id,
+            self.db.has_dnatest_gramps_id,
+        )
+        self.dnatest.set_gramps_id(gramps_id)
+        if is_merge_candidate:
+            orig_dnatest = self.db.get_dnatest_from_handle(orig_handle)
+            self.info.add(
+                "merge-candidate", DNATEST_KEY, orig_dnatest, self.dnatest
+            )
+        self.dnatest.private = bool(attrs.get("priv"))
+        self.dnatest.change = int(attrs.get("change", self.change))
+        self.info.add("new-object", DNATEST_KEY, self.dnatest)
+        if self.default_tag:
+            self.dnatest.add_tag(self.default_tag.handle)
+        return self.dnatest
+
+    def stop_dnatest(self, *tag):
+        self.db.commit_dnatest(
+            self.dnatest, self.trans, self.dnatest.get_change_time()
+        )
+        self.dnatest = None
+
+    def start_dnamatch(self, attrs):
+        self.update(self.p.CurrentLineNumber)
+        self.dnamatch = DNAMatch()
+        orig_handle = attrs["handle"].replace("_", "")
+        is_merge_candidate = (
+            self.replace_import_handle and self.db.has_dnamatch_handle(orig_handle)
+        )
+        self.inaugurate(orig_handle, "dnamatch", self.dnamatch)
+        gramps_id = self.legalize_id(
+            attrs.get("id"),
+            DNAMATCH_KEY,
+            self.midswap,
+            self.db.mid2user_format,
+            self.db.find_next_dnamatch_gramps_id,
+            self.db.has_dnamatch_gramps_id,
+        )
+        self.dnamatch.set_gramps_id(gramps_id)
+        if is_merge_candidate:
+            orig_dnamatch = self.db.get_dnamatch_from_handle(orig_handle)
+            self.info.add(
+                "merge-candidate", DNAMATCH_KEY, orig_dnamatch, self.dnamatch
+            )
+        self.dnamatch.private = bool(attrs.get("priv"))
+        self.dnamatch.change = int(attrs.get("change", self.change))
+        self.info.add("new-object", DNAMATCH_KEY, self.dnamatch)
+        if self.default_tag:
+            self.dnamatch.add_tag(self.default_tag.handle)
+        return self.dnamatch
+
+    def stop_dnamatch(self, *tag):
+        self.db.commit_dnamatch(
+            self.dnamatch, self.trans, self.dnamatch.get_change_time()
+        )
+        self.dnamatch = None
+
+    def start_shared_ancestor(self, attrs):
+        self.shared_ancestor = SharedAncestor()
+        self.shared_ancestor.set_confidence(int(attrs.get("confidence", 0)))
+
+    def stop_shared_ancestor(self, *tag):
+        if self.dnamatch:
+            self.dnamatch.add_shared_ancestor(self.shared_ancestor)
+        self.shared_ancestor = None
+
+    def start_dna_segment(self, attrs):
+        seg = DNASegment()
+        seg.set_chromosome(attrs.get("chromosome", ""))
+        seg.set_start_bp(int(attrs.get("start_bp", 0)))
+        seg.set_end_bp(int(attrs.get("end_bp", 0)))
+        seg.set_shared_cm(float(attrs.get("shared_cm", 0.0)))
+        seg.set_snp_count(int(attrs.get("snp_count", 0)))
+        seg.set_phase(int(attrs.get("phase", 0)))
+        if "start_rsid" in attrs:
+            seg.set_start_rsid(attrs["start_rsid"])
+        if "end_rsid" in attrs:
+            seg.set_end_rsid(attrs["end_rsid"])
+        if self.dnamatch:
+            self.dnamatch.add_segment(seg)
+
+    def start_subject_test(self, attrs):
+        if self.dnamatch and "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "dnatest", DNATest)
+            self.dnamatch.set_subject_test_handle(handle)
+
+    def start_match_test(self, attrs):
+        if self.dnamatch and "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "dnatest", DNATest)
+            self.dnamatch.set_match_test_handle(handle)
+
+    def stop_account_name(self, tag):
+        if self.dnatest:
+            self.dnatest.set_account_name(tag)
+
+    def stop_provider(self, tag):
+        if self.dnatest:
+            self.dnatest.get_provider().set_from_xml_str(tag)
+
+    def stop_kit_id(self, tag):
+        if self.dnatest:
+            self.dnatest.set_kit_id(tag)
+
+    def stop_test_type(self, tag):
+        if self.dnatest:
+            self.dnatest.get_test_type().set_from_xml_str(tag)
+
+    def stop_genome_build(self, tag):
+        if self.dnatest:
+            self.dnatest.get_genome_build().set_from_xml_str(tag)
+
+    def stop_haplogroup(self, tag):
+        if self.dnatest:
+            self.dnatest.set_haplogroup(tag)
+
+    def start_shared_cm(self, attrs):
+        if self.dnamatch:
+            self.dnamatch.set_shared_cm(float(attrs.get("val", 0.0)))
+
+    def start_percent_shared(self, attrs):
+        if self.dnamatch:
+            self.dnamatch.set_percent_shared(float(attrs.get("val", 0.0)))
+
+    def start_segment_count(self, attrs):
+        if self.dnamatch:
+            self.dnamatch.set_segment_count(int(attrs.get("val", 0)))
+
+    def start_largest_segment_cm(self, attrs):
+        if self.dnamatch:
+            self.dnamatch.set_largest_segment_cm(float(attrs.get("val", 0.0)))
+
+    def stop_predicted_relationship(self, tag):
+        if self.dnamatch:
+            self.dnamatch.set_predicted_relationship(tag)
+
+    def start_predicted_generations(self, attrs):
+        if self.dnamatch:
+            self.dnamatch.set_predicted_generations(float(attrs.get("val", 0.0)))
+
     def stop_note(self, tag):
         self.in_note = 0
         if self.use_p:
@@ -3291,6 +3550,12 @@ class GrampsParser(UpdateCallback):
             self.childref.add_note(self.note.handle)
         elif self.family:
             self.family.add_note(self.note.handle)
+        elif self.shared_ancestor:
+            self.shared_ancestor.add_note(self.note.handle)
+        elif self.dnatest:
+            self.dnatest.add_note(self.note.handle)
+        elif self.dnamatch:
+            self.dnamatch.add_note(self.note.handle)
         elif self.placeobj:
             self.placeobj.add_note(self.note.handle)
         elif self.repo:

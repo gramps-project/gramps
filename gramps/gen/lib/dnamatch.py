@@ -108,7 +108,7 @@ class DNAMatch(
             self.__segment_count = 0
             self.__largest_segment_cm = 0.0
             self.__predicted_relationship = ""
-            self.__predicted_generations = None
+            self.__predicted_generations = 0.0
             self.__shared_ancestor_list = []
             self.__segment_list = []
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.2//EN"
-"http://gramps-project.org/xml/1.7.2/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.2/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
+"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.8.0/">
   <header>
     <created date="2016-02-06" version="5.0.0"/>
     <researcher>
@@ -1819,4 +1819,213 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       <text>Some note on the repo</text>
     </note>
   </notes>
+  <dnatests>
+    <dnatest handle="_dna1t0001ksmith6600" change="1526083200" id="T00001" priv="0">
+      <person hlink="_PGNT6DESJOESEQNP22"/>
+      <account_name>KSmith1966</account_name>
+      <provider>AncestryDNA</provider>
+      <kit_id>AA10147</kit_id>
+      <test_type>Autosomal</test_type>
+      <genome_build>GRCh37</genome_build>
+      <dateval val="2018-05-12"/>
+    </dnatest>
+    <dnatest handle="_dna1t0002esmth196301" change="1551916800" id="T00002" priv="0">
+      <person hlink="_RDMT6D6113RO3X299I"/>
+      <account_name>ESmith1963</account_name>
+      <provider>AncestryDNA</provider>
+      <kit_id>AA10823</kit_id>
+      <test_type>Autosomal</test_type>
+      <genome_build>GRCh37</genome_build>
+      <dateval val="2019-03-07"/>
+    </dnatest>
+    <dnatest handle="_dna1t0003edmth196101" change="1600041600" id="T00003" priv="0">
+      <person hlink="_PSNT6D0DDHJOBCFJWX"/>
+      <account_name>EdwinMSmith</account_name>
+      <provider>AncestryDNA</provider>
+      <kit_id>AA22541</kit_id>
+      <test_type>Autosomal</test_type>
+      <genome_build>GRCh37</genome_build>
+      <dateval val="2020-09-14"/>
+    </dnatest>
+    <dnatest handle="_dna1t0004edmth196102" change="1509667200" id="T00004" priv="0">
+      <person hlink="_PSNT6D0DDHJOBCFJWX"/>
+      <account_name>EdwinMSmith</account_name>
+      <provider>FTDNA</provider>
+      <kit_id>412887</kit_id>
+      <test_type>Y-DNA 111</test_type>
+      <dateval val="2017-11-03"/>
+      <haplogroup>R-L21</haplogroup>
+      <attribute type="DYS393" value="13"/>
+      <attribute type="DYS390" value="24"/>
+      <attribute type="DYS19" value="14"/>
+      <attribute type="DYS391" value="11"/>
+      <attribute type="DYS385" value="11, 14"/>
+      <attribute type="DYS426" value="12"/>
+      <attribute type="DYS388" value="12"/>
+      <attribute type="DYS439" value="12"/>
+      <attribute type="DYS389i" value="13"/>
+      <attribute type="DYS392" value="13"/>
+      <attribute type="DYS389ii" value="29"/>
+    </dnatest>
+    <dnatest handle="_dna1t0005msmth196001" change="1613606400" id="T00005" priv="0">
+      <person hlink="_60OT6D7XUEURYJRN78"/>
+      <account_name>MarjorieSMith</account_name>
+      <provider>MyHeritage</provider>
+      <test_type>Autosomal</test_type>
+      <genome_build>GRCh37</genome_build>
+      <dateval val="2021-02-18"/>
+    </dnatest>
+    <dnatest handle="_dna1t0006msmth194701" change="1593475200" id="T00006" priv="0">
+      <person hlink="_bd7539fc2292e24045e"/>
+      <account_name>Marie_Smith_47</account_name>
+      <provider>23andMe</provider>
+      <test_type>Autosomal</test_type>
+      <genome_build>GRCh37</genome_build>
+      <dateval val="2020-06-30"/>
+    </dnatest>
+    <dnatest handle="_dna1t0007jcbrown5200" change="1715000000" id="T00007" priv="0">
+      <account_name>jcbrown52</account_name>
+      <provider>GEDmatch</provider>
+      <kit_id>MM2847A</kit_id>
+      <test_type>Autosomal</test_type>
+      <genome_build>GRCh37</genome_build>
+    </dnatest>
+    <dnatest handle="_dna1t0008anderson0h0" change="1715000000" id="T00008" priv="0">
+      <account_name>anderson_m_genealogy</account_name>
+      <provider>AncestryDNA</provider>
+      <test_type>Autosomal</test_type>
+      <genome_build>GRCh37</genome_build>
+    </dnatest>
+  </dnatests>
+  <dnamatches>
+    <dnamatch handle="_dna1m0001ksiberic011" change="1552262400" id="M00001" priv="0">
+      <subject_test hlink="_dna1t0001ksmith6600"/>
+      <match_test hlink="_dna1t0002esmth196301"/>
+      <shared_cm val="2547.3"/>
+      <percent_shared val="35.9"/>
+      <segment_count val="22"/>
+      <largest_segment_cm val="298.4"/>
+      <predicted_relationship>Close Family</predicted_relationship>
+    </dnamatch>
+    <dnamatch handle="_dna1m0002kvsedwin012" change="1601251200" id="M00002" priv="0">
+      <subject_test hlink="_dna1t0001ksmith6600"/>
+      <match_test hlink="_dna1t0003edmth196101"/>
+      <shared_cm val="212.4"/>
+      <percent_shared val="3.0"/>
+      <segment_count val="9"/>
+      <largest_segment_cm val="68.2"/>
+      <predicted_relationship>2nd Cousin</predicted_relationship>
+      <predicted_generations val="2.8"/>
+      <shared_ancestor confidence="2">
+        <person hlink="_J0NT6D9BY50LEA4VGY"/>
+      </shared_ancestor>
+      <shared_ancestor confidence="2">
+        <person hlink="_VHNT6DQCEELKZP0M2W"/>
+      </shared_ancestor>
+      <dna_segment chromosome="1" start_bp="87234512" end_bp="112891045" shared_cm="31.4" snp_count="4521" phase="0"/>
+      <dna_segment chromosome="3" start_bp="45678901" end_bp="68234567" shared_cm="28.7" snp_count="3892" phase="0"/>
+      <dna_segment chromosome="6" start_bp="134567890" end_bp="159234456" shared_cm="24.1" snp_count="3214" phase="0"/>
+      <dna_segment chromosome="9" start_bp="12345678" end_bp="34567890" shared_cm="21.9" snp_count="2987" phase="0"/>
+      <dna_segment chromosome="12" start_bp="56789012" end_bp="72345678" shared_cm="18.3" snp_count="2534" phase="0"/>
+      <dna_segment chromosome="15" start_bp="23456789" end_bp="38901234" shared_cm="17.5" snp_count="2187" phase="0"/>
+      <dna_segment chromosome="17" start_bp="45678901" end_bp="58901234" shared_cm="15.2" snp_count="1987" phase="0"/>
+      <dna_segment chromosome="19" start_bp="18234567" end_bp="27890123" shared_cm="13.8" snp_count="1654" phase="0"/>
+      <dna_segment chromosome="22" start_bp="19456789" end_bp="31234567" shared_cm="41.5" snp_count="5234" phase="0"/>
+    </dnamatch>
+    <dnamatch handle="_dna1m0003kvsmrjrie013" change="1614038400" id="M00003" priv="0">
+      <subject_test hlink="_dna1t0001ksmith6600"/>
+      <match_test hlink="_dna1t0005msmth196001"/>
+      <shared_cm val="176.8"/>
+      <percent_shared val="2.49"/>
+      <segment_count val="7"/>
+      <largest_segment_cm val="54.1"/>
+      <predicted_relationship>2nd-3rd Cousin</predicted_relationship>
+      <predicted_generations val="3.1"/>
+      <shared_ancestor confidence="2">
+        <person hlink="_J0NT6D9BY50LEA4VGY"/>
+      </shared_ancestor>
+      <shared_ancestor confidence="2">
+        <person hlink="_VHNT6DQCEELKZP0M2W"/>
+      </shared_ancestor>
+      <dna_segment chromosome="2" start_bp="67890123" end_bp="89012345" shared_cm="42.3" snp_count="5123" phase="0"/>
+      <dna_segment chromosome="5" start_bp="123456789" end_bp="143234567" shared_cm="29.8" snp_count="3876" phase="0"/>
+      <dna_segment chromosome="8" start_bp="34567890" end_bp="51234567" shared_cm="24.5" snp_count="3201" phase="0"/>
+      <dna_segment chromosome="11" start_bp="78901234" end_bp="93456789" shared_cm="21.2" snp_count="2876" phase="0"/>
+      <dna_segment chromosome="14" start_bp="45678901" end_bp="58234567" shared_cm="18.9" snp_count="2345" phase="0"/>
+      <dna_segment chromosome="18" start_bp="12345678" end_bp="22890123" shared_cm="14.6" snp_count="1876" phase="0"/>
+      <dna_segment chromosome="21" start_bp="14567890" end_bp="21234567" shared_cm="25.5" snp_count="3012" phase="0"/>
+    </dnamatch>
+    <dnamatch handle="_dna1m0004kvsmarie014" change="1601510400" id="M00004" priv="0">
+      <subject_test hlink="_dna1t0001ksmith6600"/>
+      <match_test hlink="_dna1t0006msmth194701"/>
+      <shared_cm val="195.6"/>
+      <percent_shared val="2.75"/>
+      <segment_count val="8"/>
+      <largest_segment_cm val="62.3"/>
+      <predicted_relationship>2nd Cousin</predicted_relationship>
+      <predicted_generations val="2.9"/>
+      <shared_ancestor confidence="1">
+        <person hlink="_J0NT6D9BY50LEA4VGY"/>
+      </shared_ancestor>
+      <dna_segment chromosome="4" start_bp="58901234" end_bp="82345678" shared_cm="38.7" snp_count="4821" phase="0"/>
+      <dna_segment chromosome="7" start_bp="34567890" end_bp="56789012" shared_cm="30.1" snp_count="3654" phase="0"/>
+      <dna_segment chromosome="10" start_bp="67890123" end_bp="84567890" shared_cm="26.4" snp_count="3128" phase="0"/>
+      <dna_segment chromosome="13" start_bp="45678901" end_bp="62345678" shared_cm="23.8" snp_count="2891" phase="0"/>
+      <dna_segment chromosome="16" start_bp="23456789" end_bp="37890123" shared_cm="20.5" snp_count="2543" phase="0"/>
+      <dna_segment chromosome="20" start_bp="12345678" end_bp="24567890" shared_cm="17.3" snp_count="2109" phase="0"/>
+      <dna_segment chromosome="X" start_bp="89012345" end_bp="107890123" shared_cm="22.7" snp_count="2743" phase="0"/>
+      <dna_segment chromosome="1" start_bp="145678901" end_bp="158234567" shared_cm="16.1" snp_count="1987" phase="0"/>
+    </dnamatch>
+    <dnamatch handle="_dna1m0005kvsjcbrwn015" change="1715086400" id="M00005" priv="0">
+      <subject_test hlink="_dna1t0001ksmith6600"/>
+      <match_test hlink="_dna1t0007jcbrown5200"/>
+      <shared_cm val="85.2"/>
+      <percent_shared val="1.2"/>
+      <segment_count val="4"/>
+      <largest_segment_cm val="38.7"/>
+      <predicted_relationship>3rd-4th Cousin</predicted_relationship>
+      <predicted_generations val="3.9"/>
+      <dna_segment chromosome="3" start_bp="89012345" end_bp="110234567" shared_cm="38.7" snp_count="4234" phase="0"/>
+      <dna_segment chromosome="9" start_bp="56789012" end_bp="71234567" shared_cm="22.1" snp_count="2567" phase="0"/>
+      <dna_segment chromosome="14" start_bp="67890123" end_bp="79012345" shared_cm="14.8" snp_count="1843" phase="0"/>
+      <dna_segment chromosome="18" start_bp="34567890" end_bp="43456789" shared_cm="9.6" snp_count="1234" phase="0"/>
+    </dnamatch>
+    <dnamatch handle="_dna1m0006evsmarie016" change="1601596800" id="M00006" priv="0">
+      <subject_test hlink="_dna1t0003edmth196101"/>
+      <match_test hlink="_dna1t0006msmth194701"/>
+      <shared_cm val="185.4"/>
+      <percent_shared val="2.61"/>
+      <segment_count val="8"/>
+      <largest_segment_cm val="57.9"/>
+      <predicted_relationship>2nd Cousin</predicted_relationship>
+      <predicted_generations val="2.8"/>
+      <shared_ancestor confidence="2">
+        <person hlink="_J0NT6D9BY50LEA4VGY"/>
+      </shared_ancestor>
+      <shared_ancestor confidence="2">
+        <person hlink="_VHNT6DQCEELKZP0M2W"/>
+      </shared_ancestor>
+      <dna_segment chromosome="2" start_bp="112345678" end_bp="135678901" shared_cm="35.2" snp_count="4312" phase="0"/>
+      <dna_segment chromosome="5" start_bp="78901234" end_bp="101234567" shared_cm="29.4" snp_count="3542" phase="0"/>
+      <dna_segment chromosome="7" start_bp="89012345" end_bp="107890123" shared_cm="24.8" snp_count="3012" phase="0"/>
+      <dna_segment chromosome="10" start_bp="34567890" end_bp="51234567" shared_cm="21.6" snp_count="2654" phase="0"/>
+      <dna_segment chromosome="13" start_bp="23456789" end_bp="38901234" shared_cm="18.7" snp_count="2234" phase="0"/>
+      <dna_segment chromosome="16" start_bp="45678901" end_bp="58234567" shared_cm="15.3" snp_count="1876" phase="0"/>
+      <dna_segment chromosome="20" start_bp="34567890" end_bp="46789012" shared_cm="13.9" snp_count="1654" phase="0"/>
+      <dna_segment chromosome="22" start_bp="23456789" end_bp="35678901" shared_cm="26.5" snp_count="3109" phase="0"/>
+    </dnamatch>
+    <dnamatch handle="_dna1m0007evsandrsn017" change="1715172800" id="M00007" priv="0">
+      <subject_test hlink="_dna1t0003edmth196101"/>
+      <match_test hlink="_dna1t0008anderson0h0"/>
+      <shared_cm val="67.3"/>
+      <percent_shared val="0.95"/>
+      <segment_count val="3"/>
+      <largest_segment_cm val="31.2"/>
+      <predicted_relationship>3rd-4th Cousin</predicted_relationship>
+      <predicted_generations val="4.1"/>
+      <dna_segment chromosome="6" start_bp="78901234" end_bp="101234567" shared_cm="31.2" snp_count="3456" phase="0"/>
+      <dna_segment chromosome="11" start_bp="45678901" end_bp="58901234" shared_cm="21.5" snp_count="2567" phase="0"/>
+      <dna_segment chromosome="15" start_bp="56789012" end_bp="66234567" shared_cm="14.6" snp_count="1789" phase="0"/>
+    </dnamatch>
+  </dnamatches>
 </database>

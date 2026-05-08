@@ -235,6 +235,8 @@ class GrampsXmlWriter(UpdateCallback):
         obj_len = self.db.get_number_of_media()
         note_len = self.db.get_number_of_notes()
         tag_len = self.db.get_number_of_tags()
+        dnatest_len = self.db.get_number_of_dnatests()
+        dnamatch_len = self.db.get_number_of_dnamatches()
 
         total_steps = (
             person_len
@@ -247,6 +249,8 @@ class GrampsXmlWriter(UpdateCallback):
             + obj_len
             + note_len
             + tag_len
+            + dnatest_len
+            + dnamatch_len
         )
 
         self.set_total(total_steps)
@@ -385,6 +389,24 @@ class GrampsXmlWriter(UpdateCallback):
                 self.update()
             self.g.write("  </notes>\n")
 
+        if dnatest_len > 0:
+            self.g.write("  <dnatests>\n")
+            for handle in sorted(self.db.get_dnatest_handles()):
+                dnatest = self.db.get_dnatest_from_handle(handle)
+                if dnatest:
+                    self.write_dnatest(dnatest, 2)
+                self.update()
+            self.g.write("  </dnatests>\n")
+
+        if dnamatch_len > 0:
+            self.g.write("  <dnamatches>\n")
+            for handle in sorted(self.db.get_dnamatch_handles()):
+                dnamatch = self.db.get_dnamatch_from_handle(handle)
+                if dnamatch:
+                    self.write_dnamatch(dnamatch, 2)
+                self.update()
+            self.g.write("  </dnamatches>\n")
+
         # Data is written, now write bookmarks.
         self.write_bookmarks()
         self.write_namemaps()
@@ -424,6 +446,8 @@ class GrampsXmlWriter(UpdateCallback):
         bm_repo_len = len(self.db.repo_bookmarks.get())
         bm_obj_len = len(self.db.media_bookmarks.get())
         bm_note_len = len(self.db.note_bookmarks.get())
+        bm_dnatest_len = len(self.db.dnatest_bookmarks.get())
+        bm_dnamatch_len = len(self.db.dnamatch_bookmarks.get())
 
         bm_len = (
             bm_person_len
@@ -435,6 +459,8 @@ class GrampsXmlWriter(UpdateCallback):
             + bm_citation_len
             + bm_obj_len
             + bm_note_len
+            + bm_dnatest_len
+            + bm_dnamatch_len
         )
 
         if bm_len > 0:
@@ -460,6 +486,10 @@ class GrampsXmlWriter(UpdateCallback):
                 )
             for handle in self.db.get_note_bookmarks().get():
                 self.g.write('    <bookmark target="note" hlink="_%s"/>\n' % handle)
+            for handle in self.db.dnatest_bookmarks.get():
+                self.g.write('    <bookmark target="dnatest" hlink="_%s"/>\n' % handle)
+            for handle in self.db.dnamatch_bookmarks.get():
+                self.g.write('    <bookmark target="dnamatch" hlink="_%s"/>\n' % handle)
 
             self.g.write("  </bookmarks>\n")
 
@@ -1363,6 +1393,134 @@ class GrampsXmlWriter(UpdateCallback):
             self.write_ref("tagref", tag_handle, index + 1)
 
         self.g.write("%s</placeobj>\n" % ("  " * index))
+
+    def write_dnatest(self, dnatest, index=1):
+        if not dnatest:
+            return
+
+        self.write_primary_tag("dnatest", dnatest, index)
+
+        sp = "  " * index
+        sp2 = "  " * (index + 1)
+
+        if dnatest.get_person_handle():
+            self.g.write('%s<person hlink="_%s"/>\n' % (sp2, dnatest.get_person_handle()))
+        self.write_line("account_name", dnatest.get_account_name(), index + 1)
+        provider = dnatest.get_provider().xml_str()
+        if provider:
+            self.g.write("%s<provider>%s</provider>\n" % (sp2, self.fix(provider)))
+        self.write_line("kit_id", dnatest.get_kit_id(), index + 1)
+        test_type = dnatest.get_test_type().xml_str()
+        if test_type:
+            self.g.write("%s<test_type>%s</test_type>\n" % (sp2, self.fix(test_type)))
+        genome_build = dnatest.get_genome_build().xml_str()
+        if genome_build:
+            self.g.write(
+                "%s<genome_build>%s</genome_build>\n" % (sp2, self.fix(genome_build))
+            )
+        dval = dnatest.get_date_object()
+        if not dval.is_empty():
+            self.write_date(dval, index + 1)
+        self.write_line("haplogroup", dnatest.get_haplogroup(), index + 1)
+        self.write_attribute_list(dnatest.get_attribute_list(), index + 1)
+        self.write_media_list(dnatest.get_media_list(), index + 1)
+        self.write_note_list(dnatest.get_note_list(), index + 1)
+        for citation_handle in dnatest.get_citation_list():
+            self.write_ref("citationref", citation_handle, index + 1)
+        for tag_handle in dnatest.get_tag_list():
+            self.write_ref("tagref", tag_handle, index + 1)
+
+        self.g.write("%s</dnatest>\n" % sp)
+
+    def write_dnamatch(self, dnamatch, index=1):
+        if not dnamatch:
+            return
+
+        self.write_primary_tag("dnamatch", dnamatch, index)
+
+        sp = "  " * index
+        sp2 = "  " * (index + 1)
+        sp3 = "  " * (index + 2)
+
+        if dnamatch.get_subject_test_handle():
+            self.g.write(
+                '%s<subject_test hlink="_%s"/>\n'
+                % (sp2, dnamatch.get_subject_test_handle())
+            )
+        if dnamatch.get_match_test_handle():
+            self.g.write(
+                '%s<match_test hlink="_%s"/>\n'
+                % (sp2, dnamatch.get_match_test_handle())
+            )
+        if dnamatch.get_shared_cm():
+            self.g.write(
+                '%s<shared_cm val="%.6g"/>\n' % (sp2, dnamatch.get_shared_cm())
+            )
+        if dnamatch.get_percent_shared():
+            self.g.write(
+                '%s<percent_shared val="%.6g"/>\n' % (sp2, dnamatch.get_percent_shared())
+            )
+        if dnamatch.get_segment_count():
+            self.g.write(
+                '%s<segment_count val="%s"/>\n' % (sp2, dnamatch.get_segment_count())
+            )
+        if dnamatch.get_largest_segment_cm():
+            self.g.write(
+                '%s<largest_segment_cm val="%.6g"/>\n'
+                % (sp2, dnamatch.get_largest_segment_cm())
+            )
+        self.write_line(
+            "predicted_relationship",
+            dnamatch.get_predicted_relationship(),
+            index + 1,
+        )
+        if dnamatch.get_predicted_generations():
+            self.g.write(
+                '%s<predicted_generations val="%.6g"/>\n'
+                % (sp2, dnamatch.get_predicted_generations())
+            )
+        for ancestor in dnamatch.get_shared_ancestor_list():
+            conf = ancestor.get_confidence()
+            self.g.write('%s<shared_ancestor confidence="%d">\n' % (sp2, conf))
+            self.write_line("description", ancestor.get_description(), index + 2)
+            if ancestor.get_person_handle():
+                self.g.write(
+                    '%s<person hlink="_%s"/>\n' % (sp3, ancestor.get_person_handle())
+                )
+            for note_handle in ancestor.get_note_list():
+                self.write_ref("noteref", note_handle, index + 2)
+            for citation_handle in ancestor.get_citation_list():
+                self.write_ref("citationref", citation_handle, index + 2)
+            self.g.write("%s</shared_ancestor>\n" % sp2)
+        for seg in dnamatch.get_segment_list():
+            rsid_attrs = ""
+            if seg.get_start_rsid():
+                rsid_attrs += ' start_rsid="%s"' % self.fix(seg.get_start_rsid())
+            if seg.get_end_rsid():
+                rsid_attrs += ' end_rsid="%s"' % self.fix(seg.get_end_rsid())
+            self.g.write(
+                '%s<dna_segment chromosome="%s" start_bp="%d" end_bp="%d"'
+                ' shared_cm="%.6g" snp_count="%d" phase="%d"%s/>\n'
+                % (
+                    sp2,
+                    self.fix(seg.get_chromosome()),
+                    seg.get_start_bp(),
+                    seg.get_end_bp(),
+                    seg.get_shared_cm(),
+                    seg.get_snp_count(),
+                    seg.get_phase(),
+                    rsid_attrs,
+                )
+            )
+        self.write_attribute_list(dnamatch.get_attribute_list(), index + 1)
+        self.write_media_list(dnamatch.get_media_list(), index + 1)
+        self.write_note_list(dnamatch.get_note_list(), index + 1)
+        for citation_handle in dnamatch.get_citation_list():
+            self.write_ref("citationref", citation_handle, index + 1)
+        for tag_handle in dnamatch.get_tag_list():
+            self.write_ref("tagref", tag_handle, index + 1)
+
+        self.g.write("%s</dnamatch>\n" % sp)
 
     def write_object(self, obj, index=1):
         self.write_primary_tag("object", obj, index)

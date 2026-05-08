@@ -23,15 +23,15 @@
 -->
 
 <!--
-    This is the Document Type Definition file for v1.7.2
+    This is the Document Type Definition file for v1.8.0
     of the GRAMPS XML genealogy data format.
     Please use the following formal public identifier to identify it:
 
-    "-//GRAMPS//DTD GRAMPS XML V1.7.2//EN"
+    "-//GRAMPS//DTD GRAMPS XML V1.8.0//EN"
 
     For example:
-        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.7.2//EN"
-                "http://gramps-project.org/xml/1.7.2/grampsxml.dtd"
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.8.0//EN"
+                "http://gramps-project.org/xml/1.8.0/grampsxml.dtd"
                 [...]>
 -->
 
@@ -59,8 +59,8 @@ DATABASE
 
 <!ELEMENT database (header, name-formats?, tags?, events?, people?, families?,
                     citations?, sources?, places?, objects?, repositories?,
-                    notes?, bookmarks?, namemaps?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.7.2/">
+                    notes?, dnatests?, dnamatches?, bookmarks?, namemaps?)>
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.8.0/">
 
 
 <!--    ************************************************************
@@ -390,6 +390,86 @@ CITATIONS
 >
 
 <!--    ************************************************************
+DNA TESTS
+-->
+
+<!ELEMENT dnatests (dnatest)*>
+
+<!ELEMENT dnatest (person?, account_name?, provider?, kit_id?, test_type?,
+                   genome_build?, (daterange|datespan|dateval|datestr)?,
+                   haplogroup?, attribute*, objref*, noteref*, citationref*,
+                   tagref*)>
+<!ATTLIST dnatest
+        id        CDATA #IMPLIED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+        change    CDATA #REQUIRED
+>
+
+<!--    ************************************************************
+DNA MATCHES
+-->
+
+<!ELEMENT dnamatches (dnamatch)*>
+
+<!ELEMENT dnamatch (subject_test?, match_test?, shared_cm?, percent_shared?,
+                    segment_count?, largest_segment_cm?, predicted_relationship?,
+                    predicted_generations?, shared_ancestor*, dna_segment*,
+                    attribute*, objref*, noteref*, citationref*, tagref*)>
+<!ATTLIST dnamatch
+        id        CDATA #IMPLIED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
+        change    CDATA #REQUIRED
+>
+
+<!ELEMENT subject_test EMPTY>
+<!ATTLIST subject_test hlink IDREF #REQUIRED>
+
+<!ELEMENT match_test EMPTY>
+<!ATTLIST match_test hlink IDREF #REQUIRED>
+
+<!ELEMENT shared_cm EMPTY>
+<!ATTLIST shared_cm val CDATA #REQUIRED>
+
+<!ELEMENT percent_shared EMPTY>
+<!ATTLIST percent_shared val CDATA #REQUIRED>
+
+<!ELEMENT segment_count EMPTY>
+<!ATTLIST segment_count val CDATA #REQUIRED>
+
+<!ELEMENT largest_segment_cm EMPTY>
+<!ATTLIST largest_segment_cm val CDATA #REQUIRED>
+
+<!ELEMENT predicted_relationship (#PCDATA)>
+<!ELEMENT predicted_generations EMPTY>
+<!ATTLIST predicted_generations val CDATA #REQUIRED>
+
+<!ELEMENT shared_ancestor (description?, person?, noteref*, citationref*)>
+<!ATTLIST shared_ancestor
+        confidence CDATA #REQUIRED
+>
+
+<!ELEMENT dna_segment EMPTY>
+<!ATTLIST dna_segment
+        chromosome  CDATA #REQUIRED
+        start_bp    CDATA #REQUIRED
+        end_bp      CDATA #REQUIRED
+        shared_cm   CDATA #REQUIRED
+        snp_count   CDATA #REQUIRED
+        phase       CDATA #REQUIRED
+        start_rsid  CDATA #IMPLIED
+        end_rsid    CDATA #IMPLIED
+>
+
+<!ELEMENT account_name (#PCDATA)>
+<!ELEMENT provider (#PCDATA)>
+<!ELEMENT kit_id (#PCDATA)>
+<!ELEMENT test_type (#PCDATA)>
+<!ELEMENT genome_build (#PCDATA)>
+<!ELEMENT haplogroup (#PCDATA)>
+
+<!--    ************************************************************
 BOOKMARKS
 -->
 
@@ -397,7 +477,7 @@ BOOKMARKS
 <!ELEMENT bookmark EMPTY>
 <!ATTLIST bookmark
         target (person|family|event|source|citation|place|media|repository|
-                note) #REQUIRED
+                note|dnatest|dnamatch) #REQUIRED
         hlink  IDREF #REQUIRED
 >
 
