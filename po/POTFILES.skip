@@ -628,6 +628,7 @@ gramps/plugins/test/db_undo_and_signals_test.py
 gramps/plugins/test/exports_test.py
 gramps/plugins/test/imports_test.py
 gramps/plugins/test/reports_test.py
+gramps/plugins/test/schema_validation_test.py
 gramps/plugins/test/tools_test.py
 #
 # Thumbnailers
