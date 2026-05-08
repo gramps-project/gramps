@@ -369,7 +369,7 @@ class FamilySearchToolsWindow:
             _("Overwrite selected FamilySearch fields with Gramps values (no deletes).")
         )
 
-        self.btn_export_basic = Gtk.Button(label=_("Export to FamilySearch (basic)..."))
+        self.btn_export_basic = Gtk.Button(label=_("Export to FamilySearch"))
         self.btn_export_basic.set_tooltip_text(
             _(
                 "Create missing people on FamilySearch and link relationships (name + birth/death)."
