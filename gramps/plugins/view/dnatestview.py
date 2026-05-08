@@ -208,10 +208,6 @@ class DNATestView(ListView):
         % _("_Edit...", "action"),
         """
         <placeholder id='otheredit'>
-        <item>
-          <attribute name="action">win.FilterEdit</attribute>
-          <attribute name="label" translatable="yes">DNA Test Filter Editor</attribute>
-        </item>
         </placeholder>
 """,
         """

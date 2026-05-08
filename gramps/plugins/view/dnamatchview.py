@@ -221,10 +221,6 @@ class DNAMatchView(ListView):
         % _("_Edit...", "action"),
         """
         <placeholder id='otheredit'>
-        <item>
-          <attribute name="action">win.FilterEdit</attribute>
-          <attribute name="label" translatable="yes">DNA Match Filter Editor</attribute>
-        </item>
         </placeholder>
 """,
         """
