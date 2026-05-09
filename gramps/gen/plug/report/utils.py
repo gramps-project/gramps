@@ -33,6 +33,7 @@ A collection of utilities to aid in the generation of reports.
 #
 # -------------------------------------------------------------------------
 import os
+from sys import exception
 
 # ------------------------------------------------------------------------
 #
@@ -48,10 +49,9 @@ from ...utils.file import media_path_full
 from ...utils.symbols import Symbols
 from ...config import config
 from ..docgen import IndexMark, INDEX_TYPE_ALP
-from ...lib.person import Person
-from ...lib.familyreltype import FamilyRelType as FamRT
-
-# just to borrow these constants from Person, so we don't have to import the whole class
+# just to borrow these constants from Person, Family, and for marriage_type
+from ...lib import Person, Family, FamilyRelType
+from ...utils.alive import probably_alive
 
 _G_FEMALE, _G_MALE, _G_UNKNOWN, _G_OTHER = (
     Person.FEMALE,
@@ -64,11 +64,11 @@ _G_ALIVE = True
 _G_DEAD = False
 
 _F_MARRIED, _F_UNMARRIED, _F_CIVIL_UNION, _F_UNKNOWN, _F_CUSTOM = (
-    FamRT.MARRIED,
-    FamRT.UNMARRIED,
-    FamRT.CIVIL_UNION,
-    FamRT.UNKNOWN,
-    FamRT.CUSTOM,
+    FamilyRelType.MARRIED,
+    FamilyRelType.UNMARRIED,
+    FamilyRelType.CIVIL_UNION,
+    FamilyRelType.UNKNOWN,
+    FamilyRelType.CUSTOM,
 )
 
 
@@ -528,17 +528,41 @@ def generate_gender_color_styles(
 # Get color box name based on the person's gender
 #
 # -------------------------------------------------------------------------
-def get_gender_color_box_name(
-    gender, life_status, base_draw_name, report_gender_colors
-):
-    """generate gender box name"""
+
+
+def get_gender_color_box_name(person, db, base_draw_name, report_gender_colors):
+    """select gender box name"""
     try:
-        gen_color, gen_suffix = report_gender_colors[(gender, life_status)]
+        gender = person.gender
+    except AttributeError:
+        gender = _G_UNKNOWN
+
+    try:
+        is_alive = get_life_status(person, db)
+        gen_color, gen_suffix = report_gender_colors[(gender, is_alive)]
     except KeyError:
         gen_color, gen_suffix = report_gender_colors[
-            (_G_UNKNOWN, _G_DEAD)
+            (gender, _G_DEAD)
         ]  # default values
     return base_draw_name + gen_suffix
+
+
+def get_life_status(person, db):
+    is_alive = probably_alive(person, db)
+
+    """
+    # dk: need more work to make this work with living proxy, 
+    # and also need to decide how to handle the case where the person 
+    # is not in the database (e.g., a spouse that is not a person in the database)
+    if hasattr(self, 'living_proxy'):
+        is_alive or self.living_proxy.is_living(person)
+    """
+
+    return is_alive
+        # except Exception:
+        #    return _G_DEAD  # Default to dead if any error occurs
+    # except Exception:
+    #    return _G_DEAD  # Default to dead if any error occurs
 
 
 # -------------------------------------------------------------------------
@@ -564,10 +588,24 @@ def generate_family_color_style(
 # Get color box name based on the person's gender
 #
 # -------------------------------------------------------------------------
-def get_family_color_box_name(marr_type, base_draw_name, report_family_colors):
-    """generate family box name"""
+
+
+def get_family_color_box_name(family_handle, db, base_draw_name, report_family_colors):
+    """select family box name"""
     try:
+        marr_type = get_marriage_type(family_handle, db)
         marr_color, marr_suffix = report_family_colors[marr_type]
     except KeyError:
         marr_color, marr_suffix = report_family_colors[_F_UNKNOWN]  # default values
     return base_draw_name + marr_suffix
+
+def get_marriage_type(family_handle, db):
+    # get family from handle
+    family = db.get_family_from_handle(family_handle)
+    if not family:
+        return _F_UNKNOWN
+    try:
+        # Return marriage type: _F_MARRIED, _F_UNMARRIED, _F_CIVIL_UNION
+        return int(family.get_type())
+    except Exception:
+        return _F_UNKNOWN
