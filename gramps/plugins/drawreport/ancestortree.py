@@ -62,10 +62,7 @@ from gramps.gen.plug.docgen import (
 from gramps.plugins.lib.libtreebase import *
 from gramps.plugins.lib.librecurse import AscendPerson
 from gramps.gen.proxy import CacheProxyDb
-
-from gramps.gen.proxy import LivingProxyDb
 from gramps.gen.display.name import displayer as _nd
-from gramps.gen.lib import family as Family
 
 PT2CM = utils.pt2cm
 # cm2pt = utils.cm2pt

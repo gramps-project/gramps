@@ -46,10 +46,10 @@ from ...datehandler import get_date
 from ...display.place import displayer as _pd
 from ...utils.file import media_path_full
 from ...utils.symbols import Symbols
-from ...config import config
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 
 # just to borrow these constants from Person, Family, and for marriage_type
+from ...config import config
 from ...lib import Person, Family, FamilyRelType
 from ...utils.alive import probably_alive
 
