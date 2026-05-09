@@ -33,7 +33,6 @@ A collection of utilities to aid in the generation of reports.
 #
 # -------------------------------------------------------------------------
 import os
-from sys import exception
 
 # ------------------------------------------------------------------------
 #
@@ -552,18 +551,14 @@ def get_life_status(person, db):
     is_alive = probably_alive(person, db)
 
     """
-    # dk: need more work to make this work with living proxy, 
-    # and also need to decide how to handle the case where the person 
+    # dk: need more work to make this work with living proxy,
+    # and also need to decide how to handle the case where the person
     # is not in the database (e.g., a spouse that is not a person in the database)
     if hasattr(self, 'living_proxy'):
         is_alive or self.living_proxy.is_living(person)
     """
 
     return is_alive
-    # except Exception:
-    #    return _G_DEAD  # Default to dead if any error occurs
-    # except Exception:
-    #    return _G_DEAD  # Default to dead if any error occurs
 
 
 # -------------------------------------------------------------------------
