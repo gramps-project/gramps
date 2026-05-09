@@ -323,7 +323,7 @@ class ClipObjWrapper(ClipWrapper):
 class ClipAddress(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.ADDRESS]
     DRAG_TARGET = DdTargets.ADDRESS
-    ICON = ICONS["address"]
+    ICON = ICONS.get("address")
 
     def __init__(self, obj):
         super(ClipAddress, self).__init__(obj)
@@ -344,7 +344,7 @@ class ClipAddress(ClipObjWrapper):
 class ClipLocation(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.LOCATION]
     DRAG_TARGET = DdTargets.LOCATION
-    ICON = ICONS["location"]
+    ICON = ICONS.get("location")
 
     def __init__(self, obj):
         super(ClipLocation, self).__init__(obj)
@@ -362,7 +362,7 @@ class ClipLocation(ClipObjWrapper):
 class ClipEvent(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.EVENT]
     DRAG_TARGET = DdTargets.EVENT
-    ICON = ICONS["event"]
+    ICON = ICONS.get("event")
 
     def __init__(self, obj):
         super(ClipEvent, self).__init__(obj)
@@ -381,7 +381,7 @@ class ClipEvent(ClipHandleWrapper):
 class ClipPlace(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.PLACE_LINK]
     DRAG_TARGET = DdTargets.PLACE_LINK
-    ICON = ICONS["place"]
+    ICON = ICONS.get("place")
 
     def __init__(self, obj):
         super(ClipPlace, self).__init__(obj)
@@ -400,7 +400,7 @@ class ClipPlace(ClipHandleWrapper):
 class ClipNote(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.NOTE_LINK]
     DRAG_TARGET = DdTargets.NOTE_LINK
-    ICON = ICONS["note"]
+    ICON = ICONS.get("note")
 
     def __init__(self, obj):
         super(ClipNote, self).__init__(obj)
@@ -418,7 +418,7 @@ class ClipNote(ClipHandleWrapper):
 class ClipFamilyEvent(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.FAMILY_EVENT]
     DRAG_TARGET = DdTargets.FAMILY_EVENT
-    ICON = ICONS["family"]
+    ICON = ICONS.get("family")
 
     def __init__(self, obj):
         super(ClipFamilyEvent, self).__init__(obj)
@@ -434,7 +434,7 @@ class ClipFamilyEvent(ClipObjWrapper):
 class ClipUrl(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.URL]
     DRAG_TARGET = DdTargets.URL
-    ICON = ICONS["url"]
+    ICON = ICONS.get("url")
 
     def __init__(self, obj):
         super(ClipUrl, self).__init__(obj)
@@ -450,7 +450,7 @@ class ClipUrl(ClipObjWrapper):
 class ClipAttribute(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.ATTRIBUTE]
     DRAG_TARGET = DdTargets.ATTRIBUTE
-    ICON = ICONS["attribute"]
+    ICON = ICONS.get("attribute")
 
     def __init__(self, obj):
         super(ClipAttribute, self).__init__(obj)
@@ -465,7 +465,7 @@ class ClipAttribute(ClipObjWrapper):
 class ClipFamilyAttribute(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.FAMILY_ATTRIBUTE]
     DRAG_TARGET = DdTargets.FAMILY_ATTRIBUTE
-    ICON = ICONS["attribute"]
+    ICON = ICONS.get("attribute")
 
     def __init__(self, obj):
         super(ClipFamilyAttribute, self).__init__(obj)
@@ -481,7 +481,7 @@ class ClipFamilyAttribute(ClipObjWrapper):
 class ClipCitation(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.CITATION_LINK]
     DRAG_TARGET = DdTargets.CITATION_LINK
-    ICON = ICONS["citation"]
+    ICON = ICONS.get("citation")
 
     def __init__(self, obj):
         super(ClipCitation, self).__init__(obj)
@@ -584,7 +584,7 @@ class ClipPlaceRef(ClipObjWrapper):
 class ClipName(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.NAME]
     DRAG_TARGET = DdTargets.NAME
-    ICON = ICONS["name"]
+    ICON = ICONS.get("name")
 
     def __init__(self, obj):
         super(ClipName, self).__init__(obj)
@@ -600,7 +600,7 @@ class ClipName(ClipObjWrapper):
 class ClipPlaceName(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.PLACENAME]
     DRAG_TARGET = DdTargets.PLACENAME
-    ICON = ICONS["name"]
+    ICON = ICONS.get("name")
 
     def __init__(self, obj):
         super(ClipPlaceName, self).__init__(obj)
@@ -616,7 +616,7 @@ class ClipPlaceName(ClipObjWrapper):
 class ClipSurname(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.SURNAME]
     DRAG_TARGET = DdTargets.SURNAME
-    ICON = ICONS["name"]
+    ICON = ICONS.get("name")
 
     def __init__(self, obj):
         super(ClipSurname, self).__init__(obj)
@@ -632,7 +632,7 @@ class ClipSurname(ClipObjWrapper):
 class ClipText(ClipWrapper):
     DROP_TARGETS = DdTargets.all_text()
     DRAG_TARGET = DdTargets.TEXT
-    ICON = ICONS["text"]
+    ICON = ICONS.get("text")
 
     def __init__(self, obj):
         super(ClipText, self).__init__(obj)
@@ -654,7 +654,7 @@ class ClipText(ClipWrapper):
 class ClipMediaObj(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.MEDIAOBJ]
     DRAG_TARGET = DdTargets.MEDIAOBJ
-    ICON = ICONS["media"]
+    ICON = ICONS.get("media")
 
     def __init__(self, obj):
         super(ClipMediaObj, self).__init__(obj)
@@ -729,7 +729,7 @@ class ClipChildRef(ClipObjWrapper):
 class ClipPersonLink(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.PERSON_LINK]
     DRAG_TARGET = DdTargets.PERSON_LINK
-    ICON = ICONS["person"]
+    ICON = ICONS.get("person")
 
     def __init__(self, obj):
         super(ClipPersonLink, self).__init__(obj)
@@ -748,7 +748,7 @@ class ClipPersonLink(ClipHandleWrapper):
 class ClipFamilyLink(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.FAMILY_LINK]
     DRAG_TARGET = DdTargets.FAMILY_LINK
-    ICON = ICONS["family"]
+    ICON = ICONS.get("family")
 
     def __init__(self, obj):
         super(ClipFamilyLink, self).__init__(obj)
@@ -770,7 +770,7 @@ class ClipFamilyLink(ClipHandleWrapper):
 class ClipSourceLink(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.SOURCE_LINK]
     DRAG_TARGET = DdTargets.SOURCE_LINK
-    ICON = ICONS["source"]
+    ICON = ICONS.get("source")
 
     def __init__(self, obj):
         super(ClipSourceLink, self).__init__(obj)
@@ -789,7 +789,7 @@ class ClipSourceLink(ClipHandleWrapper):
 class ClipRepositoryLink(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.REPO_LINK]
     DRAG_TARGET = DdTargets.REPO_LINK
-    ICON = ICONS["repository"]
+    ICON = ICONS.get("repository")
 
     def __init__(self, obj):
         super(ClipRepositoryLink, self).__init__(obj)
