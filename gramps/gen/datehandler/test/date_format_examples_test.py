@@ -65,14 +65,6 @@ class TestDateFormatExamples(unittest.TestCase):
                     f"Format {i} ({fmt_name!r}) example {example!r} missing year",
                 )
 
-    def test_out_of_range_active_clamps_to_zero(self):
-        """Simulate the active >= len(formats) guard used in configure.py."""
-        formats = get_date_formats()
-        active = len(formats) + 99
-        if active >= len(formats):
-            active = 0
-        self.assertEqual(active, 0)
-
     def test_format_count_is_positive(self):
         """There must be at least one date format available."""
         self.assertGreater(len(get_date_formats()), 0)
