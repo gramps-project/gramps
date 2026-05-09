@@ -49,6 +49,7 @@ from ...utils.file import media_path_full
 from ...utils.symbols import Symbols
 from ...config import config
 from ..docgen import IndexMark, INDEX_TYPE_ALP
+
 # just to borrow these constants from Person, Family, and for marriage_type
 from ...lib import Person, Family, FamilyRelType
 from ...utils.alive import probably_alive
@@ -559,8 +560,8 @@ def get_life_status(person, db):
     """
 
     return is_alive
-        # except Exception:
-        #    return _G_DEAD  # Default to dead if any error occurs
+    # except Exception:
+    #    return _G_DEAD  # Default to dead if any error occurs
     # except Exception:
     #    return _G_DEAD  # Default to dead if any error occurs
 
@@ -598,6 +599,7 @@ def get_family_color_box_name(family_handle, db, base_draw_name, report_family_c
     except KeyError:
         marr_color, marr_suffix = report_family_colors[_F_UNKNOWN]  # default values
     return base_draw_name + marr_suffix
+
 
 def get_marriage_type(family_handle, db):
     # get family from handle

@@ -92,7 +92,7 @@ class PersonBox(BoxBase):
     Calculates information about the box that will print on a page
     """
 
-    def __init__(self, level, database): 
+    def __init__(self, level, database):
         BoxBase.__init__(self)
         self.boxstr = "AC2-box"
         # self.level = (level[0]-1, level[1])

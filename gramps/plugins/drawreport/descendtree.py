@@ -129,6 +129,7 @@ class PersonBox(DescendantBoxBase):
             person, self.database, base_name, self.report_gender_colors
         )
 
+
 class FamilyBox(DescendantBoxBase):
     """
     Calculates information about the box that will print on a page
