@@ -116,10 +116,13 @@ def gramps_upgrade_23(self):
             table_name = cls.__name__.lower()
             for field, schema_type, max_length in cls.get_secondary_fields():
                 if field != "handle":
-                    sql_type = self._sql_type(schema_type, max_length)
-                    self.dbapi.execute(
-                        f"ALTER TABLE {table_name} ADD COLUMN {field} {sql_type}"
-                    )
+                    # bsddb conversion calls _create_schema() before setting the
+                    # old schema version, so secondary columns may already exist.
+                    if not self.dbapi.column_exists(table_name, field):
+                        sql_type = self._sql_type(schema_type, max_length)
+                        self.dbapi.execute(
+                            f"ALTER TABLE {table_name} ADD COLUMN {field} {sql_type}"
+                        )
         self.dbapi.execute(
             "CREATE INDEX IF NOT EXISTS dnatest_gramps_id ON dnatest(gramps_id)"
         )
@@ -168,6 +171,10 @@ def gramps_upgrade_21(self):
 
     length = 0
     for key in self._get_table_func():
+        # Tables added in later schema versions (e.g. dnatest/dnamatch) do not
+        # exist yet when upgrading from versions before they were introduced.
+        if not self.dbapi.table_exists(key.lower()):
+            continue
         count_func = self._get_table_func(key, "count_func")
         length += count_func()
 
@@ -201,6 +208,9 @@ def gramps_upgrade_21(self):
             self._set_metadata(key, value, use_txn=False)
 
     for table_name in self._get_table_func():
+        # Skip tables that don't exist yet - see count loop above.
+        if not self.dbapi.table_exists(table_name.lower()):
+            continue
         # For each table, alter the database in an appropriate way:
         self.upgrade_table_for_json_data(table_name.lower())
 
