@@ -27,7 +27,7 @@ from __future__ import annotations
 
 import logging
 import re
-from typing import Any, Iterator
+from typing import Any, Callable, Iterable, Iterator
 from urllib.parse import urljoin, urlparse, urlunparse
 
 from gramps.gen.lib import (
@@ -302,7 +302,11 @@ def _hydrate_source_description(fs_tree, sdid: str) -> None:
         return
 
 
-def fetch_source_dates(fs_tree):
+def fetch_source_dates(
+    fs_tree,
+    source_ids: Iterable[str] | None = None,
+    progress_callback: Callable[[str], None] | None = None,
+):
     """
     Populate source descriptions with extra FS date/collection/url data.
     """
@@ -311,13 +315,25 @@ def fetch_source_dates(fs_tree):
         return
 
     web_base = _get_fs_web_base()
+    wanted_ids = {sdid for sdid in (source_ids or []) if sdid}
+    source_descriptions = list(getattr(fs_tree, "sourceDescriptions", []) or [])
+    if wanted_ids:
+        source_descriptions = [
+            sd for sd in source_descriptions if getattr(sd, "id", "") in wanted_ids
+        ]
+    source_descriptions = [
+        sd
+        for sd in source_descriptions
+        if getattr(sd, "id", "") and not str(getattr(sd, "id", "")).startswith("SD")
+    ]
+    total = len(source_descriptions)
 
-    for sd in getattr(fs_tree, "sourceDescriptions", []) or []:
-        if not getattr(sd, "id", ""):
-            continue
-
-        if sd.id[:2] == "SD":
-            continue
+    for index, sd in enumerate(source_descriptions, start=1):
+        if progress_callback:
+            progress_callback(
+                _("Loading FamilySearch source %(current)d/%(total)d")
+                % {"current": index, "total": total}
+            )
 
         if not hasattr(sd, "_date"):
             sd._date = None

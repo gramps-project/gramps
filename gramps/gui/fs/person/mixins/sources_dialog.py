@@ -68,7 +68,11 @@ if TYPE_CHECKING:
         CONFIG: Any
         fs_Tree: Any
 
-        def _ensure_sources_cached(self, fsid: str) -> None: ...
+        def _ensure_sources_cached(
+            self,
+            fsid: str,
+            progress_callback: Any | None = None,
+        ) -> None: ...
 
         def _gather_sr_meta(self, fsid: str) -> dict[str, Any]: ...
 
@@ -715,7 +719,7 @@ class SourcesDialogMixin:
                 deserialize.SourceDescription._index[sdid] = sd_new
                 deps.fs_Tree.sourceDescriptions.add(sd_new)
 
-        fs_import.fetch_source_dates(deps.fs_Tree)
+        fs_import.fetch_source_dates(deps.fs_Tree, source_ids=sdids)
 
         out: List[Tuple[str, str, str, str, str, str, str]] = []
         for sdid in sdids:

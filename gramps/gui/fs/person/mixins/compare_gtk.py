@@ -29,6 +29,7 @@ from gi.repository import Gtk, Gdk, GLib
 from gramps.gen.const import DATA_DIR, GRAMPS_LOCALE as glocale
 from gramps.gui.dialog import WarningDialog
 from gramps.gui.listmodel import ListModel, NOSORT, COLOR, TOGGLE
+from gramps.gui.utils import ProgressMeter
 from gramps.gen.lib import Person
 
 from gramps.gen.fs import tree
@@ -62,7 +63,11 @@ class CompareGtkMixin:
 
         def _ensure_notes_cached(self, fsid: str) -> None: ...
 
-        def _ensure_sources_cached(self, fsid: str) -> None: ...
+        def _ensure_sources_cached(
+            self,
+            fsid: str,
+            progress_callback: Any | None = None,
+        ) -> None: ...
 
         def _gather_sr_meta(self, fsid: str) -> dict[str, Any]: ...
 
@@ -631,7 +636,7 @@ class CompareGtkMixin:
             self._fill_notes(model_notes, gr_local, fsid)
 
             model_sources.clear()
-            self._fill_sources(model_sources, gr_local, fsid)
+            self._fill_sources(model_sources, gr_local, fsid, parent=win)
 
             # auto-tag after each refresh/fill
             try:
@@ -646,7 +651,7 @@ class CompareGtkMixin:
         def do_import_sources(_btn: Any) -> None:
             self._import_sources_dialog(_get_gr(), fsid)
             model_sources.clear()
-            self._fill_sources(model_sources, _get_gr(), fsid)
+            self._fill_sources(model_sources, _get_gr(), fsid, parent=win)
 
         btn_refresh.connect("clicked", lambda *_: do_fill_all(True))
         btn_refresh_text.connect("clicked", lambda *_: do_fill_all(True))
@@ -683,6 +688,91 @@ class CompareGtkMixin:
         except Exception:
             pass
         return url
+
+    def _step_progress_meter(self, progress: ProgressMeter, header: str) -> None:
+        """
+        Advance a progress meter while updating its header text.
+        """
+        progress.set_header(header)
+        progress.step()
+
+    def _collect_compare_source_ids(self, fs_person: Any) -> list[str]:
+        """
+        Return ordered FamilySearch source description IDs for a compare person.
+        """
+        source_ids: list[str] = []
+        seen: set[str] = set()
+
+        def add_source_refs(source_refs: Any) -> None:
+            for source_ref in source_refs or []:
+                sdid = getattr(source_ref, "descriptionId", "") or ""
+                if sdid and sdid not in seen:
+                    seen.add(sdid)
+                    source_ids.append(sdid)
+
+        add_source_refs(getattr(fs_person, "sources", []) or [])
+        for rel in getattr(fs_person, "_spouses", []) or []:
+            add_source_refs(getattr(rel, "sources", []) or [])
+        return source_ids
+
+    def _prepare_compare_sources(
+        self, fsid: str, parent: Any | None = None
+    ) -> tuple[Any, dict[str, Any], list[str]]:
+        """
+        Load and hydrate FamilySearch sources for the compare dialog.
+        """
+        parent_window = parent
+        try:
+            if parent_window and not parent_window.get_visible():
+                parent_window = None
+        except Exception:
+            parent_window = None
+        if parent_window is None:
+            parent_window = getattr(self.uistate, "window", None)
+        progress = ProgressMeter(
+            _("FamilySearch Compare"),
+            _("Preparing FamilySearch sources"),
+            parent=parent_window,
+        )
+        try:
+            fs_person = deserialize.Person.index.get(fsid) or deserialize.Person()
+            fetch_total = 1 + len(getattr(fs_person, "_spouses", []) or [])
+            progress.set_pass(_("Loading source links (1/2)"), max(fetch_total, 1))
+            self._ensure_sources_cached(
+                fsid,
+                progress_callback=lambda header: self._step_progress_meter(
+                    progress, header
+                ),
+            )
+
+            fs_person = deserialize.Person.index.get(fsid) or deserialize.Person()
+            source_ids = self._collect_compare_source_ids(fs_person)
+            for sdid in source_ids:
+                if sdid in deserialize.SourceDescription._index:
+                    continue
+                sd_new = deserialize.SourceDescription()
+                sd_new.id = sdid
+                deserialize.SourceDescription._index[sdid] = sd_new
+                try:
+                    if self.__class__.fs_Tree is not None:
+                        self.__class__.fs_Tree.sourceDescriptions.add(sd_new)
+                except Exception:
+                    pass
+            progress.set_pass(
+                _("Parsing source details (2/2)"), max(len(source_ids), 1)
+            )
+            if self.__class__.fs_Tree is not None and source_ids:
+                fs_import.fetch_source_dates(
+                    self.__class__.fs_Tree,
+                    source_ids=source_ids,
+                    progress_callback=lambda header: self._step_progress_meter(
+                        progress, header
+                    ),
+                )
+
+            return fs_person, self._gather_sr_meta(fsid), source_ids
+        finally:
+            progress.close()
 
     # ------------------ models / columns ------------------
 
@@ -953,50 +1043,19 @@ class CompareGtkMixin:
                     )
                 )
 
-    def _fill_sources(self, model: Any, gr: Person, fsid: str) -> None:
-        self._ensure_sources_cached(fsid)
-
-        fs_person = deserialize.Person.index.get(fsid) or deserialize.Person()
+    def _fill_sources(
+        self, model: Any, gr: Person, fsid: str, parent: Any | None = None
+    ) -> None:
+        fs_person, source_meta, source_ids = self._prepare_compare_sources(
+            fsid, parent=parent
+        )
         em = "_"
         fs_placeholder = (
             em if self.__class__.fs_Tree else _("Not connected to FamilySearch")
         )
 
-        source_meta = self._gather_sr_meta(fsid)
-
         # Collect FS SourceDescription IDs referenced by person + spouse relationships
-        fs_source_ids: dict[str, None] = {}
-        for sr in getattr(fs_person, "sources", []) or []:
-            sdid = getattr(sr, "descriptionId", "") or ""
-            if sdid:
-                fs_source_ids[sdid] = None
-
-        for rel in getattr(fs_person, "_spouses", []) or []:
-            for sr in getattr(rel, "sources", []) or []:
-                sdid = getattr(sr, "descriptionId", "") or ""
-                if sdid:
-                    fs_source_ids[sdid] = None
-
-        # Ensure SourceDescription objects exist in index and (if connected) add to fs_Tree
-        for sdid in list(fs_source_ids.keys()):
-            if not sdid:
-                continue
-            if sdid not in deserialize.SourceDescription._index:
-                sd_new = deserialize.SourceDescription()
-                sd_new.id = sdid
-                deserialize.SourceDescription._index[sdid] = sd_new
-                try:
-                    if self.__class__.fs_Tree is not None:
-                        self.__class__.fs_Tree.sourceDescriptions.add(sd_new)
-                except Exception:
-                    pass
-
-        # Populate FS dates if possible
-        try:
-            if self.__class__.fs_Tree is not None:
-                fs_import.fetch_source_dates(self.__class__.fs_Tree)
-        except Exception:
-            pass
+        fs_source_ids: dict[str, None] = {sdid: None for sdid in source_ids}
 
         # Collect Gramps citations across person + events + families
         citation_handles: set[str] = set(gr.get_citation_list() or [])

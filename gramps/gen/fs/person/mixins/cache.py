@@ -24,7 +24,7 @@ import email.utils
 import json
 import os
 import time
-from typing import Any, ClassVar, Optional, Tuple
+from typing import Any, Callable, ClassVar, Optional, Tuple
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -315,7 +315,14 @@ class CacheMixin:
         if cache:
             cache.mark_loaded(fsid, notes=True)
 
-    def _ensure_sources_cached(self, fsid: str) -> None:
+    def _ensure_sources_cached(
+        self,
+        fsid: str,
+        progress_callback: Callable[[str], None] | None = None,
+    ) -> None:
+        """
+        Ensure FamilySearch source payloads are cached for a person.
+        """
         cache = self.__class__._cache
         # loaded this session, dont fetch again
         if cache:
@@ -327,19 +334,45 @@ class CacheMixin:
         _get_json = getattr(fs_session, "get_jsonurl", None) or getattr(
             fs_session, "get_json", None
         )
-        if _get_json:
-            _get_json(f"/platform/tree/persons/{fsid}/sources")
+        total_steps = 1
 
-        # compute spouses if not already present
         p0 = deserialize.Person.index.get(fsid)
-        if not (p0 and getattr(p0, "_spouses", None) is not None):
-            self.__class__._get_fs_tree().add_spouses({fsid})
+        spouses = list(getattr(p0, "_spouses", []) or []) if p0 else []
+        if not spouses:
+            try:
+                spouses = list(self.__class__._get_fs_tree().add_spouses({fsid}) or [])
+            except Exception:
+                spouses = []
+            p0 = deserialize.Person.index.get(fsid)
+            spouses = list(getattr(p0, "_spouses", []) or spouses or [])
+
+        total_steps += len(spouses)
+        step_index = 0
+
+        def _notify_progress(header: str) -> None:
+            nonlocal step_index
+
+            step_index += 1
+            if progress_callback:
+                progress_callback(
+                    _("%(header)s (%(current)d/%(total)d)")
+                    % {
+                        "header": header,
+                        "current": step_index,
+                        "total": total_steps,
+                    }
+                )
+
+        if _get_json:
+            _notify_progress(_("Loading FamilySearch person sources"))
+            _get_json(f"/platform/tree/persons/{fsid}/sources")
 
         p = deserialize.Person.index.get(fsid)
         if p:
             for rel in getattr(p, "_spouses", []) or []:
                 try:
                     if _get_json:
+                        _notify_progress(_("Loading FamilySearch relationship sources"))
                         _get_json(
                             f"/platform/tree/couple-relationships/{rel.id}/sources"
                         )

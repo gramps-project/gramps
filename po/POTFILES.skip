@@ -75,6 +75,11 @@ gramps/gen/datehandler/test/datehandler_test.py
 gramps/gen/datehandler/test/dateparser_test.py
 gramps/gen/datehandler/test/datestrings_test.py
 #
+# gen.fs.fs_import.test package
+#
+gramps/gen/fs/fs_import/test/__init__.py
+gramps/gen/fs/fs_import/test/source_dates_test.py
+#
 # gen db API
 #
 gramps/gen/db/__init__.py
