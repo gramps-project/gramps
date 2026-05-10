@@ -275,9 +275,7 @@ class TestDNATestUnidentified(unittest.TestCase):
         cls.db = _import_xml_string(_DNATEST_UNIDENTIFIED_XML)
 
     def _dt(self):
-        return self.db.get_dnatest_from_handle(
-            list(self.db.get_dnatest_handles())[0]
-        )
+        return self.db.get_dnatest_from_handle(list(self.db.get_dnatest_handles())[0])
 
     def test_import_succeeded(self):
         self.assertIsNotNone(self.db)

@@ -1404,7 +1404,9 @@ class GrampsXmlWriter(UpdateCallback):
         sp2 = "  " * (index + 1)
 
         if dnatest.get_person_handle():
-            self.g.write('%s<person hlink="_%s"/>\n' % (sp2, dnatest.get_person_handle()))
+            self.g.write(
+                '%s<person hlink="_%s"/>\n' % (sp2, dnatest.get_person_handle())
+            )
         self.write_line("account_name", dnatest.get_account_name(), index + 1)
         provider = dnatest.get_provider().xml_str()
         if provider:
@@ -1458,7 +1460,8 @@ class GrampsXmlWriter(UpdateCallback):
             )
         if dnamatch.get_percent_shared():
             self.g.write(
-                '%s<percent_shared val="%.6g"/>\n' % (sp2, dnamatch.get_percent_shared())
+                '%s<percent_shared val="%.6g"/>\n'
+                % (sp2, dnamatch.get_percent_shared())
             )
         if dnamatch.get_segment_count():
             self.g.write(

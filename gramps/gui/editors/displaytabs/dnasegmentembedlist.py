@@ -27,7 +27,6 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import DNASegment
 from .embeddedlist import EmbeddedList, TEXT_COL
 
-
 # -------------------------------------------------------------------------
 #
 # DNASegmentModel
@@ -49,9 +48,7 @@ class DNASegmentModel(Gtk.ListStore):
         for seg in segment_list:
             phase = seg.get_phase()
             phase_label = (
-                _PHASE_LABELS[phase]
-                if 0 <= phase < len(_PHASE_LABELS)
-                else str(phase)
+                _PHASE_LABELS[phase] if 0 <= phase < len(_PHASE_LABELS) else str(phase)
             )
             start = str(seg.get_start_bp()) if seg.get_start_bp() else ""
             end = str(seg.get_end_bp()) if seg.get_end_bp() else ""

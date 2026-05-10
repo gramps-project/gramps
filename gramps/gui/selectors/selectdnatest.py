@@ -100,7 +100,9 @@ class SelectDNATest:
             col.set_sort_column_id(idx)
             treeview.append_column(col)
 
-        treeview.connect("row-activated", lambda tv, path, col: dialog.response(Gtk.ResponseType.OK))
+        treeview.connect(
+            "row-activated", lambda tv, path, col: dialog.response(Gtk.ResponseType.OK)
+        )
 
         selection = treeview.get_selection()
         selection.set_mode(Gtk.SelectionMode.SINGLE)

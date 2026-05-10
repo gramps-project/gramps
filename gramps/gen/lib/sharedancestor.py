@@ -174,8 +174,7 @@ class SharedAncestor(SecondaryObject, CitationBase, NoteBase):
         referenced primary objects.
         """
         ret = (
-            self.get_referenced_note_handles()
-            + self.get_referenced_citation_handles()
+            self.get_referenced_note_handles() + self.get_referenced_citation_handles()
         )
         if self.__person_handle:
             ret.append(("Person", self.__person_handle))

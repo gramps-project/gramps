@@ -28,7 +28,6 @@ from gramps.gen.lib import SharedAncestor
 from gramps.gen.display.name import displayer as name_displayer
 from .embeddedlist import EmbeddedList, TEXT_COL, ICON_COL
 
-
 # -------------------------------------------------------------------------
 #
 # SharedAncestorModel
@@ -51,9 +50,7 @@ class SharedAncestorModel(Gtk.ListStore):
             handle = anc.get_person_handle()
             if handle:
                 person = db.get_person_from_handle(handle)
-                person_name = (
-                    name_displayer.display(person) if person else _("Unknown")
-                )
+                person_name = name_displayer.display(person) if person else _("Unknown")
             else:
                 person_name = _("(unidentified)")
             conf = anc.get_confidence()

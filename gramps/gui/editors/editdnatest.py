@@ -300,9 +300,7 @@ class EditDNATest(EditPrimary):
                     _("Edit DNA Test (%s)") % self.obj.get_gramps_id(), self.db
                 ) as trans:
                     if not self.obj.get_gramps_id():
-                        self.obj.set_gramps_id(
-                            self.db.find_next_dnatest_gramps_id()
-                        )
+                        self.obj.set_gramps_id(self.db.find_next_dnatest_gramps_id())
                     self.db.commit_dnatest(self.obj, trans)
 
         self._do_close()

@@ -148,7 +148,11 @@ class DNAMatchModel(FlatBaseModel):
         handle = data.handle
         cached, value = self.get_cached_value(handle, "SUBJ_TEST")
         if not cached:
-            value = dnatest_short_label(self.db, data.subject_test_handle) if data.subject_test_handle else ""
+            value = (
+                dnatest_short_label(self.db, data.subject_test_handle)
+                if data.subject_test_handle
+                else ""
+            )
             self.set_cached_value(handle, "SUBJ_TEST", value)
         return value
 
@@ -156,7 +160,11 @@ class DNAMatchModel(FlatBaseModel):
         handle = data.handle
         cached, value = self.get_cached_value(handle, "MATCH_TEST")
         if not cached:
-            value = dnatest_short_label(self.db, data.match_test_handle) if data.match_test_handle else ""
+            value = (
+                dnatest_short_label(self.db, data.match_test_handle)
+                if data.match_test_handle
+                else ""
+            )
             self.set_cached_value(handle, "MATCH_TEST", value)
         return value
 

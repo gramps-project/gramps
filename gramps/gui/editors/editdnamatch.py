@@ -559,9 +559,7 @@ class EditDNAMatch(EditPrimary):
                     _("Edit DNA Match (%s)") % self.obj.get_gramps_id(), self.db
                 ) as trans:
                     if not self.obj.get_gramps_id():
-                        self.obj.set_gramps_id(
-                            self.db.find_next_dnamatch_gramps_id()
-                        )
+                        self.obj.set_gramps_id(self.db.find_next_dnamatch_gramps_id())
                     self.db.commit_dnamatch(self.obj, trans)
 
         self._do_close()

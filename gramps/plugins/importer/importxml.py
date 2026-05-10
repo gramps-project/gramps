@@ -3358,8 +3358,8 @@ class GrampsParser(UpdateCallback):
         self.update(self.p.CurrentLineNumber)
         self.dnatest = DNATest()
         orig_handle = attrs["handle"].replace("_", "")
-        is_merge_candidate = (
-            self.replace_import_handle and self.db.has_dnatest_handle(orig_handle)
+        is_merge_candidate = self.replace_import_handle and self.db.has_dnatest_handle(
+            orig_handle
         )
         self.inaugurate(orig_handle, "dnatest", self.dnatest)
         gramps_id = self.legalize_id(
@@ -3373,9 +3373,7 @@ class GrampsParser(UpdateCallback):
         self.dnatest.set_gramps_id(gramps_id)
         if is_merge_candidate:
             orig_dnatest = self.db.get_dnatest_from_handle(orig_handle)
-            self.info.add(
-                "merge-candidate", DNATEST_KEY, orig_dnatest, self.dnatest
-            )
+            self.info.add("merge-candidate", DNATEST_KEY, orig_dnatest, self.dnatest)
         self.dnatest.private = bool(attrs.get("priv"))
         self.dnatest.change = int(attrs.get("change", self.change))
         self.info.add("new-object", DNATEST_KEY, self.dnatest)
@@ -3384,17 +3382,15 @@ class GrampsParser(UpdateCallback):
         return self.dnatest
 
     def stop_dnatest(self, *tag):
-        self.db.commit_dnatest(
-            self.dnatest, self.trans, self.dnatest.get_change_time()
-        )
+        self.db.commit_dnatest(self.dnatest, self.trans, self.dnatest.get_change_time())
         self.dnatest = None
 
     def start_dnamatch(self, attrs):
         self.update(self.p.CurrentLineNumber)
         self.dnamatch = DNAMatch()
         orig_handle = attrs["handle"].replace("_", "")
-        is_merge_candidate = (
-            self.replace_import_handle and self.db.has_dnamatch_handle(orig_handle)
+        is_merge_candidate = self.replace_import_handle and self.db.has_dnamatch_handle(
+            orig_handle
         )
         self.inaugurate(orig_handle, "dnamatch", self.dnamatch)
         gramps_id = self.legalize_id(
@@ -3408,9 +3404,7 @@ class GrampsParser(UpdateCallback):
         self.dnamatch.set_gramps_id(gramps_id)
         if is_merge_candidate:
             orig_dnamatch = self.db.get_dnamatch_from_handle(orig_handle)
-            self.info.add(
-                "merge-candidate", DNAMATCH_KEY, orig_dnamatch, self.dnamatch
-            )
+            self.info.add("merge-candidate", DNAMATCH_KEY, orig_dnamatch, self.dnamatch)
         self.dnamatch.private = bool(attrs.get("priv"))
         self.dnamatch.change = int(attrs.get("change", self.change))
         self.info.add("new-object", DNAMATCH_KEY, self.dnamatch)

@@ -95,9 +95,7 @@ def gramps_upgrade_23(self):
 
     Add dnatest and dnamatch tables.
     """
-    col_data = (
-        "json_data TEXT" if self.use_json_data() else "blob_data BLOB"
-    )
+    col_data = "json_data TEXT" if self.use_json_data() else "blob_data BLOB"
     self._txn_begin()
     try:
         self.dbapi.execute(

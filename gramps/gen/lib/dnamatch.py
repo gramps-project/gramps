@@ -97,9 +97,7 @@ class DNAMatch(
             self.__shared_ancestor_list = [
                 SharedAncestor(sa) for sa in source.__shared_ancestor_list
             ]
-            self.__segment_list = [
-                DNASegment(seg) for seg in source.__segment_list
-            ]
+            self.__segment_list = [DNASegment(seg) for seg in source.__segment_list]
         else:
             self.__subject_test_handle = None
             self.__match_test_handle = None
@@ -302,9 +300,7 @@ class DNAMatch(
         self.__shared_ancestor_list = [
             SharedAncestor().unserialize(sa) for sa in shared_ancestor_list
         ]
-        self.__segment_list = [
-            DNASegment().unserialize(seg) for seg in segment_list
-        ]
+        self.__segment_list = [DNASegment().unserialize(seg) for seg in segment_list]
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
@@ -353,31 +349,19 @@ class DNAMatch(
         """
         Return the list of child objects that may carry textual data.
         """
-        return (
-            self.media_list
-            + self.attribute_list
-            + self.__shared_ancestor_list
-        )
+        return self.media_list + self.attribute_list + self.__shared_ancestor_list
 
     def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
         """
-        return (
-            self.media_list
-            + self.attribute_list
-            + self.__shared_ancestor_list
-        )
+        return self.media_list + self.attribute_list + self.__shared_ancestor_list
 
     def get_note_child_list(self):
         """
         Return the list of child secondary objects that may refer notes.
         """
-        return (
-            self.media_list
-            + self.attribute_list
-            + self.__shared_ancestor_list
-        )
+        return self.media_list + self.attribute_list + self.__shared_ancestor_list
 
     def get_referenced_handles(self):
         """
@@ -508,9 +492,7 @@ class DNAMatch(
         """Return the list of SharedAncestor objects."""
         return self.__shared_ancestor_list
 
-    shared_ancestor_list = property(
-        get_shared_ancestor_list, set_shared_ancestor_list
-    )
+    shared_ancestor_list = property(get_shared_ancestor_list, set_shared_ancestor_list)
 
     def add_shared_ancestor(self, ancestor):
         """Append a SharedAncestor to the list."""

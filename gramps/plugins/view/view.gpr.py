@@ -358,4 +358,3 @@ register(
     viewclass="DNAMatchView",
     stock_icon="gramps-dna-match",
 )
-
