@@ -243,26 +243,26 @@ class DbManager(CLIDbManager, ManagedWindow):
             self.selection.select_path(tree_path)
             self.dblist.scroll_to_cell(tree_path, None, 1, 0.5, 0)
 
-    def _select_next_after_deletion(self, next_item_name):
+    def _select_next_after_deletion(self, next_item_name: str | None) -> None:
         """
         Select the item that would have been next after deletion.
 
-        Args:
-            next_item_name: The name of the item that should be selected
+        :param next_item_name: The name of the item that should be selected.
+        :type next_item_name: str | None
         """
         if self.model is None or not next_item_name:
             return
 
         # Find the item with the matching name in the rebuilt model
-        iter = self.model.get_iter_first()
-        while iter:
-            name = self.model.get_value(iter, NAME_COL)
+        tree_iter = self.model.get_iter_first()
+        while tree_iter:
+            name = self.model.get_value(tree_iter, NAME_COL)
             if name == next_item_name:
-                path = self.model.get_path(iter)
+                path = self.model.get_path(tree_iter)
                 self.selection.select_path(path)
                 self.dblist.scroll_to_cell(path, None, 1, 0.5, 0)
                 break
-            iter = self.model.iter_next(iter)
+            tree_iter = self.model.iter_next(tree_iter)
 
     def __connect_signals(self):
         """
