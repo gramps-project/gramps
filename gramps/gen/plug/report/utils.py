@@ -514,13 +514,14 @@ def get_gender_symbol(person):
 def generate_gender_color_styles(
     style, base_draw_name, graph_style, report_gender_colors
 ):
-    for (gender, life_status), (gen_color, gen_suffix) in report_gender_colors.items():
-        graph_style.set_fill_color(gen_color)
-        graph_style.set_description(
-            _("The style for the person box for %s.") % gen_suffix
-        )
-        box_name = base_draw_name + gen_suffix
-        style.add_draw_style(box_name, graph_style)
+    for (gender, is_alive), (gen_color, gen_suffix) in report_gender_colors.items():
+        if is_alive == _G_ALIVE:
+            graph_style.set_fill_color(gen_color)
+            graph_style.set_description(
+                _("The style for the person box for %s.") % gen_suffix
+            )
+            box_name = base_draw_name + gen_suffix
+            style.add_draw_style(box_name, graph_style)
 
 
 # -------------------------------------------------------------------------
@@ -530,35 +531,15 @@ def generate_gender_color_styles(
 # -------------------------------------------------------------------------
 
 
-def get_gender_color_box_name(person, db, base_draw_name, report_gender_colors):
+def get_gender_color_box_name(person, base_draw_name, report_gender_colors):
     """select gender box name"""
     try:
         gender = person.gender
     except AttributeError:
         gender = _G_UNKNOWN
 
-    try:
-        is_alive = get_life_status(person, db)
-        gen_color, gen_suffix = report_gender_colors[(gender, is_alive)]
-    except KeyError:
-        gen_color, gen_suffix = report_gender_colors[
-            (gender, _G_DEAD)
-        ]  # default values
+    gen_color, gen_suffix = report_gender_colors[(gender, _G_ALIVE)]
     return base_draw_name + gen_suffix
-
-
-def get_life_status(person, db):
-    is_alive = probably_alive(person, db)
-
-    """
-    # dk: need more work to make this work with living proxy,
-    # and also need to decide how to handle the case where the person
-    # is not in the database (e.g., a spouse that is not a person in the database)
-    if hasattr(self, 'living_proxy'):
-        is_alive or self.living_proxy.is_living(person)
-    """
-
-    return is_alive
 
 
 # -------------------------------------------------------------------------
@@ -570,13 +551,11 @@ def get_life_status(person, db):
 def generate_family_color_style(
     style, base_draw_name, graph_style, report_family_colors
 ):
-    for marr_status, (marr_color, marr_suffix) in report_family_colors.items():
-        graph_style.set_fill_color(marr_color)
-        graph_style.set_description(
-            _("The style for the family box for %s.") % marr_suffix
-        )
-        box_name = base_draw_name + marr_suffix
-        style.add_draw_style(box_name, graph_style)
+    marr_color, marr_suffix = report_family_colors[_F_MARRIED]
+    graph_style.set_fill_color(marr_color)
+    graph_style.set_description(_("The style for the family box for %s.") % marr_suffix)
+    box_name = base_draw_name + marr_suffix
+    style.add_draw_style(box_name, graph_style)
 
 
 # -------------------------------------------------------------------------
@@ -586,23 +565,7 @@ def generate_family_color_style(
 # -------------------------------------------------------------------------
 
 
-def get_family_color_box_name(family_handle, db, base_draw_name, report_family_colors):
+def get_family_color_box_name(base_draw_name, report_family_colors):
     """select family box name"""
-    try:
-        marr_type = get_marriage_type(family_handle, db)
-        marr_color, marr_suffix = report_family_colors[marr_type]
-    except KeyError:
-        marr_color, marr_suffix = report_family_colors[_F_UNKNOWN]  # default values
+    marr_color, marr_suffix = report_family_colors[_F_MARRIED]
     return base_draw_name + marr_suffix
-
-
-def get_marriage_type(family_handle, db):
-    # get family from handle
-    family = db.get_family_from_handle(family_handle)
-    if not family:
-        return _F_UNKNOWN
-    try:
-        # Return marriage type: _F_MARRIED, _F_UNMARRIED, _F_CIVIL_UNION
-        return int(family.get_type())
-    except Exception:
-        return _F_UNKNOWN

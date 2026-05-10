@@ -103,7 +103,7 @@ class PersonBox(BoxBase):
 
     def set_person_color(self, person):
         self.boxstr = utils.get_gender_color_box_name(
-            person, self.database, "AC2-box", self.report_gender_colors
+            person, "AC2-box", self.report_gender_colors
         )
 
     def display(self):
@@ -137,7 +137,7 @@ class FamilyBox(BoxBase):
 
     def set_family_color(self, family_handle):
         self.boxstr = utils.get_family_color_box_name(
-            family_handle, self.database, "AC2-fam-box", self.report_family_colors
+            "AC2-fam-box", self.report_family_colors
         )
 
 

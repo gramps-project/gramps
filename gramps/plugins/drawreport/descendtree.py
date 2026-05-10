@@ -124,7 +124,7 @@ class PersonBox(DescendantBoxBase):
 
     def set_person_color(self, person, base_name):
         self.boxstr = utils.get_gender_color_box_name(
-            person, self.database, base_name, self.report_gender_colors
+            person, base_name, self.report_gender_colors
         )
 
 
@@ -140,7 +140,7 @@ class FamilyBox(DescendantBoxBase):
 
     def set_family_color(self, family_handle):
         self.boxstr = utils.get_family_color_box_name(
-            family_handle, self.database, "CG2-fam-box", self.report_family_colors
+            "CG2-fam-box", self.report_family_colors
         )
 
 
