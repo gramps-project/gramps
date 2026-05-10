@@ -432,6 +432,7 @@ gramps/gui/selectors/selectorfactory.py
 #
 # gui.test package
 #
+gramps/gui/test/clipboard_test.py
 gramps/gui/test/display_test.py
 gramps/gui/test/user_test.py
 #
