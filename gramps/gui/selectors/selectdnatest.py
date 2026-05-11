@@ -25,9 +25,9 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
 
-from gi.repository import Gtk
-
-from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.const import URL_MANUAL_PAGE
+from ..views.treemodels import DNATestModel
+from .baseselector import BaseSelector
 
 
 # -------------------------------------------------------------------------
@@ -35,91 +35,35 @@ from gramps.gen.display.name import displayer as name_displayer
 # SelectDNATest
 #
 # -------------------------------------------------------------------------
-class SelectDNATest:
-    """
-    Dialog for selecting an existing DNATest record.
+class SelectDNATest(BaseSelector):
+    """Dialog for selecting an existing DNATest record."""
 
-    Returns the selected DNATest object from run(), or None if cancelled.
-    This is a standalone implementation because the tree model needed by
-    BaseSelector does not exist until Milestone 4.
-    """
+    def _local_init(self):
+        self.setup_configs("interface.dnatest-sel", 600, 450)
 
-    def __init__(self, dbstate, uistate, track, **kwargs):
-        self.dbstate = dbstate
-        self.uistate = uistate
-        self.track = track
+    def get_window_title(self):
+        return _("Select DNA Test")
 
-    def run(self):
-        """Show the selector dialog and return the chosen DNATest or None."""
-        db = self.dbstate.db
-        parent = self.uistate.window if self.uistate else None
+    def get_model_class(self):
+        return DNATestModel
 
-        dialog = Gtk.Dialog(
-            title=_("Select DNA Test"),
-            transient_for=parent,
-            flags=0,
-        )
-        dialog.add_buttons(
-            _("_Cancel"),
-            Gtk.ResponseType.CANCEL,
-            _("_Select"),
-            Gtk.ResponseType.OK,
-        )
-        dialog.set_default_size(600, 400)
-        dialog.set_default_response(Gtk.ResponseType.OK)
+    def get_column_titles(self):
+        return [
+            (_("Person"), 200, BaseSelector.TEXT, 1),
+            (_("Account name"), 150, BaseSelector.TEXT, 2),
+            (_("Provider"), 100, BaseSelector.TEXT, 3),
+            (_("Test type"), 100, BaseSelector.TEXT, 5),
+            (_("Haplogroup"), 100, BaseSelector.TEXT, 6),
+            (_("ID"), 75, BaseSelector.TEXT, 0),
+            (_("Tags"), 100, BaseSelector.TEXT, 8),
+            (_("Last Changed"), 150, BaseSelector.TEXT, 9),
+        ]
 
-        # TreeView with columns: Person, Account name, Provider, Test type, ID
-        store = Gtk.ListStore(str, str, str, str, str, object)
+    def get_from_handle_func(self):
+        return self.db.get_dnatest_from_handle
 
-        for test in db.iter_dnatests():
-            if test.get_person_handle():
-                person = db.get_person_from_handle(test.get_person_handle())
-                person_name = name_displayer.display(person) if person else _("Unknown")
-            else:
-                person_name = _("(unidentified)")
-            store.append(
-                [
-                    person_name,
-                    test.get_account_name(),
-                    str(test.get_provider()),
-                    str(test.get_test_type()),
-                    test.gramps_id or "",
-                    test,
-                ]
-            )
+    def get_config_name(self):
+        return __name__
 
-        treeview = Gtk.TreeView(model=store)
-        treeview.set_search_column(1)
-
-        for idx, title in enumerate(
-            [_("Person"), _("Account name"), _("Provider"), _("Test type"), _("ID")]
-        ):
-            renderer = Gtk.CellRendererText()
-            col = Gtk.TreeViewColumn(title, renderer, text=idx)
-            col.set_resizable(True)
-            col.set_sort_column_id(idx)
-            treeview.append_column(col)
-
-        treeview.connect(
-            "row-activated", lambda tv, path, col: dialog.response(Gtk.ResponseType.OK)
-        )
-
-        selection = treeview.get_selection()
-        selection.set_mode(Gtk.SelectionMode.SINGLE)
-
-        scroll = Gtk.ScrolledWindow()
-        scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-        scroll.add(treeview)
-
-        dialog.get_content_area().pack_start(scroll, True, True, 6)
-        dialog.show_all()
-
-        result = None
-        response = dialog.run()
-        if response == Gtk.ResponseType.OK:
-            model, tree_iter = selection.get_selected()
-            if tree_iter:
-                result = model[tree_iter][5]
-
-        dialog.destroy()
-        return result
+    WIKI_HELP_PAGE = URL_MANUAL_PAGE
+    WIKI_HELP_SEC = _("Select_DNA_Test_selector", "manual")
