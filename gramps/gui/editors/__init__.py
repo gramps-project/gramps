@@ -46,7 +46,9 @@ from .editurl import EditUrl
 from .editlink import EditLink
 from .filtereditor import FilterEditor, EditFilter
 from .editdnatest import EditDNATest
-from .editdnamatch import EditDNAMatch, EditSharedAncestor, EditDNASegment
+from .editdnamatch import EditDNAMatch
+from .editdnasegment import EditDNASegment
+from .editsharedancestor import EditSharedAncestor
 from gramps.gen.lib import (
     Person,
     Family,

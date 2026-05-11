@@ -18,7 +18,7 @@
 #
 
 """
-EditDNAMatch, EditSharedAncestor, and EditDNASegment editor dialogs.
+EditDNAMatch editor dialog.
 """
 
 from gi.repository import Gtk
@@ -28,12 +28,11 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
 from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gen.lib import DNAMatch, DNASegment, NoteType, SharedAncestor
+from gramps.gen.lib import DNAMatch, NoteType
 from gramps.gen.db import DbTxn
 from ..display import display_help
 from .editprimary import EditPrimary
-from .editsecondary import EditSecondary
-from .objectentries import DNATestEntry, PersonEntry
+from .objectentries import DNATestEntry
 from ..glade import Glade
 from ..dialog import ErrorDialog
 from .displaytabs import (
@@ -52,25 +51,6 @@ from ..widgets import (
 
 WIKI_HELP_PAGE = URL_MANUAL_PAGE
 WIKI_HELP_SEC = _("DNA_Match_Editor", "manual")
-
-# Chromosomes for the segment editor combo
-_CHROMOSOMES = [str(i) for i in range(1, 23)] + ["X", "Y", "MT"]
-
-# Phase labels indexed by DNASegment.PHASE_* constants
-_PHASE_LABELS = [
-    _("Unassigned"),
-    _("Unknown"),
-    _("Maternal"),
-    _("Paternal"),
-]
-
-# Confidence labels indexed by SharedAncestor.CONF_* constants
-_CONFIDENCE_LABELS = [
-    _("Possible"),
-    _("Probable"),
-    _("Confirmed"),
-    _("Rejected"),
-]
 
 
 def _str_to_float(s):
@@ -93,208 +73,6 @@ def _float_to_str(f):
 
 def _int_to_str(i):
     return str(i) if i else ""
-
-
-# -------------------------------------------------------------------------
-#
-# EditDNASegment
-#
-# -------------------------------------------------------------------------
-class EditDNASegment(EditSecondary):
-    """Mini-dialog for editing a single DNASegment secondary object."""
-
-    def __init__(self, dbstate, uistate, track, segment, callback):
-        EditSecondary.__init__(self, dbstate, uistate, track, segment, callback)
-
-    def _local_init(self):
-        self.top = Glade(filename="editdnasegment.glade")
-        self.set_window(
-            self.top.toplevel,
-            None,
-            _("DNA Segment Editor"),
-        )
-        self.setup_configs("interface.dnasegment", 480, 280)
-        self.ok_button = self.top.get_object("ok")
-
-    def _setup_fields(self):
-        # Populate chromosome combo
-        combo = self.top.get_object("chromosome")
-        for chrom in _CHROMOSOMES:
-            combo.append_text(chrom)
-        chrom_val = self.obj.get_chromosome()
-        if chrom_val in _CHROMOSOMES:
-            combo.set_active(_CHROMOSOMES.index(chrom_val))
-        else:
-            combo.set_active(0)
-        combo.connect("changed", self._on_chromosome_changed)
-        combo.set_sensitive(not self.db.readonly)
-
-        self.start_bp_field = MonitoredEntry(
-            self.top.get_object("start_bp"),
-            lambda x: self.obj.set_start_bp(_str_to_int(x)),
-            lambda: _int_to_str(self.obj.get_start_bp()),
-            self.db.readonly,
-        )
-
-        self.end_bp_field = MonitoredEntry(
-            self.top.get_object("end_bp"),
-            lambda x: self.obj.set_end_bp(_str_to_int(x)),
-            lambda: _int_to_str(self.obj.get_end_bp()),
-            self.db.readonly,
-        )
-
-        self.start_rsid_field = MonitoredEntry(
-            self.top.get_object("start_rsid"),
-            lambda x: self.obj.set_start_rsid(x.strip() or None),
-            lambda: self.obj.get_start_rsid() or "",
-            self.db.readonly,
-        )
-
-        self.end_rsid_field = MonitoredEntry(
-            self.top.get_object("end_rsid"),
-            lambda x: self.obj.set_end_rsid(x.strip() or None),
-            lambda: self.obj.get_end_rsid() or "",
-            self.db.readonly,
-        )
-
-        self.shared_cm_field = MonitoredEntry(
-            self.top.get_object("shared_cm"),
-            lambda x: self.obj.set_shared_cm(_str_to_float(x)),
-            lambda: _float_to_str(self.obj.get_shared_cm()),
-            self.db.readonly,
-        )
-
-        self.snp_count_field = MonitoredEntry(
-            self.top.get_object("snp_count"),
-            lambda x: self.obj.set_snp_count(_str_to_int(x)),
-            lambda: _int_to_str(self.obj.get_snp_count()),
-            self.db.readonly,
-        )
-
-        # Populate phase combo
-        phase_combo = self.top.get_object("phase")
-        for label in _PHASE_LABELS:
-            phase_combo.append_text(label)
-        phase_combo.set_active(self.obj.get_phase())
-        phase_combo.connect("changed", self._on_phase_changed)
-        phase_combo.set_sensitive(not self.db.readonly)
-
-    def _on_chromosome_changed(self, combo):
-        idx = combo.get_active()
-        if 0 <= idx < len(_CHROMOSOMES):
-            self.obj.set_chromosome(_CHROMOSOMES[idx])
-
-    def _on_phase_changed(self, combo):
-        self.obj.set_phase(combo.get_active())
-
-    def _connect_signals(self):
-        self.define_cancel_button(self.top.get_object("cancel"))
-        self.define_ok_button(self.ok_button, self.save)
-
-    def build_menu_names(self, obj):
-        return (_("DNA Segment"), _("DNA Segment Editor"))
-
-    def save(self, *obj):
-        if self.callback:
-            self.callback(self.obj)
-        self.close()
-
-
-# -------------------------------------------------------------------------
-#
-# EditSharedAncestor
-#
-# -------------------------------------------------------------------------
-class EditSharedAncestor(EditSecondary):
-    """Mini-dialog for editing a single SharedAncestor secondary object."""
-
-    def __init__(self, dbstate, uistate, track, ancestor, callback):
-        EditSecondary.__init__(self, dbstate, uistate, track, ancestor, callback)
-
-    def _local_init(self):
-        self.top = Glade(filename="editsharedancestor.glade")
-        self.set_window(
-            self.top.toplevel,
-            None,
-            _("Shared Ancestor Editor"),
-        )
-        self.setup_configs("interface.sharedancestor", 560, 420)
-        self.ok_button = self.top.get_object("ok")
-
-        self.share_btn = self.top.get_object("select_person")
-        self.add_del_btn = self.top.get_object("add_del_person")
-
-    def _setup_fields(self):
-        self.person_field = PersonEntry(
-            self.dbstate,
-            self.uistate,
-            self.track,
-            self.top.get_object("person_label"),
-            self.top.get_object("person_event_box"),
-            self.obj.set_person_handle,
-            self.obj.get_person_handle,
-            self.add_del_btn,
-            self.share_btn,
-        )
-
-        self.description_field = MonitoredEntry(
-            self.top.get_object("description"),
-            self.obj.set_description,
-            self.obj.get_description,
-            self.db.readonly,
-        )
-
-        # Populate confidence combo
-        combo = self.top.get_object("confidence")
-        for label in _CONFIDENCE_LABELS:
-            combo.append_text(label)
-        combo.set_active(self.obj.get_confidence())
-        combo.connect("changed", self._on_confidence_changed)
-        combo.set_sensitive(not self.db.readonly)
-
-    def _on_confidence_changed(self, combo):
-        self.obj.set_confidence(combo.get_active())
-
-    def _create_tabbed_pages(self):
-        notebook = Gtk.Notebook()
-
-        self.note_list = NoteTab(
-            self.dbstate,
-            self.uistate,
-            self.track,
-            self.obj.get_note_list(),
-            "sharedancestor_editor_notes",
-            notetype=NoteType.GENERAL,
-        )
-        self._add_tab(notebook, self.note_list)
-
-        self.citation_list = CitationEmbedList(
-            self.dbstate,
-            self.uistate,
-            self.track,
-            self.obj.get_citation_list(),
-            "sharedancestor_editor_citations",
-        )
-        self._add_tab(notebook, self.citation_list)
-
-        self._setup_notebook_tabs(notebook)
-        notebook.show_all()
-        self.top.get_object("vbox").pack_start(notebook, True, True, 0)
-
-        self.track_ref_for_deletion("note_list")
-        self.track_ref_for_deletion("citation_list")
-
-    def _connect_signals(self):
-        self.define_cancel_button(self.top.get_object("cancel"))
-        self.define_ok_button(self.ok_button, self.save)
-
-    def build_menu_names(self, obj):
-        return (_("Shared Ancestor"), _("Shared Ancestor Editor"))
-
-    def save(self, *obj):
-        if self.callback:
-            self.callback(self.obj)
-        self.close()
 
 
 # -------------------------------------------------------------------------

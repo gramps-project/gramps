@@ -473,7 +473,9 @@ gramps/gui/editors/editevent.py
 gramps/gui/editors/editeventref.py
 gramps/gui/editors/editfamily.py
 gramps/gui/editors/editdnamatch.py
+gramps/gui/editors/editdnasegment.py
 gramps/gui/editors/editdnatest.py
+gramps/gui/editors/editsharedancestor.py
 gramps/gui/editors/editldsord.py
 gramps/gui/editors/editlink.py
 gramps/gui/editors/editlocation.py
