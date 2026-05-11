@@ -335,6 +335,16 @@ class DNAMatchView(ListView):
         </item>
       </section>
       <section>
+        <item>
+          <attribute name="action">win.MakeSubjectActive</attribute>
+          <attribute name="label" translatable="yes">Make Subject Active Person</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.MakeMatchActive</attribute>
+          <attribute name="label" translatable="yes">Make Match Active Person</attribute>
+        </item>
+      </section>
+      <section>
         <placeholder id='QuickReport'>
         </placeholder>
         <placeholder id='WebConnect'>
@@ -343,6 +353,37 @@ class DNAMatchView(ListView):
     </menu>
     """ % _("_Edit...", "action"),
     ]
+
+    def define_actions(self):
+        ListView.define_actions(self)
+        self.action_list.extend(
+            [
+                ("MakeSubjectActive", self._make_subject_active),
+                ("MakeMatchActive", self._make_match_active),
+            ]
+        )
+
+    def _make_subject_active(self, *obj):
+        handle = self.first_selected()
+        if handle:
+            dnamatch = self.dbstate.db.get_dnamatch_from_handle(handle)
+            if dnamatch and dnamatch.subject_test_handle:
+                dnatest = self.dbstate.db.get_dnatest_from_handle(
+                    dnamatch.subject_test_handle
+                )
+                if dnatest and dnatest.person_handle:
+                    self.uistate.set_active(dnatest.person_handle, "Person")
+
+    def _make_match_active(self, *obj):
+        handle = self.first_selected()
+        if handle:
+            dnamatch = self.dbstate.db.get_dnamatch_from_handle(handle)
+            if dnamatch and dnamatch.match_test_handle:
+                dnatest = self.dbstate.db.get_dnatest_from_handle(
+                    dnamatch.match_test_handle
+                )
+                if dnatest and dnatest.person_handle:
+                    self.uistate.set_active(dnatest.person_handle, "Person")
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_dnamatch_from_gramps_id(gid)

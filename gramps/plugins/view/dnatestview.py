@@ -322,6 +322,12 @@ class DNATestView(ListView):
         </item>
       </section>
       <section>
+        <item>
+          <attribute name="action">win.SetActivePerson</attribute>
+          <attribute name="label" translatable="yes">Set Active Person</attribute>
+        </item>
+      </section>
+      <section>
         <placeholder id='QuickReport'>
         </placeholder>
         <placeholder id='WebConnect'>
@@ -330,6 +336,21 @@ class DNATestView(ListView):
     </menu>
     """ % _("_Edit...", "action"),
     ]
+
+    def define_actions(self):
+        ListView.define_actions(self)
+        self.action_list.extend(
+            [
+                ("SetActivePerson", self._set_active_person),
+            ]
+        )
+
+    def _set_active_person(self, *obj):
+        handle = self.first_selected()
+        if handle:
+            dnatest = self.dbstate.db.get_dnatest_from_handle(handle)
+            if dnatest and dnatest.person_handle:
+                self.uistate.set_active(dnatest.person_handle, "Person")
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_dnatest_from_gramps_id(gid)
