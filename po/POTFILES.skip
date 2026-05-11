@@ -644,6 +644,10 @@ gramps/plugins/webreport/__init__.py
 gramps/plugins/webreport/citation.py
 gramps/plugins/webreport/common.py
 #
+# plugins/webreport/test directory
+#
+gramps/plugins/webreport/test/common_test.py
+#
 # plugins/webstuff directory
 #
 gramps/plugins/webstuff/__init__.py

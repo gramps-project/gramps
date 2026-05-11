@@ -72,7 +72,16 @@ except ImportError:
                 AlphabeticIndex as localAlphabeticIndex,
             )
     except ImportError:
-        pass
+        # Neither icu nor PyICU is available. Fall back to the
+        # in-tree pure-Python AlphabeticIndex so the ``else`` branch
+        # later in this module (``AlphabeticIndex = localAlphabeticIndex``)
+        # finds a defined name. Without this, importing
+        # ``gramps.plugins.webreport.common`` on a system lacking
+        # both icu bindings raises ``NameError: name
+        # 'localAlphabeticIndex' is not defined`` at module load.
+        from gramps.plugins.webreport.alphabeticindex import (
+            AlphabeticIndex as localAlphabeticIndex,
+        )
 
 LOG = logging.getLogger(".NarrativeWeb")
 
