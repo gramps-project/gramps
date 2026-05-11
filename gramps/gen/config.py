@@ -7,6 +7,7 @@
 # Copyright (C) 2009-2012  Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2015-      Serge Noiraud
+# Copyright (C) 2026       Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,9 +19,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -41,7 +41,7 @@ import logging
 # Gramps imports
 #
 # ---------------------------------------------------------------
-from .const import USER_CONFIG, USER_DATA, USER_HOME, VERSION_DIR
+from .const import USER_CONFIG, USER_DATA, USER_HOME, VERSION_DIR, VERSION_DIR_NAME
 from .utils.configmanager import ConfigManager
 from .const import GRAMPS_LOCALE as glocale
 
@@ -161,6 +161,7 @@ register("behavior.date-after-range", 50)
 register("behavior.date-before-range", 50)
 register("behavior.generation-depth", 15)
 register("behavior.max-age-prob-alive", 110)
+register("behavior.max-gen-estimate", 4)
 register("behavior.max-sib-age-diff", 20)
 register("behavior.min-generation-years", 13)
 register("behavior.owner-warn", False)
@@ -172,19 +173,19 @@ register("behavior.spellcheck", False)
 register("behavior.startup", 0)
 register("behavior.surname-guessing", 0)
 register("behavior.translator-needed", True)
-register("behavior.use-tips", False)
+register("behavior.use-tips", True)
 register("behavior.welcome", 100)
-register("behavior.web-search-url", "http://google.com/#&q=%(text)s")
+register("behavior.web-search-url", "https://google.com/search?q=%(text)s")
 register(
     "behavior.addons-url",
-    "https://raw.githubusercontent.com/gramps-project/addons/master/gramps60",
+    f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}",
 )
 register(
     "behavior.addons-projects",
     [
         [
             "Gramps",
-            "https://raw.githubusercontent.com/gramps-project/addons/master/gramps60",
+            f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}",
             True,
         ]
     ],
@@ -243,7 +244,7 @@ register(
 )
 register("interface.filter", False)
 register("interface.fullscreen", False)
-register("interface.grampletbar-close", False)
+register("interface.grampletbar-close", True)
 register("interface.ignore-gexiv2", False)
 register("interface.ignore-pil", False)
 register("interface.ignore-osmgpsmap", False)
@@ -265,7 +266,7 @@ register("interface.sidebar-text", True)
 register("interface.size-checked", False)
 register("interface.statusbar", 1)
 register("interface.toolbar-on", True)
-register("interface.toolbar-text", False)
+register("interface.toolbar-style", 0)
 register("interface.hide-lds", False)
 register("interface.toolbar-clipboard", True)
 register("interface.toolbar-addons", True)
@@ -275,11 +276,13 @@ register("interface.toolbar-tools", True)
 register("interface.view", True)
 register("interface.surname-box-height", 150)
 register("interface.treemodel-cache-size", 1000)
+register("interface.note-preview-length", 80)
 
 register("paths.recent-export-dir", USER_HOME)
 register("paths.recent-file", "")
 register("paths.recent-import-dir", USER_HOME)
 register("paths.report-directory", USER_HOME)
+register("paths.ignore-xml-mediapath", False)
 register("paths.website-directory", USER_HOME)
 register("paths.website-cms-uri", "")
 register("paths.website-cal-uri", "")
@@ -296,16 +299,16 @@ register("preferences.date-format", 0)
 register("preferences.calendar-format-report", 0)
 register("preferences.calendar-format-input", 0)
 register("preferences.february-29", 0)  # 0: 02/28; 1: 03/01; 2: only the 02/29
-register("preferences.cprefix", "C%04d")
+register("preferences.cprefix", "C%05d")
 register("preferences.default-source", False)
 register("preferences.tag-on-import", False)
 register("preferences.tag-on-import-format", _("Imported %Y/%m/%d %H:%M:%S"))
-register("preferences.eprefix", "E%04d")
-register("preferences.family-warn", True)
-register("preferences.fprefix", "F%04d")
+register("preferences.eprefix", "E%05d")
+register("preferences.family-warn", False)
+register("preferences.fprefix", "F%05d")
 register("preferences.hide-ep-msg", False)
 register("preferences.invalid-date-format", "<b>%s</b>")
-register("preferences.iprefix", "I%04d")
+register("preferences.iprefix", "I%05d")
 register("preferences.name-format", 1)
 register("preferences.place-format", 0)
 register("preferences.place-auto", True)
@@ -314,17 +317,17 @@ register("preferences.patronimic-surname", False)
 register("preferences.no-given-text", "[%s]" % _("Missing Given Name"))
 register("preferences.no-record-text", "[%s]" % _("Missing Record"))
 register("preferences.no-surname-text", "[%s]" % _("Missing Surname"))
-register("preferences.nprefix", "N%04d")
+register("preferences.nprefix", "N%05d")
 register("preferences.online-maps", False)
-register("preferences.oprefix", "O%04d")
+register("preferences.oprefix", "O%05d")
 register("preferences.paper-metric", 0)
 register("preferences.paper-preference", "Letter")
-register("preferences.pprefix", "P%04d")
+register("preferences.pprefix", "P%05d")
 register("preferences.private-given-text", "%s" % _T_("[Living]"))
 register("preferences.private-record-text", "[%s]" % _("Private Record"))
 register("preferences.private-surname-text", "%s" % _T_("[Living]"))
-register("preferences.rprefix", "R%04d")
-register("preferences.sprefix", "S%04d")
+register("preferences.rprefix", "R%05d")
+register("preferences.sprefix", "S%05d")
 register("preferences.use-last-view", False)
 register("preferences.last-view", "")
 register("preferences.last-views", [])
@@ -388,14 +391,34 @@ register("utf8.buried-symbol", "[]")
 register("utf8.cremated-symbol", "⚱")
 register("utf8.killed-symbol", "x")
 
+register("familysearch.server", 0)  # beta
+register("familysearch.app-key", "")
+register("familysearch.redirect", "http://127.0.0.1:57938/familysearch-auth")
+register("familysearch.auth-provider", "foundation")
+register("familysearch.middleware.base-url", "")
+register("familysearch.middleware.access-code", "")
+
 if __debug__:  # enable a simple CLI test to see if the datestrings exist
     register("test.january", _("January", "localized lexeme inflections"))
+
 
 # ---------------------------------------------------------------
 #
 # Upgrade Conversions go here.
 #
 # ---------------------------------------------------------------
+def load_previous(ini_file):
+    """
+    Attempt to load a `gramps.ini` file from an earlier version.
+    Return True if the file exists.
+    """
+    if os.path.exists(ini_file):
+        logging.info("Importing old config file '%s'...", ini_file)
+        CONFIGMAN.load(ini_file)
+        logging.info("Done importing old config file '%s'", ini_file)
+        return True
+    return False
+
 
 # If we have not already upgraded to this version,
 # we can tell by seeing if there is a key file for this version:
@@ -410,6 +433,7 @@ if not os.path.exists(CONFIGMAN.filename):
     # check previous version of gramps:
     fullpath, filename = os.path.split(CONFIGMAN.filename)
     fullpath, previous = os.path.split(fullpath)
+    oldpath = os.path.join(USER_HOME, ".gramps")
     match = re.match(r"gramps(\d*)", previous)
     if match:
         # cycle back looking for previous versions of gramps
@@ -422,11 +446,11 @@ if not os.path.exists(CONFIGMAN.filename):
             # Perhaps addings specific list of versions to check
             # -----------------------------------------
             digits = str(int(match.groups()[0]) - i)
-            previous_grampsini = os.path.join(fullpath, "gramps" + digits, filename)
-            if os.path.exists(previous_grampsini):
-                logging.info("Importing old config file '%s'...", previous_grampsini)
-                CONFIGMAN.load(previous_grampsini)
-                logging.info("Done importing old config file '%s'", previous_grampsini)
+            grampsini = os.path.join(fullpath, "gramps" + digits, filename)
+            if load_previous(grampsini):
+                break
+            grampsini = os.path.join(oldpath, "gramps" + digits, filename)
+            if load_previous(grampsini):
                 break
 
 # ---------------------------------------------------------------
@@ -439,3 +463,15 @@ CONFIGMAN.load()
 config = CONFIGMAN
 if config.get("database.backend") == "bsddb":
     config.set("database.backend", "sqlite")
+# if copying a config from an older version, the addons location is likely wrong, so fix it.
+config.set(
+    "behavior.addons-url",
+    f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}",
+)
+projects = config.get("behavior.addons-projects")
+for proj in projects:
+    if "raw.githubusercontent.com/gramps-project/addons/master" in proj[1]:
+        proj[1] = (
+            f"https://raw.githubusercontent.com/gramps-project/addons/master/{VERSION_DIR_NAME}"
+        )
+config.set("behavior.addons-projects", projects)

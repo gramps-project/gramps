@@ -328,7 +328,7 @@ wybór formatu wyjściowego w zależności od ich potrzeb.
 
 .SH ZNANE BŁĘDY I OGRANICZENIA
 Prawdopodobne. Lista błędów i propozycji znajduje się na:
-\fIhttp://developers.gramps-project.org\fR. 
+\fIhttps://www.gramps\-project.org/wiki/index.php?title=Portal:Developers\fR. 
 
 .SH PLIKI
 .LP 
@@ -341,7 +341,7 @@ Prawdopodobne. Lista błędów i propozycji znajduje się na:
 .SH AUTORZY
 Donald Allingham \fI<don@gramps-project.org>\fR
 .br 
-\fIhttp://gramps.sourceforge.net\fR
+\fIhttps://gramps.sourceforge.net\fR
 .LP 
 Ta strona man jest tłumaczeniem strony man napisanej przez:
 .br 
@@ -363,4 +363,4 @@ plik \fBgramps-manual.xml\fR w folderze \fIdoc/gramps-manual/$LANG\fR
 w głównym źródle dystrybucji.
 .LP 
 Dokumentacja dla programistów jest dostępna na stronie projektu:
-\fIhttp://developers.gramps-project.org\fR. 
+\fIhttps://www.gramps-project.org/wiki/index.php?title=Portal:Developers\fR. 

@@ -20,12 +20,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Complete Individual Report """
+"""Complete Individual Report"""
 
 # ------------------------------------------------------------------------
 #
@@ -131,6 +130,7 @@ class IndivCompleteReport(Report):
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
         incl_attrs    - Whether to include attributes
+        incl_addrs    - Whether to include addresses
         incl_census   - Whether to include census events
         incl_notes    - Whether to include person and family notes
         incl_tags     - Whether to include tags
@@ -159,6 +159,7 @@ class IndivCompleteReport(Report):
         self.name_is_title = menu.get_option_by_name("name_title").get_value()
 
         self.use_attrs = menu.get_option_by_name("incl_attrs").get_value()
+        self.use_addrs = menu.get_option_by_name("incl_addrs").get_value()
         self.use_census = menu.get_option_by_name("incl_census").get_value()
         self.use_gramps_id = menu.get_option_by_name("inc_id").get_value()
         self.use_images = menu.get_option_by_name("images").get_value()
@@ -435,7 +436,7 @@ class IndivCompleteReport(Report):
 
         alist = self.person.get_address_list()
 
-        if len(alist) == 0:
+        if len(alist) == 0 or not self.use_addrs:
             return
 
         self.doc.start_table("addresses", "IDS-IndTable")
@@ -1185,6 +1186,10 @@ class IndivCompleteOptions(MenuReportOptions):
         attributes = BooleanOption(_("Include Attributes"), True)
         attributes.set_help(_("Whether to include attributes."))
         menu.add_option(category_name, "incl_attrs", attributes)
+
+        addresses = BooleanOption(_("Include Addresses"), True)
+        addresses.set_help(_("Whether to include addresses."))
+        menu.add_option(category_name, "incl_addrs", addresses)
 
         census = BooleanOption(_("Include Census Events"), True)
         census.set_help(_("Whether to include Census Events."))

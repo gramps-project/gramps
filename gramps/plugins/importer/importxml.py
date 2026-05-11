@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -91,7 +90,7 @@ from gramps.gen.lib import (
     Tag,
     Url,
 )
-from gramps.gen.lib.serialize import from_dict
+from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.db import DbTxn
 
 # from gramps.gen.db.write import CLASS_TO_KEY_MAP
@@ -840,7 +839,7 @@ class GrampsParser(UpdateCallback):
                     "tag": self.db.get_raw_tag_data,
                 }[target]
                 raw = get_raw_obj_data(handle)
-                temp_obj = from_dict(raw)
+                temp_obj = data_to_object(raw)
                 prim_obj.set_object_state(temp_obj.get_object_state())
                 self.import_handles[orig_handle][target][INSTANTIATED] = True
             return handle
@@ -1002,7 +1001,7 @@ class GrampsParser(UpdateCallback):
         handle = id2handle_map.get(gramps_id)
         if handle:
             raw = get_raw_obj_data(handle)
-            temp_obj = from_dict(raw)
+            temp_obj = data_to_object(raw)
             prim_obj.set_object_state(temp_obj.get_object_state())
         else:
             handle = create_id()
@@ -2547,11 +2546,16 @@ class GrampsParser(UpdateCallback):
         elif self.place_name:
             date_value = self.place_name.get_date_object()
 
-        start = attrs["start"].split("-")
-        stop = attrs["stop"].split("-")
+        start = attrs["start"]
+        stop = attrs["stop"]
 
+        bce = 1
+        if start and start[0] == "-":
+            bce = -1
+            start = start[1:]
+        start = start.split("-")
         try:
-            year = int(start[0])
+            year = int(start[0]) * bce
         except ValueError:
             year = 0
 
@@ -2565,8 +2569,13 @@ class GrampsParser(UpdateCallback):
         except:
             day = 0
 
+        bce = 1
+        if stop and stop[0] == "-":
+            bce = -1
+            stop = stop[1:]
+        stop = stop.split("-")
         try:
-            rng_year = int(stop[0])
+            rng_year = int(stop[0]) * bce
         except:
             rng_year = 0
 
@@ -2646,7 +2655,7 @@ class GrampsParser(UpdateCallback):
 
         bce = 1
         val = attrs["val"]
-        if val[0] == "-":
+        if val and val[0] == "-":
             bce = -1
             val = val[1:]
         start = val.split("-")
@@ -3333,7 +3342,9 @@ class GrampsParser(UpdateCallback):
         self.resemail = tag
 
     def stop_mediapath(self, tag):
-        self.mediapath = tag
+        # Only use XML mediapath if ignore flag is not set
+        if not config.get("paths.ignore-xml-mediapath"):
+            self.mediapath = tag
 
     def stop_ptag(self, tag):
         self.use_p = 1

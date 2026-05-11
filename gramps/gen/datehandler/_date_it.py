@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Italian version, 2009 (derived from the catalan version)
@@ -53,10 +52,12 @@ class DateParserIT(DateParser):
         "prima del": Date.MOD_BEFORE,
         "prima": Date.MOD_BEFORE,
         "dopo del": Date.MOD_AFTER,
+        "dopo il": Date.MOD_AFTER,
         "dopo": Date.MOD_AFTER,
         "approssimativamente": Date.MOD_ABOUT,
         "apross.": Date.MOD_ABOUT,
         "apross": Date.MOD_ABOUT,
+        "circa nel": Date.MOD_ABOUT,
         "circa il": Date.MOD_ABOUT,
         "circa": Date.MOD_ABOUT,
         "ca.": Date.MOD_ABOUT,

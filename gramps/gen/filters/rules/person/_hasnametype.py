@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -32,6 +31,15 @@ from ....lib.nametype import NameType
 from .. import Rule
 
 _ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -53,7 +61,7 @@ class HasNameType(Rule):
         super().__init__(arg, use_regex, use_case)
         self.name_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -61,12 +69,12 @@ class HasNameType(Rule):
             self.name_type = NameType()
             self.name_type.set_from_xml_str(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """
         if self.name_type:
-            for name in [obj.get_primary_name()] + obj.get_alternate_names():
-                if name.get_type() == self.name_type:
+            for name in [obj.primary_name] + obj.alternate_names:
+                if name.type == self.name_type:
                     return True
         return False

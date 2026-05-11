@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 """
 GrampsTranslations encapsulates Gettext behavior, allowing for a primary
@@ -29,6 +28,7 @@ for reports so that they can be created in a different language from the UI's.
 # python modules
 #
 # ------------------------------------------------------------------------
+from __future__ import annotations
 import gettext
 import collections
 import inspect
@@ -180,7 +180,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         """
         return self.lang
 
-    def gettext(self, msgid, context=""):
+    def gettext(self, msgid: str, context: str = "") -> str:
         """
         Obtain translation of gettext, return a unicode object
 
@@ -292,7 +292,7 @@ class GrampsNullTranslations(gettext.NullTranslations):
     neither will be the returned string.
     """
 
-    def gettext(self, msgid, context=""):
+    def gettext(self, msgid: str, context: str = "") -> str:
         """
         Apply the context if there is one, otherwise just pass it on.
         """

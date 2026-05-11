@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -578,7 +577,10 @@ class DbRandomTest(unittest.TestCase):
         with cursor_func() as cursor:
             for handle, data1 in cursor:
                 data2 = raw_func(handle)
-                self.assertEqual(data1, data2)
+                if isinstance(data1, dict) and isinstance(data2, dict):
+                    self.assertDictEqual(dict(data1), dict(data2))
+                else:
+                    self.assertEqual(data1, data2)
 
     def test_get_person_cursor(self):
         self.__get_cursor_test(self.db.get_person_cursor, self.db.get_raw_person_data)

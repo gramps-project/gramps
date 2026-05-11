@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -34,6 +33,14 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -53,16 +60,16 @@ class RegExpName(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, person):
-        for name in [person.get_primary_name()] + person.get_alternate_names():
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for name in [person.primary_name] + person.alternate_names:
             for field in [
                 name.first_name,
-                name.get_surname(),
                 name.suffix,
                 name.title,
                 name.nick,
                 name.famnick,
                 name.call,
+                name.get_surname(),
             ]:
                 if self.match_substring(0, field):
                     return True

@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -80,7 +79,13 @@ from ..dialog import InfoDialog, OkDialog, QuestionDialog2
 from ..editors import EditPerson
 from ..glade import Glade
 from ..listmodel import ListModel, NOSORT, TOGGLE
-from gramps.gen.const import URL_WIKISTRING, USER_HOME, WIKI_EXTRAPLUGINS_RAWDATA, COLON
+from gramps.gen.const import (
+    URL_WIKISTRING,
+    URL_MANUAL_PAGE,
+    USER_HOME,
+    WIKI_EXTRAPLUGINS_RAWDATA,
+    COLON,
+)
 from gramps.gen.config import config
 from ..widgets.progressdialog import LongOpStatus, ProgressMonitor, GtkProgressDialog
 
@@ -497,7 +502,8 @@ class AddonManager(ManagedWindow):
         Display the Addon Manager help page.
         """
         display_help(
-            "Gramps_5.2_Wiki_Manual_-_Navigation", "Using_the_Addon_Manager..."
+            URL_MANUAL_PAGE + "_-_Navigation",
+            "Using_the_Addon_Manager...",
         )
 
     def __create_filter_combo(self, store, default):
@@ -862,8 +868,8 @@ class AddonManager(ManagedWindow):
         if dialog.run() == Gtk.ResponseType.OK:
             if row.project[0] == "":
                 self.project_list.add(row)
-            row.project[0] = name.get_text()
-            row.project[1] = url.get_text()
+            row.project[0] = name.get_text().strip()
+            row.project[1] = url.get_text().strip()
             row.update()
             self.update_project_list()
             self.refresh()

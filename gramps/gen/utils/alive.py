@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -41,6 +40,7 @@ import logging
 from ..display.name import displayer as name_displayer
 from ..lib.date import Date, Today
 from ..lib.person import Person
+from ..lib.json_utils import DataDict
 from ..errors import DatabaseError
 from ..const import GRAMPS_LOCALE as glocale
 from ..proxy.proxybase import ProxyDbBase
@@ -48,8 +48,11 @@ from ..proxy.proxybase import ProxyDbBase
 LOG = logging.getLogger(".gen.utils.alive")
 
 _ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext
 
-DEBUGLEVEL = 4  # 4 = everything; 3 much detail; 2= minor detail; 1 = summary
+# DEBUGLEVEL should be 1 for production, as higher levels are rather cryptic unless
+# viewed in the context of the source code.
+DEBUGLEVEL = 1  # 4 = everything; 3 much detail; 2= minor detail; 1 = summary
 # -------------------------------------------------------------------------
 #
 # Constants from config .ini keys
@@ -63,12 +66,14 @@ try:
     _MAX_SIB_AGE_DIFF = config.get("behavior.max-sib-age-diff")
     _AVG_GENERATION_GAP = config.get("behavior.avg-generation-gap")
     _MIN_GENERATION_YEARS = config.get("behavior.min-generation-years")
+    _MAX_GEN_ESTIMATE = config.get("behavior.max-gen-estimate")
 except ImportError:
     # Utils used as module not part of GRAMPS
     _MAX_AGE_PROB_ALIVE = 110
     _MAX_SIB_AGE_DIFF = 20
     _AVG_GENERATION_GAP = 20
     _MIN_GENERATION_YEARS = 13
+    _MAX_GEN_ESTIMATE = 4
 
 
 # -------------------------------------------------------------------------
@@ -123,6 +128,8 @@ class ProbablyAlive:
         birth_date = None
         death_date = None
         known_to_be_dead = False
+        # whether the birth evidence (date or fallback) is known for this person
+        birth_evidence_direct = False
         min_birth_year = None
         max_birth_year = None
         min_birth_year_from_death = None  # values derived from 110 year extrapolations
@@ -159,7 +166,7 @@ class ProbablyAlive:
                     explain_death,
                 )
 
-            if isinstance(class_or_handle, Person):
+            if isinstance(class_or_handle, (Person, DataDict)):
                 thisperson = class_or_handle
             elif isinstance(class_or_handle, str):
                 thisperson = self.db.get_person_from_handle(class_or_handle)
@@ -219,13 +226,14 @@ class ProbablyAlive:
                 evnt = self.db.get_event_from_handle(birth_ref.ref)
                 if evnt:
                     dateobj = evnt.get_date_object()
-                    if dateobj and dateobj.is_valid():
+                    if dateobj and dateobj.get_year_valid():
                         birth_date = dateobj
                         explain_birth = _("date")
 
             # to here:
-            #   birth_date is None: either no birth record or else no date reported; or
-            #   birth_date is a valid date
+            #   birth_date is None: either no birth record, or the birth event
+            #   has no valid date (missing or year-less date like "February 3");
+            #   birth_date is a valid date with a known year
             # Look for Baptism, etc events.
             # These are fairly good indications of someone's birth date.
             if not birth_date:
@@ -233,7 +241,7 @@ class ProbablyAlive:
                     evnt = self.db.get_event_from_handle(ev_ref.ref)
                     if evnt and evnt.type.is_birth_fallback():
                         birth_date_fb = evnt.get_date_object()
-                        if birth_date_fb and birth_date_fb.is_valid():
+                        if birth_date_fb and birth_date_fb.get_year_valid():
                             birth_date = birth_date_fb
                             explain_birth = _("date fallback")
                             break
@@ -250,11 +258,21 @@ class ProbablyAlive:
             get_person_bd(person)
         )
 
-        explanation = (
-            _("DIRECT birth: ") + explain_birth_min + _(", death: ") + explain_death
-        )
-        if death_date is not None and birth_date is not None:
-            return (birth_date, death_date, explanation, person)  # direct self evidence
+        if birth_date is not None:
+            birth_evidence_direct = True
+            if death_date is not None:
+                explanation = _(
+                    "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
+                ).format(
+                    birth_min_src=explain_birth_min,
+                    death_src=explain_death,
+                )
+                return (
+                    birth_date,
+                    death_date,
+                    explanation,
+                    person,
+                )  # direct self evidence
 
         # birth and/or death dates are not known, so let's see what we can estimate.
         # First: minimum is X years before death;
@@ -357,17 +375,17 @@ class ProbablyAlive:
                     max_birth_year = max_birth_year_from_death
                     explain_birth_max = _("person's death")
 
-        # sib_xx_min/max are either both None or both have a value (maybe the same)
-        if sib_birth_max:
-            min_from_sib = sib_birth_max - self.MAX_SIB_AGE_DIFF
-            if min_birth_year is None or min_from_sib > min_birth_year:
-                min_birth_year = min_from_sib
-                explain_birth_min = _("oldest sibling's age")
+            # sib_xx_min/max are either both None or both have a value (maybe the same)
+            if sib_birth_max:
+                min_from_sib = sib_birth_max - self.MAX_SIB_AGE_DIFF
+                if min_birth_year is None or min_from_sib > min_birth_year:
+                    min_birth_year = min_from_sib
+                    explain_birth_min = _("oldest sibling's age")
 
-            max_from_sib = sib_birth_min + self.MAX_SIB_AGE_DIFF
-            if max_birth_year is None or max_from_sib < max_birth_year:
-                max_birth_year = max_from_sib
-                explain_birth_max = _("youngest sibling's age")
+                max_from_sib = sib_birth_min + self.MAX_SIB_AGE_DIFF
+                if max_birth_year is None or max_from_sib < max_birth_year:
+                    max_birth_year = max_from_sib
+                    explain_birth_max = _("youngest sibling's age")
 
         if birth_date is None or not birth_date.is_valid():
             birth_date = Date()  # make sure we have an empty date
@@ -413,28 +431,43 @@ class ProbablyAlive:
                     explain_death = _("birth date and known to be dead")
                 else:
                     death_date.set_yr_mon_day_offset(year=self.MAX_AGE_PROB_ALIVE)
-                    explain_death = _("birth date")
+                    explain_death = _("offset from birth date")
                 death_date.recalc_sort_value()
             else:
                 death_date = Date()
 
         # at this stage we should have valid dates for both birth and death,
         #  or else both are zero (if None then it's a bug).
-        if explain_birth_max == "":
-            explanation = _("birth: ") + explain_birth_min
-        else:
-            explanation = (
-                _("birth: ") + explain_birth_min + _(" and ") + explain_birth_max
+        if birth_evidence_direct:
+            explanation = _(
+                "Direct evidence for this person - birth: {birth_min_src}, death: {death_src}"
+            ).format(
+                birth_min_src=explain_birth_min,
+                death_src=explain_death,
             )
-        explanation += _(", death: ") + explain_death
-        explanation = "2ND + " + explanation
+        elif explain_birth_max == "":
+            explanation = _(
+                "inferred from parents and siblings - birth: {birth_min_src}, death: {death_src}"
+            ).format(
+                birth_min_src=explain_birth_min,
+                death_src=explain_death,
+            )
+        else:
+            explanation = _(
+                "inferred from parents and siblings - birth: {birth_min_src} (earliest) to {birth_max_src} (latest), death: {death_src}"
+            ).format(
+                birth_min_src=explain_birth_min,
+                birth_max_src=explain_birth_max,
+                death_src=explain_death,
+            )
+
         if birth_date.is_valid() and death_date.is_valid():
             return (birth_date, death_date, explanation, person)
 
         # have finished immediate family, so try spouse, as the
         # remaining person (probably) of this generation ..
 
-        def spouse_test(passnum=1):
+        def spouse_test(only_immediate_family):
             # test against spouse details - this is done in two passes, at different
             # stages of generating dates for the reference person.:
             # 1. test spouse details only - this should be a reasonable proxy for
@@ -446,7 +479,10 @@ class ProbablyAlive:
             # which, assuming defaults, results in 150 year "probably alive" range.
             # In reality, if we have reached this far then any value is unreliable.
 
-            LOG.debug("    ----- trying spouse check pass %s", passnum)
+            LOG.debug(
+                "    ----- trying spouse check: %s",
+                "immediate family only" if only_immediate_family else "full tree",
+            )
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
@@ -469,7 +505,7 @@ class ProbablyAlive:
                         date1, date2, explain, other = self.probably_alive_range(
                             spouse,
                             is_spouse=True,
-                            immediate_fam_only=True if passnum == 1 else False,
+                            immediate_fam_only=only_immediate_family,
                         )
                         if DEBUGLEVEL > 2:
                             LOG.debug(
@@ -556,7 +592,7 @@ class ProbablyAlive:
             return (None, None, "", None)
 
         if not is_spouse:
-            birth_date, death_date, explain, who = spouse_test(1)
+            birth_date, death_date, explain, who = spouse_test(True)
             if birth_date is not None and death_date is not None:
                 return (birth_date, death_date, explain, who)
         elif immediate_fam_only:
@@ -584,6 +620,13 @@ class ProbablyAlive:
                 LOG.debug(
                     "....... person %s skipped - already seen in descendants test",
                     person.get_gramps_id(),
+                )
+                return no_valid_descendant
+            if generation > _MAX_GEN_ESTIMATE:
+                LOG.debug(
+                    "....... person %s skipped - already done %d generations",
+                    person.get_gramps_id(),
+                    _MAX_GEN_ESTIMATE,
                 )
                 return no_valid_descendant
             if DEBUGLEVEL > 2:
@@ -727,7 +770,11 @@ class ProbablyAlive:
                 date1.set_yr_mon_day(birth_year, 1, 1)
                 date1.set_modifier(Date.MOD_ABOUT)
                 date2 = date1.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE)
-                explain = _("descendant birth: {} generations ".format(ngens))
+                explain = ngettext(
+                    "descendant birth: {number_of} generation ",
+                    "descendant birth: {number_of} generations ",
+                    ngens,
+                ).format(number_of=ngens)
             elif dmin is not None:
                 # no births, just death dates ... unreliable estimates only
                 # An upper limit would be based on min_generation_gap below the first death.
@@ -746,7 +793,11 @@ class ProbablyAlive:
                 date1.set_modifier(Date.MOD_RANGE)
                 date1.set2_yr_mon_day(upper_birth_year, 1, 1)
                 date2 = date1.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE)
-                explain = _("descendant death: {} generations ".format(ngens))
+                explain = ngettext(
+                    "descendant death: {number_of} generation ",
+                    "descendant death: {number_of} generations ",
+                    ngens,
+                ).format(number_of=ngens)
             if date1 and date2:
                 return (date1, date2, explain, other)
             return (None, None, "", None)
@@ -758,7 +809,7 @@ class ProbablyAlive:
 
         except RuntimeError:
             raise DatabaseError(
-                _("Database error: loop in %s's descendants")
+                _("Database error: loop in descendants of %s.")
                 % name_displayer.display(person)
             )
 
@@ -781,6 +832,13 @@ class ProbablyAlive:
                 LOG.debug(
                     "....... person %s skipped - already seen in ancestor test",
                     person.get_gramps_id(),
+                )
+                return range_not_found
+            if generation > _MAX_GEN_ESTIMATE:
+                LOG.debug(
+                    "....... person %s skipped - already done %d generations",
+                    person.get_gramps_id(),
+                    _MAX_GEN_ESTIMATE,
                 )
                 return range_not_found
             self.pset.add(person.handle)
@@ -917,7 +975,7 @@ class ProbablyAlive:
                 )
             except RuntimeError:
                 raise DatabaseError(
-                    _("Database error: loop in %s's ancestors")
+                    _("Database error: loop in ancestors of %s.")
                     % name_displayer.display(person)
                 )
 
@@ -925,7 +983,7 @@ class ProbablyAlive:
                 return (date1, date2, explain, other)
 
         if not is_spouse:  # if you are not in recursion, let's recurse again:
-            birth_date, death_date, explain, who = spouse_test(2)
+            birth_date, death_date, explain, who = spouse_test(False)
             if birth_date is not None and death_date is not None:
                 return (birth_date, death_date, explain, who)
 
@@ -978,10 +1036,8 @@ def probably_alive(
     )
     if current_date is None or not current_date.is_valid():
         current_date = Today()
-    elif not current_date.is_valid():
-        current_date = Today()
 
-    if not explain.startswith("DIRECT"):
+    if DEBUGLEVEL > 0:
         if relative is None:
             rel_id = "nobody"
         else:
@@ -1018,23 +1074,22 @@ def probably_alive(
     # ---true if  current_date >= birth(min)   and  true if current_date < death
     # these include true if current_date is within the estimated range
     result = current_date.match(birth, ">=") and current_date.match(death, "<")
-    if DEBUGLEVEL > 1:
-        if not explain.startswith("DIRECT"):
-            (bthmin, bthmax) = birth.get_start_stop_range()
-            (dthmin, dthmax) = death.get_start_stop_range()
-            (dmin, dmax) = current_date.get_start_stop_range()
-            LOG.debug(
-                "        alive=%s, btest: %s, dtest: %s (born %s-%s, dd %s-%s) vs (%s-%s)",
-                result,
-                current_date.match(birth, ">="),
-                current_date.match(death, "<"),
-                bthmin,
-                bthmax,
-                dthmin,
-                dthmax,
-                dmin,
-                dmax,
-            )
+    if DEBUGLEVEL > 3:
+        bthmin, bthmax = birth.get_start_stop_range()
+        dthmin, dthmax = death.get_start_stop_range()
+        dmin, dmax = current_date.get_start_stop_range()
+        LOG.debug(
+            "        alive=%s, btest: %s, dtest: %s (born %s-%s, dd %s-%s) vs (%s-%s)",
+            result,
+            current_date.match(birth, ">="),
+            current_date.match(death, "<"),
+            bthmin,
+            bthmax,
+            dthmin,
+            dthmax,
+            dmin,
+            dmax,
+        )
     if return_range:
         return (result, birth, death, explain, relative)
 
@@ -1067,7 +1122,9 @@ def update_constants():
 
     global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF
     global _AVG_GENERATION_GAP, _MIN_GENERATION_YEARS
+    global _MAX_GEN_ESTIMATE
     _MAX_AGE_PROB_ALIVE = config.get("behavior.max-age-prob-alive")
     _MAX_SIB_AGE_DIFF = config.get("behavior.max-sib-age-diff")
     _AVG_GENERATION_GAP = config.get("behavior.avg-generation-gap")
     _MIN_GENERATION_YEARS = config.get("behavior.min-generation-years")
+    _MAX_GEN_ESTIMATE = config.get("behavior.max-gen-estimate")

@@ -1,3 +1,440 @@
+2026-04-09
+Version 6.0.8
+* Update translations: cs, de_AT, en_GB, fa, fi, fr, ga, he, hr, it, mn, nl, pl,
+  pt_PT, ru, sk, sr, sv, zh_CN.
+* Fix xgettext format string warning.
+* Fix AttributeError when PersistentTreeView is GtkBuilder-created.
+  Fixes #14159.
+* Update DTD and RNG schemas.
+* Fix Notpatronymic and Rawsurnames format code entry. Fixes #14146.
+* Avoid duplicate calls to update() in Person view.
+* Remove redundant methods on PersonNotes class.
+* Fix signals in notes gramplet. Fixes #14148, #13866.
+* Fix ImageThumb savev() passing strings instead of lists.
+* Fix Serbian date modifiers.
+* Fix incorrect person gender schema max.
+* Update copyright year in Windows AIO.
+* Various fixes to the Windows AIO build.
+* Update GitHub upload-artifact action version to v6.
+* Add PyInstaller-based Windows AIO workflow.
+
+2026-03-15
+Version 6.0.7
+* Update translations: ba, bg, cs, da, de, de_AT, el, en_GB, fa, fi, fr, ga, he,
+  hr, hu, it, ka, ko, lt, mk, nl, pt_BR, ru, sk, sl, sv, ta, tr, uk, zh_CN.
+* Add Bashkir translation.
+* Fix Irish plural forms.
+* Update copyright dates.
+* Add bulk change revs to ignore list for blame.
+* I18n improvements of surname origin attributes
+* Use the OCCU tag for Occupation events in the Gedcom export. Fixes #14109.
+* Clean input data tool gives invalid lat/lon when not set. Fixes #14077.
+* Fix invalid date when no date in data verify tool. Fixes #14081.
+* Fix LT and LV language associations in Gedcom export.
+* Update GitHub checkout action version to v6.
+* Handle Stillbirth event correctly in Gedcom import. Fixes #14067.
+* Handle Arabic comma when creating missing note. Fixes #13692.
+* Remove some false positives from the data verify tool. Fixes #14060.
+* Extend the CheckIntegrity tool to coalesce duplicate event role names.
+* Don't ignore calendar, modifier and quality in diff_dates.
+* Catch IndexError in importxml.
+* Bump mac versions & copyright dates.  Preparing for 6.0.7 release.
+* Reformat code using the latest stable version of black.
+* Fix mypy errors.
+* Fix code formatting.
+* Mac:
+  * Bump mac versions & copyright dates.  Preparing for 6.0.7 release.
+  * Package Gramps 6.0.6 on macOS.
+  * Allow Gramps to load external shared libraries for plugins.
+
+2025-11-08
+Version 6.0.6
+* Update translations: ba, cs, da, de, de_AT, en_GB, es, fi, fr, ga, he, hr, id,
+  it, ka, lt, nl, pl, pt_PT, ro, ru, sk, sv, ta, tr, uk.
+* Added Weblate translation for Nepali.
+* Relationship Calculator:
+  * Re-written for Russian language. Fixes #12743, #14019.
+  * Fixed incorrect handling of return value of `get_birth_parents()` method.
+  * Add tests to improve coverage of step, in-law and plural cases.
+  * Fix error. Fixes #13996.
+* Fix order of LDS ordinances. Fixes #11651.
+* Fix "Latter-day Saints" name. Issue #11651.
+* Add missing "Initiatory" LDS ordinance. Fixes #4949.
+* Preserve order in `find_children`.
+* Update geocode-glib DLL reference in `setup.py` script. MSYS2 now provides a
+  libsoup3-based geocode-glib binary. Fixes #14018.
+* Update GPL2+ license text.
+* Update COPYING to the latest text.
+* Ignore mypy error when setting `sqlite3.paramstyle`.
+
+2025-09-06
+Version 6.0.5
+* Update translations: bg, ca, cs, da, de, es, fi, fr, ga, he, hr, hu, it, lt,
+  pl, pt_PT, ru, sk, sv, uk.
+* Added Weblate translations for Georgian and Latvian.
+* Add Irish (ga) to the list of supported languages.
+* Update Catalan relationship calculator.
+* Fix MatchesPersonFilter. Fixes #13947.
+* Suppress file not found error if not available at end of gpkg import.
+  Fixes #12311.
+* Fix typos in the Welcome gramplet.
+* Bump version for macOS.
+
+2025-08-10
+Version 6.0.4
+* Update translations: ca, cs, da, de, de_AT, es, fa, fi, fr, he, hr, hu, id,
+  it, nl, pl, pt_PT, sk, ta, uk.
+* Added Weblate translation for Bashkir.
+* Fix regex matches in filter match method.
+* Fix the problem of mixed filter types.
+* Add context to translatable "Name:" labels in Glade files. Fixes #12527.
+* Fix format character in the `MatchesPersonFilter` event rule.
+  Fixes #13909, #13923.
+* Fix file not found when we don't want sources in narrated web report.
+  Fixes #13875.
+* Fix note attached to citation in narrated web report. Fixes #13852.
+* Apply event place filters to the place not the event. Fixes #13797.
+* Added new fieldtype 48 to support Pro-Gen version 3.5.
+* Normalize gzip mtime for reproducible builds.
+* Fix regression in relationship path between people filter.
+
+2025-06-18
+Version 6.0.3
+* Update translations: de_AT, en_GB, es, uk.
+* Revert "Pass an object rather than a handle to the note editor callback"
+  Fixes #13884.
+* Package Gramps 6.0.2 on macOS.
+
+2025-06-15
+Version 6.0.2
+* Update translations: bg, ca, cs, da, de, de_AT, eo, es, fi, fr, ga, he, id,
+  ko, lt, nb, nl, pl, pt_PT, ru, sk, sv, tr, zh_CN.
+* Fix date modifiers for lt.
+* Update translation template for new release.
+* Add optimization to HasIdOf rules.
+* Connect the Help button in the repository reference editor. Fixes #13352.
+* Pass an object rather than a handle to the note editor callback. Fixes #13702.
+* Fix broken compound dates with bce year in XML import. Fixes #13631.
+* Avoid multiple copies of Rules after Plugin manager reload. Fixes #13844.
+* Fix bad surname list after upgrade from bsddb. Fixes #13807.
+* Fix narrated web when two places have same name but a different type.
+  Fixes #13841.
+* Fix crash in citation view due to wrong `filter_info`. Fixes #13796.
+* Don't attempt to call `set_orientation` if `self.pui` is `None`. Fixes #13820.
+* Don't crash in `search_changed` if `self.search_list` has no active item.
+  Fixes #13793.
+* Fix incorrect addons project after upgrade from Gramps 5.2. Fixes #13789.
+* Respect user choice of CSS files for existing narrated web site. Fixes #13792.
+* Ensure that the spell checker gets removed with the editor. Fixes #13795.
+* Fix `Optimizer` class when combining sub-filters. Fixes #13799.
+* Remove check for Gtk translations in Snap packages.
+* Mac:
+  * Add lxml to python modules included in Gramps.app.
+  * Fix macos build version error: Wrong tarball for 6.0.1.
+  * Package Gramps-6.0.1 for macOS
+
+2025-04-18
+Version 6.0.1
+* Update translations: ar, br, ca, cs, de, de_AT, el, en_GB, es, fi, fr, ga, he,
+  it, ja, ko, nb, nl, pl, pt_PT, ro, sk, sv, tr, uk, zh_CN.
+* Update translation template for new release.
+* Extend SearchBar so that it supports text search and filters. Fixes #13720.
+* Fix patronymic in name display. Fixes #13764.
+* Update links in the README to v6.0.
+* Update the INSTALL file. Issue #13717.
+  * Change install from `setup.py` to `pip`.
+  * Update typical installation locations.
+  * Remove the `--resourcepath` option which no longer exists.
+* Fix wiki help link in the Addon Manager. Fixes #13735.
+* Remove the outer progress meter from the filter prepare phase. Fixes #13725.
+* Fix error when importing a GEDCOM file into an existing tree. Fixes #13726.
+* Avoid empty metadata fields. Fixes #13721.
+* Update Italian date modifiers.
+* Mac:
+  * Fix return value list for no locale.  Fixes #13727.
+  * Change gramps-git and gramps-addons-git modules to pip module type.
+  * [mac gramps_launcher] Fix bad comment formatting.
+  * Fix GRAMPSDIR for Python versions > 9.
+  * Package Gramps-6.0.0 on macOS.
+
+2025-03-19
+Version 6.0.0
+* Update translations: he, id, ko, sk.
+* Update development status classifier.
+* Update version in Sphinx API documentation.
+* Update translation template for new release.
+* Update `example.gramps`.
+* Bump XML version to 1.7.2.
+* Allow Gramps to continue if an addon rule fails to load. Fixes #13676.
+* Add unit tests for the addon translator.
+* Package Gramps-6.0.0-rc2 for macOS.
+
+2025-03-15
+Version 6.0.0-rc2
+* Update translations: ca, de_AT, en_GB, eo, id, ko, pt_PT, sk, sq.
+* Add python-cffi to the Windows AIO build script.
+* Remove check that path exists in the media path unit test. Fixes #13305.
+* Simplify logic for setting data, config and cache directories.
+  Fixes #13261, #13686.
+* Migrate data from old the directory structure. Fixes #13300.
+* Fix nested transaction error in the Test Case Generator tool. Fixes #13680.
+* Enable Web Connection menu in all list views.
+* Fix schema upgrade errors. Fixes #13674.
+* Add database upgrade unit tests.
+* Package Gramps-6.0.0-rc1 for macOS.
+
+2025-03-02
+Version 6.0.0-rc1
+* Update translations: ca, cs, da, de, de_AT, en_GB, eo, fi, fr, he, hr, hu, id,
+  ko, mk, nb, nl, pt_PT, ru, sk, sv, ta, tr, uk.
+* Add selenium to Windows AIO build.
+* Simplify RelationshipPathBetween prepare method.
+* Simplify HaseSourceOfBase prepare method.
+* Fix upgrades from bsddb. Fixes #13633, #13652.
+* Always return str from to_string methods.
+* Fix bug with surname rules in Quick Views. Fixes #13657.
+* Reformat code using the latest stable version of black.
+* Strip whitespace from media path in media editor.
+* Strip whitespace from name and URL in Addon Manager project editor.
+* Provide new editor fallback icons for superscript and subscript. Fixes #13548.
+* Change default preferences to be more appropriate for new users.
+* Add extra checks when changing a parent in the family editor.  Fixes #13642.
+* Hide navigation bar selector when only one sidebar plugin is loaded.
+  Fixes #13640.
+* Fix media manager bug with relative to absolute path conversion. Fixes #13644.
+* Fix bug removing citation references after deleting a source. Fixes #13639.
+* Update the web search URL so that it works.
+* Remove the default toolbar style option and replace it with "Both".
+* Fix citation filter rules that search the source. Fixes #13635.
+* Fix crash in source/citation selector with an empty filter. Fixes #13634.
+* Convert deprecated filter operator "xor" to its synonym "one".
+* Mac:
+  * Package release 6.0.0-beta2 on macOS.
+  * Update dependency versions, bundle contents.
+  * Remove python-fontconfig from the build, no longer used.
+
+2025-02-12
+Version 6.0.0-beta2
+* Update translations: cs, de, de_AT, fi, he, hr, hu, is, it, nl, pl, pt_PT, sk,
+  sv.
+* Narrative web:
+  * Add remote media to thumbnail index.
+  * Remote media cannot be opened.  Fixes #13628.
+  * Fix crash with empty an database.  Fixes #13619.
+  * Fix to show tree on print page. Fixes #13614.
+  * Correctly handle Event == None.
+* Windows AIO:
+  * Set appbuild correctly.
+  * Add a build-number input to the workflow.
+  * Remove the "-- a new maintenance release" branding from the installer.
+* Mac:
+  * Remove obsolete gtkspell3 from bundlefile. We're using gspell now.
+  * Package Gramps 6.0.0-beta1 for macOS.
+* Center the progress bar in the main window status bar. Fixes #13630.
+* Fix bug in generic filter (swapped lines).
+* Fix the program name in the About dialog.
+* Remove BSDDB version and duplicate Gramps version from About dialog.
+  Fixes #13624.
+* Rename "Help" button to "Wiki" in plugins dialog. Fixes #13625.
+* Change the progress bar vertical alignment and padding. Fixes #13623.
+* Import annotations in files using type hints.
+* Specify the `obj_class` when calling `data_to_object.`
+* Fix crash during bsddb upgrade. Fixes #13627.
+* Fix error when upgrading a database from 5.1 to 6.0. Fixes #13622.
+* Ignore missing remote media in check and repair tool. Fixes #13618.
+* Don't try to run `get_git_version` in release versions.
+* Correct the parameter type hints to accept <object> | None.
+* Private proxy fixes.
+* Fixed an iter that bypasses proxy.
+* Fix modifiers in Hungarian date handler.
+* Added orjson, and 'all' to the setup script.
+* Updated the README (bsddb3 made optional, removed sqlite3).
+* Fix the match method in the GenericFilter class. Fixes #13606.
+* Replace unittest `assertEquals` by `assertEqual`.
+* Fix type annotation syntax for Python 3.9.
+* Fix error when searching by name in the place selector. Fixes #13605.
+* Enable <Enter> key press on date fields in sidebar filters. Fixes #13607.
+* Fix all_people() simple access method to use new data format Fixes #13603.
+* Translation fixes in probably alive code. Fixes #13604.
+* Update CI workflow to run on the gramps60 branch.
+
+2025-02-04
+Version 6.0.0-beta1
+* Update translations: ar, bg, br, ca, cs, da.po, de, de_AT, el, en_GB, eo, es,
+  fa, fi, fr, ga, gl, he, hr, hu, id, is, it, ja, ko, lt, mk, nb, nl, nn, pl,
+  pt_BR, pt_PT, ro, ru, sk, sl, sq, sr, sv, ta, tr, uk, vi, zh_CN, zh_HK, zh_TW.
+* Update development status classifier.
+* Update translation template for new release.
+* Fix xgettext format string.
+* Add missing files to `POTFILES.in`.
+* Fix accessing an attribute in a DataDict.
+* Add missing future import for annotations.
+* Add type hints to modified functions.
+* Optimise get_object_from_gramps_id methods in filter proxy.
+* Refactor, fix, and optimize filters/rules.
+* Add GrampsID type hints to DbGeneric.
+* Define types for Gramps IDs.
+* Add licence and copyright.
+* Make the orjson package mandatory.
+* Use orjson with a hand-coded encoder/decoder. Assumes orjson is installed.
+* Disable pylintrc no-else-return check.
+* Allow web-accessible file references in media objects.
+* Add type hints to the generic database handler.
+* Update Info.plist for Gramps 6.0. The important change is that macOS 11.0 is
+  now the minimum required for both Intel and Apple Silicon Macs.
+* Add heatmap to the narrative web report.
+* Memorise report options for each database. Fixes #2455
+* Add help_url to built-in tools.
+* Add help button to plugin selection dialogs. Issue #13467.
+* Enhance display_help utility function:
+  * Allow the webpage to include a section separated by a hash (#) character.
+  * Allow a webpage starting with http:// or https:// to specify a full url.
+  * Add unit tests. Fixes #13562.
+* Update minimum python version.
+* Add type hints to latitude and logitude related methods and functions.
+* Use attributes rather than dictionary lookup in the model classes.
+* Crash with empty ADDR in narrative web. Fixes #13479
+* New indexes for big databases in the narrative web report.
+* Correct the tab name for setting the date format in a Tip of the Day.
+* Remove unnecessary translations.
+* Fixes to probably alive code following reviewer comments.
+* Fix safe mode on Windows Safe mode.
+* Make cleanup optional after an AIO build.
+* Add type information to base selector.
+* Use search bar filters instead of fast filter classes.
+* Search bar filter has precedence.
+* Add the standard search bar to the SelectPerson dialog.
+* Add a preference option for the selection of the toolbar style.
+* Use ngettext when displaying the max probably alive age in years.
+* Rephrase the citation references option in the narrative web report.
+* The example filename in the welcome gramplet should not be translated.
+* The space used as an empty column heading does not need translation.
+* Add a translation context to a couple of name origin types.
+* Use ngettext in probably alive function.
+* Remove unreachable else statement in probably alive code.
+* Fix "alt_names" typo in the place model.
+* Add new place to example database.
+* Fix date modifiers for is.
+* Fix de_AT translation.
+* Change http:// to https:// in Tip of the Day file.
+* Strongly recommend orjson in the README.
+* Add orjson version strings.
+* Add orjson dependency to Windows AIO.
+* Add orjson dependency to Mac bundle.
+* Use orjson, if available.
+* Fix exact search filters in selector dialogs.
+* Allow importing and exporting nicknames to CSV.
+* Replace assert statements with TestCase methods in unit tests.
+* Fix python format string related xgettext warnings.
+* Fix narrative web when a person excluded by a proxy is referenced.
+* Recognize event reference citations in editor event tabs.
+* Display the source icon in the event tab of an editor if the event has either
+  an event citation or event reference citation.  Fixes #13401.
+* Fix AttributeError in editor surname tab. Fixes #13322
+* Allow multiple selection in the gallery tab in editors.
+* Allow multiple selection in the media selector dialog.
+* Add optional support for multiple selction in selector dialogs.
+* Merge the two different MultiTreeView classes.
+* dd path column to the media selector dialog.
+* Remove serialize from changenames.
+* Create DataDict from object; Get object with from_dict():
+  * Allow construction of a DataDict from an instance.
+  * Clean up DataDict a bit * Return object instance from_dict() if it exists.
+* Improve language and hamburger menus in narrative web report:
+  * Improve the backlinks (References) gramplets
+  * Enhance ListModel to handle middle mouse clicks.
+  * Allow an object to be made active from within the backlinks gramplet.
+  * Add a context menu to make "Edit" and "Make Active" more discoverable.
+  * Allow objects in the backlinks gramplets to be dragged to the clipboard.
+  * Display the Date column for all objects which are an instance of DateBase.
+* Fix exception during Redo operation.
+* Set initial focus in EditPlaceRef dialog.
+* Add edit capability to the set of Notes gramplets.
+* Update the gramplet display when a note is updated, added or deleted.
+* Use Ubuntu 22.04 for CI.
+* Add gender symbol option to the detailed descendant report.
+* Add gender symbol option to the detailed ancestral report.
+* Add gender symbol option to the descendant report.
+* Add an option to insert a gender symbol before the person's name.
+* Enable mypy static type checking.
+* Remove trailing whitespace check. This is now performed by black.
+* Fix the spelling of "because" in comments.
+* Refactor GrampsType set method to use functools.singledispatchmethod.
+* Convert images in tree reports to thumbnails for embedding.
+* Improve the ProbablyAlive code. Implements #13443.
+* Update bundle for gspell, new enchant.
+* Convert 'Tip of the Day' window to `Gtk.Template`.
+* Add PyPI upload workflow.
+* Change variable name to 'data' for consistency across the code base.
+* Fix error in Fast*Filter.
+* Update GrampsType to work with dict objects.
+* Replace deprecated 'warn' method with 'warning'.
+* Replace deprecated makeSuite with TestLoader().loadTestsFromTestCase.
+* Skip TestImports if en_US locale is not available on build host. Fixes #13079.
+* Fix unittest for local timezones.
+* Update Debian build to include Ubuntu 24.04.
+* Add new HasEvent and HasSource rules.
+* Translate the filter comment string.
+* Use css error class rather then hardcoding the colour "red".
+* Enhanced version of the Filter gramplet.
+* Add new 'having note of type' rule.
+* Change layout of places and dates in familylines plugin. Adds symbols and
+  changes format of birth and death events. Implements #7788, #10699.
+* Show other roles for an event in the narrative web report.
+* Harmonize Date Format label capitalization.
+* Add link to Sphinx footer add hotlink to footer for potential contributors.
+* Add missing tooltips in the Addon Manager Implements #13358.
+* Add Gramps ID option to Kinship Report.
+* Allow Gramps to run from an extracted source distribution.
+* Use standard decorator form of defining properties.
+* Replace deprecated Gdk.Color by Gdk.RGBA.
+* Fix deprecation on ElementTree truth testing.
+* Stop displaying Python-sqlite3 version.
+* implify multiple calls to `str.startswith` / `str.endswith`.
+* Remove redundant definition of _has_webpage_extension.
+* Use contextlib to redirect stdout/stderr.
+* Remove deprecated use-action-appearance property.
+* Remove stock items from Glade files.
+* Fix xalign deprecations in Glade files.
+* Fix margin-* deprecations in Glade files.
+* Added 11k serialize tests.
+* Added a dict wrapper that acts like an object.
+* Switch from pickled blobs to JSON data.
+* Store empty date objects instead of null in the JSON schema.
+* Refactor JSON serialization.
+* Make BaseObject the parent class for Date, StyledText and StyledTextTag.
+* Add PyPI upload workflow.
+* Some filter rule type related cleanups.
+* Add new role types present in the Gedcom 7.0 specification.
+* Replace deprecated Gtk[HV]Box with GtkBox.
+* Add support for ISO 639-3 part 3 standard language code. Fixes #12772.
+* Change the output of ADDR tags in the Gedcom export.
+* Use preferred name instead of default name in name editor. Fixes #13256.
+* Prevent forwards/backwards when history is locked.
+* Add forwards and backwards navigation using mouse buttons.
+* Pylint cleanups for gen/db/*.py.
+* Some pylint cleanups for gramps/gen/plug/*.py.
+* Pylint cleanups for plugins/db/dbapi/*.py.
+* Pylint cleanups for gen/lib/*.py:
+  * Reformat to default 88 columns and factor out EventBase.
+  * Use of _ is cleaner for unreferenced vars.
+* Allow 0 ancestors/descendants in hourglass graph.
+* Sort AIO prerequisites + remove unneeded.
+* Simplify some Cairo drawing.
+* Remove unused Subversion keyword substitutions.
+* Replace GtkMenu with GioMenu in DropdownSidebar.
+* Convert navigator from a Notebook to a Stack.
+* onvert navigator menu into a combo box.
+* Fix typo in Navigator action/section id.
+* Remove unused code from Navigator.
+* Replace GtkMenu with GioMenu in Gramplets bar.
+* Replace GtkArrow with GtkImage and symbolic icons.
+* Update format of Glade files.
+  * Glade files regenerated using 3.40.0.
+  * Required Gtk version set to 3.24.
+* Restrict CI workflow to run on a single branch.
+* Update GitHub actions to latest versions.
+
 2025-01-12
 Version 5.2.4
 * Translations:
@@ -2395,7 +2832,7 @@ Version 3.4.2 -- the "We're all individuals!" bug fix release.
 * Consistency on PDF file format
 * New language: Greek
 * Various updated translations
-* Changelog: http://www.gramps-project.org/bugs/changelog_page.php?version_id=32
+* Changelog: https://www.gramps-project.org/bugs/changelog_page.php?version_id=32
 
 2012-08-23
 Version 3.4.1 -- The "A tiger? In Africa?!" bug fix release.
@@ -2405,7 +2842,7 @@ Mention in the release that upgrading is advised for two critical issues:
 * Some platform-specific fixes (Windows, OSX)
 * Bug fixes
 * Translation updates
-* Changelog: http://www.gramps-project.org/bugs/changelog_page.php?version_id=31
+* Changelog: https://www.gramps-project.org/bugs/changelog_page.php?version_id=31
 
 2012-05-21
 Version 3.4.0 -- The "always look on the bright side of life" feature release.
@@ -2413,8 +2850,8 @@ Version 3.4.0 -- The "always look on the bright side of life" feature release.
   import/export, image handling, gedom handling, Gramplets, date handling,
   citations, reports, more!
 * Some platform-specific fixes (Windows, OSX, Linux)
-* What's new (and what to do before you upgrade):  http://goo.gl/K3RDV
-* Roadmap:  http://goo.gl/GJhjH
+* What's new (and what to do before you upgrade):  https://goo.gl/K3RDV
+* Roadmap:  https://goo.gl/GJhjH
 * Many translation updates
 
 2012-05-18
@@ -2443,10 +2880,10 @@ Version 3.3.2 -- "The Knights who say 'Ni'" bug fix release.
 Version 3.3.1 -- "The Tenth Anniversary Edition" bug fix release.
 * translation updates:  ca, cs, de, fr, hr, it, nb, nl, pl, pt_br, sk, sl, sv, uk, zh_cn
 * new languages in this release:  ja (Japanese), vi (Vietnamese)
-* 36 bugs closed since v3.3.0:  http://www.gramps-project.org/bugs/roadmap_page.php?version_id=27
+* 36 bugs closed since v3.3.0:  https://www.gramps-project.org/bugs/roadmap_page.php?version_id=27
 * 79 translation commits since v3.3.0
 * 189 code commits since v3.3.0
-* ten years since v0.1.1 was first released:  http://www.gramps-project.org/wiki/index.php?title=Previous_releases
+* ten years since v0.1.1 was first released:  https://www.gramps-project.org/wiki/index.php?title=Previous_releases
 * "Thank you!" to Donald Allingham, The Gramps Developers, translators, and our every day users
 
 2011-06-12
@@ -2463,7 +2900,7 @@ Version 3.3.0 -- the "Prelude to the next version" new feature release.
 * undo/redo on entry fields (CTRL+Z, CTRL+SHIFT+Z)
 * backup option in the exporter
 * exporter based on filters with preview
-* many more changes; see http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual_-_What%27s_new%3F
+* many more changes; see https://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual_-_What%27s_new%3F
 
 2011-04-30
 Version 3.2.6 -- the "So far, so good." bug fix release.
@@ -2475,7 +2912,7 @@ Version 3.2.6 -- the "So far, so good." bug fix release.
 * NarrativeWeb fixes
 * prevent corrupting databases
 * many translation updates
-* other changes; see the changelog and the 3.2.6 roadmap: http://www.gramps-project.org/bugs/roadmap_page.php?version_id=23
+* other changes; see the changelog and the 3.2.6 roadmap: https://www.gramps-project.org/bugs/roadmap_page.php?version_id=23
 
 2010-11-17
 Version 3.2.5 -- the "I intend to live forever" bug fix release.
@@ -2778,5 +3215,5 @@ Version 2.1.3
 
 Version 2.1.0 -- the "What are you going to do, bleed on me?" release
 * Initial unstable release of 2.1.0.
-* Far too many changes to specify. See http://gramps-project.org/whats_new/
+* Far too many changes to specify. See https://gramps-project.org/whats_new/
 

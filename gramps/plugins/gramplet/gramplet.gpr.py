@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from gramps.gen.plug._pluginreg import register, STABLE, UNSTABLE, GRAMPLET
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -88,8 +87,68 @@ register(
     height=200,
     gramplet="CalendarGramplet",
     gramplet_title=_("Calendar"),
-    version="1.0.0",
+    version="1.1.0",
     gramps_target_version=MODULE_VERSION,
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="Person's birth Calendar",
+    name=_("Person's birth Calendar"),
+    description=_("Gramplet showing the birth for a person on the calendar"),
+    version="1.1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="calendargramplet.py",
+    gramplet="PersonBirthCalendar",
+    gramplet_title=_("Person's birth Calendar"),
+    navtypes=["Person"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="Person's death Calendar",
+    name=_("Person's death Calendar"),
+    description=_("Gramplet showing the death for a person on the calendar"),
+    version="1.1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="calendargramplet.py",
+    gramplet="PersonDeathCalendar",
+    gramplet_title=_("Person's death Calendar"),
+    navtypes=["Person"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="Family Calendar",
+    name=_("Family Calendar"),
+    description=_("Gramplet showing the marriage for a family on the calendar"),
+    version="1.1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="calendargramplet.py",
+    gramplet="FamilyCalendar",
+    gramplet_title=_("Family Calendar"),
+    navtypes=["Family"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="Event Calendar",
+    name=_("Event Calendar"),
+    description=_("Gramplet showing the date for an event on the calendar"),
+    version="1.1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="calendargramplet.py",
+    gramplet="EventCalendar",
+    gramplet_title=_("Event Calendar"),
+    navtypes=["Event"],
     help_url=GRAMPLET_HELP,
 )
 

@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Support for dates."""
@@ -292,6 +291,7 @@ class Span:
         """
         # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
         trans_text = dlocale.translation.sgettext
+        ngettext = dlocale.translation.ngettext
         _repr = trans_text("unknown")
         # FIXME all this concatenation will fail for RTL languages -- really??
         if self.valid:
@@ -300,7 +300,11 @@ class Span:
                 self._diff(self.date1, self.date2), dlocale
             ).format(precision=1)
             if as_age and self._diff(self.date1, self.date2)[0] > Span.ALIVE:
-                _repr = trans_text("greater than %s years") % Span.ALIVE
+                _repr = ngettext(
+                    "greater than {number_of} year",
+                    "greater than {number_of} years",
+                    Span.ALIVE,
+                ).format(number_of=Span.ALIVE)
             elif self.date1.get_modifier() == Date.MOD_NONE:
                 if self.date2.get_modifier() == Date.MOD_NONE:
                     _repr = fdate12
@@ -1203,7 +1207,7 @@ class Date(BaseObject):
         the integer number of days that have elapsed since Monday, January 1,
         4713 BC in the proleptic Julian calendar.
 
-        .. seealso:: http://en.wikipedia.org/wiki/Julian_day
+        .. seealso:: https://en.wikipedia.org/wiki/Julian_day
         """
         return self.sortval
 
@@ -1557,7 +1561,7 @@ class Date(BaseObject):
         """
         Return true if any part of the date is valid.
         """
-        return self.modifier != Date.MOD_TEXTONLY
+        return self.modifier != Date.MOD_TEXTONLY or self.get_text() == ""
 
     def is_valid(self):
         """
@@ -1846,7 +1850,7 @@ class Date(BaseObject):
             and self.newyear == Date.NEWYEAR_JAN1
         ):
             return
-        (year, month, day) = Date._calendar_change[calendar](self.sortval)
+        year, month, day = Date._calendar_change[calendar](self.sortval)
         if self.is_compound():
             ryear, rmonth, rday = self._zero_adjust_ymd(
                 self.dateval[Date._POS_RYR],
@@ -1854,7 +1858,7 @@ class Date(BaseObject):
                 self.dateval[Date._POS_RDAY],
             )
             sdn = Date._calendar_convert[self.calendar](ryear, rmonth, rday)
-            (nyear, nmonth, nday) = Date._calendar_change[calendar](sdn)
+            nyear, nmonth, nday = Date._calendar_change[calendar](sdn)
             self.dateval = (day, month, year, False, nday, nmonth, nyear, False)
         else:
             self.dateval = (day, month, year, False)

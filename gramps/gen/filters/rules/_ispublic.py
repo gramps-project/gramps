@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -31,6 +30,15 @@ _ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
 # "People marked public"
 # -------------------------------------------------------------------------
 class IsPublic(Rule):
@@ -40,5 +48,5 @@ class IsPublic(Rule):
     description = "Matches objects that are not indicated as private"
     category = _("General filters")
 
-    def apply(self, db, obj):
-        return not obj.get_privacy()
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
+        return not obj.private

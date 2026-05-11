@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -44,7 +43,7 @@ from gramps.plugins.db.dbapi.dbapi import DBAPI
 
 _ = glocale.translation.gettext
 
-sqlite3.paramstyle = "qmark"
+sqlite3.paramstyle = "qmark"  # type: ignore[misc]
 
 
 # -------------------------------------------------------------------------
@@ -207,6 +206,12 @@ class Connection:
             f"WHERE name = '{column}'"
         )
         return self.fetchone()[0] != 0
+
+    def drop_column(self, table_name, column_name):
+        # DROP COLUMN is available with Sqlite v 3.35.0, released 2021-03-12
+        db_ver = sqlite3.sqlite_version.split(".")
+        if int(db_ver[0]) == 3 and int(db_ver[1]) >= 35:
+            self.execute(f"ALTER TABLE {table_name} DROP COLUMN {column_name};")
 
     def close(self):
         """

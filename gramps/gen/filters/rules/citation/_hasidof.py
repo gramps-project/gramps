@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -25,6 +24,7 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+from ....db import Database
 
 _ = glocale.translation.gettext
 
@@ -46,3 +46,10 @@ class HasIdOf(HasGrampsId):
 
     name = _("Citation with <Id>")
     description = _("Matches a citation with a specified Gramps ID")
+
+    def prepare(self, db: Database, user):
+        data = db._get_raw_citation_from_id_data(self.list[0])
+        if data:
+            self.selected_handles = set([data.handle])
+        else:
+            self.selected_handles = set([])

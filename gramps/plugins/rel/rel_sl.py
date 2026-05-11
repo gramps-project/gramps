@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Written by Bernard Banko, inspired from rel_ru.py by Alex Roitman.
@@ -198,7 +197,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         Ga and Gb can be used to mathematically calculate the relationship.
 
         .. seealso::
-            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+            https://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
 
         Some languages need to know the specific path to the common ancestor.
         Those languages should use reltocommon_a and reltocommon_b which is

@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -48,6 +47,15 @@ LOG = logging.getLogger(".")
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Any, List
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # Rule
 #
 # -------------------------------------------------------------------------
@@ -72,7 +80,7 @@ class Rule:
     def is_empty(self):
         return False
 
-    def requestprepare(self, db, user):
+    def requestprepare(self, db: Database, user):
         """
         Request that the prepare method of the rule is executed if needed
 
@@ -107,7 +115,7 @@ class Rule:
                 ),
             )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """prepare so the rule can be executed efficiently"""
         pass
 
@@ -151,7 +159,7 @@ class Rule:
         """Verify the number of rule values versus the number of rule labels."""
         return len(self.list) == len(self.labels)
 
-    def apply(self, dummy_db, dummy_person):
+    def apply_to_one(self, dummy_db: Database, dummy_object: Any) -> bool:
         """Apply the rule to some database entry; must be overwritten."""
         return True
 

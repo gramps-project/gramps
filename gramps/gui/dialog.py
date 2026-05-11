@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -337,7 +336,7 @@ class WarningDialog(Gtk.MessageDialog):
         self.format_secondary_markup(msg2)
         # FIXME: Hyper-links in the secondary text display as underlined text,
         # but clicking on the link fails with
-        # GtkWarning: Unable to show 'http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup': Operation not supported
+        # GtkWarning: Unable to show 'https://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup': Operation not supported
         # self.connect('activate-link'... fails with
         # <WarningDialog object at 0x4880300 (GtkMessageDialog at 0x5686010)>: unknown signal name: activate-link
         self.set_icon(ICON)

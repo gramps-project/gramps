@@ -274,7 +274,7 @@ gramps(1)                @VERSION@               gramps(1)
 
 **AUTEURS**
        Donald Allingham <don@gramps-project.org>
-       http://gramps-project.org/
+       https://gramps-project.org/
 
        Cette page man a d'abord été écrite par :
        Brandon L. Griffith <brandon@debian.org>
@@ -292,7 +292,7 @@ gramps(1)                @VERSION@               gramps(1)
        standard sous la forme du manuel Gramps.
 
        La documentation pour développeur est disponible sur le site
-       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers .
+       https://www.gramps-project.org/wiki/index.php?title=Portal:Developers .
 
 
 

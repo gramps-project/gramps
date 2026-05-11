@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -158,7 +157,7 @@ from gramps.gen.lib import (
     PlaceRef,
     PlaceName,
 )
-from gramps.gen.lib.serialize import from_dict, to_dict
+from gramps.gen.lib.json_utils import data_to_object, object_to_dict
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path
@@ -314,6 +313,7 @@ TOKEN__TEXT = 136
 TOKEN__DATE = 137
 TOKEN__APID = 138
 TOKEN__CALLNAME = 139
+TOKEN_INIL = 140
 
 TOKENS = {
     "_ADPN": TOKEN__ADPN,
@@ -451,6 +451,7 @@ TOKENS = {
     "HUSBAND": TOKEN_HUSB,
     "INDI": TOKEN_INDI,
     "INDIVIDUAL": TOKEN_INDI,
+    "INIL": TOKEN_INIL,
     "LABEL": TOKEN_LABL,
     "LABL": TOKEN_LABL,
     "LANG": TOKEN_LANG,
@@ -771,6 +772,7 @@ GED_TO_GRAMPS_EVENT = {}
 for __val, __key in PERSONALCONSTANTEVENTS.items():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
+GED_TO_GRAMPS_EVENT["Stillbirth"] = EventType.STILLBIRTH
 
 for __val, __key in FAMILYCONSTANTEVENTS.items():
     if __key != "":
@@ -1005,7 +1007,7 @@ class Lexer:
                     tag = "@" + line[1] + "@"
                     line_value = line[2].lstrip()
                     # Ignore meaningless @IDENT@ on CONT or CONC line
-                    # as noted at http://www.tamurajones.net/IdentCONT.xhtml
+                    # as noted at https://www.tamurajones.net/IdentCONT.xhtml
                     if line_value.startswith(("CONT ", "CONC ")):
                         line = line_value.partition(" ")
                         tag = line[0]
@@ -1093,7 +1095,7 @@ class GedLine:
         match = MOD.match(text)
         mod = ""
         if match:
-            (mod, text) = match.groups()
+            mod, text = match.groups()
             qual = QUALITY_MAP.get(mod, Date.QUAL_NONE)
             mod += " "
         else:
@@ -1105,13 +1107,13 @@ class GedLine:
         match2 = RANGE2.match(text)
         if match or match1 or match2:
             if match:
-                (cal1, data1, cal2, data2) = match.groups()
+                cal1, data1, cal2, data2 = match.groups()
             elif match1:
                 cal1 = Date.CAL_GREGORIAN
-                (data1, cal2, data2) = match1.groups()
+                data1, cal2, data2 = match1.groups()
             elif match2:
                 cal2 = Date.CAL_GREGORIAN
-                (cal1, data1, data2) = match2.groups()
+                cal1, data1, data2 = match2.groups()
             cal1 = CALENDAR_MAP_GEDCOM2XML.get(cal1, Date.CAL_GREGORIAN)
             cal2 = CALENDAR_MAP_GEDCOM2XML.get(cal2, Date.CAL_GREGORIAN)
             if cal1 != cal2:
@@ -1148,13 +1150,13 @@ class GedLine:
         match2 = SPAN2.match(text)
         if match or match1 or match2:
             if match:
-                (cal1, data1, cal2, data2) = match.groups()
+                cal1, data1, cal2, data2 = match.groups()
             elif match1:
                 cal1 = Date.CAL_GREGORIAN
-                (data1, cal2, data2) = match1.groups()
+                data1, cal2, data2 = match1.groups()
             elif match2:
                 cal2 = Date.CAL_GREGORIAN
-                (cal1, data1, data2) = match2.groups()
+                cal1, data1, data2 = match2.groups()
             cal1 = CALENDAR_MAP_GEDCOM2XML.get(cal1, Date.CAL_GREGORIAN)
             cal2 = CALENDAR_MAP_GEDCOM2XML.get(cal2, Date.CAL_GREGORIAN)
             if cal1 != cal2:
@@ -1186,7 +1188,7 @@ class GedLine:
 
         match = CAL.match(text)
         if match:
-            (abt, call, data) = match.groups()
+            abt, call, data = match.groups()
             call = CALENDAR_MAP_GEDCOM2XML.get(call, Date.CAL_GREGORIAN)
             data += CALENDAR_MAP_PARSESTRING.get(call, "")
             if abt:
@@ -1437,47 +1439,47 @@ class AnselReader(BaseReader):
 
     # mappings of single byte ANSEL codes to unicode
     __onebyte = {
-        b"\xA1": "\u0141",
-        b"\xA2": "\u00d8",
-        b"\xA3": "\u0110",
-        b"\xA4": "\u00de",
-        b"\xA5": "\u00c6",
-        b"\xA6": "\u0152",
-        b"\xA7": "\u02b9",
-        b"\xA8": "\u00b7",
-        b"\xA9": "\u266d",
-        b"\xAA": "\u00ae",
-        b"\xAB": "\u00b1",
-        b"\xAC": "\u01a0",
-        b"\xAD": "\u01af",
-        b"\xAE": "\u02bc",
-        b"\xB0": "\u02bb",
-        b"\xB1": "\u0142",
-        b"\xB2": "\u00f8",
-        b"\xB3": "\u0111",
-        b"\xB4": "\u00fe",
-        b"\xB5": "\u00e6",
-        b"\xB6": "\u0153",
-        b"\xB7": "\u02ba",
-        b"\xB8": "\u0131",
-        b"\xB9": "\u00a3",
-        b"\xBA": "\u00f0",
-        b"\xBC": "\u01a1",
-        b"\xBD": "\u01b0",
-        b"\xBE": "\u25a1",
-        b"\xBF": "\u25a0",
-        b"\xC0": "\u00b0",
-        b"\xC1": "\u2113",
-        b"\xC2": "\u2117",
-        b"\xC3": "\u00a9",
-        b"\xC4": "\u266f",
-        b"\xC5": "\u00bf",
-        b"\xC6": "\u00a1",
-        b"\xC7": "\u00df",
-        b"\xC8": "\u20ac",
-        b"\xCD": "\u0065",
-        b"\xCE": "\u006f",
-        b"\xCF": "\u00df",
+        b"\xa1": "\u0141",
+        b"\xa2": "\u00d8",
+        b"\xa3": "\u0110",
+        b"\xa4": "\u00de",
+        b"\xa5": "\u00c6",
+        b"\xa6": "\u0152",
+        b"\xa7": "\u02b9",
+        b"\xa8": "\u00b7",
+        b"\xa9": "\u266d",
+        b"\xaa": "\u00ae",
+        b"\xab": "\u00b1",
+        b"\xac": "\u01a0",
+        b"\xad": "\u01af",
+        b"\xae": "\u02bc",
+        b"\xb0": "\u02bb",
+        b"\xb1": "\u0142",
+        b"\xb2": "\u00f8",
+        b"\xb3": "\u0111",
+        b"\xb4": "\u00fe",
+        b"\xb5": "\u00e6",
+        b"\xb6": "\u0153",
+        b"\xb7": "\u02ba",
+        b"\xb8": "\u0131",
+        b"\xb9": "\u00a3",
+        b"\xba": "\u00f0",
+        b"\xbc": "\u01a1",
+        b"\xbd": "\u01b0",
+        b"\xbe": "\u25a1",
+        b"\xbf": "\u25a0",
+        b"\xc0": "\u00b0",
+        b"\xc1": "\u2113",
+        b"\xc2": "\u2117",
+        b"\xc3": "\u00a9",
+        b"\xc4": "\u266f",
+        b"\xc5": "\u00bf",
+        b"\xc6": "\u00a1",
+        b"\xc7": "\u00df",
+        b"\xc8": "\u20ac",
+        b"\xcd": "\u0065",
+        b"\xce": "\u006f",
+        b"\xcf": "\u00df",
     }
 
     # combining forms (in ANSEL, they precede the modified ASCII character
@@ -1488,342 +1490,342 @@ class AnselReader(BaseReader):
     #  (strange things) probably not commonly found in our needs, unless one
     #   starts writing persian (or???) poetry in ANSEL
     __acombiners = {
-        b"\x8D": "\u200d",
-        b"\x8E": "\u200c",
-        b"\xE0": "\u0309",
-        b"\xE1": "\u0300",
-        b"\xE2": "\u0301",
-        b"\xE3": "\u0302",
-        b"\xE4": "\u0303",
-        b"\xE5": "\u0304",
-        b"\xE6": "\u0306",
-        b"\xE7": "\u0307",
-        b"\xE8": "\u0308",
-        b"\xE9": "\u030c",
-        b"\xEA": "\u030a",
-        b"\xEB": "\ufe20",
-        b"\xEC": "\ufe21",
-        b"\xED": "\u0315",
-        b"\xEE": "\u030b",
-        b"\xEF": "\u0310",
-        b"\xF0": "\u0327",
-        b"\xF1": "\u0328",
-        b"\xF2": "\u0323",
-        b"\xF3": "\u0324",
-        b"\xF4": "\u0325",
-        b"\xF5": "\u0333",
-        b"\xF6": "\u0332",
-        b"\xF7": "\u0326",
-        b"\xF8": "\u031c",
-        b"\xF9": "\u032e",
-        b"\xFA": "\ufe22",
-        b"\xFB": "\ufe23",
-        b"\xFC": "\u0338",
-        b"\xFE": "\u0313",
+        b"\x8d": "\u200d",
+        b"\x8e": "\u200c",
+        b"\xe0": "\u0309",
+        b"\xe1": "\u0300",
+        b"\xe2": "\u0301",
+        b"\xe3": "\u0302",
+        b"\xe4": "\u0303",
+        b"\xe5": "\u0304",
+        b"\xe6": "\u0306",
+        b"\xe7": "\u0307",
+        b"\xe8": "\u0308",
+        b"\xe9": "\u030c",
+        b"\xea": "\u030a",
+        b"\xeb": "\ufe20",
+        b"\xec": "\ufe21",
+        b"\xed": "\u0315",
+        b"\xee": "\u030b",
+        b"\xef": "\u0310",
+        b"\xf0": "\u0327",
+        b"\xf1": "\u0328",
+        b"\xf2": "\u0323",
+        b"\xf3": "\u0324",
+        b"\xf4": "\u0325",
+        b"\xf5": "\u0333",
+        b"\xf6": "\u0332",
+        b"\xf7": "\u0326",
+        b"\xf8": "\u031c",
+        b"\xf9": "\u032e",
+        b"\xfa": "\ufe22",
+        b"\xfb": "\ufe23",
+        b"\xfc": "\u0338",
+        b"\xfe": "\u0313",
     }
 
     # mappings of two byte (precomposed forms) ANSEL codes to unicode
     __twobyte = {
-        b"\xE0\x41": "\u1ea2",
-        b"\xE0\x45": "\u1eba",
-        b"\xE0\x49": "\u1ec8",
-        b"\xE0\x4F": "\u1ece",
-        b"\xE0\x55": "\u1ee6",
-        b"\xE0\x59": "\u1ef6",
-        b"\xE0\x61": "\u1ea3",
-        b"\xE0\x65": "\u1ebb",
-        b"\xE0\x69": "\u1ec9",
-        b"\xE0\x6F": "\u1ecf",
-        b"\xE0\x75": "\u1ee7",
-        b"\xE0\x79": "\u1ef7",
-        b"\xE1\x41": "\u00c0",
-        b"\xE1\x45": "\u00c8",
-        b"\xE1\x49": "\u00cc",
-        b"\xE1\x4F": "\u00d2",
-        b"\xE1\x55": "\u00d9",
-        b"\xE1\x57": "\u1e80",
-        b"\xE1\x59": "\u1ef2",
-        b"\xE1\x61": "\u00e0",
-        b"\xE1\x65": "\u00e8",
-        b"\xE1\x69": "\u00ec",
-        b"\xE1\x6F": "\u00f2",
-        b"\xE1\x75": "\u00f9",
-        b"\xE1\x77": "\u1e81",
-        b"\xE1\x79": "\u1ef3",
-        b"\xE2\x41": "\u00c1",
-        b"\xE2\x43": "\u0106",
-        b"\xE2\x45": "\u00c9",
-        b"\xE2\x47": "\u01f4",
-        b"\xE2\x49": "\u00cd",
-        b"\xE2\x4B": "\u1e30",
-        b"\xE2\x4C": "\u0139",
-        b"\xE2\x4D": "\u1e3e",
-        b"\xE2\x4E": "\u0143",
-        b"\xE2\x4F": "\u00d3",
-        b"\xE2\x50": "\u1e54",
-        b"\xE2\x52": "\u0154",
-        b"\xE2\x53": "\u015a",
-        b"\xE2\x55": "\u00da",
-        b"\xE2\x57": "\u1e82",
-        b"\xE2\x59": "\u00dd",
-        b"\xE2\x5A": "\u0179",
-        b"\xE2\x61": "\u00e1",
-        b"\xE2\x63": "\u0107",
-        b"\xE2\x65": "\u00e9",
-        b"\xE2\x67": "\u01f5",
-        b"\xE2\x69": "\u00ed",
-        b"\xE2\x6B": "\u1e31",
-        b"\xE2\x6C": "\u013a",
-        b"\xE2\x6D": "\u1e3f",
-        b"\xE2\x6E": "\u0144",
-        b"\xE2\x6F": "\u00f3",
-        b"\xE2\x70": "\u1e55",
-        b"\xE2\x72": "\u0155",
-        b"\xE2\x73": "\u015b",
-        b"\xE2\x75": "\u00fa",
-        b"\xE2\x77": "\u1e83",
-        b"\xE2\x79": "\u00fd",
-        b"\xE2\x7A": "\u017a",
-        b"\xE2\xA5": "\u01fc",
-        b"\xE2\xB5": "\u01fd",
-        b"\xE3\x41": "\u00c2",
-        b"\xE3\x43": "\u0108",
-        b"\xE3\x45": "\u00ca",
-        b"\xE3\x47": "\u011c",
-        b"\xE3\x48": "\u0124",
-        b"\xE3\x49": "\u00ce",
-        b"\xE3\x4A": "\u0134",
-        b"\xE3\x4F": "\u00d4",
-        b"\xE3\x53": "\u015c",
-        b"\xE3\x55": "\u00db",
-        b"\xE3\x57": "\u0174",
-        b"\xE3\x59": "\u0176",
-        b"\xE3\x5A": "\u1e90",
-        b"\xE3\x61": "\u00e2",
-        b"\xE3\x63": "\u0109",
-        b"\xE3\x65": "\u00ea",
-        b"\xE3\x67": "\u011d",
-        b"\xE3\x68": "\u0125",
-        b"\xE3\x69": "\u00ee",
-        b"\xE3\x6A": "\u0135",
-        b"\xE3\x6F": "\u00f4",
-        b"\xE3\x73": "\u015d",
-        b"\xE3\x75": "\u00fb",
-        b"\xE3\x77": "\u0175",
-        b"\xE3\x79": "\u0177",
-        b"\xE3\x7A": "\u1e91",
-        b"\xE4\x41": "\u00c3",
-        b"\xE4\x45": "\u1ebc",
-        b"\xE4\x49": "\u0128",
-        b"\xE4\x4E": "\u00d1",
-        b"\xE4\x4F": "\u00d5",
-        b"\xE4\x55": "\u0168",
-        b"\xE4\x56": "\u1e7c",
-        b"\xE4\x59": "\u1ef8",
-        b"\xE4\x61": "\u00e3",
-        b"\xE4\x65": "\u1ebd",
-        b"\xE4\x69": "\u0129",
-        b"\xE4\x6E": "\u00f1",
-        b"\xE4\x6F": "\u00f5",
-        b"\xE4\x75": "\u0169",
-        b"\xE4\x76": "\u1e7d",
-        b"\xE4\x79": "\u1ef9",
-        b"\xE5\x41": "\u0100",
-        b"\xE5\x45": "\u0112",
-        b"\xE5\x47": "\u1e20",
-        b"\xE5\x49": "\u012a",
-        b"\xE5\x4F": "\u014c",
-        b"\xE5\x55": "\u016a",
-        b"\xE5\x61": "\u0101",
-        b"\xE5\x65": "\u0113",
-        b"\xE5\x67": "\u1e21",
-        b"\xE5\x69": "\u012b",
-        b"\xE5\x6F": "\u014d",
-        b"\xE5\x75": "\u016b",
-        b"\xE5\xA5": "\u01e2",
-        b"\xE5\xB5": "\u01e3",
-        b"\xE6\x41": "\u0102",
-        b"\xE6\x45": "\u0114",
-        b"\xE6\x47": "\u011e",
-        b"\xE6\x49": "\u012c",
-        b"\xE6\x4F": "\u014e",
-        b"\xE6\x55": "\u016c",
-        b"\xE6\x61": "\u0103",
-        b"\xE6\x65": "\u0115",
-        b"\xE6\x67": "\u011f",
-        b"\xE6\x69": "\u012d",
-        b"\xE6\x6F": "\u014f",
-        b"\xE6\x75": "\u016d",
-        b"\xE7\x42": "\u1e02",
-        b"\xE7\x43": "\u010a",
-        b"\xE7\x44": "\u1e0a",
-        b"\xE7\x45": "\u0116",
-        b"\xE7\x46": "\u1e1e",
-        b"\xE7\x47": "\u0120",
-        b"\xE7\x48": "\u1e22",
-        b"\xE7\x49": "\u0130",
-        b"\xE7\x4D": "\u1e40",
-        b"\xE7\x4E": "\u1e44",
-        b"\xE7\x50": "\u1e56",
-        b"\xE7\x52": "\u1e58",
-        b"\xE7\x53": "\u1e60",
-        b"\xE7\x54": "\u1e6a",
-        b"\xE7\x57": "\u1e86",
-        b"\xE7\x58": "\u1e8a",
-        b"\xE7\x59": "\u1e8e",
-        b"\xE7\x5A": "\u017b",
-        b"\xE7\x62": "\u1e03",
-        b"\xE7\x63": "\u010b",
-        b"\xE7\x64": "\u1e0b",
-        b"\xE7\x65": "\u0117",
-        b"\xE7\x66": "\u1e1f",
-        b"\xE7\x67": "\u0121",
-        b"\xE7\x68": "\u1e23",
-        b"\xE7\x6D": "\u1e41",
-        b"\xE7\x6E": "\u1e45",
-        b"\xE7\x70": "\u1e57",
-        b"\xE7\x72": "\u1e59",
-        b"\xE7\x73": "\u1e61",
-        b"\xE7\x74": "\u1e6b",
-        b"\xE7\x77": "\u1e87",
-        b"\xE7\x78": "\u1e8b",
-        b"\xE7\x79": "\u1e8f",
-        b"\xE7\x7A": "\u017c",
-        b"\xE8\x41": "\u00c4",
-        b"\xE8\x45": "\u00cb",
-        b"\xE8\x48": "\u1e26",
-        b"\xE8\x49": "\u00cf",
-        b"\xE8\x4F": "\u00d6",
-        b"\xE8\x55": "\u00dc",
-        b"\xE8\x57": "\u1e84",
-        b"\xE8\x58": "\u1e8c",
-        b"\xE8\x59": "\u0178",
-        b"\xE8\x61": "\u00e4",
-        b"\xE8\x65": "\u00eb",
-        b"\xE8\x68": "\u1e27",
-        b"\xE8\x69": "\u00ef",
-        b"\xE8\x6F": "\u00f6",
-        b"\xE8\x74": "\u1e97",
-        b"\xE8\x75": "\u00fc",
-        b"\xE8\x77": "\u1e85",
-        b"\xE8\x78": "\u1e8d",
-        b"\xE8\x79": "\u00ff",
-        b"\xE9\x41": "\u01cd",
-        b"\xE9\x43": "\u010c",
-        b"\xE9\x44": "\u010e",
-        b"\xE9\x45": "\u011a",
-        b"\xE9\x47": "\u01e6",
-        b"\xE9\x49": "\u01cf",
-        b"\xE9\x4B": "\u01e8",
-        b"\xE9\x4C": "\u013d",
-        b"\xE9\x4E": "\u0147",
-        b"\xE9\x4F": "\u01d1",
-        b"\xE9\x52": "\u0158",
-        b"\xE9\x53": "\u0160",
-        b"\xE9\x54": "\u0164",
-        b"\xE9\x55": "\u01d3",
-        b"\xE9\x5A": "\u017d",
-        b"\xE9\x61": "\u01ce",
-        b"\xE9\x63": "\u010d",
-        b"\xE9\x64": "\u010f",
-        b"\xE9\x65": "\u011b",
-        b"\xE9\x67": "\u01e7",
-        b"\xE9\x69": "\u01d0",
-        b"\xE9\x6A": "\u01f0",
-        b"\xE9\x6B": "\u01e9",
-        b"\xE9\x6C": "\u013e",
-        b"\xE9\x6E": "\u0148",
-        b"\xE9\x6F": "\u01d2",
-        b"\xE9\x72": "\u0159",
-        b"\xE9\x73": "\u0161",
-        b"\xE9\x74": "\u0165",
-        b"\xE9\x75": "\u01d4",
-        b"\xE9\x7A": "\u017e",
-        b"\xEA\x41": "\u00c5",
-        b"\xEA\x61": "\u00e5",
-        b"\xEA\x75": "\u016f",
-        b"\xEA\x77": "\u1e98",
-        b"\xEA\x79": "\u1e99",
-        b"\xEA\xAD": "\u016e",
-        b"\xEE\x4F": "\u0150",
-        b"\xEE\x55": "\u0170",
-        b"\xEE\x6F": "\u0151",
-        b"\xEE\x75": "\u0171",
-        b"\xF0\x20": "\u00b8",
-        b"\xF0\x43": "\u00c7",
-        b"\xF0\x44": "\u1e10",
-        b"\xF0\x47": "\u0122",
-        b"\xF0\x48": "\u1e28",
-        b"\xF0\x4B": "\u0136",
-        b"\xF0\x4C": "\u013b",
-        b"\xF0\x4E": "\u0145",
-        b"\xF0\x52": "\u0156",
-        b"\xF0\x53": "\u015e",
-        b"\xF0\x54": "\u0162",
-        b"\xF0\x63": "\u00e7",
-        b"\xF0\x64": "\u1e11",
-        b"\xF0\x67": "\u0123",
-        b"\xF0\x68": "\u1e29",
-        b"\xF0\x6B": "\u0137",
-        b"\xF0\x6C": "\u013c",
-        b"\xF0\x6E": "\u0146",
-        b"\xF0\x72": "\u0157",
-        b"\xF0\x73": "\u015f",
-        b"\xF0\x74": "\u0163",
-        b"\xF1\x41": "\u0104",
-        b"\xF1\x45": "\u0118",
-        b"\xF1\x49": "\u012e",
-        b"\xF1\x4F": "\u01ea",
-        b"\xF1\x55": "\u0172",
-        b"\xF1\x61": "\u0105",
-        b"\xF1\x65": "\u0119",
-        b"\xF1\x69": "\u012f",
-        b"\xF1\x6F": "\u01eb",
-        b"\xF1\x75": "\u0173",
-        b"\xF2\x41": "\u1ea0",
-        b"\xF2\x42": "\u1e04",
-        b"\xF2\x44": "\u1e0c",
-        b"\xF2\x45": "\u1eb8",
-        b"\xF2\x48": "\u1e24",
-        b"\xF2\x49": "\u1eca",
-        b"\xF2\x4B": "\u1e32",
-        b"\xF2\x4C": "\u1e36",
-        b"\xF2\x4D": "\u1e42",
-        b"\xF2\x4E": "\u1e46",
-        b"\xF2\x4F": "\u1ecc",
-        b"\xF2\x52": "\u1e5a",
-        b"\xF2\x53": "\u1e62",
-        b"\xF2\x54": "\u1e6c",
-        b"\xF2\x55": "\u1ee4",
-        b"\xF2\x56": "\u1e7e",
-        b"\xF2\x57": "\u1e88",
-        b"\xF2\x59": "\u1ef4",
-        b"\xF2\x5A": "\u1e92",
-        b"\xF2\x61": "\u1ea1",
-        b"\xF2\x62": "\u1e05",
-        b"\xF2\x64": "\u1e0d",
-        b"\xF2\x65": "\u1eb9",
-        b"\xF2\x68": "\u1e25",
-        b"\xF2\x69": "\u1ecb",
-        b"\xF2\x6B": "\u1e33",
-        b"\xF2\x6C": "\u1e37",
-        b"\xF2\x6D": "\u1e43",
-        b"\xF2\x6E": "\u1e47",
-        b"\xF2\x6F": "\u1ecd",
-        b"\xF2\x72": "\u1e5b",
-        b"\xF2\x73": "\u1e63",
-        b"\xF2\x74": "\u1e6d",
-        b"\xF2\x75": "\u1ee5",
-        b"\xF2\x76": "\u1e7f",
-        b"\xF2\x77": "\u1e89",
-        b"\xF2\x79": "\u1ef5",
-        b"\xF2\x7A": "\u1e93",
-        b"\xF3\x55": "\u1e72",
-        b"\xF3\x75": "\u1e73",
-        b"\xF4\x41": "\u1e00",
-        b"\xF4\x61": "\u1e01",
-        b"\xF9\x48": "\u1e2a",
-        b"\xF9\x68": "\u1e2b",
+        b"\xe0\x41": "\u1ea2",
+        b"\xe0\x45": "\u1eba",
+        b"\xe0\x49": "\u1ec8",
+        b"\xe0\x4f": "\u1ece",
+        b"\xe0\x55": "\u1ee6",
+        b"\xe0\x59": "\u1ef6",
+        b"\xe0\x61": "\u1ea3",
+        b"\xe0\x65": "\u1ebb",
+        b"\xe0\x69": "\u1ec9",
+        b"\xe0\x6f": "\u1ecf",
+        b"\xe0\x75": "\u1ee7",
+        b"\xe0\x79": "\u1ef7",
+        b"\xe1\x41": "\u00c0",
+        b"\xe1\x45": "\u00c8",
+        b"\xe1\x49": "\u00cc",
+        b"\xe1\x4f": "\u00d2",
+        b"\xe1\x55": "\u00d9",
+        b"\xe1\x57": "\u1e80",
+        b"\xe1\x59": "\u1ef2",
+        b"\xe1\x61": "\u00e0",
+        b"\xe1\x65": "\u00e8",
+        b"\xe1\x69": "\u00ec",
+        b"\xe1\x6f": "\u00f2",
+        b"\xe1\x75": "\u00f9",
+        b"\xe1\x77": "\u1e81",
+        b"\xe1\x79": "\u1ef3",
+        b"\xe2\x41": "\u00c1",
+        b"\xe2\x43": "\u0106",
+        b"\xe2\x45": "\u00c9",
+        b"\xe2\x47": "\u01f4",
+        b"\xe2\x49": "\u00cd",
+        b"\xe2\x4b": "\u1e30",
+        b"\xe2\x4c": "\u0139",
+        b"\xe2\x4d": "\u1e3e",
+        b"\xe2\x4e": "\u0143",
+        b"\xe2\x4f": "\u00d3",
+        b"\xe2\x50": "\u1e54",
+        b"\xe2\x52": "\u0154",
+        b"\xe2\x53": "\u015a",
+        b"\xe2\x55": "\u00da",
+        b"\xe2\x57": "\u1e82",
+        b"\xe2\x59": "\u00dd",
+        b"\xe2\x5a": "\u0179",
+        b"\xe2\x61": "\u00e1",
+        b"\xe2\x63": "\u0107",
+        b"\xe2\x65": "\u00e9",
+        b"\xe2\x67": "\u01f5",
+        b"\xe2\x69": "\u00ed",
+        b"\xe2\x6b": "\u1e31",
+        b"\xe2\x6c": "\u013a",
+        b"\xe2\x6d": "\u1e3f",
+        b"\xe2\x6e": "\u0144",
+        b"\xe2\x6f": "\u00f3",
+        b"\xe2\x70": "\u1e55",
+        b"\xe2\x72": "\u0155",
+        b"\xe2\x73": "\u015b",
+        b"\xe2\x75": "\u00fa",
+        b"\xe2\x77": "\u1e83",
+        b"\xe2\x79": "\u00fd",
+        b"\xe2\x7a": "\u017a",
+        b"\xe2\xa5": "\u01fc",
+        b"\xe2\xb5": "\u01fd",
+        b"\xe3\x41": "\u00c2",
+        b"\xe3\x43": "\u0108",
+        b"\xe3\x45": "\u00ca",
+        b"\xe3\x47": "\u011c",
+        b"\xe3\x48": "\u0124",
+        b"\xe3\x49": "\u00ce",
+        b"\xe3\x4a": "\u0134",
+        b"\xe3\x4f": "\u00d4",
+        b"\xe3\x53": "\u015c",
+        b"\xe3\x55": "\u00db",
+        b"\xe3\x57": "\u0174",
+        b"\xe3\x59": "\u0176",
+        b"\xe3\x5a": "\u1e90",
+        b"\xe3\x61": "\u00e2",
+        b"\xe3\x63": "\u0109",
+        b"\xe3\x65": "\u00ea",
+        b"\xe3\x67": "\u011d",
+        b"\xe3\x68": "\u0125",
+        b"\xe3\x69": "\u00ee",
+        b"\xe3\x6a": "\u0135",
+        b"\xe3\x6f": "\u00f4",
+        b"\xe3\x73": "\u015d",
+        b"\xe3\x75": "\u00fb",
+        b"\xe3\x77": "\u0175",
+        b"\xe3\x79": "\u0177",
+        b"\xe3\x7a": "\u1e91",
+        b"\xe4\x41": "\u00c3",
+        b"\xe4\x45": "\u1ebc",
+        b"\xe4\x49": "\u0128",
+        b"\xe4\x4e": "\u00d1",
+        b"\xe4\x4f": "\u00d5",
+        b"\xe4\x55": "\u0168",
+        b"\xe4\x56": "\u1e7c",
+        b"\xe4\x59": "\u1ef8",
+        b"\xe4\x61": "\u00e3",
+        b"\xe4\x65": "\u1ebd",
+        b"\xe4\x69": "\u0129",
+        b"\xe4\x6e": "\u00f1",
+        b"\xe4\x6f": "\u00f5",
+        b"\xe4\x75": "\u0169",
+        b"\xe4\x76": "\u1e7d",
+        b"\xe4\x79": "\u1ef9",
+        b"\xe5\x41": "\u0100",
+        b"\xe5\x45": "\u0112",
+        b"\xe5\x47": "\u1e20",
+        b"\xe5\x49": "\u012a",
+        b"\xe5\x4f": "\u014c",
+        b"\xe5\x55": "\u016a",
+        b"\xe5\x61": "\u0101",
+        b"\xe5\x65": "\u0113",
+        b"\xe5\x67": "\u1e21",
+        b"\xe5\x69": "\u012b",
+        b"\xe5\x6f": "\u014d",
+        b"\xe5\x75": "\u016b",
+        b"\xe5\xa5": "\u01e2",
+        b"\xe5\xb5": "\u01e3",
+        b"\xe6\x41": "\u0102",
+        b"\xe6\x45": "\u0114",
+        b"\xe6\x47": "\u011e",
+        b"\xe6\x49": "\u012c",
+        b"\xe6\x4f": "\u014e",
+        b"\xe6\x55": "\u016c",
+        b"\xe6\x61": "\u0103",
+        b"\xe6\x65": "\u0115",
+        b"\xe6\x67": "\u011f",
+        b"\xe6\x69": "\u012d",
+        b"\xe6\x6f": "\u014f",
+        b"\xe6\x75": "\u016d",
+        b"\xe7\x42": "\u1e02",
+        b"\xe7\x43": "\u010a",
+        b"\xe7\x44": "\u1e0a",
+        b"\xe7\x45": "\u0116",
+        b"\xe7\x46": "\u1e1e",
+        b"\xe7\x47": "\u0120",
+        b"\xe7\x48": "\u1e22",
+        b"\xe7\x49": "\u0130",
+        b"\xe7\x4d": "\u1e40",
+        b"\xe7\x4e": "\u1e44",
+        b"\xe7\x50": "\u1e56",
+        b"\xe7\x52": "\u1e58",
+        b"\xe7\x53": "\u1e60",
+        b"\xe7\x54": "\u1e6a",
+        b"\xe7\x57": "\u1e86",
+        b"\xe7\x58": "\u1e8a",
+        b"\xe7\x59": "\u1e8e",
+        b"\xe7\x5a": "\u017b",
+        b"\xe7\x62": "\u1e03",
+        b"\xe7\x63": "\u010b",
+        b"\xe7\x64": "\u1e0b",
+        b"\xe7\x65": "\u0117",
+        b"\xe7\x66": "\u1e1f",
+        b"\xe7\x67": "\u0121",
+        b"\xe7\x68": "\u1e23",
+        b"\xe7\x6d": "\u1e41",
+        b"\xe7\x6e": "\u1e45",
+        b"\xe7\x70": "\u1e57",
+        b"\xe7\x72": "\u1e59",
+        b"\xe7\x73": "\u1e61",
+        b"\xe7\x74": "\u1e6b",
+        b"\xe7\x77": "\u1e87",
+        b"\xe7\x78": "\u1e8b",
+        b"\xe7\x79": "\u1e8f",
+        b"\xe7\x7a": "\u017c",
+        b"\xe8\x41": "\u00c4",
+        b"\xe8\x45": "\u00cb",
+        b"\xe8\x48": "\u1e26",
+        b"\xe8\x49": "\u00cf",
+        b"\xe8\x4f": "\u00d6",
+        b"\xe8\x55": "\u00dc",
+        b"\xe8\x57": "\u1e84",
+        b"\xe8\x58": "\u1e8c",
+        b"\xe8\x59": "\u0178",
+        b"\xe8\x61": "\u00e4",
+        b"\xe8\x65": "\u00eb",
+        b"\xe8\x68": "\u1e27",
+        b"\xe8\x69": "\u00ef",
+        b"\xe8\x6f": "\u00f6",
+        b"\xe8\x74": "\u1e97",
+        b"\xe8\x75": "\u00fc",
+        b"\xe8\x77": "\u1e85",
+        b"\xe8\x78": "\u1e8d",
+        b"\xe8\x79": "\u00ff",
+        b"\xe9\x41": "\u01cd",
+        b"\xe9\x43": "\u010c",
+        b"\xe9\x44": "\u010e",
+        b"\xe9\x45": "\u011a",
+        b"\xe9\x47": "\u01e6",
+        b"\xe9\x49": "\u01cf",
+        b"\xe9\x4b": "\u01e8",
+        b"\xe9\x4c": "\u013d",
+        b"\xe9\x4e": "\u0147",
+        b"\xe9\x4f": "\u01d1",
+        b"\xe9\x52": "\u0158",
+        b"\xe9\x53": "\u0160",
+        b"\xe9\x54": "\u0164",
+        b"\xe9\x55": "\u01d3",
+        b"\xe9\x5a": "\u017d",
+        b"\xe9\x61": "\u01ce",
+        b"\xe9\x63": "\u010d",
+        b"\xe9\x64": "\u010f",
+        b"\xe9\x65": "\u011b",
+        b"\xe9\x67": "\u01e7",
+        b"\xe9\x69": "\u01d0",
+        b"\xe9\x6a": "\u01f0",
+        b"\xe9\x6b": "\u01e9",
+        b"\xe9\x6c": "\u013e",
+        b"\xe9\x6e": "\u0148",
+        b"\xe9\x6f": "\u01d2",
+        b"\xe9\x72": "\u0159",
+        b"\xe9\x73": "\u0161",
+        b"\xe9\x74": "\u0165",
+        b"\xe9\x75": "\u01d4",
+        b"\xe9\x7a": "\u017e",
+        b"\xea\x41": "\u00c5",
+        b"\xea\x61": "\u00e5",
+        b"\xea\x75": "\u016f",
+        b"\xea\x77": "\u1e98",
+        b"\xea\x79": "\u1e99",
+        b"\xea\xad": "\u016e",
+        b"\xee\x4f": "\u0150",
+        b"\xee\x55": "\u0170",
+        b"\xee\x6f": "\u0151",
+        b"\xee\x75": "\u0171",
+        b"\xf0\x20": "\u00b8",
+        b"\xf0\x43": "\u00c7",
+        b"\xf0\x44": "\u1e10",
+        b"\xf0\x47": "\u0122",
+        b"\xf0\x48": "\u1e28",
+        b"\xf0\x4b": "\u0136",
+        b"\xf0\x4c": "\u013b",
+        b"\xf0\x4e": "\u0145",
+        b"\xf0\x52": "\u0156",
+        b"\xf0\x53": "\u015e",
+        b"\xf0\x54": "\u0162",
+        b"\xf0\x63": "\u00e7",
+        b"\xf0\x64": "\u1e11",
+        b"\xf0\x67": "\u0123",
+        b"\xf0\x68": "\u1e29",
+        b"\xf0\x6b": "\u0137",
+        b"\xf0\x6c": "\u013c",
+        b"\xf0\x6e": "\u0146",
+        b"\xf0\x72": "\u0157",
+        b"\xf0\x73": "\u015f",
+        b"\xf0\x74": "\u0163",
+        b"\xf1\x41": "\u0104",
+        b"\xf1\x45": "\u0118",
+        b"\xf1\x49": "\u012e",
+        b"\xf1\x4f": "\u01ea",
+        b"\xf1\x55": "\u0172",
+        b"\xf1\x61": "\u0105",
+        b"\xf1\x65": "\u0119",
+        b"\xf1\x69": "\u012f",
+        b"\xf1\x6f": "\u01eb",
+        b"\xf1\x75": "\u0173",
+        b"\xf2\x41": "\u1ea0",
+        b"\xf2\x42": "\u1e04",
+        b"\xf2\x44": "\u1e0c",
+        b"\xf2\x45": "\u1eb8",
+        b"\xf2\x48": "\u1e24",
+        b"\xf2\x49": "\u1eca",
+        b"\xf2\x4b": "\u1e32",
+        b"\xf2\x4c": "\u1e36",
+        b"\xf2\x4d": "\u1e42",
+        b"\xf2\x4e": "\u1e46",
+        b"\xf2\x4f": "\u1ecc",
+        b"\xf2\x52": "\u1e5a",
+        b"\xf2\x53": "\u1e62",
+        b"\xf2\x54": "\u1e6c",
+        b"\xf2\x55": "\u1ee4",
+        b"\xf2\x56": "\u1e7e",
+        b"\xf2\x57": "\u1e88",
+        b"\xf2\x59": "\u1ef4",
+        b"\xf2\x5a": "\u1e92",
+        b"\xf2\x61": "\u1ea1",
+        b"\xf2\x62": "\u1e05",
+        b"\xf2\x64": "\u1e0d",
+        b"\xf2\x65": "\u1eb9",
+        b"\xf2\x68": "\u1e25",
+        b"\xf2\x69": "\u1ecb",
+        b"\xf2\x6b": "\u1e33",
+        b"\xf2\x6c": "\u1e37",
+        b"\xf2\x6d": "\u1e43",
+        b"\xf2\x6e": "\u1e47",
+        b"\xf2\x6f": "\u1ecd",
+        b"\xf2\x72": "\u1e5b",
+        b"\xf2\x73": "\u1e63",
+        b"\xf2\x74": "\u1e6d",
+        b"\xf2\x75": "\u1ee5",
+        b"\xf2\x76": "\u1e7f",
+        b"\xf2\x77": "\u1e89",
+        b"\xf2\x79": "\u1ef5",
+        b"\xf2\x7a": "\u1e93",
+        b"\xf3\x55": "\u1e72",
+        b"\xf3\x75": "\u1e73",
+        b"\xf4\x41": "\u1e00",
+        b"\xf4\x61": "\u1e01",
+        b"\xf9\x48": "\u1e2a",
+        b"\xf9\x68": "\u1e2b",
     }
 
     def __ansel_to_unicode(self, text):
@@ -2163,7 +2165,7 @@ class GedcomParser(UpdateCallback):
     __TRUNC_MSG = _(
         "Your GEDCOM file is corrupted. " "It appears to have been truncated."
     )
-    _EMPTY_LOC = to_dict(Location())
+    _EMPTY_LOC = object_to_dict(Location())
 
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
@@ -2394,6 +2396,7 @@ class GedcomParser(UpdateCallback):
             # +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
             TOKEN_BAPL: self.__person_bapl,
             TOKEN_CONL: self.__person_conl,
+            TOKEN_INIL: self.__person_inil,
             TOKEN_ENDL: self.__person_endl,
             TOKEN_SLGC: self.__person_slgc,
             # +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
@@ -3061,8 +3064,8 @@ class GedcomParser(UpdateCallback):
         cursor = dbase.get_place_cursor()
         data = next(cursor)
         while data:
-            (handle, val) = data
-            self.place_names[val[2]].append(handle)
+            handle, val = data
+            self.place_names[val.title].append(handle)
             data = next(cursor)
         cursor.close()
 
@@ -3187,7 +3190,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = self.gid2id.get(gramps_id)
         if self.dbase.has_person_handle(intid):
-            person = from_dict(self.dbase.get_raw_person_data(intid))
+            person = data_to_object(self.dbase.get_raw_person_data(intid))
         else:
             person = Person()
             intid = self.__find_from_handle(gramps_id, self.gid2id)
@@ -3203,7 +3206,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = self.fid2id.get(gramps_id)
         if self.dbase.has_family_handle(intid):
-            family = from_dict(self.dbase.get_raw_family_data(intid))
+            family = data_to_object(self.dbase.get_raw_family_data(intid))
         else:
             family = Family()
             intid = self.__find_from_handle(gramps_id, self.fid2id)
@@ -3221,7 +3224,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = self.oid2id.get(gramps_id)
         if self.dbase.has_media_handle(intid):
-            obj = from_dict(self.dbase.get_raw_media_data(intid))
+            obj = data_to_object(self.dbase.get_raw_media_data(intid))
         else:
             obj = Media()
             intid = self.__find_from_handle(gramps_id, self.oid2id)
@@ -3239,7 +3242,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = self.sid2id.get(gramps_id)
         if self.dbase.has_source_handle(intid):
-            obj = from_dict(self.dbase.get_raw_source_data(intid))
+            obj = data_to_object(self.dbase.get_raw_source_data(intid))
         else:
             obj = Source()
             intid = self.__find_from_handle(gramps_id, self.sid2id)
@@ -3258,7 +3261,7 @@ class GedcomParser(UpdateCallback):
         """
         intid = self.rid2id.get(gramps_id)
         if self.dbase.has_repository_handle(intid):
-            repository = from_dict(self.dbase.get_raw_repository_data(intid))
+            repository = data_to_object(self.dbase.get_raw_repository_data(intid))
         else:
             repository = Repository()
             intid = self.__find_from_handle(gramps_id, self.rid2id)
@@ -3282,7 +3285,7 @@ class GedcomParser(UpdateCallback):
 
         intid = self.nid2id.get(gramps_id)
         if self.dbase.has_note_handle(intid):
-            note = from_dict(self.dbase.get_raw_note_data(intid))
+            note = data_to_object(self.dbase.get_raw_note_data(intid))
         else:
             note = Note()
             intid = self.__find_from_handle(gramps_id, self.nid2id)
@@ -3302,7 +3305,7 @@ class GedcomParser(UpdateCallback):
         """
         if location is None:
             return True
-        elif to_dict(location) == self._EMPTY_LOC:
+        elif object_to_dict(location) == self._EMPTY_LOC:
             return True
         elif location.is_empty():
             return True
@@ -3807,7 +3810,7 @@ class GedcomParser(UpdateCallback):
         +1 CTRY <ADDRESS_COUNTRY> {0:1}
 
         This is done along the lines suggested by Tamura Jones in
-        http://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
+        https://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
         "When a GEDCOM reader encounters a double address, it should read the
         structured address. ... A GEDCOM reader that does verify that the
         addresses are the same should issue an error if they are not".
@@ -5010,6 +5013,17 @@ class GedcomParser(UpdateCallback):
         """
         self.build_lds_ord(state, LdsOrd.CONFIRMATION)
 
+    def __person_inil(self, line, state):
+        """
+        Parses an INIL TOKEN, producing a Gramps LdsOrd instance
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.build_lds_ord(state, LdsOrd.INITIATORY)
+
     def __person_endl(self, line, state):
         """
         Parses an ENDL TOKEN, producing a Gramps LdsOrd instance
@@ -5200,7 +5214,7 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         # if the handle is not already in the person's parent family list, we
-        # need to add it to thie list.
+        # need to add it to the list.
 
         flist = state.person.get_parent_family_handle_list()
         if handle not in flist:
@@ -5875,7 +5889,7 @@ class GedcomParser(UpdateCallback):
             if sub_state.filename != "" and (
                 res.scheme == "" or len(res.scheme) == 1 or res.scheme == "file"
             ):
-                (valid, path) = self.__find_file(sub_state.filename, self.dir_path)
+                valid, path = self.__find_file(sub_state.filename, self.dir_path)
                 if not valid:
                     self.__add_msg(
                         _("Could not import %s") % sub_state.filename, line, state
@@ -7032,7 +7046,7 @@ class GedcomParser(UpdateCallback):
             #     +1 CALN <SOURCE_CALL_NUMBER>       {0:M}
             #        +2 MEDI <SOURCE_MEDIA_TYPE>     {0:1}
             #
-            # This format has no repository name. See http://west-
+            # This format has no repository name. See https://west-https://west-
             # penwith.org.uk/misc/ftmged.htm which points out this is
             # incorrect
             gid = self.rid_map[""]
@@ -7264,7 +7278,7 @@ class GedcomParser(UpdateCallback):
         if line.data != "" and (
             res.scheme == "" or len(res.scheme) == 1 or res.scheme == "file"
         ):
-            (file_ok, filename) = self.__find_file(line.data, self.dir_path)
+            file_ok, filename = self.__find_file(line.data, self.dir_path)
             if state.form != "url":
                 # Might not work if FORM doesn't precede FILE
                 if not file_ok:
@@ -7707,7 +7721,7 @@ class GedcomParser(UpdateCallback):
         """
         if line.data.strip() in ["FTW", "FTM"]:
             self.is_ftw = True
-        # Some software (e.g. RootsMagic (http://files.rootsmagic.com/PAF-
+        # Some software (e.g. RootsMagic (https://files.rootsmagic.com/PAF-
         # Book/RootsMagic-for-PAF-Users-Printable.pdf) use the Addr fields for
         # 'Place Details (address, hospital, cemetary)'
         if line.data.strip().lower() in ["rootsmagic"]:
@@ -8643,7 +8657,7 @@ class GedcomStageOne:
 
             try:
                 data = line.split(None, 3) + [""]
-                (level, key, value) = data[:3]
+                level, key, value = data[:3]
                 level = int(level)
                 key = key.strip()
                 value = value.strip()
@@ -8715,8 +8729,8 @@ def make_gedcom_date(subdate, calendar, mode, quality):
     Convert a Gramps date structure into a GEDCOM compatible date.
     """
     retval = ""
-    (day, mon, year) = subdate[0:3]
-    (mmap, prefix) = CALENDAR_MAP.get(calendar, (MONTH, ""))
+    day, mon, year = subdate[0:3]
+    mmap, prefix = CALENDAR_MAP.get(calendar, (MONTH, ""))
     if year < 0:
         year = -year
         bce = " B.C."

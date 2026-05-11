@@ -16,15 +16,14 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Original version written by Alex Roitman, largely based on relationship.py
 # by Don Allingham and on valuable input from Dr. Martin Senftleben
 # Modified by Joachim Breitner to not use „Großcousine“, in accordance with
-# http://de.wikipedia.org/wiki/Verwandtschaftsbeziehung
+# https://de.wikipedia.org/wiki/Verwandtschaftsbeziehung
 # Rewritten from scratch for Gramps 3 by Stefan Siegel,
 # loosely based on rel_fr.py
 #
@@ -262,7 +261,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
         if degree == 0 and removed < 0:
             # for descendants the "in-law" logic is reversed
-            (in_law_a, in_law_b) = (in_law_b, in_law_a)
+            in_law_a, in_law_b = (in_law_b, in_law_a)
 
         rel_str = ""
         pre = ""

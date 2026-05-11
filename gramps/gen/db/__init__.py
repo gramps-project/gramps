@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -55,13 +54,13 @@ DbBsddb
 
 The :py:class:`.DbBsddb` interface defines a hierarchical database
 (non-relational) written in
-`PyBSDDB <http://www.jcea.es/programacion/pybsddb.htm>`_. There is no
+`PyBSDDB <https://www.jcea.es/programacion/pybsddb.htm>`_. There is no
 such thing as a database schema, and the meaning of the data is
 defined in the Python classes above. The data is stored as pickled
 tuples and unserialized into the primary data types (below).
 
 More details can be found in the manual's
-`Using database API <http://www.gramps-project.org/wiki/index.php?title=Using_database_API>`_.
+`Using database API <https://www.gramps-project.org/wiki/index.php?title=Using_database_API>`_.
 """
 
 from .base import *
@@ -71,3 +70,5 @@ from .exceptions import *
 from .undoredo import *
 from .utils import *
 from .generic import *
+
+Database = DbGeneric

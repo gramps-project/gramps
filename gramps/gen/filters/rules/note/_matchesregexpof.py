@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -36,6 +35,14 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Note
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 # Notes that contain a substring or match a regular expression
@@ -49,8 +56,6 @@ class MatchesRegexpOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, note):
+    def apply_to_one(self, db: Database, note: Note) -> bool:
         """Apply the filter"""
-        if self.match_substring(0, note.get()):
-            return True
-        return False
+        return self.match_substring(0, str(note.text))

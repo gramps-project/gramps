@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -344,7 +343,7 @@ class GrampletWindow(ManagedWindow):
             expand = gramplet.gstate == "maximized" and gramplet.expand
             column.set_child_packing(gramplet.mainframe, expand, fill, padding, pack)
         # set_image on buttons as get_image is None in first run
-        # or point to invalid adress in every other run
+        # or point to invalid address in every other run
         self.gramplet.gvstate.set_image(self.gramplet.xml.get_object("gvstateimage"))
         self.gramplet.gvclose.set_image(self.gramplet.xml.get_object("gvcloseimage"))
         self.gramplet.gvproperties.set_image(
@@ -516,31 +515,31 @@ class GuiGramplet:
         self.append_text(retval)
         for items in markup_pos["TT"]:
             if len(items) == 3:
-                (a, attributes, b) = items
+                a, attributes, b = items
                 start = self.buffer.get_iter_at_offset(a + offset)
                 stop = self.buffer.get_iter_at_offset(b + offset)
                 self.buffer.apply_tag_by_name("fixed", start, stop)
         for items in markup_pos["B"]:
             if len(items) == 3:
-                (a, attributes, b) = items
+                a, attributes, b = items
                 start = self.buffer.get_iter_at_offset(a + offset)
                 stop = self.buffer.get_iter_at_offset(b + offset)
                 self.buffer.apply_tag_by_name("bold", start, stop)
         for items in markup_pos["I"]:
             if len(items) == 3:
-                (a, attributes, b) = items
+                a, attributes, b = items
                 start = self.buffer.get_iter_at_offset(a + offset)
                 stop = self.buffer.get_iter_at_offset(b + offset)
                 self.buffer.apply_tag_by_name("italic", start, stop)
         for items in markup_pos["U"]:
             if len(items) == 3:
-                (a, attributes, b) = items
+                a, attributes, b = items
                 start = self.buffer.get_iter_at_offset(a + offset)
                 stop = self.buffer.get_iter_at_offset(b + offset)
                 self.buffer.apply_tag_by_name("underline", start, stop)
         for items in markup_pos["A"]:
             if len(items) == 3:
-                (a, attributes, b) = items
+                a, attributes, b = items
                 start = self.buffer.get_iter_at_offset(a + offset)
                 stop = self.buffer.get_iter_at_offset(b + offset)
                 if "href" in attributes:
@@ -1070,7 +1069,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         for name_opts in user_gramplets:
             if name_opts is None:
                 continue
-            (name, opts) = name_opts
+            name, opts = name_opts
             all_opts = get_gramplet_opts(name, opts)
             if "state" not in all_opts:
                 all_opts["state"] = "maximized"

@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Written by Alex Roitman, largely based on ReadNative.py by Don Allingham
@@ -30,6 +29,7 @@
 # -------------------------------------------------------------------------
 import os
 import tarfile
+from contextlib import suppress
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -141,6 +141,7 @@ def impData(database, name, user):
         )
 
     # Remove xml file extracted to media dir we imported from
-    os.remove(imp_db_name)
+    with suppress(FileNotFoundError):
+        os.remove(imp_db_name)
 
     return info

@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 """
 OpenStreetMap map service plugin. Open place in openstreetmap.org
@@ -39,8 +38,8 @@ from gramps.gen.lib import PlaceType
 
 
 class OpensStreetMapService(MapService):
-    """Map  service using http://openstreetmap.org
-    Resource: http://wiki.openstreetmap.org/wiki/Nominatim
+    """Map  service using https://openstreetmap.org
+    Resource: https://wiki.openstreetmap.org/wiki/Nominatim
     """
 
     def __init__(self):
@@ -54,7 +53,7 @@ class OpensStreetMapService(MapService):
         place = self._get_first_place()[0]
         latitude, longitude = self._lat_lon(place)
         if longitude and latitude:
-            self.url = "http://www.openstreetmap.org/" "?lat=%s&lon=%s&zoom=15" % (
+            self.url = "https://www.openstreetmap.org/" "?lat=%s&lon=%s&zoom=15" % (
                 latitude,
                 longitude,
             )
@@ -62,6 +61,6 @@ class OpensStreetMapService(MapService):
             return
 
         titledescr = place_displayer.display(self.database, place)
-        self.url = "http://nominatim.openstreetmap.org/" "search?q=%s" % "+".join(
+        self.url = "https://nominatim.openstreetmap.org/" "search?q=%s" % "+".join(
             titledescr.split()
         )

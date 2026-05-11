@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -33,6 +32,15 @@ from ....soundex import soundex
 from .. import Rule
 
 _ = glocale.translation.sgettext
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -58,18 +66,18 @@ class HasSoundexName(Rule):
         super().__init__(arg, use_regex, use_case)
         self.soundex = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
         if self.list[0]:
             self.soundex = soundex(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """
-        for name in [obj.get_primary_name()] + obj.get_alternate_names():
+        for name in [obj.primary_name] + obj.alternate_names:
             if self._match_name(name):
                 return True
         return False
@@ -79,17 +87,17 @@ class HasSoundexName(Rule):
         Match a name against the soundex.
         """
         if self.soundex:
-            if soundex(str(name.get_first_name())) == self.soundex:
+            if soundex(str(name.first_name)) == self.soundex:
                 return True
             if soundex(str(name.get_surname())) == self.soundex:
                 return True
-            if soundex(str(name.get_call_name())) == self.soundex:
+            if soundex(str(name.call)) == self.soundex:
                 return True
-            if soundex(str(name.get_nick_name())) == self.soundex:
+            if soundex(str(name.nick)) == self.soundex:
                 return True
-            if soundex(str(name.get_family_nick_name())) == self.soundex:
+            if soundex(str(name.famnick)) == self.soundex:
                 return True
-            for surname in name.get_surname_list():
+            for surname in name.surname_list:
                 if self._match_surname(surname):
                     return True
         return False
@@ -100,7 +108,7 @@ class HasSoundexName(Rule):
         """
         if soundex(str(surname.get_surname())) == self.soundex:
             return True
-        if surname.get_origintype().value == NameOriginType.PATRONYMIC:
-            if soundex(str(surname.get_surname())) == self.soundex:
+        if int(surname.origintype.value) == NameOriginType.PATRONYMIC:
+            if soundex(str(surname.surname)) == self.soundex:
                 return True
         return False

@@ -4,9 +4,10 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Raphael Ackermann
 # Copyright (C) 2010       Benny Malengier
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010,2025  Nick Hall
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2015-      Serge Noiraud
+# Copyright (C) 2025-2026  Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,9 +19,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -30,6 +30,7 @@
 # -------------------------------------------------------------------------
 import random
 import os
+import re
 from xml.sax.saxutils import escape
 from collections import abc
 
@@ -615,7 +616,15 @@ class ConfigureDialog(ManagedWindow):
         return slider
 
     def add_spinner(
-        self, grid, label, index, constant, range, callback=None, config=None
+        self,
+        grid,
+        label,
+        index,
+        constant,
+        range,
+        callback=None,
+        config=None,
+        tooltip=None,
     ):
         """
         Spinner allowing the selection of an integer within a specified range.
@@ -636,6 +645,9 @@ class ConfigureDialog(ManagedWindow):
         )
         spinner = Gtk.SpinButton(adjustment=adj, climb_rate=0.0, digits=0)
         spinner.connect("value-changed", callback, constant)
+        if tooltip:
+            lwidget.set_tooltip_text(tooltip)
+            spinner.set_tooltip_text(tooltip)
         spinner.set_hexpand(True)
         grid.attach(lwidget, 1, index, 1, 1)
         grid.attach(spinner, 2, index, 1, 1)
@@ -661,6 +673,7 @@ class GrampsPreferences(ConfigureDialog):
             self.add_text_panel,
             self.add_warnings_panel,
             self.add_researcher_panel,
+            self.add_integrations_panel,
         )
         ConfigureDialog.__init__(
             self,
@@ -854,8 +867,8 @@ class GrampsPreferences(ConfigureDialog):
             grid,
             _(  # xgettext: no-python-format
                 "Default Gramps ID formats containing a letter prefix"
-                ' followed by a numerical string. "I%04d" creates IDs'
-                " from I0000 to I9999. Large databases may need larger"
+                ' followed by a numerical string. "I%05d" creates IDs'
+                " from I00000 to I99999. Large databases may need larger"
                 ' IDs. "I%06d" creates IDs from I000000 to I999999.\n'
             ),
             row,
@@ -1053,6 +1066,124 @@ class GrampsPreferences(ConfigureDialog):
 
         return _("Warnings"), grid
 
+    def add_integrations_panel(self, configdialog):
+        """
+        Config tab for integrations.
+        """
+        scroll_window = Gtk.ScrolledWindow()
+        scroll_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        grid = self.create_grid()
+        scroll_window.add(grid)
+
+        label = self.add_text(
+            grid, _("FamilySearch"), 0, line_wrap=True, bold=True, start=0, stop=3
+        )
+        label.set_margin_top(10)
+
+        row = 1
+        obox = Gtk.ComboBoxText()
+        options = [_("Beta"), _("Live")]
+        for option in options:
+            obox.append_text(option)
+        active = config.get("familysearch.server")
+        if active >= len(options):
+            active = 0
+        obox.set_active(active)
+        obox.connect("changed", self._server_changed)
+        lwidget = BasicLabel(_("%s: ") % _("Server"))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(obox, 2, row, 2, 1)
+        row += 1
+
+        self._fs_direct_mode_enabled = os.environ.get(
+            "GRAMPS_FS_ENABLE_DIRECT", ""
+        ).strip().lower() in ("1", "true", "yes", "on")
+        provider_box = Gtk.ComboBoxText()
+        provider_options = [(_("Foundation middleware"), "foundation")]
+        if self._fs_direct_mode_enabled:
+            provider_options.insert(0, (_("Direct FamilySearch"), "direct"))
+        active_provider = str(config.get("familysearch.auth-provider") or "foundation")
+        if (not self._fs_direct_mode_enabled) and active_provider == "direct":
+            active_provider = "foundation"
+            try:
+                config.set("familysearch.auth-provider", "foundation")
+            except Exception:
+                pass
+        active_provider_index = 0
+        for index, (label_text, provider_value) in enumerate(provider_options):
+            provider_box.append_text(label_text)
+            if active_provider == provider_value:
+                active_provider_index = index
+        provider_box.set_active(active_provider_index)
+        provider_box.connect("changed", self._auth_provider_changed)
+        lwidget = BasicLabel(_("%s: ") % _("Auth provider"))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(provider_box, 2, row, 2, 1)
+        row += 1
+
+        if self._fs_direct_mode_enabled:
+            # App key (no defaults / no hardcoding)
+            self.add_entry(
+                grid,
+                _("App key (direct mode only)"),
+                row,
+                "familysearch.app-key",
+                col_attach=1,
+            )
+            row += 1
+
+            # Redirect URL (default loopback if empty)
+            default_redirect = "http://127.0.0.1:57938/familysearch-auth"
+            try:
+                cur = config.get("familysearch.redirect")
+            except Exception:
+                cur = ""
+            if not (cur or "").strip():
+                try:
+                    config.set("familysearch.redirect", default_redirect)
+                except Exception:
+                    pass
+
+            self.add_entry(
+                grid,
+                _("Redirect URL (direct mode only)"),
+                row,
+                "familysearch.redirect",
+                col_attach=1,
+            )
+            row += 1
+
+        self.add_entry(
+            grid,
+            _("Middleware base URL"),
+            row,
+            "familysearch.middleware.base-url",
+            col_attach=1,
+        )
+        row += 1
+
+        self.add_entry(
+            grid,
+            _("Middleware access code (issued secret)"),
+            row,
+            "familysearch.middleware.access-code",
+            col_attach=1,
+        )
+        row += 1
+
+        return _("Integrations"), grid
+
+    def _server_changed(self, obj):
+        config.set("familysearch.server", obj.get_active())
+
+    def _auth_provider_changed(self, obj):
+        options = ["foundation"]
+        if getattr(self, "_fs_direct_mode_enabled", False):
+            options.insert(0, "direct")
+        active = obj.get_active()
+        if 0 <= active < len(options):
+            config.set("familysearch.auth-provider", options[active])
+
     def _build_name_format_model(self, active):
         """
         Create a common model for ComboBox and TreeView
@@ -1066,12 +1197,11 @@ class GrampsPreferences(ConfigureDialog):
         index = 0
         the_index = 0
         for num, name, fmt_str, act in _nd.get_name_format():
-            translation = fmt_str
-            for key in get_keywords():
-                if key in translation:
-                    translation = translation.replace(
-                        key, get_translation_from_keyword(key)
-                    )
+            translation = re.sub(
+                "|".join(re.escape(k) for k in get_keywords()),
+                lambda m: get_translation_from_keyword(m.group()),
+                fmt_str,
+            )
             self.examplename.set_display_as(num)
             name_format_model.append(
                 row=[num, translation, fmt_str, _nd.display_name(self.examplename)]
@@ -1082,48 +1212,51 @@ class GrampsPreferences(ConfigureDialog):
         return name_format_model, the_index
 
     def __new_name(self, obj):
-        lyst = [
-            "%s, %s %s (%s)"
-            % (_("Surname"), _("Given"), _("Suffix"), _("Common", "Name")),
-            "%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"), _("Nickname")),
-            "%s, %s %s (%s)"
-            % (_("Surname"), _("Common", "Name"), _("Suffix"), _("Nickname")),
-            "%s, %s %s" % (_("Surname"), _("Common", "Name"), _("Suffix")),
-            "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"), _("Call")),
-            "%s, %s (%s)" % (_("Surname"), _("Given"), _("Common", "Name")),
-            "%s, %s (%s)" % (_("Surname"), _("Common", "Name"), _("Nickname")),
-            "%s %s" % (_("Given"), _("Surname")),
-            "%s %s, %s" % (_("Given"), _("Surname"), _("Suffix")),
-            "%s %s %s" % (_("Given"), _("NotPatronymic"), _("Patronymic")),
-            "%s, %s %s (%s)"
-            % (_("SURNAME"), _("Given"), _("Suffix"), _("Common", "Name")),
-            "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Common", "Name")),
-            "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Nickname")),
-            "%s %s" % (_("Given"), _("SURNAME")),
-            "%s %s, %s" % (_("Given"), _("SURNAME"), _("Suffix")),
-            "%s /%s/" % (_("Given"), _("SURNAME")),
-            "%s %s, %s" % (_("Given"), _("Rawsurnames"), _("Suffix")),
-        ]
-        # repeat above list, but not translated.
-        fmtlyst = [
-            "%s, %s %s (%s)" % (("Surname"), ("Given"), ("Suffix"), ("Common")),
-            "%s, %s %s (%s)" % (("Surname"), ("Given"), ("Suffix"), ("Nickname")),
-            "%s, %s %s (%s)" % (("Surname"), ("Common"), ("Suffix"), ("Nickname")),
-            "%s, %s %s" % (("Surname"), ("Common"), ("Suffix")),
-            "%s, %s %s (%s)" % (("SURNAME"), ("Given"), ("Suffix"), ("Call")),
-            "%s, %s (%s)" % (("Surname"), ("Given"), ("Common")),
-            "%s, %s (%s)" % (("Surname"), ("Common"), ("Nickname")),
-            "%s %s" % (("Given"), ("Surname")),
-            "%s %s, %s" % (("Given"), ("Surname"), ("Suffix")),
-            "%s %s %s" % (("Given"), ("NotPatronymic"), ("Patronymic")),
-            "%s, %s %s (%s)" % (("SURNAME"), ("Given"), ("Suffix"), ("Common")),
-            "%s, %s (%s)" % (("SURNAME"), ("Given"), ("Common")),
-            "%s, %s (%s)" % (("SURNAME"), ("Given"), ("Nickname")),
-            "%s %s" % (("Given"), ("SURNAME")),
-            "%s %s, %s" % (("Given"), ("SURNAME"), ("Suffix")),
-            "%s /%s/" % (("Given"), ("SURNAME")),
-            "%s %s, %s" % (("Given"), ("Rawsurnames"), ("Suffix")),
-        ]
+
+        def formats(translate: bool = True) -> list[str]:
+            """
+            Return a translated or untranslated list of name formats.
+
+            :param translate: If True, return translated format strings; otherwise untranslated.
+            :type translate: bool
+            :returns: A list of name format strings.
+            :rtype: list[str]
+
+            """
+            if translate:
+                _ = glocale.translation.gettext
+            else:
+
+                def _(string, context=""):
+                    return string
+
+            return [
+                "%s, %s %s (%s)"
+                % (_("Surname"), _("Given"), _("Suffix"), _("Common", "Name")),
+                "%s, %s %s (%s)"
+                % (_("Surname"), _("Given"), _("Suffix"), _("Nickname")),
+                "%s, %s %s (%s)"
+                % (_("Surname"), _("Common", "Name"), _("Suffix"), _("Nickname")),
+                "%s, %s %s" % (_("Surname"), _("Common", "Name"), _("Suffix")),
+                "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"), _("Call")),
+                "%s, %s (%s)" % (_("Surname"), _("Given"), _("Common", "Name")),
+                "%s, %s (%s)" % (_("Surname"), _("Common", "Name"), _("Nickname")),
+                "%s %s" % (_("Given"), _("Surname")),
+                "%s %s, %s" % (_("Given"), _("Surname"), _("Suffix")),
+                "%s %s %s" % (_("Given"), _("NotPatronymic"), _("Patronymic")),
+                "%s, %s %s (%s)"
+                % (_("SURNAME"), _("Given"), _("Suffix"), _("Common", "Name")),
+                "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Common", "Name")),
+                "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Nickname")),
+                "%s %s" % (_("Given"), _("SURNAME")),
+                "%s %s, %s" % (_("Given"), _("SURNAME"), _("Suffix")),
+                "%s /%s/" % (_("Given"), _("SURNAME")),
+                "%s %s, %s" % (_("Given"), _("Rawsurnames"), _("Suffix")),
+            ]
+
+        lyst = formats()
+        fmtlyst = formats(translate=False)
+
         rand = int(random.random() * len(lyst))
         f = lyst[rand]
         fmt = fmtlyst[rand]
@@ -1188,26 +1321,25 @@ class GrampsPreferences(ConfigureDialog):
         """
         self.format_list.set_tooltip_text("")
         if len(new_text) > 0 and text != new_text:
-            # build a pattern from translated pattern:
-            pattern = new_text
+
             if len(new_text) > 2 and new_text[0] == '"' and new_text[-1] == '"':
-                pass
+                pattern = new_text
+                translation = new_text
             else:
-                for key in get_translations():
-                    if key in pattern:
-                        pattern = pattern.replace(
-                            key, get_keyword_from_translation(key)
-                        )
-            # now build up a proper translation:
-            translation = pattern
-            if len(new_text) > 2 and new_text[0] == '"' and new_text[-1] == '"':
-                pass
-            else:
-                for key in get_keywords():
-                    if key in translation:
-                        translation = translation.replace(
-                            key, get_translation_from_keyword(key)
-                        )
+                # build a pattern from translated pattern:
+                pattern = re.sub(
+                    "|".join(re.escape(k) for k in get_translations()),
+                    lambda m: get_keyword_from_translation(m.group()),
+                    new_text,
+                )
+
+                # now build up a proper translation:
+                translation = re.sub(
+                    "|".join(re.escape(k) for k in get_keywords()),
+                    lambda m: get_translation_from_keyword(m.group()),
+                    pattern,
+                )
+
             num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
             node = self.fmt_model.get_iter(path)
             oldname = self.fmt_model.get_value(node, COL_NAME)
@@ -1394,6 +1526,13 @@ class GrampsPreferences(ConfigureDialog):
         Called when the toolbar is changed.
         """
         self.uistate.emit("toolbar-changed")
+
+    def cb_toolbar_style_changed(self, obj):
+        """
+        Called when the toolbar style is changed.
+        """
+        config.set("interface.toolbar-style", obj.get_active())
+        self.uistate.uimanager.update_menu()
 
     def add_data_panel(self, configdialog):
         """
@@ -1794,7 +1933,7 @@ class GrampsPreferences(ConfigureDialog):
 
     def color_scheme_changed(self, obj):
         """
-        Called on swiching color scheme.
+        Called on switching color scheme.
         """
         scheme = obj.get_active()
         config.set("colors.scheme", scheme)
@@ -1911,6 +2050,18 @@ class GrampsPreferences(ConfigureDialog):
             row,
             "behavior.max-age-prob-alive",
             (80, 140),
+        )
+        row += 1
+        self.add_spinner(
+            grid,
+            _("Maximum generations to estimate age"),
+            row,
+            "behavior.max-gen-estimate",
+            (1, 10),
+            tooltip=_(
+                "Limits ancestor/descendant estimation depth. Increase if "
+                "estimates are missing when dates are only in distant generations."
+            ),
         )
         row += 1
         self.add_spinner(
@@ -2111,6 +2262,23 @@ class GrampsPreferences(ConfigureDialog):
         )
 
         row += 1
+        # Toolbar styles:
+        obox = Gtk.ComboBoxText()
+        formats = [
+            _("Both text and icons"),
+            _("Text only"),
+            _("Icons only"),
+        ]
+        list(map(obox.append_text, formats))
+        active = config.get("interface.toolbar-style")
+        obox.set_active(active)
+        obox.set_tooltip_text(_("Display text, icons or both on the toolbar buttons."))
+        obox.connect("changed", self.cb_toolbar_style_changed)
+        lwidget = BasicLabel(_("%s: ") % _("Toolbar Style"))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(obox, 2, row, 1, 1)
+
+        row += 1
         # Gramplet bar close buttons:
         self.add_checkbox(
             grid,
@@ -2164,6 +2332,16 @@ class GrampsPreferences(ConfigureDialog):
                 " entered, these names display in a box. This"
                 " setting sets the size of this box."
             ),
+        )
+
+        row += 1
+        # Maximum visible length of a note in characters.
+        self.add_spinner(
+            grid,
+            _("Note preview length"),
+            row,
+            "interface.note-preview-length",
+            (80, 2000),
         )
 
         row += 1

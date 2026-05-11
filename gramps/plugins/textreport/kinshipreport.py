@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Reports/Text Reports/Kinship Report"""
@@ -152,7 +151,7 @@ class KinshipReport(Report):
         for Ga, Gbs in self.kinship_map.items():
             for Gb in Gbs:
                 # To understand these calculations, see:
-                # http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+                # https://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
                 _x_ = min(Ga, Gb)
                 _y_ = abs(Ga - Gb)
                 # Skip unrequested people

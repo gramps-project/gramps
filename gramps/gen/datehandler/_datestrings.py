@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -84,7 +83,7 @@ class DateStrings:
         self.long_months = (
             "",
             # Translators: see
-            # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+            # https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
             _("January", "localized lexeme inflections"),
@@ -104,7 +103,7 @@ class DateStrings:
         self.short_months = (
             "",
             # Translators: see
-            # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+            # https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
             _("Jan", "localized lexeme inflections - short month form"),
@@ -125,7 +124,7 @@ class DateStrings:
         self.alt_long_months = (
             "",
             # Translators: see
-            # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+            # https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to add proper alternatives to be recognized in your localized
             # DateParser code!
             _("", "alternative month names for January"),
@@ -157,7 +156,7 @@ class DateStrings:
         self.hebrew = (
             "",
             # Translators: see
-            # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+            # /wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
             _("Tishri", "Hebrew month lexeme"),
@@ -178,7 +177,7 @@ class DateStrings:
         self.french = (
             "",
             # Translators: see
-            # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+            # https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
             _("Vendémiaire", "French month lexeme"),
@@ -199,7 +198,7 @@ class DateStrings:
         self.islamic = (
             "",
             # Translators: see
-            # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+            # https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
             _("Muharram", "Islamic month lexeme"),
@@ -219,7 +218,7 @@ class DateStrings:
         self.persian = (
             "",
             # Translators: see
-            # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+            # https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
             _("Farvardin", "Persian month lexeme"),

@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # gen.filters.rules/_ChangedSinceBase.py
@@ -38,6 +37,15 @@ from ...errors import FilterError
 from ...const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.primaryobj import PrimaryObject
+from ...db import Database
 
 
 # -------------------------------------------------------------------------
@@ -93,7 +101,7 @@ class ChangedSinceBase(Rule):
             )
         return time_sec
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.since = None
         self.before = None
         if self.list[0]:
@@ -101,8 +109,8 @@ class ChangedSinceBase(Rule):
         if self.list[1]:
             self.before = self.time_str_to_sec(self.list[1])
 
-    def apply(self, db, obj):
-        obj_time = obj.get_change_time()
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
+        obj_time = obj.change
         if self.since:
             if obj_time < self.since:
                 return False

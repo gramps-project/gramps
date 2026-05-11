@@ -13,14 +13,14 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from gramps.gen.plug._pluginreg import *
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import URL_MANUAL_PAGE, GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
+DEBUG_HELP = URL_MANUAL_PAGE + "_-_Tools#Debug"
 
 """
 GRAMPS registration file
@@ -55,6 +55,7 @@ register(
     toolclass="DateParserDisplayTest",
     optionclass="DateParserDisplayTestOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=DEBUG_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -80,6 +81,7 @@ register(
     toolclass="DumpGenderStats",
     optionclass="DumpGenderStatsOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=DEBUG_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -107,6 +109,7 @@ register(
     toolclass="TestcaseGenerator",
     optionclass="TestcaseGeneratorOptions",
     tool_modes=[TOOL_MODE_GUI, TOOL_MODE_CLI],
+    help_url=DEBUG_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -134,4 +137,5 @@ register(
     toolclass="PopulateSources",
     optionclass="PopulateSourcesOptions",
     tool_modes=[TOOL_MODE_GUI],
+    help_url=DEBUG_HELP,
 )

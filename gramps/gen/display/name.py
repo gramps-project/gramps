@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -75,7 +74,7 @@ from ..const import ARABIC_COMMA, ARABIC_SEMICOLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..lib.name import Name
 from ..lib.nameorigintype import NameOriginType
-from ..lib.serialize import to_dict
+from ..lib.json_utils import object_to_data
 
 try:
     from ..config import config
@@ -166,8 +165,8 @@ def _raw_primary_surname(raw_surn_data_list):
                 not PAT_AS_SURN
                 and nrsur == 1
                 and (
-                    raw_surn_data["origintype"]["string"] == _ORIGINPATRO
-                    or raw_surn_data["origintype"]["string"] == _ORIGINMATRO
+                    raw_surn_data["origintype"]["value"] == _ORIGINPATRO
+                    or raw_surn_data["origintype"]["value"] == _ORIGINMATRO
                 )
             ):
                 return ""
@@ -186,8 +185,8 @@ def _raw_primary_surname_only(raw_surn_data_list):
                 not PAT_AS_SURN
                 and nrsur == 1
                 and (
-                    raw_surn_data["origintype"]["string"] == _ORIGINPATRO
-                    or raw_surn_data["origintype"]["string"] == _ORIGINMATRO
+                    raw_surn_data["origintype"]["value"] == _ORIGINPATRO
+                    or raw_surn_data["origintype"]["value"] == _ORIGINMATRO
                 )
             ):
                 return ""
@@ -206,8 +205,8 @@ def _raw_primary_prefix_only(raw_surn_data_list):
                 not PAT_AS_SURN
                 and nrsur == 1
                 and (
-                    raw_surn_data["origintype"]["string"] == _ORIGINPATRO
-                    or raw_surn_data["origintype"]["string"] == _ORIGINMATRO
+                    raw_surn_data["origintype"]["value"] == _ORIGINPATRO
+                    or raw_surn_data["origintype"]["value"] == _ORIGINMATRO
                 )
             ):
                 return ""
@@ -226,8 +225,8 @@ def _raw_primary_conn_only(raw_surn_data_list):
                 not PAT_AS_SURN
                 and nrsur == 1
                 and (
-                    raw_surn_data["origintype"]["string"] == _ORIGINPATRO
-                    or raw_surn_data["origintype"]["string"] == _ORIGINMATRO
+                    raw_surn_data["origintype"]["value"] == _ORIGINPATRO
+                    or raw_surn_data["origintype"]["value"] == _ORIGINMATRO
                 )
             ):
                 return ""
@@ -240,8 +239,8 @@ def _raw_patro_surname(raw_surn_data_list):
     """method for the 'y' symbol: patronymic surname"""
     for raw_surn_data in raw_surn_data_list:
         if (
-            raw_surn_data["origintype"]["string"] == _ORIGINPATRO
-            or raw_surn_data["origintype"]["string"] == _ORIGINMATRO
+            raw_surn_data["origintype"]["value"] == _ORIGINPATRO
+            or raw_surn_data["origintype"]["value"] == _ORIGINMATRO
         ):
             return __format_raw_surname(raw_surn_data).strip()
     return ""
@@ -251,8 +250,8 @@ def _raw_patro_surname_only(raw_surn_data_list):
     """method for the '1y' symbol: patronymic surname only"""
     for raw_surn_data in raw_surn_data_list:
         if (
-            raw_surn_data["origintype"]["string"] == _ORIGINPATRO
-            or raw_surn_data["origintype"]["string"] == _ORIGINMATRO
+            raw_surn_data["origintype"]["value"] == _ORIGINPATRO
+            or raw_surn_data["origintype"]["value"] == _ORIGINMATRO
         ):
             result = "%s" % (raw_surn_data["surname"])
             return " ".join(result.split())
@@ -263,8 +262,8 @@ def _raw_patro_prefix_only(raw_surn_data_list):
     """method for the '0y' symbol: patronymic prefix only"""
     for raw_surn_data in raw_surn_data_list:
         if (
-            raw_surn_data["origintype"]["string"] == _ORIGINPATRO
-            or raw_surn_data["origintype"]["string"] == _ORIGINMATRO
+            raw_surn_data["origintype"]["value"] == _ORIGINPATRO
+            or raw_surn_data["origintype"]["value"] == _ORIGINMATRO
         ):
             result = "%s" % (raw_surn_data["prefix"])
             return " ".join(result.split())
@@ -275,8 +274,8 @@ def _raw_patro_conn_only(raw_surn_data_list):
     """method for the '2y' symbol: patronymic conn only"""
     for raw_surn_data in raw_surn_data_list:
         if (
-            raw_surn_data["origintype"]["string"] == _ORIGINPATRO
-            or raw_surn_data["origintype"]["string"] == _ORIGINMATRO
+            raw_surn_data["origintype"]["value"] == _ORIGINPATRO
+            or raw_surn_data["origintype"]["value"] == _ORIGINMATRO
         ):
             result = "%s" % (raw_surn_data["connector"])
             return " ".join(result.split())
@@ -291,8 +290,8 @@ def _raw_nonpatro_surname(raw_surn_data_list):
     for raw_surn_data in raw_surn_data_list:
         if (
             (not raw_surn_data["primary"])
-            and raw_surn_data["origintype"]["string"] != _ORIGINPATRO
-            and raw_surn_data["origintype"]["string"] != _ORIGINMATRO
+            and raw_surn_data["origintype"]["value"] != _ORIGINPATRO
+            and raw_surn_data["origintype"]["value"] != _ORIGINMATRO
         ):
             result += __format_raw_surname(raw_surn_data)
     return result.strip()
@@ -912,7 +911,7 @@ class NameDisplay:
         try:
             s = func(
                 first,
-                [to_dict(surn) for surn in surname_list],
+                [object_to_data(surn) for surn in surname_list],
                 suffix,
                 title,
                 call,
@@ -1142,8 +1141,8 @@ class NameDisplay:
             surname = []
             for _surname in srnme:
                 if (
-                    _surname["origintype"]["string"] == _ORIGINPATRO
-                    or _surname["origintype"]["string"] == _ORIGINMATRO
+                    _surname["origintype"]["value"] == _ORIGINPATRO
+                    or _surname["origintype"]["value"] == _ORIGINMATRO
                 ):
                     # Yes, we have one.
                     surname = [_surname]

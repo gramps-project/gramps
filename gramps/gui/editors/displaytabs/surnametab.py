@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -77,7 +76,7 @@ class SurnameTab(EmbeddedList):
     #  (name, sortcol in model, width, markup/text
     _column_names = [
         (_("Prefix"), 0, 150, TEXT_EDIT_COL, -1, None),
-        (_("Surname"), 1, -1, TEXT_EDIT_COL, -1, None),
+        (_("Surname", "Multiple surnames"), 1, -1, TEXT_EDIT_COL, -1, None),
         (_("Connector"), 2, 100, TEXT_EDIT_COL, -1, None),
     ]
     _column_combo = (_("Origin"), -1, 150, 3)  # name, sort, width, modelcol
@@ -251,7 +250,7 @@ class SurnameTab(EmbeddedList):
         """
         Delete button is clicked. Remove from the model
         """
-        (_model, node) = self.selection.get_selected()
+        _model, node = self.selection.get_selected()
         if node:
             path = self.model.get_path(node).to_string()
             if path == self.curr_path:
@@ -316,7 +315,7 @@ class SurnameTab(EmbeddedList):
 
     def on_origcmb_change(self, cmb, path, colnr):
         """
-        A selection occured in the cmb of the origin type column. colnr must
+        A selection occurred in the cmb of the origin type column. colnr must
         be the column in the model.
         """
         act = cmb.get_active()
@@ -349,7 +348,7 @@ class SurnameTab(EmbeddedList):
 
     def edit_button_clicked(self, obj):
         """Edit button clicked"""
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         if node:
             path = self.model.get_path(node)
             self.tree.set_cursor_on_cell(
@@ -379,7 +378,7 @@ class SurnameTab(EmbeddedList):
         """
         Move to the next cell to edit it
         """
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         if node:
             path = self.model.get_path(node).get_indices()[0]
             nccol = self.curr_col + 1
@@ -414,7 +413,7 @@ class SurnameTab(EmbeddedList):
         """
         Move to the next cell to edit it
         """
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         if node:
             path = self.model.get_path(node).get_indices()[0]
             if self.curr_col > 0:

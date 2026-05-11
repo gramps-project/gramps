@@ -15,14 +15,14 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Provide a simplified database access interface to the Gramps database.
 """
+
 from ..lib import (
     Person,
     Family,
@@ -812,9 +812,16 @@ class SimpleAccess:
         """
 
         with self.dbase.get_person_cursor() as cursor:
-            # data[3] is primary_name; data[3][5][0][0] is surname
             slist = sorted(
-                (data[3][5][0][0] if data[3][5] else "", key) for key, data in cursor
+                (
+                    (
+                        data.primary_name.surname_list[0].surname
+                        if data.primary_name.surname_list
+                        else ""
+                    ),
+                    key,
+                )
+                for key, data in cursor
             )
 
         for info in slist:

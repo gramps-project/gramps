@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # plugins/mapservices/eniroswedenmap.py
 
@@ -122,7 +121,7 @@ def _build_area(db, place):
 
 
 class EniroSVMapService(MapService):
-    """Map  service using http://kartor.eniro.se"""
+    """Map  service using https://kartor.eniro.se"""
 
     def __init__(self):
         MapService.__init__(self)
@@ -174,7 +173,7 @@ class EniroSVMapService(MapService):
             if not country_given:
                 zoom = 3
             path = (
-                "http://www.eniro.se/partner.fcgi?pis=1&x=%s&y=%s"
+                "https://www.eniro.se/partner.fcgi?pis=1&x=%s&y=%s"
                 "&zoom_level=%i&map_size=0&title=%s&city=%s&partner=gramps"
             )
             # Note x and y are swapped!
@@ -186,7 +185,7 @@ class EniroSVMapService(MapService):
         if country_given and place_area:
             if country in MAP_NAMES_SWEDEN:
                 path = (
-                    "http://kartor.eniro.se/query?&what=map_adr&mop=aq"
+                    "https://kartor.eniro.se/query?&what=map_adr&mop=aq"
                     "&geo_area=%s&partner=gramps"
                 )
                 path = path % (place_area)

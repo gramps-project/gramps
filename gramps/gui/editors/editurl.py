@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -97,6 +96,10 @@ class EditUrl(EditSecondary):
             self.obj.get_path,
             self.db.readonly,
         )
+        tooltip = _(
+            "The internet address as needed to navigate to it, eg. {gramps_url}"
+        ).format(gramps_url="https://gramps-project.org")
+        self.top.get_object("url_addr").set_tooltip_text(tooltip)
 
         self.priv = PrivacyButton(
             self.top.get_object("priv"), self.obj, self.db.readonly

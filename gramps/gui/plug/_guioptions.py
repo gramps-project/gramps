@@ -19,9 +19,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -152,7 +151,7 @@ class LastNameDialog(ManagedWindow):
         response = self.__dlg.run()
         surname_set = set()
         if response == Gtk.ResponseType.ACCEPT:
-            (mode, paths) = self.__tree_selection.get_selected_rows()
+            mode, paths = self.__tree_selection.get_selected_rows()
             for path in paths:
                 tree_iter = self.__model.get_iter(path)
                 surname = self.__model.get_value(tree_iter, 0)
@@ -695,6 +694,7 @@ class GuiPersonOption(Gtk.Box):
         """
         # Create a filter for the person selector.
         rfilter = GenericFilter()
+        rfilter.set_name(_("Active, bookmarked or home people"))
         rfilter.set_logical_op("or")
         rfilter.add_rule(rules.person.IsBookmarked([]))
         rfilter.add_rule(rules.person.HasIdOf([self.__option.get_value()]))
@@ -718,7 +718,7 @@ class GuiPersonOption(Gtk.Box):
             self.__uistate,
             self.__track,
             title=_("Select a person for the report"),
-            filter=rfilter,
+            search_or_filter=rfilter,
         )
         person = sel.run()
         self.__update_person(person)
@@ -852,6 +852,8 @@ class GuiFamilyOption(Gtk.Box):
         """
         # Create a filter for the person selector.
         rfilter = GenericFilterFactory("Family")()
+        rfilter.set_name(_("Active or bookmarked families"))
+
         rfilter.set_logical_op("or")
 
         # Add the current family
@@ -881,7 +883,9 @@ class GuiFamilyOption(Gtk.Box):
         # rfilter.add_rule(rules.family.HasIdOf([gid]))
 
         select_class = SelectorFactory("Family")
-        sel = select_class(self.__dbstate, self.__uistate, self.__track, filter=rfilter)
+        sel = select_class(
+            self.__dbstate, self.__uistate, self.__track, search_or_filter=rfilter
+        )
         family = sel.run()
         if family:
             self.__update_family(family.get_handle())
@@ -1279,7 +1283,7 @@ class GuiPersonListOption(Gtk.Box):
         """
         Handle the delete person button.
         """
-        (path, column) = self.__tree_view.get_cursor()
+        path, column = self.__tree_view.get_cursor()
         if path:
             tree_iter = self.__model.get_iter(path)
             self.__model.remove(tree_iter)
@@ -1427,7 +1431,7 @@ class GuiPlaceListOption(Gtk.Box):
         """
         Handle the delete place button.
         """
-        (path, column) = self.__tree_view.get_cursor()
+        path, column = self.__tree_view.get_cursor()
         if path:
             tree_iter = self.__model.get_iter(path)
             self.__model.remove(tree_iter)
@@ -1571,7 +1575,7 @@ class GuiSurnameColorOption(Gtk.Box):
         """
         Handle the delete surname button.
         """
-        (path, column) = self.__tree_view.get_cursor()
+        path, column = self.__tree_view.get_cursor()
         if path:
             tree_iter = self.__model.get_iter(path)
             self.__model.remove(tree_iter)

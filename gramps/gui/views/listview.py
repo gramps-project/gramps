@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -69,7 +68,7 @@ from ..widgets.menuitem import add_menuitem
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.utils.debug import profile
 from gramps.gen.utils.string import data_recover_msg
-from gramps.gen.plug import CATEGORY_QR_PERSON
+from gramps.gen.plug import CATEGORY_QR_MISC
 from ..dialog import QuestionDialog, QuestionDialog3, ErrorDialog, MultiSelectDialog
 from ..editors import FilterEditor
 from ..ddtargets import DdTargets
@@ -106,7 +105,7 @@ class ListView(NavigationView):
     DEL_MSG = ""
     MERGE_MSG = ""
     FILTER_TYPE = ""  # Set in inheriting class
-    QR_CATEGORY = -1
+    QR_CATEGORY = CATEGORY_QR_MISC
 
     def __init__(
         self,
@@ -207,7 +206,7 @@ class ListView(NavigationView):
             self.selection.set_mode(Gtk.SelectionMode.MULTIPLE)
         self.selection.connect("changed", self.row_changed)
 
-        self.setup_filter()
+        self.setup_searches()
         self.list.restore_column_size()
         return self.vbox
 
@@ -336,8 +335,13 @@ class ListView(NavigationView):
             if not self.search_bar.is_visible():
                 filter_info = (True, self.generic_filter, False)
             else:
-                value = self.search_bar.get_value()
-                filter_info = (False, value, value[0] in self.exact_search())
+                filter_info = self.search_bar.get_value()
+                if not filter_info[0]:
+                    filter_info = (
+                        filter_info[0],
+                        filter_info[1],
+                        filter_info[1][0] in self.exact_search(),
+                    )
 
             if self.dirty or not self.model:
                 if self.model:
@@ -358,7 +362,7 @@ class ListView(NavigationView):
                 try:
                     self.model.rebuild_data()
                 except FilterError as msg:
-                    (msg1, msg2) = msg.messages()
+                    msg1, msg2 = msg.messages()
                     ErrorDialog(msg1, msg2, parent=self.uistate.window)
 
             cput1 = perf_counter()
@@ -416,9 +420,9 @@ class ListView(NavigationView):
         except WindowActiveError:
             return
 
-    def setup_filter(self):
+    def setup_searches(self):
         """Build the default filters and add them to the filter menu."""
-        self.search_bar.setup_filter(
+        self.search_bar.setup_searches(
             [
                 (self.COLUMNS[pair[1]][0], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order()
@@ -556,7 +560,7 @@ class ListView(NavigationView):
         # column that was sorted on before is situated now.
         self.sort_col = 0
         self.sort_order = Gtk.SortType.ASCENDING
-        self.setup_filter()
+        self.setup_searches()
         self.build_tree(preserve_col=False)
 
     def column_order(self):
@@ -782,8 +786,13 @@ class ListView(NavigationView):
         if not self.search_bar.is_visible():
             filter_info = (True, self.generic_filter, False)
         else:
-            value = self.search_bar.get_value()
-            filter_info = (False, value, value[0] in self.exact_search())
+            filter_info = self.search_bar.get_value()
+            if not filter_info[0]:
+                filter_info = (
+                    filter_info[0],
+                    filter_info[1],
+                    filter_info[1][0] in self.exact_search(),
+                )
 
         if same_col:
             # activate when https://bugzilla.gnome.org/show_bug.cgi?id=684558
@@ -1052,8 +1061,8 @@ class ListView(NavigationView):
             self.at_popup_menu = []
             actions = []
             # Quick Reports
-            if self.QR_CATEGORY > -1:
-                (qr_ui, qr_actions) = create_quickreport_menu(
+            if self.QR_CATEGORY != CATEGORY_QR_MISC:
+                qr_ui, qr_actions = create_quickreport_menu(
                     self.QR_CATEGORY,
                     self.dbstate,
                     self.uistate,
@@ -1066,8 +1075,8 @@ class ListView(NavigationView):
                     self.at_popup_menu.append(qr_ui)
 
             # Web Connects
-            if self.QR_CATEGORY == CATEGORY_QR_PERSON:
-                (web_ui, web_actions) = create_web_connect_menu(
+            if self.QR_CATEGORY != CATEGORY_QR_MISC:
+                web_ui, web_actions = create_web_connect_menu(
                     self.dbstate,
                     self.uistate,
                     self.navigation_type(),

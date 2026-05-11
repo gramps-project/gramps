@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # gen.filters.rules/_HasNoteBase.py
 
@@ -37,6 +36,14 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from . import Rule
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.notebase import NoteBase
+from ...db import Database
 
 
 # -------------------------------------------------------------------------
@@ -58,7 +65,7 @@ class HasNoteBase(Rule):
         else:
             Rule.__init__(self, arg, use_regex, use_case)
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         # things we want to do just once, not for every handle
         if self.list[1] == "less than":
             self.count_type = 0
@@ -69,8 +76,8 @@ class HasNoteBase(Rule):
 
         self.userSelectedCount = int(self.list[0])
 
-    def apply(self, db, obj):
-        count = len(obj.get_note_list())
+    def apply_to_one(self, db: Database, obj: NoteBase) -> bool:
+        count = len(obj.note_list)
         if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
         elif self.count_type == 2:  # "greater than"

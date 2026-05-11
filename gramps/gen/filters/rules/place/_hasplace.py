@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -37,6 +36,14 @@ _ = glocale.translation.sgettext
 from .. import Rule
 from ....lib import PlaceType
 from ....utils.location import get_locations
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Place
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -73,11 +80,11 @@ class HasPlace(Rule):
         PlaceType.PARISH: 8,
     }
 
-    def apply(self, db, place):
-        if not self.match_substring(0, place.get_title()):
+    def apply_to_one(self, db: Database, place: Place) -> bool:
+        if not self.match_substring(0, place.title):
             return False
 
-        if not self.match_substring(7, place.get_code()):
+        if not self.match_substring(7, place.code):
             return False
 
         # If no location data was given then we're done: match

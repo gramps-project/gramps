@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -31,6 +30,14 @@ from ....const import GRAMPS_LOCALE as glocale
 from ....lib.eventroletype import EventRoleType
 from ....lib.eventtype import EventType
 from .. import Rule
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
 
 _ = glocale.translation.gettext
 
@@ -54,7 +61,7 @@ class IsWitness(Rule):
         super().__init__(arg, use_regex, use_case)
         self.event_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things only want to do once.
         """
@@ -62,12 +69,12 @@ class IsWitness(Rule):
             self.event_type = EventType()
             self.event_type.set_from_xml_str(self.list[0])
 
-    def apply(self, db, obj):
+    def apply_to_one(self, db: Database, obj: Person) -> bool:
         """
         Apply the rule. Return True on a match.
         """
         for event_ref in obj.event_ref_list:
-            if event_ref.role == EventRoleType.WITNESS:
+            if event_ref.role.value == EventRoleType.WITNESS:
                 # This is the witness.
                 # If event type was given, then check it.
                 if self.event_type:

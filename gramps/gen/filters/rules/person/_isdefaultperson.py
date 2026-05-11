@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -34,6 +33,15 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Person
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 #
@@ -47,13 +55,11 @@ class IsDefaultPerson(Rule):
     category = _("General filters")
     description = _("Matches the Home Person")
 
-    def prepare(self, db, user):
-        p = db.get_default_person()
+    def prepare(self, db: Database, user):
+        self.selected_handles: Set[str] = set()
+        p: Person = db.get_default_person()
         if p:
-            self.def_handle = p.get_handle()
-            self.apply = self.apply_real
-        else:
-            self.apply = lambda db, p: False
+            self.selected_handles.add(p.handle)
 
-    def apply_real(self, db, person):
-        return person.handle == self.def_handle
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles

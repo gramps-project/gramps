@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # gen.filters.rules/Person/_HasAlternateName.py
 
@@ -35,6 +34,14 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 #
@@ -48,8 +55,5 @@ class HasAlternateName(Rule):
     description = _("Matches people with an alternate name")
     category = _("General filters")
 
-    def apply(self, db, person):
-        if person.get_alternate_names():
-            return True
-        else:
-            return False
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return True if person.alternate_names else False

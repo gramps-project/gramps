@@ -20,9 +20,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -58,7 +57,7 @@ LOG = logging.getLogger(".WriteXML")
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
-from gramps.gen.const import URL_HOMEPAGE
+from gramps.gen.const import URL_NS
 from gramps.gen.lib import Date, Person
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
@@ -259,13 +258,12 @@ class GrampsXmlWriter(UpdateCallback):
             '"%sxml/%s/grampsxml.dtd">\n'
             % (
                 libgrampsxml.GRAMPS_XML_VERSION,
-                URL_HOMEPAGE,
+                URL_NS,
                 libgrampsxml.GRAMPS_XML_VERSION,
             )
         )
         self.g.write(
-            '<database xmlns="%sxml/%s/">\n'
-            % (URL_HOMEPAGE, libgrampsxml.GRAMPS_XML_VERSION)
+            '<database xmlns="%sxml/%s/">\n' % (URL_NS, libgrampsxml.GRAMPS_XML_VERSION)
         )
         self.g.write("  <header>\n")
         self.g.write('    <created date="%04d-%02d-%02d"' % date[:3])
@@ -1490,6 +1488,6 @@ class XmlWriter(GrampsXmlWriter):
         try:
             ret = GrampsXmlWriter.write(self, filename)
         except DbWriteFailure as msg:
-            (m1, m2) = msg.messages()
+            m1, m2 = msg.messages()
             self.user.notify_error("%s\n%s" % (m1, m2))
         return ret

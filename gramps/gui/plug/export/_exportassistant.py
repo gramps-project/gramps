@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Written by B.Malengier
@@ -274,7 +273,7 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
         """This method gets the option page, and fills it with the options."""
         option = self.get_selected_format_index()
         vbox = self.get_nth_page(_ExportAssistant_pages["options"])
-        (config_title, config_box_class) = self.map_exporters[option].get_config()
+        config_title, config_box_class = self.map_exporters[option].get_config()
         # self.set_page_title(vbox, config_title)
         # remove present content of the vbox
         list(map(vbox.remove, vbox.get_children()))

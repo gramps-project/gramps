@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -77,7 +76,7 @@ class NameOriginType(GrampsType):
     _DEFAULT = NONE
 
     _DATAMAP = [
-        (UNKNOWN, _("Unknown"), "Unknown "),
+        (UNKNOWN, _("Unknown", "Surname"), "Unknown "),
         (CUSTOM, _("Custom"), "Custom"),
         (NONE, "", ""),
         (INHERITED, _("Inherited", "Surname"), "Inherited"),
@@ -89,8 +88,8 @@ class NameOriginType(GrampsType):
         (PSEUDONYM, _("Pseudonym"), "Pseudonym"),
         (PATRILINEAL, _("Patrilineal"), "Patrilineal"),
         (MATRILINEAL, _("Matrilineal"), "Matrilineal"),
-        (OCCUPATION, _("Occupation"), "Occupation"),
-        (LOCATION, _("Location"), "Location"),
+        (OCCUPATION, _("Occupation", "Surname"), "Occupation"),
+        (LOCATION, _("Location", "Surname"), "Location"),
     ]
 
     def __init__(self, value=None):

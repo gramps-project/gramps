@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -37,9 +36,7 @@ class NoteModel(Gtk.ListStore):
         self.db = db
         for handle in note_list:
             note = self.db.get_note_from_handle(handle)
-            text = note.get()[:85].replace("\n", " ")
-            if len(text) > 80:
-                text = text[:80] + "..."
+            text = note.get_preview()
             self.append(
                 row=[
                     str(note.get_type()),

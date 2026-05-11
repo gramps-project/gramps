@@ -14,16 +14,16 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from gramps.gen.plug._pluginreg import *
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import URL_MANUAL_PAGE, GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
 MODULE_VERSION = "6.0"
+REPORTS_HELP = URL_MANUAL_PAGE + "_-_Reports#Graphical_Reports"
 
 # this is the default in gen/plug/_pluginreg.py: plg.require_active = True
 
@@ -48,6 +48,7 @@ plg.category = CATEGORY_DRAW
 plg.reportclass = "AncestorTree"
 plg.optionclass = "AncestorTreeOptions"
 plg.report_modes = [REPORT_MODE_BKI]
+plg.help_url = REPORTS_HELP
 
 plg = newplugin()
 plg.id = "ancestor_chart"
@@ -64,6 +65,7 @@ plg.category = CATEGORY_DRAW
 plg.reportclass = "AncestorTree"
 plg.optionclass = "AncestorTreeOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -86,6 +88,7 @@ plg.category = CATEGORY_DRAW
 plg.reportclass = "Calendar"
 plg.optionclass = "CalendarOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -108,6 +111,7 @@ plg.category = CATEGORY_DRAW
 plg.reportclass = "DescendTree"
 plg.optionclass = "DescendTreeOptions"
 plg.report_modes = [REPORT_MODE_BKI]
+plg.help_url = REPORTS_HELP
 
 plg = newplugin()
 plg.id = "descend_chart"
@@ -124,6 +128,7 @@ plg.category = CATEGORY_DRAW
 plg.reportclass = "DescendTree"
 plg.optionclass = "DescendTreeOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -147,6 +152,7 @@ plg.require_active = True
 plg.reportclass = "DescendTree"
 plg.optionclass = "DescendTreeOptions"
 plg.report_modes = [REPORT_MODE_BKI]
+plg.help_url = REPORTS_HELP
 
 plg = newplugin()
 plg.id = "family_descend_chart"
@@ -164,6 +170,7 @@ plg.require_active = True
 plg.reportclass = "DescendTree"
 plg.optionclass = "DescendTreeOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -186,6 +193,7 @@ plg.category = CATEGORY_DRAW
 plg.reportclass = "FanChart"
 plg.optionclass = "FanChartOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -211,6 +219,7 @@ plg.reportclass = "StatisticsChart"
 plg.optionclass = "StatisticsChartOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 plg.require_active = False
+plg.help_url = REPORTS_HELP
 
 # ------------------------------------------------------------------------
 #
@@ -233,3 +242,4 @@ plg.category = CATEGORY_DRAW
 plg.reportclass = "TimeLine"
 plg.optionclass = "TimeLineOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+plg.help_url = REPORTS_HELP

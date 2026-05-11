@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2015-2016,2024 Douglas S. Blank <doug.blank@gmail.com>
 # Copyright (C) 2016-2017      Nick Hall
+# Copyright (C) 2026           Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -29,10 +29,8 @@ Database API interface
 #
 # -------------------------------------------------------------------------
 import logging
-import json
 import time
-
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+import copy
 
 # ------------------------------------------------------------------------
 #
@@ -43,6 +41,7 @@ from gramps.gen.db.dbconst import (
     DBLOGNAME,
     KEY_TO_CLASS_MAP,
     KEY_TO_NAME_MAP,
+    PERSON_KEY,
     REFERENCE_KEY,
     TXNADD,
     TXNDEL,
@@ -53,6 +52,7 @@ from gramps.gen.lib import (
     Citation,
     Event,
     Family,
+    FamilySearchSync,
     Media,
     Note,
     Person,
@@ -61,12 +61,38 @@ from gramps.gen.lib import (
     Source,
     Tag,
 )
-from gramps.gen.lib.serialize import from_dict, to_dict
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.updatecallback import UpdateCallback
 
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.db import DbTxn
+from gramps.gen.errors import HandleError
+
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
+
+_ = glocale.translation.gettext
+
+
+def _familysearch_status_from_raw_person_data(person_data):
+    """
+    Return compact FamilySearch status data from raw Person JSON data.
+    """
+    if not isinstance(person_data, dict):
+        return {}
+
+    sync_data = person_data.get("familysearch_sync")
+    if not isinstance(sync_data, dict):
+        return {}
+
+    return FamilySearchSync(sync_data).to_status_dict()
+
+
+def _familysearch_sync_data_from_status(status):
+    """
+    Return raw FamilySearch sync JSON data from compact status data.
+    """
+    return FamilySearchSync(status).serialize()
 
 
 # -------------------------------------------------------------------------
@@ -108,11 +134,17 @@ class DBAPI(DbGeneric):
         """
         return self.dbapi.table_exists("person")
 
-    def _create_schema(self):
+    def _create_schema(self, json_data):
         """
         Create and update schema.
         """
         self.dbapi.begin()
+        if json_data:
+            col_data = "json_data TEXT"
+            meta_col_data = "json_data TEXT, value BLOB"
+        else:
+            col_data = "blob_data BLOB"
+            meta_col_data = "value BLOB"
 
         # make sure schema is up to date:
         self.dbapi.execute(
@@ -121,42 +153,42 @@ class DBAPI(DbGeneric):
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "given_name TEXT, "
             "surname TEXT, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE family "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE source "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE citation "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE event "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE media "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
@@ -164,28 +196,28 @@ class DBAPI(DbGeneric):
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "enclosed_by VARCHAR(50), "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE repository "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE note "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE tag "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{col_data}"
             ")"
         )
         # Secondary:
@@ -209,7 +241,7 @@ class DBAPI(DbGeneric):
             "CREATE TABLE metadata "
             "("
             "setting VARCHAR(50) PRIMARY KEY NOT NULL, "
-            "json_data TEXT"
+            f"{meta_col_data}"
             ")"
         )
         self.dbapi.execute(
@@ -246,6 +278,14 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
 
         self.dbapi.commit()
+
+    def _drop_column(self, table_name, column_name):
+        """
+        Used to remove a column of data which we don't need anymore.
+        Must be used within a tranaction
+        If db doesn't support, nothing happens
+        """
+        self.dbapi.drop_column(table_name, column_name)
 
     def _close(self):
         self.dbapi.close()
@@ -684,9 +724,21 @@ class DBAPI(DbGeneric):
         self._update_backlinks(obj, trans)
         if not trans.batch:
             if old_data:
-                trans.add(obj_key, TXNUPD, obj.handle, old_data, to_dict(obj))
+                trans.add(
+                    obj_key,
+                    TXNUPD,
+                    obj.handle,
+                    old_data,
+                    self.serializer.object_to_data(obj),
+                )
             else:
-                trans.add(obj_key, TXNADD, obj.handle, None, to_dict(obj))
+                trans.add(
+                    obj_key,
+                    TXNADD,
+                    obj.handle,
+                    None,
+                    self.serializer.object_to_data(obj),
+                )
 
         return old_data
 
@@ -696,7 +748,7 @@ class DBAPI(DbGeneric):
         changes as part of the transaction.
         """
         table = KEY_TO_NAME_MAP[obj_key]
-        handle = data["handle"]
+        handle = self.serializer.get_from_data_by_name(data, "handle")
 
         if self._has_handle(obj_key, handle):
             # update the object:
@@ -709,6 +761,20 @@ class DBAPI(DbGeneric):
             self.dbapi.execute(
                 f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
                 [handle, self.serializer.data_to_string(data)],
+            )
+
+    def _commit_familysearch_person_raw(self, handle, old_data, new_data, transaction):
+        """
+        Commit raw Person JSON after updating FamilySearch sync status.
+        """
+        self._commit_raw(new_data, PERSON_KEY)
+        if not transaction.batch:
+            transaction.add(
+                PERSON_KEY,
+                TXNUPD,
+                handle,
+                old_data,
+                copy.deepcopy(new_data),
             )
 
     def _update_backlinks(self, obj, transaction):
@@ -928,7 +994,7 @@ class DBAPI(DbGeneric):
             logging.info("Rebuilding %s reference map", class_func.__name__)
             with cursor_func() as cursor:
                 for _, val in cursor:
-                    obj = self.serializer.data_to_object(class_func, val)
+                    obj = self.serializer.data_to_object(val, class_func)
                     references = set(obj.get_referenced_handles_recursively())
                     # handle addition of new references
                     for ref_class_name, ref_handle in references:
@@ -1091,7 +1157,7 @@ class DBAPI(DbGeneric):
                     f"INSERT INTO {table} (handle, {self.serializer.data_field}) VALUES (?, ?)",
                     [handle, self.serializer.data_to_string(data)],
                 )
-            obj = from_dict(data)
+            obj = self.serializer.data_to_object(data, cls)
             self._update_secondary_values(obj)
 
     def get_surname_list(self):
@@ -1183,3 +1249,84 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    def get_familysearch_person_status(self, person_handle, default=None):
+        """
+        Return FamilySearch sync status for the given Person handle.
+        """
+        try:
+            person_data = self.get_raw_person_data(person_handle)
+        except HandleError:
+            return {} if default is None else default
+
+        data = _familysearch_status_from_raw_person_data(person_data)
+        if not data:
+            return {} if default is None else default
+
+        return data
+
+    def set_familysearch_person_status(self, person_handle, status, transaction=None):
+        """
+        Persist FamilySearch sync status for the given Person handle.
+
+        Passing an empty dict clears the stored FamilySearch sync data.
+        """
+        if not person_handle:
+            return
+
+        if status is None:
+            status = {}
+        if not isinstance(status, dict):
+            raise TypeError("status must be a dict")
+
+        try:
+            person_data = self.get_raw_person_data(person_handle)
+        except HandleError:
+            return
+
+        if not status:
+            self.delete_familysearch_person_status(person_handle, transaction)
+            return
+
+        if not isinstance(person_data, dict):
+            return
+
+        old_data = copy.deepcopy(person_data)
+        person_data["familysearch_sync"] = _familysearch_sync_data_from_status(status)
+
+        if transaction is not None:
+            self._commit_familysearch_person_raw(
+                person_handle, old_data, person_data, transaction
+            )
+            return
+
+        with DbTxn(_("FamilySearch: status update"), self) as txn:
+            self._commit_familysearch_person_raw(
+                person_handle, old_data, person_data, txn
+            )
+
+    def delete_familysearch_person_status(self, person_handle, transaction=None):
+        """
+        Clear FamilySearch sync status for the given Person handle.
+        """
+        try:
+            person_data = self.get_raw_person_data(person_handle)
+        except HandleError:
+            return
+
+        if not isinstance(person_data, dict):
+            return
+
+        old_data = copy.deepcopy(person_data)
+        person_data["familysearch_sync"] = FamilySearchSync().serialize()
+
+        if transaction is not None:
+            self._commit_familysearch_person_raw(
+                person_handle, old_data, person_data, transaction
+            )
+            return
+
+        with DbTxn(_("FamilySearch: status update"), self) as txn:
+            self._commit_familysearch_person_raw(
+                person_handle, old_data, person_data, txn
+            )

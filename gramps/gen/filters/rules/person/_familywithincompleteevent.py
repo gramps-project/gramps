@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -34,6 +33,14 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 # "Families with incomplete events"
@@ -47,15 +54,15 @@ class FamilyWithIncompleteEvent(Rule):
     )
     category = _("Event filters")
 
-    def apply(self, db, person):
-        for family_handle in person.get_family_handle_list():
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for family_handle in person.family_list:
             family = db.get_family_from_handle(family_handle)
             if family:
-                for event_ref in family.get_event_ref_list():
+                for event_ref in family.event_ref_list:
                     if event_ref:
                         event = db.get_event_from_handle(event_ref.ref)
-                        if not event.get_place_handle():
+                        if not event.place:
                             return True
-                        if not event.get_date_object():
+                        if not event.date:
                             return True
         return False

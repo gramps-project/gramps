@@ -13,16 +13,16 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Unittest for editreference.py """
+"""Unittest for editreference.py"""
 
 import unittest
 from unittest.mock import Mock, patch
 import os
+import shutil
 
 from gramps.gen.lib import (
     Person,
@@ -58,6 +58,13 @@ class MockEditReference(EditReference):
 
 
 class TestEditReference(unittest.TestCase):
+    @classmethod
+    def tearDownClass(cls):
+        # Remove the test db directory
+        path = "/tmp/edit_ref_test"
+        if os.path.exists(path):
+            shutil.rmtree(path, ignore_errors=True)
+
     def test_editreference(self):
         dbstate = DbState()
         db = make_database("sqlite")
@@ -78,6 +85,7 @@ class TestEditReference(unittest.TestCase):
         with patch("gramps.gui.editors.editreference.ErrorDialog") as MockED:
             editor.check_for_duplicate_id("Place")
             self.assertTrue(MockED.called)
+        db.close()
 
 
 if __name__ == "__main__":

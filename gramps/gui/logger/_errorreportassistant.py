@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -51,6 +50,17 @@ try:
     sqlite3_version_str = sqlite3.sqlite_version
 except:
     sqlite3_version_str = "not found"
+
+try:
+    import orjson
+
+    try:
+        orjson_str = orjson.__version__
+    except:  # any failure to 'get' the version
+        orjson_str = "unknown version"
+
+except ImportError:
+    orjson_str = "not found"
 
 # -------------------------------------------------------------------------
 #
@@ -200,6 +210,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
             "Python version: %s \n"
             "BSDDB version: %s \n"
             "%s"
+            "orjson version: %s\n"
             "LANG: %s\n"
             "OS: %s\n"
             "%s\n"
@@ -211,6 +222,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                 platform.python_version(),
                 BSDDB_STR,
                 sqlite,
+                orjson_str,
                 get_env_var("LANG", ""),
                 platform.system(),
                 distribution,

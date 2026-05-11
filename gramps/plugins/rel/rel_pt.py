@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Portuguese version by Duarte Loreto <happyguy_pt@hotmail.com>, 2007.
@@ -188,7 +187,7 @@ _mother_level = [
 ]
 
 # Higher-order terms (after "tetravô") are not standard in Portuguese.
-# Check http://www.geneall.net/P/forum_msg.php?id=136774 that states
+# Check https://www.geneall.net/P/forum_msg.php?id=136774 that states
 # that although some people may use other greek-prefixed forms for
 # higher levels, both pt and pt_BR correct form is to use, after
 # "tetravô", the "quinto avô", "sexto avô", etc.

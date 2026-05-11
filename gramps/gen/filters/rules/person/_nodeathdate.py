@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -34,6 +33,14 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 # "People without a death date"
@@ -45,15 +52,18 @@ class NoDeathdate(Rule):
     description = _("Matches people without a known deathdate")
     category = _("General filters")
 
-    def apply(self, db, person):
-        death_ref = person.get_death_ref()
-        if not death_ref:
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        if 0 <= person.death_ref_index < len(person.event_ref_list):
+            death_ref = person.event_ref_list[person.death_ref_index]
+            if not death_ref:
+                return True
+            death = db.get_event_from_handle(death_ref.ref)
+            if death:
+                death_obj = death.date
+                if not death_obj:
+                    return True
+                if death_obj.sortval == 0:
+                    return True
+            return False
+        else:
             return True
-        death = db.get_event_from_handle(death_ref.ref)
-        if death:
-            death_obj = death.get_date_object()
-            if not death_obj:
-                return True
-            if death_obj.sortval == 0:
-                return True
-        return False

@@ -17,12 +17,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" GUI dialog for creating and managing books """
+"""GUI dialog for creating and managing books"""
 
 # Written by Alex Roitman,
 # largely based on the BaseDoc classes by Don Allingham
@@ -1063,12 +1062,12 @@ class BookDialog(DocReportDialog):
                     rpt.write_report()
             self.doc.close()
         except ReportError as msg:
-            (msg1, msg2) = msg.messages()
+            msg1, msg2 = msg.messages()
             msg2 += " (%s)" % name  # which report has the error?
             ErrorDialog(msg1, msg2, parent=self.uistate.window)
             return
         except FilterError as msg:
-            (msg1, msg2) = msg.messages()
+            msg1, msg2 = msg.messages()
             ErrorDialog(msg1, msg2, parent=self.uistate.window)
             return
 
@@ -1112,10 +1111,10 @@ def write_book_item(database, report_class, options, user):
     try:
         return report_class(database, options, user)
     except ReportError as msg:
-        (msg1, msg2) = msg.messages()
+        msg1, msg2 = msg.messages()
         ErrorDialog(msg1, msg2, parent=user.uistate.window)
     except FilterError as msg:
-        (msg1, msg2) = msg.messages()
+        msg1, msg2 = msg.messages()
         ErrorDialog(msg1, msg2, parent=user.uistate.window)
     except:
         LOG.error("Failed to write book item.", exc_info=True)

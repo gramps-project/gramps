@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Tools/Debug/Generate Testcases for Persons and Families"""
@@ -205,7 +204,7 @@ LDS_SPOUSE_SEALING = [(LdsOrd.SEAL_TO_SPOUSE, LDS_SPOUSE_SEALING_DATE_STATUS)]
 
 class TestcaseGenerator(tool.BatchTool):
     """
-    This tool generates various test cases for problems that have occured.
+    This tool generates various test cases for problems that have occurred.
     The issues it generates can be corrected via the 'Check and Repair' tool.
     """
 
@@ -455,23 +454,27 @@ class TestcaseGenerator(tool.BatchTool):
             ) as self.progress_step:
                 self.person_count = 0
 
-                while True:
-                    if not self.persons_todo:
-                        pers_h = self.generate_person(0)
-                        self.persons_todo.append(pers_h)
-                        self.parents_todo.append(pers_h)
-                    person_h = self.persons_todo.pop(0)
-                    self.generate_family(person_h)
-                    if _randint(0, 3) == 0:
+                with DbTxn(
+                    _("Testcase generator step %d") % self.transaction_count, self.db
+                ) as self.trans:
+                    self.transaction_count += 1
+                    while True:
+                        if not self.persons_todo:
+                            pers_h = self.generate_person(0)
+                            self.persons_todo.append(pers_h)
+                            self.parents_todo.append(pers_h)
+                        person_h = self.persons_todo.pop(0)
                         self.generate_family(person_h)
-                    if _randint(0, 7) == 0:
-                        self.generate_family(person_h)
-                    if self.person_count > self.max_person_count:
-                        break
-                    for child_h in self.parents_todo:
-                        self.generate_parents(child_h)
+                        if _randint(0, 3) == 0:
+                            self.generate_family(person_h)
+                        if _randint(0, 7) == 0:
+                            self.generate_family(person_h)
                         if self.person_count > self.max_person_count:
                             break
+                        for child_h in self.parents_todo:
+                            self.generate_parents(child_h)
+                            if self.person_count > self.max_person_count:
+                                break
 
         if not cli:
             self.top.destroy()
@@ -1304,7 +1307,7 @@ class TestcaseGenerator(tool.BatchTool):
         # Family : EventRef
         evt = Event()
         evt.set_type(EventType.MARRIAGE)
-        (dummy, date) = self.rand_date()
+        dummy, date = self.rand_date()
         evt.set_date_object(date)
         evt.set_description(message)
         event_h = self.db.add_event(evt, self.trans)
@@ -1371,7 +1374,7 @@ class TestcaseGenerator(tool.BatchTool):
         # Person : EventRef
         evt = Event()
         evt.set_type(EventType.ELECTED)
-        (dummy, dat) = self.rand_date()
+        dummy, dat = self.rand_date()
         evt.set_date_object(dat)
         evt.set_description(message)
         event_h = self.db.add_event(evt, self.trans)
@@ -1474,7 +1477,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         # Name
         name = Name()
-        (firstname, lastname) = self.rand_name(lastname, gender)
+        firstname, lastname = self.rand_name(lastname, gender)
         name.set_first_name(firstname)
         surname = Surname()
         surname.set_surname(lastname)
@@ -1548,31 +1551,31 @@ class TestcaseGenerator(tool.BatchTool):
 
         # birth
         if _randint(0, 1) == 1:
-            (dummy, eref) = self.rand_personal_event(EventType.BIRTH, b_y, b_y)
+            dummy, eref = self.rand_personal_event(EventType.BIRTH, b_y, b_y)
             pers.set_birth_ref(eref)
 
         # baptism
         if _randint(0, 1) == 1:
-            (dummy, eref) = self.rand_personal_event(
+            dummy, eref = self.rand_personal_event(
                 _choice((EventType.BAPTISM, EventType.CHRISTEN)), b_y, b_y + 2
             )
             pers.add_event_ref(eref)
 
         # death
         if _randint(0, 1) == 1:
-            (dummy, eref) = self.rand_personal_event(EventType.DEATH, d_y, d_y)
+            dummy, eref = self.rand_personal_event(EventType.DEATH, d_y, d_y)
             pers.set_death_ref(eref)
 
         # burial
         if _randint(0, 1) == 1:
-            (dummy, eref) = self.rand_personal_event(
+            dummy, eref = self.rand_personal_event(
                 _choice((EventType.BURIAL, EventType.CREMATION)), d_y, d_y + 2
             )
             pers.add_event_ref(eref)
 
         # some other events
         while _randint(0, 5) == 1:
-            (dummy, eref) = self.rand_personal_event(None, b_y, d_y)
+            dummy, eref = self.rand_personal_event(None, b_y, d_y)
             pers.add_event_ref(eref)
 
         # some shared events
@@ -1624,7 +1627,7 @@ class TestcaseGenerator(tool.BatchTool):
             return
         alive_in_year = None
         if person1_h in self.person_dates:
-            (born, died) = self.person_dates[person1_h]
+            born, died = self.person_dates[person1_h]
             alive_in_year = min(born + _randint(10, 50), died + _randint(-10, 10))
 
         if person1.get_gender() == 1:
@@ -1650,87 +1653,83 @@ class TestcaseGenerator(tool.BatchTool):
         if person2_h and _randint(0, 2) > 0:
             self.parents_todo.append(person2_h)
 
-        with DbTxn(
-            _("Testcase generator step %d") % self.transaction_count, self.db
-        ) as self.trans:
-            self.transaction_count += 1
-            fam = Family()
-            self.add_defaults(fam)
-            if person1_h:
-                fam.set_father_handle(person1_h)
-            if person2_h:
-                fam.set_mother_handle(person2_h)
+        fam = Family()
+        self.add_defaults(fam)
+        if person1_h:
+            fam.set_father_handle(person1_h)
+        if person2_h:
+            fam.set_mother_handle(person2_h)
 
-            # Avoid adding the same event more than once to the same family
-            event_set = set()
+        # Avoid adding the same event more than once to the same family
+        event_set = set()
 
-            # Generate at least one family event with a probability of 75%
-            if _randint(0, 3) > 0:
-                (dummy, eref) = self.rand_family_event(None)
-                fam.add_event_ref(eref)
-                event_set.add(eref.get_reference_handle())
+        # Generate at least one family event with a probability of 75%
+        if _randint(0, 3) > 0:
+            dummy, eref = self.rand_family_event(None)
+            fam.add_event_ref(eref)
+            event_set.add(eref.get_reference_handle())
 
-            # generate some more events with a lower probability
-            while _randint(0, 3) == 1:
-                (dummy, eref) = self.rand_family_event(None)
-                if eref.get_reference_handle() in event_set:
-                    continue
-                fam.add_event_ref(eref)
-                event_set.add(eref.get_reference_handle())
+        # generate some more events with a lower probability
+        while _randint(0, 3) == 1:
+            dummy, eref = self.rand_family_event(None)
+            if eref.get_reference_handle() in event_set:
+                continue
+            fam.add_event_ref(eref)
+            event_set.add(eref.get_reference_handle())
 
-            # some shared events
-            if self.generated_events:
-                while _randint(0, 5) == 1:
-                    typeval = EventType.UNKNOWN
-                    while int(typeval) not in self.FAMILY_EVENTS:
-                        e_h = _choice(self.generated_events)
-                        typeval = self.db.get_event_from_handle(e_h).get_type()
-                    if e_h in event_set:
-                        break
-                    eref = EventRef()
-                    self.fill_object(eref)
-                    eref.set_reference_handle(e_h)
-                    fam.add_event_ref(eref)
-                    event_set.add(e_h)
-
-            fam_h = self.db.add_family(fam, self.trans)
-            self.generated_families.append(fam_h)
-            fam = self.db.commit_family(fam, self.trans)
-            if person1_h:
-                person1 = self.db.get_person_from_handle(person1_h)
-                person1.add_family_handle(fam_h)
-                self.db.commit_person(person1, self.trans)
-            if person2_h:
-                person2 = self.db.get_person_from_handle(person2_h)
-                person2.add_family_handle(fam_h)
-                self.db.commit_person(person2, self.trans)
-
-            lastname = person1.get_primary_name().get_surname()
-
-            for i in range(0, _randint(1, 10)):
-                if self.person_count > self.max_person_count:
+        # some shared events
+        if self.generated_events:
+            while _randint(0, 5) == 1:
+                typeval = EventType.UNKNOWN
+                while int(typeval) not in self.FAMILY_EVENTS:
+                    e_h = _choice(self.generated_events)
+                    typeval = self.db.get_event_from_handle(e_h).get_type()
+                if e_h in event_set:
                     break
-                if alive_in_year:
-                    child_h = self.generate_person(
-                        None,
-                        lastname,
-                        alive_in_year=alive_in_year + _randint(16 + 2 * i, 30 + 2 * i),
-                    )
-                else:
-                    child_h = self.generate_person(None, lastname)
-                    (born, died) = self.person_dates[child_h]
-                    alive_in_year = born
-                fam = self.db.get_family_from_handle(fam_h)
-                child_ref = ChildRef()
-                child_ref.set_reference_handle(child_h)
-                self.fill_object(child_ref)
-                fam.add_child_ref(child_ref)
-                self.db.commit_family(fam, self.trans)
-                child = self.db.get_person_from_handle(child_h)
-                child.add_parent_family_handle(fam_h)
-                self.db.commit_person(child, self.trans)
-                if _randint(0, 3) > 0:
-                    self.persons_todo.append(child_h)
+                eref = EventRef()
+                self.fill_object(eref)
+                eref.set_reference_handle(e_h)
+                fam.add_event_ref(eref)
+                event_set.add(e_h)
+
+        fam_h = self.db.add_family(fam, self.trans)
+        self.generated_families.append(fam_h)
+        fam = self.db.commit_family(fam, self.trans)
+        if person1_h:
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1, self.trans)
+        if person2_h:
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2, self.trans)
+
+        lastname = person1.get_primary_name().get_surname()
+
+        for i in range(0, _randint(1, 10)):
+            if self.person_count > self.max_person_count:
+                break
+            if alive_in_year:
+                child_h = self.generate_person(
+                    None,
+                    lastname,
+                    alive_in_year=alive_in_year + _randint(16 + 2 * i, 30 + 2 * i),
+                )
+            else:
+                child_h = self.generate_person(None, lastname)
+                born, died = self.person_dates[child_h]
+                alive_in_year = born
+            fam = self.db.get_family_from_handle(fam_h)
+            child_ref = ChildRef()
+            child_ref.set_reference_handle(child_h)
+            self.fill_object(child_ref)
+            fam.add_child_ref(child_ref)
+            self.db.commit_family(fam, self.trans)
+            child = self.db.get_person_from_handle(child_h)
+            child.add_parent_family_handle(fam_h)
+            self.db.commit_person(child, self.trans)
+            if _randint(0, 3) > 0:
+                self.persons_todo.append(child_h)
 
     def generate_parents(self, child_h):
         """Add parents to a person, if not present already"""
@@ -1745,7 +1744,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         lastname = child.get_primary_name().get_surname()
         if child_h in self.person_dates:
-            (born, dummy) = self.person_dates[child_h]
+            born, dummy = self.person_dates[child_h]
             person1_h = self.generate_person(1, lastname, alive_in_year=born)
             person2_h = self.generate_person(0, alive_in_year=born)
         else:
@@ -1757,29 +1756,25 @@ class TestcaseGenerator(tool.BatchTool):
         if _randint(0, 2) > 1:
             self.parents_todo.append(person2_h)
 
-        with DbTxn(
-            _("Testcase generator step %d") % self.transaction_count, self.db
-        ) as self.trans:
-            self.transaction_count += 1
-            fam = Family()
-            self.add_defaults(fam)
-            fam.set_father_handle(person1_h)
-            fam.set_mother_handle(person2_h)
-            child_ref = ChildRef()
-            child_ref.set_reference_handle(child_h)
-            self.fill_object(child_ref)
-            fam.add_child_ref(child_ref)
-            fam_h = self.db.add_family(fam, self.trans)
-            self.generated_families.append(fam_h)
-            fam = self.db.commit_family(fam, self.trans)
-            person1 = self.db.get_person_from_handle(person1_h)
-            person1.add_family_handle(fam_h)
-            self.db.commit_person(person1, self.trans)
-            person2 = self.db.get_person_from_handle(person2_h)
-            person2.add_family_handle(fam_h)
-            self.db.commit_person(person2, self.trans)
-            child.add_parent_family_handle(fam_h)
-            self.db.commit_person(child, self.trans)
+        fam = Family()
+        self.add_defaults(fam)
+        fam.set_father_handle(person1_h)
+        fam.set_mother_handle(person2_h)
+        child_ref = ChildRef()
+        child_ref.set_reference_handle(child_h)
+        self.fill_object(child_ref)
+        fam.add_child_ref(child_ref)
+        fam_h = self.db.add_family(fam, self.trans)
+        self.generated_families.append(fam_h)
+        fam = self.db.commit_family(fam, self.trans)
+        person1 = self.db.get_person_from_handle(person1_h)
+        person1.add_family_handle(fam_h)
+        self.db.commit_person(person1, self.trans)
+        person2 = self.db.get_person_from_handle(person2_h)
+        person2.add_family_handle(fam_h)
+        self.db.commit_person(person2, self.trans)
+        child.add_parent_family_handle(fam_h)
+        self.db.commit_person(child, self.trans)
 
     def generate_tags(self):
         """Make up some odd tags"""
@@ -1904,7 +1899,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         if issubclass(obj.__class__, DateBase):
             if _randint(0, 1) == 1:
-                (dummy, dat) = self.rand_date()
+                dummy, dat = self.rand_date()
                 obj.set_date_object(dat)
 
         if isinstance(obj, Event):
@@ -2133,7 +2128,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         if isinstance(obj, Url):
             obj.set_path(
-                "http://www.gramps-project.org/?test=%s" % self.rand_text(self.SHORT)
+                "https://www.gramps-project.org/?test=%s" % self.rand_text(self.SHORT)
             )
             obj.set_description(self.rand_text(self.SHORT))
             obj.set_type(self.rand_type(UrlType()))
@@ -2163,7 +2158,7 @@ class TestcaseGenerator(tool.BatchTool):
         evt = Event()
         self.fill_object(evt)
         evt.set_type(e_type)
-        (year, dat) = self.rand_date(start, end)
+        year, dat = self.rand_date(start, end)
         evt.set_date_object(dat)
         event_h = self.db.add_event(evt, self.trans)
         self.generated_events.append(event_h)

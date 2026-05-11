@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -39,6 +38,15 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib import Event
+from ...db import Database
+
+
+# -------------------------------------------------------------------------
+#
 # HasEventBase
 #
 # -------------------------------------------------------------------------
@@ -58,7 +66,7 @@ class HasEventBase(Rule):
         self.date = None
         self.event_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things that should only be done once.
         """
@@ -71,7 +79,7 @@ class HasEventBase(Rule):
         except:
             pass
 
-    def apply(self, db, event):
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         """
         Apply the rule. Return True if a match.
         """
@@ -82,15 +90,15 @@ class HasEventBase(Rule):
             elif event.type != self.event_type:
                 return False
 
-        if not self.match_substring(3, event.get_description()):
+        if not self.match_substring(3, event.description):
             return False
 
         if self.date:
-            if not event.get_date_object().match(self.date):
+            if not event.date.match(self.date):
                 return False
 
         if self.list[2]:
-            place_id = event.get_place_handle()
+            place_id = event.place
             if place_id:
                 place = db.get_place_from_handle(place_id)
                 place_title = place_displayer.display(db, place)
@@ -100,7 +108,7 @@ class HasEventBase(Rule):
                 return False
 
         if not self.match_substring(
-            4, get_participant_from_event(db, event.get_handle(), all_=True)
+            4, get_participant_from_event(db, event.handle, all_=True)
         ):
             return False
 

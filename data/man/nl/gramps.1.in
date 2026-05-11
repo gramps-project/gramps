@@ -287,7 +287,7 @@ of LaTeX. Zo kunnen gebruikers het formaat wijzigen naar eigen wens.
 .SH AUTEURS
 Donald Allingham \fI<don@gramps-project.org>\fR
 .br 
-\fIhttp://gramps.sourceforge.net\fR
+\fIhttps://gramps.sourceforge.net\fR
 .LP 
 Deze man pagina werd oorspronkelijk geschreven door:
 .br 
@@ -312,4 +312,4 @@ XML-formaat: \fBgramps-manual.xml\fR onder \fIdoc/gramps-manual/$LANG\fR in
 de officiële brondistributie.
 .LP 
 De ontwikkelingsdocumentatie kan gevonden worden op de
-\fIhttp://developers.gramps-project.org\fR webstek. 
+\fIhttps://www.gramps\-project.org/wiki/index.php?title=Portal:Developers\fR webstek. 

@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Import from CSV Spreadsheet"
@@ -214,6 +213,18 @@ class CSVParser:
                 "call",
                 _("Call"),
                 _("call"),
+            ),
+            "nickname": (
+                "nickname",
+                _("nickname"),
+                "Nickname",
+                _("Nickname"),
+                "nick",
+                _("nick"),
+                "Nick",
+                _("Nick"),
+                "nick_name",
+                _("nick_name"),
             ),
             "tag": ("tag", _("tag"), _("Tag")),
             "title": ("title", _("title"), _("title", "Person or Place")),
@@ -758,6 +769,7 @@ class CSVParser:
         surname = rd(line_number, row, col, "surname")
         firstname = rd(line_number, row, col, "firstname")
         callname = rd(line_number, row, col, "callname")
+        nickname = rd(line_number, row, col, "nickname")
         tag = rd(line_number, row, col, "tag")
         title = rd(line_number, row, col, "title")
         prefix = rd(line_number, row, col, "prefix")
@@ -827,6 +839,8 @@ class CSVParser:
             name.set_first_name(firstname)
         if callname is not None:
             name.set_call_name(callname)
+        if nickname is not None:
+            name.set_nick_name(nickname)
         if title is not None:
             name.set_title(title)
         if prefix is not None:

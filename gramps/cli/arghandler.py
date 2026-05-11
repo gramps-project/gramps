@@ -20,9 +20,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -463,11 +462,11 @@ class ArgHandler:
             for summary in sorted(
                 summary_list, key=lambda sum: sum[_("Family Tree")].lower()
             ):
-                line_list = [(_('"%s"') % summary[_("Family Tree")])]
+                line_list = [_('"%s"') % summary[_("Family Tree")]]
                 for item in sorted(summary):
                     if item != _("Family Tree"):
                         # Translators: used in French+Russian, ignore otherwise
-                        line_list += [(_('"%s"') % summary[item])]
+                        line_list += [_('"%s"') % summary[item]]
                 print("\t".join(line_list))
             return
 

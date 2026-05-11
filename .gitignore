@@ -35,3 +35,5 @@ ehthumbs.db
 # Python metadata
 .venv*/
 
+# coverage
+.coverage

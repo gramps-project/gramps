@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -63,6 +62,7 @@ from gramps.gen.constfunc import has_display, is_quartz, mac, win
 from gramps.gen.config import config
 from gramps.gen.plug.utils import available_updates
 from gramps.gen.errors import WindowActiveError
+from .display import display_url
 
 # -------------------------------------------------------------------------
 #
@@ -492,6 +492,9 @@ def open_file_with_default_application(path, uistate):
     :type file_path: string
     :return: nothing
     """
+    if path.startswith(("http://", "https://")):
+        display_url(path)
+        return
 
     norm_path = os.path.normpath(path)
     if not os.path.exists(norm_path):

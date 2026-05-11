@@ -30,6 +30,7 @@ gramps/gen/errors.py
 gramps/gen/git_revision.py
 gramps/gen/sort.py
 gramps/gen/soundex.py
+gramps/gen/types.py
 gramps/gen/updatecallback.py
 gramps/gen/user.py
 #
@@ -99,6 +100,7 @@ gramps/gen/filters/__init__.py
 gramps/gen/filters/_filterlist.py
 gramps/gen/filters/_paramfilter.py
 gramps/gen/filters/_searchfilter.py
+gramps/gen/filters/optimizer.py
 #
 # gen.filters.rules package
 #
@@ -116,7 +118,6 @@ gramps/gen/filters/rules/event/__init__.py
 # gen.filters.rules.family package
 #
 gramps/gen/filters/rules/family/__init__.py
-gramps/gen/filters/rules/family/_memberbase.py
 #
 # gen.filters.rules.media package
 #
@@ -153,6 +154,11 @@ gramps/gen/filters/rules/test/person_rules_test.py
 gramps/gen/filters/rules/test/place_rules_test.py
 gramps/gen/filters/rules/test/repository_rules_test.py
 #
+# gen.filters.test package
+#
+gramps/gen/filters/test/__init__.py
+gramps/gen/filters/test/filter_optimizer_test.py
+#
 # gen lib API
 #
 gramps/gen/lib/__init__.py
@@ -165,6 +171,7 @@ gramps/gen/lib/datebase.py
 gramps/gen/lib/eventbase.py
 gramps/gen/lib/gcalendar.py
 gramps/gen/lib/genderstats.py
+gramps/gen/lib/json_utils.py
 gramps/gen/lib/ldsordbase.py
 gramps/gen/lib/locationbase.py
 gramps/gen/lib/mediabase.py
@@ -262,6 +269,11 @@ gramps/gen/proxy/living.py
 gramps/gen/proxy/proxybase.py
 gramps/gen/proxy/referencedbyselection.py
 #
+# gen.proxy.test
+#
+gramps/gen/proxy/test/__init__.py
+gramps/gen/proxy/test/proxies_test.py
+#
 # gen.simple
 #
 gramps/gen/simple/__init__.py
@@ -297,6 +309,7 @@ gramps/gen/utils/docgen/tabbeddoc.py
 #
 # gen.utils.test
 #
+gramps/gen/utils/test/alive_test.py
 gramps/gen/utils/test/callback_test.py
 gramps/gen/utils/test/file_test.py
 gramps/gen/utils/test/grampslocale_test.py
@@ -335,6 +348,7 @@ gramps/gui/editors/displaytabs/citationrefmodel.py
 gramps/gui/editors/displaytabs/eventattrembedlist.py
 gramps/gui/editors/displaytabs/eventbackreflist.py
 gramps/gui/editors/displaytabs/familyattrembedlist.py
+gramps/gui/editors/displaytabs/familybackreflist.py
 gramps/gui/editors/displaytabs/grampstab.py
 gramps/gui/editors/displaytabs/groupembeddedlist.py
 gramps/gui/editors/displaytabs/ldsmodel.py
@@ -367,6 +381,10 @@ gramps/gui/filters/_filtermenu.py
 # gui.filters.sidebar package
 #
 gramps/gui/filters/sidebar/__init__.py
+#
+# gui.fs package
+#
+gramps/gui/fs/session.py
 #
 # gui.glade.catalog package
 #
@@ -414,6 +432,7 @@ gramps/gui/selectors/selectorfactory.py
 #
 # gui.test package
 #
+gramps/gui/test/display_test.py
 gramps/gui/test/user_test.py
 #
 # gui/views - the GUI views package

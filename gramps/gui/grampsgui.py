@@ -15,12 +15,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" This contains the main class corresponding to a running gramps process """
+"""This contains the main class corresponding to a running gramps process"""
 
 # -------------------------------------------------------------------------
 #
@@ -75,6 +74,12 @@ UIDEFAULT = (
         <item groups='RO'>
           <attribute name="action">win.Close</attribute>
           <attribute name="label" translatable="yes">_Close</attribute>
+        </item>
+      </section>
+      <section groups='RO RW'>
+        <item groups='RW'>
+          <attribute name="action">win.Login</attribute>
+          <attribute name="label" translatable="yes">_FamilySearch Sign in...</attribute>
         </item>
       </section>
       <section groups='RO RW'>
@@ -471,6 +476,15 @@ except ImportError:
     )
     sys.exit(1)
 
+if glocale.no_gettext_support:
+    print(
+        _(
+            "Python compiled without gettext support in the locale module.\n\n"
+            "Gramps will terminate now."
+        )
+    )
+    sys.exit(1)
+
 # -------------------------------------------------------------------------
 #
 # Functions
@@ -573,7 +587,12 @@ class Gramps:
         dbstate = DbState()
         self._vm = ViewManager(app, dbstate, config.get("interface.view-categories"))
 
-        if lin() and glocale.lang != "C" and not gettext.find(GTK_GETTEXT_DOMAIN):
+        if (
+            lin()
+            and "SNAP" not in os.environ
+            and glocale.lang != "C"
+            and not gettext.find(GTK_GETTEXT_DOMAIN)
+        ):
             _display_gtk_gettext_message(parent=self._vm.window)
 
         _display_translator_message(parent=self._vm.window)

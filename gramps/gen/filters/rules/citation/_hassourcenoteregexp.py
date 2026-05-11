@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -39,6 +38,14 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .._hasnoteregexbase import HasNoteRegexBase
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Citation
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 #
@@ -58,8 +65,6 @@ class HasSourceNoteRegexp(HasNoteRegexBase):
     )
     category = _("Source filters")
 
-    def apply(self, db, citation):
-        source = db.get_source_from_handle(citation.get_reference_handle())
-        if HasNoteRegexBase.apply(self, db, source):
-            return True
-        return False
+    def apply_to_one(self, db: Database, citation: Citation) -> bool:  # type: ignore[override]
+        source = db.get_source_from_handle(citation.source_handle)
+        return HasNoteRegexBase.apply_to_one(self, db, source)

@@ -18,9 +18,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Written by Alex Roitman
@@ -51,7 +50,8 @@ from gi.repository import GdkPixbuf
 from gramps.gen.const import URL_MANUAL_PAGE, ICON, SPLASH
 from gramps.gui.display import display_help
 from gramps.gen.lib import Media
-from gramps.gen.lib.serialize import from_dict
+
+from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
@@ -570,7 +570,7 @@ class PathChange(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = from_dict(data)
+                obj = data_to_object(data)
                 if obj.get_path().find(from_text) != -1:
                     self.handle_list.append(handle)
                     self.path_list.append(obj.path)
@@ -609,7 +609,7 @@ class Convert2Abs(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = from_dict(data)
+                obj = data_to_object(data)
                 if not os.path.isabs(obj.path):
                     self.handle_list.append(handle)
                     self.path_list.append(obj.path)
@@ -647,7 +647,7 @@ class Convert2Rel(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = from_dict(data)
+                obj = data_to_object(data)
                 if os.path.isabs(obj.path):
                     self.handle_list.append(handle)
                     self.path_list.append(obj.path)
@@ -688,7 +688,7 @@ class ImagesNotIncluded(BatchOp):
         self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = from_dict(data)
+                obj = data_to_object(data)
                 self.handle_list.append(handle)
                 full_path = media_path_full(self.db, obj.path)
                 self.path_list.append(full_path)
@@ -729,7 +729,7 @@ class ImagesNotIncluded(BatchOp):
                             obj = Media()
                             obj.set_path(media_full_path)
                             obj.set_mime_type(mime_type)
-                            (root, ext) = os.path.splitext(filename)
+                            root, ext = os.path.splitext(filename)
                             obj.set_description(root)
                             self.db.add_media(obj, self.trans)
             self.update()

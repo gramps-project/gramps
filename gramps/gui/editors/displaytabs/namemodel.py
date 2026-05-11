@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -151,9 +150,6 @@ class NameModel(Gtk.TreeStore):
         nlist = name.get_note_list()
         if nlist:
             note = self.db.get_note_from_handle(nlist[0])
-            text = note.get().replace("\n", " ")
-            if len(text) > 80:
-                text = text[:80] + "..."
-            return text
+            return note.get_preview()
         else:
             return ""

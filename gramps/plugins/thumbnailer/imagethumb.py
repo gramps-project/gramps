@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -94,7 +93,7 @@ class ImageThumb(Thumbnailer):
             pixbuf = pixbuf.scale_simple(
                 scaled_width, scaled_height, GdkPixbuf.InterpType.BILINEAR
             )
-            pixbuf.savev(dest_file, "png", "", "")
+            pixbuf.savev(dest_file, "png", [], [])
             return True
         except Exception as err:
             LOG.warning("Error scaling image down: %s", str(err))

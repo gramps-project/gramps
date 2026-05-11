@@ -14,20 +14,20 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Unittest that tests place-specific filter rules
 """
+
 import unittest
 import os
 
 from ....db.utils import import_as_dict
 from ....filters import GenericFilterFactory
-from ....const import DATA_DIR
+from ....const import TEST_DIR
 from ....user import User
 
 from ..place import (
@@ -53,7 +53,6 @@ from ..place import (
     WithinArea,
 )
 
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 GenericPlaceFilter = GenericFilterFactory("Place")
 
@@ -68,15 +67,28 @@ class BaseTest(unittest.TestCase):
         """
         Import example database.
         """
-        cls.db = import_as_dict(EXAMPLE, User())
+        # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+        cls.db = import_as_dict(
+            EXAMPLE,
+            User(),
+            person_prefix="I%04d",
+            media_prefix="O%04d",
+            family_prefix="F%04d",
+            source_prefix="S%04d",
+            citation_prefix="C%04d",
+            place_prefix="P%04d",
+            event_prefix="E%04d",
+            repository_prefix="R%04d",
+            note_prefix="N%04d",
+        )
 
-    def filter_with_rule(self, rule):
+    def filter_with_rule(self, rule, tree=False):
         """
         Apply a filter with the given rule.
         """
         filter_ = GenericPlaceFilter()
         filter_.add_rule(rule)
-        results = filter_.apply(self.db)
+        results = filter_.apply(self.db, tree=tree)
         return set(results)
 
     def test_allplaces(self):
@@ -86,6 +98,15 @@ class BaseTest(unittest.TestCase):
         rule = AllPlaces([])
         self.assertEqual(
             len(self.filter_with_rule(rule)), self.db.get_number_of_places()
+        )
+
+    def test_hascitation_with_tree(self):
+        """
+        Test AllPlaces rule.
+        """
+        rule = HasCitation(["page 23", "", ""])
+        self.assertEqual(
+            self.filter_with_rule(rule, tree=True), set(["YNUJQC8YM5EGRG868J"])
         )
 
     def test_hascitation(self):

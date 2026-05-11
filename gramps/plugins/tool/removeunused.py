@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Find unused objects and remove with the user's permission."
@@ -47,6 +46,7 @@ from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.config import config
 
 _ = glocale.translation.gettext
 
@@ -89,7 +89,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": self.get_event_text,
                 "editor": "EditEvent",
                 "icon": "gramps-event",
-                "name_ix": 4,
+                "name_ix": "description",
             },
             "sources": {
                 "get_func": self.db.get_source_from_handle,
@@ -97,7 +97,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": None,
                 "editor": "EditSource",
                 "icon": "gramps-source",
-                "name_ix": 2,
+                "name_ix": "title",
             },
             "citations": {
                 "get_func": self.db.get_citation_from_handle,
@@ -105,7 +105,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": None,
                 "editor": "EditCitation",
                 "icon": "gramps-citation",
-                "name_ix": 3,
+                "name_ix": "page",
             },
             "places": {
                 "get_func": self.db.get_place_from_handle,
@@ -113,7 +113,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": self.get_place_text,
                 "editor": "EditPlace",
                 "icon": "gramps-place",
-                "name_ix": 2,
+                "name_ix": "title",
             },
             "media": {
                 "get_func": self.db.get_media_from_handle,
@@ -121,7 +121,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": None,
                 "editor": "EditMedia",
                 "icon": "gramps-media",
-                "name_ix": 4,
+                "name_ix": "desc",
             },
             "repos": {
                 "get_func": self.db.get_repository_from_handle,
@@ -129,7 +129,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": None,
                 "editor": "EditRepository",
                 "icon": "gramps-repository",
-                "name_ix": 3,
+                "name_ix": "name",
             },
             "notes": {
                 "get_func": self.db.get_note_from_handle,
@@ -137,7 +137,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 "get_text": self.get_note_text,
                 "editor": "EditNote",
                 "icon": "gramps-notes",
-                "name_ix": 2,
+                "name_ix": "text",
             },
         }
 
@@ -372,7 +372,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
     def double_click(self, obj, event):
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
-            (model, node) = self.selection.get_selected()
+            model, node = self.selection.get_selected()
             if not node:
                 return
             sort_path = self.sort_model.get_path(node)
@@ -398,8 +398,8 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         cell.set_property("icon-name", the_icon)
 
     def add_results(self, results):
-        (the_type, handle, data) = results
-        gramps_id = data[1]
+        the_type, handle, data = results
+        gramps_id = data.gramps_id
 
         # if we have a function that will return to us some type
         # of text summary, then we should use it; otherwise we'll
@@ -453,16 +453,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         note = self.tables[the_type]["get_func"](handle)
 
         # get the note text; this ignores (discards) formatting
-        text = note.get()
-
-        # convert whitespace to a single space
-        text = " ".join(text.split())
-
-        # if the note is too long, truncate it
-        if len(text) > 80:
-            text = text[:80] + "..."
-
-        return text
+        return note.get_preview()
 
     def get_place_text(self, the_type, handle, data):
         """

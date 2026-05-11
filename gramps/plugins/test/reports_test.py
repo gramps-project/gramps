@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 import unittest
@@ -25,14 +24,14 @@ import shutil
 
 from gramps.test.test_util import Gramps
 from gramps.gen.user import User
-from gramps.gen.const import DATA_DIR
+from gramps.gen.const import TEST_DIR
 
 # ddir = os.path.dirname(__file__)
 # example = os.path.join(ddir, "..", "..", "..",
 #                        "example", "gramps", "data.gramps")
 # sample = os.path.join(ddir, "..", "..", "..",
 #                       "example", "gedcom", "sample.ged")
-example = os.path.join(DATA_DIR, "tests", "data.gramps")
+example = os.path.join(TEST_DIR, "data.gramps")
 
 TREE_NAME = "Test_reporttest"
 
@@ -52,7 +51,22 @@ class ReportControl:
     def __init__(self):
         super().__init__()
         self.tearDown()  # removes it if it existed
-        out, err = self.call("-C", TREE_NAME, "--import", example)
+        out, err = self.call(
+            "-C",
+            TREE_NAME,
+            "--import",
+            example,
+            # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+            "--config=preferences.iprefix:I%04d",
+            "--config=preferences.oprefix:O%04d",
+            "--config=preferences.fprefix:F%04d",
+            "--config=preferences.sprefix:S%04d",
+            "--config=preferences.cprefix:C%04d",
+            "--config=preferences.pprefix:P%04d",
+            "--config=preferences.eprefix:E%04d",
+            "--config=preferences.rprefix:R%04d",
+            "--config=preferences.nprefix:N%04d",
+        )
 
     def addreport(self, class_, report_name, test_function, files, **options):
         test_name = "test_" + report_name.replace("-", "_")
@@ -60,7 +74,7 @@ class ReportControl:
             class_,
             test_name,
             dynamic_report_method(
-                report_name,
+                report_name + " " + TREE_NAME,
                 test_function,
                 files,
                 "--force",
@@ -90,7 +104,7 @@ def dynamic_report_method(report_name, test_function, files, *args, **options):
 
     def test_method(self):  # This needs to have "test" in name
         out, err = self.call(*args)
-        self.assertTrue(test_function(out, err, report_name, **options))
+        self.assertTrue(test_function(out, err, report_name, **options), out + err)
 
     return test_method
 
@@ -100,7 +114,7 @@ def dynamic_cli_method(report_name, test_function, files, *args, **options):
 
     def test_method(self):  # This needs to have "test" in name
         out, err = self.call(*args)
-        self.assertTrue(test_function(out, err, report_name, **options))
+        self.assertTrue(test_function(out, err, report_name, **options), out + err)
 
     return test_method
 
@@ -350,12 +364,12 @@ report_list = [
         "ancestor_chart",
         "svg",
         [
-            "ancestor_chart.svg",
-            "ancestor_chart-2.svg",
-            "ancestor_chart-3.svg",
-            "ancestor_chart-4.svg",
-            "ancestor_chart-5.svg",
-            "ancestor_chart-6.svg",
+            "ancestor_chart %s.svg" % TREE_NAME,
+            "ancestor_chart %s-2.svg" % TREE_NAME,
+            "ancestor_chart %s-3.svg" % TREE_NAME,
+            "ancestor_chart %s-4.svg" % TREE_NAME,
+            "ancestor_chart %s-5.svg" % TREE_NAME,
+            "ancestor_chart %s-6.svg" % TREE_NAME,
         ],
     ),  # Ancestor Tree
     ("ancestor_report", "txt", []),  # Ahnentafel Report
@@ -364,18 +378,18 @@ report_list = [
         "calendar",
         "svg",
         [
-            "calendar-10.svg",
-            "calendar-11.svg",
-            "calendar-12.svg",
-            "calendar-2.svg",
-            "calendar-3.svg",
-            "calendar-4.svg",
-            "calendar-5.svg",
-            "calendar-6.svg",
-            "calendar-7.svg",
-            "calendar-8.svg",
-            "calendar-9.svg",
-            "calendar.svg",
+            "calendar %s-10.svg" % TREE_NAME,
+            "calendar %s-11.svg" % TREE_NAME,
+            "calendar %s-12.svg" % TREE_NAME,
+            "calendar %s-2.svg" % TREE_NAME,
+            "calendar %s-3.svg" % TREE_NAME,
+            "calendar %s-4.svg" % TREE_NAME,
+            "calendar %s-5.svg" % TREE_NAME,
+            "calendar %s-6.svg" % TREE_NAME,
+            "calendar %s-7.svg" % TREE_NAME,
+            "calendar %s-8.svg" % TREE_NAME,
+            "calendar %s-9.svg" % TREE_NAME,
+            "calendar %s.svg" % TREE_NAME,
         ],
     ),  # Calendar
     ("descend_chart", "svg", []),  # Descendant Tree
@@ -399,13 +413,20 @@ report_list = [
         "statistics_chart",
         "svg",
         [
-            "statistics_chart.svg",  # Statistics Charts
-            "statistics_chart-2.svg",
-            "statistics_chart-3.svg",
+            "statistics_chart %s.svg" % TREE_NAME,  # Statistics Charts
+            "statistics_chart %s-2.svg" % TREE_NAME,
+            "statistics_chart %s-3.svg" % TREE_NAME,
         ],
     ),
     ("summary", "txt", []),  # Database Summary Report
-    ("timeline", "svg", ["timeline.svg", "timeline-2.svg"]),  # Timeline Chart
+    (
+        "timeline",
+        "svg",
+        [
+            "timeline %s.svg" % TREE_NAME,
+            "timeline %s-2.svg" % TREE_NAME,
+        ],
+    ),  # Timeline Chart
 ]
 
 for _report_name, _off, _files in report_list:

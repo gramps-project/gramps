@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 
@@ -280,7 +279,7 @@ USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
 HOST = r"([-\w.]+|\[[0-9A-F:]+\])?"
 URLPATH = "(/[" + PATHCHARS + "]*)?[^]'.:}> \t\r\n,\\\"]"
 
-(GENURL, HTTP, MAIL, LINK) = list(range(4))
+GENURL, HTTP, MAIL, LINK = list(range(4))
 
 
 def find_parent_with_attr(self, attr="dbstate"):
@@ -372,6 +371,10 @@ class StyledTextEditor(Gtk.TextView):
 
         # variable to not copy to clipboard on double/triple click
         self.selclick = False
+
+    def __del__(self):
+        # ensure that the spell checker gets removed with the editor (bug #13795)
+        self.spellcheck = None
 
     # virtual methods
 
@@ -617,11 +620,6 @@ class StyledTextEditor(Gtk.TextView):
         builder.set_translation_domain(glocale.get_localedomain())
         builder.add_from_string(FORMAT_TOOLBAR)
 
-        # fallback icons
-        icon_theme = Gtk.IconTheme().get_default()
-        icon_theme.connect("changed", self.__set_fallback_icons, builder)
-        self.__set_fallback_icons(icon_theme, builder)
-
         # define the actions...
         _actions = [
             ("ITALIC", self._on_toggle_action_activate, "<PRIMARY>i", False),
@@ -684,22 +682,6 @@ class StyledTextEditor(Gtk.TextView):
         toolbar = builder.get_object("ToolBar")
 
         return toolbar, self.action_group
-
-    def __set_fallback_icons(self, icon_theme, builder):
-        """
-        Set fallbacks for icons that are not available in the current theme.
-        """
-        fallbacks = (
-            ("superscript", "format-text-superscript", "go-up"),
-            ("subscript", "format-text-subscript", "go-down"),
-        )
-        for obj_name, primary, fallback in fallbacks:
-            tool_button = builder.get_object(obj_name)
-            icon = tool_button.get_child().get_child()
-            name = primary
-            if not icon_theme.has_icon(primary):
-                name = fallback
-            icon.set_from_icon_name(name, Gtk.IconSize.LARGE_TOOLBAR)
 
     def set_transient_parent(self, parent=None):
         self.transient_parent = parent
@@ -1048,7 +1030,7 @@ def uri_dialog(self, uri, callback):
     if obj:
         if uri is None:
             # make a default link
-            uri = "http://"
+            uri = "https://"
             # Check in order for an open page:
             for object_class in [
                 "Person",

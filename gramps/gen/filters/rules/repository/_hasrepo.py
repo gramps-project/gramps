@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -30,6 +29,14 @@ Rule that checks for a repo with a particular value.
 from ....const import GRAMPS_LOCALE as glocale
 from ....lib.repotype import RepositoryType
 from .. import Rule
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Repository
+from ....db import Database
 
 _ = glocale.translation.sgettext
 
@@ -59,7 +66,7 @@ class HasRepo(Rule):
         super().__init__(arg, use_regex, use_case)
         self.rtype = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -67,11 +74,11 @@ class HasRepo(Rule):
             self.rtype = RepositoryType()
             self.rtype.set_from_xml_str(self.list[1])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Repository) -> bool:
         """
         Apply the rule. Return True on a match.
         """
-        if not self.match_substring(0, obj.get_name()):
+        if not self.match_substring(0, obj.name):
             return False
 
         if self.rtype:

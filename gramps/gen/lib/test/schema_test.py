@@ -13,12 +13,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Unittest for JSON schema """
+"""Unittest for JSON schema"""
 
 import json
 import os
@@ -26,7 +25,7 @@ import unittest
 
 import jsonschema
 
-from ...const import DATA_DIR
+from ...const import TEST_DIR
 from ...db.utils import import_as_dict
 from ...user import User
 from .. import (
@@ -41,15 +40,14 @@ from .. import (
     Source,
     Tag,
 )
-from ..serialize import to_json
+from ..json_utils import object_to_dict
 
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 
 class BaseTest(unittest.TestCase):
     def _schema_test(self, obj):
-        instance = json.loads(to_json(obj))
+        instance = object_to_dict(obj)
         try:
             jsonschema.validate(instance, self.schema)
         except jsonschema.exceptions.ValidationError:
@@ -129,26 +127,29 @@ def generate_case(obj, test_class):
 
 
 db = import_as_dict(EXAMPLE, User())
-for obj in db.iter_people():
-    generate_case(obj, PersonTest)
-for obj in db.iter_families():
-    generate_case(obj, FamilyTest)
-for obj in db.iter_events():
-    generate_case(obj, EventTest)
-for obj in db.iter_places():
-    generate_case(obj, PlaceTest)
-for obj in db.iter_repositories():
-    generate_case(obj, RepositoryTest)
-for obj in db.iter_sources():
-    generate_case(obj, SourceTest)
-for obj in db.iter_citations():
-    generate_case(obj, CitationTest)
-for obj in db.iter_media():
-    generate_case(obj, MediaTest)
-for obj in db.iter_notes():
-    generate_case(obj, NoteTest)
-for obj in db.iter_tags():
-    generate_case(obj, TagTest)
+tc = unittest.TestCase()
+tc.assertIsNotNone(db, "Failed to import example database")
+if db is not None:
+    for person in db.iter_people():
+        generate_case(person, PersonTest)
+    for family in db.iter_families():
+        generate_case(family, FamilyTest)
+    for event in db.iter_events():
+        generate_case(event, EventTest)
+    for place in db.iter_places():
+        generate_case(place, PlaceTest)
+    for repository in db.iter_repositories():
+        generate_case(repository, RepositoryTest)
+    for source in db.iter_sources():
+        generate_case(source, SourceTest)
+    for citation in db.iter_citations():
+        generate_case(citation, CitationTest)
+    for media in db.iter_media():
+        generate_case(media, MediaTest)
+    for note in db.iter_notes():
+        generate_case(note, NoteTest)
+    for tag in db.iter_tags():
+        generate_case(tag, TagTest)
 
 if __name__ == "__main__":
     unittest.main()

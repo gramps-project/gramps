@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -31,7 +30,6 @@ from gi.repository import GLib, Gio, Gtk
 
 from ..gen.const import GRAMPS_LOCALE as glocale
 from ..gen.config import config
-
 
 LOG = logging.getLogger("gui.uimanager")
 
@@ -261,8 +259,13 @@ class UIManager:
         tb_show = toolbar.get_visible()
         toolbar_parent.remove(toolbar)
         toolbar = self.builder.get_object("ToolBar")  # new toolbar
-        if config.get("interface.toolbar-text"):
+        toolbar_style = config.get("interface.toolbar-style")
+        if toolbar_style == 0:
             toolbar.set_style(Gtk.ToolbarStyle.BOTH)
+        elif toolbar_style == 1:
+            toolbar.set_style(Gtk.ToolbarStyle.TEXT)
+        else:
+            toolbar.set_style(Gtk.ToolbarStyle.ICONS)
         toolbar_parent.pack_start(toolbar, False, True, 0)
         if tb_show:
             toolbar.show_all()

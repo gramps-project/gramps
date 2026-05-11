@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -196,8 +195,7 @@ class RepositoryView(ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-        % _("Organize Bookmarks"),
+""" % _("Organize Bookmarks"),
         """
       <placeholder id="CommonGo">
       <section>
@@ -231,8 +229,7 @@ class RepositoryView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-"""
-        % _("_Edit...", "action"),  # to use sgettext()
+""" % _("_Edit...", "action"),  # to use sgettext()
         """
         <placeholder id='otheredit'>
         <item>
@@ -323,8 +320,7 @@ class RepositoryView(ListView):
       </packing>
     </child>
     </placeholder>
-"""
-        % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+""" % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
         """
     <menu id="Popup">
       <section>
@@ -360,10 +356,11 @@ class RepositoryView(ListView):
       <section>
         <placeholder id='QuickReport'>
         </placeholder>
+        <placeholder id='WebConnect'>
+        </placeholder>
       </section>
     </menu>
-    """
-        % _("_Edit...", "action"),  # to use sgettext()
+    """ % _("_Edit...", "action"),  # to use sgettext()
     ]
 
     def add(self, *obj):

@@ -13,15 +13,15 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 A module that provides pluggable sidebars.  These provide an interface to
 manage pages in the main Gramps window.
 """
+
 # -------------------------------------------------------------------------
 #
 # GNOME modules
@@ -36,6 +36,7 @@ from gi.repository import GObject
 #
 # -------------------------------------------------------------------------
 from gramps.gen.plug import START, END
+from gramps.gen.config import config
 from .pluginmanager import GuiPluginManager
 from .uimanager import ActionGroup
 
@@ -91,11 +92,16 @@ class Navigator:
         self.cat_view_group = None
         self.merge_ids = []
 
+        self.config_name = "interface.favorite-menu"
+        if not config.is_set(self.config_name):
+            config.register(self.config_name, "")
+        self.conf_ft = True
+
         self.top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.top.show()
 
         self.select_button = Gtk.ComboBoxText()
-        self.select_button.show()
+        self.select_button.hide()
         self.top.pack_end(self.select_button, False, True, 0)
 
         self.stack = Gtk.Stack(homogeneous=False)
@@ -197,6 +203,9 @@ class Navigator:
             sidebar_class = getattr(module, pdata.sidebarclass)
             sidebar_page = sidebar_class(dbstate, uistate, categories, views)
             self.add(pdata.menu_label, sidebar_page, pdata.order)
+        self.fav_menu = config.get(self.config_name)
+        if self.fav_menu != "":
+            self.stack.set_visible_child_name(self.fav_menu)
 
     def get_top(self):
         """
@@ -279,3 +288,7 @@ class Navigator:
         if self.active_view is not None:
             self.pages[title].view_changed(self.active_cat, self.active_view)
         self._active_page = title
+        if self.conf_ft:
+            self.conf_ft = False
+        else:
+            config.set(self.config_name, self.stack.get_visible_child_name())

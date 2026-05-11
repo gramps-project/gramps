@@ -16,12 +16,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" The ReportDialog base class """
+"""The ReportDialog base class"""
 
 # -------------------------------------------------------------------------
 #
@@ -581,7 +580,7 @@ class ReportDialog(ManagedWindow):
         screen.  The subclass will know whether this menu was enabled.
         This is for simplicity of programming."""
         if not self.default_style.is_empty():
-            (style_name, self.selected_style) = self.style_menu.get_value()
+            style_name, self.selected_style = self.style_menu.get_value()
             self.options.handler.set_default_stylesheet_name(style_name)
 
     # ------------------------------------------------------------------------
@@ -771,14 +770,14 @@ def report(
                     open_file_with_default_application(out_file, uistate)
 
             except FilterError as msg:
-                (msg1, msg2) = msg.messages()
+                msg1, msg2 = msg.messages()
                 ErrorDialog(msg1, msg2, parent=uistate.window)
             except IOError as msg:
                 ErrorDialog(
                     _("Report could not be created"), str(msg), parent=uistate.window
                 )
             except ReportError as msg:
-                (msg1, msg2) = msg.messages()
+                msg1, msg2 = msg.messages()
                 ErrorDialog(msg1, msg2, parent=uistate.window)
             except DatabaseError as msg:
                 ErrorDialog(

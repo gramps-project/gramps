@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -216,6 +215,8 @@ class BasePluginManager:
         # Get the addon rules and import them and make them findable
         for plugin in self.__pgr.rule_plugins():
             mod = self.load_plugin(plugin)  # load the addon rule
+            if mod is None:
+                continue
             # get place in rule heirarchy to put the new rule
             obj_rules = importlib.import_module(
                 "gramps.gen.filters.rules." + plugin.namespace.lower()
@@ -225,7 +226,8 @@ class BasePluginManager:
             # make the new rule findable via import statements
             setattr(obj_rules, plugin.ruleclass, r_class)
             # and add it to the correct fiter editor list
-            obj_rules.editor_rule_list.append(r_class)
+            if r_class not in obj_rules.editor_rule_list:
+                obj_rules.editor_rule_list.append(r_class)
 
     def is_loaded(self, pdata_id):
         """

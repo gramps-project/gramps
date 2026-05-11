@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # gen.filters.rules/_HasGalleryBase.py
 
@@ -37,9 +36,17 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from . import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.mediabase import MediaBase
+from ...db import Database
+
 
 # -------------------------------------------------------------------------
-# "People who have images"
+# "Objects that have images"
 # -------------------------------------------------------------------------
 class HasGalleryBase(Rule):
     """Objects who have Media Object"""
@@ -49,7 +56,7 @@ class HasGalleryBase(Rule):
     description = "Matches objects with certain number of items in the gallery"
     category = _("General filters")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         # things we want to do just once, not for every handle
         if self.list[1] == "less than":
             self.count_type = 0
@@ -60,8 +67,8 @@ class HasGalleryBase(Rule):
 
         self.userSelectedCount = int(self.list[0])
 
-    def apply(self, db, obj):
-        count = len(obj.get_media_list())
+    def apply_to_one(self, db: Database, obj: MediaBase) -> bool:
+        count = len(obj.media_list)
         if self.count_type == 0:  # "less than"
             return count < self.userSelectedCount
         elif self.count_type == 2:  # "greater than"

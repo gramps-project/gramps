@@ -17,14 +17,20 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Place object for Gramps.
 """
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
@@ -374,7 +380,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return [self.name] + self.alt_names
 
-    def set_longitude(self, longitude):
+    def set_longitude(self, longitude: str):
         """
         Set the longitude of the Place object.
 
@@ -383,7 +389,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         self.long = longitude
 
-    def get_longitude(self):
+    def get_longitude(self) -> str:
         """
         Return the longitude of the Place object.
 
@@ -392,7 +398,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return self.long
 
-    def set_latitude(self, latitude):
+    def set_latitude(self, latitude: str):
         """
         Set the latitude of the Place object.
 
@@ -401,7 +407,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         self.lat = latitude
 
-    def get_latitude(self):
+    def get_latitude(self) -> str:
         """
         Return the latitude of the Place object.
 

@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -121,7 +120,7 @@ class Backlinks(Gramplet):
         Called when the selection is changed in the TreeView.
         """
         target = None
-        (model, iter_) = selection.get_selected()
+        model, iter_ = selection.get_selected()
         if iter_:
             objclass = model.get_value(iter_, 5)
             target = self.__obj2target.get(objclass)
@@ -137,7 +136,7 @@ class Backlinks(Gramplet):
         """
         We want to show the icon during drag instead of the long row entry
         """
-        (model, iter_) = self.top.get_selection().get_selected()
+        model, iter_ = self.top.get_selection().get_selected()
         if not iter_:
             return
 
@@ -146,11 +145,11 @@ class Backlinks(Gramplet):
 
     def drag_data_get(self, widget, context, sel_data, info, time):
         # get the selected object, returning if nothing is selected
-        (model, iter_) = self.top.get_selection().get_selected()
+        model, iter_ = self.top.get_selection().get_selected()
         if not iter_:
             return
 
-        (objclass, handle) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
+        objclass, handle = (model.get_value(iter_, 5), model.get_value(iter_, 4))
 
         target = obj2target(objclass)
         data = (target.name(), id(self), handle, 0)
@@ -195,11 +194,11 @@ class Backlinks(Gramplet):
         """
         Handle double click on treeview.
         """
-        (model, iter_) = treeview.get_selection().get_selected()
+        model, iter_ = treeview.get_selection().get_selected()
         if not iter_:
             return
 
-        (objclass, handle) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
+        objclass, handle = (model.get_value(iter_, 5), model.get_value(iter_, 4))
 
         edit_object(self.dbstate, self.uistate, objclass, handle)
 
@@ -207,22 +206,22 @@ class Backlinks(Gramplet):
         """
         Handle middle click on view.
         """
-        (model, iter_) = treeview.get_selection().get_selected()
+        model, iter_ = treeview.get_selection().get_selected()
         if not iter_:
             return
 
-        (objclass, handle) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
+        objclass, handle = (model.get_value(iter_, 5), model.get_value(iter_, 4))
         self.uistate.set_active(handle, objclass)
 
     def cb_right_click(self, treeview, event):
         """
         Handle right click on view.
         """
-        (model, iter_) = self.top.get_selection().get_selected()
+        model, iter_ = self.top.get_selection().get_selected()
         if not iter_:
             return  # nothing selected, so do not display the context menu
 
-        (objclass, handle) = (model.get_value(iter_, 5), model.get_value(iter_, 4))
+        objclass, handle = (model.get_value(iter_, 5), model.get_value(iter_, 4))
 
         self.__store_menu = Gtk.Menu()  # need to keep reference or menu disappears
         menu = self.__store_menu

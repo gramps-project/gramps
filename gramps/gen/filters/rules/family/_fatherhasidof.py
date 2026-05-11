@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -33,7 +32,14 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import RegExpIdBase
-from ._memberbase import father_base
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Family
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -48,5 +54,11 @@ class FatherHasIdOf(RegExpIdBase):
     name = _("Families having father with Id containing <text>")
     description = _("Matches families whose father has a specified " "Gramps ID")
     category = _("Father filters")
-    base_class = RegExpIdBase
-    apply = father_base
+
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
+        father_handle = family.father_handle
+        if father_handle:
+            father = db.get_person_from_handle(father_handle)
+            if father:
+                return super().apply_to_one(db, father)
+        return False

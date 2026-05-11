@@ -13,20 +13,20 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Unittest that tests media-specific filter rules
 """
+
 import unittest
 import os
 
 from ....db.utils import import_as_dict
 from ....filters import GenericFilterFactory
-from ....const import DATA_DIR
+from ....const import TEST_DIR
 from ....user import User
 
 from ..media import (
@@ -47,7 +47,6 @@ from ..media import (
     HasTag,
 )
 
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 GenericMediaFilter = GenericFilterFactory("Media")
 
@@ -62,7 +61,20 @@ class BaseTest(unittest.TestCase):
         """
         Import example database.
         """
-        cls.db = import_as_dict(EXAMPLE, User())
+        # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+        cls.db = import_as_dict(
+            EXAMPLE,
+            User(),
+            person_prefix="I%04d",
+            media_prefix="O%04d",
+            family_prefix="F%04d",
+            source_prefix="S%04d",
+            citation_prefix="C%04d",
+            place_prefix="P%04d",
+            event_prefix="E%04d",
+            repository_prefix="R%04d",
+            note_prefix="N%04d",
+        )
 
     def filter_with_rule(self, rule):
         """

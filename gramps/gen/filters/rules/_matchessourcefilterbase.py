@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -34,6 +33,14 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from . import MatchesFilterBase
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ...lib.citationbase import CitationBase
+from ...db import Database
 
 
 # -------------------------------------------------------------------------
@@ -56,17 +63,17 @@ class MatchesSourceFilterBase(MatchesFilterBase):
     # we want to have this filter show source filters
     namespace = "Source"
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         MatchesFilterBase.prepare(self, db, user)
         self.MSF_filt = self.find_filter()
 
-    def apply(self, db, object):
+    def apply_to_one(self, db, object: CitationBase) -> bool:
         if self.MSF_filt is None:
             return False
 
-        for citation_handle in object.get_citation_list():
+        for citation_handle in object.citation_list:
             citation = db.get_citation_from_handle(citation_handle)
-            sourcehandle = citation.get_reference_handle()
-            if self.MSF_filt.check(db, sourcehandle):
+            source = db.get_source_from_handle(citation.source_handle)
+            if self.MSF_filt.apply_to_one(db, source):
                 return True
         return False

@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -33,7 +32,14 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from ..person import RegExpName
-from ._memberbase import child_base
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Family
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -50,5 +56,10 @@ class RegExpChildName(RegExpName):
         "that matches a specified regular expression"
     )
     category = _("Child filters")
-    base_class = RegExpName
-    apply = child_base
+
+    def apply_to_one(self, db: Database, family: Family) -> bool:  # type: ignore[override]
+        for child_ref in family.child_ref_list:
+            child = db.get_person_from_handle(child_ref.ref)
+            if super().apply_to_one(db, child):
+                return True
+        return False

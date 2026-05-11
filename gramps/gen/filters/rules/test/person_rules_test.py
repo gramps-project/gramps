@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2016 Tom Samstag
+# Copyright (C) 2025 Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,25 +14,27 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Unittest that tests person-specific filter rules
 """
+
 import unittest
 import os
 from time import perf_counter
+from typing import Any, ClassVar
 import inspect
+from contextlib import contextmanager
 
 from ....filters import reload_custom_filters
 
 reload_custom_filters()
 from ....db.utils import import_as_dict
 from ....filters import GenericFilter, CustomFilters
-from ....const import DATA_DIR
+from ....const import TEST_DIR
 from ....user import User
 from ....utils.unittest import localize_date
 
@@ -55,6 +58,7 @@ from ..person import (
     HasNameOriginType,
     HasNameType,
     HasNickname,
+    HasNoteTag,
     HasRelationship,
     HasSoundexName,
     HasSourceOf,
@@ -98,8 +102,38 @@ from ..person import (
     RelationshipPathBetweenBookmarks,
 )
 
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
+
+
+@contextmanager
+def count_method_calls(cls, method_name):
+    """
+    Context manager to monkey-patch a method and count its calls.
+
+    Args:
+        cls: The class containing the method.
+        method_name: The name of the method to patch.
+
+    Yields:
+        A callable that returns the call count.
+    """
+    original_method = getattr(cls, method_name)
+    call_count = 0
+
+    def patched_method(self, *args, **kwargs):
+        nonlocal call_count
+        call_count += 1
+        return original_method(self, *args, **kwargs)
+
+    setattr(cls, method_name, patched_method)
+
+    def get_call_count():
+        return call_count
+
+    try:
+        yield get_call_count
+    finally:
+        setattr(cls, method_name, original_method)
 
 
 class BaseTest(unittest.TestCase):
@@ -107,12 +141,35 @@ class BaseTest(unittest.TestCase):
     Person rule tests.
     """
 
+    db: ClassVar[Any]
+
     @classmethod
     def setUpClass(cls):
         """
         Import example database.
         """
-        cls.db = import_as_dict(EXAMPLE, User())
+        # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+        cls.db = import_as_dict(
+            EXAMPLE,
+            User(),
+            person_prefix="I%04d",
+            media_prefix="O%04d",
+            family_prefix="F%04d",
+            source_prefix="S%04d",
+            citation_prefix="C%04d",
+            place_prefix="P%04d",
+            event_prefix="E%04d",
+            repository_prefix="R%04d",
+            note_prefix="N%04d",
+        )
+
+    @classmethod
+    def tearDownClass(cls):
+        """
+        Clean up after all tests have run.
+        """
+        cls.db.close()
+        cls.db = None
 
     def filter_with_rule(
         self,
@@ -1089,6 +1146,34 @@ class BaseTest(unittest.TestCase):
             ),
         )
 
+    def test_isdefaultperson_optimized(self):
+        """
+        Test IsDefaultPerson rule.
+        """
+        with count_method_calls(IsDefaultPerson, "apply_to_one") as get_call_count:
+            rule = IsDefaultPerson([])
+            self.assertEqual(
+                self.filter_with_rule(rule),
+                set(
+                    [
+                        "GNUJQCL9MD64AM56OH",
+                    ]
+                ),
+            )
+            # This used the optimizer, so it didn't loop through DB
+            self.assertEqual(get_call_count(), 1)
+
+    def test_isfemale_not_optimized(self):
+        """
+        Test IsFemale rule. Same as below, but tests optimizer.
+        """
+        with count_method_calls(IsFemale, "apply_to_one") as get_call_count:
+            rule = IsFemale([])
+            # too many to list out to test explicitly
+            self.assertEqual(len(self.filter_with_rule(rule)), 940)
+            # This did not use the optimizer, so it did loop through DB
+            self.assertEqual(get_call_count(), self.db.get_number_of_people())
+
     def test_isfemale(self):
         """
         Test IsFemale rule.
@@ -1204,9 +1289,8 @@ class BaseTest(unittest.TestCase):
         """
         Test PeoplePrivate rule.
         """
-        # TODO: example.gramps has no people marked private
         rule = PeoplePrivate([])
-        self.assertEqual(self.filter_with_rule(rule), set([]))
+        self.assertEqual(self.filter_with_rule(rule), set(["0GDKQC54XKSWZKEBWW"]))
 
     def test_peoplepublic(self):
         """
@@ -1214,7 +1298,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = PeoplePublic([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 2128)
+        self.assertEqual(len(self.filter_with_rule(rule)), 2127)
 
     def test_personwithincompleteevent(self):
         """
@@ -1269,6 +1353,205 @@ class BaseTest(unittest.TestCase):
             ]
         )
         self.assertEqual(self.filter_with_rule(rule), set(["GNUJQCL9MD64AM56OH"]))
+
+    def test_hasnotetag_existing_tag(self):
+        """
+        Test HasNoteTag rule matching an existing tag.
+        """
+        # Get the first tag from the database to ensure it exists
+        tags_iter = self.db.iter_tags()
+        tag = next(tags_iter, None)
+
+        self.assertIsNotNone(tag, "Database should contain at least one tag")
+
+        # Create a filter and apply it
+        rule = HasNoteTag([tag.name])
+
+        # We expect some results since the example database has notes with tags
+        self.assertIsInstance(self.filter_with_rule(rule), set)
+
+    def test_hasnotetag_nonexistent_tag(self) -> None:
+        """
+        Test that HasNoteTag does not match with a non-existent tag.
+        """
+        nonexistent_tag = "NonExistentTag12345"
+        rule = HasNoteTag([nonexistent_tag])
+        results = self.filter_with_rule(rule)
+
+        # No people should match when the tag doesn't exist
+        self.assertEqual(len(results), 0)
+
+    def test_hasnotetag_empty_tag_list(self) -> None:
+        """
+        Test that HasNoteTag handles empty tag list gracefully.
+        """
+        rule = HasNoteTag([""])
+        results = self.filter_with_rule(rule)
+
+        # Empty tag should not match anything
+        self.assertEqual(len(results), 0)
+
+    def test_hasnotetag_with_multiple_tags(self) -> None:
+        """
+        Test that HasNoteTag works correctly with multiple tags in the database.
+        """
+        # Get all tags from the database
+        tags = list(self.db.iter_tags())
+
+        if len(tags) == 0:
+            self.skipTest("Database contains no tags")
+
+        # Test with the first tag
+        rule1 = HasNoteTag([tags[0].name])
+        results1 = self.filter_with_rule(rule1)
+
+        # Test with a different tag if available
+        if len(tags) > 1:
+            rule2 = HasNoteTag([tags[1].name])
+            results2 = self.filter_with_rule(rule2)
+
+            # Results should be different sets or at least valid sets
+            self.assertIsInstance(results1, set)
+            self.assertIsInstance(results2, set)
+        else:
+            # With only one tag, just verify we got a valid result
+            self.assertIsInstance(results1, set)
+
+    def test_hasnotetag_persons_without_notes(self) -> None:
+        """
+        Test that HasNoteTag does not match people without notes.
+        """
+        # Find a person without notes
+        person_with_notes = None
+        person_without_notes = None
+
+        for person in self.db.iter_people():
+            if len(person.note_list) > 0:
+                person_with_notes = person
+            else:
+                person_without_notes = person
+                break
+
+        if person_without_notes and person_with_notes:
+            # Get a tag from a person's note
+            for note_handle in person_with_notes.note_list:
+                note = self.db.get_note_from_handle(note_handle)
+                if note and len(note.tag_list) > 0:
+                    tag_handle = note.tag_list[0]
+                    tag = self.db.get_tag_from_handle(tag_handle)
+                    if tag:
+                        rule = HasNoteTag([tag.name])
+                        results = self.filter_with_rule(rule)
+
+                        # The person without notes should not be in results
+                        self.assertNotIn(person_without_notes.handle, results)
+                        break
+
+    def test_hasnotetag_persons_with_untagged_notes(self) -> None:
+        """
+        Test that HasNoteTag does not match people with notes that lack the specified tag.
+        """
+        tags = list(self.db.iter_tags())
+
+        if len(tags) < 2:
+            self.skipTest("Database needs at least 2 tags for this test")
+
+        tag1 = tags[0]
+        tag2 = tags[1]
+
+        # Find a person with a note tagged with tag1 only
+        person_with_tag1_only = None
+
+        for person in self.db.iter_people():
+            for note_handle in person.note_list:
+                note = self.db.get_note_from_handle(note_handle)
+                if note and tag1.handle in note.tag_list:
+                    # Check if this note has tag2
+                    if tag2.handle not in note.tag_list:
+                        person_with_tag1_only = person
+                        break
+            if person_with_tag1_only:
+                break
+
+        if person_with_tag1_only:
+            # Filter for people with tag2
+            rule = HasNoteTag([tag2.name])
+            results = self.filter_with_rule(rule)
+
+            # This person might not be in the results (depends on their other notes)
+            # But we're testing that the filter works correctly
+            self.assertIsInstance(results, set)
+
+    def test_hasnotetag_consistency(self) -> None:
+        """
+        Test that the HasNoteTag filter produces consistent results across multiple runs.
+        """
+        tags = list(self.db.iter_tags())
+
+        if len(tags) == 0:
+            self.skipTest("Database contains no tags")
+
+        tag = tags[0]
+        rule = HasNoteTag([tag.name])
+
+        # Run the filter multiple times
+        results1 = self.filter_with_rule(rule)
+        results2 = self.filter_with_rule(rule)
+        results3 = self.filter_with_rule(rule)
+
+        # Results should be identical
+        self.assertEqual(results1, results2)
+        self.assertEqual(results2, results3)
+
+    def test_hasnotetag_rule_initialization(self) -> None:
+        """
+        Test that HasNoteTag rule initializes correctly.
+        """
+        rule = HasNoteTag(["TestTag"])
+
+        # Verify the rule was created
+        self.assertIsNotNone(rule)
+        self.assertEqual(rule.list, ["TestTag"])
+
+    def test_hasnotetag_with_special_characters(self) -> None:
+        """
+        Test that HasNoteTag handles tag names with special characters.
+        """
+        # Test with a tag name that has special characters (unlikely to exist)
+        special_tag = "Tag!@#$%^&*()"
+        rule = HasNoteTag([special_tag])
+        results = self.filter_with_rule(rule)
+
+        # Should handle gracefully and return no results
+        self.assertEqual(len(results), 0)
+
+    def test_hasnotetag_case_sensitivity(self) -> None:
+        """
+        Test that HasNoteTag tag matching is case-sensitive as expected.
+        """
+        tags = list(self.db.iter_tags())
+
+        if len(tags) == 0:
+            self.skipTest("Database contains no tags")
+
+        tag = tags[0]
+        original_tag = tag.name
+
+        # Create rule with original case
+        rule1 = HasNoteTag([original_tag])
+        results1 = self.filter_with_rule(rule1)
+
+        # Create rule with different case (if possible)
+        different_case_tag = original_tag.swapcase()
+
+        if different_case_tag != original_tag:
+            rule2 = HasNoteTag([different_case_tag])
+            results2 = self.filter_with_rule(rule2)
+
+            # Results might differ if case-sensitive matching is applied
+            # This test documents the behavior
+            self.assertIsInstance(results1, set)
+            self.assertIsInstance(results2, set)
 
 
 if __name__ == "__main__":

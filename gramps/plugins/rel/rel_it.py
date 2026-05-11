@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 #
@@ -422,7 +421,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
         # get_relationship_distance changed, first data is relation to
         # orig person, apperently secondRel in this function
-        (secondRel, firstRel, common) = self.get_relationship_distance_new(
+        secondRel, firstRel, common = self.get_relationship_distance_new(
             db, orig_person, other_person
         )
 

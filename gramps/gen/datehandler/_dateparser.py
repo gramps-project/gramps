@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -899,14 +898,14 @@ class DateParser:
         match = self._span.match(text)
         if match:
             text_parser = self.parser[cal]
-            (text1, bc1) = self.match_bce(match.group("start"))
+            text1, bc1 = self.match_bce(match.group("start"))
             start = self._parse_subdate(text1, text_parser, cal)
             if start == Date.EMPTY and text1 != "":
                 return 0
             if bc1:
                 start = self.invert_year(start)
 
-            (text2, bc2) = self.match_bce(match.group("stop"))
+            text2, bc2 = self.match_bce(match.group("stop"))
             stop = self._parse_subdate(text2, text_parser, cal)
             if stop == Date.EMPTY and text2 != "":
                 return 0
@@ -926,14 +925,14 @@ class DateParser:
         match = self._range.match(text)
         if match:
             text_parser = self.parser[cal]
-            (text1, bc1) = self.match_bce(match.group("start"))
+            text1, bc1 = self.match_bce(match.group("start"))
             start = self._parse_subdate(text1, text_parser, cal)
             if start == Date.EMPTY and text1 != "":
                 return 0
             if bc1:
                 start = self.invert_year(start)
 
-            (text2, bc2) = self.match_bce(match.group("stop"))
+            text2, bc2 = self.match_bce(match.group("stop"))
             stop = self._parse_subdate(text2, text_parser, cal)
             if stop == Date.EMPTY and text2 != "":
                 return 0
@@ -955,7 +954,7 @@ class DateParser:
             quarter = self._get_int(match.group("quarter"))
 
             text_parser = self.parser[cal]
-            (text, bc) = self.match_bce(match.group("year"))
+            text, bc = self.match_bce(match.group("year"))
             start = self._parse_subdate(text, text_parser, cal)
             if (
                 (start == Date.EMPTY and text != "")
@@ -1059,10 +1058,10 @@ class DateParser:
         cal = Date.CAL_GREGORIAN
         newyear = Date.NEWYEAR_JAN1
 
-        (text, cal, newyear) = self.match_calendar_newyear(text, cal, newyear)
-        (text, newyear) = self.match_newyear(text, newyear)
-        (text, cal) = self.match_calendar(text, cal)
-        (text, qual) = self.match_quality(text, qual)
+        text, cal, newyear = self.match_calendar_newyear(text, cal, newyear)
+        text, newyear = self.match_newyear(text, newyear)
+        text, cal = self.match_calendar(text, cal)
+        text, qual = self.match_quality(text, qual)
 
         if self.match_span(text, cal, newyear, qual, date):
             return
@@ -1071,7 +1070,7 @@ class DateParser:
         if self.match_quarter(text, cal, newyear, qual, date):
             return
 
-        (text, bc) = self.match_bce(text)
+        text, bc = self.match_bce(text)
         if self.match_modifier(text, cal, newyear, qual, bc, date):
             return
 

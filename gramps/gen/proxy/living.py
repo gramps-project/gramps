@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -45,7 +44,6 @@ from ..lib import (
     Note,
     Tag,
 )
-from ..utils.alive import probably_alive
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 
@@ -256,6 +254,8 @@ class LivingProxyDb(ProxyDbBase):
         Returns True if the person is considered living.
         Returns False if the person is not considered living.
         """
+        from ..utils.alive import probably_alive
+
         person_handle = person.get_handle()
         unfil_person = self.get_unfiltered_person(person_handle)
         return probably_alive(

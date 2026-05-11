@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -60,6 +59,7 @@ from gramps.gen.const import (
     THUMB_NORMAL,
     SIZE_NORMAL,
     SIZE_LARGE,
+    REMOTE_MIME,
 )
 from gramps.gen.mime import get_type
 from gramps.gen.plug import BasePluginManager, START, Thumbnailer
@@ -257,7 +257,13 @@ def get_thumbnail_path(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     :rtype: GdkPixbuf.Pixbuf
     """
     filename = __build_thumb_path(src_file, rectangle, size)
-    if not os.path.isfile(src_file):
+    if src_file.startswith(("http://", "https://")):
+        mtype = REMOTE_MIME
+        if not os.path.isfile(filename):
+            if not __create_thumbnail_image(src_file, mtype, rectangle, size):
+                return os.path.join(IMAGE_DIR, "gramps-url.png")
+        return os.path.abspath(filename)
+    elif not os.path.isfile(src_file):
         return os.path.join(IMAGE_DIR, "image-missing.png")
     else:
         if (not os.path.isfile(filename)) or (

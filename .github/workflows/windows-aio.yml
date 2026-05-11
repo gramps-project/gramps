@@ -13,13 +13,23 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 
 name: Windows AIO
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      build-number:
+        description: 'Build number'
+        type: string
+        default: '1'
+      cleanup:
+        description: 'Cleanup python environment on completion?'
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   build:
@@ -30,7 +40,7 @@ jobs:
         shell: msys2 {0}
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - uses: msys2/setup-msys2@v2
       with:
         msystem: MINGW64
@@ -38,8 +48,8 @@ jobs:
     - name: Build
       run: |
         cd aio
-        ./build.sh
-    - uses: actions/upload-artifact@v4
+        ./build.sh ${{ inputs.cleanup }} ${{ inputs.build-number }}
+    - uses: actions/upload-artifact@v6
       with:
         name: GrampsAIO
         path: D:\a\gramps\gramps\aio\mingw64\src\GrampsAIO-*.exe

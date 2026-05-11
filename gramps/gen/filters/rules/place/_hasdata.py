@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -31,6 +30,14 @@ Rule that checks for a place with a particular value
 from ....const import GRAMPS_LOCALE as glocale
 from ....lib import PlaceType
 from .. import Rule
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Place
+from ....db import Database
 
 _ = glocale.translation.sgettext
 
@@ -59,7 +66,7 @@ class HasData(Rule):
         super().__init__(arg, use_regex, use_case)
         self.place_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -67,17 +74,17 @@ class HasData(Rule):
             self.place_type = PlaceType()
             self.place_type.set_from_xml_str(self.list[1])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Place) -> bool:
         """
         Apply the rule. Return True on a match.
         """
         if not self.match_name(obj):
             return False
 
-        if self.place_type and obj.get_type() != self.place_type:
+        if self.place_type and obj.place_type != self.place_type:
             return False
 
-        if not self.match_substring(2, obj.get_code()):
+        if not self.match_substring(2, obj.code):
             return False
 
         return True
@@ -87,6 +94,6 @@ class HasData(Rule):
         Match any name in a list of names.
         """
         for name in place.get_all_names():
-            if self.match_substring(0, name.get_value()):
+            if self.match_substring(0, name.value):
                 return True
         return False

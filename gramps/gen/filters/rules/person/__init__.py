@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -51,6 +50,7 @@ from ._hasnickname import HasNickname
 from ._hasnote import HasNote
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
 from ._hasnoteregexp import HasNoteRegexp
+from ._hasnotetag import HasNoteTag
 from ._hasnotetype import HasNoteType
 from ._hasothergender import HasOtherGender
 from ._hasrelationship import HasRelationship
@@ -188,6 +188,7 @@ editor_rule_list = [
     RelationshipPathBetweenBookmarks,
     HasTextMatchingSubstringOf,
     HasNote,
+    HasNoteTag,
     HasNoteType,
     HasNoteRegexp,
     RegExpIdOf,

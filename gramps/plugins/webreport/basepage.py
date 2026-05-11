@@ -28,9 +28,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -40,14 +39,17 @@ Classe:
     BasePage - super class for producing a web page. This class is instantiated
     once for each page. Provdes various common functions.
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
 from functools import partial
 import os
+import calendar
 import copy
 import datetime
 from decimal import getcontext
+from unicodedata import normalize
 
 # ------------------------------------------------
 # Set up logging
@@ -254,8 +256,26 @@ class BasePage:
     def sort_by_event_date(self, handle):
         """Used to sort events by date."""
         event = self.r_db.get_event_from_handle(handle.ref)
-        date = event.get_date_object()
+        date = event.get_date_object().to_calendar("gregorian")
+        # we need to remove abt, bef, aft, ...
         if date.get_year() > 0:
+            if len(str(date).split(" ")) > 1:
+                modif = str(date).split(" ")[0]
+                year = date.get_year()
+                month = date.get_month()
+                if year == 0:
+                    year = datetime.date.today().year
+                if month == 0:
+                    month = 1
+                day = date.get_day()
+                if day == 0:
+                    day = 1
+                ddd = datetime.date(year, month, day)
+                if modif == "bef":
+                    ddd = ddd - datetime.timedelta(days=1)
+                elif modif == "aft":
+                    ddd = ddd + datetime.timedelta(days=1)
+                date = Date(ddd.year, ddd.month, ddd.day)
             return date
         else:
             # if we have no date, we'll put the event at the
@@ -265,7 +285,7 @@ class BasePage:
     def sort_on_name_and_grampsid(self, handle):
         """Used to sort on name and gramps ID."""
         person = self.r_db.get_person_from_handle(handle)
-        name = _nd.display(person)
+        name = normalize("NFD", _nd.display(person))
         return (name, person.get_gramps_id())
 
     def sort_on_given_and_birth(self, handle):
@@ -1045,11 +1065,12 @@ class BasePage:
             )
             or "&nbsp;"
         )
+        if not self.report.options["inc_sources"]:
+            srcrefs = "&nbsp;"
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes
-        notelist = event_ref.get_note_list()
-        notelist.extend(event.get_note_list()[:])  # we don't want to modify
+        notelist = event.get_note_list()
         # cached original
         htmllist = self.dump_notes(notelist, Event)
 
@@ -1814,9 +1835,12 @@ class BasePage:
             Html("meta", attr=_meta2, indent=False),
             Html("meta", attr=_meta3, indent=False),
             Html("meta", attr=_meta4, indent=False),
-            Html("meta", attr=_meta5, indent=False),
-            Html("meta", attr=_meta6, indent=False),
         )
+        if not self.report.options["internet_indexing"]:
+            meta += (
+                Html("meta", attr=_meta5, indent=False),
+                Html("meta", attr=_meta6, indent=False),
+            )
 
         # Link to _NARRATIVESCREEN  stylesheet
         sub_cal = cal + 1 if cal > 0 else 1
@@ -2038,6 +2062,7 @@ class BasePage:
             ("families", self._("Families"), self.report.inc_families),
             ("events", self._("Events"), self.report.inc_events),
             ("places", self._("Places"), self.report.inc_places),
+            ("heatmaps", self._("Heatmaps"), self.report.inc_heatmaps),
             ("sources", self._("Sources"), self.report.inc_sources),
             ("repositories", self._("Repositories"), inc_repos),
             (
@@ -2111,6 +2136,9 @@ class BasePage:
                     elif nav_text == self._("Places"):
                         if "plc" in self.report.cur_fname:
                             check_cs = True
+                    elif nav_text == self._("Heatmap"):
+                        if "heat" in self.report.cur_fname:
+                            check_cs = True
                     elif nav_text == self._("Events"):
                         if "evt" in self.report.cur_fname:
                             check_cs = True
@@ -2170,8 +2198,10 @@ class BasePage:
                                     )
                                 n_lang = languages[language]
                                 nfname = self.report.cur_fname
+                                if "event" in nfname:
+                                    nfname = "".join(("events", self.ext))
                                 if "cal" in nfname:
-                                    (dummy_field, dummy_sep, field2) = nfname.partition(
+                                    dummy_field, dummy_sep, field2 = nfname.partition(
                                         "cal/"
                                     )
                                     sub_cal = 3 if self.the_lang else 2
@@ -2332,9 +2362,7 @@ class BasePage:
                     newpath, dummy_tpath = self.report.prepare_copy_media(obj)
                     newpathc = newpath
                     if self.the_lang and self.report.archive:
-                        (dummy_1_field, dummy_sep, second_field) = newpath.partition(
-                            "/"
-                        )
+                        dummy_1_field, dummy_sep, second_field = newpath.partition("/")
                         newpathc = second_field
                     if self.usecms:
                         newpathc = newpathc.replace(self.target_uri + "/", "")
@@ -2496,7 +2524,7 @@ class BasePage:
             for mediaref in media_list:
                 # is this mediaref for this image?  do we have a rect?
                 if mediaref.ref == handle and mediaref.rect is not None:
-                    (coord_x1, coord_y1, coord_x2, coord_y2) = mediaref.rect
+                    coord_x1, coord_y1, coord_x2, coord_y2 = mediaref.rect
                     # Gramps gives us absolute coordinates,
                     # but we need relative width + height
                     width = coord_x2 - coord_x1
@@ -2945,7 +2973,7 @@ class BasePage:
         with Html("div", class_="subsection", id="LDSOrdinance") as section:
             with self.create_toggle("lds") as h4_head:
                 section += h4_head
-                h4_head += self._("Latter-Day Saints/ LDS Ordinance")
+                h4_head += self._("Latter-day Saints/ LDS Ordinance")
 
             # dump individual LDS ordinance list
             section += self.dump_ordinance(db_obj_, "Person")
@@ -3213,7 +3241,7 @@ class BasePage:
         else:
             # The person has been encountered in the web report, but this does
             # not necessarily mean that a page has been generated
-            (link, name, gid) = result
+            link, name, gid = result
 
         name = html_escape(name)
         # construct the result
@@ -3290,6 +3318,26 @@ class BasePage:
                 document_link += Html("br") + (Html("span", name, inline=True))
             thumbnail += document_link
         return thumbnail
+
+    def heatmap_link(self, name, uplink=False):
+        """
+        Returns a hyperlink for heatmap link
+
+        @param: name   -- repository title
+        @param: uplink -- If True, then "../../../" is inserted in front of
+                          the result.
+        """
+        url = self.report.build_url_fname_html(name, "heat", uplink)
+
+        hyper = Html(
+            "a",
+            html_escape(self._(name)),
+            href=url.replace(" ", ""),
+            title=html_escape(self._(name)),
+        )
+
+        # return hyperlink to its callers
+        return hyper
 
     def place_link(self, handle, name, gid=None, uplink=False):
         """
@@ -3493,13 +3541,13 @@ class BasePage:
             parent_place = self.r_db.get_place_from_handle(obj.ref)
             if parent_place:
                 place_name = parent_place.get_name().get_value()
-            return place_name
+            return normalize("NFD", place_name)
 
         def sort_by_encl(obj):
             """
             Sort by encloses
             """
-            return obj[0]
+            return normalize("NFD", obj[0])
 
         for placeref in sorted(place.get_placeref_list(), key=sort_by_enclosed_by):
             parent_place = self.r_db.get_place_from_handle(placeref.ref)
@@ -3699,7 +3747,7 @@ class BasePage:
                     # dummy_cal is the original calendar. remove it.
                     if len(role.split(" ")) == 2:
                         # for sort, remove the modifier before, after...
-                        (dummy_modifier, role) = role.split(" ")
+                        dummy_modifier, role = role.split(" ")
                 else:
                     role = "3"
             return role
@@ -3734,11 +3782,11 @@ class BasePage:
                     # all modifiers are in english, so convert them
                     # to the local language
                     if len(role.split(" - ")) > 1:
-                        (date1, date2) = role.split(" - ")
+                        date1, date2 = role.split(" - ")
                         role = self._("between") + " " + date1 + " "
                         role += self._("and") + " " + date2
                     elif len(role.split(" ")) == 2:
-                        (pref, date) = role.split(" ")
+                        pref, date = role.split(" ")
                         if "aft" in pref:
                             role = self._("after") + " " + date
                         elif "bef" in pref:

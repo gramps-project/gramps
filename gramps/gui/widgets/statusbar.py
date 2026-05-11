@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2013       Nick Hall
+# Copyright (C) 2013,2025  Nick Hall
+# Copyright (C) 2025  Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -58,10 +58,20 @@ class Statusbar(Gtk.Box):
         self.set_border_width(2)
 
         self.__progress = Gtk.ProgressBar()
+        self.__progress.set_valign(Gtk.Align.CENTER)
         self.__progress.set_size_request(100, -1)
         self.__progress.hide()
 
         self.__warnbtn = WarnButton()
+
+        self.__fs_offline = Gtk.Image.new_from_icon_name(
+            "FS-BLA-16", Gtk.IconSize.BUTTON
+        )
+        self.__fs_online = Gtk.Image.new_from_icon_name("FS-G-16", Gtk.IconSize.BUTTON)
+        self.__fs_status = Gtk.Button()
+        self.__fs_status.set_relief(Gtk.ReliefStyle.NONE)
+        self.__fs_status.set_image(self.__fs_offline)
+        self.__fs_status.show()
 
         self.__version = Gtk.Button()
         self.__version.set_relief(Gtk.ReliefStyle.NONE)
@@ -75,6 +85,7 @@ class Statusbar(Gtk.Box):
         self.__filter.show()
 
         self.pack_start(self.__warnbtn, False, True, 4)
+        self.pack_start(self.__fs_status, False, True, 4)
         self.pack_start(self.__progress, False, True, 4)
         self.pack_start(self.__status, True, True, 4)
         self.pack_end(self.__filter, False, True, 4)
@@ -83,6 +94,17 @@ class Statusbar(Gtk.Box):
     def get_warning_button(self):
         """Return the warning button widget."""
         return self.__warnbtn
+
+    def get_fs_status_button(self):
+        """Return the FamilySearch status button widget."""
+        return self.__fs_status
+
+    def set_fs_online(self, status):
+        """Set the FamilySearch online status."""
+        if status:
+            self.__fs_status.set_image(self.__fs_online)
+        else:
+            self.__fs_status.set_image(self.__fs_offline)
 
     def get_progress_bar(self):
         """Return the progress bar widget."""

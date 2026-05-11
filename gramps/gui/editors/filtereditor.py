@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -728,7 +727,7 @@ class EditRule(ManagedWindow):
             page = self.class2page[self.active_rule.__class__]
             self.notebook.set_current_page(page)
             self.display_values(self.active_rule.__class__)
-            (class_obj, vallist, tlist, use_regex, use_case) = self.page[page]
+            class_obj, vallist, tlist, use_regex, use_case = self.page[page]
             r = list(self.active_rule.values())
             for i in range(0, min(len(tlist), len(r))):
                 tlist[i].set_text(r[i])
@@ -839,7 +838,7 @@ class EditRule(ManagedWindow):
 
         try:
             page = self.notebook.get_current_page()
-            (class_obj, vallist, tlist, use_regex, use_case) = self.page[page]
+            class_obj, vallist, tlist, use_regex, use_case = self.page[page]
             value_list = [str(sclass.get_text()) for sclass in tlist]
             if class_obj.allow_regex:
                 new_rule = class_obj(
@@ -1140,9 +1139,7 @@ class ShowResults(ManagedWindow):
             gid = repo.get_gramps_id()
         elif self.namespace == "Note":
             note = self.db.get_note_from_handle(handle)
-            name = note.get().replace("\n", " ")
-            if len(name) > 80:
-                name = name[:80] + "..."
+            name = note.get_preview()
             gid = note.get_gramps_id()
         return (name, gid)
 
@@ -1314,7 +1311,7 @@ class FilterEditor(ManagedWindow):
             try:
                 handle_list = filt.apply(self.db, self.get_all_handles())
             except FilterError as msg:
-                (msg1, msg2) = msg.messages()
+                msg1, msg2 = msg.messages()
                 ErrorDialog(msg1, msg2, parent=self.window)
                 return
             ShowResults(

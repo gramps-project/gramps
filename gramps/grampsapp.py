@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -51,7 +50,7 @@ if "-S" in sys.argv or "--safe" in sys.argv:
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from .gen.const import APP_GRAMPS, USER_DIRLIST, USER_DATA, ORIG_HOME_DIR
+from .gen.const import APP_GRAMPS, USER_DIRLIST, USER_DATA
 from .gen.constfunc import mac
 from .version import VERSION_TUPLE
 from .gen.constfunc import win, get_env_var
@@ -76,6 +75,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 
+_encoding: str
 try:
     # On Darwin sys.getdefaultencoding() is correct, on Win32 it's
     # sys.stdout.encoding, and on Linux they're both right.
@@ -195,14 +195,13 @@ sys.excepthook = exc_hook
 
 from .gen.mime import mime_type_is_defined
 
-
 # -------------------------------------------------------------------------
 #
 # Minimum version check
 #
 # -------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (3, 8, 0, "", 0)
+MIN_PYTHON_VERSION = (3, 10, 0, "", 0)
 if not sys.version_info >= MIN_PYTHON_VERSION:
     logging.warning(
         _(
@@ -216,6 +215,17 @@ if not sys.version_info >= MIN_PYTHON_VERSION:
             "v2": MIN_PYTHON_VERSION[1],
             "v3": MIN_PYTHON_VERSION[2],
         }
+    )
+    sys.exit(1)
+
+try:
+    import orjson
+except ImportError:
+    logging.warning(
+        _(
+            "The orjson package is needed to start Gramps.\n\n"
+            "Gramps will terminate now."
+        )
     )
     sys.exit(1)
 
@@ -310,6 +320,17 @@ def show_settings():
         pangocairo_str = PangoCairo._version
     except ImportError:
         pangocairo_str = _("not found")
+
+    try:
+        import orjson
+
+        try:
+            orjson_str = orjson.__version__
+        except:  # any failure to 'get' the version
+            orjson_str = "unknown version"
+
+    except ImportError:
+        orjson_str = "not found"
 
     try:
         from gi import Repository
@@ -545,6 +566,7 @@ def show_settings():
     print(" pycairo   : %s" % pycairover_str)
     print(" Pango     : %s" % pangover_str)
     print(" PangoCairo: %s" % pangocairo_str)
+    print(" orjson    : %s" % orjson_str)
     print("")
     print("Recommended:")
     print("------------")
@@ -631,11 +653,6 @@ def run():
     argv_copy = sys.argv[:]
     argpars = ArgParser(argv_copy)
 
-    # if in safe mode we should point the db dir back to the original dir.
-    # It is ok to import config here, 'Defaults' command had its chance...
-    if "SAFEMODE" in os.environ:
-        config.set("database.path", os.path.join(ORIG_HOME_DIR, "grampsdb"))
-
     # On windows the fontconfig handler is a better choice
     if win() and ("PANGOCAIRO_BACKEND" not in os.environ):
         os.environ["PANGOCAIRO_BACKEND"] = "fontconfig"
@@ -679,7 +696,7 @@ def main():
     if "GRAMPS_RESOURCES" not in os.environ:
         resource_path, filename = os.path.split(os.path.abspath(__file__))
         resource_path, dirname = os.path.split(resource_path)
-        os.environ["GRAMPS_RESOURCES"] = resource_path
+        os.environ["GRAMPS_RESOURCES"] = os.path.join(resource_path, "build", "share")
     errors = run()
     if errors and isinstance(errors, list):
         for error in errors:

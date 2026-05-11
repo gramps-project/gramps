@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # gen.filters.rules/Source/_HasRepositoryCallNumberRef.py
 
@@ -25,6 +24,14 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Source
+from ....db import Database
 
 _ = glocale.translation.gettext
 
@@ -51,8 +58,8 @@ class HasRepositoryCallNumberRef(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, obj):
-        for repo_ref in obj.get_reporef_list():
+    def apply_to_one(self, db: Database, obj: Source) -> bool:
+        for repo_ref in obj.reporef_list:
             if self.match_substring(0, repo_ref.call_number):
                 return True
         return False

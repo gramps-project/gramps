@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -32,6 +31,15 @@ from ....lib.eventtype import EventType
 from .. import Rule
 
 _ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Event
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -53,7 +61,7 @@ class HasType(Rule):
         super().__init__(arg, use_regex, use_case)
         self.event_type = None
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         """
         Prepare the rule. Things we only want to do once.
         """
@@ -61,10 +69,10 @@ class HasType(Rule):
             self.event_type = EventType()
             self.event_type.set_from_xml_str(self.list[0])
 
-    def apply(self, _db, obj):
+    def apply_to_one(self, _db: Database, obj: Event) -> bool:
         """
         Apply the rule. Return True if a match.
         """
         if self.event_type:
-            return obj.get_type() == self.event_type
+            return obj.type == self.event_type
         return False

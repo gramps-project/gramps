@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -301,7 +300,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         for entry in self.place_list:
             if math.hypot(lat - float(entry[3]), lon - float(entry[4])) <= rds:
                 # Do we already have this place ? avoid duplicates
-                (country, state, county, place, other) = self.get_location(entry[9])
+                country, state, county, place, other = self.get_location(entry[9])
                 if not [country, state, county, place, other] in self.places:
                     self.places.append([country, state, county, place, other])
         self.warning = False
@@ -330,7 +329,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
                     self.warning = True
                     continue
                 if math.hypot(lat - float(latn), lon - float(lonn)) <= rds:
-                    (country, state, county, place, other) = self.get_location(
+                    country, state, county, place, other = self.get_location(
                         place.get_gramps_id()
                     )
                     if not [country, state, county, place, other] in self.places:

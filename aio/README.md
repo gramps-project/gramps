@@ -27,4 +27,8 @@ cd gramps/aio
 ```
 To capture the full output of the build, use `./build.sh >& build_log.txt`
 
-Resulting AIO installer is in gramps/aio/mingw64/src/GrampsAIO-[appversion]-[appbuild]-[hash]_win64.exe
+The resulting AIO installer is in `gramps/aio/mingw64/src/GrampsAIO-[appversion]-[appbuild]-[hash]_win64.exe`
+
+The python virtual environment created during build (`c:\msys64\tmp\grampspythonenv\bin\python.exe` by default) can then be configured in Visual Studio Code and used to debug etc.
+
+To delete the python virtual environment at the end of the build, call ```./build.sh true```. This can be useful when testing the build script.

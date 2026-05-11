@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -34,6 +33,14 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Source
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 # "Sources having a title that contain a substring"
@@ -47,6 +54,6 @@ class MatchesTitleSubstringOf(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, source):
+    def apply_to_one(self, db: Database, source: Source) -> bool:
         """Apply the filter"""
-        return self.match_substring(0, source.get_title())
+        return self.match_substring(0, source.title)

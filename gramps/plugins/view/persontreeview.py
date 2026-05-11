@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -116,7 +115,7 @@ class PersonTreeView(BasePersonView):
         person = Person()
 
         # attempt to get the current surname
-        (model, pathlist) = self.selection.get_selected_rows()
+        model, pathlist = self.selection.get_selected_rows()
         name = Name()
         # the editor requires a surname
         name.add_surname(Surname())

@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -34,8 +33,10 @@ import os
 import random
 import sys
 import uuid
+import shutil
+import logging
 
-from gi.repository import GLib
+LOG = logging.getLogger(".")
 
 # -------------------------------------------------------------------------
 #
@@ -43,7 +44,14 @@ from gi.repository import GLib
 #
 # -------------------------------------------------------------------------
 from .git_revision import get_git_revision
-from .constfunc import get_env_var
+from .constfunc import (
+    get_env_var,
+    get_user_home_dir,
+    get_user_cache_dir,
+    get_user_config_dir,
+    get_user_data_dir,
+    win,
+)
 from ..version import VERSION, VERSION_TUPLE, major_version, DEV_VERSION
 from .utils.resourcepath import ResourcePath
 from .utils.grampslocale import GrampsLocale
@@ -60,11 +68,12 @@ PROGRAM_NAME = "Gramps"
 # Standard Gramps Websites
 #
 # -------------------------------------------------------------------------
-URL_HOMEPAGE = "http://gramps-project.org/"
-URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
-URL_BUGHOME = "http://gramps-project.org/bugs"
-URL_BUGTRACKER = "http://gramps-project.org/bugs/bug_report_page.php"
-URL_WIKISTRING = "http://gramps-project.org/wiki/index.php?title="
+URL_HOMEPAGE = "https://gramps-project.org/"
+URL_NS = "http://gramps-project.org/"  # XML NS URI
+URL_MAILINGLIST = "https://sourceforge.net/mail/?group_id=25770"
+URL_BUGHOME = "https://gramps-project.org/bugs"
+URL_BUGTRACKER = "https://gramps-project.org/bugs/bug_report_page.php"
+URL_WIKISTRING = "https://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
 URL_MANUAL_DATA = "%s_-_Entering_and_editing_data:_detailed" % URL_MANUAL_PAGE
 URL_MANUAL_SECT1 = "%s_-_part_1" % URL_MANUAL_DATA
@@ -90,44 +99,44 @@ APP_VCARD = ["text/x-vcard", "text/x-vcalendar"]
 
 # -------------------------------------------------------------------------
 #
-# Determine the home directory. According to Wikipedia, most UNIX like
-# systems use HOME. I'm assuming that this would apply to OS X as well.
-# Windows apparently uses USERPROFILE
+# Determine the user data and user configuration directories.
 #
 # -------------------------------------------------------------------------
 if "GRAMPSHOME" in os.environ:
     USER_HOME = get_env_var("GRAMPSHOME")
-    HOME_DIR = os.path.join(USER_HOME, "gramps")
-elif "USERPROFILE" in os.environ:
-    USER_HOME = get_env_var("USERPROFILE")
-    if "APPDATA" in os.environ:
-        HOME_DIR = os.path.join(get_env_var("APPDATA"), "gramps")
-    else:
-        HOME_DIR = os.path.join(USER_HOME, "gramps")
+    USER_DATA = os.path.join(USER_HOME, "gramps")
+    USER_CONFIG = USER_DATA
 else:
-    USER_HOME = get_env_var("HOME")
-    HOME_DIR = os.path.join(USER_HOME, ".gramps")
-ORIG_HOME_DIR = HOME_DIR
+    USER_HOME = get_user_home_dir()
+    USER_DATA = os.path.join(get_user_data_dir(), "gramps")
+    USER_CONFIG = os.path.join(get_user_config_dir(), "gramps")
+    if win():
+        # Migrate data from AppData\Local to AppData\Roaming on Windows.
+        OLD_HOME = os.path.join(USER_HOME, "AppData", "Local", "gramps")
+        if os.path.exists(OLD_HOME):
+            if os.path.exists(USER_DATA):
+                LOG.warning("Two Gramps application data directories exist.")
+            else:
+                shutil.move(OLD_HOME, USER_DATA)
+    else:
+        # Copy the database directory into the XDG directory.
+        OLD_HOME = os.path.join(USER_HOME, ".gramps")
+        if os.path.exists(OLD_HOME):
+            if os.path.exists(USER_DATA) or os.path.exists(USER_CONFIG):
+                LOG.warning("Two Gramps application data directories exist.")
+            else:
+                db_dir = os.path.join(OLD_HOME, "grampsdb")
+                if os.path.exists(db_dir):
+                    shutil.copytree(db_dir, os.path.join(USER_DATA, "grampsdb"))
+
+USER_CACHE = os.path.join(get_user_cache_dir(), "gramps")
+
 if "SAFEMODE" in os.environ:
-    if "USERPROFILE" in os.environ:
-        USER_HOME = get_env_var("USERPROFILE")
-    else:
-        USER_HOME = get_env_var("HOME")
-    HOME_DIR = get_env_var("SAFEMODE")
+    USER_CONFIG = get_env_var("SAFEMODE")
 
-
-if os.path.exists(HOME_DIR) or "GRAMPSHOME" in os.environ or "SAFEMODE" in os.environ:
-    USER_DATA = HOME_DIR
-    USER_CONFIG = HOME_DIR
-    USER_CACHE = HOME_DIR
-else:
-    USER_DATA = os.path.join(GLib.get_user_data_dir(), "gramps")
-    USER_CONFIG = os.path.join(GLib.get_user_config_dir(), "gramps")
-    USER_CACHE = os.path.join(GLib.get_user_cache_dir(), "gramps")
-
-USER_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
+USER_PICTURES = os.path.join(USER_HOME, "Pictures")
 if not USER_PICTURES:
-    USER_PICTURES = HOME_DIR
+    USER_PICTURES = USER_DATA
 
 VERSION_DIR_NAME = "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
 VERSION_DIR = os.path.join(USER_CONFIG, VERSION_DIR_NAME)
@@ -172,10 +181,8 @@ if LIB_PATH not in sys.path:
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 sys.path.insert(0, ROOT_DIR)
-git_revision = get_git_revision(ROOT_DIR).replace("\n", "")
-if sys.platform == "win32" and git_revision == "":
-    git_revision = get_git_revision(os.path.split(ROOT_DIR)[1])
 if DEV_VERSION:
+    git_revision = get_git_revision().replace("\n", "")
     VERSION += git_revision
 # VERSION += "-1"
 
@@ -251,7 +258,7 @@ GTK_GETTEXT_DOMAIN = "gtk30"
 # About box information
 #
 # -------------------------------------------------------------------------
-COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2025 The Gramps Developers"
+COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" "© 2007-2026 The Gramps Developers"
 COMMENTS = _(
     "Gramps is a genealogy program that is both intuitive for hobbyists "
     "and feature-complete for professional genealogists."
@@ -285,6 +292,7 @@ THUMBSCALE = 96.0
 THUMBSCALE_LARGE = 180.0
 SIZE_NORMAL = 0
 SIZE_LARGE = 1
+REMOTE_MIME = "application/http"
 XMLFILE = "data.gramps"
 NO_SURNAME = "(%s)" % _("none", "surname")
 NO_GIVEN = "(%s)" % _("none", "given-name")
@@ -413,3 +421,5 @@ TYPE_BOX_FAMILY = 1
 
 # instance of random.Random that can be used for predictable unit tests
 TEST_RANDOM = random.Random()
+# location of directory holding test files used in unit tests
+TEST_DIR = os.path.abspath(os.path.join(ROOT_DIR, os.pardir, "data", "tests"))

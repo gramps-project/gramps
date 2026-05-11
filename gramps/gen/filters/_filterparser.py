@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -79,6 +78,8 @@ class FilterParser(handler.ContentHandler):
                         op = "and"
                 except ValueError:
                     op = attrs["function"]
+                    if op == "xor":  # Synonym for "one" removed in v6.0
+                        op = "one"
                 self.f.set_logical_op(op)
             if "invert" in attrs:
                 self.f.set_invert(attrs["invert"])

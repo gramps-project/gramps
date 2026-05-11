@@ -13,15 +13,15 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Unittest that tests that part of the merge process that influences other
 objects than the objects merging.
 """
+
 import unittest
 import time
 import os
@@ -108,7 +108,15 @@ class BaseMergeCheck(unittest.TestCase):
         result_str, err_str = gramps.run(
             "-d",
             ".ImportXML",
-            "--config=preferences.eprefix:DEFAULT",
+            "--config=preferences.iprefix:I%04d",
+            "--config=preferences.oprefix:O%04d",
+            "--config=preferences.fprefix:F%04d",
+            "--config=preferences.sprefix:S%04d",
+            "--config=preferences.cprefix:C%04d",
+            "--config=preferences.pprefix:P%04d",
+            "--config=preferences.eprefix:E%04d",
+            "--config=preferences.rprefix:R%04d",
+            "--config=preferences.nprefix:N%04d",
             "-i",
             "-",
             "-f",
@@ -181,7 +189,16 @@ class BaseMergeCheck(unittest.TestCase):
         result_str, err_str = gramps.run(
             "-d",
             ".ImportXML",
-            "--config=preferences.eprefix:DEFAULT",
+            # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+            "--config=preferences.iprefix:I%04d",
+            "--config=preferences.oprefix:O%04d",
+            "--config=preferences.fprefix:F%04d",
+            "--config=preferences.sprefix:S%04d",
+            "--config=preferences.cprefix:C%04d",
+            "--config=preferences.pprefix:P%04d",
+            "--config=preferences.eprefix:E%04d",
+            "--config=preferences.rprefix:R%04d",
+            "--config=preferences.nprefix:N%04d",
             "-i",
             "-",
             "-f",
@@ -207,7 +224,15 @@ class BaseMergeCheck(unittest.TestCase):
         result_str, err_str = gramps.run(
             "-d",
             ".ImportXML",
-            "--config=preferences.eprefix:DEFAULT",
+            "--config=preferences.iprefix:I%04d",
+            "--config=preferences.oprefix:O%04d",
+            "--config=preferences.fprefix:F%04d",
+            "--config=preferences.sprefix:S%04d",
+            "--config=preferences.cprefix:C%04d",
+            "--config=preferences.pprefix:P%04d",
+            "--config=preferences.eprefix:E%04d",
+            "--config=preferences.rprefix:R%04d",
+            "--config=preferences.nprefix:N%04d",
             "-i",
             "-",
             "-f",
@@ -2227,7 +2252,7 @@ class FamilyMergeCheck(BaseMergeCheck):
         )
 
     def test_regular_merge(self):
-        """Merge two families succesfully"""
+        """Merge two families successfully"""
         expect = ET.fromstring(self.basedoc, parser=self.parser)
         persons = expect.xpath("//g:person", namespaces={"g": NS_G})
         altname = ET.SubElement(persons[0], NSP + "name", alt="1", type="Birth Name")

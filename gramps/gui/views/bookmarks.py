@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Handle bookmarks for the gramps interface."
@@ -504,7 +503,7 @@ class CitationBookmarks(ListBookmarks):
             # citation. This can occur when in the Citation Tree View and we
             # bookmark a source.
 
-            # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
+            # FIXME: See https://www.gramps-project.org/bugs/view.php?id=6352 a
             # more comprehensive solution is needed in the long term. See also
             # change_active in CitatinTreeView
             from ..dialog import WarningDialog

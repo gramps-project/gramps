@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -77,6 +76,7 @@ from .displaytabs import (
     GalleryTab,
     FamilyLdsEmbedList,
     ChildModel,
+    FamilyBackRefList,
     TEXT_COL,
     MARKUP_COL,
     ICON_COL,
@@ -410,24 +410,6 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
             return name
         else:
             return name
-
-
-class FastMaleFilter:
-    def __init__(self, db):
-        self.db = db
-
-    def match(self, handle, db):
-        data = self.db.get_raw_person_data(handle)
-        return data.gender == Person.MALE
-
-
-class FastFemaleFilter:
-    def __init__(self, db):
-        self.db = db
-
-    def match(self, handle, db):
-        data = self.db.get_raw_person_data(handle)
-        return data.gender == Person.FEMALE
 
 
 # -------------------------------------------------------------------------
@@ -892,6 +874,16 @@ class EditFamily(EditPrimary):
             self._add_tab(notebook, self.lds_embed)
         self.track_ref_for_deletion("lds_embed")
 
+        self.backref_tab = FamilyBackRefList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.db.find_backlink_handles(self.obj.handle),
+            "family_editor_references",
+        )
+        self._add_tab(notebook, self.backref_tab)
+        self.track_ref_for_deletion("backref_tab")
+
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
 
@@ -997,13 +989,12 @@ class EditFamily(EditPrimary):
         for i in self.hidden:
             i.set_sensitive(True)
 
-        data_filter = FastFemaleFilter(self.dbstate.db)
         sel = SelectPerson(
             self.dbstate,
             self.uistate,
             self.track,
             _("Select Mother"),
-            filter=data_filter,
+            search_or_filter=(4, _("Female")),
             skip=[x.ref for x in self.obj.get_child_ref_list()],
         )
         person = sel.run()
@@ -1047,13 +1038,12 @@ class EditFamily(EditPrimary):
         for i in self.hidden:
             i.set_sensitive(True)
 
-        data_filter = FastMaleFilter(self.dbstate.db)
         sel = SelectPerson(
             self.dbstate,
             self.uistate,
             self.track,
             _("Select Father"),
-            filter=data_filter,
+            search_or_filter=(4, _("Male")),
             skip=[x.ref for x in self.obj.get_child_ref_list()],
         )
         person = sel.run()
@@ -1170,11 +1160,11 @@ class EditFamily(EditPrimary):
         if orig_handle != new_handle:
             if orig_handle:
                 person = self.db.get_person_from_handle(orig_handle)
-                person.family_list.remove(self.obj.handle)
+                person.remove_family_handle(self.obj.handle)
                 self.db.commit_person(person, trans)
             if new_handle:
                 person = self.db.get_person_from_handle(new_handle)
-                person.family_list.append(self.obj.handle)
+                person.add_family_handle(self.obj.handle)
                 self.db.commit_person(person, trans)
 
     def on_drag_fatherdata_received(self, widget, context, x, y, sel_data, info, time):
@@ -1186,7 +1176,7 @@ class EditFamily(EditPrimary):
         for i in self.hidden:
             i.set_sensitive(True)
         if sel_data and sel_data.get_data():
-            (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+            drag_type, idval, handle, val = pickle.loads(sel_data.get_data())
             person = self.db.get_person_from_handle(handle)
 
             if person:
@@ -1205,7 +1195,7 @@ class EditFamily(EditPrimary):
         for i in self.hidden:
             i.set_sensitive(True)
         if sel_data and sel_data.get_data():
-            (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+            drag_type, idval, handle, val = pickle.loads(sel_data.get_data())
             person = self.db.get_person_from_handle(handle)
 
             if person:
@@ -1274,7 +1264,7 @@ class EditFamily(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        (uses_dupe_id, id) = self._uses_duplicate_id()
+        uses_dupe_id, id = self._uses_duplicate_id()
         if uses_dupe_id:
             msg1 = _("Cannot save family. ID already exists.")
             msg2 = _(

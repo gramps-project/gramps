@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -35,6 +34,15 @@ _ = glocale.translation.gettext
 from ....utils.db import for_each_ancestor
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Dict, Set
+from ....lib import Person
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 #
@@ -51,13 +59,13 @@ class HasCommonAncestorWith(Rule):
         "Matches people that have a common ancestor " "with a specified person"
     )
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
         # For each(!) person we keep track of who their ancestors
         # are, in a set(). So we only have to compute a person's
         # ancestor list once.
         # Start with filling the cache for root person (gramps_id in self.list[0])
-        self.ancestor_cache = {}
+        self.ancestor_cache: Dict[str, Set[str]] = {}
         root_person = db.get_person_from_gramps_id(self.list[0])
         if root_person:
             self.add_ancs(db, root_person)
@@ -65,7 +73,7 @@ class HasCommonAncestorWith(Rule):
         else:
             self.with_people = []
 
-    def add_ancs(self, db, person):
+    def add_ancs(self, db: Database, person: Person):
         if person and person.handle not in self.ancestor_cache:
             self.ancestor_cache[person.handle] = set()
             # We are going to compare ancestors of one person with that of
@@ -76,11 +84,11 @@ class HasCommonAncestorWith(Rule):
         else:
             return
 
-        for fam_handle in person.get_parent_family_handle_list():
+        for fam_handle in person.parent_family_list:
             parentless_fam = True
             fam = db.get_family_from_handle(fam_handle)
             if fam:
-                for par_handle in (fam.get_father_handle(), fam.get_mother_handle()):
+                for par_handle in (fam.father_handle, fam.mother_handle):
                     if par_handle:
                         parentless_fam = False
                         par = db.get_person_from_handle(par_handle)
@@ -96,17 +104,21 @@ class HasCommonAncestorWith(Rule):
     def reset(self):
         self.ancestor_cache = {}
 
-    def has_common_ancestor(self, other):
+    def has_common_ancestor(self, other: Person):
         for handle in self.with_people:
-            if (handle in self.ancestor_cache and self.ancestor_cache[handle]) & (
+            left_and = (
+                handle in self.ancestor_cache and self.ancestor_cache[handle]
+            )  # type: ignore
+            right_and = (
                 other
                 and other.handle in self.ancestor_cache
                 and self.ancestor_cache[other.handle]
-            ):
+            )  # type: ignore
+            if left_and.intersection(right_and):  # type: ignore
                 return True
         return False
 
-    def apply(self, db, person):
+    def apply_to_one(self, db: Database, person: Person) -> bool:
         if person and person.handle not in self.ancestor_cache:
             self.add_ancs(db, person)
 

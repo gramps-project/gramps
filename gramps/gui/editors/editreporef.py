@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -36,11 +35,21 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
+from gramps.gen.const import URL_MANUAL_SECT2
 
 from .displaytabs import NoteTab, AddrEmbedList, WebEmbedList, SourceBackRefList
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from .editreference import RefTab, EditReference
 from ..glade import Glade
+
+# -------------------------------------------------------------------------
+#
+# Constants
+#
+# -------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = URL_MANUAL_SECT2
+WIKI_HELP_SEC = "Repository_Reference_Editor"
 
 
 # -------------------------------------------------------------------------
@@ -84,6 +93,9 @@ class EditRepoRef(EditReference):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object("ok"), self.ok_clicked)
         self.define_cancel_button(self.top.get_object("cancel"))
+        self.define_help_button(
+            self.top.get_object("help"), WIKI_HELP_PAGE, WIKI_HELP_SEC
+        )
 
     def _connect_db_signals(self):
         """

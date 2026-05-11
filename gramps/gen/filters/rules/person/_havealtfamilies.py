@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -35,6 +34,14 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ....lib.childreftype import ChildRefType
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Person
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 # "People who were adopted"
@@ -46,18 +53,14 @@ class HaveAltFamilies(Rule):
     description = _("Matches people who were adopted")
     category = _("Family filters")
 
-    def apply(self, db, person):
-        for fhandle in person.get_parent_family_handle_list():
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        for fhandle in person.parent_family_list:
             family = db.get_family_from_handle(fhandle)
             if family:
-                ref = [
-                    ref
-                    for ref in family.get_child_ref_list()
-                    if ref.ref == person.handle
-                ]
+                ref = [ref for ref in family.child_ref_list if ref.ref == person.handle]
                 if (
-                    ref[0].get_father_relation() == ChildRefType.ADOPTED
-                    or ref[0].get_mother_relation() == ChildRefType.ADOPTED
+                    ref[0].frel == ChildRefType.ADOPTED
+                    or ref[0].mrel == ChildRefType.ADOPTED
                 ):
                     return True
         return False

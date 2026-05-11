@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -35,6 +34,15 @@ _ = glocale.translation.gettext
 from .. import Rule
 from ._matchesfilter import MatchesFilter
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Person
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 #
@@ -50,9 +58,9 @@ class IsParentOfFilterMatch(Rule):
     category = _("Family filters")
     description = _("Matches parents of anybody matched by a filter")
 
-    def prepare(self, db, user):
+    def prepare(self, db: Database, user):
         self.db = db
-        self.map = set()
+        self.selected_handles: Set[str] = set()
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
         if user:
@@ -64,24 +72,24 @@ class IsParentOfFilterMatch(Rule):
         for person in db.iter_people():
             if user:
                 user.step_progress()
-            if self.filt.apply(db, person):
+            if self.filt.apply_to_one(db, person):
                 self.init_list(person)
         if user:
             user.end_progress()
 
     def reset(self):
         self.filt.requestreset()
-        self.map.clear()
+        self.selected_handles.clear()
 
-    def apply(self, db, person):
-        return person.handle in self.map
+    def apply_to_one(self, db, person: Person) -> bool:
+        return person.handle in self.selected_handles
 
-    def init_list(self, person):
-        for fam_id in person.get_parent_family_handle_list():
+    def init_list(self, person: Person):
+        for fam_id in person.parent_family_list:
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
-                self.map.update(
+                self.selected_handles.update(
                     parent_id
-                    for parent_id in [fam.get_father_handle(), fam.get_mother_handle()]
+                    for parent_id in [fam.father_handle, fam.mother_handle]
                     if parent_id
                 )

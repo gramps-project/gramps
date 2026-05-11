@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -27,9 +26,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -38,11 +36,13 @@ Narrative Web Page generator.
 Classe:
     PlacePage - Place index page and individual Place pages
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
 from collections import defaultdict
 from decimal import getcontext
+import unicodedata
 import logging
 
 # ------------------------------------------------
@@ -63,6 +63,8 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (
     alphabet_navigation,
+    partial_navigation,
+    create_indexes_pages,
     GOOGLE_MAPS,
     FULLCLEAR,
     MARKER_PATH,
@@ -150,7 +152,9 @@ class PlacePages(BasePage):
                             plc_dict = (p_fname, place_name, place.gramps_id, None)
                             self.report.obj_dict[Place][place_ref] = plc_dict
                             p_name = _pd.display(self.r_db, place, fmt=0)
-                            cplace_name = p_name.split()[-1]
+                            cplace_name = ""
+                            if p_name:
+                                cplace_name = p_name.split()[-1]
                             if len(place_name.split()) > 1:
                                 splace_name = place_name.split()[-2]
                             else:
@@ -163,20 +167,20 @@ class PlacePages(BasePage):
                                 place.gramps_id,
                                 None,
                             )
-                            self.report.obj_dict[PlaceName][p_name] = plc_dict
+                            plc_name = p_name + ":" + place.get_gramps_id()
+                            self.report.obj_dict[PlaceName][plc_name] = plc_dict
 
         with self.r_user.progress(
             progress_title, message, len(self.report.obj_dict[Place]) + 1
         ) as step:
             index = 1
             for place_name in self.report.obj_dict[PlaceName].keys():
+                pname = place_name.split(":")[0]
                 step()
                 p_handle = self.report.obj_dict[PlaceName][place_name]
                 index += 1
                 if isinstance(p_handle, tuple):
-                    self.placepage(
-                        self.report, the_lang, the_title, p_handle[0], place_name
-                    )
+                    self.placepage(self.report, the_lang, the_title, p_handle[0], pname)
             step()
         self.placelistpage(self.report, the_lang, the_title)
 
@@ -190,7 +194,6 @@ class PlacePages(BasePage):
         cname,
         place_handle,
         letter,
-        bucket_link,
     ):
         place = None
         if place_handle:
@@ -208,7 +211,6 @@ class PlacePages(BasePage):
                 plc_title = ", ".join(pname.split(",")[:3])
             elif nbrs == 6:
                 plc_title = ", ".join(pname.split(",")[:4])
-            main_location = get_main_location(self.r_db, place)
             if not plc_title or plc_title == " ":
                 letter = "&nbsp;"
             trow = Html("tr")
@@ -221,7 +223,7 @@ class PlacePages(BasePage):
                 # prev_letter = letter
                 trow.attr = 'class = "BeginLetter"'
                 ttle = self._("Places beginning " "with letter %s") % letter
-                tcell += Html("a", letter, name=letter, title=ttle, id_=bucket_link)
+                tcell += Html("a", letter, name=letter, title=ttle)
             else:
                 tcell += "&nbsp;"
             trow += Html(
@@ -258,21 +260,31 @@ class PlacePages(BasePage):
                     tcell2 += "&nbsp;"
         return (ldatec, first_place)
 
-    def placelistpage(self, report, the_lang, the_title):
+    def part_placelistpage(
+        self,
+        report,
+        index_list,
+        name,
+        letter,
+        places_handle_list,
+        part=None,
+        subp=None,
+        partial_list=None,
+    ):
         """
-        Create a place index
-
-        @param: report        -- The instance of the main report class
-                                 for this report
-        @param: the_lang      -- The lang to process
-        @param: the_title     -- The title page related to the language
+        Create a part of a place index
         """
-        BasePage.__init__(self, report, the_lang, the_title)
-
-        output_file, sio = self.report.create_file("places")
+        nav_name = part_name = name
+        if part != 0 and subp != 0:
+            part_name += str(part)
+            nav_name = part_name
+        if subp and subp != 0:
+            part_name += subp
+        output_file, sio = self.report.create_file(part_name)
         result = self.write_header(self._("Places"))
         placelistpage, dummy_head, dummy_body, outerwrapper = result
         ldatec = 0
+        first_place = True
 
         # begin places division
         with Html("div", class_="content", id="Places") as placelist:
@@ -287,24 +299,33 @@ class PlacePages(BasePage):
             )
             placelist += Html("p", msg, id="description")
 
-            # begin alphabet navigation
-            # Assemble all the places
-            index = AlphabeticIndex(self.rlocale)
-            # self.report.obj_dict[PlaceName] is a dict with key place_name and
-            # values (place_fname, place_name, place.gramps_id, event)
-            for place_name, value in self.report.obj_dict[PlaceName].items():
-                index.addRecord(place_name, value)
-
-            # Extract the buckets from the index
-            index_list = []
-            index.resetBucketIterator()
-            while index.nextBucket():
-                if index.bucketRecordCount != 0:
-                    index_list.append(index.bucketLabel)
             # Output the navigation
-            alpha_nav = alphabet_navigation(index_list, self.rlocale, rtl=self.dir)
+            alpha_nav = alphabet_navigation(
+                index_list,
+                self.rlocale,
+                current=part_name,
+                rtl=self.dir,
+                new_page="places",
+                ext=self.ext,
+            )
             if alpha_nav:
                 placelist += alpha_nav
+
+            if part is not None:
+                # We need to create a new navigation tab for partial page index.
+                partial_nav = partial_navigation(
+                    partial_list,
+                    self.rlocale,
+                    current=part_name,
+                    rtl=self.dir,
+                    ext=self.ext,
+                    new_page=nav_name,
+                )
+                if partial_nav is not None:
+                    placelist += Html(
+                        "div", style="clear: both;"
+                    )  # This to align the next div to the left.
+                    placelist += partial_nav
 
             # begin places table and table head
             with Html(
@@ -343,66 +364,35 @@ class PlacePages(BasePage):
                     )
 
                 # begin table body
-                tbody = Html("tbody")
-                table += tbody
-
-                # For each bucket, output the places in that bucket
-                index.resetBucketIterator()
-                output = []
-                dup_index = 0
-                while index.nextBucket():
-                    if index.bucketRecordCount != 0:
-                        bucket_letter = index.bucketLabel
-                        bucket_link = bucket_letter
-                        if bucket_letter in output:
-                            bucket_link = "%s (%i)" % (bucket_letter, dup_index)
-                            dup_index += 1
-                        output.append(bucket_letter)
-                        # Assemble all the places in this bucket into a dict for
-                        # sorting
-                        place_dict = dict()
-                        while index.nextRecord():
-                            place_name = index.recordName
-                            value = index.recordData
-                            place_dict[place_name] = value
-
-                        handle_list = sort_places(self.r_db, place_dict, self.rlocale)
-                        first_place = True
-                        for pname, place_handle in handle_list:
-                            if not pname:
-                                continue
-                            val = self.report.obj_dict[PlaceName][pname]
-                            nbelem = len(val)
-                            if val and nbelem > 3:
-                                if isinstance(place_handle, tuple):
-                                    place = self.r_db.get_place_from_handle(
-                                        place_handle[0]
-                                    )
-                                else:
-                                    place = self.r_db.get_place_from_handle(
-                                        place_handle
-                                    )
-                                main_location = get_main_location(self.r_db, place)
-                                sname = main_location.get(PlaceType.STATE, "")
-                                cname = main_location.get(PlaceType.COUNTRY, "")
-                            elif nbelem == 3:
-                                cname = val[3]
-                                sname = val[2]
-                            else:
-                                val = [""]
-                                cname = ""
-                                sname = ""
-                            (ldatec, first_place) = self.__output_place(
-                                ldatec,
-                                trow,
-                                first_place,
-                                pname,
-                                sname,
-                                cname,
-                                val[0],
-                                bucket_letter,
-                                bucket_link,
-                            )
+                for place_handle, pname in places_handle_list:
+                    gid = self.report.obj_dict[Place][place_handle][2]
+                    val = self.report.obj_dict[PlaceName][pname + ":" + gid]
+                    nbelem = len(val)
+                    if val and nbelem > 3:
+                        if isinstance(place_handle, tuple):
+                            place = self.r_db.get_place_from_handle(place_handle[0])
+                        else:
+                            place = self.r_db.get_place_from_handle(place_handle)
+                        main_location = get_main_location(self.r_db, place)
+                        sname = main_location.get(PlaceType.STATE, "")
+                        cname = main_location.get(PlaceType.COUNTRY, "")
+                    elif nbelem == 3:
+                        cname = val[3]
+                        sname = val[2]
+                    else:
+                        val = [""]
+                        cname = ""
+                        sname = ""
+                    ldatec, first_place = self.__output_place(
+                        ldatec,
+                        trow,
+                        first_place,
+                        pname,
+                        sname,
+                        cname,
+                        val[0],
+                        letter,
+                    )
 
         # add clearline for proper styling
         # add footer section
@@ -412,6 +402,63 @@ class PlacePages(BasePage):
         # send page out for processing
         # and close the file
         self.xhtml_writer(placelistpage, output_file, sio, ldatec)
+
+    def placelistpage(self, report, the_lang, the_title):
+        """
+        Create a place index
+
+        @param: report        -- The instance of the main report class
+                                 for this report
+        @param: the_lang      -- The lang to process
+        @param: the_title     -- The title page related to the language
+        """
+        BasePage.__init__(self, report, the_lang, the_title)
+
+        # begin alphabet navigation
+        index = AlphabeticIndex(self.rlocale)
+        # self.report.obj_dict[PlaceName] is a dict with key place_name and
+        # values (place_fname, place_name, place.gramps_id, event)
+        for place_name, value in self.report.obj_dict[PlaceName].items():
+            gid = self.report.obj_dict[Place][value[0]][2]
+            p_name = place_name + ":" + gid
+            index.addRecord(p_name, [(value[0], value[1])])
+
+        # Extract the buckets from the index
+        index_list = []
+        places_dict = defaultdict(list)
+        places_list = []
+        max_letter_rows = defaultdict(int)
+        index.resetBucketIterator()
+        while index.nextBucket():
+            if index.bucketRecordCount != 0:
+                letter = index.bucketLabel
+                if letter not in index_list:
+                    index_list.append(letter)
+                bletter = (
+                    unicodedata.normalize("NFKD", letter)[0]
+                    if len(letter) > 0
+                    else letter
+                )
+                # Assemble all the places in this bucket into a dict for sorting
+                while index.nextRecord():
+                    handle_list = index.recordData
+                    if handle_list:
+                        for handle in handle_list:
+                            places_dict[bletter].append((handle))
+                        if bletter in max_letter_rows:
+                            max_letter_rows[bletter] += len(handle_list)
+                        else:
+                            max_letter_rows[bletter] = len(handle_list)
+
+        places_list = list(places_dict.items())
+        create_indexes_pages(
+            report,
+            "places",
+            index_list,
+            self.part_placelistpage,
+            places_list,
+            locale=self.rlocale,
+        )
 
     def placepage(self, report, the_lang, the_title, place_handle, place_name):
         """
@@ -430,13 +477,11 @@ class PlacePages(BasePage):
         BasePage.__init__(self, report, the_lang, the_title, place.get_gramps_id())
         self.bibli = Bibliography()
         ldatec = place.get_change_time()
-        apname = _pd.display(self.r_db, place, fmt=0)
 
-        # if place_name:  # != apname: # store only the primary named page
         output_file, sio = self.report.create_file(place_handle, "plc")
         self.uplink = True
         self.page_title = place_name
-        (placepage, head, dummy_body, outerwrapper) = self.write_header(_("Places"))
+        placepage, head, dummy_body, outerwrapper = self.write_header(_("Places"))
 
         self.placemappages = self.report.options["placemappages"]
         self.mapservice = self.report.options["mapservice"]
@@ -589,7 +634,10 @@ class PlacePages(BasePage):
                     tooltip += Html("div", id="tooltip-content")
 
             # source references
-            if not self.report.options["inc_uplaces"]:
+            if (
+                not self.report.options["inc_uplaces"]
+                and self.report.options["inc_sources"]
+            ):
                 # We can't display source reference when we display
                 # unused places. These info are not in the collected objects.
                 # This is to avoid "page not found" errors.
@@ -622,7 +670,7 @@ class PlacePages(BasePage):
 
                             if mime_type and is_image_type(mime_type):
                                 uplnk = self.uplink
-                                (pth, dummy_) = self.report.prepare_copy_media(photo)
+                                pth, dummy_ = self.report.prepare_copy_media(photo)
                                 srbuf = self.report.build_url_fname
                                 newpath = srbuf(pth, image=True, uplink=uplnk)
                                 imglnk = self.media_link(
@@ -650,6 +698,7 @@ class PlacePages(BasePage):
                         elif self.mapservice == "OpenStreetMap":
                             jsc += MARKER_PATH % marker_path
                             jsc += OSM_MARKERS % (
+                                "markers",
                                 [
                                     [
                                         float(longitude),
@@ -661,6 +710,8 @@ class PlacePages(BasePage):
                                 longitude,
                                 latitude,
                                 10,
+                                0,
+                                0,
                             )
                             jsc += OPENLAYER
                         else:  # STAMEN

@@ -13,18 +13,18 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Container class for managing the generic filters """
+"""Container class for managing the generic filters"""
 
 # -------------------------------------------------------------------------
 #
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from io import StringIO
 from xml.sax import make_parser, SAXParseException
 import os
 from collections import abc
@@ -112,6 +112,15 @@ class FilterList:
                     parser.parse(the_file)
         except (IOError, OSError):
             print("IO/OSError in _filterlist.py")
+        except SAXParseException:
+            print("Parser error")
+
+    def loadString(self, string):
+        """load a custom filter from the provided string"""
+        try:
+            parser = make_parser()
+            parser.setContentHandler(FilterParser(self))
+            parser.parse(StringIO(string))
         except SAXParseException:
             print("Parser error")
 

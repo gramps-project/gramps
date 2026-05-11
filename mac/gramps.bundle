@@ -42,43 +42,7 @@
   </binary>
 
   <binary recurse="True">
-    ${prefix}/lib/python3.11/*.so
-  </binary>
-
-  <binary>
-    ${prefix}/lib/librsvg-2.2.dylib
-  </binary>
-
-  <binary>
-    ${prefix}/lib/libgtkmacintegration-gtk3.4.dylib
-  </binary>
-
-  <binary>
-    ${prefix}/lib/libdb-4.dylib
-  </binary>
-
-  <binary>
-    ${prefix}/lib/libgtkspell3-3.0.dylib
-  </binary>
-
-  <binary>
-    ${prefix}/lib/enchant-2
-  </binary>
-
-  <binary>
-     ${prefix}/lib/libosmgpsmap-1.0.1.dylib
-  </binary>
-
-  <binary>
-    ${prefix}/lib/libgoocanvas-2.0.9.dylib
-  </binary>
-
-  <binary>
-    ${prefix}/lib/libhunspell-1.7.0.dylib
-  </binary>
-
-  <binary>
-    ${prefix}/lib/libtiff.6.dylib
+    ${prefix}/lib/python3.13/*.so
   </binary>
 
   <binary dest="${bundle}/Contents/MacOS/">
@@ -86,7 +50,15 @@
   </binary>
 
   <binary>
+    ${prefix}/lib/enchant-2
+  </binary>
+
+  <binary>
     ${prefix}/lib/graphviz/*.dylib
+  </binary>
+
+  <binary>
+    ${prefix}/lib/libdb-4.dylib
   </binary>
 
   <binary>
@@ -98,14 +70,46 @@
   </binary>
 
   <binary>
+    ${prefix}/lib/gio/modules
+  </binary>
+
+  <binary>
+    ${prefix}/lib/libgoocanvas-2.0.9.dylib
+  </binary>
+
+  <binary>
     ${prefix}/lib/libgspell-1.3.dylib
   </binary>
 
   <binary>
-    ${prefix}/lib/gio/modules/libgiognutls.so
+    ${prefix}/lib/libgtkmacintegration-gtk3.4.dylib
   </binary>
 
-  <gir>
+  <binary>
+    ${prefix}/lib/libhunspell-1.7.0.dylib
+  </binary>
+
+  <binary>
+     ${prefix}/lib/libosmgpsmap-1.0.1.dylib
+  </binary>
+
+  <binary>
+    ${prefix}/lib/librsvg-2.2.dylib
+  </binary>
+
+  <binary>
+    ${prefix}/lib/libtiff.6.dylib
+  </binary>
+  
+  <binary>
+    ${prefix}/lib/ossl-modules
+  </binary>
+
+  <binary>
+    ${prefix}/lib/pkcs11
+  </binary>
+
+<gir>
     ${prefix}/share/gir-1.0/*.gir
   </gir>
 
@@ -157,15 +161,15 @@
   <!-- We have to pull in the python modules, which are mixed python
        and loadable modules.  -->
   <data recurse="True">
-    ${prefix}/lib/python3.11/*.py
+    ${prefix}/lib/python3.13/*.py
   </data>
 
   <data>
-    ${prefix}/lib/python3.11/config-3.11-darwin/
+    ${prefix}/lib/python3.13/config-3.13-darwin/
   </data>
 
   <data>
-    ${prefix}/include/python3.11/pyconfig.h
+    ${prefix}/include/python3.13/pyconfig.h
   </data>
 
 
@@ -182,7 +186,7 @@
   </data>
 
   <data recurse="True">
-    ${prefix}/lib/python3.11/site-packages/gramps/*.glade
+    ${prefix}/lib/python3.13/site-packages/gramps/*.glade
   </data>
 
   <data>

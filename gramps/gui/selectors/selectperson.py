@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -58,9 +57,9 @@ class SelectPerson(BaseSelector):
         uistate,
         track=[],
         title=None,
-        filter=None,
+        search_or_filter=None,
         skip=set(),
-        show_search_bar=False,
+        show_search_bar=True,
         default=None,
     ):
         # SelectPerson may have a title passed to it which should be used
@@ -78,7 +77,14 @@ class SelectPerson(BaseSelector):
             self.WIKI_HELP_SEC = _("Select_Person_selector", "manual")
 
         BaseSelector.__init__(
-            self, dbstate, uistate, track, filter, skip, show_search_bar, default
+            self,
+            dbstate,
+            uistate,
+            track,
+            search_or_filter,
+            skip,
+            show_search_bar,
+            default,
         )
 
     def _local_init(self):

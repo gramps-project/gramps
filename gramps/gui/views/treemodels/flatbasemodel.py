@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -187,7 +186,7 @@ class FlatNodeMap:
         This method keeps the index2hndl map, but sets it up the index in
         reverse order. If the hndl2index map does not exist yet, it is created
         in the acending order as given in index2hndl
-        The result is always a hndl2index map wich is correct, so or ascending
+        The result is always a hndl2index map which is correct, so or ascending
         order, or reverse order.
         """
         if self._hndl2index:

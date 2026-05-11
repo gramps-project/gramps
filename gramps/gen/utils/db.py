@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -375,13 +374,14 @@ def find_children(db, person):
     """
     Return the list of all children's IDs for a person.
     """
-    children = set()
+    children = []
     for family_handle in person.get_family_handle_list():
         family = db.get_family_from_handle(family_handle)
         if family:
             for child_ref in family.get_child_ref_list():
-                children.add(child_ref.ref)
-    return list(children)
+                children.append(child_ref.ref)
+    # return without duplicates, preserving order
+    return list(dict.fromkeys(children))
 
 
 # -------------------------------------------------------------------------
@@ -657,7 +657,7 @@ def get_source_and_citation_referents(source_handle, db):
         citation_referents_list += [(citation, refs)]
     LOG.debug("citation_referents_list %s", [citation_referents_list])
 
-    (citation_list) = the_lists
+    citation_list = the_lists
     the_lists = (citation_list, citation_referents_list)
 
     LOG.debug("the_lists %s", [the_lists])

@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -148,12 +147,12 @@ class BackRefList(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2))
 
     def find_node(self):
-        (model, node) = self.selection.get_selected()
+        model, node = self.selection.get_selected()
         try:
             return (model.get_value(node, 4), model.get_value(node, 3))
         except:
             return (None, None)
 
     def edit_button_clicked(self, obj):
-        (reftype, ref) = self.find_node()
+        reftype, ref = self.find_node()
         edit_object(self.dbstate, self.uistate, reftype, ref)

@@ -129,7 +129,7 @@
                         <property name="margin-end">3</property>
                         <property name="margin-top">3</property>
                         <property name="margin-bottom">3</property>
-                        <property name="label" translatable="yes">_Given:</property>
+                        <property name="label" translatable="yes" context="Given names">_Given:</property>
                         <property name="use-underline">True</property>
                         <property name="justify">center</property>
                         <property name="mnemonic-widget">given_name</property>

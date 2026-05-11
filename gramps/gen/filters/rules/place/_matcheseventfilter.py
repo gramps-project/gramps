@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -33,6 +32,14 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .._matchesfilterbase import MatchesFilterBase
+
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Event
+from ....db import Database
 
 
 # -------------------------------------------------------------------------
@@ -58,12 +65,11 @@ class MatchesEventFilter(MatchesFilterBase):
     # we want to have this filter show event filters
     namespace = "Event"
 
-    def apply(self, db, event):
+    def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
-            for classname, handle in db.find_backlink_handles(
-                event.get_handle(), ["Event"]
-            ):
-                if filt.check(db, handle):
+            for classname, handle in db.find_backlink_handles(event.handle, ["Event"]):
+                data = db.method("get_%s_from_handle", classname)(handle)
+                if filt.apply_to_one(db, data):
                     return True
         return False

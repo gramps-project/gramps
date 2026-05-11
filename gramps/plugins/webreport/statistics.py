@@ -27,9 +27,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -38,6 +37,7 @@ Narrative Web Page generator.
 Classe:
     StatisticsPage
 """
+
 # ------------------------------------------------
 # python modules
 # ------------------------------------------------
@@ -87,7 +87,7 @@ class StatisticsPage(BasePage):
         output_file, sio = self.report.create_file("statistics")
         result = self.write_header(_("Statistics"))
         addressbookpage, dummy_head, dummy_body, outerwrapper = result
-        (males, females, others, unknown) = self.get_gender(
+        males, females, others, unknown = self.get_gender(
             report.database.iter_person_handles()
         )
 
@@ -216,7 +216,7 @@ class StatisticsPage(BasePage):
             )
         outerwrapper += sec4
 
-        (males, females, others, unknown) = self.get_gender(
+        males, females, others, unknown = self.get_gender(
             self.report.bkref_dict[Person].keys()
         )
 

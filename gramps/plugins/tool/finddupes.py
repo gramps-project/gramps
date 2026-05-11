@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """Tools/Database Processing/Find Possible Duplicate People"""
@@ -243,7 +242,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                     continue
                 p2 = self.db.get_person_from_handle(p2key)
                 if p2key in self.map:
-                    (v, c) = self.map[p2key]
+                    v, c = self.map[p2key]
                     if v == p1key:
                         continue
 
@@ -597,7 +596,7 @@ class DuplicatePeopleToolMatches(ManagedWindow):
         for p1key, p1data in self.map.items():
             if p1key in self.dellist:
                 continue
-            (p2key, c) = p1data
+            p2key, c = p1data
             if p2key in self.dellist:
                 continue
             if p1key == p2key:
@@ -621,7 +620,7 @@ class DuplicatePeopleToolMatches(ManagedWindow):
         if not iter:
             return
 
-        (self.p1, self.p2) = self.list.get_object(iter)
+        self.p1, self.p2 = self.list.get_object(iter)
         MergePerson(
             self.dbstate,
             self.uistate,

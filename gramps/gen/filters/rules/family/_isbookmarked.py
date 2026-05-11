@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -34,6 +33,15 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from .. import Rule
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
+from ....lib import Family
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 #
@@ -47,8 +55,8 @@ class IsBookmarked(Rule):
     category = _("General filters")
     description = _("Matches the families on the bookmark list")
 
-    def prepare(self, db, user):
-        self.bookmarks = db.get_family_bookmarks().get()
+    def prepare(self, db: Database, user):
+        self.selected_handles: Set[str] = set(list(db.get_family_bookmarks().get()))
 
-    def apply(self, db, family):
-        return family.get_handle() in self.bookmarks
+    def apply_to_one(self, db: Database, family: Family) -> bool:
+        return family.handle in self.selected_handles

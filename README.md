@@ -1,32 +1,31 @@
 [The Gramps Project](https://gramps-project.org)
 ===================
-[![GitHub CI](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml/badge.svg?event=push&branch=maintenance/gramps52)](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml?query=branch%3Amaintenance/gramps52)
-[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=maintenance/gramps52)](https://app.codecov.io/gh/gramps-project/gramps/branch/maintenance/gramps52)
+[![GitHub CI](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml/badge.svg?event=push&branch=maintenance/gramps60)](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml?query=branch%3Amaintenance/gramps60)
+[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=maintenance/gramps60)](https://app.codecov.io/gh/gramps-project/gramps/branch/maintenance/gramps60)
 [![Translation status](https://hosted.weblate.org/widgets/gramps-project/-/gramps/svg-badge.svg)](https://hosted.weblate.org/engage/gramps-project)
 
 We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.
 
-Please read the [**COPYING**](https://github.com/gramps-project/gramps/blob/maintenance/gramps52/COPYING) file first.
+Please read the [**COPYING**](https://github.com/gramps-project/gramps/blob/maintenance/gramps60/COPYING) file first.
 
-Please read the [**INSTALL**](https://github.com/gramps-project/gramps/blob/maintenance/gramps52/INSTALL) file if you intend to build from source.
+Please read the [**INSTALL**](https://github.com/gramps-project/gramps/blob/maintenance/gramps60/INSTALL) file if you intend to build from source.
 
 Requirements
 ============
 The following packages **MUST** be installed in order for Gramps to work:
 
-* [**Python**](https://www.python.org/) 3.8 or greater - The programming language used by Gramps.
-* [**GTK**](http://www.gtk.org/) 3.24 or greater - A cross-platform widget toolkit for creating graphical user interfaces.
+* [**Python**](https://www.python.org/) 3.10 or greater - The programming language used by Gramps.
+* [**GTK**](https://www.gtk.org/) 3.24 or greater - A cross-platform widget toolkit for creating graphical user interfaces.
 * [**pygobject**](https://wiki.gnome.org/Projects/PyGObject) 3.12 or greater - Python Bindings for GLib/GObject/GIO/GTK+
 
 The following three packages with GObject Introspection bindings (the gi packages)
 
-* [**cairo**](http://cairographics.org/) 1.14.0 or greater - a 2D graphics library with support for multiple output devices.
+* [**cairo**](https://cairographics.org/) 1.14.0 or greater - a 2D graphics library with support for multiple output devices.
 * [**Pycairo**](https://github.com/pygobject/pycairo) 1.13.3 or greater - GObject Introspection bindings for cairo.
 * [**pango**](http://www.pango.org/) - a library for laying out and rendering of text, with an emphasis on internationalization.
 * [**pangocairo**](http://www.pango.org/) - Allows you to use Pango with Cairo.
 * [**librsvg2**](http://live.gnome.org/LibRsvg) - (SVG icon view) a library to render SVG files using cairo.
-* [**bsddb3**](https://pypi.python.org/pypi/bsddb3/) - Python bindings for Oracle Berkeley database.
-* [**sqlite3**](https://www.sqlite.org/) - Python bindings for SQLite Database library.
+* [**orjson**](https://pypi.org/project/orjson/) - A fast JSON library for Python. Used to increase the performance of Gramps.
 
 The following package is needed for full translation of the interface
 to your language:
@@ -43,12 +42,12 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
 --------------------------------------------------------------------
 *  [**osmgpsmap**](https://nzjrs.github.io/osm-gps-map/)
 
- Used to show maps in the [Geography Category](https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Categories#Geography_Category).
+ Used to show maps in the [Geography Category](https://gramps-project.org/wiki/index.php?title=Gramps_6.0_Wiki_Manual_-_Categories#Geography_Category).
  It may be osmgpsmap, osm-gps-map, or python-osmgpsmap,
  but the Python bindings for this must also be present, so gir1.2-osmgpsmap-1.0.
  Without this the GeoView will not be active.
 
-* [**Graphviz**](http://www.graphviz.org)
+* [**Graphviz**](https://www.graphviz.org)
 
   Enable creation of graphs using Graphviz engine.
   Without this, three reports cannot be run.
@@ -80,6 +79,10 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
 
 The following packages are optional:
 ------------------------------------
+* [**bsddb3**](https://pypi.python.org/pypi/bsddb3/)
+
+Python bindings for Oracle Berkeley database. Only needed to upgrade older Gramps databases.
+
 * **gspell**
 
  Enable spell checking in the notes.
@@ -87,7 +90,7 @@ The following packages are optional:
 * [**rcs**](https://www.gnu.org/software/rcs/)
 
  The GNU Revision Control System (RCS) can be used to
- [archive a family tree](https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree).
+ [archive a family tree](https://gramps-project.org/wiki/index.php?title=Gramps_6.0_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree).
  Multiple revisions of your family trees can be managed.
  Only rcs is needed, NO python bindings are required.
 

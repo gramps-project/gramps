@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -105,8 +104,8 @@ class DateParserLT(DateParser):
         "prieš": Date.MOD_BEFORE,
         "po": Date.MOD_AFTER,
         "apie": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "nuo": Date.MOD_FROM,
+        "iki": Date.MOD_TO,
     }
 
     calendar_to_int = {

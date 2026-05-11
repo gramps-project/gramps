@@ -13,18 +13,17 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" Unittest for DataDict """
+"""Unittest for DataDict"""
 
 # See also tests in ./serialize_test.py
 
 import unittest
 
-from gramps.gen.lib.serialize import DataDict, DataList, to_dict, from_dict
+from gramps.gen.lib.json_utils import DataDict, DataList, object_to_data, data_to_object
 from gramps.gen.lib import (
     Person,
     Family,
@@ -36,22 +35,22 @@ class DataDictTest(unittest.TestCase):
         p = Person()
         d = DataDict(p)
         # Get the object from the dict:
-        self.assertEqual(id(p), id(from_dict(d)))
+        self.assertEqual(id(p), id(data_to_object(d)))
 
-    def test_person_to_dict(self):
+    def test_person_to_data(self):
         p = Person()
-        d = to_dict(p)
+        d = object_to_data(p)
         self.assertFalse(hasattr(d, "_object"))
 
     def test_family(self):
         p = Family()
         d = DataDict(p)
         # Get the object from the dict:
-        self.assertEqual(id(p), id(from_dict(d)))
+        self.assertEqual(id(p), id(data_to_object(d)))
 
-    def test_family_to_dict(self):
+    def test_family_to_data(self):
         p = Family()
-        d = to_dict(p)
+        d = object_to_data(p)
         self.assertFalse(hasattr(d, "_object"))
 
 
@@ -91,13 +90,13 @@ class DataListTest(unittest.TestCase):
         self.assertIsInstance(dl[0], DataList)
         self.assertEqual(dl[0][0], 42)
 
-    def test_dict(self):
+    def test_data(self):
         p = Person()
-        p_dict = to_dict(p)
-        dl = DataList([p_dict])
+        p_data = object_to_data(p)
+        dl = DataList([p_data])
         self.assertIsInstance(dl, DataList)
         self.assertIsInstance(dl[0], DataDict)
-        self.assertEqual(dl[0], p_dict)
+        self.assertEqual(dl[0], p_data)
         self.assertEqual(dl[0].gender, 2)
 
     def test_append_list(self):
@@ -115,7 +114,5 @@ class DataListTest(unittest.TestCase):
         self.assertIsInstance(dl[0], int)
 
     def test_combined_list(self):
-        # FIXME: dealt with in a later PR
         dl = DataList([])
-        with self.assertRaises(AssertionError):
-            self.assertIsInstance(dl + [], DataList)
+        self.assertIsInstance(dl + [], DataList)

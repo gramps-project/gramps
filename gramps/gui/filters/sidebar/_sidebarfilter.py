@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -198,7 +197,10 @@ class SidebarFilter(DbGUIElement):
 
     def add_text_entry(self, name, widget, tooltip=None):
         self.add_entry(name, widget)
-        widget.connect("key-press-event", self.key_press)
+        if isinstance(widget, widgets.DateEntry):
+            widget.entry.connect("key-press-event", self.key_press)
+        else:
+            widget.connect("key-press-event", self.key_press)
         if tooltip:
             widget.set_tooltip_text(tooltip)
 

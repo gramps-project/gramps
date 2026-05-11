@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "About dialog"
@@ -96,6 +95,17 @@ try:
 except:
     sqlite3_version_str = "not found"
 
+try:
+    import orjson
+
+    try:
+        orjson_str = orjson.__version__
+    except:  # any failure to 'get' the version
+        orjson_str = "unknown version"
+
+except ImportError:
+    orjson_str = "not found"
+
 
 # -------------------------------------------------------------------------
 #
@@ -111,7 +121,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         self.set_transient_for(parent)
         self.set_modal(True)
 
-        self.set_name(PROGRAM_NAME)
+        self.set_program_name(PROGRAM_NAME)
         self.set_version(VERSION)
         self.set_copyright(COPYRIGHT_MSG)
         artists = _(
@@ -124,8 +134,8 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         self.set_artists(artists.split("\n"))
 
         try:
-            with open(LICENSE_FILE, "r") as ifile:
-                self.set_license(ifile.read().replace("\x0c", ""))
+            with open(LICENSE_FILE, "r", encoding="utf-8") as ifile:
+                self.set_license(ifile.read())
         except IOError:
             self.set_license("License file is missing")
 
@@ -156,25 +166,21 @@ class GrampsAboutDialog(Gtk.AboutDialog):
 
         return (
             "\n\n"
-            + "GRAMPS"
-            + COLON
-            + " %s \n"
             + "Python"
             + COLON
             + " %s \n"
-            + "BSDDB"
-            + COLON
-            + " %s \n"
             + sqlite
+            + "orjson"
+            + COLON
+            + " %s\n"
             + "LANG"
             + COLON
             + " %s\n"
             + _("OS: %s")
             + distro
         ) % (
-            ellipses(str(VERSION)),
             ellipses(platform.python_version()),
-            BSDDB_STR,
+            orjson_str,
             ellipses(get_env_var("LANG", "")),
             ellipses(platform.system()),
         )

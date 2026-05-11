@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 import unittest
@@ -38,7 +37,7 @@ class TestCallback(unittest.TestCase):
         t.emit("test-signal", (1,))
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
     def test_exception_catch(self):
         class TestSignals(Callback):
@@ -79,7 +78,7 @@ class TestCallback(unittest.TestCase):
         t.emit("test-signal", (1,))
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
         t.disconnect(key)
 
@@ -102,7 +101,7 @@ class TestCallback(unittest.TestCase):
         t.emit("test-noargs")
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
     def test_no_callback(self):
         class TestSignals(Callback):
@@ -130,13 +129,13 @@ class TestCallback(unittest.TestCase):
         t.emit("test-signal", (1,))
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
         t.connect("test-sub-signal", fn)
         t.emit("test-sub-signal", (1,))
 
         self.assertEqual(len(rl), 2, "No subclass signal emitted")
-        self.assertEqual(rl[1], 1, "Wrong argument recieved in subclass")
+        self.assertEqual(rl[1], 1, "Wrong argument received in subclass")
 
     def test_signal_block(self):
         class TestSignals(Callback):
@@ -152,7 +151,7 @@ class TestCallback(unittest.TestCase):
         t.emit("test-signal", (1,))
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
         Callback.disable_all_signals()
         t.emit("test-signal", (1,))

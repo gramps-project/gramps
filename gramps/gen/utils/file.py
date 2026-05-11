@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -128,8 +127,8 @@ def relative_path(original, base):
 
     # If the db_dir and obj_dir are on different drives (win only)
     # then there cannot be a relative path. Return original obj_path
-    (base_drive, base) = os.path.splitdrive(base)
-    (orig_drive, orig_name) = os.path.splitdrive(original)
+    base_drive, base = os.path.splitdrive(base)
+    orig_drive, orig_name = os.path.splitdrive(original)
     if base_drive.upper() != orig_drive.upper():
         return original
 
@@ -213,6 +212,8 @@ def media_path_full(db, filename):
     Given a database and a filename of a media, return the media filename
     is full form, eg 'graves/tomb.png' becomes '/home/me/genea/graves/tomb.png
     """
+    if filename.startswith(("http://", "https://")):
+        return filename
     if os.path.isabs(filename):
         return filename
     mpath = media_path(db)

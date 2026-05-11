@@ -3,7 +3,6 @@ from os import environ
 from sys import argv, version
 from platform import release
 
-
 bundlepath = argv[0]
 
 bundle_contents = join(bundlepath, "Contents")
@@ -14,8 +13,11 @@ bundle_bin = join(bundle_res, "bin")
 bundle_data = join(bundle_res, "share")
 bundle_etc = join(bundle_res, "etc")
 
+environ["APPDATA"] = join(environ["HOME"], "Library", "Application Support")
 environ["XDG_DATA_DIRS"] = bundle_data
-environ["DYLD_LIBRARY_PATH"] = bundle_lib
+environ["DYLD_FALLBACK_LIBRARY_PATH"] = (
+    bundle_lib + ":" + join(environ["APPDATA"], "gramps", "lib")
+)
 environ["LD_LIBRARY_PATH"] = bundle_lib
 environ["GTK_DATA_PREFIX"] = bundle_res
 environ["GTK_EXE_PREFIX"] = bundle_res
@@ -32,14 +34,13 @@ environ["GI_TYPELIB_PATH"] = join(bundle_lib, "girepository-1.0")
 environ["GVBINDIR"] = join(bundle_lib, "graphviz")
 environ["ENCHANT_MODULE_PATH"] = join(bundle_lib, "enchant")
 
-# Set $PYTHON to point inside the bundle
-PYVER = "python" + version[:3]
+# Set $PYTHON to point inside the bundle: 4 characters to get '3.13'
+PYVER = "python" + version[:4]
 
 environ["GRAMPSDIR"] = join(bundle_lib, PYVER, "site-packages", "gramps")
 environ["GRAMPSI18N"] = join(bundle_data, "locale")
 environ["GRAMPS_RESOURCES"] = bundle_data
 environ["USERPROFILE"] = environ["HOME"]
-environ["APPDATA"] = join(environ["HOME"], "Library", "Application Support")
 environ["PATH"] = join(bundle_contents, "MacOS") + ":" + environ["PATH"]
 
 if __name__ == "__main__":

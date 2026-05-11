@@ -18,12 +18,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-""" fanchart report """
+"""fanchart report"""
 
 # ------------------------------------------------------------------------
 #
@@ -668,7 +667,7 @@ class FanChart(Report):
         for index in range(segments - 1, 2 * segments - 1):
             start_angle = end_angle
             end_angle = start_angle + delta
-            (_xc, _yc) = draw_wedge(
+            _xc, _yc = draw_wedge(
                 self.doc,
                 graphic_style,
                 _x_,
@@ -734,7 +733,7 @@ class FanChart(Report):
         for index in range(segments - 1, 2 * segments - 1):
             start_angle = end_angle
             end_angle = start_angle + delta
-            (_xc, _yc) = draw_wedge(
+            _xc, _yc = draw_wedge(
                 self.doc,
                 graphic_style,
                 _x_,

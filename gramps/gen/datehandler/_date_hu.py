@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -191,11 +190,13 @@ class DateParserHU(DateParser):
     #    month_to_int["Álom hava"] = 12
 
     modifier_to_int = {
+        "-tól": Date.MOD_FROM,
+        "-ig": Date.MOD_TO,
+    }
+    modifier_after_to_int = {
         "előtt": Date.MOD_BEFORE,
         "körül": Date.MOD_ABOUT,
         "után": Date.MOD_AFTER,
-        "-tól": Date.MOD_FROM,
-        "-ig": Date.MOD_TO,
     }
 
     quality_to_int = {

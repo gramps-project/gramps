@@ -12,14 +12,14 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Library common to SourceView and CitationTreeView
 """
+
 from gramps.gen.errors import HandleError
 
 
@@ -89,7 +89,7 @@ class LibSourceView:
                     ref_obj = self.dbstate.db.method("get_%s_from_handle", ref_type)(
                         ref_hndl
                     )
-                    ref_obj.remove_handle_references(obj_type, [cit_hndl])
+                    ref_obj.remove_handle_references("Citation", [cit_hndl])
                     self.dbstate.db.method("commit_%s", ref_type)(ref_obj, trans)
                 # and delete the citation
                 self.dbstate.db.remove_citation(cit_hndl, trans)

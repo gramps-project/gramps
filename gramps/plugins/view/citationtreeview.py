@@ -13,15 +13,15 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Citation Tree View (or Source tree view).
 A view showing all the Sources with child Citations
 """
+
 # -------------------------------------------------------------------------
 #
 # python modules
@@ -175,18 +175,18 @@ class CitationTreeView(LibSourceView, ListView):
             self.dbstate.db.get_citation_from_handle(handle)
             super().change_active(handle)
         except HandleError:
-            # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
+            # FIXME: See https://www.gramps-project.org/bugs/view.php?id=6352 a
             # more comprehensive solution is needed in the long term. See also
             # add in Bookmarks.CitationBookmarks
             pass
 
-    def setup_filter(self):
+    def setup_searches(self):
         """
         Override the setup of the default Search Bar in listview, so that only
         the searchable source fields are shown.
         """
 
-        self.search_bar.setup_filter(
+        self.search_bar.setup_searches(
             [
                 (self.COLUMNS[pair[1]][0], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order()
@@ -343,8 +343,7 @@ class CitationTreeView(LibSourceView, ListView):
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-"""
-        % _("Organize Bookmarks"),
+""" % _("Organize Bookmarks"),
         """
       <placeholder id="CommonGo">
       <section>
@@ -386,8 +385,7 @@ class CitationTreeView(LibSourceView, ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-"""
-        % _("_Edit...", "action"),  # to use sgettext()
+""" % _("_Edit...", "action"),  # to use sgettext()
         """
         <placeholder id='otheredit'>
         <item>
@@ -500,8 +498,7 @@ class CitationTreeView(LibSourceView, ListView):
       </packing>
     </child>
     </placeholder>
-"""
-        % (ADD_MSG, ADD_SOURCE_MSG, ADD_CITATION_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+""" % (ADD_MSG, ADD_SOURCE_MSG, ADD_CITATION_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
         """
     <menu id="Popup">
       <section>
@@ -551,6 +548,8 @@ class CitationTreeView(LibSourceView, ListView):
       </section>
       <section>
         <placeholder id='QuickReport'>
+        </placeholder>
+        <placeholder id='WebConnect'>
         </placeholder>
       </section>
     </menu>

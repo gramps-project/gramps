@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # -------------------------------------------------------------------------
 #
@@ -44,7 +43,6 @@ from gi.repository import GExiv2
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 from gi.repository import GObject
-
 
 # -------------------------------------------------------------------------
 #
@@ -227,7 +225,7 @@ class MetadataView(Gtk.TreeView):
         titles = [
             (_("Namespace"), 0, 150),
             (_("Label"), 1, 150),
-            (_(" "), NOSORT, 60, COL_IMAGE),
+            (" ", NOSORT, 60, COL_IMAGE),
             (_("Value"), NOSORT, 325),
         ]
 

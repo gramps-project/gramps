@@ -27,9 +27,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 import logging
@@ -258,7 +257,7 @@ def apportion(tree, default_ancestor, v_separation):
 
 def move_subtree(walk_l, walk_r, shift):
     """
-    Determine possible shifts required to accomodate new node, but don't
+    Determine possible shifts required to accommodate new node, but don't
     perform the shifts yet.
     """
     subtrees = walk_r.number - walk_l.number

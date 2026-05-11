@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 *************************************************
@@ -283,6 +282,12 @@ div#nav ul li a:hover, #subnavigation ul li a:hover {
     background-color: #CCC;
     border-bottom: solid 1px black;
 }
+div#ltr.pnav ul.ltr li.CurrentSection, div#rtl.pnav ul.rtl li.CurrentSection,
+div#ltr ul.ltr li.CurrentSection, div#rtl ul.rtl li.CurrentSection {
+    font-weight: bold;
+    font-style: italic;
+    background-color: #CCC;
+}
 div#nav ul li.CurrentSection a {
     position: relative;
     top: 1px;
@@ -411,8 +416,8 @@ div#header::after {
     float: left;
     list-style: none;
 }
-li:not(:first-child) {
-    padding-right: 8px;
+.nav li:not(:first-child) {
+    padding-right: 0px;
     padding-left: 8px;
 }
 .rtl, .rtl li {

@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # Serbian version by Vlada Perić <vlada.peric@gmail.com>, 2009.
@@ -154,8 +153,8 @@ class DateParserSR(DateParser):
         "пре": Date.MOD_BEFORE,
         "после": Date.MOD_AFTER,
         "око": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "од": Date.MOD_FROM,
+        "до": Date.MOD_TO,
     }
 
     calendar_to_int = {

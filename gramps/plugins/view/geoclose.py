@@ -15,14 +15,14 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
 Geography for two persons
 """
+
 # -------------------------------------------------------------------------
 #
 # Python modules
@@ -106,8 +106,7 @@ _UI_DEF = [
           <attribute name="label" translatable="no">%s...</attribute>
         </item>
       </section>
-    """
-    % _("Organize Bookmarks"),  # Following are the Toolbar items
+    """ % _("Organize Bookmarks"),  # Following are the Toolbar items
     """
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
@@ -655,9 +654,7 @@ class GeoClose(GeoGraphyView):
                     if plce[11] == EventRoleType.PRIMARY:
                         message = "(%s) %s : %s" % (date, plce[2], plce[1])
                     elif plce[11] == EventRoleType.FAMILY:
-                        (father_name, mother_name) = self._get_father_and_mother_name(
-                            evt
-                        )
+                        father_name, mother_name = self._get_father_and_mother_name(evt)
                         message = "(%s) %s : %s - %s" % (
                             date,
                             plce[7],

@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 """
 Google Maps map service plugin. Open place in maps.google.com
@@ -39,7 +38,7 @@ from gramps.gen.lib import PlaceType
 
 
 class GoogleMapService(MapService):
-    """Map  service using http://maps.google.com"""
+    """Map  service using https://maps.google.com"""
 
     def __init__(self):
         MapService.__init__(self)
@@ -52,13 +51,13 @@ class GoogleMapService(MapService):
         place = self._get_first_place()[0]
         latitude, longitude = self._lat_lon(place)
         if longitude and latitude:
-            self.url = "http://www.google.com/maps/place/?q=%s,%s" % (
+            self.url = "https://www.google.com/maps/place/?q=%s,%s" % (
                 latitude,
                 longitude,
             )
             return
 
         titledescr = place_displayer.display(self.database, place)
-        self.url = "http://www.google.com/maps/place/?q=%s" % "+".join(
+        self.url = "https://www.google.com/maps/place/?q=%s" % "+".join(
             titledescr.split()
         )

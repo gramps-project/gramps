@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -36,6 +35,14 @@ _ = glocale.translation.sgettext
 from .. import Rule
 from ....display.place import displayer
 
+# -------------------------------------------------------------------------
+#
+# Typing modules
+#
+# -------------------------------------------------------------------------
+from ....lib import Place
+from ....db import Database
+
 
 # -------------------------------------------------------------------------
 #
@@ -53,7 +60,7 @@ class HasTitle(Rule):
     category = _("General filters")
     allow_regex = True
 
-    def apply(self, db, place):
+    def apply_to_one(self, db: Database, place: Place) -> bool:
         if not self.match_substring(0, displayer.display(db, place)):
             return False
         return True

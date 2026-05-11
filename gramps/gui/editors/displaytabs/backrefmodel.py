@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -137,9 +136,7 @@ class BackRefModel(Gtk.ListStore):
                 p = self.db.get_note_from_handle(ref[1])
                 if not p:
                     continue
-                name = " ".join(p.get().split())
-                if len(name) > 80:
-                    name = name[:80] + "..."
+                name = p.get_preview()
                 gid = p.gramps_id
                 handle = p.handle
             else:

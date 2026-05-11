@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 "Find people who are not related to the selected person"
@@ -265,7 +264,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
                 )
 
             # iterate through all of the selected rows
-            (model, paths) = self.treeSelection.get_selected_rows()
+            model, paths = self.treeSelection.get_selected_rows()
 
             for path in paths:
                 if progress:

@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -36,6 +35,7 @@ from .primaryobj import BasicPrimaryObject
 from .styledtext import StyledText
 from .styledtexttagtype import StyledTextTagType
 from .tagbase import TagBase
+from gramps.gen.config import config
 
 _ = glocale.translation.gettext
 
@@ -65,7 +65,7 @@ class Note(BasicPrimaryObject):
     :cvar FORMATTED: indicates formatted format (respecting whitespace needed)
     """
 
-    (FLOWED, FORMATTED) = list(range(2))
+    FLOWED, FORMATTED = list(range(2))
 
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""
@@ -272,6 +272,19 @@ class Note(BasicPrimaryObject):
         """
         return str(self.text)
 
+    def get_preview(self):
+        """Return the max visible text string associated with the note.
+
+        :returns: either the *clear* text of the note contents or the maximum
+                  visible text.
+        :rtype: unicode
+        """
+        max_vis_len = config.get("interface.note-preview-length")
+        preview = str(self.text).replace("\n", " ")
+        if len(preview) > max_vis_len:
+            return preview[:max_vis_len] + "..."
+        return preview
+
     def set_styledtext(self, text):
         """Set the text associated with the note to the passed string.
 
@@ -338,7 +351,7 @@ class Note(BasicPrimaryObject):
         Return examples::
 
             [("gramps", "Person", "handle", "7657626365362536"),
-             ("external", "www", "url", "http://example.com")]
+             ("external", "www", "url", "https://example.com")]
 
         :returns: list of [(domain, type, propery, value), ...]
         :rtype: list

@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -43,7 +42,7 @@ register(
     status=STABLE,
     fname="eventview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Events", _("Events")),
     viewclass="EventView",
     order=START,
@@ -59,7 +58,7 @@ register(
     status=STABLE,
     fname="familyview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Families", _("Families")),
     viewclass="FamilyView",
     order=START,
@@ -75,7 +74,7 @@ register(
     status=STABLE,
     fname="dashboardview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Dashboard", _("Dashboard")),
     viewclass="DashboardView",
     order=START,
@@ -91,7 +90,7 @@ register(
     status=STABLE,
     fname="mediaview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Media", _("Media")),
     viewclass="MediaView",
     order=START,
@@ -107,7 +106,7 @@ register(
     status=STABLE,
     fname="noteview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Notes", _("Notes")),
     viewclass="NoteView",
     order=START,
@@ -123,7 +122,7 @@ register(
     status=STABLE,
     fname="relview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Relationships", _("Relationships")),
     viewclass="RelationshipView",
     order=START,
@@ -139,7 +138,7 @@ register(
     status=STABLE,
     fname="pedigreeview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Ancestry", _("Charts")),
     viewclass="PedigreeView",
     order=START,
@@ -206,7 +205,7 @@ register(
     status=STABLE,
     fname="persontreeview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("People", _("People")),
     viewclass="PersonTreeView",
     order=START,
@@ -223,7 +222,7 @@ register(
     status=STABLE,
     fname="personlistview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("People", _("People")),
     viewclass="PersonListView",
     stock_icon="gramps-tree-list",
@@ -239,7 +238,7 @@ register(
     status=STABLE,
     fname="placelistview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Places", _("Places")),
     viewclass="PlaceListView",
     stock_icon="gramps-tree-list",
@@ -272,7 +271,7 @@ register(
     status=STABLE,
     fname="repoview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Repositories", _("Repositories")),
     viewclass="RepositoryView",
     order=START,
@@ -288,7 +287,7 @@ register(
     status=STABLE,
     fname="sourceview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Sources", _("Sources")),
     viewclass="SourceView",
     order=START,
@@ -305,7 +304,7 @@ register(
     status=STABLE,
     fname="citationlistview.py",
     authors=["The Gramps project"],
-    authors_email=["http://gramps-project.org"],
+    authors_email=["https://gramps-project.org"],
     category=("Citations", _("Citations")),
     viewclass="CitationListView",
     order=START,

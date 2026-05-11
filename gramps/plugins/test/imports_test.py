@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
-""" Test program for import modules
-"""
+"""Test program for import modules"""
+
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -16,19 +16,24 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
+# **********************************************
+# This module is used to compare dbs from imported (i.e. GEDCOM) or old versions
+# of the Gramps db directories with correct gramps XML files.
+# This will highlight changes to the db caused by changes in the code.
+# **********************************************
 
 import unittest
 import os
 import sys
 import re
 import locale
-import tempfile
 from time import localtime, strptime
 from unittest.mock import patch
+import zipfile
+import shutil
 
 # import logging
 
@@ -36,18 +41,31 @@ from gramps.gen.utils.config import config
 
 config.set("preferences.date-format", 0)
 from gramps.gen.db.utils import import_as_dict
-from gramps.gen.merge.diff import diff_dbs, to_dict
+from gramps.gen.merge.diff import diff_dbs
+from gramps.gen.lib.json_utils import object_to_dict
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.gen.user import User
-from gramps.gen.const import DATA_DIR
+from gramps.gen.const import USER_DATA, TEST_DIR
 from gramps.test.test_util import capture
 from gramps.plugins.export.exportxml import XmlWriter
+from gramps.gen.db.dbconst import DBBACKEND
+from gramps.gen.db.utils import make_database
+from gramps.gen.errors import DbError
+from gramps.gen.db.exceptions import (
+    DbUpgradeRequiredError,
+    DbVersionError,
+    DbPythonError,
+    DbSupportedError,
+    DbConnectionError,
+)
 
 # logger = logging.getLogger(__name__)
 
-# the following defines where to find the test import and result files
-TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
+# the following defines where to find test error diffs and import result XML files
+TEMP_DIR = os.path.join(USER_DATA, "temp")
+if not os.path.isdir(TEMP_DIR):
+    os.makedirs(TEMP_DIR)
 
 # ------------------------------------------------------------------
 #  Local Functions
@@ -99,7 +117,9 @@ class TestImports(unittest.TestCase):
         if diffs:
             for diff in diffs:
                 obj_type, item1, item2 = diff
-                msg = self._report_diff(obj_type, to_dict(item1), to_dict(item2))
+                msg = self._report_diff(
+                    obj_type, object_to_dict(item1), object_to_dict(item2)
+                )
                 if msg != "":
                     if hasattr(item1, "gramps_id"):
                         self.msg += "%s: %s  handle=%s\n" % (
@@ -211,6 +231,56 @@ def _format_struct_path(path):
     return retval
 
 
+def db_load(zipfn, self):
+    """load a legacy db (typically bsddb, but sqlite allowed)
+    Note: zipfn is a location for zip of the the db directory.
+    To make this code easier, the db dir must be named with same root name as the
+    zip file.  For example the "imp_413.zip" must contain a single "imp_413" dir
+    (not the usual 8 hex character name).
+    """
+    tstfile, _ext = os.path.splitext(zipfn)
+    tstfile = os.path.join(TEMP_DIR, os.path.basename(tstfile))
+    shutil.rmtree(tstfile, ignore_errors=True)
+    with zipfile.ZipFile(zipfn, "r") as myzip:
+        myzip.extractall(path=TEMP_DIR)
+    force_schema_upgrade = True
+    try:
+        while True:
+            dbid_path = os.path.join(tstfile, DBBACKEND)
+            if os.path.isfile(dbid_path):
+                with open(dbid_path) as fp:
+                    dbid = fp.read().strip()
+            else:
+                dbid = "bsddb"
+
+            db = make_database(dbid)
+            db.disable_signals()
+
+            try:
+                db.load(
+                    tstfile,
+                    callback=None,
+                    mode="w",
+                    force_schema_upgrade=force_schema_upgrade,
+                )
+                break
+            except (DbSupportedError, DbUpgradeRequiredError) as msg:
+                continue
+        return db
+    # Get here is there is an exception the while loop does not handle
+    except (
+        DbVersionError,
+        DbPythonError,
+        DbConnectionError,
+        OSError,
+        DbError,
+        Exception,
+    ) as msg:
+        msg = str(msg)
+        self.assertTrue(False, msg=f"Cannot open database {tstfile} {msg}")
+    return
+
+
 def make_tst_function(tstfile, file_name):
     """This is here to support the dynamic function creation.  This creates
     the test function (a method, to be precise).
@@ -230,6 +300,8 @@ def make_tst_function(tstfile, file_name):
         mockdtime.side_effect = mock_time
         fn1 = os.path.join(TEST_DIR, tstfile)
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
+        fres = os.path.join(TEMP_DIR, (file_name + ".difs"))
+        fout = os.path.join(TEMP_DIR, (file_name + ".gramps"))
         if "_dfs" in tstfile:
             config.set("preferences.default-source", True)
             config.set("preferences.tag-on-import-format", "Imported")
@@ -239,16 +311,58 @@ def make_tst_function(tstfile, file_name):
             skp_imp_adds = True
             config.set("preferences.default-source", False)
             config.set("preferences.tag-on-import", False)
+        try:
+            os.remove(fres)
+            os.remove(fout)
+        except OSError:
+            pass
         # logger.info("\n**** %s ****", tstfile)
         set_det_id(True)
         with capture(None) as output:
             self.user = User()
-            self.database1 = import_as_dict(fn1, self.user, skp_imp_adds=skp_imp_adds)
+            if ".zip" in fn1:  # must be a db, not an importable file
+                self.database1 = db_load(fn1, self)
+            else:
+                self.database1 = import_as_dict(
+                    fn1,
+                    self.user,
+                    skp_imp_adds=skp_imp_adds,
+                    # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+                    person_prefix="I%04d",
+                    media_prefix="O%04d",
+                    family_prefix="F%04d",
+                    source_prefix="S%04d",
+                    citation_prefix="C%04d",
+                    place_prefix="P%04d",
+                    event_prefix="E%04d",
+                    repository_prefix="R%04d",
+                    note_prefix="N%04d",
+                )
             set_det_id(True)
-            self.database2 = import_as_dict(fn2, self.user)
-        self.assertIsNotNone(self.database1, "Unable to import file: %s" % fn1)
+            self.database2 = import_as_dict(
+                fn2,
+                self.user,
+                # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+                person_prefix="I%04d",
+                media_prefix="O%04d",
+                family_prefix="F%04d",
+                source_prefix="S%04d",
+                citation_prefix="C%04d",
+                place_prefix="P%04d",
+                event_prefix="E%04d",
+                repository_prefix="R%04d",
+                note_prefix="N%04d",
+            )
+            msg = (
+                "\n****Captured Output****\n"
+                + str(output[0])
+                + "\n****Captured Err****\n"
+                + str(output[1])
+                + "\n****End Capture Err****\n"
+            )
+        self.assertIsNotNone(self.database1, f"Unable to import file: {fn1} {msg}")
         self.assertIsNotNone(
-            self.database2, "Unable to import expected result file: %s" % fn2
+            self.database2, f"Unable to import expected result file: {fn2} {msg}"
         )
         if self.database2 is None or self.database1 is None:
             return
@@ -260,35 +374,34 @@ def make_tst_function(tstfile, file_name):
         # Also we save the .gramps file from the import so user can perform
         # Diff himself for better context.
         if deltas:
-            with tempfile.TemporaryDirectory() as tmpdirname:
-                fres = os.path.join(tmpdirname, (file_name + ".difs"))
-                fout = os.path.join(tmpdirname, (file_name + ".gramps"))
-                writer = XmlWriter(
-                    self.database1, self.user, strip_photos=0, compress=0
+            writer = XmlWriter(self.database1, self.user, strip_photos=0, compress=0)
+            writer.write(fout)
+            hres = open(fres, mode="w", encoding="utf-8", errors="replace")
+            hres.write(self.msg)
+            hres.close()
+            # let's see if we have any allowed exception file
+            fdif = os.path.join(TEST_DIR, (file_name + ".difs"))
+            try:
+                hdif = open(fdif)
+                msg = hdif.read()
+                hdif.close()
+            except (FileNotFoundError, IOError):
+                msg = ""
+            # if exception file matches exactly, we are done.
+            if self.msg != msg:
+                self.msg = (
+                    "\n****Captured Output****\n"
+                    + output[0]
+                    + "\n****Captured Err****\n"
+                    + output[1]
+                    + "\n****End Capture Err****\n"
+                    + self.msg
                 )
-                writer.write(fout)
-                hres = open(fres, mode="w", encoding="utf-8", errors="replace")
-                hres.write(self.msg)
-                hres.close()
-                # let's see if we have any allowed exception file
-                fdif = os.path.join(TEST_DIR, (file_name + ".difs"))
-                try:
-                    hdif = open(fdif)
-                    msg = hdif.read()
-                    hdif.close()
-                except (FileNotFoundError, IOError):
-                    msg = ""
-                # if exception file matches exactly, we are done.
-                if self.msg != msg:
-                    self.msg = (
-                        "\n****Captured Output****\n"
-                        + output[0]
-                        + "\n****Captured Err****\n"
-                        + output[1]
-                        + "\n****End Capture Err****\n"
-                        + self.msg
-                    )
-                    self.fail(self.msg)
+                self.fail(self.msg)
+        if ".zip" in tstfile:
+            fn1 = self.database1.path
+            self.database1.close(update=False)
+            shutil.rmtree(fn1, ignore_errors=True)
 
     return tst
 
@@ -308,7 +421,7 @@ if __name__ == "__main__":
 # The methods are inserted at load time into the 'TestImports' class
 # via the modules' globals, taking advantage that they are a dict.
 if _tstfile:  # single file mode
-    (fname, ext) = os.path.splitext(os.path.basename(_tstfile))
+    fname, ext = os.path.splitext(os.path.basename(_tstfile))
     test_func = make_tst_function(_tstfile, fname)
     tname = "test_" + _tstfile.replace("-", "_").replace(".", "_")
     test_func.__name__ = tname
@@ -316,7 +429,7 @@ if _tstfile:  # single file mode
     setattr(TestImports, tname, test_func)
 else:
     for _tstfile in os.listdir(TEST_DIR):
-        (fname, ext) = os.path.splitext(os.path.basename(_tstfile))
+        fname, ext = os.path.splitext(os.path.basename(_tstfile))
         if _tstfile != "SAMPLE.DEF" and (
             ext in (".gramps", ".difs", ".bak") or not fname.startswith("imp_")
         ):

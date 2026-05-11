@@ -21,9 +21,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -63,8 +62,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
-_HELP = _(
-    """
+_HELP = _("""
 Usage: gramps [OPTION...]
   --load-modules=MODULE1,MODULE2,...     Dynamic modules to load
 
@@ -101,11 +99,9 @@ Application options
                  X - Books are cleared, reports and tool settings to default
                  F - filters are cleared
                  E - Everything is set to default or cleared
-"""
-)
+""")
 
-_USAGE = _(
-    """
+_USAGE = _("""
 Example of usage of Gramps command line interface
 
 1. To import four databases (whose formats can be determined from their names)
@@ -148,8 +144,7 @@ gramps
 
 Note: These examples are for bash shell.
 Syntax may be different for other shells and for Windows.
-"""
-)
+""")
 
 
 # -------------------------------------------------------------------------

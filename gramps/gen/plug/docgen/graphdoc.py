@@ -23,11 +23,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
-""" Graphviz adapter for Graphs """
+"""Graphviz adapter for Graphs"""
+
 # -------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -112,7 +112,9 @@ _SPLINE = [
 if win():
     _DOT_FOUND = search_for("dot.exe")
 
-    if search_for("gswin32c.exe") == 1:
+    if search_for("gswin64c.exe") == 1:
+        _GS_CMD = "gswin64c.exe"
+    elif search_for("gswin32c.exe") == 1:
         _GS_CMD = "gswin32c.exe"
     elif search_for("gswin32.exe") == 1:
         _GS_CMD = "gswin32.exe"
@@ -162,9 +164,8 @@ class GVOptions:
             _(
                 "Choose the font family. If international "
                 "characters don't show, use FreeSans font. "
-                "FreeSans is available from: "
-                "http://www.nongnu.org/freefont/"
-            )
+                "FreeSans is available from: {freefont_url}"
+            ).format(freefont_url="https://www.nongnu.org/freefont/")
         )
         menu.add_option(category, "font_family", font_family)
 
@@ -770,7 +771,7 @@ class GVPsDoc(GVDocBase):
             self._filename += ".ps"
 
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".gv")
+        handle, tmp_dot = tempfile.mkstemp(".gv")
         dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -828,7 +829,7 @@ class GVSvgDoc(GVDocBase):
             self._filename += ".svg"
 
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".gv")
+        handle, tmp_dot = tempfile.mkstemp(".gv")
         dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -863,7 +864,7 @@ class GVSvgzDoc(GVDocBase):
             self._filename += ".svgz"
 
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".gv")
+        handle, tmp_dot = tempfile.mkstemp(".gv")
         dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -898,7 +899,7 @@ class GVPngDoc(GVDocBase):
             self._filename += ".png"
 
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".gv")
+        handle, tmp_dot = tempfile.mkstemp(".gv")
         dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -933,7 +934,7 @@ class GVJpegDoc(GVDocBase):
             self._filename += ".jpg"
 
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".gv")
+        handle, tmp_dot = tempfile.mkstemp(".gv")
         dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -968,7 +969,7 @@ class GVGifDoc(GVDocBase):
             self._filename += ".gif"
 
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".gv")
+        handle, tmp_dot = tempfile.mkstemp(".gv")
         dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -1006,7 +1007,7 @@ class GVPdfGvDoc(GVDocBase):
             self._filename += ".pdf"
 
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".gv")
+        handle, tmp_dot = tempfile.mkstemp(".gv")
         dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -1042,13 +1043,13 @@ class GVPdfGsDoc(GVDocBase):
             self._filename += ".pdf"
 
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".gv")
+        handle, tmp_dot = tempfile.mkstemp(".gv")
         dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
 
         # Create a temporary PostScript file
-        (handle, tmp_ps) = tempfile.mkstemp(".ps")
+        handle, tmp_ps = tempfile.mkstemp(".ps")
         os.close(handle)
 
         # Generate PostScript using dot

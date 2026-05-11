@@ -15,13 +15,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-"""PS/PDF output generator based on Cairo.
-"""
+"""PS/PDF output generator based on Cairo."""
 
 # ------------------------------------------------------------------------
 #
@@ -82,7 +80,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
 
     def create_cairo_surface(self, fobj, width_in_points, height_in_points):
         # See
-        # http://cairographics.org/documentation/pycairo/3/reference/surfaces.html#class-pssurface-surface
+        # https://cairographics.org/documentation/pycairo/3/reference/surfaces.html#class-pssurface-surface
         # for the arg semantics.
         raise "Missing surface factory override!!!"
 

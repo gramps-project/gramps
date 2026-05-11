@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -332,7 +331,7 @@ def can_grab(rect, x, y):
     """
     Checks if (x,y) lies within one of the grabbers of rect.
     """
-    (x1, y1, x2, y2) = rect
+    x1, y1, x2, y2 = rect
     if (
         x2 - x1 >= MIN_SIDE_FOR_INSIDE_GRABBERS
         and y2 - y1 >= MIN_SIDE_FOR_INSIDE_GRABBERS

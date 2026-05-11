@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -37,7 +36,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gen.constfunc import is_quartz, mac
 from gramps.gen.config import config
-from .utils import open_file_with_default_application as run_file
 
 # list of manuals on wiki, map locale code to wiki extension, add language codes
 # completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and
@@ -69,7 +67,13 @@ def display_help(webpage="", section=""):
     if not webpage:
         link = URL_WIKISTRING + URL_MANUAL_PAGE + EXTENSION
     else:
-        link = URL_WIKISTRING + quote(webpage) + EXTENSION
+        section_index = webpage.find("#")
+        if section_index != -1:
+            section = webpage[section_index + 1 :]
+            webpage = webpage[:section_index]
+        link = quote(webpage, safe="/:") + EXTENSION
+        if not webpage.startswith(("http://", "https://")):
+            link = URL_WIKISTRING + link
         if section:
             link += "#" + quote(section.replace(" ", "_")).replace("%", ".")
     display_url(link)

@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -47,6 +46,7 @@ from ..lib import (
     Address,
     EventRef,
     Person,
+    PersonRef,
     Name,
     Source,
     RepoRef,
@@ -165,6 +165,7 @@ class PrivateProxyDb(ProxyDbBase):
         """
         note = self.db.get_note_from_handle(handle)
         if note and not note.get_privacy():
+            # Nothing to sanitize in note object:
             return note
         return None
 
@@ -550,7 +551,8 @@ def copy_associations(db, original_obj, clean_obj):
         if person_ref and not person_ref.get_privacy():
             associated_person = db.get_person_from_handle(person_ref.ref)
             if associated_person and not associated_person.get_privacy():
-                new_person_ref_list.append(person_ref)
+                new_person_ref = sanitize_person_ref(db, person_ref)
+                new_person_ref_list.append(new_person_ref)
     clean_obj.set_person_ref_list(new_person_ref_list)
 
 
@@ -1176,3 +1178,16 @@ def sanitize_repository(db, repository):
     copy_urls(db, repository, new_repository)
 
     return new_repository
+
+
+def sanitize_person_ref(db, person_ref: PersonRef) -> PersonRef:
+    """
+    Given a PersonRef, sanitize it.
+    """
+    new_person_ref = PersonRef()
+    new_person_ref.ref = person_ref.ref
+    new_person_ref.rel = person_ref.rel
+    new_person_ref.private = person_ref.private
+    copy_citation_ref_list(db, person_ref, new_person_ref)
+    copy_notes(db, person_ref, new_person_ref)
+    return new_person_ref

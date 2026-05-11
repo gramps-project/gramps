@@ -16,9 +16,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -85,7 +84,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, the_type, self.value) = data
+        privacy, the_type, self.value = data
         PrivacyBase.unserialize(self, privacy)
         self.type.unserialize(the_type)
         return self
@@ -223,7 +222,7 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, the_type, self.value) = data
+        privacy, citation_list, note_list, the_type, self.value = data
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)

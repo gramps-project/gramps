@@ -14,16 +14,16 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 from gramps.gen.plug._pluginreg import *
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import URL_MANUAL_PAGE, GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
 MODULE_VERSION = "6.0"
+QUICKVIEWS_HELP = URL_MANUAL_PAGE + "_-_Reports#Quick_Views"
 
 # ------------------------------------------------------------------------
 #
@@ -44,6 +44,7 @@ register(
     authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_DATE,
     runfunc="run",
+    help_url=QUICKVIEWS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -65,6 +66,7 @@ register(
     authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_MISC,
     runfunc="run",
+    help_url=QUICKVIEWS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -86,6 +88,7 @@ register(
     authors_email=["don@gramps-project.org"],
     category=CATEGORY_QR_PERSON,
     runfunc="run",
+    help_url=QUICKVIEWS_HELP,
 )
 
 
@@ -102,6 +105,7 @@ register(
     authors_email=["benny.malengier@gramps-project.org"],
     category=CATEGORY_QR_FAMILY,
     runfunc="run_fam",
+    help_url=QUICKVIEWS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -123,6 +127,7 @@ register(
     authors_email=["benny.malengier@gramps-project.org"],
     category=CATEGORY_QR_PERSON,
     runfunc="run",
+    help_url=QUICKVIEWS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -144,6 +149,7 @@ register(
     authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_MISC,
     runfunc="run",
+    help_url=QUICKVIEWS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -165,6 +171,7 @@ register(
     authors_email=["benny.malengier@gramps-project.org"],
     category=CATEGORY_QR_PERSON,
     runfunc="run_father",
+    help_url=QUICKVIEWS_HELP,
 )
 
 register(
@@ -180,6 +187,7 @@ register(
     authors_email=["benny.malengier@gramps-project.org"],
     category=CATEGORY_QR_PERSON,
     runfunc="run_mother",
+    help_url=QUICKVIEWS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -201,6 +209,7 @@ register(
     authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_EVENT,
     runfunc="run",
+    help_url=QUICKVIEWS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -235,6 +244,7 @@ for category, item, trans in refitems:
         authors_email=["doug.blank@gmail.com"],
         category=category,
         runfunc="run_%s" % item,
+        help_url=QUICKVIEWS_HELP,
     )
 
 register(
@@ -250,6 +260,7 @@ register(
     authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_NOTE,
     runfunc="run",
+    help_url=QUICKVIEWS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -274,6 +285,7 @@ register(
     authors_email=["romjerome@yahoo.fr"],
     category=CATEGORY_QR_REPOSITORY,
     runfunc="run",
+    help_url=QUICKVIEWS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -295,6 +307,7 @@ register(
     authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_PERSON,
     runfunc="run",
+    help_url=QUICKVIEWS_HELP,
 )
 
 register(
@@ -310,6 +323,7 @@ register(
     authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_PERSON,
     runfunc="run_given",
+    help_url=QUICKVIEWS_HELP,
 )
 
 register(
@@ -325,6 +339,7 @@ register(
     authors_email=["doug.blank@gmail.com"],
     category=CATEGORY_QR_MISC,
     runfunc="run_given",
+    help_url=QUICKVIEWS_HELP,
 )
 
 # ------------------------------------------------------------------------
@@ -345,4 +360,5 @@ register(
     authors_email=["don@gramps-project.org"],
     category=CATEGORY_QR_PERSON,
     runfunc="run",
+    help_url=QUICKVIEWS_HELP,
 )

@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -212,23 +211,17 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         # add the citation as a child of the source. Otherwise we add the source
         # first (because citations don't have any meaning without the associated
         # source)
-        if self._get_node(data["source_handle"]):
+        if self._get_node(data.source_handle):
             #             parent   child   sortkey   handle
-            self.add_node(
-                data["source_handle"], handle, sort_key, handle, secondary=True
-            )
+            self.add_node(data.source_handle, handle, sort_key, handle, secondary=True)
         else:
             # add the source node first
-            source_sort_key = self.sort_func(self.map(data["source_handle"]))
+            source_sort_key = self.sort_func(self.map(data.source_handle))
             #            parent child    sortkey          handle
-            self.add_node(
-                None, data["source_handle"], source_sort_key, data["source_handle"]
-            )
+            self.add_node(None, data.source_handle, source_sort_key, data.source_handle)
 
             #            parent    child   sortkey   handle
-            self.add_node(
-                data["source_handle"], handle, sort_key, handle, secondary=True
-            )
+            self.add_node(data.source_handle, handle, sort_key, handle, secondary=True)
 
     def on_get_n_columns(self):
         return len(self.fmap) + 1

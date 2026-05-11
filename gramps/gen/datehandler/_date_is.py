@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 # Attempt to parse dates for Icelandic, Sveinn í Felli 2016
 
@@ -63,8 +62,8 @@ class DateParserIs(DateParser):
         "í kringum": Date.MOD_ABOUT,
         "uþb": Date.MOD_ABOUT,
         "um": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "frá": Date.MOD_FROM,
+        "til": Date.MOD_TO,
     }
 
     bce = ["f Kr"]

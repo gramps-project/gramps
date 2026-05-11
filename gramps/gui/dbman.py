@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -560,7 +559,7 @@ class DbManager(CLIDbManager, ManagedWindow):
             self.break_lock(self.lock_file)
             store, node = self.selection.get_selected()
             dbpath = store.get_value(node, PATH_COL)
-            (tval, last) = time_val(dbpath)
+            tval, last = time_val(dbpath)
             store.set_value(node, OPEN_COL, 0)
             store.set_value(node, ICON_COL, "")  # see bug_fix
             store.set_value(node, DATE_COL, last)
@@ -928,7 +927,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         """
         store, node = self.selection.get_selected()
         dbpath = store.get_value(node, PATH_COL)
-        (tval, last) = time_val(dbpath)
+        tval, last = time_val(dbpath)
         store.set_value(node, OPEN_COL, 0)
         store.set_value(node, ICON_COL, "")  # see bug_fix
         store.set_value(node, DATE_COL, last)
@@ -1069,7 +1068,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         """
         new_path, title = self.create_new_db_cli(title, create_db, dbid)
         path_name = os.path.join(new_path, NAME_FILE)
-        (tval, last) = time_val(new_path)
+        tval, last = time_val(new_path)
         backend_type = self.get_backend_name_from_dbid(dbid)
         node = self.model.append(
             None, [title, new_path, path_name, last, tval, False, "", backend_type]

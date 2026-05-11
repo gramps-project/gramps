@@ -269,7 +269,7 @@ gramps(1)			     3.4.0			     gramps(1)
 
 **ZNANE BŁĘDY I OGRANICZENIA**
        Prawdopodobne. Lista błędów i propozycji znajduje się na: 
-       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers .
+       https://www.gramps-project.org/wiki/index.php?title=Portal:Developers .
 
 
 **PLIKI**
@@ -286,7 +286,7 @@ gramps(1)			     3.4.0			     gramps(1)
 
 **AUTORZY**
        Donald Allingham <don@gramps-project.org>
-       http://gramps-project.org/
+       https://gramps-project.org/
 
        Ta strona man jest tłumaczeniem strony man napisanej przez:
        Brandon L. Griffith <brandon@debian.org>
@@ -301,7 +301,7 @@ gramps(1)			     3.4.0			     gramps(1)
        Dokumentacja użytkownika jest dostępna poprzez standardową przeglądarkę.
 
        Dokumentacja  dla  programistów	jest  dostępna	na  stronie  projektu:
-       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
+       https://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
 
 
 

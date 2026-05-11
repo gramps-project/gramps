@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-    grampsw.exe
+grampsw.exe
 """
+
 import os
 from os import environ
 from os.path import join

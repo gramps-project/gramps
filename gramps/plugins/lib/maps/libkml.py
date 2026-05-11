@@ -15,9 +15,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -103,9 +102,9 @@ class Kml(GObject.GObject):
         self.points = []
         for point in attributes.text.split():
             try:
-                (longitude, latitude, dummy_altitude) = point.split(",")
+                longitude, latitude, dummy_altitude = point.split(",")
             except:
-                (longitude, latitude) = point.split(",")
+                longitude, latitude = point.split(",")
             self.points.append((float(latitude), float(longitude)))
 
     def get_linear_ring(self, attributes):

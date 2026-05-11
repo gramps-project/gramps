@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -73,15 +72,14 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
                 _("Retrieving all sub-filter matches"),
                 db.get_number_of_people(),
             )
-        for handle in db.iter_person_handles():
-            person = db.get_person_from_handle(handle)
+        for person in db.iter_people():
             if user:
                 user.step_progress()
-            if person and self.filt.apply(db, person):
+            if person and self.filt.apply_to_one(db, person):
                 # store all people in the filter so as to compare later
                 self.with_people.append(person.handle)
                 # fill list of ancestor of person if not present yet
-                if handle not in self.ancestor_cache:
+                if person.handle not in self.ancestor_cache:
                     self.add_ancs(db, person)
         if user:
             user.end_progress()

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2021       Nick Hall
+# Copyright (C) 2021,2025  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,9 +13,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 
 name: Gramps CI
 
@@ -31,7 +30,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -54,23 +53,27 @@ jobs:
         sudo apt-get install libxml2-utils
         sudo apt-get install python3-lxml
         sudo apt-get install python3-libxml2
+        sudo apt-get install python3-requests
         sudo apt-get install zlib1g-dev
-        sudo apt-get install python3-setuptools
+        sudo apt-get install python3-build
+        python3 -m pip install orjson
+        python3 -m pip install virtualenv
     - name: Install addons
       run: |
-        mkdir -p ~/.gramps/gramps60/plugins/
+        mkdir -p ~/.local/share/gramps/gramps60/plugins/
         wget https://github.com/gramps-project/addons/raw/master/gramps60/download/CliMerge.addon.tgz
-        tar -C ~/.gramps/gramps60/plugins -xzf CliMerge.addon.tgz
+        tar -C ~/.local/share/gramps/gramps60/plugins/ -xzf CliMerge.addon.tgz
         wget https://github.com/gramps-project/addons/raw/master/gramps60/download/ExportRaw.addon.tgz
-        tar -C ~/.gramps/gramps60/plugins -xzf ExportRaw.addon.tgz
+        tar -C ~/.local/share/gramps/gramps60/plugins/ -xzf ExportRaw.addon.tgz
     - name: Build
       run: |
-        python3 setup.py build
+        python3 -m build --wheel
     - name: Run mypy static type checker
       run: |
-        python3 -m pip install mypy
-        mypy gramps test --ignore-missing-imports --exclude '.*gpr\.py$'
+        python3 -m pip install mypy types-requests
+        mypy
     - name: Run unit test suite
       run: |
         export GDK_BACKEND=-
-        python3 setup.py test
+        export GRAMPS_RESOURCES=build/share
+        python3 -m unittest discover -p "*_test.py"

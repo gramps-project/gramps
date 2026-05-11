@@ -17,9 +17,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 """
@@ -432,7 +431,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
     def add_results_cli(self, results):
         """print data for the user, no GUI"""
-        (msg, gramps_id, name, the_type, rule_id, severity, handle) = results
+        msg, gramps_id, name, the_type, rule_id, severity, handle = results
         severity_str = "S"
         if severity == Rule.WARNING:
             severity_str = "W"
@@ -1066,7 +1065,7 @@ class VerifyResults(ManagedWindow):
     def double_click(self, obj, event):
         """the user wants to edit the selected person or family"""
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
-            (model, node) = self.selection.get_selected()
+            model, node = self.selection.get_selected()
             if not node:
                 return
             sort_path = self.sort_model.get_path(node)
@@ -1105,7 +1104,7 @@ class VerifyResults(ManagedWindow):
 
     def add_results(self, results):
         """adds the negative result of an evaluated Rule to the model"""
-        (msg, gramps_id, name, the_type, rule_id, severity, handle) = results
+        msg, gramps_id, name, the_type, rule_id, severity, handle = results
         ignore = self.get_marking(handle, rule_id)
         if severity == Rule.ERROR:
             line_color = "red"
@@ -2272,7 +2271,10 @@ class MarriedRelation(FamilyRule):
         """return boolean indicating whether this rule is violated"""
         marr_date = self.obj.get_marriage_date()
         marr_date_ok = marr_date > 0
-        married = self.obj.get_relationship() == FamilyRelType.MARRIED
+        married = self.obj.get_relationship() in (
+            FamilyRelType.MARRIED,
+            FamilyRelType.CIVIL_UNION,
+        )
         if not married and marr_date_ok:
             return self.get_message
         return False

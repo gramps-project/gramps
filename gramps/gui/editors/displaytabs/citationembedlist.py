@@ -14,9 +14,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
 # -------------------------------------------------------------------------
@@ -205,25 +204,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                         parent=self.uistate.window,
                     )
             elif isinstance(objct, Citation):
-                try:
-                    from .. import EditCitation
-
-                    EditCitation(
-                        self.dbstate,
-                        self.uistate,
-                        self.track,
-                        objct,
-                        callback=self.add_callback,
-                        callertitle=self.callertitle,
-                    )
-                except WindowActiveError:
-                    from ...dialog import WarningDialog
-
-                    WarningDialog(
-                        _("Cannot share this reference"),
-                        self.__blocked_text(),
-                        parent=self.uistate.window,
-                    )
+                self.add_callback(objct.handle)
             else:
                 raise ValueError("selection must be either source or citation")
 
@@ -296,25 +277,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         if handle:
             objct = self.dbstate.db.get_citation_from_handle(handle)
             if isinstance(objct, Citation):
-                try:
-                    from .. import EditCitation
-
-                    EditCitation(
-                        self.dbstate,
-                        self.uistate,
-                        self.track,
-                        objct,
-                        callback=self.add_callback,
-                        callertitle=self.callertitle,
-                    )
-                except WindowActiveError:
-                    from ...dialog import WarningDialog
-
-                    WarningDialog(
-                        _("Cannot share this reference"),
-                        self.__blocked_text(),
-                        parent=self.uistate.window,
-                    )
+                self.add_callback(handle)
             else:
                 raise ValueError("selection must be either source or citation")
 
