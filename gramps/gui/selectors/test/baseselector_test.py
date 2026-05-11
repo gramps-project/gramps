@@ -74,6 +74,8 @@ def _make_selector(cls):
     sel.build_tree = MagicMock()
     sel.goto_handle = MagicMock()
     sel.window = MagicMock()
+    sel.model = None
+    sel.tree = None
     return sel
 
 
