@@ -64,7 +64,6 @@ from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.db import family_name
-from gramps.gen.lib import family as Family
 
 PT2CM = utils.pt2cm
 
@@ -115,11 +114,10 @@ class PersonBox(DescendantBoxBase):
     Calculates information about the box that will print on a page
     """
 
-    # def __init__(self, level, database, boldable=0): # dk planned for life_status color
-    def __init__(self, level, boldable=0):
+    def __init__(self, level, database, boldable=0):
         DescendantBoxBase.__init__(self, "CG2-box")
         self.level = level
-        # self.database = database  # Store the database reference # dk: planned for life_status color
+        self.database = database
         self.boldable = boldable
 
     def set_bold(self):
@@ -130,7 +128,7 @@ class PersonBox(DescendantBoxBase):
         """Set box color based on person's gender and alive status."""
         is_alive = probably_alive(person, database)
         self.boxstr = utils.get_gender_color_box_name(
-            person.gender, is_alive, base_name, self.report_gender_colors
+            person, base_name, self.report_gender_colors
         )
 
 
@@ -139,15 +137,14 @@ class FamilyBox(DescendantBoxBase):
     Calculates information about the box that will print on a page
     """
 
-    # def __init__(self, level, database, boldable=0): # dk: planned for family color
-    def __init__(self, level):
+    def __init__(self, level, database):
         DescendantBoxBase.__init__(self, "CG2-fam-box")
         self.level = level
-        # self.database = database  # Store the database reference # dk: planned for family color
+        self.database = database
 
-    def set_family_color(self, marr_type):
+    def set_family_color(self, family_handle):
         self.boxstr = utils.get_family_color_box_name(
-            marr_type, "CG2-fam-box", self.report_family_colors
+            "CG2-fam-box", self.report_family_colors
         )
 
 
@@ -522,8 +519,7 @@ class RecurseDown:
 
     def add_person_box(self, level, indi_handle, fams_handle, father):
         """Makes a person box and add that person into the Canvas."""
-        myself = PersonBox(level)
-        # myself = PersonBox(level, self.database) # Pass self.database here # dk: planned for life_status color
+        myself = PersonBox(level, self.database)
         myself.father = father
 
         if myself.level[1] == 0 and self.bold_direct and self.bold_now:
@@ -562,8 +558,7 @@ class RecurseDown:
 
     def add_marriage_box(self, level, indi_handle, fams_handle, father):
         """Makes a marriage box and add that person into the Canvas."""
-        myself = FamilyBox(level)  # Pass self.database here
-        # myself = FamilyBox(level, self.database) # Pass self.database here # dk
+        myself = FamilyBox(level, self.database)
         # if father is not None:
         #    myself.father = father
         # calculate the text.
@@ -574,15 +569,7 @@ class RecurseDown:
         self.canvas.add_box(myself)
 
         if self.fill_box_color:
-            this_marr = self.database.get_family_from_handle(fams_handle)
-            if this_marr:
-                try:
-                    marr_type = int(this_marr.get_relationship())
-                except (ValueError, TypeError):
-                    marr_type = utils._F_UNKNOWN
-            else:
-                marr_type = utils._F_UNKNOWN
-            myself.set_family_color(marr_type)
+            myself.set_family_color(fams_handle)
         return myself
 
     def recurse(self, person_handle, x_level, s_level, father):

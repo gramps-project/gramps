@@ -65,7 +65,6 @@ from gramps.gen.proxy import CacheProxyDb
 
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.display.name import displayer as _nd
-from gramps.gen.lib import family as Family
 
 PT2CM = utils.pt2cm
 # cm2pt = utils.cm2pt
@@ -92,13 +91,12 @@ class PersonBox(BoxBase):
     Calculates information about the box that will print on a page
     """
 
-    # def __init__(self, level, database):  # dk: planned for life_status color
-    def __init__(self, level):
+    def __init__(self, level, database):
         BoxBase.__init__(self)
         self.boxstr = "AC2-box"
         # self.level = (level[0]-1, level[1])
         self.level = level
-        # self.database = database  # Store the database reference # dk: planned for life_status color
+        self.database = database
         self.idx = 0
         self.report_gender_colors = GUIConnect().get_gender_colors()
 
@@ -109,7 +107,7 @@ class PersonBox(BoxBase):
         """Set box color based on person's gender and alive status."""
         is_alive = probably_alive(person, database)
         self.boxstr = utils.get_gender_color_box_name(
-            person.gender, is_alive, "AC2-box", self.report_gender_colors
+            person, "AC2-box", self.report_gender_colors
         )
 
     def display(self):
@@ -130,23 +128,20 @@ class FamilyBox(BoxBase):
     Calculates information about the box that will print on a page
     """
 
-    # def __init__(self, level, database):  # dk: planned for family type color
-    def __init__(self, level):
+    def __init__(self, level, database):
         BoxBase.__init__(self)
         self.boxstr = "AC2-fam-box"
         # self.level = (level[0]-1, level[1])
         self.level = level
-        # self.database = database  # Store the database reference  # dk: planned for family type color
+        self.database = database
         self.report_family_colors = GUIConnect().get_family_colors()
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
-    def set_family_color(self, marr_type):
+    def set_family_color(self, family_handle):
         self.boxstr = utils.get_family_color_box_name(
-            marr_type,
-            "AC2-fam-box",
-            self.report_family_colors,  # dk: planned for family type color
+            "AC2-fam-box", self.report_family_colors
         )
 
 
@@ -290,8 +285,7 @@ class MakeAncestorTree(AscendPerson):
         """Makes a person box and add that person into the Canvas."""
 
         # print str(index) + " add_person " + str(indi_handle)
-        myself = PersonBox((index[0] - 1,) + index[1:])
-        # myself = PersonBox((index[0] - 1,) + index[1:], self.database) # dk: planned for life_status color
+        myself = PersonBox((index[0] - 1,) + index[1:], self.database)
 
         if index[LVL_GEN] == 1:  # Center Person
             self.center_family = fams_handle
@@ -340,8 +334,7 @@ class MakeAncestorTree(AscendPerson):
         if not self.inlc_marr:
             return
 
-        myself = FamilyBox((index[0] - 1,) + index[1:])
-        # myself = FamilyBox((index[0] - 1,) + index[1:], self.database) # dk: planned for life_family types color
+        myself = FamilyBox((index[0] - 1,) + index[1:], self.database)
 
         # calculate the text.
         myself.text = self.calc_items.calc_marriage(indi_handle, fams_handle)
@@ -349,15 +342,7 @@ class MakeAncestorTree(AscendPerson):
         self.canvas.add_box(myself)
 
         if self.fill_box_color:
-            this_marr = self.database.get_family_from_handle(fams_handle)
-            if this_marr:
-                try:
-                    marr_type = int(this_marr.get_relationship())
-                except (ValueError, TypeError):
-                    marr_type = utils._F_UNKNOWN
-            else:
-                marr_type = utils._F_UNKNOWN
-            myself.set_family_color(marr_type)
+            myself.set_family_color(fams_handle)
 
     def y_index(self, x_level, index):
         """Calculate the column or generation that this person is in.
