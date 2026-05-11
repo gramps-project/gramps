@@ -293,7 +293,9 @@ class AddonRow(Gtk.ListBoxRow):
             try:
                 subprocess.check_output(
                     [
-                        "pip.exe" if win() else "pip",
+                        sys.executable,
+                        "-m",
+                        "pip",
                         "install",
                         "--target",
                         LIB_PATH,
