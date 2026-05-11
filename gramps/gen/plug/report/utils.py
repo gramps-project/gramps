@@ -50,8 +50,7 @@ from ..docgen import IndexMark, INDEX_TYPE_ALP
 
 # just to borrow these constants from Person, Family, and for marriage_type
 from ...config import config
-from ...lib import Person, Family, FamilyRelType
-from ...utils.alive import probably_alive
+from ...lib import Person, FamilyRelType
 
 _G_FEMALE, _G_MALE, _G_UNKNOWN, _G_OTHER = (
     Person.FEMALE,
@@ -89,33 +88,24 @@ def get_rgb_color(color_name):
 
 # -------------------------------------------------------------------------
 #  Fetch current color preferences from configuration at runtime of report
+#  for this PR: _G_ALIVE is used regardless of the actual alive status of the person.
+#  The same goes with _F_MARRIED for families.
+#  The next PR will expand on these options.
 # -------------------------------------------------------------------------
+
+
 def get_report_gender_colors():
     return {
-        (_G_FEMALE, _G_ALIVE): [get_rgb_color("colors.female-alive"), "_FEMALE_ALIVE"],
-        (_G_MALE, _G_ALIVE): [get_rgb_color("colors.male-alive"), "_MALE_ALIVE"],
-        (_G_UNKNOWN, _G_ALIVE): [
-            get_rgb_color("colors.unknown-alive"),
-            "_UNKNOWN_ALIVE",
-        ],
-        (_G_OTHER, _G_ALIVE): [get_rgb_color("colors.other-alive"), "_OTHER_ALIVE"],
-        (_G_FEMALE, _G_DEAD): [get_rgb_color("colors.female-dead"), "_FEMALE_DEAD"],
-        (_G_MALE, _G_DEAD): [get_rgb_color("colors.male-dead"), "_MALE_DEAD"],
-        (_G_UNKNOWN, _G_DEAD): [get_rgb_color("colors.unknown-dead"), "_UNKNOWN_DEAD"],
-        (_G_OTHER, _G_DEAD): [get_rgb_color("colors.other-dead"), "_OTHER_DEAD"],
+        _G_FEMALE: [get_rgb_color("colors.female-alive"), "_FEMALE_ALIVE"],
+        _G_MALE: [get_rgb_color("colors.male-alive"), "_MALE_ALIVE"],
+        _G_UNKNOWN: [get_rgb_color("colors.unknown-alive"), "_UNKNOWN_ALIVE"],
+        _G_OTHER: [get_rgb_color("colors.other-alive"), "_OTHER_ALIVE"],
     }
 
 
 def get_report_family_colors():
     return {
         _F_MARRIED: [get_rgb_color("colors.family-married"), "_MARRIED"],
-        _F_UNMARRIED: [get_rgb_color("colors.family-unmarried"), "_UNMARRIED"],
-        _F_CIVIL_UNION: [
-            get_rgb_color("colors.family-civil-union"),
-            "_CIVIL_UNION",
-        ],
-        _F_UNKNOWN: [get_rgb_color("colors.family-unknown"), "_UNKNOWN"],
-        _F_CUSTOM: [get_rgb_color("colors.family-divorced"), "_DIVORCED"],
     }
 
 
@@ -514,14 +504,13 @@ def get_gender_symbol(person):
 def generate_gender_color_styles(
     style, base_draw_name, graph_style, report_gender_colors
 ):
-    for (gender, is_alive), (gen_color, gen_suffix) in report_gender_colors.items():
-        if is_alive == _G_ALIVE:
-            graph_style.set_fill_color(gen_color)
-            graph_style.set_description(
-                _("The style for the person box for %s.") % gen_suffix
-            )
-            box_name = base_draw_name + gen_suffix
-            style.add_draw_style(box_name, graph_style)
+    for gender, (gen_color, gen_suffix) in report_gender_colors.items():
+        graph_style.set_fill_color(gen_color)
+        graph_style.set_description(
+            _("The style for the person box for %s.") % gen_suffix
+        )
+        box_name = base_draw_name + gen_suffix
+        style.add_draw_style(box_name, graph_style)
 
 
 # -------------------------------------------------------------------------
@@ -538,7 +527,7 @@ def get_gender_color_box_name(person, base_draw_name, report_gender_colors):
     except AttributeError:
         gender = _G_UNKNOWN
 
-    gen_color, gen_suffix = report_gender_colors[(gender, _G_ALIVE)]
+    gen_color, gen_suffix = report_gender_colors[gender]
     return base_draw_name + gen_suffix
 
 
