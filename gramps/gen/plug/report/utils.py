@@ -50,24 +50,13 @@ from ..docgen import IndexMark, INDEX_TYPE_ALP
 
 # just to borrow these constants from Person, Family, and for marriage_type
 from ...config import config
-from ...lib import Person, FamilyRelType
+from ...lib import Person
 
 _G_FEMALE, _G_MALE, _G_UNKNOWN, _G_OTHER = (
     Person.FEMALE,
     Person.MALE,
     Person.UNKNOWN,
     Person.OTHER,
-)
-
-_G_ALIVE = True
-_G_DEAD = False
-
-_F_MARRIED, _F_UNMARRIED, _F_CIVIL_UNION, _F_UNKNOWN, _F_CUSTOM = (
-    FamilyRelType.MARRIED,
-    FamilyRelType.UNMARRIED,
-    FamilyRelType.CIVIL_UNION,
-    FamilyRelType.UNKNOWN,
-    FamilyRelType.CUSTOM,
 )
 
 
@@ -104,9 +93,7 @@ def get_report_gender_colors():
 
 
 def get_report_family_colors():
-    return {
-        _F_MARRIED: [get_rgb_color("colors.family-married"), "_MARRIED"],
-    }
+    return [get_rgb_color("colors.family-married"), "_MARRIED"]
 
 
 SYMBOLS = Symbols()
@@ -540,7 +527,7 @@ def get_gender_color_box_name(person, base_draw_name, report_gender_colors):
 def generate_family_color_style(
     style, base_draw_name, graph_style, report_family_colors
 ):
-    marr_color, marr_suffix = report_family_colors[_F_MARRIED]
+    marr_color, marr_suffix = report_family_colors
     graph_style.set_fill_color(marr_color)
     graph_style.set_description(_("The style for the family box for %s.") % marr_suffix)
     box_name = base_draw_name + marr_suffix
@@ -556,5 +543,5 @@ def generate_family_color_style(
 
 def get_family_color_box_name(base_draw_name, report_family_colors):
     """select family box name"""
-    marr_color, marr_suffix = report_family_colors[_F_MARRIED]
+    marr_color, marr_suffix = report_family_colors
     return base_draw_name + marr_suffix
