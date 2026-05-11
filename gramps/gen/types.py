@@ -320,8 +320,8 @@ class LocationLike(Protocol):
 class PersonLike(Protocol):
     """Protocol for Person-like objects."""
 
-    handle: str
-    gramps_id: str
+    handle: PersonHandle
+    gramps_id: PersonGrampsID
     gender: int
     primary_name: NameLike
     alternate_names: list[NameLike]
@@ -347,8 +347,8 @@ class PersonLike(Protocol):
 class FamilyLike(Protocol):
     """Protocol for Family-like objects."""
 
-    handle: str
-    gramps_id: str
+    handle: FamilyHandle
+    gramps_id: FamilyGrampsID
     father_handle: str | None
     mother_handle: str | None
     child_ref_list: list[ChildRefLike]
@@ -368,8 +368,8 @@ class FamilyLike(Protocol):
 class EventLike(Protocol):
     """Protocol for Event-like objects."""
 
-    handle: str
-    gramps_id: str
+    handle: EventHandle
+    gramps_id: EventGrampsID
     type: GrampsTypeLike  # EventType
     date: DateLike
     description: str
@@ -387,8 +387,8 @@ class EventLike(Protocol):
 class MediaLike(Protocol):
     """Protocol for Media-like objects."""
 
-    handle: str
-    gramps_id: str
+    handle: MediaHandle
+    gramps_id: MediaGrampsID
     path: str
     mime: str
     desc: str
@@ -406,8 +406,8 @@ class MediaLike(Protocol):
 class PlaceLike(Protocol):
     """Protocol for Place-like objects."""
 
-    handle: str
-    gramps_id: str
+    handle: PlaceHandle
+    gramps_id: PlaceGrampsID
     title: str
     long: str
     lat: str
@@ -430,8 +430,8 @@ class PlaceLike(Protocol):
 class SourceLike(Protocol):
     """Protocol for Source-like objects."""
 
-    handle: str
-    gramps_id: str
+    handle: SourceHandle
+    gramps_id: SourceGrampsID
     title: str
     author: str
     pubinfo: str
@@ -449,8 +449,8 @@ class SourceLike(Protocol):
 class CitationLike(Protocol):
     """Protocol for Citation-like objects."""
 
-    handle: str
-    gramps_id: str
+    handle: CitationHandle
+    gramps_id: CitationGrampsID
     date: DateLike
     page: str
     confidence: int
@@ -467,8 +467,8 @@ class CitationLike(Protocol):
 class RepositoryLike(Protocol):
     """Protocol for Repository-like objects."""
 
-    handle: str
-    gramps_id: str
+    handle: RepositoryHandle
+    gramps_id: RepositoryGrampsID
     type: GrampsTypeLike  # RepositoryType
     name: str
     note_list: list[str]
@@ -483,8 +483,8 @@ class RepositoryLike(Protocol):
 class NoteLike(Protocol):
     """Protocol for Note-like objects."""
 
-    handle: str
-    gramps_id: str
+    handle: NoteHandle
+    gramps_id: NoteGrampsID
     text: StyledTextLike
     format: int
     type: GrampsTypeLike  # NoteType
@@ -497,7 +497,7 @@ class NoteLike(Protocol):
 class TagLike(Protocol):
     """Protocol for Tag-like objects."""
 
-    handle: str
+    handle: TagHandle
     name: str
     color: str
     priority: int
