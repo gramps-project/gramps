@@ -31,15 +31,15 @@ from gi.repository import Gtk
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.sgettext
 from gramps.gen.const import URL_MANUAL_SECT2
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Place
 from ..editors import EditPlace
 from ..views.treemodels.placemodel import PlaceTreeModel
 from .baseselector import BaseSelector
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+_ = glocale.translation.sgettext
 
 # -------------------------------------------------------------------------
 #
