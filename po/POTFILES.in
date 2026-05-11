@@ -377,6 +377,8 @@ gramps/gen/lib/urltype.py
 gramps/gen/merge/diff.py
 gramps/gen/merge/mergecitationquery.py
 gramps/gen/merge/mergeeventquery.py
+gramps/gen/merge/mergednatestquery.py
+gramps/gen/merge/mergednamatchquery.py
 gramps/gen/merge/mergefamilyquery.py
 gramps/gen/merge/mergemediaquery.py
 gramps/gen/merge/mergenotequery.py
@@ -562,6 +564,8 @@ gramps/gui/glade/grampletpane.glade
 gramps/gui/glade/mergecitation.glade
 gramps/gui/glade/mergedata.glade
 gramps/gui/glade/mergeevent.glade
+gramps/gui/glade/mergednatest.glade
+gramps/gui/glade/mergednamatch.glade
 gramps/gui/glade/mergefamily.glade
 gramps/gui/glade/mergemedia.glade
 gramps/gui/glade/mergenote.glade
@@ -582,6 +586,8 @@ gramps/gui/logger/_errorview.py
 gramps/gui/makefilter.py
 gramps/gui/merge/mergecitation.py
 gramps/gui/merge/mergeevent.py
+gramps/gui/merge/mergednatest.py
+gramps/gui/merge/mergednamatch.py
 gramps/gui/merge/mergefamily.py
 gramps/gui/merge/mergemedia.py
 gramps/gui/merge/mergenote.py

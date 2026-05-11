@@ -43,6 +43,7 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import DNAMatch
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.editors import EditDNAMatch
+from gramps.gui.merge import MergeDNAMatch
 from gramps.gui.views.bookmarks import DNAMatchBookmarks
 from gramps.gui.views.listview import ListView, TEXT, ICON
 from gramps.gui.views.treemodels import DNAMatchModel
@@ -369,9 +370,17 @@ class DNAMatchView(ListView):
                 pass
 
     def merge(self, *obj):
-        msg = _("Cannot merge DNA matches.")
-        msg2 = _("Merge is not yet implemented for DNA matches.")
-        ErrorDialog(msg, msg2, parent=self.uistate.window)
+        mlist = self.selected_handles()
+        if len(mlist) != 2:
+            msg = _("Cannot merge DNA matches.")
+            msg2 = _(
+                "Exactly two DNA matches must be selected to perform a merge. "
+                "A second DNA match can be selected by holding down the "
+                "control key while clicking on the desired DNA match."
+            )
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
+        else:
+            MergeDNAMatch(self.dbstate, self.uistate, [], mlist[0], mlist[1])
 
     def tag_updated(self, handle_list):
         """
