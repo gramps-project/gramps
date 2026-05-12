@@ -553,15 +553,6 @@ def get_gender_color_box_name(person, db, base_draw_name, report_gender_colors):
 
 def get_life_status(person, db):
     is_alive = bool(probably_alive(person, db))
-
-    """
-    # dk: need more work to make this work with living proxy,
-    # and also need to decide how to handle the case where the person
-    # is not in the database (e.g., a spouse that is not a person in the database)
-    if hasattr(self, 'living_proxy'):
-        is_alive or self.living_proxy.is_living(person)
-    """
-
     return is_alive
 
 
