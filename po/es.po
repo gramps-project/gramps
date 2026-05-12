@@ -33,7 +33,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-28 20:48+0000\n"
+"PO-Revision-Date: 2026-05-02 13:44+0000\n"
 "Last-Translator: Francisco Serrador <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -42,7 +42,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17.1-dev\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -539,11 +539,11 @@ msgid ""
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>¿Quién nació y cuándo?</b><br/>Debajo de \"Herramientas > Análisis y "
-"Exploración > Comparar eventos individuales…\" se pueden comparar los datos "
-"de personas en su base de datos. Esto es útil si, por ejemplo, desea listar "
-"las fechas de nacimiento de todas las personas de su base de datos. Puede "
-"usar un filtro personalizado para limitar los resultados."
+"<b>¿Quién nació y cuándo?</b><br/>Debajo de «Herramientas > Análisis y "
+"Exploración > Comparar eventos individuales…» se pueden comparar los datos "
+"de personas en su base de datos. Esto es útil, digamos, si desea alistar las "
+"fechas de nacimiento de cada uno en su base de datos. Puede usar un filtro "
+"personalizado para limitar los resultados."
 
 #: ../data/tips.xml:31
 msgid ""
@@ -794,12 +794,13 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
-"<b>Listados de correo de Gramps</b><br/>¿Busca respuestas a sus preguntas "
-"sobre Gramps? Pruebe el listado de correo gramps-users. En el listado hay "
-"muchas personas dispuestas a ayudar, así que es fácil que obtenga una "
-"respuesta en poco tiempo. Si tiene preguntas acerca del desarrollo de "
-"Gramps, pruebe el listado gramps-devel. Puede encontrar información acerca "
-"de estos listados seleccionando «Ayuda > Listas de correo de Gramps»."
+"<b>Listados de correo de Gramps</b><br/>¿Quiere buscar respuestas a sus "
+"preguntas sobre Gramps? Pruebe el listado de correo gramps-users. En el "
+"listado hay muchas personas dispuestas a ayudar, así que es fácil que "
+"obtenga una respuesta en poco tiempo. Si tiene preguntas acerca del "
+"desarrollo de Gramps, pruebe el listado gramps-devel. Puede encontrar "
+"información acerca de estos listados seleccionando «Ayuda > Listas de correo "
+"de Gramps»."
 
 #: ../data/tips.xml:69
 msgid ""
@@ -817,8 +818,8 @@ msgstr ""
 "pueden ir desde escribir documentación a probar las versiones de desarrollo "
 "o ayudar con el sitio web. Comience suscribiéndose a la lista de correo de "
 "los desarrolladores de Gramps, gramps-devel, y presentándose. Información "
-"sobre cómo suscribirse puede ser consultada en \"Ayuda > Listas de correo de "
-"Gramps\"."
+"sobre cómo suscribirse puede ser consultada en «Ayuda > Listas de correo de "
+"Gramps»."
 
 #: ../data/tips.xml:71
 msgid ""
@@ -1083,7 +1084,7 @@ msgid ""
 msgstr ""
 "<b>Anuncios de Gramps</b><br/>¿Está interesado en enterarse cuando se "
 "publica una versión de Gramps nueva? Únase a la lista de correo gramps-"
-"announce en \"Ayuda > Listas de correo de Gramps\"."
+"announce en «Ayuda > Listas de correo de Gramps»."
 
 #: ../data/tips.xml:113
 msgid ""
@@ -8498,7 +8499,7 @@ msgstr "Nacimiento"
 #: ../gramps/plugins/webreport/person.py:432
 #: ../gramps/plugins/webreport/surname.py:157
 msgid "Death"
-msgstr "Defunción"
+msgstr "Fallecimiento"
 
 #: ../gramps/gen/lib/eventtype.py:202
 msgid "Adult Christening"
@@ -8756,7 +8757,7 @@ msgstr "censo."
 #: ../gramps/gen/lib/eventtype.py:261
 msgctxt "Christening abbreviation"
 msgid "chr."
-msgstr "b."
+msgstr "chr."
 
 #: ../gramps/gen/lib/eventtype.py:262
 msgctxt "Confirmation abbreviation"
@@ -8766,17 +8767,17 @@ msgstr "conf."
 #: ../gramps/gen/lib/eventtype.py:263
 msgctxt "Cremation abbreviation"
 msgid "crem."
-msgstr "inc."
+msgstr "crem."
 
 #: ../gramps/gen/lib/eventtype.py:264
 msgctxt "Degree abbreviation"
 msgid "deg."
-msgstr "tit."
+msgstr "gra."
 
 #: ../gramps/gen/lib/eventtype.py:265
 msgctxt "Education abbreviation"
 msgid "edu."
-msgstr "educ."
+msgstr "edu."
 
 #: ../gramps/gen/lib/eventtype.py:266
 msgctxt "Elected abbreviation"
@@ -8816,12 +8817,12 @@ msgstr "s.mil."
 #: ../gramps/gen/lib/eventtype.py:273
 msgctxt "Naturalization abbreviation"
 msgid "nat."
-msgstr "nacional."
+msgstr "nac."
 
 #: ../gramps/gen/lib/eventtype.py:274
 msgctxt "Nobility Title abbreviation"
 msgid "nob."
-msgstr "tít.nob."
+msgstr "nob."
 
 #: ../gramps/gen/lib/eventtype.py:275
 msgctxt "Number of Marriages abbreviation"
@@ -8841,7 +8842,7 @@ msgstr "ord."
 #: ../gramps/gen/lib/eventtype.py:278
 msgctxt "Probate abbreviation"
 msgid "prob."
-msgstr "aut.test."
+msgstr "s.test.."
 
 #: ../gramps/gen/lib/eventtype.py:279
 msgctxt "Property abbreviation"
@@ -8881,22 +8882,22 @@ msgstr "lic.m."
 #: ../gramps/gen/lib/eventtype.py:286
 msgctxt "Marriage Contract abbreviation"
 msgid "m.con."
-msgstr "cap."
+msgstr "m.con."
 
 #: ../gramps/gen/lib/eventtype.py:287
 msgctxt "Marriage Banns abbreviation"
 msgid "m.ban."
-msgstr "amon."
+msgstr "m.ban."
 
 #: ../gramps/gen/lib/eventtype.py:288
 msgctxt "Alternate Marriage abbreviation"
 msgid "alt.mar."
-msgstr "matr.alt."
+msgstr "m.alt."
 
 #: ../gramps/gen/lib/eventtype.py:289
 msgctxt "Engagement abbreviation"
 msgid "engd."
-msgstr "compr."
+msgstr "com."
 
 #: ../gramps/gen/lib/eventtype.py:290
 msgctxt "Divorce abbreviation"
@@ -8906,7 +8907,7 @@ msgstr "div."
 #: ../gramps/gen/lib/eventtype.py:291
 msgctxt "Divorce Filing abbreviation"
 msgid "div.f."
-msgstr "dem.div."
+msgstr "p.div."
 
 #: ../gramps/gen/lib/eventtype.py:292
 msgctxt "Annulment abbreviation"
@@ -8916,7 +8917,7 @@ msgstr "anul."
 #: ../gramps/gen/lib/eventtype.py:293
 msgctxt "Stillbirth abbreviation"
 msgid "still."
-msgstr "mort."
+msgstr "n.fav."
 
 #: ../gramps/gen/lib/family.py:178 ../gramps/gui/widgets/fanchart.py:2191
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1052
@@ -8990,11 +8991,11 @@ msgstr "Sello temporal confirmado"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
-msgstr "Gramp modifió sello temporal"
+msgstr "Gramp ha modificado sello temporal"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:92
 msgid "FamilySearch modified timestamp"
-msgstr "FamilySearch modificó sello temporal"
+msgstr "FamilySearch ha modificado sello temporal"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
@@ -9086,7 +9087,7 @@ msgstr "Investidura"
 
 #: ../gramps/gen/lib/ldsord.py:98
 msgid "Sealed to Parents"
-msgstr "Sellado a los padres"
+msgstr "Sellado a antecesores"
 
 #: ../gramps/gen/lib/ldsord.py:99
 msgid "Sealed to Spouse"
@@ -9106,7 +9107,7 @@ msgstr "Cancelado/a"
 
 #: ../gramps/gen/lib/ldsord.py:107
 msgid "Cleared"
-msgstr "Aprobado/a"
+msgstr "Punteado/a"
 
 #: ../gramps/gen/lib/ldsord.py:108
 msgid "Completed"
@@ -9369,7 +9370,7 @@ msgstr "Ocupación"
 #: ../gramps/gen/lib/nameorigintype.py:92
 msgctxt "Surname"
 msgid "Location"
-msgstr "Lugar"
+msgstr "Localización"
 
 #: ../gramps/gen/lib/nametype.py:57
 msgid "Also Known As"
@@ -18357,7 +18358,7 @@ msgstr "E_stado/Condado:"
 #: ../gramps/gui/glade/editaddress.glade:167
 #: ../gramps/gui/glade/editlocation.glade:246
 msgid "_ZIP/Postal code:"
-msgstr "Código postal:"
+msgstr "Código _postal:"
 
 #: ../gramps/gui/glade/editaddress.glade:181
 msgid "Postal code"
@@ -39604,7 +39605,7 @@ msgstr "b."
 #: ../gramps/plugins/view/pedigreeview.py:90
 msgctxt "short for buried"
 msgid "bur."
-msgstr "ent."
+msgstr "sep."
 
 #: ../gramps/plugins/view/pedigreeview.py:91
 msgctxt "short for cremated"
