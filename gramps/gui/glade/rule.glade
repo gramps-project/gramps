@@ -569,7 +569,7 @@
                     <property name="halign">center</property>
                     <property name="margin-top">4</property>
                     <property name="use-markup">True</property>
-                    <property name="label" translatable="yes">&lt;span style=&quot;italic&quot; size=&quot;small&quot;&gt;To change rule order, use drag and drop, up/down buttons, or Ctrl+Arrow keys&lt;/span&gt;</property>
+                    <property name="label"></property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>

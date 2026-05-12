@@ -81,6 +81,7 @@ from gramps.gen.utils.string import conf_strings
 from ..widgets import DateEntry
 from gramps.gen.datehandler import displayer
 from gramps.gen.config import config
+from gramps.gen.constfunc import mac
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 
 # -------------------------------------------------------------------------
@@ -727,7 +728,7 @@ class EditRule(ManagedWindow):
             page = self.class2page[self.active_rule.__class__]
             self.notebook.set_current_page(page)
             self.display_values(self.active_rule.__class__)
-            (class_obj, vallist, tlist, use_regex, use_case) = self.page[page]
+            class_obj, vallist, tlist, use_regex, use_case = self.page[page]
             r = list(self.active_rule.values())
             for i in range(0, min(len(tlist), len(r))):
                 tlist[i].set_text(r[i])
@@ -838,7 +839,7 @@ class EditRule(ManagedWindow):
 
         try:
             page = self.notebook.get_current_page()
-            (class_obj, vallist, tlist, use_regex, use_case) = self.page[page]
+            class_obj, vallist, tlist, use_regex, use_case = self.page[page]
             value_list = [str(sclass.get_text()) for sclass in tlist]
             if class_obj.allow_regex:
                 new_rule = class_obj(
@@ -928,7 +929,17 @@ class EditFilter(ManagedWindow):
         self.rule_list.connect("motion-notify-event", self.on_motion_notify)
         self.rule_list.add_events(Gdk.EventMask.POINTER_MOTION_MASK)
 
-        # 2. Hint text is now in the Glade file (reorder_hint label)
+        # 2. Hint label: use Cmd on Mac/Quartz, Ctrl everywhere else
+        key_name = _("Cmd") if mac() else _("Ctrl")
+        self.get_widget("reorder_hint").set_markup(
+            '<span style="italic" size="small">'
+            + _(
+                "To change rule order, use drag and drop, up/down buttons,"
+                " or %s+Arrow keys"
+            )
+            % key_name
+            + "</span>"
+        )
 
         self.fname = self.get_widget("filter_name")
         self.logical = self.get_widget("rule_apply")
@@ -1130,16 +1141,17 @@ class EditFilter(ManagedWindow):
         """Handle keyboard shortcuts for moving rules."""
         if event.type == Gdk.EventType.KEY_PRESS:
             keyval = event.keyval
-            # Check for Up/Down arrow keys with Ctrl or Alt modifier
-            # (similar to how other apps handle reordering)
             modifiers = event.get_state()
-            if keyval == Gdk.KEY_Up and (modifiers & Gdk.ModifierType.CONTROL_MASK):
+            # On Mac/Quartz, Cmd maps to META_MASK; elsewhere use CONTROL_MASK.
+            primary = (
+                Gdk.ModifierType.META_MASK if mac() else Gdk.ModifierType.CONTROL_MASK
+            )
+            if keyval == Gdk.KEY_Up and (modifiers & primary):
                 self.on_up_clicked(widget)
                 return True
-            elif keyval == Gdk.KEY_Down and (modifiers & Gdk.ModifierType.CONTROL_MASK):
+            elif keyval == Gdk.KEY_Down and (modifiers & primary):
                 self.on_down_clicked(widget)
                 return True
-            # Also support Alt+Up/Down
             elif keyval == Gdk.KEY_Up and (modifiers & Gdk.ModifierType.MOD1_MASK):
                 self.on_up_clicked(widget)
                 return True
@@ -1478,7 +1490,7 @@ class FilterEditor(ManagedWindow):
             try:
                 handle_list = filt.apply(self.db, self.get_all_handles())
             except FilterError as msg:
-                (msg1, msg2) = msg.messages()
+                msg1, msg2 = msg.messages()
                 ErrorDialog(msg1, msg2, parent=self.window)
                 return
             ShowResults(
