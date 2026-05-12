@@ -45,6 +45,7 @@ from gramps.gui.dialog import ErrorDialog
 from gramps.gui.editors import EditDNATest
 from gramps.gui.merge import MergeDNATest
 from gramps.gui.views.bookmarks import DNATestBookmarks
+from gramps.gui.filters.sidebar import DNATestSidebarFilter
 from gramps.gui.views.listview import ListView, TEXT, ICON
 from gramps.gui.views.treemodels import DNATestModel
 
@@ -134,6 +135,7 @@ class DNATestView(ListView):
             DNATestBookmarks,
             nav_group,
             multiple=True,
+            filter_class=DNATestSidebarFilter,
         )
 
         self.additional_uis.append(self.additional_ui)
@@ -425,7 +427,7 @@ class DNATestView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return ((), ())
+        return (("DNA Test Filter",), ())
 
     def get_config_name(self):
         return __name__

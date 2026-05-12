@@ -72,6 +72,16 @@ gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py
 gramps/gen/filters/rules/citation/_matchessourcefilter.py
 gramps/gen/filters/rules/citation/_regexpidof.py
 gramps/gen/filters/rules/citation/_regexpsourceidof.py
+gramps/gen/filters/rules/dnamatch/_hasdnamatch.py
+gramps/gen/filters/rules/dnamatch/_hassharedcm.py
+gramps/gen/filters/rules/dnamatch/_hastag.py
+gramps/gen/filters/rules/dnamatch/_regexpidof.py
+gramps/gen/filters/rules/dnatest/_hasdnatest.py
+gramps/gen/filters/rules/dnatest/_hasprovider.py
+gramps/gen/filters/rules/dnatest/_hastesttype.py
+gramps/gen/filters/rules/dnatest/_hastag.py
+gramps/gen/filters/rules/dnatest/_isunidentified.py
+gramps/gen/filters/rules/dnatest/_regexpidof.py
 gramps/gen/filters/rules/event/_allevents.py
 gramps/gen/filters/rules/event/_changedsince.py
 gramps/gen/filters/rules/event/_eventprivate.py
@@ -503,6 +513,8 @@ gramps/gui/editors/objectentries.py
 gramps/gui/filters/_filterstore.py
 gramps/gui/filters/_searchbar.py
 gramps/gui/filters/sidebar/_citationsidebarfilter.py
+gramps/gui/filters/sidebar/_dnamatchsidebarfilter.py
+gramps/gui/filters/sidebar/_dnatestsidebarfilter.py
 gramps/gui/filters/sidebar/_eventsidebarfilter.py
 gramps/gui/filters/sidebar/_familysidebarfilter.py
 gramps/gui/filters/sidebar/_mediasidebarfilter.py
