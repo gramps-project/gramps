@@ -42,7 +42,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-18 06:09+0000\n"
+"PO-Revision-Date: 2026-05-11 10:36+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -51,7 +51,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17.1-dev\n"
+"X-Generator: Weblate 2026.5-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -2011,7 +2011,7 @@ msgstr "=číslo"
 
 #: ../gramps/cli/plug/__init__.py:326
 msgid "Paper orientation number."
-msgstr "Číslo orientace papíru."
+msgstr "Orientace papíru."
 
 #: ../gramps/cli/plug/__init__.py:327
 msgid "Left paper margin"
@@ -3873,16 +3873,12 @@ msgid "Tag:"
 msgstr "Štítek:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "Objekty s poznámkami konkrétního typu"
+msgstr "Objekty s poznámkami se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
-#| msgid "Matches a note with a specified Gramps ID"
 msgid "Matches notes with a specified tag"
-msgstr "Vyhovuje poznámka se zadaným Gramps ID"
+msgstr "Vyhovují poznámky se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -4102,16 +4098,12 @@ msgstr ""
 "Vyhovují citace jejichž poznámky obsahují text odpovídající reg. výrazu"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with the <tag>"
-msgstr "Citace s poznámkou typu<type>"
+msgstr "Citace s poznámkou se <štítkem>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches citations with a note of the specified type"
 msgid "Matches citations with a note with a specified tag"
-msgstr "Porovnáva citace s poznámkou specifikovaného typu"
+msgstr "Vyhovují citace s poznámkou se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4138,7 +4130,7 @@ msgstr "Citace s poznámkou typu<type>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
 msgid "Matches citations with a note of the specified type"
-msgstr "Porovnáva citace s poznámkou specifikovaného typu"
+msgstr "Vyhovují citace s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:44
 msgid "Citations with a reference count of <count>"
@@ -4419,7 +4411,7 @@ msgstr "Události vyhovující parametrům"
 
 #: ../gramps/gen/filters/rules/event/_hasevent.py:57
 msgid "Matches events with particular parameters"
-msgstr "Porovnává události konkrétních parametrů"
+msgstr "Vyhovují události s konkrétními parametry"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:46
 msgid "Events with <count> media"
@@ -4464,16 +4456,12 @@ msgstr ""
 "Vyhovují události jejichž poznámky obsahují text který odpovídá reg. výrazu"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with the <tag>"
-msgstr "Události s poznámkou typu <type>"
+msgstr "Události s poznámkou se <štítkem>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches events with a note of the specified type"
 msgid "Matches events with a note with a specified tag"
-msgstr "Porovnává události s poznámkou specifikovaného typu"
+msgstr "Vyhovují události s poznámkou se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4481,7 +4469,7 @@ msgstr "Události s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:48
 msgid "Matches events with a note of the specified type"
-msgstr "Porovnává události s poznámkou specifikovaného typu"
+msgstr "Vyhovují události s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:43
 msgid "Events with a reference count of <count>"
@@ -4766,16 +4754,12 @@ msgstr ""
 "Vyhovují rodiny jejichž poznámky obsahují text odpovídající reg. výrazu"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note with the <tag>"
-msgstr "Rodiny kde otec se jmenuje <name>"
+msgstr "Rodiny s poznámkou se <štítkem>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches families with a note with a specified tag"
-msgstr "Porovnává rodiny s poznámkou specifikovaného typu"
+msgstr "Vyhovují rodiny s poznámkou se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -4783,7 +4767,7 @@ msgstr "Rodiny s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
 msgid "Matches families with a note of the specified type"
-msgstr "Porovnává rodiny s poznámkou specifikovaného typu"
+msgstr "Vyhovují rodiny s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:43
 msgid "Families with a reference count of <count>"
@@ -5075,28 +5059,20 @@ msgstr ""
 "regulárnímu výrazu"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with the <tag>"
-msgstr "Citace s poznámkou typu<type>"
+msgstr "Média s poznámkou se <štítkem>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "Porovnává rodiny s poznámkou specifikovaného typu"
+msgstr "Vyhovují média s poznámkou se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "Události s poznámkou typu <type>"
+msgstr "Média s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "Porovnává rodiny s poznámkou specifikovaného typu"
+msgstr "Vyhovují média s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
@@ -5627,10 +5603,8 @@ msgid "People with a note with the <tag>"
 msgstr "Osoby s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "Porovnává osoby s poznámkou specifikovaného typu"
+msgstr "Vyhovují osoby s poznámkou se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -5638,7 +5612,7 @@ msgstr "Osoby s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:48
 msgid "Matches people with a note of the specified type"
-msgstr "Porovnává osoby s poznámkou specifikovaného typu"
+msgstr "Vyhovují osoby s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:53
 msgid "People who are neither male nor female"
@@ -6287,10 +6261,8 @@ msgid "Places with a note with the <tag>"
 msgstr "Místa s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "Porovnává místa s poznámkou specifikovaného typu"
+msgstr "Vyhovují místa s poznámkou se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6298,7 +6270,7 @@ msgstr "Místa s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
 msgid "Matches places with a note of the specified type"
-msgstr "Porovnává místa s poznámkou specifikovaného typu"
+msgstr "Vyhovují místa s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:59
 msgid "Street:"
@@ -6550,10 +6522,8 @@ msgid "Repositories with a note with the <tag>"
 msgstr "Archivy se <štítkem>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Porovnává prameny s poznámkou specifikovaného typu"
+msgstr "Vyhovují repozitáře s poznámkou se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
 #, fuzzy
@@ -6562,10 +6532,8 @@ msgid "Repositories with a note of type <type>"
 msgstr "Prameny s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "Porovnává prameny s poznámkou specifikovaného typu"
+msgstr "Vyhovují repozitáře s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6720,10 +6688,8 @@ msgid "Sources with a note with the <tag>"
 msgstr "Prameny s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "Porovnává prameny s poznámkou specifikovaného typu"
+msgstr "Vyhovují prameny s poznámkou se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6731,7 +6697,7 @@ msgstr "Prameny s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
 msgid "Matches sources with a note of the specified type"
-msgstr "Porovnává prameny s poznámkou specifikovaného typu"
+msgstr "Vyhovují prameny s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:43
 msgid "Sources with a reference count of <count>"
@@ -6763,7 +6729,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hassource.py:51
 msgid "Matches sources with particular parameters"
-msgstr "Porovnává prameny konkrétních parametrů"
+msgstr "Vyhovují prameny s konkrétními parametry"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:51
 msgid "Sources with the <tag>"
@@ -6899,7 +6865,7 @@ msgstr "Rodiny"
 
 #: ../gramps/gen/fs/compare/aggregate.py:225
 msgid "Facts"
-msgstr ""
+msgstr "Fakta"
 
 #: ../gramps/gen/fs/compare/comparators.py:81
 #: ../gramps/gen/fs/compare/comparators.py:88 ../gramps/gen/utils/string.py:49
@@ -7078,7 +7044,7 @@ msgstr "Potomek"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
 #, fuzzy
@@ -7107,7 +7073,7 @@ msgstr "Vztah"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
-msgstr ""
+msgstr "Vynechávání neplatného vztahu: potomek se rovná rodiči"
 
 #: ../gramps/gen/fs/fs_import/importer.py:286
 msgid "Possibly parentless family - Need at least one known parent locally"
@@ -7115,11 +7081,11 @@ msgstr ""
 
 #: ../gramps/gen/fs/fs_import/importer.py:333
 msgid "Skipping invalid couple: same person as both parents"
-msgstr ""
+msgstr "Vynechávání neplatného páru: oba rodiče jsou stejná osoba"
 
 #: ../gramps/gen/fs/fs_import/importer.py:375
 msgid "Possible parentless family?"
-msgstr ""
+msgstr "Je možné, že se jedná o rodinu bez rodičů?"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
 #, fuzzy
@@ -7198,18 +7164,15 @@ msgid "Internet Address"
 msgstr "Internetová adresa"
 
 #: ../gramps/gen/fs/sync_directions.py:493
-#, fuzzy, python-brace-format
-#| msgid "In-Memory"
+#, python-brace-format
 msgid "Memory: {t}"
-msgstr "In-Memory"
+msgstr "Vzpomínka: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:421
 #: ../gramps/gui/fs/sync_directions.py:599
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "Chybí datum(data)"
+msgstr "(chybějící)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:304
@@ -7256,7 +7219,7 @@ msgstr "Poznámka"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:653
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Aktualizováno z Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
@@ -7274,17 +7237,17 @@ msgstr "Skupina (zkráceně)"
 #: ../gramps/gen/fs/tags.py:328
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Přehled ? %(title)s ? řádek %(row)d není zelený (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:338
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Poznámky ? řádek %(row)d není zelený (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:348
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Prameny ? řádek %(row)d není zelený (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:358
 msgid ""
@@ -7292,6 +7255,9 @@ msgid ""
 "This add-on only sets default colors when the tags are first created and "
 "will not override your custom choices."
 msgstr ""
+"Barvy stavových štítků FamilySearch lze v Gramps přizpůsobit pomocí funkce "
+"Upravit štítky. Tento doplněk nastavuje výchozí barvy pouze při prvním "
+"vytvoření štítků a nepřepíše vaše vlastní volby."
 
 #: ../gramps/gen/fs/utils/linking.py:48
 #, fuzzy
@@ -8845,7 +8811,7 @@ msgstr "Registrované partnerství"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
 msgid "FamilySearch sync"
-msgstr ""
+msgstr "Synchronizace FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76
 #: ../gramps/gui/fs/fs_import/options.py:38
@@ -8856,7 +8822,7 @@ msgstr "ID rodiny"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Je kořen"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
 #, fuzzy
@@ -8878,7 +8844,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "Zásadní konflikt"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
 #, fuzzy
@@ -10344,7 +10310,7 @@ msgstr "Propojovací linky"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:223
 msgid "How the lines between objects will be drawn."
-msgstr "Jakým způsobe budou kresleny čáry propojující objekty."
+msgstr "Jakým způsobem budou kresleny čáry propojující objekty."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:226
 msgid "Alternate line attachment"
@@ -12754,7 +12720,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1093
 msgid "Server"
-msgstr ""
+msgstr "Server"
 
 #: ../gramps/gui/configure.py:1102
 msgid "Foundation middleware"
@@ -16211,7 +16177,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:72
 msgid "Case sensitive"
-msgstr "Rozlišování velikosti písmen"
+msgstr "Rozlišovat malá/velká písmena"
 
 #: ../gramps/gui/editors/filtereditor.py:687
 msgid "Rule Name"
@@ -38817,7 +38783,7 @@ msgstr "Mohli se potkat?"
 
 #: ../gramps/plugins/view/geoclose.py:264
 msgid "GeoClose"
-msgstr "Zavřít Geo"
+msgstr "GeoClose"
 
 #: ../gramps/plugins/view/geoclose.py:319
 #, python-format
@@ -38940,7 +38906,7 @@ msgstr "Mohly se tyto rodiny potkat?"
 
 #: ../gramps/plugins/view/geofamclose.py:261
 msgid "GeoFamClose"
-msgstr "Zavřít GeoFam"
+msgstr "GeoFamClose"
 
 #: ../gramps/plugins/view/geofamclose.py:303
 #: ../gramps/plugins/view/geofamily.py:360
@@ -39131,7 +39097,7 @@ msgstr "Potomci aktivní osoby."
 
 #: ../gramps/plugins/view/geomoves.py:243
 msgid "GeoMoves"
-msgstr "Posun Geo"
+msgstr "GeoMoves"
 
 #: ../gramps/plugins/view/geomoves.py:601
 #, python-format
