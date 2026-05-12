@@ -21,6 +21,13 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
+# NOTE on Divorce
+# Even though the config.py has an color entry for divorce, the family type
+# object has only 4 options: married, unmarried, civil union, and unknown.
+# I think it probably makes sense to paint the marriage box along these 4
+# options.  The divorce event which normally came afterward, at a later date,
+# should be shown differently, such as when the "m." (_MARR) display is
+# specified.
 
 """
 A collection of utilities to aid in the generation of reports.
@@ -62,12 +69,11 @@ _G_FEMALE, _G_MALE, _G_UNKNOWN, _G_OTHER = (
 _G_ALIVE = True
 _G_DEAD = False
 
-_F_MARRIED, _F_UNMARRIED, _F_CIVIL_UNION, _F_UNKNOWN, _F_CUSTOM = (
+_F_MARRIED, _F_UNMARRIED, _F_CIVIL_UNION, _F_UNKNOWN = (
     FamilyRelType.MARRIED,
     FamilyRelType.UNMARRIED,
     FamilyRelType.CIVIL_UNION,
     FamilyRelType.UNKNOWN,
-    FamilyRelType.CUSTOM,
 )
 
 
@@ -114,7 +120,6 @@ def get_report_family_colors():
             "_CIVIL_UNION",
         ],
         _F_UNKNOWN: [get_rgb_color("colors.family-unknown"), "_UNKNOWN"],
-        _F_CUSTOM: [get_rgb_color("colors.family-divorced"), "_DIVORCED"],
     }
 
 
@@ -599,9 +604,9 @@ def get_marriage_type(family_handle, db):
     # get family from handle
     family = db.get_family_from_handle(family_handle)
     if not family:
-        return _F_UNKNOWN
+        return _F_CIVIL_UNION
     try:
         # Return marriage type: _F_MARRIED, _F_UNMARRIED, _F_CIVIL_UNION
-        return int(family.get_type())
+        return int(family.type)
     except Exception:
         return _F_UNKNOWN
