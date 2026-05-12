@@ -17,7 +17,7 @@
 # Viktor <xasertop@gmail.com>, 2022.
 # PKEv <pkev@yandex.ru>, 2022.
 # Павел Жуков <papazukko@gmail.com>, 2023, 2024, 2025.
-# Dmitriy Q <krotesk@mail.ru>, 2023.
+# Dmitriy Q <krotesk@mail.ru>, 2023, 2026.
 # Nick Hall <nick-h@gramps-project.org>, 2023, 2025.
 # Vlad Arkhipov <vlad@arkhipov.ru>, 2023.
 # OIS <mistresssilvara@hotmail.com>, 2023.
@@ -35,8 +35,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-05-09 11:12+0000\n"
-"Last-Translator: Stern <slava0@yandex.ru>\n"
+"PO-Revision-Date: 2026-05-12 13:11+0000\n"
+"Last-Translator: Dmitriy Q <krotesk@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -6922,7 +6922,7 @@ msgstr "Источники для семьи"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:760
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:962
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "Не подключено к FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
 #, fuzzy
@@ -6974,7 +6974,7 @@ msgstr "Семьи"
 
 #: ../gramps/gen/fs/compare/aggregate.py:225
 msgid "Facts"
-msgstr ""
+msgstr "Факты"
 
 #: ../gramps/gen/fs/compare/comparators.py:81
 #: ../gramps/gen/fs/compare/comparators.py:88 ../gramps/gen/utils/string.py:49
@@ -7153,7 +7153,7 @@ msgstr "Ребёнок"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
 #, fuzzy
@@ -7182,19 +7182,21 @@ msgstr "Отношение"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
-msgstr ""
+msgstr "Пропуск недопустимой связи: ребенок равен родителю"
 
 #: ../gramps/gen/fs/fs_import/importer.py:286
 msgid "Possibly parentless family - Need at least one known parent locally"
 msgstr ""
+"Возможно семья без родителей - требуется хотя бы один известный родитель"
 
 #: ../gramps/gen/fs/fs_import/importer.py:333
 msgid "Skipping invalid couple: same person as both parents"
 msgstr ""
+"Пропуск недопустимой пары: один и тот же человек является обоими родителями"
 
 #: ../gramps/gen/fs/fs_import/importer.py:375
 msgid "Possible parentless family?"
-msgstr ""
+msgstr "Возможна семья без родителей?"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
 #, fuzzy
@@ -7331,7 +7333,7 @@ msgstr "Заметка"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:653
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Обновление от Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
@@ -7343,22 +7345,22 @@ msgstr "Отчёт создан для %(author)s"
 #: ../gramps/gen/fs/tags.py:317
 #, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "Группа %(num)d"
 
 #: ../gramps/gen/fs/tags.py:328
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Обзор ? %(title)s ? строка %(row)d не зеленая (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:338
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Заметки? строка %(row)d не зеленая (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:348
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Источник ? строка %(row)d не зеленая (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:358
 msgid ""
@@ -7366,6 +7368,10 @@ msgid ""
 "This add-on only sets default colors when the tags are first created and "
 "will not override your custom choices."
 msgstr ""
+"Цвета тегов статуса FamilySearch можно настроить в Gramps через «"
+"Редактировать теги». Это дополнение устанавливает только цвета по умолчанию "
+"при первом создании тегов и не будет заменять ваши пользовательские "
+"настройки."
 
 #: ../gramps/gen/fs/utils/linking.py:48
 #, fuzzy
@@ -8934,7 +8940,7 @@ msgstr "ID семьи"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Это корень"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
 #, fuzzy
@@ -8944,19 +8950,19 @@ msgstr "Время"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
-msgstr ""
+msgstr "Подтверждённая метка времени"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
-msgstr ""
+msgstr "Изменённая временная метка Gramps"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:92
 msgid "FamilySearch modified timestamp"
-msgstr ""
+msgstr "Изменённая временная метка FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "Основной конфликт"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
 #, fuzzy
@@ -12073,7 +12079,7 @@ msgstr "Арабский"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Башкирский"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -12859,11 +12865,11 @@ msgstr "Предупреждения"
 
 #: ../gramps/gui/configure.py:1085
 msgid "Live"
-msgstr ""
+msgstr "Живой"
 
 #: ../gramps/gui/configure.py:1093
 msgid "Server"
-msgstr ""
+msgstr "Сервер"
 
 #: ../gramps/gui/configure.py:1102
 msgid "Foundation middleware"
