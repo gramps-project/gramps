@@ -49,7 +49,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-28 20:48+0000\n"
+"PO-Revision-Date: 2026-05-01 10:09+0000\n"
 "Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -58,7 +58,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17.1-dev\n"
+"X-Generator: Weblate 5.17.1\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -613,11 +613,11 @@ msgid ""
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View > Configure View...\"."
 msgstr ""
-"<b>Angiv dine indstillinger</b><br/>Menupunktet \"Redigér > Indstillinger..."
-"\" lader dig ændre en række indstillinger, såsom søgestien til dine "
-"mediefiler, og tillader dig at justere mange aspekter af den måde Gramps "
-"præsenterer dine data på, efter dine behov. Hver separat oversigt kan også "
-"tilpasses under \"Vis > Konfigurér oversigt ...\"."
+"<b>Angiv dine indstillinger</b><br/>Menupunktet \"Redigér > "
+"Indstillinger...\" lader dig ændre en række indstillinger, såsom søgestien "
+"til dine mediefiler, og tillader dig at justere mange aspekter af den måde "
+"Gramps præsenterer dine data på, efter dine behov. Hver separat oversigt kan "
+"også tilpasses under \"Vis > Konfigurér oversigt ...\"."
 
 #: ../data/tips.xml:39
 msgid ""
@@ -776,12 +776,11 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Trykknappen &quot;Vis alle&quot;</b><br/>Når en ægtefælle eller et barn "
-"tilføjes, bliver listen over viste personer filtreret til kun at vise de "
-"personer der realistisk vil have mulighed for at opfylde den ønskede "
-"slægtsrelation (baseret på datoer i databasen). Hvis Gramps filtrerer "
-"forkert, kan du sætte filteret ud af kraft ved at aktivere trykknappen "
-"&quot;Vis alle&quot;."
+"<b>Trykknappen Vis alle</b><br/>Når en ægtefælle eller et barn tilføjes, "
+"bliver listen over viste personer filtreret til kun at vise de personer der "
+"realistisk vil have mulighed for at opfylde den ønskede slægtsrelation "
+"(baseret på datoer i databasen). Hvis Gramps filtrerer forkert, kan du sætte "
+"filteret ud af kraft ved at aktivere trykknappen &quot;Vis alle&quot;."
 
 #: ../data/tips.xml:65
 msgid ""
@@ -1020,7 +1019,7 @@ msgid ""
 msgstr ""
 "<b>Rapportering af programfejl i Gramps</b><br/>Den bedste måde at "
 "rapportere en programfejl i Gramps, er at bruge Gramps fejlsporingssystemet "
-"på &bugs_url;"
+"på &bugs_url;."
 
 #: ../data/tips.xml:101
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
@@ -10254,8 +10253,7 @@ msgid ""
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
 "Vælg skriftype-familien. Hvis internationale tegn ikke bliver vist, så brug "
-"skrifttypen FreeSans. FreeSans er tilgængelig på: \n"
-"{freefont_url}"
+"skrifttypen FreeSans. FreeSans er tilgængelig på: {freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:172
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -27986,7 +27984,7 @@ msgstr "Bopælstedets ID"
 
 #: ../gramps/plugins/importer/importcsv.py:339
 msgid "residence place id"
-msgstr "Bopæl stedets ID"
+msgstr "Bopælstedets ID"
 
 #: ../gramps/plugins/importer/importcsv.py:343
 msgid "residencesource"
@@ -28223,7 +28221,7 @@ msgstr "Sygdom"
 
 #: ../gramps/plugins/importer/importgeneweb.py:130
 msgid "List Passenger"
-msgstr "LIst passager"
+msgstr "List passagerer"
 
 #: ../gramps/plugins/importer/importgeneweb.py:131
 msgid "Military Distinction"
@@ -28528,7 +28526,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1314
 msgid "Identifier"
-msgstr "ID"
+msgstr "Identifikator"
 
 #: ../gramps/plugins/importer/importprogen.glade:1342
 msgid "Name change"
@@ -28894,7 +28892,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1198
 msgid "Old xml file"
-msgstr "Gammel XML-fil"
+msgstr "Gammel xml-fil"
 
 #: ../gramps/plugins/importer/importxml.py:1356
 #: ../gramps/plugins/importer/importxml.py:2935
@@ -33225,7 +33223,7 @@ msgstr "Pro-Gen import"
 
 #: ../gramps/plugins/lib/libprogen.py:614
 msgid "Saving."
-msgstr "Gemmer..."
+msgstr "Gemmer."
 
 #: ../gramps/plugins/lib/libprogen.py:994
 msgid "Pro-Gen Import"
@@ -38647,7 +38645,7 @@ msgstr "Drej navnet på venstre side af viften"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:386
 msgid "Show the gramps id"
-msgstr "Vis Gramps ID"
+msgstr "Vis gramps ID"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:389
 #: ../gramps/plugins/view/fanchartdescview.py:385
@@ -38686,7 +38684,7 @@ msgstr "Kvart cirkel"
 #: ../gramps/plugins/view/fanchartdescview.py:382
 #: ../gramps/plugins/view/fanchartview.py:457
 msgid "Show gramps id"
-msgstr "Vis Gramps-ID"
+msgstr "Vis Gramps-id"
 
 #: ../gramps/plugins/view/fanchartview.py:227
 msgid "Print or save the Fan Chart View"
