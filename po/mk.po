@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-02-04 10:01+0000\n"
+"PO-Revision-Date: 2026-05-08 10:52+0000\n"
 "Last-Translator: \"Kristijan \\\"Fremen\\\" Velkovski\" <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/mk/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 2026.5-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -448,17 +448,6 @@ msgstr ""
 
 # избори=presets
 #: ../data/tips.xml:19
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter. Then select this filter in the Filter field on Sidebar, then "
-#| "click Find button. If the Sidebar is not visible, select View &gt; "
-#| "Sidebar."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit > Person Filter "
@@ -469,16 +458,16 @@ msgid ""
 "the Filter field on Sidebar, then click Find button. If the Sidebar is not "
 "visible, select View > Sidebar."
 msgstr ""
-"<b>Филтрирање луѓе</b><br/>Во Приказот Луѓе, можете да „филтрирате“ поединци "
-"врз основа на многу критериуми. За да дефинирате нов филтер, одете во „Уреди "
-"&gt; Уредувач на филтер за лица“. Таму можете да го именувате вашиот филтер "
-"и да додавате и комбинирате правила користејќи ги многуте претходно "
-"поставени правила. На пример, можете да дефинирате филтер за да ги најдете "
-"сите посвоени луѓе во семејното стебло. Може да се филтрираат и луѓе без "
-"споменат датум на раѓање. За да ги добиете резултатите, зачувајте го вашиот "
-"филтер. Потоа изберете го овој филтер во полето Филтер на страничната лента, "
-"а потоа кликнете на копчето Најди. Ако страничната лента не е видлива, "
-"изберете Прикажи &gt; Странична лента."
+"<b>Филтрирање Лица</b><br/>Во Приказот Лица, можете да ги „филтрирате“ "
+"поединците врз основа на многу критериуми. За да дефинирате нов филтер, "
+"одете до „Уреди > Уредувач на Филтер за Лице“. Таму можете да го именувате "
+"вашиот филтер и да додавате и комбинирате правила користејќи ги многуте "
+"претходно поставени правила. На пример, можете да дефинирате филтер за да ги "
+"најдете сите посвоени лица во семејното стебло. Може да се филтрираат и "
+"лицата без наведен датум на раѓање. За да ги добиете резултатите, зачувајте "
+"го вашиот филтер. Потоа изберете го овој филтер во полето Филтер на "
+"Страничната Лента, па кликнете на копчето Најди. Ако Страничната Лента не е "
+"видлива, изберете Приказ > Странична Лента."
 
 # inverted!?!?
 #: ../data/tips.xml:21
@@ -1652,6 +1641,64 @@ msgid ""
 "Note: These examples are for bash shell.\n"
 "Syntax may be different for other shells and for Windows.\n"
 msgstr ""
+"\n"
+"Пример за употреба на интерфејсот на командната линија на Gramps\n"
+"\n"
+"1. За да внесете четири бази на податоци (чии формати може да се утврдат од "
+"нивните имиња)\n"
+"и потоа да ја проверите добиената база на податоци за грешки, може да "
+"напишете:\n"
+"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
+"name=check.\n"
+"\n"
+"2. За експлицитно да ги наведете форматите во горниот пример, додадете ги "
+"имињата на фајловите со соодветните опции -f:\n"
+"gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
+"gramps -i file4.wft -f wft -a tool -p name=check.\n"
+"\n"
+"3. За да ја запишете базата на податоци добиена од сите внесувања, наведете "
+"го знамето -e\n"
+"(користете -f ако името на фајлот не му овозможува на Gramps да го погоди "
+"форматот):\n"
+"gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
+"\n"
+"4. За да ги зачувате сите пораки за грешки од горниот пример во фајловите "
+"outfile и errfile, извршете:\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
+"\n"
+"5. За да внесете три бази на податоци и да започнете интерактивна сесија на "
+"Gramps со резултатот:\n"
+"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
+"\n"
+"6. За да отворите база на податоци и, врз основа на тие податоци, да "
+"генерирате извештај за временска линија во PDF формат,\n"
+"со поставување на излезот во фајлот my_timeline.pdf:\n"
+"gramps -O 'Family Tree 1' -a report -p "
+"name=timeline,off=pdf,of=my_timeline.pdf\n"
+"\n"
+"7. За да генерирате резиме на база на податоци:\n"
+"gramps -O 'Family Tree 1' -a report -p name=summary\n"
+"\n"
+"8. Наведување на опциите за извештаи\n"
+"Користете name=timeline,show=all за да дознаете за сите достапни опции за "
+"извештајот за временска линија.\n"
+"За да дознаете детали за одредена опција, користете show=option_name , на "
+"пр. name=timeline,show=off string.\n"
+"За да дознаете за достапните имиња на извештаи, користете name=show string.\n"
+"\n"
+"9. За да конвертирате семејно стебло во .gramps xml фајл во лет:\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps\n"
+"\n"
+"10. За да генерирате веб-локација во друга локализација (на германски):\n"
+"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
+"name=navwebpage,target=/../de\n"
+"\n"
+"11. Конечно, за да започнете нормална интерактивна сесија, напишете:\n"
+"    gramps\n"
+"\n"
+"Забелешка: Овие примери се за bash шел.\n"
+"Синтаксата може да биде различна за други шелови и за Windows.\n"
 
 #: ../gramps/cli/argparser.py:276
 #, python-format
@@ -3408,33 +3455,28 @@ msgstr "Број на цитати"
 #: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
-#, fuzzy
 msgid "Number of events"
-msgstr "Број на бракови"
+msgstr "Број на настани"
 
 #: ../gramps/gen/db/generic.py:2707
-#, fuzzy
 msgid "Number of media"
-msgstr "Број на семејства"
+msgstr "Број на медиуми"
 
 #: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
-#, fuzzy
 msgid "Number of places"
-msgstr "Број на лица"
+msgstr "Број на места"
 
 #: ../gramps/gen/db/generic.py:2709
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
-#, fuzzy
 msgid "Number of repositories"
-msgstr "Избери репозиториум"
+msgstr "Број на складишта"
 
 #: ../gramps/gen/db/generic.py:2710
-#, fuzzy
 msgid "Number of notes"
-msgstr "Број на бракови"
+msgstr "Број на белешки"
 
 #: ../gramps/gen/db/generic.py:2711
 #, fuzzy
@@ -3973,9 +4015,8 @@ msgstr "ИД:"
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:51
 #: ../gramps/gui/glade/mergenote.glade:208
 #: ../gramps/gui/glade/mergenote.glade:223
-#, fuzzy
 msgid "Text:"
-msgstr "Текст"
+msgstr "Текст:"
 
 #: ../gramps/gen/filters/rules/_hasnotesubstrbase.py:51
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:52
@@ -3998,49 +4039,42 @@ msgstr "Подниза:"
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 #: ../gramps/gui/editors/filtereditor.py:616
 msgid "Tag:"
-msgstr ""
+msgstr "Ознака:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
 msgid "Objects with notes with a specified tag."
-msgstr "Совпаѓа настан со одреден вид "
+msgstr "Објекти со белешки со одредена ознака."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
 msgid "Matches notes with a specified tag"
-msgstr "Совпаѓа настан со одреден GRAMPS ИД"
+msgstr "Ги совпаѓа белешките со одредена ознака"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
 #: ../gramps/gen/filters/rules/note/_hastype.py:55
 #: ../gramps/gui/editors/filtereditor.py:118
 #: ../gramps/gui/editors/filtereditor.py:595
-#, fuzzy
 msgid "Note type:"
-msgstr "Вид на настан:"
+msgstr "Тип на белешка:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:55
-#, fuzzy
 msgid "Objects with notes with the particular type"
-msgstr "Совпаѓа настан со одреден вид "
+msgstr "Објекти со белешки од конкретниот тип"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:56
 #: ../gramps/gen/filters/rules/note/_hastype.py:57
-#, fuzzy
 msgid "Matches notes with the particular type "
-msgstr "Совпаѓа настан со одреден вид "
+msgstr "Ги совпаѓа белешките со конкретниот тип "
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:51
 #: ../gramps/gui/editors/filtereditor.py:550
-#, fuzzy
 msgid "Reference count must be:"
-msgstr "Упатувањата на мапи се преизградени"
+msgstr "Бројот на референци мора да биде:"
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:51
 #: ../gramps/gui/editors/filtereditor.py:548
-#, fuzzy
 msgid "Reference count:"
-msgstr "Држава на истражувач"
+msgstr "Број на референци:"
 
 #: ../gramps/gen/filters/rules/_hassourceofbase.py:54
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:46
@@ -4101,9 +4135,8 @@ msgid "One rule references another which eventually references the first."
 msgstr "Едно правило укажува на друго, кое пак укажува на првото."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:46
-#, fuzzy
 msgid "Every citation"
-msgstr "Ориентација"
+msgstr "Секој цитат"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 #, fuzzy
