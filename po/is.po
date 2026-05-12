@@ -3,14 +3,14 @@
 # Copyright (C) Icelandic translators of Gramps
 # This file is distributed under the same license as the GRAMPS package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2016, 2017, 2018, 2022, 2025.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2016, 2017, 2018, 2022, 2025, 2026.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2025-02-11 21:36+0000\n"
+"PO-Revision-Date: 2026-05-01 10:09+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/is/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2646,7 +2646,7 @@ msgstr "nóvember"
 #: ../gramps/gen/datehandler/_datestrings.py:141
 msgctxt "alternative month names for December"
 msgid ""
-msgstr ""
+msgstr "desember"
 
 #: ../gramps/gen/datehandler/_datestrings.py:146 ../gramps/gen/lib/date.py:656
 msgctxt "calendar"
@@ -16402,10 +16402,9 @@ msgid "No FamilySearch ID linked. Click 'Link FamilySearch ID' first."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:376
-#, fuzzy, python-brace-format
-#| msgid "Failed to write report. "
+#, python-brace-format
 msgid "Failed to fetch parents: {e}"
-msgstr "Mistókst að skrifa skýrslu. "
+msgstr "Mistókst að sækja foreldra: {e}"
 
 #: ../gramps/gui/fs/actions.py:398
 msgid "No parents found on FamilySearch for this person."
@@ -16798,16 +16797,12 @@ msgid "identifier to be copied from the FamilySearch website"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/options.py:42
-#, fuzzy
-#| msgid "Max ancestor generations"
 msgid "Ancestor generations"
-msgstr "Hámark kynslóða forfeðra"
+msgstr "Kynslóðir forfeðra"
 
 #: ../gramps/gui/fs/fs_import/options.py:43
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch upwards"
-msgstr "Fjöldi kynslóða:"
+msgstr "Fjöldi kynslóða til að sækja uppávið"
 
 #: ../gramps/gui/fs/fs_import/options.py:46
 #, fuzzy
@@ -16816,10 +16811,8 @@ msgid "Descendant generations"
 msgstr "Hámark kynslóða afkomenda"
 
 #: ../gramps/gui/fs/fs_import/options.py:47
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch downwards"
-msgstr "Fjöldi kynslóða:"
+msgstr "Fjöldi kynslóða til að sækja niðurávið"
 
 #: ../gramps/gui/fs/fs_import/options.py:51
 #, fuzzy
@@ -16888,10 +16881,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:466
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:638
-#, fuzzy
-#| msgid "Different database"
 msgid "Different"
-msgstr "Annar gagnagrunnur"
+msgstr "Mismunandi"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:467
 #, fuzzy
@@ -17056,10 +17047,8 @@ msgid "Kind"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:728
-#, fuzzy
-#| msgid "Gramps item:"
 msgid "Gramps title"
-msgstr "Gramps atriði:"
+msgstr "Gramps titill"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:729
 #, fuzzy
@@ -17150,12 +17139,13 @@ msgid "Import FamilySearch sources"
 msgstr "Flytja inn ættartölu"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:468
-#, fuzzy, python-brace-format
-#| msgid "%s could not be imported"
+#, python-brace-format
 msgid ""
 "Some sources could not be imported:\n"
 "{errs}"
-msgstr "gat ekki flutt %s inn"
+msgstr ""
+"Sumar heimildir var ekki hægt að flytja inn:\n"
+"{errs}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:115
 msgid "No FamilySearch sources found to import."
@@ -17275,12 +17265,13 @@ msgid "Add Source Image"
 msgstr "Bæta við heimild (%s)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:475
-#, fuzzy, python-brace-format
-#| msgid "Could not open file: %s"
+#, python-brace-format
 msgid ""
 "Could not open image picker:\n"
 "{e}"
-msgstr "Gat ekki opnað skrá: %s"
+msgstr ""
+"Gat ekki opnað myndveljara:\n"
+"{e}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:493
 #, fuzzy
@@ -17297,14 +17288,17 @@ msgid "Select"
 msgstr "Velja"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:588
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid ""
 "Rename failed for:\n"
 "{p}\n"
 "\n"
 "{err}"
-msgstr "Endurnefning mistókst"
+msgstr ""
+"Endurnefning mistókst fyrirr:\n"
+"{p}\n"
+"\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:621
 #: ../gramps/gui/fs/sync_directions.py:658
@@ -17352,10 +17346,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:582
 #: ../gramps/gui/fs/sync_directions.py:980
-#, fuzzy
-#| msgid "Source filter name:"
 msgid "Source from Gramps"
-msgstr "Heiti heimildasíu:"
+msgstr "Heimild úr Gramps"
 
 #: ../gramps/gui/fs/sync_directions.py:593
 #, fuzzy
@@ -17402,7 +17394,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Warning messages"
 msgid "Change message:"
-msgstr "Aðvörunartilkynningar"
+msgstr "Tilkynning um breytingu:"
 
 #: ../gramps/gui/fs/sync_directions.py:678
 msgid "Field"
@@ -17524,10 +17516,8 @@ msgid "Export to FamilySearch (basic)"
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1186
-#, fuzzy
-#| msgid "Export:"
 msgid "Export"
-msgstr "Flytja út:"
+msgstr "Flytja út"
 
 #: ../gramps/gui/fs/sync_directions.py:1198
 msgid ""
@@ -17562,16 +17552,12 @@ msgid "(person)"
 msgstr "einstaklingur"
 
 #: ../gramps/gui/fs/sync_directions.py:1248
-#, fuzzy
-#| msgid "the person"
 msgid "This person: "
-msgstr "einstaklingurinn"
+msgstr "Þessi einstaklingur: "
 
 #: ../gramps/gui/fs/sync_directions.py:1276
-#, fuzzy
-#| msgid "Created by:"
 msgid "Create"
-msgstr "Búið til af:"
+msgstr "Búa til"
 
 #: ../gramps/gui/fs/sync_directions.py:1282
 #, fuzzy
@@ -17723,10 +17709,9 @@ msgid "Build FSID list (1/%(total)d)"
 msgstr ""
 
 #: ../gramps/gui/fs/utils/index.py:57 ../gramps/gui/fs/utils/index.py:61
-#, fuzzy, python-format
-#| msgid "Family places for %s"
+#, python-format
 msgid "FamilySearch duplicate ID: %s "
-msgstr "Staðir í fjölskyldu %s"
+msgstr "Tvítekið auðkenni í FamilySearch: %s "
 
 #: ../gramps/gui/fs/utils/index.py:60
 #, fuzzy
@@ -22017,10 +22002,8 @@ msgid "User consent declined"
 msgstr "Nota heilar tilbúnar setningar"
 
 #: ../gramps/gui/viewmanager.py:561
-#, fuzzy
-#| msgid "Configuration error:"
 msgid "Authorization error"
-msgstr "Stillingarvilla:"
+msgstr "Heimildarvilla"
 
 #: ../gramps/gui/viewmanager.py:681
 msgid "Registering plugins..."
@@ -39443,10 +39426,8 @@ msgstr ""
 #: ../gramps/plugins/webreport/heatmap.py:617
 #: ../gramps/plugins/webreport/heatmap.py:630
 #: ../gramps/plugins/webreport/heatmap.py:640
-#, fuzzy
-#| msgid "Delete the selected filter"
 msgid " which has no event for the selected filter."
-msgstr "Eyða valinni síu"
+msgstr " sem er ekki með neinn atburð fyrir valda síu."
 
 #: ../gramps/plugins/webreport/heatmap.py:627
 #, python-brace-format
@@ -39528,11 +39509,10 @@ msgid "%(idx)s - for people: %(people)s"
 msgstr ""
 
 #: ../gramps/plugins/webreport/media.py:736
-#, fuzzy, python-format
-#| msgid "%(person)s was restored to the family of %(family)s\n"
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for family: %(family)s"
-msgstr "%(person)s var endurheimtur úr fjölskyldu %(family)s\n"
+msgstr "%(idx)s - fyrir fjölskyldu: %(family)s"
 
 #: ../gramps/plugins/webreport/media.py:760
 #, fuzzy, python-format
@@ -40520,12 +40500,12 @@ msgid "Point size"
 msgstr "Stærð leturs"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3234
-#, fuzzy
-#| msgid "The size of note text, in points."
 msgid ""
 "Set the size of the heatmap points.\n"
 "Default: 8"
-msgstr "Stærð minnistexta, í punktum."
+msgstr ""
+"Stilltu stærð punkta hitakorts.\n"
+"Sjálfgefið: 8"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3237
 msgid "Blur"
