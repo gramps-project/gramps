@@ -18,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
 "PO-Revision-Date: 2026-05-04 06:09+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"Last-Translator: Jozef Gaal <preklady@mayday.sk>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -6375,7 +6375,6 @@ msgid "Places enclosed by another place"
 msgstr "Miesta priliehajúce k inému miestu"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:59
-#, fuzzy
 msgid "Matches a place enclosed by a particular place"
 msgstr "Zodpovedá miestu priliehajúcemu konkrétnemu miestu"
 
@@ -6396,9 +6395,8 @@ msgid "Places matching the <filter>"
 msgstr "Miesta zodpovedajúce filtru <filter>"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:46
-#, fuzzy
 msgid "Matches places matched by the specified filter name"
-msgstr "Porovnáva miesta párované špecifikovaným filtrom s názvom"
+msgstr "Zodpovedá miestam podľa zadaného názvu filtra"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 msgid "Place with a direct source >= <confidence level>"
@@ -6736,9 +6734,8 @@ msgid "Sources matching the <filter>"
 msgstr "Zdroje zodpovedajúce filtru <filter>"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
-#, fuzzy
 msgid "Matches sources matched by the specified filter name"
-msgstr "Porovnáva zdroje párované špecifikovaným filtrom s názvom"
+msgstr "Zobrazí zdroje, ktoré zodpovedajú zadanému názvu filtra"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:53
 msgid "Sources with repository reference matching the <repository filter>"
