@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-25 22:09+0000\n"
+"PO-Revision-Date: 2026-05-12 13:11+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17.1-dev\n"
+"X-Generator: Weblate 2026.5-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -516,8 +516,7 @@ msgstr ""
 "<b>De Actieve persoon wisselen</b><br/>Het wijzigen van de actieve persoon "
 "in weergaven is eenvoudig. Klik in de weergave Verwantschap op een persoon. "
 "Dubbelklik in de kwartierstaat op de persoon of klik met de rechtermuisknop "
-"om een van hun echtgenoten, broers en zussen, kinderen of ouders te "
-"selecteren."
+"om een van hun echtgenoten, broers/zussen, kinderen of ouders te selecteren."
 
 #: ../data/tips.xml:29
 msgid ""
@@ -727,7 +726,7 @@ msgstr ""
 "<b>Kinderen toevoegen</b><br/>Er zijn twee opties om kinderen toe te voegen "
 "in Gramps. U kunt een van hun ouders vinden in de Gezinnenweergave en het "
 "gezin openen. Kies er dan voor om een nieuwe persoon aan te maken of een "
-"bestaande persoon toe te voegen. U kunt ook kinderen (of broers en zussen) "
+"bestaande persoon toe te voegen. U kunt ook kinderen (of broers/zussen) "
 "toevoegen vanuit de Gezinnenbewerker."
 
 #: ../data/tips.xml:61
@@ -6067,12 +6066,12 @@ msgstr "Overeenkomst met personen die verwant zijn aan een specifiek persoon"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:56
 msgid "Siblings of <filter> match"
-msgstr "Broers en zussen van <filter> resultaat"
+msgstr "Broers/zussen van <filter> resultaat"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:58
 msgid "Matches siblings of anybody matched by a filter"
 msgstr ""
-"Overeenkomst met broers en zussen van iedereen die overeenkomt met een "
+"Overeenkomst met broers/zussen van iedereen die overeenkomt met een "
 "filterresultaat"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:56
@@ -11497,7 +11496,7 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src}, death: "
 "{death_src}"
 msgstr ""
-"afgeleid van ouders en broers en zussen - geboorte: {birth_min_src}, "
+"afgeleid van ouders en broers/zussen - geboorte: {birth_min_src}, "
 "overlijden: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:457
@@ -11506,8 +11505,8 @@ msgid ""
 "inferred from parents and siblings - birth: {birth_min_src} (earliest) to "
 "{birth_max_src} (latest), death: {death_src}"
 msgstr ""
-"afgeleid van ouders en broers en zussen - geboorte: {birth_min_src} "
-"(vroegst) tot {birth_max_src} (laatst), overlijden: {death_src}"
+"afgeleid van ouders en broers/zussen - geboorte: {birth_min_src} (vroegst) "
+"tot {birth_max_src} (laatst), overlijden: {death_src}"
 
 #: ../gramps/gen/utils/alive.py:546
 msgid "a spouse's birth-related date, "
@@ -13185,7 +13184,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2069
 msgid "Maximum sibling age difference"
-msgstr "Maximaal leeftijdsverschil tussen broers en zussen"
+msgstr "Maximaal leeftijdsverschil tussen broers/zussen"
 
 #: ../gramps/gui/configure.py:2077
 msgid "Minimum years between generations"
@@ -22959,7 +22958,7 @@ msgstr "_Kopiëren"
 #: ../gramps/plugins/view/pedigreeview.py:1923
 #: ../gramps/plugins/view/relview.py:1120
 msgid "Siblings"
-msgstr "Broers en zussen"
+msgstr "Broers/zussen"
 
 #: ../gramps/gui/widgets/fanchart.py:2270
 #: ../gramps/plugins/view/pedigreeview.py:2053
@@ -23600,13 +23599,12 @@ msgstr "De centrale persoon voor de boom"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:845
 msgid "Include siblings of the center person"
-msgstr "Inclusief broers en zussen van de centrale persoon"
+msgstr "Inclusief broers/zussen van de centrale persoon"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:848
 msgid ""
 "Whether to only display the center person or all of his/her siblings too"
-msgstr ""
-"Of alleen de hoofdpersoon of al zijn/haar broers en zussen worden getoond"
+msgstr "Of alleen de hoofdpersoon of al zijn/haar broers/zussen worden getoond"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:854
 #: ../gramps/plugins/drawreport/descendtree.py:1584
@@ -34644,7 +34642,7 @@ msgstr "Dezelfde voornamen - onafhankelijk"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:354
 msgid "Display a person's siblings."
-msgstr "Toon iemands broers en zussen."
+msgstr "Toon iemands broers/zussen."
 
 #: ../gramps/plugins/quickview/references.py:70
 #, python-format
@@ -34722,11 +34720,11 @@ msgstr "Personen met de voornaam '%s'"
 #: ../gramps/plugins/quickview/siblings.py:47
 #, python-format
 msgid "Siblings of %s"
-msgstr "Broers en zussen van %s"
+msgstr "Broers/zussen van %s"
 
 #: ../gramps/plugins/quickview/siblings.py:49
 msgid "Sibling"
-msgstr "Broer of zus"
+msgstr "Broer/zus"
 
 #: ../gramps/plugins/quickview/siblings.py:65
 msgid "self"
@@ -35095,7 +35093,7 @@ msgstr "Inclusief overlijdensdagen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:653
 msgid "Whether to include anniversaries of death"
-msgstr "Of herdenkingsdagen van overlijden moeten worden opgenomen"
+msgstr "Of overlijdensdagen moeten worden opgenomen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:658
 #: ../gramps/plugins/textreport/indivcomplete.py:1202
@@ -39775,8 +39773,8 @@ msgstr "Persoon verwijderen als ouder in dit gezin"
 #, python-brace-format
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
-msgstr[0] " ({number_of} broer / zus)"
-msgstr[1] " ({number_of} broers / zussen)"
+msgstr[0] " ({number_of} broer/zus)"
+msgstr[1] " ({number_of} broers/zussen)"
 
 #: ../gramps/plugins/view/relview.py:1084
 #: ../gramps/plugins/view/relview.py:1147
@@ -39791,7 +39789,7 @@ msgstr " (1 zus)"
 #: ../gramps/plugins/view/relview.py:1088
 #: ../gramps/plugins/view/relview.py:1151
 msgid " (1 sibling)"
-msgstr " (1 broer / zus)"
+msgstr " (1 broer/zus)"
 
 #: ../gramps/plugins/view/relview.py:1090
 #: ../gramps/plugins/view/relview.py:1153
@@ -39878,7 +39876,7 @@ msgstr "Toon details"
 
 #: ../gramps/plugins/view/relview.py:1967
 msgid "Show Siblings"
-msgstr "Toon broers en zussen"
+msgstr "Toon broers/zussen"
 
 #: ../gramps/plugins/view/repoview.py:88
 msgid "Home URL"
@@ -41180,8 +41178,8 @@ msgstr "Half- en/of stiefbroers/-zussen op de afzonderlijke pagina's opnemen"
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
-"Of half- en/of stiefbroers en -zussen met de ouders en broers en zussen "
-"moeten worden opgenomen"
+"Of half- en/of stiefbroers/-zussen met de ouders en broers en zussen moeten "
+"worden opgenomen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2603
 msgid "Include family pages"
@@ -41564,7 +41562,7 @@ msgstr "Inclusief verjaardagen in de kalender"
 #: ../gramps/plugins/webreport/narrativeweb.py:3186
 #: ../gramps/plugins/webreport/webcal.py:2066
 msgid "Include anniversaries in the calendar"
-msgstr "Inclusief herdenkingsdagen in de kalender"
+msgstr "Jubilea in de kalender opnemen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3199
 #: ../gramps/plugins/webreport/webcal.py:2081
