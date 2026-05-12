@@ -164,13 +164,6 @@
     ${prefix}/lib/python3.13/*.py
   </data>
 
-  <!-- pip is needed so that addons can install required Python modules
-       at runtime via "requires_mod". The *.py glob above does not cover
-       site-packages subdirectories, so pip must be listed explicitly. -->
-  <data>
-    ${prefix}/lib/python3.13/site-packages/pip/
-  </data>
-
   <data>
     ${prefix}/lib/python3.13/config-3.13-darwin/
   </data>

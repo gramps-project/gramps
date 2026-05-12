@@ -22,6 +22,7 @@
 # Python modules
 #
 # -------------------------------------------------------------------------
+from importlib import import_module
 from importlib.util import find_spec
 
 # -------------------------------------------------------------------------
@@ -47,17 +48,25 @@ class Requirements:
         self.gi_list = []
         self.exe_list = []
 
-    def check_mod(self, module):
+    def check_mod(self, module: str) -> bool:
         """
-        Check to see if a given module is available.
+        Check to see if a given module is available and importable.
+
+        Uses find_spec first (fast path), then actually imports the module to
+        catch compiled extensions whose native libraries are missing — a common
+        failure mode in bundled apps where pip can install the .so/.pyd file
+        but the dynamic linker cannot resolve its dependencies at load time.
         """
         if module in self.mod_list:
             return True
-        if find_spec(module) is not None:
-            self.mod_list.append(module)
-            return True
-        else:
+        if find_spec(module) is None:
             return False
+        try:
+            import_module(module)
+        except ImportError:
+            return False
+        self.mod_list.append(module)
+        return True
 
     def check_gi(self, module_spec):
         """

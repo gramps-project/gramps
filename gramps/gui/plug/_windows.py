@@ -25,13 +25,15 @@
 # Python modules
 #
 # -------------------------------------------------------------------------
-import traceback
-import os
-from html import escape
-import threading
-import sys
-import subprocess
+import contextlib
 import importlib
+import io
+import os
+import runpy
+import sys
+import threading
+import traceback
+from html import escape
 
 # -------------------------------------------------------------------------
 #
@@ -192,6 +194,38 @@ class ProjectRow(Gtk.ListBoxRow):
 
 # -------------------------------------------------------------------------
 #
+# _install_module
+#
+# -------------------------------------------------------------------------
+def _install_module(package: str, target: str) -> tuple[int, str]:
+    """
+    Install a Python package into target using pip's __main__ in-process.
+
+    Runs pip via runpy so no external Python binary is required — essential
+    for Mac .app bundles and Windows AIO where sys.executable is the Gramps
+    launcher, not a Python interpreter.  Output (stdout + stderr) is captured
+    and returned for display in error dialogs.
+    """
+    buf = io.StringIO()
+    old_argv = sys.argv[:]
+    sys.argv = ["pip", "install", "--target", target, package]
+    try:
+        with contextlib.redirect_stdout(buf), contextlib.redirect_stderr(buf):
+            runpy.run_module("pip", run_name="__main__")
+        return 0, buf.getvalue()
+    except SystemExit as exc:
+        code = exc.code if isinstance(exc.code, int) else 1
+        return code, buf.getvalue()
+    except ModuleNotFoundError:
+        return 1, _("pip is not available in this Python installation.")
+    except Exception as exc:
+        return 1, str(exc)
+    finally:
+        sys.argv = old_argv
+
+
+# -------------------------------------------------------------------------
+#
 # AddonManager
 #
 # -------------------------------------------------------------------------
@@ -288,26 +322,13 @@ class AddonRow(Gtk.ListBoxRow):
         """
         Install the addon and possibly some required python modules.
         """
-        # Install required modules
         for package in self.req.install(addon):
-            try:
-                subprocess.check_output(
-                    [
-                        sys.executable,
-                        "-m",
-                        "pip",
-                        "install",
-                        "--target",
-                        LIB_PATH,
-                        package,
-                    ],
-                    stderr=subprocess.STDOUT,
-                )
-            except subprocess.CalledProcessError as err:
+            returncode, output = _install_module(package, LIB_PATH)
+            if returncode != 0:
                 button.set_sensitive(False)
                 InfoDialog(
                     _("Module installation failed"),
-                    err.output.decode("utf-8"),
+                    output or _("pip exited with code %d") % returncode,
                     parent=self.window,
                 )
                 return
