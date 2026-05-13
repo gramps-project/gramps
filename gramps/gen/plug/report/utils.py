@@ -595,6 +595,7 @@ def get_marriage_type(family_handle, db):
     # get family from handle
     family = db.get_family_from_handle(family_handle)
     if not family:
+        # I guess _F_UNKNOWN is the most appropriate, among all others
         return _F_UNKNOWN
     try:
         # Return marriage type: _F_MARRIED, _F_UNMARRIED, _F_CIVIL_UNION
