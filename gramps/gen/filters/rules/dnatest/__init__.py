@@ -28,4 +28,4 @@ from ._hasprovider import HasProvider
 from ._hastesttype import HasTestType
 from ._isunidentified import IsUnidentified
 
-editor_rule_list = []
+editor_rule_list: list[type] = []

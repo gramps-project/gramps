@@ -26,4 +26,4 @@ from ._hastag import HasTag
 from ._hasdnamatch import HasDNAMatch
 from ._hassharedcm import HasSharedCm
 
-editor_rule_list = []
+editor_rule_list: list[type] = []
