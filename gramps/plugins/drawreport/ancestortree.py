@@ -62,6 +62,8 @@ from gramps.gen.plug.docgen import (
 from gramps.plugins.lib.libtreebase import *
 from gramps.plugins.lib.librecurse import AscendPerson
 from gramps.gen.proxy import CacheProxyDb
+
+from gramps.gen.utils.alive import probably_alive
 from gramps.gen.display.name import displayer as _nd
 
 PT2CM = utils.pt2cm
@@ -101,7 +103,9 @@ class PersonBox(BoxBase):
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
 
-    def set_person_color(self, person):
+    def set_person_color(self, person, database):
+        """Set box color based on person's gender and alive status."""
+        is_alive = probably_alive(person, database)
         self.boxstr = utils.get_gender_color_box_name(
             person, "AC2-box", self.report_gender_colors
         )
@@ -317,7 +321,8 @@ class MakeAncestorTree(AscendPerson):
             line.add_to(myself)
 
         if self.fill_box_color and person:
-            myself.set_person_color(person)
+            myself.set_person_color(person, self.database)
+
         return myself
 
     def add_person_again(self, index, indi_handle, fams_handle):
