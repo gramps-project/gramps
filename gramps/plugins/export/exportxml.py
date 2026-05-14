@@ -1252,6 +1252,19 @@ class GrampsXmlWriter(UpdateCallback):
             )
             self.g.write("/>\n")
 
+    def write_dna_attribute_list(self, list, indent=3):
+        sp = "  " * indent
+        for attr in list:
+            self.g.write(
+                '%s<attribute%s type="%s" value="%s"/>\n'
+                % (
+                    sp,
+                    conf_priv(attr),
+                    escxml(attr.get_type().xml_str()),
+                    self.fix(attr.get_value()),
+                )
+            )
+
     def write_media_list(self, list, indent=3):
         sp = "  " * indent
         for photo in list:
@@ -1424,7 +1437,7 @@ class GrampsXmlWriter(UpdateCallback):
         if not dval.is_empty():
             self.write_date(dval, index + 1)
         self.write_line("haplogroup", dnatest.get_haplogroup(), index + 1)
-        self.write_attribute_list(dnatest.get_attribute_list(), index + 1)
+        self.write_dna_attribute_list(dnatest.get_attribute_list(), index + 1)
         self.write_media_list(dnatest.get_media_list(), index + 1)
         self.write_note_list(dnatest.get_note_list(), index + 1)
         for citation_handle in dnatest.get_citation_list():
@@ -1515,7 +1528,7 @@ class GrampsXmlWriter(UpdateCallback):
                     rsid_attrs,
                 )
             )
-        self.write_attribute_list(dnamatch.get_attribute_list(), index + 1)
+        self.write_dna_attribute_list(dnamatch.get_attribute_list(), index + 1)
         self.write_media_list(dnamatch.get_media_list(), index + 1)
         self.write_note_list(dnamatch.get_note_list(), index + 1)
         for citation_handle in dnamatch.get_citation_list():

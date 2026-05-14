@@ -57,6 +57,8 @@ from gramps.gen.lib import (
     Citation,
     Date,
     DateError,
+    DNAAttribute,
+    DNAAttributeType,
     DNAMatch,
     DNASegment,
     DNATest,
@@ -1528,9 +1530,13 @@ class GrampsParser(UpdateCallback):
         self.placeobj.add_placeref(self.placeref)
 
     def start_attribute(self, attrs):
-        self.attribute = Attribute()
+        if self.dnatest or self.dnamatch:
+            self.attribute = DNAAttribute()
+            self.attribute.type = DNAAttributeType()
+        else:
+            self.attribute = Attribute()
+            self.attribute.type = AttributeType()
         self.attribute.private = bool(attrs.get("priv"))
-        self.attribute.type = AttributeType()
         if "type" in attrs:
             self.attribute.type.set_from_xml_str(attrs["type"])
         self.attribute.value = attrs.get("value", "")
