@@ -82,6 +82,7 @@ from ..widgets import DateEntry
 from gramps.gen.datehandler import displayer
 from gramps.gen.config import config
 from gramps.gen.constfunc import mac
+from ..utils import match_primary_mask
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 
 # -------------------------------------------------------------------------
@@ -1142,14 +1143,10 @@ class EditFilter(ManagedWindow):
         if event.type == Gdk.EventType.KEY_PRESS:
             keyval = event.keyval
             modifiers = event.get_state()
-            # On Mac/Quartz, Cmd maps to META_MASK; elsewhere use CONTROL_MASK.
-            primary = (
-                Gdk.ModifierType.META_MASK if mac() else Gdk.ModifierType.CONTROL_MASK
-            )
-            if keyval == Gdk.KEY_Up and (modifiers & primary):
+            if keyval == Gdk.KEY_Up and match_primary_mask(modifiers):
                 self.on_up_clicked(widget)
                 return True
-            elif keyval == Gdk.KEY_Down and (modifiers & primary):
+            elif keyval == Gdk.KEY_Down and match_primary_mask(modifiers):
                 self.on_down_clicked(widget)
                 return True
             elif keyval == Gdk.KEY_Up and (modifiers & Gdk.ModifierType.MOD1_MASK):
