@@ -45,21 +45,15 @@ from gramps.gen.plug.report import utils
 from gramps.plugins.lib.libhtml import Html
 
 HAVE_ICU = False
-HAVE_ALPHABETICINDEX = False  # separate check as this is only in ICU 4.6+
 try:
     from icu import Locale
 
     HAVE_ICU = True
-    try:
-        from icu import AlphabeticIndex as icuAlphabeticIndex
-
-        HAVE_ALPHABETICINDEX = True
-    except ImportError:
-        from gramps.plugins.webreport.alphabeticindex import (
-            AlphabeticIndex as localAlphabeticIndex,
-        )
+    from icu import AlphabeticIndex as icuAlphabeticIndex
 except ImportError:
-    pass
+    from gramps.plugins.webreport.alphabeticindex import (
+        AlphabeticIndex as localAlphabeticIndex,
+    )
 
 LOG = logging.getLogger(".NarrativeWeb")
 
@@ -634,7 +628,7 @@ def __get_place_keyname(dbase, handle):
     return utils.place_name(dbase, handle)
 
 
-if HAVE_ALPHABETICINDEX:
+if HAVE_ICU:
 
     class AlphabeticIndex(icuAlphabeticIndex):
         """

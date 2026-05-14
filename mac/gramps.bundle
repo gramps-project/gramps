@@ -62,7 +62,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libgexiv2.dylib
+    ${prefix}/lib/libgexiv2-0.16.dylib
   </binary>
 
   <binary>
