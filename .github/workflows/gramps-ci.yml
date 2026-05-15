@@ -85,3 +85,20 @@ jobs:
           echo "ERROR - A new file is not listed in either POTFILES.in or POTFILES.skip";
           exit 1;
         fi
+
+  pypi-installer:
+    name: PyPI installer tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, windows-latest, macos-latest]
+    steps:
+    - uses: actions/checkout@v6
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - name: Create minimal resource directory
+      run: python -c "import os, shutil; os.makedirs('build/share/gramps', exist_ok=True); shutil.copy('data/authors.xml', 'build/share/gramps/authors.xml')"
+    - name: Run PyPI installer tests
+      run: python -m unittest gramps.gen.utils.test.pypi_test -v

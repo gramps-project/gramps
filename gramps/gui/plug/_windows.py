@@ -28,9 +28,9 @@
 import traceback
 import os
 from html import escape
+import subprocess
 import threading
 import sys
-import subprocess
 import importlib
 
 # -------------------------------------------------------------------------
@@ -93,6 +93,13 @@ from gramps.gen.plug.utils import get_all_addons, available_updates
 from ..display import display_help, display_url
 from gramps.gui.widgets import BasicLabel, SimpleButton
 from gramps.gen.utils.requirements import Requirements
+from gramps.gen.utils.pypi import (
+    PyPIInstallError,
+    _pip_available,
+    install_package,
+    is_frozen,
+    resolve_pypi_name,
+)
 from gramps.gen.const import USER_PLUGINS, LIB_PATH
 from gramps.gen.constfunc import win
 from gramps.version import major_version
@@ -272,7 +279,7 @@ class AddonRow(Gtk.ListBoxRow):
             b2.connect("clicked", self.__on_wiki_clicked, addon["h"])
             bb.pack_start(b2, False, False, 0)
 
-        if not req.check_addon(addon):
+        if not req.check_addon(addon) or addon.get("rm"):
             b3 = Gtk.Button(label=_("Requires"))
             b3.connect("clicked", self.__on_requires_clicked, addon)
             bb.pack_start(b3, False, False, 0)
@@ -285,31 +292,51 @@ class AddonRow(Gtk.ListBoxRow):
         vbox.pack_start(bb, False, False, 0)
         vbox.show_all()
 
+    def _install_python_deps(self, button: Gtk.Button, addon: dict) -> bool:
+        """Install Python module dependencies declared by *addon*.
+
+        Returns True on success.  On failure, disables *button*, shows an
+        error dialog, and returns False.
+        """
+        for package in self.req.install(addon):
+            # Translate import names (e.g. "PIL") to PyPI names ("Pillow").
+            pypi_name = resolve_pypi_name(package)
+            try:
+                if is_frozen() or not _pip_available():
+                    # Frozen bundles (cx_Freeze/AIO, macOS .app) and pip-less
+                    # environments (Flatpak, stripped Docker): use the stdlib
+                    # wheel installer, which now supports manylinux/musllinux.
+                    install_package(pypi_name, LIB_PATH)
+                else:
+                    # Source / snap installs where pip is available.
+                    subprocess.check_output(
+                        [
+                            sys.executable,
+                            "-m",
+                            "pip",
+                            "install",
+                            "--target",
+                            LIB_PATH,
+                            pypi_name,
+                        ],
+                        stderr=subprocess.STDOUT,
+                    )
+            except (PyPIInstallError, subprocess.CalledProcessError) as err:
+                button.set_sensitive(False)
+                InfoDialog(
+                    _("Module installation failed"),
+                    str(err),
+                    parent=self.window,
+                )
+                return False
+        return True
+
     def __on_install_clicked(self, button, addon):
         """
         Install the addon and possibly some required python modules.
         """
-        # Install required modules
-        for package in self.req.install(addon):
-            try:
-                subprocess.check_output(
-                    [
-                        "pip.exe" if win() else "pip",
-                        "install",
-                        "--target",
-                        LIB_PATH,
-                        package,
-                    ],
-                    stderr=subprocess.STDOUT,
-                )
-            except subprocess.CalledProcessError as err:
-                button.set_sensitive(False)
-                InfoDialog(
-                    _("Module installation failed"),
-                    err.output.decode("utf-8"),
-                    parent=self.window,
-                )
-                return
+        if not self._install_python_deps(button, addon):
+            return
 
         # Invalidate the caches to ensure that the new modules will be found.
         importlib.invalidate_caches()
@@ -322,17 +349,31 @@ class AddonRow(Gtk.ListBoxRow):
             )
             return
 
+        # Install addon dependencies declared via depends_on ("do" field).
+        # Install their Python module requirements first.
+        pmgr = GuiPluginManager.get_instance()
+        for dep_id in addon.get("do", []):
+            if pmgr.get_plugin(dep_id) is None:
+                dep = self.manager.find_addon(dep_id)
+                if dep is not None:
+                    if not self._install_python_deps(button, dep):
+                        return
+                    importlib.invalidate_caches()
+                    dep_path = dep["_u"] + "/download/" + dep["z"]
+                    if load_addon_file(dep_path):
+                        self.manager.install_addon(dep_id)
+
         # Install addon
         path = addon["_u"] + "/download/" + addon["z"]
-        load_addon_file(path)
+        if not load_addon_file(path):
+            InfoDialog(
+                _("Addon installation failed"),
+                _("Gramps was unable to install '%s'.") % addon["n"],
+                parent=self.window,
+            )
+            return
         self.manager.install_addon(addon["i"])
-
-        # Refresh this row
-        pmgr = GuiPluginManager.get_instance()
-        plugin = pmgr.get_plugin(addon["i"])
-        if plugin:
-            self.addon["_v"] = plugin.version
-        self.__build_gui(self.vbox, self.addon, self.req)
+        self.manager.refresh()
 
     def __on_wiki_clicked(self, button, url):
         """
@@ -607,9 +648,19 @@ class AddonManager(ManagedWindow):
         """
         Populate the list box.
         """
+        self._addon_list = addon_list
         for addon in addon_list:
             self.lb.add(AddonRow(self, addon, self.req, self.window))
         self.__placeholder(_("No matching addons found."))
+
+    def find_addon(self, addon_id):
+        """
+        Return the addon dict for the given plugin ID, or None if not found.
+        """
+        for addon in getattr(self, "_addon_list", []):
+            if addon["i"] == addon_id:
+                return addon
+        return None
 
     def __clear_filters(self, combo):
         """

@@ -332,6 +332,8 @@ gramps/gen/utils/test/grampslocale_test.py
 gramps/gen/utils/test/keyword_test.py
 gramps/gen/utils/test/maclocale_test.py
 gramps/gen/utils/test/place_test.py
+gramps/gen/utils/test/pypi_e2e_test.py
+gramps/gen/utils/test/pypi_test.py
 gramps/gen/utils/test/requirements_test.py
 #
 # gui - GUI code
