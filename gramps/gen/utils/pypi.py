@@ -49,6 +49,15 @@ import ssl
 import urllib.request
 import zipfile
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+
+_ = glocale.translation.sgettext
+
 LOG = logging.getLogger(__name__)
 
 _PYPI_JSON_URL = "https://pypi.org/pypi/{package}/json"
