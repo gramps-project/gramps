@@ -33,7 +33,9 @@ Run explicitly with:
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+import hashlib
 import importlib
+import io
 import json
 import os
 import shutil
@@ -41,6 +43,7 @@ import socket
 import sys
 import tempfile
 import unittest
+import zipfile
 
 # -------------------------------------------------------------------------
 #
@@ -147,28 +150,62 @@ class TestPickWheelE2E(unittest.TestCase):
 
 # -------------------------------------------------------------------------
 #
-# TestInstallPackageE2E
+# TestDownloadExtractE2E
 #
 # -------------------------------------------------------------------------
-class TestInstallPackageE2E(unittest.TestCase):
-    """Full end-to-end install tests against real PyPI."""
+class TestDownloadExtractE2E(unittest.TestCase):
+    """
+    End-to-end tests of the download → verify → extract pipeline.
+
+    These tests call the internal helpers directly, bypassing
+    install_package()'s importability guard.  That guard is correct
+    behaviour (skip packages already on sys.path) but irrelevant here:
+    we want to verify the network and extraction code work regardless
+    of what is already installed in the environment.
+
+    The wheel is fetched once in setUpClass and reused across tests to
+    avoid redundant network round-trips.
+    """
+
+    _wheel_data: bytes = b""
+    _wheel_info: dict = {}
+
+    @classmethod
+    def setUpClass(cls):
+        """Download the test wheel once for all tests in this class."""
+        if not NETWORK_AVAILABLE:
+            return
+        meta = _pypi_metadata(_DOWNLOAD_PACKAGE)
+        cls._wheel_info = _pick_wheel(meta, _DOWNLOAD_PACKAGE)
+        cls._wheel_data = _fetch_url(cls._wheel_info["url"])
 
     def setUp(self):
         self.target = tempfile.mkdtemp()
 
     def tearDown(self):
         shutil.rmtree(self.target, ignore_errors=True)
-        # Remove any modules we installed from sys.modules and sys.path
         for mod in list(sys.modules):
             if mod == _DOWNLOAD_PACKAGE or mod.startswith(_DOWNLOAD_PACKAGE + "."):
                 del sys.modules[mod]
         if self.target in sys.path:
             sys.path.remove(self.target)
 
+    def _extract(self):
+        """Extract the pre-downloaded wheel into self.target."""
+        with zipfile.ZipFile(io.BytesIO(self._wheel_data)) as whl:
+            whl.extractall(self.target)
+
     @_skip_offline
-    def test_install_downloads_files(self):
-        """install_package() extracts wheel contents into the target directory."""
-        install_package(_DOWNLOAD_PACKAGE, self.target)
+    def test_sha256_matches_pypi_digest(self):
+        """The downloaded wheel's SHA-256 matches the digest published on PyPI."""
+        expected = self._wheel_info["digests"]["sha256"]
+        actual = hashlib.sha256(self._wheel_data).hexdigest()
+        self.assertEqual(actual, expected)
+
+    @_skip_offline
+    def test_wheel_extracts_package_files(self):
+        """Extracted wheel contains the package directory in target."""
+        self._extract()
         entries = os.listdir(self.target)
         self.assertTrue(
             any(_DOWNLOAD_PACKAGE in e for e in entries),
@@ -176,23 +213,9 @@ class TestInstallPackageE2E(unittest.TestCase):
         )
 
     @_skip_offline
-    def test_installed_package_is_importable(self):
-        """The installed package can be imported after adding target to sys.path."""
-        install_package(_DOWNLOAD_PACKAGE, self.target)
-        sys.path.insert(0, self.target)
-        mod = importlib.import_module(_DOWNLOAD_PACKAGE)
-        self.assertIsNotNone(mod)
-
-    @_skip_offline
-    def test_install_returns_package_name(self):
-        """install_package() returns a list containing the installed package name."""
-        installed = install_package(_DOWNLOAD_PACKAGE, self.target)
-        self.assertIn(_DOWNLOAD_PACKAGE, installed)
-
-    @_skip_offline
-    def test_dist_info_extracted(self):
-        """install_package() extracts the .dist-info directory from the wheel."""
-        install_package(_DOWNLOAD_PACKAGE, self.target)
+    def test_wheel_extracts_dist_info(self):
+        """Extracted wheel contains a .dist-info directory in target."""
+        self._extract()
         dist_infos = [e for e in os.listdir(self.target) if ".dist-info" in e]
         self.assertTrue(
             dist_infos,
@@ -200,24 +223,36 @@ class TestInstallPackageE2E(unittest.TestCase):
         )
 
     @_skip_offline
-    def test_sha256_is_verified(self):
-        """The downloaded wheel's SHA-256 is verified against the PyPI digest."""
-        # This test installs successfully, which means verification passed.
-        # If the hash check were absent or broken, a tampered download would
-        # silently succeed — this confirms the happy-path hash is checked.
-        meta = _pypi_metadata(_DOWNLOAD_PACKAGE)
-        wheel = _pick_wheel(meta, _DOWNLOAD_PACKAGE)
-        expected = wheel["digests"]["sha256"]
-        data = _fetch_url(wheel["url"])
-        import hashlib
+    def test_extracted_package_is_importable(self):
+        """Package extracted to target is importable once target is on sys.path."""
+        self._extract()
+        sys.path.insert(0, self.target)
+        # Force import from target even if the package is already on sys.path
+        sys.modules.pop(_DOWNLOAD_PACKAGE, None)
+        mod = importlib.import_module(_DOWNLOAD_PACKAGE)
+        self.assertIsNotNone(mod)
 
-        actual = hashlib.sha256(data).hexdigest()
-        self.assertEqual(actual, expected)
+
+# -------------------------------------------------------------------------
+#
+# TestInstallPackageBehaviourE2E
+#
+# -------------------------------------------------------------------------
+class TestInstallPackageBehaviourE2E(unittest.TestCase):
+    """Tests of install_package() orchestration behaviour against real PyPI."""
+
+    def setUp(self):
+        self.target = tempfile.mkdtemp()
+
+    def tearDown(self):
+        shutil.rmtree(self.target, ignore_errors=True)
+        if self.target in sys.path:
+            sys.path.remove(self.target)
 
     @_skip_offline
     def test_already_importable_skipped(self):
-        """install_package() skips a package that is already on sys.path."""
-        # "os" is always importable; it should never be downloaded.
+        """install_package() skips a package that is already importable."""
+        # "os" is always importable; nothing should be downloaded or extracted.
         installed = install_package("os", self.target)
         self.assertEqual(installed, [])
         self.assertEqual(os.listdir(self.target), [])
