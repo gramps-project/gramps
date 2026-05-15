@@ -30,7 +30,6 @@ import os
 from html import escape
 import threading
 import sys
-import subprocess
 import importlib
 
 # -------------------------------------------------------------------------
@@ -93,8 +92,8 @@ from gramps.gen.plug.utils import get_all_addons, available_updates
 from ..display import display_help, display_url
 from gramps.gui.widgets import BasicLabel, SimpleButton
 from gramps.gen.utils.requirements import Requirements
+from gramps.gen.utils.pypi import install_package, PyPIInstallError
 from gramps.gen.const import USER_PLUGINS, LIB_PATH
-from gramps.gen.constfunc import win
 
 
 def display_message(message):
@@ -291,21 +290,12 @@ class AddonRow(Gtk.ListBoxRow):
         # Install required modules
         for package in self.req.install(addon):
             try:
-                subprocess.check_output(
-                    [
-                        "pip.exe" if win() else "pip",
-                        "install",
-                        "--target",
-                        LIB_PATH,
-                        package,
-                    ],
-                    stderr=subprocess.STDOUT,
-                )
-            except subprocess.CalledProcessError as err:
+                install_package(package, LIB_PATH)
+            except PyPIInstallError as err:
                 button.set_sensitive(False)
                 InfoDialog(
                     _("Module installation failed"),
-                    err.output.decode("utf-8"),
+                    str(err),
                     parent=self.window,
                 )
                 return
