@@ -9,7 +9,7 @@
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
-# (at your option) any latr version.
+# (at your option) any later version.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -37,296 +37,505 @@ FEMALE = Person.FEMALE
 UNKNOWN = Person.UNKNOWN
 import gramps.gen.relationship
 
-# -------------------------------------------------------------------------
-#
-#
-#
-# -------------------------------------------------------------------------
+# ------------------------------------------------------------------
+# Ordinal lists (male canonical forms, 1-based, index 0 is empty)
+# Other genders are derived at module load time.
+# ------------------------------------------------------------------
 
-_level_name_male = [
-    "",
-    "primero",
-    "segundo",
-    "tercero",
-    "cuarto",
-    "quinto",
-    "sexto",
-    "séptimo",
-    "octavo",
-    "noveno",
-    "décimo",
-    "undécimo",
-    "duodécimo",
-    "decimotercero",
-    "decimocuarto",
-    "decimoquinto",
-    "decimosexto",
-    "decimoséptimo",
-    "decimoctavo",
-    "decimonono",
-    "vigésimo",
+_ORD_FIRST_19_M = [
+    "primero", "segundo", "tercero", "cuarto", "quinto", "sexto",
+    "séptimo", "octavo", "noveno", "décimo",
+    "undécimo", "duodécimo",
+    "decimotercero", "decimocuarto", "decimoquinto", "decimosexto",
+    "decimoséptimo", "decimoctavo", "decimonoveno"
 ]
 
-# Short forms (in apocope) used before names
-_level_name_male_a = [
-    "",
-    "primer",
-    "segundo",
-    "tercer",
-    "cuarto",
-    "quinto",
-    "sexto",
-    "séptimo",
-    "octavo",
-    "noveno",
-    "décimo",
-    "undécimo",
-    "duodécimo",
-    "decimotercer",
-    "decimocuarto",
-    "decimoquinto",
-    "decimosexto",
-    "decimoséptimo",
-    "decimoctavo",
-    "decimonono",
-    "vigésimo",
+_ORD_TENS_M = [
+    "", "décimo", "vigésimo", "trigésimo", "cuadragésimo",
+    "quincuagésimo", "sexagésimo", "septuagésimo",
+    "octogésimo", "nonagésimo", "centésimo"
 ]
 
-_level_name_female = [
-    "",
-    "primera",
-    "segunda",
-    "tercera",
-    "cuarta",
-    "quinta",
-    "sexta",
-    "séptima",
-    "octava",
-    "novena",
-    "décima",
-    "undécima",
-    "duodécima",
-    "decimotercera",
-    "decimocuarta",
-    "decimoquinta",
-    "decimosexta",
-    "decimoséptima",
-    "decimoctava",
-    "decimonona",
-    "vigésima",
-]
-
-_level_name_plural = [
-    "",
-    "primeros",
-    "segundos",
-    "terceros",
-    "cuartos",
-    "quintos",
-    "sextos",
-    "séptimos",
-    "octavos",
-    "novenos",
-    "décimos",
-    "undécimos",
-    "duodécimos",
-    "decimoterceros",
-    "decimocuartos",
-    "decimoquintos",
-    "decimosextos",
-    "decimoséptimos",
-    "decimoctavos",
-    "decimononos",
-    "vigésimos",
-]
-
-# This plugin tries to be flexible and expect little from the following
-# tables.  Ancestors are named from the list for the first generations.
-# When this list is not enough, ordinals are used based on the same idea,
-# i.e. bisabuelo is 'segundo abuelo' and so on, that has been the
-# traditional way in Spanish.  When we run out of ordinals we resort to
-# N-ésimo notation, that is sort of understandable if in context.
-# 'trastatarabuelo' is not in DRAE, but is well known
-_parents_level = [
-    "",
-    "padres",
-    "abuelos",
-    "bisabuelos",
-    "tatarabuelos",
-    "trastatarabuelos",
-]
-
-_father_level = [
-    "",
-    "padre%(inlaw)s",
-    "abuelo%(inlaw)s",
-    "bisabuelo%(inlaw)s",
-    "tatarabuelo%(inlaw)s",
-    "trastatarabuelo%(inlaw)s",
-]
-
-_mother_level = [
-    "",
-    "madre%(inlaw)s",
-    "abuela%(inlaw)s",
-    "bisabuela%(inlaw)s",
-    "tatarabuela%(inlaw)s",
-    "trastatarabuela%(inlaw)s",
-]
-
-# step-relationships can't be handled as in English
-# Notice that the traditional lack of divorce in Catholic, Spanish-speaking, countries has resulted
-# in a scarcity of terms to describe these relationships since only death of a spouse would let the
-# other marry again. Divorce is common now, so these relationships abound, but history has left us
-# without support in the language. So, in this case, we will be more liberal than in other cases and
-# or coin a few new words or accept others that seem to have some use, but always patterned
-# after the style of the well-documented cases, so that users can intuitively guess their meaning.
-# Notice that "that relationship does not exist in Spanish" is not a valid objection. Once the Gramps
-# core has computed a relationship, it *has* to be named *somehow*. The only alternative is to change
-# the Gramps core so that it does not find relationships that cannot be named in Spanish.
-
-_step_father_level = ["", "padrastro%(inlaw)s", "abuelastro%(inlaw)s"]
-
-_step_mother_level = ["", "madrastra%(inlaw)s", "abuelastra%(inlaw)s"]
-
-# Higher-order terms (after trastatarabuelo) on this list are not standard,
-# but then there is no standard naming scheme at all for this in Spanish.
-# Check http://www.genealogia-es.com/guia3.html that echoes a proposed
-# scheme that has got some reception in the Spanish-language genealogy
-# community. Uncomment these names if you want to use them.
-# _parents_level = [ "", "padres", "abuelos", "bisabuelos", "tatarabuelos",
-#                   "trastatarabuelos", "pentabuelos", "hexabuelos",
-#                   "heptabuelos", "octabuelos", "eneabuelos", "decabuelos"]
-# _father_level = [ "", "padre", "abuelo", "bisabuelo", "tatarabuelo",
-#                  "trastatarabuelo", "pentabuelo", "hexabuelo",
-#                  "heptabuelo", "octabuelo", "eneabuelo", "decabuelo"]
-# _mother_level = [ "", "madre", "abuela", "bisabuela", "tatarabuela",
-#                  "trastatarabuela", "pentabuela", "hexabuela",
-#                  "heptabuela", "octabuela", "eneabuela", "decabuela"]
-
-# DRAE defines cuadrinieto as well, with the same meaning as chozno
-# trastataranieto is in use too, but is not in DRAE
-# DRAE also registers bizchozno and bischozno, but prefers bichozno
-_son_level = [
-    "",
-    "hijo%(inlaw)s",
-    "nieto%(inlaw)s",
-    "bisnieto%(inlaw)s",
-    "tataranieto%(inlaw)s",
-    "chozno%(inlaw)s",
-    "bichozno%(inlaw)s",
-]
-
-# Though "abuelastro" is in DRAE, "nietastro" isn't
-_step_son_level = ["", "hijastro%(inlaw)s", "nietastro%(inlaw)s"]
-
-_daughter_level = [
-    "",
-    "hija%(inlaw)s",
-    "nieta%(inlaw)s",
-    "bisnieta%(inlaw)s",
-    "tataranieta%(inlaw)s",
-    "chozna%(inlaw)s",
-    "bichozna%(inlaw)s",
-]
-
-_step_daughter_level = ["", "hijastra%(inlaw)s", "nietastra%(inlaw)s"]
-
-_sister_level = [
-    "",
-    "hermana%(inlaw)s",
-    "tía%(inlaw)s",
-    "tía abuela%(inlaw)s",
-    "tía bisabuela%(inlaw)s",
-    "tía tatarabuela%(inlaw)s",
-]
-
-# Tiastro/tiastra aren't in DRAE
-_step_sister_level = [
-    "",
-    "hermanastra%(inlaw)s",
-    "tiastra%(inlaw)s",
-    "tía abuelastra%(inlaw)s",
-]
-
-_brother_level = [
-    "",
-    "hermano%(inlaw)s",
-    "tío%(inlaw)s",
-    "tío abuelo%(inlaw)s",
-    "tío bisabuelo%(inlaw)s",
-    "tío tatarabuelo%(inlaw)s",
-]
-
-_step_brother_level = [
-    "",
-    "hermanastro%(inlaw)s",
-    "tiastro%(inlaw)s",
-    "tío abuelastro%(inlaw)s",
-]
-
-_nephew_level = [
-    "",
-    "sobrino%(inlaw)s",
-    "sobrino nieto%(inlaw)s",
-    "sobrino bisnieto%(inlaw)s",
-    "sobrino tataranieto%(inlaw)s",
-    "sobrino chozno%(inlaw)s",
-    "sobrino bichozno%(inlaw)s",
-]
-
-# Nether are sobrinastro/sobrinastra
-_step_nephew_level = ["", "sobrinastro%(inlaw)s", "sobrino nietastro%(inlaw)s"]
-
-_niece_level = [
-    "",
-    "sobrina%(inlaw)s",
-    "sobrina nieta%(inlaw)s",
-    "sobrina bisnieta%(inlaw)s",
-    "sobrina tataranieta%(inlaw)s",
-    "sobrina chozna%(inlaw)s",
-    "sobrina bichozna%(inlaw)s",
-]
-
-_step_niece_level = ["", "sobrinastra%(inlaw)s", "sobrina nietastra%(inlaw)s"]
-
-_children_level = [
-    "",
-    "hijos",
-    "nietos",
-    "bisnietos",
-    "tataranietos",
-    "choznos",
-    "bichoznos",
-]
-
-_siblings_level = [
-    "",
-    "hermanos/as",
-    "tíos/tías",
-    "tíos abuelos/tías abuelas",
-    "tíos bisabuelos/tías bisabuelas",
-    "tíos tatarabuelos/tías tatarabuelas",
-    "tíos trastatarabuelos/tías trastatarabuelas",
-]
-
-_nephews_nieces_level = [
-    "",
-    "hermanos/as",
-    "sobrinos/as",
-    "sobrinos nietos/sobrinas nietas",
-    "sobrinos bisnietos/sobrinas bisnietas",
-    "sobrinos tataranietos/sobrinas tataranietas",
-    "sobrinos choznos/sobrinas choznas",
-    "sobrinos bichoznos/sobrinas bichoznas",
+_ORD_UNITS_M = [
+    "", "primero", "segundo", "tercero", "cuarto", "quinto",
+    "sexto", "séptimo", "octavo", "noveno"
 ]
 
 
-# -------------------------------------------------------------------------
-#
-#
-#
-# -------------------------------------------------------------------------
+def _to_feminine(word):
+    """Derive feminine ordinal from the masculine form.
+
+    All Spanish masculine ordinals end in 'o' and form the feminine
+    by replacing the final 'o' with 'a'. Multi-word forms like
+    'vigésimo primero' become 'vigésima primera'.
+    """
+    if not word:
+        return word
+    parts = word.split()
+    return " ".join(p[:-1] + "a" if p.endswith("o") else p for p in parts)
+
+
+def _to_plural(word):
+    """Derive plural ordinal from the masculine form.
+
+    Spanish masculine ordinals form the plural by replacing the
+    final 'o' with 'os'. Multi-word forms like 'vigésimo primero'
+    become 'vigésimos primeros'.
+    """
+    if not word:
+        return word
+    parts = word.split()
+    return " ".join(p[:-1] + "os" if p.endswith("o") else p for p in parts)
+
+
+def _build_ordinals(first_19, tens, units):
+    """Build ordinal list (0..100) from component word lists."""
+    ords = [""]
+    ords.extend(first_19)
+    for t_idx in range(2, 10):
+        ten = tens[t_idx]
+        ords.append(ten)
+        for u_idx in range(1, 10):
+            ords.append(ten + " " + units[u_idx])
+    ords.append(tens[10])
+    return ords
+
+
+# Build all three gender forms from the male canonical data
+_ordinal_male = _build_ordinals(_ORD_FIRST_19_M, _ORD_TENS_M, _ORD_UNITS_M)
+_ordinal_female = [_to_feminine(w) for w in _ordinal_male]
+_ordinal_plural = [_to_plural(w) for w in _ordinal_male]
+
+# ------------------------------------------------------------------
+# Ancestor names (male canonical, index = generations above ego)
+# Index 0 empty, 1 parent level (empty for male/female), 2+ explicit.
+# Female/plural derived by transforming the last vowel.
+# ------------------------------------------------------------------
+
+_ancestor_male = [
+    "",
+    "",
+    "abuelo",
+    "bisabuelo",
+    "tatarabuelo",
+    "trastatarabuelo",
+    "pentabuelo",
+    "hexabuelo",
+    "heptabuelo",
+    "octabuelo",
+    "eneabuelo",
+    "decabuelo",
+    "endecabuelo",
+    "dodecabuelo",
+]
+
+_ancestor_female = [_to_feminine(w) for w in _ancestor_male]
+_ancestor_plural = [
+    "padres" if i == 1 else _to_plural(w) for i, w in enumerate(_ancestor_male)
+]
+
+# ------------------------------------------------------------------
+# Descendant names (male canonical, index = generations below ego)
+# Same derivation pattern as ancestors.
+# ------------------------------------------------------------------
+
+_descendant_male = [
+    "",
+    "",
+    "nieto",
+    "bisnieto",
+    "tataranieto",
+    "chozno",
+    "bichozno",
+    "hexanieto",
+    "heptanieto",
+    "octonieto",
+    "eneanieto",
+    "decanieto",
+    "endecanieto",
+    "dodecanieto",
+]
+
+_descendant_female = [_to_feminine(w) for w in _descendant_male]
+_descendant_plural = [
+    "hijos" if i == 1 else _to_plural(w) for i, w in enumerate(_descendant_male)
+]
+
+# ------------------------------------------------------------------
+# Step transformations for the last lexical noun of a compound
+# ------------------------------------------------------------------
+
+_STEP_EXCEPTIONS_M = {
+    "tío": "tiastro",
+    "hermano": "hermanastro",
+    "hijo": "hijastro",
+    "sobrino": "sobrinastro",
+    "primo": "primastro",
+    "padre": "padrastro",
+    "suegro": "suegrastro",
+    "yerno": "yernastro",
+    "cuñado": "cuñadastro",
+}
+_STEP_EXCEPTIONS_F = {
+    "tía": "tiastra",
+    "hermana": "hermanastra",
+    "hija": "hijastra",
+    "sobrina": "sobrinastra",
+    "prima": "primastra",
+    "madre": "madrastra",
+    "suegra": "suegrastra",
+    "nuera": "nuerastra",
+    "cuñada": "cuñadastra",
+}
+
+# ------------------------------------------------------------------
+# Partner type terms (for get_partner_relationship_string)
+# Keys: spouse_type constant from RelationshipCalculator.
+# Values: dict mapping MALE / FEMALE / UNKNOWN -> Spanish term.
+# ------------------------------------------------------------------
+
+_PARTNER_TERMS = {
+    1: {MALE: "esposo", FEMALE: "esposa", UNKNOWN: "cónyuge"},
+    5: {MALE: "exesposo", FEMALE: "exesposa", UNKNOWN: "excónyuge"},
+    2: {MALE: "pareja", FEMALE: "pareja", UNKNOWN: "pareja"},
+    6: {MALE: "expareja", FEMALE: "expareja", UNKNOWN: "expareja"},
+    3: {MALE: "pareja de hecho", FEMALE: "pareja de hecho", UNKNOWN: "pareja de hecho"},
+    7: {MALE: "expareja de hecho", FEMALE: "expareja de hecho", UNKNOWN: "expareja de hecho"},
+    4: {MALE: "pareja", FEMALE: "pareja", UNKNOWN: "pareja"},
+}
+
+
+def _get_ordinal(n, gender):
+    """Return the ordinal adjective for number n in the given gender.
+
+    n=1 returns '' (sibling case, no ordinal displayed).
+    n=2 returns 'segundo/a', etc.
+    For n beyond 100 returns '{n}-ésimo/a'.
+    """
+    if n <= 1:
+        return ""
+    if gender == MALE:
+        lst = _ordinal_male
+    elif gender == FEMALE:
+        lst = _ordinal_female
+    else:
+        lst = _ordinal_plural
+    if n < len(lst):
+        return lst[n]
+    if gender == MALE:
+        return "%d-ésimo" % n
+    elif gender == FEMALE:
+        return "%d-ésima" % n
+    else:
+        return "%d-ésimos" % n
+
+
+def _apocopate(word):
+    """Apply Spanish apocope to masculine ordinals before a masculine noun.
+
+    primero -> primer, tercero -> tercer, decimotercero -> decimotercer,
+    vigésimo primero -> vigésimo primer, trigésimo tercero -> trigésimo tercer.
+    Handles both single words and compound forms.
+    """
+    if not word:
+        return word
+    parts = word.split()
+    result = []
+    for p in parts:
+        if p == "primero":
+            result.append("primer")
+        elif p == "tercero":
+            result.append("tercer")
+        elif p.endswith("primero"):
+            result.append(p[:-7] + "primer")
+        elif p.endswith("tercero"):
+            result.append(p[:-7] + "tercer")
+        else:
+            result.append(p)
+    return " ".join(result)
+
+
+def _pick_gender(word_m, word_f, gender):
+    """Select male or female word based on gender."""
+    return word_m if gender == MALE else word_f
+
+
+def _add_inlaw(term, inlaw, gender):
+    """Append 'político/política' suffix if inlaw is True."""
+    if not inlaw:
+        return term
+    return term + (" política" if gender == FEMALE else " político")
+
+
+# ------------------------------------------------------------------
+# Ancestor/descendant lookup helpers
+# Each comes in three variants:
+#   _name(n, gender)  -> full term with ordinal fallback
+#   _base(n, gender)  -> just the noun part (for compounds)
+#   _level_ord(n, gender) -> just the level ordinal (for tío prefix)
+# ------------------------------------------------------------------
+
+
+def _get_ancestor_name(n, gender):
+    """Return the full ancestor noun for n generations above ego.
+
+    n=1 returns '' (parent level).
+    n=2 returns 'abuelo/a', n=3 'bisabuelo/a', etc.
+    For n beyond stored list returns ordinal + 'abuelo/a' with apocope.
+    """
+    if n <= 1:
+        return ""
+    lst = _ancestor_male if gender == MALE else (
+        _ancestor_female if gender == FEMALE else _ancestor_plural)
+    base = "abuelo" if gender == MALE else ("abuela" if gender == FEMALE else "abuelos")
+    if n < len(lst) and lst[n]:
+        return lst[n]
+    ord_word = _get_ordinal(n - 1, gender)
+    if gender == MALE:
+        ord_word = _apocopate(ord_word)
+    return "%s %s" % (ord_word, base)
+
+
+def _get_ancestor_base(n, gender):
+    """Return just the base ancestor noun without any ordinal.
+
+    Used as the middle part in tío/a compounds like 'tío pentabuelo'.
+    """
+    if n <= 1:
+        return ""
+    lst = _ancestor_male if gender == MALE else (
+        _ancestor_female if gender == FEMALE else _ancestor_plural)
+    base = "abuelo" if gender == MALE else ("abuela" if gender == FEMALE else "abuelos")
+    if n < len(lst) and lst[n]:
+        return lst[n]
+    return base
+
+
+def _get_ancestor_level_ordinal(n, gender):
+    """Return the apocopated level ordinal for ancestor level n.
+
+    Returns '' if the level has an explicit term in the list.
+    Used as the leading ordinal in uncle/aunt compounds: 'quinto tío abuelo'.
+    """
+    if n <= 1:
+        return ""
+    lst = _ancestor_male if gender == MALE else (
+        _ancestor_female if gender == FEMALE else _ancestor_plural)
+    if n < len(lst) and lst[n]:
+        return ""
+    ord_word = _get_ordinal(n - 1, gender)
+    return _apocopate(ord_word) if gender == MALE else ord_word
+
+
+def _get_descendant_name(n, gender):
+    """Return the full descendant noun for n generations below ego.
+
+    n=1 returns '' (child level).
+    n=2 returns 'nieto/a', n=3 'bisnieto/a', etc.
+    """
+    if n <= 1:
+        return ""
+    lst = _descendant_male if gender == MALE else (
+        _descendant_female if gender == FEMALE else _descendant_plural)
+    base = "nieto" if gender == MALE else ("nieta" if gender == FEMALE else "nietos")
+    if n < len(lst) and lst[n]:
+        return lst[n]
+    ord_word = _get_ordinal(n - 1, gender)
+    if gender == MALE:
+        ord_word = _apocopate(ord_word)
+    return "%s %s" % (ord_word, base)
+
+
+def _get_descendant_base(n, gender):
+    """Return just the base descendant noun without any ordinal.
+
+    Used in sobrino/a compounds like 'sobrino nieto sexto'.
+    """
+    if n <= 1:
+        return ""
+    lst = _descendant_male if gender == MALE else (
+        _descendant_female if gender == FEMALE else _descendant_plural)
+    base = "nieto" if gender == MALE else ("nieta" if gender == FEMALE else "nietos")
+    if n < len(lst) and lst[n]:
+        return lst[n]
+    return base
+
+
+def _get_descendant_level_ordinal(n, gender):
+    """Return ordinal for descendant level n (no apocope, goes at end)."""
+    if n <= 1:
+        return ""
+    lst = _descendant_male if gender == MALE else (
+        _descendant_female if gender == FEMALE else _descendant_plural)
+    if n < len(lst) and lst[n]:
+        return ""
+    ord_word = _get_ordinal(n - 1, gender)
+    return ord_word
+
+
+# ------------------------------------------------------------------
+# Low-level helpers
+# ------------------------------------------------------------------
+
+
+def _step_form(word, gender):
+    """Apply the -astro/-astra suffix to a word."""
+    exc = _STEP_EXCEPTIONS_M if gender == MALE else _STEP_EXCEPTIONS_F
+    if word in exc:
+        return exc[word]
+    if word.endswith("o"):
+        return word[:-1] + "astro"
+    if word.endswith("a"):
+        return word[:-1] + "astra"
+    if word.endswith("os"):
+        return word[:-1] + "astros"
+    if word.endswith("as"):
+        return word[:-1] + "astras"
+    return word
+
+
+def _pluralize_gender(word):
+    """Apply gender-disjunctive suffixes to each part of a plural word.
+
+    'tíos/tías' -> 'tíos/as', 'abuelos' -> 'abuelos/as',
+    'sobrinos/as' -> 'sobrinos/as', 'segundos' -> 'segundos/as',
+    'vigésimos segundos' -> 'vigésimos/as segundos/as'.
+    """
+    if not word:
+        return word
+    parts = word.split()
+    result = []
+    for p in parts:
+        if "/" in p:
+            result.append(p.split("/")[0] + "/as")
+        elif p.endswith("os"):
+            result.append(p + "/as")
+        else:
+            result.append(p)
+    return " ".join(result)
+
+
+def _build_simple_term(base_name, step, inlaw, gender):
+    """Build a simple (non-compound) relationship term with step/inlaw."""
+    term = base_name
+    if step:
+        term = _step_form(term, gender)
+    return _add_inlaw(term, inlaw, gender)
+
+
+# ------------------------------------------------------------------
+# Compound builders for lateral relationship types
+# Each follows a specific word order established by Spanish convention.
+# ------------------------------------------------------------------
+
+
+def _build_tio(vertical, lateral, gender_b, step, inlaw):
+    """Build 'tío/tía + ancestor_base + lateral_ordinal' compound.
+
+    Order: level_ordinal + tío/tía + base + lateral_ordinal
+    Example: 'quinto tío abuelo tercero'
+    """
+    if gender_b == MALE:
+        prefix = "tío"
+    elif gender_b == FEMALE:
+        prefix = "tía"
+    else:
+        return "%s o %s" % (
+            _build_tio(vertical, lateral, MALE, step, inlaw),
+            _build_tio(vertical, lateral, FEMALE, step, inlaw),
+        )
+
+    base = _get_ancestor_base(vertical, gender_b)
+    level_ord = _get_ancestor_level_ordinal(vertical, gender_b)
+    lateral_ord = _get_ordinal(lateral, gender_b)
+
+    parts = []
+    if step:
+        if base:
+            base = _step_form(base, gender_b)
+        else:
+            prefix = _step_form(prefix, gender_b)
+
+    if level_ord:
+        parts.append(level_ord)
+    parts.append(prefix)
+    if base:
+        parts.append(base)
+    if lateral_ord:
+        parts.append(lateral_ord)
+
+    return _add_inlaw(" ".join(parts), inlaw, gender_b)
+
+
+def _build_sobrino(vertical, lateral, gender_b, step, inlaw):
+    """Build 'sobrino/a + descendant_base + ordinal' compound.
+
+    Order: sobrino/a + base + ordinal
+    Example: 'sobrino nieto segundo', 'sobrino nieto sexto'
+    """
+    if gender_b == MALE:
+        prefix = "sobrino"
+    elif gender_b == FEMALE:
+        prefix = "sobrina"
+    else:
+        return "%s o %s" % (
+            _build_sobrino(vertical, lateral, MALE, step, inlaw),
+            _build_sobrino(vertical, lateral, FEMALE, step, inlaw),
+        )
+
+    base = _get_descendant_base(vertical, gender_b)
+    lateral_ord = _get_ordinal(lateral, gender_b)
+    desc_ord = _get_descendant_level_ordinal(vertical, gender_b)
+
+    parts = [prefix]
+    if step:
+        if base:
+            base = _step_form(base, gender_b)
+        else:
+            parts = [_step_form(prefix, gender_b)]
+
+    if base:
+        parts.append(base)
+    # Only one ordinal at the end: lateral (cousin degree) takes precedence
+    ord_word = lateral_ord if lateral > 1 else desc_ord
+    if ord_word:
+        parts.append(ord_word)
+
+    return _add_inlaw(" ".join(parts), inlaw, gender_b)
+
+
+def _build_cousin(level, gender_b, step, inlaw):
+    """Build 'primo/a + ordinal' for same-generation cousins.
+
+    level=1 returns 'primo hermano' / 'prima hermana'.
+    """
+    if gender_b == MALE:
+        prefix = "primo"
+    elif gender_b == FEMALE:
+        prefix = "prima"
+    else:
+        return "%s o %s" % (
+            _build_cousin(level, MALE, step, inlaw),
+            _build_cousin(level, FEMALE, step, inlaw),
+        )
+
+    if step:
+        prefix = _step_form(prefix, gender_b)
+
+    if level == 1:
+        rel = "%s hermana" % prefix if gender_b == FEMALE else "%s hermano" % prefix
+    else:
+        ord_word = _get_ordinal(level, gender_b)
+        rel = "%s %s" % (prefix, ord_word)
+
+    return _add_inlaw(rel, inlaw, gender_b)
+
+
+# ------------------------------------------------------------------
+# RelationshipCalculator
+# ------------------------------------------------------------------
+
+
 class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
@@ -335,444 +544,68 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     def __init__(self):
         gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
-    def _get_step_father(self, level, inlaw=""):
-        """Internal spanish method to create relation string"""
-        if level < len(_step_father_level):
-            return _step_father_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_male_a):
-            return "%s abuelastro%s" % (_level_name_male_a[level - 1], inlaw)
-        else:
-            return "%d-ésimo abuelastro%s" % (level - 1, inlaw)
+    def _get_rel_for_gender(self, Ga, Gb, gender, step, in_law_a, in_law_b):
+        """Build relationship string for a specific gender (MALE or FEMALE)."""
 
-    def _get_father(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        if step:
-            return self._get_step_father(level, inlaw)
-        if inlaw and level == 1:
-            return "suegro"
-        if level < len(_father_level):
-            return _father_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_male_a):
-            return "%s abuelo%s" % (_level_name_male_a[level - 1], inlaw)
-        else:
-            return "%d-ésimo abuelo%s" % (level - 1, inlaw)
+        inlaw = in_law_a or in_law_b
 
-    def _get_step_son(self, level, inlaw=""):
-        """Internal spanish method to create relation string"""
-        if level < len(_step_son_level):
-            return _step_son_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_male_a):
-            return "%s nietastro%s" % (_level_name_male_a[level - 1], inlaw)
-        else:
-            return "%d-ésimo nietastro%s" % (level - 1, inlaw)
+        # In-law special terms for level-1 relationships (suegro, yerno, cuñado)
+        if inlaw:
+            if Ga == 1 and Gb == 0:
+                term = _pick_gender("suegro", "suegra", gender)
+                return _step_form(term, gender) if step else term
+            if Ga == 0 and Gb == 1:
+                term = _pick_gender("yerno", "nuera", gender)
+                return _step_form(term, gender) if step else term
+            if Ga == 1 and Gb == 1:
+                term = _pick_gender("cuñado", "cuñada", gender)
+                return _step_form(term, gender) if step else term
 
-    def _get_son(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        if step:
-            return self._get_step_son(level, inlaw)
-        if inlaw and level == 1:
-            return "yerno"
-        if level < len(_son_level):
-            return _son_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_male_a):
-            return "%s nieto%s" % (_level_name_male_a[level - 1], inlaw)
-        else:
-            return "%d-ésimo nieto%s" % (level - 1, inlaw)
-
-    def _get_step_mother(self, level, inlaw=""):
-        """Internal spanish method to create relation string"""
-        if level < len(_step_mother_level):
-            return _step_mother_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_female):
-            return "%s abuelastra%s" % (_level_name_female[level - 1], inlaw)
-        else:
-            return "%d-ésima abuelastra%s" % (level - 1, inlaw)
-
-    def _get_mother(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        if step:
-            return self._get_step_mother(level, inlaw)
-        if inlaw and level == 1:
-            return "suegra"
-        if level < len(_mother_level):
-            return _mother_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_female):
-            return "%s abuela%s" % (_level_name_female[level - 1], inlaw)
-        else:
-            return "%d-ésima abuela%s" % (level - 1, inlaw)
-
-    def _get_step_daughter(self, level, inlaw=""):
-        """Internal spanish method to create relation string"""
-        if level < len(_step_daughter_level):
-            return _step_daughter_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_female):
-            return "%s nietastra%s" % (_level_name_female[level - 1], inlaw)
-        else:
-            return "%d-ésima nietastra%s" % (level - 1, inlaw)
-
-    def _get_daughter(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        if step:
-            return self._get_step_daughter(level, inlaw)
-        if inlaw and level == 1:
-            return "nuera"
-        if level < len(_daughter_level):
-            return _daughter_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_female):
-            return "%s nieta%s" % (_level_name_female[level - 1], inlaw)
-        else:
-            return "%d-ésima nieta%s" % (level - 1, inlaw)
-
-    def _get_parent_unknown(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        return "%s o %s" % (
-            self._get_father(level, step, inlaw),
-            self._get_mother(level, step, inlaw),
-        )
-
-    def _get_child_unknown(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        return "%s o %s" % (
-            self._get_son(level, step, inlaw),
-            self._get_daughter(level, step, inlaw),
-        )
-
-    def _get_step_aunt(self, level, inlaw=""):
-        """Internal spanish method to create relation string"""
-        if level < len(_step_sister_level):
-            return _step_sister_level[level] % {"inlaw": inlaw}
-        elif (level - 2) < len(_level_name_female):
-            return "%s tía abuelastra%s" % (_level_name_female[level - 2], inlaw)
-        else:
-            return "%d-ésima tia abuelastra%s" % (level - 2, inlaw)
-
-    def _get_aunt(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        if step:
-            return self._get_step_aunt(level, inlaw)
-        if inlaw and level == 1:
-            return "cuñada"
-        if level < len(_sister_level):
-            return _sister_level[level] % {"inlaw": inlaw}
-        elif (level - 2) < len(_level_name_female):
-            return "%s tía abuela%s" % (_level_name_female[level - 2], inlaw)
-        else:
-            return "%d-ésima tía abuela%s" % (level - 2, inlaw)
-
-    def _get_distant_aunt(self, level, step, inlaw):
-        if step:
-            base = "tiastra"
-        else:
-            base = "tía"
-        if level < len(_level_name_female):
-            return "%s %s" % (base, _level_name_female[level])
-        else:
-            return "%s %d-ésima" % (base, level)
-
-    def _get_step_uncle(self, level, inlaw=""):
-        """Internal spanish method to create relation string"""
-        if level < len(_step_brother_level):
-            return _step_brother_level[level] % {"inlaw": inlaw}
-        elif (level - 2) < len(_level_name_male_a):
-            return "%s tío abuelastro%s" % (_level_name_male_a[level - 2], inlaw)
-        else:
-            return "%d-ésimo tío abuelastro%s" % (level - 2, inlaw)
-
-    def _get_uncle(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        if step:
-            return self._get_step_uncle(level, inlaw)
-        if inlaw and level == 1:
-            return "cuñado"
-        if level < len(_brother_level):
-            return _brother_level[level] % {"inlaw": inlaw}
-        elif (level - 2) < len(_level_name_male_a):
-            return "%s tío abuelo%s" % (_level_name_male_a[level - 2], inlaw)
-        else:
-            return "%d-ésimo tío abuelo%s" % (level - 2, inlaw)
-
-    def _get_distant_uncle(self, level, step="", inlaw=""):
-        if step:
-            base = "tiastro"
-        else:
-            base = "tío"
-        if level < len(_level_name_male):
-            return "%s %s" % (base, _level_name_male[level])
-        else:
-            return "%s %d-ésimo" % (base, level)
-
-    def _get_step_nephew(self, level, inlaw=""):
-        """Internal spanish method to create relation string"""
-        if level < len(_step_nephew_level):
-            return _step_nephew_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_male_a):
-            return "%s tío sobrinastro%s" % (_level_name_male_a[level - 1], inlaw)
-        else:
-            return "%d-ésimo tío sobrinastro%s" % (level - 1, inlaw)
-
-    def _get_nephew(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        if step:
-            return self._get_step_nephew(level, inlaw)
-        if level < len(_nephew_level):
-            return _nephew_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_male_a):
-            return "%s sobrino nieto%s" % (_level_name_male_a[level - 1], inlaw)
-        else:
-            return "%d-ésimo sobrino nieto%s" % (level - 1, inlaw)
-
-    def _get_distant_nephew(self, level, step, inlaw):
-        if step:
-            base = "sobrinastro"
-        else:
-            base = "sobrino"
-        if level < len(_level_name_male):
-            return "%s %s" % (base, _level_name_male[level])
-        else:
-            return "%s %d-ésimo" % (base, level)
-
-    def _get_step_niece(self, level, inlaw=""):
-        """Internal spanish method to create relation string"""
-        if level < len(_step_niece_level):
-            return _step_niece_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_female):
-            return "%s tía sobrinastra%s" % (_level_name_female[level - 1], inlaw)
-        else:
-            return "%d-ésima tía sobrinastra%s" % (level - 1, inlaw)
-
-    def _get_niece(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        if step:
-            return self._get_step_niece(level, inlaw)
-        if level < len(_niece_level):
-            return _niece_level[level] % {"inlaw": inlaw}
-        elif (level - 1) < len(_level_name_female):
-            return "%s sobrina nieta%s" % (_level_name_female[level - 1], inlaw)
-        else:
-            return "%d-ésima sobrina nieta%s" % (level - 1, inlaw)
-
-    def _get_distant_niece(self, level, step, inlaw):
-        if step:
-            base = "sobrinastra"
-        else:
-            base = "sobrina"
-        if level < len(_level_name_female):
-            return "%s %s" % (base, _level_name_female[level])
-        else:
-            return "%s %d-ésima" % (base, level)
-
-    def _get_male_cousin(
-        self, level, removed, lower=False, step="", inlaw="", gender_c=UNKNOWN
-    ):
-        """Internal spanish method to create relation string"""
-        # primastro is an invention and is not backed by DRAE
-        if step:
-            prim = "primastro"
-        else:
-            prim = "primo"
-        if removed == 0:
-            if level == 1:
-                return "%s hermano%s" % (prim, inlaw)
-            elif level < len(_level_name_male):
-                return "%s %s%s" % (prim, _level_name_male[level], inlaw)
-            else:
-                return "%s %d-ésimo%s" % (prim, level, inlaw)
-        elif removed > 0 and lower:
-            if gender_c == MALE:
-                return "%s de un %s" % (
-                    self._get_son(removed, step, inlaw),
-                    self._get_male_cousin(level, 0, lower, step, inlaw, gender_c),
-                )
-            elif gender_c == FEMALE:
-                return "%s de una %s" % (
-                    self._get_son(removed, step, inlaw),
-                    self._get_female_cousin(level, 0, lower, step, inlaw, gender_c),
-                )
-            else:
-                return "%s de un %s" % (
-                    self._get_son(removed, step, inlaw),
-                    self._get_male_cousin(level, 0, lower, step, inlaw, gender_c),
-                )
-        elif removed > 0 and not lower:
-            if gender_c == MALE:
-                return "%s de un %s" % (
-                    self._get_male_cousin(level, 0, lower, step, inlaw, gender_c),
-                    self._get_father(removed, step, inlaw),
-                )
-            elif gender_c == FEMALE:
-                return "%s de una %s" % (
-                    self._get_male_cousin(level, 0, lower, step, inlaw, gender_c),
-                    self._get_mother(removed, step, inlaw),
-                )
-            else:
-                return "%s de un %s" % (
-                    self._get_male_cousin(level, 0, lower, step, inlaw, gender_c),
-                    self._get_father(removed, step, inlaw),
-                )
-
-        else:
-            return "%s %scousin%s (%d-%d)" % (
-                _level_name_male[level],
-                step,
-                inlaw,
-                removed,
-                lower,
-            )
-
-    def _get_female_cousin(
-        self, level, removed, lower=False, step="", inlaw="", gender_c=UNKNOWN
-    ):
-        """Internal spanish method to create relation string"""
-        # primastra is an invention and is not real Spanish
-        if step:
-            prim = "primastra"
-        else:
-            prim = "prima"
-        if removed == 0:
-            if level == 1:
-                return "%s hermana%s" % (prim, inlaw)
-            elif level < len(_level_name_male):
-                return "%s %s%s" % (prim, _level_name_female[level], inlaw)
-            else:
-                return "%s %d-ésima%s" % (prim, level, inlaw)
-        elif removed > 0 and lower:
-            if gender_c == MALE:
-                return "%s de un %s" % (
-                    self._get_daughter(removed, step, inlaw),
-                    self._get_male_cousin(level, 0, lower, step, inlaw, gender_c),
-                )
-            elif gender_c == FEMALE:
-                return "%s de una %s" % (
-                    self._get_daughter(removed, step, inlaw),
-                    self._get_female_cousin(level, 0, lower, step, inlaw, gender_c),
-                )
-            else:
-                return "%s de un %s" % (
-                    self._get_daughter(removed, step, inlaw),
-                    self._get_male_cousin(level, 0, lower, step, inlaw, gender_c),
-                )
-        elif removed > 0 and not lower:
-            if gender_c == MALE:
-                return "%s de un %s" % (
-                    self._get_female_cousin(level, 0, lower, step, inlaw, gender_c),
-                    self._get_father(removed, step, inlaw),
-                )
-            elif gender_c == FEMALE:
-                return "%s de una %s" % (
-                    self._get_female_cousin(level, 0, lower, step, inlaw, gender_c),
-                    self._get_mother(removed, step, inlaw),
-                )
-            else:
-                return "%s de un %s" % (
-                    self._get_female_cousin(level, 0, lower, step, inlaw, gender_c),
-                    self._get_father(removed, step, inlaw),
-                )
-
-        else:
-            return "%s %sprima%s (%d-%d)" % (
-                _level_name_female[level],
-                step,
-                inlaw,
-                removed,
-                lower,
-            )
-
-    def _get_sibling(self, level, step="", inlaw=""):
-        """Internal spanish method to create relation string"""
-        # TBC: inlaw is inflicted, it is probably better to do away with this method
-        # and do both calls from the caller (would need inlaw_MALE and inlaw_FEMALE,
-        # but is feasible
-        return "%s o %s" % (
-            self._get_uncle(level, step, inlaw),
-            self._get_aunt(level, step, inlaw),
-        )
-
-    def get_plural_relationship_string(
-        self,
-        Ga,
-        Gb,
-        reltocommon_a="",
-        reltocommon_b="",
-        only_birth=True,
-        in_law_a=False,
-        in_law_b=False,
-    ):
-        """Spanish version of method to create relation string - check relationship.py"""
-
-        rel_str = "parientes lejanos"
         if Ga == 0:
-            # These are descendants
-            if Gb < len(_children_level):
-                rel_str = _children_level[Gb]
-            elif (Gb - 1) < len(_level_name_plural):
-                rel_str = "%s nietos" % (_level_name_plural[Gb - 1])
-            else:
-                rel_str = "%d-ésimos nietos" % (Gb - 1)
-        elif Gb == 0:
-            # These are parents/grand parents
-            if Ga < len(_parents_level):
-                rel_str = _parents_level[Ga]
-            elif (Ga - 1) < len(_level_name_plural):
-                rel_str = "%s abuelos" % (_level_name_plural[Ga - 1])
-            else:
-                rel_str = "%d-ésimos abuelos" % (Ga - 1)
-        elif Gb == 1:
-            # These are siblings/aunts/uncles
-            if Ga < len(_siblings_level):
-                rel_str = _siblings_level[Ga]
-            elif (Ga - 1) < len(_level_name_plural):
-                rel_str = "%s tíos abuelos" % (_level_name_plural[Ga - 1])
-            else:
-                rel_str = "%s-ésimos tíos abuelos" % (Ga - 1)
-        elif Ga == 1:
-            # These are nieces/nephews
-            if Gb < len(_nephews_nieces_level):
-                rel_str = _nephews_nieces_level[Gb]
-            elif (Gb - 1) < len(_level_name_plural):
-                rel_str = "%s sobrinos nietos" % (_level_name_plural[Gb - 1])
-            else:
-                rel_str = "%s-ésimos sobrinos nietos" % (Gb - 1)
-        elif Ga > 1 and Ga == Gb:
-            # These are cousins in the same generation
-            if Ga == 2:
-                rel_str = "primos hermanos"
-            elif (Ga - 1) < len(_level_name_plural):
-                rel_str = "primos %s" % (_level_name_plural[Ga - 1])
-            else:
-                rel_str = "primos %d-ésimos" % (Ga - 1)
-        elif Ga == Gb + 1:
-            # These are distant uncles/aunts
-            if Gb < len(_level_name_plural):
-                rel_str = "tíos %s" % (_level_name_plural[Gb])
-            else:
-                rel_str = "tíos %d-ésimos" % (Gb)
-        elif Ga + 1 == Gb:
-            # These are distant nephews/nieces
-            if Gb - 1 < len(_level_name_plural):
-                rel_str = "sobrinos %s" % (_level_name_plural[Gb - 1])
-            else:
-                rel_str = "sobrinos %d-ésimos" % (Gb - 1)
-        elif Ga > 1 and Ga > Gb:
-            # These are cousins in different generations with the second person
-            # being in a higher generation from the common ancestor than the
-            # first person.
-            rel_str = "%s de los %s" % (
-                self.get_plural_relationship_string(0, Gb),
-                self.get_plural_relationship_string(Ga, 0),
-            )
-        elif Gb > 1 and Gb > Ga:
-            # These are cousins in different generations with the second person
-            # being in a lower generation from the common ancestor than the
-            # first person.
-            rel_str = "%s de los %s" % (
-                self.get_plural_relationship_string(0, Gb),
-                self.get_plural_relationship_string(Ga, 0),
+            if Gb <= 1:
+                term = _pick_gender("hijo", "hija", gender)
+                return _build_simple_term(term, step, inlaw, gender)
+            term = _get_descendant_name(Gb, gender)
+            if step:
+                term = _step_form(term, gender)
+            return _add_inlaw(term, inlaw, gender)
+
+        if Gb == 0:
+            if Ga <= 1:
+                term = _pick_gender("padre", "madre", gender)
+                return _build_simple_term(term, step, inlaw, gender)
+            term = _get_ancestor_name(Ga, gender)
+            if step:
+                term = _step_form(term, gender)
+            return _add_inlaw(term, inlaw, gender)
+
+        # Sibling: handles Ga=Gb=1
+        if Gb == 1 and Ga == 1:
+            return _build_simple_term(
+                _pick_gender("hermano", "hermana", gender), step, inlaw, gender
             )
 
-        if in_law_b == True:
-            rel_str = "cónyuges de los %s" % rel_str
+        # Uncle/aunt: Ga >= 2, Gb = 1
+        if Gb == 1:
+            return _build_tio(Ga - 1, 1, gender, step, inlaw)
 
-        return rel_str
+        # Nephew/niece: Ga = 1, Gb >= 2
+        if Ga == 1:
+            return _build_sobrino(Gb - 1, 1, gender, step, inlaw)
+
+        # Cousins same generation
+        if Ga == Gb:
+            return _build_cousin(Ga - 1, gender, step, inlaw)
+
+        # Distant uncle/aunt
+        if Ga > Gb:
+            return _build_tio(Ga - Gb, Gb, gender, step, inlaw)
+
+        # Distant nephew/niece
+        if Gb > Ga:
+            return _build_sobrino(Gb - Ga, Ga, gender, step, inlaw)
+
+        return "pariente lejano"
 
     def get_single_relationship_string(
         self,
@@ -786,191 +619,124 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         in_law_a=False,
         in_law_b=False,
     ):
-        """Spanish version of method to create relation string - check relationship.py"""
+        """Spanish version of get_single_relationship_string.
 
-        if only_birth:
-            step = ""
-        else:
-            step = self.STEP
+        Implements a unified programmatic model:
+        - Ga=0: direct descendant of ego
+        - Gb=0: direct ancestor of ego
+        - Ga=Gb: same-generation cousins
+        - Ga>Gb: tio/a type relation
+        - Gb>Ga: sobrino/a type relation
+        """
 
-        if in_law_a or in_law_b:
-            if gender_b == FEMALE:
-                inlaw = " política"
-            else:
-                inlaw = " político"
-        else:
-            inlaw = ""
+        step = "" if only_birth else self.STEP
 
-        rel_str = "%spariente%s lejano" % (step, inlaw)
+        if Ga == 0 and Gb == 0:
+            return "la misma persona"
+
+        if gender_b == MALE:
+            return self._get_rel_for_gender(
+                Ga, Gb, MALE, step, in_law_a, in_law_b
+            )
+        if gender_b == FEMALE:
+            return self._get_rel_for_gender(
+                Ga, Gb, FEMALE, step, in_law_a, in_law_b
+            )
+        return "%s o %s" % (
+            self._get_rel_for_gender(Ga, Gb, MALE, step, in_law_a, in_law_b),
+            self._get_rel_for_gender(Ga, Gb, FEMALE, step, in_law_a, in_law_b),
+        )
+
+    def get_plural_relationship_string(
+        self,
+        Ga,
+        Gb,
+        reltocommon_a="",
+        reltocommon_b="",
+        only_birth=True,
+        in_law_a=False,
+        in_law_b=False,
+    ):
+        """Spanish version of get_plural_relationship_string."""
+
+        PLURAL_KEY = "PLURAL"
 
         if Ga == 0:
-            # b is descendant of a
-            if Gb == 0:
-                rel_str = "la misma persona"
-            elif gender_b == MALE:
-                rel_str = self._get_son(Gb, step, inlaw)
-            elif gender_b == FEMALE:
-                rel_str = self._get_daughter(Gb, step, inlaw)
+            if Gb < len(_descendant_plural) and _descendant_plural[Gb]:
+                rel_str = _descendant_plural[Gb]
+            elif (Gb - 1) < len(_ordinal_plural):
+                rel_str = "%s nietos" % _ordinal_plural[Gb - 1]
             else:
-                rel_str = self._get_child_unknown(Gb, step, inlaw)
+                rel_str = "%d-ésimos nietos" % (Gb - 1)
+            rel_str = _pluralize_gender(rel_str)
+
         elif Gb == 0:
-            # b is parents/grand parent of a
-            if gender_b == MALE:
-                rel_str = self._get_father(Ga, step, inlaw)
-            elif gender_b == FEMALE:
-                rel_str = self._get_mother(Ga, step, inlaw)
+            if Ga < len(_ancestor_plural) and _ancestor_plural[Ga]:
+                rel_str = _ancestor_plural[Ga]
+            elif (Ga - 1) < len(_ordinal_plural):
+                rel_str = "%s abuelos" % _ordinal_plural[Ga - 1]
             else:
-                rel_str = self._get_parent_unknown(Ga, step, inlaw)
-        elif Gb == 1:
-            # b is sibling/aunt/uncle of a
-            if gender_b == MALE:
-                rel_str = self._get_uncle(Ga, step, inlaw)
-            elif gender_b == FEMALE:
-                rel_str = self._get_aunt(Ga, step, inlaw)
-            else:
-                rel_str = self._get_sibling(Ga, step, inlaw)
-        elif Ga == 1:
-            # b is niece/nephew of a
-            if gender_b == MALE:
-                rel_str = self._get_nephew(Gb - 1, step, inlaw)
-            elif gender_b == FEMALE:
-                rel_str = self._get_niece(Gb - 1, step, inlaw)
-            else:
-                rel_str = "%s o %s" % (
-                    self._get_nephew(Gb - 1, step, inlaw),
-                    self._get_niece(Gb - 1, step, inlaw),
-                )
+                rel_str = "%d-ésimos abuelos" % (Ga - 1)
+            rel_str = _pluralize_gender(rel_str)
+
         elif Ga == Gb:
-            # a and b cousins in the same generation
-            if gender_b == MALE:
-                rel_str = self._get_male_cousin(
-                    Ga - 1, 0, lower=False, step=step, inlaw=inlaw
-                )
-            elif gender_b == FEMALE:
-                rel_str = self._get_female_cousin(
-                    Ga - 1, 0, lower=False, step=step, inlaw=inlaw
-                )
+            if Ga == 1:
+                rel_str = "hermanos/as"
+            elif Ga == 2:
+                rel_str = "primos/as hermanos/as"
+            elif (Ga - 1) < len(_ordinal_plural):
+                rel_str = "primos/as %s" % _pluralize_gender(_ordinal_plural[Ga - 1])
             else:
-                rel_str = "%s o %s" % (
-                    self._get_male_cousin(Ga - 1, 0, step=step, inlaw=inlaw),
-                    self._get_female_cousin(Ga - 1, 0, step=step, inlaw=inlaw),
-                )
-        elif Ga == Gb + 1:
-            if gender_b == Person.MALE:
-                rel_str = self._get_distant_uncle(Gb, step, inlaw)
-            elif gender_b == Person.FEMALE:
-                rel_str = self._get_distant_aunt(Gb, step, inlaw)
-            else:
-                rel_str = "%s o %s" % (
-                    self._get_distant_uncle(Gb, step, inlaw),
-                    self._get_distant_aunt(Gb, step, inlaw),
-                )
-        elif Ga + 1 == Gb:
-            if gender_b == Person.MALE:
-                rel_str = self._get_distant_nephew(Gb - 1, step, inlaw)
-            elif gender_b == Person.FEMALE:
-                rel_str = self._get_distant_niece(Gb - 1, step, inlaw)
-            else:
-                rel_str = "%s o %s" % (
-                    self._get_distant_nephew(Gb - 1, step, inlaw),
-                    self._get_distant_niece(Gb - 1, step, inlaw),
-                )
+                rel_str = "primos/as %d-ésimos/as" % (Ga - 1)
+
         elif Ga > Gb:
-            # These are cousins in different generations with the second person
-            # being in a higher generation from the common ancestor than the
-            # first person.
-            # We need to know the gender of the ancestor of the first person who is on
-            # the same generation as the other person
-            if reltocommon_a[Ga - Gb - 1] == "f":
-                gender_c = MALE
-            elif reltocommon_a[Ga - Gb - 1] == "m":
-                gender_c = FEMALE
-            else:
-                gender_c = UNKNOWN
-            if gender_b == MALE:
-                rel_str = self._get_male_cousin(
-                    Gb - 1,
-                    Ga - Gb,
-                    lower=False,
-                    step=step,
-                    inlaw=inlaw,
-                    gender_c=gender_c,
-                )
-            elif gender_b == FEMALE:
-                rel_str = self._get_female_cousin(
-                    Gb - 1,
-                    Ga - Gb,
-                    lower=False,
-                    step=step,
-                    inlaw=inlaw,
-                    gender_c=gender_c,
-                )
-            else:
-                rel_str = "%s o %s" % (
-                    self._get_male_cousin(
-                        Gb - 1, Ga - Gb, lower=False, step=step, inlaw=inlaw
-                    ),
-                    self._get_female_cousin(
-                        Gb - 1, Ga - Gb, lower=False, step=step, inlaw=inlaw
-                    ),
-                )
+            base = _get_ancestor_base(Ga - Gb, PLURAL_KEY)
+            level_ord = _get_ancestor_level_ordinal(Ga - Gb, PLURAL_KEY)
+            lateral_ord = _get_ordinal(Gb, PLURAL_KEY)
+            parts = []
+            if level_ord:
+                parts.append(_pluralize_gender(level_ord))
+            parts.append("tíos/as")
+            if base:
+                parts.append(_pluralize_gender(base))
+            if lateral_ord:
+                parts.append(_pluralize_gender(lateral_ord))
+            rel_str = " ".join(parts)
 
         elif Gb > Ga:
-            # These are cousins in different generations with the second person
-            # being in a lower generation from the common ancestor than the
-            # first person.
-            # We need to know the gender of the person who is an ancestor of the second person and
-            # is on the same generation that the first person
-            if reltocommon_b[Gb - Ga - 1] == "f":
-                gender_c = MALE
-            elif reltocommon_b[Gb - Ga - 1] == "m":
-                gender_c = FEMALE
-            else:
-                gender_c = UNKNOWN
-            if gender_b == MALE:
-                rel_str = self._get_male_cousin(
-                    Ga - 1,
-                    Gb - Ga,
-                    lower=True,
-                    step=step,
-                    inlaw=inlaw,
-                    gender_c=gender_c,
-                )
-            elif gender_b == FEMALE:
-                rel_str = self._get_female_cousin(
-                    Ga - 1,
-                    Gb - Ga,
-                    lower=True,
-                    step=step,
-                    inlaw=inlaw,
-                    gender_c=gender_c,
-                )
-            else:
-                rel_str = "%s o %s" % (
-                    self._get_male_cousin(
-                        Ga - 1, Gb - Ga, lower=True, step=step, inlaw=inlaw
-                    ),
-                    self._get_female_cousin(
-                        Ga - 1, Gb - Ga, lower=True, step=step, inlaw=inlaw
-                    ),
-                )
+            base = _get_descendant_base(Gb - Ga, PLURAL_KEY)
+            lateral_ord = _get_ordinal(Ga, PLURAL_KEY)
+            parts = ["sobrinos/as"]
+            if base:
+                parts.append(_pluralize_gender(base))
+            if lateral_ord:
+                parts.append(_pluralize_gender(lateral_ord))
+            rel_str = " ".join(parts)
+
+        else:
+            rel_str = "parientes lejanos"
+
+        if in_law_b:
+            rel_str = "cónyuges de los %s" % rel_str
 
         return rel_str
 
     def get_sibling_relationship_string(
         self, sib_type, gender_a, gender_b, in_law_a=False, in_law_b=False
     ):
-        """ """
+        """Spanish version of get_sibling_relationship_string."""
 
+        inlaw = in_law_a or in_law_b
         rel_str = ""
+
         if gender_b != FEMALE:
             if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
                 rel_str = "hermano"
-            elif sib_type == self.HALF_SIB_MOTHER or sib_type == self.HALF_SIB_FATHER:
+            elif sib_type in (self.HALF_SIB_MOTHER, self.HALF_SIB_FATHER):
                 rel_str = "medio hermano"
             elif sib_type == self.STEP_SIB:
                 rel_str = "hermanastro"
-            if in_law_a or in_law_b:
+            if inlaw:
                 rel_str += " político"
 
         if gender_b == UNKNOWN:
@@ -979,14 +745,27 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if gender_b != MALE:
             if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
                 rel_str += "hermana"
-            elif sib_type == self.HALF_SIB_MOTHER or sib_type == self.HALF_SIB_FATHER:
+            elif sib_type in (self.HALF_SIB_MOTHER, self.HALF_SIB_FATHER):
                 rel_str += "medio hermana"
             elif sib_type == self.STEP_SIB:
                 rel_str += "hermanastra"
-            if in_law_a or in_law_b:
+            if inlaw:
                 rel_str += " política"
 
         return rel_str
+
+    def get_partner_relationship_string(self, spouse_type, gender_a, gender_b):
+        """Spanish version of get_partner_relationship_string.
+
+        Uses a declarative lookup table (_PARTNER_TERMS) instead of
+        if/elif chains.
+        """
+        if not spouse_type:
+            return ""
+        entry = _PARTNER_TERMS.get(spouse_type)
+        if entry is None:
+            return _pick_gender("expareja", "expareja", gender_b)
+        return entry.get(gender_b, entry.get(MALE, "expareja"))
 
 
 if __name__ == "__main__":
