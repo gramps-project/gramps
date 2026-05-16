@@ -259,12 +259,16 @@ class AllRelReport:
             birth = self.rel_class.only_birth(
                 relation[2]
             ) and self.rel_class.only_birth(relation[4])
-            if birth:
+            if birth and len(relation[2]) and len(relation[4]):
                 if (relation[2][-1], relation[4][-1]) in (
-                    (self.rel_class.REL_FAM_BIRTH_MOTH_ONLY,
-                     self.rel_class.REL_FAM_BIRTH_FATH_ONLY),
-                    (self.rel_class.REL_FAM_BIRTH_FATH_ONLY,
-                     self.rel_class.REL_FAM_BIRTH_MOTH_ONLY)
+                    (
+                        self.rel_class.REL_FAM_BIRTH_MOTH_ONLY,
+                        self.rel_class.REL_FAM_BIRTH_FATH_ONLY,
+                    ),
+                    (
+                        self.rel_class.REL_FAM_BIRTH_FATH_ONLY,
+                        self.rel_class.REL_FAM_BIRTH_MOTH_ONLY,
+                    ),
                 ):
                     birth = False
             distorig = len(relation[4])
