@@ -97,8 +97,58 @@ class PyPIInstallError(Exception):
 #
 # -------------------------------------------------------------------------
 def _ssl_context() -> ssl.SSLContext:
-    """Return an SSL context that trusts the system certificate store."""
-    return ssl.create_default_context()
+    """
+    Return an SSL context that trusts the system certificate store.
+
+    On macOS the standard Python.org installer does not wire OpenSSL to the
+    macOS Keychain, so ``ssl.create_default_context()`` alone cannot verify
+    PyPI's certificate.  If the ``certifi`` package is importable its CA
+    bundle is used instead, which resolves the issue transparently.
+    """
+    try:
+        import certifi  # optional; absent in frozen bundles without certifi
+
+        return ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        return ssl.create_default_context()
+
+
+def _ssl_cert_hint(exc: Exception) -> str:
+    """
+    Return a platform-specific hint when *exc* looks like an SSL cert error.
+
+    Returns an empty string for non-SSL errors.
+    """
+    cause = getattr(exc, "reason", exc)
+    if not (
+        isinstance(cause, ssl.SSLError) and "CERTIFICATE_VERIFY_FAILED" in str(cause)
+    ):
+        return ""
+    if platform.system() == "Darwin":
+        return _(
+            "\n\nOn macOS, Python may not have access to the system SSL "
+            "certificates.  Try one of the following:\n"
+            "  1. python.org installer: run 'Install Certificates.command' "
+            "in your Python installation folder "
+            "(e.g. /Applications/Python 3.x/).\n"
+            "  2. pyenv / Homebrew / non-system Python: set the SSL_CERT_FILE "
+            "environment variable before starting Gramps:\n"
+            "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
+            "  3. Install the certifi package:  pip install certifi"
+        )
+    return _(
+        "\n\nSSL certificate verification failed.  This is common with "
+        "non-system Python installations (pyenv, conda) whose bundled "
+        "OpenSSL does not know where system certificates are stored.  "
+        "Try one of the following:\n"
+        "  1. Install the certifi package:  pip install certifi\n"
+        "  2. Set SSL_CERT_FILE to your system CA bundle before starting "
+        "Gramps, e.g.:\n"
+        "       export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt  "
+        "(Debian/Ubuntu)\n"
+        "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    "
+        "(RHEL/Fedora)"
+    )
 
 
 def _compatible_tags() -> tuple[set[str], set[str], set[str]]:
@@ -211,6 +261,7 @@ def _pypi_metadata(package: str) -> dict:
     except Exception as exc:
         raise PyPIInstallError(
             _("Cannot reach PyPI for package '%s': %s") % (package, exc)
+            + _ssl_cert_hint(exc)
         ) from exc
     return json.loads(data)
 
@@ -412,7 +463,12 @@ def _install_one(
     expected_sha256 = file_info.get("digests", {}).get("sha256", "")
 
     LOG.debug("Downloading %s", url)
-    data = _fetch_url(url)
+    try:
+        data = _fetch_url(url)
+    except Exception as exc:
+        raise PyPIInstallError(
+            _("Failed to download '%s': %s") % (filename, exc) + _ssl_cert_hint(exc)
+        ) from exc
 
     if expected_sha256:
         _verify_sha256(data, expected_sha256, filename)
