@@ -175,6 +175,8 @@ _STEP_EXCEPTIONS_M = {
     "suegro": "suegrastro",
     "yerno": "yernastro",
     "cuñado": "cuñadastro",
+    "concuñado": "concuñadastro",
+    "consuegro": "consuegrastro",
 }
 _STEP_EXCEPTIONS_F = {
     "tía": "tiastra",
@@ -186,6 +188,8 @@ _STEP_EXCEPTIONS_F = {
     "suegra": "suegrastra",
     "nuera": "nuerastra",
     "cuñada": "cuñadastra",
+    "concuñada": "concuñadastra",
+    "consuegra": "consuegrastra",
 }
 
 # ------------------------------------------------------------------
@@ -394,6 +398,16 @@ def _step_form(word, gender):
     return word
 
 
+def _has_family_marker(reltocommon):
+    """Check if a reltocommon string indicates a common-family connection.
+
+    Family markers ('a', 'A', 'b', 'c') mean the two persons share a
+    common FAMILY (e.g. their children are married) rather than a common
+    blood ancestor. Used to detect consuegro relations.
+    """
+    return bool(set(reltocommon) & {'a', 'A', 'b', 'c'})
+
+
 def _pluralize_gender(word):
     """Apply gender-disjunctive suffixes to each part of a plural word.
 
@@ -544,7 +558,8 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     def __init__(self):
         gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
-    def _get_rel_for_gender(self, Ga, Gb, gender, step, in_law_a, in_law_b):
+    def _get_rel_for_gender(self, Ga, Gb, gender, step, in_law_a, in_law_b,
+                            is_family_connection=False):
         """Build relationship string for a specific gender (MALE or FEMALE)."""
 
         inlaw = in_law_a or in_law_b
@@ -558,8 +573,17 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 term = _pick_gender("yerno", "nuera", gender)
                 return _step_form(term, gender) if step else term
             if Ga == 1 and Gb == 1:
-                term = _pick_gender("cuñado", "cuñada", gender)
+                if in_law_a and in_law_b:
+                    term = _pick_gender("concuñado", "concuñada", gender)
+                else:
+                    term = _pick_gender("cuñado", "cuñada", gender)
                 return _step_form(term, gender) if step else term
+
+        # Consuegro: connected through children's marriage (family markers
+        # in reltocommon), not through a common blood ancestor.
+        if Ga == 1 and Gb == 1 and not inlaw and is_family_connection:
+            term = _pick_gender("consuegro", "consuegra", gender)
+            return _step_form(term, gender) if step else term
 
         if Ga == 0:
             if Gb <= 1:
@@ -634,17 +658,25 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if Ga == 0 and Gb == 0:
             return "la misma persona"
 
+        # Detect if the common connection is a family (consuegro) rather
+        # than a blood ancestor. Family markers ('a'/'A'/'b'/'c') appear
+        # in reltocommon when relations are collapsed through marriage.
+        family_connection = _has_family_marker(reltocommon_a) or \
+                            _has_family_marker(reltocommon_b)
+
         if gender_b == MALE:
             return self._get_rel_for_gender(
-                Ga, Gb, MALE, step, in_law_a, in_law_b
+                Ga, Gb, MALE, step, in_law_a, in_law_b, family_connection
             )
         if gender_b == FEMALE:
             return self._get_rel_for_gender(
-                Ga, Gb, FEMALE, step, in_law_a, in_law_b
+                Ga, Gb, FEMALE, step, in_law_a, in_law_b, family_connection
             )
         return "%s o %s" % (
-            self._get_rel_for_gender(Ga, Gb, MALE, step, in_law_a, in_law_b),
-            self._get_rel_for_gender(Ga, Gb, FEMALE, step, in_law_a, in_law_b),
+            self._get_rel_for_gender(
+                Ga, Gb, MALE, step, in_law_a, in_law_b, family_connection),
+            self._get_rel_for_gender(
+                Ga, Gb, FEMALE, step, in_law_a, in_law_b, family_connection),
         )
 
     def get_plural_relationship_string(
@@ -680,7 +712,12 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             rel_str = _pluralize_gender(rel_str)
 
         elif Ga == Gb:
-            if Ga == 1:
+            if Ga == 1 and (in_law_a or in_law_b):
+                rel_str = "concuñados" if (in_law_a and in_law_b) else "cuñados"
+            elif Ga == 1 and (_has_family_marker(reltocommon_a) or
+                              _has_family_marker(reltocommon_b)):
+                rel_str = "consuegros"
+            elif Ga == 1:
                 rel_str = "hermanos/as"
             elif Ga == 2:
                 rel_str = "primos/as hermanos/as"
