@@ -90,5 +90,7 @@ jobs:
     - uses: actions/setup-python@v5
       with:
         python-version: "3.12"
+    - name: Create minimal resource directory
+      run: python -c "import os, shutil; os.makedirs('build/share/gramps', exist_ok=True); shutil.copy('data/authors.xml', 'build/share/gramps/authors.xml')"
     - name: Run PyPI installer tests
       run: python -m unittest gramps.gen.utils.test.pypi_test -v
