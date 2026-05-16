@@ -28,6 +28,7 @@
 import traceback
 import os
 from html import escape
+import subprocess
 import threading
 import sys
 import importlib
@@ -94,6 +95,11 @@ from gramps.gui.widgets import BasicLabel, SimpleButton
 from gramps.gen.utils.requirements import Requirements
 from gramps.gen.utils.pypi import install_package, PyPIInstallError
 from gramps.gen.const import USER_PLUGINS, LIB_PATH
+
+
+def _is_frozen() -> bool:
+    """Return True when running inside a cx_Freeze or .app bundle."""
+    return bool(getattr(sys, "frozen", False))
 
 
 def display_message(message):
@@ -290,8 +296,28 @@ class AddonRow(Gtk.ListBoxRow):
         # Install required modules
         for package in self.req.install(addon):
             try:
-                install_package(package, LIB_PATH)
-            except PyPIInstallError as err:
+                if _is_frozen():
+                    # cx_Freeze / .app: sys.executable is not a usable Python
+                    # interpreter, so pip subprocess would fail.  Use the
+                    # stdlib wheel installer which handles compiled wheels for
+                    # Windows and macOS bundles.
+                    install_package(package, LIB_PATH)
+                else:
+                    # Source, snap, flatpak: pip is available and handles
+                    # compiled packages for all platforms including Linux.
+                    subprocess.check_output(
+                        [
+                            sys.executable,
+                            "-m",
+                            "pip",
+                            "install",
+                            "--target",
+                            LIB_PATH,
+                            package,
+                        ],
+                        stderr=subprocess.STDOUT,
+                    )
+            except (PyPIInstallError, subprocess.CalledProcessError) as err:
                 button.set_sensitive(False)
                 InfoDialog(
                     _("Module installation failed"),

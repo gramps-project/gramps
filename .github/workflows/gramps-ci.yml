@@ -77,3 +77,18 @@ jobs:
         export GDK_BACKEND=-
         export GRAMPS_RESOURCES=build/share
         python3 -m unittest discover -p "*_test.py"
+
+  pypi-installer:
+    name: PyPI installer tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, windows-latest, macos-latest]
+    steps:
+    - uses: actions/checkout@v6
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - name: Run PyPI installer tests
+      run: python -m unittest gramps.gen.utils.test.pypi_test -v

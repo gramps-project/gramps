@@ -19,19 +19,31 @@
 #
 
 """
-Minimal pure-Python wheel installer for PyPI packages.
+Stdlib-only wheel installer for PyPI packages.
 
-Installs pure-Python (py3-none-any) wheels from PyPI into a target directory
-using only the Python standard library.  No pip, no certifi, no external
-dependencies.  SSL uses the system trust store via ssl.create_default_context().
+Downloads and installs wheels from PyPI into a target directory using only the
+Python standard library.  No pip, no certifi, no external dependencies.  SSL
+uses the system trust store via ssl.create_default_context().
+
+This installer is used in two distinct situations:
+
+* **Frozen bundles** (cx_Freeze Windows AIO, macOS .app): pip is not available
+  as a subprocess.  Both pure-Python and compiled wheels are supported; the
+  compiled-wheel path selects the best wheel for the current Python version and
+  platform (Windows ``win_amd64``/``win_arm64``/``win32``; macOS
+  ``macosx_X_Y_arm64|x86_64|universal2``).
+
+* **Source / snap / flatpak installs**: pip is available and is used instead
+  (see ``gramps/gui/plug/_windows.py``).  ``install_package()`` is not called
+  in this code path.
 
 Limitations:
-  - Pure-Python wheels only (tag ``py3-none-any`` or ``py2.py3-none-any``).
-    Compiled extensions (.so / .pyd) are not supported.
   - No version-conflict resolution across the full dependency graph.
     Direct dependencies of the requested package are installed; transitive
     conflicts are not detected.
   - No support for VCS URLs, local paths, or extras.
+  - Compiled wheels are only matched for Windows and macOS; Linux manylinux/
+    musllinux selection is not implemented (use pip on Linux instead).
 """
 
 # -------------------------------------------------------------------------
@@ -45,7 +57,10 @@ import importlib
 import io
 import json
 import logging
+import platform
+import re
 import ssl
+import sys
 import urllib.request
 import zipfile
 
@@ -62,6 +77,9 @@ LOG = logging.getLogger(__name__)
 
 _PYPI_JSON_URL = "https://pypi.org/pypi/{package}/json"
 _PURE_TAGS = {"py3-none-any", "py2.py3-none-any"}
+
+# Cached result of _compatible_tags() so it is only computed once.
+_COMPAT_TAGS: tuple[set[str], set[str], set[str]] | None = None
 
 
 # -------------------------------------------------------------------------
@@ -81,6 +99,100 @@ class PyPIInstallError(Exception):
 def _ssl_context() -> ssl.SSLContext:
     """Return an SSL context that trusts the system certificate store."""
     return ssl.create_default_context()
+
+
+def _compatible_tags() -> tuple[set[str], set[str], set[str]]:
+    """
+    Return (python_tags, abi_tags, platform_tags) for the running interpreter.
+
+    Used to select compiled wheels on platforms where pip is unavailable
+    (cx_Freeze Windows AIO, macOS .app bundles).  On Linux the caller should
+    prefer pip; bare ``linux_{arch}`` tags are included only as a fallback.
+    """
+    global _COMPAT_TAGS
+    if _COMPAT_TAGS is not None:
+        return _COMPAT_TAGS
+
+    major = sys.version_info.major
+    minor = sys.version_info.minor
+
+    # All cp3X tags for X <= current minor (covers abi3 wheels declaring an
+    # older minimum CPython version), plus generic py3 / py2.py3 tags.
+    py_tags: set[str] = {f"py{major}", "py3", "py2.py3"}
+    for m in range(2, minor + 1):
+        py_tags.add(f"cp{major}{m}")
+        py_tags.add(f"py{major}{m}")
+
+    abi_tags: set[str] = {f"cp{major}{minor}", "abi3", "none"}
+
+    # "any" is always compatible — covers pure-Python wheels on every platform.
+    plat_tags: set[str] = {"any"}
+    system = platform.system()
+    machine = platform.machine()
+
+    if system == "Windows":
+        if machine == "AMD64":
+            plat_tags.add("win_amd64")
+        elif machine == "ARM64":
+            plat_tags.add("win_arm64")
+        else:
+            plat_tags.add("win32")
+
+    elif system == "Darwin":
+        try:
+            ver_str = platform.mac_ver()[0]  # e.g. "14.4.0"
+            parts = ver_str.split(".")
+            cur_major = int(parts[0])
+            cur_minor = int(parts[1]) if len(parts) > 1 else 0
+        except (ValueError, IndexError):
+            # mac_ver() can return an empty string in some environments
+            # (Docker, certain CI setups).  Fall back to pure wheels only.
+            LOG.warning(
+                "Could not determine macOS version from platform.mac_ver(); "
+                "compiled wheels will not be matched."
+            )
+            cur_major = cur_minor = 0
+        if cur_major >= 10:
+            # universal2 wheels run on both arm64 and x86_64.
+            archs = {machine, "universal2"}
+            for arch in archs:
+                for maj in range(10, cur_major + 1):
+                    minor_start = 4 if maj == 10 else 0
+                    minor_end = cur_minor + 1 if maj == cur_major else 16
+                    for mn in range(minor_start, minor_end):
+                        plat_tags.add(f"macosx_{maj}_{mn}_{arch}")
+
+    else:
+        # Linux fallback: bare linux tag.  Callers should use pip instead for
+        # manylinux/musllinux support on non-frozen Linux installs.
+        plat_tags.add(f"linux_{machine}")
+
+    _COMPAT_TAGS = (py_tags, abi_tags, plat_tags)
+    return _COMPAT_TAGS
+
+
+def _is_compatible_wheel(file_info: dict) -> bool:
+    """
+    Return True if *file_info* describes a wheel compatible with the current
+    Python interpreter and platform.
+
+    Handles multi-tag filenames (dot-joined fields, e.g.
+    ``macosx_11_0_arm64.macosx_10_12_universal2``) by treating each
+    dot-separated token as an alternative; a wheel matches when at least one
+    token from each of the three tag fields is in the compatible set.
+    """
+    filename = file_info.get("filename", "")
+    if not filename.endswith(".whl"):
+        return False
+    parts = filename[:-4].split("-")
+    if len(parts) < 5:
+        return False
+    # Dot-joined multi-tags: any token matching is sufficient.
+    whl_py = set(parts[-3].split("."))
+    whl_abi = set(parts[-2].split("."))
+    whl_plat = set(parts[-1].split("."))
+    compat_py, compat_abi, compat_plat = _compatible_tags()
+    return bool(whl_py & compat_py and whl_abi & compat_abi and whl_plat & compat_plat)
 
 
 def _fetch_url(url: str) -> bytes:
@@ -103,28 +215,58 @@ def _pypi_metadata(package: str) -> dict:
     return json.loads(data)
 
 
+def _version_sort_key(version: str) -> tuple[int, ...]:
+    """
+    Return a numeric sort key for a version string.
+
+    Splits on dots and dashes and converts leading digit runs to ints so that
+    ``"1.10"`` sorts after ``"1.9"``.  Not fully PEP 440 compliant (pre-release
+    suffixes sort as zero) but sufficient for picking the newest release.
+    """
+    parts = []
+    for segment in re.split(r"[.\-]", version):
+        if not segment:
+            continue
+        m = re.match(r"^(\d+)", segment)
+        parts.append(int(m.group(1)) if m else 0)
+    return tuple(parts)
+
+
 def _pick_wheel(meta: dict, package: str) -> dict:
     """
-    Return the file entry for the best pure-Python wheel in *meta*.
+    Return the file entry for the best wheel in *meta* for the current platform.
 
-    Prefers the latest release; falls back to any available pure wheel.
+    Preference order: pure-Python wheel from the latest release, then a
+    platform-compatible compiled wheel from the latest release, then the same
+    two searches across older releases.
 
-    :raises PyPIInstallError: if no pure-Python wheel is found.
+    :raises PyPIInstallError: if no compatible wheel is found.
     """
+    # 1. Pure wheel in latest release.
     for file_info in meta.get("urls", []):
         if _is_pure_wheel(file_info):
             return file_info
-    # urls only covers the latest release; search all releases as fallback
-    for _version, files in reversed(list(meta.get("releases", {}).items())):
+    # 2. Compiled wheel matching the current platform in latest release.
+    for file_info in meta.get("urls", []):
+        if _is_compatible_wheel(file_info):
+            return file_info
+    # urls only covers the latest release; search all releases newest-first.
+    sorted_releases = sorted(
+        meta.get("releases", {}).items(),
+        key=lambda item: _version_sort_key(item[0]),
+        reverse=True,
+    )
+    for _version, files in sorted_releases:
+        # 3. Pure wheel in older release.
         for file_info in files:
             if _is_pure_wheel(file_info):
                 return file_info
+        # 4. Compiled wheel in older release.
+        for file_info in files:
+            if _is_compatible_wheel(file_info):
+                return file_info
     raise PyPIInstallError(
-        _(
-            "No pure-Python wheel found for '%s'. "
-            "Compiled packages cannot be installed by this installer."
-        )
-        % package
+        _("No compatible wheel found for '%s' on this platform.") % package
     )
 
 
@@ -173,6 +315,24 @@ def _wheel_metadata(whl_zip: zipfile.ZipFile) -> dict[str, str]:
     return result
 
 
+def _top_level_names(whl_zip: zipfile.ZipFile) -> list[str]:
+    """
+    Return the top-level importable package names listed in ``top_level.txt``.
+
+    Reads the ``*.dist-info/top_level.txt`` entry from a wheel zip if present.
+    Returns an empty list when the file is absent (common for modern wheels that
+    match their PyPI name exactly).
+    """
+    path = next((n for n in whl_zip.namelist() if n.endswith("/top_level.txt")), None)
+    if path is None:
+        return []
+    return [
+        line.strip()
+        for line in whl_zip.read(path).decode("utf-8", errors="replace").splitlines()
+        if line.strip()
+    ]
+
+
 def _direct_dependencies(wheel_meta: dict[str, str]) -> list[str]:
     """
     Return the list of direct dependency package names from wheel metadata.
@@ -210,8 +370,6 @@ def install_package(package: str, target: str) -> list[str]:
     Also installs unconditional direct dependencies of *package* that are
     not already importable.  Returns a list of package names that were
     installed.
-
-    Only pure-Python wheels (``py3-none-any``) are supported.
 
     :param package: PyPI package name (e.g. ``"pypdf"``).
     :param target: Filesystem path to install into (e.g. ``LIB_PATH``).
@@ -260,6 +418,18 @@ def _install_one(
         _verify_sha256(data, expected_sha256, filename)
 
     with zipfile.ZipFile(io.BytesIO(data)) as whl:
+        # Some packages have a PyPI name that differs from their importable
+        # name (e.g. "Pillow" imports as "PIL").  top_level.txt lists the
+        # actual importable names; if any are already present, skip extraction.
+        for top_name in _top_level_names(whl):
+            try:
+                importlib.import_module(top_name)
+                LOG.debug(
+                    "'%s' already importable as '%s', skipping.", package, top_name
+                )
+                return
+            except ImportError:
+                pass
         wheel_meta = _wheel_metadata(whl)
         whl.extractall(target)
 
