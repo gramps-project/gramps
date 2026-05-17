@@ -26,6 +26,7 @@
 # **********************************************
 
 import unittest
+from unittest import SkipTest
 import os
 import sys
 import re
@@ -255,6 +256,29 @@ def db_load(zipfn, self):
             else:
                 dbid = "bsddb"
 
+            # Skip when the bsddb backend cannot be loaded. bsddb is
+            # deprecated upstream — Gramps stopped requiring it at
+            # runtime when SQLite became the default in 5.0 — but the
+            # import path is preserved for users with legacy databases.
+            # The bsddb plugin needs either berkeleydb (the maintained
+            # successor) or bsddb3 (deprecated since Python 3.6,
+            # unavailable on Windows). Without one of them present,
+            # make_database raises a generic "can't load database
+            # backend" which the surrounding except-handler converts
+            # into an assertion failure — skip cleanly instead.
+            if dbid == "bsddb":
+                try:
+                    import berkeleydb  # noqa: F401
+                except ImportError:
+                    try:
+                        import bsddb3  # noqa: F401
+                    except ImportError:
+                        self.skipTest(
+                            "neither berkeleydb nor bsddb3 is "
+                            "installed — skipping legacy bsddb "
+                            "import path"
+                        )
+
             db = make_database(dbid)
             db.disable_signals()
 
@@ -270,6 +294,11 @@ def db_load(zipfn, self):
                 continue
         return db
     # Get here is there is an exception the while loop does not handle
+    except SkipTest:
+        # Re-raise so the test framework records a skip; the catch-all
+        # below would otherwise convert it into a spurious assertion
+        # failure (SkipTest is a subclass of Exception).
+        raise
     except (
         DbVersionError,
         DbPythonError,
