@@ -43,22 +43,52 @@ import gramps.gen.relationship
 # ------------------------------------------------------------------
 
 _ORD_FIRST_19_M = [
-    "primero", "segundo", "tercero", "cuarto", "quinto", "sexto",
-    "séptimo", "octavo", "noveno", "décimo",
-    "undécimo", "duodécimo",
-    "decimotercero", "decimocuarto", "decimoquinto", "decimosexto",
-    "decimoséptimo", "decimoctavo", "decimonoveno"
+    "primero",
+    "segundo",
+    "tercero",
+    "cuarto",
+    "quinto",
+    "sexto",
+    "séptimo",
+    "octavo",
+    "noveno",
+    "décimo",
+    "undécimo",
+    "duodécimo",
+    "decimotercero",
+    "decimocuarto",
+    "decimoquinto",
+    "decimosexto",
+    "decimoséptimo",
+    "decimoctavo",
+    "decimonoveno",
 ]
 
 _ORD_TENS_M = [
-    "", "décimo", "vigésimo", "trigésimo", "cuadragésimo",
-    "quincuagésimo", "sexagésimo", "septuagésimo",
-    "octogésimo", "nonagésimo", "centésimo"
+    "",
+    "décimo",
+    "vigésimo",
+    "trigésimo",
+    "cuadragésimo",
+    "quincuagésimo",
+    "sexagésimo",
+    "septuagésimo",
+    "octogésimo",
+    "nonagésimo",
+    "centésimo",
 ]
 
 _ORD_UNITS_M = [
-    "", "primero", "segundo", "tercero", "cuarto", "quinto",
-    "sexto", "séptimo", "octavo", "noveno"
+    "",
+    "primero",
+    "segundo",
+    "tercero",
+    "cuarto",
+    "quinto",
+    "sexto",
+    "séptimo",
+    "octavo",
+    "noveno",
 ]
 
 
@@ -204,7 +234,11 @@ _PARTNER_TERMS = {
     2: {MALE: "pareja", FEMALE: "pareja", UNKNOWN: "pareja"},
     6: {MALE: "expareja", FEMALE: "expareja", UNKNOWN: "expareja"},
     3: {MALE: "pareja de hecho", FEMALE: "pareja de hecho", UNKNOWN: "pareja de hecho"},
-    7: {MALE: "expareja de hecho", FEMALE: "expareja de hecho", UNKNOWN: "expareja de hecho"},
+    7: {
+        MALE: "expareja de hecho",
+        FEMALE: "expareja de hecho",
+        UNKNOWN: "expareja de hecho",
+    },
     4: {MALE: "pareja", FEMALE: "pareja", UNKNOWN: "pareja"},
 }
 
@@ -289,8 +323,11 @@ def _get_ancestor_name(n, gender):
     """
     if n <= 1:
         return ""
-    lst = _ancestor_male if gender == MALE else (
-        _ancestor_female if gender == FEMALE else _ancestor_plural)
+    lst = (
+        _ancestor_male
+        if gender == MALE
+        else (_ancestor_female if gender == FEMALE else _ancestor_plural)
+    )
     base = "abuelo" if gender == MALE else ("abuela" if gender == FEMALE else "abuelos")
     if n < len(lst) and lst[n]:
         return lst[n]
@@ -307,8 +344,11 @@ def _get_ancestor_base(n, gender):
     """
     if n <= 1:
         return ""
-    lst = _ancestor_male if gender == MALE else (
-        _ancestor_female if gender == FEMALE else _ancestor_plural)
+    lst = (
+        _ancestor_male
+        if gender == MALE
+        else (_ancestor_female if gender == FEMALE else _ancestor_plural)
+    )
     base = "abuelo" if gender == MALE else ("abuela" if gender == FEMALE else "abuelos")
     if n < len(lst) and lst[n]:
         return lst[n]
@@ -323,8 +363,11 @@ def _get_ancestor_level_ordinal(n, gender):
     """
     if n <= 1:
         return ""
-    lst = _ancestor_male if gender == MALE else (
-        _ancestor_female if gender == FEMALE else _ancestor_plural)
+    lst = (
+        _ancestor_male
+        if gender == MALE
+        else (_ancestor_female if gender == FEMALE else _ancestor_plural)
+    )
     if n < len(lst) and lst[n]:
         return ""
     ord_word = _get_ordinal(n - 1, gender)
@@ -339,8 +382,11 @@ def _get_descendant_name(n, gender):
     """
     if n <= 1:
         return ""
-    lst = _descendant_male if gender == MALE else (
-        _descendant_female if gender == FEMALE else _descendant_plural)
+    lst = (
+        _descendant_male
+        if gender == MALE
+        else (_descendant_female if gender == FEMALE else _descendant_plural)
+    )
     base = "nieto" if gender == MALE else ("nieta" if gender == FEMALE else "nietos")
     if n < len(lst) and lst[n]:
         return lst[n]
@@ -357,8 +403,11 @@ def _get_descendant_base(n, gender):
     """
     if n <= 1:
         return ""
-    lst = _descendant_male if gender == MALE else (
-        _descendant_female if gender == FEMALE else _descendant_plural)
+    lst = (
+        _descendant_male
+        if gender == MALE
+        else (_descendant_female if gender == FEMALE else _descendant_plural)
+    )
     base = "nieto" if gender == MALE else ("nieta" if gender == FEMALE else "nietos")
     if n < len(lst) and lst[n]:
         return lst[n]
@@ -369,8 +418,11 @@ def _get_descendant_level_ordinal(n, gender):
     """Return ordinal for descendant level n (no apocope, goes at end)."""
     if n <= 1:
         return ""
-    lst = _descendant_male if gender == MALE else (
-        _descendant_female if gender == FEMALE else _descendant_plural)
+    lst = (
+        _descendant_male
+        if gender == MALE
+        else (_descendant_female if gender == FEMALE else _descendant_plural)
+    )
     if n < len(lst) and lst[n]:
         return ""
     ord_word = _get_ordinal(n - 1, gender)
@@ -405,7 +457,7 @@ def _has_family_marker(reltocommon):
     common FAMILY (e.g. their children are married) rather than a common
     blood ancestor. Used to detect consuegro relations.
     """
-    return bool(set(reltocommon) & {'a', 'A', 'b', 'c'})
+    return bool(set(reltocommon) & {"a", "A", "b", "c"})
 
 
 def _pluralize_gender(word):
@@ -558,8 +610,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     def __init__(self):
         gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
-    def _get_rel_for_gender(self, Ga, Gb, gender, step, in_law_a, in_law_b,
-                            is_family_connection=False):
+    def _get_rel_for_gender(
+        self, Ga, Gb, gender, step, in_law_a, in_law_b, is_family_connection=False
+    ):
         """Build relationship string for a specific gender (MALE or FEMALE)."""
 
         inlaw = in_law_a or in_law_b
@@ -661,8 +714,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         # Detect if the common connection is a family (consuegro) rather
         # than a blood ancestor. Family markers ('a'/'A'/'b'/'c') appear
         # in reltocommon when relations are collapsed through marriage.
-        family_connection = _has_family_marker(reltocommon_a) or \
-                            _has_family_marker(reltocommon_b)
+        family_connection = _has_family_marker(reltocommon_a) or _has_family_marker(
+            reltocommon_b
+        )
 
         if gender_b == MALE:
             return self._get_rel_for_gender(
@@ -674,9 +728,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             )
         return "%s o %s" % (
             self._get_rel_for_gender(
-                Ga, Gb, MALE, step, in_law_a, in_law_b, family_connection),
+                Ga, Gb, MALE, step, in_law_a, in_law_b, family_connection
+            ),
             self._get_rel_for_gender(
-                Ga, Gb, FEMALE, step, in_law_a, in_law_b, family_connection),
+                Ga, Gb, FEMALE, step, in_law_a, in_law_b, family_connection
+            ),
         )
 
     def get_plural_relationship_string(
@@ -714,8 +770,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif Ga == Gb:
             if Ga == 1 and (in_law_a or in_law_b):
                 rel_str = "concuñados" if (in_law_a and in_law_b) else "cuñados"
-            elif Ga == 1 and (_has_family_marker(reltocommon_a) or
-                              _has_family_marker(reltocommon_b)):
+            elif Ga == 1 and (
+                _has_family_marker(reltocommon_a) or _has_family_marker(reltocommon_b)
+            ):
                 rel_str = "consuegros"
             elif Ga == 1:
                 rel_str = "hermanos/as"
