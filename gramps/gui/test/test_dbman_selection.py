@@ -24,6 +24,7 @@ from unittest.mock import MagicMock, patch
 from gi.repository import Gtk
 from gramps.gui.dbman import DbManager, NAME_COL
 
+
 class TestDbManSelection(unittest.TestCase):
     def setUp(self):
         # Mocking the dependencies of DbManager to avoid initializing the full GUI
@@ -34,15 +35,17 @@ class TestDbManSelection(unittest.TestCase):
         self.uistate.pulse_progressbar = MagicMock()
         self.dbstate = MagicMock()
         self.viewmanager = MagicMock()
-        
+
         # Patch Glade and PersistentTreeView to avoid GTK errors during init
-        with patch('gramps.gui.dbman.Glade'), \
-             patch('gramps.gui.dbman.PersistentTreeView'), \
-             patch('gramps.gui.dbman.User'), \
-             patch('gramps.gui.dbman.ManagedWindow.setup_configs'), \
-             patch('gramps.gui.dbman.DbManager._select_default'):
+        with (
+            patch("gramps.gui.dbman.Glade"),
+            patch("gramps.gui.dbman.PersistentTreeView"),
+            patch("gramps.gui.dbman.User"),
+            patch("gramps.gui.dbman.ManagedWindow.setup_configs"),
+            patch("gramps.gui.dbman.DbManager._select_default"),
+        ):
             self.dbman = DbManager(self.uistate, self.dbstate, self.viewmanager)
-            
+
         # Mock the model and selection
         self.dbman.model = MagicMock(spec=Gtk.TreeStore)
         self.dbman.selection = MagicMock()
@@ -58,14 +61,16 @@ class TestDbManSelection(unittest.TestCase):
         mock_iters = [MagicMock(), MagicMock(), MagicMock()]
         self.dbman.model.get_iter_first.return_value = mock_iters[0]
         self.dbman.model.iter_next.side_effect = [mock_iters[1], mock_iters[2], None]
-        
+
         # Mock get_value for NAME_COL
-        self.dbman.model.get_value.side_effect = lambda it, col: {
-            mock_iters[0]: "Tree A",
-            mock_iters[1]: "Tree B",
-            mock_iters[2]: "Tree C"
-        }[it] if col == NAME_COL else None
-        
+        self.dbman.model.get_value.side_effect = lambda it, col: (
+            {mock_iters[0]: "Tree A", mock_iters[1]: "Tree B", mock_iters[2]: "Tree C"}[
+                it
+            ]
+            if col == NAME_COL
+            else None
+        )
+
         # Mock get_path with deterministic strings
         path_map = {
             mock_iters[0]: "path_a",
@@ -94,6 +99,7 @@ class TestDbManSelection(unittest.TestCase):
         self.dbman.model = None
         self.dbman._select_next_after_deletion("Some Tree")
         self.dbman.selection.select_path.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()
