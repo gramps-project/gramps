@@ -22,10 +22,7 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-"""
-Reports/Graphical Reports/Familial Tree
-Reports/Graphical Reports/Personal Tree
-"""
+"""Reports/Graphical Reports/Familial Tree"""
 
 from __future__ import annotations
 from typing import Any
