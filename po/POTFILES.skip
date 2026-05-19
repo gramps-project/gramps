@@ -556,6 +556,11 @@ gramps/plugins/gramplet/metadataviewer.py
 #
 gramps/plugins/graph/__init__.py
 #
+# plugins/graph/test directory
+#
+gramps/plugins/graph/test/__init__.py
+gramps/plugins/graph/test/year_only_date_test.py
+#
 # plugins/importer directory
 #
 gramps/plugins/importer/__init__.py
