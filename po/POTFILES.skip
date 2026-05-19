@@ -236,6 +236,11 @@ gramps/gen/plug/docgen/stylesheet.py
 gramps/gen/plug/docgen/tablestyle.py
 gramps/gen/plug/docgen/textdoc.py
 #
+# gen.plug.docgen.test
+#
+gramps/gen/plug/docgen/test/__init__.py
+gramps/gen/plug/docgen/test/graphdoc_test.py
+#
 # gen.plug.menu
 #
 gramps/gen/plug/menu/__init__.py
