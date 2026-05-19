@@ -162,7 +162,7 @@ class DateDisplayRU(DateDisplay):
                 )
         elif date_val[1] == 0:  # month is zero but day is not (see 8477)
             return self.display_iso(date_val)
-        elif not hasattr(short_months[date_val[1]], "f"):  # not a Lexeme
+        elif not hasattr(short_months[date_val[1]], "forms"):  # not a Lexeme
             return "{day:d} {short_month} {year}".format(
                 day=date_val[0], short_month=short_months[date_val[1]], year=year
             )
