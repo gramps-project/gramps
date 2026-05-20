@@ -365,6 +365,33 @@ class DNAMatchView(ListView):
             ]
         )
 
+    def row_changed(self, selection):
+        super().row_changed(selection)
+        if not (self.action_group and self.action_group.act_group):
+            return
+        subject_action = self.action_group.act_group.lookup_action("MakeSubjectActive")
+        match_action = self.action_group.act_group.lookup_action("MakeMatchActive")
+        subject_enabled = False
+        match_enabled = False
+        handle = self.first_selected()
+        if handle:
+            dnamatch = self.dbstate.db.get_dnamatch_from_handle(handle)
+            if dnamatch:
+                if dnamatch.subject_test_handle:
+                    t = self.dbstate.db.get_dnatest_from_handle(
+                        dnamatch.subject_test_handle
+                    )
+                    subject_enabled = bool(t and t.get_person_handle())
+                if dnamatch.match_test_handle:
+                    t = self.dbstate.db.get_dnatest_from_handle(
+                        dnamatch.match_test_handle
+                    )
+                    match_enabled = bool(t and t.get_person_handle())
+        if subject_action:
+            subject_action.set_enabled(subject_enabled)
+        if match_action:
+            match_action.set_enabled(match_enabled)
+
     def _make_subject_active(self, *obj):
         handle = self.first_selected()
         if handle:

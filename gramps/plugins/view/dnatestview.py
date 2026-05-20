@@ -351,6 +351,18 @@ class DNATestView(ListView):
             ]
         )
 
+    def row_changed(self, selection):
+        super().row_changed(selection)
+        if self.action_group and self.action_group.act_group:
+            action = self.action_group.act_group.lookup_action("SetActivePerson")
+            if action:
+                handle = self.first_selected()
+                enabled = False
+                if handle:
+                    dnatest = self.dbstate.db.get_dnatest_from_handle(handle)
+                    enabled = bool(dnatest and dnatest.get_person_handle())
+                action.set_enabled(enabled)
+
     def _set_active_person(self, *obj):
         handle = self.first_selected()
         if handle:
