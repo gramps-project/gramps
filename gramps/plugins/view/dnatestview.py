@@ -46,6 +46,7 @@ from gramps.gui.editors import EditDNATest
 from gramps.gui.merge import MergeDNATest
 from gramps.gui.views.bookmarks import DNATestBookmarks
 from gramps.gui.filters.sidebar import DNATestSidebarFilter
+from gramps.gui.ddtargets import DdTargets
 from gramps.gui.views.listview import ListView, TEXT, ICON
 from gramps.gui.views.treemodels import DNATestModel
 
@@ -145,6 +146,9 @@ class DNATestView(ListView):
 
     def get_stock(self):
         return "gramps-dna-test"
+
+    def drag_info(self):
+        return DdTargets.DNATEST_LINK
 
     def person_update(self, handle_list):
         """

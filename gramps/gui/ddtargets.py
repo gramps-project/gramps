@@ -155,6 +155,7 @@ class _DdTargets:
         self.URL = _DdType(self, "url")
         self.SURNAME = _DdType(self, "surname")
         self.CITATION_LINK = _DdType(self, "citation-link")
+        self.DNATEST_LINK = _DdType(self, "dnatest-link")
 
         # List of all types that are used between
         # gramps widgets but should not be exported
@@ -188,6 +189,7 @@ class _DdTargets:
             self.URL,
             self.SURNAME,
             self.CITATION_LINK,
+            self.DNATEST_LINK,
         ]
 
         self.CHILD = _DdType(self, "child")

@@ -49,6 +49,7 @@ import cairo
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.lib import NoteType
 from gramps.gen.datehandler import get_date
+from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.constfunc import mac
@@ -95,6 +96,7 @@ OBJ2ICON = {
     "repository": "gramps-repository",
     "source": "gramps-source",
     "citation": "gramps-citation",
+    "dnatest": "gramps-dna-test",
     "text": "gramps-font",
     "url": "gramps-geo",
 }
@@ -122,6 +124,7 @@ def map2class(target):
         "childref": ClipChildRef,
         "source-link": ClipSourceLink,
         "citation-link": ClipCitation,
+        "dnatest-link": ClipDNATest,
         "repo-link": ClipRepositoryLink,
         "pevent": ClipEvent,
         "eventref": ClipEventRef,
@@ -141,6 +144,7 @@ def obj2class(target):
         "Family": ClipFamilyLink,
         "Source": ClipSourceLink,
         "Citation": ClipCitation,
+        "DNATest": ClipDNATest,
         "Repository": ClipRepositoryLink,
         "Event": ClipEvent,
         "Media": ClipMediaObj,
@@ -160,6 +164,7 @@ OBJ2TARGET = {
     "Media": Gdk.atom_intern("media", False),
     "Place": Gdk.atom_intern("place-link", False),
     "Note": Gdk.atom_intern("note-link", False),
+    "DNATest": Gdk.atom_intern("dnatest-link", False),
 }
 
 
@@ -511,6 +516,35 @@ class ClipCitation(ClipHandleWrapper):
                 self._title = self._value = ""
                 self._pickle = self._type = self._objclass = None
                 self._handle = self._dbid = self._dbname = None
+
+
+class ClipDNATest(ClipHandleWrapper):
+    DROP_TARGETS = [DdTargets.DNATEST_LINK]
+    DRAG_TARGET = DdTargets.DNATEST_LINK
+    ICON = ICONS["dnatest"]
+
+    def __init__(self, obj):
+        super(ClipDNATest, self).__init__(obj)
+        self._type = _("DNA Test")
+        self._objclass = "DNATest"
+        self.refresh()
+
+    def refresh(self):
+        if self._handle:
+            test = clipdb.get_dnatest_from_handle(self._handle)
+            if test:
+                self._title = test.get_gramps_id()
+                provider = str(test.get_provider())
+                person_handle = test.get_person_handle()
+                if person_handle:
+                    person = clipdb.get_person_from_handle(person_handle)
+                    if person:
+                        label = name_displayer.display(person)
+                    else:
+                        label = test.get_account_name()
+                else:
+                    label = test.get_account_name()
+                self._value = "%s (%s)" % (label, provider) if provider else label
 
 
 class ClipRepoRef(ClipObjWrapper):
@@ -1071,6 +1105,7 @@ class ClipboardListView:
         self.register_wrapper_class(ClipChildRef)
         self.register_wrapper_class(ClipText)
         self.register_wrapper_class(ClipNote)
+        self.register_wrapper_class(ClipDNATest)
 
     def register_wrapper_class(self, wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:

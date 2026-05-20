@@ -660,14 +660,16 @@ class DNATestEntry(ObjEntry):
     No drag-and-drop support in this prototype.
     """
 
-    EMPTY_TEXT = "<i>%s</i>" % _("To select a DNA test kit, use the buttons")
+    EMPTY_TEXT = "<i>%s</i>" % _(
+        "To select a DNA test kit, use drag-and-drop or the buttons"
+    )
     EMPTY_TEXT_RED = "<i>%s</i>" % _("No kit given, click button to select one")
     EDIT_STR = _("Edit DNA test")
     SHARE_STR = _("Select an existing DNA test")
     ADD_STR = _("Add a new DNA test")
     DEL_STR = _("Remove DNA test")
-    _DND_TYPE = None
-    _DND_ICON = ""
+    _DND_TYPE = DdTargets.DNATEST_LINK
+    _DND_ICON = "gramps-dna-test"
 
     def get_from_handle(self, handle):
         return self.db.get_dnatest_from_handle(handle)
