@@ -577,24 +577,29 @@ class DateDisplay:
             return "{long_month} {year}".format(
                 long_month=long_months[month], year=year
             )
-        return self.FORMATS_long_month_year[inflect].format(
-            long_month=long_months[month], year=year
-        )
+        # bug 14100: an inflection key not present in the dict (e.g. from a
+        # locale whose .po mistranslated the inflection context) falls back
+        # to the uninflected format ("") instead of raising KeyError.
+        return self.FORMATS_long_month_year.get(
+            inflect, self.FORMATS_long_month_year[""]
+        ).format(long_month=long_months[month], year=year)
 
     def format_short_month_year(self, month, year, inflect, short_months):
         if not hasattr(short_months[1], "forms"):  # not a Lexeme: no inflection
             return "{short_month} {year}".format(
                 short_month=short_months[month], year=year
             )
-        return self.FORMATS_short_month_year[inflect].format(
-            short_month=short_months[month], year=year
-        )
+        # bug 14100: fall back to the uninflected format on an unknown key.
+        return self.FORMATS_short_month_year.get(
+            inflect, self.FORMATS_short_month_year[""]
+        ).format(short_month=short_months[month], year=year)
 
     def format_long_month(self, month, inflect, long_months):
         if not hasattr(long_months[1], "forms"):  # not a Lexeme: no inflection
             return "{long_month}".format(long_month=long_months[month])
+        # bug 14100: fall back to the uninflected format on an unknown key.
         return (
-            self.FORMATS_long_month_year[inflect]
+            self.FORMATS_long_month_year.get(inflect, self.FORMATS_long_month_year[""])
             .format(long_month=long_months[month], year="")
             .rstrip()
         )
@@ -602,8 +607,11 @@ class DateDisplay:
     def format_short_month(self, month, inflect, short_months):
         if not hasattr(short_months[1], "forms"):  # not a Lexeme: no inflection
             return "{short_month}".format(short_month=short_months[month])
+        # bug 14100: fall back to the uninflected format on an unknown key.
         return (
-            self.FORMATS_short_month_year[inflect]
+            self.FORMATS_short_month_year.get(
+                inflect, self.FORMATS_short_month_year[""]
+            )
             .format(short_month=short_months[month], year="")
             .rstrip()
         )

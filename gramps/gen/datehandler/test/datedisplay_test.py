@@ -149,5 +149,59 @@ class DateDisplayInflectionsTestRU(DateDisplayTest):
             self.assertIn("по май", self.dd.display(f1945may_t1946may))
 
 
+# Regression test for bug #14100. The format_*_month* methods looked up the
+# ``inflect`` key in FORMATS_long_month_year / FORMATS_short_month_year with a
+# bare subscript, so a key absent from the dict raised KeyError instead of
+# degrading. A Finnish fi.po that mistranslated the "about-date" inflection
+# context to the native word "noin" (instead of the English keyword "about"
+# the dicts are keyed by) made Gramps crash with KeyError: 'noin' whenever an
+# "about <Month> <Year>" date was displayed under the long-month format -- in
+# the Detailed Ancestral Report, the Relationship View and elsewhere. An
+# unknown key must now fall back to the uninflected ("") format.
+class DateDisplayInflectionFallbackTest(DateDisplayTest):
+    # The literal key from the bug report; stands in for any inflection a
+    # locale's .po might emit that the FORMATS dicts do not define.
+    UNKNOWN_INFLECTION = "noin"
+
+    def setUp(self):
+        DateDisplayTest.setUp(self)
+        self.dd = self.display_RU  # a displayer whose months are Lexemes
+        if not hasattr(self.dd.long_months[1], "forms"):
+            self.skipTest(
+                "Russian translation unavailable; inflected month formats "
+                "cannot be exercised in this environment"
+            )
+
+    def test_long_month_year_unknown_inflection_falls_back(self):
+        self.assertEqual(
+            self.dd.format_long_month_year(
+                5, "1945", self.UNKNOWN_INFLECTION, self.dd.long_months
+            ),
+            self.dd.format_long_month_year(5, "1945", "", self.dd.long_months),
+        )
+
+    def test_short_month_year_unknown_inflection_falls_back(self):
+        self.assertEqual(
+            self.dd.format_short_month_year(
+                5, "1945", self.UNKNOWN_INFLECTION, self.dd.short_months
+            ),
+            self.dd.format_short_month_year(5, "1945", "", self.dd.short_months),
+        )
+
+    def test_long_month_unknown_inflection_falls_back(self):
+        self.assertEqual(
+            self.dd.format_long_month(5, self.UNKNOWN_INFLECTION, self.dd.long_months),
+            self.dd.format_long_month(5, "", self.dd.long_months),
+        )
+
+    def test_short_month_unknown_inflection_falls_back(self):
+        self.assertEqual(
+            self.dd.format_short_month(
+                5, self.UNKNOWN_INFLECTION, self.dd.short_months
+            ),
+            self.dd.format_short_month(5, "", self.dd.short_months),
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
