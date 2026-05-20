@@ -26,6 +26,7 @@ from gi.repository import GLib, Gtk
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import SharedAncestor
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gui.ddtargets import DdTargets
 from .embeddedlist import EmbeddedList, TEXT_COL, ICON_COL
 
 # -------------------------------------------------------------------------
@@ -77,7 +78,8 @@ class SharedAncestorModel(Gtk.ListStore):
 # -------------------------------------------------------------------------
 class SharedAncestorEmbedList(EmbeddedList):
     _HANDLE_COL = 4
-    _DND_TYPE = None
+    _DND_TYPE = DdTargets.SHAREDANCESTOR
+    _DND_EXTRA = DdTargets.PERSON_LINK
 
     _MSG = {
         "add": _("Create and add a new shared ancestor"),
@@ -158,3 +160,33 @@ class SharedAncestorEmbedList(EmbeddedList):
     def edit_callback(self, anc):
         self.changed = True
         self.rebuild()
+
+    def _handle_drag(self, row, obj):
+        """Handle a SharedAncestor dropped from another list - open editor."""
+        try:
+            self.get_editor()(
+                self.dbstate,
+                self.uistate,
+                self.track,
+                obj,
+                self.add_callback,
+            )
+        except WindowActiveError:
+            pass
+
+    def handle_extra_type(self, objtype, obj):
+        """Handle a Person dropped onto the list - create a new SharedAncestor."""
+        anc = SharedAncestor()
+        person = self.dbstate.db.get_person_from_handle(obj)
+        if person:
+            anc.set_person_handle(person.get_handle())
+        try:
+            self.get_editor()(
+                self.dbstate,
+                self.uistate,
+                self.track,
+                anc,
+                self.add_callback,
+            )
+        except WindowActiveError:
+            pass
