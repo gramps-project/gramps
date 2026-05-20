@@ -307,6 +307,26 @@ class EditDNATest(EditPrimary):
         if self.callback:
             self.callback(self.obj)
 
+    def data_has_changed(self):
+        """
+        A date comparison can fail incorrectly because we store entered text
+        in the date object. Dates imported from XML have no entered text, so
+        the text field differs after MonitoredDate initialises. Use
+        no_text_date=True to exclude the text field from the comparison.
+        """
+        if self.db.readonly:
+            return False
+        elif self.obj.handle:
+            orig = self.get_from_handle(self.obj.handle)
+            if orig:
+                cmp_obj = orig
+            else:
+                cmp_obj = self.empty_object()
+            return cmp_obj.serialize(True)[1:] != self.obj.serialize(True)[1:]
+        else:
+            cmp_obj = self.empty_object()
+            return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
+
     def _person_delete(self, handle_list):
         if self.obj.get_person_handle() in handle_list:
             self.close()
