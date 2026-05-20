@@ -86,12 +86,12 @@ class EditDNASegment(EditSecondary):
         combo = self.top.get_object("chromosome")
         for chrom in _CHROMOSOMES:
             combo.append_text(chrom)
+        combo.connect("changed", self._on_chromosome_changed)
         chrom_val = self.obj.get_chromosome()
         if chrom_val in _CHROMOSOMES:
             combo.set_active(_CHROMOSOMES.index(chrom_val))
         else:
             combo.set_active(0)
-        combo.connect("changed", self._on_chromosome_changed)
         combo.set_sensitive(not self.db.readonly)
 
         self.start_bp_field = MonitoredEntry(
@@ -139,8 +139,8 @@ class EditDNASegment(EditSecondary):
         phase_combo = self.top.get_object("phase")
         for label in _PHASE_LABELS:
             phase_combo.append_text(label)
-        phase_combo.set_active(self.obj.get_phase())
         phase_combo.connect("changed", self._on_phase_changed)
+        phase_combo.set_active(self.obj.get_phase())
         phase_combo.set_sensitive(not self.db.readonly)
 
     def _on_chromosome_changed(self, combo):
