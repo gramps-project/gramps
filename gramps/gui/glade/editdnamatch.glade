@@ -167,6 +167,7 @@
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <property name="relief">none</property>
+                    <property name="halign">start</property>
                     <child>
                       <object class="GtkImage" id="add_del_subject_test_img">
                         <property name="visible">True</property>
@@ -259,6 +260,7 @@
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <property name="relief">none</property>
+                    <property name="halign">start</property>
                     <child>
                       <object class="GtkImage" id="add_del_match_test_img">
                         <property name="visible">True</property>
