@@ -403,7 +403,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Predicted relationship label from the provider (e.g. 2nd cousin)</property>
+                    <property name="tooltip-text" translatable="yes">Predicted relationship of the match to the subject, as reported by the testing provider - for example 'daughter' means the match is the subject's daughter</property>
                     <property name="invisible-char">●</property>
                   </object>
                   <packing>
