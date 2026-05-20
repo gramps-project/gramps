@@ -41,6 +41,16 @@ from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.db import family_name, get_participant_from_event
 
 
+def _dnatest_label(db, handle):
+    if not handle:
+        return _("Unknown")
+    t = db.get_dnatest_from_handle(handle)
+    if not t:
+        return _("Unknown")
+    account = t.get_account_name()
+    return account if account else str(t.get_provider())
+
+
 # -------------------------------------------------------------------------
 #
 # BackRefModel
@@ -159,9 +169,12 @@ class BackRefModel(Gtk.ListStore):
                 p = self.db.get_dnamatch_from_handle(ref[1])
                 if not p:
                     continue
-                name = p.gramps_id
                 gid = p.gramps_id
                 handle = p.handle
+                name = self.dispstr % {
+                    "part1": _dnatest_label(self.db, p.get_subject_test_handle()),
+                    "part2": _dnatest_label(self.db, p.get_match_test_handle()),
+                }
             else:
                 continue
 
