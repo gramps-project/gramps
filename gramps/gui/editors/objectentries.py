@@ -673,15 +673,15 @@ class DNATestEntry(ObjEntry):
         return self.db.get_dnatest_from_handle(handle)
 
     def get_label(self, test):
-        account = test.get_account_name()
         provider = str(test.get_provider())
-        parts = "%s (%s)" % (account, provider) if provider else account
         handle = test.get_person_handle()
         if handle:
             person = self.db.get_person_from_handle(handle)
             if person:
-                return "%s • %s" % (name_displayer.display(person), parts)
-        return parts
+                name = name_displayer.display(person)
+                return "%s (%s)" % (name, provider) if provider else name
+        account = test.get_account_name()
+        return "%s (%s)" % (account, provider) if provider else account
 
     def call_editor(self, obj=None):
         from .editdnatest import EditDNATest

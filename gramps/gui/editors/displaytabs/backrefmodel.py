@@ -160,9 +160,16 @@ class BackRefModel(Gtk.ListStore):
                 p = self.db.get_dnatest_from_handle(ref[1])
                 if not p:
                     continue
-                account = p.get_account_name()
                 provider = str(p.get_provider())
-                name = f"{account} ({provider})" if account else f"({provider})"
+                label = None
+                person_handle = p.get_person_handle()
+                if person_handle:
+                    person = self.db.get_person_from_handle(person_handle)
+                    if person:
+                        label = name_displayer.display(person)
+                if label is None:
+                    label = p.get_account_name()
+                name = "%s (%s)" % (label, provider) if provider else label
                 gid = p.gramps_id
                 handle = p.handle
             elif dtype == "DNAMatch":
