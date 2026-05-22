@@ -44,3 +44,4 @@ class HasNoteTag(HasNoteTagBase):
     name = _("Families with a note with a tag of <type>")
     description = _("Matches families with a note with a specified tag")
     category = _("Note filters")
+    namespace = "Family"

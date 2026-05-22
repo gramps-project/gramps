@@ -44,3 +44,4 @@ class HasNoteTag(HasNoteTagBase):
     name = _("Places with a note with a tag of <type>")
     description = _("Matches places with a note with a specified tag")
     category = _("Note filters")
+    namespace = "Place"

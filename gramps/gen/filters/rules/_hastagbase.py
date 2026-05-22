@@ -25,6 +25,8 @@ Rule that checks for an object with a particular tag.
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from typing import Set
+
 from ...const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -43,6 +45,7 @@ from . import Rule
 # -------------------------------------------------------------------------
 from ...lib.primaryobj import PrimaryObject
 from ...db import Database
+from ...types import PrimaryObjectHandle
 
 
 # -------------------------------------------------------------------------
@@ -59,20 +62,22 @@ class HasTagBase(Rule):
     name = "Objects with the <tag>"
     description = "Matches objects with the given tag"
     category = _("General filters")
+    namespace = ""
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user) -> None:
         """
-        Prepare the rule. Things we want to do just once.
+        Build the set of matching object handles once before filtering begins.
         """
-        self.tag_handle = None
+        self.selected_handles: Set[PrimaryObjectHandle] = set()
         tag = db.get_tag_from_name(self.list[0])
         if tag is not None:
-            self.tag_handle = tag.handle
+            for _classname, handle in db.find_backlink_handles(
+                tag.handle, include_classes=[self.namespace]
+            ):
+                self.selected_handles.add(handle)
 
     def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
-        Apply the rule.  Return True for a match.
+        Return True if this object's handle is in the pre-built match set.
         """
-        if self.tag_handle is None:
-            return False
-        return self.tag_handle in obj.tag_list
+        return obj.handle in self.selected_handles
