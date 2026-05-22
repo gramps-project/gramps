@@ -881,6 +881,7 @@
     <attribute name="shared_cm"><text/></attribute>
     <attribute name="snp_count"><text/></attribute>
     <attribute name="phase"><text/></attribute>
+    <optional><attribute name="ibd_state"><text/></attribute></optional>
     <optional><attribute name="start_rsid"><text/></attribute></optional>
     <optional><attribute name="end_rsid"><text/></attribute></optional>
   </define>

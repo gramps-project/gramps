@@ -3441,6 +3441,7 @@ class GrampsParser(UpdateCallback):
         seg.set_shared_cm(float(attrs.get("shared_cm", 0.0)))
         seg.set_snp_count(int(attrs.get("snp_count", 0)))
         seg.set_phase(int(attrs.get("phase", 0)))
+        seg.set_ibd_state(int(attrs.get("ibd_state", 0)))
         if "start_rsid" in attrs:
             seg.set_start_rsid(attrs["start_rsid"])
         if "end_rsid" in attrs:

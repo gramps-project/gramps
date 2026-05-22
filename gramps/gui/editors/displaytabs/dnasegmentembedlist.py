@@ -39,16 +39,28 @@ _PHASE_LABELS = [
     _("Paternal"),
 ]
 
+_IBD_STATE_LABELS = [
+    _("Unknown"),
+    _("HIR"),
+    _("FIR"),
+]
+
 
 class DNASegmentModel(Gtk.ListStore):
     def __init__(self, segment_list, db):
-        # columns: chromosome, start_bp, end_bp, shared_cm, snp_count, phase, object
-        Gtk.ListStore.__init__(self, str, str, str, str, str, str, object)
+        # columns: chromosome, start_bp, end_bp, shared_cm, snp_count, phase, ibd_state, object
+        Gtk.ListStore.__init__(self, str, str, str, str, str, str, str, object)
         self.db = db
         for seg in segment_list:
             phase = seg.get_phase()
             phase_label = (
                 _PHASE_LABELS[phase] if 0 <= phase < len(_PHASE_LABELS) else str(phase)
+            )
+            ibd = seg.get_ibd_state()
+            ibd_label = (
+                _IBD_STATE_LABELS[ibd]
+                if 0 <= ibd < len(_IBD_STATE_LABELS)
+                else str(ibd)
             )
             start = str(seg.get_start_bp()) if seg.get_start_bp() else ""
             end = str(seg.get_end_bp()) if seg.get_end_bp() else ""
@@ -62,6 +74,7 @@ class DNASegmentModel(Gtk.ListStore):
                     cm,
                     snps,
                     phase_label,
+                    ibd_label,
                     seg,
                 ]
             )
@@ -73,7 +86,7 @@ class DNASegmentModel(Gtk.ListStore):
 #
 # -------------------------------------------------------------------------
 class DNASegmentEmbedList(EmbeddedList):
-    _HANDLE_COL = 6
+    _HANDLE_COL = 7
     _DND_TYPE = None
 
     _MSG = {
@@ -91,6 +104,7 @@ class DNASegmentEmbedList(EmbeddedList):
         (_("cM"), 3, 70, TEXT_COL, -1, None),
         (_("SNPs"), 4, 70, TEXT_COL, -1, None),
         (_("Phase"), 5, 90, TEXT_COL, -1, None),
+        (_("IBD"), 6, 70, TEXT_COL, -1, None),
     ]
 
     def __init__(self, dbstate, uistate, track, data, config_key):
@@ -118,7 +132,7 @@ class DNASegmentEmbedList(EmbeddedList):
         return self.data
 
     def column_order(self):
-        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5))
+        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6))
 
     def add_button_clicked(self, obj):
         seg = DNASegment()

@@ -50,6 +50,10 @@ class DNASegment(SecondaryObject):
     PHASE_MATERNAL = 2
     PHASE_PATERNAL = 3
 
+    IBD_UNKNOWN = 0
+    IBD_HIR = 1
+    IBD_FIR = 2
+
     def __init__(self, source=None):
         """
         Create a new DNASegment instance, copying from source if present.
@@ -66,6 +70,7 @@ class DNASegment(SecondaryObject):
             self.__shared_cm = source.__shared_cm
             self.__snp_count = source.__snp_count
             self.__phase = source.__phase
+            self.__ibd_state = source.__ibd_state
         else:
             self.__chromosome = ""
             self.__start_bp = 0
@@ -75,6 +80,7 @@ class DNASegment(SecondaryObject):
             self.__shared_cm = 0.0
             self.__snp_count = 0
             self.__phase = DNASegment.PHASE_UNASSIGNED
+            self.__ibd_state = DNASegment.IBD_UNKNOWN
 
     def serialize(self):
         """
@@ -89,6 +95,7 @@ class DNASegment(SecondaryObject):
             self.__shared_cm,
             self.__snp_count,
             self.__phase,
+            self.__ibd_state,
         )
 
     def unserialize(self, data):
@@ -104,6 +111,7 @@ class DNASegment(SecondaryObject):
             self.__shared_cm,
             self.__snp_count,
             self.__phase,
+            self.__ibd_state,
         ) = data
         return self
 
@@ -120,6 +128,7 @@ class DNASegment(SecondaryObject):
         attr_dict["shared_cm"] = self.__shared_cm
         attr_dict["snp_count"] = self.__snp_count
         attr_dict["phase"] = self.__phase
+        attr_dict["ibd_state"] = self.__ibd_state
         return attr_dict
 
     def set_object_state(self, attr_dict):
@@ -134,6 +143,7 @@ class DNASegment(SecondaryObject):
         self.__shared_cm = attr_dict.pop("shared_cm")
         self.__snp_count = attr_dict.pop("snp_count")
         self.__phase = attr_dict.pop("phase")
+        self.__ibd_state = attr_dict.pop("ibd_state", DNASegment.IBD_UNKNOWN)
         super().set_object_state(attr_dict)
 
     @classmethod
@@ -160,6 +170,7 @@ class DNASegment(SecondaryObject):
                 "shared_cm": {"type": "number", "title": _("Shared cM")},
                 "snp_count": {"type": "integer", "title": _("SNP count")},
                 "phase": {"type": "integer", "title": _("Phase")},
+                "ibd_state": {"type": "integer", "title": _("IBD state")},
             },
         }
 
@@ -267,3 +278,13 @@ class DNASegment(SecondaryObject):
         return self.__phase
 
     phase = property(get_phase, set_phase)
+
+    def set_ibd_state(self, ibd_state):
+        """Set the IBD state for this segment."""
+        self.__ibd_state = ibd_state
+
+    def get_ibd_state(self):
+        """Return the IBD state for this segment."""
+        return self.__ibd_state
+
+    ibd_state = property(get_ibd_state, set_ibd_state)

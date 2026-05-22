@@ -458,6 +458,7 @@ DNA MATCHES
         shared_cm   CDATA #REQUIRED
         snp_count   CDATA #REQUIRED
         phase       CDATA #REQUIRED
+        ibd_state   CDATA #IMPLIED
         start_rsid  CDATA #IMPLIED
         end_rsid    CDATA #IMPLIED
 >

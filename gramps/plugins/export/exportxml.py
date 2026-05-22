@@ -1509,11 +1509,13 @@ class GrampsXmlWriter(UpdateCallback):
                 self.write_ref("citationref", citation_handle, index + 2)
             self.g.write("%s</shared_ancestor>\n" % sp2)
         for seg in dnamatch.get_segment_list():
-            rsid_attrs = ""
+            extra_attrs = ""
+            if seg.get_ibd_state():
+                extra_attrs += ' ibd_state="%d"' % seg.get_ibd_state()
             if seg.get_start_rsid():
-                rsid_attrs += ' start_rsid="%s"' % self.fix(seg.get_start_rsid())
+                extra_attrs += ' start_rsid="%s"' % self.fix(seg.get_start_rsid())
             if seg.get_end_rsid():
-                rsid_attrs += ' end_rsid="%s"' % self.fix(seg.get_end_rsid())
+                extra_attrs += ' end_rsid="%s"' % self.fix(seg.get_end_rsid())
             self.g.write(
                 '%s<dna_segment chromosome="%s" start_bp="%d" end_bp="%d"'
                 ' shared_cm="%.6g" snp_count="%d" phase="%d"%s/>\n'
@@ -1525,7 +1527,7 @@ class GrampsXmlWriter(UpdateCallback):
                     seg.get_shared_cm(),
                     seg.get_snp_count(),
                     seg.get_phase(),
-                    rsid_attrs,
+                    extra_attrs,
                 )
             )
         self.write_dna_attribute_list(dnamatch.get_attribute_list(), index + 1)

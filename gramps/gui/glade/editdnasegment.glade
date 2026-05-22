@@ -263,7 +263,7 @@
                     <property name="top-attach">3</property>
                   </packing>
                 </child>
-                <!-- Row 4: Phase -->
+                <!-- Row 4: Phase / IBD state -->
                 <child>
                   <object class="GtkLabel" id="lbl_phase">
                     <property name="visible">True</property>
@@ -288,7 +288,32 @@
                   <packing>
                     <property name="left-attach">1</property>
                     <property name="top-attach">4</property>
-                    <property name="width">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="lbl_ibd_state">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">_IBD State:</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">ibd_state</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">2</property>
+                    <property name="top-attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBoxText" id="ibd_state">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="tooltip-text" translatable="yes">Identity by descent state: HIR (Half-Identical Region) means one chromosome copy is shared; FIR (Fully-Identical Region) means both chromosome copies are shared, which can occur between close relatives. Unknown means the state has not been determined.</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">3</property>
+                    <property name="top-attach">4</property>
                   </packing>
                 </child>
               </object>

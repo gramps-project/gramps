@@ -38,6 +38,12 @@ _PHASE_LABELS = [
     _("Paternal"),
 ]
 
+_IBD_STATE_LABELS = [
+    _("Unknown"),
+    _("HIR"),
+    _("FIR"),
+]
+
 
 def _str_to_float(s):
     try:
@@ -143,6 +149,13 @@ class EditDNASegment(EditSecondary):
         phase_combo.set_active(self.obj.get_phase())
         phase_combo.set_sensitive(not self.db.readonly)
 
+        ibd_combo = self.top.get_object("ibd_state")
+        for label in _IBD_STATE_LABELS:
+            ibd_combo.append_text(label)
+        ibd_combo.connect("changed", self._on_ibd_state_changed)
+        ibd_combo.set_active(self.obj.get_ibd_state())
+        ibd_combo.set_sensitive(not self.db.readonly)
+
     def _on_chromosome_changed(self, combo):
         idx = combo.get_active()
         if 0 <= idx < len(_CHROMOSOMES):
@@ -150,6 +163,9 @@ class EditDNASegment(EditSecondary):
 
     def _on_phase_changed(self, combo):
         self.obj.set_phase(combo.get_active())
+
+    def _on_ibd_state_changed(self, combo):
+        self.obj.set_ibd_state(combo.get_active())
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object("cancel"))

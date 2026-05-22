@@ -1906,6 +1906,18 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       <segment_count val="22"/>
       <largest_segment_cm val="298.4"/>
       <predicted_relationship>Close Family</predicted_relationship>
+      <dna_segment chromosome="1" start_bp="72345678" end_bp="148901234" shared_cm="298.4" snp_count="18234" phase="0" ibd_state="2"/>
+      <dna_segment chromosome="2" start_bp="34567890" end_bp="98765432" shared_cm="187.6" snp_count="11234" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="3" start_bp="12345678" end_bp="67890123" shared_cm="163.2" snp_count="9876" phase="0" ibd_state="2"/>
+      <dna_segment chromosome="4" start_bp="45678901" end_bp="95678901" shared_cm="142.8" snp_count="8901" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="5" start_bp="23456789" end_bp="71234567" shared_cm="138.5" snp_count="8543" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="6" start_bp="56789012" end_bp="101234567" shared_cm="127.3" snp_count="7654" phase="0" ibd_state="2"/>
+      <dna_segment chromosome="7" start_bp="34567890" end_bp="76543210" shared_cm="115.9" snp_count="7123" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="8" start_bp="12345678" end_bp="56789012" shared_cm="108.4" snp_count="6543" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="9" start_bp="45678901" end_bp="87654321" shared_cm="96.7" snp_count="5987" phase="0" ibd_state="2"/>
+      <dna_segment chromosome="10" start_bp="23456789" end_bp="63456789" shared_cm="89.3" snp_count="5432" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="11" start_bp="56789012" end_bp="94567890" shared_cm="83.6" snp_count="5109" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="12" start_bp="34567890" end_bp="71234567" shared_cm="76.2" snp_count="4765" phase="0" ibd_state="1"/>
     </dnamatch>
     <dnamatch handle="_dna1m0002kvsedwin012" change="1601251200" id="M00002" priv="0">
       <subject_test hlink="_dna1t0001ksmith6600"/>
@@ -1922,11 +1934,11 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       <shared_ancestor confidence="2">
         <person hlink="_VHNT6DQCEELKZP0M2W"/>
       </shared_ancestor>
-      <dna_segment chromosome="1" start_bp="87234512" end_bp="112891045" shared_cm="31.4" snp_count="4521" phase="0"/>
-      <dna_segment chromosome="3" start_bp="45678901" end_bp="68234567" shared_cm="28.7" snp_count="3892" phase="0"/>
-      <dna_segment chromosome="6" start_bp="134567890" end_bp="159234456" shared_cm="24.1" snp_count="3214" phase="0"/>
-      <dna_segment chromosome="9" start_bp="12345678" end_bp="34567890" shared_cm="21.9" snp_count="2987" phase="0"/>
-      <dna_segment chromosome="12" start_bp="56789012" end_bp="72345678" shared_cm="18.3" snp_count="2534" phase="0"/>
+      <dna_segment chromosome="1" start_bp="87234512" end_bp="112891045" shared_cm="31.4" snp_count="4521" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="3" start_bp="45678901" end_bp="68234567" shared_cm="28.7" snp_count="3892" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="6" start_bp="134567890" end_bp="159234456" shared_cm="24.1" snp_count="3214" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="9" start_bp="12345678" end_bp="34567890" shared_cm="21.9" snp_count="2987" phase="0" ibd_state="1"/>
+      <dna_segment chromosome="12" start_bp="56789012" end_bp="72345678" shared_cm="18.3" snp_count="2534" phase="0" ibd_state="1"/>
       <dna_segment chromosome="15" start_bp="23456789" end_bp="38901234" shared_cm="17.5" snp_count="2187" phase="0"/>
       <dna_segment chromosome="17" start_bp="45678901" end_bp="58901234" shared_cm="15.2" snp_count="1987" phase="0"/>
       <dna_segment chromosome="19" start_bp="18234567" end_bp="27890123" shared_cm="13.8" snp_count="1654" phase="0"/>
