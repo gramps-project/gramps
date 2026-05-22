@@ -45,6 +45,7 @@ __all__ = (
     "SCHVERSFN",
     "PCKVERSFN",
     "DBBACKEND",
+    "NAME_FILE",
     "PERSON_KEY",
     "FAMILY_KEY",
     "SOURCE_KEY",
@@ -70,6 +71,7 @@ DBLOCKFN = "lock"  # File name of lock file
 DBRECOVFN = "need_recover"  # File name of recovery file
 BDBVERSFN = "bdbversion.txt"  # File name of Berkeley DB version file
 DBBACKEND = "database.txt"  # File name of Database backend file
+NAME_FILE = "name.txt"  # File name of the Family Tree display-name file
 SCHVERSFN = "schemaversion.txt"  # File name of schema version file
 PCKVERSFN = "pickleupgrade.txt"  # Indicator that pickle has been upgrade t Python3
 DBLOGNAME = ".Db"  # Name of logger
