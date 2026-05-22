@@ -67,7 +67,13 @@ _LOG = logging.getLogger(DBLOGNAME)
 #
 # -------------------------------------------------------------------------
 DEFAULT_TITLE = _("Family Tree")
-NAME_FILE = "name.txt"
+# Re-exported from ``gramps.gen.db.dbconst`` so existing callers
+# (gramps/gui/dbman.py, gramps/plugins/db/bsddb/bsddb.py and any third-
+# party plugins) keep working.  The canonical location is the gen
+# module so non-CLI consumers — notably ``gramps/gen/db/upgrade.py``
+# — can pull it without violating the gen/cli boundary (Mantis 6085).
+from gramps.gen.db.dbconst import NAME_FILE  # noqa: F401 (re-export)
+
 META_NAME = "meta_data.db"
 UNAVAILABLE = _("Unavailable")
 
