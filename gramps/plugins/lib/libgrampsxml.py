@@ -32,9 +32,5 @@
 # Public Constants
 #
 # ------------------------------------------------------------------------
-GRAMPS_XML_VERSION_TUPLE = (
-    1,
-    8,
-    1,
-)  # 1.8.0 added DNA objects, 1.8.1 adds ibd_state to dna_segment
+GRAMPS_XML_VERSION_TUPLE = (1, 8, 0)  # 1.8.0 adds DNA objects
 GRAMPS_XML_VERSION = ".".join(str(i) for i in GRAMPS_XML_VERSION_TUPLE)
