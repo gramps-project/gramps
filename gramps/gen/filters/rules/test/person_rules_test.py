@@ -101,6 +101,7 @@ from ..person import (
     PersonWithIncompleteEvent,
     ProbablyAlive,
     RegExpName,
+    RelationshipPathBetween,
     RelationshipPathBetweenBookmarks,
 )
 
@@ -1324,6 +1325,38 @@ class BaseTest(unittest.TestCase):
                     "AWFKQCJELLUWDY2PD3",
                     "D3WJQCCGV58IP8PNHZ",
                     "Q8HKQC3VMRM1M6M7ES",
+                ]
+            ),
+        )
+
+    def test_relationshippathbetween(self):
+        """
+        Test RelationshipPathBetween rule.
+
+        Regression for Mantis 13830: ``init_list`` previously contained
+        ``for person_handle in firstList and secondList:``, which Python
+        evaluates as ``secondList`` via short-circuit ``and``. The loop
+        then read ``firstMap[person_handle]`` with handles drawn only
+        from secondList, so any handle reachable from the second root
+        but not the first triggered ``KeyError`` — the symptom users
+        saw via Graph View's "Show path to home person" menu.
+
+        Two persons in different family lines exercise the regression
+        case: the second root's ancestors are not a subset of the
+        first's, so the buggy iteration raised ``KeyError`` on the
+        first non-shared handle. With the fix the rule returns the
+        two endpoints unchanged when no common ancestor exists.
+        """
+        # I0044 (Lewis Anderson Garner, home person of example.gramps)
+        # and I2127 (a member of the unrelated Δεληπέτρου family) share
+        # no common ancestor.
+        rule = RelationshipPathBetween(["I0044", "I2127"])
+        self.assertEqual(
+            self.filter_with_rule(rule),
+            set(
+                [
+                    "GNUJQCL9MD64AM56OH",  # I0044
+                    "d583a5ba5ca6b698463",  # I2127
                 ]
             ),
         )
