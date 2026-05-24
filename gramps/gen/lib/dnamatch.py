@@ -317,6 +317,10 @@ class DNAMatch(
                 self.__subject_test_handle == handle
                 or self.__match_test_handle == handle
             )
+        if classname == "Person":
+            return any(
+                sa.get_person_handle() == handle for sa in self.__shared_ancestor_list
+            )
         return False
 
     def _remove_handle_references(self, classname, handle_list):
@@ -328,6 +332,10 @@ class DNAMatch(
                 self.__subject_test_handle = None
             if self.__match_test_handle in handle_list:
                 self.__match_test_handle = None
+        elif classname == "Person":
+            for sa in self.__shared_ancestor_list:
+                if sa.get_person_handle() in handle_list:
+                    sa.set_person_handle(None)
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         """
@@ -338,6 +346,10 @@ class DNAMatch(
                 self.__subject_test_handle = new_handle
             if self.__match_test_handle == old_handle:
                 self.__match_test_handle = new_handle
+        elif classname == "Person":
+            for sa in self.__shared_ancestor_list:
+                if sa.get_person_handle() == old_handle:
+                    sa.set_person_handle(new_handle)
 
     def get_text_data_list(self):
         """

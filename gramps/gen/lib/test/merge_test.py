@@ -2111,6 +2111,31 @@ class DNAMatchCheck(
         self.phoenix.merge(self.titanic)
         self.assertEqual(len(self.phoenix.get_segment_list()), 2)
 
+    def test_has_handle_reference_person(self):
+        sa = SharedAncestor()
+        sa.set_person_handle("ppp")
+        self.phoenix.add_shared_ancestor(sa)
+        self.assertTrue(self.phoenix._has_handle_reference("Person", "ppp"))
+        self.assertFalse(self.phoenix._has_handle_reference("Person", "qqq"))
+
+    def test_remove_handle_references_person(self):
+        sa = SharedAncestor()
+        sa.set_person_handle("ppp")
+        self.phoenix.add_shared_ancestor(sa)
+        self.phoenix._remove_handle_references("Person", ["ppp"])
+        self.assertIsNone(
+            self.phoenix.get_shared_ancestor_list()[0].get_person_handle()
+        )
+
+    def test_replace_handle_reference_person(self):
+        sa = SharedAncestor()
+        sa.set_person_handle("ppp")
+        self.phoenix.add_shared_ancestor(sa)
+        self.phoenix._replace_handle_reference("Person", "ppp", "qqq")
+        self.assertEqual(
+            self.phoenix.get_shared_ancestor_list()[0].get_person_handle(), "qqq"
+        )
+
     def test_merge_attribute(self):
         attr = DNAAttribute()
         attr.set_type(DNAAttributeType())
