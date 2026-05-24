@@ -386,6 +386,34 @@ class DNAMatch(
         """
         return self.get_citation_child_list()
 
+    def _merge_shared_ancestor_list(self, acquisition):
+        """
+        Merge the shared ancestor list from acquisition into our own.
+
+        Entries whose serialized form is already present are skipped.
+
+        :param acquisition: source DNAMatch
+        :type acquisition: DNAMatch
+        """
+        existing = [sa.serialize() for sa in self.__shared_ancestor_list]
+        for addendum in acquisition.get_shared_ancestor_list():
+            if addendum.serialize() not in existing:
+                self.__shared_ancestor_list.append(addendum)
+
+    def _merge_segment_list(self, acquisition):
+        """
+        Merge the segment list from acquisition into our own.
+
+        Entries whose serialized form is already present are skipped.
+
+        :param acquisition: source DNAMatch
+        :type acquisition: DNAMatch
+        """
+        existing = [seg.serialize() for seg in self.__segment_list]
+        for addendum in acquisition.get_segment_list():
+            if addendum.serialize() not in existing:
+                self.__segment_list.append(addendum)
+
     def merge(self, acquisition):
         """
         Merge the content of acquisition into this DNAMatch.
@@ -394,6 +422,8 @@ class DNAMatch(
         :type acquisition: DNAMatch
         """
         self._merge_privacy(acquisition)
+        self._merge_shared_ancestor_list(acquisition)
+        self._merge_segment_list(acquisition)
         self._merge_attribute_list(acquisition)
         self._merge_note_list(acquisition)
         self._merge_citation_list(acquisition)
