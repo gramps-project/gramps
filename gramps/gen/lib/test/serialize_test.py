@@ -39,6 +39,7 @@ from .. import (
     Source,
     Tag,
 )
+from ..date import Date
 from ..json_utils import object_to_data, data_to_object
 
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
@@ -54,6 +55,27 @@ class BaseCheck:
         self.assertEqual(self.object.serialize(), obj.serialize())
 
 
+class DateBaseCheck:
+    """Mixin for classes with DateBase: verifies no_text_date=True strips
+    stored text so that two objects with the same structured date but
+    different text representations compare equal - the invariant relied on
+    by data_has_changed() in the editor."""
+
+    def test_serialize_no_text_date_strips_text(self):
+        imported = self.cls()
+        d1 = Date()
+        d1.set_yr_mon_day(2020, 0, 0)
+        imported.set_date_object(d1)
+
+        displayed = self.cls()
+        d2 = Date()
+        d2.set_yr_mon_day(2020, 0, 0)
+        d2.set_text_value("2020")
+        displayed.set_date_object(d2)
+
+        self.assertEqual(imported.serialize(True)[1:], displayed.serialize(True)[1:])
+
+
 class PersonCheck(unittest.TestCase, BaseCheck):
     def setUp(self):
         self.cls = Person
@@ -66,7 +88,7 @@ class FamilyCheck(unittest.TestCase, BaseCheck):
         self.object = self.cls()
 
 
-class EventCheck(unittest.TestCase, BaseCheck):
+class EventCheck(unittest.TestCase, BaseCheck, DateBaseCheck):
     def setUp(self):
         self.cls = Event
         self.object = self.cls()
@@ -84,7 +106,7 @@ class PlaceCheck(unittest.TestCase, BaseCheck):
         self.object = self.cls()
 
 
-class CitationCheck(unittest.TestCase, BaseCheck):
+class CitationCheck(unittest.TestCase, BaseCheck, DateBaseCheck):
     def setUp(self):
         self.cls = Citation
         self.object = self.cls()
@@ -96,7 +118,7 @@ class RepositoryCheck(unittest.TestCase, BaseCheck):
         self.object = self.cls()
 
 
-class MediaCheck(unittest.TestCase, BaseCheck):
+class MediaCheck(unittest.TestCase, BaseCheck, DateBaseCheck):
     def setUp(self):
         self.cls = Media
         self.object = self.cls()
@@ -114,7 +136,7 @@ class TagCheck(unittest.TestCase, BaseCheck):
         self.object = self.cls()
 
 
-class DNATestCheck(unittest.TestCase, BaseCheck):
+class DNATestCheck(unittest.TestCase, BaseCheck, DateBaseCheck):
     def setUp(self):
         self.cls = DNATest
         self.object = self.cls()

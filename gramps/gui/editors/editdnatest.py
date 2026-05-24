@@ -325,7 +325,7 @@ class EditDNATest(EditPrimary):
             return cmp_obj.serialize(True)[1:] != self.obj.serialize(True)[1:]
         else:
             cmp_obj = self.empty_object()
-            return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
+            return cmp_obj.serialize(True)[1:] != self.obj.serialize(True)[1:]
 
     def _person_delete(self, handle_list):
         if self.obj.get_person_handle() in handle_list:
