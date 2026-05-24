@@ -383,6 +383,7 @@
                     <property name="receives-default">True</property>
                     <property name="has-tooltip">True</property>
                     <property name="tooltip-text" translatable="yes">Invoke date editor</property>
+                    <property name="halign">start</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkImage" id="date_stat_img">
