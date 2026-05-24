@@ -33,4 +33,4 @@ class DNATestBackRefList(BackRefList):
         )
 
     def get_icon_name(self):
-        return "gramps-family"
+        return "gramps-dna-test"
