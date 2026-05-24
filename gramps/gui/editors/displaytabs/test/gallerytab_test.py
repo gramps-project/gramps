@@ -22,6 +22,7 @@
 # ------------------------
 # Python modules
 # ------------------------
+import os
 import tempfile
 import unittest
 import warnings
@@ -37,11 +38,44 @@ from gramps.gen.dbstate import DbState
 from gramps.gui.editors.displaytabs import GalleryTab
 
 
+def _has_gtk_display():
+    """
+    Return True only if a real Gtk display is available.
+
+    The gramps CI exports GDK_BACKEND=- and runs without an X server, so
+    constructing a Gtk.IconView "succeeds" against a NULL screen and then
+    segfaults at process cleanup. Skip cleanly on those hosts; run when
+    the test is invoked under xvfb-run or on a real desktop.
+    """
+    if not os.environ.get("DISPLAY"):
+        return False
+    if os.environ.get("GDK_BACKEND") == "-":
+        return False
+    try:
+        import gi
+
+        gi.require_version("Gtk", "3.0")
+        from gi.repository import Gtk
+
+        return bool(Gtk.init_check([])[0])
+    except Exception:
+        return False
+
+
+_HAS_GTK_DISPLAY = _has_gtk_display()
+
+
 # ------------------------------------------------------------
 #
 # TestGalleryTabCleanup
 #
 # ------------------------------------------------------------
+@unittest.skipUnless(
+    _HAS_GTK_DISPLAY,
+    "needs a real Gtk display (run under xvfb-run); "
+    "gramps CI sets GDK_BACKEND=- and constructing a Gtk.IconView "
+    "against a NULL screen segfaults at process cleanup.",
+)
 class TestGalleryTabCleanup(unittest.TestCase):
     """
     Regression tests for the GalleryTab teardown path.
