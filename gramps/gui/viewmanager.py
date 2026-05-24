@@ -620,12 +620,77 @@ class ViewManager(CLIManager):
         finally:
             self.uistate.set_busy_cursor(False)
 
-        self.statusbar.set_fs_online(
-            bool(
-                getattr(session, "connected", False)
-                or getattr(session, "access_token", None)
-            )
+        online = bool(
+            getattr(session, "connected", False)
+            or getattr(session, "access_token", None)
         )
+        self.statusbar.set_fs_online(online)
+        if online:
+            self._maybe_offer_empty_tree_import(session)
+
+    def _database_is_empty_tree(self) -> bool:
+        """
+        Return whether the active database has no people.
+        """
+        if not getattr(self, "file_loaded", False):
+            return False
+
+        dbstate = getattr(self, "dbstate", None)
+        if dbstate is None:
+            return False
+
+        is_open = getattr(dbstate, "is_open", None)
+        if callable(is_open):
+            try:
+                if not is_open():
+                    return False
+            except Exception:
+                return False
+
+        db = getattr(dbstate, "db", None)
+        if db is None:
+            return False
+
+        count_people = getattr(db, "get_number_of_people", None)
+        if callable(count_people):
+            try:
+                return int(count_people() or 0) == 0
+            except Exception:
+                pass
+
+        get_person_handles = getattr(db, "get_person_handles", None)
+        if callable(get_person_handles):
+            try:
+                return len(list(get_person_handles())) == 0
+            except Exception:
+                return False
+
+        return False
+
+    def _maybe_offer_empty_tree_import(self, session) -> None:
+        """
+        Offer a FamilySearch starter import after login for an empty tree.
+        """
+        if not self._familysearch_enabled():
+            return
+        if getattr(self, "_fs_empty_tree_import_prompted", False):
+            return
+        if not self._database_is_empty_tree():
+            return
+
+        self._fs_empty_tree_import_prompted = True
+        try:
+            from .fs.actions import offer_empty_tree_import
+
+            offer_empty_tree_import(
+                self.dbstate,
+                self.uistate,
+                getattr(self.uistate, "track", None),
+                session,
+                self.uistate.window,
+            )
+        except Exception:
+            LOG.warning("Failed to show FamilySearch empty-tree import", exc_info=True)
 
     def run_book(self, *action):
         """
