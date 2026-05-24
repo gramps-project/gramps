@@ -1262,7 +1262,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.mid2user_format = self.__id2user_format(self.dnamatch_prefix)
 
     def set_prefixes(
-        self, person, media, family, source, citation, place, event, repository, note
+        self,
+        person,
+        media,
+        family,
+        source,
+        citation,
+        place,
+        event,
+        repository,
+        note,
+        dnatest,
+        dnamatch,
     ):
         self.set_person_id_prefix(person)
         self.set_media_id_prefix(media)
@@ -1273,6 +1284,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.set_event_id_prefix(event)
         self.set_repository_id_prefix(repository)
         self.set_note_id_prefix(note)
+        self.set_dnatest_id_prefix(dnatest)
+        self.set_dnamatch_id_prefix(dnamatch)
 
     ################################################################
     #

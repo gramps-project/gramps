@@ -1499,7 +1499,18 @@ class DbReadBase:
         raise NotImplementedError
 
     def set_prefixes(
-        self, person, media, family, source, citation, place, event, repository, note
+        self,
+        person,
+        media,
+        family,
+        source,
+        citation,
+        place,
+        event,
+        repository,
+        note,
+        dnatest,
+        dnamatch,
     ):
         """
         Set the prefixes for the gramps ids for all gramps objects
