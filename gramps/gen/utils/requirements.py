@@ -146,29 +146,37 @@ class Requirements:
     def info(self, addon):
         """
         Provide the requirements status of a given addon.
+
+        Returns a flat sequence of alternating label / table entries -
+        one pair per non-empty requires section. Sections whose addon
+        list is present but empty (e.g. ``"re": []``) are omitted, so
+        every label in the result is paired with a non-empty table.
         """
         info = []
         if "rm" in addon:
-            info.append(_("Python modules"))
             table = []
             for module in addon.get("rm"):
                 result = self.check_mod(module)
                 table.append([module, tick_cross(result)])
-            info.append(table)
+            if table:
+                info.append(_("Python modules"))
+                info.append(table)
         if "rg" in addon:
-            info.append(_("GObject introspection modules"))
             table = []
             for module_spec in addon.get("rg"):
                 result = self.check_gi(module_spec)
                 table.append([" ".join(module_spec), tick_cross(result)])
-            info.append(table)
+            if table:
+                info.append(_("GObject introspection modules"))
+                info.append(table)
         if "re" in addon:
-            info.append(_("Executables"))
             table = []
             for executable in addon.get("re"):
                 result = self.check_exe(executable)
                 table.append([executable, tick_cross(result)])
-            info.append(table)
+            if table:
+                info.append(_("Executables"))
+                info.append(table)
         return info
 
 
