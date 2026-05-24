@@ -24,6 +24,7 @@
 # ------------------------
 import tempfile
 import unittest
+import warnings
 from unittest.mock import Mock
 
 # ------------------------
@@ -117,6 +118,46 @@ class TestGalleryTabCleanup(unittest.TestCase):
                 "iconlist 'selection-changed' handler so a late emission "
                 "cannot fire _selection_changed after self.iconlist has "
                 "been deleted by track_ref_for_deletion.",
+            )
+        finally:
+            db.close()
+
+    def test_clean_up_after_iconlist_destroyed_emits_no_warning(self):
+        """
+        Regression guard for the warning commit 37395da262 silenced.
+
+        That 2023 commit removed the disconnect in clean_up() because GTK
+        emitted a critical when the disconnect ran on an iconlist whose
+        underlying GObject had already been disposed (the normal close
+        path). Restoring the disconnect for bug 13326 must not bring that
+        warning back. The fix gates the disconnect with
+        GObject.signal_handler_is_connected, which returns False on a
+        disposed widget.
+
+        Simulate the normal-close path by destroying the iconlist widget
+        before clean_up(), then assert that no PyGObject warning of the
+        shape ``instance '...' has no handler with id '...'`` is raised.
+        PyGObject promotes the underlying GObject critical to a Python
+        Warning, so warnings.catch_warnings is sufficient.
+        """
+        gallery, db = self._make_gallery()
+        try:
+            gallery.iconlist.destroy()
+
+            with warnings.catch_warnings(record=True) as caught:
+                warnings.simplefilter("always")
+                gallery.clean_up()
+
+            stale_handler_warnings = [
+                w for w in caught if "has no handler with id" in str(w.message)
+            ]
+            self.assertEqual(
+                stale_handler_warnings,
+                [],
+                "GalleryTab.clean_up() must stay silent when the iconlist "
+                "widget has already been disposed (the case commit "
+                "37395da262 was working around). Got: %r"
+                % [str(w.message) for w in stale_handler_warnings],
             )
         finally:
             db.close()
