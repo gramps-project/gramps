@@ -1171,6 +1171,16 @@ class GrampsPreferences(ConfigureDialog):
         )
         row += 1
 
+        self.add_checkbox(
+            grid,
+            _("Enable FamilySearch integration"),
+            row,
+            "familysearch.enable",
+            start=1,
+            stop=4,
+        )
+        row += 1
+
         return _("Integrations"), grid
 
     def _server_changed(self, obj):

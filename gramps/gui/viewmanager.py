@@ -135,7 +135,7 @@ from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.gen.filters import reload_custom_filters
 from .managedwindow import ManagedWindow
 from .fs.manager import get_session
-from .fs.tools_window import toggle_tools_window
+from .fs.tools_window import close_tools_window, toggle_tools_window
 
 # -------------------------------------------------------------------------
 #
@@ -349,6 +349,7 @@ class ViewManager(CLIManager):
             fs_btn.connect("clicked", self._on_fs_status_clicked)
         except Exception:
             LOG.warning("Failed to connect FamilySearch status button", exc_info=True)
+        self._update_familysearch_ui()
 
         # Create history objects
         for nav_type in (
@@ -396,6 +397,9 @@ class ViewManager(CLIManager):
         Toggle the FamilySearch Tools window.
         Prompt for login when needed before opening the tools window.
         """
+        if not self._familysearch_enabled():
+            return
+
         sess = get_session(dbstate=self.dbstate, uistate=self.uistate)
         if not sess or not (
             getattr(sess, "access_token", None) or getattr(sess, "connected", False)
@@ -418,6 +422,37 @@ class ViewManager(CLIManager):
             return
 
         toggle_tools_window(sess)
+
+    def _familysearch_enabled(self):
+        """
+        Return whether the FamilySearch integration is enabled.
+        """
+        return bool(config.get("familysearch.enable"))
+
+    def _update_familysearch_ui(self):
+        """
+        Update FamilySearch UI visibility to match configuration and db state.
+        """
+        enabled = self._familysearch_enabled()
+        has_database = bool(getattr(self, "file_loaded", False))
+        visible = enabled and has_database
+
+        try:
+            self.statusbar.set_fs_visible(visible)
+            if not visible:
+                self.statusbar.set_fs_online(False)
+        except Exception:
+            LOG.warning("Failed to update FamilySearch status button", exc_info=True)
+
+        if hasattr(self, "familysearchgroup"):
+            self.uimanager.set_actions_visible(self.familysearchgroup, enabled)
+            self.uimanager.set_actions_sensitive(self.familysearchgroup, visible)
+
+        if not visible:
+            close_tools_window()
+
+        if hasattr(self, "uimanager"):
+            self.uimanager.update_menu()
 
     def __setup_navigator(self):
         """
@@ -473,7 +508,6 @@ class ViewManager(CLIManager):
 
         self._readonly_action_list = [
             ("Close", self.close_database, "<control>w"),
-            ("Login", self.login, "<control>l"),
             ("Export", self.export_data, "<PRIMARY>e"),
             ("Backup", self.quick_backup),
             ("Abandon", self.abort),
@@ -542,10 +576,17 @@ class ViewManager(CLIManager):
             ("Redo", self.redo, "<shift><PRIMARY>z"),
         ]
 
+        self._familysearch_action_list = [
+            ("Login", self.login, "<control>l"),
+        ]
+
     def login(self, *action):
         """
         Login to FamilySearch.
         """
+        if not self._familysearch_enabled():
+            return
+
         session = get_session(dbstate=self.dbstate, uistate=self.uistate)
         if not session:
             ErrorDialog(
@@ -667,14 +708,21 @@ class ViewManager(CLIManager):
             self.uimanager.set_actions_visible(self.readonlygroup, False)
             self.uimanager.set_actions_visible(self.undoactions, False)
             self.uimanager.set_actions_visible(self.redoactions, False)
-        self.uimanager.update_menu()
         config.connect("interface.statusbar", self.__statusbar_key_update)
+        config.connect("familysearch.enable", self.__familysearch_key_update)
+        self._update_familysearch_ui()
 
     def __statusbar_key_update(self, client, cnxn_id, entry, data):
         """
         Callback function for statusbar key update
         """
         self.uistate.modify_statusbar(self.dbstate)
+
+    def __familysearch_key_update(self, client, cnxn_id, entry, data):
+        """
+        Callback function for FamilySearch enablement changes.
+        """
+        self._update_familysearch_ui()
 
     def post_init_interface(self, show_manager=True):
         """
@@ -795,6 +843,9 @@ class ViewManager(CLIManager):
 
         self.actiongroup = self.__init_action_group("RW", self._action_action_list)
         self.readonlygroup = self.__init_action_group("RO", self._readonly_action_list)
+        self.familysearchgroup = self.__init_action_group(
+            "FS", self._familysearch_action_list
+        )
         self.fileactions = self.__init_action_group(
             "FileWindow", self._file_action_list
         )
@@ -1019,6 +1070,7 @@ class ViewManager(CLIManager):
             self.uimanager.set_actions_visible(self.readonlygroup, False)
             self.uimanager.set_actions_visible(self.undoactions, False)
             self.uimanager.set_actions_visible(self.redoactions, False)
+            self.uimanager.set_actions_visible(self.familysearchgroup, False)
         return page
 
     def view_changed(self, notebook, page, page_num):
@@ -1236,6 +1288,7 @@ class ViewManager(CLIManager):
         self.uimanager.set_actions_visible(self.readonlygroup, isopen)
         self.uimanager.set_actions_visible(self.undoactions, rw)
         self.uimanager.set_actions_visible(self.redoactions, rw)
+        self._update_familysearch_ui()
 
         self.recent_manager.build()
 
@@ -1254,7 +1307,8 @@ class ViewManager(CLIManager):
         self.uimanager.set_actions_visible(self.readonlygroup, False)
         self.uimanager.set_actions_visible(self.undoactions, False)
         self.uimanager.set_actions_visible(self.redoactions, False)
-        self.uimanager.update_menu()
+        self.uimanager.set_actions_visible(self.familysearchgroup, False)
+        self._update_familysearch_ui()
         config.set("paths.recent-file", "")
         config.save()
 

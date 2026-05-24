@@ -392,6 +392,7 @@ register("utf8.cremated-symbol", "⚱")
 register("utf8.killed-symbol", "x")
 
 register("familysearch.server", 0)  # beta
+register("familysearch.enable", True)
 register("familysearch.app-key", "")
 register("familysearch.redirect", "http://127.0.0.1:57938/familysearch-auth")
 register("familysearch.auth-provider", "foundation")

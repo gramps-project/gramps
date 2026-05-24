@@ -93,6 +93,9 @@ def _cfg_get(config, key: str, default=None):
 def get_session(dbstate=None, uistate=None):
     global _SESSION
 
+    if not bool(_cfg_get(_config, "familysearch.enable", True)):
+        return None
+
     sess = get_active_session() or _SESSION
     if sess is not None:
         _SESSION = sess
