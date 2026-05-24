@@ -534,9 +534,7 @@ def _search_familysearch_people(
             session, "get_json", None
         )
         if callable(get_json):
-            endpoint = "/platform/tree/search?" + urlencode(
-                {"q": query, "count": "25"}
-            )
+            endpoint = "/platform/tree/search?" + urlencode({"q": query, "count": "25"})
             data = get_json(endpoint, headers=headers)
 
     results: list[_FamilySearchSearchResult] = []
@@ -867,9 +865,7 @@ def _empty_tree_start_person_dialog(
         try:
             results = _search_familysearch_people(session, raw_query)
         except Exception as err:
-            status_label.set_text(
-                _("Search failed: %(error)s") % {"error": str(err)}
-            )
+            status_label.set_text(_("Search failed: %(error)s") % {"error": str(err)})
             search_button.set_sensitive(True)
             return
 
@@ -980,10 +976,7 @@ def offer_empty_tree_import(
 
     dialog = QuestionDialog2(
         _("FamilySearch"),
-        _(
-            "Your tree is empty! Would you like to bulk import from "
-            "FamilySearch?"
-        ),
+        _("Your tree is empty! Would you like to bulk import from " "FamilySearch?"),
         _("Choose Starting Person"),
         _("Not now"),
         parent=parent,

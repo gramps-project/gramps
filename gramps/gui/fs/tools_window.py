@@ -425,9 +425,7 @@ class FamilySearchToolsWindow:
 
         self.btn_bulk_import = Gtk.Button(label=_("Bulk Import Relatives"))
         self.btn_bulk_import.set_tooltip_text(
-            _(
-                "Import ancestors and descendants from the selected FamilySearch person."
-            )
+            _("Import ancestors and descendants from the selected FamilySearch person.")
         )
         self.btn_bulk_import.get_style_context().add_class("suggested-action")
         self._add_btn(box_bulk_import, self.btn_bulk_import)
