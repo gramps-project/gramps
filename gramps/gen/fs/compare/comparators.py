@@ -75,6 +75,47 @@ def _fs_person_or_blank(fsid: str):
     return _fs_person_opt(fsid) or deserialize.Person()
 
 
+def _parent_ids_from_fs_person(fs_person) -> set[str]:
+    """
+    Collect parent ids from both relationship payload styles.
+    """
+    parent_ids: set[str] = set()
+
+    for couple in getattr(fs_person, "_parents", []) or []:
+        if getattr(couple, "person1", None):
+            parent_ids.add(couple.person1.resourceId)
+        if getattr(couple, "person2", None):
+            parent_ids.add(couple.person2.resourceId)
+
+    for rel in getattr(fs_person, "_parentsCP", []) or []:
+        if getattr(rel, "parent1", None):
+            parent_ids.add(rel.parent1.resourceId)
+        if getattr(rel, "parent2", None):
+            parent_ids.add(rel.parent2.resourceId)
+
+    parent_ids.discard(getattr(fs_person, "id", ""))
+    return {pid for pid in parent_ids if pid}
+
+
+def _spouse_ids_from_children(fs_person) -> set[str]:
+    """
+    Infer spouse ids from child-and-parents relationships.
+    """
+    fsid = getattr(fs_person, "id", "")
+    spouse_ids: set[str] = set()
+
+    for rel in getattr(fs_person, "_childrenCP", []) or []:
+        parent1 = getattr(getattr(rel, "parent1", None), "resourceId", "")
+        parent2 = getattr(getattr(rel, "parent2", None), "resourceId", "")
+        if parent1 == fsid and parent2:
+            spouse_ids.add(parent2)
+        elif parent2 == fsid and parent1:
+            spouse_ids.add(parent1)
+
+    spouse_ids.discard(fsid)
+    return spouse_ids
+
+
 def compare_gender(gr_person: Person, fs_person) -> Tuple:
     # Compare GRAMPS gender vs FS gender, returns a color-coded tuple
     if gr_person.get_gender() == Person.MALE:
@@ -271,13 +312,8 @@ def compare_parents(db, gr_person: Person, fs_person) -> List[Tuple]:
             mother = db.get_person_from_handle(mother_handle)
             mother_name = name_displayer.display(mother)
 
-    if len(fs_person._parents) > 0:
-        parent_ids = set()
-        for couple in fs_person._parents:
-            parent_ids.add(couple.person1.resourceId)
-            parent_ids.add(couple.person2.resourceId)
-        parent_ids.remove(fs_person.id)
-
+    parent_ids = _parent_ids_from_fs_person(fs_person)
+    if parent_ids:
         _ensure_fs_people(parent_ids)
 
         fs_father_id = ""
@@ -494,6 +530,7 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
     res: List[Tuple] = []
     fs_spouses = fs_person._spouses.copy()
     fs_children = fs_person._childrenCP.copy()
+    fs_spouse_ids = _spouse_ids_from_children(fs_person)
     fsid = fs_person.id
 
     for family_handle in gr_person.get_family_handle_list():
@@ -532,6 +569,12 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
                     fs_pair_id = couple.id
                     fs_spouses.remove(couple)
                     break
+
+            if not fs_spouse_id and spouse_fsid and spouse_fsid in fs_spouse_ids:
+                fs_spouse_id = spouse_fsid
+                fs_spouse_ids.remove(spouse_fsid)
+            elif spouse_fsid:
+                fs_spouse_ids.discard(spouse_fsid)
 
             color = "yellow"
             if spouse_fsid and spouse_fsid == fs_spouse_id:
@@ -921,6 +964,77 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
                         fs_child_id,
                         None,
                         couple.id,
+                    )
+                )
+                to_remove.add(triple)
+        for triple in to_remove:
+            fs_children.remove(triple)
+
+    color = "yellow3"
+    for fs_spouse_id in sorted(fs_spouse_ids):
+        fs_spouse_opt = _fs_person_opt(fs_spouse_id)
+        fs_spouse_for_name = (
+            fs_spouse_opt if fs_spouse_opt is not None else deserialize.Person()
+        )
+        fs_name = fs_spouse_for_name.preferred_name()
+
+        res.append(
+            (
+                color,
+                _("Spouse"),
+                "",
+                "",
+                fs_person_dates_str(db, fs_spouse_opt),
+                fs_name.akSurname()
+                + ", "
+                + fs_name.akGiven()
+                + " ["
+                + fs_spouse_id
+                + "]",
+                "",
+                False,
+                "spouse",
+                None,
+                fs_spouse_id,
+                None,
+                None,
+            )
+        )
+
+        to_remove = set()
+        for triple in fs_children:
+            parent1 = getattr(getattr(triple, "parent1", None), "resourceId", "")
+            parent2 = getattr(getattr(triple, "parent2", None), "resourceId", "")
+            if (parent1 == fsid and parent2 == fs_spouse_id) or (
+                parent2 == fsid and parent1 == fs_spouse_id
+            ):
+                fs_child_id = triple.child.resourceId
+                fs_child_opt = _fs_person_opt(fs_child_id)
+                fs_child_for_name = (
+                    fs_child_opt if fs_child_opt is not None else deserialize.Person()
+                )
+                fs_name = fs_child_for_name.preferred_name()
+
+                res.append(
+                    (
+                        color,
+                        "    " + _("Child"),
+                        "",
+                        "",
+                        fs_person_dates_str(db, fs_child_opt),
+                        fs_name.akSurname()
+                        + ", "
+                        + fs_name.akGiven()
+                        + " ["
+                        + fs_child_id
+                        + "]",
+                        "",
+                        False,
+                        "child",
+                        None,
+                        fs_child_id,
+                        None,
+                        None,
                     )
                 )
                 to_remove.add(triple)

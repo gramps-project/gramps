@@ -179,6 +179,57 @@ class CacheMixin:
             )
         return fs_session
 
+    def _hydrate_relative_payloads(
+        self, fsid: str, fs_tree: Any, fs_session: Any
+    ) -> None:
+        """
+        Fetch relative payloads when the base person payload omits them.
+        """
+        person = deserialize.Person.index.get(fsid)
+        if person is None:
+            return
+
+        missing_endpoints: list[str] = []
+        if not list(getattr(person, "_spouses", []) or []):
+            missing_endpoints.append("spouses")
+        if not (
+            list(getattr(person, "_children", []) or [])
+            or list(getattr(person, "_childrenCP", []) or [])
+        ):
+            missing_endpoints.append("children")
+        if not (
+            list(getattr(person, "_parents", []) or [])
+            or list(getattr(person, "_parentsCP", []) or [])
+        ):
+            missing_endpoints.append("parents")
+        if not missing_endpoints:
+            return
+
+        get_json = getattr(fs_session, "get_jsonurl", None) or getattr(
+            fs_session, "get_json", None
+        )
+        if not callable(get_json):
+            return
+
+        for endpoint in missing_endpoints:
+            try:
+                payload = get_json(f"/platform/tree/persons/{fsid}/{endpoint}")
+            except Exception as exc:
+                print(f"[FS Cache] failed to fetch {endpoint} for {fsid}: {exc}")
+                continue
+
+            if not isinstance(payload, dict) or not payload:
+                continue
+
+            try:
+                deserialize.deserialize_json(fs_tree, payload)
+            except Exception as exc:
+                print(f"[FS Cache] failed to deserialize {endpoint} for {fsid}: {exc}")
+
+        person = deserialize.Person.index.get(fsid)
+        if person is not None:
+            fs_tree._persons[fsid] = person
+
     def _ensure_person_cached(
         self,
         fsid: str,
@@ -281,6 +332,7 @@ class CacheMixin:
                             print(f"[FS Cache] serialize/write failed for {fsid}: {e}")
 
         if with_relatives:
+            self._hydrate_relative_payloads(fsid, fs_tree, fs_session)
             fs_tree.add_spouses({fsid})
             fs_tree.add_children({fsid})
             fs_tree.add_parents({fsid})
