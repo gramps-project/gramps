@@ -486,9 +486,9 @@ class GrampsXmlWriter(UpdateCallback):
                 )
             for handle in self.db.get_note_bookmarks().get():
                 self.g.write('    <bookmark target="note" hlink="_%s"/>\n' % handle)
-            for handle in self.db.dnatest_bookmarks.get():
+            for handle in self.db.get_dnatest_bookmarks().get():
                 self.g.write('    <bookmark target="dnatest" hlink="_%s"/>\n' % handle)
-            for handle in self.db.dnamatch_bookmarks.get():
+            for handle in self.db.get_dnamatch_bookmarks().get():
                 self.g.write('    <bookmark target="dnamatch" hlink="_%s"/>\n' % handle)
 
             self.g.write("  </bookmarks>\n")
