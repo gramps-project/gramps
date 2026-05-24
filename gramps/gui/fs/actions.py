@@ -29,6 +29,7 @@ from gi.repository import Gtk, Gdk  # noqa: F401 (Gdk used in some UI flows)
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.db import DbTxn
+from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.fs import tags as fs_tags
 from gramps.gen.fs import tree as fs_tree
 from gramps.gen.lib import Family, Person, EventRef, EventRoleType, EventType
@@ -343,6 +344,224 @@ def _import_full_person(dbstate, uistate, fsid: str, verbosity: int = 0) -> None
     importer.import_cpr = False  # avoid double relationship creation
 
     importer.import_tree(caller, fsid)
+
+
+def _person_name_for_ui(person: Any) -> str:
+    """Return a display name for the selected Gramps person."""
+    try:
+        return name_displayer.display(person)
+    except Exception:
+        return _("selected person")
+
+
+def _new_generation_spin(default: int = 0) -> Gtk.SpinButton:
+    """Create a spin button for a generation count."""
+    adj = Gtk.Adjustment(
+        value=default,
+        lower=0,
+        upper=99,
+        step_increment=1,
+        page_increment=5,
+        page_size=0,
+    )
+    spinner = Gtk.SpinButton(adjustment=adj, climb_rate=0.0, digits=0)
+    spinner.set_numeric(True)
+    spinner.set_hexpand(True)
+    return spinner
+
+
+def _attach_grid_row(
+    grid: Gtk.Grid,
+    row: int,
+    label_text: str,
+    widget: Gtk.Widget,
+    tooltip: str = "",
+) -> None:
+    """Attach a labeled row to an options grid."""
+    label = Gtk.Label(label=_("%s: ") % label_text)
+    label.set_xalign(0.0)
+    label.set_halign(Gtk.Align.START)
+    widget.set_halign(Gtk.Align.FILL)
+
+    if tooltip:
+        label.set_tooltip_text(tooltip)
+        widget.set_tooltip_text(tooltip)
+
+    grid.attach(label, 0, row, 1, 1)
+    grid.attach(widget, 1, row, 1, 1)
+
+
+def _bulk_import_options_dialog(
+    parent: Gtk.Window,
+    person: Any,
+    fsid: str,
+) -> dict[str, Any] | None:
+    """Ask for FamilySearch bulk import options."""
+    dlg = Gtk.Dialog(title=_("Bulk import relatives"), transient_for=parent, modal=True)
+    dlg.get_style_context().add_class("fs-bulk-import-dialog")
+    fs_ui.set_headerbar(dlg, _("Bulk import relatives"))
+
+    dlg.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
+    import_button = dlg.add_button(_("Import"), Gtk.ResponseType.OK)
+    import_button.get_style_context().add_class("suggested-action")
+
+    box = dlg.get_content_area()
+    box.set_spacing(10)
+    box.set_margin_top(12)
+    box.set_margin_bottom(12)
+    box.set_margin_start(12)
+    box.set_margin_end(12)
+
+    selected_label = Gtk.Label(
+        label=_("Starting person: %(name)s [%(fsid)s]")
+        % {
+            "name": _person_name_for_ui(person),
+            "fsid": fsid,
+        }
+    )
+    selected_label.set_xalign(0.0)
+    selected_label.set_line_wrap(True)
+    box.pack_start(selected_label, False, False, 0)
+
+    grid = Gtk.Grid()
+    grid.set_column_spacing(10)
+    grid.set_row_spacing(8)
+    grid.set_hexpand(True)
+    box.pack_start(grid, False, False, 0)
+
+    ancestor_spin = _new_generation_spin(default=1)
+    descendant_spin = _new_generation_spin(default=0)
+
+    _attach_grid_row(
+        grid,
+        0,
+        _("Ancestor generations"),
+        ancestor_spin,
+        _("Number of generations to import upward from the starting person."),
+    )
+    _attach_grid_row(
+        grid,
+        1,
+        _("Descendant generations"),
+        descendant_spin,
+        _("Number of generations to import downward from the starting person."),
+    )
+
+    checks = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+    box.pack_start(checks, False, False, 0)
+
+    include_spouses = Gtk.CheckButton(label=_("Include spouses"))
+    include_spouses.set_tooltip_text(
+        _("When off, import only the direct parent/child bloodline.")
+    )
+
+    noreimport = Gtk.CheckButton(label=_("Do not re-import existing people"))
+    noreimport.set_active(True)
+    noreimport.set_tooltip_text(
+        _("Keep existing linked Gramps people unchanged during the import.")
+    )
+
+    include_sources = Gtk.CheckButton(label=_("Include sources"))
+    include_sources.set_tooltip_text(_("Fetch and import FamilySearch sources."))
+
+    include_notes = Gtk.CheckButton(label=_("Include notes"))
+    include_notes.set_tooltip_text(_("Fetch and import FamilySearch notes."))
+
+    import_cpr = Gtk.CheckButton(label=_("Link imported parent/child relationships"))
+    import_cpr.set_active(True)
+    import_cpr.set_tooltip_text(
+        _("Create or reuse families so imported parents and children are connected.")
+    )
+
+    for check in (
+        include_spouses,
+        noreimport,
+        include_sources,
+        include_notes,
+        import_cpr,
+    ):
+        checks.pack_start(check, False, False, 0)
+
+    dlg.show_all()
+    response = dlg.run()
+
+    options = None
+    if response == Gtk.ResponseType.OK:
+        options = {
+            "asc": ancestor_spin.get_value_as_int(),
+            "desc": descendant_spin.get_value_as_int(),
+            "include_spouses": include_spouses.get_active(),
+            "noreimport": noreimport.get_active(),
+            "include_sources": include_sources.get_active(),
+            "include_notes": include_notes.get_active(),
+            "import_cpr": import_cpr.get_active(),
+        }
+
+    dlg.destroy()
+    return options
+
+
+def bulk_import_relatives(
+    dbstate: Any,
+    uistate: Any,
+    track: Any,
+    person: Any,
+    session: Any,
+    parent: Gtk.Window,
+    editor: Any = None,
+) -> None:
+    """Import multiple generations of relatives from FamilySearch."""
+    _bind_global_session(session)
+
+    fsid = _get_fs_id(person)
+    if not fsid:
+        _info(
+            parent,
+            _("FamilySearch"),
+            _("No FamilySearch ID linked. Click 'Link FamilySearch ID' first."),
+        )
+        return
+
+    if not _require_ready_person(dbstate, parent, person):
+        return
+
+    options = _bulk_import_options_dialog(parent, person, fsid)
+    if options is None:
+        return
+
+    _ensure_status_schema(dbstate.db)
+
+    class _Caller:
+        """Minimal object expected by the GUI importer."""
+
+        def __init__(self, dbstate: Any, uistate: Any) -> None:
+            """Store the active database and UI state."""
+            self.dbstate = dbstate
+            self.uistate = uistate
+
+    caller = _Caller(dbstate, uistate)
+
+    importer = FSToGrampsImporter()
+    importer.asc = int(options["asc"])
+    importer.desc = int(options["desc"])
+    importer.include_spouses = bool(options["include_spouses"])
+    importer.noreimport = bool(options["noreimport"])
+    importer.include_sources = bool(options["include_sources"])
+    importer.include_notes = bool(options["include_notes"])
+    importer.import_cpr = bool(options["import_cpr"])
+    importer.verbosity = 0
+
+    importer.import_tree(caller, fsid)
+    if getattr(importer, "fs_TreeImp", None) is None:
+        return
+
+    if editor is not None and hasattr(editor, "_update_families"):
+        try:
+            editor._update_families()
+        except Exception:
+            pass
+
+    _info(parent, _("FamilySearch"), _("Bulk import complete."))
 
 
 # ---------------------------------------

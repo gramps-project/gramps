@@ -131,6 +131,12 @@ class Tree(deserialize.Gedcomx):
                         rels.add(rel.person1.resourceId)
                     if rel.person2:
                         rels.add(rel.person2.resourceId)
+            display = getattr(p, "display", None)
+            for family in getattr(display, "familiesAsParent", []) or []:
+                if getattr(family, "parent1", None):
+                    rels.add(family.parent1.resourceId)
+                if getattr(family, "parent2", None):
+                    rels.add(family.parent2.resourceId)
 
         rels.difference_update(fids)
         self.add_persons(rels)
@@ -146,6 +152,14 @@ class Tree(deserialize.Gedcomx):
                         rels.add(rel.person1.resourceId)
                     if getattr(rel, "person2", None):
                         rels.add(rel.person2.resourceId)
+            for cp_rel in getattr(p, "_childrenCP", []) or []:
+                if getattr(cp_rel, "child", None):
+                    rels.add(cp_rel.child.resourceId)
+            display = getattr(p, "display", None)
+            for family in getattr(display, "familiesAsParent", []) or []:
+                for child in getattr(family, "children", []) or []:
+                    if getattr(child, "resourceId", None):
+                        rels.add(child.resourceId)
 
         rels.difference_update(fids)
         self.add_persons(rels)

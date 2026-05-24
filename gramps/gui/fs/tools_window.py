@@ -318,7 +318,7 @@ class FamilySearchToolsWindow:
 
         self._install_css()
 
-        # layout is simple on purpose, status row, person actions, imports & utilities
+        # layout is simple on purpose: status row, then grouped actions in tabs
         outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.window.add(outer)
 
@@ -354,10 +354,23 @@ class FamilySearchToolsWindow:
 
         self._size_group = Gtk.SizeGroup(mode=Gtk.SizeGroupMode.BOTH)
 
+        notebook = Gtk.Notebook()
+        notebook.set_scrollable(True)
+        notebook.get_style_context().add_class("fs-tools-notebook")
+        outer.pack_start(notebook, True, True, 0)
+
+        tab_single = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        tab_single.set_border_width(2)
+        notebook.append_page(tab_single, Gtk.Label(label=_("Single Person Actions")))
+
+        tab_bulk = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        tab_bulk.set_border_width(2)
+        notebook.append_page(tab_bulk, Gtk.Label(label=_("Bulk Actions")))
+
         sec_person, box_person = self._make_section(
             _("Person actions"), "fs-sec-person"
         )
-        outer.pack_start(sec_person, False, False, 0)
+        tab_single.pack_start(sec_person, False, False, 0)
 
         self.btn_link = Gtk.Button(label=_("Link FamilySearch ID"))
         self.btn_cmp = Gtk.Button(label=_("Compare"))
@@ -388,7 +401,7 @@ class FamilySearchToolsWindow:
         sec_import, box_import = self._make_section(
             _("Import relatives"), "fs-sec-import"
         )
-        outer.pack_start(sec_import, False, False, 0)
+        tab_single.pack_start(sec_import, False, False, 0)
 
         self.btn_imp_par = Gtk.Button(label=_("Import Parents"))
         self.btn_imp_spo = Gtk.Button(label=_("Import Spouse"))
@@ -398,19 +411,37 @@ class FamilySearchToolsWindow:
             self._add_btn(box_import, button)
 
         sec_util, box_util = self._make_section(_("Utilities"), "fs-sec-util")
-        outer.pack_start(sec_util, False, False, 0)
+        tab_single.pack_start(sec_util, False, False, 0)
 
-        self.btn_tags = Gtk.Button(label=_("Tags..."))
         self.btn_clear_cache = Gtk.Button(label=_("Clear Cache"))
         self.btn_clear_cache.get_style_context().add_class("destructive-action")
 
-        self._add_btn(box_util, self.btn_tags)
         self._add_btn(box_util, self.btn_clear_cache)
+
+        sec_bulk_import, box_bulk_import = self._make_section(
+            _("Import multiple generations"), "fs-sec-import"
+        )
+        tab_bulk.pack_start(sec_bulk_import, False, False, 0)
+
+        self.btn_bulk_import = Gtk.Button(label=_("Bulk Import Relatives"))
+        self.btn_bulk_import.set_tooltip_text(
+            _(
+                "Import ancestors and descendants from the selected FamilySearch person."
+            )
+        )
+        self.btn_bulk_import.get_style_context().add_class("suggested-action")
+        self._add_btn(box_bulk_import, self.btn_bulk_import)
+
+        sec_bulk_util, box_bulk_util = self._make_section(_("Utilities"), "fs-sec-util")
+        tab_bulk.pack_start(sec_bulk_util, False, False, 0)
+
+        self.btn_tags = Gtk.Button(label=_("Tags..."))
+        self._add_btn(box_bulk_util, self.btn_tags)
 
         note = build_tag_color_note_widget()
         if note is not None:
             note.set_margin_top(6)
-            util_inner = sec_util.get_child()
+            util_inner = sec_bulk_util.get_child()
             if isinstance(util_inner, Gtk.Box):
                 util_inner.pack_start(note, False, False, 0)
 
@@ -424,6 +455,7 @@ class FamilySearchToolsWindow:
         self.btn_imp_spo.connect("clicked", self._on_import_spouse)
         self.btn_imp_chi.connect("clicked", self._on_import_children)
 
+        self.btn_bulk_import.connect("clicked", self._on_bulk_import)
         self.btn_tags.connect("clicked", self._on_tags)
         self.btn_clear_cache.connect("clicked", self._on_clear_cache)
 
@@ -693,6 +725,7 @@ class FamilySearchToolsWindow:
             self.btn_imp_par,
             self.btn_imp_spo,
             self.btn_imp_chi,
+            self.btn_bulk_import,
         ):
             button.set_sensitive(enabled)
 
@@ -927,6 +960,13 @@ class FamilySearchToolsWindow:
             return
 
         self._call_action(actions.import_children, "Import children failed", ctx)
+
+    def _on_bulk_import(self, *_args: Any) -> None:
+        ctx = self._ctx()
+        if not ctx:
+            return
+
+        self._call_action(actions.bulk_import_relatives, "Bulk import failed", ctx)
 
     def _on_tags(self, *_args: Any) -> None:
         ctx = self._ctx_db_only()
