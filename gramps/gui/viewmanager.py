@@ -8,6 +8,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Gary Burton
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2026       Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -134,7 +135,6 @@ from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.gen.filters import reload_custom_filters
 from .managedwindow import ManagedWindow
 from .fs.manager import get_session
-from .fs.session import Session
 from .fs.tools_window import toggle_tools_window
 
 # -------------------------------------------------------------------------
@@ -394,19 +394,25 @@ class ViewManager(CLIManager):
     def _on_fs_status_clicked(self, *_args):
         """
         Toggle the FamilySearch Tools window.
-        Only works after login (token present).
+        Prompt for login when needed before opening the tools window.
         """
         sess = get_session(dbstate=self.dbstate, uistate=self.uistate)
         if not sess or not (
             getattr(sess, "access_token", None) or getattr(sess, "connected", False)
         ):
-            # You said: only after login. So we just show info.
             try:
-                ErrorDialog(
+                dialog = QuestionDialog2(
                     _("FamilySearch"),
-                    _("Not logged in to FamilySearch."),
+                    _(
+                        "You are not logged in to FamilySearch. Would you like "
+                        "to sign in now?"
+                    ),
+                    _("Sign in"),
+                    _("Cancel"),
                     parent=self.uistate.window,
                 )
+                if dialog.run():
+                    self.login()
             except Exception:
                 LOG.warning("Failed to show FamilySearch login dialog", exc_info=True)
             return
@@ -540,7 +546,14 @@ class ViewManager(CLIManager):
         """
         Login to FamilySearch.
         """
-        session = Session.from_config()
+        session = get_session(dbstate=self.dbstate, uistate=self.uistate)
+        if not session:
+            ErrorDialog(
+                _("FamilySearch"),
+                _("FamilySearch is not configured (no session)."),
+                parent=self.uistate.window,
+            )
+            return
 
         self.uistate.set_busy_cursor(True)
         self.statusbar.set_fs_online(False)

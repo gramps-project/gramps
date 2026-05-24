@@ -93,7 +93,7 @@ def _cfg_get(config, key: str, default=None):
 def get_session(dbstate=None, uistate=None):
     global _SESSION
 
-    sess = _SESSION or get_active_session()
+    sess = get_active_session() or _SESSION
     if sess is not None:
         _SESSION = sess
         _bind_session_context(sess, dbstate=dbstate, uistate=uistate)
