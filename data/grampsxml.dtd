@@ -397,7 +397,7 @@ DNA TESTS
 
 <!ELEMENT dnatest (person?, account_name?, provider?, kit_id?, test_type?,
                    genome_build?, (daterange|datespan|dateval|datestr)?,
-                   haplogroup?, attribute*, objref*, noteref*, citationref*,
+                   y_haplogroup?, mt_haplogroup?, attribute*, objref*, noteref*, citationref*,
                    tagref*)>
 <!ATTLIST dnatest
         id        CDATA #IMPLIED
@@ -468,7 +468,8 @@ DNA MATCHES
 <!ELEMENT kit_id (#PCDATA)>
 <!ELEMENT test_type (#PCDATA)>
 <!ELEMENT genome_build (#PCDATA)>
-<!ELEMENT haplogroup (#PCDATA)>
+<!ELEMENT y_haplogroup (#PCDATA)>
+<!ELEMENT mt_haplogroup (#PCDATA)>
 
 <!--    ************************************************************
 BOOKMARKS

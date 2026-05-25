@@ -55,7 +55,8 @@ class DNATestSidebarFilter(SidebarFilter):
         self.filter_person = widgets.BasicEntry()
         self.filter_account = widgets.BasicEntry()
         self.filter_kit = widgets.BasicEntry()
-        self.filter_haplogroup = widgets.BasicEntry()
+        self.filter_y_haplogroup = widgets.BasicEntry()
+        self.filter_mt_haplogroup = widgets.BasicEntry()
 
         self._dnatest = DNATest()
         self._dnatest.set_provider((DNAProviderType.CUSTOM, ""))
@@ -104,7 +105,8 @@ class DNATestSidebarFilter(SidebarFilter):
         self.add_text_entry(_("Kit ID"), self.filter_kit)
         self.add_entry(_("Provider"), self.provider_combo)
         self.add_entry(_("Test type"), self.testtype_combo)
-        self.add_text_entry(_("Haplogroup"), self.filter_haplogroup)
+        self.add_text_entry(_("Y haplogroup"), self.filter_y_haplogroup)
+        self.add_text_entry(_("mtDNA haplogroup"), self.filter_mt_haplogroup)
 
         hbox = Gtk.Box()
         hbox.pack_start(self.filter_unidentified, False, False, 12)
@@ -119,7 +121,8 @@ class DNATestSidebarFilter(SidebarFilter):
         self.filter_person.set_text("")
         self.filter_account.set_text("")
         self.filter_kit.set_text("")
-        self.filter_haplogroup.set_text("")
+        self.filter_y_haplogroup.set_text("")
+        self.filter_mt_haplogroup.set_text("")
         self.provider_combo.get_child().set_text("")
         self.testtype_combo.get_child().set_text("")
         self.filter_unidentified.set_active(False)
@@ -130,7 +133,8 @@ class DNATestSidebarFilter(SidebarFilter):
         person = str(self.filter_person.get_text()).strip()
         account = str(self.filter_account.get_text()).strip()
         kit = str(self.filter_kit.get_text()).strip()
-        haplogroup = str(self.filter_haplogroup.get_text()).strip()
+        y_haplogroup = str(self.filter_y_haplogroup.get_text()).strip()
+        mt_haplogroup = str(self.filter_mt_haplogroup.get_text()).strip()
         provider = self._dnatest.get_provider().xml_str()
         testtype = self._dnatest.get_test_type().xml_str()
         unidentified = self.filter_unidentified.get_active()
@@ -143,7 +147,8 @@ class DNATestSidebarFilter(SidebarFilter):
             or person
             or account
             or kit
-            or haplogroup
+            or y_haplogroup
+            or mt_haplogroup
             or provider
             or testtype
             or unidentified
@@ -159,9 +164,9 @@ class DNATestSidebarFilter(SidebarFilter):
             rule = RegExpIdOf([gid], use_regex=regex, use_case=usecase)
             generic_filter.add_rule(rule)
 
-        if person or account or kit or haplogroup:
+        if person or account or kit or y_haplogroup or mt_haplogroup:
             rule = HasDNATest(
-                [person, account, kit, haplogroup],
+                [person, account, kit, y_haplogroup, mt_haplogroup],
                 use_regex=regex,
                 use_case=usecase,
             )

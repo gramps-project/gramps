@@ -165,7 +165,11 @@ class DNATestModel(FlatBaseModel):
         return DNATestType.get_str(data.test_type)
 
     def column_haplogroup(self, data):
-        return data.haplogroup
+        y = data.y_haplogroup
+        mt = data.mt_haplogroup
+        if y and mt:
+            return f"{y} / {mt}"
+        return y or mt
 
     def column_private(self, data):
         if data.private:

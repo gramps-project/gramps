@@ -164,10 +164,17 @@ class EditDNATest(EditPrimary):
             self.db.readonly,
         )
 
-        self.haplogroup_field = MonitoredEntry(
-            self.top.get_object("haplogroup"),
-            self.obj.set_haplogroup,
-            self.obj.get_haplogroup,
+        self.y_haplogroup_field = MonitoredEntry(
+            self.top.get_object("y_haplogroup"),
+            self.obj.set_y_haplogroup,
+            self.obj.get_y_haplogroup,
+            self.db.readonly,
+        )
+
+        self.mt_haplogroup_field = MonitoredEntry(
+            self.top.get_object("mt_haplogroup"),
+            self.obj.set_mt_haplogroup,
+            self.obj.get_mt_haplogroup,
             self.db.readonly,
         )
 

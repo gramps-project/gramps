@@ -55,7 +55,8 @@ _DNATEST_XML = """\
       <test_type>Autosomal</test_type>
       <genome_build>GRCh37</genome_build>
       <dateval val="2022-03-15"/>
-      <haplogroup>H1a</haplogroup>
+      <y_haplogroup>R-L21</y_haplogroup>
+      <mt_haplogroup>H1a</mt_haplogroup>
     </dnatest>
   </dnatests>
 </database>
@@ -180,9 +181,13 @@ class TestDNATestImport(unittest.TestCase):
         self.assertEqual(date.get_month(), 3)
         self.assertEqual(date.get_day(), 15)
 
-    def test_haplogroup(self):
+    def test_y_haplogroup(self):
         dt = self.db.get_dnatest_from_handle(list(self.db.get_dnatest_handles())[0])
-        self.assertEqual(dt.get_haplogroup(), "H1a")
+        self.assertEqual(dt.get_y_haplogroup(), "R-L21")
+
+    def test_mt_haplogroup(self):
+        dt = self.db.get_dnatest_from_handle(list(self.db.get_dnatest_handles())[0])
+        self.assertEqual(dt.get_mt_haplogroup(), "H1a")
 
 
 class TestDNAMatchImport(unittest.TestCase):

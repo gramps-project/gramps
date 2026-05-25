@@ -117,12 +117,20 @@ class MergeDNATest(ManagedWindow):
             str(self.dt2.get_genome_build()),
         )
         self._init_field(
-            "haplogroup1",
-            "haplogroup2",
-            "haplogroup_btn1",
-            "haplogroup_btn2",
-            self.dt1.get_haplogroup(),
-            self.dt2.get_haplogroup(),
+            "y_haplogroup1",
+            "y_haplogroup2",
+            "y_haplogroup_btn1",
+            "y_haplogroup_btn2",
+            self.dt1.get_y_haplogroup(),
+            self.dt2.get_y_haplogroup(),
+        )
+        self._init_field(
+            "mt_haplogroup1",
+            "mt_haplogroup2",
+            "mt_haplogroup_btn1",
+            "mt_haplogroup_btn2",
+            self.dt1.get_mt_haplogroup(),
+            self.dt2.get_mt_haplogroup(),
         )
         self._init_field(
             "date1",
@@ -163,7 +171,8 @@ class MergeDNATest(ManagedWindow):
                 "kit_id_btn1",
                 "test_type_btn1",
                 "genome_build_btn1",
-                "haplogroup_btn1",
+                "y_haplogroup_btn1",
+                "mt_haplogroup_btn1",
                 "date_btn1",
                 "gramps_btn1",
             ):
@@ -176,7 +185,8 @@ class MergeDNATest(ManagedWindow):
                 "kit_id_btn2",
                 "test_type_btn2",
                 "genome_build_btn2",
-                "haplogroup_btn2",
+                "y_haplogroup_btn2",
+                "mt_haplogroup_btn2",
                 "date_btn2",
                 "gramps_btn2",
             ):
@@ -206,8 +216,10 @@ class MergeDNATest(ManagedWindow):
             phoenix.set_test_type(titanic.get_test_type())
         if self.get_widget("genome_build_btn1").get_active() ^ use_handle1:
             phoenix.set_genome_build(titanic.get_genome_build())
-        if self.get_widget("haplogroup_btn1").get_active() ^ use_handle1:
-            phoenix.set_haplogroup(titanic.get_haplogroup())
+        if self.get_widget("y_haplogroup_btn1").get_active() ^ use_handle1:
+            phoenix.set_y_haplogroup(titanic.get_y_haplogroup())
+        if self.get_widget("mt_haplogroup_btn1").get_active() ^ use_handle1:
+            phoenix.set_mt_haplogroup(titanic.get_mt_haplogroup())
         if self.get_widget("date_btn1").get_active() ^ use_handle1:
             phoenix.set_date_object(titanic.get_date_object())
         if self.get_widget("gramps_btn1").get_active() ^ use_handle1:

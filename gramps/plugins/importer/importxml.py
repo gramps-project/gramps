@@ -825,7 +825,8 @@ class GrampsParser(UpdateCallback):
             "kit_id": (None, self.stop_kit_id),
             "test_type": (None, self.stop_test_type),
             "genome_build": (None, self.stop_genome_build),
-            "haplogroup": (None, self.stop_haplogroup),
+            "y_haplogroup": (None, self.stop_y_haplogroup),
+            "mt_haplogroup": (None, self.stop_mt_haplogroup),
             "shared_cm": (self.start_shared_cm, None),
             "percent_shared": (self.start_percent_shared, None),
             "segment_count": (self.start_segment_count, None),
@@ -3479,9 +3480,13 @@ class GrampsParser(UpdateCallback):
         if self.dnatest:
             self.dnatest.get_genome_build().set_from_xml_str(tag)
 
-    def stop_haplogroup(self, tag):
+    def stop_y_haplogroup(self, tag):
         if self.dnatest:
-            self.dnatest.set_haplogroup(tag)
+            self.dnatest.set_y_haplogroup(tag)
+
+    def stop_mt_haplogroup(self, tag):
+        if self.dnatest:
+            self.dnatest.set_mt_haplogroup(tag)
 
     def start_shared_cm(self, attrs):
         if self.dnamatch:

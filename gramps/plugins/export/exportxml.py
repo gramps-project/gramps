@@ -1436,7 +1436,8 @@ class GrampsXmlWriter(UpdateCallback):
         dval = dnatest.get_date_object()
         if not dval.is_empty():
             self.write_date(dval, index + 1)
-        self.write_line("haplogroup", dnatest.get_haplogroup(), index + 1)
+        self.write_line("y_haplogroup", dnatest.get_y_haplogroup(), index + 1)
+        self.write_line("mt_haplogroup", dnatest.get_mt_haplogroup(), index + 1)
         self.write_dna_attribute_list(dnatest.get_attribute_list(), index + 1)
         self.write_media_list(dnatest.get_media_list(), index + 1)
         self.write_note_list(dnatest.get_note_list(), index + 1)

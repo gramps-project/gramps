@@ -795,7 +795,8 @@
     <optional><element name="test_type"><text/></element></optional>
     <optional><element name="genome_build"><text/></element></optional>
     <optional><ref name="date-content"/></optional>
-    <optional><element name="haplogroup"><text/></element></optional>
+    <optional><element name="y_haplogroup"><text/></element></optional>
+    <optional><element name="mt_haplogroup"><text/></element></optional>
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
     </element></zeroOrMore>

@@ -41,7 +41,8 @@ class HasDNATest(Rule):
         _("Person name:"),
         _("Account name:"),
         _("Kit ID:"),
-        _("Haplogroup:"),
+        _("Y haplogroup:"),
+        _("mtDNA haplogroup:"),
     ]
     name = _("DNA tests matching <text>")
     description = _(
@@ -66,7 +67,10 @@ class HasDNATest(Rule):
         if self.list[2] and not self.match_substring(2, dnatest.kit_id):
             return False
 
-        if self.list[3] and not self.match_substring(3, dnatest.haplogroup):
+        if self.list[3] and not self.match_substring(3, dnatest.y_haplogroup):
+            return False
+
+        if self.list[4] and not self.match_substring(4, dnatest.mt_haplogroup):
             return False
 
         return True

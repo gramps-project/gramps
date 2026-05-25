@@ -93,7 +93,8 @@ class DNATest(
             self.__kit_id = source.__kit_id
             self.__test_type = DNATestType(source.__test_type)
             self.__genome_build = DNAGenomeBuildType(source.__genome_build)
-            self.__haplogroup = source.__haplogroup
+            self.__y_haplogroup = source.__y_haplogroup
+            self.__mt_haplogroup = source.__mt_haplogroup
         else:
             self.__person_handle = None
             self.__account_name = ""
@@ -101,7 +102,8 @@ class DNATest(
             self.__kit_id = ""
             self.__test_type = DNATestType()
             self.__genome_build = DNAGenomeBuildType()
-            self.__haplogroup = ""
+            self.__y_haplogroup = ""
+            self.__mt_haplogroup = ""
 
     def serialize(self, no_text_date=False):
         """
@@ -121,7 +123,8 @@ class DNATest(
             self.__test_type.serialize(),
             self.__genome_build.serialize(),
             DateBase.serialize(self, no_text_date),
-            self.__haplogroup,
+            self.__y_haplogroup,
+            self.__mt_haplogroup,
             CitationBase.serialize(self),
             NoteBase.serialize(self),
             MediaBase.serialize(self),
@@ -142,7 +145,8 @@ class DNATest(
         attr_dict["kit_id"] = self.__kit_id
         attr_dict["test_type"] = self.__test_type
         attr_dict["genome_build"] = self.__genome_build
-        attr_dict["haplogroup"] = self.__haplogroup
+        attr_dict["y_haplogroup"] = self.__y_haplogroup
+        attr_dict["mt_haplogroup"] = self.__mt_haplogroup
         return attr_dict
 
     def set_object_state(self, attr_dict):
@@ -155,7 +159,14 @@ class DNATest(
         self.__kit_id = attr_dict.pop("kit_id")
         self.__test_type = attr_dict.pop("test_type")
         self.__genome_build = attr_dict.pop("genome_build")
-        self.__haplogroup = attr_dict.pop("haplogroup")
+        # TODO: remove this migration before merge
+        if "haplogroup" in attr_dict:
+            self.__y_haplogroup = attr_dict.pop("haplogroup")
+            self.__mt_haplogroup = attr_dict.pop("mt_haplogroup", "")
+            attr_dict.pop("y_haplogroup", None)
+        else:
+            self.__y_haplogroup = attr_dict.pop("y_haplogroup")
+            self.__mt_haplogroup = attr_dict.pop("mt_haplogroup")
         super().set_object_state(attr_dict)
 
     @classmethod
@@ -193,7 +204,8 @@ class DNATest(
                 "test_type": DNATestType.get_schema(),
                 "genome_build": DNAGenomeBuildType.get_schema(),
                 "date": Date.get_schema(),
-                "haplogroup": {"type": "string", "title": _("Haplogroup")},
+                "y_haplogroup": {"type": "string", "title": _("Y haplogroup")},
+                "mt_haplogroup": {"type": "string", "title": _("mtDNA haplogroup")},
                 "citation_list": {
                     "type": "array",
                     "items": {"type": "string", "maxLength": 50},
@@ -242,7 +254,8 @@ class DNATest(
             test_type,
             genome_build,
             date,
-            self.__haplogroup,
+            self.__y_haplogroup,
+            self.__mt_haplogroup,
             citation_list,
             note_list,
             media_list,
@@ -295,7 +308,8 @@ class DNATest(
         return [
             self.__account_name,
             self.__kit_id,
-            self.__haplogroup,
+            self.__y_haplogroup,
+            self.__mt_haplogroup,
             str(self.__provider),
             str(self.__test_type),
             self.gramps_id,
@@ -414,12 +428,22 @@ class DNATest(
 
     genome_build = property(get_genome_build, set_genome_build)
 
-    def set_haplogroup(self, haplogroup):
-        """Set the haplogroup."""
-        self.__haplogroup = haplogroup
+    def set_y_haplogroup(self, haplogroup):
+        """Set the Y-DNA haplogroup."""
+        self.__y_haplogroup = haplogroup
 
-    def get_haplogroup(self):
-        """Return the haplogroup."""
-        return self.__haplogroup
+    def get_y_haplogroup(self):
+        """Return the Y-DNA haplogroup."""
+        return self.__y_haplogroup
 
-    haplogroup = property(get_haplogroup, set_haplogroup)
+    y_haplogroup = property(get_y_haplogroup, set_y_haplogroup)
+
+    def set_mt_haplogroup(self, haplogroup):
+        """Set the mtDNA haplogroup."""
+        self.__mt_haplogroup = haplogroup
+
+    def get_mt_haplogroup(self):
+        """Return the mtDNA haplogroup."""
+        return self.__mt_haplogroup
+
+    mt_haplogroup = property(get_mt_haplogroup, set_mt_haplogroup)

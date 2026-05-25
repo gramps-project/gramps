@@ -411,15 +411,15 @@
                     <property name="top-attach">6</property>
                   </packing>
                 </child>
-                <!-- Row 7: Haplogroup -->
+                <!-- Row 7: Y-DNA haplogroup -->
                 <child>
-                  <object class="GtkLabel" id="lbl_haplogroup">
+                  <object class="GtkLabel" id="lbl_y_haplogroup">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">_Haplogroup:</property>
+                    <property name="label" translatable="yes">_Y haplogroup:</property>
                     <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">haplogroup</property>
+                    <property name="mnemonic-widget">y_haplogroup</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
@@ -427,11 +427,11 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="UndoableEntry" id="haplogroup">
+                  <object class="UndoableEntry" id="y_haplogroup">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Haplogroup reported by the provider (e.g. R-L21, H1b)</property>
+                    <property name="tooltip-text" translatable="yes">Y haplogroup reported by the provider (e.g. R-L21)</property>
                     <property name="invisible-char">●</property>
                   </object>
                   <packing>
@@ -440,7 +440,36 @@
                     <property name="width">4</property>
                   </packing>
                 </child>
-                <!-- Row 8: ID / Tags / Private -->
+                <!-- Row 8: mtDNA haplogroup -->
+                <child>
+                  <object class="GtkLabel" id="lbl_mt_haplogroup">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">m_tDNA haplogroup:</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">mt_haplogroup</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="UndoableEntry" id="mt_haplogroup">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="tooltip-text" translatable="yes">mtDNA haplogroup reported by the provider (e.g. H1b)</property>
+                    <property name="invisible-char">●</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">8</property>
+                    <property name="width">4</property>
+                  </packing>
+                </child>
+                <!-- Row 9: ID / Tags / Private -->
                 <child>
                   <object class="GtkLabel" id="lbl_gid">
                     <property name="visible">True</property>
@@ -452,7 +481,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">8</property>
+                    <property name="top-attach">9</property>
                   </packing>
                 </child>
                 <child>
@@ -552,7 +581,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="top-attach">8</property>
+                    <property name="top-attach">9</property>
                     <property name="width">4</property>
                   </packing>
                 </child>
