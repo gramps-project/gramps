@@ -67,14 +67,8 @@ _LOG = logging.getLogger(DBLOGNAME)
 #
 # -------------------------------------------------------------------------
 DEFAULT_TITLE = _("Family Tree")
-# Re-exported from ``gramps.gen.db.dbconst`` so existing callers
-# (gramps/gui/dbman.py, gramps/plugins/db/bsddb/bsddb.py and any third-
-# party plugins) keep working.  The canonical location is the gen
-# module so non-CLI consumers — notably ``gramps/gen/db/upgrade.py``
-# — can pull it without violating the gen/cli boundary (Mantis 6085).
-# The redundant ``as NAME_FILE`` is the PEP 484 explicit-re-export form
-# recognised by mypy / pylint / flake8 as intentional, so no lint
-# suppression is required.
+# Canonical location is gramps.gen.db.dbconst (Mantis 6085).
+# ``as NAME_FILE`` is the PEP 484 explicit re-export form for mypy/pylint/flake8.
 from gramps.gen.db.dbconst import NAME_FILE as NAME_FILE
 
 META_NAME = "meta_data.db"

@@ -1324,10 +1324,11 @@ def gramps_upgrade_16(self):
     # from inside ``gen`` — the GUI caller (gramps/gui/dbloader.py) is
     # responsible for displaying it via ``InfoDialog`` once ``db.load``
     # returns.  Keeps ``gen/db/upgrade.py`` free of any ``gramps.gui``
-    # or ``gramps.cli`` imports (Mantis 6085).  Also log it so headless
-    # / CLI runs (which never read ``upgrade_summary``) still surface
-    # the upgrade statistics at ``--debug`` / verbose log level.
-    LOG.info(txt)
+    # or ``gramps.cli`` imports (Mantis 6085).  Also log it at DEBUG so
+    # CLI runs (which never read ``upgrade_summary``) can still surface
+    # the upgrade statistics at ``--debug`` level, matching the level
+    # of the surrounding upgrade log calls.
+    LOG.debug(txt)
     self.upgrade_summary = txt
 
 

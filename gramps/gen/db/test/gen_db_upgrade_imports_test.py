@@ -70,6 +70,11 @@ _FORBIDDEN_IMPORT = re.compile(
 )
 
 
+# ------------------------------------------------------------
+#
+# GenImportBoundaryTest
+#
+# ------------------------------------------------------------
 class GenImportBoundaryTest(unittest.TestCase):
     def test_gen_does_not_import_from_gui_or_cli(self):
         """No file under gramps/gen/ may import from gramps.gui or
@@ -82,7 +87,11 @@ class GenImportBoundaryTest(unittest.TestCase):
                     continue
                 # Skip the per-module test directories — tests are free
                 # to import GUI/CLI helpers if they need to drive them.
-                if os.path.basename(dirpath) == "test":
+                # Match any path component named "test" so fixture sub-
+                # directories under a test/ dir are skipped too, not just
+                # the leaf.
+                rel = os.path.relpath(dirpath, GEN_DIR)
+                if "test" in rel.split(os.sep):
                     continue
                 path = os.path.join(dirpath, name)
                 with open(path, encoding="utf-8") as fp:
