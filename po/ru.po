@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-05-12 13:11+0000\n"
+"PO-Revision-Date: 2026-05-13 11:46+0000\n"
 "Last-Translator: Dmitriy Q <krotesk@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -45,7 +45,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.5-dev\n"
+"X-Generator: Weblate 2026.5.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -12873,7 +12873,7 @@ msgstr "Сервер"
 
 #: ../gramps/gui/configure.py:1102
 msgid "Foundation middleware"
-msgstr ""
+msgstr "Базовое промежуточное ПО"
 
 #: ../gramps/gui/configure.py:1104
 #, fuzzy
@@ -12889,19 +12889,19 @@ msgstr "Автор"
 
 #: ../gramps/gui/configure.py:1128
 msgid "App key (direct mode only)"
-msgstr ""
+msgstr "Клавиша приложения (только в прямом режиме)"
 
 #: ../gramps/gui/configure.py:1149
 msgid "Redirect URL (direct mode only)"
-msgstr ""
+msgstr "Перенаправление URL (только в прямом режиме)"
 
 #: ../gramps/gui/configure.py:1158
 msgid "Middleware base URL"
-msgstr ""
+msgstr "Базовый URL-адрес промежуточного ПО"
 
 #: ../gramps/gui/configure.py:1167
 msgid "Middleware access code (issued secret)"
-msgstr ""
+msgstr "Код доступа к промежуточному ПО (выданный секрет)"
 
 #: ../gramps/gui/configure.py:1174
 #, fuzzy
@@ -13180,6 +13180,8 @@ msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
+"Ограничивает глубину оценки предков/потомков. Увеличьте, если оценки "
+"отсутствуют, когда даты есть только в дальних поколениях."
 
 #: ../gramps/gui/configure.py:2069
 msgid "Maximum sibling age difference"
@@ -16724,6 +16726,8 @@ msgstr "Создано грамплетом Фильтр {today}"
 #: ../gramps/gui/fs/actions.py:132
 msgid "Please save/commit this person to the database first, then try again."
 msgstr ""
+"Пожалуйста, сначала сохраните/зафиксируйте этого человека в базе данных, "
+"затем попробуйте снова."
 
 #: ../gramps/gui/fs/actions.py:148 ../gramps/gui/fs/actions.py:149
 #: ../gramps/gui/fs/tools_window.py:362
@@ -16739,13 +16743,15 @@ msgstr "OK"
 
 #: ../gramps/gui/fs/actions.py:157
 msgid "Enter FamilySearch Person ID (e.g. GSVF-SGV):"
-msgstr ""
+msgstr "Введите идентификатор человека FamilySearch (напр. GSVF-SGV):"
 
 #: ../gramps/gui/fs/actions.py:188
 msgid ""
 "No FamilySearch ID linked.\n"
 "Click 'Link FamilySearch ID' first."
 msgstr ""
+"ID FamilySearch не связан.\n"
+"Сначала нажмите 'Связать ID FamilySearch'."
 
 #: ../gramps/gui/fs/actions.py:224
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:184
@@ -16834,12 +16840,12 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:528
 msgid "No children found on FamilySearch for this person."
-msgstr ""
+msgstr "Для этого человека в FamilySearch не найдено детей."
 
 #: ../gramps/gui/fs/actions.py:540
 #, python-brace-format
 msgid " (other parent: {name})"
-msgstr ""
+msgstr " (другой родитель: {name})"
 
 #: ../gramps/gui/fs/actions.py:547
 #, fuzzy
@@ -16849,7 +16855,7 @@ msgstr "Перечислять детей"
 
 #: ../gramps/gui/fs/actions.py:562
 msgid "Children imported but could not be located in the local database."
-msgstr ""
+msgstr "Дети были импортированы, но не были найдены в локальной базе данных."
 
 #: ../gramps/gui/fs/actions.py:566
 #, fuzzy
@@ -16859,12 +16865,12 @@ msgstr "Дети в семье"
 
 #: ../gramps/gui/fs/actions.py:629
 msgid "Child(ren) imported and linked."
-msgstr ""
+msgstr "Дети импортированы и связаны."
 
 #: ../gramps/gui/fs/actions.py:661
 #, python-brace-format
 msgid "Failed to fetch spouses: {e}"
-msgstr ""
+msgstr "Не удалось получить супругов: {e}"
 
 #: ../gramps/gui/fs/actions.py:692
 msgid "No spouses found on FamilySearch for this person."
@@ -16902,11 +16908,11 @@ msgstr ""
 #: ../gramps/gui/fs/actions.py:863
 #, python-brace-format
 msgid "Cleared on-disk cache: yes ({path})"
-msgstr ""
+msgstr "Очищать кэш на диске: да ({path})"
 
 #: ../gramps/gui/fs/actions.py:866
 msgid "Cleared on-disk cache: (not available / not supported by cache helper)"
-msgstr ""
+msgstr "Очистка кэш на диске: (недоступно / не поддерживается помощником кэша)"
 
 #: ../gramps/gui/fs/actions.py:875 ../gramps/gui/fs/actions.py:876
 #, fuzzy
@@ -16925,13 +16931,15 @@ msgstr "Закрыть"
 
 #: ../gramps/gui/fs/actions.py:878
 msgid "Retag all (Linked/NotLinked)"
-msgstr ""
+msgstr "Отметить все (Связанные/Несвязанные)"
 
 #: ../gramps/gui/fs/actions.py:890
 msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
+"Это просканирует все ваше дерево и применит теги FS_Linked / FS_NotLinked.\n"
+"НЕ изменяет данные людей."
 
 #: ../gramps/gui/fs/actions.py:910
 #, python-brace-format
@@ -16943,6 +16951,12 @@ msgid ""
 "Not linked: {not_linked}\n"
 "Changed: {changed}"
 msgstr ""
+"Маркировка завершена.\n"
+"\n"
+"Всего человек: {total}\n"
+"Связано: {linked}\n"
+"Не связано: {not_linked}\n"
+"Изменено: {changed}"
 
 #: ../gramps/gui/fs/actions.py:920
 #, fuzzy, python-brace-format
@@ -16952,17 +16966,19 @@ msgstr "Переименование не удалось"
 
 #: ../gramps/gui/fs/actions.py:971
 msgid "FamilySearch: Update FSID after redirect"
-msgstr ""
+msgstr "FamilySearch: Обновить FSID после перенаправления"
 
 #: ../gramps/gui/fs/actions.py:1015
 msgid ""
 "Could not load this person from FamilySearch (no GEDCOMX person object)."
 msgstr ""
+"Не удалось загрузить этого человека из FamilySearch (объект человека GEDCOMX "
+"отсутствует)."
 
 #: ../gramps/gui/fs/actions.py:1024
 #, python-brace-format
 msgid "Failed to download from FamilySearch: {e}"
-msgstr ""
+msgstr "Не удалось загрузить из FamilySearch: {e}"
 
 #: ../gramps/gui/fs/actions.py:1029
 #, fuzzy
@@ -16980,16 +16996,18 @@ msgstr "Сохранение не удалось"
 msgid ""
 "Sync complete: facts/events, dates/places, and notes updated for this person."
 msgstr ""
+"Синхронизация завершена: факты/события, даты/места и заметки обновлены для "
+"этого человека."
 
 #: ../gramps/gui/fs/actions.py:1142
 #, python-brace-format
 msgid "Export to FamilySearch failed: {e}"
-msgstr ""
+msgstr "Экспорт в FamilySearch не удался: {e}"
 
 #: ../gramps/gui/fs/actions.py:1172
 #, python-brace-format
 msgid "Sync to FamilySearch failed: {e}"
-msgstr ""
+msgstr "Синхронизация в FamilySearch не удалась: {e}"
 
 #: ../gramps/gui/fs/compare/options.py:46
 #, fuzzy
@@ -16999,11 +17017,11 @@ msgstr "Цитаты для семьи"
 
 #: ../gramps/gui/fs/compare/options.py:49
 msgid "Days between comparisons"
-msgstr ""
+msgstr "Дни между сравнениями"
 
 #: ../gramps/gui/fs/compare/options.py:50
 msgid "Number of days between two comparisons."
-msgstr ""
+msgstr "Количество дней между двумя сравнениями."
 
 #: ../gramps/gui/fs/compare/options.py:54
 #, fuzzy
@@ -17013,7 +17031,7 @@ msgstr "Информация о источнике"
 
 #: ../gramps/gui/fs/compare/options.py:56
 msgid "Compare regardless of the number of days since the last run."
-msgstr ""
+msgstr "Сравнивайте независимо от количества дней с последнего запуска."
 
 #: ../gramps/gui/fs/compare/options.py:62
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
@@ -17022,7 +17040,7 @@ msgstr "Фильтр лиц"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
-msgstr ""
+msgstr "FamilySearch не настроен (нет сессии)."
 
 #: ../gramps/gui/fs/compare/window.py:204
 #, python-brace-format
@@ -17030,6 +17048,8 @@ msgid ""
 "Could not open compare window:\n"
 "{e}"
 msgstr ""
+"Не удалось открыть окно сравнения:\n"
+"{e}"
 
 #: ../gramps/gui/fs/compare/window.py:214
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:524
@@ -17049,7 +17069,7 @@ msgstr "Параметры"
 
 #: ../gramps/gui/fs/compare/window.py:228
 msgid "FamilySearch: Compare"
-msgstr ""
+msgstr "FamilySearch: Сравнить"
 
 #: ../gramps/gui/fs/compare/window.py:229
 #: ../gramps/gui/fs/fs_import/importer.py:59
