@@ -224,11 +224,10 @@ class DbLoader(CLIDbLoader):
                     # which forced ``gen`` to import from ``gramps.gui``;
                     # the summary is now handed up here so the gen/gui
                     # boundary stays clean (Mantis 6085).
-                    upgrade_summary = getattr(db, "upgrade_summary", None)
-                    if upgrade_summary:
+                    if db.upgrade_summary:
                         InfoDialog(
                             _("Upgrade Statistics"),
-                            upgrade_summary,
+                            db.upgrade_summary,
                             parent=self.uistate.window,
                             monospaced=True,
                         )
