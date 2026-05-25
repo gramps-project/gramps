@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-05-15 14:11+0000\n"
-"Last-Translator: \"Omer I.S.\" <omeritzicschwartz@gmail.com>\n"
+"PO-Revision-Date: 2026-05-25 06:11+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 2026.5.dev0\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -12566,19 +12566,19 @@ msgstr "מחבר"
 
 #: ../gramps/gui/configure.py:1128
 msgid "App key (direct mode only)"
-msgstr ""
+msgstr "מפתח יישום (מצב ישיר בלבד)"
 
 #: ../gramps/gui/configure.py:1149
 msgid "Redirect URL (direct mode only)"
-msgstr ""
+msgstr "הפניית URL (מצב ישיר בלבד)"
 
 #: ../gramps/gui/configure.py:1158
 msgid "Middleware base URL"
-msgstr ""
+msgstr "URL של בסיס תוכנת התווך"
 
 #: ../gramps/gui/configure.py:1167
 msgid "Middleware access code (issued secret)"
-msgstr ""
+msgstr "קוד גישת מתווך (קוד סודי שסופק)"
 
 #: ../gramps/gui/configure.py:1174
 #, fuzzy
@@ -12855,6 +12855,8 @@ msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
+"הגבלת עומק ההערכה של אבות/צאצאים. ניתן להגדלה כאשר חסרות הערכות בתאריכים "
+"שמופיעים רק בדורות רחוקים."
 
 #: ../gramps/gui/configure.py:2069
 msgid "Maximum sibling age difference"
@@ -16339,7 +16341,7 @@ msgstr "נוצר על ידי גרמפלט סינון בתאריך {today}"
 
 #: ../gramps/gui/fs/actions.py:132
 msgid "Please save/commit this person to the database first, then try again."
-msgstr ""
+msgstr "נא לשמור/לקבע אדם זה למסד הנתונים תחילה, ולנסות שוב."
 
 #: ../gramps/gui/fs/actions.py:148 ../gramps/gui/fs/actions.py:149
 #: ../gramps/gui/fs/tools_window.py:362
@@ -16423,7 +16425,7 @@ msgstr "לא נמצאו הורים בחיפוש FamilySearch לאדם זה."
 #: ../gramps/gui/fs/actions.py:407 ../gramps/gui/fs/actions.py:543
 #: ../gramps/gui/fs/actions.py:701
 msgid "  - already in tree"
-msgstr ""
+msgstr "  ..- קיים כבר באילן"
 
 #: ../gramps/gui/fs/actions.py:410
 #, fuzzy
@@ -16433,7 +16435,7 @@ msgstr "ייבוא מלל"
 
 #: ../gramps/gui/fs/actions.py:425
 msgid "Parents imported but could not be located in the local database."
-msgstr ""
+msgstr "הורים יובאו אךלא אותרו במסד הנתונים המקומי."
 
 #: ../gramps/gui/fs/actions.py:429
 #, fuzzy
@@ -16443,7 +16445,7 @@ msgstr "קישורי משפחה"
 
 #: ../gramps/gui/fs/actions.py:478
 msgid "Parent(s) imported and linked."
-msgstr ""
+msgstr "הורים יובאו וקושרו."
 
 #: ../gramps/gui/fs/actions.py:504
 #, python-brace-format
