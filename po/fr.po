@@ -54,7 +54,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-05-12 21:52+0000\n"
+"PO-Revision-Date: 2026-05-15 14:11+0000\n"
 "Last-Translator: \"David D.\" <dadu042@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
@@ -63,7 +63,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 2026.5-dev\n"
+"X-Generator: Weblate 2026.5.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -13989,6 +13989,9 @@ msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
+"Limite la profondeur d’estimation des ancêtres/descendants. Augmente si les "
+"estimations sont manquantes lorsque les dates ne se trouvent que dans des "
+"générations lointaines."
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:2069
@@ -17953,7 +17956,7 @@ msgstr "Fermer"
 
 #: ../gramps/gui/fs/actions.py:878
 msgid "Retag all (Linked/NotLinked)"
-msgstr ""
+msgstr "Tout re-étiquetter (Lié/NonLié)"
 
 #: ../gramps/gui/fs/actions.py:890
 msgid ""
@@ -17976,10 +17979,9 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:920
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "Impossible de renommer"
+msgstr "Re-étiquette échouée : {e}"
 
 #: ../gramps/gui/fs/actions.py:971
 msgid "FamilySearch: Update FSID after redirect"
@@ -18086,7 +18088,7 @@ msgstr "Options"
 
 #: ../gramps/gui/fs/compare/window.py:228
 msgid "FamilySearch: Compare"
-msgstr ""
+msgstr "FamilySearch : comparer"
 
 #: ../gramps/gui/fs/compare/window.py:229
 #: ../gramps/gui/fs/fs_import/importer.py:59
@@ -18827,6 +18829,9 @@ msgid ""
 "FamilySearch payload. This usually means the fact type could not be "
 "determined."
 msgstr ""
+"Des différences ont été trouvées, mais aucune n’a pu être convertie en une "
+"charge utile FamilySearch valide. Cela signifie généralement que le type de "
+"fait n’a pas pu être déterminé."
 
 #: ../gramps/gui/fs/sync_directions.py:938
 msgid "FamilySearch update failed (names/facts)."
@@ -18839,7 +18844,7 @@ msgstr "La mise à jour de FamilySearch a échoué (notes)."
 #: ../gramps/gui/fs/sync_directions.py:996
 #, python-brace-format
 msgid "FamilySearch source creation failed for: {t}"
-msgstr ""
+msgstr "La création de la source FamilySearch a échoué pour : {t}"
 
 #: ../gramps/gui/fs/sync_directions.py:1054
 msgid "FamilySearch update failed (sources)."
@@ -18847,7 +18852,7 @@ msgstr "La mise à jour de FamilySearch a échoué (sources)."
 
 #: ../gramps/gui/fs/sync_directions.py:1097
 msgid "FamilySearch: Link uploaded memories"
-msgstr ""
+msgstr "FamilySearch : lien vers des souvenirs téléversés"
 
 #: ../gramps/gui/fs/sync_directions.py:1159
 #, python-format
@@ -18856,6 +18861,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Certains souvenirs n’ont pas pu être téléchargés :\n"
+"\n"
+"%s"
 
 #: ../gramps/gui/fs/sync_directions.py:1165
 msgid "FamilySearch updated successfully."
@@ -18882,6 +18890,11 @@ msgid ""
 "Basic export only: name + birth/death facts.\n"
 "<i>No deletions. Existing active linked people are not overwritten here.</i>"
 msgstr ""
+"<b>Créer des personnes manquantes dans FamilySearch et lier les relations. </"
+"b>\n"
+"Exportation de base uniquement : nom + faits de naissance/décès.\n"
+"<i>Aucune suppression. Les personnes liées actives existantes ne sont pas "
+"remplacées ici.</i>"
 
 #: ../gramps/gui/fs/sync_directions.py:1205
 #, fuzzy
@@ -18924,7 +18937,7 @@ msgstr "Sélectionner une note existante"
 
 #: ../gramps/gui/fs/sync_directions.py:1349
 msgid "Please save this person first."
-msgstr ""
+msgstr "Veuillez d’abord enregistrer cette personne."
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/fs/sync_directions.py:1355
@@ -18945,11 +18958,15 @@ msgstr ""
 msgid ""
 "Export complete: created people and linked relationships on FamilySearch."
 msgstr ""
+"Export accompli : création de personnes et de relations liées dans "
+"FamilySearch."
 
 #: ../gramps/gui/fs/sync_directions.py:1564
 msgid ""
 "Export complete: no new people were created; relationships were attempted."
 msgstr ""
+"Exportation terminée : aucune nouvelle personne n’a été créée ; des "
+"relations ont été tentées."
 
 #: ../gramps/gui/fs/sync_directions.py:1569
 #, fuzzy
@@ -18999,6 +19016,8 @@ msgstr "Synchronisation avec FamilySearch..."
 #: ../gramps/gui/fs/tools_window.py:369
 msgid "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
 msgstr ""
+"Remplacer les champs FamilySearch sélectionnés par des valeurs Gramps (pas "
+"de suppressions)."
 
 #: ../gramps/gui/fs/tools_window.py:372
 msgid "Export to FamilySearch (basic)..."
@@ -19009,6 +19028,8 @@ msgid ""
 "Create missing people on FamilySearch and link relationships (name + birth/"
 "death)."
 msgstr ""
+"Créer sur FamilySearch des personnes disparues et lier les relations (nom + "
+"naissance/décès)."
 
 #: ../gramps/gui/fs/tools_window.py:389
 #, fuzzy
@@ -21877,6 +21898,10 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Python compilé sans prise en charge de Gettext dans le module des paramètres "
+"régionaux.\n"
+"\n"
+"Gramps va s'arrêter maintenant."
 
 #: ../gramps/gui/grampsgui.py:507
 msgid "Gramps detected an incomplete GTK installation"
@@ -43038,7 +43063,7 @@ msgstr "Type de fichier"
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for people: %(people)s"
-msgstr ""
+msgstr "%(idx)s - pour personnes : %(people)s"
 
 #: ../gramps/plugins/webreport/media.py:736
 #, python-format
