@@ -19,6 +19,8 @@
 
 from __future__ import annotations
 
+import logging
+
 from gramps.gen.lib import (
     Person,
     Family,
@@ -30,13 +32,15 @@ from gramps.gen.lib import (
 )
 from gramps.gen.errors import HandleError
 
-from . import _
 from gramps.gen.fs import utils as fs_utilities
 from gramps.gen.fs.utils import get_fsftid
+from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gen.fs.fs_import.names import add_names
 from gramps.gen.fs.fs_import.events import add_event
 from gramps.gen.fs.fs_import.notes import add_note
 from gramps.gen.fs.fs_import.sources import add_source
+
+LOG = logging.getLogger(__name__)
 
 
 class FSToGrampsImporter:
@@ -66,6 +70,107 @@ class FSToGrampsImporter:
         self.import_cpr = True
 
     # ---- helpers ----------------------------------------------------------
+
+    @staticmethod
+    def _fs_ref_id(ref) -> str:
+        """
+        Return a FamilySearch resource id from a GEDCOM X reference.
+        """
+        return str(getattr(ref, "resourceId", "") or "").strip()
+
+    def _fs_gender_for_id(self, fsid: str):
+        """
+        Return the Gramps gender value for a FamilySearch person id.
+        """
+        fs_person = deserialize.Person.index.get(fsid)
+        fs_gender = getattr(getattr(fs_person, "gender", None), "type", "")
+        if fs_gender == "http://gedcomx.org/Male":
+            return Person.MALE
+        if fs_gender == "http://gedcomx.org/Female":
+            return Person.FEMALE
+
+        handle = fs_utilities.FS_INDEX_PEOPLE.get(fsid)
+        if handle:
+            try:
+                person = self.dbstate.db.get_person_from_handle(handle)
+                return person.get_gender()
+            except HandleError:
+                fs_utilities.FS_INDEX_PEOPLE.pop(fsid, None)
+            except Exception:
+                LOG.debug(
+                    "Failed to read local gender for FamilySearch id %s",
+                    fsid,
+                    exc_info=True,
+                )
+        return Person.UNKNOWN
+
+    def _ensure_imported_person_handle(self, fsid: str):
+        """
+        Return a local handle for a FamilySearch person, importing if possible.
+        """
+        fsid = (fsid or "").strip()
+        if not fsid:
+            return None
+
+        handle = fs_utilities.FS_INDEX_PEOPLE.get(fsid)
+        if handle:
+            try:
+                self.dbstate.db.get_person_from_handle(handle)
+                return handle
+            except HandleError:
+                fs_utilities.FS_INDEX_PEOPLE.pop(fsid, None)
+            except Exception:
+                LOG.debug(
+                    "Failed to load cached FamilySearch person %s",
+                    fsid,
+                    exc_info=True,
+                )
+
+        fs_person = deserialize.Person.index.get(fsid)
+        if fs_person is None:
+            return None
+
+        self.add_person(self.dbstate.db, self.txn, fs_person)
+        return fs_utilities.FS_INDEX_PEOPLE.get(fsid)
+
+    def _parent_handles_from_refs(self, parent1_ref, parent2_ref):
+        """
+        Resolve FamilySearch parent references into Gramps father/mother slots.
+        """
+        parent_refs = [
+            self._fs_ref_id(parent1_ref),
+            self._fs_ref_id(parent2_ref),
+        ]
+        parent_refs = [fsid for fsid in parent_refs if fsid]
+        parent_data = []
+        missing = set()
+
+        for fsid in parent_refs:
+            handle = self._ensure_imported_person_handle(fsid)
+            if not handle:
+                missing.add(fsid)
+                continue
+            parent_data.append((fsid, handle, self._fs_gender_for_id(fsid)))
+
+        father_h = None
+        mother_h = None
+        unknown_handles = []
+
+        for _fsid, handle, gender in parent_data:
+            if gender == Person.MALE and not father_h:
+                father_h = handle
+            elif gender == Person.FEMALE and not mother_h:
+                mother_h = handle
+            else:
+                unknown_handles.append(handle)
+
+        for handle in unknown_handles:
+            if not father_h:
+                father_h = handle
+            elif not mother_h and handle != father_h:
+                mother_h = handle
+
+        return father_h, mother_h, missing
 
     def _find_couple_family(self, father_h, mother_h):
         # return an existing Family with exactly these parents if any
@@ -130,16 +235,17 @@ class FSToGrampsImporter:
             getattr(self.fs_TreeImp, "childAndParentsRelationships", []) or []
         ):
             if cpr.child and cpr.child.resourceId == root_fsid:
-                father_h = (
-                    fs_utilities.FS_INDEX_PEOPLE.get(cpr.parent1.resourceId)
-                    if cpr.parent1
-                    else None
+                father_h, mother_h, missing = self._parent_handles_from_refs(
+                    cpr.parent1,
+                    cpr.parent2,
                 )
-                mother_h = (
-                    fs_utilities.FS_INDEX_PEOPLE.get(cpr.parent2.resourceId)
-                    if cpr.parent2
-                    else None
-                )
+                if missing:
+                    LOG.warning(
+                        "Skipping root parent link with unresolved FS parent(s): %s",
+                        sorted(missing),
+                    )
+                    father_h = None
+                    mother_h = None
                 break
 
         if not father_h and not mother_h:
@@ -261,30 +367,32 @@ class FSToGrampsImporter:
         db.commit_person(gr_person, txn)
 
     def add_child(self, fs_cpr):
-        if fs_cpr.parent1:
-            father_h = fs_utilities.FS_INDEX_PEOPLE.get(fs_cpr.parent1.resourceId)
-        else:
-            father_h = None
-
-        if fs_cpr.parent2:
-            mother_h = fs_utilities.FS_INDEX_PEOPLE.get(fs_cpr.parent2.resourceId)
-        else:
-            mother_h = None
-
-        child_h = (
-            fs_utilities.FS_INDEX_PEOPLE.get(fs_cpr.child.resourceId)
-            if fs_cpr.child
-            else None
+        father_h, mother_h, missing = self._parent_handles_from_refs(
+            fs_cpr.parent1,
+            fs_cpr.parent2,
         )
 
+        if missing:
+            LOG.warning(
+                "Skipping child relationship with unresolved FS parent(s): %s",
+                sorted(missing),
+            )
+            return
+
+        child_id = self._fs_ref_id(getattr(fs_cpr, "child", None))
+        child_h = self._ensure_imported_person_handle(child_id)
+
         if child_h and (child_h == father_h or child_h == mother_h):
-            print(_("Skipping invalid relationship: child equals a parent"))
+            LOG.warning("Skipping invalid relationship: child equals a parent")
             return
 
         if not (father_h or mother_h):
-            print(
-                _("Possibly parentless family - Need at least one known parent locally")
+            LOG.warning(
+                "Skipping parentless child relationship: no known parent locally"
             )
+            return
+
+        if not child_h:
             return
 
         family = self._find_couple_family(father_h, mother_h)
@@ -305,9 +413,6 @@ class FSToGrampsImporter:
                 mother.add_family_handle(family.get_handle())
                 self.dbstate.db.commit_person(mother, self.txn)
 
-        if not child_h:
-            return
-
         if not any(
             child_ref.get_reference_handle() == child_h
             for child_ref in list(family.get_child_ref_list() or [])
@@ -323,14 +428,23 @@ class FSToGrampsImporter:
 
     def add_family(self, fs_fam):
         family = None
-        father_h = fs_utilities.FS_INDEX_PEOPLE.get(fs_fam.person1.resourceId)
-        mother_h = fs_utilities.FS_INDEX_PEOPLE.get(fs_fam.person2.resourceId)
+        father_h, mother_h, missing = self._parent_handles_from_refs(
+            fs_fam.person1,
+            fs_fam.person2,
+        )
+
+        if missing:
+            LOG.warning(
+                "Skipping couple relationship with unresolved FS person(s): %s",
+                sorted(missing),
+            )
+            return
 
         father = self.dbstate.db.get_person_from_handle(father_h) if father_h else None
         mother = self.dbstate.db.get_person_from_handle(mother_h) if mother_h else None
 
         if father_h and mother_h and father_h == mother_h:
-            print(_("Skipping invalid couple: same person as both parents"))
+            LOG.warning("Skipping invalid couple: same person as both parents")
             return
 
         if father_h or mother_h:
@@ -372,7 +486,7 @@ class FSToGrampsImporter:
                         break
 
         if not father_h and not mother_h:
-            print(_("Possible parentless family?"))
+            LOG.warning("Skipping parentless couple relationship")
             return
 
         if family and not family.get_father_handle() and father_h:

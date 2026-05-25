@@ -68,6 +68,14 @@ label.error {
   padding: 10px;
 }
 
+.fs-merge-instruction {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background-color: rgba(0, 120, 170, 0.08);
+  font-weight: 600;
+}
+
 box.fs-compare-legend,
 .fs-compare-legend {
   padding: 6px 8px;
@@ -102,7 +110,15 @@ box.fs-compare-legend,
   border-radius: 10px;
 }
 
+.fs-merge-treeview {
+  border-radius: 8px;
+}
+
 .fs-compare-treeview header button {
+  font-weight: 700;
+}
+
+.fs-merge-treeview header button {
   font-weight: 700;
 }
 

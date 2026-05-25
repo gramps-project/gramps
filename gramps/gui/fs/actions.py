@@ -1269,6 +1269,11 @@ def import_children(dbstate, uistate, track, person, session, parent, editor=Non
         if ch:
             imported_children.append(ch)
 
+    other_parent_ids = sorted(set(filter(None, (child_map.get(cid) for cid in chosen))))
+    for other_parent_id in other_parent_ids:
+        if _find_person_by_fsid(db, other_parent_id) is None:
+            _import_full_person(dbstate, uistate, other_parent_id, verbosity=0)
+
     if not imported_children:
         _error(
             parent,
@@ -1299,6 +1304,8 @@ def import_children(dbstate, uistate, track, person, session, parent, editor=Non
                 if other_parent_fsid
                 else None
             )
+            if other_parent_fsid and other_parent is None:
+                continue
 
             fam = None
             if other_parent:
@@ -1309,9 +1316,12 @@ def import_children(dbstate, uistate, track, person, session, parent, editor=Non
 
             if fam is None:
                 for f in my_fams:
-                    if not _family_other_parent_handle(f, me.handle):
-                        fam = f
-                        break
+                    if _family_other_parent_handle(f, me.handle):
+                        continue
+                    if other_parent and list(f.get_child_ref_list() or []):
+                        continue
+                    fam = f
+                    break
 
             if fam is None:
                 fam = Family()
@@ -1453,9 +1463,12 @@ def import_spouses(dbstate, uistate, track, person, session, parent, editor=None
 
             if fam is None:
                 for f in my_fams:
-                    if not _family_other_parent_handle(f, me.handle):
-                        fam = f
-                        break
+                    if _family_other_parent_handle(f, me.handle):
+                        continue
+                    if list(f.get_child_ref_list() or []):
+                        continue
+                    fam = f
+                    break
 
             if fam is None:
                 fam = Family()

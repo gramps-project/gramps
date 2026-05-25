@@ -153,6 +153,10 @@ class Tree(deserialize.Gedcomx):
                     if getattr(rel, "person2", None):
                         rels.add(rel.person2.resourceId)
             for cp_rel in getattr(p, "_childrenCP", []) or []:
+                if getattr(cp_rel, "parent1", None):
+                    rels.add(cp_rel.parent1.resourceId)
+                if getattr(cp_rel, "parent2", None):
+                    rels.add(cp_rel.parent2.resourceId)
                 if getattr(cp_rel, "child", None):
                     rels.add(cp_rel.child.resourceId)
             display = getattr(p, "display", None)
