@@ -24,3 +24,4 @@ class HasNote(HasNoteBase):
 
     name = _("DNA matches having <count> notes")
     description = _("Matches DNA matches having a certain number of notes")
+    category = _("Note filters")

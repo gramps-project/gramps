@@ -24,3 +24,4 @@ class HasNoteTag(HasNoteTagBase):
 
     name = _("DNA tests with a note with a tag of <tag>")
     description = _("Matches DNA tests with a note bearing a specified tag")
+    category = _("Note filters")

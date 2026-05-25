@@ -23,6 +23,4 @@ class HasGallery(HasGalleryBase):
     """Rule that checks for DNA matches with media object references"""
 
     name = _("DNA matches with <count> media")
-    description = _(
-        "Matches DNA matches with a certain number of items in the gallery"
-    )
+    description = _("Matches DNA matches with a certain number of items in the gallery")
