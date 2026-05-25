@@ -21,12 +21,38 @@
 Package providing filter rules for DNA matches.
 """
 
+from ._alldnamatches import AllDNAMatches
+from ._hasidof import HasIdOf
 from ._regexpidof import RegExpIdOf
 from ._hastag import HasTag
+from ._dnamatchprivate import DNAMatchPrivate
+from ._changedsince import ChangedSince
+from ._hasnote import HasNote
+from ._hasnoteregexp import HasNoteRegexp
+from ._hasnotetag import HasNoteTag
+from ._hasgallery import HasGallery
+from ._hasreferencecountof import HasReferenceCountOf
+from ._hasattribute import HasAttribute
+from ._matchesfilter import MatchesFilter
 from ._hassubjectaccountname import HasSubjectAccountName
 from ._hasmatchaccountname import HasMatchAccountName
 from ._hassubjectpersonname import HasSubjectPersonName
 from ._hasmatchpersonname import HasMatchPersonName
 from ._hassharedcm import HasSharedCm
 
-editor_rule_list: list[type] = []
+editor_rule_list: list[type] = [
+    AllDNAMatches,
+    HasIdOf,
+    RegExpIdOf,
+    HasTag,
+    DNAMatchPrivate,
+    ChangedSince,
+    HasNote,
+    HasNoteRegexp,
+    HasNoteTag,
+    HasGallery,
+    HasReferenceCountOf,
+    HasAttribute,
+    MatchesFilter,
+    HasSharedCm,
+]

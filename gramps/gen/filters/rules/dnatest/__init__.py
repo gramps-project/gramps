@@ -21,11 +21,39 @@
 Package providing filter rules for DNA tests.
 """
 
+from ._alldnatests import AllDNATests
+from ._hasidof import HasIdOf
 from ._regexpidof import RegExpIdOf
 from ._hastag import HasTag
+from ._dnatestprivate import DNATestPrivate
+from ._changedsince import ChangedSince
+from ._hasnote import HasNote
+from ._hasnoteregexp import HasNoteRegexp
+from ._hasnotetag import HasNoteTag
+from ._hasgallery import HasGallery
+from ._hasreferencecountof import HasReferenceCountOf
+from ._hasattribute import HasAttribute
+from ._matchesfilter import MatchesFilter
 from ._hasdnatest import HasDNATest
 from ._hasprovider import HasProvider
 from ._hastesttype import HasTestType
 from ._isunidentified import IsUnidentified
 
-editor_rule_list: list[type] = []
+editor_rule_list: list[type] = [
+    AllDNATests,
+    HasIdOf,
+    RegExpIdOf,
+    HasTag,
+    DNATestPrivate,
+    ChangedSince,
+    HasNote,
+    HasNoteRegexp,
+    HasNoteTag,
+    HasGallery,
+    HasReferenceCountOf,
+    HasAttribute,
+    MatchesFilter,
+    HasProvider,
+    HasTestType,
+    IsUnidentified,
+]
