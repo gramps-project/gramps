@@ -72,7 +72,10 @@ DEFAULT_TITLE = _("Family Tree")
 # party plugins) keep working.  The canonical location is the gen
 # module so non-CLI consumers — notably ``gramps/gen/db/upgrade.py``
 # — can pull it without violating the gen/cli boundary (Mantis 6085).
-from gramps.gen.db.dbconst import NAME_FILE  # noqa: F401 (re-export)
+# The redundant ``as NAME_FILE`` is the PEP 484 explicit-re-export form
+# recognised by mypy / pylint / flake8 as intentional, so no lint
+# suppression is required.
+from gramps.gen.db.dbconst import NAME_FILE as NAME_FILE
 
 META_NAME = "meta_data.db"
 UNAVAILABLE = _("Unavailable")
