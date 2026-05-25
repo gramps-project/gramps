@@ -607,8 +607,7 @@ class CompareGtkMixin:
                 essentials.append(fact_row)
 
         rows.extend(
-            self._merge_row_from_compare(_("Essentials"), line)
-            for line in essentials
+            self._merge_row_from_compare(_("Essentials"), line) for line in essentials
         )
 
         rows.extend(
@@ -932,7 +931,9 @@ class CompareGtkMixin:
         title = self._make_value_label(row.field or row.section, bold=True)
         header.pack_start(title, True, True, 0)
         if side != "result":
-            header.pack_end(self._status_badge(row.status, row.selectable), False, False, 0)
+            header.pack_end(
+                self._status_badge(row.status, row.selectable), False, False, 0
+            )
         box.pack_start(header, False, False, 0)
 
         if side == "gramps":
@@ -1010,9 +1011,7 @@ class CompareGtkMixin:
             if not path or not os.path.exists(path):
                 continue
             try:
-                return GdkPixbuf.Pixbuf.new_from_file_at_scale(
-                    path, size, size, True
-                )
+                return GdkPixbuf.Pixbuf.new_from_file_at_scale(path, size, size, True)
             except Exception:
                 continue
         return None
@@ -1166,7 +1165,9 @@ class CompareGtkMixin:
         wrap.pack_start(card, False, False, 0)
         return wrap
 
-    def _build_merge_board(self, gr: Person, fsid: str) -> tuple[Gtk.Widget, list[_FSMergeRow]]:
+    def _build_merge_board(
+        self, gr: Person, fsid: str
+    ) -> tuple[Gtk.Widget, list[_FSMergeRow]]:
         """
         Build a FamilySearch-style merge board and its backing rows.
         """
@@ -1253,7 +1254,9 @@ class CompareGtkMixin:
             grid.attach(self._merge_cell(row, "gramps"), 0, row_index, 1, 1)
             grid.attach(self._merge_cell(row, "fs", result_label), 1, row_index, 1, 1)
             grid.attach(Gtk.Label(label=""), 2, row_index, 1, 1)
-            grid.attach(self._merge_cell(row, "result", result_label), 3, row_index, 1, 1)
+            grid.attach(
+                self._merge_cell(row, "result", result_label), 3, row_index, 1, 1
+            )
             row_index += 1
 
             if row.status == "red":
@@ -1329,10 +1332,9 @@ class CompareGtkMixin:
             left_surname = left.get_surname()
         except Exception:
             left_surname = ""
-        return (
-            (left_surname or "").strip() == (right.akSurname() or "").strip()
-            and (left.first_name or "").strip() == (right.akGiven() or "").strip()
-        )
+        return (left_surname or "").strip() == (right.akSurname() or "").strip() and (
+            left.first_name or ""
+        ).strip() == (right.akGiven() or "").strip()
 
     def _person_has_fs_name(self, gr: Person, fs_name: Any) -> bool:
         """
@@ -1517,9 +1519,8 @@ class CompareGtkMixin:
         Find the FamilySearch child-and-parents relationship for a merge row.
         """
         fsid = getattr(fs_person, "id", "")
-        relationships = (
-            list(getattr(fs_person, "_parentsCP", []) or [])
-            + list(getattr(fs_person, "_childrenCP", []) or [])
+        relationships = list(getattr(fs_person, "_parentsCP", []) or []) + list(
+            getattr(fs_person, "_childrenCP", []) or []
         )
         for rel in relationships:
             child_id = getattr(getattr(rel, "child", None), "resourceId", "")
@@ -1635,9 +1636,7 @@ class CompareGtkMixin:
                         )
                     elif row.kind == "fact":
                         changed += int(
-                            self._merge_person_fact_row(
-                                db, txn, gr, fs_person, row
-                            )
+                            self._merge_person_fact_row(db, txn, gr, fs_person, row)
                         )
                     elif row.kind == "spouse_fact":
                         changed += int(
