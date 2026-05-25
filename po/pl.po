@@ -20,13 +20,14 @@
 # Maciej L <github@maciej.website>, 2025.
 # Patryk <patryk230206@gmail.com>, 2026.
 # Artur <wy66m6xm@anonaddy.me>, 2026.
+# Maciej Stefańczyk <maciek.slon@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-04-20 20:13+0000\n"
-"Last-Translator: Artur <wy66m6xm@anonaddy.me>\n"
+"PO-Revision-Date: 2026-05-13 11:46+0000\n"
+"Last-Translator: Maciej Stefańczyk <maciek.slon@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -35,7 +36,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17.1-dev\n"
+"X-Generator: Weblate 2026.5.dev0\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -3330,56 +3331,56 @@ msgstr "_Przywróć %s"
 
 #: ../gramps/gen/db/generic.py:2702
 msgid "Number of people"
-msgstr "Ilość osób"
+msgstr "Liczba osób"
 
 #: ../gramps/gen/db/generic.py:2703
 #: ../gramps/plugins/gramplet/statsgramplet.py:186
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
-msgstr "Ilość rodzin"
+msgstr "Liczba rodzin"
 
 #: ../gramps/gen/db/generic.py:2704
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
-msgstr "Ilość źródeł"
+msgstr "Liczba źródeł"
 
 #: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
-msgstr "Ilość cytowań"
+msgstr "Liczba cytowań"
 
 #: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
-msgstr "Ilość zdarzeń"
+msgstr "Liczba zdarzeń"
 
 #: ../gramps/gen/db/generic.py:2707
 msgid "Number of media"
-msgstr "Ilość plików z mediami"
+msgstr "Liczba plików z mediami"
 
 #: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
-msgstr "Ilość miejsc"
+msgstr "Liczba miejsc"
 
 #: ../gramps/gen/db/generic.py:2709
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
-msgstr "Ilość repozytoriów"
+msgstr "Liczba repozytoriów"
 
 #: ../gramps/gen/db/generic.py:2710
 msgid "Number of notes"
-msgstr "Ilość notatek"
+msgstr "Liczba notatek"
 
 #: ../gramps/gen/db/generic.py:2711
 msgid "Number of tags"
-msgstr "Ilość tagów"
+msgstr "Liczba tagów"
 
 #: ../gramps/gen/db/generic.py:2712
 msgid "Schema version"
@@ -9599,7 +9600,7 @@ msgstr "Miejsca"
 #: ../gramps/plugins/textreport/indivcomplete.py:417
 #: ../gramps/plugins/webreport/basepage.py:3464
 msgid "Alternate Names"
-msgstr "Alternatywne nazwiska"
+msgstr "Nazwy alternatywne"
 
 #: ../gramps/gen/lib/place.py:177
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
