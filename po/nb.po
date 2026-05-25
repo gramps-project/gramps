@@ -15,14 +15,14 @@
 # Mikal Thunold-Olsen <mikal@thunold-olsen.no>, 2023, 2024.
 # Harald <haraldh@users.noreply.hosted.weblate.org>, 2024.
 # Harald Herreros <haraldh@users.noreply.hosted.weblate.org>, 2024, 2026.
-# Harald Herreros <h.herreros@proton.me>, 2024, 2025.
+# Harald Herreros <h.herreros@proton.me>, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-05-16 15:11+0000\n"
-"Last-Translator: Harald Herreros <haraldh@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-05-23 18:11+0000\n"
+"Last-Translator: Harald Herreros <h.herreros@proton.me>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/nb_NO/>\n"
 "Language: nb\n"
@@ -550,7 +550,7 @@ msgid ""
 msgstr ""
 "<b>Beregne slektskap</b><br/>For å undersøke om to personer i databasen er i "
 "slekt (biologisk, ikke gjennom ekteskap), kan du bruke verktøyet under «"
-"Verktøy > Redskaper > Relasjonsberegning…». Det nøyaktige slektskapet samt "
+"Verktøy > Redskaper > Slektskapskalkulator…». Det nøyaktige slektskapet samt "
 "alle felles aner blir vist."
 
 #: ../data/tips.xml:35
@@ -606,11 +606,11 @@ msgid ""
 "People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>Opprett et nytt slektstre</b><br/>En god måte å starte et nytt slektstre "
-"på er å legge inn alle familiemedlemmene i databasen ved å bruke "
-"Personvisning (bruk «Rediger > opprett...» eller klikk på opprett-knappen i "
-"personvisningen). Bytt så til slektskapsvisningen og opprett relasjoner "
-"mellom personene."
+"<b>Start et nytt slektstre</b><br/>En god måte å starte et nytt slektstre på "
+"er å registrere alle familiemedlemmene i databasen via visningen Personer "
+"(bruk «Rediger > Opprett…» eller klikk på knappen Opprett i visningen "
+"Personer). Bytt så til slektskapsvisningen og opprett slektskap mellom "
+"personene."
 
 #: ../data/tips.xml:43
 msgid ""
@@ -3321,7 +3321,7 @@ msgstr "Antall notater"
 
 #: ../gramps/gen/db/generic.py:2711
 msgid "Number of tags"
-msgstr "Antall etiketter"
+msgstr "Antall merker"
 
 #: ../gramps/gen/db/generic.py:2712
 msgid "Schema version"
@@ -3843,15 +3843,15 @@ msgstr "Delstreng:"
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 #: ../gramps/gui/editors/filtereditor.py:616
 msgid "Tag:"
-msgstr "Etikett:"
+msgstr "Merke:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
 msgid "Objects with notes with a specified tag."
-msgstr "Objekter med notater med en angitt etikett."
+msgstr "Objekter med notater med et angitt merke."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
 msgid "Matches notes with a specified tag"
-msgstr "Matcher notater med en angitt etikett"
+msgstr "Matcher notater med et angitt merke"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -4074,11 +4074,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
 msgid "Citations with a note with the <tag>"
-msgstr "Siteringer med et notat med etiketten <tag>"
+msgstr "Siteringer med et notat med merket <tag>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
 msgid "Matches citations with a note with a specified tag"
-msgstr "Matcher siteringer med et notat med en angitt etikett"
+msgstr "Matcher siteringer med et notat med et angitt merke"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4199,11 +4199,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
 msgid "Citations with the <tag>"
-msgstr "Siteringer med <etiketten>"
+msgstr "Siteringer med <merket>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Matches citations with the particular tag"
-msgstr "Matcher siteringer med den bestemte etiketten"
+msgstr "Matcher siteringer med den bestemte merket"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:46
 msgid "Citations matching the <filter>"
@@ -4434,11 +4434,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
 msgid "Events with a note with the <tag>"
-msgstr "Hendelser med et notat med etiketten <tag>"
+msgstr "Hendelser med et notat med merket <tag>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
 msgid "Matches events with a note with a specified tag"
-msgstr "Matcher hendelser med et notat med en angitt etikett"
+msgstr "Matcher hendelser med et notat med et angitt merke"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4466,11 +4466,11 @@ msgstr "Matcher hendelser med et bestemt antall tilknyttede kilder"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:51
 msgid "Events with the <tag>"
-msgstr "Hendelser med <etiketten>"
+msgstr "Hendelser med <merket>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Matches events with the particular tag"
-msgstr "Finner hendelser med den bestemte etiketten"
+msgstr "Finner hendelser med den bestemte merket"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:56
 msgid "Events with the particular type"
@@ -4729,11 +4729,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
 msgid "Families with a note with the <tag>"
-msgstr "Familier med et notat med etiketten <tag>"
+msgstr "Familier med et notat med merket <tag>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
 msgid "Matches families with a note with a specified tag"
-msgstr "Matcher familier med et notat med en angitt etikett"
+msgstr "Matcher familier med et notat med et angitt merke"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -4784,11 +4784,11 @@ msgstr "Matcher familier som har en bestemt kilde"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:51
 msgid "Families with the <tag>"
-msgstr "Familier med <etiketten>"
+msgstr "Familier med <merket>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Matches families with the particular tag"
-msgstr "Finner familier med den bestemte etiketten"
+msgstr "Finner familier med den bestemte merket"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:55
 msgid "Families with twins"
@@ -5030,11 +5030,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
 msgid "Media with a note with the <tag>"
-msgstr "Medier med et notat med etiketten <tag>"
+msgstr "Medier med et notat med merket <tag>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
 msgid "Matches media with a note with a specified tag"
-msgstr "Matcher medier med et notat med en angitt etikett"
+msgstr "Matcher medier med et notat med et angitt merke"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
 msgid "Media with a note of type <type>"
@@ -5070,11 +5070,11 @@ msgstr "Matcher medier som har en bestemt kilde"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:51
 msgid "Media objects with the <tag>"
-msgstr "Medieobjekter med <etiketten>"
+msgstr "Medieobjekter med <merket>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:52
 msgid "Matches media objects with the particular tag"
-msgstr "Finner medieobjekter med den bestemte etiketten"
+msgstr "Finner medieobjekter med den bestemte merket"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:45
 msgid "Media objects matching the <filter>"
@@ -5154,11 +5154,11 @@ msgstr "Matcher notater som er referert til et visst antall ganger"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:51
 msgid "Notes with the <tag>"
-msgstr "Notater med <etiketten>"
+msgstr "Notater med <merket>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Matches notes with the particular tag"
-msgstr "Finner notater med den bestemte etiketten"
+msgstr "Finner notater med den bestemte merket"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:56
 msgid "Notes with the particular type"
@@ -5245,7 +5245,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:171
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:184
 msgid "Finding relationship paths"
-msgstr "Beregner relasjonslinjer"
+msgstr "Finner slektskapslinjer"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:172
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:72
@@ -5571,11 +5571,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
 msgid "People with a note with the <tag>"
-msgstr "Personer med et notat med etiketten <tag>"
+msgstr "Personer med et notat med merket <tag>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
 msgid "Matches people with a note with a specified tag"
-msgstr "Matcher personer med et notat med en angitt etikett"
+msgstr "Matcher personer med et notat med et angitt merke"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -5657,11 +5657,11 @@ msgstr "Matcher personer som har en bestemt kilde"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:51
 msgid "People with the <tag>"
-msgstr "Personer med <etiketten>"
+msgstr "Personer med <merket>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "Matches people with the particular tag"
-msgstr "Matcher personer med den bestemte etiketten"
+msgstr "Matcher personer med den bestemte merket"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:64
 #: ../gramps/gui/editors/filtereditor.py:608
@@ -6236,11 +6236,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
 msgid "Places with a note with the <tag>"
-msgstr "Steder med et notat med etiketten <tag>"
+msgstr "Steder med et notat med merket <tag>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
 msgid "Matches places with a note with a specified tag"
-msgstr "Matcher steder med et notat med en angitt etikett"
+msgstr "Matcher steder med et notat med et angitt merke"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6308,11 +6308,11 @@ msgstr "Matcher steder som har en bestemt kilde"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:51
 msgid "Places with the <tag>"
-msgstr "Steder med <etiketten>"
+msgstr "Steder med <merket>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:52
 msgid "Matches places with the particular tag"
-msgstr "Finner steder med den bestemte etiketten"
+msgstr "Finner steder med den bestemte merket"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:58
 msgid "Places matching a title"
@@ -6497,11 +6497,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
 msgid "Repositories with a note with the <tag>"
-msgstr "Arkiver med et notat med etiketten <tag>"
+msgstr "Arkiver med et notat med merket <tag>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Matcher arkiver med et notat med en angitt etikett"
+msgstr "Matcher arkiver med et notat med et angitt merke"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
 msgid "Repositories with a note of type <type>"
@@ -6545,11 +6545,11 @@ msgstr "Matcher arkiver med bestemte parametere"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:51
 msgid "Repositories with the <tag>"
-msgstr "Arkiver med <etiketten>"
+msgstr "Arkiver med <merket>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Matches repositories with the particular tag"
-msgstr "Matcher arkiver med en bestemt etikett"
+msgstr "Matcher arkiver med et bestemt merke"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
 msgid "Repositories matching the <filter>"
@@ -6659,11 +6659,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
 msgid "Sources with a note with the <tag>"
-msgstr "Kilder med et notat med etiketten <tag>"
+msgstr "Kilder med et notat med merket <tag>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
 msgid "Matches sources with a note with a specified tag"
-msgstr "Matcher kilder med et notat med en angitt etikett"
+msgstr "Matcher kilder med et notat med et angitt merke"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6707,11 +6707,11 @@ msgstr "Matcher kilder med bestemte parametre"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:51
 msgid "Sources with the <tag>"
-msgstr "Kilder med <etiketten>"
+msgstr "Kilder med <merket>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Matches sources with the particular tag"
-msgstr "Finner kilder med den bestemte etiketten"
+msgstr "Finner kilder med den bestemte merket"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:45
 msgid "Sources matching the <filter>"
@@ -7209,13 +7209,13 @@ msgid ""
 "This add-on only sets default colors when the tags are first created and "
 "will not override your custom choices."
 msgstr ""
-"Fargene for FamilySearch-statusetiketter kan tilpasses i Gramps via Rediger "
-"etiketter. Dette tillegget angir kun standardfarger når etikettene opprettes "
+"Fargene for FamilySearch-statusmerker kan tilpasses i Gramps via Rediger "
+"merker. Dette tillegget angir kun standardfarger når merkene opprettes "
 "første gang, og vil ikke overstyre tilpasningene dine."
 
 #: ../gramps/gen/fs/utils/linking.py:48
 msgid "FamilySearch tags"
-msgstr "FamilySearch-etiketter"
+msgstr "FamilySearch-merker"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:721 ../gramps/gui/editors/editaddress.py:199
@@ -7796,7 +7796,7 @@ msgstr "Sist endret"
 #: ../gramps/plugins/webreport/repository.py:287
 #: ../gramps/plugins/webreport/source.py:414
 msgid "Tags"
-msgstr "Etiketter"
+msgstr "Merker"
 
 #: ../gramps/gen/lib/date.py:304
 #, python-brace-format
@@ -8316,7 +8316,7 @@ msgstr "Velsignelse"
 
 #: ../gramps/gen/lib/eventtype.py:207
 msgid "Burial"
-msgstr "Begravelse"
+msgstr "Gravlegging"
 
 #: ../gramps/gen/lib/eventtype.py:208
 msgid "Cause Of Death"
@@ -8344,7 +8344,7 @@ msgstr "Eksamen/grad"
 
 #: ../gramps/gen/lib/eventtype.py:214
 msgid "Education"
-msgstr "Utdannelse"
+msgstr "Utdanning"
 
 #: ../gramps/gen/lib/eventtype.py:215
 msgid "Elected"
@@ -9363,7 +9363,7 @@ msgstr "Personreferanse"
 #: ../gramps/gen/lib/personref.py:120
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:67
 msgid "Association"
-msgstr "Relasjon"
+msgstr "Tilknytning"
 
 #: ../gramps/gen/lib/place.py:163 ../gramps/plugins/export/exportcsv.py:311
 #: ../gramps/plugins/gramplet/coordinates.py:105
@@ -9440,7 +9440,7 @@ msgstr "Provins"
 
 #: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:621
 msgid "Department"
-msgstr "Department"
+msgstr "Departement"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/view/geoplaces.py:603
 msgid "Neighborhood"
@@ -9652,7 +9652,7 @@ msgstr "Markering for stilet tekst"
 #: ../gramps/plugins/webreport/heatmap.py:510
 #: ../gramps/plugins/webreport/multiselect.py:298
 msgid "Tag"
-msgstr "Etikett"
+msgstr "Merke"
 
 #: ../gramps/gen/lib/styledtexttag.py:130
 msgid "Ranges"
@@ -9928,7 +9928,7 @@ msgstr "Vis"
 
 #: ../gramps/gen/plug/_pluginreg.py:127
 msgid "Relationship calculator"
-msgstr "Relasjonsberegning"
+msgstr "Slektskapskalkulator"
 
 #: ../gramps/gen/plug/_pluginreg.py:128 ../gramps/gen/plug/_pluginreg.py:516
 #: ../gramps/gui/glade/grampletpane.glade:153
@@ -10884,7 +10884,7 @@ msgstr "Inkluder"
 
 #: ../gramps/gen/plug/report/stdoptions.py:371
 msgid "Whether to include tags"
-msgstr "Om etiketter skal tas med"
+msgstr "Om merker skal tas med"
 
 #: ../gramps/gen/plug/report/stdoptions.py:396
 msgid "Share an existing line"
@@ -11078,7 +11078,7 @@ msgstr ""
 #: ../gramps/gen/relationship.py:1418
 #: ../gramps/plugins/view/pedigreeview.py:1726
 msgid "Relationship loop detected"
-msgstr "Fant en relasjonsløkke"
+msgstr "Fant en slektskapsløkke"
 
 #: ../gramps/gen/relationship.py:1493
 #, python-format
@@ -11776,7 +11776,7 @@ msgstr "Ugift partnerskap"
 
 #: ../gramps/gen/utils/symbols.py:99 ../gramps/gui/configure.py:2961
 msgid "Buried"
-msgstr "Begravet"
+msgstr "Gravlagt"
 
 #: ../gramps/gen/utils/symbols.py:100 ../gramps/gui/configure.py:2962
 msgid "Cremated/Funeral urn"
@@ -12648,7 +12648,7 @@ msgstr "Skjul advarsel om manglende forsker når det eksporteres til GEDCOM"
 
 #: ../gramps/gui/configure.py:1053
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr "Undertrykk verktøytipsvarsler om at data lagres umiddelbart"
+msgstr "Skjul verktøytipsadvarsler om at data lagres umiddelbart"
 
 #: ../gramps/gui/configure.py:1061
 msgid "Show plugin status dialog on plugin load error"
@@ -12966,8 +12966,9 @@ msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
-"Begrenser beregningsdybden for forfedre og etterkommere. Øk denne hvis "
-"beregninger mangler når datoer bare finnes i fjerne generasjoner."
+"Begrenser hvor mange generasjoner bakover eller framover som brukes ved "
+"estimering. Øk verdien dersom estimater mangler fordi datoer bare finnes i "
+"fjerntliggende generasjoner."
 
 #: ../gramps/gui/configure.py:2069
 msgid "Maximum sibling age difference"
@@ -13040,7 +13041,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2187
 msgid "Show text label beside Navigator buttons *"
-msgstr "Vis tekstetikett ved siden av navigasjonsknappene *"
+msgstr "Vis etikettekst ved siden av navigasjonsknappene *"
 
 #: ../gramps/gui/configure.py:2193
 msgid ""
@@ -13267,18 +13268,18 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2547
 msgid "Tag Records"
-msgstr "Etikett oppføringer"
+msgstr "Merkeoppføringer"
 
 #: ../gramps/gui/configure.py:2569
 msgid "Add tag on import"
-msgstr "Legg til etikett ved import"
+msgstr "Legg til merke ved import"
 
 #: ../gramps/gui/configure.py:2576
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Den angitte etiketten vil bli lagt til alle poster ved import.\n"
+"Den angitte merket vil bli lagt til alle poster ved import.\n"
 "Tøm for å bruke standardverdi."
 
 #: ../gramps/gui/configure.py:2585
@@ -13933,7 +13934,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Et forsøk på å hente ut dataene feilet med følgende melding:\n"
+"Et forsøk på å opprette arkivet mislyktes med følgende melding:\n"
 "\n"
 "%s"
 
@@ -14754,7 +14755,7 @@ msgstr "Flytt det valgte arkivet nedover"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:80
 msgid "_Repositories"
-msgstr "Oppbe_varingssteder"
+msgstr "_Arkiv"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:183
 msgid ""
@@ -15934,7 +15935,7 @@ msgstr "Tag_selection_dialog"
 #: ../gramps/gui/editors/edittaglist.py:72
 #: ../gramps/gui/editors/edittaglist.py:130
 msgid "Tag selection"
-msgstr "Valg av etiketter"
+msgstr "Valg av merker"
 
 #: ../gramps/gui/editors/editurl.py:47
 msgctxt "manual"
@@ -15988,7 +15989,7 @@ msgstr "Kildefiltre"
 
 #: ../gramps/gui/editors/filtereditor.py:103
 msgid "Media Filters"
-msgstr "Mediafiltre"
+msgstr "Mediefiltre"
 
 #: ../gramps/gui/editors/filtereditor.py:104
 msgid "Repository Filters"
@@ -16404,7 +16405,7 @@ msgstr "Deltakere"
 #: ../gramps/plugins/view/familyview.py:84
 #: ../gramps/plugins/webreport/person.py:1640
 msgid "Relationship"
-msgstr "Relasjon"
+msgstr "Slektskap"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:110
 msgid "any"
@@ -16667,7 +16668,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:875 ../gramps/gui/fs/actions.py:876
 msgid "FamilySearch Tags"
-msgstr "FamilySearch-etiketter"
+msgstr "FamilySearch-merker"
 
 #: ../gramps/gui/fs/actions.py:877
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:559
@@ -16680,15 +16681,14 @@ msgstr "Lukk"
 
 #: ../gramps/gui/fs/actions.py:878
 msgid "Retag all (Linked/NotLinked)"
-msgstr "Gi alle etiketter på nytt (Linked/NotLinked)"
+msgstr "Gi alle merker på nytt (Linked/NotLinked)"
 
 #: ../gramps/gui/fs/actions.py:890
 msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
-"Dette vil skanne hele treet ditt og bruke etikettene FS_Linked / "
-"FS_NotLinked.\n"
+"Dette vil skanne hele treet ditt og bruke merkene FS_Linked / FS_NotLinked.\n"
 "Dette endrer IKKE personopplysninger."
 
 #: ../gramps/gui/fs/actions.py:910
@@ -16701,7 +16701,7 @@ msgid ""
 "Not linked: {not_linked}\n"
 "Changed: {changed}"
 msgstr ""
-"Etiketter oppdatert\n"
+"Merker oppdatert\n"
 "\n"
 "Totalt antall personer: {total}\n"
 "Lenkede: {linked}\n"
@@ -16711,7 +16711,7 @@ msgstr ""
 #: ../gramps/gui/fs/actions.py:920
 #, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "Oppdatering av etiketter mislyktes: {e}"
+msgstr "Oppdatering av merker mislyktes: {e}"
 
 #: ../gramps/gui/fs/actions.py:971
 msgid "FamilySearch: Update FSID after redirect"
@@ -17710,7 +17710,7 @@ msgstr "Redskaper"
 
 #: ../gramps/gui/fs/tools_window.py:403
 msgid "Tags..."
-msgstr "Etiketter…"
+msgstr "Merker…"
 
 #: ../gramps/gui/fs/tools_window.py:404
 msgid "Clear Cache"
@@ -17969,7 +17969,7 @@ msgstr "Velg en erstatning for den manglende filen"
 
 #: ../gramps/gui/glade/dialog.glade:393
 msgid "_Use this selection for all missing media files"
-msgstr "Br_uk dette valget for alle manglende mediafiler"
+msgstr "Br_uk dette valget for alle manglende mediefiler"
 
 #: ../gramps/gui/glade/dialog.glade:397
 msgid ""
@@ -18024,7 +18024,7 @@ msgstr ""
 #: ../gramps/plugins/tool/removespaces.glade:108
 #: ../gramps/plugins/tool/removespaces.glade:165
 msgid "label"
-msgstr "merkelapp"
+msgstr "etikett"
 
 #: ../gramps/gui/glade/dialog.glade:903
 msgid "Close _without saving"
@@ -18331,7 +18331,7 @@ msgstr "En unik ID for å identifisere siteringen"
 #: ../gramps/gui/glade/editrepository.glade:235
 #: ../gramps/gui/glade/editsource.glade:230
 msgid "Tags:"
-msgstr "Etiketter:"
+msgstr "Merker:"
 
 #: ../gramps/gui/glade/editdate.glade:137
 msgid "Calenda_r:"
@@ -18438,8 +18438,8 @@ msgstr "Velger"
 #: ../gramps/gui/glade/editevent.glade:293
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
 msgstr ""
-"Hvilken type hendelse dette er. F.eks. 'Gravferd', 'Fullført "
-"utdanning', ... ."
+"Hvilken type hendelse dette er. F.eks. «Gravlegging», «Fullført utdanning», "
+"… ."
 
 #: ../gramps/gui/glade/editevent.glade:327
 msgid ""
@@ -18546,12 +18546,12 @@ msgstr ""
 #: ../gramps/gui/glade/editnote.glade:243
 #: ../gramps/gui/glade/editperson.glade:645
 msgid "_Tags:"
-msgstr "_Etiketter:"
+msgstr "_Merker:"
 
 #: ../gramps/gui/glade/editfamily.glade:778
 #: ../gramps/gui/widgets/monitoredwidgets.py:863
 msgid "Edit the tag list"
-msgstr "Rediger etikettlisten"
+msgstr "Rediger merkelisten"
 
 #: ../gramps/gui/glade/editldsord.glade:177
 msgid "Ordinance:"
@@ -19472,7 +19472,7 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Hendelser, lds_ord, medieobjekter, attributter, notater, kilder og etiketter "
+"Hendelser, lds_ord, medieobjekter, attributter, notater, kilder og merker "
 "fra begge familiene blir slått sammen."
 
 #: ../gramps/gui/glade/mergemedia.glade:94
@@ -19494,8 +19494,7 @@ msgstr "Objekt 2"
 #: ../gramps/gui/glade/mergemedia.glade:443
 msgid "Attributes, sources, notes and tags of both objects will be combined."
 msgstr ""
-"Attributter, kilder, notater og etiketter fra begge objektene blir slått "
-"sammen."
+"Attributter, kilder, notater og merker fra begge objektene blir slått sammen."
 
 #: ../gramps/gui/glade/mergenote.glade:94
 msgid ""
@@ -19548,7 +19547,7 @@ msgid ""
 "of both persons will be combined."
 msgstr ""
 "Hendelser, medieobjekter, adresser, attributter, nettadresser, notater, "
-"kilder og etiketter fra begge personene blir slått sammen."
+"kilder og merker fra begge personene blir slått sammen."
 
 #: ../gramps/gui/glade/mergeperson.glade:490
 msgid "Context Information"
@@ -20385,13 +20384,12 @@ msgstr ""
 "Dette er en feilrapporteringsassistent. Den vil hjelpe deg med å rapportere "
 "en feil til utviklerne av Gramps som vil være så detaljert som mulig.\n"
 "\n"
-"Assistenten vil stille noen spørsmål og vil samle sammen informasjon om "
-"feilen som oppstod og om operativsystemet du bruker. Til slutt vil "
-"assistenten be deg om å legge inn en feilrapport i Gramps' "
-"feilhåndteringssystem. Assistenten vil legge feilrapporten din på "
-"utklippsbordet slik at du kan lime den inn i skjemaet på nettsiden til "
-"feilhåndteringssystemet. Du kan dermed se gjennom og ta med akkurat den "
-"informasjonen du ønsker."
+"Assistenten stiller deg noen spørsmål og vil samle inn informasjon om feilen "
+"som har oppstått, samt om systemmiljøet du bruker. Til slutt vil assistenten "
+"be deg om å legge inn en feilrapport i Gramps sitt feilsporingssystem. "
+"Feilrapporten legges automatisk på utklippstavlen, slik at du kan lime den "
+"inn i skjemaet på nettstedet for feilrapportering og kontrollere nøyaktig "
+"hvilken informasjon du ønsker å ta med."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:327
 msgid ""
@@ -21168,7 +21166,7 @@ msgstr "Utvidelsesfeil"
 
 #: ../gramps/gui/plug/_windows.py:1778
 msgid "_Execute"
-msgstr "_Utfør"
+msgstr "_Kjør"
 
 #: ../gramps/gui/plug/_windows.py:2076
 #: ../gramps/plugins/importer/importprogen.py:480
@@ -22522,15 +22520,15 @@ msgstr "Vis %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:73
 msgid "Tag selected rows"
-msgstr "Legg til etikett på valgte rader"
+msgstr "Legg til merke på valgte rader"
 
 #: ../gramps/gui/views/tags.py:96
 msgid "New Tag..."
-msgstr "Ny etikett..."
+msgstr "Nytt merke..."
 
 #: ../gramps/gui/views/tags.py:96
 msgid "Organize Tags..."
-msgstr "Organiser etiketter …"
+msgstr "Organiser merker …"
 
 #: ../gramps/gui/views/tags.py:115
 msgctxt "manual"
@@ -22545,83 +22543,83 @@ msgstr "New_Tag_dialog"
 #: ../gramps/gui/views/tags.py:257
 #, python-format
 msgid "Add tag '%s'"
-msgstr "Opprett etiketten «%s»"
+msgstr "Opprett merket «%s»"
 
 #: ../gramps/gui/views/tags.py:265
 #, python-format
 msgid "Remove tag '%s'"
-msgstr "Fjern «%s»-etiketten"
+msgstr "Fjern «%s»-merket"
 
 #: ../gramps/gui/views/tags.py:328
 msgid "Adding Tags"
-msgstr "Opprett etiketter"
+msgstr "Opprett merker"
 
 #: ../gramps/gui/views/tags.py:334 ../gramps/gui/views/tags.py:361
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "Etikett utvalg (%s)"
+msgstr "Merkeutvalg (%s)"
 
 #: ../gramps/gui/views/tags.py:355 ../gramps/gui/views/tags.py:600
 msgid "Removing Tags"
-msgstr "Fjerner etiketter"
+msgstr "Fjerner merker"
 
 #: ../gramps/gui/views/tags.py:394 ../gramps/gui/views/tags.py:404
 #: ../gramps/gui/views/tags.py:470
 msgid "Organize Tags"
-msgstr "Organiser etiketter"
+msgstr "Organiser merker"
 
 #: ../gramps/gui/views/tags.py:422
 msgid "Change Tag Priority"
-msgstr "Endre Etikett Prioritet"
+msgstr "Endre merkeprioritet"
 
 #: ../gramps/gui/views/tags.py:565
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Fjern «%s»-etiketten?"
+msgstr "Fjern «%s»-merket?"
 
 #: ../gramps/gui/views/tags.py:567
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Etiketten vil bli fjernet. Etiketten vil også bli fjernet fra alle objekter "
-"i databasen."
+"Merket vil bli fjernet. Merket vil også bli fjernet fra alle objekter i "
+"databasen."
 
 #: ../gramps/gui/views/tags.py:606
 #, python-format
 msgid "Delete Tag (%s)"
-msgstr "Slett Etikett (%s)"
+msgstr "Slett merke (%s)"
 
 #: ../gramps/gui/views/tags.py:633
 #, python-format
 msgid "Tag: %s"
-msgstr "Etikett: %s"
+msgstr "Merke: %s"
 
 #: ../gramps/gui/views/tags.py:635
 msgid "New Tag"
-msgstr "Ny Etikett"
+msgstr "Nytt merke"
 
 #: ../gramps/gui/views/tags.py:684
 msgid "Cannot save tag"
-msgstr "Kan ikke lagre etiketten"
+msgstr "Kan ikke lagre merket"
 
 #: ../gramps/gui/views/tags.py:685
 msgid "The tag name cannot be empty"
-msgstr "Etikettnavnet kan ikke være tomt"
+msgstr "Merkenavnet kan ikke være tomt"
 
 #: ../gramps/gui/views/tags.py:691
 #, python-format
 msgid "Add Tag (%s)"
-msgstr "Opprett etikett (%s)"
+msgstr "Opprett merke (%s)"
 
 #: ../gramps/gui/views/tags.py:697
 #, python-format
 msgid "Edit Tag (%s)"
-msgstr "Rediger Etikett (%s)"
+msgstr "Rediger merke (%s)"
 
 #: ../gramps/gui/views/tags.py:712
 msgid "Tag Name:"
-msgstr "Navn på Etikett:"
+msgstr "Navn på merke:"
 
 #: ../gramps/gui/views/tags.py:719
 #, python-format
@@ -22842,7 +22840,7 @@ msgstr "Bakgrunnsfarge"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Clear Markup"
-msgstr "Fjern markering"
+msgstr "Fjern formatering"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Font Color"
@@ -24054,8 +24052,8 @@ msgstr "Nivå med ektefeller"
 #: ../gramps/plugins/drawreport/descendtree.py:1591
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr ""
-"0=ingen ektefeller, 1=ta med ektefeller, 2=ta med ektefeller til ektefeller "
-"osv"
+"0=ingen ektefeller, 1=inkluder ektefeller, 2=inkluder ektefeller til "
+"ektefeller osv"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1598
 msgid "Start with the parent(s) of the selected first"
@@ -24823,8 +24821,8 @@ msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
-"Eksport til Gramps XML gir en fullstendig kopi av Gramps-databasen uten "
-"medieobjektene som en XML-fil. Denne er nyttig for sikkerhetskopiformål."
+"Eksport til Gramps XML gir et fullstendig XML-arkiv av et Gramps slektstre "
+"uten mediefilene. Egnet for sikkerhetskopiering."
 
 #: ../gramps/plugins/export/export.gpr.py:163
 msgid "Gramps XML export options"
@@ -24911,15 +24909,15 @@ msgstr "Kilde for død"
 
 #: ../gramps/plugins/export/exportcsv.py:436
 msgid "Burial date"
-msgstr "Begravelsesdato"
+msgstr "Gravleggingsdato"
 
 #: ../gramps/plugins/export/exportcsv.py:437
 msgid "Burial place"
-msgstr "Begravelsessted"
+msgstr "Gravsted"
 
 #: ../gramps/plugins/export/exportcsv.py:438
 msgid "Burial source"
-msgstr "Kilde for begravelse"
+msgstr "Kilde for gravlegging"
 
 #: ../gramps/plugins/export/exportcsv.py:581
 #: ../gramps/plugins/importer/importcsv.py:377
@@ -25299,7 +25297,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:154
 msgid "Media Files"
-msgstr "Mediafiler"
+msgstr "Mediefiler"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:159
 #, python-format
@@ -26078,7 +26076,7 @@ msgstr "Gramplet som tilbyr et stedsfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1316
 msgid "Media Filter"
-msgstr "Mediafilter"
+msgstr "Mediefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1317
 msgid "Gramplet providing a media filter"
@@ -26907,15 +26905,15 @@ msgstr "Utsettelse før etterkommere etter en ane er hentet ut"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:75
 msgid "Tag to indicate that a person is complete"
-msgstr "Etikett for å indikere at en person er komplett"
+msgstr "Merke for å indikere at en person er komplett"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:82
 msgid "Tag to indicate that a family is complete"
-msgstr "Etikett for å indikere at en familie er komplett"
+msgstr "Merke for å indikere at en familie er komplett"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:88
 msgid "Tag to indicate that a person or family should be ignored"
-msgstr "Etikett for å indikere at en person eller familie skulle vært ignorert"
+msgstr "Merke for å indikere at en person eller familie skulle vært ignorert"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:162
 msgid "No Home Person set."
@@ -27592,7 +27590,8 @@ msgstr "Ta også med feilsøkeinformasjon for slektskap"
 #: ../gramps/plugins/graph/gvrelgraph.py:1049
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
-msgstr "Om det skal tas med 'Ga' og 'Gb', for å feilsøke slektskapkalkulatoren"
+msgstr ""
+"Om også «Ga» og «Gb» skal inkluderes for å feilsøke slektskapskalkulatoren"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1083
 msgid "Indicate non-birth relationships with dotted lines"
@@ -27745,7 +27744,7 @@ msgstr "kalle_navn"
 
 #: ../gramps/plugins/importer/importcsv.py:229
 msgid "tag"
-msgstr "etikett"
+msgstr "merke"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "title"
@@ -27802,19 +27801,19 @@ msgstr "dåpskilde"
 
 #: ../gramps/plugins/importer/importcsv.py:267
 msgid "burial place"
-msgstr "begravelsessted"
+msgstr "gravsted"
 
 #: ../gramps/plugins/importer/importcsv.py:271
 msgid "burial place id"
-msgstr "Id for begravelsessted"
+msgstr "id for gravsted"
 
 #: ../gramps/plugins/importer/importcsv.py:275
 msgid "burial date"
-msgstr "begravelsesdato"
+msgstr "gravleggingsdato"
 
 #: ../gramps/plugins/importer/importcsv.py:276
 msgid "burial source"
-msgstr "kilde for begravelse"
+msgstr "kilde for gravlegging"
 
 #: ../gramps/plugins/importer/importcsv.py:281
 msgid "death place"
@@ -28128,7 +28127,7 @@ msgstr "SDH Familielenker"
 #: ../gramps/plugins/importer/importgeneweb.py:125
 #: ../gramps/plugins/lib/libgedcom.py:747
 msgid "Funeral"
-msgstr "Begravelse"
+msgstr "Gravferd"
 
 #: ../gramps/plugins/importer/importgeneweb.py:127
 msgid "Hospitalisation"
@@ -28334,7 +28333,7 @@ msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
-"Standard etikettekst\n"
+"Standard merketekst\n"
 "(fra innstillingene)."
 
 #: ../gramps/plugins/importer/importprogen.glade:478
@@ -28361,7 +28360,7 @@ msgid ""
 "to all Tag Text'."
 msgstr ""
 "Kopier standard tekst\n"
-"til alle etikettekster."
+"til alle merketekster."
 
 #: ../gramps/plugins/importer/importprogen.glade:1072
 msgid ""
@@ -28369,7 +28368,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "Kopier standard filnavn\n"
-"til alle sensitive etikettekster."
+"til alle sensitive merketekster."
 
 #: ../gramps/plugins/importer/importprogen.glade:1089
 msgid ""
@@ -28377,7 +28376,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "Kopier standard dato\n"
-"til alle sensitive etikettekster."
+"til alle sensitive merketekster."
 
 #: ../gramps/plugins/importer/importprogen.glade:1102
 msgid "  Objects"
@@ -28389,11 +28388,11 @@ msgid ""
 "all object tags."
 msgstr ""
 "Slå på/av\n"
-"alle objektetiketter."
+"alle objektmerker."
 
 #: ../gramps/plugins/importer/importprogen.glade:1135
 msgid "Tag Text"
-msgstr "Etikettekst"
+msgstr "Merketekst"
 
 #: ../gramps/plugins/importer/importprogen.glade:1154
 msgid "Import Objects"
@@ -28986,7 +28985,7 @@ msgstr "Linje ble ignorert siden den ikke ble forstått"
 
 #: ../gramps/plugins/lib/libgedcom.py:3490
 msgid "Tag recognized but not supported"
-msgstr "Etikett ble gjenkjent, men er ikke støttet"
+msgstr "Merket ble gjenkjent, men er ikke støttet"
 
 #: ../gramps/plugins/lib/libgedcom.py:3526
 msgid "Skipped subordinate line"
@@ -29062,7 +29061,7 @@ msgstr "GEDCOM data"
 
 #: ../gramps/plugins/lib/libgedcom.py:3990
 msgid "Unknown tag"
-msgstr "Ukjent etikett"
+msgstr "Ukjent merke"
 
 #: ../gramps/plugins/lib/libgedcom.py:3992
 #: ../gramps/plugins/lib/libgedcom.py:4006
@@ -29359,23 +29358,23 @@ msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:118
 msgid "Descriptive Tags"
-msgstr "Beskrivende etiketter"
+msgstr "Beskrivende merker"
 
 #: ../gramps/plugins/lib/libmetadata.py:119
 msgid "Date and Time Tags"
-msgstr "Dato- og tidsetiketter"
+msgstr "Dato- og tidsmerker"
 
 #: ../gramps/plugins/lib/libmetadata.py:120
 msgid "People Tags"
-msgstr "Personetiketter"
+msgstr "Personmerker"
 
 #: ../gramps/plugins/lib/libmetadata.py:121
 msgid "Event Tags"
-msgstr "Hendelsesetiketter"
+msgstr "Hendelsesmerker"
 
 #: ../gramps/plugins/lib/libmetadata.py:122
 msgid "Image Tags"
-msgstr "Bildeetiketter"
+msgstr "Bildemerker"
 
 #: ../gramps/plugins/lib/libmetadata.py:123
 msgid "Camera Information"
@@ -29383,19 +29382,19 @@ msgstr "Kamerainformasjon"
 
 #: ../gramps/plugins/lib/libmetadata.py:124
 msgid "Location Tags"
-msgstr "Plasseringsetiketter"
+msgstr "Plasseringsmerker"
 
 #: ../gramps/plugins/lib/libmetadata.py:125
 msgid "Advanced Tags"
-msgstr "Avanserte etiketter"
+msgstr "Avanserte merker"
 
 #: ../gramps/plugins/lib/libmetadata.py:126
 msgid "Rights Tags"
-msgstr "Rediger etiketter"
+msgstr "Rettighetsmerker"
 
 #: ../gramps/plugins/lib/libmetadata.py:127
 msgid "Keyword Tags"
-msgstr "Nøkkelordetiketter"
+msgstr "Nøkkelordmerker"
 
 #: ../gramps/plugins/lib/libmetadata.py:226
 msgid "Namespace"
@@ -29403,7 +29402,7 @@ msgstr "Navneområde"
 
 #: ../gramps/plugins/lib/libmetadata.py:227
 msgid "Label"
-msgstr "Merkelapp"
+msgstr "Etikett"
 
 #: ../gramps/plugins/lib/libnarrate.py:110
 #, python-format
@@ -30207,12 +30206,12 @@ msgstr "Døde (%(age)s)."
 msgid ""
 "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s ble begravet %(burial_date)s i %(burial_place)s%(endnotes)s."
+"%(male_name)s ble gravlagt %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:536
 #, python-format
 msgid "He was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Han ble begravet %(burial_date)s i %(burial_place)s%(endnotes)s."
+msgstr "Han ble gravlagt %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:540
 #, python-format
@@ -30220,12 +30219,12 @@ msgid ""
 "%(female_name)s was buried on %(burial_date)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s ble begravet %(burial_date)s i %(burial_place)s%(endnotes)s."
+"%(female_name)s ble gravlagt %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:542
 #, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Hun ble begravet %(burial_date)s i %(burial_place)s%(endnotes)s."
+msgstr "Hun ble gravlagt %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:546
 #, python-format
@@ -30233,79 +30232,79 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s ble begravet %(burial_date)s i "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s ble gravlagt %(burial_date)s i %(burial_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:548
 #, python-format
 msgid ""
 "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Denne personen ble begravet %(burial_date)s i %(burial_place)s%(endnotes)s."
+"Denne personen ble gravlagt %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:550
 #, python-format
 msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Begravet %(burial_date)s i %(burial_place)s%(endnotes)s."
+msgstr "Gravlagt %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:555
 #, python-format
 msgid "%(male_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s%(endnotes)s."
+msgstr "%(male_name)s ble gravlagt %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:556
 #, python-format
 msgid "He was buried on %(burial_date)s%(endnotes)s."
-msgstr "Han ble begravet %(burial_date)s%(endnotes)s."
+msgstr "Han ble gravlagt %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:559
 #, python-format
 msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(burial_date)s%(endnotes)s."
+msgstr "%(female_name)s ble gravlagt %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:560
 #, python-format
 msgid "She was buried on %(burial_date)s%(endnotes)s."
-msgstr "Hun ble begravet %(burial_date)s%(endnotes)s."
+msgstr "Hun ble gravlagt %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:563
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(burial_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s ble gravlagt %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:564
 #, python-format
 msgid "This person was buried on %(burial_date)s%(endnotes)s."
-msgstr "Denne personen ble begravet %(burial_date)s%(endnotes)s."
+msgstr "Denne personen ble gravlagt %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:566
 #, python-format
 msgid "Buried %(burial_date)s%(endnotes)s."
-msgstr "Begravet %(burial_date)s%(endnotes)s."
+msgstr "Gravlagt %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:572
 #, python-format
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
+"%(male_name)s ble gravlagt %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:574
 #, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Han ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
+msgstr "Han ble gravlagt i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:578
 #, python-format
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
+"%(female_name)s ble gravlagt i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:580
 #, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Hun ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
+msgstr "Hun ble gravlagt i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:584
 #, python-format
@@ -30313,80 +30312,80 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s ble begravet %(month_year)s i "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s ble gravlagt i %(month_year)s i %(burial_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:586
 #, python-format
 msgid ""
 "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Denne personen ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
+"Denne personen ble gravlagt i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:588
 #, python-format
 msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Begravet %(month_year)s i %(burial_place)s%(endnotes)s."
+msgstr "Gravlagt %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:593
 #, python-format
 msgid "%(male_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s ble gravlagt i %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:594
 #, python-format
 msgid "He was buried in %(month_year)s%(endnotes)s."
-msgstr "Han ble begravet %(month_year)s%(endnotes)s."
+msgstr "Han ble gravlagt i %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:597
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s ble gravlagt i %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:598
 #, python-format
 msgid "She was buried in %(month_year)s%(endnotes)s."
-msgstr "Hun ble begravet %(month_year)s%(endnotes)s."
+msgstr "Hun ble gravlagt i %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:601
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(month_year)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s ble gravlagt i %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:602
 #, python-format
 msgid "This person was buried in %(month_year)s%(endnotes)s."
-msgstr "Denne personen ble begravet %(month_year)s%(endnotes)s."
+msgstr "Denne personen ble gravlagt i %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:604
 #, python-format
 msgid "Buried %(month_year)s%(endnotes)s."
-msgstr "Begravet %(month_year)s%(endnotes)s."
+msgstr "Gravlagt %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:610
 #, python-format
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s ble begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
+"%(male_name)s ble gravlagt %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:612
 #, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Han ble begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgstr "Han ble gravlagt %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:616
 #, python-format
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s ble begravet %(modified_date)s i "
-"%(burial_place)s%(endnotes)s."
+"%(female_name)s ble gravlagt %(modified_date)s i %(burial_place)s%(endnotes)"
+"s."
 
 #: ../gramps/plugins/lib/libnarrate.py:618
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Hun ble begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgstr "Hun ble gravlagt %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:622
 #, python-format
@@ -30394,125 +30393,125 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s ble begravet %(modified_date)s i "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s ble gravlagt %(modified_date)s i %(burial_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:624
 #, python-format
 msgid ""
 "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Denne personen ble begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
+"Denne personen ble gravlagt %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:626
 #, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgstr "Gravlagt %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s ble gravlagt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:632
 #, python-format
 msgid "He was buried %(modified_date)s%(endnotes)s."
-msgstr "Han ble begravet %(modified_date)s%(endnotes)s."
+msgstr "Han ble gravlagt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:635
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s ble gravlagt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:636
 #, python-format
 msgid "She was buried %(modified_date)s%(endnotes)s."
-msgstr "Hun ble begravet %(modified_date)s%(endnotes)s."
+msgstr "Hun ble gravlagt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:639
 #, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s ble gravlagt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:640
 #, python-format
 msgid "This person was buried %(modified_date)s%(endnotes)s."
-msgstr "Denne personen ble begravet %(modified_date)s%(endnotes)s."
+msgstr "Denne personen ble gravlagt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:642
 #, python-format
 msgid "Buried %(modified_date)s%(endnotes)s."
-msgstr "Begravet %(modified_date)s%(endnotes)s."
+msgstr "Gravlagt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:647
 #, python-format
 msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet i %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s ble gravlagt i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:648
 #, python-format
 msgid "He was buried in %(burial_place)s%(endnotes)s."
-msgstr "Han ble begravet i %(burial_place)s%(endnotes)s."
+msgstr "Han ble gravlagt i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:651
 #, python-format
 msgid "%(female_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet i %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s ble gravlagt i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:652
 #, python-format
 msgid "She was buried in %(burial_place)s%(endnotes)s."
-msgstr "Hun ble begravet i %(burial_place)s%(endnotes)s."
+msgstr "Hun ble gravlagt i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:655
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet i %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s ble gravlagt i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:656
 #, python-format
 msgid "This person was buried in %(burial_place)s%(endnotes)s."
-msgstr "Denne personen ble begravet i %(burial_place)s%(endnotes)s."
+msgstr "Denne personen ble gravlagt i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:658
 #, python-format
 msgid "Buried in %(burial_place)s%(endnotes)s."
-msgstr "Begravet i %(burial_place)s%(endnotes)s."
+msgstr "Gravlagt i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:663
 #, python-format
 msgid "%(male_name)s was buried%(endnotes)s."
-msgstr "%(male_name)s ble begravet%(endnotes)s."
+msgstr "%(male_name)s ble gravlagt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:664
 #, python-format
 msgid "He was buried%(endnotes)s."
-msgstr "Han ble begravet%(endnotes)s."
+msgstr "Han ble gravlagt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
 #, python-format
 msgid "%(female_name)s was buried%(endnotes)s."
-msgstr "%(female_name)s ble begravet%(endnotes)s."
+msgstr "%(female_name)s ble gravlagt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:668
 #, python-format
 msgid "She was buried%(endnotes)s."
-msgstr "Hun ble begravet%(endnotes)s."
+msgstr "Hun ble gravlagt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:671
 #, python-format
 msgid "%(unknown_gender_name)s was buried%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet%(endnotes)s."
+msgstr "%(unknown_gender_name)s ble gravlagt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:672
 #, python-format
 msgid "This person was buried%(endnotes)s."
-msgstr "Denne personen ble begravet%(endnotes)s."
+msgstr "Denne personen ble gravlagt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:674
 #, python-format
 msgid "Buried%(endnotes)s."
-msgstr "Begravet%(endnotes)s."
+msgstr "Gravlagt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:684
 #, python-format
@@ -34147,7 +34146,7 @@ msgstr "Viser familien og familiemedlemmenes hendelser."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:120
 msgid "Relation to Home Person"
-msgstr "Slektsforhold til startperson"
+msgstr "Relasjon til startperson"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:121
 msgid "Display all relationships between person and home person."
@@ -34320,7 +34319,7 @@ msgstr "selv"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:34
 msgid "Catalan Relationship Calculator"
-msgstr "Katalansk relasjonsberegning"
+msgstr "Katalansk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:35
 #: ../gramps/plugins/rel/relplugins.gpr.py:49
@@ -34345,99 +34344,99 @@ msgstr "Katalansk relasjonsberegning"
 #: ../gramps/plugins/rel/relplugins.gpr.py:530
 #: ../gramps/plugins/rel/relplugins.gpr.py:583
 msgid "Calculates relationships between people"
-msgstr "Beregner relasjoner mellom personer"
+msgstr "Beregner slektskapene mellom personer"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:48
 msgid "Czech Relationship Calculator"
-msgstr "Tsjekkisk relasjonsberegning"
+msgstr "Tsjekkisk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:72
 msgid "Danish Relationship Calculator"
-msgstr "Dansk relasjonsberegning"
+msgstr "Dansk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:102
 msgid "German Relationship Calculator"
-msgstr "Tysk relasjonsberegning"
+msgstr "Tysk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:132
 msgid "Austrian Relationship Calculator"
-msgstr "Østerriksk relasjonsberegning"
+msgstr "Østerriksk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:156
 msgid "Spanish Relationship Calculator"
-msgstr "Spansk relasjonsberegning"
+msgstr "Spansk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:183
 msgid "Finnish Relationship Calculator"
-msgstr "Finsk relasjonsberegning"
+msgstr "Finsk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:210
 msgid "French Relationship Calculator"
-msgstr "Fransk relasjonsberegning"
+msgstr "Fransk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:240
 msgid "Hebrew Relationship Calculator"
-msgstr "Hebraisk relasjonsberegning"
+msgstr "Hebraisk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:264
 msgid "Croatian Relationship Calculator"
-msgstr "Kroatisk relasjonsberegning"
+msgstr "Kroatisk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:288
 msgid "Hungarian Relationship Calculator"
-msgstr "Ungarsk relasjonsberegning"
+msgstr "Ungarsk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:301
 msgid "Icelandic Relationship Calculator"
-msgstr "Islandsk relasjonsberegning"
+msgstr "Islandsk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:314
 msgid "Italian Relationship Calculator"
-msgstr "Italiensk relasjonsberegning"
+msgstr "Italiensk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:327
 msgid "Dutch Relationship Calculator"
-msgstr "Nederlandsk relasjonsberegning"
+msgstr "Nederlandsk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:361
 msgid "Norwegian Relationship Calculator"
-msgstr "Norsk relasjonsberegning"
+msgstr "Norsk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:395
 msgid "Polish Relationship Calculator"
-msgstr "Polsk relasjonsberegning"
+msgstr "Polsk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:422
 msgid "Portuguese Relationship Calculator"
-msgstr "Portugisisk relasjonsberegning"
+msgstr "Portugisisk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:452
 msgid "Russian Relationship Calculator"
-msgstr "Russisk relasjonsberegning"
+msgstr "Russisk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:482
 msgid "Slovak Relationship Calculator"
-msgstr "Slovakisk relasjonsberegning"
+msgstr "Slovakisk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:506
 msgid "Slovenian Relationship Calculator"
-msgstr "Slovensk relasjonsberegning"
+msgstr "Slovensk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:529
 msgid "Swedish Relationship Calculator"
-msgstr "Svensk relasjonsberegning"
+msgstr "Svensk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:557
 msgid "Turkish Relationship Calculator"
-msgstr "Tyrkisk forholdskalkulator"
+msgstr "Tyrkisk slektskapskalkulator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:558
 msgid "Calculates relationship between people"
-msgstr "Beregner relasjonen mellom personer"
+msgstr "Beregner slektskapet mellom personer"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:582
 msgid "Ukrainian Relationship Calculator"
-msgstr "Ukrainsk relasjonsberegning"
+msgstr "Ukrainsk slektskapskalkulator"
 
 #: ../gramps/plugins/sidebar/dropdownsidebar.py:159
 msgid "Click to select a view"
@@ -34465,7 +34464,7 @@ msgstr "Fjern alle"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:136
 msgid "Switching_Navigator_modes"
-msgstr ""
+msgstr "Switching_Navigator_modes"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
 msgid "Category Sidebar"
@@ -35472,11 +35471,11 @@ msgstr "Om kilder skal siteres."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1182
 msgid "Include Tags"
-msgstr "Inkluder etiketter"
+msgstr "Inkluder merker"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1183
 msgid "Whether to include tags."
-msgstr "Om etiketter skal inkluderes."
+msgstr "Om merker skal inkluderes."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1186
 msgid "Include Attributes"
@@ -35904,16 +35903,16 @@ msgstr "Stilen som brukes for overskrifter på tredje nivå."
 #: ../gramps/plugins/textreport/tagreport.py:113
 #: ../gramps/plugins/textreport/textplugins.gpr.py:271
 msgid "Tag Report"
-msgstr "Etikettrapport"
+msgstr "Merkerapport"
 
 #: ../gramps/plugins/textreport/tagreport.py:114
 msgid "You must first create a tag before running this report."
-msgstr "Du må lage en etikett før du kan lage denne rapporten."
+msgstr "Du må lage et merke før du kan lage denne rapporten."
 
 #: ../gramps/plugins/textreport/tagreport.py:124
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Etikettrapport for %s elementer"
+msgstr "Merkerapport for %s elementer"
 
 #: ../gramps/plugins/textreport/tagreport.py:680
 msgid "Email Address"
@@ -35926,7 +35925,7 @@ msgstr "Utgivelsesinformasjon"
 
 #: ../gramps/plugins/textreport/tagreport.py:926
 msgid "The tag to use for the report"
-msgstr "Etiketten som skal brukes for rapporten"
+msgstr "Merket som skal brukes for rapporten"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:38
 msgid "Ahnentafel Report"
@@ -35998,7 +35997,7 @@ msgstr "Lager en tekstbasert slektskapsrapport for en angitt person"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:272
 msgid "Produces a list of people with a specified tag"
-msgstr "Lager en liste over personer med en bestemt etikett"
+msgstr "Lager en liste over personer med et bestemt merke"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:295
 msgid "Number of Ancestors Report"
@@ -36332,11 +36331,11 @@ msgstr "Søker etter problemer med notatreferanser"
 
 #: ../gramps/plugins/tool/check.py:2123
 msgid "Updating checksums on media"
-msgstr "Oppdaterer sjekksum til media"
+msgstr "Oppdaterer sjekksummer for medier"
 
 #: ../gramps/plugins/tool/check.py:2151
 msgid "Looking for tag reference problems"
-msgstr "Søker etter problemer med etikettreferanser"
+msgstr "Søker etter problemer med merkereferanser"
 
 #: ../gramps/plugins/tool/check.py:2295
 msgid "Looking for media source reference problems"
@@ -36540,8 +36539,8 @@ msgstr[1] "{quantity} notatobjekter er henvist til, men ble ikke funnet\n"
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "{quantity} etikettobjekt er henvist til, men ble ikke funnet\n"
-msgstr[1] "{quantity} etikettobjekter er henvist til, men ble ikke funnet\n"
+msgstr[0] "{quantity} merkeobjekt er henvist til, men ble ikke funnet\n"
+msgstr[1] "{quantity} merkeobjekter er henvist til, men ble ikke funnet\n"
 
 #: ../gramps/plugins/tool/check.py:3090
 #, python-brace-format
@@ -36973,7 +36972,7 @@ msgid ""
 msgstr ""
 "Dette verktøyet gjør det mulig å erstatte en spesifisert delstreng i stien "
 "til et medieobjekt med en annen delstreng. Dette kan være nyttig når du "
-"flytter dine mediafiler fra en mappe til en annen"
+"flytter dine mediefiler fra en mappe til en annen"
 
 #: ../gramps/plugins/tool/mediamanager.py:520
 msgid "Replace substring settings"
@@ -37106,7 +37105,7 @@ msgstr[1] "{number_of} siteringer flettet"
 
 #: ../gramps/plugins/tool/notrelated.glade:159
 msgid "_Tag"
-msgstr "_Etikett"
+msgstr "_Merke"
 
 #: ../gramps/plugins/tool/notrelated.py:60
 msgctxt "manual"
@@ -37131,15 +37130,15 @@ msgstr "Alle i databasen er i slekt med %s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "Setter etikett på {number_of} person"
-msgstr[1] "Setter etikett på {number_of} personer"
+msgstr[0] "Setter merke på {number_of} person"
+msgstr[1] "Setter merker på {number_of} personer"
 
 #: ../gramps/plugins/tool/notrelated.py:302
 #, python-brace-format
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
-msgstr[0] "Beregner relasjoner mellom {number_of} person"
-msgstr[1] "Beregner relasjoner mellom {number_of} personer"
+msgstr[0] "Finner slektskap mellom {number_of} person"
+msgstr[1] "Finner slektskap mellom {number_of} personer"
 
 #: ../gramps/plugins/tool/notrelated.py:393
 #, python-brace-format
@@ -37318,12 +37317,12 @@ msgstr "Velg en person for å fastslå relasjonen"
 
 #: ../gramps/plugins/tool/relcalc.py:67 ../gramps/plugins/tool/tools.gpr.py:370
 msgid "Relationship Calculator"
-msgstr "Relasjonsberegning"
+msgstr "Slektskapskalkulator"
 
 #: ../gramps/plugins/tool/relcalc.py:109
 #, python-format
 msgid "Relationship calculator: %(person_name)s"
-msgstr "Relasjonsberegning: %(person_name)s"
+msgstr "Slektskapskalkulator: %(person_name)s"
 
 #: ../gramps/plugins/tool/relcalc.py:117
 #, python-format
@@ -37332,7 +37331,7 @@ msgstr "Slektskap til %(person_name)s"
 
 #: ../gramps/plugins/tool/relcalc.py:181
 msgid "Relationship Calculator tool"
-msgstr "Verktøy for relasjonsberegning"
+msgstr "Slektskapskalkulator"
 
 #: ../gramps/plugins/tool/relcalc.py:214
 #, python-format
@@ -37815,7 +37814,7 @@ msgstr "Gjenoppbygger kjønnsstatistikker for gjetting av kjønn ut fra navn..."
 
 #: ../gramps/plugins/tool/tools.gpr.py:371
 msgid "Calculates the relationship between two people"
-msgstr "Beregner relasjonen mellom to personer"
+msgstr "Beregner slektskapet mellom to personer"
 
 #: ../gramps/plugins/tool/tools.gpr.py:394
 msgid "Remove Unused Objects"
@@ -37836,11 +37835,11 @@ msgstr "Sorter hendelser"
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Verify the Data"
-msgstr "Verifisere dataene"
+msgstr "Kontroller dataene"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verifies the data against user-defined tests"
-msgstr "Verifiserer dataene mot brukerdefinerte tester"
+msgstr "Kontrollerer dataene mot selvvalgte tester"
 
 #: ../gramps/plugins/tool/tools.gpr.py:492
 msgid ""
@@ -37947,7 +37946,7 @@ msgstr "Verify_the_Data"
 
 #: ../gramps/plugins/tool/verify.py:418
 msgid "Data Verify tool"
-msgstr "Verktøy for å verifisere data"
+msgstr "Verktøy for kontroll av data"
 
 #: ../gramps/plugins/tool/verify.py:442
 #, python-format
@@ -37956,7 +37955,7 @@ msgstr "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 
 #: ../gramps/plugins/tool/verify.py:728
 msgid "Data Verification Results"
-msgstr "Resultater fra verifisering av data"
+msgstr "Resultater fra datakontroll"
 
 #: ../gramps/plugins/tool/verify.py:941
 msgid "_Show all"
@@ -37972,11 +37971,11 @@ msgstr "Død før dåp"
 
 #: ../gramps/plugins/tool/verify.py:1412
 msgid "Burial before birth"
-msgstr "Begravelse før fødsel"
+msgstr "Gravlegging før fødsel"
 
 #: ../gramps/plugins/tool/verify.py:1431
 msgid "Burial before death"
-msgstr "Begravelse før død"
+msgstr "Gravlegging før død"
 
 #: ../gramps/plugins/tool/verify.py:1450
 msgid "Death before birth"
@@ -37984,11 +37983,11 @@ msgstr "Død før fødsel"
 
 #: ../gramps/plugins/tool/verify.py:1469
 msgid "Burial before baptism"
-msgstr "Begravelse før dåp"
+msgstr "Gravlegging før dåp"
 
 #: ../gramps/plugins/tool/verify.py:1495
 msgid "Old age at death"
-msgstr "Gammel ved død"
+msgstr "Høy alder ved død"
 
 #: ../gramps/plugins/tool/verify.py:1526
 msgid "Multiple parents"
@@ -37996,7 +37995,7 @@ msgstr "Flere foreldrepar"
 
 #: ../gramps/plugins/tool/verify.py:1551
 msgid "Married often"
-msgstr "Ofte gift"
+msgstr "Mange ekteskap"
 
 #: ../gramps/plugins/tool/verify.py:1578
 msgid "Old and unmarried"
@@ -38120,7 +38119,7 @@ msgstr "Dåp for sent i henhold til familietradisjon"
 
 #: ../gramps/plugins/tool/verify.py:2462
 msgid "Burial too late"
-msgstr "Begravelse for sent"
+msgstr "Gravlegging for sent"
 
 #: ../gramps/plugins/tool/verify.py:2499
 msgid "Children are not in chronological order"
@@ -39054,7 +39053,7 @@ msgstr "Flett sammen de valgte medieobjektene"
 
 #: ../gramps/plugins/view/mediaview.py:315
 msgid "Media Filter Editor"
-msgstr "Mediafilterbehandler"
+msgstr "Mediefilterbehandler"
 
 #: ../gramps/plugins/view/mediaview.py:406
 msgid "View in the default viewer"
@@ -39187,7 +39186,7 @@ msgstr "Vis ukjente personer"
 
 #: ../gramps/plugins/view/pedigreeview.py:2249
 msgid "Show tags"
-msgstr "Vis etiketter"
+msgstr "Vis merker"
 
 #: ../gramps/plugins/view/pedigreeview.py:2253
 msgid "Tree style"
@@ -39978,7 +39977,7 @@ msgstr "Etternavn"
 
 #: ../gramps/plugins/webreport/heatmap.py:460
 msgid "The next section contains an index of all the tags for an Heatmap map."
-msgstr "Neste seksjon inneholder en indeks over alle etiketter i varmekartet."
+msgstr "Neste seksjon inneholder en indeks over alle merker i varmekartet."
 
 #: ../gramps/plugins/webreport/heatmap.py:614
 #, python-brace-format
@@ -40010,8 +40009,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
-"Denne seksjonen inneholder kartet for alle personer, hendelser med "
-"etiketten: {tag} ({selected_filter})"
+"Denne seksjonen inneholder kartet for alle personer, hendelser med merket: "
+"{tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -40762,8 +40761,8 @@ msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
-"Om det skal legges til sider for adressebok som kan ta med e-post og "
-"nettsideadresser og personadresser/ bostedshendelser."
+"Om det skal legges til adresseboksider, som kan inneholde e-post og "
+"nettadresser samt personlige adresse- og bostedshendelser."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2646
 msgid "Include the statistics page"
@@ -41204,11 +41203,11 @@ msgstr "Ikke søsken"
 
 #: ../gramps/plugins/webreport/person.py:2303
 msgid "Relation to the center person"
-msgstr "Slektsforhold til fokuspersonen"
+msgstr "Relasjon til fokuspersonen"
 
 #: ../gramps/plugins/webreport/person.py:2348
 msgid "Relation to main person"
-msgstr "Slektsforhold til startperson"
+msgstr "Relasjon til hovedperson"
 
 #: ../gramps/plugins/webreport/person.py:2353
 msgid "Relation within this family (if not by birth)"
