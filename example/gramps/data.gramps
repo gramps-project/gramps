@@ -1854,7 +1854,7 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
       <kit_id>412887</kit_id>
       <test_type>Y-DNA 111</test_type>
       <dateval val="2017-11-03"/>
-      <haplogroup>R-L21</haplogroup>
+      <y_haplogroup>R-L21</y_haplogroup>
       <attribute type="DYS393" value="13"/>
       <attribute type="DYS390" value="24"/>
       <attribute type="DYS19" value="14"/>

@@ -159,14 +159,8 @@ class DNATest(
         self.__kit_id = attr_dict.pop("kit_id")
         self.__test_type = attr_dict.pop("test_type")
         self.__genome_build = attr_dict.pop("genome_build")
-        # TODO: remove this migration before merge
-        if "haplogroup" in attr_dict:
-            self.__y_haplogroup = attr_dict.pop("haplogroup")
-            self.__mt_haplogroup = attr_dict.pop("mt_haplogroup", "")
-            attr_dict.pop("y_haplogroup", None)
-        else:
-            self.__y_haplogroup = attr_dict.pop("y_haplogroup")
-            self.__mt_haplogroup = attr_dict.pop("mt_haplogroup")
+        self.__y_haplogroup = attr_dict.pop("y_haplogroup")
+        self.__mt_haplogroup = attr_dict.pop("mt_haplogroup")
         super().set_object_state(attr_dict)
 
     @classmethod
