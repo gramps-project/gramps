@@ -4,13 +4,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2024, 2026.
 # Alexander Son <soneus72@snu.ac.kr>, 2024, 2025.
 # clearstripe <sakurasan000510@gmail.com>, 2026.
+# Juan Song <lenin199@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-03-15 21:11+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2026-05-25 06:11+0000\n"
+"Last-Translator: Juan Song <lenin199@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
 "Language: ko\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -230,7 +231,7 @@ msgstr "미국"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:715
 #: ../gramps/gui/fs/sync_directions.py:680
 msgid "Gramps"
-msgstr "그람프스"
+msgstr "그램프스"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
 msgid "Genealogy System"
