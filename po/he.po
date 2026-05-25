@@ -7,13 +7,14 @@
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022, 2023.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2023, 2024, 2025, 2026.
 # satellithic <eitan.abc@gmail.com>, 2026.
+# "Omer I.S." <omeritzicschwartz@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-05-14 12:06+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2026-05-15 14:11+0000\n"
+"Last-Translator: \"Omer I.S.\" <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -4920,16 +4921,12 @@ msgid ""
 msgstr "איתור עצמי מדיה שההערות שלהן מכילות מלל שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with the <tag>"
-msgstr "מובאות עם הערות מסוג <סוג>"
+msgstr "מדיה יחד עם הערה ו־<tag>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "איתור משפחות עם הערה מסוג מסויים"
+msgstr "תואם למדיה עם הערה ותגית משויכת"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
 #, fuzzy
@@ -4938,10 +4935,8 @@ msgid "Media with a note of type <type>"
 msgstr "אירועים עם סוג מסוג ב<סוג>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "איתור משפחות עם הערה מסוג מסויים"
+msgstr "תואם למדיה עם הערה מסוג מסוים"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
