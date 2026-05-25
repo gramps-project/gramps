@@ -122,6 +122,103 @@ box.fs-compare-legend,
   font-weight: 700;
 }
 
+.fs-merge-board {
+  padding: 8px;
+}
+
+.fs-merge-person-wrap {
+  min-width: 300px;
+}
+
+.fs-merge-column-label {
+  font-weight: 700;
+  padding: 2px 0 4px 0;
+}
+
+.fs-merge-person-card {
+  min-height: 72px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(0,0,0,0.18);
+  background-color: rgba(0,0,0,0.03);
+}
+
+.fs-merge-result-card {
+  border-color: rgba(0,120,170,0.75);
+  background-color: rgba(0,120,170,0.10);
+}
+
+.fs-person-photo {
+  border-radius: 999px;
+  background-color: rgba(0,120,170,0.12);
+}
+
+.fs-merge-arrow {
+  font-size: 24px;
+  font-weight: 700;
+  padding-top: 42px;
+}
+
+.fs-merge-section-title {
+  padding: 14px 8px 6px 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.fs-merge-cell {
+  min-width: 300px;
+  min-height: 82px;
+  padding: 10px;
+  border-radius: 0;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-top-width: 0;
+  background-color: rgba(255,255,255,0.72);
+}
+
+.fs-merge-result-cell {
+  border-color: rgba(0,120,170,0.70);
+  background-color: rgba(0,120,170,0.10);
+}
+
+.fs-merge-value {
+  padding-top: 2px;
+}
+
+.fs-merge-badge {
+  padding: 2px 7px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  background-color: rgba(0,0,0,0.06);
+}
+
+.fs-status-green {
+  background-color: @fs_compare_match_bg;
+}
+
+.fs-status-orange {
+  background-color: @fs_compare_different_bg;
+}
+
+.fs-status-yellow {
+  background-color: @fs_compare_only_gramps_bg;
+}
+
+.fs-status-yellow3 {
+  background-color: @fs_compare_only_fs_bg;
+}
+
+.fs-status-red {
+  background-color: @fs_compare_critical_bg;
+}
+
+.fs-merge-inconsistency {
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(210,50,35,0.75);
+  background-color: rgba(210,50,35,0.16);
+}
+
 /* FamilySearch - tools window */
 .fs-tools-window { }
 

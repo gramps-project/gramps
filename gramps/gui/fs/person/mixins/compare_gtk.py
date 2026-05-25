@@ -25,10 +25,11 @@ import os
 import re
 from typing import Any, ClassVar, Optional, TYPE_CHECKING
 
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gtk, Gdk, GdkPixbuf, GLib
 
 from gramps.gen.const import DATA_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.db import DbTxn
+from gramps.gen.utils.file import media_path_full
 from gramps.gui.dialog import OkDialog, QuestionDialog2, WarningDialog
 from gramps.gui.listmodel import ListModel, NOSORT, COLOR, TOGGLE
 from gramps.gui.utils import ProgressMeter
@@ -45,6 +46,7 @@ from gramps.gen.fs.compare.comparators import (
     compare_parents,
     compare_spouses,
 )
+from gramps.gen.fs.compare.formatters import person_dates_str
 import gramps.gen.fs.fs_import as fs_import
 from gramps.gui.fs import tags as fs_tags
 from gramps.gen.fs.fs_import import deserializer as deserialize
@@ -133,6 +135,7 @@ class CompareGtkMixin:
 
     _CSS_INSTALLED = False
     _CSS_DEFINE_CACHE: ClassVar[Optional[dict[str, str]]] = None
+    _FS_PHOTO_CACHE: ClassVar[dict[str, Any]] = {}
 
     def _ui_color(self, semantic: str) -> str:
         return self._UI.get((semantic or "").strip(), semantic or "")
@@ -604,7 +607,8 @@ class CompareGtkMixin:
                 essentials.append(fact_row)
 
         rows.extend(
-            self._merge_row_from_compare(_("Essentials"), line) for line in essentials
+            self._merge_row_from_compare(_("Essentials"), line)
+            for line in essentials
         )
 
         rows.extend(
@@ -828,6 +832,442 @@ class CompareGtkMixin:
                 section_iters[row.section] = parent
             self._append_merge_row(store, parent, row)
 
+    def _selected_merge_rows_from_list(
+        self, rows: list[_FSMergeRow]
+    ) -> list[_FSMergeRow]:
+        """
+        Return checked merge rows from the FamilySearch-style merge board.
+        """
+        return [row for row in rows if row.selected and row.selectable]
+
+    def _status_label_text(self, status: str, selectable: bool) -> str:
+        """
+        Return short status text for a merge card.
+        """
+        if status == "green":
+            return _("Match")
+        if status == "red":
+            return _("Critical")
+        if status == "orange":
+            return _("Different")
+        if status == "yellow":
+            return _("Only in Gramps")
+        if status == "yellow3":
+            return _("Only in FamilySearch")
+        return _("Selectable") if selectable else ""
+
+    def _status_badge(self, status: str, selectable: bool) -> Gtk.Widget:
+        """
+        Build a small status badge for a merge card.
+        """
+        text = self._status_label_text(status, selectable)
+        label = Gtk.Label(label=text)
+        label.get_style_context().add_class("fs-merge-badge")
+        if status:
+            label.get_style_context().add_class("fs-status-" + status)
+        return label
+
+    def _result_text_for_row(self, row: _FSMergeRow) -> str:
+        """
+        Return the current result preview text for a merge row.
+        """
+        gramps_text = self._merge_value_text(row.gramps_date, row.gramps_value)
+        fs_text = self._merge_value_text(row.fs_date, row.fs_value)
+        return fs_text if row.selected and fs_text else gramps_text
+
+    def _make_value_label(self, text: str, *, bold: bool = False) -> Gtk.Label:
+        """
+        Create a wrapping value label.
+        """
+        label = Gtk.Label()
+        label.set_xalign(0.0)
+        label.set_yalign(0.0)
+        label.set_line_wrap(True)
+        label.set_selectable(True)
+        text = text or ""
+        if bold:
+            label.set_markup("<b>%s</b>" % GLib.markup_escape_text(text))
+        else:
+            label.set_text(text)
+        return label
+
+    def _merge_cell(
+        self,
+        row: _FSMergeRow,
+        side: str,
+        result_label: Gtk.Label | None = None,
+    ) -> Gtk.Widget:
+        """
+        Build one side of a FamilySearch-style merge row.
+        """
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+        box.get_style_context().add_class("fs-merge-cell")
+        if row.status:
+            box.get_style_context().add_class("fs-status-" + row.status)
+        if side == "result":
+            box.get_style_context().add_class("fs-merge-result-cell")
+
+        header = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        header.set_valign(Gtk.Align.START)
+
+        if side == "fs":
+            check = Gtk.CheckButton()
+            check.set_active(row.selected)
+            check.set_sensitive(row.selectable)
+            check.set_tooltip_text(
+                _("Copy this FamilySearch value into Gramps")
+                if row.selectable
+                else _("This row cannot be merged directly")
+            )
+            header.pack_start(check, False, False, 0)
+
+            def cb_toggled(button: Gtk.CheckButton) -> None:
+                """Update the selected state and result preview."""
+                row.selected = bool(button.get_active())
+                if result_label is not None:
+                    result_label.set_text(self._result_text_for_row(row))
+
+            check.connect("toggled", cb_toggled)
+
+        title = self._make_value_label(row.field or row.section, bold=True)
+        header.pack_start(title, True, True, 0)
+        if side != "result":
+            header.pack_end(self._status_badge(row.status, row.selectable), False, False, 0)
+        box.pack_start(header, False, False, 0)
+
+        if side == "gramps":
+            text = self._merge_value_text(row.gramps_date, row.gramps_value)
+        elif side == "fs":
+            text = self._merge_value_text(row.fs_date, row.fs_value)
+        else:
+            text = self._result_text_for_row(row)
+        if not text:
+            text = "-"
+
+        if side == "result" and result_label is not None:
+            value = result_label
+            value.set_text(text)
+        else:
+            value = self._make_value_label(text)
+        value.get_style_context().add_class("fs-merge-value")
+        box.pack_start(value, True, True, 0)
+        return box
+
+    def _merge_inconsistency_box(self, row: _FSMergeRow) -> Gtk.Widget:
+        """
+        Build a FamilySearch-style inconsistency warning.
+        """
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=3)
+        box.get_style_context().add_class("fs-merge-inconsistency")
+        title = self._make_value_label(_("Inconsistencies"), bold=True)
+        box.pack_start(title, False, False, 0)
+        details = []
+        if row.gramps_date and row.fs_date and row.gramps_date != row.fs_date:
+            details.append(_("The dates are different."))
+        if row.gramps_value and row.fs_value and row.gramps_value != row.fs_value:
+            details.append(_("The values are different."))
+        if not details:
+            details.append(_("Review this difference before merging."))
+        body = self._make_value_label("- " + "\n- ".join(details))
+        box.pack_start(body, False, False, 0)
+        return box
+
+    def _section_title(self, text: str) -> Gtk.Widget:
+        """
+        Build a section title for a merge column.
+        """
+        label = self._make_value_label(text, bold=True)
+        label.get_style_context().add_class("fs-merge-section-title")
+        return label
+
+    def _person_photo_pixbuf(self, person: Person | None, size: int = 56):
+        """
+        Return a scaled local Gramps person photo if one is available.
+        """
+        if person is None:
+            return None
+        for media_ref in list(person.get_media_list() or []):
+            handle = getattr(media_ref, "ref", "") or ""
+            if not handle:
+                continue
+            try:
+                media = self.dbstate.db.get_media_from_handle(handle)
+            except Exception:
+                try:
+                    media = self.dbstate.db.get_media_object_from_handle(handle)
+                except Exception:
+                    media = None
+            if media is None:
+                continue
+            mime = str(getattr(media, "mime", "") or "").lower()
+            if mime and not mime.startswith("image/"):
+                continue
+            path = ""
+            try:
+                path = media_path_full(self.dbstate.db, media.get_path())
+            except Exception:
+                path = str(getattr(media, "path", "") or "")
+            if not path or not os.path.exists(path):
+                continue
+            try:
+                return GdkPixbuf.Pixbuf.new_from_file_at_scale(
+                    path, size, size, True
+                )
+            except Exception:
+                continue
+        return None
+
+    def _fs_photo_pixbuf(self, fs_person: Any, size: int = 56):
+        """
+        Return a FamilySearch photo pixbuf if the cached payload exposes one.
+        """
+        fsid = str(getattr(fs_person, "id", "") or "")
+        cache_key = "%s:%s" % (fsid, size)
+        if cache_key in self.__class__._FS_PHOTO_CACHE:
+            return self.__class__._FS_PHOTO_CACHE[cache_key]
+
+        candidates = [
+            getattr(fs_person, "portraitUrl", ""),
+            getattr(fs_person, "profileImageUrl", ""),
+            getattr(getattr(fs_person, "display", None), "portraitUrl", ""),
+            getattr(getattr(fs_person, "display", None), "profileImageUrl", ""),
+        ]
+        for candidate in candidates:
+            candidate = str(candidate or "")
+            if candidate and os.path.exists(candidate):
+                try:
+                    return GdkPixbuf.Pixbuf.new_from_file_at_scale(
+                        candidate, size, size, True
+                    )
+                except Exception:
+                    continue
+
+        session = getattr(tree, "_fs_session", None)
+        get_url = getattr(session, "get_url", None)
+        if fsid and callable(get_url):
+            try:
+                response = get_url("/platform/tree/persons/%s/portrait" % fsid)
+                content = getattr(response, "content", b"") if response else b""
+                if content:
+                    loader = GdkPixbuf.PixbufLoader()
+                    loader.write(content)
+                    loader.close()
+                    pixbuf = loader.get_pixbuf()
+                    if pixbuf is not None:
+                        scaled = pixbuf.scale_simple(
+                            size,
+                            size,
+                            GdkPixbuf.InterpType.BILINEAR,
+                        )
+                        self.__class__._FS_PHOTO_CACHE[cache_key] = scaled
+                        return scaled
+            except Exception:
+                pass
+        self.__class__._FS_PHOTO_CACHE[cache_key] = None
+        return None
+
+    def _photo_widget(self, pixbuf: Any, gender: int | None = None) -> Gtk.Widget:
+        """
+        Build a fixed-size photo/avatar slot.
+        """
+        image = Gtk.Image()
+        image.set_size_request(58, 58)
+        image.get_style_context().add_class("fs-person-photo")
+        if pixbuf is not None:
+            image.set_from_pixbuf(pixbuf)
+            return image
+        icon_name = "avatar-default-symbolic"
+        if gender == Person.MALE:
+            icon_name = "avatar-default-symbolic"
+        elif gender == Person.FEMALE:
+            icon_name = "avatar-default-symbolic"
+        image.set_from_icon_name(icon_name, Gtk.IconSize.DIALOG)
+        return image
+
+    def _fs_gender_value(self, fs_person: Any) -> int:
+        """
+        Return a Gramps gender value for a FamilySearch person.
+        """
+        fs_type = getattr(getattr(fs_person, "gender", None), "type", "")
+        if fs_type == "http://gedcomx.org/Male":
+            return Person.MALE
+        if fs_type == "http://gedcomx.org/Female":
+            return Person.FEMALE
+        return Person.UNKNOWN
+
+    def _gr_header_text(self, gr: Person) -> tuple[str, str, str]:
+        """
+        Return name, life text, and id text for the Gramps header.
+        """
+        name = ""
+        try:
+            name = gr.get_primary_name().get_name()
+        except Exception:
+            try:
+                name = str(gr.get_primary_name())
+            except Exception:
+                name = _("Gramps person")
+        try:
+            gid = gr.get_gramps_id() or ""
+        except Exception:
+            gid = ""
+        return name, person_dates_str(self.dbstate.db, gr), gid
+
+    def _fs_header_text(self, fs_person: Any, fsid: str) -> tuple[str, str, str]:
+        """
+        Return name, life text, and id text for the FamilySearch header.
+        """
+        name = ""
+        try:
+            fs_name = fs_person.preferred_name()
+            name = (fs_name.akGiven() + " " + fs_name.akSurname()).strip()
+        except Exception:
+            name = ""
+        if not name:
+            name = _("FamilySearch person")
+        life = ""
+        try:
+            display = getattr(fs_person, "display", None)
+            life = getattr(display, "lifespan", "") or ""
+        except Exception:
+            life = ""
+        return name, life, fsid
+
+    def _merge_person_header(
+        self,
+        title: str,
+        name: str,
+        life: str,
+        ident: str,
+        photo: Gtk.Widget,
+        *,
+        result: bool = False,
+    ) -> Gtk.Widget:
+        """
+        Build one person header card for the merge board.
+        """
+        wrap = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+        wrap.get_style_context().add_class("fs-merge-person-wrap")
+        label = self._make_value_label(title, bold=True)
+        label.get_style_context().add_class("fs-merge-column-label")
+        wrap.pack_start(label, False, False, 0)
+
+        card = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        card.get_style_context().add_class("fs-merge-person-card")
+        if result:
+            card.get_style_context().add_class("fs-merge-result-card")
+        card.pack_start(photo, False, False, 0)
+
+        text_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
+        text_box.pack_start(self._make_value_label(name, bold=True), False, False, 0)
+        meta = " - ".join(part for part in (life, ident) if part)
+        text_box.pack_start(self._make_value_label(meta), False, False, 0)
+        card.pack_start(text_box, True, True, 0)
+        wrap.pack_start(card, False, False, 0)
+        return wrap
+
+    def _build_merge_board(self, gr: Person, fsid: str) -> tuple[Gtk.Widget, list[_FSMergeRow]]:
+        """
+        Build a FamilySearch-style merge board and its backing rows.
+        """
+        fs_person = deserialize.Person.index.get(fsid) or deserialize.Person()
+        rows = self._collect_merge_rows(gr, fsid)
+        grid = Gtk.Grid()
+        grid.get_style_context().add_class("fs-merge-board")
+        grid.set_row_spacing(0)
+        grid.set_column_spacing(10)
+        try:
+            grid.set_column_homogeneous(False)
+        except Exception:
+            pass
+
+        gr_name, gr_life, gr_id = self._gr_header_text(gr)
+        fs_name, fs_life, fs_id = self._fs_header_text(fs_person, fsid)
+        result_name = fs_name or gr_name
+        result_life = fs_life or gr_life
+        result_id = fs_id or gr_id
+
+        grid.attach(
+            self._merge_person_header(
+                _("Current Gramps"),
+                gr_name,
+                gr_life,
+                gr_id,
+                self._photo_widget(self._person_photo_pixbuf(gr), gr.get_gender()),
+            ),
+            0,
+            0,
+            1,
+            1,
+        )
+        grid.attach(
+            self._merge_person_header(
+                _("FamilySearch"),
+                fs_name,
+                fs_life,
+                fs_id,
+                self._photo_widget(
+                    self._fs_photo_pixbuf(fs_person),
+                    self._fs_gender_value(fs_person),
+                ),
+            ),
+            1,
+            0,
+            1,
+            1,
+        )
+        arrow = Gtk.Label(label="->")
+        arrow.get_style_context().add_class("fs-merge-arrow")
+        grid.attach(arrow, 2, 0, 1, 1)
+        grid.attach(
+            self._merge_person_header(
+                _("Result in Gramps"),
+                result_name,
+                result_life,
+                result_id,
+                self._photo_widget(
+                    self._fs_photo_pixbuf(fs_person) or self._person_photo_pixbuf(gr),
+                    self._fs_gender_value(fs_person),
+                ),
+                result=True,
+            ),
+            3,
+            0,
+            1,
+            1,
+        )
+
+        row_index = 1
+        current_section = None
+        for row in rows:
+            if row.section != current_section:
+                current_section = row.section
+                grid.attach(self._section_title(row.section), 0, row_index, 1, 1)
+                grid.attach(self._section_title(row.section), 1, row_index, 1, 1)
+                grid.attach(Gtk.Label(label=""), 2, row_index, 1, 1)
+                grid.attach(self._section_title(row.section), 3, row_index, 1, 1)
+                row_index += 1
+
+            result_label = self._make_value_label("")
+            result_label.get_style_context().add_class("fs-merge-value")
+            grid.attach(self._merge_cell(row, "gramps"), 0, row_index, 1, 1)
+            grid.attach(self._merge_cell(row, "fs", result_label), 1, row_index, 1, 1)
+            grid.attach(Gtk.Label(label=""), 2, row_index, 1, 1)
+            grid.attach(self._merge_cell(row, "result", result_label), 3, row_index, 1, 1)
+            row_index += 1
+
+            if row.status == "red":
+                grid.attach(
+                    self._merge_inconsistency_box(row),
+                    0,
+                    row_index,
+                    2,
+                    1,
+                )
+                row_index += 1
+
+        return grid, rows
+
     def _selected_merge_rows(self, store: Gtk.TreeStore) -> list[_FSMergeRow]:
         """
         Return the currently checked merge rows from a merge tree store.
@@ -889,9 +1329,10 @@ class CompareGtkMixin:
             left_surname = left.get_surname()
         except Exception:
             left_surname = ""
-        return (left_surname or "").strip() == (right.akSurname() or "").strip() and (
-            left.first_name or ""
-        ).strip() == (right.akGiven() or "").strip()
+        return (
+            (left_surname or "").strip() == (right.akSurname() or "").strip()
+            and (left.first_name or "").strip() == (right.akGiven() or "").strip()
+        )
 
     def _person_has_fs_name(self, gr: Person, fs_name: Any) -> bool:
         """
@@ -1076,8 +1517,9 @@ class CompareGtkMixin:
         Find the FamilySearch child-and-parents relationship for a merge row.
         """
         fsid = getattr(fs_person, "id", "")
-        relationships = list(getattr(fs_person, "_parentsCP", []) or []) + list(
-            getattr(fs_person, "_childrenCP", []) or []
+        relationships = (
+            list(getattr(fs_person, "_parentsCP", []) or [])
+            + list(getattr(fs_person, "_childrenCP", []) or [])
         )
         for rel in relationships:
             child_id = getattr(getattr(rel, "child", None), "resourceId", "")
@@ -1139,7 +1581,7 @@ class CompareGtkMixin:
         return False
 
     def _apply_selected_merge_rows(
-        self, store: Gtk.TreeStore, gr: Optional[Person], fsid: str, parent: Gtk.Window
+        self, row_source: Any, gr: Optional[Person], fsid: str, parent: Gtk.Window
     ) -> int:
         """
         Apply selected FamilySearch rows into Gramps and return the change count.
@@ -1148,7 +1590,10 @@ class CompareGtkMixin:
             WarningDialog(_("Could not resolve the selected person."), parent=parent)
             return 0
 
-        rows = self._selected_merge_rows(store)
+        if isinstance(row_source, list):
+            rows = self._selected_merge_rows_from_list(row_source)
+        else:
+            rows = self._selected_merge_rows(row_source)
         if not rows:
             WarningDialog(
                 _("Select at least one FamilySearch row to merge."), parent=parent
@@ -1190,7 +1635,9 @@ class CompareGtkMixin:
                         )
                     elif row.kind == "fact":
                         changed += int(
-                            self._merge_person_fact_row(db, txn, gr, fs_person, row)
+                            self._merge_person_fact_row(
+                                db, txn, gr, fs_person, row
+                            )
                         )
                     elif row.kind == "spouse_fact":
                         changed += int(
@@ -1322,20 +1769,20 @@ class CompareGtkMixin:
         outer.pack_start(notebook, True, True, 0)
 
         # merge tab
-        tv_merge, model_merge = self._make_merge_tree()
-        self._install_merge_tree_row_tints(tv_merge)
+        merge_host = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        merge_state: dict[str, Any] = {"rows": []}
         notebook.append_page(
-            self._wrap_scroller(tv_merge, min_h=520),
+            self._wrap_scroller(merge_host, min_h=560),
             Gtk.Label(label=_("Merge")),
         )
 
-        # overview tab
+        # audit/details tab: preserves the original overview table.
         tv_overview, model_overview = self._make_overview_tree_model()
         tv_overview.get_style_context().add_class("fs-compare-treeview")
         self._tune_treeview(tv_overview, "overview")
         self._install_treeview_row_tints(tv_overview)
         notebook.append_page(
-            self._wrap_scroller(tv_overview), Gtk.Label(label=_("Overview"))
+            self._wrap_scroller(tv_overview), Gtk.Label(label=_("Audit Details"))
         )
 
         # notes tab
@@ -1385,12 +1832,12 @@ class CompareGtkMixin:
             if not gr_local:
                 return
 
-            model_merge.clear()
-            self._fill_merge(model_merge, gr_local, fsid)
-            try:
-                tv_merge.expand_all()
-            except Exception:
-                pass
+            for child in list(merge_host.get_children() or []):
+                merge_host.remove(child)
+            merge_board, merge_rows = self._build_merge_board(gr_local, fsid)
+            merge_state["rows"] = merge_rows
+            merge_host.pack_start(merge_board, True, True, 0)
+            merge_host.show_all()
 
             model_overview.clear()
             self._fill_overview(model_overview, gr_local, fsid)
@@ -1417,7 +1864,9 @@ class CompareGtkMixin:
             self._fill_sources(model_sources, _get_gr(), fsid, parent=win)
 
         def do_merge_selected(_btn: Any) -> None:
-            changed = self._apply_selected_merge_rows(model_merge, _get_gr(), fsid, win)
+            changed = self._apply_selected_merge_rows(
+                merge_state.get("rows", []), _get_gr(), fsid, win
+            )
             if changed:
                 do_fill_all(False)
 
