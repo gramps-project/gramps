@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-05-12 13:11+0000\n"
+"PO-Revision-Date: 2026-05-17 14:28+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.5-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -623,7 +623,7 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>Nie ste si istí dátumom?</b><br/>Ak si nie ste istý dátumom, kedy udalosť "
+"<b>Nie ste si istí dátumom?</b><br/>Ak si nie ste istí dátumom, kedy udalosť "
 "nastala, Gramps Vám umožňuje zadať dátum vo viacerých formátoch, ktoré sú "
 "založené na odhade. Napr. \"okolo 1908\" je v Gramps platný zápis pre dátum "
 "narodenia. Kliknite na tlačidlo \"Vyvolať editor dátumu\" vedľa poľa pre "
@@ -12243,7 +12243,7 @@ msgstr "Schránka"
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:220
 #: ../gramps/gui/editors/filtereditor.py:1230 ../gramps/gui/views/tags.py:397
 msgid "Any changes are saved immediately"
-msgstr "Akékoľvek zmeny sa okamžite uložia"
+msgstr "Akékoľvek zmeny sú okamžite uložené"
 
 #: ../gramps/gui/clipboard.py:1500 ../gramps/gui/plug/quick/_quicktable.py:137
 #, python-format
@@ -17733,7 +17733,7 @@ msgstr "Štítky..."
 
 #: ../gramps/gui/fs/tools_window.py:404
 msgid "Clear Cache"
-msgstr "Vymazať vyrovnávaciu pamäť"
+msgstr "Vymazanie vyrovnávacej pamäte"
 
 #: ../gramps/gui/fs/tools_window.py:674
 #, python-format
@@ -18103,7 +18103,7 @@ msgstr "_Mesto:"
 
 #: ../gramps/gui/glade/editaddress.glade:138
 msgid "The town or city of the address"
-msgstr "Mestečko alebo mesto z adresy"
+msgstr "Mesto alebo veľkomesto z adresy"
 
 #: ../gramps/gui/glade/editaddress.glade:152
 #: ../gramps/plugins/tool/ownereditor.glade:155
@@ -18136,8 +18136,7 @@ msgstr "Telefónne číslo prepojené s adresou."
 #: ../gramps/gui/glade/editaddress.glade:237
 msgid ""
 "The state or county of the address in case a mail address must contain this."
-msgstr ""
-"Kraj alebo okres adresy v prípade, že ju poštová adresa musí obsahovať."
+msgstr "Štát alebo okres adresy v prípade, ak to poštová adresa musí obsahovať."
 
 #: ../gramps/gui/glade/editaddress.glade:251
 msgid "Country of the address"
@@ -18565,7 +18564,7 @@ msgstr "_Štítky:"
 #: ../gramps/gui/glade/editfamily.glade:778
 #: ../gramps/gui/widgets/monitoredwidgets.py:863
 msgid "Edit the tag list"
-msgstr "Upraviť zoznam štítkov"
+msgstr "Upravte zoznam štítkov"
 
 #: ../gramps/gui/glade/editldsord.glade:177
 msgid "Ordinance:"
@@ -20110,7 +20109,7 @@ msgstr "Konfigurovať aktívny pohľad"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "Connect to a recent database"
-msgstr "Pripojiť k nedávnej databáze"
+msgstr "Pripojí k najnovšej databáze"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "F_ull Screen"
@@ -22794,7 +22793,7 @@ msgid ""
 msgstr ""
 "Kliknutím aktivujete túto osobu \n"
 "Kliknutím pravým tlačidlom myši zobrazíte menu úprav\n"
-"Kliknutím na ikonu Upraviť (zapnúť v konfiguračnom dialógu) upravíte"
+"Kliknutím na ikonu Upraviť (zapnite v konfiguračnom dialógu) upravíte"
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:660
 msgid "Bad Date"
@@ -26642,12 +26641,12 @@ msgstr "Nasledujúca poznámka úlohy"
 #: ../gramps/plugins/gramplet/todo.py:70
 #: ../gramps/plugins/gramplet/todogramplet.py:70
 msgid "Edit the selected To Do note"
-msgstr "Upraviť vybranú poznámku úlohy"
+msgstr "Upravte vybranú poznámku úlohy"
 
 #: ../gramps/plugins/gramplet/todo.py:74
 #: ../gramps/plugins/gramplet/todogramplet.py:74
 msgid "Add a new To Do note"
-msgstr "Pridať novú poznámku úlohy"
+msgstr "Pridajte novú poznámku úlohy"
 
 #: ../gramps/plugins/gramplet/todo.py:206
 msgid "First select the object to which you want to attach a note"
@@ -32855,7 +32854,7 @@ msgstr "Prejsť k domovskej osobe"
 #: ../gramps/plugins/view/relview.py:453 ../gramps/plugins/view/repoview.py:242
 #: ../gramps/plugins/view/sourceview.py:214
 msgid "Go to the next object in the history"
-msgstr "Prejsť k ďalšiemu objektu v histórii"
+msgstr "Prejdite k ďalšiemu objektu v histórii"
 
 #: ../gramps/plugins/lib/libpersonview.py:286
 #: ../gramps/plugins/lib/libplaceview.py:360
@@ -32877,7 +32876,7 @@ msgstr "Prejsť k ďalšiemu objektu v histórii"
 #: ../gramps/plugins/view/relview.py:453 ../gramps/plugins/view/repoview.py:242
 #: ../gramps/plugins/view/sourceview.py:214
 msgid "Go to the previous object in the history"
-msgstr "Prejsť k predchádzajúcemu objektu v histórii"
+msgstr "Prejdite k predchádzajúcemu objektu v histórii"
 
 #: ../gramps/plugins/lib/libpersonview.py:329
 #: ../gramps/plugins/lib/libplaceview.py:390
