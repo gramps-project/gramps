@@ -24,9 +24,12 @@ _ = glocale.translation.gettext
 from gi.repository import Gtk
 
 from ... import widgets
+from .. import build_filter_model
 from . import SidebarFilter
-from gramps.gen.filters import GenericFilterFactory
+from gramps.gen.filters import GenericFilter, GenericFilterFactory
 from gramps.gen.filters.rules.dnamatch import (
+    AllDNAMatches,
+    MatchesFilter,
     RegExpIdOf,
     HasTag,
     HasSubjectAccountName,
@@ -59,9 +62,9 @@ class DNAMatchSidebarFilter(SidebarFilter):
         self.sensitive_regex = Gtk.CheckButton(label=_("Case sensitive"))
 
         self.tag = Gtk.ComboBox()
+        self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "DNAMatch")
-        self.vbox.remove(self.define_filter_btn.get_parent())
 
     def create_widget(self):
         cell = Gtk.CellRendererText()
@@ -69,6 +72,13 @@ class DNAMatchSidebarFilter(SidebarFilter):
         cell.set_property("ellipsize", self._FILTER_ELLIPSIZE)
         self.tag.pack_start(cell, True)
         self.tag.add_attribute(cell, "text", 0)
+
+        cell = Gtk.CellRendererText()
+        cell.set_property("width", self._FILTER_WIDTH)
+        cell.set_property("ellipsize", self._FILTER_ELLIPSIZE)
+        self.generic.pack_start(cell, True)
+        self.generic.add_attribute(cell, "text", 0)
+        self.on_filters_changed("DNAMatch")
 
         self.add_text_entry(_("ID"), self.filter_id)
         self.add_text_entry(_("Subject person"), self.filter_subject_person)
@@ -78,6 +88,7 @@ class DNAMatchSidebarFilter(SidebarFilter):
         self.add_text_entry(_("Shared cM min"), self.filter_min_cm)
         self.add_text_entry(_("Shared cM max"), self.filter_max_cm)
         self.add_entry(_("Tag"), self.tag)
+        self.add_filter_entry(_("Custom filter"), self.generic)
         self.add_regex_entry(self.filter_regex)
         self.add_regex_case(self.sensitive_regex)
 
@@ -90,6 +101,7 @@ class DNAMatchSidebarFilter(SidebarFilter):
         self.filter_min_cm.set_text("")
         self.filter_max_cm.set_text("")
         self.tag.set_active(0)
+        self.generic.set_active(0)
 
     def get_filter(self):
         gid = str(self.filter_id.get_text()).strip()
@@ -102,6 +114,7 @@ class DNAMatchSidebarFilter(SidebarFilter):
         regex = self.filter_regex.get_active()
         usecase = self.sensitive_regex.get_active()
         tag = self.tag.get_active() > 0
+        generic = self.generic.get_active() > 0
 
         empty = not (
             gid
@@ -113,6 +126,7 @@ class DNAMatchSidebarFilter(SidebarFilter):
             or max_cm
             or regex
             or tag
+            or generic
         )
         if empty:
             return None
@@ -156,7 +170,22 @@ class DNAMatchSidebarFilter(SidebarFilter):
             rule = HasTag([attr])
             generic_filter.add_rule(rule)
 
+        if generic:
+            model = self.generic.get_model()
+            node = self.generic.get_active_iter()
+            obj = str(model.get_value(node, 0))
+            rule = MatchesFilter([obj])
+            generic_filter.add_rule(rule)
+
         return generic_filter
+
+    def on_filters_changed(self, namespace):
+        if namespace == "DNAMatch":
+            all_filter = GenericFilter()
+            all_filter.set_name(_("None"))
+            all_filter.add_rule(AllDNAMatches([]))
+            self.generic.set_model(build_filter_model("DNAMatch", [all_filter]))
+            self.generic.set_active(0)
 
     def on_tags_changed(self, tag_list):
         model = Gtk.ListStore(str)

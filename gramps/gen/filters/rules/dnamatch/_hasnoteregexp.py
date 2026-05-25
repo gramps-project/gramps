@@ -24,3 +24,4 @@ class HasNoteRegexp(HasNoteRegexBase):
     description = _(
         "Matches DNA matches whose notes contain text matching a regular expression"
     )
+    category = _("Note filters")
