@@ -95,6 +95,7 @@ from gramps.gui.widgets import BasicLabel, SimpleButton
 from gramps.gen.utils.requirements import Requirements
 from gramps.gen.const import USER_PLUGINS, LIB_PATH
 from gramps.gen.constfunc import win
+from gramps.version import major_version
 
 
 def display_message(message):
@@ -565,9 +566,25 @@ class AddonManager(ManagedWindow):
         )
         pdata = self.__preg.get_plugin(addon_id)
         if pdata is None:
+            # Mantis 13736: the bare "addon will be unavailable" message
+            # gave the user no actionable signal. The most common cause
+            # (especially on a 5.x -> 6.x upgrade that carried addons-
+            # projects over via gramps.ini [behavior]) is a target-version
+            # mismatch: the addon was built against an older Gramps and
+            # the registry's valid_plugin_version check rejected it.
+            # Name the addon and point at the Projects panel so the user
+            # has somewhere to look.
             OkDialog(
                 _("Addon Registration Failed"),
-                _("The addon will be unavailable in your current configuration."),
+                _(
+                    "The addon '%(addon_id)s' could not be registered and "
+                    "will be unavailable in your current configuration.\n\n"
+                    "This commonly happens when the addon's project (under "
+                    "Edit → Preferences → Addon Manager → "
+                    "Projects) targets a different Gramps version. Check "
+                    "that the project URL matches Gramps %(major_version)s."
+                )
+                % {"addon_id": addon_id, "major_version": major_version},
                 parent=self.window,
             )
             return

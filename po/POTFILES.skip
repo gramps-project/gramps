@@ -445,6 +445,11 @@ gramps/gui/plug/report/_drawreportdialog.py
 gramps/gui/plug/report/_textreportdialog.py
 gramps/gui/plug/report/_webreportdialog.py
 #
+# gui.plug.test package
+#
+gramps/gui/plug/test/__init__.py
+gramps/gui/plug/test/windows_test.py
+#
 # gui/selectors - the GUI selectors package
 #
 gramps/gui/selectors/__init__.py
