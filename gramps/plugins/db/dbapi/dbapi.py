@@ -281,22 +281,23 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
 
-        # JSON handle indexes for faster JOINs on json_data
-        for table in [
-            "person",
-            "source",
-            "citation",
-            "media",
-            "place",
-            "family",
-            "event",
-            "repository",
-            "note",
-        ]:
-            self.dbapi.execute(
-                f"CREATE INDEX {table}_handle_json "
-                f"ON {table}({self._format_json_extract_for_index()})"
-            )
+        # JSON handle indexes for faster JOINs on json_data (only when using JSON storage)
+        if json_data:
+            for table in [
+                "person",
+                "source",
+                "citation",
+                "media",
+                "place",
+                "family",
+                "event",
+                "repository",
+                "note",
+            ]:
+                self.dbapi.execute(
+                    f"CREATE INDEX {table}_handle_json "
+                    f"ON {table}({self._format_json_extract_for_index()})"
+                )
 
         self.dbapi.commit()
 
