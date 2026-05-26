@@ -506,6 +506,7 @@ gramps/gui/widgets/validatedcomboentry.py
 #
 gramps/gui/widgets/test/__init__.py
 gramps/gui/widgets/test/fanchart_test.py
+gramps/gui/widgets/test/selectionwidget_test.py
 #
 # plugins
 #
