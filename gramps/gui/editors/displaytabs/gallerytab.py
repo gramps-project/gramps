@@ -85,6 +85,15 @@ class GalleryTab(ButtonTab, DbGUIElement):
     _DND_TYPE = DdTargets.MEDIAREF
     _DND_EXTRA = DdTargets.URI_LIST
 
+    _MSG = {
+        "add": _("Add a new Media record"),
+        "del": _("Remove the selected Media record"),
+        "edit": _("Edit the selected Media record"),
+        "share": _("Select an existing Media record"),
+        "left": _("Move the selected record Left"),
+        "right": _("Move the selected record right"),
+    }
+
     def __init__(self, dbstate, uistate, track, media_list, update=None):
         self.iconlist = Gtk.IconView()
         ButtonTab.__init__(

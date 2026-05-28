@@ -64,7 +64,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         "add": _("Add a new family event"),
         "del": _("Remove the selected family event"),
         "edit": _("Edit the selected family event or edit person"),
-        "share": _("Share an existing event"),
+        "share": _("Select an existing event"),
         "up": _("Move the selected event upwards"),
         "down": _("Move the selected event downwards"),
     }

@@ -127,7 +127,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         "add": _("Create a new person and add the child to the family"),
         "del": _("Remove the child from the family"),
         "edit": _("Edit the child reference"),
-        "share": _("Add an existing person as a child of the family"),
+        "share": _("Select an existing person to add as child of the family"),
         "up": _("Move the child up in the children list"),
         "down": _("Move the child down in the children list"),
     }
@@ -219,7 +219,11 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         return [
             (False, _("Edit child"), self.edit_child_button_clicked),
             (True, _("_Add"), self.add_button_clicked),
-            (True, _("Add an existing child"), self.share_button_clicked),
+            (
+                True,
+                _("Select an existing person to add as child"),
+                self.share_button_clicked,
+            ),
             (False, _("Edit relationship"), self.edit_button_clicked),
             (True, _("_Remove"), self.del_button_clicked),
         ]
