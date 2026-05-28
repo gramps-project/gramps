@@ -752,7 +752,6 @@ CUSTOMEVENTTAGS = {
     "_NAMS": _("Namesake"),
     "_ORDI": _("Ordinance"),
     "_ORIG": _("Origin"),
-    "_SEPR": _("Separation"),  # Applies to Families
     "_WEIG": _("Weight"),
 }
 # table for skipping illegal control chars in GEDCOM import
@@ -777,6 +776,7 @@ GED_TO_GRAMPS_EVENT["Stillbirth"] = EventType.STILLBIRTH
 for __val, __key in FAMILYCONSTANTEVENTS.items():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
+GED_TO_GRAMPS_EVENT["Separation"] = EventType.SEPARATION
 
 GED_TO_GRAMPS_ATTR = {}
 for __val, __key in PERSONALCONSTANTATTRIBUTES.items():
