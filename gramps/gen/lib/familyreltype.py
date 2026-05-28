@@ -52,7 +52,7 @@ class FamilyRelType(GrampsType):
     DIVORCED = 6
     ANNULED = 7
     SEPARATED = 8
-	POLY_MARR = 9
+    POLY_MARR = 9
 
     _CUSTOM = CUSTOM
     _DEFAULT = MARRIED
