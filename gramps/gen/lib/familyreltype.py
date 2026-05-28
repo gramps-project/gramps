@@ -67,7 +67,7 @@ class FamilyRelType(GrampsType):
         (DIVORCED, _("Divorced"), "Divorced"),
         (ANNULED, _("Annuled"), "Annuled"),
         (SEPARATED, _("Separated"), "Separated"),
-        (POLY_MARR, _("Polygomous Marriage"), "Polygomous Marriage"),
+        (POLY_MARR, _("Polygamous Marriage"), "Polygamous Marriage"),
     ]
 
     def __init__(self, value=None):
