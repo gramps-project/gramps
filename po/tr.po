@@ -5,7 +5,7 @@
 # Mehmet Ugur Kecik <mukecik@yahoo.com>, 2006.
 # Ugur Cetin <ugur@ugurcetin.com.tr>, 2014.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
-# Osman Öz <osmanoz05@hotmail.com>, 2021, 2022, 2023, 2024, 2025.
+# Osman Öz <osmanoz05@hotmail.com>, 2021, 2022, 2023, 2024, 2025, 2026.
 # Brtc <boratici@gmail.com>, 2021.
 # Bora <boratici@gmail.com>, 2021, 2022.
 # Bora Atıcı <boratici@gmail.com>, 2022.
@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2025-11-24 18:51+0000\n"
-"Last-Translator: mahmutozcan <mahmutozcan@protonmail.com>\n"
+"PO-Revision-Date: 2026-05-27 10:11+0000\n"
+"Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -748,14 +748,6 @@ msgstr ""
 "işaretleyerek süzgeci geçersiz kılabilirsiniz."
 
 #: ../data/tips.xml:65
-#, fuzzy
-#| msgid ""
-#| "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "
-#| "to Gramps. Requesting an enhancement can be done either through the "
-#| "gramps-users or gramps-devel mailing lists, or by going to https://gramps-"
-#| "project.org/bugs/ and creating a Feature Request. Filing a Feature "
-#| "Request is preferred but it can be good to discuss your ideas on the "
-#| "email lists."
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -763,12 +755,12 @@ msgid ""
 "a Feature Request. Filing a Feature Request is preferred but it can be good "
 "to discuss your ideas on the email lists."
 msgstr ""
-"<b>Gramps'ı İyileştirme</b><br/>Kullanıcıların Gramps için geliştirmeler "
-"talep etmeleri önerilir. Geliştirme isteği, gramps-kullanıcılar veya gramps-"
-"gelişim e-posta listeleri aracılığıyla veya https://gramps-project.org/bugs/ "
-"adresine gidip bir Özellik İsteği oluşturarak yapılabilir. Özellik İsteği "
-"göndermek tercih edilir ancak fikirlerinizi e-posta listelerinde tartışmak "
-"iyi olabilir."
+"<b>Gramps'ı Geliştirme</b><br/>Kullanıcılar, Gramps'a yönelik geliştirmeler "
+"talep etmeye teşvik edilir. Geliştirme talepleri, gramps-users veya gramps-"
+"devel posta listeleri aracılığıyla veya &bugs_url; adresine giderek bir "
+"Özellik Talebi oluşturarak yapılabilir. Özellik Talebi oluşturmak tercih "
+"edilir, ancak fikirlerinizi e-posta listelerinde tartışmak da faydalı "
+"olabilir."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -986,28 +978,17 @@ msgstr ""
 "kişileri ekleyin."
 
 #: ../data/tips.xml:99
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at https://gramps-"
-#| "project.org/bugs/."
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
-"<b>Gramps'ta Hata Bildirme</b><br/>Gramps'ta bir hatayı bildirmenin en iyi "
-"yolu, https://gramps-project.org/bugs/ adresindeki Gramps hata izleme "
-"sistemini kullanmaktır."
+"<b>Gramps'te Hata Bildirme</b><br/>Gramps'te bir hata bildirmenin en iyi "
+"yolu, &bugs_url; adresindeki Gramps hata takip sistemini kullanmaktır."
 
 #: ../data/tips.xml:101
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
-#| "project.org/."
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
 msgstr ""
-"<b>Gramps Ana Sayfası</b><br/>Gramps ana sayfası https://gramps-project.org/ "
-"adresindedir."
+"<b>Gramps Ana Sayfası</b><br/>Gramps ana sayfası &gramps_url; adresindedir."
 
 #: ../data/tips.xml:103
 msgid ""
@@ -1182,22 +1163,16 @@ msgstr ""
 "Girişimi'ne bakın."
 
 #: ../data/tips.xml:131
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see https://www.gnu.org/licenses/licenses.html#GPL to "
-#| "read about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see &gpl_url; to read about the rights and restrictions of this "
 "license."
 msgstr ""
-"<b>Gramps Yazılım Lisansı</b><br/>Gramps'ı kullanmakta ve başkalarıyla "
-"paylaşmakta özgürsünüz. Gramps, GNU Genel Kamu Lisansı altında ücretsiz "
-"olarak dağıtılabilir, bu lisansın hakları ve kısıtlamaları hakkında bilgi "
-"almak için https://www.gnu.org/licenses/licenses.html#GPL adresine bakın."
+"<b>Gramps Yazılım Lisansı</b><br/>Gramps'ı kullanmak ve başkalarıyla "
+"paylaşmakta özgürsünüz. Gramps, GNU Genel Kamu Lisansı altında serbestçe "
+"dağıtılabilir; bu lisansın hakları ve kısıtlamaları hakkında bilgi edinmek "
+"için &gpl_url; adresine bakın."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -3695,16 +3670,14 @@ msgid "Wrong format of date-time"
 msgstr "Tarihin-saatin biçimi yanlış"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, fuzzy, python-format
-#| msgid ""
-#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#| "part is optional, are accepted. %s does not satisfy."
+#, python-format
 msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Yalnızca saat bölümünün isteğe bağlı olduğu yyyy-aa-gg ss:dd:ss iso "
-"biçimindeki tarihler-saatler kabul edilir. %s karşılamıyor."
+"Yalnızca ISO formatındaki yyyy-aa-gg ss:dd:ss biçimindeki tarih ve saat "
+"bilgileri kabul edilir; burada saat kısmı isteğe bağlıdır. %s biçimi kabul "
+"edilmez."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
 #: ../gramps/gen/fs/fs_import/sources.py:557
@@ -3874,16 +3847,12 @@ msgid "Tag:"
 msgstr "Etiket:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "Belirli türde notlara sahip nesneler"
+msgstr "Belirtilen etikete sahip notlar içeren nesneler."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
-#| msgid "Matches a note with a specified Gramps ID"
 msgid "Matches notes with a specified tag"
-msgstr "Belirtilen Gramps kimlik numarası ile bir notu eşleştirir"
+msgstr "Notları belirtilen bir etiketle eşleştirir"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -4102,16 +4071,12 @@ msgid ""
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren alıntılarla eşleşir"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with the <tag>"
-msgstr "<type> türü bir notla alıntılar"
+msgstr "<tag> etiketiyle dipnot içeren alıntılar"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches citations with a note of the specified type"
 msgid "Matches citations with a note with a specified tag"
-msgstr "Alıntıları belirtilen türden bir notla eşleştirir"
+msgstr "Alıntıları, belirtilen etikete sahip bir notla eşleştirir"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4468,16 +4433,12 @@ msgstr ""
 "Notları, normal bir ifadeyle eşleşen metin içeren etkinliklerle eşleştirir"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with the <tag>"
-msgstr "<type> türü bir nota sahip etkinlikler"
+msgstr "<tag> etiketiyle işaretlenmiş not içeren etkinlikler"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches events with a note of the specified type"
 msgid "Matches events with a note with a specified tag"
-msgstr "Etkinlikleri belirtilen türden bir notla eşleştirir"
+msgstr "Etkinlikleri belirli bir etikete sahip bir notla eşleştirir"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4768,16 +4729,12 @@ msgid "Matches families whose notes contain text matching a regular expression"
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren ailelerle eşleşir"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note with the <tag>"
-msgstr "<Ad> adlı babası olan aileler"
+msgstr "<tag> içeren bir notu olan aileler"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches families with a note with a specified tag"
-msgstr "Aileleri belirtilen türde bir notla eşleştirir"
+msgstr "Belirtilen etikete sahip bir notu olan aileleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -5079,28 +5036,20 @@ msgstr ""
 "Notları normal bir ifadeyle eşleşen metin içeren ortam nesneleriyle eşleşir"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with the <tag>"
-msgstr "<type> türü bir notla alıntılar"
+msgstr "<tag> etiketiyle not içeren medya"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "Aileleri belirtilen türde bir notla eşleştirir"
+msgstr "Belirtilen etikete sahip not içeren medyaları eşleştirir"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "<type> türü bir nota sahip etkinlikler"
+msgstr "<type> türünde not içeren medya"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "Aileleri belirtilen türde bir notla eşleştirir"
+msgstr "Medya dosyalarını belirtilen türdeki notlarla eşleştirir"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
@@ -5629,16 +5578,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren kişilerle eşleşir"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with the <tag>"
-msgstr "<type> türü bir nota sahip kişiler"
+msgstr "<tag> etiketiyle notu olan kişiler"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "İnsanları belirtilen türden bir notla eşleştirir"
+msgstr "Kişileri, belirtilen etikete sahip bir notla eşleştirir"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -6292,16 +6237,12 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with the <tag>"
-msgstr "<type> türü notu olan yerler"
+msgstr "<tag> etiketiyle işaretlenmiş not bulunan yerler"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "Belirtilen türden bir notla eşleşen yerler"
+msgstr "Belirtilen etikete sahip not bulunan yerlerle eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6557,28 +6498,20 @@ msgid ""
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren depolarla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with the <tag>"
-msgstr "<tag> ile depolar"
+msgstr "<tag> etiketiyle işaretlenmiş not içeren depolar"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Kaynakları belirtilen türden bir notla eşleştirir"
+msgstr "Belirtilen etikete sahip not içeren depoları eşleştirir"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "<type> türü notu olan kaynaklar"
+msgstr "<type> türünde not içeren depolar"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "Kaynakları belirtilen türden bir notla eşleştirir"
+msgstr "Belirtilen türde bir not içeren depoları eşleştirir"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6725,16 +6658,12 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "Notları normal bir ifadeyle eşleşen metin içeren kaynaklarla eşleşir"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with the <tag>"
-msgstr "<type> türü notu olan kaynaklar"
+msgstr "<tag> etiketiyle not içeren kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "Kaynakları belirtilen türden bir notla eşleştirir"
+msgstr "Belirtilen etikete sahip not içeren kaynakları eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6847,10 +6776,8 @@ msgstr "Özel olarak belirtilen kaynaklarla eşleşir"
 #: ../gramps/gui/fs/person/mixins/helpers.py:68
 #: ../gramps/gui/fs/sync_directions.py:679 ../gramps/gui/viewmanager.py:406
 #: ../gramps/gui/viewmanager.py:552 ../gramps/gui/viewmanager.py:560
-#, fuzzy
-#| msgid "Family"
 msgid "FamilySearch"
-msgstr "Aile"
+msgstr "FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:160
 #: ../gramps/gui/fs/compare/window.py:224
@@ -6858,19 +6785,15 @@ msgstr "Aile"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:760
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:962
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "FamilySearch ile bağlantılı değil"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "baş harfler"
+msgstr "Temel Bilgiler"
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "Öğe adı"
+msgstr "Diğer adlar"
 
 #: ../gramps/gen/fs/compare/aggregate.py:211
 #: ../gramps/gui/merge/mergeperson.py:241
@@ -6910,7 +6833,7 @@ msgstr "Aileler"
 
 #: ../gramps/gen/fs/compare/aggregate.py:225
 msgid "Facts"
-msgstr ""
+msgstr "Gerçekler"
 
 #: ../gramps/gen/fs/compare/comparators.py:81
 #: ../gramps/gen/fs/compare/comparators.py:88 ../gramps/gen/utils/string.py:49
@@ -7088,55 +7011,47 @@ msgid "Child"
 msgstr "Çocuk"
 
 #: ../gramps/gen/fs/constants.py:80
+#, fuzzy
 msgid "LifeSketch"
-msgstr ""
+msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
-#, fuzzy
-#| msgid "the citation"
 msgid "Birth Registration"
-msgstr "alıntı"
+msgstr "Doğum Kaydı"
 
 #: ../gramps/gen/fs/constants.py:83 ../gramps/gen/fs/constants.py:84
-#, fuzzy
-#| msgid "the citation"
 msgid "Death Registration"
-msgstr "alıntı"
+msgstr "Ölüm Kaydı"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "Şubat"
+msgstr "Ölüm İlanı"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "İlişki"
+msgstr "Vatandaşlık"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
-msgstr ""
+msgstr "Geçersiz ilişki atlanıyor: çocuk ebeveyne eşittir"
 
 #: ../gramps/gen/fs/fs_import/importer.py:286
 msgid "Possibly parentless family - Need at least one known parent locally"
 msgstr ""
+"Muhtemelen ebeveynsiz bir aile - En az bir ebeveynin yerel olarak bulunması "
+"gerekiyor"
 
 #: ../gramps/gen/fs/fs_import/importer.py:333
 msgid "Skipping invalid couple: same person as both parents"
-msgstr ""
+msgstr "Geçersiz çift atlanıyor: Her iki ebeveyn de aynı kişi"
 
 #: ../gramps/gen/fs/fs_import/importer.py:375
 msgid "Possible parentless family?"
-msgstr ""
+msgstr "Olası ebeveynsiz aile mi?"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
-#, fuzzy
-#| msgid "Building display"
 msgid "Building FSID list for places"
-msgstr "Yapı Görüntüle"
+msgstr "Yerler için FSID listesi oluşturma"
 
 #: ../gramps/gen/fs/fs_import/sources.py:523
 #: ../gramps/gen/fs/fs_import/sources.py:526
@@ -7211,15 +7126,13 @@ msgstr "İnternet Adresi"
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
 msgid "Memory: {t}"
-msgstr ""
+msgstr "Bellek: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:421
 #: ../gramps/gui/fs/sync_directions.py:599
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "Tarih(ler) eksik"
+msgstr "(eksik)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:304
@@ -7266,32 +7179,32 @@ msgstr "Not"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:653
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Gramps tarafından güncellendi"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
 msgid "Created from Gramps"
-msgstr ""
+msgstr "Gramps tarafından oluşturuldu"
 
 #: ../gramps/gen/fs/tags.py:317
 #, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "Grup %(num)d"
 
 #: ../gramps/gen/fs/tags.py:328
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Genel Bakış ? %(title)s ? satır %(row)d yeşil değil (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:338
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Notlar ? satır %(row)d yeşil değil (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:348
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Kaynaklar ? satır %(row)d yeşil değil (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:358
 msgid ""
@@ -7299,12 +7212,14 @@ msgid ""
 "This add-on only sets default colors when the tags are first created and "
 "will not override your custom choices."
 msgstr ""
+"Gramps eklentisinde FamilySearch durum etiketi renkleri, Etiketleri Düzenle "
+"seçeneği aracılığıyla özelleştirilebilir. Bu eklenti yalnızca etiketler ilk "
+"oluşturulduğunda varsayılan renkleri ayarlar ve özel seçimlerinizi geçersiz "
+"kılmaz."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch tags"
-msgstr "Aile değiştirildi"
+msgstr "FamilySearch etiketleri"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:721 ../gramps/gui/editors/editaddress.py:199
@@ -8844,46 +8759,40 @@ msgstr "Medeni Birliktelik"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
 msgid "FamilySearch sync"
-msgstr ""
+msgstr "FamilySearch senkronizasyonu"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "Aile ID'si"
+msgstr "FamilySearch Kimliği"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Köküdür"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Status bar"
 msgid "Status timestamp"
-msgstr "Durum çubuğu"
+msgstr "Durum zaman damgası"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
-msgstr ""
+msgstr "Onaylanmış zaman damgası"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
-msgstr ""
+msgstr "Gramps değiştirilmiş zaman damgası"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:92
 msgid "FamilySearch modified timestamp"
-msgstr ""
+msgstr "FamilySearch değiştirilmiş zaman damgası"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "Temel çatışma"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "Yapılandırma"
+msgstr "Çatışma"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -10270,17 +10179,13 @@ msgid "Font family"
 msgstr "Yazı Tipi Ailesi"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:165
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Choose the font family. If international characters don't show, use "
-#| "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+#, python-brace-format
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
 "Yazı tipi ailesini seçin. Uluslararası karakterler görünmüyorsa, FreeSans "
-"yazı tipini kullanın. FreeSans'a şu adresten ulaşılabilir: http://"
-"www.nongnu.org/freefont/"
+"yazı tipini kullanın. FreeSans şu adresten edinilebilir: {freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:172
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -11973,7 +11878,7 @@ msgstr "Arapça"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "Başkurt"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -12597,21 +12502,16 @@ msgid "Media Object"
 msgstr "Ortam Nesnesi"
 
 #: ../gramps/gui/configure.py:869
-#, fuzzy, no-python-format
-#| msgid ""
-#| "Default Gramps ID formats containing a letter prefix followed by a "
-#| "numerical string. \"I%04d\" creates IDs from I0000 to I9999. Large "
-#| "databases may need larger IDs. \"I%06d\" creates IDs from I000000 to "
-#| "I999999.\n"
+#, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
 "string. \"I%05d\" creates IDs from I00000 to I99999. Large databases may "
 "need larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
-"Bir harf öneki ve ardından sayısal bir dize içeren varsayılan Gramps Kimliği "
-"biçimleri. \"I%04d\", I0000 ile I9999 arasında kimlikler oluşturur. Büyük "
-"veri tabanları daha büyük kimliklere ihtiyaç duyabilir. \"I%06d\", I000000 "
-"ile I999999 arasında kimlikler oluşturur.\n"
+"Varsayılan Gramps kimlik biçimleri, harf ön eki ve ardından sayısal bir dize "
+"içerir. \"I%05d\", I00000'dan I99999'a kadar kimlikler oluşturur. Büyük veri "
+"tabanları daha büyük kimliklere ihtiyaç duyabilir. \"I%06d\", I000000'dan "
+"I999999'a kadar kimlikler oluşturur.\n"
 
 #: ../gramps/gui/configure.py:891
 msgid "Colors used for boxes in the graphical views"
@@ -12752,49 +12652,43 @@ msgstr "Uyarılar"
 
 #: ../gramps/gui/configure.py:1085
 msgid "Live"
-msgstr ""
+msgstr "Canlı"
 
 #: ../gramps/gui/configure.py:1093
 msgid "Server"
-msgstr ""
+msgstr "Sunucu"
 
 #: ../gramps/gui/configure.py:1102
 msgid "Foundation middleware"
-msgstr ""
+msgstr "Temel ara yazılım"
 
 #: ../gramps/gui/configure.py:1104
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "Yinelenen Aile"
+msgstr "Doğrudan FamilySearch"
 
 #: ../gramps/gui/configure.py:1119
-#, fuzzy
-#| msgid "Author"
 msgid "Auth provider"
-msgstr "Yazar"
+msgstr "Kimlik doğrulama sağlayıcısı"
 
 #: ../gramps/gui/configure.py:1128
 msgid "App key (direct mode only)"
-msgstr ""
+msgstr "Uygulama tuşu (yalnızca doğrudan mod)"
 
 #: ../gramps/gui/configure.py:1149
 msgid "Redirect URL (direct mode only)"
-msgstr ""
+msgstr "Yönlendirme URL adresi (yalnızca doğrudan mod)"
 
 #: ../gramps/gui/configure.py:1158
 msgid "Middleware base URL"
-msgstr ""
+msgstr "Ara katman yazılımı temel URL adresi"
 
 #: ../gramps/gui/configure.py:1167
 msgid "Middleware access code (issued secret)"
-msgstr ""
+msgstr "Ara katman erişim kodu (verilen gizli bilgi)"
 
 #: ../gramps/gui/configure.py:1174
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "Kuşaklar"
+msgstr "Entegrasyonlar"
 
 #: ../gramps/gui/configure.py:1241 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -13058,16 +12952,16 @@ msgid "Maximum age probably alive"
 msgstr "Muhtemelen yaşayan en fazla yaş"
 
 #: ../gramps/gui/configure.py:2057
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "İlişkiler için en fazla kuşak sayısı"
+msgstr "Yaşı tahmin etmek için maksimum nesil sayısı"
 
 #: ../gramps/gui/configure.py:2062
 msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
+"Atalar/torunlar tahmininin derinliğini sınırlar. Tarihler yalnızca uzak "
+"nesillerdeyse ve tahminler eksikse bu değeri artırın."
 
 #: ../gramps/gui/configure.py:2069
 msgid "Maximum sibling age difference"
@@ -13270,10 +13164,8 @@ msgstr ""
 "soyadları bir kutu içinde görüntülenir. Bu ayar, kutunun boyutunu belirler."
 
 #: ../gramps/gui/configure.py:2341
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "Notlar Önizleme"
+msgstr "Not önizleme uzunluğu"
 
 #: ../gramps/gui/configure.py:2400
 msgid "Database Setting"
@@ -16046,13 +15938,9 @@ msgid "Internet Address Editor"
 msgstr "İnternet Adresi Düzenleyicisi"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
-msgstr ""
-"Buna gitmek için gereken internet adresi, ör. http://gramps-project.org"
+msgstr "Ona ulaşmak için gereken internet adresi, örneğin {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
@@ -16612,13 +16500,12 @@ msgstr "Filter gramplet tarafından {today} tarihinde oluşturuldu"
 #: ../gramps/gui/fs/actions.py:132
 msgid "Please save/commit this person to the database first, then try again."
 msgstr ""
+"Lütfen önce bu kişiyi veri tabanına kaydedin/işleyin, sonra tekrar deneyin."
 
 #: ../gramps/gui/fs/actions.py:148 ../gramps/gui/fs/actions.py:149
 #: ../gramps/gui/fs/tools_window.py:362
-#, fuzzy
-#| msgid "Family ID"
 msgid "Link FamilySearch ID"
-msgstr "Aile ID'si"
+msgstr "FamilySearch Kimliğini Bağla"
 
 #: ../gramps/gui/fs/actions.py:151 ../gramps/gui/plug/_windows.py:1538
 #: ../gramps/gui/widgets/grampletbar.py:599
@@ -16627,180 +16514,163 @@ msgstr "TAMAM"
 
 #: ../gramps/gui/fs/actions.py:157
 msgid "Enter FamilySearch Person ID (e.g. GSVF-SGV):"
-msgstr ""
+msgstr "FamilySearch Kişi Kimliğini girin (ör. GSVF-SGV):"
 
 #: ../gramps/gui/fs/actions.py:188
 msgid ""
 "No FamilySearch ID linked.\n"
 "Click 'Link FamilySearch ID' first."
 msgstr ""
+"FamilySearch kimliği bağlı değil.\n"
+"Önce 'FamilySearch Kimliğini Bağla' seçeneğine tıklayın."
 
 #: ../gramps/gui/fs/actions.py:224
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:184
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import selected"
-msgstr "İçe aktarma başarısız"
+msgstr "Seçilenleri içe aktar"
 
 #: ../gramps/gui/fs/actions.py:248
 #, python-brace-format
 msgid "{total} found - {new} new - {existing} already in tree"
-msgstr ""
+msgstr "{total} bulundu - {new} yeni - {existing} zaten ağaçta mevcut"
 
 #: ../gramps/gui/fs/actions.py:255 ../gramps/gui/fs/sync_directions.py:659
 #: ../gramps/gui/fs/sync_directions.py:1283
-#, fuzzy
-#| msgid "Select _None"
 msgid "Select none"
-msgstr "Seçimi _Kaldır"
+msgstr "Hiçbirini seçin"
 
 #: ../gramps/gui/fs/actions.py:256
-#, fuzzy
-#| msgid "Select a file"
 msgid "Select all new"
-msgstr "Dosya seç"
+msgstr "Tüm yenileri seç"
 
 #: ../gramps/gui/fs/actions.py:303
-#, fuzzy
-#| msgid "Already dead"
 msgid "Already in tree"
-msgstr "Zaten ölmüş"
+msgstr "Zaten ağaçta mevcut"
 
 #: ../gramps/gui/fs/actions.py:303
 msgid "New (will import)"
-msgstr ""
+msgstr "Yeni (içe aktarılacak)"
 
 #: ../gramps/gui/fs/actions.py:304
 msgid "Tip: uncheck anything you don't want to import."
-msgstr ""
+msgstr "İpucu: İçe aktarmak istemediğiniz öğelerin işaretini kaldırın."
 
 #: ../gramps/gui/fs/actions.py:361 ../gramps/gui/fs/actions.py:489
 #: ../gramps/gui/fs/actions.py:646 ../gramps/gui/fs/actions.py:957
 #: ../gramps/gui/fs/actions.py:1156
 msgid "No FamilySearch ID linked. Click 'Link FamilySearch ID' first."
 msgstr ""
+"FamilySearch kimliğiniz bağlı değil. Öncelikle 'FamilySearch Kimliğini "
+"Bağla' seçeneğine tıklayın."
 
 #: ../gramps/gui/fs/actions.py:376
-#, fuzzy, python-brace-format
-#| msgid "Sealed to Parents"
+#, python-brace-format
 msgid "Failed to fetch parents: {e}"
-msgstr "Ebeveynlere Mühürlü"
+msgstr "Ebeveynler getirilemedi: {e}"
 
 #: ../gramps/gui/fs/actions.py:398
 msgid "No parents found on FamilySearch for this person."
-msgstr ""
+msgstr "FamilySearch'te bu kişiye ait ebeveyn bulunamadı."
 
 #: ../gramps/gui/fs/actions.py:407 ../gramps/gui/fs/actions.py:543
 #: ../gramps/gui/fs/actions.py:701
 msgid "  - already in tree"
-msgstr ""
+msgstr "  - zaten ağaçta mevcut"
 
 #: ../gramps/gui/fs/actions.py:410
-#, fuzzy
-#| msgid "Import Text"
 msgid "Import parents"
-msgstr "Metni İçe Aktar"
+msgstr "Ebeveynleri içe aktarın"
 
 #: ../gramps/gui/fs/actions.py:425
 msgid "Parents imported but could not be located in the local database."
-msgstr ""
+msgstr "Ebeveynler içe aktarıldı ancak yerel veri tabanında bulunamadı."
 
 #: ../gramps/gui/fs/actions.py:429
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link parents"
-msgstr "Aile İlişimleri"
+msgstr "FamilySearch: Ebeveynleri bağla"
 
 #: ../gramps/gui/fs/actions.py:478
 msgid "Parent(s) imported and linked."
-msgstr ""
+msgstr "Üst öğe(ler) içe aktarıldı ve bağlandı."
 
 #: ../gramps/gui/fs/actions.py:504
 #, python-brace-format
 msgid "Failed to fetch children: {e}"
-msgstr ""
+msgstr "Çocuk öğeleri getirme başarısız oldu: {e}"
 
 #: ../gramps/gui/fs/actions.py:528
 msgid "No children found on FamilySearch for this person."
-msgstr ""
+msgstr "FamilySearch'te bu kişiye ait herhangi bir çocuk bulunamadı."
 
 #: ../gramps/gui/fs/actions.py:540
 #, python-brace-format
 msgid " (other parent: {name})"
-msgstr ""
+msgstr " (diğer ebeveyn: {name})"
 
 #: ../gramps/gui/fs/actions.py:547
-#, fuzzy
-#| msgid "List children"
 msgid "Import children"
-msgstr "Çocukları listele"
+msgstr "Çocukları içe aktar"
 
 #: ../gramps/gui/fs/actions.py:562
 msgid "Children imported but could not be located in the local database."
-msgstr ""
+msgstr "Çocuklar içe aktarıldı ancak yerel veri tabanında bulunamadı."
 
 #: ../gramps/gui/fs/actions.py:566
-#, fuzzy
-#| msgid "Family Children"
 msgid "FamilySearch: Link children"
-msgstr "Aile Çocukları"
+msgstr "FamilySearch: Çocukları bağla"
 
 #: ../gramps/gui/fs/actions.py:629
 msgid "Child(ren) imported and linked."
-msgstr ""
+msgstr "Çocuk(lar) içe aktarıldı ve bağlandı."
 
 #: ../gramps/gui/fs/actions.py:661
 #, python-brace-format
 msgid "Failed to fetch spouses: {e}"
-msgstr ""
+msgstr "Eşleri getirme başarısız oldu: {e}"
 
 #: ../gramps/gui/fs/actions.py:692
 msgid "No spouses found on FamilySearch for this person."
-msgstr ""
+msgstr "FamilySearch'te bu kişi için herhangi bir eş bulunamadı."
 
 #: ../gramps/gui/fs/actions.py:704
-#, fuzzy
-#| msgid "Import Objects"
 msgid "Import spouse(s)"
-msgstr "Nesneleri İçe Aktar"
+msgstr "Eş(ler)i içe aktar"
 
 #: ../gramps/gui/fs/actions.py:719
 msgid "Spouses imported but could not be located in the local database."
-msgstr ""
+msgstr "Eşler içe aktarıldı ancak yerel veri tabanında bulunamadı."
 
 #: ../gramps/gui/fs/actions.py:723
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link spouses"
-msgstr "Aile İlişimleri"
+msgstr "FamilySearch: Eşleri bağla"
 
 #: ../gramps/gui/fs/actions.py:770
 msgid "Spouse(s) imported and linked."
-msgstr ""
+msgstr "Eş(ler) içe aktarıldı ve bağlandı."
 
 #: ../gramps/gui/fs/actions.py:860
 #, python-brace-format
 msgid "Cleared GEDCOMX in-memory indices: {n}"
-msgstr ""
+msgstr "Temizlenen GEDCOMX bellek içi indeksleri: {n}"
 
 #: ../gramps/gui/fs/actions.py:861
 msgid "Reset shared FS Tree cache: yes"
-msgstr ""
+msgstr "Paylaşılan dosya sistemi ağacı önbelleğini sıfırla: evet"
 
 #: ../gramps/gui/fs/actions.py:863
 #, python-brace-format
 msgid "Cleared on-disk cache: yes ({path})"
-msgstr ""
+msgstr "Disk üzerindeki önbellek temizlendi: evet ({path})"
 
 #: ../gramps/gui/fs/actions.py:866
 msgid "Cleared on-disk cache: (not available / not supported by cache helper)"
 msgstr ""
+"Disk üzerindeki önbellek temizlendi: (kullanılamıyor / önbellek yardımcısı "
+"tarafından desteklenmiyor)"
 
 #: ../gramps/gui/fs/actions.py:875 ../gramps/gui/fs/actions.py:876
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch Tags"
-msgstr "Aile değiştirildi"
+msgstr "FamilySearch Etiketleri"
 
 #: ../gramps/gui/fs/actions.py:877
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:559
@@ -16813,13 +16683,16 @@ msgstr "Kapat"
 
 #: ../gramps/gui/fs/actions.py:878
 msgid "Retag all (Linked/NotLinked)"
-msgstr ""
+msgstr "Tümünü yeniden etiketle (Bağlantılı/Bağlantısız)"
 
 #: ../gramps/gui/fs/actions.py:890
 msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
+"Bu işlem, tüm soy ağacınızı tarayacak ve FS_Linked / FS_NotLinked "
+"etiketlerini uygulayacaktır.\n"
+"Kişi verilerinde herhangi bir değişiklik yapmaz."
 
 #: ../gramps/gui/fs/actions.py:910
 #, python-brace-format
@@ -16831,77 +16704,79 @@ msgid ""
 "Not linked: {not_linked}\n"
 "Changed: {changed}"
 msgstr ""
+"Etiketleme tamamlandı.\n"
+"\n"
+"Toplam kişi sayısı: {total}\n"
+"Bağlantılı: {linked}\n"
+"Bağlantılı değil: {not_linked}\n"
+"Değiştirilen: {changed}"
 
 #: ../gramps/gui/fs/actions.py:920
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "Yeniden adlandırılamadı"
+msgstr "Yeniden etiketleme başarısız oldu: {e}"
 
 #: ../gramps/gui/fs/actions.py:971
 msgid "FamilySearch: Update FSID after redirect"
-msgstr ""
+msgstr "FamilySearch: Yönlendirme sonrasında dosya sistemi kimliğini güncelle"
 
 #: ../gramps/gui/fs/actions.py:1015
 msgid ""
 "Could not load this person from FamilySearch (no GEDCOMX person object)."
-msgstr ""
+msgstr "Bu kişi FamilySearch'ten yüklenemedi (GEDCOMX kişi nesnesi bulunamadı)."
 
 #: ../gramps/gui/fs/actions.py:1024
 #, python-brace-format
 msgid "Failed to download from FamilySearch: {e}"
-msgstr ""
+msgstr "FamilySearch tarafından indirme başarısız oldu: {e}"
 
 #: ../gramps/gui/fs/actions.py:1029
-#, fuzzy
-#| msgid "Bookmark this person"
 msgid "FamilySearch: Sync this person"
-msgstr "Bu kişiyi yer imlerine ekle"
+msgstr "FamilySearch: Bu kişiyi senkronize et"
 
 #: ../gramps/gui/fs/actions.py:1089
-#, fuzzy, python-brace-format
-#| msgid "Saving failed"
+#, python-brace-format
 msgid "Sync failed: {e}"
-msgstr "Kaydedilemedi"
+msgstr "Senkronizasyon başarısız oldu: {e}"
 
 #: ../gramps/gui/fs/actions.py:1097
 msgid ""
 "Sync complete: facts/events, dates/places, and notes updated for this person."
 msgstr ""
+"Senkronizasyon tamamlandı: Bu kişi için gerçekler/etkinlikler, tarihler/"
+"yerler ve notlar güncellendi."
 
 #: ../gramps/gui/fs/actions.py:1142
 #, python-brace-format
 msgid "Export to FamilySearch failed: {e}"
-msgstr ""
+msgstr "FamilySearch üzerine aktarma başarısız oldu: {e}"
 
 #: ../gramps/gui/fs/actions.py:1172
 #, python-brace-format
 msgid "Sync to FamilySearch failed: {e}"
-msgstr ""
+msgstr "FamilySearch ile senkronizasyon başarısız oldu: {e}"
 
 #: ../gramps/gui/fs/compare/options.py:46
-#, fuzzy
-#| msgid "Family Citations"
 msgid "FamilySearch Compare Options"
-msgstr "Aile Alıntıları"
+msgstr "FamilySearch Karşılaştırma Seçenekleri"
 
 #: ../gramps/gui/fs/compare/options.py:49
 msgid "Days between comparisons"
-msgstr ""
+msgstr "Karşılaştırmalar arasındaki günler"
 
 #: ../gramps/gui/fs/compare/options.py:50
 msgid "Number of days between two comparisons."
-msgstr ""
+msgstr "İki karşılaştırma arasındaki gün sayısı."
 
 #: ../gramps/gui/fs/compare/options.py:54
-#, fuzzy
-#| msgid "Source Information"
 msgid "Force comparison"
-msgstr "Kaynak Bilgisi"
+msgstr "Kuvvet karşılaştırması"
 
 #: ../gramps/gui/fs/compare/options.py:56
 msgid "Compare regardless of the number of days since the last run."
 msgstr ""
+"Son çalıştırmadan bu yana geçen gün sayısına bakılmaksızın karşılaştırma "
+"yapın."
 
 #: ../gramps/gui/fs/compare/options.py:62
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
@@ -16910,7 +16785,7 @@ msgstr "Kişi Süzgeci"
 
 #: ../gramps/gui/fs/compare/window.py:91
 msgid "FamilySearch is not configured (no session)."
-msgstr ""
+msgstr "FamilySearch yapılandırılmamış (oturum yok)."
 
 #: ../gramps/gui/fs/compare/window.py:204
 #, python-brace-format
@@ -16918,14 +16793,14 @@ msgid ""
 "Could not open compare window:\n"
 "{e}"
 msgstr ""
+"Karşılaştırma penceresi açılamadı:\n"
+"{e}"
 
 #: ../gramps/gui/fs/compare/window.py:214
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:524
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:532
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch Compare"
-msgstr "Aile Renkleri"
+msgstr "FamilySearch Karşılaştırması"
 
 #: ../gramps/gui/fs/compare/window.py:217 ../gramps/gui/glade/rule.glade:509
 #: ../gramps/gui/glade/styleeditor.glade:416
@@ -16937,7 +16812,7 @@ msgstr "Seçenekler"
 
 #: ../gramps/gui/fs/compare/window.py:228
 msgid "FamilySearch: Compare"
-msgstr ""
+msgstr "FamilySearch: Karşılaştır"
 
 #: ../gramps/gui/fs/compare/window.py:229
 #: ../gramps/gui/fs/fs_import/importer.py:59
@@ -16950,165 +16825,132 @@ msgstr "Başlangıç"
 
 #: ../gramps/gui/fs/compare/window.py:253
 msgid "Building ordered list (1/2)"
-msgstr ""
+msgstr "Sıralı listeyi oluşturma (1/2)"
 
 #: ../gramps/gui/fs/compare/window.py:283
 msgid "Processing list (2/2)"
-msgstr ""
+msgstr "İşlem listesi (2/2)"
 
 #: ../gramps/gui/fs/compare/window.py:320
-#, fuzzy, python-format
-#| msgid "not found"
+#, python-format
 msgid "FS ID %s not found"
-msgstr "bulunamadı"
+msgstr "Sistem dosya kimliği %s bulunamadı"
 
 #: ../gramps/gui/fs/fs_import/importer.py:59
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "FamilySearch Import"
-msgstr "Aile Kümesi Raporu"
+msgstr "FamilySearch İçe Aktarma"
 
 #: ../gramps/gui/fs/fs_import/importer.py:86
 msgid "Downloading persons… (3/11)"
-msgstr ""
+msgstr "Kişileri indiriyor… (3/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:88
-#, fuzzy
-#| msgid "Youngest living person"
 msgid "Downloading person…"
-msgstr "Yaşayan en genç kişi"
+msgstr "Kişi indiriliyor…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:98
 msgid "Downloading ancestors… (4/11)"
-msgstr ""
+msgstr "Atalar indiriliyor… (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:106
-#, fuzzy, python-format
-#| msgid "Submission: Generations of ancestors"
+#, python-format
 msgid "Downloading %d generations of ancestors…"
-msgstr "Gönderim: Üstsoy kuşakları"
+msgstr "%d atalarının nesilleri indiriliyor…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:109
 msgid "Downloading descendants… (5/11)"
-msgstr ""
+msgstr "Soyundan gelenler indiriliyor… (5/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:117
-#, fuzzy, python-format
-#| msgid "Submission: Generations of descendants"
+#, python-format
 msgid "Downloading %d generations of descendants…"
-msgstr "Gönderim: Altsoy kuşakları"
+msgstr "Soyundan gelen %d nesil indiriliyor…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:122
 msgid "Downloading spouses… (6/11)"
-msgstr ""
+msgstr "Eşler indiriliyor… (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:124
 msgid "Downloading spouses…"
-msgstr ""
+msgstr "Eşler indiriliyor…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:130
 msgid "Downloading notes… (7/11)"
-msgstr ""
+msgstr "Notlar indiriliyor… (7/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:133
 msgid "Downloading notes and sources…"
-msgstr ""
+msgstr "Notlar ve kaynaklar indiriliyor…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:176
-#, fuzzy
-#| msgid "Import"
 msgid "Importing…"
-msgstr "İçe Aktar"
+msgstr "İçe aktarılıyor…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:188
 msgid "Importing places… (8/11)"
-msgstr ""
+msgstr "Yerler içe aktarılıyor… (8/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:189
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing places…"
-msgstr "Kişileri içe aktar."
+msgstr "Yerler içe aktarılıyor…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:194
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons… (9/11)"
-msgstr "Kişileri içe aktar."
+msgstr "Kişiler içe aktarılıyor… (9/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons…"
-msgstr "Kişileri içe aktar."
+msgstr "Kişiler içe aktarılıyor…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:201
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families… (10/11)"
-msgstr "Aileleri içe aktar."
+msgstr "Aileler içe aktarılıyor… (10/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:203
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families…"
-msgstr "Aileleri içe aktar."
+msgstr "Aileler içe aktarılıyor…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:211
 #: ../gramps/gui/fs/fs_import/importer.py:223
 msgid "Importing children… (11/11)"
-msgstr ""
+msgstr "Çocuklar içe aktarılıyor… (11/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:214
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Importing children…"
-msgstr "Arşiv içe aktarılıyor..."
+msgstr "Çocuklar içe aktarılıyor…"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
-#, fuzzy
-#| msgid "Web Family Tree export options"
 msgid "FamilySearch Import Options"
-msgstr "Web Soyağacı dışa aktarma seçenekleri"
+msgstr "FamilySearch İçe Aktarma Seçenekleri"
 
 #: ../gramps/gui/fs/fs_import/options.py:39
 msgid "identifier to be copied from the FamilySearch website"
-msgstr ""
+msgstr "FamilySearch web sitesinden kopyalanacak tanımlayıcı"
 
 #: ../gramps/gui/fs/fs_import/options.py:42
-#, fuzzy
-#| msgid "Max ancestor generations"
 msgid "Ancestor generations"
-msgstr "En fazla üstsoy kuşağı"
+msgstr "Ata nesiller"
 
 #: ../gramps/gui/fs/fs_import/options.py:43
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch upwards"
-msgstr "Kuşak sayısı:"
+msgstr "Yukarı doğru çıkarılacak nesil sayısı"
 
 #: ../gramps/gui/fs/fs_import/options.py:46
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "Descendant generations"
-msgstr "En fazla descendant kuşağı"
+msgstr "Soyundan gelen nesiller"
 
 #: ../gramps/gui/fs/fs_import/options.py:47
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch downwards"
-msgstr "Kuşak sayısı:"
+msgstr "Aşağı doğru indirmek için gereken nesil sayısı"
 
 #: ../gramps/gui/fs/fs_import/options.py:51
-#, fuzzy
-#| msgid "Non existing person"
 msgid "Do not re-import existing persons"
-msgstr "Var olmayan kişi"
+msgstr "Mevcut kişileri yeniden içe aktarmayın"
 
 #: ../gramps/gui/fs/fs_import/options.py:53
 msgid "Only import persons not already present"
-msgstr ""
+msgstr "Yalnızca halihazırda bulunmayan kişileri içe aktarın"
 
 #: ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -17117,10 +16959,8 @@ msgid "Include spouses"
 msgstr "Eşleri dahil et"
 
 #: ../gramps/gui/fs/fs_import/options.py:57
-#, fuzzy
-#| msgid "Include Source Information"
 msgid "Include spouse information"
-msgstr "Kaynak Bilgilerini Dahil Et"
+msgstr "Eş bilgilerini dahil et"
 
 #: ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -17129,10 +16969,8 @@ msgid "Include sources"
 msgstr "Kaynakları dahil et"
 
 #: ../gramps/gui/fs/fs_import/options.py:61
-#, fuzzy
-#| msgid "Birth source"
 msgid "Import sources"
-msgstr "Doğum kaynağı"
+msgstr "Kaynakları içe aktar"
 
 #: ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -17141,99 +16979,85 @@ msgid "Include notes"
 msgstr "Notları dahil et"
 
 #: ../gramps/gui/fs/fs_import/options.py:65
-#, fuzzy
-#| msgid "Importer"
 msgid "Import notes"
-msgstr "İçe aktarıcı"
+msgstr "Notları içe aktar"
 
 #: ../gramps/gui/fs/fs_import/options.py:68
-#, fuzzy
-#| msgid "Repository"
 msgid "Verbosity"
-msgstr "Depo"
+msgstr "Ayrıntılılık"
 
 #: ../gramps/gui/fs/fs_import/options.py:70
 msgid "Verbosity level from 0 (min) to 3 (very verbose)"
 msgstr ""
+"Ayrıntılılık düzeyi 0 (minimum) ile 3 (çok ayrıntılı) arasında değişmektedir"
 
 #: ../gramps/gui/fs/fs_import/tool.py:39
 msgid "FamilySearch Import Tool"
-msgstr ""
+msgstr "FamilySearch İçe Aktarma Aracı"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:465
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:637
 msgid "Match"
-msgstr ""
+msgstr "Eşleştir"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:466
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:638
-#, fuzzy
-#| msgid "Different database"
 msgid "Different"
-msgstr "Farklı veri tabanı"
+msgstr "Farklı"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:467
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in Gramps"
-msgstr "Sadece artık yıllarda"
+msgstr "Sadece Gramps üzerinde"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:468
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:639
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in FamilySearch"
-msgstr "Sadece artık yıllarda"
+msgstr "Sadece FamilySearch üzerinde"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:469
 msgid "Critical mismatch"
-msgstr ""
+msgstr "Kritik uyumsuzluk"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:473
 msgid ""
 "Tip: resize columns by dragging headers | scroll inside tabs | refresh to re-"
 "check FamilySearch"
 msgstr ""
+"İpucu: Sütun başlıklarını sürükleyerek sütunları yeniden boyutlandırın | "
+"sekmeler içinde kaydırın | FamilySearch'ü tekrar kontrol etmek için sayfayı "
+"yenileyin"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:487
-#, fuzzy
-#| msgid "Select a person for the report"
 msgid "Select a person first."
-msgstr "Rapor için bir kişi seçin"
+msgstr "Önce bir kişi seçin."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:491
 msgid "You must login first."
-msgstr ""
+msgstr "Önce giriş yapmalısınız."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:507
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve the selected person in the database."
-msgstr "Kişiyi silmek, kişiyi veri tabanından kaldıracaktır."
+msgstr "Seçilen kişi veri tabanında bulunamadı."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:514
 msgid ""
 "This Gramps person is not linked to FamilySearch yet. Use 'Link person'."
 msgstr ""
+"Bu Gramps adlı kişi henüz FamilySearch'e bağlı değil. 'Kişiyi bağla' "
+"seçeneğini kullanın."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:543
-#, fuzzy
-#| msgid "Remove child from family"
 msgid "Refresh from FamilySearch"
-msgstr "Çocuğu aileden kaldır"
+msgstr "FamilySearch üzerinden yenile"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:550
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:610
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Import sources..."
-msgstr "Arşiv içe aktarılıyor..."
+msgstr "Kaynaklar içe aktarılıyor..."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:580
-#, fuzzy
-#| msgid "Preview"
 msgid "Overview"
-msgstr "Önizleme"
+msgstr "Genel Bakış"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:600
 #: ../gramps/plugins/importer/importxml.py:351
@@ -17265,152 +17089,128 @@ msgstr "Yenile"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:693
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:727
 #: ../gramps/gui/fs/sync_directions.py:275
-#, fuzzy
-#| msgid "Gramps database"
 msgid "Gramps date"
-msgstr "Gramps veri tabanı"
+msgstr "Gramps tarihi"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:694
 #: ../gramps/gui/fs/sync_directions.py:276
-#, fuzzy
-#| msgid "Gramplet"
 msgid "Gramps value"
-msgstr "Gramplet"
+msgstr "Gramps değeri"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:695
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:730
 #: ../gramps/gui/fs/sync_directions.py:277
-#, fuzzy
-#| msgid "date"
 msgid "FS date"
-msgstr "tarih"
+msgstr "Dosya sistemi tarihi"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:696
 #: ../gramps/gui/fs/sync_directions.py:278
-#, fuzzy
-#| msgid "Family Gallery"
 msgid "FamilySearch value"
-msgstr "Aile Galerisi"
+msgstr "FamilySearch değeri"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:699
 #: ../gramps/gui/fs/sync_directions.py:281
 #, fuzzy
 #| msgid "Type"
 msgid "xType"
-msgstr "Tür"
+msgstr "xType"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:700
 #: ../gramps/gui/fs/sync_directions.py:282
 msgid "xGr"
-msgstr ""
+msgstr "xGr"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:701
 #: ../gramps/gui/fs/sync_directions.py:283
+#, fuzzy
 msgid "xFs"
-msgstr ""
+msgstr "xFs"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:702
 #: ../gramps/gui/fs/sync_directions.py:284
+#, fuzzy
 msgid "xGr2"
-msgstr ""
+msgstr "xGr2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:703
 #: ../gramps/gui/fs/sync_directions.py:285
+#, fuzzy
 msgid "xFs2"
-msgstr ""
+msgstr "xFs2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:713
 msgid "Scope"
-msgstr ""
+msgstr "Kapsam"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:716
-#, fuzzy
-#| msgid "Title"
 msgid "FS Title"
-msgstr "Başlık"
+msgstr "Dosya Sistemi Başlığı"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:726
 msgid "Kind"
-msgstr ""
+msgstr "Tür"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:728
-#, fuzzy
-#| msgid "Gramps item:"
 msgid "Gramps title"
-msgstr "Gramps ögesi:"
+msgstr "Gramps başlığı:"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:729
-#, fuzzy
-#| msgid "Gramps"
 msgid "Gramps URL"
-msgstr "Gramps"
+msgstr "Gramps URL"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:731
-#, fuzzy
-#| msgid "title"
 msgid "FS title"
-msgstr "başlik"
+msgstr "Dosya sistemi başlığı"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:732
-#, fuzzy
-#| msgid "Search URL"
 msgid "FS URL"
-msgstr "Arama URL"
+msgstr "Dosya sistemi URL adresi"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:734
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:303
-#, fuzzy
-#| msgid "Contributions by"
 msgid "Contributor"
-msgstr "Katkılar"
+msgstr "Katkıda bulunan"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:735
-#, fuzzy
-#| msgid "Modifier"
 msgid "Modified"
-msgstr "Değiştirici"
+msgstr "Değiştirildi"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:736
 msgid "FS ID"
-msgstr ""
+msgstr "Dosya Sistemi Kimliği"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:750
-#, fuzzy, python-brace-format
-#| msgid "Import failed"
+#, python-brace-format
 msgid "Compare failed: {e}"
-msgstr "İçe aktarma başarısız"
+msgstr "Karşılaştırma başarısız oldu: {e}"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:842
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:933
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:948
-#, fuzzy
-#| msgid "Missing Given Name"
 msgid "(missing in Gramps)"
-msgstr "Verilen Ad Eksik"
+msgstr "(Gramps içinde eksik)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1133
-#, fuzzy
-#| msgid "No mention"
 msgid "Mention"
-msgstr "Açıklama yok"
+msgstr "Bahsetme"
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:69
 msgid "FamilySearch is not configured (missing app key / redirect)."
 msgstr ""
+"FamilySearch yapılandırılmamış (uygulama anahtarı eksik / yönlendirme hatası)"
+"."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:82
 msgid "Already logged in to FamilySearch."
-msgstr ""
+msgstr "FamilySearch'e zaten giriş yapmış durumdayım."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:86
 msgid "Logged in to FamilySearch."
-msgstr ""
+msgstr "FamilySearch'e giriş yaptı."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:89
-#, fuzzy
-#| msgid "Saving failed"
 msgid "Login failed."
-msgstr "Kaydedilemedi"
+msgstr "Giriş başarısız oldu."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:92
 #, python-brace-format
@@ -17418,44 +17218,39 @@ msgid ""
 "Login failed:\n"
 "{err}"
 msgstr ""
+"Giriş başarısız:\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:338
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:176
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:181
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Import FamilySearch sources"
-msgstr "Soyağacını İçe Aktar"
+msgstr "FamilySearch kaynaklarını içe aktarın"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:468
-#, fuzzy, python-brace-format
-#| msgid "%s could not be imported"
+#, python-brace-format
 msgid ""
 "Some sources could not be imported:\n"
 "{errs}"
-msgstr "%s içe aktarılamadı"
+msgstr ""
+"Bazı kaynaklar içe aktarılamadı:\n"
+"{errs}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:115
 msgid "No FamilySearch sources found to import."
-msgstr ""
+msgstr "FamilySearch'ten içe aktarılacak kaynak bulunamadı."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:256
-#, fuzzy
-#| msgid "Selected"
 msgid "Detected"
-msgstr "Seçili"
+msgstr "Tespit edildi"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:274
-#, fuzzy
-#| msgid "Import"
 msgid "Import as"
-msgstr "İçe Aktar"
+msgstr "Farklı içe aktar"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:285
-#, fuzzy
-#| msgid "Date"
 msgid "FS Date"
-msgstr "Tarih"
+msgstr "Dosya Sistemi Tarihi"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:304
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:510
@@ -17464,73 +17259,53 @@ msgid "Images"
 msgstr "Görüntüler"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:312
-#, fuzzy
-#| msgid "Person Gallery"
 msgid "To Person gallery"
-msgstr "Kişi Galerisi"
+msgstr "Kişi galerisine"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:329
-#, fuzzy
-#| msgid "Action"
 msgid "Actions"
-msgstr "Eylem"
+msgstr "Eylemler"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:332
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage Images…"
-msgstr "Veri tabanlarını Yönet"
+msgstr "Görüntüleri Yönet…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:372
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:374
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage images"
-msgstr "Veri tabanlarını Yönet"
+msgstr "Görüntüleri yönetin"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:380
-#, fuzzy
-#| msgid "Add a new source"
 msgid "Add from source…"
-msgstr "Yeni kaynak ekle"
+msgstr "Kaynaktan ekle…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:381
 msgid "Open the source page and download images"
-msgstr ""
+msgstr "Kaynak sayfayı açın ve görüntüleri indirin"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:383
-#, fuzzy
-#| msgid "Choose font"
 msgid "Choose file…"
-msgstr "Yazı tipi seç"
+msgstr "Dosya seçin…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:384
 msgid "Pick existing files from disk"
-msgstr ""
+msgstr "Diskten mevcut dosyaları seçin"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:386
-#, fuzzy
-#| msgid "Rename failed"
 msgid "Rename files"
-msgstr "Yeniden adlandırılamadı"
+msgstr "Dosyaları yeniden adlandır"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:387
-#, fuzzy
-#| msgid "Remove the selected family event"
 msgid "Rename selected files on disk"
-msgstr "Seçili aile etkinliğini kaldır"
+msgstr "Disk üzerindeki seçili dosyaları yeniden adlandırın"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:426
-#, fuzzy
-#| msgid "File extension"
 msgid "Filename (without extension)"
-msgstr "Dosya uzantısı"
+msgstr "Dosya adı (uzantı olmadan)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:430
-#, fuzzy
-#| msgid "File extension"
 msgid "Extension"
-msgstr "Dosya uzantısı"
+msgstr "Uzantı"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:443
 msgid ""
@@ -17539,32 +17314,31 @@ msgid ""
 "• Extensions are preserved.\n"
 "• If a file with the new name exists, a numeric suffix will be added."
 msgstr ""
+"İpuçları:\n"
+"• Düzenlemek için adı çift tıklayın.\n"
+"• Dosya uzantıları korunur.\n"
+"• Yeni adla bir dosya zaten varsa, sayısal bir sonek eklenir."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:464
-#, fuzzy
-#| msgid "No map service is available."
 msgid "Image picker module is not available."
-msgstr "Harita hizmeti mevcut değildir."
+msgstr "Görüntü seçme modülü kullanılamıyor."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:471
-#, fuzzy
-#| msgid "Add Source (%s)"
 msgid "Add Source Image"
-msgstr "Kaynak Ekle (%s)"
+msgstr "Kaynak Görüntü Ekle"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:475
-#, fuzzy, python-brace-format
-#| msgid "Could not open file: %s"
+#, python-brace-format
 msgid ""
 "Could not open image picker:\n"
 "{e}"
-msgstr "Dosya açılamadı: %s"
+msgstr ""
+"Resim seçici açılamadı:\n"
+"{e}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:493
-#, fuzzy
-#| msgid "Close file first"
 msgid "Choose image file(s)"
-msgstr "Önce dosyayı kapat"
+msgstr "Resim dosya(lar)ını seçin"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:499
 #: ../gramps/gui/glade/mergedata.glade:170
@@ -17575,98 +17349,86 @@ msgid "Select"
 msgstr "Seç"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:588
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid ""
 "Rename failed for:\n"
 "{p}\n"
 "\n"
 "{err}"
-msgstr "Yeniden adlandırılamadı"
+msgstr ""
+"Yeniden adlandırma başarısız oldu:\n"
+"{p}\n"
+"\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:621
 #: ../gramps/gui/fs/sync_directions.py:658
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select all"
-msgstr "_Tümünü Seç"
+msgstr "Tümünü seç"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:642
 msgid ""
 "Tip: click “Manage Images…” to add/choose/rename files before importing."
 msgstr ""
+"İpucu: İçe aktarmadan önce dosya eklemek/seçmek/yeniden adlandırmak için "
+"\"Görüntüleri Yönet...\" seçeneğine tıklayın."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:684
 #, python-brace-format
 msgid "{n} source(s) imported."
-msgstr ""
+msgstr "{n} kaynak(lar) içe aktarıldı."
 
 #: ../gramps/gui/fs/sync_directions.py:337
-#, fuzzy
 msgid "Primary Name"
-msgstr "Birincil Rol:"
+msgstr "Birincil Ad"
 
 #: ../gramps/gui/fs/sync_directions.py:417
 #: ../gramps/gui/fs/sync_directions.py:443
-#, fuzzy, python-brace-format
-#| msgid "Note Filter"
+#, python-brace-format
 msgid "Note: {title}"
-msgstr "Not Süzgeci"
+msgstr "Not: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:418
 #: ../gramps/gui/fs/sync_directions.py:444
-#, fuzzy
-#| msgid "title"
 msgid "(untitled)"
-msgstr "başlik"
+msgstr "(başlıksız)"
 
 #: ../gramps/gui/fs/sync_directions.py:422
 #: ../gramps/gui/fs/sync_directions.py:447
 #: ../gramps/gui/fs/sync_directions.py:448
 #: ../gramps/gui/fs/sync_directions.py:700
 msgid "(empty)"
-msgstr ""
+msgstr "(boş)"
 
 #: ../gramps/gui/fs/sync_directions.py:582
 #: ../gramps/gui/fs/sync_directions.py:980
-#, fuzzy
-#| msgid "Source filter name:"
 msgid "Source from Gramps"
-msgstr "Kaynak süzgeç adı:"
+msgstr "Gramps üzerinden kaynak"
 
 #: ../gramps/gui/fs/sync_directions.py:593
-#, fuzzy
-#| msgid "_Delete Family"
 msgid "(deleted on FamilySearch)"
-msgstr "_Aileyi Sil"
+msgstr "(FamilySearch üzerinden silindi)"
 
 #: ../gramps/gui/fs/sync_directions.py:595
-#, fuzzy
-#| msgid "Submission: Family file"
 msgid "(missing on FamilySearch)"
-msgstr "Gönderim: Aile dosyası"
+msgstr "(FamilySearch üzerinde eksik)"
 
 #: ../gramps/gui/fs/sync_directions.py:597
 msgid "(not attached to this person on FamilySearch)"
-msgstr ""
+msgstr "(FamilySearch üzerinde bu kişiyle bağlantılı değil)"
 
 #: ../gramps/gui/fs/sync_directions.py:604
-#, fuzzy, python-brace-format
-#| msgid "Source: Title"
+#, python-brace-format
 msgid "Source: {title}"
-msgstr "Kaynak: Başlık"
+msgstr "Kaynak: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:625
-#, fuzzy
-#| msgid "Select Family"
 msgid "Sync to FamilySearch"
-msgstr "Aile Seç"
+msgstr "FamilySearch ile senkronize et"
 
 #: ../gramps/gui/fs/sync_directions.py:629
-#, fuzzy
-#| msgid "Selected"
 msgid "Apply Selected"
-msgstr "Seçili"
+msgstr "Seçilenleri uygula"
 
 #: ../gramps/gui/fs/sync_directions.py:641
 msgid ""
@@ -17674,51 +17436,46 @@ msgid ""
 "Default is to keep FamilySearch.\n"
 "<i>No deletions are performed.</i>"
 msgstr ""
+"<b>FamilySearch üzerinde neleri değiştirmek istediğinizi seçin</b>\n"
+"Varsayılan olarak FamilySearch korunur.\n"
+"<i>Hiçbir silme işlemi yapılmaz.</i>"
 
 #: ../gramps/gui/fs/sync_directions.py:649
-#, fuzzy
-#| msgid "Change Name"
 msgid "Change message:"
-msgstr "Adı Değiştir"
+msgstr "Mesajı değiştir:"
 
 #: ../gramps/gui/fs/sync_directions.py:678
 msgid "Field"
-msgstr ""
+msgstr "Alan"
 
 #: ../gramps/gui/fs/sync_directions.py:681 ../gramps/gui/undohistory.py:115
 msgid "Action"
 msgstr "Eylem"
 
 #: ../gramps/gui/fs/sync_directions.py:719
-#, fuzzy
-#| msgid "Merge Family"
 msgid "Keep FamilySearch"
-msgstr "Aileyi Birleştir"
+msgstr "FamilySearch'ü koruyun"
 
 #: ../gramps/gui/fs/sync_directions.py:722
-#, fuzzy
-#| msgid "Produced with Gramps"
 msgid "Overwrite with Gramps"
-msgstr "Gramps ile üretilmiştir"
+msgstr "Gramps ile üzerine yaz"
 
 #: ../gramps/gui/fs/sync_directions.py:724
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Add from Gramps"
-msgstr "Gramplet ekle"
+msgstr "Gramps üzerinden ekle"
 
 #: ../gramps/gui/fs/sync_directions.py:726
 msgid "Apply from Gramps"
-msgstr ""
+msgstr "Gramps tarafından uygula"
 
 #: ../gramps/gui/fs/sync_directions.py:777
 #: ../gramps/gui/fs/sync_directions.py:1342
 msgid "Not connected to FamilySearch."
-msgstr ""
+msgstr "FamilySearch ile bağlantılı değil."
 
 #: ../gramps/gui/fs/sync_directions.py:789
 msgid "No FamilySearch Person ID is set for this person."
-msgstr ""
+msgstr "Bu kişi için FamilySearch Kişi Kimliği ayarlanmamıştır."
 
 #: ../gramps/gui/fs/sync_directions.py:798
 msgid ""
@@ -17727,6 +17484,10 @@ msgid ""
 "Clear or replace the saved FSID before exporting again, or restore that "
 "FamilySearch person first."
 msgstr ""
+"Bu bağlantılı FamilySearch kişisi silindi/pasif durumda.\n"
+"\n"
+"Tekrar dışa aktarmadan önce kaydedilmiş dosya sistemi kimliğini temizleyin "
+"veya değiştirin ya da önce bu FamilySearch kişisini geri yükleyin."
 
 #: ../gramps/gui/fs/sync_directions.py:809
 msgid ""
@@ -17734,22 +17495,27 @@ msgid ""
 "\n"
 "Clear or replace the saved FSID before exporting again."
 msgstr ""
+"Bağlantılı FamilySearch kişisi bulunamadı.\n"
+"\n"
+"Tekrar dışa aktarmadan önce kaydedilmiş dosya sistemi kimliğini temizleyin "
+"veya değiştirin."
 
 #: ../gramps/gui/fs/sync_directions.py:819
 msgid "FamilySearch: Refresh merged ID"
-msgstr ""
+msgstr "FamilySearch: Birleştirilmiş kimlikleri yenile"
 
 #: ../gramps/gui/fs/sync_directions.py:834
 msgid ""
 "FamilySearch person could not be loaded fresh from the API.\n"
 "Try 'Sync from FamilySearch' or clear the cache, then try again."
 msgstr ""
+"FamilySearch kişisi API'den yeni olarak yüklenemedi.\n"
+"'FamilySearch'ten Senkronize Et' seçeneğini deneyin veya önbelleği "
+"temizleyin, ardından tekrar deneyin."
 
 #: ../gramps/gui/fs/sync_directions.py:862
-#, fuzzy
-#| msgid "No parents found"
 msgid "No pushable differences found."
-msgstr "Ebeveyn bulunamadı"
+msgstr "Önemli bir fark bulunamadı."
 
 #: ../gramps/gui/fs/sync_directions.py:897
 msgid ""
@@ -17757,27 +17523,29 @@ msgid ""
 "FamilySearch payload. This usually means the fact type could not be "
 "determined."
 msgstr ""
+"Farklılıklar bulundu, ancak hiçbiri geçerli bir FamilySearch veri paketine "
+"dönüştürülemedi. Bu genellikle olgu türünün belirlenemediği anlamına gelir."
 
 #: ../gramps/gui/fs/sync_directions.py:938
 msgid "FamilySearch update failed (names/facts)."
-msgstr ""
+msgstr "FamilySearch güncellemesi başarısız oldu (adlar/gerçekler)."
 
 #: ../gramps/gui/fs/sync_directions.py:961
 msgid "FamilySearch update failed (notes)."
-msgstr ""
+msgstr "FamilySearch güncellemesi başarısız oldu (notlar)."
 
 #: ../gramps/gui/fs/sync_directions.py:996
 #, python-brace-format
 msgid "FamilySearch source creation failed for: {t}"
-msgstr ""
+msgstr "FamilySearch kaynak oluşturma işlemi şu adres için başarısız oldu: {t}"
 
 #: ../gramps/gui/fs/sync_directions.py:1054
 msgid "FamilySearch update failed (sources)."
-msgstr ""
+msgstr "FamilySearch güncellemesi başarısız oldu (kaynaklar)."
 
 #: ../gramps/gui/fs/sync_directions.py:1097
 msgid "FamilySearch: Link uploaded memories"
-msgstr ""
+msgstr "FamilySearch: Yüklenen anıları bağla"
 
 #: ../gramps/gui/fs/sync_directions.py:1159
 #, python-format
@@ -17786,25 +17554,26 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Bazı anılar yüklenemedi:\n"
+"\n"
+"%s"
 
 #: ../gramps/gui/fs/sync_directions.py:1165
 msgid "FamilySearch updated successfully."
-msgstr ""
+msgstr "FamilySearch başarıyla güncellendi."
 
 #: ../gramps/gui/fs/sync_directions.py:1169
 #, python-brace-format
 msgid "FamilySearch sync failed: {e}"
-msgstr ""
+msgstr "FamilySearch senkronizasyonu başarısız oldu: {e}"
 
 #: ../gramps/gui/fs/sync_directions.py:1181
 msgid "Export to FamilySearch (basic)"
-msgstr ""
+msgstr "FamilySearch'e içe aktar (temel)"
 
 #: ../gramps/gui/fs/sync_directions.py:1186
-#, fuzzy
-#| msgid "Export:"
 msgid "Export"
-msgstr "Disari Vermek(_I)"
+msgstr "Dışa aktar"
 
 #: ../gramps/gui/fs/sync_directions.py:1198
 msgid ""
@@ -17812,18 +17581,19 @@ msgid ""
 "Basic export only: name + birth/death facts.\n"
 "<i>No deletions. Existing active linked people are not overwritten here.</i>"
 msgstr ""
+"<b>FamilySearch üzerinde kayıp kişileri oluşturun ve ilişkileri bağlayın.</b>"
+"\n"
+"Sadece temel dışa aktarma: ad + doğum/ölüm bilgileri.\n"
+"<i>Silme işlemi yok. Mevcut aktif bağlantılı kişilerin bilgileri burada "
+"üzerine yazılmaz.</i>"
 
 #: ../gramps/gui/fs/sync_directions.py:1205
-#, fuzzy
-#| msgid "Include places"
 msgid "Include parents"
-msgstr "Yerleri dahil et"
+msgstr "Ebeveynleri dahil edin"
 
 #: ../gramps/gui/fs/sync_directions.py:1206
-#, fuzzy
-#| msgid "Include spouses"
 msgid "Include spouse(s)"
-msgstr "Eşleri dahil et"
+msgstr "Eş(ler)i dahil edin"
 
 #: ../gramps/gui/fs/sync_directions.py:1207
 #: ../gramps/plugins/export/exportcsv.py:148
@@ -17833,197 +17603,168 @@ msgid "Include children"
 msgstr "Çocukları dahil et"
 
 #: ../gramps/gui/fs/sync_directions.py:1229
-#, fuzzy
-#| msgid "person"
 msgid "(person)"
-msgstr "kişi"
+msgstr "(kişi)"
 
 #: ../gramps/gui/fs/sync_directions.py:1248
-#, fuzzy
-#| msgid "the person"
 msgid "This person: "
-msgstr "kişi"
+msgstr "Bu kişi: "
 
 #: ../gramps/gui/fs/sync_directions.py:1276
 msgid "Create"
-msgstr ""
+msgstr "Oluştur"
 
 #: ../gramps/gui/fs/sync_directions.py:1282
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select all missing"
-msgstr "Var olan bir notu seçin"
+msgstr "Eksik olanların tümünü seç"
 
 #: ../gramps/gui/fs/sync_directions.py:1349
 msgid "Please save this person first."
-msgstr ""
+msgstr "Lütfen önce bu kişiyi kaydedin."
 
 #: ../gramps/gui/fs/sync_directions.py:1355
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve this person from the database."
-msgstr "Kişiyi silmek, kişiyi veri tabanından kaldıracaktır."
+msgstr "Bu kişi veri tabanından çözülemedi."
 
 #: ../gramps/gui/fs/sync_directions.py:1396
 msgid "FamilySearch: Export basic people"
-msgstr ""
+msgstr "FamilySearch: Temel kişileri dışa aktar"
 
 #: ../gramps/gui/fs/sync_directions.py:1435
 msgid "FamilySearch create failed for a person. Check name and connection."
 msgstr ""
+"FamilySearch üzerinde bir kişi için oluşturma işlemi başarısız oldu. Adı ve "
+"bağlantıyı kontrol edin."
 
 #: ../gramps/gui/fs/sync_directions.py:1557
 msgid ""
 "Export complete: created people and linked relationships on FamilySearch."
 msgstr ""
+"Dışa aktarma tamamlandı: FamilySearch üzerinde kişiler oluşturuldu ve "
+"ilişkiler bağlandı."
 
 #: ../gramps/gui/fs/sync_directions.py:1564
 msgid ""
 "Export complete: no new people were created; relationships were attempted."
 msgstr ""
+"Dışa aktarma tamamlandı: yeni kişi oluşturulmadı; ilişkiler kurulmaya "
+"çalışıldı."
 
 #: ../gramps/gui/fs/sync_directions.py:1569
-#, fuzzy
-#| msgid "No matching addons found."
 msgid "Nothing was exported."
-msgstr "Eşleşen eklenti bulunamadı."
+msgstr "Hiçbir şey dışa aktarılmadı."
 
 #: ../gramps/gui/fs/sync_directions.py:1573
 #, python-brace-format
 msgid "FamilySearch export failed: {e}"
-msgstr ""
+msgstr "FamilySearch dışa aktarma işlemi başarısız oldu: {e}"
 
 #: ../gramps/gui/fs/tools_window.py:314
-#, fuzzy
-#| msgid "Family To Do"
 msgid "FamilySearch Tools"
-msgstr "Aile Yapılacakları"
+msgstr "FamilySearch Araçları"
 
 #: ../gramps/gui/fs/tools_window.py:342 ../gramps/gui/fs/tools_window.py:661
-#, fuzzy
-#| msgid "Edit Person (%s)"
 msgid "Editor person: (none)"
-msgstr "Kişi Düzenle (%s)"
+msgstr "Düzenleyici kişi: (yok)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Person Citations"
 msgid "Person actions"
-msgstr "Kişi Alıntıları"
+msgstr "Kişi eylemleri"
 
 #: ../gramps/gui/fs/tools_window.py:363
-#, fuzzy
-#| msgid "Co_mpare"
 msgid "Compare"
-msgstr "Karşı_laştırmak"
+msgstr "Karşılaştırma"
 
 #: ../gramps/gui/fs/tools_window.py:364
 msgid "Sync from FamilySearch"
-msgstr ""
+msgstr "FamilySearch üzerinden senkronize et"
 
 #: ../gramps/gui/fs/tools_window.py:367
 msgid "Sync to FamilySearch..."
-msgstr ""
+msgstr "FamilySearch ile senkronize et..."
 
 #: ../gramps/gui/fs/tools_window.py:369
 msgid "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
 msgstr ""
+"Seçilen FamilySearch alanlarını Gramps değerleriyle değiştirin (silme işlemi "
+"yapılmaz)."
 
 #: ../gramps/gui/fs/tools_window.py:372
 msgid "Export to FamilySearch (basic)..."
-msgstr ""
+msgstr "FamilySearch üzerine içe aktar (temel)..."
 
 #: ../gramps/gui/fs/tools_window.py:375
 msgid ""
 "Create missing people on FamilySearch and link relationships (name + birth/"
 "death)."
 msgstr ""
+"FamilySearch üzerinde kayıp kişiler oluşturun ve ilişkileri (ad + doğum/"
+"ölüm) bağlayın."
 
 #: ../gramps/gui/fs/tools_window.py:389
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import relatives"
-msgstr "İçe aktarma başarısız"
+msgstr "Akrabaları içe aktar"
 
 #: ../gramps/gui/fs/tools_window.py:393
-#, fuzzy
-#| msgid "Import Pro-Gen"
 msgid "Import Parents"
-msgstr "Pro-Gen'i İçe Aktar"
+msgstr "Ebeveynleri içe aktar"
 
 #: ../gramps/gui/fs/tools_window.py:394
-#, fuzzy
-#| msgid "Indent Spouses"
 msgid "Import Spouse"
-msgstr "Girintili Eşler"
+msgstr "Eşi içe aktar"
 
 #: ../gramps/gui/fs/tools_window.py:395
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import Children"
-msgstr "İçe aktarma başarısız"
+msgstr "Çocukları içe aktar"
 
 #: ../gramps/gui/fs/tools_window.py:400 ../gramps/gui/plug/tool.py:71
 msgid "Utilities"
 msgstr "Donatılar"
 
 #: ../gramps/gui/fs/tools_window.py:403
-#, fuzzy
-#| msgid "Tags"
 msgid "Tags..."
-msgstr "Etiketler"
+msgstr "Etiketler..."
 
 #: ../gramps/gui/fs/tools_window.py:404
-#, fuzzy
-#| msgid "Cleared"
 msgid "Clear Cache"
-msgstr "Temizlendi"
+msgstr "Önbelleği temizle"
 
 #: ../gramps/gui/fs/tools_window.py:674
-#, fuzzy, python-format
-#| msgid "%(persons)s and %(name)s (%(id)s)"
+#, python-format
 msgid "Editor person: %(name)s  [%(gid)s]"
-msgstr "%(persons)s ve %(name)s (%(id)s)"
+msgstr "Düzenleyici kişi: %(name)s  [%(gid)s]"
 
 #: ../gramps/gui/fs/tools_window.py:682
-#, fuzzy, python-format
-#| msgid "Person: %(name)s"
+#, python-format
 msgid "Editor person: %(name)s"
-msgstr "Kişi: %(name)s"
+msgstr "Düzenleyici kişi: %(name)s"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
 msgid "Build FSID list (1/%(total)d)"
-msgstr ""
+msgstr "Dosya sistemi kimliği listesini oluştur (1/%(total)d)"
 
 #: ../gramps/gui/fs/utils/index.py:57 ../gramps/gui/fs/utils/index.py:61
-#, fuzzy, python-format
-#| msgid "Family places for %s"
+#, python-format
 msgid "FamilySearch duplicate ID: %s "
-msgstr "%s için aile yerleri"
+msgstr "FamilySearch yinelenen kimlik: %s: %s "
 
 #: ../gramps/gui/fs/utils/index.py:60
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Duplicate FSFTID"
-msgstr "Yinelenen Aile"
+msgstr "Yinelenen FamilySearch aile ağacı tanımlayıcısı"
 
 #: ../gramps/gui/fs/utils/index.py:62
-#, fuzzy
-#| msgid "Continue"
 msgid "_Continue warning"
-msgstr "Devam et"
+msgstr "_Uyarıya devam et"
 
 #: ../gramps/gui/fs/utils/index.py:63
-#, fuzzy
-#| msgid "Undo history warning"
 msgid "_Stop warning"
-msgstr "Geçmiş uyarısını geri al"
+msgstr "_Uyarıyı durdur"
 
 #: ../gramps/gui/fs/utils/index.py:73
 #, python-format
 msgid "Build FSID list for places (2/%(total)d)"
-msgstr ""
+msgstr "Yerler için dosya sistemi kimliği listesini oluştur (2/%(total)d)"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19045,11 +18786,9 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
-msgstr "_Ad:"
+msgstr "_Verilen ad:"
 
 #: ../gramps/gui/glade/editname.glade:204
 #: ../gramps/gui/glade/editperson.glade:195
@@ -20441,10 +20180,8 @@ msgid "_Family Trees"
 msgstr "_Soyağaçları"
 
 #: ../gramps/gui/grampsgui.py:57
-#, fuzzy
-#| msgid "Searching..."
 msgid "_FamilySearch Sign in..."
-msgstr "Aranıyor..."
+msgstr "FamilySearch içine giriş yapın..."
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Go"
@@ -20575,6 +20312,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Python, locale modülünde gettext desteği olmadan derlendi.\n"
+"\n"
+"Gramps şimdi sonlandırılacak."
 
 #: ../gramps/gui/grampsgui.py:507
 msgid "Gramps detected an incomplete GTK installation"
@@ -22405,10 +22145,8 @@ msgid "Cannot open new citation editor"
 msgstr "Yeni alıntı düzenleyicisi açılamıyor"
 
 #: ../gramps/gui/viewmanager.py:348
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch tools"
-msgstr "Aile Renkleri"
+msgstr "FamilySearch araçları"
 
 #: ../gramps/gui/viewmanager.py:391 ../gramps/gui/viewmanager.py:1237
 msgid "No Family Tree"
@@ -22416,19 +22154,15 @@ msgstr "Soyağacı Yok"
 
 #: ../gramps/gui/viewmanager.py:407
 msgid "Not logged in to FamilySearch."
-msgstr ""
+msgstr "FamilySearch içine giriş yapmadınız."
 
 #: ../gramps/gui/viewmanager.py:553
-#, fuzzy
-#| msgid "Use complete sentences"
 msgid "User consent declined"
-msgstr "Tam cümleler kullanın"
+msgstr "Kullanıcı onayı reddedildi"
 
 #: ../gramps/gui/viewmanager.py:561
-#, fuzzy
-#| msgid "Configuration error:"
 msgid "Authorization error"
-msgstr "Yapılandırma hatası:"
+msgstr "Yetkilendirme hatası"
 
 #: ../gramps/gui/viewmanager.py:681
 msgid "Registering plugins..."
@@ -25681,13 +25415,13 @@ msgstr "Kişi toplamı"
 #, fuzzy
 #| msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets/tr#Gramplet_List"
+msgstr "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
 #, fuzzy
 #| msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_6.0_Wiki_Manual_-_Tools/tr#Debug"
+msgstr "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:50
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:58
@@ -25714,55 +25448,39 @@ msgstr "Tarihte belirli tarihlerde takvimi ve etkinlikleri gösteren Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:98
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:105
-#, fuzzy
-#| msgid "Web Calendar"
 msgid "Person's birth Calendar"
-msgstr "Web Takvimi"
+msgstr "Kişinin doğum takvimi"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:99
-#, fuzzy
-#| msgid "Gramplet showing the notes for a person"
 msgid "Gramplet showing the birth for a person on the calendar"
-msgstr "Bir kişi için notları gösteren Gramplet"
+msgstr "Gramplet, takvimde bir kişinin doğum tarihini gösteriyor"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:113
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:120
-#, fuzzy
-#| msgid "person's death"
 msgid "Person's death Calendar"
-msgstr "kişinin ölümü"
+msgstr "Kişinin ölüm takvimi"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:114
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the death for a person on the calendar"
-msgstr "Kişinin etkinliklerini gösteren Gramplet"
+msgstr "Gramplet takvimde bir kişinin ölümünü gösteriyor"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:128
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
-#, fuzzy
-#| msgid "My Family Calendar"
 msgid "Family Calendar"
-msgstr "Aile Takvimim"
+msgstr "Aile Takvimi"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:129
-#, fuzzy
-#| msgid "Gramplet showing the notes for a family"
 msgid "Gramplet showing the marriage for a family on the calendar"
-msgstr "Ailenin notlarını gösteren Gramplet"
+msgstr "Gramplet, takvimde bir ailenin evliliğini gösteriyor"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:143
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:150
-#, fuzzy
-#| msgid "vCalendar"
 msgid "Event Calendar"
-msgstr "vCalendar"
+msgstr "Etkinlik Takvimi"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:144
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Gramplet showing the date for an event on the calendar"
-msgstr "Bir etkinlik için notları gösteren Gramplet"
+msgstr "Gramplet, takvimde bir etkinliğin tarihini gösteriyor"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:158
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
@@ -27810,16 +27528,12 @@ msgid "Whether to include dates and/or places"
 msgstr "Tarihlerin ve/veya yerlerin dahil edilip edilmeyeceği"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:984
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only valid dates"
-msgstr "_Geçersiz tarihleri tanımlayın"
+msgstr "Yalnızca geçerli tarihler"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:985
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only show valid dates."
-msgstr "_Geçersiz tarihleri tanımlayın"
+msgstr "Yalnızca geçerli tarihleri göster."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:988
 msgid "Show all family nodes"
@@ -34814,10 +34528,8 @@ msgstr "Görünüm seçmek için tıklayın"
 #: ../gramps/plugins/sidebar/favoritessidebar.py:79
 #: ../gramps/plugins/sidebar/favoritessidebar.py:81
 #: ../gramps/plugins/sidebar/favoritessidebar.py:219
-#, fuzzy
-#| msgid "Choose your dialect"
 msgid "Choose your favorite views"
-msgstr "Lehçenizi seçin"
+msgstr "En sevdiğiniz görünümleri seçin"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:85
 #: ../gramps/plugins/tool/mediamanager.py:94
@@ -34826,20 +34538,17 @@ msgid "Help"
 msgstr "Yardım"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:86
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select All"
-msgstr "_Tümünü Seç"
+msgstr "Tümünü seç"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:87
-#, fuzzy
-#| msgid "Clear _All"
 msgid "Clear All"
-msgstr "Hepsini _Temizle"
+msgstr "Tümünü temizle"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:136
+#, fuzzy
 msgid "Switching_Navigator_modes"
-msgstr ""
+msgstr "Switching_Navigator_modes"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
 msgid "Category Sidebar"
@@ -34878,20 +34587,16 @@ msgid "Expander"
 msgstr "Genişletici"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:82
-#, fuzzy
-#| msgid "Category Sidebar"
 msgid "Favorites Sidebar"
-msgstr "Kategori Kenar Çubuğu"
+msgstr "Favoriler Kenar Çubuğu"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:83
-#, fuzzy
-#| msgid "Selection of views from lists with expanders"
 msgid "Selection of views from a views selector"
-msgstr "Genişleticili listelerden görünüm seçimi"
+msgstr "Görünüm seçiciden görünümlerin seçimi"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:91
 msgid "Favorites"
-msgstr ""
+msgstr "Favoriler"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:73
 #: ../gramps/plugins/textreport/textplugins.gpr.py:412
@@ -36725,10 +36430,14 @@ msgstr "Notlarda hatalı ilişimleri kontrol etme"
 #: ../gramps/plugins/tool/check.py:2581
 msgid "Coalescing duplicate roles in events referenced by people"
 msgstr ""
+"Kişiler tarafından referans verilen etkinliklerdeki yinelenen roller "
+"birleştiriliyor"
 
 #: ../gramps/plugins/tool/check.py:2602
 msgid "Coalescing duplicate roles in events referenced by families"
 msgstr ""
+"Aileler tarafından referans verilen etkinliklerdeki yinelenen roller "
+"birleştiriliyor"
 
 #: ../gramps/plugins/tool/check.py:2775
 msgid "No errors were found"
@@ -36956,6 +36665,8 @@ msgstr "%d hatalı Not İlişimleri düzeltildi;\n"
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
+"%(names)d adet yinelenen olay rolü adı birleştirildi. %(refs)d adet referans "
+"güncellendi\n"
 
 #: ../gramps/plugins/tool/check.py:3191
 msgid "Integrity Check Results"
@@ -40429,40 +40140,37 @@ msgstr "Dosya Türü"
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for people: %(people)s"
-msgstr ""
+msgstr "%(idx)s - insanlar için: %(people)s"
 
 #: ../gramps/plugins/webreport/media.py:736
-#, fuzzy, python-format
-#| msgid "%(person)s was restored to the family of %(family)s\n"
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for family: %(family)s"
-msgstr "%(person)s, %(family)s ailesine geri yüklendi\n"
+msgstr "%(idx)s - aile için: %(family)s"
 
 #: ../gramps/plugins/webreport/media.py:760
-#, fuzzy, python-format
-#| msgid "%(eventtype)s : %(name)s"
+#, python-format
 msgctxt "name"
 msgid "%(idx)s - for event: %(event)s: %(name)s"
-msgstr "%(eventtype)s : %(name)s"
+msgstr "%(idx)s - etkinlik için: %(event)s: %(name)s"
 
 #: ../gramps/plugins/webreport/media.py:775
-#, fuzzy, python-format
-#| msgid "%(date)s - %(place)s."
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for place: %(place)s"
-msgstr "%(date)s - %(place)s."
+msgstr "%(idx)s - yer için: %(place)s"
 
 #: ../gramps/plugins/webreport/media.py:790
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for source: %(source)s"
-msgstr ""
+msgstr "%(idx)s - kaynak için: %(source)s"
 
 #: ../gramps/plugins/webreport/media.py:808
 #, python-format
 msgctxt "source"
 msgid "%(idx)s - for citation: %(citation)s from %(source)s"
-msgstr ""
+msgstr "%(idx)s - alıntı için: %(citation)s < %(source)s"
 
 #: ../gramps/plugins/webreport/media.py:919
 msgid "Missing media object:"
@@ -40696,14 +40404,14 @@ msgid "The maximum number of rows to include in an index page"
 msgstr "Bir dizin sayfasına dahil edilecek en fazla satır sayısı"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2259
-#, fuzzy
-#| msgid "Allow editing database owner information."
 msgid "Allow internet indexation."
-msgstr "Veri tabanı sahibi bilgilerini düzenlemeye izin ver."
+msgstr "İnternet dizinlemesine izin ver."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Allow search engines (Google, Bing, etc.) to index your website."
 msgstr ""
+"Arama motorlarının (Google, Bing, vb.) web sitenizi dizine eklemesine izin "
+"verin."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2272
 msgid "Extra Pages"
@@ -41285,13 +40993,7 @@ msgid "openlayers version to use"
 msgstr "kullanılacak açık katman sürümü"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2800
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "You should use this option only if you can't see the maps in your website "
-#| "for OpenStreetMap or Stamen maps\n"
-#| "You can change the value in the specified file. The option name to modify "
-#| "is openlayers_version.\n"
-#| "See OLDER VERSIONS in https://openlayers.org/"
+#, python-brace-format
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -41299,11 +41001,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in {openlayers_url}"
 msgstr ""
-"Bu seçeneği yalnızca web sitenizde OpenStreetMap veya Stamen haritaları için "
-"haritaları göremiyorsanız kullanmalısınız.\n"
+"Bu seçeneği yalnızca web sitenizdeki OpenStreetMap veya Stamen haritalarını "
+"göremiyorsanız kullanmalısınız\n"
 "Belirtilen dosyadaki değeri değiştirebilirsiniz. Değiştirilecek seçenek adı "
-"openlayers_version'dur.\n"
-"https://openlayers.org/ adresindeki ESKİ SÜRÜMLERE bakın"
+"openlayers_version öğesidir.\n"
+"{openlayers_url} adresinde ESKİ SÜRÜMLERİ görün"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2817
 msgid "Other inclusion (CMS, web calendar, PHP)"
