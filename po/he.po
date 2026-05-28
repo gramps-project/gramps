@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-05-25 06:11+0000\n"
+"PO-Revision-Date: 2026-05-28 17:11+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -245,13 +245,13 @@ msgstr "מערכת חקר יוחסין"
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr "ניהול מידע חקר־ יוחסין, ביצוע מחקר וניתוח"
+msgstr "ניהול מידע חקר־יוחסין, ביצוע מחקר וניתוח"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr ""
 "חקר־יוחסין;חקר יוחסין;גנאלוגיה;גינאולוגיה;גיניאולוגיה;היסטוריה "
-"משפחתית;מחקר;אילן־יוחסין;אילן יוחסין;ג'דקום;GEDCOM;יוחסין;משפחה;עץ־יוחסין;עץ "
+"משפחתית;מחקר;אילן־יוחסין;אילן־יוחסין;ג'דקום;GEDCOM;יוחסין;משפחה;עץ־יוחסין;עץ "
 "יוחסין; קשר משפחתי; ג׳דקום;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
@@ -260,8 +260,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"גרמפס הוא מיזם פתוח תוכנת חקר־יוחסין שמיועדת לחוקרי־יוחסין (גנאולוגים) "
-"חובבים ומקצוענים כאחד, זאת בזכות התכונות הרבות שלה ומbשק המשתמש הנוח."
+"גרמפס הוא מיזם פתוח תוכנת חקר־יוחסין שמיועדת לחוקרי־יוחסין (גנאלוגים) חובבים "
+"ומקצוענים כאחד, זאת בזכות התכונות הרבות שלה ומbשק המשתמש הנוח."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -372,7 +372,7 @@ msgstr "חבילת גרמפס"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
 msgid "Gramps XML database"
-msgstr "מסד נתונים גרמפס XML"
+msgstr "מסד־נתונים גרמפס XML"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
@@ -892,7 +892,7 @@ msgstr ""
 "<b>תסדיר קובץ GEDCOM<br/></b>גרמפס מאפשרת לייבא ולייצא תסדיר GEDCOM. התעשייה "
 "מספקת תמיכה נרחבת לתקן GEDCOM גרסה 5.5, כך שניתן להחליף מידע בין גרמפס "
 "ואנשים אחרים המשתמשים בתוכנות חקר־יוחסין אחרות. מסננים מובנים הופכים את "
-"ייבוא ויצוא קבצי ה־GEDCOM למשימה פשוטה."
+"ייבוא וייצוא קבצי ה־GEDCOM למשימה פשוטה."
 
 #: ../data/tips.xml:93
 msgid ""
@@ -952,7 +952,7 @@ msgid ""
 "which toggles records between private and public."
 msgstr ""
 "<b>הפרטיות בגרמפס<br/></b>גרמפס מסייע בשמירה על אבטחת המידע האישי, בכך שהוא "
-"מאפשר סימון מידע כפרטי. ניתן להחריג נתונים המסומנים כפרטי בדוחות וביצוא "
+"מאפשר סימון מידע כפרטי. ניתן להחריג נתונים המסומנים כפרטי בדוחות ובייצוא "
 "נתונים. סמל ה'מנעול' בורר בין רשומות פרטיות או ציבוריות."
 
 #: ../data/tips.xml:105
@@ -1154,7 +1154,7 @@ msgstr "שגיאה: לא נמצא הקובץ לייבוא %s."
 #: ../gramps/cli/arghandler.py:283
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
-msgstr "שגיאה: סוג לא מזוהה: '%(format)s' לקובץ יבוא: %(filename)s"
+msgstr "שגיאה: סוג לא מזוהה: '%(format)s' לקובץ ייבוא: %(filename)s"
 
 #: ../gramps/cli/arghandler.py:306
 #, python-format
@@ -1397,19 +1397,19 @@ msgstr ""
 " הגדרת אפשרויות\t\t\t\t\t\t\t\t\t\t\t\t\tp,--options=OPTIONS_STRING-\n"
 " אפשור יומני ניפוי־תקלים \t\t\t\t\t\t\t\t\t\t\t\td, --debug=LOGGER_NAME-\n"
 " רשימת אילנות־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\tl [FAMILY_TREE_PATTERN ...]-\n"
-" רשימת אילנות־יוחסין מפורטת \t\t\t\t\t\t\t\t\t\t\tL "
-"[FAMILY_TREE_PATTERN ...]-\n"
+" רשימת אילנות־יוחסין מפורטת \t\t\t\t\t\t\t\t\t\t\tL [FAMILY_TREE_PATTERN "
+"...]-\n"
 " רשימת אילנות־יוחסין, מופרדים בתו 'טבלר' \t\t\t\t\t\t\t\tt "
 "[FAMILY_TREE_PATTERN...]-\n"
-" אילוץ ביטול נעילת אילן־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\t\tu, --force-"
-"unlock-\n"
+" אילוץ ביטול נעילת אילן־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\t\tu, --force-unlock-"
+"\n"
 " הצגת הגדרות תצורה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-s, --show-\n"
 " קביעת הגדרות תצורה ואיתחול גרמפס\t\t\t\t\t\t      c, --"
 "config=[config.setting [: value]]-\n"
-" ויתור על בקשת אפשור פעולות מסוכנות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\ty, "
-"--yes-\n"
-" דיכוי פלט חיווי התקדמות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\t\t\tq, --"
-"quiet-\n"
+" ויתור על בקשת אפשור פעולות מסוכנות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\t"
+"y, --yes-\n"
+" דיכוי פלט חיווי התקדמות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\t\t\tq, --quiet-"
+"\n"
 " פלט גרסת חבילה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    v, --version-\n"
 " איתחול ב'מצב בטוח' \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t          S, --safe-\n"
 "    (שימוש זמני בהגדרות ברירת מחדל)\n"
@@ -1481,25 +1481,25 @@ msgstr ""
 "\n"
 "דוגמאות לשימוש בממשק שורת הפקודה של גרמפס\n"
 "\n"
-"1. ליבוא ארבעה מסדי נתונים (את התסדיר ניתן לקבוע מתןך שמם)\n"
+"1. לייבוא ארבעה מסדי נתונים (את התסדיר ניתן לקבוע מתןך שמם)\n"
 "ובדיקת שגיאות מסד־נתונים כתוצאה, ניתן להקליד:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~ / db3.gramps -i file4.wft -a tool -p "
 "name = check.\n"
 "\n"
 "2. להגדרת תסדיר מפורשת בדוגמה לעיל, ניתן להוסיף לפקודה שמות קבצים בלווית "
 "אפשרות 'f-' המתאימה:\n"
-"gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~ / db3.gramps "
-"-f gramps -i file4.wft -f wft -a tool -p name = check.\n"
+"gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~ / db3.gramps -"
+"f gramps -i file4.wft -f wft -a tool -p name = check.\n"
 "\n"
-"3. לרישום רשומות תוצאת היבוא למסד הנתונים, ניתן להשתמש דגל 'e-'\n"
+"3. לרישום רשומות תוצאת הייבוא למסד הנתונים, ניתן להשתמש דגל 'e-'\n"
 "(נא להשתמש ב־f אם שם הקובץ לא מאפשר לגרמפס לנחש את התבנית):\n"
 "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
 "\n"
 "4. לשמירת הודעות שגיאה מהדוגמה שלעיל בקבצים outfile ו־errfile, נא להריץ:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
-"5. ליבוא שלושה מסדי נתונים ואתחול שיח גרמפס הִדּוּדִי עם התוצאה:\n"
+"5. לייבוא שלושה מסדי נתונים ואתחול שיח גרמפס הִדּוּדִי עם התוצאה:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
 "\n"
 "6. לפתיחת מסד־נתונים, ובהתבסס על הנתונים, ליצור דוח ציר זמן בתסדיר PDF\n"
@@ -1609,7 +1609,7 @@ msgstr "נתיב"
 
 #: ../gramps/cli/clidbman.py:178 ../gramps/gen/plug/_pluginreg.py:130
 msgid "Database"
-msgstr "מסד נתונים"
+msgstr "מסד־נתונים"
 
 #: ../gramps/cli/clidbman.py:179 ../gramps/gui/dbman.py:433
 msgid "Last accessed"
@@ -1803,7 +1803,7 @@ msgstr "שגיאה: %s"
 #: ../gramps/cli/grampscli.py:106 ../gramps/cli/user.py:218
 #: ../gramps/gui/dialog.py:316
 msgid "Low level database corruption detected"
-msgstr "זוהתה פגיעה ברמה נמוכה במסד נתונים"
+msgstr "זוהתה פגיעה ברמה נמוכה במסד־נתונים"
 
 #: ../gramps/cli/grampscli.py:109 ../gramps/cli/user.py:220
 #: ../gramps/gui/dialog.py:318
@@ -1817,7 +1817,7 @@ msgstr ""
 
 #: ../gramps/cli/grampscli.py:158 ../gramps/gui/dbloader.py:164
 msgid "Read only database"
-msgstr "מסד נתונים לקריאה בלבד"
+msgstr "מסד־נתונים לקריאה בלבד"
 
 #: ../gramps/cli/grampscli.py:159 ../gramps/gui/dbloader.py:165
 #: ../gramps/gui/dbloader.py:509
@@ -2062,7 +2062,7 @@ msgstr ""
 
 #: ../gramps/gen/config.py:305
 msgid "Imported %Y/%m/%d %H:%M:%S"
-msgstr "יבוא %Y/%m/%d %H:%M:%S"
+msgstr "ייבוא %Y/%m/%d %H:%M:%S"
 
 #: ../gramps/gen/config.py:317
 msgid "Missing Given Name"
@@ -3131,15 +3131,15 @@ msgstr ""
 "ללא שדרוג גרסת הסכימה שלו.\n"
 "\n"
 "במידה ויתבצע שדרוג, לא ניתן יהיה להשתמש בגרסה הקודמת של גרמפס, גם אם לאחר "
-"מכן יתבצע %(wiki_manual_backup_html_start)sגיבוי%(html_end)s או "
-"%(wiki_manual_export_html_start)sיצוא%(html_end)s של אילן־היוחסין.\n"
+"מכן יתבצע %(wiki_manual_backup_html_start)sגיבוי%(html_end)s או %"
+"(wiki_manual_export_html_start)sייצוא%(html_end)s של אילן־היוחסין.\n"
 "\n"
 "שדרוג כרוך במשימה קשה, שעלולה להשחית את אילן־היוחסין ללא אפשרות תיקון, במידה "
 "והשדרוג נקטע או כשל.\n"
 "\n"
-"במידה ועדין לא בוצע גיבוי לאילן־יוחסין, נא להתחיל את "
-"%(bold_start)sold%(bold_end)s גרסת גרמפס ו%(wiki_backup_html_start)sלבצע "
-"גיבוי%(html_end)s לאילן־היוחסין."
+"במידה ועדין לא בוצע גיבוי לאילן־יוחסין, נא להתחיל את %(bold_start)sold%"
+"(bold_end)s גרסת גרמפס ו%(wiki_backup_html_start)sלבצע גיבוי%(html_end)s "
+"לאילן־היוחסין."
 
 #: ../gramps/gen/db/exceptions.py:194
 #, python-format
@@ -3150,7 +3150,7 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
-"התחברות למסד נתונים כשלה.\n"
+"התחברות למסד־נתונים כשלה.\n"
 "\n"
 "‫%(message)s\n"
 "נא לבדוק את קובץ הגדרות ההתחברות:\n"
@@ -3177,14 +3177,14 @@ msgstr ""
 "אילן־היוחסין שנטען כעת הוא מסד־נתונים מסוג %(dbtype)s, שאינו נתמך עוד.\n"
 "לכן לא ניתן לטעון אילן־יוחסין זה, ללא שדרוג.\n"
 "\n"
-"לאחר שדרוג, לא ניתן יהיה עוד להשתמש בגרסה הקודמת של גרמפס, גם לאחר "
-"%(wiki_manual_backup_html_start)sגיבוי%(html_end)s או "
-"%(wiki_manual_export_html_start)sייצוא%(html_end)ss אילן־היוחסין ששודרג.\n"
+"לאחר שדרוג, לא ניתן יהיה עוד להשתמש בגרסה הקודמת של גרמפס, גם לאחר %"
+"(wiki_manual_backup_html_start)sגיבוי%(html_end)s או %"
+"(wiki_manual_export_html_start)sייצוא%(html_end)ss אילן־היוחסין ששודרג.\n"
 "\n"
 "מומלץ בחום לגבות את אילן־היוחסין.\n"
 "\n"
-"אם אילן־היוחסין טרם גובה, יש לאתחל את גרמפס בגרסה הקודמת "
-"ו%(wiki_backup_html_start)sלגבות%(html_end)s) את אילן־היוחסין."
+"אם אילן־היוחסין טרם גובה, יש לאתחל את גרמפס בגרסה הקודמת ו%"
+"(wiki_backup_html_start)sלגבות%(html_end)s) את אילן־היוחסין."
 
 #: ../gramps/gen/db/generic.py:229 ../gramps/gen/db/generic.py:279
 #: ../gramps/gen/db/generic.py:2311
@@ -3761,7 +3761,7 @@ msgstr "תג:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
 msgid "Objects with notes with a specified tag."
-msgstr "עצמים עם הערות עם תג מסויים"
+msgstr "עצמים עם הערות עם תג מסוים"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
 msgid "Matches notes with a specified tag"
@@ -3777,7 +3777,7 @@ msgstr "סוג הערה:"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:55
 msgid "Objects with notes with the particular type"
-msgstr "עצמים עם הערות עם הסוג המסויים"
+msgstr "עצמים עם הערות עם הסוג המסוים"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:56
 #: ../gramps/gen/filters/rules/note/_hastype.py:57
@@ -3989,7 +3989,7 @@ msgstr "מובאות עם הערות עם <תג>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
 msgid "Matches citations with a note with a specified tag"
-msgstr "‪איתור מובאות עם הערה עם תג מסויים"
+msgstr "‪איתור מובאות עם הערה עם תג מסוים"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4016,7 +4016,7 @@ msgstr "מובאות עם הערות מסוג <סוג>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
 msgid "Matches citations with a note of the specified type"
-msgstr "‪איתור מובאות עם הערה מסוג מסויים"
+msgstr "‪איתור מובאות עם הערה מסוג מסוים"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:44
 msgid "Citations with a reference count of <count>"
@@ -4597,7 +4597,7 @@ msgstr "משפחות עם <מונה> אירועים מורמוניים"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:50
 msgid "Matches families with a certain number of LDS events"
-msgstr "איתור משפחות להן מספר אירועי LDS (מורמוניים) מסויים"
+msgstr "איתור משפחות להן מספר אירועי LDS (מורמוניים) מסוים"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:46
 msgid "Families having <count> notes"
@@ -4637,7 +4637,7 @@ msgstr "משפחות עםסוג הערה <סוג>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
 msgid "Matches families with a note of the specified type"
-msgstr "איתור משפחות עם הערה מסוג מסויים"
+msgstr "איתור משפחות עם הערה מסוג מסוים"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:43
 msgid "Families with a reference count of <count>"
@@ -4929,10 +4929,8 @@ msgid "Matches media with a note with a specified tag"
 msgstr "תואם למדיה עם הערה ותגית משויכת"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "אירועים עם סוג מסוג ב<סוג>"
+msgstr "מדיה עם הערה מסוג <סוג>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
 msgid "Matches media with a note of a specified type"
@@ -5321,7 +5319,7 @@ msgstr "אנשים עם <מונה> פרטי מדיה"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:44
 msgid "Matches people with a certain number of items in the gallery"
-msgstr "איתור אנשים עם מספר פריטי גלריה מסויים"
+msgstr "איתור אנשים עם מספר פריטי גלריה מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:46
 #: ../gramps/gen/filters/rules/person/_matchidof.py:54
@@ -5339,7 +5337,7 @@ msgstr "אנשים עם <מונה> אירועים מורמוניים"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:50
 msgid "Matches people with a certain number of LDS events"
-msgstr "איתור אנשים עם מספר מסוים אירועי LDS (מורמוניים) מסויים"
+msgstr "איתור אנשים עם מספר מסוים אירועי LDS (מורמוניים) מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:56
 msgid "Given name:"
@@ -5458,16 +5456,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "איתור אנשים להם הערות שמכילות מלל שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with the <tag>"
-msgstr "אנשים עם הערה מסוג <סוג>"
+msgstr "אנשים עם הערה מסוג <תג>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "איתור אנשים עם הערה מסוג שצוין"
+msgstr "איתור אנשים עם הערה עם תג שצויין"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -6107,16 +6101,12 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "איתור שמות אנשים שההערות שלהם מכילות מלל שתואם לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with the <tag>"
-msgstr "מקומות עם הערות מסוג <סוג>"
+msgstr "מקומות עם הערות עם תג <תג>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "איתור מקומות עם הערות מסוג מסויים"
+msgstr "איתור מקומות עם הערות עם תג שצויין"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6124,7 +6114,7 @@ msgstr "מקומות עם הערות מסוג <סוג>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:48
 msgid "Matches places with a note of the specified type"
-msgstr "איתור מקומות עם הערות מסוג מסויים"
+msgstr "איתור מקומות עם הערות מסוג מסוים"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:59
 msgid "Street:"
@@ -6367,28 +6357,20 @@ msgid ""
 msgstr "איתור מאגרים שההערות שלהם מכילות מלל שתואמים לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with the <tag>"
-msgstr "מאגרי מידע שמתויגים ב<תג>"
+msgstr "מאגרים עם הערה שמתויגים ב<תג>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "איתור מקורות עם הערה מסוג שצויין"
+msgstr "איתור מאגרים עם הערה עם תג שצויין"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "מקורות עם הערות מסוג מסויים <סוג>"
+msgstr "מאגרים עם הערות מסוג <סוג>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "איתור מקורות עם הערה מסוג שצויין"
+msgstr "איתור מאגרים עם הערה מסוג שצויין"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6535,20 +6517,16 @@ msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr "איתור מקורות שההערות שלהם מכילות מלל שתואמים לביטוי סדיר"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with the <tag>"
-msgstr "מקורות עם הערות מסוג מסויים <סוג>"
+msgstr "מאגרים עם הערה עם תג <סוג>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "איתור מקורות עם הערה מסוג שצויין"
+msgstr "איתור מקורות עם הערה עם תג שצויין"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
-msgstr "מקורות עם הערות מסוג מסויים <סוג>"
+msgstr "מקורות עם הערות מסוג מסוים <סוג>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:48
 msgid "Matches sources with a note of the specified type"
@@ -6568,7 +6546,7 @@ msgstr "מקורות עם <מונה> אזכורי מאגר"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:57
 msgid "Matches sources with a certain number of repository references"
-msgstr "איתור מקורות עם מספר אזכורי מאגר מסויים"
+msgstr "איתור מקורות עם מספר אזכורי מאגר מסוים"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:53
 msgid "Sources with repository reference containing <text> in \"Call Number\""
@@ -6669,16 +6647,12 @@ msgid "Not connected to FamilySearch"
 msgstr "אין חיבור ל-FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "ראשי תיבות"
+msgstr "חיוניים"
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "שם פריט"
+msgstr "שמות אחרים"
 
 #: ../gramps/gen/fs/compare/aggregate.py:211
 #: ../gramps/gui/merge/mergeperson.py:241
@@ -6900,29 +6874,20 @@ msgid "LifeSketch"
 msgstr "ביוגרפיה מקוצרת"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
-#, fuzzy
-#| msgid "the citation"
 msgid "Birth Registration"
-msgstr "המובאה"
+msgstr "רישום לידה"
 
 #: ../gramps/gen/fs/constants.py:83 ../gramps/gen/fs/constants.py:84
-#, fuzzy
-#| msgid "the citation"
 msgid "Death Registration"
-msgstr "המובאה"
+msgstr "רישום פטירה"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "פברואר"
+msgstr "הודעה על פטירה"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "קשר־משפחתי"
+msgstr "אזרחות"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
@@ -6941,10 +6906,8 @@ msgid "Possible parentless family?"
 msgstr "כנראה משפחה ללא הורים?"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
-#, fuzzy
-#| msgid "Building display"
 msgid "Building FSID list for places"
-msgstr "בנית מצג"
+msgstr "בנית מזהה (FSID) FS עבור מקומות"
 
 #: ../gramps/gen/fs/fs_import/sources.py:523
 #: ../gramps/gen/fs/fs_import/sources.py:526
@@ -7024,10 +6987,8 @@ msgstr "זכרון: {t}"
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:421
 #: ../gramps/gui/fs/sync_directions.py:599
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "חסר תאריך(ים)"
+msgstr "(חסר)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:304
@@ -7078,10 +7039,8 @@ msgstr "עודכן מתוך גרמפס"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
-#, fuzzy
-#| msgid "Created for %(author)s"
 msgid "Created from Gramps"
-msgstr "נוצר עבור %(author)s"
+msgstr "נוצר בגרמפס"
 
 #: ../gramps/gen/fs/tags.py:317
 #, python-format
@@ -7114,10 +7073,8 @@ msgstr ""
 "הבחירות המותאמות אישית."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch tags"
-msgstr "המשפחה השתנתה"
+msgstr "תגי FamilySearch"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:721 ../gramps/gui/editors/editaddress.py:199
@@ -8665,20 +8622,16 @@ msgstr "סנכרון FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "מזהה משפחה"
+msgstr "מזהה FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
 msgstr "הוא שורש"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Status bar"
 msgid "Status timestamp"
-msgstr "סרגל מצב"
+msgstr "חתימת זמן מצב"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
@@ -8697,10 +8650,8 @@ msgid "Essential conflict"
 msgstr "התנגשות מהותית"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "תיצור"
+msgstr "התנגשות"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -9667,7 +9618,7 @@ msgstr "עדיפות"
 
 #: ../gramps/gen/lib/url.py:89 ../gramps/gui/clipboard.py:427
 msgid "Url"
-msgstr "מען URL"
+msgstr "URL"
 
 #: ../gramps/gen/lib/urltype.py:58
 msgid "E-mail"
@@ -10082,16 +10033,13 @@ msgid "Font family"
 msgstr "משפחת גופן"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:165
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Choose the font family. If international characters don't show, use "
-#| "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+#, python-brace-format
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
 "בחירת משפחת גופנים. במידה ותווים בינלאומיים אינם מוצגים, נא להשתמש בגופן "
-"FreeSans. ניתן להוריד את FreeSans מ: http://www.nongnu.org/freefont/"
+"FreeSans. ניתן להוריד את FreeSans בכתובת:{freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:172
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -12387,19 +12335,14 @@ msgid "Media Object"
 msgstr "עצם מדיה"
 
 #: ../gramps/gui/configure.py:869
-#, fuzzy, no-python-format
-#| msgid ""
-#| "Default Gramps ID formats containing a letter prefix followed by a "
-#| "numerical string. \"I%04d\" creates IDs from I0000 to I9999. Large "
-#| "databases may need larger IDs. \"I%06d\" creates IDs from I000000 to "
-#| "I999999.\n"
+#, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
 "string. \"I%05d\" creates IDs from I00000 to I99999. Large databases may "
 "need larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
 "תסדירי ברירת־מחדל למזהי גרמפס, שמכילים אות קידומת ואחריה מחרוזת מספרית. "
-"תסדיר \"I%04d\" יצור מזהים מ־I0000 עד I9999. מסד־נתונים גדול, עם רשומות "
+"תסדיר \"I%05d\" יצור מזהים מ־I00000 עד I99999. מסד־נתונים גדול, עם רשומות "
 "רבות, עשוי להזדקק למזהים ארוכים יותר. תסדיר \"I%06d\" יצור מזהים מ־I000000 "
 "עד I999999.\n"
 
@@ -12542,7 +12485,7 @@ msgstr "התראות"
 
 #: ../gramps/gui/configure.py:1085
 msgid "Live"
-msgstr ""
+msgstr "מערכת חיה"
 
 #: ../gramps/gui/configure.py:1093
 msgid "Server"
@@ -12550,19 +12493,15 @@ msgstr "שרת"
 
 #: ../gramps/gui/configure.py:1102
 msgid "Foundation middleware"
-msgstr ""
+msgstr "תוכנת תיווך תשתיתית"
 
 #: ../gramps/gui/configure.py:1104
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "משפחה כפולה"
+msgstr "FamilySearch ישיר"
 
 #: ../gramps/gui/configure.py:1119
-#, fuzzy
-#| msgid "Author"
 msgid "Auth provider"
-msgstr "מחבר"
+msgstr "ספק אימותים מקוון"
 
 #: ../gramps/gui/configure.py:1128
 msgid "App key (direct mode only)"
@@ -12581,10 +12520,8 @@ msgid "Middleware access code (issued secret)"
 msgstr "קוד גישת מתווך (קוד סודי שסופק)"
 
 #: ../gramps/gui/configure.py:1174
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "דורות"
+msgstr "שילובי מערכות"
 
 #: ../gramps/gui/configure.py:1241 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -12845,10 +12782,8 @@ msgid "Maximum age probably alive"
 msgstr "גיל מרבי ל'כנראה בחיים'"
 
 #: ../gramps/gui/configure.py:2057
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "מספר דורות מרבי לקשרי־קרבה"
+msgstr "מספר דורות מרבי להערכת גיל"
 
 #: ../gramps/gui/configure.py:2062
 msgid ""
@@ -13054,10 +12989,8 @@ msgstr ""
 "הגדרה זו קובעת את גודל התיבה."
 
 #: ../gramps/gui/configure.py:2341
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "תצוגת הערה מקדימה"
+msgstr "אורך תצוגת מקדימה להערה"
 
 #: ../gramps/gui/configure.py:2400
 msgid "Database Setting"
@@ -13476,7 +13409,7 @@ msgid ""
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
 "ערכת תוי הקובץ אינום מזוהים תקין , לכן לא ניתן ליבא אותו בצורה מדויקת. נא "
-"לתקן את הקידוד וליבוא שנית"
+"לתקן את הקידוד ולייבוא שנית"
 
 #: ../gramps/gui/dbman.py:98
 #, python-format
@@ -13992,7 +13925,7 @@ msgid ""
 "does not exist. Change preferences or do not use relative path when importing"
 msgstr ""
 "מחיצה שהוגדרה בהעדפות: נתיב בסיס לנתיבי מדיה יחסיים: %s לא קיים. נא לשנות "
-"העדפות או לא להשתמש בנתיב יחסי ביבוא"
+"העדפות או לא להשתמש בנתיב יחסי בייבוא"
 
 #: ../gramps/gui/editors/addmedia.py:236
 #, python-format
@@ -15791,12 +15724,9 @@ msgid "Internet Address Editor"
 msgstr "עורך כתובת מרשתת"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
-msgstr "כתובת המרשתת לניווט, לדוגמה http://gramps-project.org"
+msgstr "כתובת מרשתת שנדרשת לניווט, לדוגמה {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
@@ -16345,10 +16275,8 @@ msgstr "נא לשמור/לקבע אדם זה למסד הנתונים תחילה,
 
 #: ../gramps/gui/fs/actions.py:148 ../gramps/gui/fs/actions.py:149
 #: ../gramps/gui/fs/tools_window.py:362
-#, fuzzy
-#| msgid "Family ID"
 msgid "Link FamilySearch ID"
-msgstr "מזהה משפחה"
+msgstr "קישור מזהה FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:151 ../gramps/gui/plug/_windows.py:1538
 #: ../gramps/gui/widgets/grampletbar.py:599
@@ -16369,10 +16297,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:224
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:184
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import selected"
-msgstr "הייבוא כשל"
+msgstr "נבחר ייבוא"
 
 #: ../gramps/gui/fs/actions.py:248
 #, python-brace-format
@@ -16381,22 +16307,16 @@ msgstr "נמצא {total} – חדש {new} – כבר נמצא באילן {existi
 
 #: ../gramps/gui/fs/actions.py:255 ../gramps/gui/fs/sync_directions.py:659
 #: ../gramps/gui/fs/sync_directions.py:1283
-#, fuzzy
-#| msgid "Select _None"
 msgid "Select none"
-msgstr "לא _לבחור דבר"
+msgstr "לא לבחור דבר"
 
 #: ../gramps/gui/fs/actions.py:256
-#, fuzzy
-#| msgid "Select a file"
 msgid "Select all new"
-msgstr "בחירת קובץ"
+msgstr "בחירת כל החדשים"
 
 #: ../gramps/gui/fs/actions.py:303
-#, fuzzy
-#| msgid "Already dead"
 msgid "Already in tree"
-msgstr "כבר לא בחיים"
+msgstr "כבר נמצא באילן"
 
 #: ../gramps/gui/fs/actions.py:303
 msgid "New (will import)"
@@ -16413,10 +16333,9 @@ msgid "No FamilySearch ID linked. Click 'Link FamilySearch ID' first."
 msgstr "לא קושר מזהה FamilySearch. נא להקיש על 'קישור מזהה FamilySearch' תחילה."
 
 #: ../gramps/gui/fs/actions.py:376
-#, fuzzy, python-brace-format
-#| msgid "Sealed to Parents"
+#, python-brace-format
 msgid "Failed to fetch parents: {e}"
-msgstr "החתמת הורים"
+msgstr "איתור הורים כשל: {e}"
 
 #: ../gramps/gui/fs/actions.py:398
 msgid "No parents found on FamilySearch for this person."
@@ -16428,20 +16347,16 @@ msgid "  - already in tree"
 msgstr "  ..- קיים כבר באילן"
 
 #: ../gramps/gui/fs/actions.py:410
-#, fuzzy
-#| msgid "Import Text"
 msgid "Import parents"
-msgstr "ייבוא מלל"
+msgstr "ייבוא הורים"
 
 #: ../gramps/gui/fs/actions.py:425
 msgid "Parents imported but could not be located in the local database."
 msgstr "הורים יובאו אךלא אותרו במסד הנתונים המקומי."
 
 #: ../gramps/gui/fs/actions.py:429
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link parents"
-msgstr "קישורי משפחה"
+msgstr "FamilySearch: קישור הורים"
 
 #: ../gramps/gui/fs/actions.py:478
 msgid "Parent(s) imported and linked."
@@ -16450,36 +16365,32 @@ msgstr "הורים יובאו וקושרו."
 #: ../gramps/gui/fs/actions.py:504
 #, python-brace-format
 msgid "Failed to fetch children: {e}"
-msgstr ""
+msgstr "איתור צאצאים כשל: {e}"
 
 #: ../gramps/gui/fs/actions.py:528
 msgid "No children found on FamilySearch for this person."
-msgstr ""
+msgstr "לא נמצאו צאצאים לאדם זה ב־FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:540
 #, python-brace-format
 msgid " (other parent: {name})"
-msgstr ""
+msgstr " ההורה האחר: {name}"
 
 #: ../gramps/gui/fs/actions.py:547
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import children"
-msgstr "הייבוא כשל"
+msgstr "ייבוא צאצאים"
 
 #: ../gramps/gui/fs/actions.py:562
 msgid "Children imported but could not be located in the local database."
-msgstr ""
+msgstr "יובאו צאצאים אך לא ניתן היה לאתרם במסד הנתונים המקומי."
 
 #: ../gramps/gui/fs/actions.py:566
-#, fuzzy
-#| msgid "Family Children"
 msgid "FamilySearch: Link children"
-msgstr "צאצאי משפחה"
+msgstr "FamilySearch: קישור צאצאים"
 
 #: ../gramps/gui/fs/actions.py:629
 msgid "Child(ren) imported and linked."
-msgstr ""
+msgstr "צאצא או צאצאים יובאו וקושרו."
 
 #: ../gramps/gui/fs/actions.py:661
 #, python-brace-format
@@ -16488,51 +16399,45 @@ msgstr "אחזור זוגאים כשל: {e}"
 
 #: ../gramps/gui/fs/actions.py:692
 msgid "No spouses found on FamilySearch for this person."
-msgstr ""
+msgstr "לא נמצא זוגאי לאדם זה ב־FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:704
-#, fuzzy
-#| msgid "Import Objects"
 msgid "Import spouse(s)"
-msgstr "ייבוא עצמים"
+msgstr "ייבוא זוגאים"
 
 #: ../gramps/gui/fs/actions.py:719
 msgid "Spouses imported but could not be located in the local database."
-msgstr ""
+msgstr "יובא זוגאי אך לא ניתן היה לאיתור במסד הנתונים הנקומי."
 
 #: ../gramps/gui/fs/actions.py:723
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link spouses"
-msgstr "קישורי משפחה"
+msgstr "FamilySearch: קישור זוגאים"
 
 #: ../gramps/gui/fs/actions.py:770
 msgid "Spouse(s) imported and linked."
-msgstr ""
+msgstr "זוגאים יובאו וקושרו."
 
 #: ../gramps/gui/fs/actions.py:860
 #, python-brace-format
 msgid "Cleared GEDCOMX in-memory indices: {n}"
-msgstr ""
+msgstr "מפתחות GEDCOMX שמורים בזיכרון שנוקו: {n}"
 
 #: ../gramps/gui/fs/actions.py:861
 msgid "Reset shared FS Tree cache: yes"
-msgstr ""
+msgstr "שיצוב מטמון אילן FS משוטף: כן"
 
 #: ../gramps/gui/fs/actions.py:863
 #, python-brace-format
 msgid "Cleared on-disk cache: yes ({path})"
-msgstr ""
+msgstr "ניקוי מטמון כונן: כן ({path})"
 
 #: ../gramps/gui/fs/actions.py:866
 msgid "Cleared on-disk cache: (not available / not supported by cache helper)"
-msgstr ""
+msgstr "ניקוי מטמון כונן: (לא זמין / לא נתמך על ידי רכיב עזר למטמון)"
 
 #: ../gramps/gui/fs/actions.py:875 ../gramps/gui/fs/actions.py:876
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch Tags"
-msgstr "המשפחה השתנתה"
+msgstr "תגי FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:877
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:559
@@ -16545,13 +16450,15 @@ msgstr "סגירה"
 
 #: ../gramps/gui/fs/actions.py:878
 msgid "Retag all (Linked/NotLinked)"
-msgstr ""
+msgstr "לתייג הכל מחדש (מקושרים/לא מקושרים)"
 
 #: ../gramps/gui/fs/actions.py:890
 msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
+"פעולה זו תסרוק את כל אילן־היוחסין ותיישם תגי FS_Linked / FS_NotLinked.\n"
+"היא לא תשנה נתוני אדם כלל."
 
 #: ../gramps/gui/fs/actions.py:910
 #, python-brace-format
@@ -16563,21 +16470,26 @@ msgid ""
 "Not linked: {not_linked}\n"
 "Changed: {changed}"
 msgstr ""
+"תיוג מחדש הסתיים.\n"
+"\n"
+"סך־כל אנשים: {total}\n"
+"קושרו: {linked}\n"
+"לא קושרו: {not_linked}\n"
+"השתנו: {changed}"
 
 #: ../gramps/gui/fs/actions.py:920
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "שינוי שם כשל"
+msgstr "תיוג מחדש כשל: {e}"
 
 #: ../gramps/gui/fs/actions.py:971
 msgid "FamilySearch: Update FSID after redirect"
-msgstr ""
+msgstr "FamilySearch: עדכון FSID לאחר הפניה"
 
 #: ../gramps/gui/fs/actions.py:1015
 msgid ""
 "Could not load this person from FamilySearch (no GEDCOMX person object)."
-msgstr ""
+msgstr "לא ניתן לטעון אדם זה מ־FamilySearch (אין עצם אדם GEDCOMX)"
 
 #: ../gramps/gui/fs/actions.py:1024
 #, python-brace-format
@@ -16585,16 +16497,13 @@ msgid "Failed to download from FamilySearch: {e}"
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1029
-#, fuzzy
-#| msgid "Bookmark this person"
 msgid "FamilySearch: Sync this person"
-msgstr "הוספת סימניה לאדם זה"
+msgstr "FamilySearch: סנכרון אדם זה"
 
 #: ../gramps/gui/fs/actions.py:1089
-#, fuzzy, python-brace-format
-#| msgid "Saving failed"
+#, python-brace-format
 msgid "Sync failed: {e}"
-msgstr "השמירה כשלה"
+msgstr "סינכרון כשל: {e}"
 
 #: ../gramps/gui/fs/actions.py:1097
 msgid ""
@@ -16612,10 +16521,8 @@ msgid "Sync to FamilySearch failed: {e}"
 msgstr ""
 
 #: ../gramps/gui/fs/compare/options.py:46
-#, fuzzy
-#| msgid "Family Citations"
 msgid "FamilySearch Compare Options"
-msgstr "מובאות משפחה"
+msgstr "אפשרויות השווה FamilySearch"
 
 #: ../gramps/gui/fs/compare/options.py:49
 msgid "Days between comparisons"
@@ -16626,10 +16533,8 @@ msgid "Number of days between two comparisons."
 msgstr ""
 
 #: ../gramps/gui/fs/compare/options.py:54
-#, fuzzy
-#| msgid "Source Information"
 msgid "Force comparison"
-msgstr "מידע מקור"
+msgstr "השואה מאולצת"
 
 #: ../gramps/gui/fs/compare/options.py:56
 msgid "Compare regardless of the number of days since the last run."
@@ -16654,10 +16559,8 @@ msgstr ""
 #: ../gramps/gui/fs/compare/window.py:214
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:524
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:532
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch Compare"
-msgstr "צבעי משפחה"
+msgstr "השוואת FamilySearch"
 
 #: ../gramps/gui/fs/compare/window.py:217 ../gramps/gui/glade/rule.glade:509
 #: ../gramps/gui/glade/styleeditor.glade:416
@@ -16689,46 +16592,39 @@ msgid "Processing list (2/2)"
 msgstr ""
 
 #: ../gramps/gui/fs/compare/window.py:320
-#, fuzzy, python-format
-#| msgid "not found"
+#, python-format
 msgid "FS ID %s not found"
-msgstr "לא נמצא"
+msgstr "מזהה FS %s לא נמצא"
 
 #: ../gramps/gui/fs/fs_import/importer.py:59
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "FamilySearch Import"
-msgstr "דוח קבוצת משפחה"
+msgstr "ייבוא FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/importer.py:86
 msgid "Downloading persons… (3/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:88
-#, fuzzy
-#| msgid "Youngest living person"
 msgid "Downloading person…"
-msgstr "האדם החי הצעיר ביותר"
+msgstr "הורדת אדם"
 
 #: ../gramps/gui/fs/fs_import/importer.py:98
 msgid "Downloading ancestors… (4/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:106
-#, fuzzy, python-format
-#| msgid "Submission: Generations of ancestors"
+#, python-format
 msgid "Downloading %d generations of ancestors…"
-msgstr "הגשה: דורות של אבות קדמונים"
+msgstr "הורדת %d דורות אבות קדמונים…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:109
 msgid "Downloading descendants… (5/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:117
-#, fuzzy, python-format
-#| msgid "Submission: Generations of descendants"
+#, python-format
 msgid "Downloading %d generations of descendants…"
-msgstr "הגשה: דורות של צאצאים"
+msgstr "הורדת %d דורות צאצאים…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:122
 msgid "Downloading spouses… (6/11)"
@@ -16747,44 +16643,32 @@ msgid "Downloading notes and sources…"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:176
-#, fuzzy
-#| msgid "Import"
 msgid "Importing…"
-msgstr "ייבוא"
+msgstr "מתבצע ייבוא…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:188
 msgid "Importing places… (8/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:189
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing places…"
-msgstr "ייבוא אנשים."
+msgstr "ייבוא מקומות…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:194
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons… (9/11)"
-msgstr "ייבוא אנשים."
+msgstr "ייבוא אנשים ...(9/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons…"
-msgstr "ייבוא אנשים."
+msgstr "ייבוא אנשים…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:201
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families… (10/11)"
-msgstr "ייבוא משפחות."
+msgstr "ייבוא משפחות... (10/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:203
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families…"
-msgstr "ייבוא משפחות."
+msgstr "ייבוא משפחות…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:211
 #: ../gramps/gui/fs/fs_import/importer.py:223
@@ -16792,51 +16676,37 @@ msgid "Importing children… (11/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:214
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Importing children…"
-msgstr "ייבוא ארכיון..."
+msgstr "ייבוא צאצאים…"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
-#, fuzzy
-#| msgid "Web Family Tree export options"
 msgid "FamilySearch Import Options"
-msgstr "אפשרויות ייצוא תסדיר אילן־יוחסין מרשתת"
+msgstr "אפשרויות ייבוא FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/options.py:39
 msgid "identifier to be copied from the FamilySearch website"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/options.py:42
-#, fuzzy
-#| msgid "Max ancestor generations"
 msgid "Ancestor generations"
-msgstr "מספר מרבי של דורות אָבוֹת קַדמוֹנִים"
+msgstr "דורות אבות קדמונים"
 
 #: ../gramps/gui/fs/fs_import/options.py:43
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch upwards"
-msgstr "מספר דורות:"
+msgstr "מספר דורות לשליפה כלפי מעלה"
 
 #: ../gramps/gui/fs/fs_import/options.py:46
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "Descendant generations"
-msgstr "מספר מרבי של דורות של צאצאים"
+msgstr "דורות צאצאים"
 
 #: ../gramps/gui/fs/fs_import/options.py:47
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch downwards"
-msgstr "מספר דורות:"
+msgstr "מספר דורות לשליפה כלפי מטה"
 
 #: ../gramps/gui/fs/fs_import/options.py:51
-#, fuzzy
-#| msgid "Non existing person"
 msgid "Do not re-import existing persons"
-msgstr "אדם לא קיים"
+msgstr "לא לייבא שוב אנשים קיימים"
 
 #: ../gramps/gui/fs/fs_import/options.py:53
 msgid "Only import persons not already present"
@@ -16849,10 +16719,8 @@ msgid "Include spouses"
 msgstr "לכלול בני זוג"
 
 #: ../gramps/gui/fs/fs_import/options.py:57
-#, fuzzy
-#| msgid "Include Source Information"
 msgid "Include spouse information"
-msgstr "לכלול מידע על מקור"
+msgstr "לכלול מידע על זוגאי"
 
 #: ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -16861,10 +16729,8 @@ msgid "Include sources"
 msgstr "לכלול מקורות"
 
 #: ../gramps/gui/fs/fs_import/options.py:61
-#, fuzzy
-#| msgid "Birth source"
 msgid "Import sources"
-msgstr "מקור לידה"
+msgstr "ייבוא מקורות"
 
 #: ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -16873,16 +16739,12 @@ msgid "Include notes"
 msgstr "לכלול הערות"
 
 #: ../gramps/gui/fs/fs_import/options.py:65
-#, fuzzy
-#| msgid "Importer"
 msgid "Import notes"
-msgstr "מייבא"
+msgstr "ייבוא הערות"
 
 #: ../gramps/gui/fs/fs_import/options.py:68
-#, fuzzy
-#| msgid "Repository"
 msgid "Verbosity"
-msgstr "מאגר"
+msgstr "מילוליות מרובה"
 
 #: ../gramps/gui/fs/fs_import/options.py:70
 msgid "Verbosity level from 0 (min) to 3 (very verbose)"
@@ -16899,23 +16761,17 @@ msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:466
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:638
-#, fuzzy
-#| msgid "Different database"
 msgid "Different"
-msgstr "מסד נתונים שונה"
+msgstr "שוני"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:467
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in Gramps"
-msgstr "רק בשנים מעוברות"
+msgstr "רק בגרמפס"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:468
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:639
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in FamilySearch"
-msgstr "רק בשנים מעוברות"
+msgstr "רק FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:469
 msgid "Critical mismatch"
@@ -16928,20 +16784,16 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:487
-#, fuzzy
-#| msgid "Select a person for the report"
 msgid "Select a person first."
-msgstr "בחירת אדם עבור הדוח"
+msgstr "בחירת אדם תחילה."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:491
 msgid "You must login first."
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:507
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve the selected person in the database."
-msgstr "מחיקת האדם תסיר אותו ממסד הנתונים."
+msgstr "לא ניתן היה לאתר את האדם שנבחר במסד־הנתונים."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:514
 msgid ""
@@ -16949,23 +16801,17 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:543
-#, fuzzy
-#| msgid "Remove child from family"
 msgid "Refresh from FamilySearch"
-msgstr "הסרת צאצאים ממשפחה"
+msgstr "לרענן מ־FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:550
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:610
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Import sources..."
-msgstr "ייבוא ארכיון..."
+msgstr "ייבוא מקורות..."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:580
-#, fuzzy
-#| msgid "Preview"
 msgid "Overview"
-msgstr "תצוגה מקדימה"
+msgstr "סקירה"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:600
 #: ../gramps/plugins/importer/importxml.py:351
@@ -16997,39 +16843,29 @@ msgstr "ריענון"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:693
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:727
 #: ../gramps/gui/fs/sync_directions.py:275
-#, fuzzy
-#| msgid "Gramps database"
 msgid "Gramps date"
-msgstr "מסד נתוני גרמפס"
+msgstr "תאריך גרמפס"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:694
 #: ../gramps/gui/fs/sync_directions.py:276
-#, fuzzy
-#| msgid "Gramplet"
 msgid "Gramps value"
-msgstr "גרמפלט"
+msgstr "ערך גרמפלט"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:695
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:730
 #: ../gramps/gui/fs/sync_directions.py:277
-#, fuzzy
-#| msgid "date"
 msgid "FS date"
-msgstr "תאריך"
+msgstr "תאריך FS"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:696
 #: ../gramps/gui/fs/sync_directions.py:278
-#, fuzzy
-#| msgid "Family Gallery"
 msgid "FamilySearch value"
-msgstr "גלרית משפחה"
+msgstr "ערך FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:699
 #: ../gramps/gui/fs/sync_directions.py:281
-#, fuzzy
-#| msgid "Type"
 msgid "xType"
-msgstr "סוג"
+msgstr "xType"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:700
 #: ../gramps/gui/fs/sync_directions.py:282
@@ -17056,75 +16892,56 @@ msgid "Scope"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:716
-#, fuzzy
-#| msgid "Title"
 msgid "FS Title"
-msgstr "תואר"
+msgstr "כותרת FS"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:726
 msgid "Kind"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:728
-#, fuzzy
-#| msgid "Gramps item:"
 msgid "Gramps title"
-msgstr "פריט גרמפס:"
+msgstr "כותרת גרמפס"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:729
-#, fuzzy
-#| msgid "Gramps"
 msgid "Gramps URL"
-msgstr "גרמפס"
+msgstr "URL גרמפס"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:731
-#, fuzzy
-#| msgid "title"
 msgid "FS title"
-msgstr "כותרת"
+msgstr "כותרת FS"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:732
-#, fuzzy
-#| msgid "Search URL"
 msgid "FS URL"
-msgstr "חיפוש מען URL"
+msgstr "FS URL"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:734
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:303
-#, fuzzy
-#| msgid "Contributions by"
 msgid "Contributor"
-msgstr "תרומות על־ידי"
+msgstr "נתרם על־ידי"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:735
-#, fuzzy
-#| msgid "Modifier"
 msgid "Modified"
-msgstr "מסגל"
+msgstr "הוסגל"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:736
 msgid "FS ID"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:750
-#, fuzzy, python-brace-format
-#| msgid "Import failed"
+#, python-brace-format
 msgid "Compare failed: {e}"
-msgstr "הייבוא כשל"
+msgstr "השואה כשלה: {e}"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:842
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:933
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:948
-#, fuzzy
-#| msgid "Missing Given Name"
 msgid "(missing in Gramps)"
-msgstr "שם פרטי חסר"
+msgstr "(חסר בגרמפס)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1133
-#, fuzzy
-#| msgid "No mention"
 msgid "Mention"
-msgstr "אין איזכור"
+msgstr "איזכור"
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:69
 msgid "FamilySearch is not configured (missing app key / redirect)."
@@ -17139,10 +16956,8 @@ msgid "Logged in to FamilySearch."
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:89
-#, fuzzy
-#| msgid "Saving failed"
 msgid "Login failed."
-msgstr "השמירה כשלה"
+msgstr "התחברות כשלה."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:92
 #, python-brace-format
@@ -17154,40 +16969,33 @@ msgstr ""
 #: ../gramps/gui/fs/person/mixins/source_import.py:338
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:176
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:181
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Import FamilySearch sources"
-msgstr "ייבוא אילן־יוחסין"
+msgstr "ייבוא מקורות FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:468
-#, fuzzy, python-brace-format
-#| msgid "%s could not be imported"
+#, python-brace-format
 msgid ""
 "Some sources could not be imported:\n"
 "{errs}"
-msgstr "לא ניתן לייבא את %s"
+msgstr ""
+"לא ניתן לייבא כמה מקורות:\n"
+"{errs}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:115
 msgid "No FamilySearch sources found to import."
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:256
-#, fuzzy
-#| msgid "Selected"
 msgid "Detected"
-msgstr "נבחר"
+msgstr "זוהה"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:274
-#, fuzzy
-#| msgid "Import"
 msgid "Import as"
-msgstr "ייבוא"
+msgstr "ייבוא בשם"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:285
-#, fuzzy
-#| msgid "Date"
 msgid "FS Date"
-msgstr "תאריך"
+msgstr "תאריך FS"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:304
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:510
@@ -17196,73 +17004,53 @@ msgid "Images"
 msgstr "תמונות"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:312
-#, fuzzy
-#| msgid "Person Gallery"
 msgid "To Person gallery"
-msgstr "גלריית אדם"
+msgstr "לגלריית אדם"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:329
-#, fuzzy
-#| msgid "Action"
 msgid "Actions"
-msgstr "פעולה"
+msgstr "פעולות"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:332
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage Images…"
-msgstr "ניהול מסדי נתונים"
+msgstr "ניהול תמונות…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:372
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:374
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage images"
-msgstr "ניהול מסדי נתונים"
+msgstr "ניהול תמונות"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:380
-#, fuzzy
-#| msgid "Add a new source"
 msgid "Add from source…"
-msgstr "הוספת מקור חדש"
+msgstr "הוספה ממקור…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:381
 msgid "Open the source page and download images"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:383
-#, fuzzy
-#| msgid "Choose font"
 msgid "Choose file…"
-msgstr "נא לבחור גופן"
+msgstr "בחירת קובץ…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:384
 msgid "Pick existing files from disk"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:386
-#, fuzzy
-#| msgid "Rename failed"
 msgid "Rename files"
-msgstr "שינוי שם כשל"
+msgstr "שינוי שם קובץ"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:387
-#, fuzzy
-#| msgid "Remove the selected family event"
 msgid "Rename selected files on disk"
-msgstr "הסרת האירוע המשפחתי שנבחר"
+msgstr "שינוי שם קבצים שנבחרו בכונן"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:426
-#, fuzzy
-#| msgid "File extension"
 msgid "Filename (without extension)"
-msgstr "סיומת קובץ"
+msgstr "שם קובץ (ללא סיומת)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:430
-#, fuzzy
-#| msgid "File extension"
 msgid "Extension"
-msgstr "סיומת קובץ"
+msgstr "סיומת שם קובץ"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:443
 msgid ""
@@ -17273,30 +17061,25 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:464
-#, fuzzy
-#| msgid "No map service is available."
 msgid "Image picker module is not available."
-msgstr "אין שרות מפות זמין."
+msgstr "פרקן ליקוט תמונות לא זמין."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:471
-#, fuzzy
-#| msgid "Add Source (%s)"
 msgid "Add Source Image"
-msgstr "הוספת מקור (%s)"
+msgstr "הוספת תמונת מקור"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:475
-#, fuzzy, python-brace-format
-#| msgid "Could not open file: %s"
+#, python-brace-format
 msgid ""
 "Could not open image picker:\n"
 "{e}"
-msgstr "לא ניתן לפתוח את הקובץ: %s"
+msgstr ""
+"לא ניתן לפתוח לקט תמונות:\n"
+"{e}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:493
-#, fuzzy
-#| msgid "Close file first"
 msgid "Choose image file(s)"
-msgstr "סגירת קובץ תחילה"
+msgstr "בחירת קבצי תמונה"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:499
 #: ../gramps/gui/glade/mergedata.glade:170
@@ -17307,21 +17090,22 @@ msgid "Select"
 msgstr "בחירה"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:588
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid ""
 "Rename failed for:\n"
 "{p}\n"
 "\n"
 "{err}"
-msgstr "שינוי שם כשל"
+msgstr ""
+"שינוי שם כשל עבור:\n"
+"{p}\n"
+"\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:621
 #: ../gramps/gui/fs/sync_directions.py:658
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select all"
-msgstr "_בחירה בהכול"
+msgstr "בחירה בהכול"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:642
 msgid ""
@@ -17334,24 +17118,19 @@ msgid "{n} source(s) imported."
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:337
-#, fuzzy
-#| msgid "Primary"
 msgid "Primary Name"
-msgstr "עקרי"
+msgstr "שם עקרי"
 
 #: ../gramps/gui/fs/sync_directions.py:417
 #: ../gramps/gui/fs/sync_directions.py:443
-#, fuzzy, python-brace-format
-#| msgid "Note Filter"
+#, python-brace-format
 msgid "Note: {title}"
-msgstr "מסנן הערות"
+msgstr "הערה: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:418
 #: ../gramps/gui/fs/sync_directions.py:444
-#, fuzzy
-#| msgid "title"
 msgid "(untitled)"
-msgstr "כותרת"
+msgstr "(ללא כותרת)"
 
 #: ../gramps/gui/fs/sync_directions.py:422
 #: ../gramps/gui/fs/sync_directions.py:447
@@ -17362,44 +17141,33 @@ msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:582
 #: ../gramps/gui/fs/sync_directions.py:980
-#, fuzzy
-#| msgid "Source filter name:"
 msgid "Source from Gramps"
-msgstr "שם מסנן מקור:"
+msgstr "מקור מגרמפס"
 
 #: ../gramps/gui/fs/sync_directions.py:593
-#, fuzzy
-#| msgid "_Delete Family"
 msgid "(deleted on FamilySearch)"
-msgstr "_מחיקת משפחה"
+msgstr "(מחיקה ב־FamilySearch)"
 
 #: ../gramps/gui/fs/sync_directions.py:595
-#, fuzzy
-#| msgid "Submission: Family file"
 msgid "(missing on FamilySearch)"
-msgstr "הגשה: קובץ משפחה"
+msgstr "(חסר ב־FamilySearch)"
 
 #: ../gramps/gui/fs/sync_directions.py:597
 msgid "(not attached to this person on FamilySearch)"
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:604
-#, fuzzy, python-brace-format
-#| msgid "Source: Title"
+#, python-brace-format
 msgid "Source: {title}"
-msgstr "מקור: כותרת"
+msgstr "מקור: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:625
-#, fuzzy
-#| msgid "Select Family"
 msgid "Sync to FamilySearch"
-msgstr "נא לבחור משפחה"
+msgstr "סנכרון ל־FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:629
-#, fuzzy
-#| msgid "Selected"
 msgid "Apply Selected"
-msgstr "נבחר"
+msgstr "החלת בחירה"
 
 #: ../gramps/gui/fs/sync_directions.py:641
 msgid ""
@@ -17409,10 +17177,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:649
-#, fuzzy
-#| msgid "Change Name"
 msgid "Change message:"
-msgstr "שינוי שם"
+msgstr "שינוי הודעה:"
 
 #: ../gramps/gui/fs/sync_directions.py:678
 msgid "Field"
@@ -17423,22 +17189,16 @@ msgid "Action"
 msgstr "פעולה"
 
 #: ../gramps/gui/fs/sync_directions.py:719
-#, fuzzy
-#| msgid "Merge Family"
 msgid "Keep FamilySearch"
-msgstr "מיזוג משפחה"
+msgstr "להשאיר את FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:722
-#, fuzzy
-#| msgid "Produced with Gramps"
 msgid "Overwrite with Gramps"
-msgstr "נוצר באמצעות גרמפס"
+msgstr "לכתוב על באמצעות גרמפס"
 
 #: ../gramps/gui/fs/sync_directions.py:724
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Add from Gramps"
-msgstr "הוספת גרמפלט"
+msgstr "הוספה מגרמפס"
 
 #: ../gramps/gui/fs/sync_directions.py:726
 msgid "Apply from Gramps"
@@ -17479,10 +17239,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:862
-#, fuzzy
-#| msgid "No parents found"
 msgid "No pushable differences found."
-msgstr "לא נמצאו הורים"
+msgstr "לא נמצאו הבדלים שניתנים לדחיפה."
 
 #: ../gramps/gui/fs/sync_directions.py:897
 msgid ""
@@ -17534,10 +17292,8 @@ msgid "Export to FamilySearch (basic)"
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1186
-#, fuzzy
-#| msgid "Exporter"
 msgid "Export"
-msgstr "מייצא"
+msgstr "ייצוא"
 
 #: ../gramps/gui/fs/sync_directions.py:1198
 msgid ""
@@ -17547,16 +17303,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1205
-#, fuzzy
-#| msgid "Include places"
 msgid "Include parents"
-msgstr "לכלול מקומות"
+msgstr "לכלול הורים"
 
 #: ../gramps/gui/fs/sync_directions.py:1206
-#, fuzzy
-#| msgid "Include spouses"
 msgid "Include spouse(s)"
-msgstr "לכלול בני זוג"
+msgstr "לכלול זוגאים"
 
 #: ../gramps/gui/fs/sync_directions.py:1207
 #: ../gramps/plugins/export/exportcsv.py:148
@@ -17566,10 +17318,8 @@ msgid "Include children"
 msgstr "לכלול צאצאים"
 
 #: ../gramps/gui/fs/sync_directions.py:1229
-#, fuzzy
-#| msgid "person"
 msgid "(person)"
-msgstr "אדם"
+msgstr "(אדם)"
 
 #: ../gramps/gui/fs/sync_directions.py:1248
 msgid "This person: "
@@ -17580,10 +17330,8 @@ msgid "Create"
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1282
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select all missing"
-msgstr "בחירת הערה קיימת"
+msgstr "בחירת כל החסרים"
 
 #: ../gramps/gui/fs/sync_directions.py:1349
 msgid "Please save this person first."
@@ -19021,7 +18769,7 @@ msgstr "נא לבחור אדם עם תסמיך לאדם שבעריכה."
 msgid ""
 "Either use the two fields below to enter coordinates (latitude and "
 "longitude),"
-msgstr "שימוש בשני השדות שלהלן כדי להזין קואורדינטות (קו רוחב וקו אורך),"
+msgstr "שימוש בשני השדות שלהלן כדי להזין נקודות־ציון (קו רוחב וקו אורך),"
 
 #: ../gramps/gui/glade/editplace.glade:121
 msgid "L_atitude:"
@@ -19630,7 +19378,7 @@ msgstr "_ויקי"
 
 #: ../gramps/gui/glade/plugins.glade:58
 msgid "Perform selected action"
-msgstr "בצוע הפעולה שנבחרה"
+msgstr "ביצוע הפעולה שנבחרה"
 
 #: ../gramps/gui/glade/plugins.glade:63
 #: ../gramps/plugins/gramplet/ageondategramplet.py:75
@@ -20051,7 +19799,7 @@ msgstr "תיצור המצג הפעיל"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "Connect to a recent database"
-msgstr "התחברות למסד נתונים שהיה בשימוש לאחרונה"
+msgstr "התחברות למסד־נתונים שהיה בשימוש לאחרונה"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "F_ull Screen"
@@ -21138,7 +20886,7 @@ msgstr "לא הותקנו תוספים."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:125
 msgid "Export Assistant"
-msgstr "סייען היצוא"
+msgstr "סייען הייצוא"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:187
 msgid "Saving your data"
@@ -21249,7 +20997,7 @@ msgid ""
 "Note: your currently opened database is safe. It was only a copy of your "
 "data that failed to save."
 msgstr ""
-"אירעה שגיאה בעת שמירת הנתונים. ניתן לנסות להריץ את הhיצוא מחדש.\n"
+"אירעה שגיאה בעת שמירת הנתונים. ניתן לנסות להריץ את הhייצוא מחדש.\n"
 "\n"
 "הערה: מסד הנתונים שפתוח כעת בטוח. אך יצירת עותק של הנתונים כשלה."
 
@@ -21508,7 +21256,7 @@ msgstr "רשימת נא לבחור ספרים"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:469
 msgid "Different database"
-msgstr "מסד נתונים שונה"
+msgstr "מסד־נתונים שונה"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:471
 #, python-format
@@ -22012,7 +21760,7 @@ msgstr "ניקוי"
 
 #: ../gramps/gui/undohistory.py:235
 msgid "Database opened"
-msgstr "מסד נתונים נפתח"
+msgstr "מסד־נתונים נפתח"
 
 #: ../gramps/gui/undohistory.py:237
 msgid "History cleared"
@@ -22024,7 +21772,7 @@ msgstr "ביטול..."
 
 #: ../gramps/gui/utils.py:402
 msgid "Please do not force closing this important dialog."
-msgstr "נא לא לסגור בכוח את תיבת דו־השיח יבוא."
+msgstr "נא לא לסגור בכוח את תיבת דו־השיח ייבוא."
 
 #: ../gramps/gui/utils.py:471
 msgid "The external program failed to launch or experienced an error"
@@ -22764,7 +22512,7 @@ msgstr "צבע גופן"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Redo"
-msgstr "בצוע חוזר"
+msgstr "ביצוע חוזר"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:83
 msgid "Undo"
@@ -22850,11 +22598,11 @@ msgstr "BSDDB"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "_BSDDB Database"
-msgstr "מסד נתונים _BSDDB"
+msgstr "מסד־נתונים _BSDDB"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:28
 msgid "Berkeley Software Distribution Database Backend"
-msgstr "מסד נתונים להפצת תוכנה של ברקלי"
+msgstr "מסד־נתונים להפצת תוכנה של ברקלי"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:27
 msgid "SQLite"
@@ -22862,11 +22610,11 @@ msgstr "SQLite"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:28
 msgid "_SQLite Database"
-msgstr "מסד נתונים _SQLite"
+msgstr "מסד־נתונים _SQLite"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:29
 msgid "SQLite Database"
-msgstr "מסד נתונים SQLite"
+msgstr "מסד־נתונים SQLite"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:66
 msgid "Database version"
@@ -23333,7 +23081,7 @@ msgstr "סילום אילן־יוחסין להתאמה לעמוד"
 #: ../gramps/plugins/drawreport/ancestortree.py:913
 #: ../gramps/plugins/drawreport/descendtree.py:1650
 msgid "Do not scale tree"
-msgstr "לא לסלם אילן יוחסין"
+msgstr "לא לסלם אילן־יוחסין"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:914
 #: ../gramps/plugins/drawreport/descendtree.py:1651
@@ -24724,7 +24472,7 @@ msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
-"יצוא XML בגרמפס הוא למעשה גיבוי ארכיב XML מלא של אילן־היוחסין אך ללא קבצי "
+"ייצוא XML בגרמפס הוא למעשה גיבוי ארכיב XML מלא של אילן־היוחסין אך ללא קבצי "
 "עצם המדיה. מתאים לצורכי גיבוי."
 
 #: ../gramps/plugins/export/export.gpr.py:163
@@ -26099,7 +25847,7 @@ msgstr "מקום מוכל על־ידי"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1556
 msgid "Gramplet showing the places enclosed by the active place"
-msgstr "גרמפלט להצגת את המקום המוכול על־ידי המקום הפעיל"
+msgstr "גרמפלט להצגת את המקום המוכל על־ידי המקום הפעיל"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1571
 #: ../gramps/plugins/webreport/basepage.py:3570
@@ -26116,7 +25864,7 @@ msgstr "מכיל"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1587
 msgid "Geography coordinates for Person Events"
-msgstr "קואורדינטות גאוגרפיות לאירועי אדם"
+msgstr "נקודות־ציון גאוגרפיות לאירועי אדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1595
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1611
@@ -26125,7 +25873,7 @@ msgstr "נקודת ציון אירועים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1603
 msgid "Geography coordinates for Family Events"
-msgstr "קואורדינטות גאוגרפיות לאירועים משפחתיים"
+msgstr "נקודות־ציון גאוגרפיות לאירועים משפחתיים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1604
 msgid "Gramplet showing the events for all the family"
@@ -26366,7 +26114,7 @@ msgstr "יומן לשיח זה"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:59
 msgid "Opened data base -----------\n"
-msgstr "מסד נתונים נפתח -----------\n"
+msgstr "מסד־נתונים נפתח -----------\n"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:61
 msgid "Added"
@@ -26627,11 +26375,11 @@ msgstr ""
 "בתפריטים. יש צורך באילן־יוחסין (המכונה לעיתים \"מסד־נתונים\") כדי שניתן יהיה "
 "להתחיל בפעולה כלשהי.\n"
 "\n"
-"כדי ליצור אילן־יוחסין חדש, יש לבחור בתפריט אילנות־יוחסין, לבחור בניהול "
-"אילנות־יוחסין, ללחוץ על חדש ולתת שם לאילן־היוחסין. לאחר מכן, יש לטעון את "
-"אילן־היוחסין באמצעות טעינת אילן־יוחסין כדי להפוך אותו לפעיל ומוכן להזנת "
-"נתונים – על־ידי הוספת משפחה ראשונה או ייבוא אילן־יוחסין קיים. למידע נוסף, נא "
-"לעיין בקישורים שלהלן.\n"
+"כדי ליצור אילן־יוחסין חדש, יש לבחור בתפריט אילנות־יוחסין, לבחור בניהול אילנות"
+"־יוחסין, ללחוץ על חדש ולתת שם לאילן־היוחסין. לאחר מכן, יש לטעון את אילן־"
+"היוחסין באמצעות טעינת אילן־יוחסין כדי להפוך אותו לפעיל ומוכן להזנת נתונים – "
+"על־ידי הוספת משפחה ראשונה או ייבוא אילן־יוחסין קיים. למידע נוסף, נא לעיין "
+"בקישורים שלהלן.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:170
@@ -26764,7 +26512,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:256
 msgid "Example Database"
-msgstr "מסד נתונים לדוגמה"
+msgstr "מסד־נתונים לדוגמה"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:259
 msgid ""
@@ -27343,7 +27091,7 @@ msgstr "הצגת סמלים לאירועים"
 
 #: ../gramps/plugins/graph/gvhourglass.py:542
 msgid "Show genealogical symbols for birth, marriage and death events."
-msgstr "הצגת סמלים גנאולוגיים לאירועי לידה, נישואין ופטירה."
+msgstr "הצגת סמלים גנאלוגיים לאירועי לידה, נישואין ופטירה."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:226
 #: ../gramps/plugins/textreport/indivcomplete.py:862
@@ -27562,7 +27310,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/import.gpr.py:137
 msgid "Gramps 2.x database"
-msgstr "מסד נתונים גרמפס 2‎.x"
+msgstr "מסד־נתונים גרמפס 2‎.x"
 
 #: ../gramps/plugins/importer/import.gpr.py:138
 msgid "Import data from Gramps 2.x database files"
@@ -28080,7 +27828,7 @@ msgstr "מחיצת מדיה %s לא ניתנת לכתיבה"
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
-msgstr "קיימת מחיצת מדיה %s. נא למחוק אותה ואז להתחיל את תהליך היבוא מחדש"
+msgstr "קיימת מחיצת מדיה %s. נא למחוק אותה ואז להתחיל את תהליך הייבוא מחדש"
 
 #: ../gramps/plugins/importer/importgpkg.py:98
 #, python-format
@@ -28615,7 +28363,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1157
 msgid "Import file misses Gramps version"
-msgstr "יבוא קובץ חסר גרסת גרמפס"
+msgstr "ייבוא קובץ חסר גרסת גרמפס"
 
 #: ../gramps/plugins/importer/importxml.py:1160
 #, python-format
@@ -28640,11 +28388,11 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 " for more info."
 msgstr ""
-"קובץ .gramps ליבוא, נוצר בגרסת גרמפס %(oldgramps)s, בזמן שמותקנת כעת גרסה "
+"קובץ .gramps לייבוא, נוצר בגרסת גרמפס %(oldgramps)s, בזמן שמותקנת כעת גרסה "
 "עדכנית יותר%(newgramps)s.\n"
 "\n"
-"הקובץ לא יובא. נא להשתמש בגרסה ישנה יותר של גרמפס התומכת בגרסה "
-"%(xmlversion)s של ה־xml.\n"
+"הקובץ לא יובא. נא להשתמש בגרסה ישנה יותר של גרמפס התומכת בגרסה %(xmlversion)"
+"s של ה־xml.\n"
 "נא לעיין ב־\n"
 "‏  %(gramps_wiki_xml_url)s\n"
 "למידע נוסף."
@@ -29085,7 +28833,7 @@ msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
 "the resulting database!"
 msgstr ""
-"יבוא קובץ ג'דקום %(filename)s עם DEST=%(by)s, עשוי לגרום לשגיאות המסג "
+"ייבוא קובץ ג'דקום %(filename)s עם DEST=%(by)s, עשוי לגרום לשגיאות המסג "
 "הנתונים!"
 
 #: ../gramps/plugins/lib/libgedcom.py:7940
@@ -32789,7 +32537,7 @@ msgstr "אספקת שגרות רקורסיביות לדוחות"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:91
 msgid "Provides common functionality for Gramps XML import/export."
-msgstr "מתן פונקציונליות נפוצה ליבוא/יצוא XML של גרמפס."
+msgstr "מתן פונקציונליות נפוצה לייבוא/ייצוא XML של גרמפס."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:110
 msgid "Provides holiday information for different countries."
@@ -33330,7 +33078,7 @@ msgstr "מפת אנירו לא זמינה"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:197
 msgid "Coordinates needed in Denmark"
-msgstr "קואורדינטות נדרשות בדנמרק"
+msgstr "נקודות־ציון נדרשות בדנמרק"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:205
 msgid ""
@@ -36652,12 +36400,12 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"הכלי מאפשר בצוע פעולות אצווה על עצמי מדיה שמאוחסנים בגרמפס. חשוב להבחין בין "
+"הכלי מאפשר ביצוע פעולות אצווה על עצמי מדיה שמאוחסנים בגרמפס. חשוב להבחין בין "
 "עצם מדיה של גרמפס לבין קובץ המדיה שלו.\n"
 "\n"
 "עצם המדיה 'בגרמפס' הוא אוסף נתונים על קובץ עצם המדיה עצמו: שם הקובץ ו/או "
-"הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, אזכורי המקור וכדומה. נתונים אלה "
-"%(bold_start)sלא כוללים את קובץ המדיה עצמו%(bold_end)s.\n"
+"הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, אזכורי המקור וכדומה. נתונים אלה %"
+"(bold_start)sלא כוללים את קובץ המדיה עצמו%(bold_end)s.\n"
 "\n"
 "קבצי תמונה, קול, סרט וכדומה, מאוחסנים למעשה בנפרד בכונן הקשיח. קבצים אלה "
 "אינם מנוהלים על־ידי גרמפס ואינם משובצים במסד־הנתונים של גרמפס. מסד־הנתונים "
@@ -37358,7 +37106,7 @@ msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
-"חילול שגיאות רמה נמוכה במסד נתונים\n"
+"חילול שגיאות רמה נמוכה במסד־נתונים\n"
 "לתיקון נדרשת טעינת מסד־נתונים מחדש"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:354
@@ -37593,7 +37341,7 @@ msgid ""
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
 "חיפוש בכל רשומות מסד־הנתונים, איתור רווחים עוקבים או מובילים ברשומות מקומות "
-"ואנשים. איתור פסיקים בשדות הקואורדינטות במקומות."
+"ואנשים. איתור פסיקים בשדות הנקודות־ציון במקומות."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:70
 msgid "Dump Gender Statistics"
@@ -40110,7 +39858,7 @@ msgstr "הצגת צאצאים לפי סדר לידתם או לפי סדר ההז
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2322
 msgid "Do we display coordinates in the places list?"
-msgstr "האם להציג קואורדינטות ברשימת המקומות?"
+msgstr "האם להציג נקודות־ציון ברשימת המקומות?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2325
 msgid "Whether to display latitude/longitude in the places list."
@@ -41038,7 +40786,7 @@ msgid ""
 "page."
 msgstr ""
 "העמוד מציג רשימה ממופתחת של כל עצמי המדיה במסד הנתונים. הרשימה ממוינת לפי "
-"כותרת המדיה. קיים מפתח של כל עצמי המדיה במסד נתונים זה. הקשה על תמונה "
+"כותרת המדיה. קיים מפתח של כל עצמי המדיה במסד־נתונים זה. הקשה על תמונה "
 "ממוזערת תעביר לעמוד התמונה&#8217;."
 
 #: ../gramps/plugins/webreport/updates.py:88
