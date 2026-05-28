@@ -48,6 +48,11 @@ class FamilyRelType(GrampsType):
     CIVIL_UNION = 2
     UNKNOWN = 3
     CUSTOM = 4
+    ENGAGED = 5
+    DIVORCED = 6
+    ANNULED = 7
+    SEPARATED = 8
+	POLY_MARR = 9
 
     _CUSTOM = CUSTOM
     _DEFAULT = MARRIED
@@ -58,6 +63,11 @@ class FamilyRelType(GrampsType):
         (CIVIL_UNION, _("Civil Union"), "Civil Union"),
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
+        (ENGAGED, _("Engaged"), "Engaged"),
+        (DIVORCED, _("Divorced"), "Divorced"),
+        (ANNULED, _("Annuled"), "Annuled"),
+        (SEPARATED, _("Separated"), "Separated"),
+        (POLY_MARR, _("Polygomous Marriage"), "Polygomous Marriage"),
     ]
 
     def __init__(self, value=None):

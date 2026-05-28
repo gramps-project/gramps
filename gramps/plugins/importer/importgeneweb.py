@@ -153,7 +153,7 @@ fevents_map = {
     "#nmen": EventType((EventType.CUSTOM, _("No mention"))),  # Efam_NoMention
     "#enga": EventType.ENGAGEMENT,  # Efam_Engage
     "#div": EventType.DIVORCE,
-    "#sep": EventType((EventType.CUSTOM, _("Separated"))),  # Efam_Separated
+    "#sep": EventType.SEPARATION, # Efam_Separation
     "#anul": EventType.ANNULMENT,  # Efam_Annulation
     "#marb": EventType.MARR_BANNS,  # Efam_MarriageBann
     "#marc": EventType.MARR_CONTR,  # Efam_MarriageContract)

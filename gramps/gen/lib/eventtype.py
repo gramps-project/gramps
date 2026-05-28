@@ -96,6 +96,7 @@ class EventType(GrampsType):
     .. attribute ANNULMENT:      Annulment
     .. attribute MARR_ALT:        Alternate Marriage
     .. attribute STILLBIRTH:      Stillbirth
+    .. attribute SEPARATION:      Separation
     """
 
     UNKNOWN = -1
@@ -145,6 +146,7 @@ class EventType(GrampsType):
     RETIREMENT = 43
     WILL = 44
     STILLBIRTH = 45
+    SEPARATION = 46
 
     _MENU = [
         [
@@ -164,6 +166,7 @@ class EventType(GrampsType):
                 MARR_BANNS,
                 DIV_FILING,
                 MARR_ALT,
+                SEPARATION,
             ],
         ],
         [
@@ -241,6 +244,7 @@ class EventType(GrampsType):
         (ANNULMENT, _("Annulment"), "Annulment"),
         (MARR_ALT, _("Alternate Marriage"), "Alternate Marriage"),
         (STILLBIRTH, _("Stillbirth"), "Stillbirth"),
+        (SEPARATION, _("Separation"), "Separation"),
     ]
 
     _ABBREVIATIONS = {
@@ -291,6 +295,7 @@ class EventType(GrampsType):
         DIV_FILING: _T_("div.f.", "Divorce Filing abbreviation"),
         ANNULMENT: _T_("annul.", "Annulment abbreviation"),
         STILLBIRTH: _T_("still.", "Stillbirth abbreviation"),
+        SEPARATION: _T_("sep.", "Separation abbreviation"),
     }
 
     def __init__(self, value=None):
