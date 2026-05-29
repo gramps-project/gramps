@@ -509,7 +509,7 @@ def str_incr(str_counter):
                     )
                 )
             )
-        for i in reversed(lili):
+        for i in reversed(range(len(lili))):
             if lili[i] < "z":
                 lili[i] = chr(ord(lili[i]) + 1)
                 break

@@ -550,6 +550,11 @@ gramps/plugins/db/dbapi/test/db_test.py
 #
 gramps/plugins/docgen/__init__.py
 #
+# plugins/docgen/test directory
+#
+gramps/plugins/docgen/test/__init__.py
+gramps/plugins/docgen/test/latexdoc_test.py
+#
 # plugins/drawreport directory
 #
 gramps/plugins/drawreport/__init__.py
