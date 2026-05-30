@@ -1606,6 +1606,8 @@ class ClipboardMultiTreeView(MultiTreeView):
             EditNote,
             EditMedia,
             EditCitation,
+            EditDNATest,
+            EditDNAMatch,
         )
 
         if obj2class(objclass):  # make sure it is an editable object
