@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-20 21:11+0100\n"
-"PO-Revision-Date: 2026-05-28 17:11+0000\n"
+"PO-Revision-Date: 2026-05-30 12:01+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -531,7 +531,7 @@ msgid ""
 "> Relationship Calculator...\". The exact relationship as well as all common "
 "ancestors are reported."
 msgstr ""
-"<b>מחשבון קשרי־קרבה<br/></b> לבדיקת קשרי־קרבה (קרבת דם, לא חיתון) בין שני "
+"<b>מחשבון קשרי־קרבה</b><br/> לבדיקת קשרי־קרבה (קרבת דם, לא חיתון) בין שני "
 "אנשים במסד־הנתונים, ניתן להשתמש בכלי מחשבון, מתפריט 'כלים > עזרים > מחשבון "
 "קשרי־קרבה...'. המחשבון ידווח על קשרי־קרבה מדויקים וכן על כל האבות הקדמונים "
 "המשותפים."
@@ -17338,10 +17338,8 @@ msgid "Please save this person first."
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1355
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve this person from the database."
-msgstr "מחיקת האדם תסיר אותו ממסד הנתונים."
+msgstr "לא ניתן היה לאתר אדם זה במסד הנתונים."
 
 #: ../gramps/gui/fs/sync_directions.py:1396
 msgid "FamilySearch: Export basic people"
@@ -17362,10 +17360,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1569
-#, fuzzy
-#| msgid "No matching addons found."
 msgid "Nothing was exported."
-msgstr "לא נמצאו תוספים מתאימים."
+msgstr "לא יוצא דבר."
 
 #: ../gramps/gui/fs/sync_directions.py:1573
 #, python-brace-format
@@ -17373,28 +17369,20 @@ msgid "FamilySearch export failed: {e}"
 msgstr ""
 
 #: ../gramps/gui/fs/tools_window.py:314
-#, fuzzy
-#| msgid "Family To Do"
 msgid "FamilySearch Tools"
-msgstr "משימות לביצוע משפחה"
+msgstr "כלי FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:342 ../gramps/gui/fs/tools_window.py:661
-#, fuzzy
-#| msgid "Edit Person (%s)"
 msgid "Editor person: (none)"
-msgstr "עריכת אנשים (%s)"
+msgstr "האדם העורך: (ללא)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Person Citations"
 msgid "Person actions"
-msgstr "מובאת אדם"
+msgstr "פעולות אדם"
 
 #: ../gramps/gui/fs/tools_window.py:363
-#, fuzzy
-#| msgid "Co_mpare"
 msgid "Compare"
-msgstr "הש_וואה"
+msgstr "השוואה"
 
 #: ../gramps/gui/fs/tools_window.py:364
 msgid "Sync from FamilySearch"
@@ -17419,56 +17407,42 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/tools_window.py:389
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import relatives"
-msgstr "הייבוא כשל"
+msgstr "ייבוא קרובי משפחה"
 
 #: ../gramps/gui/fs/tools_window.py:393
-#, fuzzy
-#| msgid "Import Pro-Gen"
 msgid "Import Parents"
-msgstr "ייבוא מקובץ Pro-Gen"
+msgstr "ייבוא הורים"
 
 #: ../gramps/gui/fs/tools_window.py:394
-#, fuzzy
-#| msgid "Indent Spouses"
 msgid "Import Spouse"
-msgstr "הסטת זוגאי פנימה"
+msgstr "ייבוא זוגאי"
 
 #: ../gramps/gui/fs/tools_window.py:395
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import Children"
-msgstr "הייבוא כשל"
+msgstr "ייבוא צאצאים"
 
 #: ../gramps/gui/fs/tools_window.py:400 ../gramps/gui/plug/tool.py:71
 msgid "Utilities"
 msgstr "עזרים"
 
 #: ../gramps/gui/fs/tools_window.py:403
-#, fuzzy
-#| msgid "Tags"
 msgid "Tags..."
-msgstr "תגים"
+msgstr "תגים..."
 
 #: ../gramps/gui/fs/tools_window.py:404
-#, fuzzy
-#| msgid "Cleared"
 msgid "Clear Cache"
-msgstr "נוקה"
+msgstr "נוקוי מטמון"
 
 #: ../gramps/gui/fs/tools_window.py:674
-#, fuzzy, python-format
-#| msgid "%(persons)s and %(name)s (%(id)s)"
+#, python-format
 msgid "Editor person: %(name)s  [%(gid)s]"
-msgstr "%(persons)s ו%(name)s (%(id)s)"
+msgstr "האדם העורך: %(name)s  %(gid)s"
 
 #: ../gramps/gui/fs/tools_window.py:682
-#, fuzzy, python-format
-#| msgid "Person: %(name)s"
+#, python-format
 msgid "Editor person: %(name)s"
-msgstr "אדם: %(name)s"
+msgstr "האדם העורך: %(name)s"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
@@ -17476,28 +17450,21 @@ msgid "Build FSID list (1/%(total)d)"
 msgstr ""
 
 #: ../gramps/gui/fs/utils/index.py:57 ../gramps/gui/fs/utils/index.py:61
-#, fuzzy, python-format
-#| msgid "Family places for %s"
+#, python-format
 msgid "FamilySearch duplicate ID: %s "
-msgstr "מקומות משפחה עבור %s"
+msgstr "מזהי FamilySearch כפולים: %s "
 
 #: ../gramps/gui/fs/utils/index.py:60
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Duplicate FSFTID"
-msgstr "משפחה כפולה"
+msgstr "FSFTID כפול"
 
 #: ../gramps/gui/fs/utils/index.py:62
-#, fuzzy
-#| msgid "Continue"
 msgid "_Continue warning"
-msgstr "להמשיך"
+msgstr "_להמשיך להזהיר"
 
 #: ../gramps/gui/fs/utils/index.py:63
-#, fuzzy
-#| msgid "Undo history warning"
 msgid "_Stop warning"
-msgstr "אזהרת היסטוריית הסגה"
+msgstr "_להפסיק להזהיר"
 
 #: ../gramps/gui/fs/utils/index.py:73
 #, python-format
@@ -18498,8 +18465,6 @@ msgstr "זיהוי סוג שם זה, לדוגמה, שם לידה, שם נישו�
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
 msgstr "_שם פרטי:"
@@ -19871,10 +19836,8 @@ msgid "_Family Trees"
 msgstr "_אילנות יוחסין"
 
 #: ../gramps/gui/grampsgui.py:57
-#, fuzzy
-#| msgid "Searching..."
 msgid "_FamilySearch Sign in..."
-msgstr "חיפוש…"
+msgstr "_התחברות _FamilySearch …"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Go"
@@ -21809,10 +21772,8 @@ msgid "Cannot open new citation editor"
 msgstr "לא ניתן לפתוח עורך מובאה חדש"
 
 #: ../gramps/gui/viewmanager.py:348
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch tools"
-msgstr "צבעי משפחה"
+msgstr "כלי FamilySearch"
 
 #: ../gramps/gui/viewmanager.py:391 ../gramps/gui/viewmanager.py:1237
 msgid "No Family Tree"
@@ -21823,16 +21784,12 @@ msgid "Not logged in to FamilySearch."
 msgstr ""
 
 #: ../gramps/gui/viewmanager.py:553
-#, fuzzy
-#| msgid "Use complete sentences"
 msgid "User consent declined"
-msgstr "שימוש במשפטים שלמים"
+msgstr "המשתמש סירב לתת הסכמה"
 
 #: ../gramps/gui/viewmanager.py:561
-#, fuzzy
-#| msgid "Configuration error:"
 msgid "Authorization error"
-msgstr "שגיאת תצורה:"
+msgstr "שגיאת הרשאה"
 
 #: ../gramps/gui/viewmanager.py:681
 msgid "Registering plugins..."
@@ -25049,16 +25006,12 @@ msgid "Total people"
 msgstr "סך־כל מספר אנשים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:29
-#, fuzzy
-#| msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_6.0_Wiki_Manual_-_Gramplets/he#Gramplet_List"
+msgstr "Gramps_6.1_Wiki_Manual_-_Gramplets/he#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_6.0_Wiki_Manual_-_Tools/he#ניפוי תקלים"
+msgstr "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:50
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:58
@@ -25085,55 +25038,39 @@ msgstr "גרמפלט להצגת לוח־שנה ואירועים בתאריכים
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:98
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:105
-#, fuzzy
-#| msgid "Web Calendar"
 msgid "Person's birth Calendar"
-msgstr "לוח־שנה מרשתת"
+msgstr "לוח־שנה לידת אדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:99
-#, fuzzy
-#| msgid "Gramplet showing the notes for a person"
 msgid "Gramplet showing the birth for a person on the calendar"
-msgstr "גרמפלט להצגת הערות לאדם"
+msgstr "גרמפלט להצגת לידת אדם בלוח־השנה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:113
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:120
-#, fuzzy
-#| msgid "person's death"
 msgid "Person's death Calendar"
-msgstr "פטירת אדם"
+msgstr "לוח־שנה פטירת אדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:114
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the death for a person on the calendar"
-msgstr "גרמפלט להצגת אירועים לאדם"
+msgstr "גרמפלט להצגת פטירת אדם בלוח־שנה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:128
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
-#, fuzzy
-#| msgid "My Family Calendar"
 msgid "Family Calendar"
-msgstr "לוח־שנה 'המשפחה שלי'"
+msgstr "לוח־שנה משפחה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:129
-#, fuzzy
-#| msgid "Gramplet showing the notes for a family"
 msgid "Gramplet showing the marriage for a family on the calendar"
-msgstr "גרמפלט להצגת הערות למשפחה"
+msgstr "גרמפלט להצגת נישואין במשפחה בלוח־שנה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:143
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:150
-#, fuzzy
-#| msgid "vCalendar"
 msgid "Event Calendar"
-msgstr "vCalendar"
+msgstr "לוח־שנה אירועים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:144
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Gramplet showing the date for an event on the calendar"
-msgstr "גרמפלט להצגת הערות לאירוע"
+msgstr "גרמפלט להצגתתאריך אירוע בלוח־שנה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:158
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
@@ -27153,16 +27090,12 @@ msgid "Whether to include dates and/or places"
 msgstr "האם לכלול תאריכים ו/או מקומות"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:984
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only valid dates"
-msgstr "_זיהוי תאריכים שגויים"
+msgstr "תאריכים תקינים בלבד"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:985
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only show valid dates."
-msgstr "_זיהוי תאריכים שגויים"
+msgstr "הצגת תאריכים תקינים בלבד."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:988
 msgid "Show all family nodes"
@@ -33945,10 +33878,8 @@ msgstr "הקשה לבחירת מצג"
 #: ../gramps/plugins/sidebar/favoritessidebar.py:79
 #: ../gramps/plugins/sidebar/favoritessidebar.py:81
 #: ../gramps/plugins/sidebar/favoritessidebar.py:219
-#, fuzzy
-#| msgid "Choose your dialect"
 msgid "Choose your favorite views"
-msgstr "בחירת תסדיר"
+msgstr "בחירת המצגים המועדפים"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:85
 #: ../gramps/plugins/tool/mediamanager.py:94
@@ -33957,16 +33888,12 @@ msgid "Help"
 msgstr "עזרה"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:86
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select All"
-msgstr "_בחירה בהכול"
+msgstr "בחירה בהכול"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:87
-#, fuzzy
-#| msgid "Clear _All"
 msgid "Clear All"
-msgstr "לנקות ה_כול"
+msgstr "לנקות הכול"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:136
 msgid "Switching_Navigator_modes"
@@ -34009,16 +33936,12 @@ msgid "Expander"
 msgstr "הרחבה"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:82
-#, fuzzy
-#| msgid "Category Sidebar"
 msgid "Favorites Sidebar"
-msgstr "סרגל צד סוגי־אב"
+msgstr "סרגל צד מועדפים"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:83
-#, fuzzy
-#| msgid "Selection of views from lists with expanders"
 msgid "Selection of views from a views selector"
-msgstr "נא לבחור מצגים מרשימה עם הרחבות"
+msgstr "בחירת מצגים לברר מצגים"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:91
 msgid "Favorites"
@@ -34991,8 +34914,6 @@ msgid "Include Attributes"
 msgstr "לכלול תכונות"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
-#, fuzzy
-#| msgid "Include addresses"
 msgid "Include Addresses"
 msgstr "לכלול כתובות"
 
@@ -39550,18 +39471,16 @@ msgid "%(idx)s - for family: %(family)s"
 msgstr "%(idx)s - עבור משפחה: %(family)s"
 
 #: ../gramps/plugins/webreport/media.py:760
-#, fuzzy, python-format
-#| msgid "%(eventtype)s : %(name)s"
+#, python-format
 msgctxt "name"
 msgid "%(idx)s - for event: %(event)s: %(name)s"
-msgstr "%(eventtype)s : %(name)s"
+msgstr "%(idx)s -לאירוע: %(event)s: %(name)s"
 
 #: ../gramps/plugins/webreport/media.py:775
-#, fuzzy, python-format
-#| msgid "%(date)s - %(place)s."
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for place: %(place)s"
-msgstr "%(date)s - %(place)s."
+msgstr "%(idx)s - למקום: %(place)s"
 
 #: ../gramps/plugins/webreport/media.py:790
 #, python-format
@@ -39805,10 +39724,8 @@ msgid "The maximum number of rows to include in an index page"
 msgstr "מספר שורות מרבי שיכללו בעמוד מפתח"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2259
-#, fuzzy
-#| msgid "Allow editing database owner information."
 msgid "Allow internet indexation."
-msgstr "אפשור עריכת פרטי בעלי מסד־הנתונים."
+msgstr "אפשור מפתוח מרשתת."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Allow search engines (Google, Bing, etc.) to index your website."
@@ -40376,13 +40293,7 @@ msgid "openlayers version to use"
 msgstr "גרסת openlayers בה יעשה שימוש"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2800
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "You should use this option only if you can't see the maps in your website "
-#| "for OpenStreetMap or Stamen maps\n"
-#| "You can change the value in the specified file. The option name to modify "
-#| "is openlayers_version.\n"
-#| "See OLDER VERSIONS in https://openlayers.org/"
+#, python-brace-format
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -40394,7 +40305,7 @@ msgstr ""
 "OpenStreetMap או Stamen\n"
 "ניתן לשנות את הערך בקובץ שצוין. שם האפשרות שיש לשנות היא "
 "openlayers_version.\n"
-"לגרסאות ישנות יותר נא לקרוא בעמוד https://openlayers.org/"
+"לגרסאות ישנות יותר נא לקרוא בעמוד {openlayers_url}"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2817
 msgid "Other inclusion (CMS, web calendar, PHP)"
