@@ -1,7 +1,6 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2026  GitHub Copilot
 # Copyright (C) 2026  Himanshu Gohel
 #
 # This program is free software; you can redistribute it and/or modify
