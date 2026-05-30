@@ -2117,6 +2117,34 @@ def spouse_label_from_gender(spouse, fam_type):
             label = _("Wife")
         else:
             label = _("Spouse")
+    elif fam_type == FamilyRelType.ENGAGED:
+        if spouse == Person.MALE:
+            label = _("Fiancé")
+        elif spouse == Person.FEMALE:
+            label = _("Fiancée")
+        else:
+            label = _("Future Spouse")
+    elif fam_type == FamilyRelType.DIVORCED or fam_type == FamilyRelType.ANNULLED:
+        if spouse == Person.MALE:
+            label = _("Former Husband")
+        elif spouse == Person.FEMALE:
+            label = _("Former Wife")
+        else:
+            label = _("Former Spouse")
+    elif fam_type == FamilyRelType.SEPARATED:
+        if spouse == Person.MALE:
+            label = _("Husband (separated)")
+        elif spouse == Person.FEMALE:
+            label = _("Wife (separated)")
+        else:
+            label = _("Spouse (separated)")
+    elif fam_type == FamilyRelType.POLY_MARR:
+        if spouse == Person.MALE:
+            label = _("Polygamous Husband")
+        elif spouse == Person.FEMALE:
+            label = _("Polygamous Wife")
+        else:
+            label = _("Polygamous Spouse")
     else:
         label = _("Partner")
 
