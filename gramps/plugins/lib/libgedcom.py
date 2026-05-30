@@ -767,6 +767,7 @@ DEL_AND_C1 = dict.fromkeys(list(range(0x7F, 0x9F)))
 # GEDCOM events to Gramps events conversion
 #
 # -------------------------------------------------------------------------
+
 GED_TO_GRAMPS_EVENT = {}
 for __val, __key in PERSONALCONSTANTEVENTS.items():
     if __key != "":
@@ -777,7 +778,7 @@ for __val, __key in FAMILYCONSTANTEVENTS.items():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
 GED_TO_GRAMPS_EVENT["Separation"] = EventType.SEPARATION
-GED_TO_GRAMPS_EVENT["_SEPR"] = EventType.SEPARATION   # FTM custom tag
+GED_TO_GRAMPS_EVENT["_SEPR"] = EventType.SEPARATION  # FTM custom tag
 
 GED_TO_GRAMPS_ATTR = {}
 for __val, __key in PERSONALCONSTANTATTRIBUTES.items():
