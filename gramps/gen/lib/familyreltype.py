@@ -50,7 +50,7 @@ class FamilyRelType(GrampsType):
     CUSTOM = 4
     ENGAGED = 5
     DIVORCED = 6
-    ANNULED = 7
+    ANNULLED = 7
     SEPARATED = 8
     POLY_MARR = 9
 
@@ -65,7 +65,7 @@ class FamilyRelType(GrampsType):
         (CUSTOM, _("Custom"), "Custom"),
         (ENGAGED, _("Engaged"), "Engaged"),
         (DIVORCED, _("Divorced"), "Divorced"),
-        (ANNULED, _("Annuled"), "Annuled"),
+        (ANNULLED, _("Annulled"), "Annulled"),
         (SEPARATED, _("Separated"), "Separated"),
         (POLY_MARR, _("Polygamous Marriage"), "Polygamous Marriage"),
     ]

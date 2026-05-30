@@ -777,6 +777,7 @@ for __val, __key in FAMILYCONSTANTEVENTS.items():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
 GED_TO_GRAMPS_EVENT["Separation"] = EventType.SEPARATION
+GED_TO_GRAMPS_EVENT["_SEPR"] = EventType.SEPARATION   # FTM custom tag
 
 GED_TO_GRAMPS_ATTR = {}
 for __val, __key in PERSONALCONSTANTATTRIBUTES.items():
@@ -4150,8 +4151,11 @@ class GedcomParser(UpdateCallback):
         # parse table is encountered. The tag may be of the form "_XXX".  We
         # try to convert to a friendly name, if fails use the tag itself as
         # the TYPE in a custom event
-        cust_tag = CUSTOMEVENTTAGS.get(line.token_text, line.token_text)
-        cust_type = EventType((EventType.CUSTOM, cust_tag))
+        if line.token_text in GED_TO_GRAMPS_EVENT:
+            cust_type = EventType(GED_TO_GRAMPS_EVENT[line.token_text])
+        else:
+            cust_tag = CUSTOMEVENTTAGS.get(line.token_text, line.token_text)
+            cust_type = EventType((EventType.CUSTOM, cust_tag))
         event_ref = self.__build_event_pair(
             state, cust_type, self.event_parse_tbl, str(line.data)
         )
@@ -5582,8 +5586,11 @@ class GedcomParser(UpdateCallback):
         # parse table is encountered. The tag may be of the form "_XXX".  We
         # try to convert to a friendly name, if fails use the tag itself as
         # the TYPE in a custom event
-        cust_tag = CUSTOMEVENTTAGS.get(line.token_text, line.token_text)
-        cust_type = EventType((EventType.CUSTOM, cust_tag))
+        if line.token_text in GED_TO_GRAMPS_EVENT:
+            cust_type = EventType(GED_TO_GRAMPS_EVENT[line.token_text])
+        else:
+            cust_tag = CUSTOMEVENTTAGS.get(line.token_text, line.token_text)
+            cust_type = EventType((EventType.CUSTOM, cust_tag))
         event = Event()
         event_ref = EventRef()
         event_ref.set_role(EventRoleType.FAMILY)
