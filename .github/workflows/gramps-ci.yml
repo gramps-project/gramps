@@ -77,3 +77,11 @@ jobs:
         export GDK_BACKEND=-
         export GRAMPS_RESOURCES=build/share
         python3 -m unittest discover -p "*_test.py"
+    - name: POTFILES check
+      run: |
+        cd po
+        intltool-update -m
+        if [ -f "missing" ]; then
+          echo "ERROR - A new file is not listed in either POTFILES.in or POTFILES.skip";
+          exit 1;
+        fi
