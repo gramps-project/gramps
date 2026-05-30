@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-20 21:11+0100\n"
+"POT-Creation-Date: 2026-05-30 15:00+0100\n"
 "PO-Revision-Date: 2026-05-19 19:31+0000\n"
 "Last-Translator: Ilsur Irnazarov <temyas@yandex.ru>\n"
 "Language-Team: Bashkir <https://hosted.weblate.org/projects/gramps-project/"
@@ -1823,7 +1823,7 @@ msgstr "%s тарафынан бикләнгән"
 #: ../gramps/plugins/textreport/detdescendantreport.py:876
 #: ../gramps/plugins/textreport/indivcomplete.py:98
 #: ../gramps/plugins/textreport/indivcomplete.py:972
-#: ../gramps/plugins/tool/check.py:2807 ../gramps/plugins/tool/check.py:2835
+#: ../gramps/plugins/tool/check.py:2819 ../gramps/plugins/tool/check.py:2847
 #: ../gramps/plugins/tool/dumpgenderstats.py:73
 #: ../gramps/plugins/tool/dumpgenderstats.py:96
 #: ../gramps/plugins/tool/dumpgenderstats.py:101
@@ -2118,27 +2118,27 @@ msgstr ""
 "%(gramps_bugtracker_url)s адресында хата тураһында отчет ебәрегеҙ\n"
 "\n"
 
-#: ../gramps/gen/config.py:305
+#: ../gramps/gen/config.py:306
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "Импортланған %Y/%м/%д %С:%М:%С"
 
-#: ../gramps/gen/config.py:317
+#: ../gramps/gen/config.py:318
 msgid "Missing Given Name"
 msgstr "Бирелгән исем юҡ"
 
-#: ../gramps/gen/config.py:318
+#: ../gramps/gen/config.py:319
 msgid "Missing Record"
 msgstr "Яҙма юҡ"
 
-#: ../gramps/gen/config.py:319
+#: ../gramps/gen/config.py:320
 msgid "Missing Surname"
 msgstr "Фамилия юҡ"
 
-#: ../gramps/gen/config.py:326 ../gramps/gen/config.py:328
+#: ../gramps/gen/config.py:327 ../gramps/gen/config.py:329
 msgid "[Living]"
 msgstr "[Йәшәүсе]"
 
-#: ../gramps/gen/config.py:327
+#: ../gramps/gen/config.py:328
 msgid "Private Record"
 msgstr "Шәхси яҙма"
 
@@ -2146,7 +2146,7 @@ msgstr "Шәхси яҙма"
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:402 ../gramps/gen/datehandler/_datestrings.py:89
+#: ../gramps/gen/config.py:403 ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
 msgid "January"
 msgstr "Ғинуар"
@@ -2215,8 +2215,8 @@ msgstr "Көн Ай Йыл"
 msgid "Day Mon Year"
 msgstr "Көн Ҡыҫҡа ай Йыл"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:182
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:183
+#, no-python-brace-format
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
 
@@ -2224,8 +2224,8 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:189
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:191
+#, no-python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2234,8 +2234,8 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:196
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:199
+#, no-python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2244,8 +2244,8 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:203
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:207
+#, no-python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2254,28 +2254,28 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:210
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:215
+#, no-python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
-#. in your language, translate to "{long_month.forms[X]} {year}"
-#. (where X is one of the month-name inflections you defined)
-#. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:216
-#, python-brace-format
-msgctxt "before"
-msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
-
-#. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:222
-#, python-brace-format
+#, no-python-brace-format
+msgctxt "before"
+msgid "{long_month} {year}"
+msgstr "{long_month} {year}"
+
+#. Translators: If "after <Month>" needs a special inflection
+#. in your language, translate to "{long_month.forms[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:229
+#, no-python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2284,8 +2284,8 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:228
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:236
+#, no-python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2294,8 +2294,8 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:234
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:243
+#, no-python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2304,14 +2304,14 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:240
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:250
+#, no-python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:244
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:255
+#, no-python-brace-format
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
@@ -2319,8 +2319,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:251
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:263
+#, no-python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2329,8 +2329,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:258
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:271
+#, no-python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2339,8 +2339,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:265
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:279
+#, no-python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2349,8 +2349,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:272
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:287
+#, no-python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2359,8 +2359,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:278
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:294
+#, no-python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2369,8 +2369,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:284
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:301
+#, no-python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2379,8 +2379,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:290
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:308
+#, no-python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2389,8 +2389,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:296
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:315
+#, no-python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2399,8 +2399,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:302
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:322
+#, no-python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2408,8 +2408,8 @@ msgstr "{short_month} {year}"
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:413
-#: ../gramps/gen/datehandler/_datedisplay.py:499
+#: ../gramps/gen/datehandler/_datedisplay.py:433
+#: ../gramps/gen/datehandler/_datedisplay.py:519
 msgctxt "from-date"
 msgid ""
 msgstr "баш"
@@ -2417,13 +2417,13 @@ msgstr "баш"
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:420
-#: ../gramps/gen/datehandler/_datedisplay.py:504
+#: ../gramps/gen/datehandler/_datedisplay.py:440
+#: ../gramps/gen/datehandler/_datedisplay.py:524
 msgctxt "to-date"
 msgid ""
 msgstr "аҙаҡ"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:423
+#: ../gramps/gen/datehandler/_datedisplay.py:443
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}{date_start} - {date_stop}{nonstd_calendar_and_ny}"
@@ -2431,7 +2431,7 @@ msgstr "{date_quality}{date_start} - {date_stop}{nonstd_calendar_and_ny}"
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "between" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:444
+#: ../gramps/gen/datehandler/_datedisplay.py:464
 msgctxt "between-date"
 msgid ""
 msgstr "араһында"
@@ -2439,12 +2439,12 @@ msgstr "араһында"
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "and" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:451
+#: ../gramps/gen/datehandler/_datedisplay.py:471
 msgctxt "and-date"
 msgid ""
 msgstr "һәм"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:454
+#: ../gramps/gen/datehandler/_datedisplay.py:474
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
@@ -2454,7 +2454,7 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "before" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:489
+#: ../gramps/gen/datehandler/_datedisplay.py:509
 msgctxt "before-date"
 msgid ""
 msgstr "тиклем"
@@ -2462,7 +2462,7 @@ msgstr "тиклем"
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:494
+#: ../gramps/gen/datehandler/_datedisplay.py:514
 msgctxt "after-date"
 msgid ""
 msgstr "һуң"
@@ -2470,7 +2470,7 @@ msgstr "һуң"
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "about" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:509
+#: ../gramps/gen/datehandler/_datedisplay.py:529
 msgctxt "about-date"
 msgid ""
 msgstr "самаһы"
@@ -2478,7 +2478,7 @@ msgstr "самаһы"
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "estimated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:514
+#: ../gramps/gen/datehandler/_datedisplay.py:534
 msgctxt "estimated-date"
 msgid ""
 msgstr "сама менән"
@@ -2486,36 +2486,36 @@ msgstr "сама менән"
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "calculated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:519
+#: ../gramps/gen/datehandler/_datedisplay.py:539
 msgctxt "calculated-date"
 msgid ""
 msgstr "иҫәпләнгән"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:539
+#: ../gramps/gen/datehandler/_datedisplay.py:559
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:675
+#: ../gramps/gen/datehandler/_datedisplay.py:695
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr "{long_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:701
+#: ../gramps/gen/datehandler/_datedisplay.py:721
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr "{short_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:727
+#: ../gramps/gen/datehandler/_datedisplay.py:747
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr "{day:d} {long_month} {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:753
+#: ../gramps/gen/datehandler/_datedisplay.py:773
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr "{day:d} {short_month} {year}"
@@ -3253,7 +3253,7 @@ msgstr ""
 "күсермәһен эшләргә%(html_end)s кәрәк."
 
 #: ../gramps/gen/db/generic.py:229 ../gramps/gen/db/generic.py:279
-#: ../gramps/gen/db/generic.py:2311
+#: ../gramps/gen/db/generic.py:2313
 #, python-format
 msgid "_Undo %s"
 msgstr "_Кире алырға %s"
@@ -3263,60 +3263,60 @@ msgstr "_Кире алырға %s"
 msgid "_Redo %s"
 msgstr "_Ҡабатларға %s"
 
-#: ../gramps/gen/db/generic.py:2702
+#: ../gramps/gen/db/generic.py:2704
 msgid "Number of people"
 msgstr "Кешеләр һаны"
 
-#: ../gramps/gen/db/generic.py:2703
+#: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/gramplet/statsgramplet.py:186
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
 msgstr "Ғаиләләр һаны"
 
-#: ../gramps/gen/db/generic.py:2704
+#: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
 msgstr "Сығанаҡтар һаны"
 
-#: ../gramps/gen/db/generic.py:2705
+#: ../gramps/gen/db/generic.py:2707
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
 msgstr "Иҫкәрмәләр һаны"
 
-#: ../gramps/gen/db/generic.py:2706
+#: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
 msgstr "Ваҡиғалар һаны"
 
-#: ../gramps/gen/db/generic.py:2707
+#: ../gramps/gen/db/generic.py:2709
 msgid "Number of media"
 msgstr "Медиа файлдары һаны"
 
-#: ../gramps/gen/db/generic.py:2708
+#: ../gramps/gen/db/generic.py:2710
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
 msgstr "Урындар һаны"
 
-#: ../gramps/gen/db/generic.py:2709
+#: ../gramps/gen/db/generic.py:2711
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
 msgstr "Һаҡлағыстар һаны"
 
-#: ../gramps/gen/db/generic.py:2710
+#: ../gramps/gen/db/generic.py:2712
 msgid "Number of notes"
 msgstr "Иҫкәрмәләр һаны"
 
-#: ../gramps/gen/db/generic.py:2711
+#: ../gramps/gen/db/generic.py:2713
 msgid "Number of tags"
 msgstr "Билдәләр һаны"
 
-#: ../gramps/gen/db/generic.py:2712
+#: ../gramps/gen/db/generic.py:2714
 msgid "Schema version"
 msgstr "Схема версияһы"
 
@@ -3687,7 +3687,7 @@ msgstr "Ышаныслылыҡ:"
 #: ../gramps/gen/filters/rules/person/_hasevent.py:57
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:57
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
-#: ../gramps/gui/editors/filtereditor.py:627
+#: ../gramps/gui/editors/filtereditor.py:629
 #: ../gramps/gui/glade/mergecitation.glade:239
 #: ../gramps/gui/glade/mergecitation.glade:254
 #: ../gramps/gui/glade/mergeevent.glade:239
@@ -3726,6 +3726,7 @@ msgstr "Айырым параметрҙары булған өҙөмтәләрг�
 #: ../gramps/gen/filters/rules/_hassourcebase.py:57
 #: ../gramps/gen/filters/rules/_hassourcecountbase.py:60
 #: ../gramps/gen/filters/rules/_hassourceofbase.py:56
+#: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:39
 #: ../gramps/gen/filters/rules/_matchessourceconfidencebase.py:61
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:61
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:54
@@ -3826,7 +3827,7 @@ msgstr "Юл аҫты"
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
-#: ../gramps/gui/editors/filtereditor.py:616
+#: ../gramps/gui/editors/filtereditor.py:618
 msgid "Tag:"
 msgstr "Билдә:"
 
@@ -3842,7 +3843,7 @@ msgstr "Билдәләнгән теглы иҫкәрмәләргә тап кил
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
 #: ../gramps/gen/filters/rules/note/_hastype.py:55
 #: ../gramps/gui/editors/filtereditor.py:118
-#: ../gramps/gui/editors/filtereditor.py:595
+#: ../gramps/gui/editors/filtereditor.py:597
 msgid "Note type:"
 msgstr "Иҫкәрмә төрө:"
 
@@ -3873,6 +3874,13 @@ msgstr "Һылтанмалар һаны:"
 #: ../gramps/gui/editors/filtereditor.py:558
 msgid "Source ID:"
 msgstr "Сығанаҡ идентификаторы:"
+
+#: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:33
+#: ../gramps/gui/editors/filtereditor.py:577
+#, fuzzy
+#| msgid "Citation Filter"
+msgid "Citation filter name:"
+msgstr "Өҙөмтә фильтры"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:66
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
@@ -4009,7 +4017,7 @@ msgstr "Айырым ҡиммәт атрибуты булған өҙөмтәлә
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:44
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:44
-#: ../gramps/gui/editors/filtereditor.py:622
+#: ../gramps/gui/editors/filtereditor.py:624
 msgid "Confidence level:"
 msgstr "Ышаныслылыҡ кимәле:"
 
@@ -4292,7 +4300,7 @@ msgstr "Шәхси тип күрһәтелгән ваҡиғаларға тап �
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:115
-#: ../gramps/gui/editors/filtereditor.py:589
+#: ../gramps/gui/editors/filtereditor.py:591
 msgid "Event attribute:"
 msgstr "Ваҡиға атрибуты:"
 
@@ -4329,7 +4337,7 @@ msgstr "Тасуирлама:"
 #: ../gramps/gen/filters/rules/event/_hastype.py:55
 #: ../gramps/gen/filters/rules/person/_iswitness.py:55
 #: ../gramps/gui/editors/filtereditor.py:112
-#: ../gramps/gui/editors/filtereditor.py:580
+#: ../gramps/gui/editors/filtereditor.py:582
 msgid "Event type:"
 msgstr "Ваҡиға төрө:"
 
@@ -4355,7 +4363,7 @@ msgid "Matches events with data of a particular value"
 msgstr "Айырым ҡиммәт мәғлүмәте булған ваҡиғаларға тап килә"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:48
-#: ../gramps/gui/editors/filtereditor.py:629
+#: ../gramps/gui/editors/filtereditor.py:631
 msgid "Day of Week:"
 msgstr "Аҙна көнө:"
 
@@ -4483,7 +4491,7 @@ msgid "Matches events matched by the specified filter name"
 msgstr "Күрһәтелгән фильтр исеменә тап килгән ваҡиғаларға тап килә"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:59
-#: ../gramps/gui/editors/filtereditor.py:612
+#: ../gramps/gui/editors/filtereditor.py:614
 msgid "Include Family events:"
 msgstr "Ғаилә ваҡиғаларын индерергә:"
 
@@ -4633,7 +4641,7 @@ msgstr "Атаһының күрһәтелгән (өлөшләтә) исеме б
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:45
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:53
 #: ../gramps/gui/editors/filtereditor.py:114
-#: ../gramps/gui/editors/filtereditor.py:587
+#: ../gramps/gui/editors/filtereditor.py:589
 msgid "Family attribute:"
 msgstr "Ғаилә атрибуты:"
 
@@ -4656,7 +4664,7 @@ msgstr "Айырым ҡиммәт өҙөмтәһе булған ғаиләләр
 #: ../gramps/gen/filters/rules/family/_hasevent.py:58
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:57
 #: ../gramps/gui/editors/filtereditor.py:111
-#: ../gramps/gui/editors/filtereditor.py:582
+#: ../gramps/gui/editors/filtereditor.py:584
 msgid "Family event:"
 msgstr "Ғаилә ваҡиғаһы:"
 
@@ -4757,7 +4765,7 @@ msgstr "Билдәле һанда һылтанмалары булған ғаил
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:55
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:57
 #: ../gramps/gui/editors/filtereditor.py:117
-#: ../gramps/gui/editors/filtereditor.py:593
+#: ../gramps/gui/editors/filtereditor.py:595
 msgid "Relationship type:"
 msgstr "Мөнәсәбәт төрө:"
 
@@ -4807,7 +4815,7 @@ msgstr "Игеҙәктәре булған ғаиләләргә тап килә"
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:61
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:56
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:57
-#: ../gramps/gui/editors/filtereditor.py:606
+#: ../gramps/gui/editors/filtereditor.py:608
 msgid "Inclusive:"
 msgstr "Инклюзив:"
 
@@ -4960,7 +4968,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:116
-#: ../gramps/gui/editors/filtereditor.py:591
+#: ../gramps/gui/editors/filtereditor.py:593
 msgid "Media attribute:"
 msgstr "Медиа атрибуты:"
 
@@ -5346,7 +5354,7 @@ msgstr "Билдәле һанда ассоциациялары булған ке
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:113
-#: ../gramps/gui/editors/filtereditor.py:585
+#: ../gramps/gui/editors/filtereditor.py:587
 msgid "Personal attribute:"
 msgstr "Шәхси атрибут:"
 
@@ -5415,12 +5423,12 @@ msgstr "Айырым ҡиммәт үлем мәғлүмәте булған ке�
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:56
 #: ../gramps/gui/editors/filtereditor.py:110
-#: ../gramps/gui/editors/filtereditor.py:581
+#: ../gramps/gui/editors/filtereditor.py:583
 msgid "Personal event:"
 msgstr "Шәхси ваҡиға:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:61
-#: ../gramps/gui/editors/filtereditor.py:614
+#: ../gramps/gui/editors/filtereditor.py:616
 msgid "Primary Role:"
 msgstr "Төп роль:"
 
@@ -5532,7 +5540,7 @@ msgstr "Күрһәтелгән (өлөшләтә) исеме булған кеш
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:55
 #: ../gramps/gui/editors/filtereditor.py:120
-#: ../gramps/gui/editors/filtereditor.py:599
+#: ../gramps/gui/editors/filtereditor.py:601
 msgid "Surname origin type:"
 msgstr "Фамилия килеп сығышы төрө:"
 
@@ -5546,7 +5554,7 @@ msgstr "Фамилия килеп сығышы булған кешеләргә �
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:55
 #: ../gramps/gui/editors/filtereditor.py:119
-#: ../gramps/gui/editors/filtereditor.py:597
+#: ../gramps/gui/editors/filtereditor.py:599
 msgid "Name type:"
 msgstr "Исем төрө:"
 
@@ -5691,7 +5699,7 @@ msgid "Matches people with the particular tag"
 msgstr "Айырым билдәһе булған кешеләргә тап килә"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:64
-#: ../gramps/gui/editors/filtereditor.py:608
+#: ../gramps/gui/editors/filtereditor.py:610
 msgid "Case sensitive:"
 msgstr "Регистрға һиҙгер:"
 
@@ -6186,7 +6194,7 @@ msgstr "Исем:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:57
 #: ../gramps/gui/editors/filtereditor.py:121
-#: ../gramps/gui/editors/filtereditor.py:601
+#: ../gramps/gui/editors/filtereditor.py:603
 msgid "Place type:"
 msgstr "Урын төрө:"
 
@@ -6445,7 +6453,7 @@ msgid "Matches places whose Gramps ID matches the regular expression"
 msgstr "Gramps ID-һы регуляр аңлатмаға тап килгән урындарҙы таба"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:67
-#: ../gramps/gui/editors/filtereditor.py:633
+#: ../gramps/gui/editors/filtereditor.py:635
 msgid "Units:"
 msgstr "Берәмектәр:"
 
@@ -6940,8 +6948,8 @@ msgstr "Енес:"
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
 #: ../gramps/gui/editors/editfamily.py:139
 #: ../gramps/gui/editors/editname.py:340
-#: ../gramps/gui/editors/filtereditor.py:912
-#: ../gramps/gui/editors/filtereditor.py:1088
+#: ../gramps/gui/editors/filtereditor.py:914
+#: ../gramps/gui/editors/filtereditor.py:1090
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:159
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:116
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:112
@@ -7090,7 +7098,8 @@ msgstr "Бәйләнеш"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
-msgstr "Дөрөҫ булмаған бәйләнеш үткәреп ебәрелә: бала ата-әсәнең береһенә тигеҙ"
+msgstr ""
+"Дөрөҫ булмаған бәйләнеш үткәреп ебәрелә: бала ата-әсәнең береһенә тигеҙ"
 
 #: ../gramps/gen/fs/fs_import/importer.py:286
 msgid "Possibly parentless family - Need at least one known parent locally"
@@ -7136,14 +7145,14 @@ msgstr "Сығанаҡ:"
 
 #: ../gramps/gen/fs/fs_import/sources.py:602
 #: ../gramps/gen/fs/fs_import/sources.py:726 ../gramps/gen/utils/string.py:61
-#: ../gramps/gui/editors/editcitation.py:241
+#: ../gramps/gui/editors/editcitation.py:242
 #: ../gramps/plugins/importer/importprogen.py:517
 msgid "Very High"
 msgstr "Бик юғары"
 
 #: ../gramps/gen/fs/fs_import/sources.py:604
 #: ../gramps/gen/fs/fs_import/sources.py:728 ../gramps/gen/utils/string.py:62
-#: ../gramps/gui/editors/editcitation.py:240
+#: ../gramps/gui/editors/editcitation.py:241
 #: ../gramps/plugins/importer/importprogen.py:516
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "High"
@@ -7152,7 +7161,7 @@ msgstr "Юғары"
 #: ../gramps/gen/fs/fs_import/sources.py:606
 #: ../gramps/gen/fs/fs_import/sources.py:730
 #: ../gramps/gen/plug/docgen/treedoc.py:124 ../gramps/gen/utils/string.py:63
-#: ../gramps/gui/editors/editcitation.py:239
+#: ../gramps/gui/editors/editcitation.py:240
 #: ../gramps/plugins/graph/gvfamilylines.py:321
 #: ../gramps/plugins/graph/gvrelgraph.py:1097
 #: ../gramps/plugins/importer/importprogen.py:515
@@ -7161,7 +7170,7 @@ msgstr "Ғәҙәти"
 
 #: ../gramps/gen/fs/fs_import/sources.py:608
 #: ../gramps/gen/fs/fs_import/sources.py:732 ../gramps/gen/utils/string.py:64
-#: ../gramps/gui/editors/editcitation.py:238
+#: ../gramps/gui/editors/editcitation.py:239
 #: ../gramps/plugins/importer/importprogen.py:514
 #: ../gramps/plugins/tool/finddupes.py:60
 msgid "Low"
@@ -7169,7 +7178,7 @@ msgstr "Түбән"
 
 #: ../gramps/gen/fs/fs_import/sources.py:610
 #: ../gramps/gen/fs/fs_import/sources.py:734 ../gramps/gen/utils/string.py:65
-#: ../gramps/gui/editors/editcitation.py:237
+#: ../gramps/gui/editors/editcitation.py:238
 #: ../gramps/plugins/importer/importprogen.py:513
 msgid "Very Low"
 msgstr "Бик түбән"
@@ -7357,11 +7366,11 @@ msgstr "Шәхси"
 #: ../gramps/gen/lib/mediaref.py:101 ../gramps/gen/lib/name.py:172
 #: ../gramps/gen/lib/person.py:260 ../gramps/gen/lib/personref.py:107
 #: ../gramps/gen/lib/place.py:196
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:972
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:988
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1004
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1020
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1036
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:973
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:989
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1005
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1021
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1037
 #: ../gramps/plugins/importer/importxml.py:358
 #: ../gramps/plugins/textreport/tagreport.py:818
 #: ../gramps/plugins/view/view.gpr.py:300
@@ -7379,16 +7388,16 @@ msgstr "Өҙөмтәләр"
 #: ../gramps/gen/lib/repo.py:108 ../gramps/gen/lib/reporef.py:103
 #: ../gramps/gen/lib/src.py:119
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:588
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:828
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:844
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:860
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:876
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:892
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:908
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:924
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:940
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:948
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:956
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:829
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:845
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:861
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:877
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:893
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:909
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:925
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:941
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:949
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:957
 #: ../gramps/plugins/importer/importxml.py:356
 #: ../gramps/plugins/quickview/filterbyname.py:151
 #: ../gramps/plugins/quickview/filterbyname.py:216
@@ -7509,7 +7518,7 @@ msgstr "Атрибут"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:63
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:63
 #: ../gramps/plugins/gramplet/attributes.py:60
-#: ../gramps/plugins/lib/libmetadata.py:229
+#: ../gramps/plugins/lib/libmetadata.py:233
 #: ../gramps/plugins/tool/patchnames.py:462
 #: ../gramps/plugins/webreport/basepage.py:1400
 #: ../gramps/plugins/webreport/basepage.py:1660
@@ -7654,7 +7663,7 @@ msgstr "Идентификатор"
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:166
 #: ../gramps/gui/glade/editplaceformat.glade:186
 #: ../gramps/plugins/graph/gvfamilylines.py:95
-#: ../gramps/plugins/tool/check.py:2863
+#: ../gramps/plugins/tool/check.py:2875
 msgid "None"
 msgstr "Юҡ"
 
@@ -7682,8 +7691,8 @@ msgstr "Тәрбиәгә алынған"
 
 #: ../gramps/gen/lib/citation.py:106 ../gramps/gen/lib/notetype.py:90
 #: ../gramps/gui/clipboard.py:474 ../gramps/gui/configure.py:823
-#: ../gramps/gui/editors/editcitation.py:133
-#: ../gramps/gui/editors/editcitation.py:138
+#: ../gramps/gui/editors/editcitation.py:136
+#: ../gramps/gui/editors/editcitation.py:140
 #: ../gramps/gui/editors/editlink.py:103
 #: ../gramps/gui/editors/filtereditor.py:316 ../gramps/gui/grampsgui.py:57
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:190
@@ -7759,7 +7768,8 @@ msgstr "Ышаныслылыҡ"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:68
 #: ../gramps/gui/editors/editfamily.py:150
-#: ../gramps/gui/editors/editlink.py:102 ../gramps/gui/editors/editsource.py:98
+#: ../gramps/gui/editors/editlink.py:102
+#: ../gramps/gui/editors/editsource.py:104
 #: ../gramps/gui/editors/filtereditor.py:312 ../gramps/gui/grampsgui.py:57
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:190
 #: ../gramps/plugins/export/exportcsv.py:585
@@ -7811,7 +7821,7 @@ msgid "Media"
 msgstr "Медиа"
 
 #: ../gramps/gen/lib/citation.py:141 ../gramps/gen/lib/src.py:131
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:788
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:789
 msgid "Source Attributes"
 msgstr "Сығанаҡ атрибуттары"
 
@@ -8020,7 +8030,7 @@ msgstr "Үҙгәрткес"
 msgid "Quality"
 msgstr "Сифат"
 
-#: ../gramps/gen/lib/date.py:793 ../gramps/gui/editors/filtereditor.py:912
+#: ../gramps/gen/lib/date.py:793 ../gramps/gui/editors/filtereditor.py:914
 #: ../gramps/gui/glade/rule.glade:949
 msgid "Values"
 msgstr "Ҡиммәттәр"
@@ -8162,12 +8172,12 @@ msgstr "Урын"
 #: ../gramps/gen/lib/event.py:210 ../gramps/gen/lib/eventref.py:138
 #: ../gramps/gen/lib/family.py:194 ../gramps/gen/lib/media.py:158
 #: ../gramps/gen/lib/mediaref.py:111 ../gramps/gen/lib/person.py:245
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:732
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:748
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:764
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:780
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:796
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:812
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:733
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:749
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:765
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:781
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:797
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:813
 #: ../gramps/plugins/textreport/indivcomplete.py:497
 #: ../gramps/plugins/textreport/indivcomplete.py:723
 #: ../gramps/plugins/webreport/basepage.py:603
@@ -8299,7 +8309,7 @@ msgid "Legal"
 msgstr "Хоҡуҡи"
 
 #: ../gramps/gen/lib/eventtype.py:189 ../gramps/gen/lib/eventtype.py:230
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:588
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:589
 #: ../gramps/plugins/lib/libprogen.py:2016
 #: ../gramps/plugins/lib/libprogen.py:2018
 #: ../gramps/plugins/webreport/addressbooklist.py:119
@@ -8771,8 +8781,8 @@ msgid "still."
 msgstr "үлет."
 
 #: ../gramps/gen/lib/family.py:178 ../gramps/gui/widgets/fanchart.py:2191
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1052
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1068
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1053
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1069
 #: ../gramps/plugins/textreport/familygroup.py:656
 #: ../gramps/plugins/textreport/indivcomplete.py:709
 #: ../gramps/plugins/view/pedigreeview.py:1966
@@ -8782,8 +8792,8 @@ msgid "Children"
 msgstr "Балалар"
 
 #: ../gramps/gen/lib/family.py:184 ../gramps/gui/merge/mergeperson.py:223
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:604
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:620
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:605
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:621
 #: ../gramps/plugins/importer/importxml.py:352
 #: ../gramps/plugins/quickview/filterbyname.py:111
 #: ../gramps/plugins/quickview/filterbyname.py:176
@@ -11454,47 +11464,47 @@ msgstr "%s, ..."
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s һәм %(mother)s"
 
-#: ../gramps/gen/utils/grampslocale.py:774
+#: ../gramps/gen/utils/grampslocale.py:769
 msgid "the person"
 msgstr "кеше"
 
-#: ../gramps/gen/utils/grampslocale.py:776
+#: ../gramps/gen/utils/grampslocale.py:771
 msgid "the family"
 msgstr "ғаилә"
 
-#: ../gramps/gen/utils/grampslocale.py:778
+#: ../gramps/gen/utils/grampslocale.py:773
 msgid "the place"
 msgstr "урын"
 
-#: ../gramps/gen/utils/grampslocale.py:780
+#: ../gramps/gen/utils/grampslocale.py:775
 msgid "the event"
 msgstr "ваҡиға"
 
-#: ../gramps/gen/utils/grampslocale.py:782
+#: ../gramps/gen/utils/grampslocale.py:777
 msgid "the repository"
 msgstr "репозиторий"
 
-#: ../gramps/gen/utils/grampslocale.py:784
+#: ../gramps/gen/utils/grampslocale.py:779
 msgid "the note"
 msgstr "иҫкәрмә"
 
-#: ../gramps/gen/utils/grampslocale.py:786
+#: ../gramps/gen/utils/grampslocale.py:781
 msgid "the media"
 msgstr "медиа"
 
-#: ../gramps/gen/utils/grampslocale.py:788
+#: ../gramps/gen/utils/grampslocale.py:783
 msgid "the source"
 msgstr "сығанаҡ"
 
-#: ../gramps/gen/utils/grampslocale.py:790
+#: ../gramps/gen/utils/grampslocale.py:785
 msgid "the filter"
 msgstr "фильтр"
 
-#: ../gramps/gen/utils/grampslocale.py:792
+#: ../gramps/gen/utils/grampslocale.py:787
 msgid "the citation"
 msgstr "цитата"
 
-#: ../gramps/gen/utils/grampslocale.py:794
+#: ../gramps/gen/utils/grampslocale.py:789
 msgid "See details"
 msgstr "Ентекләп ҡарау"
 
@@ -12148,35 +12158,34 @@ msgstr ""
 "\n"
 "Gramps хәҙер ябыласаҡ."
 
-#: ../gramps/grampsapp.py:322 ../gramps/grampsapp.py:383
-#: ../gramps/grampsapp.py:407 ../gramps/grampsapp.py:424
-#: ../gramps/grampsapp.py:435 ../gramps/grampsapp.py:457
-#: ../gramps/grampsapp.py:465
+#: ../gramps/grampsapp.py:324 ../gramps/grampsapp.py:386
+#: ../gramps/grampsapp.py:420 ../gramps/grampsapp.py:431
+#: ../gramps/grampsapp.py:453 ../gramps/grampsapp.py:461
 msgid "not found"
 msgstr "табылманы"
 
-#: ../gramps/grampsapp.py:386
+#: ../gramps/grampsapp.py:389
 msgid "not found because exiv2 is not installed"
 msgstr "табылманы, сөнки exiv2 ҡуйылмаған"
 
-#: ../gramps/grampsapp.py:422
+#: ../gramps/grampsapp.py:418
 msgid "Installed but does not supply version"
 msgstr "Ҡуйылған, ләкин версия мәғлүмәтен бирмәй"
 
-#: ../gramps/grampsapp.py:443
+#: ../gramps/grampsapp.py:439
 msgid "installed"
 msgstr "ҡуйылған"
 
-#: ../gramps/grampsapp.py:619 ../gramps/grampsapp.py:628
-#: ../gramps/grampsapp.py:678
+#: ../gramps/grampsapp.py:615 ../gramps/grampsapp.py:624
+#: ../gramps/grampsapp.py:674
 msgid "Configuration error:"
 msgstr "Конфигурация хатаһы:"
 
-#: ../gramps/grampsapp.py:623
+#: ../gramps/grampsapp.py:619
 msgid "Could not read configuration"
 msgstr "Конфигурацияны уҡып булманы"
 
-#: ../gramps/grampsapp.py:630
+#: ../gramps/grampsapp.py:626
 #, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
@@ -12270,7 +12279,7 @@ msgid "Clipboard"
 msgstr "Clipboard"
 
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:220
-#: ../gramps/gui/editors/filtereditor.py:1230 ../gramps/gui/views/tags.py:397
+#: ../gramps/gui/editors/filtereditor.py:1232 ../gramps/gui/views/tags.py:397
 msgid "Any changes are saved immediately"
 msgstr "Бөтә үҙгәрештәр шунда уҡ һаҡлана"
 
@@ -12424,10 +12433,10 @@ msgstr ""
 "\n"
 "<b>Миҫал</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
 "Underhills\n"
-"     <i>Edwin Jose</i>: Given, <i>von der</i>: Prefix, <i>Smith</i> һәм <i>"
-"Weston</i>: Primary, <i>and</i>: [con], <i>Wilson</i>: Patronymic,\n"
-"     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, <i>"
-"Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
+"     <i>Edwin Jose</i>: Given, <i>von der</i>: Prefix, <i>Smith</i> һәм "
+"<i>Weston</i>: Primary, <i>and</i>: [con], <i>Wilson</i>: Patronymic,\n"
+"     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
+"<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 
 #: ../gramps/gui/configure.py:163
 msgid " Name Editor"
@@ -14243,7 +14252,7 @@ msgstr "_Атрибуттар"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:66
 #: ../gramps/gui/editors/editfamily.py:138
-#: ../gramps/gui/editors/filtereditor.py:1091
+#: ../gramps/gui/editors/filtereditor.py:1093
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:113
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:111
@@ -14755,7 +14764,7 @@ msgstr "Альтернатив исемдәр"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:75
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:119
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1563
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1564
 #: ../gramps/plugins/webreport/basepage.py:3532
 msgid "Enclosed By"
 msgstr "Эсенә ингән"
@@ -14933,20 +14942,20 @@ msgctxt "manual"
 msgid "New_Citation_dialog"
 msgstr "New_Citation_dialog"
 
-#: ../gramps/gui/editors/editcitation.py:141
-#: ../gramps/gui/editors/editcitation.py:146
+#: ../gramps/gui/editors/editcitation.py:143
+#: ../gramps/gui/editors/editcitation.py:147
 msgid "New Citation"
 msgstr "Яңы цитата"
 
-#: ../gramps/gui/editors/editcitation.py:347
+#: ../gramps/gui/editors/editcitation.py:348
 msgid "Edit Citation"
 msgstr "Цитатаны үҙгәртергә"
 
-#: ../gramps/gui/editors/editcitation.py:356
+#: ../gramps/gui/editors/editcitation.py:357
 msgid "No source selected"
 msgstr "Сығанаҡ һайланмаған"
 
-#: ../gramps/gui/editors/editcitation.py:358
+#: ../gramps/gui/editors/editcitation.py:359
 msgid ""
 "A source is anything (personal testimony, video recording, photograph, "
 "newspaper column, gravestone...) from which information can be derived. To "
@@ -14959,18 +14968,18 @@ msgstr ""
 "башта кәрәкле сығанаҡты һайлағыҙ, унан һуң 'Том/бит' яланында сығанаҡ "
 "эсендәге һылтанылған мәғлүмәт урынын яҙып ҡуйығыҙ."
 
-#: ../gramps/gui/editors/editcitation.py:375
+#: ../gramps/gui/editors/editcitation.py:376
 msgid "Cannot save citation. ID already exists."
 msgstr "Цитатаны һаҡлап булмай. ID инде бар."
 
-#: ../gramps/gui/editors/editcitation.py:377
+#: ../gramps/gui/editors/editcitation.py:378
 #: ../gramps/gui/editors/editevent.py:301
 #: ../gramps/gui/editors/editmedia.py:341
 #: ../gramps/gui/editors/editperson.py:955
 #: ../gramps/gui/editors/editplace.py:419
 #: ../gramps/gui/editors/editreference.py:300
 #: ../gramps/gui/editors/editrepository.py:221
-#: ../gramps/gui/editors/editsource.py:258
+#: ../gramps/gui/editors/editsource.py:264
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -14981,12 +14990,12 @@ msgstr ""
 "инде '%(prim_object)s' өсөн ҡулланыла. Зинһар, икенсе ID индерегеҙ йәки "
 "киләһе мөмкин булған ID ҡиммәтен алыу өсөн буш ҡалдырығыҙ."
 
-#: ../gramps/gui/editors/editcitation.py:387
+#: ../gramps/gui/editors/editcitation.py:388
 #, python-format
 msgid "Add Citation (%s)"
 msgstr "Цитата өҫтәргә (%s)"
 
-#: ../gramps/gui/editors/editcitation.py:392
+#: ../gramps/gui/editors/editcitation.py:393
 #, python-format
 msgid "Edit Citation (%s)"
 msgstr "Цитатаны үҙгәртергә (%s)"
@@ -15939,34 +15948,34 @@ msgctxt "manual"
 msgid "New_Source_dialog"
 msgstr "New_Source_dialog"
 
-#: ../gramps/gui/editors/editsource.py:100
+#: ../gramps/gui/editors/editsource.py:106
 msgid "New Source"
 msgstr "Яңы сығанаҡ"
 
-#: ../gramps/gui/editors/editsource.py:236
+#: ../gramps/gui/editors/editsource.py:242
 msgid "Edit Source"
 msgstr "Сығанаҡты үҙгәртергә"
 
-#: ../gramps/gui/editors/editsource.py:242
+#: ../gramps/gui/editors/editsource.py:248
 msgid "Cannot save source"
 msgstr "Сығанаҡты һаҡлап булмай"
 
-#: ../gramps/gui/editors/editsource.py:244
+#: ../gramps/gui/editors/editsource.py:250
 msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr ""
 "Был сығанаҡ өсөн мәғлүмәт юҡ. Зинһар, мәғлүмәт индерегеҙ йәки мөхәррирләүҙе "
 "кире алығыҙ."
 
-#: ../gramps/gui/editors/editsource.py:256
+#: ../gramps/gui/editors/editsource.py:262
 msgid "Cannot save source. ID already exists."
 msgstr "Сығанаҡты һаҡлап булмай. Бындай ID инде бар."
 
-#: ../gramps/gui/editors/editsource.py:268
+#: ../gramps/gui/editors/editsource.py:274
 #, python-format
 msgid "Add Source (%s)"
 msgstr "Сығанаҡ өҫтәргә (%s)"
 
-#: ../gramps/gui/editors/editsource.py:273
+#: ../gramps/gui/editors/editsource.py:279
 #, python-format
 msgid "Edit Source (%s)"
 msgstr "Сығанаҡты үҙгәртергә (%s)"
@@ -16077,46 +16086,46 @@ msgstr ""
 msgid "Family filter name:"
 msgstr "Ғаилә фильтры исеме:"
 
-#: ../gramps/gui/editors/filtereditor.py:607
+#: ../gramps/gui/editors/filtereditor.py:609
 msgid "Include selected Gramps ID"
 msgstr "Һайланған Gramps ID-һын индерергә"
 
-#: ../gramps/gui/editors/filtereditor.py:609
+#: ../gramps/gui/editors/filtereditor.py:611
 msgid "Use exact case of letters"
 msgstr "Хәрефтәрҙең регистрын теүәл ҡулланырға"
 
-#: ../gramps/gui/editors/filtereditor.py:610
+#: ../gramps/gui/editors/filtereditor.py:612
 msgid "Regular-Expression matching:"
 msgstr "Даими аңлатма буйынса тап килеү:"
 
-#: ../gramps/gui/editors/filtereditor.py:611
+#: ../gramps/gui/editors/filtereditor.py:613
 msgid "Use regular expression"
 msgstr "Даими аңлатма ҡулланырға"
 
-#: ../gramps/gui/editors/filtereditor.py:613
+#: ../gramps/gui/editors/filtereditor.py:615
 msgid "Also family events where person is spouse"
 msgstr "Шулай уҡ кеше тормош иптәше булған ғаилә ваҡиғалары"
 
-#: ../gramps/gui/editors/filtereditor.py:615
+#: ../gramps/gui/editors/filtereditor.py:617
 msgid "Only include primary participants"
 msgstr "Төп ҡатнашыусыларҙы ғына индерергә"
 
-#: ../gramps/gui/editors/filtereditor.py:634
+#: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
 msgid "degrees"
 msgstr "градустар"
 
-#: ../gramps/gui/editors/filtereditor.py:634
+#: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
 msgid "kilometers"
 msgstr "километрҙар"
 
-#: ../gramps/gui/editors/filtereditor.py:634
+#: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
 msgid "miles"
 msgstr "миль"
 
-#: ../gramps/gui/editors/filtereditor.py:649
+#: ../gramps/gui/editors/filtereditor.py:651
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:84
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:87
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:107
@@ -16129,7 +16138,7 @@ msgstr "миль"
 msgid "Use regular expressions"
 msgstr "Даими аңлатмаларҙы ҡулланырға"
 
-#: ../gramps/gui/editors/filtereditor.py:651
+#: ../gramps/gui/editors/filtereditor.py:653
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -16153,7 +16162,7 @@ msgstr ""
 "^\tКарет юл башына тап килә.\n"
 "$\tДоллар билдәһе юл аҙағына тап килә."
 
-#: ../gramps/gui/editors/filtereditor.py:667
+#: ../gramps/gui/editors/filtereditor.py:669
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:85
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:108
@@ -16166,49 +16175,49 @@ msgstr ""
 msgid "Case sensitive"
 msgstr "Регистрға һиҙгер"
 
-#: ../gramps/gui/editors/filtereditor.py:687
+#: ../gramps/gui/editors/filtereditor.py:689
 msgid "Rule Name"
 msgstr "Ҡағиҙә исеме"
 
-#: ../gramps/gui/editors/filtereditor.py:832
-#: ../gramps/gui/editors/filtereditor.py:836 ../gramps/gui/glade/rule.glade:898
+#: ../gramps/gui/editors/filtereditor.py:834
+#: ../gramps/gui/editors/filtereditor.py:838 ../gramps/gui/glade/rule.glade:898
 msgid "No rule selected"
 msgstr "Ҡағиҙә һайланмаған"
 
-#: ../gramps/gui/editors/filtereditor.py:899
+#: ../gramps/gui/editors/filtereditor.py:901
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:89
 msgid "Define filter"
 msgstr "Фильтрҙы билдәләү"
 
-#: ../gramps/gui/editors/filtereditor.py:1020
+#: ../gramps/gui/editors/filtereditor.py:1022
 msgid "Add Rule"
 msgstr "Ҡағиҙә өҫтәргә"
 
-#: ../gramps/gui/editors/filtereditor.py:1040
+#: ../gramps/gui/editors/filtereditor.py:1042
 msgid "Edit Rule"
 msgstr "Ҡағиҙәне үҙгәртергә"
 
-#: ../gramps/gui/editors/filtereditor.py:1078
+#: ../gramps/gui/editors/filtereditor.py:1080
 msgid "Filter Test"
 msgstr "Фильтрҙы тикшереү"
 
-#: ../gramps/gui/editors/filtereditor.py:1222
+#: ../gramps/gui/editors/filtereditor.py:1224
 msgid "Comment"
 msgstr "Комментарий"
 
-#: ../gramps/gui/editors/filtereditor.py:1222
+#: ../gramps/gui/editors/filtereditor.py:1224
 #: ../gramps/plugins/drawreport/calendarreport.py:599
 #: ../gramps/plugins/drawreport/statisticschart.py:1124
 #: ../gramps/plugins/drawreport/timeline.py:427
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1228
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1244
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1260
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1276
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1292
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1308
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1324
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1340
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1356
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1229
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1245
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1261
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1277
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1293
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1309
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1325
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1341
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1357
 #: ../gramps/plugins/graph/gvrelgraph.py:892
 #: ../gramps/plugins/quickview/quickview.gpr.py:142
 #: ../gramps/plugins/textreport/birthdayreport.py:560
@@ -16221,15 +16230,15 @@ msgstr "Комментарий"
 msgid "Filter"
 msgstr "Фильтр"
 
-#: ../gramps/gui/editors/filtereditor.py:1234
+#: ../gramps/gui/editors/filtereditor.py:1236
 msgid "Custom Filter Editor"
 msgstr "Көйләнгән фильтр мөхәррире"
 
-#: ../gramps/gui/editors/filtereditor.py:1333
+#: ../gramps/gui/editors/filtereditor.py:1335
 msgid "Delete Filter?"
 msgstr "Фильтрҙы юйырғамы?"
 
-#: ../gramps/gui/editors/filtereditor.py:1335
+#: ../gramps/gui/editors/filtereditor.py:1337
 msgid ""
 "This filter is currently being used as the base for other filters. Deleting "
 "this filter will result in removing all other filters that depend on it."
@@ -16238,7 +16247,7 @@ msgstr ""
 "фильтрҙы юйыу уға бәйле булған башҡа фильтрҙарҙың барыһын да юйыуға "
 "килтерәсәк."
 
-#: ../gramps/gui/editors/filtereditor.py:1340
+#: ../gramps/gui/editors/filtereditor.py:1342
 msgid "Delete Filter"
 msgstr "Фильтрҙы юйыу"
 
@@ -16835,7 +16844,7 @@ msgid "Compare regardless of the number of days since the last run."
 msgstr "Һуңғы эшләтелгәндән алып күпме көн үтеүенә ҡарамай сағыштырыу."
 
 #: ../gramps/gui/fs/compare/options.py:62
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1221
 msgid "Person Filter"
 msgstr "Кеше фильтры"
 
@@ -17512,8 +17521,8 @@ msgstr "Баланы һайлау"
 msgid ""
 "Tip: click “Manage Images…” to add/choose/rename files before importing."
 msgstr ""
-"Кәңәш: импортлау алдынан файлдарҙы өҫтәү/һайлау/исемен үҙгәртеү өсөн “"
-"Рәсемдәр менән идара итеү…” төймәһенә баҫығыҙ."
+"Кәңәш: импортлау алдынан файлдарҙы өҫтәү/һайлау/исемен үҙгәртеү өсөн "
+"“Рәсемдәр менән идара итеү…” төймәһенә баҫығыҙ."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:684
 #, python-brace-format
@@ -17739,8 +17748,8 @@ msgid ""
 "Basic export only: name + birth/death facts.\n"
 "<i>No deletions. Existing active linked people are not overwritten here.</i>"
 msgstr ""
-"<b>FamilySearch-та етмәгән кешеләрҙе булдырығыҙ һәм мөнәсәбәттәрҙе "
-"бәйләгеҙ.</b>\n"
+"<b>FamilySearch-та етмәгән кешеләрҙе булдырығыҙ һәм мөнәсәбәттәрҙе бәйләгеҙ."
+"</b>\n"
 "Тик төп экспорт: исем + тыуыу/үлем факттары.\n"
 "<i>Юйыу юҡ. Инде булған әүҙем бәйләнгән кешеләр бында өҫтөнән яҙылмай.</i>"
 
@@ -18644,8 +18653,8 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"Ваҡиға датаһы. Был аныҡ дата, диапазон ( ... алып ... тиклем, араһында, ... )"
-", йәки аныҡ булмаған дата (сама менән, ...) булыуы мөмкин."
+"Ваҡиға датаһы. Был аныҡ дата, диапазон ( ... алып ... тиклем, "
+"араһында, ... ), йәки аныҡ булмаған дата (сама менән, ...) булыуы мөмкин."
 
 #: ../gramps/gui/glade/editevent.glade:376
 #: ../gramps/gui/glade/editeventref.glade:465
@@ -19061,8 +19070,8 @@ msgid ""
 "Here you can make sure this person is displayed according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Кешеләр көйләүҙәрҙә бирелгән исем форматына ярашлы күрһәтелә (килешелгәнсә)"
-".\n"
+"Кешеләр көйләүҙәрҙә бирелгән исем форматына ярашлы күрһәтелә "
+"(килешелгәнсә).\n"
 "Бында һеҙ был кешенең махсус исем форматына ярашлы күрһәтелеүен ҡуя алаһығыҙ "
 "(өҫтәмә форматтарҙы Көйләүҙәрҙә бирергә мөмкин)."
 
@@ -19185,7 +19194,8 @@ msgstr "Кешенең ҡайһы ғаиләгә ҡарағанын күрһәт
 
 #: ../gramps/gui/glade/editperson.glade:506
 msgid "Go to Name Editor to add more information about this name"
-msgstr "Был исем тураһында күберәк мәғлүмәт өҫтәр өсөн Исем мөхәрриренә күсергә"
+msgstr ""
+"Был исем тураһында күберәк мәғлүмәт өҫтәр өсөн Исем мөхәрриренә күсергә"
 
 #: ../gramps/gui/glade/editperson.glade:531
 msgid "O_rigin:"
@@ -19781,7 +19791,8 @@ msgstr "Һаҡлағыс 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:388
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Ике һаҡлағыстың да адрестары, url-дары һәм иҫкәрмәләре берләштереләсәк."
+msgstr ""
+"Ике һаҡлағыстың да адрестары, url-дары һәм иҫкәрмәләре берләштереләсәк."
 
 #: ../gramps/gui/glade/mergesource.glade:94
 msgid ""
@@ -20448,8 +20459,8 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "Һеҙҙең pygobject версия талаптарға яуап бирмәй.\n"
-"GUI менән Gramps-ты эшләтеү өсөн кәм тигәндә pygobject %(major)d.%(feature)"
-"d.%(minor)d кәрәк.\n"
+"GUI менән Gramps-ты эшләтеү өсөн кәм тигәндә pygobject %(major)d.%(feature)d."
+"%(minor)d кәрәк.\n"
 "\n"
 "Gramps хәҙер ябыласаҡ."
 
@@ -22439,8 +22450,8 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "Әгәр был хатаны үҙегеҙ төҙәтә алмаһағыҙ, %(gramps_bugtracker_url)s адресына "
-"хата ебәрә алаһығыҙ йәки күренеш авторы менән бәйләнешә алаһығыҙ (%"
-"(firstauthoremail)s).\n"
+"хата ебәрә алаһығыҙ йәки күренеш авторы менән бәйләнешә алаһығыҙ "
+"(%(firstauthoremail)s).\n"
 "\n"
 "Әгәр Gramps-тың был күренеште ҡабат тейәүен теләмәһәгеҙ, Help менюһындағы "
 "Plugin Manager аша уны йәшерә алаһығыҙ."
@@ -22468,8 +22479,8 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "Әгәр был хатаны үҙегеҙ төҙәтә алмаһағыҙ, %(gramps_bugtracker_url)s адресына "
-"хата ебәрә алаһығыҙ йәки плагин авторы менән бәйләнешә алаһығыҙ (%"
-"(firstauthoremail)s).\n"
+"хата ебәрә алаһығыҙ йәки плагин авторы менән бәйләнешә алаһығыҙ "
+"(%(firstauthoremail)s).\n"
 "\n"
 "Әгәр Gramps-тың был плагинды ҡабат тейәүен теләмәһәгеҙ, Help менюһындағы "
 "Plugin Manager аша уны йәшерә алаһығыҙ."
@@ -23539,7 +23550,8 @@ msgstr "Ағасты ҡыҫыу"
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
-msgstr "Билдәһеҙ кешеләр өсөн ҡалдырылған артыҡ буш аралыҡтарҙы алып ташларғамы"
+msgstr ""
+"Билдәһеҙ кешеләр өсөн ҡалдырылған артыҡ буш аралыҡтарҙы алып ташларғамы"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
 msgid "Show Index"
@@ -25405,8 +25417,8 @@ msgid ""
 "Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sЙыш бирелгән һорауҙар%"
-"(html_end)s%(bold_end)s\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sЙыш бирелгән "
+"һорауҙар%(html_end)s%(bold_end)s\n"
 "(интернетҡа тоташыу кәрәк)\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:71
@@ -25428,8 +25440,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
-"  2. %(gramps_FAQ_html_start)s%(faq_section)sӨҫтәмә ир/ҡатынды нисек "
-"өҫтәргә?%(html_end)s\n"
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sӨҫтәмә ир/ҡатынды нисек өҫтәргә?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:94
 #, python-format
@@ -25526,8 +25538,8 @@ msgid ""
 " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
 "bug?%(html_end)s\n"
 msgstr ""
-" 12. %(gramps_FAQ_html_start)s%(faq_section)sХата тапһам нимә эшләргә?%"
-"(html_end)s\n"
+" 12. %(gramps_FAQ_html_start)s%(faq_section)sХата тапһам нимә эшләргә?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:214
 #, python-format
@@ -25535,8 +25547,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sGramps өсөн ҡулланма бармы?%"
-"(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)sGramps өсөн ҡулланма бармы?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:223
 #, python-format
@@ -25557,8 +25569,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 16. %(gramps_wiki_html_start)s%(section)sGramps-ҡа нисек ярҙам итә алам?%"
-"(html_end)s\n"
+" 16. %(gramps_wiki_html_start)s%(section)sGramps-ҡа нисек ярҙам итә алам?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:55
 msgid "Double-click given name for details"
@@ -25698,7 +25710,8 @@ msgstr "Тоҡомдар елпеүес диаграммаһы"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:216
 msgid "Gramplet showing active person's direct descendants as a fanchart"
-msgstr "Әүҙем кешенең тура тоҡомдарын елпеүес диаграмма итеп күрһәткән gramplet"
+msgstr ""
+"Әүҙем кешенең тура тоҡомдарын елпеүес диаграмма итеп күрһәткән gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:234
 #: ../gramps/plugins/view/fanchart2wayview.py:83
@@ -25773,14 +25786,14 @@ msgstr "Бөтә фамилияларҙы текст болот итеп күр�
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:389
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:396
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1390
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1406
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1422
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1438
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1454
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1470
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1486
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1502
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1391
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1407
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1423
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1439
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1455
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1471
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1487
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1503
 msgctxt "gramplet"
 msgid "To Do"
 msgstr "Эштәр исемлеге"
@@ -25861,20 +25874,20 @@ msgstr "Медиа алдан ҡарау"
 msgid "Gramplet showing a preview of a media object"
 msgstr "Медиа объекттың алдан ҡарауын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:537
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:545
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:538
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:546
 msgid "Image Metadata"
 msgstr "Рәсем мета-мәғлүмәттәре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:538
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:539
 msgid "Gramplet showing metadata for a media object"
 msgstr "Медиа объект өсөн мета-мәғлүмәтте күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:564
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:565
 msgid "GExiv2 module not loaded."
 msgstr "GExiv2 модуле тейәлмәгән."
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:566
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:567
 #, python-format
 msgid ""
 "Image metadata functionality will not be available.\n"
@@ -25883,533 +25896,533 @@ msgstr ""
 "Рәсем мета-мәғлүмәттәре мөмкинлеге булмаясаҡ.\n"
 "Gramps өсөн уны төҙөү: %(gramps_wiki_build_gexiv2_url)s"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:580
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:581
 msgid "Person Residence"
 msgstr "Кешенең йәшәү урыны"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:581
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:582
 msgid "Gramplet showing residence events for a person"
 msgstr "Кеше өсөн йәшәү урыны ваҡиғаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:596
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:597
 msgid "Person Events"
 msgstr "Кеше ваҡиғалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:597
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1588
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:598
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1589
 msgid "Gramplet showing the events for a person"
 msgstr "Кеше өсөн ваҡиғаларҙы күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:612
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:613
 msgid "Family Events"
 msgstr "Ғаилә ваҡиғалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:613
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:614
 msgid "Gramplet showing the events for a family"
 msgstr "Ғаилә өсөн ваҡиғаларҙы күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:628
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:629
 msgid "Person Gallery"
 msgstr "Кеше галереяһы"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:629
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:630
 msgid "Gramplet showing media objects for a person"
 msgstr "Кеше өсөн медиа объекттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:636
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:652
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:668
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:684
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:700
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:716
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:637
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:653
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:669
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:685
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:701
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:717
 msgid "Gallery"
 msgstr "Галерея"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:644
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:645
 msgid "Family Gallery"
 msgstr "Ғаилә галереяһы"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:645
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:646
 msgid "Gramplet showing media objects for a family"
 msgstr "Ғаилә өсөн медиа объекттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:660
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:661
 msgid "Event Gallery"
 msgstr "Ваҡиға галереяһы"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:661
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:662
 msgid "Gramplet showing media objects for an event"
 msgstr "Ваҡиға өсөн медиа объекттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:676
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:677
 msgid "Place Gallery"
 msgstr "Урын галереяһы"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:677
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:678
 msgid "Gramplet showing media objects for a place"
 msgstr "Урын өсөн медиа объекттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:692
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:693
 msgid "Source Gallery"
 msgstr "Сығанаҡ галереяһы"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:693
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:694
 msgid "Gramplet showing media objects for a source"
 msgstr "Сығанаҡ өсөн медиа объекттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:708
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:709
 msgid "Citation Gallery"
 msgstr "Өҙөмтә галереяһы"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:709
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:710
 msgid "Gramplet showing media objects for a citation"
 msgstr "Өҙөмтә өсөн медиа объекттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:724
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:725
 msgid "Person Attributes"
 msgstr "Кеше атрибуттары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:725
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:726
 msgid "Gramplet showing the attributes of a person"
 msgstr "Кеше атрибуттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:740
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:741
 msgid "Event Attributes"
 msgstr "Ваҡиға атрибуттары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:741
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:742
 msgid "Gramplet showing the attributes of an event"
 msgstr "Ваҡиға атрибуттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:756
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:757
 msgid "Family Attributes"
 msgstr "Ғаилә атрибуттары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:757
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:758
 msgid "Gramplet showing the attributes of a family"
 msgstr "Ғаилә атрибуттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:772
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:773
 msgid "Media Attributes"
 msgstr "Медиа атрибуттары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:773
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:774
 msgid "Gramplet showing the attributes of a media object"
 msgstr "Медиа объект атрибуттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:789
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:790
 msgid "Gramplet showing the attributes of a source object"
 msgstr "Сығанаҡ объекты атрибуттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:804
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:805
 msgid "Citation Attributes"
 msgstr "Өҙөмтә атрибуттары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:805
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:806
 msgid "Gramplet showing the attributes of a citation object"
 msgstr "Өҙөмтә объекты атрибуттарын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:820
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:821
 msgid "Person Notes"
 msgstr "Кеше иҫкәрмәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:821
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:822
 msgid "Gramplet showing the notes for a person"
 msgstr "Кеше өсөн иҫкәрмәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:836
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:837
 msgid "Event Notes"
 msgstr "Ваҡиға иҫкәрмәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:837
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:838
 msgid "Gramplet showing the notes for an event"
 msgstr "Ваҡиға өсөн иҫкәрмәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:852
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:853
 #: ../gramps/plugins/textreport/familygroup.py:793
 msgid "Family Notes"
 msgstr "Ғаилә иҫкәрмәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:853
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:854
 msgid "Gramplet showing the notes for a family"
 msgstr "Ғаилә өсөн иҫкәрмәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:868
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:869
 msgid "Place Notes"
 msgstr "Урын иҫкәрмәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:869
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:870
 msgid "Gramplet showing the notes for a place"
 msgstr "Урын өсөн иҫкәрмәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:884
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:885
 msgid "Source Notes"
 msgstr "Сығанаҡ иҫкәрмәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:885
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:886
 msgid "Gramplet showing the notes for a source"
 msgstr "Сығанаҡ өсөн иҫкәрмәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:900
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:901
 msgid "Citation Notes"
 msgstr "Өҙөмтә иҫкәрмәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:901
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:902
 msgid "Gramplet showing the notes for a citation"
 msgstr "Өҙөмтә өсөн иҫкәрмәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:916
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:917
 msgid "Repository Notes"
 msgstr "Һаҡлағыс иҫкәрмәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:917
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:918
 msgid "Gramplet showing the notes for a repository"
 msgstr "Һаҡлағыс өсөн иҫкәрмәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:932
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:933
 msgid "Media Notes"
 msgstr "Медиа иҫкәрмәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:933
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:934
 msgid "Gramplet showing the notes for a media object"
 msgstr "Медиа объект өсөн иҫкәрмәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:949
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:950
 msgid "Gramplet showing the selected note"
 msgstr "Һайланған иҫкәрмәне күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:964
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:965
 msgid "Person Citations"
 msgstr "Кеше өҙөмтәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:965
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:966
 msgid "Gramplet showing the citations for a person"
 msgstr "Кеше өсөн өҙөмтәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:980
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 msgid "Event Citations"
 msgstr "Ваҡиға өҙөмтәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:981
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:982
 msgid "Gramplet showing the citations for an event"
 msgstr "Ваҡиға өсөн өҙөмтәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:996
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:997
 msgid "Family Citations"
 msgstr "Ғаилә өҙөмтәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:997
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:998
 msgid "Gramplet showing the citations for a family"
 msgstr "Ғаилә өсөн өҙөмтәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1012
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1013
 msgid "Place Citations"
 msgstr "Урын өҙөмтәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1013
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1014
 msgid "Gramplet showing the citations for a place"
 msgstr "Урын өсөн өҙөмтәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1028
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1029
 msgid "Media Citations"
 msgstr "Медиа өҙөмтәләре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1029
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1030
 msgid "Gramplet showing the citations for a media object"
 msgstr "Медиа объект өсөн өҙөмтәләрҙе күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1044
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1045
 msgid "Person Children"
 msgstr "Кеше балалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1045
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1046
 msgid "Gramplet showing the children of a person"
 msgstr "Кешенең балаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1060
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1061
 msgid "Family Children"
 msgstr "Ғаилә балалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1061
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1062
 msgid "Gramplet showing the children of a family"
 msgstr "Ғаиләнең балаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1076
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1077
 msgid "Person References"
 msgstr "Кеше һылтанмалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1077
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1078
 msgid "Gramplet showing the backlink references for a person"
 msgstr "Кеше өсөн кире һылтанма һылтанмаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1084
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1100
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1116
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1132
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1148
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1164
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1180
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1196
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1212
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1085
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1101
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1117
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1133
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1149
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1165
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1181
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1197
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1213
 #: ../gramps/plugins/webreport/basepage.py:3884
 #: ../gramps/plugins/webreport/person.py:1101
 #: ../gramps/plugins/webreport/thumbnail.py:188
 msgid "References"
 msgstr "Һылтанмалар"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1092
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 msgid "Event References"
 msgstr "Ваҡиға һылтанмалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1094
 msgid "Gramplet showing the backlink references for an event"
 msgstr "Ваҡиға өсөн кире һылтанма һылтанмаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1108
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1109
 msgid "Family References"
 msgstr "Ғаилә һылтанмалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1109
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1110
 msgid "Gramplet showing the backlink references for a family"
 msgstr "Ғаилә өсөн кире һылтанма һылтанмаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1124
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
 msgid "Place References"
 msgstr "Урын һылтанмалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1126
 msgid "Gramplet showing the backlink references for a place"
 msgstr "Урын өсөн кире һылтанма һылтанмаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1140
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1141
 #: ../gramps/plugins/webreport/basepage.py:3015
 msgid "Source References"
 msgstr "Сығанаҡ һылтанмалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1141
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1142
 msgid "Gramplet showing the backlink references for a source"
 msgstr "Сығанаҡ өсөн кире һылтанма һылтанмаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1156
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1157
 msgid "Citation References"
 msgstr "Өҙөмтә һылтанмалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1157
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1158
 msgid "Gramplet showing the backlink references for a citation"
 msgstr "Өҙөмтә өсөн кире һылтанма һылтанмаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1172
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1173
 #: ../gramps/plugins/quickview/quickview.gpr.py:275
 msgid "Repository References"
 msgstr "Һаҡлағыс һылтанмалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1173
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1174
 msgid "Gramplet showing the backlink references for a repository"
 msgstr "Һаҡлағыс өсөн кире һылтанма һылтанмаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1188
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1189
 msgid "Media References"
 msgstr "Медиа һылтанмалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1189
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1190
 msgid "Gramplet showing the backlink references for a media object"
 msgstr "Медиа объект өсөн кире һылтанма һылтанмаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1204
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1205
 msgid "Note References"
 msgstr "Иҫкәрмә һылтанмалары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1205
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1206
 msgid "Gramplet showing the backlink references for a note"
 msgstr "Иҫкәрмә өсөн кире һылтанма һылтанмаларын күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1221
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1222
 msgid "Gramplet providing a person filter"
 msgstr "Кеше фильтрын биргән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1236
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1237
 msgid "Family Filter"
 msgstr "Ғаилә фильтры"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1237
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1238
 msgid "Gramplet providing a family filter"
 msgstr "Ғаилә фильтрын биргән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1252
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1253
 msgid "Event Filter"
 msgstr "Ваҡиға фильтры"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1253
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1254
 msgid "Gramplet providing an event filter"
 msgstr "Ваҡиға фильтрын биргән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1268
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1269
 msgid "Source Filter"
 msgstr "Сығанаҡ фильтры"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1269
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1270
 msgid "Gramplet providing a source filter"
 msgstr "Сығанаҡ фильтрын биргән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1284
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1285
 msgid "Citation Filter"
 msgstr "Өҙөмтә фильтры"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1285
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1286
 msgid "Gramplet providing a citation filter"
 msgstr "Өҙөмтә фильтрын биргән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1300
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1301
 msgid "Place Filter"
 msgstr "Урын фильтры"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1301
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1302
 msgid "Gramplet providing a place filter"
 msgstr "Урын фильтрын биргән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1316
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1317
 msgid "Media Filter"
 msgstr "Медиа фильтры"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1317
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1318
 msgid "Gramplet providing a media filter"
 msgstr "Медиа фильтрын биргән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1332
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1333
 msgid "Repository Filter"
 msgstr "Һаҡлағыс фильтры"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1333
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1334
 msgid "Gramplet providing a repository filter"
 msgstr "Һаҡлағыс фильтрын биргән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1348
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1349
 msgid "Note Filter"
 msgstr "Иҫкәрмә фильтры"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1349
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1350
 msgid "Gramplet providing a note filter"
 msgstr "Иҫкәрмә фильтрын биргән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1364
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1375
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1365
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1376
 #: ../gramps/plugins/textreport/recordsreport.py:139
 msgid "Records"
 msgstr "Яҙмалар"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1365
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1366
 #: ../gramps/plugins/textreport/textplugins.gpr.py:436
 msgid "Shows some interesting records about people and families"
 msgstr "Кеше һәм ғаиләләр тураһында ҡайһы бер ҡыҙыҡлы яҙмаларҙы күрһәтә"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1382
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1383
 msgid "Person To Do"
 msgstr "Кеше эштәре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1383
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1384
 msgid "Gramplet showing the To Do notes for a person"
 msgstr "Кеше өсөн Эштәр исемлеге иҫкәрмәләрен күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1398
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1399
 msgid "Event To Do"
 msgstr "Ваҡиға эштәре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1399
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1400
 msgid "Gramplet showing the To Do notes for an event"
 msgstr "Ваҡиға өсөн Эштәр исемлеге иҫкәрмәләрен күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1414
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1415
 msgid "Family To Do"
 msgstr "Ғаилә эштәре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1415
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1416
 msgid "Gramplet showing the To Do notes for a family"
 msgstr "Ғаилә өсөн Эштәр исемлеге иҫкәрмәләрен күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1430
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1431
 msgid "Place To Do"
 msgstr "Урын эштәре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1431
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1432
 msgid "Gramplet showing the To Do notes for a place"
 msgstr "Урын өсөн Эштәр исемлеге иҫкәрмәләрен күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1446
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1447
 msgid "Source To Do"
 msgstr "Сығанаҡ эштәре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1447
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1448
 msgid "Gramplet showing the To Do notes for a source"
 msgstr "Сығанаҡ өсөн Эштәр исемлеге иҫкәрмәләрен күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1462
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1463
 msgid "Citation To Do"
 msgstr "Өҙөмтә эштәре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1463
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1464
 msgid "Gramplet showing the To Do notes for a citation"
 msgstr "Өҙөмтә өсөн Эштәр исемлеге иҫкәрмәләрен күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1478
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1479
 msgid "Repository To Do"
 msgstr "Һаҡлағыс эштәре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1479
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1480
 msgid "Gramplet showing the To Do notes for a repository"
 msgstr "Һаҡлағыс өсөн Эштәр исемлеге иҫкәрмәләрен күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1494
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1495
 msgid "Media To Do"
 msgstr "Медиа эштәре"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1495
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1496
 msgid "Gramplet showing the To Do notes for a media object"
 msgstr "Медиа объект өсөн Эштәр исемлеге иҫкәрмәләрен күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1540
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1548
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1541
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1549
 msgid "SoundEx"
 msgstr "SoundEx"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1541
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1542
 msgid "Gramplet to generate SoundEx codes"
 msgstr "SoundEx кодтарын яһау өсөн gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1555
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1556
 msgid "Place Enclosed By"
 msgstr "Урын эсендә"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1556
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1557
 msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Әүҙем урын эсендәге урындарҙы күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1571
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1572
 #: ../gramps/plugins/webreport/basepage.py:3570
 msgid "Place Encloses"
 msgstr "Урын эсенә ала"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1572
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1573
 msgid "Gramplet showing the places that the active place encloses"
 msgstr "Әүҙем урын үҙ эсенә алған урындарҙы күрһәткән gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1579
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1580
 msgid "Encloses"
 msgstr "Эсенә ала"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1587
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1588
 msgid "Geography coordinates for Person Events"
 msgstr "Кеше ваҡиғалары өсөн географик координаттар"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1595
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1611
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1596
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1612
 msgid "Events Coordinates"
 msgstr "Ваҡиғалар координаттары"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1603
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1604
 msgid "Geography coordinates for Family Events"
 msgstr "Ғаилә ваҡиғалары өсөн географик координаттар"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1604
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1605
 msgid "Gramplet showing the events for all the family"
 msgstr "Бөтә ғаилә өсөн ваҡиғаларҙы күрһәткән gramplet"
 
@@ -27720,7 +27733,8 @@ msgstr "Бөтә ғаилә төйөндәрен күрһәтеү"
 #: ../gramps/plugins/graph/gvrelgraph.py:991
 msgid ""
 "Show family nodes even if the output contains only one member of the family."
-msgstr "Һөҙөмтәлә ғаиләнең бер генә ағзаһы булһа ла, ғаилә төйөндәрен күрһәтеү."
+msgstr ""
+"Һөҙөмтәлә ғаиләнең бер генә ағзаһы булһа ла, ғаилә төйөндәрен күрһәтеү."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:997
 msgid "Include URLs"
@@ -28368,7 +28382,8 @@ msgstr "GeneWeb импорты"
 #: ../gramps/plugins/importer/importgeneweb.py:975
 #, python-brace-format
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
-msgstr "{gw_snippet} эсендә {date} датаһы дөрөҫ түгел, дата текст итеп һаҡлана."
+msgstr ""
+"{gw_snippet} эсендә {date} датаһы дөрөҫ түгел, дата текст итеп һаҡлана."
 
 #: ../gramps/plugins/importer/importgpkg.py:76
 #, python-format
@@ -28455,8 +28470,8 @@ msgstr ""
 "импортларға кәрәк. Унан һуң мәғлүмәттәрегеҙҙең күсермәһен Gramps XML (Ғаилә "
 "шәжәрәһе) форматына экспортларға тейешһегеҙ. Артабан Gramps-тың иң һуңғы "
 "версияһына (мәҫәлән, был версияға) күсергә, яңы буш мәғлүмәт базаһы "
-"булдырырға һәм Gramps XML-ды шул версияға импортларға кәрәк. Ҡарағыҙ: %"
-"(gramps_wiki_migrate_two_to_three_url)s"
+"булдырырға һәм Gramps XML-ды шул версияға импортларға кәрәк. Ҡарағыҙ: "
+"%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:44
 msgid "_Ok"
@@ -28984,9 +28999,9 @@ msgstr ""
 "булдырылған, ә һеҙ күпкә яңыраҡ %(newgramps)s версияһын ҡулланаһығыҙ.\n"
 "\n"
 "Импорттан һуң барыһының да дөрөҫ импортланғанын тикшерегеҙ. Проблемалар "
-"тыуһа, зинһар, баг тураһында хәбәр итегеҙ һәм әлегә был xml-дың %(xmlversion)"
-"s версияһындағы файлды импортлау өсөн Gramps-тың иҫкерәк версияһын "
-"ҡулланығыҙ.\n"
+"тыуһа, зинһар, баг тураһында хәбәр итегеҙ һәм әлегә был xml-дың "
+"%(xmlversion)s версияһындағы файлды импортлау өсөн Gramps-тың иҫкерәк "
+"версияһын ҡулланығыҙ.\n"
 "Тулыраҡ мәғлүмәт өсөн ҡарағыҙ:\n"
 "  %(gramps_wiki_xml_url)s"
 
@@ -29534,66 +29549,66 @@ msgstr ""
 msgid "No copyright notice"
 msgstr "Авторлыҡ хоҡуғы тураһында иҫкәрмә юҡ"
 
-#: ../gramps/plugins/lib/libmetadata.py:75
-#: ../gramps/plugins/lib/libmetadata.py:115
+#: ../gramps/plugins/lib/libmetadata.py:79
+#: ../gramps/plugins/lib/libmetadata.py:119
 msgid "Invalid format"
 msgstr "Дөрөҫ булмаған формат"
 
-#: ../gramps/plugins/lib/libmetadata.py:80
+#: ../gramps/plugins/lib/libmetadata.py:84
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
-#: ../gramps/plugins/lib/libmetadata.py:85
+#: ../gramps/plugins/lib/libmetadata.py:89
 #, python-format
 msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
-#: ../gramps/plugins/lib/libmetadata.py:118
+#: ../gramps/plugins/lib/libmetadata.py:122
 msgid "Descriptive Tags"
 msgstr "Тасуирлаусы тамғалар"
 
-#: ../gramps/plugins/lib/libmetadata.py:119
+#: ../gramps/plugins/lib/libmetadata.py:123
 msgid "Date and Time Tags"
 msgstr "Дата һәм ваҡыт тамғалары"
 
-#: ../gramps/plugins/lib/libmetadata.py:120
+#: ../gramps/plugins/lib/libmetadata.py:124
 msgid "People Tags"
 msgstr "Кешеләр тамғалары"
 
-#: ../gramps/plugins/lib/libmetadata.py:121
+#: ../gramps/plugins/lib/libmetadata.py:125
 msgid "Event Tags"
 msgstr "Ваҡиға тамғалары"
 
-#: ../gramps/plugins/lib/libmetadata.py:122
+#: ../gramps/plugins/lib/libmetadata.py:126
 msgid "Image Tags"
 msgstr "Рәсем тамғалары"
 
-#: ../gramps/plugins/lib/libmetadata.py:123
+#: ../gramps/plugins/lib/libmetadata.py:127
 msgid "Camera Information"
 msgstr "Камера тураһында мәғлүмәт"
 
-#: ../gramps/plugins/lib/libmetadata.py:124
+#: ../gramps/plugins/lib/libmetadata.py:128
 msgid "Location Tags"
 msgstr "Урын тамғалары"
 
-#: ../gramps/plugins/lib/libmetadata.py:125
+#: ../gramps/plugins/lib/libmetadata.py:129
 msgid "Advanced Tags"
 msgstr "Киңәйтелгән тамғалар"
 
-#: ../gramps/plugins/lib/libmetadata.py:126
+#: ../gramps/plugins/lib/libmetadata.py:130
 msgid "Rights Tags"
 msgstr "Хоҡуҡ тамғалары"
 
-#: ../gramps/plugins/lib/libmetadata.py:127
+#: ../gramps/plugins/lib/libmetadata.py:131
 msgid "Keyword Tags"
 msgstr "Төп һүҙ тамғалары"
 
-#: ../gramps/plugins/lib/libmetadata.py:226
+#: ../gramps/plugins/lib/libmetadata.py:230
 msgid "Namespace"
 msgstr "Исемдәр арауығы"
 
-#: ../gramps/plugins/lib/libmetadata.py:227
+#: ../gramps/plugins/lib/libmetadata.py:231
 msgid "Label"
 msgstr "Билдә"
 
@@ -29862,8 +29877,8 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s %(death_place)s ҡалаһында %(death_date)s көнөндә %"
-"(age)s йәшендә вафат булған."
+"%(unknown_gender_name)s %(death_place)s ҡалаһында %(death_date)s көнөндә "
+"%(age)s йәшендә вафат булған."
 
 #: ../gramps/plugins/lib/libnarrate.py:231
 #, python-format
@@ -29899,7 +29914,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:245
 #, python-format
 msgid "This person died on %(death_date)s in %(death_place)s."
-msgstr "Был кеше %(death_place)s ҡалаһында %(death_date)s көнөндә вафат булған."
+msgstr ""
+"Был кеше %(death_place)s ҡалаһында %(death_date)s көнөндә вафат булған."
 
 #: ../gramps/plugins/lib/libnarrate.py:247
 #, python-format
@@ -30349,7 +30365,8 @@ msgstr "%(female_name)s %(death_place)s ҡалаһында вафат булға
 #: ../gramps/plugins/lib/libnarrate.py:468
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(female_name)s %(death_place)s ҡалаһында %(age)s йәшендә вафат булған."
+msgstr ""
+"%(female_name)s %(death_place)s ҡалаһында %(age)s йәшендә вафат булған."
 
 #: ../gramps/plugins/lib/libnarrate.py:473
 #, python-format
@@ -30431,8 +30448,8 @@ msgstr "(%(age)s йәшендә) вафат булған."
 msgid ""
 "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s %(burial_place)s ҡалаһында %(burial_date)s көнөндә ерләнгән%"
-"(endnotes)s."
+"%(male_name)s %(burial_place)s ҡалаһында %(burial_date)s көнөндә "
+"ерләнгән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:536
 #, python-format
@@ -30446,8 +30463,8 @@ msgid ""
 "%(female_name)s was buried on %(burial_date)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s %(burial_place)s ҡалаһында %(burial_date)s көнөндә ерләнгән%"
-"(endnotes)s."
+"%(female_name)s %(burial_place)s ҡалаһында %(burial_date)s көнөндә "
+"ерләнгән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:542
 #, python-format
@@ -30469,8 +30486,8 @@ msgstr ""
 msgid ""
 "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Был кеше %(burial_place)s ҡалаһында %(burial_date)s көнөндә ерләнгән%"
-"(endnotes)s."
+"Был кеше %(burial_place)s ҡалаһында %(burial_date)s көнөндә "
+"ерләнгән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:550
 #, python-format
@@ -30530,8 +30547,8 @@ msgstr "Ул %(burial_place)s ҡалаһында %(month_year)s ерләнгән
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s %(burial_place)s ҡалаһында %(month_year)s ерләнгән%(endnotes)"
-"s."
+"%(female_name)s %(burial_place)s ҡалаһында %(month_year)s "
+"ерләнгән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:580
 #, python-format
@@ -30544,8 +30561,8 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in "
 "%(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s %(burial_place)s ҡалаһында %(month_year)s ерләнгән%"
-"(endnotes)s."
+"%(unknown_gender_name)s %(burial_place)s ҡалаһында %(month_year)s "
+"ерләнгән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:586
 #, python-format
@@ -30599,8 +30616,8 @@ msgstr "%(month_year)s ерләнгән%(endnotes)s."
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s %(burial_place)s ҡалаһында %(modified_date)s ерләнгән%"
-"(endnotes)s."
+"%(male_name)s %(burial_place)s ҡалаһында %(modified_date)s "
+"ерләнгән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:612
 #, python-format
@@ -30612,8 +30629,8 @@ msgstr "Ул %(burial_place)s ҡалаһында %(modified_date)s ерләнг�
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s %(burial_place)s ҡалаһында %(modified_date)s ерләнгән%"
-"(endnotes)s."
+"%(female_name)s %(burial_place)s ҡалаһында %(modified_date)s "
+"ерләнгән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:618
 #, python-format
@@ -30760,8 +30777,8 @@ msgstr ""
 #, python-format
 msgid "He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Ул %(baptism_place)s ҡалаһында %(baptism_date)s көнөндә суҡындырылған%"
-"(endnotes)s."
+"Ул %(baptism_place)s ҡалаһында %(baptism_date)s көнөндә "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:690
 #, python-format
@@ -30776,8 +30793,8 @@ msgstr ""
 #, python-format
 msgid "She was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Ул %(baptism_place)s ҡалаһында %(baptism_date)s көнөндә суҡындырылған%"
-"(endnotes)s."
+"Ул %(baptism_place)s ҡалаһында %(baptism_date)s көнөндә "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:696
 #, python-format
@@ -30794,15 +30811,15 @@ msgid ""
 "This person was baptized on %(baptism_date)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"Был кеше %(baptism_place)s ҡалаһында %(baptism_date)s көнөндә суҡындырылған%"
-"(endnotes)s."
+"Был кеше %(baptism_place)s ҡалаһында %(baptism_date)s көнөндә "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:702
 #, python-format
 msgid "Baptized %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(baptism_place)s ҡалаһында %(baptism_date)s көнөндә суҡындырылған%(endnotes)"
-"s."
+"%(baptism_place)s ҡалаһында %(baptism_date)s көнөндә "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:707
 #, python-format
@@ -30846,8 +30863,8 @@ msgid ""
 "%(male_name)s was baptized in %(month_year)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s %(baptism_place)s ҡалаһында %(month_year)s суҡындырылған%"
-"(endnotes)s."
+"%(male_name)s %(baptism_place)s ҡалаһында %(month_year)s "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:726
 #, python-format
@@ -30861,8 +30878,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s %(baptism_place)s ҡалаһында %(month_year)s суҡындырылған%"
-"(endnotes)s."
+"%(female_name)s %(baptism_place)s ҡалаһында %(month_year)s "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:732
 #, python-format
@@ -30884,8 +30901,8 @@ msgstr ""
 msgid ""
 "This person was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Был кеше %(baptism_place)s ҡалаһында %(month_year)s суҡындырылған%(endnotes)"
-"s."
+"Был кеше %(baptism_place)s ҡалаһында %(month_year)s "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:742
 #, python-format
@@ -30933,8 +30950,8 @@ msgid ""
 "%(male_name)s was baptized %(modified_date)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s %(baptism_place)s ҡалаһында %(modified_date)s суҡындырылған%"
-"(endnotes)s."
+"%(male_name)s %(baptism_place)s ҡалаһында %(modified_date)s "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:766
 #, python-format
@@ -30948,8 +30965,8 @@ msgid ""
 "%(female_name)s was baptized %(modified_date)s in "
 "%(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s %(baptism_place)s ҡалаһында %(modified_date)s суҡындырылған%"
-"(endnotes)s."
+"%(female_name)s %(baptism_place)s ҡалаһында %(modified_date)s "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:772
 #, python-format
@@ -30971,8 +30988,8 @@ msgstr ""
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Был кеше %(baptism_place)s ҡалаһында %(modified_date)s суҡындырылған%"
-"(endnotes)s."
+"Был кеше %(baptism_place)s ҡалаһында %(modified_date)s "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:782
 #, python-format
@@ -31039,8 +31056,8 @@ msgstr "Ул %(baptism_place)s ҡалаһында суҡындырылған%(en
 #, python-format
 msgid "%(unknown_gender_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s %(baptism_place)s ҡалаһында суҡындырылған%(endnotes)"
-"s."
+"%(unknown_gender_name)s %(baptism_place)s ҡалаһында "
+"суҡындырылған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:812
 #, python-format
@@ -31175,8 +31192,8 @@ msgstr "Ул %(christening_date)s көнөндә сиркәү исеме алғ�
 msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s %(christening_date)s көнөндә сиркәү исеме алған%"
-"(endnotes)s."
+"%(unknown_gender_name)s %(christening_date)s көнөндә сиркәү исеме "
+"алған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:881
 #, python-format
@@ -31202,8 +31219,8 @@ msgstr ""
 msgid ""
 "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"Ул %(christening_place)s ҡалаһында %(month_year)s сиркәү исеме алған%"
-"(endnotes)s."
+"Ул %(christening_place)s ҡалаһында %(month_year)s сиркәү исеме "
+"алған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:895
 #, python-format
@@ -31219,8 +31236,8 @@ msgstr ""
 msgid ""
 "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"Ул %(christening_place)s ҡалаһында %(month_year)s сиркәү исеме алған%"
-"(endnotes)s."
+"Ул %(christening_place)s ҡалаһында %(month_year)s сиркәү исеме "
+"алған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:901
 #, python-format
@@ -31237,15 +31254,15 @@ msgid ""
 "This person was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"Был кеше %(christening_place)s ҡалаһында %(month_year)s сиркәү исеме алған%"
-"(endnotes)s."
+"Был кеше %(christening_place)s ҡалаһында %(month_year)s сиркәү исеме "
+"алған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:907
 #, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"%(christening_place)s ҡалаһында %(month_year)s сиркәү исеме алған%(endnotes)"
-"s."
+"%(christening_place)s ҡалаһында %(month_year)s сиркәү исеме "
+"алған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:912
 #, python-format
@@ -31296,8 +31313,8 @@ msgstr ""
 msgid ""
 "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"Ул %(christening_place)s ҡалаһында %(modified_date)s сиркәү исеме алған%"
-"(endnotes)s."
+"Ул %(christening_place)s ҡалаһында %(modified_date)s сиркәү исеме "
+"алған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:935
 #, python-format
@@ -31313,8 +31330,8 @@ msgstr ""
 msgid ""
 "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"Ул %(christening_place)s ҡалаһында %(modified_date)s сиркәү исеме алған%"
-"(endnotes)s."
+"Ул %(christening_place)s ҡалаһында %(modified_date)s сиркәү исеме "
+"алған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:941
 #, python-format
@@ -31338,8 +31355,8 @@ msgstr ""
 #, python-format
 msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"%(christening_place)s ҡалаһында %(modified_date)s сиркәү исеме алған%"
-"(endnotes)s."
+"%(christening_place)s ҡалаһында %(modified_date)s сиркәү исеме "
+"алған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:952
 #, python-format
@@ -31392,8 +31409,8 @@ msgstr "Ул %(christening_place)s ҡалаһында сиркәү исеме а
 #, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s %(christening_place)s ҡалаһында сиркәү исеме алған%(endnotes)"
-"s."
+"%(female_name)s %(christening_place)s ҡалаһында сиркәү исеме "
+"алған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:973
 #, python-format
@@ -31405,8 +31422,8 @@ msgstr "Ул %(christening_place)s ҡалаһында сиркәү исеме а
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s %(christening_place)s ҡалаһында сиркәү исеме алған%"
-"(endnotes)s."
+"%(unknown_gender_name)s %(christening_place)s ҡалаһында сиркәү исеме "
+"алған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:979
 #, python-format
@@ -31684,8 +31701,8 @@ msgstr "%(mother)s ҡыҙы."
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Был кеше %(place)s ҡалаһында %(partial_date)s %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Был кеше %(place)s ҡалаһында %(partial_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1123
 #, python-format
@@ -31700,50 +31717,50 @@ msgstr ""
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Был кеше %(place)s ҡалаһында %(modified_date)s %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Был кеше %(place)s ҡалаһында %(modified_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ул %(place)s ҡалаһында %(partial_date)s %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Ул %(place)s ҡалаһында %(partial_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1128
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ул %(place)s ҡалаһында %(full_date)s көнөндә %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Ул %(place)s ҡалаһында %(full_date)s көнөндә %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1129
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ул %(place)s ҡалаһында %(modified_date)s %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Ул %(place)s ҡалаһында %(modified_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1132
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ул %(place)s ҡалаһында %(partial_date)s %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Ул %(place)s ҡалаһында %(partial_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1133
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ул %(place)s ҡалаһында %(full_date)s көнөндә %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Ул %(place)s ҡалаһында %(full_date)s көнөндә %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1134
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ул %(place)s ҡалаһында %(modified_date)s %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Ул %(place)s ҡалаһында %(modified_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1137
 #, python-format
@@ -31755,15 +31772,15 @@ msgstr ""
 #, python-format
 msgid "Married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"%(place)s ҡалаһында %(full_date)s көнөндә %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"%(place)s ҡалаһында %(full_date)s көнөндә %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1139
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"%(place)s ҡалаһында %(modified_date)s %(spouse)s менән өйләнешкән%(endnotes)"
-"s."
+"%(place)s ҡалаһында %(modified_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -31797,8 +31814,8 @@ msgstr ""
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ул шулай уҡ %(place)s ҡалаһында %(partial_date)s %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Ул шулай уҡ %(place)s ҡалаһында %(partial_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1157
 #, python-format
@@ -31819,8 +31836,8 @@ msgstr ""
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ул шулай уҡ %(place)s ҡалаһында %(partial_date)s %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Ул шулай уҡ %(place)s ҡалаһында %(partial_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1162
 #, python-format
@@ -31840,8 +31857,8 @@ msgstr ""
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Шулай уҡ %(place)s ҡалаһында %(partial_date)s %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Шулай уҡ %(place)s ҡалаһында %(partial_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1167
 #, python-format
@@ -31854,8 +31871,8 @@ msgstr ""
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Шулай уҡ %(place)s ҡалаһында %(modified_date)s %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Шулай уҡ %(place)s ҡалаһында %(modified_date)s %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1174
 #, python-format
@@ -31865,7 +31882,8 @@ msgstr "Был кеше %(partial_date)s %(spouse)s менән өйләнешк�
 #: ../gramps/plugins/lib/libnarrate.py:1175
 #, python-format
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Был кеше %(full_date)s көнөндә %(spouse)s менән өйләнешкән%(endnotes)s."
+msgstr ""
+"Был кеше %(full_date)s көнөндә %(spouse)s менән өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1176
 #, python-format
@@ -31927,8 +31945,8 @@ msgstr ""
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Был кеше шулай уҡ %(full_date)s көнөндә %(spouse)s менән өйләнешкән%"
-"(endnotes)s."
+"Был кеше шулай уҡ %(full_date)s көнөндә %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1199
 #, python-format
@@ -31976,7 +31994,8 @@ msgstr "Шулай уҡ %(partial_date)s %(spouse)s менән өйләнешк�
 #: ../gramps/plugins/lib/libnarrate.py:1213
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Шулай уҡ %(full_date)s көнөндә %(spouse)s менән өйләнешкән%(endnotes)s."
+msgstr ""
+"Шулай уҡ %(full_date)s көнөндә %(spouse)s менән өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1214
 #, python-format
@@ -32007,8 +32026,8 @@ msgstr "%(place)s ҡалаһында %(spouse)s менән өйләнешкән%
 #, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Был кеше шулай уҡ %(place)s ҡалаһында %(spouse)s менән өйләнешкән%(endnotes)"
-"s."
+"Был кеше шулай уҡ %(place)s ҡалаһында %(spouse)s менән "
+"өйләнешкән%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1227
 #, python-format
@@ -32265,8 +32284,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"Был кешенең %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Был кешенең %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1351
 #, python-format
@@ -32283,8 +32302,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Был кешенең %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Был кешенең %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1359
 #, python-format
@@ -32292,8 +32311,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"Уның %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәте булған%(endnotes)"
-"s."
+"Уның %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1362
 #, python-format
@@ -32301,8 +32320,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Уның %(full_date)s көнөндә %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның %(full_date)s көнөндә %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1365
 #, python-format
@@ -32310,8 +32329,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Уның %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәте булған%(endnotes)"
-"s."
+"Уның %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1370
 #, python-format
@@ -32319,8 +32338,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"Уның %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәте булған%(endnotes)"
-"s."
+"Уның %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1373
 #, python-format
@@ -32328,8 +32347,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Уның %(full_date)s көнөндә %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның %(full_date)s көнөндә %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1376
 #, python-format
@@ -32337,8 +32356,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Уның %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәте булған%(endnotes)"
-"s."
+"Уның %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1380
 #, python-format
@@ -32391,8 +32410,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның шулай уҡ %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1403
 #, python-format
@@ -32409,8 +32428,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның шулай уҡ %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1411
 #, python-format
@@ -32418,8 +32437,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның шулай уҡ %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1414
 #, python-format
@@ -32436,31 +32455,31 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның шулай уҡ %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1421
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
-"Шулай уҡ %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәт булған%"
-"(endnotes)s."
+"Шулай уҡ %(partial_date)s %(spouse)s менән никахһыҙ мөнәсәбәт "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1422
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
 msgstr ""
-"Шулай уҡ %(full_date)s көнөндә %(spouse)s менән никахһыҙ мөнәсәбәт булған%"
-"(endnotes)s."
+"Шулай уҡ %(full_date)s көнөндә %(spouse)s менән никахһыҙ мөнәсәбәт "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1423
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Шулай уҡ %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәт булған%"
-"(endnotes)s."
+"Шулай уҡ %(modified_date)s %(spouse)s менән никахһыҙ мөнәсәбәт "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1429
 #, python-format
@@ -32468,24 +32487,24 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Был кешенең %(place)s ҡалаһында %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Был кешенең %(place)s ҡалаһында %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1432
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Уның %(place)s ҡалаһында %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның %(place)s ҡалаһында %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1435
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Уның %(place)s ҡалаһында %(spouse)s менән никахһыҙ мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның %(place)s ҡалаһында %(spouse)s менән никахһыҙ мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1437
 #: ../gramps/plugins/lib/libnarrate.py:1450
@@ -32592,8 +32611,8 @@ msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Уның %(place)s ҡалаһында %(partial_date)s %(spouse)s менән мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның %(place)s ҡалаһында %(partial_date)s %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1498
 #, python-format
@@ -32619,8 +32638,8 @@ msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Уның %(place)s ҡалаһында %(partial_date)s %(spouse)s менән мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның %(place)s ҡалаһында %(partial_date)s %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1509
 #, python-format
@@ -32644,23 +32663,23 @@ msgstr ""
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"%(place)s ҡалаһында %(partial_date)s %(spouse)s менән мөнәсәбәт булған%"
-"(endnotes)s."
+"%(place)s ҡалаһында %(partial_date)s %(spouse)s менән мөнәсәбәт "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1517
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"%(place)s ҡалаһында %(full_date)s көнөндә %(spouse)s менән мөнәсәбәт булған%"
-"(endnotes)s."
+"%(place)s ҡалаһында %(full_date)s көнөндә %(spouse)s менән мөнәсәбәт "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1518
 #, python-format
 msgid ""
 "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"%(place)s ҡалаһында %(modified_date)s %(spouse)s менән мөнәсәбәт булған%"
-"(endnotes)s."
+"%(place)s ҡалаһында %(modified_date)s %(spouse)s менән мөнәсәбәт "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1525
 #, python-format
@@ -32780,8 +32799,8 @@ msgstr ""
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Был кешенең %(full_date)s көнөндә %(spouse)s менән мөнәсәбәте булған%"
-"(endnotes)s."
+"Был кешенең %(full_date)s көнөндә %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1576
 #, python-format
@@ -32843,8 +32862,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"Был кешенең шулай уҡ %(partial_date)s %(spouse)s менән мөнәсәбәте булған%"
-"(endnotes)s."
+"Был кешенең шулай уҡ %(partial_date)s %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1602
 #, python-format
@@ -32861,56 +32880,56 @@ msgid ""
 "This person also had a relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Был кешенең шулай уҡ %(modified_date)s %(spouse)s менән мөнәсәбәте булған%"
-"(endnotes)s."
+"Был кешенең шулай уҡ %(modified_date)s %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1610
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(partial_date)s %(spouse)s менән мөнәсәбәте булған%(endnotes)"
-"s."
+"Уның шулай уҡ %(partial_date)s %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1612
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(full_date)s көнөндә %(spouse)s менән мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның шулай уҡ %(full_date)s көнөндә %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1613
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(modified_date)s %(spouse)s менән мөнәсәбәте булған%(endnotes)"
-"s."
+"Уның шулай уҡ %(modified_date)s %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1617
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(partial_date)s %(spouse)s менән мөнәсәбәте булған%(endnotes)"
-"s."
+"Уның шулай уҡ %(partial_date)s %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1619
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(full_date)s көнөндә %(spouse)s менән мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның шулай уҡ %(full_date)s көнөндә %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1620
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(modified_date)s %(spouse)s менән мөнәсәбәте булған%(endnotes)"
-"s."
+"Уның шулай уҡ %(modified_date)s %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1623
 #, python-format
@@ -32935,8 +32954,8 @@ msgstr ""
 msgid ""
 "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Был кешенең %(place)s ҡалаһында %(spouse)s менән мөнәсәбәте булған%(endnotes)"
-"s."
+"Был кешенең %(place)s ҡалаһында %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1633
 #, python-format
@@ -32960,22 +32979,22 @@ msgstr "%(place)s ҡалаһында %(spouse)s менән мөнәсәбәт б
 msgid ""
 "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Был кешенең шулай уҡ %(place)s ҡалаһында %(spouse)s менән мөнәсәбәте булған%"
-"(endnotes)s."
+"Был кешенең шулай уҡ %(place)s ҡалаһында %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1645
 #, python-format
 msgid "He also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(place)s ҡалаһында %(spouse)s менән мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның шулай уҡ %(place)s ҡалаһында %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1648
 #, python-format
 msgid "She also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Уның шулай уҡ %(place)s ҡалаһында %(spouse)s менән мөнәсәбәте булған%"
-"(endnotes)s."
+"Уның шулай уҡ %(place)s ҡалаһында %(spouse)s менән мөнәсәбәте "
+"булған%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1650
 #, python-format
@@ -35276,8 +35295,8 @@ msgstr "%s, "
 #, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
 msgstr ""
-"%(primary_person)s өсөн %(event_name)s ваҡиғаһында %(event_role)s: %"
-"(event_text)s"
+"%(primary_person)s өсөн %(event_name)s ваҡиғаһында %(event_role)s: "
+"%(event_text)s"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:527
@@ -36678,122 +36697,122 @@ msgid "Looking for event problems"
 msgstr "Ваҡиғаларҙағы хаталарҙы эҙләү"
 
 #: ../gramps/plugins/tool/check.py:1361 ../gramps/plugins/tool/check.py:1390
-#: ../gramps/plugins/tool/check.py:1418
+#: ../gramps/plugins/tool/check.py:1422
 msgid "Looking for backlink reference problems"
 msgstr "Кире һылтанма проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:1453
+#: ../gramps/plugins/tool/check.py:1465
 msgid "Looking for person reference problems"
 msgstr "Кеше һылтанмалары проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:1489
+#: ../gramps/plugins/tool/check.py:1501
 msgid "Looking for family reference problems"
 msgstr "Ғаилә һылтанмалары проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:1520
+#: ../gramps/plugins/tool/check.py:1532
 msgid "Looking for repository reference problems"
 msgstr "Һаҡлағыс һылтанмалары проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:1560
+#: ../gramps/plugins/tool/check.py:1572
 msgid "Looking for place reference problems"
 msgstr "Урын һылтанмалары проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:1692
+#: ../gramps/plugins/tool/check.py:1704
 msgid "Looking for citation reference problems"
 msgstr "Өҙөмтә һылтанмалары проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:1812
+#: ../gramps/plugins/tool/check.py:1824
 msgid "Looking for source reference problems"
 msgstr "Сығанаҡ һылтанмалары проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:1859
+#: ../gramps/plugins/tool/check.py:1871
 msgid "Looking for media object reference problems"
 msgstr "Медиа объект һылтанмалары проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:1990
+#: ../gramps/plugins/tool/check.py:2002
 msgid "Looking for note reference problems"
 msgstr "Иҫкәрмә һылтанмалары проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:2123
+#: ../gramps/plugins/tool/check.py:2135
 msgid "Updating checksums on media"
 msgstr "Медиала контроль суммаларҙы яңыртыу"
 
-#: ../gramps/plugins/tool/check.py:2151
+#: ../gramps/plugins/tool/check.py:2163
 msgid "Looking for tag reference problems"
 msgstr "Тамға һылтанмалары проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:2295
+#: ../gramps/plugins/tool/check.py:2307
 msgid "Looking for media source reference problems"
 msgstr "Медиа сығанаҡ һылтанмалары проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:2365
+#: ../gramps/plugins/tool/check.py:2377
 msgid "Looking for Duplicated Gramps ID problems"
 msgstr "Ҡабатланған Gramps ID проблемаларын эҙләү"
 
-#: ../gramps/plugins/tool/check.py:2517
+#: ../gramps/plugins/tool/check.py:2529
 msgid "Checking for bad links in Notes"
 msgstr "Иҫкәрмәләрҙәге яңылыш бәйләнештәрҙе тикшереү"
 
-#: ../gramps/plugins/tool/check.py:2581
+#: ../gramps/plugins/tool/check.py:2593
 msgid "Coalescing duplicate roles in events referenced by people"
 msgstr "Кешеләр һылтанған ваҡиғаларҙа ҡабатланған ролдәрҙе берләштереү"
 
-#: ../gramps/plugins/tool/check.py:2602
+#: ../gramps/plugins/tool/check.py:2614
 msgid "Coalescing duplicate roles in events referenced by families"
 msgstr "Ғаиләләр һылтанған ваҡиғаларҙа ҡабатланған ролдәрҙе берләштереү"
 
-#: ../gramps/plugins/tool/check.py:2775
+#: ../gramps/plugins/tool/check.py:2787
 msgid "No errors were found"
 msgstr "Хаталар табылманы"
 
-#: ../gramps/plugins/tool/check.py:2776
+#: ../gramps/plugins/tool/check.py:2788
 msgid "The database has passed internal checks"
 msgstr "Мәғлүмәттәр базаһы эске тикшереүҙәрҙе үтте"
 
-#: ../gramps/plugins/tool/check.py:2782
+#: ../gramps/plugins/tool/check.py:2794
 msgid "No errors were found: the database has passed internal checks."
 msgstr "Хаталар табылманы: мәғлүмәттәр базаһы эске тикшереүҙәрҙе үтте."
 
-#: ../gramps/plugins/tool/check.py:2792
+#: ../gramps/plugins/tool/check.py:2804
 #, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "{quantity} өҙөлгән бала/ғаилә бәйләнеше төҙәтелде\n"
 msgstr[1] "{quantity} өҙөлгән бала/ғаилә бәйләнеше төҙәтелде\n"
 
-#: ../gramps/plugins/tool/check.py:2801
+#: ../gramps/plugins/tool/check.py:2813
 msgid "Non existing child"
 msgstr "Булмаған бала"
 
-#: ../gramps/plugins/tool/check.py:2812
+#: ../gramps/plugins/tool/check.py:2824
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s %(family)s ғаиләһенән алып ташланды\n"
 
-#: ../gramps/plugins/tool/check.py:2820
+#: ../gramps/plugins/tool/check.py:2832
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "{quantity} өҙөлгән тормош иптәше/ғаилә бәйләнеше төҙәтелде\n"
 msgstr[1] "{quantity} өҙөлгән тормош иптәше/ғаилә бәйләнеше төҙәтелде\n"
 
-#: ../gramps/plugins/tool/check.py:2829 ../gramps/plugins/tool/check.py:2857
+#: ../gramps/plugins/tool/check.py:2841 ../gramps/plugins/tool/check.py:2869
 msgid "Non existing person"
 msgstr "Булмаған кеше"
 
-#: ../gramps/plugins/tool/check.py:2840 ../gramps/plugins/tool/check.py:2868
+#: ../gramps/plugins/tool/check.py:2852 ../gramps/plugins/tool/check.py:2880
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s %(family)s ғаиләһенә ҡайтарылды\n"
 
-#: ../gramps/plugins/tool/check.py:2848
+#: ../gramps/plugins/tool/check.py:2860
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "{quantity} ҡабатланған тормош иптәше/ғаилә бәйләнеше табылды\n"
 msgstr[1] "{quantity} ҡабатланған тормош иптәше/ғаилә бәйләнеше табылды\n"
 
-#: ../gramps/plugins/tool/check.py:2876
+#: ../gramps/plugins/tool/check.py:2888
 #, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
@@ -36803,154 +36822,155 @@ msgstr[0] ""
 msgstr[1] ""
 "Ата-әсәһе лә, балаһы ла булмаған {quantity} ғаилә табылып, алып ташланды.\n"
 
-#: ../gramps/plugins/tool/check.py:2890
+#: ../gramps/plugins/tool/check.py:2902
 #, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] "{quantity} боҙолған ғаилә мөнәсәбәте төҙәтелде\n"
 msgstr[1] "{quantity} боҙолған ғаилә мөнәсәбәте төҙәтелде\n"
 
-#: ../gramps/plugins/tool/check.py:2900
+#: ../gramps/plugins/tool/check.py:2912
 #, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
 msgstr[0] "{quantity} урындың альтернатив исеме төҙәтелде\n"
 msgstr[1] "{quantity} урындың альтернатив исеме төҙәтелде\n"
 
-#: ../gramps/plugins/tool/check.py:2910
+#: ../gramps/plugins/tool/check.py:2922
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] "{quantity} кешегә һылтанма бар ине, ләкин ул табылманы\n"
 msgstr[1] "{quantity} кешегә һылтанма бар ине, ләкин улар табылманы\n"
 
-#: ../gramps/plugins/tool/check.py:2920
+#: ../gramps/plugins/tool/check.py:2932
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "{quantity} ғаиләгә һылтанма бар ине, ләкин ул табылманы\n"
 msgstr[1] "{quantity} ғаиләгә һылтанма бар ине, ләкин улар табылманы\n"
 
-#: ../gramps/plugins/tool/check.py:2930
+#: ../gramps/plugins/tool/check.py:2942
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] "{quantity} дата төҙәтелде\n"
 msgstr[1] "{quantity} дата төҙәтелде\n"
 
-#: ../gramps/plugins/tool/check.py:2940
+#: ../gramps/plugins/tool/check.py:2952
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] "{quantity} һаҡлағысҡа һылтанма бар ине, ләкин ул табылманы\n"
 msgstr[1] "{quantity} һаҡлағысҡа һылтанма бар ине, ләкин улар табылманы\n"
 
-#: ../gramps/plugins/tool/check.py:2950 ../gramps/plugins/tool/check.py:3050
+#: ../gramps/plugins/tool/check.py:2962 ../gramps/plugins/tool/check.py:3062
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] "{quantity} медиа объектҡа һылтанма бар ине, ләкин ул табылманы\n"
 msgstr[1] "{quantity} медиа объектҡа һылтанма бар ине, ләкин улар табылманы\n"
 
-#: ../gramps/plugins/tool/check.py:2960
+#: ../gramps/plugins/tool/check.py:2972
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "{quantity} етешмәгән медиа объектҡа һылтанма һаҡланды\n"
 msgstr[1] "{quantity} етешмәгән медиа объектҡа һылтанма һаҡланды\n"
 
-#: ../gramps/plugins/tool/check.py:2970
+#: ../gramps/plugins/tool/check.py:2982
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] "{quantity} етешмәгән медиа объект алмаштырылды\n"
 msgstr[1] "{quantity} етешмәгән медиа объект алмаштырылды\n"
 
-#: ../gramps/plugins/tool/check.py:2980
+#: ../gramps/plugins/tool/check.py:2992
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] "{quantity} етешмәгән медиа объект алып ташланды\n"
 msgstr[1] "{quantity} етешмәгән медиа объект алып ташланды\n"
 
-#: ../gramps/plugins/tool/check.py:2990
+#: ../gramps/plugins/tool/check.py:3002
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] "{quantity} ваҡиғаға һылтанма бар ине, ләкин ул табылманы\n"
 msgstr[1] "{quantity} ваҡиғаға һылтанма бар ине, ләкин улар табылманы\n"
 
-#: ../gramps/plugins/tool/check.py:3000
+#: ../gramps/plugins/tool/check.py:3012
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] "{quantity} яңылыш тыуыу ваҡиғаһы исеме төҙәтелде\n"
 msgstr[1] "{quantity} яңылыш тыуыу ваҡиғаһы исеме төҙәтелде\n"
 
-#: ../gramps/plugins/tool/check.py:3010
+#: ../gramps/plugins/tool/check.py:3022
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] "{quantity} яңылыш үлем ваҡиғаһы исеме төҙәтелде\n"
 msgstr[1] "{quantity} яңылыш үлем ваҡиғаһы исеме төҙәтелде\n"
 
-#: ../gramps/plugins/tool/check.py:3020
+#: ../gramps/plugins/tool/check.py:3032
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
 msgstr[0] "{quantity} урынға һылтанма бар ине, ләкин ул табылманы\n"
 msgstr[1] "{quantity} урынға һылтанма бар ине, ләкин улар табылманы\n"
 
-#: ../gramps/plugins/tool/check.py:3030
+#: ../gramps/plugins/tool/check.py:3042
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
 msgstr[0] "{quantity} өҙөмтәгә һылтанма бар ине, ләкин ул табылманы\n"
 msgstr[1] "{quantity} өҙөмтәгә һылтанма бар ине, ләкин улар табылманы\n"
 
-#: ../gramps/plugins/tool/check.py:3040
+#: ../gramps/plugins/tool/check.py:3052
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] "{quantity} сығанаҡҡа һылтанма бар ине, ләкин ул табылманы\n"
 msgstr[1] "{quantity} сығанаҡҡа һылтанма бар ине, ләкин улар табылманы\n"
 
-#: ../gramps/plugins/tool/check.py:3060
+#: ../gramps/plugins/tool/check.py:3072
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
 msgstr[0] "{quantity} иҫкәрмә объектына һылтанма бар ине, ләкин ул табылманы\n"
-msgstr[1] "{quantity} иҫкәрмә объектына һылтанма бар ине, ләкин улар табылманы\n"
+msgstr[1] ""
+"{quantity} иҫкәрмә объектына һылтанма бар ине, ләкин улар табылманы\n"
 
-#: ../gramps/plugins/tool/check.py:3070 ../gramps/plugins/tool/check.py:3080
+#: ../gramps/plugins/tool/check.py:3082 ../gramps/plugins/tool/check.py:3092
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] "{quantity} тамға объектына һылтанма бар ине, ләкин ул табылманы\n"
 msgstr[1] "{quantity} тамға объектына һылтанма бар ине, ләкин улар табылманы\n"
 
-#: ../gramps/plugins/tool/check.py:3090
+#: ../gramps/plugins/tool/check.py:3102
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
 msgstr[0] "{quantity} яңылыш исем форматлы һылтанма алып ташланды\n"
 msgstr[1] "{quantity} яңылыш исем форматлы һылтанма алып ташланды\n"
 
-#: ../gramps/plugins/tool/check.py:3100
+#: ../gramps/plugins/tool/check.py:3112
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "{quantity} яңылыш сығанаҡ өҙөмтәһе төҙәтелде\n"
 msgstr[1] "{quantity} яңылыш сығанаҡ өҙөмтәһе төҙәтелде\n"
 
-#: ../gramps/plugins/tool/check.py:3110
+#: ../gramps/plugins/tool/check.py:3122
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
 msgstr[0] "{quantity} ҡабатланған Gramps ID төҙәтелде\n"
 msgstr[1] "{quantity} ҡабатланған Gramps ID төҙәтелде\n"
 
-#: ../gramps/plugins/tool/check.py:3119
+#: ../gramps/plugins/tool/check.py:3131
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -36973,23 +36993,23 @@ msgstr ""
 "   %(repo)d һаҡлағыс объекты\n"
 "   %(note)d иҫкәрмә объекты\n"
 
-#: ../gramps/plugins/tool/check.py:3144
+#: ../gramps/plugins/tool/check.py:3156
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
 msgstr "%d яңылыш кире һылтанма төҙәтелде;\n"
 
-#: ../gramps/plugins/tool/check.py:3145
+#: ../gramps/plugins/tool/check.py:3157
 #: ../gramps/plugins/tool/rebuildrefmap.py:90
 #: ../gramps/plugins/tool/rebuildrefmap.py:94
 msgid "All reference maps have been rebuilt."
 msgstr "Бөтә һылтанма карталары яңынан төҙөлдө."
 
-#: ../gramps/plugins/tool/check.py:3150
+#: ../gramps/plugins/tool/check.py:3162
 #, python-format
 msgid "%d bad Note Links were fixed;\n"
 msgstr "%d яңылыш иҫкәрмә бәйләнеше төҙәтелде;\n"
 
-#: ../gramps/plugins/tool/check.py:3155
+#: ../gramps/plugins/tool/check.py:3167
 #, python-format
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
@@ -36997,11 +37017,11 @@ msgstr ""
 "%(names)d ҡабатланған ваҡиға роле исеме берләштерелде. %(refs)d һылтанма "
 "яңыртылды\n"
 
-#: ../gramps/plugins/tool/check.py:3191
+#: ../gramps/plugins/tool/check.py:3203
 msgid "Integrity Check Results"
 msgstr "Бөтөнлөктө тикшереү һөҙөмтәләре"
 
-#: ../gramps/plugins/tool/check.py:3198
+#: ../gramps/plugins/tool/check.py:3210
 msgid "Check and Repair"
 msgstr "Тикшереү һәм төҙәтеү"
 
@@ -40375,8 +40395,8 @@ msgid ""
 "This section contains the map for all people with the event: {event_type} "
 "({selected_filter})"
 msgstr ""
-"Был бүлектә {event_type} ваҡиғаһы булған бөтә кешеләр өсөн карта бар ("
-"{selected_filter})"
+"Был бүлектә {event_type} ваҡиғаһы булған бөтә кешеләр өсөн карта бар "
+"({selected_filter})"
 
 #: ../gramps/plugins/webreport/heatmap.py:617
 #: ../gramps/plugins/webreport/heatmap.py:630
@@ -40448,8 +40468,8 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of "
 "%(strong2_strt)s%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_strt)s%(page_number)d%(strong_end)s / %(strong2_strt)s%"
-"(total_pages)d%(strong_end)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s / "
+"%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
 #: ../gramps/plugins/webreport/media.py:458
 msgid "The file has been moved or deleted."

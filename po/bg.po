@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-20 21:11+0100\n"
+"POT-Creation-Date: 2026-05-30 15:00+0100\n"
 "PO-Revision-Date: 2026-01-30 20:53+0000\n"
 "Last-Translator: Iskren Petkov <auto-weblate@quietlyemailme.us>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
@@ -1836,7 +1836,7 @@ msgstr "Заключено от %s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:876
 #: ../gramps/plugins/textreport/indivcomplete.py:98
 #: ../gramps/plugins/textreport/indivcomplete.py:972
-#: ../gramps/plugins/tool/check.py:2807 ../gramps/plugins/tool/check.py:2835
+#: ../gramps/plugins/tool/check.py:2819 ../gramps/plugins/tool/check.py:2847
 #: ../gramps/plugins/tool/dumpgenderstats.py:73
 #: ../gramps/plugins/tool/dumpgenderstats.py:96
 #: ../gramps/plugins/tool/dumpgenderstats.py:101
@@ -2137,28 +2137,28 @@ msgstr ""
 "докладвайте за грешка на %(gramps_bugtracker_url)s\n"
 "\n"
 
-#: ../gramps/gen/config.py:305
+#: ../gramps/gen/config.py:306
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr ""
 
-#: ../gramps/gen/config.py:317
+#: ../gramps/gen/config.py:318
 msgid "Missing Given Name"
 msgstr "Липсващо собствено име"
 
-#: ../gramps/gen/config.py:318
+#: ../gramps/gen/config.py:319
 msgid "Missing Record"
 msgstr "Липсващ запис"
 
-#: ../gramps/gen/config.py:319
+#: ../gramps/gen/config.py:320
 msgid "Missing Surname"
 msgstr "Липсваща фамилия"
 
-#: ../gramps/gen/config.py:326 ../gramps/gen/config.py:328
+#: ../gramps/gen/config.py:327 ../gramps/gen/config.py:329
 #, fuzzy
 msgid "[Living]"
 msgstr "Жив"
 
-#: ../gramps/gen/config.py:327
+#: ../gramps/gen/config.py:328
 msgid "Private Record"
 msgstr "Поверителен запис"
 
@@ -2166,7 +2166,7 @@ msgstr "Поверителен запис"
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:402 ../gramps/gen/datehandler/_datestrings.py:89
+#: ../gramps/gen/config.py:403 ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
 msgid "January"
 msgstr "януари"
@@ -2240,8 +2240,8 @@ msgstr "Един ден от годината"
 msgid "Day Mon Year"
 msgstr "Един ден от годината"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:182
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:183
+#, no-python-brace-format
 msgid "{long_month} {year}"
 msgstr ""
 
@@ -2249,8 +2249,8 @@ msgstr ""
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:189
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:191
+#, no-python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
 msgstr ""
@@ -2259,8 +2259,8 @@ msgstr ""
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:196
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:199
+#, no-python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
 msgstr ""
@@ -2269,8 +2269,8 @@ msgstr ""
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:203
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:207
+#, no-python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
 msgstr ""
@@ -2279,28 +2279,28 @@ msgstr ""
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:210
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:215
+#, no-python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
 msgstr ""
 
 #. Translators: If "before <Month>" needs a special inflection
-#. in your language, translate to "{long_month.forms[X]} {year}"
-#. (where X is one of the month-name inflections you defined)
-#. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:216
-#, python-brace-format
-msgctxt "before"
-msgid "{long_month} {year}"
-msgstr ""
-
-#. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:222
-#, python-brace-format
+#, no-python-brace-format
+msgctxt "before"
+msgid "{long_month} {year}"
+msgstr ""
+
+#. Translators: If "after <Month>" needs a special inflection
+#. in your language, translate to "{long_month.forms[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:229
+#, no-python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
 msgstr ""
@@ -2309,8 +2309,8 @@ msgstr ""
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:228
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:236
+#, no-python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
 msgstr ""
@@ -2319,8 +2319,8 @@ msgstr ""
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:234
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:243
+#, no-python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
 msgstr ""
@@ -2329,14 +2329,14 @@ msgstr ""
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:240
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:250
+#, no-python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:244
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:255
+#, no-python-brace-format
 msgid "{short_month} {year}"
 msgstr ""
 
@@ -2344,8 +2344,8 @@ msgstr ""
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:251
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:263
+#, no-python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
 msgstr ""
@@ -2354,8 +2354,8 @@ msgstr ""
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:258
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:271
+#, no-python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
 msgstr ""
@@ -2364,8 +2364,8 @@ msgstr ""
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:265
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:279
+#, no-python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
 msgstr ""
@@ -2374,8 +2374,8 @@ msgstr ""
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:272
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:287
+#, no-python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
 msgstr ""
@@ -2384,8 +2384,8 @@ msgstr ""
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:278
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:294
+#, no-python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
 msgstr ""
@@ -2394,8 +2394,8 @@ msgstr ""
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:284
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:301
+#, no-python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
 msgstr ""
@@ -2404,8 +2404,8 @@ msgstr ""
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:290
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:308
+#, no-python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
 msgstr ""
@@ -2414,8 +2414,8 @@ msgstr ""
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:296
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:315
+#, no-python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
 msgstr ""
@@ -2424,8 +2424,8 @@ msgstr ""
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:302
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:322
+#, no-python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
 msgstr ""
@@ -2433,8 +2433,8 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:413
-#: ../gramps/gen/datehandler/_datedisplay.py:499
+#: ../gramps/gen/datehandler/_datedisplay.py:433
+#: ../gramps/gen/datehandler/_datedisplay.py:519
 msgctxt "from-date"
 msgid ""
 msgstr ""
@@ -2442,14 +2442,14 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:420
-#: ../gramps/gen/datehandler/_datedisplay.py:504
+#: ../gramps/gen/datehandler/_datedisplay.py:440
+#: ../gramps/gen/datehandler/_datedisplay.py:524
 #, fuzzy
 msgctxt "to-date"
 msgid ""
 msgstr "дата"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:423
+#: ../gramps/gen/datehandler/_datedisplay.py:443
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
@@ -2457,7 +2457,7 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "between" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:444
+#: ../gramps/gen/datehandler/_datedisplay.py:464
 #, fuzzy
 msgctxt "between-date"
 msgid ""
@@ -2466,13 +2466,13 @@ msgstr "между"
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "and" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:451
+#: ../gramps/gen/datehandler/_datedisplay.py:471
 #, fuzzy
 msgctxt "and-date"
 msgid ""
 msgstr "дата"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:454
+#: ../gramps/gen/datehandler/_datedisplay.py:474
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
@@ -2481,7 +2481,7 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "before" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:489
+#: ../gramps/gen/datehandler/_datedisplay.py:509
 #, fuzzy
 msgctxt "before-date"
 msgid ""
@@ -2490,7 +2490,7 @@ msgstr "преди"
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:494
+#: ../gramps/gen/datehandler/_datedisplay.py:514
 #, fuzzy
 msgctxt "after-date"
 msgid ""
@@ -2499,7 +2499,7 @@ msgstr "дата"
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "about" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:509
+#: ../gramps/gen/datehandler/_datedisplay.py:529
 #, fuzzy
 msgctxt "about-date"
 msgid ""
@@ -2508,7 +2508,7 @@ msgstr "дата"
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "estimated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:514
+#: ../gramps/gen/datehandler/_datedisplay.py:534
 #, fuzzy
 msgctxt "estimated-date"
 msgid ""
@@ -2517,37 +2517,37 @@ msgstr "приблизително"
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "calculated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:519
+#: ../gramps/gen/datehandler/_datedisplay.py:539
 #, fuzzy
 msgctxt "calculated-date"
 msgid ""
 msgstr "изчислено"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:539
+#: ../gramps/gen/datehandler/_datedisplay.py:559
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:675
+#: ../gramps/gen/datehandler/_datedisplay.py:695
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:701
+#: ../gramps/gen/datehandler/_datedisplay.py:721
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:727
+#: ../gramps/gen/datehandler/_datedisplay.py:747
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:753
+#: ../gramps/gen/datehandler/_datedisplay.py:773
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr ""
@@ -3260,7 +3260,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/db/generic.py:229 ../gramps/gen/db/generic.py:279
-#: ../gramps/gen/db/generic.py:2311
+#: ../gramps/gen/db/generic.py:2313
 #, python-format
 msgid "_Undo %s"
 msgstr "_Отмяна на %s"
@@ -3270,69 +3270,69 @@ msgstr "_Отмяна на %s"
 msgid "_Redo %s"
 msgstr "_Възстановяване на %s"
 
-#: ../gramps/gen/db/generic.py:2702
+#: ../gramps/gen/db/generic.py:2704
 #, fuzzy
 msgid "Number of people"
 msgstr "Брой на лицата"
 
-#: ../gramps/gen/db/generic.py:2703
+#: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/gramplet/statsgramplet.py:186
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
 msgstr "Брой на семействата"
 
-#: ../gramps/gen/db/generic.py:2704
+#: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 #, fuzzy
 msgid "Number of sources"
 msgstr "Брой на семействата"
 
-#: ../gramps/gen/db/generic.py:2705
+#: ../gramps/gen/db/generic.py:2707
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 #, fuzzy
 msgid "Number of citations"
 msgstr "Брой поколения:"
 
-#: ../gramps/gen/db/generic.py:2706
+#: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 #, fuzzy
 msgid "Number of events"
 msgstr "Брой бракове"
 
-#: ../gramps/gen/db/generic.py:2707
+#: ../gramps/gen/db/generic.py:2709
 #, fuzzy
 msgid "Number of media"
 msgstr "Брой на семействата"
 
-#: ../gramps/gen/db/generic.py:2708
+#: ../gramps/gen/db/generic.py:2710
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 #, fuzzy
 msgid "Number of places"
 msgstr "Брой на лицата"
 
-#: ../gramps/gen/db/generic.py:2709
+#: ../gramps/gen/db/generic.py:2711
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 #, fuzzy
 msgid "Number of repositories"
 msgstr "Търсене за хранилища"
 
-#: ../gramps/gen/db/generic.py:2710
+#: ../gramps/gen/db/generic.py:2712
 #, fuzzy
 msgid "Number of notes"
 msgstr "Брой бракове"
 
-#: ../gramps/gen/db/generic.py:2711
+#: ../gramps/gen/db/generic.py:2713
 #, fuzzy
 msgid "Number of tags"
 msgstr "Брой бракове"
 
-#: ../gramps/gen/db/generic.py:2712
+#: ../gramps/gen/db/generic.py:2714
 #, fuzzy
 msgid "Schema version"
 msgstr "Премахване на версия"
@@ -3715,7 +3715,7 @@ msgstr "_Поверителност:"
 #: ../gramps/gen/filters/rules/person/_hasevent.py:57
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:57
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
-#: ../gramps/gui/editors/filtereditor.py:627
+#: ../gramps/gui/editors/filtereditor.py:629
 #: ../gramps/gui/glade/mergecitation.glade:239
 #: ../gramps/gui/glade/mergecitation.glade:254
 #: ../gramps/gui/glade/mergeevent.glade:239
@@ -3757,6 +3757,7 @@ msgstr "Подбира бележки с точно определени пар�
 #: ../gramps/gen/filters/rules/_hassourcebase.py:57
 #: ../gramps/gen/filters/rules/_hassourcecountbase.py:60
 #: ../gramps/gen/filters/rules/_hassourceofbase.py:56
+#: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:39
 #: ../gramps/gen/filters/rules/_matchessourceconfidencebase.py:61
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:61
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:54
@@ -3858,7 +3859,7 @@ msgstr "Подниз:"
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
-#: ../gramps/gui/editors/filtereditor.py:616
+#: ../gramps/gui/editors/filtereditor.py:618
 msgid "Tag:"
 msgstr ""
 
@@ -3877,7 +3878,7 @@ msgstr "Подбира бележка с определен Gramps индекс"
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
 #: ../gramps/gen/filters/rules/note/_hastype.py:55
 #: ../gramps/gui/editors/filtereditor.py:118
-#: ../gramps/gui/editors/filtereditor.py:595
+#: ../gramps/gui/editors/filtereditor.py:597
 msgid "Note type:"
 msgstr "Вид бележка:"
 
@@ -3910,6 +3911,12 @@ msgstr "Брой отпратки:"
 #: ../gramps/gui/editors/filtereditor.py:558
 msgid "Source ID:"
 msgstr "Индекс на източник:"
+
+#: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:33
+#: ../gramps/gui/editors/filtereditor.py:577
+#, fuzzy
+msgid "Citation filter name:"
+msgstr "Филтри за събития"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:66
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
@@ -4057,7 +4064,7 @@ msgstr "Подбира медийни обекти с точно определ�
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:44
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:44
-#: ../gramps/gui/editors/filtereditor.py:622
+#: ../gramps/gui/editors/filtereditor.py:624
 #, fuzzy
 msgid "Confidence level:"
 msgstr "_Поверителност:"
@@ -4369,7 +4376,7 @@ msgstr "Подбира събития, отбелязани като повер�
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:115
-#: ../gramps/gui/editors/filtereditor.py:589
+#: ../gramps/gui/editors/filtereditor.py:591
 msgid "Event attribute:"
 msgstr "Признак на събитие:"
 
@@ -4408,7 +4415,7 @@ msgstr "Описание:"
 #: ../gramps/gen/filters/rules/event/_hastype.py:55
 #: ../gramps/gen/filters/rules/person/_iswitness.py:55
 #: ../gramps/gui/editors/filtereditor.py:112
-#: ../gramps/gui/editors/filtereditor.py:580
+#: ../gramps/gui/editors/filtereditor.py:582
 msgid "Event type:"
 msgstr "Вид събитие:"
 
@@ -4434,7 +4441,7 @@ msgid "Matches events with data of a particular value"
 msgstr "Подбира събития с дата с определена стойност"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:48
-#: ../gramps/gui/editors/filtereditor.py:629
+#: ../gramps/gui/editors/filtereditor.py:631
 #, fuzzy
 msgid "Day of Week:"
 msgstr "Първи ден от седмицата"
@@ -4574,7 +4581,7 @@ msgid "Matches events matched by the specified filter name"
 msgstr "Подбира събития, отговарящи на посоченото име на филтъра"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:59
-#: ../gramps/gui/editors/filtereditor.py:612
+#: ../gramps/gui/editors/filtereditor.py:614
 msgid "Include Family events:"
 msgstr "Включване на семейни събития:"
 
@@ -4727,7 +4734,7 @@ msgstr "Подбира семейства, в които бащата има о�
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:45
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:53
 #: ../gramps/gui/editors/filtereditor.py:114
-#: ../gramps/gui/editors/filtereditor.py:587
+#: ../gramps/gui/editors/filtereditor.py:589
 msgid "Family attribute:"
 msgstr "Семеен признак:"
 
@@ -4752,7 +4759,7 @@ msgstr "Подбира семейства със събития с опреде�
 #: ../gramps/gen/filters/rules/family/_hasevent.py:58
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:57
 #: ../gramps/gui/editors/filtereditor.py:111
-#: ../gramps/gui/editors/filtereditor.py:582
+#: ../gramps/gui/editors/filtereditor.py:584
 msgid "Family event:"
 msgstr "Семейно събитие:"
 
@@ -4857,7 +4864,7 @@ msgstr "Подбира семейства с определен брой отп�
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:55
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:57
 #: ../gramps/gui/editors/filtereditor.py:117
-#: ../gramps/gui/editors/filtereditor.py:593
+#: ../gramps/gui/editors/filtereditor.py:595
 msgid "Relationship type:"
 msgstr "Вид семейна връзка:"
 
@@ -4914,7 +4921,7 @@ msgstr "Подбира събития с точно определения ти�
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:61
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:56
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:57
-#: ../gramps/gui/editors/filtereditor.py:606
+#: ../gramps/gui/editors/filtereditor.py:608
 msgid "Inclusive:"
 msgstr "Включително:"
 
@@ -5073,7 +5080,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:116
-#: ../gramps/gui/editors/filtereditor.py:591
+#: ../gramps/gui/editors/filtereditor.py:593
 msgid "Media attribute:"
 msgstr "Признак на медията :"
 
@@ -5476,7 +5483,7 @@ msgstr "Подбира хора с определен брой връзки"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:113
-#: ../gramps/gui/editors/filtereditor.py:585
+#: ../gramps/gui/editors/filtereditor.py:587
 msgid "Personal attribute:"
 msgstr "Личен признак:"
 
@@ -5545,12 +5552,12 @@ msgstr "Подбира хора с дата на смъртта с опреде�
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:56
 #: ../gramps/gui/editors/filtereditor.py:110
-#: ../gramps/gui/editors/filtereditor.py:581
+#: ../gramps/gui/editors/filtereditor.py:583
 msgid "Personal event:"
 msgstr "Лично събитие:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:61
-#: ../gramps/gui/editors/filtereditor.py:614
+#: ../gramps/gui/editors/filtereditor.py:616
 #, fuzzy
 msgid "Primary Role:"
 msgstr "Основен източник"
@@ -5667,7 +5674,7 @@ msgstr "Подбира хора с определено (частично) им�
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:55
 #: ../gramps/gui/editors/filtereditor.py:120
-#: ../gramps/gui/editors/filtereditor.py:599
+#: ../gramps/gui/editors/filtereditor.py:601
 #, fuzzy
 msgid "Surname origin type:"
 msgstr "Отгатване на фамилията"
@@ -5684,7 +5691,7 @@ msgstr "Подбира хора с липсващо последно име"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:55
 #: ../gramps/gui/editors/filtereditor.py:119
-#: ../gramps/gui/editors/filtereditor.py:597
+#: ../gramps/gui/editors/filtereditor.py:599
 #, fuzzy
 msgid "Name type:"
 msgstr "Тип на името"
@@ -5841,7 +5848,7 @@ msgid "Matches people with the particular tag"
 msgstr "Подбира събития с точно определения тип "
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:64
-#: ../gramps/gui/editors/filtereditor.py:608
+#: ../gramps/gui/editors/filtereditor.py:610
 msgid "Case sensitive:"
 msgstr "Чувствително към регистъра:"
 
@@ -6350,7 +6357,7 @@ msgstr "Име на мястото:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:57
 #: ../gramps/gui/editors/filtereditor.py:121
-#: ../gramps/gui/editors/filtereditor.py:601
+#: ../gramps/gui/editors/filtereditor.py:603
 #, fuzzy
 msgid "Place type:"
 msgstr "Тип на името"
@@ -6626,7 +6633,7 @@ msgid "Matches places whose Gramps ID matches the regular expression"
 msgstr "Подбира места, чиито Gramps индекс отговаря на регулярен израз"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:67
-#: ../gramps/gui/editors/filtereditor.py:633
+#: ../gramps/gui/editors/filtereditor.py:635
 msgid "Units:"
 msgstr ""
 
@@ -7142,8 +7149,8 @@ msgstr "П_ол:"
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
 #: ../gramps/gui/editors/editfamily.py:139
 #: ../gramps/gui/editors/editname.py:340
-#: ../gramps/gui/editors/filtereditor.py:912
-#: ../gramps/gui/editors/filtereditor.py:1088
+#: ../gramps/gui/editors/filtereditor.py:914
+#: ../gramps/gui/editors/filtereditor.py:1090
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:159
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:116
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:112
@@ -7337,14 +7344,14 @@ msgstr "Източник"
 
 #: ../gramps/gen/fs/fs_import/sources.py:602
 #: ../gramps/gen/fs/fs_import/sources.py:726 ../gramps/gen/utils/string.py:61
-#: ../gramps/gui/editors/editcitation.py:241
+#: ../gramps/gui/editors/editcitation.py:242
 #: ../gramps/plugins/importer/importprogen.py:517
 msgid "Very High"
 msgstr "Много висока"
 
 #: ../gramps/gen/fs/fs_import/sources.py:604
 #: ../gramps/gen/fs/fs_import/sources.py:728 ../gramps/gen/utils/string.py:62
-#: ../gramps/gui/editors/editcitation.py:240
+#: ../gramps/gui/editors/editcitation.py:241
 #: ../gramps/plugins/importer/importprogen.py:516
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "High"
@@ -7353,7 +7360,7 @@ msgstr "Висока"
 #: ../gramps/gen/fs/fs_import/sources.py:606
 #: ../gramps/gen/fs/fs_import/sources.py:730
 #: ../gramps/gen/plug/docgen/treedoc.py:124 ../gramps/gen/utils/string.py:63
-#: ../gramps/gui/editors/editcitation.py:239
+#: ../gramps/gui/editors/editcitation.py:240
 #: ../gramps/plugins/graph/gvfamilylines.py:321
 #: ../gramps/plugins/graph/gvrelgraph.py:1097
 #: ../gramps/plugins/importer/importprogen.py:515
@@ -7362,7 +7369,7 @@ msgstr "Нормална"
 
 #: ../gramps/gen/fs/fs_import/sources.py:608
 #: ../gramps/gen/fs/fs_import/sources.py:732 ../gramps/gen/utils/string.py:64
-#: ../gramps/gui/editors/editcitation.py:238
+#: ../gramps/gui/editors/editcitation.py:239
 #: ../gramps/plugins/importer/importprogen.py:514
 #: ../gramps/plugins/tool/finddupes.py:60
 msgid "Low"
@@ -7370,7 +7377,7 @@ msgstr "Ниска"
 
 #: ../gramps/gen/fs/fs_import/sources.py:610
 #: ../gramps/gen/fs/fs_import/sources.py:734 ../gramps/gen/utils/string.py:65
-#: ../gramps/gui/editors/editcitation.py:237
+#: ../gramps/gui/editors/editcitation.py:238
 #: ../gramps/plugins/importer/importprogen.py:513
 msgid "Very Low"
 msgstr "Много ниска"
@@ -7560,11 +7567,11 @@ msgstr "Поверителен"
 #: ../gramps/gen/lib/mediaref.py:101 ../gramps/gen/lib/name.py:172
 #: ../gramps/gen/lib/person.py:260 ../gramps/gen/lib/personref.py:107
 #: ../gramps/gen/lib/place.py:196
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:972
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:988
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1004
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1020
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1036
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:973
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:989
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1005
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1021
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1037
 #: ../gramps/plugins/importer/importxml.py:358
 #: ../gramps/plugins/textreport/tagreport.py:818
 #: ../gramps/plugins/view/view.gpr.py:300
@@ -7583,16 +7590,16 @@ msgstr "Цитат"
 #: ../gramps/gen/lib/repo.py:108 ../gramps/gen/lib/reporef.py:103
 #: ../gramps/gen/lib/src.py:119
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:588
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:828
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:844
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:860
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:876
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:892
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:908
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:924
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:940
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:948
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:956
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:829
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:845
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:861
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:877
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:893
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:909
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:925
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:941
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:949
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:957
 #: ../gramps/plugins/importer/importxml.py:356
 #: ../gramps/plugins/quickview/filterbyname.py:151
 #: ../gramps/plugins/quickview/filterbyname.py:216
@@ -7714,7 +7721,7 @@ msgstr "Признак"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:63
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:63
 #: ../gramps/plugins/gramplet/attributes.py:60
-#: ../gramps/plugins/lib/libmetadata.py:229
+#: ../gramps/plugins/lib/libmetadata.py:233
 #: ../gramps/plugins/tool/patchnames.py:462
 #: ../gramps/plugins/webreport/basepage.py:1400
 #: ../gramps/plugins/webreport/basepage.py:1660
@@ -7860,7 +7867,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:166
 #: ../gramps/gui/glade/editplaceformat.glade:186
 #: ../gramps/plugins/graph/gvfamilylines.py:95
-#: ../gramps/plugins/tool/check.py:2863
+#: ../gramps/plugins/tool/check.py:2875
 msgid "None"
 msgstr "Без"
 
@@ -7892,8 +7899,8 @@ msgstr "Отглеждам"
 
 #: ../gramps/gen/lib/citation.py:106 ../gramps/gen/lib/notetype.py:90
 #: ../gramps/gui/clipboard.py:474 ../gramps/gui/configure.py:823
-#: ../gramps/gui/editors/editcitation.py:133
-#: ../gramps/gui/editors/editcitation.py:138
+#: ../gramps/gui/editors/editcitation.py:136
+#: ../gramps/gui/editors/editcitation.py:140
 #: ../gramps/gui/editors/editlink.py:103
 #: ../gramps/gui/editors/filtereditor.py:316 ../gramps/gui/grampsgui.py:57
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:190
@@ -7969,7 +7976,8 @@ msgstr "Поверителност"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:68
 #: ../gramps/gui/editors/editfamily.py:150
-#: ../gramps/gui/editors/editlink.py:102 ../gramps/gui/editors/editsource.py:98
+#: ../gramps/gui/editors/editlink.py:102
+#: ../gramps/gui/editors/editsource.py:104
 #: ../gramps/gui/editors/filtereditor.py:312 ../gramps/gui/grampsgui.py:57
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:190
 #: ../gramps/plugins/export/exportcsv.py:585
@@ -8021,7 +8029,7 @@ msgid "Media"
 msgstr "Медия"
 
 #: ../gramps/gen/lib/citation.py:141 ../gramps/gen/lib/src.py:131
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:788
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:789
 #, fuzzy
 msgid "Source Attributes"
 msgstr "Признаци на родителя"
@@ -8234,7 +8242,7 @@ msgstr "Последна промяна"
 msgid "Quality"
 msgstr "<b>Качество</b>"
 
-#: ../gramps/gen/lib/date.py:793 ../gramps/gui/editors/filtereditor.py:912
+#: ../gramps/gen/lib/date.py:793 ../gramps/gui/editors/filtereditor.py:914
 #: ../gramps/gui/glade/rule.glade:949
 msgid "Values"
 msgstr "Стойности"
@@ -8380,12 +8388,12 @@ msgstr "Място"
 #: ../gramps/gen/lib/event.py:210 ../gramps/gen/lib/eventref.py:138
 #: ../gramps/gen/lib/family.py:194 ../gramps/gen/lib/media.py:158
 #: ../gramps/gen/lib/mediaref.py:111 ../gramps/gen/lib/person.py:245
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:732
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:748
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:764
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:780
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:796
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:812
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:733
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:749
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:765
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:781
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:797
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:813
 #: ../gramps/plugins/textreport/indivcomplete.py:497
 #: ../gramps/plugins/textreport/indivcomplete.py:723
 #: ../gramps/plugins/webreport/basepage.py:603
@@ -8528,7 +8536,7 @@ msgid "Legal"
 msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:189 ../gramps/gen/lib/eventtype.py:230
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:588
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:589
 #: ../gramps/plugins/lib/libprogen.py:2016
 #: ../gramps/plugins/lib/libprogen.py:2018
 #: ../gramps/plugins/webreport/addressbooklist.py:119
@@ -9048,8 +9056,8 @@ msgid "still."
 msgstr "род"
 
 #: ../gramps/gen/lib/family.py:178 ../gramps/gui/widgets/fanchart.py:2191
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1052
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1068
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1053
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1069
 #: ../gramps/plugins/textreport/familygroup.py:656
 #: ../gramps/plugins/textreport/indivcomplete.py:709
 #: ../gramps/plugins/view/pedigreeview.py:1966
@@ -9059,8 +9067,8 @@ msgid "Children"
 msgstr "Деца"
 
 #: ../gramps/gen/lib/family.py:184 ../gramps/gui/merge/mergeperson.py:223
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:604
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:620
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:605
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:621
 #: ../gramps/plugins/importer/importxml.py:352
 #: ../gramps/plugins/quickview/filterbyname.py:111
 #: ../gramps/plugins/quickview/filterbyname.py:176
@@ -11891,57 +11899,57 @@ msgstr "%s, ..."
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s и %(mother)s"
 
-#: ../gramps/gen/utils/grampslocale.py:774
+#: ../gramps/gen/utils/grampslocale.py:769
 #, fuzzy
 msgid "the person"
 msgstr "лице"
 
-#: ../gramps/gen/utils/grampslocale.py:776
+#: ../gramps/gen/utils/grampslocale.py:771
 #, fuzzy
 msgid "the family"
 msgstr "Шрифтова фамилия"
 
-#: ../gramps/gen/utils/grampslocale.py:778
+#: ../gramps/gen/utils/grampslocale.py:773
 #, fuzzy
 msgid "the place"
 msgstr "Място на раждане"
 
-#: ../gramps/gen/utils/grampslocale.py:780
+#: ../gramps/gen/utils/grampslocale.py:775
 #, fuzzy
 msgid "the event"
 msgstr "Всяко събитие"
 
-#: ../gramps/gen/utils/grampslocale.py:782
+#: ../gramps/gen/utils/grampslocale.py:777
 #, fuzzy
 msgid "the repository"
 msgstr "Всяко хранилище"
 
-#: ../gramps/gen/utils/grampslocale.py:784
+#: ../gramps/gen/utils/grampslocale.py:779
 #, fuzzy
 msgid "the note"
 msgstr "Всяка бележка"
 
-#: ../gramps/gen/utils/grampslocale.py:786
+#: ../gramps/gen/utils/grampslocale.py:781
 #, fuzzy
 msgid "the media"
 msgstr "медия"
 
-#: ../gramps/gen/utils/grampslocale.py:788
+#: ../gramps/gen/utils/grampslocale.py:783
 #, fuzzy
 msgid "the source"
 msgstr "Източник за раждането"
 
-#: ../gramps/gen/utils/grampslocale.py:790
+#: ../gramps/gen/utils/grampslocale.py:785
 #, fuzzy
 msgid "the filter"
 msgstr "Филтри за бащата"
 
-#: ../gramps/gen/utils/grampslocale.py:792
+#: ../gramps/gen/utils/grampslocale.py:787
 #, fuzzy
 msgid "the citation"
 msgstr "Цитат"
 
-#: ../gramps/gen/utils/grampslocale.py:794
+#: ../gramps/gen/utils/grampslocale.py:789
 #, fuzzy
 msgid "See details"
 msgstr "Показване на подробности"
@@ -12634,41 +12642,40 @@ msgstr ""
 "\n"
 "Сега Gramps ще прекъсне."
 
-#: ../gramps/grampsapp.py:322 ../gramps/grampsapp.py:383
-#: ../gramps/grampsapp.py:407 ../gramps/grampsapp.py:424
-#: ../gramps/grampsapp.py:435 ../gramps/grampsapp.py:457
-#: ../gramps/grampsapp.py:465
+#: ../gramps/grampsapp.py:324 ../gramps/grampsapp.py:386
+#: ../gramps/grampsapp.py:420 ../gramps/grampsapp.py:431
+#: ../gramps/grampsapp.py:453 ../gramps/grampsapp.py:461
 #, fuzzy
 msgid "not found"
 msgstr "Не са открити родители"
 
-#: ../gramps/grampsapp.py:386
+#: ../gramps/grampsapp.py:389
 msgid "not found because exiv2 is not installed"
 msgstr ""
 
-#: ../gramps/grampsapp.py:422
+#: ../gramps/grampsapp.py:418
 msgid "Installed but does not supply version"
 msgstr ""
 
-#: ../gramps/grampsapp.py:443
+#: ../gramps/grampsapp.py:439
 #, fuzzy
 #| msgid "Unstable"
 msgid "installed"
 msgstr "Нестабилен"
 
-#: ../gramps/grampsapp.py:619 ../gramps/grampsapp.py:628
-#: ../gramps/grampsapp.py:678
+#: ../gramps/grampsapp.py:615 ../gramps/grampsapp.py:624
+#: ../gramps/grampsapp.py:674
 #, fuzzy
 msgid "Configuration error:"
 msgstr "Грешка в настройките"
 
-#: ../gramps/grampsapp.py:623
+#: ../gramps/grampsapp.py:619
 #, fuzzy
 #| msgid "Error reading configuration"
 msgid "Could not read configuration"
 msgstr "Грешка при четенето на настройките"
 
-#: ../gramps/grampsapp.py:630
+#: ../gramps/grampsapp.py:626
 #, fuzzy, python-format
 #| msgid ""
 #| "A definition for the MIME-type %s could not be found \n"
@@ -12770,7 +12777,7 @@ msgid "Clipboard"
 msgstr "Системен буфер"
 
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:220
-#: ../gramps/gui/editors/filtereditor.py:1230 ../gramps/gui/views/tags.py:397
+#: ../gramps/gui/editors/filtereditor.py:1232 ../gramps/gui/views/tags.py:397
 #, fuzzy
 #| msgid "Change is not immediate"
 msgid "Any changes are saved immediately"
@@ -14772,7 +14779,7 @@ msgstr "_Признаци"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:66
 #: ../gramps/gui/editors/editfamily.py:138
-#: ../gramps/gui/editors/filtereditor.py:1091
+#: ../gramps/gui/editors/filtereditor.py:1093
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:113
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:111
@@ -15315,7 +15322,7 @@ msgstr "Заместващи имена"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:75
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:119
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1563
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1564
 #: ../gramps/plugins/webreport/basepage.py:3532
 msgid "Enclosed By"
 msgstr ""
@@ -15507,23 +15514,23 @@ msgctxt "manual"
 msgid "New_Citation_dialog"
 msgstr "Бележка за януари"
 
-#: ../gramps/gui/editors/editcitation.py:141
-#: ../gramps/gui/editors/editcitation.py:146
+#: ../gramps/gui/editors/editcitation.py:143
+#: ../gramps/gui/editors/editcitation.py:147
 #, fuzzy
 msgid "New Citation"
 msgstr "Цитат"
 
-#: ../gramps/gui/editors/editcitation.py:347
+#: ../gramps/gui/editors/editcitation.py:348
 #, fuzzy
 msgid "Edit Citation"
 msgstr "Цитат"
 
-#: ../gramps/gui/editors/editcitation.py:356
+#: ../gramps/gui/editors/editcitation.py:357
 #, fuzzy
 msgid "No source selected"
 msgstr "Не е избрано правило"
 
-#: ../gramps/gui/editors/editcitation.py:358
+#: ../gramps/gui/editors/editcitation.py:359
 msgid ""
 "A source is anything (personal testimony, video recording, photograph, "
 "newspaper column, gravestone...) from which information can be derived. To "
@@ -15532,19 +15539,19 @@ msgid ""
 "Page' field."
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:375
+#: ../gramps/gui/editors/editcitation.py:376
 #, fuzzy
 msgid "Cannot save citation. ID already exists."
 msgstr "Лицето не може да бъде запазено. Този индекс вече съществува."
 
-#: ../gramps/gui/editors/editcitation.py:377
+#: ../gramps/gui/editors/editcitation.py:378
 #: ../gramps/gui/editors/editevent.py:301
 #: ../gramps/gui/editors/editmedia.py:341
 #: ../gramps/gui/editors/editperson.py:955
 #: ../gramps/gui/editors/editplace.py:419
 #: ../gramps/gui/editors/editreference.py:300
 #: ../gramps/gui/editors/editrepository.py:221
-#: ../gramps/gui/editors/editsource.py:258
+#: ../gramps/gui/editors/editsource.py:264
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -15555,12 +15562,12 @@ msgstr ""
 "Тази стойност вече се използва от '%(prim_object)s'. Моля въведете различен "
 "индекс или оставете празен, за да получите следващата налична стойност."
 
-#: ../gramps/gui/editors/editcitation.py:387
+#: ../gramps/gui/editors/editcitation.py:388
 #, fuzzy, python-format
 msgid "Add Citation (%s)"
 msgstr "Премахване на място (%s)"
 
-#: ../gramps/gui/editors/editcitation.py:392
+#: ../gramps/gui/editors/editcitation.py:393
 #, fuzzy, python-format
 msgid "Edit Citation (%s)"
 msgstr "Цитат"
@@ -16538,34 +16545,34 @@ msgctxt "manual"
 msgid "New_Source_dialog"
 msgstr "Бележка за януари"
 
-#: ../gramps/gui/editors/editsource.py:100
+#: ../gramps/gui/editors/editsource.py:106
 msgid "New Source"
 msgstr "Нов източник"
 
-#: ../gramps/gui/editors/editsource.py:236
+#: ../gramps/gui/editors/editsource.py:242
 msgid "Edit Source"
 msgstr "Редактиране на източник"
 
-#: ../gramps/gui/editors/editsource.py:242
+#: ../gramps/gui/editors/editsource.py:248
 msgid "Cannot save source"
 msgstr "Източникът не може да бъде запазен"
 
-#: ../gramps/gui/editors/editsource.py:244
+#: ../gramps/gui/editors/editsource.py:250
 msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr ""
 "Няма информация за този източник. Моля въведете информация или откажете "
 "редакцията."
 
-#: ../gramps/gui/editors/editsource.py:256
+#: ../gramps/gui/editors/editsource.py:262
 msgid "Cannot save source. ID already exists."
 msgstr "Източникът не може да бъде запазен. Този индекс вече съществува."
 
-#: ../gramps/gui/editors/editsource.py:268
+#: ../gramps/gui/editors/editsource.py:274
 #, python-format
 msgid "Add Source (%s)"
 msgstr "Добавяне на източника (%s)"
 
-#: ../gramps/gui/editors/editsource.py:273
+#: ../gramps/gui/editors/editsource.py:279
 #, python-format
 msgid "Edit Source (%s)"
 msgstr "Редактиране на източник (%s)"
@@ -16683,49 +16690,49 @@ msgstr ""
 msgid "Family filter name:"
 msgstr "Семейни филтри"
 
-#: ../gramps/gui/editors/filtereditor.py:607
+#: ../gramps/gui/editors/filtereditor.py:609
 #, fuzzy
 msgid "Include selected Gramps ID"
 msgstr "Включване на идентификаторите"
 
-#: ../gramps/gui/editors/filtereditor.py:609
+#: ../gramps/gui/editors/filtereditor.py:611
 msgid "Use exact case of letters"
 msgstr "Спазване на големината на буквите"
 
-#: ../gramps/gui/editors/filtereditor.py:610
+#: ../gramps/gui/editors/filtereditor.py:612
 msgid "Regular-Expression matching:"
 msgstr "Регулярен израз съвпадащ с:"
 
-#: ../gramps/gui/editors/filtereditor.py:611
+#: ../gramps/gui/editors/filtereditor.py:613
 msgid "Use regular expression"
 msgstr "Използва регулярен израз"
 
-#: ../gramps/gui/editors/filtereditor.py:613
+#: ../gramps/gui/editors/filtereditor.py:615
 #, fuzzy
 msgid "Also family events where person is spouse"
 msgstr "Също така и семейни събития, в които лицето е съпруг/съпруга"
 
-#: ../gramps/gui/editors/filtereditor.py:615
+#: ../gramps/gui/editors/filtereditor.py:617
 msgid "Only include primary participants"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:634
+#: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
 #, fuzzy
 msgid "degrees"
 msgstr "Научна степен"
 
-#: ../gramps/gui/editors/filtereditor.py:634
+#: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
 msgid "kilometers"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:634
+#: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
 msgid "miles"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:649
+#: ../gramps/gui/editors/filtereditor.py:651
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:84
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:87
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:107
@@ -16738,7 +16745,7 @@ msgstr ""
 msgid "Use regular expressions"
 msgstr "Използване на регулярни изрази"
 
-#: ../gramps/gui/editors/filtereditor.py:651
+#: ../gramps/gui/editors/filtereditor.py:653
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -16752,7 +16759,7 @@ msgid ""
 "$\tA dollar sign will match the end of a line."
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:667
+#: ../gramps/gui/editors/filtereditor.py:669
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:85
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:108
@@ -16767,49 +16774,49 @@ msgstr ""
 msgid "Case sensitive"
 msgstr "Чувствително към регистъра:"
 
-#: ../gramps/gui/editors/filtereditor.py:687
+#: ../gramps/gui/editors/filtereditor.py:689
 msgid "Rule Name"
 msgstr "Име на правило"
 
-#: ../gramps/gui/editors/filtereditor.py:832
-#: ../gramps/gui/editors/filtereditor.py:836 ../gramps/gui/glade/rule.glade:898
+#: ../gramps/gui/editors/filtereditor.py:834
+#: ../gramps/gui/editors/filtereditor.py:838 ../gramps/gui/glade/rule.glade:898
 msgid "No rule selected"
 msgstr "Не е избрано правило"
 
-#: ../gramps/gui/editors/filtereditor.py:899
+#: ../gramps/gui/editors/filtereditor.py:901
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:89
 msgid "Define filter"
 msgstr "Формулиране на филтър"
 
-#: ../gramps/gui/editors/filtereditor.py:1020
+#: ../gramps/gui/editors/filtereditor.py:1022
 msgid "Add Rule"
 msgstr "Добавяне на правило"
 
-#: ../gramps/gui/editors/filtereditor.py:1040
+#: ../gramps/gui/editors/filtereditor.py:1042
 msgid "Edit Rule"
 msgstr "Редактиране на правило"
 
-#: ../gramps/gui/editors/filtereditor.py:1078
+#: ../gramps/gui/editors/filtereditor.py:1080
 msgid "Filter Test"
 msgstr "Тест на филтъра"
 
-#: ../gramps/gui/editors/filtereditor.py:1222
+#: ../gramps/gui/editors/filtereditor.py:1224
 msgid "Comment"
 msgstr "Бележка"
 
-#: ../gramps/gui/editors/filtereditor.py:1222
+#: ../gramps/gui/editors/filtereditor.py:1224
 #: ../gramps/plugins/drawreport/calendarreport.py:599
 #: ../gramps/plugins/drawreport/statisticschart.py:1124
 #: ../gramps/plugins/drawreport/timeline.py:427
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1228
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1244
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1260
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1276
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1292
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1308
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1324
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1340
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1356
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1229
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1245
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1261
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1277
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1293
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1309
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1325
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1341
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1357
 #: ../gramps/plugins/graph/gvrelgraph.py:892
 #: ../gramps/plugins/quickview/quickview.gpr.py:142
 #: ../gramps/plugins/textreport/birthdayreport.py:560
@@ -16822,15 +16829,15 @@ msgstr "Бележка"
 msgid "Filter"
 msgstr "Филтър"
 
-#: ../gramps/gui/editors/filtereditor.py:1234
+#: ../gramps/gui/editors/filtereditor.py:1236
 msgid "Custom Filter Editor"
 msgstr "Редактор на потребителски филтри"
 
-#: ../gramps/gui/editors/filtereditor.py:1333
+#: ../gramps/gui/editors/filtereditor.py:1335
 msgid "Delete Filter?"
 msgstr "Изтриване на филтъра?"
 
-#: ../gramps/gui/editors/filtereditor.py:1335
+#: ../gramps/gui/editors/filtereditor.py:1337
 #, fuzzy
 msgid ""
 "This filter is currently being used as the base for other filters. Deleting "
@@ -16840,7 +16847,7 @@ msgstr ""
 "този филтър, ще доведе до премахването на всички други филтри, зависещи от "
 "него."
 
-#: ../gramps/gui/editors/filtereditor.py:1340
+#: ../gramps/gui/editors/filtereditor.py:1342
 msgid "Delete Filter"
 msgstr "Изтриване на филтър"
 
@@ -17442,7 +17449,7 @@ msgid "Compare regardless of the number of days since the last run."
 msgstr ""
 
 #: ../gramps/gui/fs/compare/options.py:62
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1221
 #, fuzzy
 msgid "Person Filter"
 msgstr "_Филтър за лицата"
@@ -26570,14 +26577,14 @@ msgstr "Грамплет показващ всички фамилни имена
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:389
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:396
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1390
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1406
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1422
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1438
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1454
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1470
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1486
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1502
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1391
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1407
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1423
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1439
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1455
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1471
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1487
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1503
 #, fuzzy
 msgctxt "gramplet"
 msgid "To Do"
@@ -26671,666 +26678,666 @@ msgstr "Медийни обекти"
 msgid "Gramplet showing a preview of a media object"
 msgstr "Грамплет показващ съобщение за добре дошли"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:537
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:545
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:538
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:546
 msgid "Image Metadata"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:538
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:539
 #, fuzzy
 msgid "Gramplet showing metadata for a media object"
 msgstr "Грамплет показващ сбита информация за родословното дърво"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:564
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:565
 msgid "GExiv2 module not loaded."
 msgstr ""
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:566
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:567
 #, python-format
 msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_gexiv2_url)s"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:580
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:581
 #, fuzzy
 msgid "Person Residence"
 msgstr "Отпратка към лице"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:581
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:582
 #, fuzzy
 msgid "Gramplet showing residence events for a person"
 msgstr "Грамплет показващ всички дейности за текущата сесия"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:596
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:597
 #, fuzzy
 msgid "Person Events"
 msgstr "Лично събитие:"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:597
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1588
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:598
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1589
 #, fuzzy
 msgid "Gramplet showing the events for a person"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:612
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:613
 msgid "Family Events"
 msgstr "Семейно събитие"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:613
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:614
 #, fuzzy
 msgid "Gramplet showing the events for a family"
 msgstr "Грамплет показващ сбита информация за родословното дърво"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:628
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:629
 #, fuzzy
 msgid "Person Gallery"
 msgstr "Грамплет Възраст на дата"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:629
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:630
 #, fuzzy
 msgid "Gramplet showing media objects for a person"
 msgstr "Грамплет показващ всички дейности за текущата сесия"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:636
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:652
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:668
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:684
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:700
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:716
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:637
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:653
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:669
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:685
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:701
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:717
 msgid "Gallery"
 msgstr "Галерия"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:644
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:645
 #, fuzzy
 msgid "Family Gallery"
 msgstr "Семейни филтри"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:645
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:646
 msgid "Gramplet showing media objects for a family"
 msgstr "Грамплет показващ медийните обекти за семейство"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:660
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:661
 #, fuzzy
 msgid "Event Gallery"
 msgstr "Грамплет Възраст на дата"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:661
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:662
 #, fuzzy
 msgid "Gramplet showing media objects for an event"
 msgstr "Грамплет показващ всички дейности за текущата сесия"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:676
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:677
 #, fuzzy
 msgid "Place Gallery"
 msgstr "Грамплет Календар"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:677
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:678
 msgid "Gramplet showing media objects for a place"
 msgstr "Грамплет показващ медийните обекти за място"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:692
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:693
 #, fuzzy
 msgid "Source Gallery"
 msgstr "Грамплет Облак на фамилните имена"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:693
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:694
 #, fuzzy
 msgid "Gramplet showing media objects for a source"
 msgstr "Грамплет показващ всички дейности за текущата сесия"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:708
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:709
 #, fuzzy
 msgid "Citation Gallery"
 msgstr "Цитат"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:709
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:710
 #, fuzzy
 msgid "Gramplet showing media objects for a citation"
 msgstr "Грамплет показващ всички дейности за текущата сесия"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:724
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:725
 #, fuzzy
 msgid "Person Attributes"
 msgstr "Личен признак:"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:725
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:726
 #, fuzzy
 msgid "Gramplet showing the attributes of a person"
 msgstr "Грамплет показващ характерните признаци на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:740
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:741
 #, fuzzy
 msgid "Event Attributes"
 msgstr "Признак на събитие:"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:741
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:742
 #, fuzzy
 msgid "Gramplet showing the attributes of an event"
 msgstr "Грамплет показващ характерните признаци на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:756
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:757
 #, fuzzy
 msgid "Family Attributes"
 msgstr "Семеен признак"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:757
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:758
 #, fuzzy
 msgid "Gramplet showing the attributes of a family"
 msgstr "Грамплет показващ характерните признаци на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:772
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:773
 #, fuzzy
 msgid "Media Attributes"
 msgstr "Признак на медията :"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:773
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:774
 #, fuzzy
 msgid "Gramplet showing the attributes of a media object"
 msgstr "Грамплет показващ характерните признаци на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:789
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:790
 #, fuzzy
 msgid "Gramplet showing the attributes of a source object"
 msgstr "Грамплет показващ характерните признаци на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:804
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:805
 #, fuzzy
 msgid "Citation Attributes"
 msgstr "Признак на медията :"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:805
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:806
 #, fuzzy
 msgid "Gramplet showing the attributes of a citation object"
 msgstr "Грамплет показващ характерните признаци на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:820
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:821
 #, fuzzy
 msgid "Person Notes"
 msgstr "Бележка за лице"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:821
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:822
 #, fuzzy
 msgid "Gramplet showing the notes for a person"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:836
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:837
 #, fuzzy
 msgid "Event Notes"
 msgstr "Бележка за събитие"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:837
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:838
 #, fuzzy
 msgid "Gramplet showing the notes for an event"
 msgstr "Грамплет показващ потомците на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:852
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:853
 #: ../gramps/plugins/textreport/familygroup.py:793
 #, fuzzy
 msgid "Family Notes"
 msgstr "Сем. бележки"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:853
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:854
 #, fuzzy
 msgid "Gramplet showing the notes for a family"
 msgstr "Грамплет показващ сбита информация за родословното дърво"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:868
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:869
 #, fuzzy
 msgid "Place Notes"
 msgstr "Бележка за място"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:869
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:870
 #, fuzzy
 msgid "Gramplet showing the notes for a place"
 msgstr "Грамплет показващ графики на различните възрасти"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:884
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:885
 #, fuzzy
 msgid "Source Notes"
 msgstr "Бележка за източник"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:885
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:886
 #, fuzzy
 msgid "Gramplet showing the notes for a source"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:900
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:901
 #, fuzzy
 msgid "Citation Notes"
 msgstr "Бележка за връзка"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:901
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:902
 #, fuzzy
 msgid "Gramplet showing the notes for a citation"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:916
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:917
 #, fuzzy
 msgid "Repository Notes"
 msgstr "Бележка на хранилище"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:917
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:918
 #, fuzzy
 msgid "Gramplet showing the notes for a repository"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:932
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:933
 #, fuzzy
 msgid "Media Notes"
 msgstr "Бележка за медия"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:933
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:934
 #, fuzzy
 msgid "Gramplet showing the notes for a media object"
 msgstr "Грамплет показващ характерните признаци на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:949
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:950
 #, fuzzy
 msgid "Gramplet showing the selected note"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:964
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:965
 #, fuzzy
 msgid "Person Citations"
 msgstr "Цитат"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:965
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:966
 #, fuzzy
 msgid "Gramplet showing the citations for a person"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:980
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #, fuzzy
 msgid "Event Citations"
 msgstr "Цитат"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:981
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:982
 #, fuzzy
 msgid "Gramplet showing the citations for an event"
 msgstr "Грамплет показващ потомците на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:996
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:997
 #, fuzzy
 msgid "Family Citations"
 msgstr "Семейна информация"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:997
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:998
 #, fuzzy
 msgid "Gramplet showing the citations for a family"
 msgstr "Грамплет показващ сбита информация за родословното дърво"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1012
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1013
 #, fuzzy
 msgid "Place Citations"
 msgstr "Цитат"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1013
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1014
 #, fuzzy
 msgid "Gramplet showing the citations for a place"
 msgstr "Грамплет показващ графики на различните възрасти"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1028
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1029
 #, fuzzy
 msgid "Media Citations"
 msgstr "Цитат"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1029
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1030
 #, fuzzy
 msgid "Gramplet showing the citations for a media object"
 msgstr "Грамплет показващ характерните признаци на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1044
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1045
 #, fuzzy
 msgid "Person Children"
 msgstr "Грамплет Родословно дърво"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1045
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1046
 #, fuzzy
 msgid "Gramplet showing the children of a person"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1060
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1061
 #, fuzzy
 msgid "Family Children"
 msgstr "Грамплет кръгова графика"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1061
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1062
 #, fuzzy
 msgid "Gramplet showing the children of a family"
 msgstr "Грамплет показващ сбита информация за родословното дърво"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1076
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1077
 #, fuzzy
 msgid "Person References"
 msgstr "Отпратка към лице"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1077
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1078
 #, fuzzy
 msgid "Gramplet showing the backlink references for a person"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1084
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1100
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1116
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1132
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1148
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1164
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1180
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1196
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1212
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1085
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1101
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1117
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1133
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1149
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1165
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1181
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1197
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1213
 #: ../gramps/plugins/webreport/basepage.py:3884
 #: ../gramps/plugins/webreport/person.py:1101
 #: ../gramps/plugins/webreport/thumbnail.py:188
 msgid "References"
 msgstr "Отпратки"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1092
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 #, fuzzy
 msgid "Event References"
 msgstr "Бележка за отпратка към събитие"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1094
 #, fuzzy
 msgid "Gramplet showing the backlink references for an event"
 msgstr "Грамплет показващ потомците на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1108
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1109
 #, fuzzy
 msgid "Family References"
 msgstr "Показване на отпратките за %s"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1109
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1110
 #, fuzzy
 msgid "Gramplet showing the backlink references for a family"
 msgstr "Грамплет показващ сбита информация за родословното дърво"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1124
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
 #, fuzzy
 msgid "Place References"
 msgstr "Редактор за отпратки към източниците"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1126
 #, fuzzy
 msgid "Gramplet showing the backlink references for a place"
 msgstr "Грамплет показващ графики на различните възрасти"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1140
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1141
 #: ../gramps/plugins/webreport/basepage.py:3015
 msgid "Source References"
 msgstr "Отпратки към източници"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1141
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1142
 #, fuzzy
 msgid "Gramplet showing the backlink references for a source"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1156
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1157
 #, fuzzy
 msgid "Citation References"
 msgstr "Отпратки"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1157
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1158
 #, fuzzy
 msgid "Gramplet showing the backlink references for a citation"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1172
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1173
 #: ../gramps/plugins/quickview/quickview.gpr.py:275
 msgid "Repository References"
 msgstr "Отпратка към хранилище"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1173
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1174
 #, fuzzy
 msgid "Gramplet showing the backlink references for a repository"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1188
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1189
 #, fuzzy
 msgid "Media References"
 msgstr "Бележка за отпратка към медия"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1189
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1190
 #, fuzzy
 msgid "Gramplet showing the backlink references for a media object"
 msgstr "Грамплет показващ характерните признаци на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1204
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1205
 #, fuzzy
 msgid "Note References"
 msgstr "Отпратки към източници"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1205
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1206
 #, fuzzy
 msgid "Gramplet showing the backlink references for a note"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1221
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1222
 #, fuzzy
 msgid "Gramplet providing a person filter"
 msgstr "Грамплет показващ роднините на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1236
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1237
 #, fuzzy
 msgid "Family Filter"
 msgstr "Семейни филтри"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1237
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1238
 #, fuzzy
 msgid "Gramplet providing a family filter"
 msgstr "Грамплет показващ сбита информация за родословното дърво"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1252
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1253
 #, fuzzy
 msgid "Event Filter"
 msgstr "Филтри за събития"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1253
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1254
 #, fuzzy
 msgid "Gramplet providing an event filter"
 msgstr "Грамплет показващ бърз преглед на активният артикул"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1268
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1269
 #, fuzzy
 msgid "Source Filter"
 msgstr "Филтри за източници"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1269
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1270
 #, fuzzy
 msgid "Gramplet providing a source filter"
 msgstr "Грамплет показващ роднините на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1284
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1285
 #, fuzzy
 msgid "Citation Filter"
 msgstr "Филтри за събития"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1285
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1286
 #, fuzzy
 msgid "Gramplet providing a citation filter"
 msgstr "Грамплет показващ роднините на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1300
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1301
 #, fuzzy
 msgid "Place Filter"
 msgstr "Филтри за места"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1301
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1302
 #, fuzzy
 msgid "Gramplet providing a place filter"
 msgstr "Грамплет показващ съобщение за добре дошли"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1316
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1317
 #, fuzzy
 msgid "Media Filter"
 msgstr "Медийни обекти"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1317
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1318
 msgid "Gramplet providing a media filter"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1332
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1333
 #, fuzzy
 msgid "Repository Filter"
 msgstr "Филтри за хранилищата"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1333
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1334
 #, fuzzy
 msgid "Gramplet providing a repository filter"
 msgstr "Създаване страниците на източници"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1348
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1349
 #, fuzzy
 msgid "Note Filter"
 msgstr "_Филтър за бележките"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1349
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1350
 #, fuzzy
 msgid "Gramplet providing a note filter"
 msgstr "Грамплет показващ сбита информация за родословното дърво"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1364
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1375
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1365
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1376
 #: ../gramps/plugins/textreport/recordsreport.py:139
 msgid "Records"
 msgstr "Рекорди"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1365
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1366
 #: ../gramps/plugins/textreport/textplugins.gpr.py:436
 msgid "Shows some interesting records about people and families"
 msgstr "Показва някои интересни рекорди за хората и семействата"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1382
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1383
 #, fuzzy
 msgid "Person To Do"
 msgstr "Индекс на лицето:"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1383
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1384
 #, fuzzy
 msgid "Gramplet showing the To Do notes for a person"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1398
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1399
 #, fuzzy
 msgid "Event To Do"
 msgstr "Тип на събитието"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1399
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1400
 #, fuzzy
 msgid "Gramplet showing the To Do notes for an event"
 msgstr "Грамплет показващ потомците на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1414
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1415
 #, fuzzy
 msgid "Family To Do"
 msgstr "Сем. бележки"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1415
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1416
 #, fuzzy
 msgid "Gramplet showing the To Do notes for a family"
 msgstr "Грамплет показващ сбита информация за родословното дърво"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1430
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1431
 #, fuzzy
 msgid "Place To Do"
 msgstr "Бележка за място"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1431
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1432
 #, fuzzy
 msgid "Gramplet showing the To Do notes for a place"
 msgstr "Грамплет показващ графики на различните възрасти"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1446
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1447
 #, fuzzy
 msgid "Source To Do"
 msgstr "Индекс на източник:"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1447
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1448
 #, fuzzy
 msgid "Gramplet showing the To Do notes for a source"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1462
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1463
 #, fuzzy
 msgid "Citation To Do"
 msgstr "Цитат"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1463
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1464
 #, fuzzy
 msgid "Gramplet showing the To Do notes for a citation"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1478
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1479
 #, fuzzy
 msgid "Repository To Do"
 msgstr "Бележка на хранилище"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1479
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1480
 #, fuzzy
 msgid "Gramplet showing the To Do notes for a repository"
 msgstr "Грамплет показващ прародителите на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1494
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1495
 #, fuzzy
 msgid "Media To Do"
 msgstr "Бележка за медия"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1495
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1496
 #, fuzzy
 msgid "Gramplet showing the To Do notes for a media object"
 msgstr "Грамплет показващ характерните признаци на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1540
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1548
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1541
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1549
 #, fuzzy
 msgid "SoundEx"
 msgstr "SoundEx код:"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1541
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1542
 #, fuzzy
 msgid "Gramplet to generate SoundEx codes"
 msgstr "Генериране на кодове SoundEx"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1555
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1556
 #, fuzzy
 msgid "Place Enclosed By"
 msgstr "Грамплет Календар"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1556
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1557
 #, fuzzy
 msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Грамплет показващ роднините на активната личност"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1571
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1572
 #: ../gramps/plugins/webreport/basepage.py:3570
 #, fuzzy
 msgid "Place Encloses"
 msgstr "Бележка за място"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1572
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1573
 #, fuzzy
 msgid "Gramplet showing the places that the active place encloses"
 msgstr "Грамплет показващ графики на различните възрасти"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1579
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1580
 msgid "Encloses"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1587
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1588
 msgid "Geography coordinates for Person Events"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1595
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1611
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1596
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1612
 #, fuzzy
 msgid "Events Coordinates"
 msgstr "Събития на %(date)s"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1603
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1604
 msgid "Geography coordinates for Family Events"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1604
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1605
 #, fuzzy
 msgid "Gramplet showing the events for all the family"
 msgstr "Грамплет показващ сбита информация за родословното дърво"
@@ -30502,81 +30509,81 @@ msgstr ""
 msgid "No copyright notice"
 msgstr "Без уточняване на авторското право"
 
-#: ../gramps/plugins/lib/libmetadata.py:75
-#: ../gramps/plugins/lib/libmetadata.py:115
+#: ../gramps/plugins/lib/libmetadata.py:79
+#: ../gramps/plugins/lib/libmetadata.py:119
 #, fuzzy
 msgid "Invalid format"
 msgstr "Формат"
 
-#: ../gramps/plugins/lib/libmetadata.py:80
+#: ../gramps/plugins/lib/libmetadata.py:84
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr ""
 
-#: ../gramps/plugins/lib/libmetadata.py:85
+#: ../gramps/plugins/lib/libmetadata.py:89
 #, fuzzy, python-format
 msgid "%(date)s %(time)s"
 msgstr "%(date)s, %(place)s"
 
-#: ../gramps/plugins/lib/libmetadata.py:118
+#: ../gramps/plugins/lib/libmetadata.py:122
 #, fuzzy
 msgid "Descriptive Tags"
 msgstr "Описание:"
 
-#: ../gramps/plugins/lib/libmetadata.py:119
+#: ../gramps/plugins/lib/libmetadata.py:123
 #, fuzzy
 msgid "Date and Time Tags"
 msgstr "Редактор за стилове"
 
-#: ../gramps/plugins/lib/libmetadata.py:120
+#: ../gramps/plugins/lib/libmetadata.py:124
 #, fuzzy
 #| msgid "People"
 msgid "People Tags"
 msgstr "Хора"
 
-#: ../gramps/plugins/lib/libmetadata.py:121
+#: ../gramps/plugins/lib/libmetadata.py:125
 #, fuzzy
 #| msgid "Events"
 msgid "Event Tags"
 msgstr "Събития"
 
-#: ../gramps/plugins/lib/libmetadata.py:122
+#: ../gramps/plugins/lib/libmetadata.py:126
 #, fuzzy
 #| msgid "Images"
 msgid "Image Tags"
 msgstr "Изображения"
 
-#: ../gramps/plugins/lib/libmetadata.py:123
+#: ../gramps/plugins/lib/libmetadata.py:127
 #, fuzzy
 msgid "Camera Information"
 msgstr "Формат на хартията"
 
-#: ../gramps/plugins/lib/libmetadata.py:124
+#: ../gramps/plugins/lib/libmetadata.py:128
 #, fuzzy
 msgid "Location Tags"
 msgstr "Местоположение"
 
-#: ../gramps/plugins/lib/libmetadata.py:125
+#: ../gramps/plugins/lib/libmetadata.py:129
 #, fuzzy
 msgid "Advanced Tags"
 msgstr "Разширени настройки"
 
-#: ../gramps/plugins/lib/libmetadata.py:126
+#: ../gramps/plugins/lib/libmetadata.py:130
 #, fuzzy
 msgid "Rights Tags"
 msgstr "Редактира %s"
 
-#: ../gramps/plugins/lib/libmetadata.py:127
+#: ../gramps/plugins/lib/libmetadata.py:131
 #, fuzzy
 msgid "Keyword Tags"
 msgstr "Рекорди"
 
-#: ../gramps/plugins/lib/libmetadata.py:226
+#: ../gramps/plugins/lib/libmetadata.py:230
 #, fuzzy
 msgid "Namespace"
 msgstr "_Имена"
 
-#: ../gramps/plugins/lib/libmetadata.py:227
+#: ../gramps/plugins/lib/libmetadata.py:231
 msgid "Label"
 msgstr ""
 
@@ -37599,108 +37606,108 @@ msgid "Looking for event problems"
 msgstr "Преглеждане за проблеми със събития"
 
 #: ../gramps/plugins/tool/check.py:1361 ../gramps/plugins/tool/check.py:1390
-#: ../gramps/plugins/tool/check.py:1418
+#: ../gramps/plugins/tool/check.py:1422
 #, fuzzy
 msgid "Looking for backlink reference problems"
 msgstr "Преглеждане за проблеми с отпратки за места"
 
-#: ../gramps/plugins/tool/check.py:1453
+#: ../gramps/plugins/tool/check.py:1465
 msgid "Looking for person reference problems"
 msgstr "Преглеждане за проблеми с отпратки за лица"
 
-#: ../gramps/plugins/tool/check.py:1489
+#: ../gramps/plugins/tool/check.py:1501
 #, fuzzy
 msgid "Looking for family reference problems"
 msgstr "Преглеждане за проблеми с отпратки за места"
 
-#: ../gramps/plugins/tool/check.py:1520
+#: ../gramps/plugins/tool/check.py:1532
 msgid "Looking for repository reference problems"
 msgstr "Преглеждане за проблеми с отпратки за хранилища"
 
-#: ../gramps/plugins/tool/check.py:1560
+#: ../gramps/plugins/tool/check.py:1572
 msgid "Looking for place reference problems"
 msgstr "Преглеждане за проблеми с отпратки за места"
 
-#: ../gramps/plugins/tool/check.py:1692
+#: ../gramps/plugins/tool/check.py:1704
 #, fuzzy
 msgid "Looking for citation reference problems"
 msgstr "Преглеждане за проблеми с отпратки за източници"
 
-#: ../gramps/plugins/tool/check.py:1812
+#: ../gramps/plugins/tool/check.py:1824
 #, fuzzy
 msgid "Looking for source reference problems"
 msgstr "Преглеждане за проблеми с отпратки за бележки"
 
-#: ../gramps/plugins/tool/check.py:1859
+#: ../gramps/plugins/tool/check.py:1871
 msgid "Looking for media object reference problems"
 msgstr "Преглеждане за проблеми с отпратки за медийни обекти"
 
-#: ../gramps/plugins/tool/check.py:1990
+#: ../gramps/plugins/tool/check.py:2002
 msgid "Looking for note reference problems"
 msgstr "Преглеждане за проблеми с отпратки за бележки"
 
-#: ../gramps/plugins/tool/check.py:2123
+#: ../gramps/plugins/tool/check.py:2135
 msgid "Updating checksums on media"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:2151
+#: ../gramps/plugins/tool/check.py:2163
 #, fuzzy
 msgid "Looking for tag reference problems"
 msgstr "Преглеждане за проблеми с отпратки за бележки"
 
-#: ../gramps/plugins/tool/check.py:2295
+#: ../gramps/plugins/tool/check.py:2307
 #, fuzzy
 msgid "Looking for media source reference problems"
 msgstr "Преглеждане за проблеми с отпратки за медийни обекти"
 
-#: ../gramps/plugins/tool/check.py:2365
+#: ../gramps/plugins/tool/check.py:2377
 #, fuzzy
 msgid "Looking for Duplicated Gramps ID problems"
 msgstr "Преглеждане за дублиращи си брачни партньори"
 
-#: ../gramps/plugins/tool/check.py:2517
+#: ../gramps/plugins/tool/check.py:2529
 #, fuzzy
 msgid "Checking for bad links in Notes"
 msgstr "Търсене за места"
 
-#: ../gramps/plugins/tool/check.py:2581
+#: ../gramps/plugins/tool/check.py:2593
 msgid "Coalescing duplicate roles in events referenced by people"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:2602
+#: ../gramps/plugins/tool/check.py:2614
 msgid "Coalescing duplicate roles in events referenced by families"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:2775
+#: ../gramps/plugins/tool/check.py:2787
 msgid "No errors were found"
 msgstr "Не бяха намерени грешки"
 
-#: ../gramps/plugins/tool/check.py:2776
+#: ../gramps/plugins/tool/check.py:2788
 msgid "The database has passed internal checks"
 msgstr "Базата данни премина вътрешните проверки"
 
-#: ../gramps/plugins/tool/check.py:2782
+#: ../gramps/plugins/tool/check.py:2794
 #, fuzzy
 msgid "No errors were found: the database has passed internal checks."
 msgstr "Базата данни премина вътрешните проверки"
 
-#: ../gramps/plugins/tool/check.py:2792
+#: ../gramps/plugins/tool/check.py:2804
 #, fuzzy, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "Бяха оправени %(quantity)d счупени връзки дете/семейство\n"
 msgstr[1] "Бяха намерени %(quantity)d счупени връзки дете/семейство\n"
 
-#: ../gramps/plugins/tool/check.py:2801
+#: ../gramps/plugins/tool/check.py:2813
 msgid "Non existing child"
 msgstr "Несъществуващо дете"
 
-#: ../gramps/plugins/tool/check.py:2812
+#: ../gramps/plugins/tool/check.py:2824
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s беше премахнат от семейството на %(family)s\n"
 
-#: ../gramps/plugins/tool/check.py:2820
+#: ../gramps/plugins/tool/check.py:2832
 #, fuzzy, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
@@ -37709,16 +37716,16 @@ msgstr[0] ""
 msgstr[1] ""
 "Бяха намерени %(quantity)d счупени връзки брачен партньор/семейство\n"
 
-#: ../gramps/plugins/tool/check.py:2829 ../gramps/plugins/tool/check.py:2857
+#: ../gramps/plugins/tool/check.py:2841 ../gramps/plugins/tool/check.py:2869
 msgid "Non existing person"
 msgstr "Несъществуващо лице"
 
-#: ../gramps/plugins/tool/check.py:2840 ../gramps/plugins/tool/check.py:2868
+#: ../gramps/plugins/tool/check.py:2852 ../gramps/plugins/tool/check.py:2880
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s беше възстановен в семейството на %(family)s\n"
 
-#: ../gramps/plugins/tool/check.py:2848
+#: ../gramps/plugins/tool/check.py:2860
 #, fuzzy, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
@@ -37727,7 +37734,7 @@ msgstr[0] ""
 msgstr[1] ""
 "Бяха открити %(quantity)d дублиращи се връзки брачен партньор/семейство\n"
 
-#: ../gramps/plugins/tool/check.py:2876
+#: ../gramps/plugins/tool/check.py:2888
 #, fuzzy, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
@@ -37735,49 +37742,49 @@ msgid_plural ""
 msgstr[0] "Беше открито и изтрито %d семейство без родители или деца.\n"
 msgstr[1] "Беше открито и изтрито %d семейство без родители или деца.\n"
 
-#: ../gramps/plugins/tool/check.py:2890
+#: ../gramps/plugins/tool/check.py:2902
 #, fuzzy, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] "Беше поправена %d семейна връзка\n"
 msgstr[1] "Бяха поправени %d семейни връзки\n"
 
-#: ../gramps/plugins/tool/check.py:2900
+#: ../gramps/plugins/tool/check.py:2912
 #, fuzzy, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
 msgstr[0] "Беше оправено %(quantity)d невалидно име за смърт\n"
 msgstr[1] "Бяха оправени %(quantity)d невалидни имена за смърт\n"
 
-#: ../gramps/plugins/tool/check.py:2910
+#: ../gramps/plugins/tool/check.py:2922
 #, fuzzy, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] "Имаше отпратки към %(quantity)d място, но то не бе намерено\n"
 msgstr[1] "Имаше отпратки към %(quantity)d места, но те не бяха намерени\n"
 
-#: ../gramps/plugins/tool/check.py:2920
+#: ../gramps/plugins/tool/check.py:2932
 #, fuzzy, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "Имаше отпратка за %d лице, но то не беше открито\n"
 msgstr[1] "Имаше отпратки за %d души, но те не бяха открити\n"
 
-#: ../gramps/plugins/tool/check.py:2930
+#: ../gramps/plugins/tool/check.py:2942
 #, fuzzy, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] "%d дата беше коригирана\n"
 msgstr[1] "%d бяха коригирани\n"
 
-#: ../gramps/plugins/tool/check.py:2940
+#: ../gramps/plugins/tool/check.py:2952
 #, fuzzy, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] "Има отпратка за %(quantity)d хранилище, но то не беше открито\n"
 msgstr[1] "Има отпратки за %(quantity)d хранилища, но те не бяха открити\n"
 
-#: ../gramps/plugins/tool/check.py:2950 ../gramps/plugins/tool/check.py:3050
+#: ../gramps/plugins/tool/check.py:2962 ../gramps/plugins/tool/check.py:3062
 #, fuzzy, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
@@ -37785,105 +37792,105 @@ msgstr[0] "Има отпратка за %(quantity)d медиен обект, н
 msgstr[1] ""
 "Има отпратки за %(quantity)d медиини обекти, но те не бяха открити\n"
 
-#: ../gramps/plugins/tool/check.py:2960
+#: ../gramps/plugins/tool/check.py:2972
 #, fuzzy, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "Беше запазена отпратка към %(quantity)d липсващ медиен обект\n"
 msgstr[1] "Бяха запазени отпратки към %(quantity)d липсващи медиини обекти\n"
 
-#: ../gramps/plugins/tool/check.py:2970
+#: ../gramps/plugins/tool/check.py:2982
 #, fuzzy, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] "Беше заместен %(quantity)d липсващ медиен обект\n"
 msgstr[1] "Бяха заместени %(quantity)d липсващи медиини обекти\n"
 
-#: ../gramps/plugins/tool/check.py:2980
+#: ../gramps/plugins/tool/check.py:2992
 #, fuzzy, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] "Беше изтрит %(quantity)d липсващ медиен обект\n"
 msgstr[1] "Бяха изтрити %(quantity)d липсващи медиини обекти\n"
 
-#: ../gramps/plugins/tool/check.py:2990
+#: ../gramps/plugins/tool/check.py:3002
 #, fuzzy, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] "Имаше отпратки към %(quantity)d място, но то не бе намерено\n"
 msgstr[1] "Имаше отпратки към %(quantity)d места, но те не бяха намерени\n"
 
-#: ../gramps/plugins/tool/check.py:3000
+#: ../gramps/plugins/tool/check.py:3012
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] "Беше оправено %(quantity)d невалидно име за раждане\n"
 msgstr[1] "Бяха оправени %(quantity)d невалидни имена за раждания\n"
 
-#: ../gramps/plugins/tool/check.py:3010
+#: ../gramps/plugins/tool/check.py:3022
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] "Беше оправено %(quantity)d невалидно име за смърт\n"
 msgstr[1] "Бяха оправени %(quantity)d невалидни имена за смърт\n"
 
-#: ../gramps/plugins/tool/check.py:3020
+#: ../gramps/plugins/tool/check.py:3032
 #, fuzzy, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
 msgstr[0] "Имаше отпратки към %(quantity)d място, но то не бе намерено\n"
 msgstr[1] "Имаше отпратки към %(quantity)d места, но те не бяха намерени\n"
 
-#: ../gramps/plugins/tool/check.py:3030
+#: ../gramps/plugins/tool/check.py:3042
 #, fuzzy, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
 msgstr[0] "Имаше отпратки към %(quantity)d място, но то не бе намерено\n"
 msgstr[1] "Имаше отпратки към %(quantity)d места, но те не бяха намерени\n"
 
-#: ../gramps/plugins/tool/check.py:3040
+#: ../gramps/plugins/tool/check.py:3052
 #, fuzzy, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] "Имаше отпратка към %(quantity)d източник, но той не беше намерен\n"
 msgstr[1] "Имаше отпратки към %(quantity)d източници, но те не бяха намерени\n"
 
-#: ../gramps/plugins/tool/check.py:3060
+#: ../gramps/plugins/tool/check.py:3072
 #, fuzzy, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
 msgstr[0] "Имаше отпратка към %(quantity)d бележка, но тя не беше намерена\n"
 msgstr[1] "Имаше отпратка към %(quantity)d бележки, но те не бяха намерени\n"
 
-#: ../gramps/plugins/tool/check.py:3070 ../gramps/plugins/tool/check.py:3080
+#: ../gramps/plugins/tool/check.py:3082 ../gramps/plugins/tool/check.py:3092
 #, fuzzy, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] "Имаше отпратка към %(quantity)d бележка, но тя не беше намерена\n"
 msgstr[1] "Имаше отпратка към %(quantity)d бележки, но те не бяха намерени\n"
 
-#: ../gramps/plugins/tool/check.py:3090
+#: ../gramps/plugins/tool/check.py:3102
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
 msgstr[0] "Беше премахната %(quantity)d отпратка за невалидно име\n"
 msgstr[1] "Бяха премахнати %(quantity)d отпратки за невалидно име\n"
 
-#: ../gramps/plugins/tool/check.py:3100
+#: ../gramps/plugins/tool/check.py:3112
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "Беше оправено %(quantity)d невалидно име за раждане\n"
 msgstr[1] "Бяха оправени %(quantity)d невалидни имена за раждания\n"
 
-#: ../gramps/plugins/tool/check.py:3110
+#: ../gramps/plugins/tool/check.py:3122
 #, fuzzy, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
 msgstr[0] "Беше оправено %(quantity)d невалидно име за смърт\n"
 msgstr[1] "Бяха оправени %(quantity)d невалидни имена за смърт\n"
 
-#: ../gramps/plugins/tool/check.py:3119
+#: ../gramps/plugins/tool/check.py:3131
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -37906,33 +37913,33 @@ msgstr ""
 "   %(repo)d хранилища\n"
 "   %(note)d бележки\n"
 
-#: ../gramps/plugins/tool/check.py:3144
+#: ../gramps/plugins/tool/check.py:3156
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:3145
+#: ../gramps/plugins/tool/check.py:3157
 #: ../gramps/plugins/tool/rebuildrefmap.py:90
 #: ../gramps/plugins/tool/rebuildrefmap.py:94
 msgid "All reference maps have been rebuilt."
 msgstr "Всички карти на отпратките бяха възстановени."
 
-#: ../gramps/plugins/tool/check.py:3150
+#: ../gramps/plugins/tool/check.py:3162
 #, python-format
 msgid "%d bad Note Links were fixed;\n"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:3155
+#: ../gramps/plugins/tool/check.py:3167
 #, python-format
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:3191
+#: ../gramps/plugins/tool/check.py:3203
 msgid "Integrity Check Results"
 msgstr "Резултати от проверката на целостта"
 
-#: ../gramps/plugins/tool/check.py:3198
+#: ../gramps/plugins/tool/check.py:3210
 msgid "Check and Repair"
 msgstr "Проверка и Поправка"
 

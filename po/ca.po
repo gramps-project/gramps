@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-20 21:11+0100\n"
+"POT-Creation-Date: 2026-05-30 15:00+0100\n"
 "PO-Revision-Date: 2025-08-31 06:05+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
@@ -1883,7 +1883,7 @@ msgstr "Bloquejat per %s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:876
 #: ../gramps/plugins/textreport/indivcomplete.py:98
 #: ../gramps/plugins/textreport/indivcomplete.py:972
-#: ../gramps/plugins/tool/check.py:2807 ../gramps/plugins/tool/check.py:2835
+#: ../gramps/plugins/tool/check.py:2819 ../gramps/plugins/tool/check.py:2847
 #: ../gramps/plugins/tool/dumpgenderstats.py:73
 #: ../gramps/plugins/tool/dumpgenderstats.py:96
 #: ../gramps/plugins/tool/dumpgenderstats.py:101
@@ -2178,27 +2178,27 @@ msgstr ""
 "plau del problema a %(gramps_bugtracker_url)s\n"
 "\n"
 
-#: ../gramps/gen/config.py:305
+#: ../gramps/gen/config.py:306
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "S'ha importat %Y/%m/%d %H:%M:%S"
 
-#: ../gramps/gen/config.py:317
+#: ../gramps/gen/config.py:318
 msgid "Missing Given Name"
 msgstr "Falta el nom de pila"
 
-#: ../gramps/gen/config.py:318
+#: ../gramps/gen/config.py:319
 msgid "Missing Record"
 msgstr "Falta el registre"
 
-#: ../gramps/gen/config.py:319
+#: ../gramps/gen/config.py:320
 msgid "Missing Surname"
 msgstr "Falta el cognom"
 
-#: ../gramps/gen/config.py:326 ../gramps/gen/config.py:328
+#: ../gramps/gen/config.py:327 ../gramps/gen/config.py:329
 msgid "[Living]"
 msgstr "[Viu]"
 
-#: ../gramps/gen/config.py:327
+#: ../gramps/gen/config.py:328
 msgid "Private Record"
 msgstr "Registre privat"
 
@@ -2206,7 +2206,7 @@ msgstr "Registre privat"
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:402 ../gramps/gen/datehandler/_datestrings.py:89
+#: ../gramps/gen/config.py:403 ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
 msgid "January"
 msgstr "Gener"
@@ -2279,8 +2279,8 @@ msgstr "Dia Mes Any"
 msgid "Day Mon Year"
 msgstr "Dia Mes Any"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:182
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:183
+#, no-python-brace-format
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
 
@@ -2288,8 +2288,8 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:189
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:191
+#, no-python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2298,8 +2298,8 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:196
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:199
+#, no-python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2308,8 +2308,8 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:203
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:207
+#, no-python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2318,28 +2318,28 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:210
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:215
+#, no-python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
-#. in your language, translate to "{long_month.forms[X]} {year}"
-#. (where X is one of the month-name inflections you defined)
-#. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:216
-#, python-brace-format
-msgctxt "before"
-msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
-
-#. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:222
-#, python-brace-format
+#, no-python-brace-format
+msgctxt "before"
+msgid "{long_month} {year}"
+msgstr "{long_month} {year}"
+
+#. Translators: If "after <Month>" needs a special inflection
+#. in your language, translate to "{long_month.forms[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:229
+#, no-python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2348,8 +2348,8 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:228
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:236
+#, no-python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2358,8 +2358,8 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:234
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:243
+#, no-python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -2368,14 +2368,14 @@ msgstr "{long_month} {year}"
 #. in your language, translate to "{long_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:240
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:250
+#, no-python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:244
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:255
+#, no-python-brace-format
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
@@ -2383,8 +2383,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:251
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:263
+#, no-python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2393,8 +2393,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:258
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:271
+#, no-python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2403,8 +2403,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:265
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:279
+#, no-python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2413,8 +2413,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:272
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:287
+#, no-python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2423,8 +2423,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:278
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:294
+#, no-python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2433,8 +2433,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:284
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:301
+#, no-python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2443,8 +2443,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:290
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:308
+#, no-python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2453,8 +2453,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:296
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:315
+#, no-python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2463,8 +2463,8 @@ msgstr "{short_month} {year}"
 #. in your language, translate to "{short_month.forms[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:302
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:322
+#, no-python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2472,8 +2472,8 @@ msgstr "{short_month} {year}"
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:413
-#: ../gramps/gen/datehandler/_datedisplay.py:499
+#: ../gramps/gen/datehandler/_datedisplay.py:433
+#: ../gramps/gen/datehandler/_datedisplay.py:519
 msgctxt "from-date"
 msgid ""
 msgstr "from"
@@ -2481,13 +2481,13 @@ msgstr "from"
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:420
-#: ../gramps/gen/datehandler/_datedisplay.py:504
+#: ../gramps/gen/datehandler/_datedisplay.py:440
+#: ../gramps/gen/datehandler/_datedisplay.py:524
 msgctxt "to-date"
 msgid ""
 msgstr "to"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:423
+#: ../gramps/gen/datehandler/_datedisplay.py:443
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
@@ -2496,7 +2496,7 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "between" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:444
+#: ../gramps/gen/datehandler/_datedisplay.py:464
 msgctxt "between-date"
 msgid ""
 msgstr "between"
@@ -2504,12 +2504,12 @@ msgstr "between"
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "and" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:451
+#: ../gramps/gen/datehandler/_datedisplay.py:471
 msgctxt "and-date"
 msgid ""
 msgstr "and"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:454
+#: ../gramps/gen/datehandler/_datedisplay.py:474
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
@@ -2518,7 +2518,7 @@ msgstr "{date_quality}entre {date_start} i {date_stop}{nonstd_calendar_and_ny}"
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "before" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:489
+#: ../gramps/gen/datehandler/_datedisplay.py:509
 msgctxt "before-date"
 msgid ""
 msgstr "before"
@@ -2526,7 +2526,7 @@ msgstr "before"
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:494
+#: ../gramps/gen/datehandler/_datedisplay.py:514
 msgctxt "after-date"
 msgid ""
 msgstr "after"
@@ -2534,7 +2534,7 @@ msgstr "after"
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "about" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:509
+#: ../gramps/gen/datehandler/_datedisplay.py:529
 msgctxt "about-date"
 msgid ""
 msgstr "about"
@@ -2542,7 +2542,7 @@ msgstr "about"
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "estimated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:514
+#: ../gramps/gen/datehandler/_datedisplay.py:534
 msgctxt "estimated-date"
 msgid ""
 msgstr "estimated"
@@ -2550,36 +2550,36 @@ msgstr "estimated"
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "calculated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:519
+#: ../gramps/gen/datehandler/_datedisplay.py:539
 msgctxt "calculated-date"
 msgid ""
 msgstr "calculated"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:539
+#: ../gramps/gen/datehandler/_datedisplay.py:559
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:675
+#: ../gramps/gen/datehandler/_datedisplay.py:695
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr "{long_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:701
+#: ../gramps/gen/datehandler/_datedisplay.py:721
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr "{short_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:727
+#: ../gramps/gen/datehandler/_datedisplay.py:747
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr "{day:d} {long_month} {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:753
+#: ../gramps/gen/datehandler/_datedisplay.py:773
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr "{day:d} {short_month} {year}"
@@ -3324,7 +3324,7 @@ msgstr ""
 "Arbre Genealògic."
 
 #: ../gramps/gen/db/generic.py:229 ../gramps/gen/db/generic.py:279
-#: ../gramps/gen/db/generic.py:2311
+#: ../gramps/gen/db/generic.py:2313
 #, python-format
 msgid "_Undo %s"
 msgstr "_Desfés %s"
@@ -3334,60 +3334,60 @@ msgstr "_Desfés %s"
 msgid "_Redo %s"
 msgstr "_Refés %s"
 
-#: ../gramps/gen/db/generic.py:2702
+#: ../gramps/gen/db/generic.py:2704
 msgid "Number of people"
 msgstr "Nombre de persones"
 
-#: ../gramps/gen/db/generic.py:2703
+#: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/gramplet/statsgramplet.py:186
 #: ../gramps/plugins/webreport/statistics.py:147
 #: ../gramps/plugins/webreport/statistics.py:257
 msgid "Number of families"
 msgstr "Nombre de famílies"
 
-#: ../gramps/gen/db/generic.py:2704
+#: ../gramps/gen/db/generic.py:2706
 #: ../gramps/plugins/webreport/statistics.py:202
 #: ../gramps/plugins/webreport/statistics.py:281
 msgid "Number of sources"
 msgstr "Nombre de fonts"
 
-#: ../gramps/gen/db/generic.py:2705
+#: ../gramps/gen/db/generic.py:2707
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
 msgstr "Nombre de citacions"
 
-#: ../gramps/gen/db/generic.py:2706
+#: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:187
 #: ../gramps/plugins/webreport/statistics.py:267
 msgid "Number of events"
 msgstr "Nombre d'esdeveniments"
 
-#: ../gramps/gen/db/generic.py:2707
+#: ../gramps/gen/db/generic.py:2709
 msgid "Number of media"
 msgstr "Nombre d'audiovisuals"
 
-#: ../gramps/gen/db/generic.py:2708
+#: ../gramps/gen/db/generic.py:2710
 #: ../gramps/plugins/webreport/statistics.py:194
 #: ../gramps/plugins/webreport/statistics.py:274
 msgid "Number of places"
 msgstr "Nombre de llocs"
 
-#: ../gramps/gen/db/generic.py:2709
+#: ../gramps/gen/db/generic.py:2711
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
 msgstr "Nombre de dipòsits"
 
-#: ../gramps/gen/db/generic.py:2710
+#: ../gramps/gen/db/generic.py:2712
 msgid "Number of notes"
 msgstr "Nombre de notes"
 
-#: ../gramps/gen/db/generic.py:2711
+#: ../gramps/gen/db/generic.py:2713
 msgid "Number of tags"
 msgstr "Nombre d'etiquetes"
 
-#: ../gramps/gen/db/generic.py:2712
+#: ../gramps/gen/db/generic.py:2714
 msgid "Schema version"
 msgstr "Versió de l'esquema"
 
@@ -3765,7 +3765,7 @@ msgstr "Confiança:"
 #: ../gramps/gen/filters/rules/person/_hasevent.py:57
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:57
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
-#: ../gramps/gui/editors/filtereditor.py:627
+#: ../gramps/gui/editors/filtereditor.py:629
 #: ../gramps/gui/glade/mergecitation.glade:239
 #: ../gramps/gui/glade/mergecitation.glade:254
 #: ../gramps/gui/glade/mergeevent.glade:239
@@ -3804,6 +3804,7 @@ msgstr "Concorda amb cites que tinguin paràmetres concrets"
 #: ../gramps/gen/filters/rules/_hassourcebase.py:57
 #: ../gramps/gen/filters/rules/_hassourcecountbase.py:60
 #: ../gramps/gen/filters/rules/_hassourceofbase.py:56
+#: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:39
 #: ../gramps/gen/filters/rules/_matchessourceconfidencebase.py:61
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:61
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:54
@@ -3904,7 +3905,7 @@ msgstr "Subcadena:"
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
-#: ../gramps/gui/editors/filtereditor.py:616
+#: ../gramps/gui/editors/filtereditor.py:618
 msgid "Tag:"
 msgstr "Etiqueta:"
 
@@ -3924,7 +3925,7 @@ msgstr "Concorda amb una nota que tingui un Id Gramps concret"
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
 #: ../gramps/gen/filters/rules/note/_hastype.py:55
 #: ../gramps/gui/editors/filtereditor.py:118
-#: ../gramps/gui/editors/filtereditor.py:595
+#: ../gramps/gui/editors/filtereditor.py:597
 msgid "Note type:"
 msgstr "Tipus de nota:"
 
@@ -3955,6 +3956,13 @@ msgstr "Nombre de referències:"
 #: ../gramps/gui/editors/filtereditor.py:558
 msgid "Source ID:"
 msgstr "Id de Font:"
+
+#: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:33
+#: ../gramps/gui/editors/filtereditor.py:577
+#, fuzzy
+#| msgid "Citation Filter"
+msgid "Citation filter name:"
+msgstr "Filtre de citació"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:66
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
@@ -4094,7 +4102,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:44
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:44
-#: ../gramps/gui/editors/filtereditor.py:622
+#: ../gramps/gui/editors/filtereditor.py:624
 msgid "Confidence level:"
 msgstr "Nivell de confiança:"
 
@@ -4383,7 +4391,7 @@ msgstr "Concorda amb esdeveniments que s'indiqui que són privats"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:115
-#: ../gramps/gui/editors/filtereditor.py:589
+#: ../gramps/gui/editors/filtereditor.py:591
 msgid "Event attribute:"
 msgstr "Atribut d'esdeveniment:"
 
@@ -4423,7 +4431,7 @@ msgstr "Descripció:"
 #: ../gramps/gen/filters/rules/event/_hastype.py:55
 #: ../gramps/gen/filters/rules/person/_iswitness.py:55
 #: ../gramps/gui/editors/filtereditor.py:112
-#: ../gramps/gui/editors/filtereditor.py:580
+#: ../gramps/gui/editors/filtereditor.py:582
 msgid "Event type:"
 msgstr "Tipus d'esdeveniment:"
 
@@ -4450,7 +4458,7 @@ msgstr ""
 "Concorda amb esdeveniments amb dades que tinguin un valor en particular"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:48
-#: ../gramps/gui/editors/filtereditor.py:629
+#: ../gramps/gui/editors/filtereditor.py:631
 msgid "Day of Week:"
 msgstr "Dia de la setmana:"
 
@@ -4584,7 +4592,7 @@ msgid "Matches events matched by the specified filter name"
 msgstr "Concorda amb esdeveniments que compleixin el nom de filtre especificat"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:59
-#: ../gramps/gui/editors/filtereditor.py:612
+#: ../gramps/gui/editors/filtereditor.py:614
 msgid "Include Family events:"
 msgstr "Inclou esdeveniments familiars:"
 
@@ -4738,7 +4746,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:45
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:53
 #: ../gramps/gui/editors/filtereditor.py:114
-#: ../gramps/gui/editors/filtereditor.py:587
+#: ../gramps/gui/editors/filtereditor.py:589
 msgid "Family attribute:"
 msgstr "Atribut de família:"
 
@@ -4761,7 +4769,7 @@ msgstr "Concorda amb famílies que tinguin una cita amb un valor determinat"
 #: ../gramps/gen/filters/rules/family/_hasevent.py:58
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:57
 #: ../gramps/gui/editors/filtereditor.py:111
-#: ../gramps/gui/editors/filtereditor.py:582
+#: ../gramps/gui/editors/filtereditor.py:584
 msgid "Family event:"
 msgstr "Esdeveniment de família:"
 
@@ -4866,7 +4874,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:55
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:57
 #: ../gramps/gui/editors/filtereditor.py:117
-#: ../gramps/gui/editors/filtereditor.py:593
+#: ../gramps/gui/editors/filtereditor.py:595
 msgid "Relationship type:"
 msgstr "Tipus de relació:"
 
@@ -4919,7 +4927,7 @@ msgstr "Concorda amb les famílies que tinguin bessons"
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:61
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:56
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:57
-#: ../gramps/gui/editors/filtereditor.py:606
+#: ../gramps/gui/editors/filtereditor.py:608
 msgid "Inclusive:"
 msgstr "Inclosos:"
 
@@ -5077,7 +5085,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:116
-#: ../gramps/gui/editors/filtereditor.py:591
+#: ../gramps/gui/editors/filtereditor.py:593
 msgid "Media attribute:"
 msgstr "Atribut de medis:"
 
@@ -5481,7 +5489,7 @@ msgstr "Concorda amb persones que tinguin un cert nombre d'associacions"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:113
-#: ../gramps/gui/editors/filtereditor.py:585
+#: ../gramps/gui/editors/filtereditor.py:587
 msgid "Personal attribute:"
 msgstr "Atribut personal:"
 
@@ -5554,12 +5562,12 @@ msgstr "Concorda amb persones amb data de defunció que tingui un valor concret"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:56
 #: ../gramps/gui/editors/filtereditor.py:110
-#: ../gramps/gui/editors/filtereditor.py:581
+#: ../gramps/gui/editors/filtereditor.py:583
 msgid "Personal event:"
 msgstr "Esdeveniment personal:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:61
-#: ../gramps/gui/editors/filtereditor.py:614
+#: ../gramps/gui/editors/filtereditor.py:616
 msgid "Primary Role:"
 msgstr "Rol primari:"
 
@@ -5676,7 +5684,7 @@ msgstr "Concorda amb persones que tinguin un nom (parcial) especificat"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:55
 #: ../gramps/gui/editors/filtereditor.py:120
-#: ../gramps/gui/editors/filtereditor.py:599
+#: ../gramps/gui/editors/filtereditor.py:601
 msgid "Surname origin type:"
 msgstr "Tipus d'origen del cognom:"
 
@@ -5690,7 +5698,7 @@ msgstr "Concorda amb persones amb un origen de cognom determinat"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:55
 #: ../gramps/gui/editors/filtereditor.py:119
-#: ../gramps/gui/editors/filtereditor.py:597
+#: ../gramps/gui/editors/filtereditor.py:599
 msgid "Name type:"
 msgstr "Tipus de nom:"
 
@@ -5838,7 +5846,7 @@ msgid "Matches people with the particular tag"
 msgstr "Concorda amb persones que tenen una etiqueta en particular"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:64
-#: ../gramps/gui/editors/filtereditor.py:608
+#: ../gramps/gui/editors/filtereditor.py:610
 msgid "Case sensitive:"
 msgstr "Distingir majúscules:"
 
@@ -6355,7 +6363,7 @@ msgstr "Nom:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:57
 #: ../gramps/gui/editors/filtereditor.py:121
-#: ../gramps/gui/editors/filtereditor.py:601
+#: ../gramps/gui/editors/filtereditor.py:603
 msgid "Place type:"
 msgstr "Tipus de lloc:"
 
@@ -6621,7 +6629,7 @@ msgstr ""
 "Concorda amb llocs l'Id Gramps de les quals concorda amb l'expressió regular"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:67
-#: ../gramps/gui/editors/filtereditor.py:633
+#: ../gramps/gui/editors/filtereditor.py:635
 msgid "Units:"
 msgstr "Unitats:"
 
@@ -7133,8 +7141,8 @@ msgstr "Gènere:"
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
 #: ../gramps/gui/editors/editfamily.py:139
 #: ../gramps/gui/editors/editname.py:340
-#: ../gramps/gui/editors/filtereditor.py:912
-#: ../gramps/gui/editors/filtereditor.py:1088
+#: ../gramps/gui/editors/filtereditor.py:914
+#: ../gramps/gui/editors/filtereditor.py:1090
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:159
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:116
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:112
@@ -7329,14 +7337,14 @@ msgstr "Font:"
 
 #: ../gramps/gen/fs/fs_import/sources.py:602
 #: ../gramps/gen/fs/fs_import/sources.py:726 ../gramps/gen/utils/string.py:61
-#: ../gramps/gui/editors/editcitation.py:241
+#: ../gramps/gui/editors/editcitation.py:242
 #: ../gramps/plugins/importer/importprogen.py:517
 msgid "Very High"
 msgstr "Molt Alt"
 
 #: ../gramps/gen/fs/fs_import/sources.py:604
 #: ../gramps/gen/fs/fs_import/sources.py:728 ../gramps/gen/utils/string.py:62
-#: ../gramps/gui/editors/editcitation.py:240
+#: ../gramps/gui/editors/editcitation.py:241
 #: ../gramps/plugins/importer/importprogen.py:516
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "High"
@@ -7345,7 +7353,7 @@ msgstr "Alt"
 #: ../gramps/gen/fs/fs_import/sources.py:606
 #: ../gramps/gen/fs/fs_import/sources.py:730
 #: ../gramps/gen/plug/docgen/treedoc.py:124 ../gramps/gen/utils/string.py:63
-#: ../gramps/gui/editors/editcitation.py:239
+#: ../gramps/gui/editors/editcitation.py:240
 #: ../gramps/plugins/graph/gvfamilylines.py:321
 #: ../gramps/plugins/graph/gvrelgraph.py:1097
 #: ../gramps/plugins/importer/importprogen.py:515
@@ -7354,7 +7362,7 @@ msgstr "Normal"
 
 #: ../gramps/gen/fs/fs_import/sources.py:608
 #: ../gramps/gen/fs/fs_import/sources.py:732 ../gramps/gen/utils/string.py:64
-#: ../gramps/gui/editors/editcitation.py:238
+#: ../gramps/gui/editors/editcitation.py:239
 #: ../gramps/plugins/importer/importprogen.py:514
 #: ../gramps/plugins/tool/finddupes.py:60
 msgid "Low"
@@ -7362,7 +7370,7 @@ msgstr "Baix"
 
 #: ../gramps/gen/fs/fs_import/sources.py:610
 #: ../gramps/gen/fs/fs_import/sources.py:734 ../gramps/gen/utils/string.py:65
-#: ../gramps/gui/editors/editcitation.py:237
+#: ../gramps/gui/editors/editcitation.py:238
 #: ../gramps/plugins/importer/importprogen.py:513
 msgid "Very Low"
 msgstr "Molt Baix"
@@ -7552,11 +7560,11 @@ msgstr "Privat"
 #: ../gramps/gen/lib/mediaref.py:101 ../gramps/gen/lib/name.py:172
 #: ../gramps/gen/lib/person.py:260 ../gramps/gen/lib/personref.py:107
 #: ../gramps/gen/lib/place.py:196
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:972
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:988
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1004
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1020
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1036
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:973
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:989
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1005
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1021
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1037
 #: ../gramps/plugins/importer/importxml.py:358
 #: ../gramps/plugins/textreport/tagreport.py:818
 #: ../gramps/plugins/view/view.gpr.py:300
@@ -7574,16 +7582,16 @@ msgstr "Citacions"
 #: ../gramps/gen/lib/repo.py:108 ../gramps/gen/lib/reporef.py:103
 #: ../gramps/gen/lib/src.py:119
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:588
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:828
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:844
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:860
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:876
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:892
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:908
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:924
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:940
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:948
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:956
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:829
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:845
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:861
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:877
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:893
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:909
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:925
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:941
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:949
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:957
 #: ../gramps/plugins/importer/importxml.py:356
 #: ../gramps/plugins/quickview/filterbyname.py:151
 #: ../gramps/plugins/quickview/filterbyname.py:216
@@ -7704,7 +7712,7 @@ msgstr "Atribut"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:63
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:63
 #: ../gramps/plugins/gramplet/attributes.py:60
-#: ../gramps/plugins/lib/libmetadata.py:229
+#: ../gramps/plugins/lib/libmetadata.py:233
 #: ../gramps/plugins/tool/patchnames.py:462
 #: ../gramps/plugins/webreport/basepage.py:1400
 #: ../gramps/plugins/webreport/basepage.py:1660
@@ -7849,7 +7857,7 @@ msgstr "Identificador"
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:166
 #: ../gramps/gui/glade/editplaceformat.glade:186
 #: ../gramps/plugins/graph/gvfamilylines.py:95
-#: ../gramps/plugins/tool/check.py:2863
+#: ../gramps/plugins/tool/check.py:2875
 msgid "None"
 msgstr "Cap"
 
@@ -7877,8 +7885,8 @@ msgstr "Acollit"
 
 #: ../gramps/gen/lib/citation.py:106 ../gramps/gen/lib/notetype.py:90
 #: ../gramps/gui/clipboard.py:474 ../gramps/gui/configure.py:823
-#: ../gramps/gui/editors/editcitation.py:133
-#: ../gramps/gui/editors/editcitation.py:138
+#: ../gramps/gui/editors/editcitation.py:136
+#: ../gramps/gui/editors/editcitation.py:140
 #: ../gramps/gui/editors/editlink.py:103
 #: ../gramps/gui/editors/filtereditor.py:316 ../gramps/gui/grampsgui.py:57
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:190
@@ -7954,7 +7962,8 @@ msgstr "Confiança"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:68
 #: ../gramps/gui/editors/editfamily.py:150
-#: ../gramps/gui/editors/editlink.py:102 ../gramps/gui/editors/editsource.py:98
+#: ../gramps/gui/editors/editlink.py:102
+#: ../gramps/gui/editors/editsource.py:104
 #: ../gramps/gui/editors/filtereditor.py:312 ../gramps/gui/grampsgui.py:57
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:190
 #: ../gramps/plugins/export/exportcsv.py:585
@@ -8006,7 +8015,7 @@ msgid "Media"
 msgstr "Audiovisuals"
 
 #: ../gramps/gen/lib/citation.py:141 ../gramps/gen/lib/src.py:131
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:788
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:789
 msgid "Source Attributes"
 msgstr "Atributs de la Font"
 
@@ -8215,7 +8224,7 @@ msgstr "Modificador"
 msgid "Quality"
 msgstr "Qualitat"
 
-#: ../gramps/gen/lib/date.py:793 ../gramps/gui/editors/filtereditor.py:912
+#: ../gramps/gen/lib/date.py:793 ../gramps/gui/editors/filtereditor.py:914
 #: ../gramps/gui/glade/rule.glade:949
 msgid "Values"
 msgstr "Valors"
@@ -8357,12 +8366,12 @@ msgstr "Lloc"
 #: ../gramps/gen/lib/event.py:210 ../gramps/gen/lib/eventref.py:138
 #: ../gramps/gen/lib/family.py:194 ../gramps/gen/lib/media.py:158
 #: ../gramps/gen/lib/mediaref.py:111 ../gramps/gen/lib/person.py:245
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:732
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:748
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:764
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:780
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:796
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:812
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:733
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:749
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:765
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:781
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:797
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:813
 #: ../gramps/plugins/textreport/indivcomplete.py:497
 #: ../gramps/plugins/textreport/indivcomplete.py:723
 #: ../gramps/plugins/webreport/basepage.py:603
@@ -8494,7 +8503,7 @@ msgid "Legal"
 msgstr "Jurídic"
 
 #: ../gramps/gen/lib/eventtype.py:189 ../gramps/gen/lib/eventtype.py:230
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:588
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:589
 #: ../gramps/plugins/lib/libprogen.py:2016
 #: ../gramps/plugins/lib/libprogen.py:2018
 #: ../gramps/plugins/webreport/addressbooklist.py:119
@@ -8966,8 +8975,8 @@ msgid "still."
 msgstr "mort."
 
 #: ../gramps/gen/lib/family.py:178 ../gramps/gui/widgets/fanchart.py:2191
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1052
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1068
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1053
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1069
 #: ../gramps/plugins/textreport/familygroup.py:656
 #: ../gramps/plugins/textreport/indivcomplete.py:709
 #: ../gramps/plugins/view/pedigreeview.py:1966
@@ -8977,8 +8986,8 @@ msgid "Children"
 msgstr "Fills"
 
 #: ../gramps/gen/lib/family.py:184 ../gramps/gui/merge/mergeperson.py:223
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:604
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:620
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:605
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:621
 #: ../gramps/plugins/importer/importxml.py:352
 #: ../gramps/plugins/quickview/filterbyname.py:111
 #: ../gramps/plugins/quickview/filterbyname.py:176
@@ -11675,47 +11684,47 @@ msgstr "%s, ..."
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s i %(mother)s"
 
-#: ../gramps/gen/utils/grampslocale.py:774
+#: ../gramps/gen/utils/grampslocale.py:769
 msgid "the person"
 msgstr "la persona"
 
-#: ../gramps/gen/utils/grampslocale.py:776
+#: ../gramps/gen/utils/grampslocale.py:771
 msgid "the family"
 msgstr "la família"
 
-#: ../gramps/gen/utils/grampslocale.py:778
+#: ../gramps/gen/utils/grampslocale.py:773
 msgid "the place"
 msgstr "el lloc"
 
-#: ../gramps/gen/utils/grampslocale.py:780
+#: ../gramps/gen/utils/grampslocale.py:775
 msgid "the event"
 msgstr "l'esdeveniment"
 
-#: ../gramps/gen/utils/grampslocale.py:782
+#: ../gramps/gen/utils/grampslocale.py:777
 msgid "the repository"
 msgstr "el dipòsit"
 
-#: ../gramps/gen/utils/grampslocale.py:784
+#: ../gramps/gen/utils/grampslocale.py:779
 msgid "the note"
 msgstr "la nota"
 
-#: ../gramps/gen/utils/grampslocale.py:786
+#: ../gramps/gen/utils/grampslocale.py:781
 msgid "the media"
 msgstr "els audiovisuals"
 
-#: ../gramps/gen/utils/grampslocale.py:788
+#: ../gramps/gen/utils/grampslocale.py:783
 msgid "the source"
 msgstr "la font"
 
-#: ../gramps/gen/utils/grampslocale.py:790
+#: ../gramps/gen/utils/grampslocale.py:785
 msgid "the filter"
 msgstr "el filtre"
 
-#: ../gramps/gen/utils/grampslocale.py:792
+#: ../gramps/gen/utils/grampslocale.py:787
 msgid "the citation"
 msgstr "la citació"
 
-#: ../gramps/gen/utils/grampslocale.py:794
+#: ../gramps/gen/utils/grampslocale.py:789
 msgid "See details"
 msgstr "Veure detalls"
 
@@ -12371,35 +12380,34 @@ msgstr ""
 "\n"
 "El Gramps ara es tancarà."
 
-#: ../gramps/grampsapp.py:322 ../gramps/grampsapp.py:383
-#: ../gramps/grampsapp.py:407 ../gramps/grampsapp.py:424
-#: ../gramps/grampsapp.py:435 ../gramps/grampsapp.py:457
-#: ../gramps/grampsapp.py:465
+#: ../gramps/grampsapp.py:324 ../gramps/grampsapp.py:386
+#: ../gramps/grampsapp.py:420 ../gramps/grampsapp.py:431
+#: ../gramps/grampsapp.py:453 ../gramps/grampsapp.py:461
 msgid "not found"
 msgstr "no s'ha trobat"
 
-#: ../gramps/grampsapp.py:386
+#: ../gramps/grampsapp.py:389
 msgid "not found because exiv2 is not installed"
 msgstr "no s'ha trobat perquè exiv2 no està instal·lat"
 
-#: ../gramps/grampsapp.py:422
+#: ../gramps/grampsapp.py:418
 msgid "Installed but does not supply version"
 msgstr "Instal·lat però no proveeix la versió"
 
-#: ../gramps/grampsapp.py:443
+#: ../gramps/grampsapp.py:439
 msgid "installed"
 msgstr "instal·lat"
 
-#: ../gramps/grampsapp.py:619 ../gramps/grampsapp.py:628
-#: ../gramps/grampsapp.py:678
+#: ../gramps/grampsapp.py:615 ../gramps/grampsapp.py:624
+#: ../gramps/grampsapp.py:674
 msgid "Configuration error:"
 msgstr "Error de configuració:"
 
-#: ../gramps/grampsapp.py:623
+#: ../gramps/grampsapp.py:619
 msgid "Could not read configuration"
 msgstr "No s'ha pogut llegir la configuració"
 
-#: ../gramps/grampsapp.py:630
+#: ../gramps/grampsapp.py:626
 #, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
@@ -12493,7 +12501,7 @@ msgid "Clipboard"
 msgstr "Porta-retalls"
 
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:220
-#: ../gramps/gui/editors/filtereditor.py:1230 ../gramps/gui/views/tags.py:397
+#: ../gramps/gui/editors/filtereditor.py:1232 ../gramps/gui/views/tags.py:397
 msgid "Any changes are saved immediately"
 msgstr "Qualsevol canvi es desarà immediatament"
 
@@ -14506,7 +14514,7 @@ msgstr "_Atributs"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:66
 #: ../gramps/gui/editors/editfamily.py:138
-#: ../gramps/gui/editors/filtereditor.py:1091
+#: ../gramps/gui/editors/filtereditor.py:1093
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:113
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:111
@@ -15023,7 +15031,7 @@ msgstr "Noms alternatius"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:75
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:119
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1563
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1564
 #: ../gramps/plugins/webreport/basepage.py:3532
 msgid "Enclosed By"
 msgstr "Delimitat per"
@@ -15201,20 +15209,20 @@ msgctxt "manual"
 msgid "New_Citation_dialog"
 msgstr "Dialeg_Noves_Cites"
 
-#: ../gramps/gui/editors/editcitation.py:141
-#: ../gramps/gui/editors/editcitation.py:146
+#: ../gramps/gui/editors/editcitation.py:143
+#: ../gramps/gui/editors/editcitation.py:147
 msgid "New Citation"
 msgstr "Nova citació"
 
-#: ../gramps/gui/editors/editcitation.py:347
+#: ../gramps/gui/editors/editcitation.py:348
 msgid "Edit Citation"
 msgstr "Edita la citació"
 
-#: ../gramps/gui/editors/editcitation.py:356
+#: ../gramps/gui/editors/editcitation.py:357
 msgid "No source selected"
 msgstr "No s'ha seleccionat cap origen"
 
-#: ../gramps/gui/editors/editcitation.py:358
+#: ../gramps/gui/editors/editcitation.py:359
 msgid ""
 "A source is anything (personal testimony, video recording, photograph, "
 "newspaper column, gravestone...) from which information can be derived. To "
@@ -15228,18 +15236,18 @@ msgstr ""
 "i després enregistra la ubicació de l'informació referenciada dins de la "
 "font al camp 'Volum/Pàgina'."
 
-#: ../gramps/gui/editors/editcitation.py:375
+#: ../gramps/gui/editors/editcitation.py:376
 msgid "Cannot save citation. ID already exists."
 msgstr "No es pot desar la cita. L'Id ja existeix."
 
-#: ../gramps/gui/editors/editcitation.py:377
+#: ../gramps/gui/editors/editcitation.py:378
 #: ../gramps/gui/editors/editevent.py:301
 #: ../gramps/gui/editors/editmedia.py:341
 #: ../gramps/gui/editors/editperson.py:955
 #: ../gramps/gui/editors/editplace.py:419
 #: ../gramps/gui/editors/editreference.py:300
 #: ../gramps/gui/editors/editrepository.py:221
-#: ../gramps/gui/editors/editsource.py:258
+#: ../gramps/gui/editors/editsource.py:264
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -15251,12 +15259,12 @@ msgstr ""
 "o deixi'l en blanc per agafar automàticament el següent valor d'Id "
 "disponible."
 
-#: ../gramps/gui/editors/editcitation.py:387
+#: ../gramps/gui/editors/editcitation.py:388
 #, python-format
 msgid "Add Citation (%s)"
 msgstr "Afegeix una citació (%s)"
 
-#: ../gramps/gui/editors/editcitation.py:392
+#: ../gramps/gui/editors/editcitation.py:393
 #, python-format
 msgid "Edit Citation (%s)"
 msgstr "Edita la citació (%s)"
@@ -16209,34 +16217,34 @@ msgctxt "manual"
 msgid "New_Source_dialog"
 msgstr "Dialeg_nova_font"
 
-#: ../gramps/gui/editors/editsource.py:100
+#: ../gramps/gui/editors/editsource.py:106
 msgid "New Source"
 msgstr "Nova font"
 
-#: ../gramps/gui/editors/editsource.py:236
+#: ../gramps/gui/editors/editsource.py:242
 msgid "Edit Source"
 msgstr "Editar Font"
 
-#: ../gramps/gui/editors/editsource.py:242
+#: ../gramps/gui/editors/editsource.py:248
 msgid "Cannot save source"
 msgstr "No es pot desar la font"
 
-#: ../gramps/gui/editors/editsource.py:244
+#: ../gramps/gui/editors/editsource.py:250
 msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr ""
 "No hi ha dades per aquesta font. Si us plau, introdueixi'n o cancel·li "
 "l'edició."
 
-#: ../gramps/gui/editors/editsource.py:256
+#: ../gramps/gui/editors/editsource.py:262
 msgid "Cannot save source. ID already exists."
 msgstr "No es pot desar la font. L'Id ja existeix."
 
-#: ../gramps/gui/editors/editsource.py:268
+#: ../gramps/gui/editors/editsource.py:274
 #, python-format
 msgid "Add Source (%s)"
 msgstr "Afegeix Font (%s)"
 
-#: ../gramps/gui/editors/editsource.py:273
+#: ../gramps/gui/editors/editsource.py:279
 #, python-format
 msgid "Edit Source (%s)"
 msgstr "Editar Font (%s)"
@@ -16351,46 +16359,46 @@ msgstr ""
 msgid "Family filter name:"
 msgstr "Nom de filtre de família:"
 
-#: ../gramps/gui/editors/filtereditor.py:607
+#: ../gramps/gui/editors/filtereditor.py:609
 msgid "Include selected Gramps ID"
 msgstr "Inclou la ID de Gramps seleccionada"
 
-#: ../gramps/gui/editors/filtereditor.py:609
+#: ../gramps/gui/editors/filtereditor.py:611
 msgid "Use exact case of letters"
 msgstr "Utilitza majúscules i minúscules exactament"
 
-#: ../gramps/gui/editors/filtereditor.py:610
+#: ../gramps/gui/editors/filtereditor.py:612
 msgid "Regular-Expression matching:"
 msgstr "Comparació amb Expressions Regulars:"
 
-#: ../gramps/gui/editors/filtereditor.py:611
+#: ../gramps/gui/editors/filtereditor.py:613
 msgid "Use regular expression"
 msgstr "Utilitza expressió regular"
 
-#: ../gramps/gui/editors/filtereditor.py:613
+#: ../gramps/gui/editors/filtereditor.py:615
 msgid "Also family events where person is spouse"
 msgstr "També els esdeveniments familiars on la persona es cònjugue"
 
-#: ../gramps/gui/editors/filtereditor.py:615
+#: ../gramps/gui/editors/filtereditor.py:617
 msgid "Only include primary participants"
 msgstr "Inclou només els participants primaris"
 
-#: ../gramps/gui/editors/filtereditor.py:634
+#: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
 msgid "degrees"
 msgstr "graus"
 
-#: ../gramps/gui/editors/filtereditor.py:634
+#: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
 msgid "kilometers"
 msgstr "quilòmetres"
 
-#: ../gramps/gui/editors/filtereditor.py:634
+#: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
 msgid "miles"
 msgstr "milles"
 
-#: ../gramps/gui/editors/filtereditor.py:649
+#: ../gramps/gui/editors/filtereditor.py:651
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:84
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:87
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:107
@@ -16403,7 +16411,7 @@ msgstr "milles"
 msgid "Use regular expressions"
 msgstr "Utilitza expressions regulars"
 
-#: ../gramps/gui/editors/filtereditor.py:651
+#: ../gramps/gui/editors/filtereditor.py:653
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -16427,7 +16435,7 @@ msgstr ""
 "^\tL'accent circumflex representarà l'inici de línia. \n"
 "$\tUn signe de dòlar representarà el final de la línia."
 
-#: ../gramps/gui/editors/filtereditor.py:667
+#: ../gramps/gui/editors/filtereditor.py:669
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:85
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:108
@@ -16440,49 +16448,49 @@ msgstr ""
 msgid "Case sensitive"
 msgstr "Distingeix majúscules"
 
-#: ../gramps/gui/editors/filtereditor.py:687
+#: ../gramps/gui/editors/filtereditor.py:689
 msgid "Rule Name"
 msgstr "Nom de la Regla"
 
-#: ../gramps/gui/editors/filtereditor.py:832
-#: ../gramps/gui/editors/filtereditor.py:836 ../gramps/gui/glade/rule.glade:898
+#: ../gramps/gui/editors/filtereditor.py:834
+#: ../gramps/gui/editors/filtereditor.py:838 ../gramps/gui/glade/rule.glade:898
 msgid "No rule selected"
 msgstr "No s'ha seleccionat cap regla"
 
-#: ../gramps/gui/editors/filtereditor.py:899
+#: ../gramps/gui/editors/filtereditor.py:901
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:89
 msgid "Define filter"
 msgstr "Definir filtre"
 
-#: ../gramps/gui/editors/filtereditor.py:1020
+#: ../gramps/gui/editors/filtereditor.py:1022
 msgid "Add Rule"
 msgstr "Afegeix Regla"
 
-#: ../gramps/gui/editors/filtereditor.py:1040
+#: ../gramps/gui/editors/filtereditor.py:1042
 msgid "Edit Rule"
 msgstr "Editar Regla"
 
-#: ../gramps/gui/editors/filtereditor.py:1078
+#: ../gramps/gui/editors/filtereditor.py:1080
 msgid "Filter Test"
 msgstr "Prova de Filtre"
 
-#: ../gramps/gui/editors/filtereditor.py:1222
+#: ../gramps/gui/editors/filtereditor.py:1224
 msgid "Comment"
 msgstr "Comentari"
 
-#: ../gramps/gui/editors/filtereditor.py:1222
+#: ../gramps/gui/editors/filtereditor.py:1224
 #: ../gramps/plugins/drawreport/calendarreport.py:599
 #: ../gramps/plugins/drawreport/statisticschart.py:1124
 #: ../gramps/plugins/drawreport/timeline.py:427
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1228
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1244
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1260
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1276
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1292
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1308
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1324
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1340
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1356
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1229
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1245
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1261
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1277
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1293
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1309
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1325
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1341
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1357
 #: ../gramps/plugins/graph/gvrelgraph.py:892
 #: ../gramps/plugins/quickview/quickview.gpr.py:142
 #: ../gramps/plugins/textreport/birthdayreport.py:560
@@ -16495,15 +16503,15 @@ msgstr "Comentari"
 msgid "Filter"
 msgstr "Filtre"
 
-#: ../gramps/gui/editors/filtereditor.py:1234
+#: ../gramps/gui/editors/filtereditor.py:1236
 msgid "Custom Filter Editor"
 msgstr "Editor de Filtres Personalitzats"
 
-#: ../gramps/gui/editors/filtereditor.py:1333
+#: ../gramps/gui/editors/filtereditor.py:1335
 msgid "Delete Filter?"
 msgstr "Voleu suprimir el filtre?"
 
-#: ../gramps/gui/editors/filtereditor.py:1335
+#: ../gramps/gui/editors/filtereditor.py:1337
 msgid ""
 "This filter is currently being used as the base for other filters. Deleting "
 "this filter will result in removing all other filters that depend on it."
@@ -16511,7 +16519,7 @@ msgstr ""
 "Aquest filtre està sent utilitzat com a base d'altres filtres. Esborrar-lo, "
 "provocarà esborrar tots els altres filtres que el referencien."
 
-#: ../gramps/gui/editors/filtereditor.py:1340
+#: ../gramps/gui/editors/filtereditor.py:1342
 msgid "Delete Filter"
 msgstr "Suprimeix el filtre"
 
@@ -17116,7 +17124,7 @@ msgid "Compare regardless of the number of days since the last run."
 msgstr ""
 
 #: ../gramps/gui/fs/compare/options.py:62
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1221
 msgid "Person Filter"
 msgstr "Filtre de Persona"
 
@@ -26150,14 +26158,14 @@ msgstr "Gramplet que mostra tots els cognoms com un núvol de text"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:389
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:396
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1390
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1406
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1422
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1438
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1454
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1470
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1486
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1502
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1391
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1407
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1423
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1439
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1455
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1471
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1487
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1503
 msgctxt "gramplet"
 msgid "To Do"
 msgstr "Per Fer"
@@ -26238,20 +26246,20 @@ msgstr "Vista Prèvia de Medis"
 msgid "Gramplet showing a preview of a media object"
 msgstr "Gramplet que mostra una previsualització d'un objecte audiovisual"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:537
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:545
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:538
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:546
 msgid "Image Metadata"
 msgstr "Metadades d'Imatge"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:538
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:539
 msgid "Gramplet showing metadata for a media object"
 msgstr "Gramplet que mostra les metadades d'un objecte audiovisual"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:564
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:565
 msgid "GExiv2 module not loaded."
 msgstr "Mòdul GExiv2 no carregat."
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:566
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:567
 #, python-format
 msgid ""
 "Image metadata functionality will not be available.\n"
@@ -26260,537 +26268,537 @@ msgstr ""
 "No estarà disponible la funcionalitat de metadades d'imatge.\n"
 "Per construir-la per a Gramps, vegeu %(gramps_wiki_build_gexiv2_url)s"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:580
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:581
 msgid "Person Residence"
 msgstr "Residència de Persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:581
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:582
 msgid "Gramplet showing residence events for a person"
 msgstr "Gramplet que mostra els esdeveniments de residència per una persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:596
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:597
 msgid "Person Events"
 msgstr "Esdeveniments de Persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:597
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1588
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:598
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1589
 msgid "Gramplet showing the events for a person"
 msgstr "Gramplet que mostra els esdeveniments per una persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:612
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:613
 msgid "Family Events"
 msgstr "Esdeveniments de Família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:613
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:614
 msgid "Gramplet showing the events for a family"
 msgstr "Gramplet que mostra els esdeveniments per una família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:628
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:629
 msgid "Person Gallery"
 msgstr "Galeria de Persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:629
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:630
 msgid "Gramplet showing media objects for a person"
 msgstr "Gramplet que mostra els objectes audiovisuals per una persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:636
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:652
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:668
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:684
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:700
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:716
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:637
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:653
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:669
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:685
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:701
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:717
 msgid "Gallery"
 msgstr "Galeria"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:644
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:645
 msgid "Family Gallery"
 msgstr "Galeria de Família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:645
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:646
 msgid "Gramplet showing media objects for a family"
 msgstr "Gramplet que mostra els objectes audiovisuals per una família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:660
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:661
 msgid "Event Gallery"
 msgstr "Galeria d'Esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:661
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:662
 msgid "Gramplet showing media objects for an event"
 msgstr "Gramplet que mostra els objectes audiovisuals per un esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:676
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:677
 msgid "Place Gallery"
 msgstr "Galeria de Lloc"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:677
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:678
 msgid "Gramplet showing media objects for a place"
 msgstr "Gramplet que mostra els objectes audiovisuals per un lloc"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:692
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:693
 msgid "Source Gallery"
 msgstr "Galeria de Font"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:693
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:694
 msgid "Gramplet showing media objects for a source"
 msgstr "Gramplet que mostra els objectes audiovisuals per una font"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:708
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:709
 msgid "Citation Gallery"
 msgstr "Galeria de citacions"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:709
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:710
 msgid "Gramplet showing media objects for a citation"
 msgstr "Gramplet que mostra els objectes audiovisuals per una cita"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:724
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:725
 msgid "Person Attributes"
 msgstr "Atributs de Persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:725
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:726
 msgid "Gramplet showing the attributes of a person"
 msgstr "Gramplet que mostra els atributs d'una persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:740
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:741
 msgid "Event Attributes"
 msgstr "Atributs d'esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:741
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:742
 msgid "Gramplet showing the attributes of an event"
 msgstr "Gramplet que mostra els atributs d'un esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:756
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:757
 msgid "Family Attributes"
 msgstr "Atributs de Família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:757
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:758
 msgid "Gramplet showing the attributes of a family"
 msgstr "Gramplet que mostra els atributs d'una família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:772
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:773
 msgid "Media Attributes"
 msgstr "Atributs de medis"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:773
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:774
 msgid "Gramplet showing the attributes of a media object"
 msgstr "Gramplet que mostra els atributs d'un objecte audiovisual"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:789
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:790
 msgid "Gramplet showing the attributes of a source object"
 msgstr "Gramplet que mostra els atributs d'un objecte de font"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:804
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:805
 msgid "Citation Attributes"
 msgstr "Atributs de citació"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:805
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:806
 msgid "Gramplet showing the attributes of a citation object"
 msgstr "Gramplet que mostra els atributs d'un objecte de cita"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:820
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:821
 msgid "Person Notes"
 msgstr "Notes de Persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:821
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:822
 msgid "Gramplet showing the notes for a person"
 msgstr "Gramplet que mostra les notes per una persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:836
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:837
 msgid "Event Notes"
 msgstr "Notes d'Esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:837
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:838
 msgid "Gramplet showing the notes for an event"
 msgstr "Gramplet que mostra les notes per un esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:852
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:853
 #: ../gramps/plugins/textreport/familygroup.py:793
 msgid "Family Notes"
 msgstr "Notes de Família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:853
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:854
 msgid "Gramplet showing the notes for a family"
 msgstr "Gramplet que mostra les notes per una família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:868
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:869
 msgid "Place Notes"
 msgstr "Notes de Lloc"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:869
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:870
 msgid "Gramplet showing the notes for a place"
 msgstr "Gramplet que mostra les notes per un lloc"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:884
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:885
 msgid "Source Notes"
 msgstr "Notes de Font"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:885
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:886
 msgid "Gramplet showing the notes for a source"
 msgstr "Gramplet que mostra les notes per una font"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:900
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:901
 msgid "Citation Notes"
 msgstr "Notes de citació"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:901
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:902
 msgid "Gramplet showing the notes for a citation"
 msgstr "Gramplet que mostra les notes per una cita"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:916
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:917
 msgid "Repository Notes"
 msgstr "Notes del dipòsit"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:917
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:918
 msgid "Gramplet showing the notes for a repository"
 msgstr "Gramplet que mostra les notes per un dipòsit"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:932
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:933
 msgid "Media Notes"
 msgstr "Notes de Medi Audiovisual"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:933
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:934
 msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet que mostra les notes per un objecte audiovisual"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:949
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:950
 msgid "Gramplet showing the selected note"
 msgstr "Gramplet que mostra la nota seleccionada"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:964
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:965
 msgid "Person Citations"
 msgstr "Citacions de la persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:965
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:966
 msgid "Gramplet showing the citations for a person"
 msgstr "Gramplet que mostra les cites d'una persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:980
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 msgid "Event Citations"
 msgstr "Citacions de l'esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:981
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:982
 msgid "Gramplet showing the citations for an event"
 msgstr "Gramplet que mostra les cites d'un esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:996
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:997
 msgid "Family Citations"
 msgstr "Citacions de la família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:997
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:998
 msgid "Gramplet showing the citations for a family"
 msgstr "Gramplet que mostra les cites d'una família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1012
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1013
 msgid "Place Citations"
 msgstr "Citacions del lloc"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1013
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1014
 msgid "Gramplet showing the citations for a place"
 msgstr "Gramplet que mostra les cites d'un lloc"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1028
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1029
 msgid "Media Citations"
 msgstr "Cites de Medis"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1029
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1030
 msgid "Gramplet showing the citations for a media object"
 msgstr "Gramplet que mostra les cites d'un objecte audiovisual"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1044
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1045
 msgid "Person Children"
 msgstr "Fills de Persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1045
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1046
 msgid "Gramplet showing the children of a person"
 msgstr "Gramplet que mostra els fills d'una persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1060
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1061
 msgid "Family Children"
 msgstr "Fills de Família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1061
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1062
 msgid "Gramplet showing the children of a family"
 msgstr "Gramplet que mostra els fills d'una família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1076
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1077
 msgid "Person References"
 msgstr "Referències a Persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1077
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1078
 msgid "Gramplet showing the backlink references for a person"
 msgstr ""
 "Gramplet que mostra les referències dels enllaços cap enrere d'una persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1084
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1100
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1116
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1132
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1148
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1164
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1180
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1196
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1212
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1085
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1101
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1117
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1133
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1149
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1165
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1181
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1197
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1213
 #: ../gramps/plugins/webreport/basepage.py:3884
 #: ../gramps/plugins/webreport/person.py:1101
 #: ../gramps/plugins/webreport/thumbnail.py:188
 msgid "References"
 msgstr "Referències"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1092
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 msgid "Event References"
 msgstr "Referències de l'Esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1094
 msgid "Gramplet showing the backlink references for an event"
 msgstr ""
 "Gramplet que mostra les referències dels retroenllaços per un esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1108
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1109
 msgid "Family References"
 msgstr "Referències de família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1109
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1110
 msgid "Gramplet showing the backlink references for a family"
 msgstr "Gramplet que mostra les referències dels retroenllaços d'una família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1124
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
 msgid "Place References"
 msgstr "Referències de llocs"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1126
 msgid "Gramplet showing the backlink references for a place"
 msgstr "Gramplet que mostra les referències dels retroenllaços d'un lloc"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1140
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1141
 #: ../gramps/plugins/webreport/basepage.py:3015
 msgid "Source References"
 msgstr "Referències a Fonts"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1141
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1142
 msgid "Gramplet showing the backlink references for a source"
 msgstr "Gramplet que mostra les referències dels retroenllaços d'una font"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1156
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1157
 msgid "Citation References"
 msgstr "Referències de citació"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1157
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1158
 msgid "Gramplet showing the backlink references for a citation"
 msgstr "Gramplet que mostra les referències dels retroenllaços d'una cita"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1172
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1173
 #: ../gramps/plugins/quickview/quickview.gpr.py:275
 msgid "Repository References"
 msgstr "Referències al dipòsit"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1173
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1174
 msgid "Gramplet showing the backlink references for a repository"
 msgstr "Gramplet que mostra les referències dels retroenllaços d'un dipòsit"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1188
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1189
 msgid "Media References"
 msgstr "Referències Audiovisuals"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1189
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1190
 msgid "Gramplet showing the backlink references for a media object"
 msgstr ""
 "Gramplet que mostra les referències dels retroenllaços d'un objecte "
 "audiovisual"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1204
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1205
 msgid "Note References"
 msgstr "Referències de Notes"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1205
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1206
 msgid "Gramplet showing the backlink references for a note"
 msgstr "Gramplet que mostra les referències dels retroenllaços d'una nota"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1221
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1222
 msgid "Gramplet providing a person filter"
 msgstr "Gramplet que proporciona un filtre de persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1236
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1237
 msgid "Family Filter"
 msgstr "Filtre de Família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1237
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1238
 msgid "Gramplet providing a family filter"
 msgstr "Gramplet que proporciona un filtre de família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1252
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1253
 msgid "Event Filter"
 msgstr "Filtre d'Esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1253
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1254
 msgid "Gramplet providing an event filter"
 msgstr "Gramplet que proporciona un filtre d'esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1268
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1269
 msgid "Source Filter"
 msgstr "Filtre de Font"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1269
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1270
 msgid "Gramplet providing a source filter"
 msgstr "Gramplet que proporciona un filtre de font"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1284
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1285
 msgid "Citation Filter"
 msgstr "Filtre de citació"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1285
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1286
 msgid "Gramplet providing a citation filter"
 msgstr "Gramplet que proporciona un filtre de cites"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1300
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1301
 msgid "Place Filter"
 msgstr "Filtre de Lloc"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1301
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1302
 msgid "Gramplet providing a place filter"
 msgstr "Gramplet que proporciona un filtre de lloc"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1316
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1317
 msgid "Media Filter"
 msgstr "Filtre d'Audiovisuals"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1317
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1318
 msgid "Gramplet providing a media filter"
 msgstr "Gramplet que proporciona un filtre de medis audiovisuals"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1332
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1333
 msgid "Repository Filter"
 msgstr "Filtre de dipòsit"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1333
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1334
 msgid "Gramplet providing a repository filter"
 msgstr "Gramplet que proporciona un filtre de dipòsit"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1348
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1349
 msgid "Note Filter"
 msgstr "Filtre de Nota"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1349
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1350
 msgid "Gramplet providing a note filter"
 msgstr "Gramplet que proporciona un filtre de notes"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1364
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1375
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1365
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1376
 #: ../gramps/plugins/textreport/recordsreport.py:139
 msgid "Records"
 msgstr "Registres"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1365
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1366
 #: ../gramps/plugins/textreport/textplugins.gpr.py:436
 msgid "Shows some interesting records about people and families"
 msgstr "Mostra registres interessants sobre persones i famílies"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1382
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1383
 msgid "Person To Do"
 msgstr "Persona per fer"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1383
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1384
 msgid "Gramplet showing the To Do notes for a person"
 msgstr "Gramplet que mostra les notes Per Fer per una persona"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1398
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1399
 msgid "Event To Do"
 msgstr "Esdeveniment per fer"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1399
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1400
 msgid "Gramplet showing the To Do notes for an event"
 msgstr "Gramplet que mostra les notes Per Fer per un esdeveniment"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1414
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1415
 msgid "Family To Do"
 msgstr "Família per fer"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1415
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1416
 msgid "Gramplet showing the To Do notes for a family"
 msgstr "Gramplet que mostra les notes Per Fer per una família"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1430
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1431
 msgid "Place To Do"
 msgstr "Lloc per fer"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1431
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1432
 msgid "Gramplet showing the To Do notes for a place"
 msgstr "Gramplet que mostra les notes Per Fer per un lloc"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1446
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1447
 msgid "Source To Do"
 msgstr "Font per fer"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1447
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1448
 msgid "Gramplet showing the To Do notes for a source"
 msgstr "Gramplet que mostra les notes Per Fer per una font"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1462
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1463
 msgid "Citation To Do"
 msgstr "Citació per fer"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1463
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1464
 msgid "Gramplet showing the To Do notes for a citation"
 msgstr "Gramplet que mostra les notes Per Fer per una cita"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1478
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1479
 msgid "Repository To Do"
 msgstr "Dipòsit per fer"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1479
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1480
 msgid "Gramplet showing the To Do notes for a repository"
 msgstr "Gramplet que mostra les notes Per Fer per un dipòsit"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1494
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1495
 msgid "Media To Do"
 msgstr "Medi Audiovisual Per Fer"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1495
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1496
 msgid "Gramplet showing the To Do notes for a media object"
 msgstr "Gramplet que mostra les notes Per Fer per un objecte audiovisual"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1540
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1548
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1541
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1549
 msgid "SoundEx"
 msgstr "SoundEx"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1541
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1542
 msgid "Gramplet to generate SoundEx codes"
 msgstr "Gramplet per generar codis SoundEx"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1555
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1556
 msgid "Place Enclosed By"
 msgstr "Lloc contingut per"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1556
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1557
 msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Gramplet que mostra els llocs delimitats pel lloc actiu"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1571
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1572
 #: ../gramps/plugins/webreport/basepage.py:3570
 msgid "Place Encloses"
 msgstr "El lloc conté"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1572
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1573
 msgid "Gramplet showing the places that the active place encloses"
 msgstr "Gramplet que mostra els llocs que el lloc actiu delimita"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1579
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1580
 msgid "Encloses"
 msgstr "Delimita"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1587
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1588
 msgid "Geography coordinates for Person Events"
 msgstr "Coordenades geogràfiques pels esdeveniments personals"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1595
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1611
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1596
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1612
 msgid "Events Coordinates"
 msgstr "Coordenades dels esdeveniments"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1603
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1604
 msgid "Geography coordinates for Family Events"
 msgstr "Coordenades geogràfiques pels esdeveniments familiars"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1604
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1605
 msgid "Gramplet showing the events for all the family"
 msgstr "Gramplet que mostra els esdeveniments de tota la família"
 
@@ -29958,66 +29966,66 @@ msgstr "Creative Commons - Reconeixement, No Comercial, Compartir Igual"
 msgid "No copyright notice"
 msgstr "Sense nota de copyright"
 
-#: ../gramps/plugins/lib/libmetadata.py:75
-#: ../gramps/plugins/lib/libmetadata.py:115
+#: ../gramps/plugins/lib/libmetadata.py:79
+#: ../gramps/plugins/lib/libmetadata.py:119
 msgid "Invalid format"
 msgstr "Format no vàlid"
 
-#: ../gramps/plugins/lib/libmetadata.py:80
+#: ../gramps/plugins/lib/libmetadata.py:84
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
-#: ../gramps/plugins/lib/libmetadata.py:85
+#: ../gramps/plugins/lib/libmetadata.py:89
 #, python-format
 msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
-#: ../gramps/plugins/lib/libmetadata.py:118
+#: ../gramps/plugins/lib/libmetadata.py:122
 msgid "Descriptive Tags"
 msgstr "Etiquetes descriptives"
 
-#: ../gramps/plugins/lib/libmetadata.py:119
+#: ../gramps/plugins/lib/libmetadata.py:123
 msgid "Date and Time Tags"
 msgstr "Etiquetes de Data i Hora"
 
-#: ../gramps/plugins/lib/libmetadata.py:120
+#: ../gramps/plugins/lib/libmetadata.py:124
 msgid "People Tags"
 msgstr "Etiquetes de Persones"
 
-#: ../gramps/plugins/lib/libmetadata.py:121
+#: ../gramps/plugins/lib/libmetadata.py:125
 msgid "Event Tags"
 msgstr "Etiquetes d'Esdeveniments"
 
-#: ../gramps/plugins/lib/libmetadata.py:122
+#: ../gramps/plugins/lib/libmetadata.py:126
 msgid "Image Tags"
 msgstr "Etiquetes d'Imatges"
 
-#: ../gramps/plugins/lib/libmetadata.py:123
+#: ../gramps/plugins/lib/libmetadata.py:127
 msgid "Camera Information"
 msgstr "Informació de la càmera"
 
-#: ../gramps/plugins/lib/libmetadata.py:124
+#: ../gramps/plugins/lib/libmetadata.py:128
 msgid "Location Tags"
 msgstr "Etiquetes d'ubicacions"
 
-#: ../gramps/plugins/lib/libmetadata.py:125
+#: ../gramps/plugins/lib/libmetadata.py:129
 msgid "Advanced Tags"
 msgstr "Etiquetes avançades"
 
-#: ../gramps/plugins/lib/libmetadata.py:126
+#: ../gramps/plugins/lib/libmetadata.py:130
 msgid "Rights Tags"
 msgstr "Etiquetes de drets"
 
-#: ../gramps/plugins/lib/libmetadata.py:127
+#: ../gramps/plugins/lib/libmetadata.py:131
 msgid "Keyword Tags"
 msgstr "Etiquetes de paraules clau"
 
-#: ../gramps/plugins/lib/libmetadata.py:226
+#: ../gramps/plugins/lib/libmetadata.py:230
 msgid "Namespace"
 msgstr "Espai de noms"
 
-#: ../gramps/plugins/lib/libmetadata.py:227
+#: ../gramps/plugins/lib/libmetadata.py:231
 msgid "Label"
 msgstr "Etiqueta"
 
@@ -36994,124 +37002,124 @@ msgid "Looking for event problems"
 msgstr "Buscant problemes d'esdeveniments"
 
 #: ../gramps/plugins/tool/check.py:1361 ../gramps/plugins/tool/check.py:1390
-#: ../gramps/plugins/tool/check.py:1418
+#: ../gramps/plugins/tool/check.py:1422
 msgid "Looking for backlink reference problems"
 msgstr "Buscant problemes de referències d'enllaços de retrocès"
 
-#: ../gramps/plugins/tool/check.py:1453
+#: ../gramps/plugins/tool/check.py:1465
 msgid "Looking for person reference problems"
 msgstr "Buscant problemes de referències a persones"
 
-#: ../gramps/plugins/tool/check.py:1489
+#: ../gramps/plugins/tool/check.py:1501
 msgid "Looking for family reference problems"
 msgstr "Buscant problemes de referències a famílies"
 
-#: ../gramps/plugins/tool/check.py:1520
+#: ../gramps/plugins/tool/check.py:1532
 msgid "Looking for repository reference problems"
 msgstr "Buscant problemes de referències a dipòsits"
 
-#: ../gramps/plugins/tool/check.py:1560
+#: ../gramps/plugins/tool/check.py:1572
 msgid "Looking for place reference problems"
 msgstr "Buscant problemes de referències a llocs"
 
-#: ../gramps/plugins/tool/check.py:1692
+#: ../gramps/plugins/tool/check.py:1704
 msgid "Looking for citation reference problems"
 msgstr "Buscant problemes de referències a cites"
 
-#: ../gramps/plugins/tool/check.py:1812
+#: ../gramps/plugins/tool/check.py:1824
 msgid "Looking for source reference problems"
 msgstr "Buscant problemes de referències a fonts"
 
-#: ../gramps/plugins/tool/check.py:1859
+#: ../gramps/plugins/tool/check.py:1871
 msgid "Looking for media object reference problems"
 msgstr "Buscant problemes de referències a objectes audiovisuals"
 
-#: ../gramps/plugins/tool/check.py:1990
+#: ../gramps/plugins/tool/check.py:2002
 msgid "Looking for note reference problems"
 msgstr "Buscant problemes de referències a notes"
 
-#: ../gramps/plugins/tool/check.py:2123
+#: ../gramps/plugins/tool/check.py:2135
 msgid "Updating checksums on media"
 msgstr "S'està actualitzant els checksums als audiovisuals"
 
-#: ../gramps/plugins/tool/check.py:2151
+#: ../gramps/plugins/tool/check.py:2163
 msgid "Looking for tag reference problems"
 msgstr "Buscant problemes de referències a etiquetes"
 
-#: ../gramps/plugins/tool/check.py:2295
+#: ../gramps/plugins/tool/check.py:2307
 msgid "Looking for media source reference problems"
 msgstr "Buscant problemes de referències de fonts audiovisuals"
 
-#: ../gramps/plugins/tool/check.py:2365
+#: ../gramps/plugins/tool/check.py:2377
 msgid "Looking for Duplicated Gramps ID problems"
 msgstr "S'està buscant problemes d'ID duplicades de Gramps"
 
-#: ../gramps/plugins/tool/check.py:2517
+#: ../gramps/plugins/tool/check.py:2529
 msgid "Checking for bad links in Notes"
 msgstr "Comprovant enllaços dolents a les Notes"
 
-#: ../gramps/plugins/tool/check.py:2581
+#: ../gramps/plugins/tool/check.py:2593
 msgid "Coalescing duplicate roles in events referenced by people"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:2602
+#: ../gramps/plugins/tool/check.py:2614
 msgid "Coalescing duplicate roles in events referenced by families"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:2775
+#: ../gramps/plugins/tool/check.py:2787
 msgid "No errors were found"
 msgstr "No s'han trobat errors"
 
-#: ../gramps/plugins/tool/check.py:2776
+#: ../gramps/plugins/tool/check.py:2788
 msgid "The database has passed internal checks"
 msgstr "La base de dades ha passat les comprovacions internes"
 
-#: ../gramps/plugins/tool/check.py:2782
+#: ../gramps/plugins/tool/check.py:2794
 msgid "No errors were found: the database has passed internal checks."
 msgstr ""
 "No s'han trobat errors: la base de dades ha passat les comprovacions "
 "internes."
 
-#: ../gramps/plugins/tool/check.py:2792
+#: ../gramps/plugins/tool/check.py:2804
 #, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "S'ha reparat {quantity} enllaç fill-família trencat\n"
 msgstr[1] "S'han reparat {quantity} enllaços fill-família trencats\n"
 
-#: ../gramps/plugins/tool/check.py:2801
+#: ../gramps/plugins/tool/check.py:2813
 msgid "Non existing child"
 msgstr "Fill inexistent"
 
-#: ../gramps/plugins/tool/check.py:2812
+#: ../gramps/plugins/tool/check.py:2824
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "S'ha tret %(person)s de la família de %(family)s\n"
 
-#: ../gramps/plugins/tool/check.py:2820
+#: ../gramps/plugins/tool/check.py:2832
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "S'ha reparat {quantity} enllaç cònjuge/família trencat\n"
 msgstr[1] "S'han reparat {quantity} enllaços cònjuge/família trencats\n"
 
-#: ../gramps/plugins/tool/check.py:2829 ../gramps/plugins/tool/check.py:2857
+#: ../gramps/plugins/tool/check.py:2841 ../gramps/plugins/tool/check.py:2869
 msgid "Non existing person"
 msgstr "Persona inexistent"
 
-#: ../gramps/plugins/tool/check.py:2840 ../gramps/plugins/tool/check.py:2868
+#: ../gramps/plugins/tool/check.py:2852 ../gramps/plugins/tool/check.py:2880
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "S'ha retornat %(person)s a la família de %(family)s\n"
 
-#: ../gramps/plugins/tool/check.py:2848
+#: ../gramps/plugins/tool/check.py:2860
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "S'ha trobat {quantity} enllaç cònjuge/família duplicat\n"
 msgstr[1] "S'han trobat {quantity} enllaços cònjuge/família duplicats\n"
 
-#: ../gramps/plugins/tool/check.py:2876
+#: ../gramps/plugins/tool/check.py:2888
 #, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
@@ -37121,49 +37129,49 @@ msgstr[0] ""
 msgstr[1] ""
 "S'han trobat {quantity} famílies sense pares ni fills, s'han eliminat.\n"
 
-#: ../gramps/plugins/tool/check.py:2890
+#: ../gramps/plugins/tool/check.py:2902
 #, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] "S'ha reparat {quantity} relació de família corrompuda\n"
 msgstr[1] "S'han reparat {quantity} relacions de família corrompudes\n"
 
-#: ../gramps/plugins/tool/check.py:2900
+#: ../gramps/plugins/tool/check.py:2912
 #, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
 msgstr[0] "S'ha arreglat {quantity} nom de lloc alternatiu\n"
 msgstr[1] "S'han arreglat {quantity} noms de lloc alternatius\n"
 
-#: ../gramps/plugins/tool/check.py:2910
+#: ../gramps/plugins/tool/check.py:2922
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] "{quantity} persona estava referenciada, però no s'ha trobat\n"
 msgstr[1] "{quantity} persones estaven referenciats, però no s'han trobat\n"
 
-#: ../gramps/plugins/tool/check.py:2920
+#: ../gramps/plugins/tool/check.py:2932
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "{quantity} família estava referenciada però no s'ha trobat\n"
 msgstr[1] "{quantity} famílies estaven referenciades però no s'han trobat\n"
 
-#: ../gramps/plugins/tool/check.py:2930
+#: ../gramps/plugins/tool/check.py:2942
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] "S'ha corregit {quantity} data\n"
 msgstr[1] "S'han corregit {quantity} dates\n"
 
-#: ../gramps/plugins/tool/check.py:2940
+#: ../gramps/plugins/tool/check.py:2952
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] "{quantity} dipòsit estava referenciat, però no s'ha trobat\n"
 msgstr[1] "{quantity} dipòsits estaven referenciats, però no s'han trobat\n"
 
-#: ../gramps/plugins/tool/check.py:2950 ../gramps/plugins/tool/check.py:3050
+#: ../gramps/plugins/tool/check.py:2962 ../gramps/plugins/tool/check.py:3062
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
@@ -37172,7 +37180,7 @@ msgstr[0] ""
 msgstr[1] ""
 "{quantity} objectes audiovisuals estaven referenciats, però no s'han trobat\n"
 
-#: ../gramps/plugins/tool/check.py:2960
+#: ../gramps/plugins/tool/check.py:2972
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
@@ -37182,21 +37190,21 @@ msgstr[1] ""
 "S'han conservat les referències a {quantity} objectes audiovisuals que no hi "
 "són\n"
 
-#: ../gramps/plugins/tool/check.py:2970
+#: ../gramps/plugins/tool/check.py:2982
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] "S'ha substituït {quantity} objecte audiovisual que no existia\n"
 msgstr[1] "S'han substituït {quantity} objectes audiovisuals que no existien\n"
 
-#: ../gramps/plugins/tool/check.py:2980
+#: ../gramps/plugins/tool/check.py:2992
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] "S'ha esborrat {quantity} objecte audiovisual que no existia\n"
 msgstr[1] "S'han esborrat {quantity} objectes audiovisuals que no existien\n"
 
-#: ../gramps/plugins/tool/check.py:2990
+#: ../gramps/plugins/tool/check.py:3002
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
@@ -37204,7 +37212,7 @@ msgstr[0] "{quantity} esdeveniment estava referenciat, però no s'ha trobat\n"
 msgstr[1] ""
 "{quantity} esdeveniments estaven referenciats, però no s'han trobat\n"
 
-#: ../gramps/plugins/tool/check.py:3000
+#: ../gramps/plugins/tool/check.py:3012
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
@@ -37212,7 +37220,7 @@ msgstr[0] "S'ha arreglat {quantity} nom d'esdeveniment de naixement no vàlid\n"
 msgstr[1] ""
 "S'han arreglat {quantity} noms d'esdeveniments de naixement no vàlids\n"
 
-#: ../gramps/plugins/tool/check.py:3010
+#: ../gramps/plugins/tool/check.py:3022
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
@@ -37220,28 +37228,28 @@ msgstr[0] "S'ha arreglat {quantity} nom d'esdeveniment de defunció no vàlid\n"
 msgstr[1] ""
 "S'han arreglat {quantity} noms d'esdeveniments de defunció no vàlids\n"
 
-#: ../gramps/plugins/tool/check.py:3020
+#: ../gramps/plugins/tool/check.py:3032
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
 msgstr[0] "{quantity} lloc estava referenciat, però no s'ha trobat\n"
 msgstr[1] "{quantity} llocs estaven referenciats, però no s'han trobat\n"
 
-#: ../gramps/plugins/tool/check.py:3030
+#: ../gramps/plugins/tool/check.py:3042
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
 msgstr[0] "{quantity} cita estava referenciada, però no s'ha trobat\n"
 msgstr[1] "{quantity} cites estaven referenciades, però no s'han trobat\n"
 
-#: ../gramps/plugins/tool/check.py:3040
+#: ../gramps/plugins/tool/check.py:3052
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] "{quantity} font estava referenciada, però no s'ha trobat\n"
 msgstr[1] "{quantity} fonts estaven referenciades, però no s'han trobat\n"
 
-#: ../gramps/plugins/tool/check.py:3060
+#: ../gramps/plugins/tool/check.py:3072
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
@@ -37250,7 +37258,7 @@ msgstr[0] ""
 msgstr[1] ""
 "{quantity} objectes de nota estaven referenciats, però no s'han trobat\n"
 
-#: ../gramps/plugins/tool/check.py:3070 ../gramps/plugins/tool/check.py:3080
+#: ../gramps/plugins/tool/check.py:3082 ../gramps/plugins/tool/check.py:3092
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
@@ -37259,28 +37267,28 @@ msgstr[0] ""
 msgstr[1] ""
 "{quantity} objectes d'etiqueta estaven referenciats, però no s'han trobat\n"
 
-#: ../gramps/plugins/tool/check.py:3090
+#: ../gramps/plugins/tool/check.py:3102
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
 msgstr[0] "S'ha esborrat {quantity} referència de format de nom no vàlida\n"
 msgstr[1] "S'han esborrat {quantity} referències de format de nom no vàlides\n"
 
-#: ../gramps/plugins/tool/check.py:3100
+#: ../gramps/plugins/tool/check.py:3112
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "S'ha arreglat {quantity} cita de font no vàlida\n"
 msgstr[1] "S'han arreglat {quantity} cites de font no vàlides\n"
 
-#: ../gramps/plugins/tool/check.py:3110
+#: ../gramps/plugins/tool/check.py:3122
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
 msgstr[0] "S'ha arreglat {quantity} ID duplicada de Gramps\n"
 msgstr[1] "S'han arreglat {quantity} IDs duplicades de Gramps\n"
 
-#: ../gramps/plugins/tool/check.py:3119
+#: ../gramps/plugins/tool/check.py:3131
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -37303,33 +37311,33 @@ msgstr ""
 "   %(repo)d objectes dipòsit\n"
 "   %(note)d objectes nota\n"
 
-#: ../gramps/plugins/tool/check.py:3144
+#: ../gramps/plugins/tool/check.py:3156
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
 msgstr "S'han arreglat %d enllaços de retrocès dolents;\n"
 
-#: ../gramps/plugins/tool/check.py:3145
+#: ../gramps/plugins/tool/check.py:3157
 #: ../gramps/plugins/tool/rebuildrefmap.py:90
 #: ../gramps/plugins/tool/rebuildrefmap.py:94
 msgid "All reference maps have been rebuilt."
 msgstr "S'han reconstruït tots els mapes de referències."
 
-#: ../gramps/plugins/tool/check.py:3150
+#: ../gramps/plugins/tool/check.py:3162
 #, python-format
 msgid "%d bad Note Links were fixed;\n"
 msgstr "S'han arreglat %d enllaços de Nota dolents;\n"
 
-#: ../gramps/plugins/tool/check.py:3155
+#: ../gramps/plugins/tool/check.py:3167
 #, python-format
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
 
-#: ../gramps/plugins/tool/check.py:3191
+#: ../gramps/plugins/tool/check.py:3203
 msgid "Integrity Check Results"
 msgstr "Resultats de la prova d'integritat"
 
-#: ../gramps/plugins/tool/check.py:3198
+#: ../gramps/plugins/tool/check.py:3210
 msgid "Check and Repair"
 msgstr "Comprova i repara"
 
