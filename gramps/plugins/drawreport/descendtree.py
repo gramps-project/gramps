@@ -60,8 +60,6 @@ from gramps.gen.plug.docgen import (
 )
 from gramps.plugins.lib.libtreebase import *
 from gramps.gen.proxy import CacheProxyDb
-
-from gramps.gen.utils.alive import probably_alive
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.db import family_name
 
@@ -118,15 +116,12 @@ class PersonBox(DescendantBoxBase):
         DescendantBoxBase.__init__(self, "CG2-box")
         self.level = level
         self.database = database
-        self.boldable = boldable
 
     def set_bold(self):
         """update me to a bolded box"""
         self.boxstr = "CG2b-box"
 
     def set_person_color(self, person, base_name, database):
-        """Set box color based on person's gender and alive status."""
-        is_alive = probably_alive(person, database)
         self.boxstr = utils.get_gender_color_box_name(
             person, base_name, self.report_gender_colors
         )
@@ -598,8 +593,8 @@ class RecurseDown:
         marr = None
         spouse = None
 
-        save_bold = self.bold_now
         if s_level == 1:
+            tmp_bold = self.bold_now
             self.bold_now = 0
 
         for family_handle in family_handles:
@@ -655,9 +650,8 @@ class RecurseDown:
                     # spouse_handle = utils.find_spouse(person,family)
                     self.recurse(spouse_handle, x_level, s_level + 1, spouse)
 
-        # for level 1, restore the original bold_now
         if s_level == 1:
-            self.bold_now = save_bold
+            self.bold_now = tmp_bold
 
     def add_family(self, level, family, father2):
         """

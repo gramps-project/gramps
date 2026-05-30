@@ -75,14 +75,6 @@ def get_rgb_color(color_name):
         return (0, 0, 0)  # use default if error occurs
 
 
-# -------------------------------------------------------------------------
-#  Fetch current color preferences from configuration at runtime of report
-#  for this PR: _G_ALIVE is used regardless of the actual alive status of the person.
-#  The same goes with _F_MARRIED for families.
-#  The next PR will expand on these options.
-# -------------------------------------------------------------------------
-
-
 def get_report_gender_colors():
     return {
         _G_FEMALE: [get_rgb_color("colors.female-alive"), "_FEMALE_ALIVE"],
