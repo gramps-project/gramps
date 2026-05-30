@@ -21,13 +21,6 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
-# NOTE on Divorce
-# Even though the config.py has an color entry for divorce, the family type
-# object has only 4 options: married, unmarried, civil union, and unknown.
-# I think it probably makes sense to paint the marriage box along these 4
-# options.  The divorce event which normally came afterward, at a later date,
-# should be shown differently, such as when the "m." (_MARR) display is
-# specified.
 
 """
 A collection of utilities to aid in the generation of reports.

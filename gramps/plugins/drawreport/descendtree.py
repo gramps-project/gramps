@@ -112,7 +112,6 @@ class PersonBox(DescendantBoxBase):
         DescendantBoxBase.__init__(self, "CG2-box")
         self.level = level
         self.database = database
-        self.boldable = boldable
 
     def set_bold(self):
         """update me to a bolded box"""
@@ -591,8 +590,8 @@ class RecurseDown:
         marr = None
         spouse = None
 
-        save_bold = self.bold_now
         if s_level == 1:
+            tmp_bold = self.bold_now
             self.bold_now = 0
 
         for family_handle in family_handles:
@@ -648,9 +647,8 @@ class RecurseDown:
                     # spouse_handle = utils.find_spouse(person,family)
                     self.recurse(spouse_handle, x_level, s_level + 1, spouse)
 
-        # for level 1, restore the original bold_now
         if s_level == 1:
-            self.bold_now = save_bold
+            self.bold_now = tmp_bold
 
     def add_family(self, level, family, father2):
         """
