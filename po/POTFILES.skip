@@ -623,6 +623,7 @@ gramps/plugins/mapservices/openstreetmap.py
 # plugins/quickview directory
 #
 gramps/plugins/quickview/__init__.py
+gramps/plugins/quickview/test/all_relations_test.py
 #
 # plugins/rel directory
 #
