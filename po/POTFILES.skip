@@ -569,6 +569,11 @@ gramps/plugins/gramplet/gallery.py
 gramps/plugins/gramplet/mediapreview.py
 gramps/plugins/gramplet/metadataviewer.py
 #
+# plugins/gramplet/test directory
+#
+gramps/plugins/gramplet/test/__init__.py
+gramps/plugins/gramplet/test/topsurnamesgramplet_test.py
+#
 # plugins/graph directory
 #
 gramps/plugins/graph/__init__.py
