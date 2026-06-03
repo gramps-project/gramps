@@ -72,9 +72,9 @@ class DNATestAttrEmbedList(EmbeddedList):
         )
 
     def get_editor(self):
-        from .. import EditSrcAttribute
+        from .. import EditAttribute
 
-        return EditSrcAttribute
+        return EditAttribute
 
     def get_user_values(self):
         db_values = self.dbstate.db.get_dnatest_attribute_types()

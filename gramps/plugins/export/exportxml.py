@@ -1256,7 +1256,7 @@ class GrampsXmlWriter(UpdateCallback):
         sp = "  " * indent
         for attr in list:
             self.g.write(
-                '%s<attribute%s type="%s" value="%s"/>\n'
+                '%s<attribute%s type="%s" value="%s"'
                 % (
                     sp,
                     conf_priv(attr),
@@ -1264,6 +1264,16 @@ class GrampsXmlWriter(UpdateCallback):
                     self.fix(attr.get_value()),
                 )
             )
+            citation_list = attr.get_citation_list()
+            nlist = attr.get_note_list()
+            if (len(nlist) + len(citation_list)) == 0:
+                self.g.write("/>\n")
+            else:
+                self.g.write(">\n")
+                for citation_handle in citation_list:
+                    self.write_ref("citationref", citation_handle, indent + 1)
+                self.write_note_list(attr.get_note_list(), indent + 1)
+                self.g.write("%s</attribute>\n" % sp)
 
     def write_media_list(self, list, indent=3):
         sp = "  " * indent

@@ -300,5 +300,103 @@ class TestDNATestUnidentified(unittest.TestCase):
         self.assertEqual(dt.get_genome_build().xml_str(), "GRCh37")
 
 
+# DNATest and DNAMatch whose attributes carry citation and note references.
+_DNA_ATTR_REFS_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
+"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.8.0/">
+  <header>
+    <created date="2026-01-01" version="6.1.0"/>
+    <researcher/>
+  </header>
+  <notes>
+    <note handle="_no0001" change="0" id="N0001" type="Attribute">
+      <text>Marker confirmed against raw data file</text>
+    </note>
+    <note handle="_no0002" change="0" id="N0002" type="Attribute">
+      <text>Segment metadata from provider export</text>
+    </note>
+  </notes>
+  <sources>
+    <source handle="_so0001" change="0" id="S0001">
+      <stitle>FTDNA Big Y results</stitle>
+    </source>
+  </sources>
+  <citations>
+    <citation handle="_ci0001" change="0" id="C0001">
+      <page>Y-STR panel</page>
+      <sourceref hlink="_so0001"/>
+    </citation>
+  </citations>
+  <dnatests>
+    <dnatest handle="_dt0001" change="0" id="T00001">
+      <account_name>tester</account_name>
+      <provider>FTDNA</provider>
+      <attribute type="DYS393" value="13">
+        <citationref hlink="_ci0001"/>
+        <noteref hlink="_no0001"/>
+      </attribute>
+    </dnatest>
+    <dnatest handle="_dt0002" change="0" id="T00002">
+      <account_name>match</account_name>
+      <provider>FTDNA</provider>
+    </dnatest>
+  </dnatests>
+  <dnamatches>
+    <dnamatch handle="_dm0001" change="0" id="M00001">
+      <subject_test hlink="_dt0001"/>
+      <match_test hlink="_dt0002"/>
+      <attribute type="Note" value="reviewed">
+        <citationref hlink="_ci0001"/>
+        <noteref hlink="_no0002"/>
+      </attribute>
+    </dnamatch>
+  </dnamatches>
+</database>
+"""
+
+
+class TestDNAAttributeRefs(unittest.TestCase):
+    """Citations and notes on DNA attributes survive import."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.db = _import_xml_string(_DNA_ATTR_REFS_XML)
+
+    def _dnatest_with_attr(self):
+        for handle in self.db.get_dnatest_handles():
+            dt = self.db.get_dnatest_from_handle(handle)
+            if dt.get_attribute_list():
+                return dt
+        self.fail("no DNATest with an attribute was imported")
+
+    def _dnamatch(self):
+        handles = list(self.db.get_dnamatch_handles())
+        self.assertEqual(len(handles), 1)
+        return self.db.get_dnamatch_from_handle(handles[0])
+
+    def test_dnatest_attribute_citation(self):
+        attr = self._dnatest_with_attr().get_attribute_list()[0]
+        self.assertEqual(attr.get_type().xml_str(), "DYS393")
+        self.assertEqual(attr.get_value(), "13")
+        self.assertEqual(len(attr.get_citation_list()), 1)
+        self.assertEqual(len(attr.get_note_list()), 1)
+
+    def test_dnamatch_attribute_citation(self):
+        attrs = self._dnamatch().get_attribute_list()
+        self.assertEqual(len(attrs), 1)
+        attr = attrs[0]
+        self.assertEqual(attr.get_value(), "reviewed")
+        self.assertEqual(len(attr.get_citation_list()), 1)
+        self.assertEqual(len(attr.get_note_list()), 1)
+
+    def test_referenced_handles(self):
+        attr = self._dnatest_with_attr().get_attribute_list()[0]
+        refs = attr.get_referenced_handles()
+        self.assertIn(("Citation", attr.get_citation_list()[0]), refs)
+        self.assertIn(("Note", attr.get_note_list()[0]), refs)
+
+
 if __name__ == "__main__":
     unittest.main()
