@@ -81,6 +81,20 @@ def _upgrade_person_json_22(person_data):
     return True
 
 
+def gramps_upgrade_23(self):
+    """
+    Upgrade database from version 22 to 23.
+
+    Add composite index on reference(ref_handle, obj_class) to speed up
+    find_backlink_handles() when filtering by object class.
+    """
+    self.dbapi.execute(
+        "CREATE INDEX IF NOT EXISTS reference_ref_handle_obj_class "
+        "ON reference(ref_handle, obj_class)"
+    )
+    self._set_metadata("version", 23)
+
+
 def gramps_upgrade_22(self):
     """
     Upgrade database from version 21 to 22.

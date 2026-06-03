@@ -44,3 +44,4 @@ class HasNoteTag(HasNoteTagBase):
     name = _("Citations with a note with a tag of <type>")
     description = _("Matches citations with a note with a specified tag")
     category = _("Note filters")
+    namespace = "Citation"

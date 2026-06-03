@@ -19,8 +19,15 @@
 #
 
 """
-Rule that checks for a note with a particular tag.
+Rule that checks for objects whose notes have a particular tag.
 """
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from typing import Set
 
 # -------------------------------------------------------------------------
 #
@@ -35,8 +42,9 @@ from . import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from ...lib.notebase import NoteBase
+from ...lib.primaryobj import PrimaryObject
 from ...db import Database
+from ...types import PrimaryObjectHandle
 
 _ = glocale.translation.gettext
 
@@ -55,27 +63,26 @@ class HasNoteTagBase(Rule):
     name = _("Objects with notes with a specified tag.")
     description = _("Matches notes with a specified tag")
     category = _("General filters")
+    namespace = ""
 
-    def __init__(self, arg, use_regex=False, use_case=False):
-        super().__init__(arg, use_regex, use_case)
-        self.tag_handle = None
-
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user) -> None:
         """
-        Prepare the rule. Things we only want to do once.
+        Build the set of matching object handles via a two-hop backlink walk:
+        tag → notes → objects of this namespace.
         """
-        self.tag_handle = None
+        self.selected_handles: Set[PrimaryObjectHandle] = set()
         tag = db.get_tag_from_name(self.list[0])
         if tag is not None:
-            self.tag_handle = tag.handle
+            for _cls, note_handle in db.find_backlink_handles(
+                tag.handle, include_classes=["Note"]
+            ):
+                for _cls2, obj_handle in db.find_backlink_handles(
+                    note_handle, include_classes=[self.namespace]
+                ):
+                    self.selected_handles.add(obj_handle)
 
-    def apply_to_one(self, db: Database, obj: NoteBase):
+    def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
-        Apply the rule. Return True on a match.
+        Return True if this object's handle is in the pre-built match set.
         """
-        note_list = obj.note_list
-        for note_handle in note_list:
-            note = db.get_note_from_handle(note_handle)
-            if note is not None and self.tag_handle in note.tag_list:
-                return True
-        return False
+        return obj.handle in self.selected_handles

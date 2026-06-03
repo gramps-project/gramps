@@ -901,5 +901,73 @@ class DbPersonTest(unittest.TestCase):
         self.assertEqual(saved["Mary"], (1, 3, 1))
 
 
+# -------------------------------------------------------------------------
+#
+# TestFindBacklinkHandles class
+#
+# -------------------------------------------------------------------------
+class TestFindBacklinkHandles(unittest.TestCase):
+    """
+    Tests for find_backlink_handles, verifying that include_classes filters
+    correctly in SQL rather than Python.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.db = make_database("sqlite")
+        cls.db.load(":memory:")
+
+    def setUp(self):
+        tag = Tag()
+        tag.set_name("TestTag")
+        person = Person()
+        family = Family()
+        with DbTxn("Setup backlink test", self.db) as trans:
+            self.tag_handle = self.db.add_tag(tag, trans)
+            person.add_tag(self.tag_handle)
+            self.person_handle = self.db.add_person(person, trans)
+            family.add_tag(self.tag_handle)
+            self.family_handle = self.db.add_family(family, trans)
+
+    def tearDown(self):
+        with DbTxn("Teardown backlink test", self.db) as trans:
+            self.db.remove_person(self.person_handle, trans)
+            self.db.remove_family(self.family_handle, trans)
+            self.db.remove_tag(self.tag_handle, trans)
+
+    def test_no_filter_returns_all(self):
+        """include_classes=None returns backlinks for every namespace."""
+        results = set(self.db.find_backlink_handles(self.tag_handle))
+        self.assertIn(("Person", self.person_handle), results)
+        self.assertIn(("Family", self.family_handle), results)
+
+    def test_single_class_filter(self):
+        """include_classes with one class returns only that namespace."""
+        results = list(self.db.find_backlink_handles(self.tag_handle, ["Person"]))
+        handles = [h for _, h in results]
+        self.assertIn(self.person_handle, handles)
+        self.assertNotIn(self.family_handle, handles)
+        for classname, _ in results:
+            self.assertEqual(classname, "Person")
+
+    def test_multi_class_filter(self):
+        """include_classes with multiple classes returns all listed namespaces."""
+        results = set(
+            self.db.find_backlink_handles(self.tag_handle, ["Person", "Family"])
+        )
+        self.assertIn(("Person", self.person_handle), results)
+        self.assertIn(("Family", self.family_handle), results)
+
+    def test_non_matching_class_returns_empty(self):
+        """include_classes that matches no backlinks yields nothing."""
+        results = list(self.db.find_backlink_handles(self.tag_handle, ["Event"]))
+        self.assertEqual(results, [])
+
+    def test_unknown_handle_returns_empty(self):
+        """A handle with no backlinks yields nothing regardless of filter."""
+        results = list(self.db.find_backlink_handles("no-such-handle", ["Person"]))
+        self.assertEqual(results, [])
+
+
 if __name__ == "__main__":
     unittest.main()
