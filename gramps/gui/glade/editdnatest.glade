@@ -167,6 +167,7 @@
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <property name="relief">none</property>
+                    <property name="halign">start</property>
                     <child>
                       <object class="GtkImage" id="add_del_person_img">
                         <property name="visible">True</property>
