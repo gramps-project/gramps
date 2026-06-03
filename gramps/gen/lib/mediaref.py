@@ -6,6 +6,7 @@
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2017,2024  Nick Hall
+# Copyright (C) 2026       ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -253,3 +254,56 @@ class MediaRef(
     def get_rectangle(self):
         """Return the subsection of an image."""
         return self.rect
+
+def apply_orientation_to_rect_coords(rect_coords, orientation, invert=False):
+    """
+    converts the rect_coordinates (x1, y1, x2, y2) such that they are
+    correct when applying the orientation to the image. Use invert=True
+    to to the inverted conversation, e.g. setting the values in the
+    database.
+    """
+
+    if orientation is None:
+        return rect_coords
+
+    x1, y1, x2, y2 = rect_coords
+    # https://exiftool.org/TagNames/EXIF.html
+    # 0x0112 Orientation
+
+    if invert:
+        if orientation == "6":
+            orientation = "8"
+        elif orientation == "8":
+            orientation = "6"
+        # all other orientations are involutory transformations
+
+    # General logic:
+    # - Mirror: swap values
+    # - Rotate 90 CW: circular right shift
+    # - In all cases: if first and second coordinate values are
+    #   swapped, subtract them from 100.
+
+    # 1 = Horizontal (normal)
+    if orientation == "2":
+        # 2 = Mirror horizontal
+        return 100-x2, y1, 100-x1, y2
+    elif orientation == "3":
+        # 3 = Rotate 180
+        return 100-x2, 100-y2, 100-x1, 100-y1
+    elif orientation == "4":
+        # 4 = Mirror vertical
+        return x1, 100-y2, x2, 100-y1
+    elif orientation == "5":
+        # 5 = Mirror horizontal and rotate 270 CW
+        return y1, x1, y2, x2
+    elif orientation == "6":
+        # 6 = Rotate 90 CW
+        return 100-y2, x1, 100-y1, x2
+    elif orientation == "7":
+        # 7 = Mirror horizontal and rotate 90 CW
+        return 100-y2, 100-x2, 100-y1, 100-x1
+    elif orientation == "8":
+        # 8 = Rotate 270 CW
+        return y1, 100-x2, y2, 100-x1
+    # fallback, no change
+    return x1, y1, x2, y2
