@@ -21,7 +21,6 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-
 # Patch Gdk.Cursor.new_for_display before importing DbManager, because
 # DbManager defines BUSY_CURSOR as a class attribute using
 # Gdk.Cursor.new_for_display(Gdk.Display.get_default(), ...). When no
