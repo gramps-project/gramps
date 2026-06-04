@@ -137,3 +137,28 @@ class Statusbar(Gtk.Box):
     def clear_filter(self):
         """Clear the filter status text."""
         self.__filter.set_text("")
+
+    def set_view_widget(self, widget):
+        """
+        Replace the status message area with a view-specific widget.
+        The normal status text is hidden until clear_view_widget() is called.
+        """
+        self.__view_widget = widget
+        # Force the view widget to the same height as the status text widget
+        # it replaces. __status is always realized so its preferred height is
+        # reliable; _selector_bar may not be realized on the first visit.
+        _, status_natural = self.__status.get_preferred_height()
+        self.__view_widget.set_size_request(-1, status_natural)
+        self.__status.hide()
+        self.pack_start(self.__view_widget, True, True, 4)
+        # Place it in the same position as __status (index 2, after warn + progress).
+        self.reorder_child(self.__view_widget, 2)
+        self.__view_widget.show_all()
+
+    def clear_view_widget(self):
+        """Restore the status message area, removing the view-specific widget."""
+        if getattr(self, "_Statusbar__view_widget", None):
+            self.__view_widget.set_size_request(-1, -1)
+            Gtk.Box.remove(self, self.__view_widget)
+            self.__view_widget = None
+            self.__status.show()
