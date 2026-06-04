@@ -242,6 +242,16 @@ class EditDNAMatch(EditPrimary):
         )
         self._add_tab(notebook, self.segment_list)
 
+        self.citation_list = CitationEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_citation_list(),
+            "dnamatch_editor_citations",
+            self.get_menu_title(),
+        )
+        self._add_tab(notebook, self.citation_list)
+
         self.attr_list = DNAMatchAttrEmbedList(
             self.dbstate,
             self.uistate,
@@ -268,16 +278,6 @@ class EditDNAMatch(EditPrimary):
             self.obj.get_media_list(),
         )
         self._add_tab(notebook, self.gallery_list)
-
-        self.citation_list = CitationEmbedList(
-            self.dbstate,
-            self.uistate,
-            self.track,
-            self.obj.get_citation_list(),
-            "dnamatch_editor_citations",
-            self.get_menu_title(),
-        )
-        self._add_tab(notebook, self.citation_list)
 
         self._setup_notebook_tabs(notebook)
         notebook.show_all()

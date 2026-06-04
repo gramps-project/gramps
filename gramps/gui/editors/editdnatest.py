@@ -203,6 +203,16 @@ class EditDNATest(EditPrimary):
     def _create_tabbed_pages(self):
         notebook = Gtk.Notebook()
 
+        self.citation_list = CitationEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_citation_list(),
+            "dnatest_editor_citations",
+            self.get_menu_title(),
+        )
+        self._add_tab(notebook, self.citation_list)
+
         self.attr_list = DNATestAttrEmbedList(
             self.dbstate,
             self.uistate,
@@ -229,16 +239,6 @@ class EditDNATest(EditPrimary):
             self.obj.get_media_list(),
         )
         self._add_tab(notebook, self.gallery_list)
-
-        self.citation_list = CitationEmbedList(
-            self.dbstate,
-            self.uistate,
-            self.track,
-            self.obj.get_citation_list(),
-            "dnatest_editor_citations",
-            self.get_menu_title(),
-        )
-        self._add_tab(notebook, self.citation_list)
 
         handle_list = self.dbstate.db.find_backlink_handles(self.obj.handle)
         self.backref_list = DNATestBackRefList(
