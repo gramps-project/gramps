@@ -98,6 +98,7 @@ class SurnameTab(EmbeddedList):
         self.curr_cellr = None
         self.curr_celle = None
         self.curr_path = None
+        self.cmborig = None
 
         EmbeddedList.__init__(
             self,
@@ -110,6 +111,7 @@ class SurnameTab(EmbeddedList):
             move_buttons=True,
             top_label=top_label,
         )
+        self.track_ref_for_deletion("cmborig")
 
     def build_columns(self):
         # first the standard text columns with normal method
@@ -439,3 +441,14 @@ class SurnameTab(EmbeddedList):
                     self.curr_celle.editing_done()
                     return
         return True
+
+    def clean_up(self):
+        """
+        Clean up GTK objects to release resources.
+        """
+        # Explicitly destroy the combo box model to release GDI resources
+        if self.cmborig is not None:
+            self.cmborig.clear()
+
+        # Call parent class cleanup
+        super().clean_up()

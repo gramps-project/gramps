@@ -491,3 +491,12 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self.tree.expand_all()
         if prebuildpath is not None:
             self.selection.select_path(prebuildpath)
+
+    def clean_up(self):
+        """
+        Clean up GTK objects and database signal handlers.
+        """
+        # Disconnect all database callbacks
+        self._cleanup_callbacks()
+
+        super().clean_up()

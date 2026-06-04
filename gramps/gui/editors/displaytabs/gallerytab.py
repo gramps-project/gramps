@@ -87,6 +87,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def __init__(self, dbstate, uistate, track, media_list, update=None):
         self.iconlist = Gtk.IconView()
+        self.text_renderer = None
+        self.menu = None
         ButtonTab.__init__(
             self,
             dbstate,
@@ -98,6 +100,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
         )
         DbGUIElement.__init__(self, dbstate.db)
         self.track_ref_for_deletion("iconlist")
+        self.track_ref_for_deletion("text_renderer")
+        self.track_ref_for_deletion("menu")
         self.media_list = media_list
         self.callman.register_handles({"media": [mref.ref for mref in self.media_list]})
         self.update = update
@@ -215,12 +219,12 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self.iconlist.set_pixbuf_column(0)
         self.iconlist.set_item_width(int(THUMBSCALE) + padding * 2)
         # set custom text cell renderer for better control
-        text_renderer = Gtk.CellRendererText()
-        text_renderer.set_property("wrap-mode", Pango.WrapMode.WORD_CHAR)
-        text_renderer.set_property("wrap-width", THUMBSCALE)
-        text_renderer.set_property("alignment", Pango.Alignment.CENTER)
-        self.iconlist.pack_end(text_renderer, True)
-        self.iconlist.add_attribute(text_renderer, "text", 1)
+        self.text_renderer = Gtk.CellRendererText()
+        self.text_renderer.set_property("wrap-mode", Pango.WrapMode.WORD_CHAR)
+        self.text_renderer.set_property("wrap-width", THUMBSCALE)
+        self.text_renderer.set_property("alignment", Pango.Alignment.CENTER)
+        self.iconlist.pack_end(self.text_renderer, True)
+        self.iconlist.add_attribute(self.text_renderer, "text", 1)
 
         # set basic properties of the icon view
         self.iconlist.set_margin(padding)
@@ -657,4 +661,14 @@ class GalleryTab(ButtonTab, DbGUIElement):
         return self.get_data().index(obj)
 
     def clean_up(self):
-        super(ButtonTab, self).clean_up()
+        """
+        Clean up GTK objects to release resources
+        """
+        # Clear the icon model to release Pixbuf GDI resources
+        if hasattr(self, "iconmodel") and self.iconmodel is not None:
+            self.iconmodel.clear()
+
+        # Disconnect all database callbacks
+        self._cleanup_callbacks()
+
+        super().clean_up()
