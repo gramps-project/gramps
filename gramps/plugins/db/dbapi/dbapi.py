@@ -1257,8 +1257,9 @@ class DBAPI(DbGeneric):
 
     def _quote_column(self, col):
         """
-        Return a column name, quoting it if required by the current dialect.
-        Override in dialect subclasses to quote reserved keywords.
+        Return a safe column name for the current dialect.
+        Override in dialect subclasses to handle reserved keywords, e.g. by
+        quoting or renaming them.
         """
         return col
 
