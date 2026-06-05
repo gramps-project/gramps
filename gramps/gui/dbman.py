@@ -69,6 +69,7 @@ from gramps.gen.constfunc import win
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
+from .utils import has_gtk_display
 
 _ = glocale.translation.gettext
 
@@ -157,9 +158,24 @@ class DbManager(CLIDbManager, ManagedWindow):
         CLIDbManager.ICON_OPEN: "document-open",
     }
 
-    BUSY_CURSOR = Gdk.Cursor.new_for_display(
-        Gdk.Display.get_default(), Gdk.CursorType.WATCH
-    )
+    BUSY_CURSOR = None
+
+    @classmethod
+    def _get_busy_cursor(cls):
+        """Return a Gdk Cursor for busy state, creating it lazily.
+
+        This avoids calling GDK functions at import time in headless
+        environments where no display/screen is available.
+        """
+        if cls.BUSY_CURSOR is None:
+            try:
+                display = Gdk.Display.get_default()
+                cls.BUSY_CURSOR = Gdk.Cursor.new_for_display(
+                    display, Gdk.CursorType.WATCH
+                )
+            except Exception:
+                cls.BUSY_CURSOR = None
+        return cls.BUSY_CURSOR
 
     def __init__(self, uistate, dbstate, viewmanager, parent=None):
         """
@@ -169,11 +185,29 @@ class DbManager(CLIDbManager, ManagedWindow):
         window_id = self
         ManagedWindow.__init__(self, uistate, [], window_id, modal=True)
         CLIDbManager.__init__(self, dbstate)
+
+        self._gtk_display_available = has_gtk_display()
+        self.glade = None
+        self.top = None
+        self.viewmanager = viewmanager
+        self.selection = None
+        self.dblist = None
+        self.user = None
+        self.model = None
+        self.column = None
+        self.lock_file = None
+        self.data_to_delete = None
+        self._current_node = None
+        self.before_change = ""
+        self.after_change = ""
+
+        if not self._gtk_display_available:
+            return
+
         self.glade = Glade(toplevel="dbmanager")
         self.top = self.glade.toplevel
         self.set_window(self.top, None, None)
         self.setup_configs("interface.dbmanager", 780, 350)
-        self.viewmanager = viewmanager
 
         for attr in [
             "connect_btn",
@@ -190,24 +224,15 @@ class DbManager(CLIDbManager, ManagedWindow):
         ]:
             setattr(self, attr, self.glade.get_object(attr))
 
-        self.model = None
-        self.column = None
-        self.lock_file = None
-        self.data_to_delete = None
-
         self.dblist = PersistentTreeView(uistate, "dbman")
         self.dblist.set_vexpand(True)
         scrolledwindow = self.glade.get_object("scrolledwindow")
         scrolledwindow.add(self.dblist)
         self.selection = self.dblist.get_selection()
 
-        # For already loaded database:
-        self._current_node = None
         self.__connect_signals()
         self.__build_interface()
         self._populate_model()
-        self.before_change = ""
-        self.after_change = ""
         self._select_default()
         self.user = User(
             error=ErrorDialog,
@@ -409,6 +434,9 @@ class DbManager(CLIDbManager, ManagedWindow):
 
         The Backend Type column is a string based on database backend.
         """
+        if not getattr(self, "_gtk_display_available", True):
+            return
+
         # Put some help on the buttons:
         dbid = config.get("database.backend")
         backend_type = self.get_backend_name_from_dbid(dbid)
@@ -1077,7 +1105,9 @@ class DbManager(CLIDbManager, ManagedWindow):
         message
         """
         self.msg.set_label(msg)
-        self.top.get_window().set_cursor(self.BUSY_CURSOR)
+        cursor = self._get_busy_cursor()
+        if cursor is not None:
+            self.top.get_window().set_cursor(cursor)
         while Gtk.events_pending():
             Gtk.main_iteration()
 

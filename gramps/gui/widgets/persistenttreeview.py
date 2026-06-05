@@ -22,8 +22,12 @@ An override to allow resizable columns
 """
 
 import logging
+from gramps.gui.utils import has_gtk_display
 
-from gi.repository import Gtk
+if has_gtk_display():
+    from gi.repository import Gtk
+else:
+    Gtk = None
 from gramps.gen.config import config
 
 _LOG = logging.getLogger(".persistent")
@@ -37,7 +41,7 @@ _LOG = logging.getLogger(".persistent")
 __all__ = ["PersistentTreeView"]
 
 
-class PersistentTreeView(Gtk.TreeView):
+class PersistentTreeView(Gtk.TreeView if Gtk else object):
     """
     TreeView that has resizable columns
     """
@@ -49,6 +53,10 @@ class PersistentTreeView(Gtk.TreeView):
         """
         Create a TreeView widgets with column size saving
         """
+        if Gtk is None:
+            self.config_name = "undefined"
+            self.uistate = None
+            return
         Gtk.TreeView.__init__(self)
         self.config_name = "undefined"
         self.connect("destroy", self.save_column_info)
@@ -101,6 +109,8 @@ class PersistentTreeView(Gtk.TreeView):
         """
         Get all the columns size
         """
+        if Gtk is None:
+            return []
         columns = self.get_columns()
         newsize = []
         nbc = 0
@@ -126,7 +136,7 @@ class PersistentTreeView(Gtk.TreeView):
         """
         restore the columns width
         """
-        if self.config_name == "undefined":
+        if Gtk is None or self.config_name == "undefined":
             return
         size = config.get(self.config_name)
         if len(size) == 0:

@@ -18,18 +18,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+import gi
 import unittest
 from unittest.mock import MagicMock, patch
 
-# Patch Gdk.Cursor.new_for_display before importing DbManager, because
-# DbManager defines BUSY_CURSOR as a class attribute using
-# Gdk.Cursor.new_for_display(Gdk.Display.get_default(), ...). When no
-# display is available (e.g. headless/CI), get_default() returns None and
-# new_for_display raises TypeError. This patch prevents the crash at import
-# time.
-with patch("gi.repository.Gdk.Cursor.new_for_display", return_value=MagicMock()):
-    from gi.repository import Gtk
-    from gramps.gui.dbman import DbManager, NAME_COL
+gi.require_version("Gdk", "3.0")
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
+from gramps.gui.dbman import DbManager, NAME_COL
 
 
 class TestDbManSelection(unittest.TestCase):

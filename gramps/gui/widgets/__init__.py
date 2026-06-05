@@ -20,26 +20,31 @@
 
 """Custom widgets."""
 
-from .basicentry import *
-from .buttons import *
-from .dateentry import *
-from .expandcollapsearrow import *
-from .histogram import *
-from .labels import *
-from .linkbox import *
-from .photo import *
-from .placeentry import *
-from .monitoredwidgets import *
-from .selectionwidget import SelectionWidget, Region
-from .shadebox import *
-from .shortlistcomboentry import *
-from .statusbar import Statusbar
-from .styledtextbuffer import *
-from .styledtexteditor import *
-from .undoablebuffer import *
-from .undoableentry import *
-from .undoablestyledbuffer import *
-from .validatedcomboentry import *
-from .validatedmaskedentry import *
-from .placewithin import *
-from .persistenttreeview import *
+from gramps.gui.utils import has_gtk_display
+
+if has_gtk_display():
+    from .basicentry import *
+    from .buttons import *
+    from .dateentry import *
+    from .expandcollapsearrow import *
+    from .histogram import *
+    from .labels import *
+    from .linkbox import *
+    from .photo import *
+    from .placeentry import *
+    from .monitoredwidgets import *
+    from .selectionwidget import SelectionWidget, Region
+    from .shadebox import *
+    from .shortlistcomboentry import *
+    from .statusbar import Statusbar
+    from .styledtextbuffer import *
+    from .styledtexteditor import *
+    from .undoablebuffer import *
+    from .undoableentry import *
+    from .undoablestyledbuffer import *
+    from .validatedcomboentry import *
+    from .validatedmaskedentry import *
+    from .placewithin import *
+    from .persistenttreeview import *
+else:
+    __all__ = []

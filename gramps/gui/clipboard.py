@@ -46,7 +46,7 @@ import cairo
 # gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_PAGE, ICON
 from gramps.gen.lib import NoteType
 from gramps.gen.datehandler import get_date
 from gramps.gen.display.place import displayer as place_displayer
@@ -57,7 +57,7 @@ from .managedwindow import ManagedWindow
 from .glade import Glade
 from .ddtargets import DdTargets
 from .makefilter import make_filter
-from .utils import is_right_click, no_match_primary_mask
+from .utils import has_gtk_display, is_right_click, no_match_primary_mask
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gui.widgets.multitreeview import MultiTreeView
 
@@ -78,8 +78,18 @@ clipdb = None  # current db to avoid different transient dbs during db change
 #
 # -------------------------------------------------------------------------
 
-theme = Gtk.IconTheme.get_default()
-LINK_PIC = theme.load_icon("stock_link", 16, 0)
+theme = None
+if has_gtk_display():
+    try:
+        theme = Gtk.IconTheme.get_default()
+    except Exception:
+        theme = None
+
+try:
+    LINK_PIC = theme.load_icon("stock_link", 16, 0) if theme else None
+except Exception:
+    LINK_PIC = None
+
 OBJ2ICON = {
     "media": "gramps-media",
     "note": "gramps-notes",
@@ -106,7 +116,16 @@ def obj2icon(target):
 
 ICONS = {}
 for name, icon in OBJ2ICON.items():
-    ICONS[name] = theme.load_icon(icon, 16, 0)
+    if theme:
+        try:
+            ICONS[name] = theme.load_icon(icon, 16, 0)
+            continue
+        except Exception:
+            pass
+    try:
+        ICONS[name] = GdkPixbuf.Pixbuf.new_from_file(ICON)
+    except Exception:
+        ICONS[name] = None
 
 
 # -------------------------------------------------------------------------

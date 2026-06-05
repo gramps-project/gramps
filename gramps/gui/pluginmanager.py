@@ -40,6 +40,7 @@ from gi.repository import Gtk, GdkPixbuf, Gdk
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gui.utils import has_gtk_display
 from gramps.gen.utils.callback import Callback
 from gramps.gen.plug import BasePluginManager, PluginRegister
 from gramps.gen.constfunc import win
@@ -91,9 +92,10 @@ class GuiPluginManager(Callback):
                 else:
                     # use the plugin directory
                     dir = pdata.directory
-                # Append icon directory to the theme search path
-                theme = Gtk.IconTheme.get_default()
-                theme.append_search_path(dir)
+                if has_gtk_display():
+                    # Append icon directory to the theme search path
+                    theme = Gtk.IconTheme.get_default()
+                    theme.append_search_path(dir)
         return self.basemgr.load_plugin(pdata)
 
     def reload_plugins(self):

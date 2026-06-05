@@ -64,6 +64,18 @@ from gramps.gen.plug.utils import available_updates
 from gramps.gen.errors import WindowActiveError
 from .display import display_url
 
+
+def has_gtk_display() -> bool:
+    """Return True when a GTK display and screen are available."""
+    try:
+        display = Gdk.Display.get_default()
+        if display is None:
+            return False
+        screen = Gdk.Screen.get_default()
+        return screen is not None
+    except Exception:
+        return False
+
 # -------------------------------------------------------------------------
 #
 #
