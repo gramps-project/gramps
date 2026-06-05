@@ -24,8 +24,18 @@ it tracks the active Edit Person context, then routes button clicks into the
 existing actions/sync helpers
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import gc
 import os
 import sys
@@ -33,8 +43,18 @@ import weakref
 from dataclasses import dataclass
 from typing import Any, Callable, Optional, cast
 
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 from gi.repository import GdkPixbuf, GLib, Gtk
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import DATA_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.const import IMAGE_DIR as _GRAMPS_IMAGE_DIR
 from gramps.gen.display.name import displayer as name_displayer

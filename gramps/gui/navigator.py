@@ -27,6 +27,11 @@ manage pages in the main Gramps window.
 # GNOME modules
 #
 # -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 

@@ -16,18 +16,18 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Gtk modules
+# GTK/Gnome modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.plug.quick import run_quick_report_by_name
 from gramps.gen.lib.date import Date, Today

@@ -21,7 +21,7 @@ Provide tagging functionality.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from bisect import insort_left

@@ -22,6 +22,11 @@
 This module provides the Plugin class for document generator plugins.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from . import Plugin
 from .docgen import TextDoc, DrawDoc
 

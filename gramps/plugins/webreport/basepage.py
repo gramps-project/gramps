@@ -40,9 +40,11 @@ Classe:
     once for each page. Provdes various common functions.
 """
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from functools import partial
 import os
 import calendar
@@ -50,17 +52,20 @@ import copy
 import datetime
 from decimal import getcontext
 from unicodedata import normalize
-
-# ------------------------------------------------
-# Set up logging
-# ------------------------------------------------
 import logging
 
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 
-# ------------------------------------------------
-# Gramps module
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (
     FamilyRelType,

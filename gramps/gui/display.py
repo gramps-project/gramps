@@ -19,7 +19,7 @@
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os
@@ -27,11 +27,11 @@ import webbrowser
 import sys
 from urllib.parse import quote
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gen.constfunc import is_quartz, mac

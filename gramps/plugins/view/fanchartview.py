@@ -26,18 +26,24 @@
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Third-party modules
+#
+# -------------------------------------------------------------------------
+import cairo
+
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
-import cairo
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 import gramps.gui.widgets.fanchart as fanchart
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import PersonBookmarks

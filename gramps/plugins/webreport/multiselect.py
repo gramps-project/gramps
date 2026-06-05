@@ -21,18 +21,24 @@
 
 # -------------------------------------------------------------------------
 #
-# GTK Modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from collections import defaultdict
-from gi.repository import Gtk  # type: ignore
-from gramps.plugins.webreport.common import get_surname_from_person
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# GRAMPS modules
+# GTK/Gnome modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from gi.repository import Gtk  # type: ignore
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+from gramps.plugins.webreport.common import get_surname_from_person
 from gramps.gen.lib import EventType  # type: ignore
 from gramps.gen.plug.menu import Option as PlugOption  # type: ignore
 from gramps.gui.widgets.multitreeview import MultiTreeView

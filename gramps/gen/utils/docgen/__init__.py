@@ -17,6 +17,11 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .tabbeddoc import TabbedDoc
 from .odstab import ODSTab
 from .csvtab import CSVTab

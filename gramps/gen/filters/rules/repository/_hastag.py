@@ -22,7 +22,7 @@ Rule that checks for a repository with a particular tag.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale

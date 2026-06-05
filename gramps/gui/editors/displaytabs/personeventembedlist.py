@@ -20,15 +20,15 @@
 
 # -------------------------------------------------------------------------
 #
-# python
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import GLib
+from gi.repository import GObject
 
 # -------------------------------------------------------------------------
 #
-# Gramps classes
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

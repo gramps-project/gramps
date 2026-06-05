@@ -23,6 +23,11 @@
 Package providing filter rules for Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._searchfathername import SearchFatherName
 from ._searchmothername import SearchMotherName
 from ._searchchildname import SearchChildName

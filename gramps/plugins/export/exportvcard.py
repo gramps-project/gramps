@@ -25,20 +25,19 @@
 
 # -------------------------------------------------------------------------
 #
-# Standard Python Modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import sys
 from textwrap import TextWrapper
+import logging
+from collections import abc
 
 # ------------------------------------------------------------------------
 #
 # Set up logging
 #
 # ------------------------------------------------------------------------
-import logging
-from collections import abc
-
 log = logging.getLogger(".ExportVCard")
 
 # -------------------------------------------------------------------------

@@ -13,6 +13,11 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import sys
 import os
 import shlex

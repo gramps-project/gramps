@@ -23,7 +23,7 @@ Option class representing a list of boolean values.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import Option

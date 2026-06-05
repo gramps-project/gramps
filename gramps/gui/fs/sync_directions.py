@@ -36,14 +36,34 @@ gtk-side helpers for pushing changes to FamilySearch and doing the basic export
 the core payload/build/api work lives in gen.fs.sync_directions.
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import re
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.db import DbTxn
 from gramps.gen.display.name import displayer as name_displayer

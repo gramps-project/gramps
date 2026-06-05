@@ -19,21 +19,22 @@
 
 # -------------------------------------------------------------------------
 #
-# Python classes
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
 from gi.repository import Gtk
 from gi.repository import GObject
 from gi.repository import GLib
 
 # -------------------------------------------------------------------------
 #
-# Gramps classes
+# Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+_ = glocale.translation.gettext
+
 from gramps.gen.lib import Url
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets

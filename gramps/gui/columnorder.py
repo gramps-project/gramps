@@ -26,17 +26,14 @@ Handle the column ordering
 
 # -------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
 import logging
 
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -47,6 +44,10 @@ from gi.repository import GObject
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+_ = glocale.translation.gettext
+
 from .managedwindow import ManagedWindow
 from .glade import Glade
 

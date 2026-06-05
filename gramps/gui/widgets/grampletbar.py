@@ -25,7 +25,7 @@ Module that implements the gramplet bar fuctionality.
 
 # -------------------------------------------------------------------------
 #
-# Set up logging
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging
@@ -34,7 +34,7 @@ LOG = logging.getLogger(".grampletbar")
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import time

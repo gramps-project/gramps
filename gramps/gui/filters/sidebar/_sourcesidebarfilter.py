@@ -19,16 +19,7 @@
 
 # -------------------------------------------------------------------------
 #
-# Python modules
-#
-# -------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
-
-# -------------------------------------------------------------------------
-#
-# gtk
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -38,6 +29,7 @@ from gi.repository import Gtk
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from ... import widgets
 from .. import build_filter_model
 from . import SidebarFilter
@@ -49,6 +41,8 @@ from gramps.gen.filters.rules.source import (
     HasNoteRegexp,
     MatchesFilter,
 )
+
+_ = glocale.translation.gettext
 
 GenericSourceFilter = GenericFilterFactory("Source")
 

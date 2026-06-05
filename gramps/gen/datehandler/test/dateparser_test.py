@@ -22,8 +22,18 @@
 Deeper testing of some DateParser internals.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ...utils.grampslocale import GrampsLocale
 from ...lib.date import Date
 

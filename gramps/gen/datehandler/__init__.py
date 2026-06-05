@@ -24,7 +24,7 @@ Class handling language-specific selection for date parser and displayer.
 
 # -------------------------------------------------------------------------
 #
-# set up logging
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

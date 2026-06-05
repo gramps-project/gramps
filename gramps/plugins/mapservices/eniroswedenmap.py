@@ -23,11 +23,11 @@
 Eniro Sweden (Denmark) map service plugin. Opens place in kartor.eniro.se
 """
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# python modules
+# Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

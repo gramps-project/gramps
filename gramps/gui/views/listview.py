@@ -23,20 +23,24 @@
 Provide the base classes for GRAMPS' DataView classes
 """
 
-# ----------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# python modules
+# Future imports
 #
-# ----------------------------------------------------------------
+# -------------------------------------------------------------------------
 from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from abc import abstractmethod
 import os
 import pickle
 from time import perf_counter
 import logging
 from collections import deque
-
-LOG = logging.getLogger(".gui.listview")
 
 # ----------------------------------------------------------------
 #
@@ -76,6 +80,8 @@ from ..plug.quick import create_quickreport_menu, create_web_connect_menu
 from ..utils import is_right_click
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..widgets.persistenttreeview import PersistentTreeView
+
+LOG = logging.getLogger(".gui.listview")
 
 # ----------------------------------------------------------------
 #

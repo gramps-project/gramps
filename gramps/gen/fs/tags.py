@@ -36,11 +36,26 @@ Public API:
 - get_tag_color_ui_note() -> str
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from contextlib import contextmanager
 from typing import Any, Dict, Iterable, Iterator, List, Optional, Tuple
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.db import DbTxn
 from gramps.gen.lib import Person, Tag

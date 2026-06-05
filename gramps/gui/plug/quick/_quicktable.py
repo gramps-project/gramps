@@ -25,14 +25,14 @@ Provide a simplified table creation interface
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import pickle
 
 # -------------------------------------------------------------------------
 #
-# GNOME modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gdk

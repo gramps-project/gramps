@@ -18,11 +18,19 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-# ------------------------------------------------
-#    python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import re
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import USER_DATA_VERSION, IMAGE_DIR, DATA_DIR, USER_CSS
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 

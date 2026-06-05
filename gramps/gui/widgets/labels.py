@@ -21,7 +21,7 @@ __all__ = ["LinkLabel", "EditLabel", "BasicLabel", "MarkupLabel", "DualMarkupLab
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os

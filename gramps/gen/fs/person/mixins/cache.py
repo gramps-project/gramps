@@ -18,16 +18,30 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import email.utils
 import json
 import os
 import time
 from typing import Any, ClassVar, Optional, Tuple
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-
 from gramps.gen.fs import tree
 from gramps.gen.fs.fs_import import deserializer as deserialize
 

@@ -21,6 +21,11 @@
 win32locale provides l18n setup for the Microsoft Windows platform.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import locale
 from ctypes import cdll

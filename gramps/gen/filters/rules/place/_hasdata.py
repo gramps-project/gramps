@@ -30,12 +30,6 @@ Rule that checks for a place with a particular value
 from ....const import GRAMPS_LOCALE as glocale
 from ....lib import PlaceType
 from .. import Rule
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
 from ....lib import Place
 from ....db import Database
 

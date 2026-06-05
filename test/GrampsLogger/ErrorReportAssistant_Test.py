@@ -19,6 +19,11 @@
 
 # test/GrampsLogger/ErrorReportAssistant_Test.py
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import logging
 import sys

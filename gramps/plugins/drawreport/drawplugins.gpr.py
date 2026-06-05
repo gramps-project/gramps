@@ -17,6 +17,11 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.plug._pluginreg import *
 from gramps.gen.const import URL_MANUAL_PAGE, GRAMPS_LOCALE as glocale
 

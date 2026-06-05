@@ -23,10 +23,16 @@ Package providing filtering framework for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# GTK
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

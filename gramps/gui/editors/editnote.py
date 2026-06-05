@@ -23,16 +23,14 @@
 
 # -------------------------------------------------------------------------
 #
-# Python classes
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging
 
-_LOG = logging.getLogger(".gui.editors.EditNote")
-
 # -------------------------------------------------------------------------
 #
-# GTK libraries
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -45,8 +43,6 @@ from gi.repository import Pango
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.sgettext
 from gramps.gen.config import config
 from .editprimary import EditPrimary
 from .displaytabs import GrampsTab, NoteBackRefList
@@ -62,6 +58,9 @@ from gramps.gen.db import DbTxn
 from ..dialog import ErrorDialog
 from ..glade import Glade
 from gramps.gen.const import URL_MANUAL_SECT2
+
+_LOG = logging.getLogger(".gui.editors.EditNote")
+_ = glocale.translation.sgettext
 
 # -------------------------------------------------------------------------
 #

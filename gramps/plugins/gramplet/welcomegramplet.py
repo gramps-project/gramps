@@ -16,18 +16,18 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Gtk modules
+# GTK/Gnome modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE, URL_HOMEPAGE
 from gramps.gen.const import WIKI_EXTRAPLUGINS
 from gramps.gui.display import EXTENSION

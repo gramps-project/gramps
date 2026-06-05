@@ -66,6 +66,11 @@ _Everything                  Match every object in the database
 
 # Need to expose this to be available for filter plugins:
 # the plugins should say: from .. import Rule
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._rule import Rule
 
 from ._everything import Everything

@@ -21,11 +21,18 @@
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from collections import deque
+from typing import Union, List, Set, Dict
 
 # -------------------------------------------------------------------------
 #
@@ -35,15 +42,8 @@ from collections import deque
 from .. import Rule
 from . import MatchesFilter
 from ....const import GRAMPS_LOCALE as glocale
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
-from typing import Union, List, Set, Dict
-from ....lib import Person
 from ....db import Database
+from ....lib import Person
 from ....types import FamilyHandle, PersonHandle
 
 _ = glocale.translation.gettext

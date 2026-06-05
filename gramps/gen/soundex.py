@@ -23,7 +23,7 @@ Provide soundex calculation
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import unicodedata

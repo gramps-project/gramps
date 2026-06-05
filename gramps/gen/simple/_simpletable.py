@@ -23,7 +23,18 @@
 Provide a simplified table creation interface
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from html import escape
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext

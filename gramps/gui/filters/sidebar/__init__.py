@@ -22,6 +22,11 @@
 Package providing sidebar filters for Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._sidebarfilter import SidebarFilter
 from ._personsidebarfilter import PersonSidebarFilter
 from ._familysidebarfilter import FamilySidebarFilter

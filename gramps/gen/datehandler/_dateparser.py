@@ -27,18 +27,18 @@ date parsing class. The default base class provides parsing for English.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
-import re
-import calendar
 
 # -------------------------------------------------------------------------
 #
-# set up logging
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
+import re
+import calendar
 import logging
 
 log = logging.getLogger(".DateParser")

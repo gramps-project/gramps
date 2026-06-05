@@ -19,10 +19,21 @@
 
 """Tests for Person FamilySearch sync JSON handling."""
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import shutil
 import tempfile
 import unittest
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Person
 from gramps.gen.lib.json_utils import data_to_object, object_to_data, remove_object
 

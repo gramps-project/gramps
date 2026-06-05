@@ -33,7 +33,7 @@ German-specific classes for relationships.
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 
@@ -44,7 +44,6 @@ import re
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-
 from gramps.gen.lib import Person
 import gramps.gen.relationship
 

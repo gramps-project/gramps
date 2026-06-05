@@ -25,7 +25,7 @@
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import time
@@ -33,6 +33,12 @@ import shutil
 import os
 import tarfile
 from io import StringIO, BytesIO
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

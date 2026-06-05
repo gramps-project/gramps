@@ -31,7 +31,7 @@ Gramps' XML file format.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import time
@@ -39,14 +39,13 @@ import shutil
 import os
 import codecs
 from xml.sax.saxutils import escape
+import logging
 
 # ------------------------------------------------------------------------
 #
 # Set up logging
 #
 # ------------------------------------------------------------------------
-import logging
-
 LOG = logging.getLogger(".WriteXML")
 
 # -------------------------------------------------------------------------

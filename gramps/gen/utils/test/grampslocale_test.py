@@ -18,6 +18,11 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 from unittest.mock import Mock, patch
 

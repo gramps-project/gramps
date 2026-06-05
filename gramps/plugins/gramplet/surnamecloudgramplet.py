@@ -17,7 +17,7 @@
 
 # ------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 from collections import defaultdict
@@ -27,6 +27,7 @@ from collections import defaultdict
 # Gramps modules
 #
 # ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale

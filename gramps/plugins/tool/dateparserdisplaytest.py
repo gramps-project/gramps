@@ -28,11 +28,17 @@ Tools/Debug/Check Localized Date Parser and Displayer
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import traceback
 import sys
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

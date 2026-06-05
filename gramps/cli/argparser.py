@@ -31,7 +31,7 @@ Module responsible for handling the command line arguments for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import sys
@@ -43,7 +43,7 @@ from glob import glob
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import (

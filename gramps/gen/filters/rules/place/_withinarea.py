@@ -30,6 +30,7 @@ WithinArea : used to verify if a place is contained in a specific area
 # -------------------------------------------------------------------------
 
 from math import pi, cos, hypot
+from typing import Union
 import re
 
 # -------------------------------------------------------------------------
@@ -41,13 +42,6 @@ from ....errors import FilterError
 from ....const import GRAMPS_LOCALE as glocale
 from .. import Rule
 from ....utils.place import conv_lat_lon
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
-from typing import Union
 from ....lib import Place
 from ....db import Database
 

@@ -23,11 +23,23 @@
 # standard python modules
 #
 # ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import pickle
 import os
 from xml.sax.saxutils import escape
 from time import strftime as strftime
 from gramps.gen.config import config
+
+# -------------------------------------------------------------------------
+#
+# Third-party modules
+#
+# -------------------------------------------------------------------------
+import cairo
 
 # -------------------------------------------------------------------------
 #
@@ -39,11 +51,10 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
 from gi.repository import Pango
-import cairo
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE

@@ -23,6 +23,11 @@
 Display a person's events, both personal and family
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale

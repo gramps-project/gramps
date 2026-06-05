@@ -17,7 +17,9 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-# Standard Python modules
+# -------------------------------------------------------------------------
+#
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale

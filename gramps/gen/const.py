@@ -26,7 +26,7 @@ Provides constants for other modules
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os

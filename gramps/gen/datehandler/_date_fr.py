@@ -27,7 +27,7 @@ French-specific classes for parsing and displaying dates.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import re
@@ -37,7 +37,6 @@ import re
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-
 from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay

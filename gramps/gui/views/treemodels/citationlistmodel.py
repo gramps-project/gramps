@@ -24,7 +24,7 @@ CitationListModel class for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

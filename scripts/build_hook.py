@@ -20,17 +20,22 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
-# ------------------------------------------------------------------------
-import subprocess
+# -------------------------------------------------------------------------
 import codecs
 import os
+import subprocess
 import sys
 from shutil import copy2, copytree, ignore_patterns, rmtree
 
+# -------------------------------------------------------------------------
+#
+# Third-party modules
+#
+# -------------------------------------------------------------------------
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
 

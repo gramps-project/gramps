@@ -27,20 +27,20 @@
 This package implements access to Gramps configuration.
 """
 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Gramps imports
+# Standard Python modules
 #
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import re
 import logging
 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Gramps imports
+# Gramps modules
 #
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .const import USER_CONFIG, USER_DATA, USER_HOME, VERSION_DIR, VERSION_DIR_NAME
 from .utils.configmanager import ConfigManager
 from .const import GRAMPS_LOCALE as glocale

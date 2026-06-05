@@ -30,12 +30,6 @@ from ....const import GRAMPS_LOCALE as glocale
 from ....lib.eventroletype import EventRoleType
 from ....lib.eventtype import EventType
 from .. import Rule
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
 from ....lib import Person
 from ....db import Database
 

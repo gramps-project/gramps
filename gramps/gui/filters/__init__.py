@@ -21,6 +21,11 @@
 Package providing filtering framework for Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._filtercombobox import FilterComboBox
 from ._filtermenu import build_filter_model
 from ._filterstore import FilterStore

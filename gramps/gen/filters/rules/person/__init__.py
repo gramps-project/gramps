@@ -24,6 +24,11 @@
 Package providing filter rules for Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._disconnected import Disconnected
 from ._everyone import Everyone
 from ._familywithincompleteevent import FamilyWithIncompleteEvent

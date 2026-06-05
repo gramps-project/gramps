@@ -29,12 +29,6 @@ Rule that checks for a repo with a particular value.
 from ....const import GRAMPS_LOCALE as glocale
 from ....lib.repotype import RepositoryType
 from .. import Rule
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
 from ....lib import Repository
 from ....db import Database
 

@@ -23,7 +23,7 @@ General utility functions useful for the generic plugin system
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import datetime

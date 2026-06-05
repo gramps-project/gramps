@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 from os import environ
 from os.path import join

@@ -23,7 +23,7 @@ Mime utility functions for the MS Windows platform
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os

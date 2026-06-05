@@ -47,8 +47,18 @@ Examples:
       Checks 'de.po' file, tests to compile and generates a textual resume.
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import print_function
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import sys
 import shutil

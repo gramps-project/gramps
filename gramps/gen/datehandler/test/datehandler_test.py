@@ -30,7 +30,7 @@ Based on the Check Localized Date Displayer and Parser tool.
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import unittest

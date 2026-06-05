@@ -33,7 +33,7 @@ from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Place

@@ -30,27 +30,33 @@ __all__ = [
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
 import re
-
 import logging
 
-_LOG = logging.getLogger(".widgets.styledtextbuffer")
-
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Pango
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .undoablebuffer import UndoableBuffer
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+_ = glocale.translation.gettext
+
+_LOG = logging.getLogger(".widgets.styledtextbuffer")
+
 
 WEIGHT_BOLD = Pango.Weight.BOLD
 STYLE_ITALIC = Pango.Style.ITALIC

@@ -21,8 +21,18 @@
 This package implements an object difference engine.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import json
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..db.utils import import_as_dict
 from ..lib.json_utils import object_to_dict
 from ..const import GRAMPS_LOCALE as glocale

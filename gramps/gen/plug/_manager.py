@@ -31,7 +31,7 @@ importers, exporters, quick reports, and document generators.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import importlib

@@ -20,36 +20,29 @@
 
 # -------------------------------------------------------------------------
 #
-# Python classes
+# GTK/Gnome modules
 #
-# -------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.sgettext
-
-# -------------------------------------------------------------------------
-#
-# GTK classes
-#
-# -------------------------------------------------------------------------
-from gi.repository import Gtk
+# -------------------------------------------------------------------------from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GObject
 from gi.repository import Pango
 
-_TAB = Gdk.keyval_from_name("Tab")
-_ENTER = Gdk.keyval_from_name("Enter")
-
 # -------------------------------------------------------------------------
 #
-# Gramps classes
+# Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .surnamemodel import SurnameModel
 from .embeddedlist import EmbeddedList, TEXT_EDIT_COL
 from ...ddtargets import DdTargets
 from gramps.gen.lib import Surname, NameOriginType
 from ...utils import match_primary_mask, no_match_primary_mask
+
+_ = glocale.translation.sgettext
+
+_TAB = Gdk.keyval_from_name("Tab")
+_ENTER = Gdk.keyval_from_name("Enter")
 
 # table for skipping illegal control chars
 INVISIBLE = dict.fromkeys(list(range(32)))

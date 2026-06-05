@@ -26,7 +26,7 @@ Slovenian-specific classes for parsing and displaying dates - new framework.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import re

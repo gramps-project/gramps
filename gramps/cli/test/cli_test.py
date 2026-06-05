@@ -19,12 +19,22 @@
 
 """CLI tests for gramps"""
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import sys
 import os
 import unittest
 import re
 import subprocess
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.dbstate import DbState
 from gramps.test.test_util import Gramps
 

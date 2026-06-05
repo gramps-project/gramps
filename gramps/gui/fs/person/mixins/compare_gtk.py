@@ -18,14 +18,34 @@
 #
 
 # -*- coding: utf-8 -*-
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import re
 from typing import Any, ClassVar, Optional, TYPE_CHECKING
 
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 from gi.repository import Gtk, Gdk, GLib
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import DATA_DIR, GRAMPS_LOCALE as glocale
 from gramps.gui.dialog import WarningDialog
 from gramps.gui.listmodel import ListModel, NOSORT, COLOR, TOGGLE

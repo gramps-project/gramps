@@ -24,10 +24,16 @@ Handles generation and access to thumbnails used in Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import logging
 from hashlib import md5
@@ -49,7 +55,7 @@ except:
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import (

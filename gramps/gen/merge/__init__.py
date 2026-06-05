@@ -20,6 +20,11 @@
 
 """ """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .mergepersonquery import *
 from .mergefamilyquery import *
 from .mergeeventquery import *

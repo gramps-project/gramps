@@ -25,7 +25,7 @@ File and folder related utility functions
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os

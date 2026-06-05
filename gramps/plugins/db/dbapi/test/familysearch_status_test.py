@@ -21,6 +21,11 @@
 
 # python3 -m unittest gramps.plugins.db.dbapi.test.familysearch_status_test -v
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import copy
 import os
 import shutil

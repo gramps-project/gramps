@@ -17,10 +17,25 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import json
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.db import DbTxn
 from gramps.gui.dialog import WarningDialog
 from gramps.gui.utils import ProgressMeter

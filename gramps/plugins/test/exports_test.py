@@ -19,6 +19,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import os
 import difflib
@@ -26,6 +31,11 @@ from unittest.mock import patch
 from time import localtime, strptime
 import tempfile
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.test.test_util import Gramps
 from gramps.gen.const import TEST_DIR
 from gramps.gen.datehandler import set_format

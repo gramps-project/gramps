@@ -20,17 +20,28 @@
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import sys, os
+import platform
+
+# -------------------------------------------------------------------------
+#
+# Third-party modules
+#
+# -------------------------------------------------------------------------
+import cairo
+
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
 from gi.repository import GObject
-
-import cairo
-import sys, os
-import platform
 
 try:
     import bsddb3 as bsddb  # ok, in try/except

@@ -31,12 +31,6 @@ from gramps.gui.views.treemodels.placemodel import PlaceTreeModel
 from gramps.gen.lib import Place, PlaceRef
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.editors import EditPlace
-
-# -------------------------------------------------------------------------
-#
-# Internationalization
-#
-# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

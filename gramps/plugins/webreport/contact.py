@@ -39,22 +39,22 @@ Classe:
     ContactPage
 """
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from decimal import getcontext
 import logging
 
-# ------------------------------------------------
-# Gramps module
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.utils.config import get_researcher
 from gramps.plugins.lib.libhtml import Html
-
-# ------------------------------------------------
-# specific narrative web import
-# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import FULLCLEAR
 

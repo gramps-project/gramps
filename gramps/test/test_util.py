@@ -21,6 +21,11 @@
 
 """unittest support utility module"""
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import sys
 import traceback
@@ -30,6 +35,11 @@ import logging
 import contextlib
 from io import TextIOWrapper, BytesIO, StringIO
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.dbstate import DbState
 from gramps.gen.user import User
 from gramps.cli.grampscli import CLIManager

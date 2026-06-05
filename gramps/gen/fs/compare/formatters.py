@@ -17,10 +17,25 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from typing import Optional
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.fs import utils as fs_utilities
 from gramps.gen.lib import Date, EventType
 from gramps.gen.const import GRAMPS_LOCALE as glocale

@@ -29,7 +29,6 @@ Spanish-specific classes for relationships.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-
 from gramps.gen.lib import Person
 
 MALE = Person.MALE

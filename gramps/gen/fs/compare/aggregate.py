@@ -18,8 +18,18 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import email.utils
 import logging
 import time
@@ -32,6 +42,11 @@ from gramps.gen.fs import db_familysearch
 from gramps.gen.fs import tree
 from gramps.gen.fs import utils as fs_utilities
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .comparators import (
     compare_fact,
     compare_gender,

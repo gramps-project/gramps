@@ -24,7 +24,7 @@ Option class representing a document style.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import EnumeratedListOption

@@ -22,6 +22,11 @@
 Unittest that tests person-specific filter rules
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import os
 from time import perf_counter
@@ -29,6 +34,11 @@ from typing import Any, ClassVar
 import inspect
 from contextlib import contextmanager
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ....filters import reload_custom_filters
 
 reload_custom_filters()

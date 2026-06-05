@@ -31,7 +31,6 @@ Specific classes for relationships.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-
 from gramps.gen.lib import Person
 import gramps.gen.relationship
 

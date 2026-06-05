@@ -47,7 +47,7 @@ It keeps a FlatNodeMap, and obtains data from database as needed
 
 # -------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

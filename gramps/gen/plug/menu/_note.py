@@ -24,7 +24,7 @@ Option class representing a string.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import StringOption

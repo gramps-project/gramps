@@ -23,7 +23,7 @@ Package providing filtering framework for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# GTK
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk

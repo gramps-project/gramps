@@ -17,12 +17,27 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import logging
 from urllib.parse import unquote
 from typing import List, Optional, Tuple
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gen.fs import utils as fs_utilities
 from gramps.gen.fs import tree as fs_tree_mod

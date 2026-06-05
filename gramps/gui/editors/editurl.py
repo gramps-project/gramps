@@ -20,13 +20,7 @@
 
 # -------------------------------------------------------------------------
 #
-# python modules
-#
-# -------------------------------------------------------------------------
-
-# -------------------------------------------------------------------------
-#
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -42,7 +36,6 @@ from gramps.gen.const import URL_MANUAL_SECT1
 # Constants
 #
 # -------------------------------------------------------------------------
-
 WIKI_HELP_PAGE = URL_MANUAL_SECT1
 WIKI_HELP_SEC = _("Internet_Address_Editor", "manual")
 

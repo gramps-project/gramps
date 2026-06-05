@@ -28,7 +28,7 @@ This module provides the model that is used for all hierarchical treeviews.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from time import perf_counter
@@ -38,7 +38,7 @@ _LOG = logging.getLogger(".gui.treebasemodel")
 
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import GObject

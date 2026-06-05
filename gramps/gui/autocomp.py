@@ -23,12 +23,17 @@ Provide autocompletion functionality.
 
 # -------------------------------------------------------------------------
 #
-# GNOME modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext

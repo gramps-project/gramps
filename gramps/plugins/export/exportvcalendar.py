@@ -24,21 +24,20 @@
 
 # -------------------------------------------------------------------------
 #
-# Standard Python Modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os
 import sys
 import time
+import logging
+from collections import abc
 
 # ------------------------------------------------------------------------
 #
 # Set up logging
 #
 # ------------------------------------------------------------------------
-import logging
-from collections import abc
-
 log = logging.getLogger(".ExportVCal")
 
 # -------------------------------------------------------------------------

@@ -24,7 +24,7 @@ A thumbnailer for images and sub-sections of images.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging
@@ -38,7 +38,7 @@ from gi.repository import GdkPixbuf
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import THUMBSCALE, THUMBSCALE_LARGE, SIZE_LARGE

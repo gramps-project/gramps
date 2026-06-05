@@ -27,7 +27,7 @@ Module providing support for callback handling in the GUI
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 

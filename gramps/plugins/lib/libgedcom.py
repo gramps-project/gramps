@@ -85,7 +85,7 @@ all lines until the next level 2 token is found (in this case, skipping the
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os
@@ -98,6 +98,7 @@ import string
 import mimetypes
 from io import StringIO, TextIOWrapper
 from urllib.parse import urlparse
+import logging
 
 # ------------------------------------------------------------------------
 #

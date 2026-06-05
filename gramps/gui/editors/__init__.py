@@ -19,6 +19,11 @@
 #
 # gui/editors/__init__.py
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .editaddress import EditAddress
 from .editattribute import EditAttribute, EditSrcAttribute
 from .editchildref import EditChildRef

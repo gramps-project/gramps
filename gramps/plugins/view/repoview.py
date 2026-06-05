@@ -30,7 +30,7 @@ from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Repository
@@ -45,12 +45,6 @@ from gramps.gui.dialog import ErrorDialog
 from gramps.gui.filters.sidebar import RepoSidebarFilter
 from gramps.gui.merge import MergeRepository
 from gramps.gen.plug import CATEGORY_QR_REPOSITORY
-
-# -------------------------------------------------------------------------
-#
-# internationalization
-#
-# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext

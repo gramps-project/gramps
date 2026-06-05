@@ -47,10 +47,16 @@ methods should be changed to generate exceptions. Possibly by globally changing
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import inspect
 import logging
 from abc import ABCMeta

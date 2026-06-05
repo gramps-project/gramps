@@ -24,7 +24,7 @@ Option class representing an enumerated list of possible values.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import Option

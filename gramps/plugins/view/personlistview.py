@@ -30,12 +30,6 @@ Person list View
 # -------------------------------------------------------------------------
 from gramps.plugins.lib.libpersonview import BasePersonView
 from gramps.gui.views.treemodels.peoplemodel import PersonListModel
-
-# -------------------------------------------------------------------------
-#
-# Internationalization
-#
-# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

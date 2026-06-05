@@ -26,23 +26,23 @@ This Gramplet shows distributions of age breakdowns of various types.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from collections import defaultdict
 
 # -------------------------------------------------------------------------
 #
-# Gtk modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.lib import Date, ChildRefType
 from gramps.gui.widgets import Histogram

@@ -18,10 +18,20 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import os
 import shutil
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.test.test_util import Gramps
 from gramps.gen.user import User
 from gramps.gen.const import TEST_DIR

@@ -21,11 +21,21 @@
 
 """unittest (test_util_test.py) for test_util.py"""
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import sys
 import os
 import tempfile
 import unittest as U
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.constfunc import get_env_var
 
 usage_note = """

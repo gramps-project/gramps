@@ -25,7 +25,7 @@ Provide the event view.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

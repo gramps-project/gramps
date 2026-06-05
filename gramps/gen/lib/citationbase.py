@@ -25,7 +25,7 @@ CitationBase class for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

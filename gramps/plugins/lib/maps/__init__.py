@@ -22,6 +22,11 @@ The gen module provides packages that are common to all gramps
 interfaces (gui, cli and web).
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
 __all__: list[str] = []

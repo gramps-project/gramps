@@ -24,7 +24,7 @@ Handling of loading new/existing databases.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os

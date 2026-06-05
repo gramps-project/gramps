@@ -19,12 +19,22 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import sys
 import codecs
 import unittest
 import random
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.test.test_util import Gramps
 from gramps.gen.const import TEST_DIR, TEST_RANDOM
 from gramps.gen.user import User

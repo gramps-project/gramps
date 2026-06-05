@@ -22,6 +22,11 @@
 Base class for primary objects that carry FamilySearch sync state.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .familysearchsync import FamilySearchSync
 
 

@@ -34,7 +34,6 @@ Polish-specific definitions of relationships.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-
 from gramps.gen.lib import Person
 import gramps.gen.relationship
 

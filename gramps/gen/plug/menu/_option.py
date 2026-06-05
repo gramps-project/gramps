@@ -24,7 +24,7 @@ The base option class for all other option classes.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ...utils.callback import Callback

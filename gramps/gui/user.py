@@ -23,7 +23,7 @@ The User class provides basic interaction with the user.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import sys

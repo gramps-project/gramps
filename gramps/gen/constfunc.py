@@ -24,11 +24,11 @@ without any translation happening yet.  Do _not_ add imports that will
 perform a translation on import, eg Gtk.
 """
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import platform
 import sys
 import os

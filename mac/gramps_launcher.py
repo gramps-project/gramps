@@ -1,3 +1,8 @@
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from os.path import join, dirname, abspath, normpath
 from os import environ
 from sys import argv, version

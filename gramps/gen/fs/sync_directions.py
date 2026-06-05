@@ -23,16 +23,36 @@ a lot of this file is fetch/normalize/build for notes, sources, memories,
 and relationship pushes.
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import mimetypes
 import os
 import re
 import urllib.parse
 from typing import Any, Dict, List, Optional, Set, Tuple
 
+# -------------------------------------------------------------------------
+#
+# Third-party modules
+#
+# -------------------------------------------------------------------------
 import requests  # type: ignore
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.db import DbTxn
 from gramps.gen.display.place import displayer as place_displayer

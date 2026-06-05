@@ -17,11 +17,20 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.fs import tree
 from gramps.gui.plug import PluginWindows
-
 from . import _
 from .options import FSImportOptions
 from .importer import FSToGrampsImporter

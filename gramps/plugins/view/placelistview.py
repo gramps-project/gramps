@@ -27,12 +27,6 @@ Place List View
 # -------------------------------------------------------------------------
 from gramps.plugins.lib.libplaceview import PlaceBaseView
 from gramps.gui.views.treemodels.placemodel import PlaceListModel
-
-# -------------------------------------------------------------------------
-#
-# Internationalization
-#
-# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

@@ -19,12 +19,18 @@
 
 # -------------------------------------------------------------------------
 #
-# Standard Python Modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os
 import tempfile
 import zipfile
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

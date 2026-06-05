@@ -17,10 +17,20 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import tempfile
 import os
 import unittest
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ...const import TEST_DIR
 from ...db.utils import import_as_dict
 from ...user import User

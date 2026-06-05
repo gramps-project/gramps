@@ -21,21 +21,22 @@
 
 # -------------------------------------------------------------------------
 #
-# python libraries
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import Pango
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
-# -------------------------------------------------------------------------
-#
-# GTK libraries
-#
-# -------------------------------------------------------------------------
-from gi.repository import GObject
-from gi.repository import Gtk
-from gi.repository import Pango
 
 WEIGHT_NORMAL = Pango.Weight.NORMAL
 WEIGHT_BOLD = Pango.Weight.BOLD

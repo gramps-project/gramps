@@ -23,20 +23,20 @@ __all__ = ["ValidatedComboEntry"]
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging
 
-_LOG = logging.getLogger(".widgets.validatedcomboentry")
-
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
+
+_LOG = logging.getLogger(".widgets.validatedcomboentry")
 
 
 # -------------------------------------------------------------------------

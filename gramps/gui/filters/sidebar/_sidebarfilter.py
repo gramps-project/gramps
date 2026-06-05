@@ -20,7 +20,7 @@
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import time
@@ -30,7 +30,6 @@ import time
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.filters import reload_custom_filters
 

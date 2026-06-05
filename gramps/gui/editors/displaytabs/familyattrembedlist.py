@@ -19,17 +19,12 @@
 
 # -------------------------------------------------------------------------
 #
-# Gramps classes
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from .attrembedlist import AttrEmbedList
 
 
-# -------------------------------------------------------------------------
-#
-#
-#
-# -------------------------------------------------------------------------
 class FamilyAttrEmbedList(AttrEmbedList):
     def __init__(self, dbstate, uistate, track, data, config_key):
         AttrEmbedList.__init__(self, dbstate, uistate, track, data, config_key)

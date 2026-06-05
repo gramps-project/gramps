@@ -22,7 +22,7 @@ Hebrew-specific classes for relationships.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

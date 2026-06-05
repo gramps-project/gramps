@@ -34,8 +34,18 @@ useful env vars:
 - GRAMPS_FS_FOUNDATION_ACCESS_CODE supplies the per-user middleware key
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import base64
 import hashlib
 import logging
@@ -51,9 +61,19 @@ from dataclasses import dataclass
 from typing import Any, ClassVar
 from urllib.parse import parse_qs, urlencode, urljoin, urlparse, urlunparse
 
+# -------------------------------------------------------------------------
+#
+# Third-party modules
+#
+# -------------------------------------------------------------------------
 import certifi
 import requests
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.constfunc import win
 

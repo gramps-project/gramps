@@ -18,6 +18,11 @@
 #
 
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .familysearchsync import FamilySearchSync
 from .familysearchsyncbase import FamilySearchSyncBase
 

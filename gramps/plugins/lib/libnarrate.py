@@ -27,11 +27,11 @@
 Narrator class for use by plugins.
 """
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib.date import Date
 from gramps.gen.lib.person import Person
 from gramps.gen.lib.eventroletype import EventRoleType

@@ -34,22 +34,15 @@ Report option handling, including saving and parsing.
 # -------------------------------------------------------------------------
 import os
 import copy
-
-# -------------------------------------------------------------------------
-#
-# SAX interface
-#
-# -------------------------------------------------------------------------
 from xml.sax import make_parser, SAXParseException
 from xml.sax.saxutils import escape
+import logging
 
 # ------------------------------------------------------------------------
 #
 # Set up logging
 #
 # ------------------------------------------------------------------------
-import logging
-
 LOG = logging.getLogger(".plug.report.options")
 
 # -------------------------------------------------------------------------

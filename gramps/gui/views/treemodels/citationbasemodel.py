@@ -25,7 +25,7 @@ CitationBaseModel classes for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from html import escape

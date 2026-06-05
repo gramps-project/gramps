@@ -22,9 +22,19 @@
 Unittest that tests person-specific filter rules
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import os
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ...db.utils import import_as_dict
 from ...const import TEST_DIR
 from ...user import User

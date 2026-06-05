@@ -3,6 +3,11 @@
 grampsw.exe
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 from os import environ
 from os.path import join

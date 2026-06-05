@@ -3,6 +3,11 @@ Use with:
 python3 setup.py build_exe --no-compress -O1
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import sys
 import os
 import site
@@ -11,6 +16,12 @@ import tempfile
 import atexit
 import shutil
 import zipfile
+
+# -------------------------------------------------------------------------
+#
+# Third-party modules
+#
+# -------------------------------------------------------------------------
 import cx_Freeze
 
 sys.path.insert(0, "dist")

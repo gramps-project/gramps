@@ -24,7 +24,7 @@ A view showing all the Sources with child Citations
 
 # -------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

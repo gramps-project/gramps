@@ -26,14 +26,14 @@ Proxy class for the Gramps databases. Apply filter
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
-# Gramps libraries
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase

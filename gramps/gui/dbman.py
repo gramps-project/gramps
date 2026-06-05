@@ -26,7 +26,7 @@ creating, and deleting of databases.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os
@@ -48,7 +48,7 @@ from gi.repository import Pango
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from .display import display_help

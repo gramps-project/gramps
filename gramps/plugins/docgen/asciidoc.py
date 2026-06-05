@@ -26,11 +26,11 @@
 ACSII document generator.
 """
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import DOCGEN_OPTIONS
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.docgen import BaseDoc, TextDoc, PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER

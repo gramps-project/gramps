@@ -24,7 +24,7 @@
 
 # -------------------------------------------------------------------------
 #
-# Standard Python Modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os
@@ -32,19 +32,25 @@ import sys
 import time
 from xml.parsers.expat import ExpatError, ParserCreate
 from xml.sax.saxutils import escape
+import re
+import logging
+from collections import abc
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import URL_WIKISTRING
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
-import re
-import logging
-from collections import abc
 
 LOG = logging.getLogger(".ImportXML")
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.mime import get_type
@@ -232,8 +238,6 @@ def importData(database, filename, user):
 # Remove extraneous spaces
 #
 # -------------------------------------------------------------------------
-
-
 def rs(text):
     return " ".join(text.split())
 

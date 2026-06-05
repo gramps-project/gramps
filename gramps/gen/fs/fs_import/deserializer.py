@@ -19,11 +19,16 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from collections import ChainMap
 from datetime import datetime, timezone, timedelta
 from functools import lru_cache
-import logging
 from typing import Any, ClassVar, Optional, get_args, get_origin
+import logging
 
 logger = logging.getLogger(__name__)
 

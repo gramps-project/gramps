@@ -27,11 +27,11 @@ generating reports in languages and locales other than the one used
 for the user interface.
 """
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import gettext
 import sys
 import os
@@ -39,7 +39,11 @@ import locale
 import logging
 import time
 
-
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .grampstranslation import GrampsTranslations, GrampsNullTranslations
 
 if sys.platform == "darwin":

@@ -17,10 +17,25 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import logging
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.plug.menu import FilterOption, NumberOption, BooleanOption
 from gramps.gen.filters import CustomFilters, GenericFilterFactory, rules
 from gramps.gui.plug import MenuToolOptions

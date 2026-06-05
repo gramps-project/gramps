@@ -15,18 +15,18 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from collections import defaultdict
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale

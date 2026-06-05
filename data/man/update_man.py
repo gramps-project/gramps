@@ -29,8 +29,18 @@ Examples:
       Tests if 'sphinx' and 'python' are well configured.
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import print_function
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import sys
 from argparse import ArgumentParser

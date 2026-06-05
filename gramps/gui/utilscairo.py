@@ -22,7 +22,7 @@
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 # from gi.repository import Pango
@@ -30,18 +30,17 @@
 # from gi.repository import Gdk
 # from gi.repository import Gtk
 # from gi.repository import PangoCairo
-import cairo
-
 # import math
 # import colorsys
 # import pickle
-
-
 # -------------------------------------------------------------------------
 #
-# Functions
+# Third-party modules
 #
 # -------------------------------------------------------------------------
+import cairo
+
+
 def warpPath(ctx, function):
     """Transform a path given a 2D transformation function.
 

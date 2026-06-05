@@ -29,6 +29,7 @@
 #
 # -------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
+import logging
 
 # -------------------------------------------------------------------------
 #
@@ -42,8 +43,6 @@ from . import fontscale
 # set up logging
 #
 # -------------------------------------------------------------------------
-import logging
-
 log = logging.getLogger(".drawdoc")
 
 

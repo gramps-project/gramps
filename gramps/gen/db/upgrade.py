@@ -23,19 +23,23 @@
 
 # ------------------------------------------------------------------------
 #
-# Python Modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import re
 import time
 import logging
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
-# ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
 from gramps.gen.lib import EventType, FamilySearchSync, NameOriginType, Tag, MarkerType

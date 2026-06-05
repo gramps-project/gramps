@@ -17,7 +17,18 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import time
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .editors import EditFilter
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.filters import (

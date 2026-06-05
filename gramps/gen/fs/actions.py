@@ -22,12 +22,27 @@ helpers for the FamilySearch integration layer.
 some FS modules are still coupled through shared session state and thin wrapper calls.
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import logging
 import os
 from typing import Any
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.errors import HandleError
 from gramps.gen.fs import tree as fs_tree

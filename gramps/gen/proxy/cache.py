@@ -21,6 +21,11 @@
 Proxy class for the Gramps databases. Caches lookups from handles.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..utils.lru import LRU
 
 

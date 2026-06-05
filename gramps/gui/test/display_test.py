@@ -1,7 +1,18 @@
 """Unittest for display.py"""
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 from unittest.mock import patch
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..display import display_help
 from gramps.gen.const import URL_WIKISTRING
 

@@ -20,6 +20,11 @@
 
 """Custom widgets."""
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .basicentry import *
 from .buttons import *
 from .dateentry import *

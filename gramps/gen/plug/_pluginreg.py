@@ -26,7 +26,7 @@ and a register for the data of all plugins .
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

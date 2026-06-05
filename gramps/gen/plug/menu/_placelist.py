@@ -24,7 +24,7 @@ Option class representing a list of places.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import Option

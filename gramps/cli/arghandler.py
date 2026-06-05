@@ -30,7 +30,7 @@ Module responsible for handling the command line arguments for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os
@@ -39,7 +39,7 @@ import re
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.recentfiles import recent_files

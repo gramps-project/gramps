@@ -17,8 +17,18 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .fsg_sync import FSG_Sync
 
 # try:
@@ -27,5 +37,4 @@ from .fsg_sync import FSG_Sync
 #    )
 # except Exception:
 #    pass
-
 __all__ = ["FSG_Sync"]

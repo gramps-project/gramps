@@ -24,14 +24,14 @@ Rule that checks for a family that is an ancestor of a specified family.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
-# Gramps modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from .. import Rule
@@ -39,7 +39,7 @@ from ....const import GRAMPS_LOCALE as glocale
 
 # -------------------------------------------------------------------------
 #
-# Typing modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from typing import Set

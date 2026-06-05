@@ -21,6 +21,11 @@
 The User class provides basic interaction with the user.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import sys
 from abc import ABCMeta, abstractmethod
 from contextlib import contextmanager

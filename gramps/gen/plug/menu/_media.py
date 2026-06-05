@@ -24,7 +24,7 @@ Option class representing a media object.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import StringOption

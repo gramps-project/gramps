@@ -24,7 +24,7 @@ Option class representing a block of text.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import Option

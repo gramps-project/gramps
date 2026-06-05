@@ -24,7 +24,7 @@ Option class representing a person.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import StringOption

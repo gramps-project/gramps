@@ -21,6 +21,11 @@
 The menu package for allowing plugins to specify options in a generic way.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._menu import Menu
 from ._option import Option
 from ._string import StringOption

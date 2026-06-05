@@ -63,6 +63,11 @@ More details can be found in the manual's
 `Using database API <https://www.gramps-project.org/wiki/index.php?title=Using_database_API>`_.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .base import *
 from .dbconst import *
 from .txn import *

@@ -26,7 +26,18 @@ This module is used to share variables, enums and functions between all modules
 
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from collections import defaultdict
 from hashlib import md5
 import re
@@ -34,6 +45,11 @@ import os
 import logging
 from xml.sax.saxutils import escape
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd

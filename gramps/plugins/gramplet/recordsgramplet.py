@@ -19,11 +19,11 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.plugins.lib.librecords import find_records, CALLNAME_DONTUSE
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale

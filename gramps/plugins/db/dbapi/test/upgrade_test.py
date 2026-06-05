@@ -23,6 +23,11 @@ Tests for database schema upgrades.
 
 # python3 -m unittest gramps.plugins.db.dbapi.test.upgrade_test -v
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import copy
 import os
 import shutil

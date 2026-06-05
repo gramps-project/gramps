@@ -38,23 +38,23 @@ Classe:
     SurnameListPage - Index for first letters of surname
 """
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from decimal import getcontext
 import logging
 from collections import defaultdict
 from unicodedata import name as uniname
 
-# ------------------------------------------------
-# Gramps module
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.plugins.lib.libhtml import Html
-
-# ------------------------------------------------
-# specific narrative web import
-# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.gen.display.name import displayer as _nd
 from gramps.plugins.webreport.common import (

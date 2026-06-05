@@ -25,6 +25,11 @@
 # This will highlight changes to the db caused by changes in the code.
 # **********************************************
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import os
 import sys
@@ -35,8 +40,11 @@ from unittest.mock import patch
 import zipfile
 import shutil
 
-# import logging
-
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.utils.config import config
 
 config.set("preferences.date-format", 0)

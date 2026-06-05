@@ -25,7 +25,7 @@ Proxy class for the Gramps databases. Filter out all data marked private.
 
 # -------------------------------------------------------------------------
 #
-# Python libraries
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale

@@ -26,15 +26,21 @@
 # pylint: disable=too-many-statements,too-many-locals,too-many-branches
 # pylint: disable=wrong-import-position,too-many-public-methods,no-self-use
 # pylint: disable=too-many-arguments
-# ------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import sys
 import os
 import random
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

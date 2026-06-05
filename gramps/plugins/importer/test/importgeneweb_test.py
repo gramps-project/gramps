@@ -21,8 +21,19 @@
 Unit test of the GeneWebParser
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import logging
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..importgeneweb import GeneWebParser
 from ....gen.lib.date import Date
 

@@ -27,7 +27,7 @@ Polish-specific classes for parsing and displaying dates.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import re

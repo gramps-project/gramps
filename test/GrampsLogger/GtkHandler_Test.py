@@ -19,11 +19,21 @@
 
 # test/GrampsLogger/GtkHandler_Test.py
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import unittest
 import logging
 import sys
 
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
 log = logging.getLogger("Gramps.Tests.GrampsLogger")

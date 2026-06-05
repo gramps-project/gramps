@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
-from gi.repository import GObject
 
 """
 Package providing filtering framework for Gramps.
@@ -25,9 +24,10 @@ Package providing filtering framework for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# GTK
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
+from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale

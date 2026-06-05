@@ -23,6 +23,11 @@ docgen API writes on. It provides common functionality, and translates between
 gen data specific for output (eg markup in gen/lib) and output where needed
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .docbackend import DocBackendError, DocBackend
 from .cairobackend import CairoBackend
 

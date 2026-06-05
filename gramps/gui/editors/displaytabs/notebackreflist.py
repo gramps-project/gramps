@@ -19,10 +19,9 @@
 
 # -------------------------------------------------------------------------
 #
-# Gramps classes
+# Gramps modules
 #
 # -------------------------------------------------------------------------
-
 from .backrefmodel import BackRefModel
 from .backreflist import BackRefList
 

@@ -38,23 +38,23 @@ Classe:
     RepositoryPage - Repository index page and individual Repository pages
 """
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from collections import defaultdict
 from decimal import getcontext
 import logging
 
-# ------------------------------------------------
-# Gramps module
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import Repository
 from gramps.plugins.lib.libhtml import Html
-
-# ------------------------------------------------
-# specific narrative web import
-# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import FULLCLEAR, html_escape
 

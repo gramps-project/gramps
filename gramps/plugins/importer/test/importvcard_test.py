@@ -23,6 +23,11 @@ Unittest of import of VCard
 
 # in case of a failing test, add True as last parameter to do_case to see the output.
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import sys
 import os
@@ -30,6 +35,11 @@ import time
 import subprocess
 import xml.etree.ElementTree as ET
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.version import VERSION
 from gramps.plugins.importer.importvcard import VCardParser, fitin, splitof_nameprefix

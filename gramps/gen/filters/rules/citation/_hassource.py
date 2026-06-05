@@ -24,7 +24,7 @@ Filter rule to match citation with a particular source.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale

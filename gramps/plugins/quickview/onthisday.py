@@ -23,6 +23,11 @@
 Display all events on a particular day.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.simple import SimpleAccess, SimpleDoc, SimpleTable
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale

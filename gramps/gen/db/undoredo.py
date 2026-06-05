@@ -22,7 +22,7 @@ Base class for undo/redo functionality.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import time

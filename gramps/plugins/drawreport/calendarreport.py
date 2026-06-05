@@ -19,21 +19,22 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
-# ------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import datetime
 import time
 from functools import partial
 import calendar
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import gramps.plugins.lib.libholiday as libholiday
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale

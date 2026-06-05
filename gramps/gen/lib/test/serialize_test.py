@@ -19,9 +19,19 @@
 
 """Unittest for object_to_data, data_to_object"""
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import unittest
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ...const import TEST_DIR
 from ...db.utils import import_as_dict
 from ...user import User

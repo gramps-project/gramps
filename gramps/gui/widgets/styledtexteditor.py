@@ -24,20 +24,14 @@ __all__ = ["StyledTextEditor"]
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
-
 import logging
 
-_LOG = logging.getLogger(".widgets.styledtexteditor")
-
 # -------------------------------------------------------------------------
 #
-# GTK libraries
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import GObject
@@ -52,6 +46,7 @@ from gi.repository.GLib import Variant
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import StyledTextTagType
 from .styledtextbuffer import (
     ALLOWED_STYLES,
@@ -68,6 +63,11 @@ from ..utils import SystemFonts, match_primary_mask, get_link_color
 from gramps.gen.config import config
 from gramps.gen.constfunc import has_display, mac
 from ..uimanager import ActionGroup
+
+_ = glocale.translation.gettext
+
+_LOG = logging.getLogger(".widgets.styledtexteditor")
+
 
 # -------------------------------------------------------------------------
 #

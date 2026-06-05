@@ -23,6 +23,11 @@
 Package providing filter rules for Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._allsources import AllSources
 from ._hasattribute import HasAttribute
 from ._hasgallery import HasGallery

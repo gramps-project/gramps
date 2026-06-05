@@ -27,17 +27,17 @@ localized tasks.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
-import datetime
 
 # -------------------------------------------------------------------------
 #
-# set up logging
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
+import datetime
 import logging
 
 log = logging.getLogger(".DateDisplay")

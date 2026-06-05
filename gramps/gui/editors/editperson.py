@@ -27,7 +27,7 @@ to edit information about a particular Person.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from copy import copy
@@ -44,7 +44,7 @@ from gi.repository.GLib import markup_escape_text
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

@@ -24,7 +24,7 @@ Option class representing color/surname mappings.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import Option

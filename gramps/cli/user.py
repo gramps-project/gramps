@@ -21,11 +21,11 @@
 The User class provides basic interaction with the user.
 """
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

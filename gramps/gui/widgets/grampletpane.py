@@ -24,18 +24,23 @@ GrampletView interface.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from xml.sax.saxutils import escape
+import time
+import os
+import configparser
+import logging
+
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
-from xml.sax.saxutils import escape
-import time
-import os
-import configparser
-
-import logging
 
 LOG = logging.getLogger(".")
 

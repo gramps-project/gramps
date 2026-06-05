@@ -24,7 +24,7 @@ Handle the csv format when exporting views
 
 # -------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging
@@ -32,7 +32,7 @@ import csv
 
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -41,7 +41,7 @@ from gi.repository import Gtk
 #
 # Gramps modules
 #
-#  -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 

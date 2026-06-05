@@ -27,16 +27,20 @@ Class:
     AlphabeticIndex - approximate emulation of ICU Alphabetic Index
 """
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from unicodedata import normalize
 from collections import defaultdict
 import logging
 
-# ------------------------------------------------
-# Gramps module
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 HAVE_ICU = False

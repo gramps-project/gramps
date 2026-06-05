@@ -20,13 +20,18 @@
 
 # -------------------------------------------------------------------------
 #
-# GTK libraries
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import GLib
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

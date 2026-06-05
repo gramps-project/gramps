@@ -15,19 +15,18 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import time
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
-
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Person, Family
 from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.db import PERSON_KEY, FAMILY_KEY, TXNDEL

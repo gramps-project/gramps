@@ -20,6 +20,11 @@
 Library common to SourceView and CitationTreeView
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.errors import HandleError
 
 

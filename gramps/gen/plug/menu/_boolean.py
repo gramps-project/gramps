@@ -24,7 +24,7 @@ Option class representing a boolean (yes/no, true/false).
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import Option

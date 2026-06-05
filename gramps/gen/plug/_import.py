@@ -21,6 +21,11 @@
 This module provides the :class:`.Plugin` class for import plugins.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from . import Plugin
 
 

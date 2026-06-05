@@ -38,24 +38,24 @@ Classe:
     SourcePage - Source index page and individual Source pages
 """
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from collections import defaultdict
 from decimal import getcontext
 from unicodedata import normalize
 import logging
 
-# ------------------------------------------------
-# Gramps module
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import Source
 from gramps.plugins.lib.libhtml import Html
-
-# ------------------------------------------------
-# specific narrative web import
-# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (
     FULLCLEAR,

@@ -23,8 +23,18 @@
 Tests for the ProbablyAlive (probably_alive_range) utility.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ...db import DbTxn
 from ...db.utils import make_database
 from ...lib import Date, Event, EventRef, EventType, Person

@@ -21,18 +21,28 @@
 An override to allow easy multiselections.
 """
 
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..utils import no_match_primary_mask
 from . import PersistentTreeView
+
 
 # -------------------------------------------------------------------------
 #
 # MultiTreeView class
 #
 # -------------------------------------------------------------------------
-
-
 class MultiTreeView(PersistentTreeView):
     """
     TreeView that captures mouse events to make drag and drop work properly

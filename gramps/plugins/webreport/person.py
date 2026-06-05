@@ -38,18 +38,22 @@ Classe:
     PersonPage - Person index page and individual `Person pages
 """
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from collections import defaultdict
 from operator import itemgetter
 from decimal import Decimal, getcontext
 from unicodedata import normalize
 import logging
 
-# ------------------------------------------------
-# Gramps module
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (
     ChildRefType,
@@ -73,10 +77,6 @@ from gramps.plugins.lib.libhtml import Html
 from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.proxy import LivingProxyDb
 from gramps.gen.relationship import get_relationship_calculator
-
-# ------------------------------------------------
-# specific narrative web import
-# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (
     alphabet_navigation,

@@ -24,7 +24,7 @@ Option class representing a list of filters.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import EnumeratedListOption

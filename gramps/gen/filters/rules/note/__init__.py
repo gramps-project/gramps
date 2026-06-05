@@ -22,6 +22,11 @@
 Package providing filter rules for Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._allnotes import AllNotes
 from ._hasidof import HasIdOf
 from ._regexpidof import RegExpIdOf

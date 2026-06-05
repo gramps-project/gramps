@@ -25,7 +25,7 @@ Utilities to create unique identifiers
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import sys

@@ -23,13 +23,28 @@ source/citation import helpers for FamilySearch data.
 turns FS source descriptions into Gramps repositories, sources, citations, and notes.
 """
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import logging
 import re
 from typing import Any, Iterator
 from urllib.parse import urljoin, urlparse, urlunparse
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.lib import (
     Citation,
     Note,

@@ -27,14 +27,15 @@ TreeModel for the Gramps Person tree.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from html import escape
+import logging
 
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -45,7 +46,6 @@ from gi.repository import GObject
 # set up logging
 #
 # -------------------------------------------------------------------------
-import logging
 
 _LOG = logging.getLogger(".")
 

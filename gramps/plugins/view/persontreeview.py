@@ -25,7 +25,7 @@ Person Tree View
 
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -42,12 +42,6 @@ from gramps.gen.lib import Name, Person, Surname
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.editors import EditPerson
 from gramps.gen.utils.db import preset_name
-
-# -------------------------------------------------------------------------
-#
-# Internationalization
-#
-# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

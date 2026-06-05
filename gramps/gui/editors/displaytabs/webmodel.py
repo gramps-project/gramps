@@ -23,7 +23,7 @@ The TreeModel for the URL list in the Url Tab.
 
 # -------------------------------------------------------------------------
 #
-# GTK libraries
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk

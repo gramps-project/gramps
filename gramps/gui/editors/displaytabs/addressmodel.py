@@ -23,14 +23,14 @@ The TreeModel for the Address list in the Address Tab.
 
 # -------------------------------------------------------------------------
 #
-# GTK libraries
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
-# Gramps classes
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date

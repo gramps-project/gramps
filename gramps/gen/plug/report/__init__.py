@@ -25,6 +25,11 @@
 
 "Report Generation Framework"
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._constants import *
 from ._reportbase import Report
 

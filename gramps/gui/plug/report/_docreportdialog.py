@@ -25,14 +25,14 @@ base class for generating dialogs for docgen-derived reports
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os
 
 # -------------------------------------------------------------------------
 #
-# GTK+ modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk

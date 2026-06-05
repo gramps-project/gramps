@@ -18,27 +18,25 @@
 #
 """Heatmap web report."""
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import logging
 from string import Template
 from decimal import Decimal, getcontext
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.plugins.lib.libhtml import Html
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
-
-# ------------------------------------------------
-# specific narrative web import
-# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.gen.lib import (
     EventType,

@@ -43,9 +43,11 @@ Classes:
 
 """
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import logging
 from functools import partial
 import os
@@ -57,9 +59,11 @@ from io import BytesIO, TextIOWrapper
 from collections import defaultdict
 from decimal import getcontext
 
-# ------------------------------------------------
-# Gramps module
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.const import VERSION_DIR
 from gramps.gen.lib import (

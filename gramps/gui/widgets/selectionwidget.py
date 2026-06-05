@@ -29,16 +29,10 @@ from gi.repository import GLib, GObject
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer
-
-# -------------------------------------------------------------------------
-#
-# grabbers constants and routines
-#
-# -------------------------------------------------------------------------
 from .grabbers import (
     grabber_generators,
     can_grab,

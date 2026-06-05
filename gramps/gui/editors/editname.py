@@ -23,10 +23,9 @@
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
-from gi.repository import GObject
 from copy import copy
 
 # -------------------------------------------------------------------------
@@ -34,11 +33,12 @@ from copy import copy
 # GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
+from gi.repository import GObject
 from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

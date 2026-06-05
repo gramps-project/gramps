@@ -29,12 +29,6 @@ Rule that checks for a note of a particular type.
 from ...const import GRAMPS_LOCALE as glocale
 from ...lib.notetype import NoteType
 from . import Rule
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
 from ...lib.notebase import NoteBase
 from ...db import Database
 

@@ -25,7 +25,7 @@ Make an 'Unknown' primary object
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from time import strftime, localtime, time

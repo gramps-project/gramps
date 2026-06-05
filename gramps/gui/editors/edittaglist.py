@@ -22,7 +22,7 @@ Tag editing module for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# GNOME modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk

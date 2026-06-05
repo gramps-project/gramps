@@ -20,6 +20,11 @@
 
 "Simple access routines"
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._simpleaccess import *
 from ._simpledoc import *
 from ._simpletable import *

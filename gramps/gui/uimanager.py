@@ -21,13 +21,28 @@
 A replacement UIManager and ActionGroup.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import copy
 import sys
 import logging
 import xml.etree.ElementTree as ET
 
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 from gi.repository import GLib, Gio, Gtk
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..gen.const import GRAMPS_LOCALE as glocale
 from ..gen.config import config
 

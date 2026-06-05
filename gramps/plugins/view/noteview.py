@@ -24,7 +24,7 @@ Note View.
 
 # -------------------------------------------------------------------------
 #
-# python modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -43,7 +43,7 @@ from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON

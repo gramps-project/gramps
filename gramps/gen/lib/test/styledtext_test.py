@@ -19,9 +19,19 @@
 
 """unittest for styledtext"""
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 from copy import deepcopy
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..styledtext import StyledText
 from ..styledtexttag import StyledTextTag
 from ..styledtexttagtype import StyledTextTagType

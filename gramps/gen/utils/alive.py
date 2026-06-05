@@ -27,7 +27,7 @@ privacy in reports and exports.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

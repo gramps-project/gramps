@@ -25,7 +25,7 @@ Contain and organize bibliographic information.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import string

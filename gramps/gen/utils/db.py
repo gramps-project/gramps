@@ -23,7 +23,7 @@ Utilities for getting information from the database.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging

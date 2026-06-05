@@ -24,7 +24,7 @@
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os
@@ -40,7 +40,7 @@ from gi.repository import Gdk
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -78,7 +78,6 @@ from gramps.gen.const import URL_MANUAL_SECT2
 # Constants
 #
 # -------------------------------------------------------------------------
-
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
 WIKI_HELP_SEC = _("Media_Reference_Editor_dialog", "manual")
 

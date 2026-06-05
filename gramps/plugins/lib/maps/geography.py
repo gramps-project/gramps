@@ -25,29 +25,35 @@ This module is the base class for all geography view module
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import re
 import time
 import logging
 from typing import Any
-import gi
 
 # -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
+import gi
 from gi.repository import GLib
 from gi.repository import Gtk
 from gi.repository import OsmGpsMap as osmgpsmap
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.db import DbTxn

@@ -33,6 +33,7 @@ interfaces should be derived from the core classes.
 #
 # -------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
+import logging
 
 # -------------------------------------------------------------------------
 #
@@ -46,8 +47,6 @@ from .stylesheet import StyleSheet
 # set up logging
 #
 # -------------------------------------------------------------------------
-import logging
-
 log = logging.getLogger(".basedoc")
 
 

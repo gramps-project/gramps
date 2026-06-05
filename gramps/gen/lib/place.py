@@ -27,7 +27,7 @@ Place object for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations

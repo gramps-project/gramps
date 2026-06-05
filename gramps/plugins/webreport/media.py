@@ -38,9 +38,11 @@ Classe:
     MediaPage - Media index page and individual Media pages
 """
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import shutil
 import tempfile
@@ -48,9 +50,11 @@ from collections import defaultdict
 from decimal import getcontext
 import logging
 
-# ------------------------------------------------
-# Gramps module
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import Date, Media, Note, NoteType, Name
 from gramps.gen.display.name import displayer as _nd
@@ -61,10 +65,6 @@ from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.thumbnails import run_thumbnailer
 from gramps.gen.utils.image import image_size
 from gramps.plugins.lib.libhtml import Html
-
-# ------------------------------------------------
-# specific narrative web import
-# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import FULLCLEAR, _WRONGMEDIAPATH, html_escape
 

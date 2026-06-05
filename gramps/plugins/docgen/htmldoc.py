@@ -28,20 +28,20 @@
 Report output generator for html documents, based on Html and HtmlBackend
 """
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import shutil
 import logging
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.utils.image import resize_to_jpeg
 from gramps.gen.const import DATA_DIR, IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE
 from gramps.gen.errors import ReportError

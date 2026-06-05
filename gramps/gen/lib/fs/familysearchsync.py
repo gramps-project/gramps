@@ -22,6 +22,11 @@
 FamilySearch sync secondary object for Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
 from ..secondaryobj import SecondaryObject
 

@@ -21,18 +21,24 @@
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import re
 import math
 import logging
+
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
 import gi
 from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -45,11 +51,6 @@ from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as _pd
 from .osmgps import OsmGps
 
-# -------------------------------------------------------------------------
-#
-# GTK/Gnome modules
-#
-# -------------------------------------------------------------------------
 try:
     gi.require_version("GeocodeGlib", "1.0")
     from gi.repository import GeocodeGlib

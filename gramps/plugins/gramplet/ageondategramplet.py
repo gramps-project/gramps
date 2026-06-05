@@ -20,11 +20,11 @@ AgeOnDateGramplet computes the age for everyone thought to be alive
 on a particular date.
 """
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.datehandler import parser
 from gramps.gui.plug.quick import run_quick_report_by_name

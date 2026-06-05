@@ -21,6 +21,11 @@
 Package init for the treemodels package.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from .peoplemodel import PeopleBaseModel, PersonListModel, PersonTreeModel
 from .familymodel import FamilyModel
 from .eventmodel import EventModel

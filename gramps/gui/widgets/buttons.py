@@ -21,7 +21,7 @@ __all__ = ["IconButton", "WarnButton", "SimpleButton", "PrivacyButton"]
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

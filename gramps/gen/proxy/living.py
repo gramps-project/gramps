@@ -24,7 +24,7 @@ Proxy class for the Gramps databases. Filter out all living people.
 
 # -------------------------------------------------------------------------
 #
-# Gramps libraries
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from .proxybase import ProxyDbBase

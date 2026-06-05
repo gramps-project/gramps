@@ -21,11 +21,21 @@
 Parses the lds.xml file to build the temple/code maps
 """
 
-from ..const import DATA_DIR
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import logging
-
 from xml.parsers.expat import ParserCreate
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+from ..const import DATA_DIR
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext

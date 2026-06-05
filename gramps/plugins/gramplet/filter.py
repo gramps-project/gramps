@@ -24,7 +24,7 @@ Module providing a gramplet interface to the sidebar filters.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from typing import Any

@@ -23,6 +23,11 @@
 Testing framework for performing a variety of unttests for GRAMPS.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import logging
 
 import os

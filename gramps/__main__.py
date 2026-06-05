@@ -24,6 +24,11 @@ It is provided to be able to start gramps as `python3 -m gramps`,
 e.g. in a virtual environment.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 import gramps.grampsapp as app
 
 if __name__ == "__main__":

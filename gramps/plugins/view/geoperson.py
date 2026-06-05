@@ -25,26 +25,26 @@ Geography for one person
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import operator
-
-# -------------------------------------------------------------------------
-#
-# set up logging
-#
-# -------------------------------------------------------------------------
 import logging
 
 # -------------------------------------------------------------------------
 #
-# Gramps Modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GLib
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import EventRoleType, EventType
 from gramps.gen.config import config

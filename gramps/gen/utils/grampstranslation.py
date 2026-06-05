@@ -23,22 +23,23 @@ language binding for the user interface and user-invoked language bindings
 for reports so that they can be created in a different language from the UI's.
 """
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# python modules
+# Future imports
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import gettext
 import collections
 import inspect
 
 
-# -------------------------------------------------------------------------
-#
-# Translations Classes
-#
-# -------------------------------------------------------------------------
 class Lexeme(str):
     r"""
     Created with :meth:`~GrampsTranslations.lexgettext`

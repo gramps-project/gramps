@@ -24,7 +24,7 @@ Option class representing a file destination.
 
 # -------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from . import StringOption

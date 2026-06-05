@@ -26,13 +26,7 @@ to make sure these remain in sync with the rest of the design.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
-#
-# -------------------------------------------------------------------------
-
-# -------------------------------------------------------------------------
-#
-# Gramps Modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from .lib import Date
@@ -40,12 +34,6 @@ from .utils.db import get_birth_or_fallback
 from .display.name import displayer as _nd
 from .display.place import displayer as _pd
 from .const import GRAMPS_LOCALE as glocale
-
-# -------------------------------------------------------------------------
-#
-# Constants
-#
-# -------------------------------------------------------------------------
 
 
 class Sort:

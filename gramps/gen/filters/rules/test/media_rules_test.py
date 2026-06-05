@@ -21,9 +21,19 @@
 Unittest that tests media-specific filter rules
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import os
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ....db.utils import import_as_dict
 from ....filters import GenericFilterFactory
 from ....const import TEST_DIR

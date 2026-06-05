@@ -23,7 +23,7 @@ Handles the Tip of the Day dialog
 
 # -------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from xml.parsers.expat import ParserCreate, ExpatError
@@ -32,7 +32,7 @@ import os
 
 # -------------------------------------------------------------------------
 #
-# GTK/GNOME modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk

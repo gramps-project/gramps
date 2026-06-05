@@ -21,6 +21,11 @@
 Unittest for export to VCard
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import time
 import subprocess
@@ -28,6 +33,11 @@ import sys
 import os
 import xml.etree.ElementTree as ET
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ...lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.version import VERSION
 from ..exportvcard import VCardWriter

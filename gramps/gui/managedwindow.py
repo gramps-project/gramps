@@ -25,7 +25,7 @@ the create/deletion of dialog windows.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os

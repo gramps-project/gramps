@@ -23,6 +23,11 @@
 The "plug" package for handling plugins in Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._plugin import Plugin
 from ._pluginreg import (
     PluginData,

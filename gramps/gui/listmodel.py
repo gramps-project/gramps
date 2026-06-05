@@ -23,17 +23,18 @@ Provide the basic functionality for a list view
 
 # -------------------------------------------------------------------------
 #
-# GTK
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Pango, Gdk, Gtk, GdkPixbuf
-from gramps.gen.const import THUMBSCALE
 
 # -------------------------------------------------------------------------
 #
-# constants
+# Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.const import THUMBSCALE
+
 TEXT = 0
 TOGGLE = 1
 COMBO = 2

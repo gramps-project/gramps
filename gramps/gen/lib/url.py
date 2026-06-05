@@ -25,7 +25,7 @@ Url class for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from urllib.parse import urlparse

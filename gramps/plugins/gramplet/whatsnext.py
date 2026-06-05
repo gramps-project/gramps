@@ -19,11 +19,11 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import EventType, FamilyRelType
 from gramps.gen.plug import Gramplet
 from gramps.gen.display.name import displayer as name_displayer

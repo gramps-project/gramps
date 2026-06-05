@@ -23,7 +23,7 @@ Address List display tab.
 
 # -------------------------------------------------------------------------
 #
-# Python classes
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

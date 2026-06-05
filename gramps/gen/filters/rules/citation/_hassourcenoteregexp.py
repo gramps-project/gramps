@@ -24,7 +24,7 @@ match a regular expression.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale

@@ -27,7 +27,7 @@ Provides also two small base classes: :class:`CLIDbLoader`, :class:`CLIManager`
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

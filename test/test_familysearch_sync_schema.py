@@ -21,8 +21,18 @@
 
 # python3 -m unittest discover -s test -p 'test_familysearch_sync_schema.py' -v
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import copy
 import os
 import shutil
@@ -31,6 +41,11 @@ import tempfile
 import types
 import unittest
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.db import DbTxn
 from gramps.gen.db.dbconst import PERSON_KEY
 from gramps.gen.fs.db_familysearch import FSStatusDB

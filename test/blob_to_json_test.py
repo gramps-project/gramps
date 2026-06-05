@@ -1,3 +1,8 @@
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.db.utils import open_database
 from gramps.gen.db.conversion_tools import convert_21
 

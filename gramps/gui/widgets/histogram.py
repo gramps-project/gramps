@@ -22,14 +22,14 @@ Provides a simple histogram widget for use in gramplets.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import math
 
 # -------------------------------------------------------------------------
 #
-# Gtk modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -42,7 +42,6 @@ from gi.repository import Pango, PangoCairo
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-
 from ...gen.const import GRAMPS_LOCALE as glocale
 
 

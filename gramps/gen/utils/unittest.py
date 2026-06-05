@@ -23,16 +23,10 @@ Utilities used in unit tests.
 
 # -------------------------------------------------------------------------
 #
-# Gramps classes
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ..utils.grampslocale import GrampsLocale
-
-# -------------------------------------------------------------------------
-#
-# Unit test utilities
-#
-# -------------------------------------------------------------------------
 
 parser = GrampsLocale(lang="en").date_parser
 displayer = GrampsLocale().date_displayer

@@ -18,14 +18,28 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from typing import Iterable, Set
-
 import asyncio
 import email.utils
 import time
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gen.fs.fs_import.deserializer import deserialize_json, to_string, DateFormal
 from gramps.gen.fs.fs_import.deserializer import all_annotations, init_class

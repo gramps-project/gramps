@@ -20,7 +20,7 @@
 
 # -------------------------------------------------------------------------
 #
-# Python classes
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os
@@ -30,7 +30,7 @@ from urllib.request import url2pathname
 
 # -------------------------------------------------------------------------
 #
-# GTK libraries
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gdk
@@ -42,7 +42,7 @@ from gi.repository import GLib
 
 # -------------------------------------------------------------------------
 #
-# Gramps classes
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ...utils import is_right_click, open_file_with_default_application

@@ -21,6 +21,11 @@
 Package providing filter rules for Gramps.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._allmedia import AllMedia
 from ._hasidof import HasIdOf
 from ._regexpidof import RegExpIdOf

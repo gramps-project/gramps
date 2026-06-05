@@ -23,7 +23,7 @@ Base class for map services. Example: open place in openstreetmap.org
 
 # ------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 

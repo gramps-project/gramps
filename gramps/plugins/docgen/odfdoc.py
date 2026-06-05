@@ -29,7 +29,7 @@ ODFDoc : used to generate Open Office Document
 
 # -------------------------------------------------------------------------
 #
-# Standard Python Modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import os

@@ -33,6 +33,11 @@ to communicate events to any callback methods in either the database code
 or the UI code.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import sys
 import types
 import traceback

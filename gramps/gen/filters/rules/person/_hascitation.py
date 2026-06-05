@@ -23,7 +23,7 @@ Filter rule to match persons with a particular citation.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale

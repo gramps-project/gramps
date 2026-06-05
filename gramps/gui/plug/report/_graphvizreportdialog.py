@@ -19,11 +19,11 @@
 
 """class for generating dialogs for graphviz-based reports"""
 
-# -------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# -------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ._graphreportdialog import GraphReportDialog, BaseFormatComboBox
 from gramps.gen.plug.report import CATEGORY_GRAPHVIZ
 import gramps.gen.plug.docgen.graphdoc as graphdoc

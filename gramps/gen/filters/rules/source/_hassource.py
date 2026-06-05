@@ -23,7 +23,7 @@ Filter rule to match sources with a particular value.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale

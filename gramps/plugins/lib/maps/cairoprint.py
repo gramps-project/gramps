@@ -19,16 +19,16 @@
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
-from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
 #
-# Gramps modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
+from gi.repository import Gtk
 
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None

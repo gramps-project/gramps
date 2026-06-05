@@ -17,20 +17,15 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Python Modules
+# GTK/Gnome modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
 
 
-# ------------------------------------------------------------------------
-#
-# Gramps Modules
-#
-# ------------------------------------------------------------------------
 class CellRendererTextEdit(Gtk.CellRendererText):
     """To be used where you normally use Gtk.CellRendererText and you want to
     avoid losing the text if the user clicks outside the cell (Like an 'OK'

@@ -19,11 +19,21 @@
 
 """Unittest for editreference.py"""
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 from unittest.mock import Mock, patch
 import os
 import shutil
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.lib import (
     Person,
     Family,

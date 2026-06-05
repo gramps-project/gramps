@@ -47,6 +47,11 @@ Keyword translation interface
 #        'n' : nickname   = nick name
 #        'g' : familynick = family nick name
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext

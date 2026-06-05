@@ -29,12 +29,6 @@ Rule that checks for a note with a particular tag.
 # -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
 from . import Rule
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
 from ...lib.notebase import NoteBase
 from ...db import Database
 

@@ -26,18 +26,25 @@ Package providing filtering framework for Gramps.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from typing import cast, Dict, List, Literal, Set, Tuple
 import logging
 import time
 
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
-# Gramps imports
+# Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..lib.person import Person
 from ..lib.family import Family
 from ..lib.src import Source
@@ -51,13 +58,6 @@ from ..lib.tag import Tag
 from ..const import GRAMPS_LOCALE as glocale
 from .rules import Rule
 from .optimizer import Optimizer
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
-from typing import cast, Dict, List, Literal, Set, Tuple
 from ..db import Database
 from ..types import PrimaryObjectHandle
 

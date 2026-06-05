@@ -26,7 +26,7 @@ SVG document generator.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from io import StringIO

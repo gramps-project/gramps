@@ -37,17 +37,21 @@ Classe:
     PlacePage - Place index page and individual Place pages
 """
 
-# ------------------------------------------------
-# python modules
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from collections import defaultdict
 from decimal import getcontext
 import unicodedata
 import logging
 
-# ------------------------------------------------
-# Gramps module
-# ------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import PlaceType, Place, PlaceName, Media
 from gramps.gen.plug.report import Bibliography
@@ -56,10 +60,6 @@ from gramps.plugins.lib.libhtml import Html
 from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as _pd
-
-# ------------------------------------------------
-# specific narrative web import
-# ------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (
     alphabet_navigation,

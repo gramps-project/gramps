@@ -24,31 +24,23 @@
 
 "Import from CSV Spreadsheet"
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+from io import TextIOWrapper
 import codecs
 import csv
-
-# ------------------------------------------------------------------------
-#
-# Set up logging
-#
-# ------------------------------------------------------------------------
 import logging
-
-# -------------------------------------------------------------------------
-#
-# Standard Python Modules
-#
-# -------------------------------------------------------------------------
 import time
-from io import TextIOWrapper
-
-from gramps.gen.config import config
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.datehandler import parser as _dp
 from gramps.gen.db import DbTxn
@@ -82,6 +74,11 @@ from gramps.gen.utils.libformatting import ImportInfo
 from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.utils.unknown import create_explanation_note
 
+# ------------------------------------------------------------------------
+#
+# Set up logging
+#
+# ------------------------------------------------------------------------
 LOG = logging.getLogger(".ImportCSV")
 
 _ = glocale.translation.sgettext

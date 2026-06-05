@@ -23,7 +23,7 @@ Filter rule to match families with a particular event.
 
 # -------------------------------------------------------------------------
 #
-# Standard Python modules
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale

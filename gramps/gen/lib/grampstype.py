@@ -25,10 +25,16 @@ Base type for all gramps types.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Future imports
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from functools import singledispatchmethod
 from typing import Any
 

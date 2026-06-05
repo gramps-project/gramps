@@ -29,11 +29,21 @@ where gramps is the directory containing most of the Gramps code, and this file
 is in the directory 'test'
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import os
 import tempfile
 import shutil
 import sys
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.dbstate import DbState
 from gramps.cli.clidbman import CLIDbManager
 from gramps.gen.db.base import DbTxn

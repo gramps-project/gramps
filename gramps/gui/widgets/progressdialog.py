@@ -23,20 +23,15 @@ long running operations.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import time
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
 import logging
-
-log = logging.getLogger("gen.progressdialog")
 
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -46,7 +41,12 @@ from gi.repository import Gtk
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.utils.callback import Callback
+
+_ = glocale.translation.gettext
+
+log = logging.getLogger("gen.progressdialog")
 
 
 # -------------------------------------------------------------------------

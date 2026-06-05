@@ -20,10 +20,20 @@
 
 """Unittest for constfunc.py"""
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
-from .. import constfunc
-
 from os import environ as env
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+from .. import constfunc
 
 
 class Test_has_display(unittest.TestCase):

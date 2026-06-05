@@ -28,7 +28,6 @@ Croatian-specific classes for calculating relationships and kinship names.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-
 import gramps.gen.relationship
 
 _PARENTS = [

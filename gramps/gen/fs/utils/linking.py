@@ -18,10 +18,25 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
+# -------------------------------------------------------------------------
+#
+# Future imports
+#
+# -------------------------------------------------------------------------
 from __future__ import annotations
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 from typing import Any, Optional, Union
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.db import DbTxn
 from gramps.gen.lib import Attribute, SrcAttribute, Person, Event, Citation
 from gramps.gen.const import GRAMPS_LOCALE as glocale

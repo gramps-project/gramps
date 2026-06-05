@@ -21,6 +21,11 @@
 Provide a simplified database access interface to the Gramps database.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ..plug.docgen import (
     StyleSheet,
     ParagraphStyle,

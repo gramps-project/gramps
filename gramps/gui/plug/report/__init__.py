@@ -25,6 +25,11 @@
 
 "Report Generation Framework"
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._reportdialog import report
 from ._drawreportdialog import DrawReportDialog
 from ._textreportdialog import TextReportDialog

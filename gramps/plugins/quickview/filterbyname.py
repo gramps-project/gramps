@@ -24,15 +24,25 @@
 Display filtered data
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import os
+from collections import defaultdict
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.utils.file import media_path_full
 from gramps.gui.plug.quick import run_quick_report_by_name_direct
 from gramps.gen.lib import Person
 from gramps.gen.datehandler import get_date
-
-import os
-from collections import defaultdict
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext

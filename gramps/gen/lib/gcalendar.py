@@ -23,7 +23,7 @@ Provide calendar to sdn (serial date number) conversion.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import math

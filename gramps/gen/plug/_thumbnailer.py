@@ -23,7 +23,7 @@ This module provides the base class for thumbnailer plugins.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod

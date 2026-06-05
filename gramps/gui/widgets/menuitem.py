@@ -23,7 +23,7 @@ __all__ = ["MenuItemWithData", "add_menuitem"]
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import logging
@@ -32,7 +32,7 @@ _LOG = logging.getLogger(".widgets.menuitem")
 
 # -------------------------------------------------------------------------
 #
-# GTK modules
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import GObject

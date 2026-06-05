@@ -23,7 +23,7 @@ Class handling language-specific selection for date parser and displayer.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 import time

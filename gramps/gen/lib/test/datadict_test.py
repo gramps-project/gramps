@@ -21,8 +21,18 @@
 
 # See also tests in ./serialize_test.py
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.lib.json_utils import DataDict, DataList, object_to_data, data_to_object
 from gramps.gen.lib import (
     Person,

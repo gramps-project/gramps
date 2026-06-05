@@ -22,22 +22,38 @@ Unittest that tests that part of the merge process that influences other
 objects than the objects merging.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
 import unittest
 import time
 import os
 from io import BytesIO
 import difflib
 import copy
-import lxml.etree as ET
 import tempfile
 
+# -------------------------------------------------------------------------
+#
+# Third-party modules
+#
+# -------------------------------------------------------------------------
+import lxml.etree as ET
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+from gramps.gen.const import DATA_DIR, USER_PLUGINS
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.lib import Name, Surname
+from gramps.gen.user import User
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.test.test_util import Gramps
-from gramps.gen.user import User
-from gramps.gen.const import DATA_DIR, USER_PLUGINS
 from gramps.version import VERSION
-from gramps.gen.lib import Name, Surname
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
 

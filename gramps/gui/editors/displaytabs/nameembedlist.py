@@ -20,7 +20,7 @@
 
 # -------------------------------------------------------------------------
 #
-# Python classes
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -29,7 +29,7 @@ from gi.repository import GLib
 
 # -------------------------------------------------------------------------
 #
-# Python classes
+# Gramps modules
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

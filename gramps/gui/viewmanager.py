@@ -29,7 +29,7 @@ Manages the main window and the pluggable views
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from collections import defaultdict
@@ -40,24 +40,23 @@ from io import StringIO
 import gc
 import html
 import webbrowser
+import logging
+
+# -------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+# -------------------------------------------------------------------------
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GLib
 
 # -------------------------------------------------------------------------
 #
 # set up logging
 #
 # -------------------------------------------------------------------------
-import logging
-
 LOG = logging.getLogger(".")
-
-# -------------------------------------------------------------------------
-#
-# GNOME modules
-#
-# -------------------------------------------------------------------------
-from gi.repository import Gtk
-from gi.repository import Gdk
-from gi.repository import GLib
 
 # -------------------------------------------------------------------------
 #

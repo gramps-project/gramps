@@ -20,17 +20,11 @@
 OpenStreetMap map service plugin. Open place in openstreetmap.org
 """
 
-# ------------------------------------------------------------------------
-#
-# python modules
-#
-# ------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.plugins.lib.libmapservice import MapService
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as place_displayer

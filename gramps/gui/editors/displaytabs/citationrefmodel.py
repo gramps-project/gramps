@@ -21,17 +21,23 @@
 
 # -------------------------------------------------------------------------
 #
-# Python
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
 from html import escape
 
 # -------------------------------------------------------------------------
 #
-# GTK libraries
+# GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
 from gi.repository import Gtk
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.datehandler import get_date, get_date_valid

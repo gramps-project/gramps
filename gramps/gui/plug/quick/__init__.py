@@ -23,6 +23,11 @@
 
 "Quick Report Framework"
 
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
 from ._quickreports import (
     create_web_connect_menu,
     create_quickreport_menu,
