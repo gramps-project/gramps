@@ -268,7 +268,9 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX source_gramps_id ON source(gramps_id)")
         self.dbapi.execute("CREATE INDEX citation_page ON citation(page)")
         self.dbapi.execute("CREATE INDEX citation_gramps_id ON citation(gramps_id)")
-        self.dbapi.execute("CREATE INDEX media_desc ON media(desc)")
+        self.dbapi.execute(
+            f"CREATE INDEX media_desc ON media({self._quote_column('desc')})"
+        )
         self.dbapi.execute("CREATE INDEX media_gramps_id ON media(gramps_id)")
         self.dbapi.execute("CREATE INDEX place_title ON place(title)")
         self.dbapi.execute("CREATE INDEX place_enclosed_by ON place(enclosed_by)")
@@ -657,7 +659,7 @@ class DBAPI(DbGeneric):
         if sort_handles:
             self.dbapi.execute(
                 "SELECT handle FROM media "
-                "ORDER BY desc "
+                f"ORDER BY {self._quote_column('desc')} "
                 f'COLLATE "{self._collation(locale)}"'
             )
         else:
@@ -1252,6 +1254,13 @@ class DBAPI(DbGeneric):
         if schema_type == "number":
             return "REAL"
         return "BLOB"
+
+    def _quote_column(self, col):
+        """
+        Return a column name, quoting it if required by the current dialect.
+        Override in dialect subclasses to quote reserved keywords.
+        """
+        return col
 
     def _create_secondary_columns(self):
         """
