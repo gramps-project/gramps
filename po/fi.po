@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-30 15:00+0100\n"
-"PO-Revision-Date: 2026-05-25 06:11+0000\n"
+"PO-Revision-Date: 2026-06-02 18:01+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
+"X-Generator: Weblate 2026.6\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -7158,7 +7158,7 @@ msgstr "Lapsi"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "Elämäkerta"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
 #, fuzzy
@@ -7190,19 +7190,22 @@ msgstr "Suhde"
 
 #: ../gramps/gen/fs/fs_import/importer.py:281
 msgid "Skipping invalid relationship: child equals a parent"
-msgstr ""
+msgstr "Virheellisen suhteen ohittaminen: lapsi on sama kuin vanhempi"
 
 #: ../gramps/gen/fs/fs_import/importer.py:286
 msgid "Possibly parentless family - Need at least one known parent locally"
 msgstr ""
+"Mahdollisesti vanhemmaton perhe - Tarvitaan vähintään yksi paikallisesti "
+"tunnettu vanhempi"
 
 #: ../gramps/gen/fs/fs_import/importer.py:333
 msgid "Skipping invalid couple: same person as both parents"
 msgstr ""
+"Virheellisen parin ohittaminen: sama henkilö molempien vanhempien roolissa"
 
 #: ../gramps/gen/fs/fs_import/importer.py:375
 msgid "Possible parentless family?"
-msgstr ""
+msgstr "Mahdollinen vanhemmaton perhe?"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
 #, fuzzy
@@ -7283,7 +7286,7 @@ msgstr "Internetosoite"
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
 msgid "Memory: {t}"
-msgstr ""
+msgstr "Muisti: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:421
@@ -7338,7 +7341,7 @@ msgstr "Lisätieto"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:653
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Päivitetty Grampsista"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1371
@@ -7350,22 +7353,22 @@ msgstr "Tuottaja %(author)s"
 #: ../gramps/gen/fs/tags.py:317
 #, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "Ryhmä %(num)d"
 
 #: ../gramps/gen/fs/tags.py:328
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Yleiskuva ? %(title)s ? rivi %(row)d ei ole vihreä (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:338
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Huomautukset ? rivi %(row)d ei ole vihreä (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:348
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Lähteet ? rivi %(row)d ei ole vihreä (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:358
 msgid ""
@@ -7373,6 +7376,10 @@ msgid ""
 "This add-on only sets default colors when the tags are first created and "
 "will not override your custom choices."
 msgstr ""
+"FamilySearchin tilatunnisteiden värit voidaan mukauttaa Grampsissa "
+"valitsemalla Muokkaa tunnisteita. Tämä lisäosa asettaa oletusvärit vain "
+"tunnisteiden luomisen yhteydessä eikä se ohita käyttäjän määrittämiä "
+"asetuksia."
 
 #: ../gramps/gen/fs/utils/linking.py:48
 #, fuzzy
@@ -8923,7 +8930,7 @@ msgstr "Siviiliavioliitto"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
 msgid "FamilySearch sync"
-msgstr ""
+msgstr "FamilySearch-synkronointi"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76
 #: ../gramps/gui/fs/fs_import/options.py:38
