@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-30 15:00+0100\n"
-"PO-Revision-Date: 2026-05-10 07:03+0000\n"
+"PO-Revision-Date: 2026-06-05 11:01+0000\n"
 "Last-Translator: Christoph Eder <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/de_AT/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.5-dev\n"
+"X-Generator: Weblate 2026.6\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -3591,7 +3591,7 @@ msgstr "Präfix"
 
 #: ../gramps/gen/display/name.py:717 ../gramps/gen/display/name.py:839
 msgid "rawsurnames"
-msgstr "unbearbeitete Nachnamen"
+msgstr "OriginalNachnamen"
 
 #: ../gramps/gen/display/name.py:719 ../gramps/gen/display/name.py:841
 #: ../gramps/plugins/importer/importcsv.py:219
@@ -3955,10 +3955,8 @@ msgstr "Quellen-ID:"
 
 #: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:33
 #: ../gramps/gui/editors/filtereditor.py:577
-#, fuzzy
-#| msgid "Citation Filter"
 msgid "Citation filter name:"
-msgstr "Fundstellenfilter"
+msgstr "Fundstellenfiltername:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:66
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
@@ -8560,7 +8558,7 @@ msgstr "Bildungsabschluss"
 
 #: ../gramps/gen/lib/eventtype.py:220
 msgid "Medical Information"
-msgstr "Medizinische Daten"
+msgstr "Medizinische Informationen"
 
 #: ../gramps/gen/lib/eventtype.py:221
 msgid "Military Service"
@@ -8703,7 +8701,7 @@ msgstr "Erw.-Tf."
 #: ../gramps/gen/lib/eventtype.py:254
 msgctxt "Baptism abbreviation"
 msgid "bap."
-msgstr "~"
+msgstr "get."
 
 #: ../gramps/gen/lib/eventtype.py:255
 msgctxt "Bar Mitzvah abbreviation"
@@ -8788,7 +8786,7 @@ msgstr "Grad."
 #: ../gramps/gen/lib/eventtype.py:271
 msgctxt "Medical Information abbreviation"
 msgid "medinf."
-msgstr "med. Daten"
+msgstr "med. Inf."
 
 #: ../gramps/gen/lib/eventtype.py:272
 msgctxt "Military Service abbreviation"
@@ -8813,7 +8811,7 @@ msgstr "Anz. Hochz."
 #: ../gramps/gen/lib/eventtype.py:276
 msgctxt "Occupation abbreviation"
 msgid "occ."
-msgstr "Beruf"
+msgstr "Ber."
 
 #: ../gramps/gen/lib/eventtype.py:277
 msgctxt "Ordination abbreviation"
@@ -11043,7 +11041,7 @@ msgstr "Vornamen ersetzt und Daten entfernt"
 #: ../gramps/gen/plug/report/stdoptions.py:218
 msgctxt "'living people'"
 msgid "Complete names replaced, and data removed"
-msgstr "Kompletter Name ersetzt und Daten entfernt"
+msgstr "Vollständige Namen ersetzt und Daten entfernt"
 
 #: ../gramps/gen/plug/report/stdoptions.py:221
 msgctxt "'living people'"
@@ -11776,11 +11774,11 @@ msgstr "Patronymikon[übl]"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "RAWSURNAMES"
-msgstr "UNBEARBEITETE NACHNAMEN"
+msgstr "ORIGINALNACHNAMEN"
 
 #: ../gramps/gen/utils/keyword.py:70 ../gramps/gui/configure.py:1254
 msgid "Rawsurnames"
-msgstr "unbearbeitete Nachnamen"
+msgstr "OriginalNachnamen"
 
 #: ../gramps/gen/utils/keyword.py:71
 msgid "NOTPATRONYMIC"
@@ -12398,7 +12396,7 @@ msgstr "Familiäres Attribut"
 #: ../gramps/gui/clipboard.py:494
 msgctxt "not available"
 msgid "NA"
-msgstr "N.V."
+msgstr "NV"
 
 #: ../gramps/gui/clipboard.py:503
 #, python-format
@@ -12565,17 +12563,16 @@ msgstr ""
 "Spitzname\n"
 "  <b>Initialen</b>   - erste Buchstabe der Vornamen  <b>Üblich</b>       - "
 "Spitzname sonst erster Vorname\n"
+"  <b>Präfix</b>       - alle Präfixes (von, de)  \n"
 "Nachnamen:\n"
 "  <b>Rest</b>       - nicht primäre Nachnamen    <b>Kein Patronymikon</b>- "
 "alle Nachnamen außer pa/matronymic &amp; primär\n"
-"  <b>Familienspitzname</b> - Familienspitzname        <b>Präfix</b>       - "
-"alle Präfixes (von, de)  \n"
+"  <b>Familienspitzname</b> - Familienspitzname          <b>unbearbeitete "
+"Nachnamen</b>- Nachnamen (keine Präfixe und Verbindungen)\n"
 "  <b>Primär, Primär[Prä] oder [Nach] oder [Verb]</b>- voller primärer "
 "Nachname, Präfix, nur Nachname, Verbindung   \n"
 "  <b>Patronymikon oder [Prä] oder [Nach] oder [Verb]</b> - voller Pa/"
 "Matronymikon Nachname, Präfix, nur Nachname, Verbindung \n"
-"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und "
-"Verbindungen)\n"
 "</tt>\n"
 "GROẞGESCHRIEBENE Schlüsselwörter erzwingen Großschreibung. Zusätzliche "
 "Klammern und Beistriche werden entfernt. Anderer Text erscheint "
@@ -12586,9 +12583,8 @@ msgstr ""
 "      <i>Edwin Jose</i> ist der Vorname, <i>von der</i> ist der vorgestellte "
 "Namenszusatz (Präfix), <i>Smith</i> und <i>Weston</i> Nachnamen, <i>und</i> "
 "eine Verbindung, <i>Wilson</i> Patronymikon,\n"
-"      <i>Dr.</i> Titel, <i>Sr</i> nachgestellter Namenszusatz (Suffix), "
-"<i>Ed</i> Spitzname, <i>Underhills</i> Familienspitzname, <i>Jose</i> "
-"Rufname.\n"
+"      <i>Dr.</i> Titel, <i>Sr</i> nachgestellter Namenszusatz (Suffix), <i>"
+"Ed</i> Spitzname, <i>Underhills</i> Familienspitzname, <i>Jose</i> Rufname.\n"
 
 #: ../gramps/gui/configure.py:163
 msgid " Name Editor"
@@ -19410,7 +19406,8 @@ msgstr ""
 #: ../gramps/gui/glade/editplaceref.glade:395
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Feld um Infos von einer Webseite wie Google, OpenStreetMap, … einzufügen"
+"Feld zum Einfügen von Informationen aus einer Webseite wie Google, "
+"OpenStreetMap..."
 
 #: ../gramps/gui/glade/editplace.glade:266
 #: ../gramps/gui/glade/editplaceref.glade:515
@@ -23135,7 +23132,7 @@ msgstr ""
 
 #: ../gramps/gui/widgets/photo.py:91
 msgid "Make Active Media"
-msgstr "zum aktiven Medium machen"
+msgstr "Zum aktiven Medium machen"
 
 #: ../gramps/gui/widgets/placewithin.py:65
 msgid ""
@@ -26959,7 +26956,7 @@ msgstr "Eindeutige Nachnamen gesamt"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:185
 msgid "Total surnames showing"
-msgstr "gesamte Nachnamen anzeigen"
+msgstr "Anzahl der angezeigten Nachnamen"
 
 #: ../gramps/plugins/gramplet/todo.py:62
 #: ../gramps/plugins/gramplet/todogramplet.py:62
@@ -26991,7 +26988,7 @@ msgstr "Ungebunden"
 
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:44
 msgid "Number of Surnames to display"
-msgstr "Anzahl der angezeigten Nachnamen"
+msgstr "Anzahl der Nachnamen, die angezeigt werden"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:118
 msgid "Intro"
@@ -28968,27 +28965,28 @@ msgstr ""
 #: ../gramps/plugins/importer/importvcard.py:372
 #, python-format
 msgid "Import of vCards version %s is not supported by Gramps."
-msgstr "Der Import von vCards-Version %s wird von Gramps nicht unterstützt."
+msgstr ""
+"Das Importieren von vCards der Version %s wird von Gramps nicht unterstützt."
 
 #: ../gramps/plugins/importer/importvcard.py:395
 msgid ""
 "The vCard is malformed. It is missing the compulsory N property, so there is "
 "no name; skip it."
 msgstr ""
-"vCard ist fehlerhaft. Die notwendige Eigenschaft N fehlt, deshalb gibt es "
-"keinen Namen; überspringe sie."
+"Die vCard ist fehlerhaft. Die notwendige Eigenschaft N fehlt, deshalb gibt "
+"es keinen Namen; überspringe sie."
 
 #: ../gramps/plugins/importer/importvcard.py:404
 msgid ""
 "The vCard is malformed. It is missing the compulsory FN property, get name "
 "from N alone."
 msgstr ""
-"vCard ist fehlerhaft. Die notwendige Eigenschaft FN fehlt, Name wird nur aus "
-"N ermittelt."
+"Die vCard ist fehlerhaft. Die notwendige Eigenschaft FN fehlt, Name wird nur "
+"aus N ermittelt."
 
 #: ../gramps/plugins/importer/importvcard.py:412
 msgid "The vCard is malformed. Wrong number of name components."
-msgstr "vCard ist fehlerhaft. Falsche Anzahl an Namensbestandteilen."
+msgstr "Die vCard ist fehlerhaft. Falsche Anzahl an Namensbestandteilen."
 
 #: ../gramps/plugins/importer/importvcard.py:573
 #, python-brace-format
@@ -29348,7 +29346,7 @@ msgstr "Zeile ignoriert "
 #: ../gramps/plugins/lib/libgedcom.py:1878
 #, python-format
 msgid "Illegal character%s"
-msgstr "ungültiges Zeichen %s"
+msgstr "Unzulässiges Zeichen%s"
 
 #: ../gramps/plugins/lib/libgedcom.py:2166
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -34338,7 +34336,7 @@ msgstr "Personen mit unbekanntem Geschlecht"
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
 msgid "incomplete names"
-msgstr "Personen mit unvollständigen Namen"
+msgstr "unvollständige Namen"
 
 #: ../gramps/plugins/quickview/filterbyname.py:65
 msgctxt "Filtering_on"
@@ -34754,7 +34752,7 @@ msgstr "Entspricht Personen mit demselben Vornamen"
 
 #: ../gramps/plugins/quickview/samesurnames.py:99
 msgid "People with incomplete given names"
-msgstr "Personen mit unvollständigem Vornamen"
+msgstr "Personen mit unvollständigen Vornamen"
 
 #: ../gramps/plugins/quickview/samesurnames.py:100
 msgid "Matches people with firstname missing"
@@ -37424,7 +37422,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:356
 msgid "Affected path"
-msgstr "betreffendes Verzeichnis"
+msgstr "Betroffener Pfad"
 
 #: ../gramps/plugins/tool/mediamanager.py:365
 msgid ""
@@ -37932,7 +37930,7 @@ msgstr "Beistrich statt Punkt"
 #: ../gramps/plugins/tool/removespaces.py:293
 #: ../gramps/plugins/tool/removespaces.py:305
 msgid "invalid char instead of '-'"
-msgstr "ungültiges Zeichen anstatt ‚-‘"
+msgstr "Ungültiges Zeichen anstelle von '-'"
 
 #: ../gramps/plugins/tool/removeunused.glade:90
 msgid "Search for events"
