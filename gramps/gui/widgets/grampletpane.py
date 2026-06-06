@@ -217,13 +217,21 @@ class LinkTag(Gtk.TextTag):
     """
 
     lid = 0
-    # obtaining the theme link color once. Restart needed on theme change!
-    linkcolor = Gtk.Label(label="test")  # needed to avoid label destroyed to early
-    linkcolor = get_link_color(linkcolor.get_style_context())
+    # The theme link colour, obtained once and cached. Restart needed on theme
+    # change! Computed lazily on first use rather than in the class body: doing it
+    # at class-body level runs at import time, and constructing a Gtk.Label /
+    # reading its style context with no display aborts the interpreter
+    # ("Gtk-ERROR: Can't create a GtkStyleContext without a display connection",
+    # SIGTRAP). A LinkTag is only ever built while rendering links, i.e. with a
+    # display, so the colour is computed there instead.
+    linkcolor = None
 
     def __init__(self, buffer):
         LinkTag.lid += 1
         Gtk.TextTag.__init__(self, name=str(LinkTag.lid))
+        if LinkTag.linkcolor is None:
+            label = Gtk.Label(label="test")  # kept alive across the style read
+            LinkTag.linkcolor = get_link_color(label.get_style_context())
         tag_table = buffer.get_tag_table()
         self.set_property("foreground", self.linkcolor)
         # self.set_property('underline', Pango.Underline.SINGLE)
