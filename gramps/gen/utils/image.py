@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
+# Copyright (C) 2026       ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,6 +44,7 @@ import tempfile
 #
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from gramps.gen.lib.mediaref import apply_orientation_to_rect_coords
 
 _ = glocale.translation.gettext
 
@@ -88,10 +90,14 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
     from gi.repository import GdkPixbuf
 
     img = GdkPixbuf.Pixbuf.new_from_file(source)
+    orientation = img.get_option("orientation")
+    img.apply_embedded_orientation()
 
     if crop:
         start_x, start_y, end_x, end_y = crop_percentage_to_pixel(
-            img.get_width(), img.get_height(), crop
+            img.get_width(),
+            img.get_height(),
+            apply_orientation_to_rect_coords(crop, orientation),
         )
         if end_x - start_x > 0 and end_y - start_y > 0:
             img = img.new_subpixbuf(start_x, start_y, end_x - start_x, end_y - start_y)
@@ -252,10 +258,14 @@ def resize_to_buffer(source, size, crop=None):
     from gi.repository import GdkPixbuf
 
     img = GdkPixbuf.Pixbuf.new_from_file(source)
+    orientation = img.get_option("orientation")
+    img.apply_embedded_orientation()
 
     if crop:
         start_x, start_y, end_x, end_y = crop_percentage_to_pixel(
-            img.get_width(), img.get_height(), crop
+            img.get_width(),
+            img.get_height(),
+            apply_orientation_to_rect_coords(crop, orientation),
         )
         if end_x - start_x > 0 and end_y - start_y > 0:
             img = img.new_subpixbuf(start_x, start_y, end_x - start_x, end_y - start_y)
@@ -294,10 +304,14 @@ def resize_to_jpeg_buffer(source, size, crop=None):
 
     filed, dest = tempfile.mkstemp()
     img = GdkPixbuf.Pixbuf.new_from_file(source)
+    orientation = img.get_option("orientation")
+    img.apply_embedded_orientation()
 
     if crop:
         start_x, start_y, end_x, end_y = crop_percentage_to_pixel(
-            img.get_width(), img.get_height(), crop
+            img.get_width(),
+            img.get_height(),
+            apply_orientation_to_rect_coords(crop, orientation),
         )
         if end_x - start_x > 0 and end_y - start_y > 0:
             img = img.new_subpixbuf(start_x, start_y, end_x - start_x, end_y - start_y)
