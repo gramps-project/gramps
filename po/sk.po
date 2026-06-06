@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-30 15:00+0100\n"
-"PO-Revision-Date: 2026-05-30 19:18+0000\n"
+"PO-Revision-Date: 2026-05-31 16:34+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -8184,7 +8184,7 @@ msgstr "Rodina"
 
 #: ../gramps/gen/lib/eventroletype.py:80
 msgid "Informant"
-msgstr "informátor"
+msgstr "Oznamovateľ"
 
 #: ../gramps/gen/lib/eventroletype.py:81
 msgid "Godparent"
