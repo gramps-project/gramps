@@ -72,9 +72,7 @@ class ImageThumb(Thumbnailer):
             height = pixbuf.get_height()
 
             if rectangle is not None:
-                rectangle = apply_orientation_to_rect_coords(
-                    rectangle, orientation
-                )
+                rectangle = apply_orientation_to_rect_coords(rectangle, orientation)
                 upper_x = min(rectangle[0], rectangle[2]) / 100.0
                 lower_x = max(rectangle[0], rectangle[2]) / 100.0
                 upper_y = min(rectangle[1], rectangle[3]) / 100.0

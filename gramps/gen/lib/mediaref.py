@@ -255,6 +255,7 @@ class MediaRef(
         """Return the subsection of an image."""
         return self.rect
 
+
 def apply_orientation_to_rect_coords(rect_coords, orientation, invert=False):
     """
     converts the rect_coordinates (x1, y1, x2, y2) such that they are
@@ -286,24 +287,24 @@ def apply_orientation_to_rect_coords(rect_coords, orientation, invert=False):
     # 1 = Horizontal (normal)
     if orientation == "2":
         # 2 = Mirror horizontal
-        return 100-x2, y1, 100-x1, y2
+        return 100 - x2, y1, 100 - x1, y2
     elif orientation == "3":
         # 3 = Rotate 180
-        return 100-x2, 100-y2, 100-x1, 100-y1
+        return 100 - x2, 100 - y2, 100 - x1, 100 - y1
     elif orientation == "4":
         # 4 = Mirror vertical
-        return x1, 100-y2, x2, 100-y1
+        return x1, 100 - y2, x2, 100 - y1
     elif orientation == "5":
         # 5 = Mirror horizontal and rotate 270 CW
         return y1, x1, y2, x2
     elif orientation == "6":
         # 6 = Rotate 90 CW
-        return 100-y2, x1, 100-y1, x2
+        return 100 - y2, x1, 100 - y1, x2
     elif orientation == "7":
         # 7 = Mirror horizontal and rotate 90 CW
-        return 100-y2, 100-x2, 100-y1, 100-x1
+        return 100 - y2, 100 - x2, 100 - y1, 100 - x1
     elif orientation == "8":
         # 8 = Rotate 270 CW
-        return y1, 100-x2, y2, 100-x1
+        return y1, 100 - x2, y2, 100 - x1
     # fallback, no change
     return x1, y1, x2, y2
