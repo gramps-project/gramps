@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2026       ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -174,7 +175,9 @@ class Bookmarks(metaclass=ABCMeta):
                     func = self.callback(item)
                     action_id = "BM.%s" % item
                     actions.append((action_id, func))
-                    text.write(menuitem % (action_id, html.escape(label)))
+                    text.write(
+                        menuitem % (action_id, html.escape(label.replace("_", "__")))
+                    )
                     count += 1
                 except AttributeError:
                     pass

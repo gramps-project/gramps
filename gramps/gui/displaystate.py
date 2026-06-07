@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2026       ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -306,15 +307,17 @@ class RecentDocsMenu:
 
         for item in rfiles:
             try:
-                title = html.escape(item.get_name())
+                title = item.get_name()
+                menu_title = html.escape(title.replace("_", "__"))
+                bar_title = html.escape(title)
                 filename = os.path.basename(item.get_path())
                 action_id = "RecentMenu%d" % count
                 # add the menuitem for this file
-                menu += _RCT_MENU % (action_id, title)
+                menu += _RCT_MENU % (action_id, menu_title)
                 # add the action for this file
                 actionlist.append((action_id, make_callback(item, self.load)))
                 # add the toolbar menuitem
-                bar += _RCT_BAR % (action_id, title)
+                bar += _RCT_BAR % (action_id, bar_title)
             except RuntimeError:
                 # ignore no longer existing files
                 _LOG.info("Ignoring the RecentItem %s (%s)" % (title, filename))

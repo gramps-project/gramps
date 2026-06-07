@@ -9,6 +9,7 @@
 # Copyright (C) 2012       Gary Burton
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2026       Gabriel Rios
+# Copyright (C) 2026       ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1776,7 +1777,8 @@ class ViewManager(CLIManager):
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
                 new_key = valid_action_name(pdata.id)
-                ofile.write(menuitem % (new_key, pdata.name))
+                name = html.escape(pdata.name.replace("_", "__"))
+                ofile.write(menuitem % (new_key, name))
                 actions.append((new_key, func(pdata, self.dbstate, self.uistate)))
             ofile.write("</submenu>\n")
 
@@ -1790,8 +1792,9 @@ class ViewManager(CLIManager):
             pdatas = hash_data[_UNSUPPORTED]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
-                new_key = pdata.id.replace(" ", "-")
-                ofile.write(menuitem % (new_key, pdata.name))
+                new_key = valid_action_name(pdata.id)
+                name = html.escape(pdata.name.replace("_", "__"))
+                ofile.write(menuitem % (new_key, name))
                 actions.append((new_key, func(pdata, self.dbstate, self.uistate)))
             ofile.write("</submenu>\n")
 
