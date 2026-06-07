@@ -27,7 +27,6 @@ Rule that checks for a family that is a descendant of a specified family.
 # Standard python modules
 #
 # -------------------------------------------------------------------------
-from __future__ import annotations
 
 # -------------------------------------------------------------------------
 #
@@ -35,6 +34,7 @@ from __future__ import annotations
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.graph import find_descendants
 from ....const import GRAMPS_LOCALE as glocale
 
 # -------------------------------------------------------------------------
@@ -42,9 +42,10 @@ from ....const import GRAMPS_LOCALE as glocale
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Family
 from ....db import Database
+from ....types import FamilyHandle
+from ....user import UserBase
 
 _ = glocale.translation.gettext
 
@@ -64,30 +65,34 @@ class IsDescendantOf(Rule):
     category = _("General filters")
     description = _("Matches descendant families of the specified family")
 
-    def prepare(self, db: Database, user):
-        self.selected_handles: Set[str] = set()
-        first = False if int(self.list[1]) else True
+    def prepare(self, db: Database, user: UserBase) -> None:
+        self.selected_handles: set[FamilyHandle] = set()
+        try:
+            inclusive = bool(int(self.list[1]))
+        except IndexError:
+            inclusive = False
         root_family = db.get_family_from_gramps_id(self.list[0])
-        self.init_list(db, root_family, first)
+        if root_family is not None:
+            # The inclusive flag controls only whether the root family itself
+            # is included — not whether children are included in traversal.
+            if inclusive:
+                self.selected_handles.add(root_family.handle)
 
-    def reset(self):
+            # Start from children of the root family (inclusive so children
+            # themselves are in the set and their families are found).
+            children = [
+                cr.ref for cr in root_family.child_ref_list if cr.ref is not None
+            ]
+            if children:
+                descendants = find_descendants(db, children, inclusive=True)
+                for person_handle in descendants:
+                    person = db.get_raw_person_data(person_handle)
+                    if person is not None:
+                        for family_handle in person.family_list:
+                            self.selected_handles.add(family_handle)
+
+    def reset(self) -> None:
         self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
-
-    def init_list(self, db: Database, family: Family | None, first: bool) -> None:
-        """
-        Initialise family handle list.
-        """
-        if not family:
-            return
-        if not first:
-            self.selected_handles.add(family.handle)
-
-        for child_ref in family.child_ref_list:
-            child = db.get_person_from_handle(child_ref.ref)
-            if child:
-                for family_handle in child.family_list:
-                    child_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, child_family, False)

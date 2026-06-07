@@ -42,9 +42,10 @@ from ....const import GRAMPS_LOCALE as glocale
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Family
 from ....db import Database
+from ....types import FamilyHandle
+from ....user import UserBase
 
 _ = glocale.translation.gettext
 
@@ -64,13 +65,13 @@ class IsAncestorOf(Rule):
     category = _("General filters")
     description = _("Matches ancestor families of the specified family")
 
-    def prepare(self, db: Database, user):
-        self.selected_handles: Set[str] = set()
+    def prepare(self, db: Database, user: UserBase) -> None:
+        self.selected_handles: set[FamilyHandle] = set()
         first = False if int(self.list[1]) else True
         root_family = db.get_family_from_gramps_id(self.list[0])
         self.init_list(db, root_family, first)
 
-    def reset(self):
+    def reset(self) -> None:
         self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, family: Family) -> bool:

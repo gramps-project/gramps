@@ -22,7 +22,6 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 
 from ....const import GRAMPS_LOCALE as glocale
 
@@ -35,8 +34,10 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 from ._isdescendantfamilyof import IsDescendantFamilyOf
 from ._matchesfilter import MatchesFilter
+from ....utils.graph import find_descendants
 from ....types import PersonHandle
 from ....db.generic import Database
+from ....lib import Person
 
 
 # -------------------------------------------------------------------------
@@ -58,7 +59,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
 
         self.matchfilt = MatchesFilter(self.list[0:1])
         self.matchfilt.requestprepare(db, user)
@@ -81,3 +82,37 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
     def reset(self):
         self.matchfilt.requestreset()
         self.selected_handles.clear()
+
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        return person.handle in self.selected_handles
+
+    def add_matches(self, person: Person):
+        """Add the person and their descendants to the selected handles."""
+        if person is None:
+            return
+        try:
+            # inclusive=True so the person themselves is in descendants,
+            # ensuring add_spouses_of_descendants also covers their spouses
+            descendants = find_descendants(self.db, [person.handle], inclusive=True)
+            self.selected_handles.update(descendants)
+
+            # Add spouses of all descendants (including the person themselves)
+            self.add_spouses_of_descendants(descendants)
+        except Exception:
+            pass
+
+    def add_spouses_of_descendants(self, descendants: set[PersonHandle]):
+        """Add spouses of all descendants to the selected handles."""
+        for person_handle in descendants:
+            person = self.db.get_raw_person_data(person_handle)
+            if person is not None:
+                for family_handle in person.family_list:
+                    family = self.db.get_raw_family_data(family_handle)
+                    if family is not None:
+                        # Add spouse
+                        if person_handle == family.father_handle:
+                            spouse_handle = family.mother_handle
+                        else:
+                            spouse_handle = family.father_handle
+                        if spouse_handle is not None:
+                            self.selected_handles.add(spouse_handle)

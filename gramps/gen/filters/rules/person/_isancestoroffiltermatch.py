@@ -31,17 +31,18 @@ _ = glocale.translation.gettext
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ._isancestorof import IsAncestorOf
+from .. import Rule
 from ._matchesfilter import MatchesFilter
+from ....utils.graph import find_ancestors
 
 # -------------------------------------------------------------------------
 #
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -49,7 +50,7 @@ from ....db import Database
 # IsAncestorOfFilterMatch
 #
 # -------------------------------------------------------------------------
-class IsAncestorOfFilterMatch(IsAncestorOf):
+class IsAncestorOfFilterMatch(Rule):
     """Rule that checks for a person that is an ancestor of
     someone matched by a filter"""
 
@@ -61,18 +62,19 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
     )
 
     def prepare(self, db: Database, user):
+        """Use the unified find_ancestors function"""
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: set[PersonHandle] = set()
         try:
-            if int(self.list[1]):
-                first = False
-            else:
-                first = True
+            inclusive = bool(int(self.list[1]))
         except IndexError:
-            first = True
+            inclusive = False
 
         self.filt = MatchesFilter(self.list[0:1])
         self.filt.requestprepare(db, user)
+
+        # Collect all person handles that match the filter
+        matching_handles = []
         if user:
             user.begin_progress(
                 self.category,
@@ -83,9 +85,15 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
             if user:
                 user.step_progress()
             if self.filt.apply_to_one(db, person):
-                self.init_ancestor_list(db, person, first)
+                matching_handles.append(person.handle)
         if user:
             user.end_progress()
+
+        # Find ancestors of all matching people
+        if matching_handles:
+            self.selected_handles = find_ancestors(
+                db, matching_handles, inclusive=inclusive
+            )
 
     def reset(self):
         self.filt.requestreset()
