@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2011 Nick Hall
+# Copyright (C) 2026 ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -464,6 +465,7 @@ class GuiGramplet:
     def clear_text(self):
         self.buffer.set_text("")
         self.text_length = 0
+        self._tags = []
 
     def get_text(self):
         start = self.buffer.get_start_iter()
@@ -570,8 +572,7 @@ class GuiGramplet:
             tag_table.foreach(lambda tag, data: tag_table.remove(tag))
 
     def set_text(self, text, scroll_to="start"):
-        self.buffer.set_text("")
-        self.text_length = 0
+        self.clear_text()
         self.append_text(text, scroll_to)
         self.buffer.reset()
 
