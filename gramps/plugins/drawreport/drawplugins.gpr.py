@@ -243,3 +243,26 @@ plg.reportclass = "TimeLine"
 plg.optionclass = "TimeLineOptions"
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 plg.help_url = REPORTS_HELP
+
+# ------------------------------------------------------------------------
+#
+# Book Item: Import a PDF or Word doument 
+#
+# ------------------------------------------------------------------------
+
+plg = newplugin()
+plg.id = "import_pdf_or_word_document,BKI"
+plg.name = _("Import Document")
+plg.description = _("Imports a PDF or Word document as a book item")
+plg.version = "1.0"
+plg.gramps_target_version = MODULE_VERSION
+plg.status = STABLE
+plg.fname = "importdocument.py" 
+plg.ptype = REPORT
+plg.authors = ["Dave Khuon"]
+plg.authors_email = [""]
+plg.category = CATEGORY_DRAW
+plg.reportclass = "ImportDocument"
+plg.optionclass = "ImportDocumentOptions"
+plg.report_modes = [REPORT_MODE_BKI]
+plg.help_url = REPORTS_HELP
