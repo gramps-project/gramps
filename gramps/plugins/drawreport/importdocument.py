@@ -26,17 +26,20 @@ from typing import Any
 # Gramps modules
 # ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.sgettext
 
 from gramps.gen.plug.menu import DestinationOption
 from gramps.gen.plug.report import Report, MenuReportOptions
 from gramps.gen.ggettext import dgettext as _
 
+
 # ------------------------------------------------------------------------
 # Import Document Execution Class
 # ------------------------------------------------------------------------
 class ImportDocument(Report):
     """ImportDocument Report"""
+
     def __init__(self, database, options_class, user):
         Report.__init__(self, database, options_class, user)
         self.document_path = ""
@@ -59,7 +62,9 @@ class ImportDocument(Report):
     def begin_report(self):
         """Initializes report properties and reads the browser path destination."""
         try:
-            self.document_path = self.options.menu.get_option_by_name("document_file").get_value()
+            self.document_path = self.options.menu.get_option_by_name(
+                "document_file"
+            ).get_value()
         except Exception:
             self.document_path = ""
 
@@ -72,7 +77,9 @@ class ImportDocument(Report):
             style_name = "Normal"
 
             if not self.document_path:
-                self.doc.draw_text(style_name, "Document Source: No file targeted.", 2.0, 2.0)
+                self.doc.draw_text(
+                    style_name, "Document Source: No file targeted.", 2.0, 2.0
+                )
                 self.doc.end_page()
                 return
 
@@ -81,7 +88,9 @@ class ImportDocument(Report):
 
             # 1. Print the clean tracking header banner at the top of the sheet
             self.doc.draw_text(style_name, f"Imported Document: {filename}", 2.0, 2.0)
-            self.doc.draw_text(style_name, f"Source Path: {self.document_path}", 2.0, 2.8)
+            self.doc.draw_text(
+                style_name, f"Source Path: {self.document_path}", 2.0, 2.8
+            )
 
             # 2. Draw our verified anchor box frame beneath the text
             self.doc.draw_line(style_name, 2.0, 4.0, 18.0, 4.0)
@@ -93,6 +102,8 @@ class ImportDocument(Report):
             print(f"Canvas layout rendering error: {str(err)}")
 
         self.doc.end_page()
+
+
 # ------------------------------------------------------------------------
 # Import Document User Configuration Interface Menu
 # ------------------------------------------------------------------------
@@ -111,8 +122,12 @@ class ImportDocumentOptions(MenuReportOptions):
         # DestinationOption builds a text entry line PLUS a live native OS "Browse..." button
         self.file_browser = DestinationOption(
             _("Select Document"),
-            "C:\\Users\\davek\\OneDrive\\MyData\\gramps\\Reports\\Books\\_pdf\\YayMom_hourglass_graph.pdf"
+            "C:sample.pdf",
         )
-        self.file_browser.set_help(_("Click 'Browse...' to visually navigate to your PDF or Word document file."))
+        self.file_browser.set_help(
+            _(
+                "Click 'Browse...' to visually navigate to your PDF or Word document file."
+            )
+        )
 
         menu.add_option(category_name, "document_file", self.file_browser)
