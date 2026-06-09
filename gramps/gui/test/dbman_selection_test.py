@@ -18,23 +18,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+import gi
 import unittest
 from unittest.mock import MagicMock, patch
 
-# Patch Gdk.Cursor.new_for_display before importing DbManager, because
-# DbManager defines BUSY_CURSOR as a class attribute using
-# Gdk.Cursor.new_for_display(Gdk.Display.get_default(), ...). When no
-# display is available (e.g. headless/CI), get_default() returns None and
-# new_for_display raises TypeError. This patch prevents the crash at import
-# time.
-with patch("gi.repository.Gdk.Cursor.new_for_display", return_value=MagicMock()):
-    from gi.repository import Gtk
-    from gramps.gui.dbman import DbManager, NAME_COL
+gi.require_version("Gtk", "3.0")
+gi.require_version("Gdk", "3.0")
+from gi.repository import Gtk
+from gramps.gui.dbman import DbManager, NAME_COL
 
 
 class TestDbManSelection(unittest.TestCase):
     def setUp(self):
-        # Mocking the dependencies of DbManager to avoid initializing the full GUI
         self.uistate = MagicMock()
         self.uistate.gwm = MagicMock()
         self.uistate.gwm.get_item_from_id.return_value = None
@@ -43,13 +38,15 @@ class TestDbManSelection(unittest.TestCase):
         self.dbstate = MagicMock()
         self.viewmanager = MagicMock()
 
-        # Patch Glade and PersistentTreeView to avoid GTK errors during init
         with (
             patch("gramps.gui.dbman.Glade"),
             patch("gramps.gui.dbman.PersistentTreeView"),
             patch("gramps.gui.dbman.User"),
             patch("gramps.gui.dbman.ManagedWindow.setup_configs"),
             patch("gramps.gui.dbman.DbManager._select_default"),
+            patch.object(DbManager, "_DbManager__connect_signals"),
+            patch.object(DbManager, "_DbManager__build_interface"),
+            patch("gramps.gui.dbman.DbManager._populate_model"),
         ):
             self.dbman = DbManager(self.uistate, self.dbstate, self.viewmanager)
 
