@@ -77,6 +77,7 @@ from .plug import PluginWindows, ReportPluginDialog, ToolPluginDialog
 from .plug.report import report, BookSelector
 from .utils import AvailableUpdates, Popup
 from .pluginmanager import GuiPluginManager
+from .viewmanagerutils import views_to_show
 from gramps.gen.relationship import get_relationship_calculator
 from .displaystate import DisplayState, RecentDocsMenu
 from gramps.gen.const import (
@@ -637,12 +638,19 @@ class ViewManager(CLIManager):
         Initialize the interface.
         """
         self.views = self.get_available_views()
-        defaults = views_to_show(self.views, config.get("preferences.use-last-view"))
-        self.current_views = defaults[2]
+        current_cat, current_cat_view, self.current_views = views_to_show(
+            self.views, config.get("preferences.use-last-view")
+        )
 
         self.navigator.load_plugins(self.dbstate, self.uistate)
 
-        self.goto_page(defaults[0], defaults[1])
+        if current_cat is not None:
+            # bug 8796: only navigate when there is a view to show.  With every
+            # view plugin hidden get_available_views() returns [], views_to_show()
+            # then reports no category (current_cat is None), and the interface is
+            # left with no active page instead of navigating into the empty view
+            # set (which raised 'IndexError: list assignment index out of range').
+            self.goto_page(current_cat, current_cat_view)
 
         self.uimanager.set_actions_sensitive(self.fileactions, False)
         self.__build_tools_menu(self._pmgr.get_reg_tools())
@@ -1042,6 +1050,15 @@ class ViewManager(CLIManager):
         Perform necessary actions when a page is changed.
         """
         self.__disconnect_previous_page()
+
+        if not self.pages:
+            # bug 8796: with no available views no page was ever created, so
+            # there is nothing to activate.  Reached e.g. via _post_load_newdb_gui
+            # (viewmanager.py:1221), which calls __change_page(notebook.get_current
+            # _page()) -- get_current_page() returns -1 for an empty notebook, so
+            # both self.pages[-1] and the self.pages[0] fallback below would raise
+            # IndexError.  Leave the interface with no active page.
+            return
 
         # The following is to avoid 'IndexError: list index out of range'
         # Bugs: 12304, 12429, 12623, 12695
@@ -1498,6 +1515,12 @@ class ViewManager(CLIManager):
         """
         Displays the configuration dialog for the active view
         """
+        if self.active_page is None:
+            # bug 8796: with no available views (every view plugin hidden) there
+            # is no active page, so the ConfigView action (viewmanager.py:528,
+            # <shift><PRIMARY>c) has nothing to configure -- do not dereference
+            # None.
+            return
         self.active_page.configure()
 
     def undo(self, *obj):
@@ -1821,36 +1844,6 @@ def make_plugin_callback(pdata, dbstate, uistate):
     Makes a callback for a report/tool menu item
     """
     return lambda x, y: run_plugin(pdata, dbstate, uistate)
-
-
-def views_to_show(views, use_last=True):
-    """
-    Determine based on preference setting which views should be shown
-    """
-    current_cat = 0
-    current_cat_view = 0
-    default_cat_views = [0] * len(views)
-    if use_last:
-        current_page_id = config.get("preferences.last-view")
-        default_page_ids = config.get("preferences.last-views")
-        found = False
-        for indexcat, cat_views in enumerate(views):
-            cat_view = 0
-            for pdata, page_def in cat_views:
-                if not found:
-                    if pdata.id == current_page_id:
-                        current_cat = indexcat
-                        current_cat_view = cat_view
-                        default_cat_views[indexcat] = cat_view
-                        found = True
-                        break
-                if pdata.id in default_page_ids:
-                    default_cat_views[indexcat] = cat_view
-                cat_view += 1
-        if not found:
-            current_cat = 0
-            current_cat_view = 0
-    return current_cat, current_cat_view, default_cat_views
 
 
 class QuickBackup(ManagedWindow):  # TODO move this class into its own module
