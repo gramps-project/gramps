@@ -259,6 +259,13 @@ class Cursor:
         """
         self.__cursor.execute(*args, **kwargs)
 
+    def fetchone(self):
+        """
+        Fetches the next row of a query result set, returning a single sequence,
+        or None when no more data is available.
+        """
+        return self.__cursor.fetchone()
+
     def fetchmany(self):
         """
         Fetches the next set of rows of a query result, returning a list. An
