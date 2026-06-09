@@ -46,6 +46,8 @@ from gramps.gen.plug.docgen import (
     ParagraphStyle,
     FONT_SANS_SERIF,
     PARA_ALIGN_CENTER,
+    IndexMark,
+    INDEX_TYPE_TOC,
 )
 
 
@@ -85,16 +87,23 @@ class SimpleBookTitle(Report):
         self.subtitle_string = menu.get_option_by_name("subtitle").get_value()
         self.footer_string = menu.get_option_by_name("footer").get_value()
         self.media_id = menu.get_option_by_name("imgid").get_value()
+        self.toc_title = self.title_string
 
     def write_report(self):
         """Generate the contents of the report"""
         self.doc.start_paragraph("SBT-Title")
-        self.doc.write_text(self.title_string)
+        if self.title_string and len(self.title_string.strip()) > 0:
+            # Make it appear in TOC only if there is a title string
+            mark = IndexMark(self.toc_title, INDEX_TYPE_TOC, 1)
+            self.doc.write_text(self.title_string, mark)
+        else:
+            self.doc.write_text(self.title_string)
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph("SBT-Subtitle")
-        self.doc.write_text(self.subtitle_string)
-        self.doc.end_paragraph()
+        if self.subtitle_string and len(self.subtitle_string.strip()) > 0:
+            self.doc.start_paragraph("SBT-Subtitle")
+            self.doc.write_text(self.subtitle_string)
+            self.doc.end_paragraph()
 
         if self.media_id:
             the_object = self.database.get_media_from_gramps_id(self.media_id)
@@ -103,10 +112,19 @@ class SimpleBookTitle(Report):
                 if self.image_size:
                     image_size = self.image_size
                 else:
-                    image_size = min(
-                        0.8 * self.doc.get_usable_width(),
-                        0.7 * self.doc.get_usable_height(),
-                    )
+                    if (
+                        self.subtitle_string and len(self.subtitle_string.strip()) > 0
+                    ) or (self.footer_string and len(self.footer_string.strip()) > 0):
+                        image_size = min(
+                            0.8 * self.doc.get_usable_width(),
+                            0.7 * self.doc.get_usable_height(),
+                        )
+                    else:
+                        # If there is no adtl text, use more of the page for the image
+                        image_size = min(
+                            0.95 * self.doc.get_usable_width(),
+                            0.85 * self.doc.get_usable_height(),
+                        )
                 self.doc.add_media(filename, "center", image_size, image_size)
             else:
                 self._user.warn(
@@ -114,9 +132,10 @@ class SimpleBookTitle(Report):
                     _("File %s does not exist") % filename,
                 )
 
-        self.doc.start_paragraph("SBT-Footer")
-        self.doc.write_text(self.footer_string)
-        self.doc.end_paragraph()
+        if self.footer_string and len(self.footer_string.strip()) > 0:
+            self.doc.start_paragraph("SBT-Footer")
+            self.doc.write_text(self.footer_string)
+            self.doc.end_paragraph()
 
 
 # ------------------------------------------------------------------------
