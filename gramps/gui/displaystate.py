@@ -457,9 +457,18 @@ class DisplayState(Callback):
         "Note": _("No active note"),
     }
 
-    BUSY_CURSOR = Gdk.Cursor.new_for_display(
-        Gdk.Display.get_default(), Gdk.CursorType.WATCH
-    )
+    _busy_cursor: "Gdk.Cursor | None" = None
+
+    @classmethod
+    def _get_busy_cursor(cls) -> "Gdk.Cursor | None":
+        """Return the busy cursor, creating it lazily on first use."""
+        if cls._busy_cursor is None:
+            display = Gdk.Display.get_default()
+            if display is not None:
+                cls._busy_cursor = Gdk.Cursor.new_for_display(
+                    display, Gdk.CursorType.WATCH
+                )
+        return cls._busy_cursor
 
     def __init__(self, window, status, uimanager, viewmanager=None):
         self.busy = False
@@ -679,7 +688,7 @@ class DisplayState(Callback):
         if self.window.get_window():
             if value:
                 self.cursor = self.window.get_window().get_cursor()
-                self.window.get_window().set_cursor(self.BUSY_CURSOR)
+                self.window.get_window().set_cursor(self._get_busy_cursor())
             else:
                 self.window.get_window().set_cursor(self.cursor)
                 if self.window.get_window().is_visible():

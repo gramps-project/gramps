@@ -157,9 +157,18 @@ class DbManager(CLIDbManager, ManagedWindow):
         CLIDbManager.ICON_OPEN: "document-open",
     }
 
-    BUSY_CURSOR = Gdk.Cursor.new_for_display(
-        Gdk.Display.get_default(), Gdk.CursorType.WATCH
-    )
+    _busy_cursor: "Gdk.Cursor | None" = None
+
+    @classmethod
+    def _get_busy_cursor(cls) -> "Gdk.Cursor | None":
+        """Return the busy cursor, creating it lazily on first use."""
+        if cls._busy_cursor is None:
+            display = Gdk.Display.get_default()
+            if display is not None:
+                cls._busy_cursor = Gdk.Cursor.new_for_display(
+                    display, Gdk.CursorType.WATCH
+                )
+        return cls._busy_cursor
 
     def __init__(self, uistate, dbstate, viewmanager, parent=None):
         """
@@ -1034,7 +1043,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         message
         """
         self.msg.set_label(msg)
-        self.top.get_window().set_cursor(self.BUSY_CURSOR)
+        self.top.get_window().set_cursor(self._get_busy_cursor())
         while Gtk.events_pending():
             Gtk.main_iteration()
 
