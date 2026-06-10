@@ -20,6 +20,7 @@
 
 """Unittest for constfunc.py"""
 
+import os
 import unittest
 from .. import constfunc
 
@@ -32,6 +33,10 @@ class Test_has_display(unittest.TestCase):
         self.display_nonempty = ("DISPLAY" in env) and bool(env["DISPLAY"])
 
     @unittest.skipUnless(constfunc.lin(), "Written for Linux only...")
+    @unittest.skipIf(
+        os.environ.get("GDK_BACKEND") == "-",
+        "GDK_BACKEND=- overrides normal display detection",
+    )
     def test_consistent_with_DISPLAY_env(self):
         self.assertEqual(
             self.has,
