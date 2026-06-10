@@ -143,12 +143,13 @@ class DBAPI(DbGeneric):
         Create and update schema.
         """
         self.dbapi.begin()
+        blob_type = self._sql_type("blob", 0)
         if json_data:
             col_data = "json_data TEXT"
-            meta_col_data = "json_data TEXT, value BLOB"
+            meta_col_data = f"json_data TEXT, value {blob_type}"
         else:
-            col_data = "blob_data BLOB"
-            meta_col_data = "value BLOB"
+            col_data = f"blob_data {blob_type}"
+            meta_col_data = f"value {blob_type}"
 
         # make sure schema is up to date:
         self.dbapi.execute(
