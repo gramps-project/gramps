@@ -4,6 +4,7 @@
 # Copyright (C) 2008,2012  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Paul Franklin
+# Copyright (C) 2026       Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
