@@ -36,6 +36,7 @@ import subprocess
 from urllib.parse import urlparse
 import logging
 import re
+import threading
 
 # -------------------------------------------------------------------------
 #
@@ -158,16 +159,19 @@ class DbManager(CLIDbManager, ManagedWindow):
     }
 
     _busy_cursor: "Gdk.Cursor | None" = None
+    _busy_cursor_lock: threading.Lock = threading.Lock()
 
     @classmethod
     def _get_busy_cursor(cls) -> "Gdk.Cursor | None":
         """Return the busy cursor, creating it lazily on first use."""
         if cls._busy_cursor is None:
-            display = Gdk.Display.get_default()
-            if display is not None:
-                cls._busy_cursor = Gdk.Cursor.new_for_display(
-                    display, Gdk.CursorType.WATCH
-                )
+            with cls._busy_cursor_lock:
+                if cls._busy_cursor is None:
+                    display = Gdk.Display.get_default()
+                    if display is not None:
+                        cls._busy_cursor = Gdk.Cursor.new_for_display(
+                            display, Gdk.CursorType.WATCH
+                        )
         return cls._busy_cursor
 
     def __init__(self, uistate, dbstate, viewmanager, parent=None):
