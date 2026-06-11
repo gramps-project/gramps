@@ -25,6 +25,7 @@ import unittest
 from ..gcalendar import (
     chinese_lunar_sdn,
     chinese_lunar_ymd,
+    chinese_sexagenary_year,
     gregorian_sdn,
     gregorian_ymd,
 )
@@ -162,6 +163,37 @@ class TestChineseLunarConversion(unittest.TestCase):
                 year, month, day = chinese_lunar_ymd(sdn)
                 self.assertEqual(month, 1, f"{gy}-{gm:02d}-{gd:02d} month={month}")
                 self.assertEqual(day, 1, f"{gy}-{gm:02d}-{gd:02d} day={day}")
+
+
+class TestChineseSexagenaryYear(unittest.TestCase):
+    """Tests for the sexagenary (干支) year name function."""
+
+    def test_known_years(self):
+        """Known sexagenary years match published values."""
+        cases = [
+            (1984, "甲子"),  # well-known anchor year
+            (2024, "甲辰"),  # Year of the Dragon
+            (2025, "乙巳"),  # Year of the Snake
+            (1900, "庚子"),  # 1900 = 庚子年
+            (1949, "己丑"),  # founding of PRC
+        ]
+        for year, expected in cases:
+            with self.subTest(year=year):
+                self.assertEqual(chinese_sexagenary_year(year), expected)
+
+    def test_cycle_length(self):
+        """Sexagenary names repeat every 60 years."""
+        for year in range(1900, 2060):
+            self.assertEqual(
+                chinese_sexagenary_year(year),
+                chinese_sexagenary_year(year + 60),
+                f"Cycle mismatch at year {year}",
+            )
+
+    def test_all_60_combinations_appear(self):
+        """All 60 stem-branch pairs appear exactly once in a 60-year cycle."""
+        names = [chinese_sexagenary_year(1984 + i) for i in range(60)]
+        self.assertEqual(len(set(names)), 60)
 
 
 if __name__ == "__main__":

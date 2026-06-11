@@ -947,3 +947,32 @@ def chinese_lunar_ymd(sdn: int) -> tuple[int, int, int]:
             return (year, m + 100 if is_leap else m, remaining + 1)
         remaining -= days
     return (0, 0, 0)
+
+
+# Heavenly Stems (天干) and Earthly Branches (地支) for the sexagenary cycle.
+_HEAVENLY_STEMS = ("甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸")
+_EARTHLY_BRANCHES = (
+    "子",
+    "丑",
+    "寅",
+    "卯",
+    "辰",
+    "巳",
+    "午",
+    "未",
+    "申",
+    "酉",
+    "戌",
+    "亥",
+)
+
+
+def chinese_sexagenary_year(year: int) -> str:
+    """Return the sexagenary (干支) year name for a Gregorian-aligned Chinese year.
+
+    For example, 1984 → '甲子', 2024 → '甲辰'.
+    The cycle anchor is year 4 CE = 甲子 (stem 0, branch 0).
+    """
+    stem = _HEAVENLY_STEMS[(year - 4) % 10]
+    branch = _EARTHLY_BRANCHES[(year - 4) % 12]
+    return stem + branch

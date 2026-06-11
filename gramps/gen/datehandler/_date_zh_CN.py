@@ -39,6 +39,7 @@ import re
 # -------------------------------------------------------------------------
 
 from ..lib.date import Date
+from ..lib.gcalendar import chinese_sexagenary_year
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
@@ -222,6 +223,7 @@ class DateDisplayZH_CN(DateDisplay):
     formats = (
         "年年年年-月月-日日 (ISO)",
         "数字格式",
+        "干支年格式",
     )
     # this definition must agree with its "_display_calendar" method
 
@@ -247,22 +249,33 @@ class DateDisplayZH_CN(DateDisplay):
             return value
 
     def _display_chinese_lunar(self, date_val, **kwargs):
-        """Display a Chinese Lunar date in native 年/月/日 format."""
+        """Display a Chinese Lunar date in 年/月/日 format.
+
+        Format 0: ISO numeric.  Format 1: numeric year + month + day.
+        Format 2: sexagenary (干支) year name + month + day.
+        """
         month = date_val[1]
         is_leap = month > 100
         actual = month - 100 if is_leap else month
         year = date_val[2]
         day = date_val[0]
 
-        if actual == 0 and day == 0:
-            return "%s年" % year
+        if self.format == 0:
+            return self.display_iso(date_val)
 
         leap_prefix = "闰" if is_leap else ""
         month_str = self.chinese_lunar[actual] if actual else ""
 
+        if self.format == 2:
+            year_str = chinese_sexagenary_year(year) + "年"
+        else:
+            year_str = "%s年" % year
+
+        if actual == 0 and day == 0:
+            return year_str
         if day == 0:
-            return "%s年%s%s" % (year, leap_prefix, month_str)
-        return "%s年%s%s%s日" % (year, leap_prefix, month_str, day)
+            return "%s%s%s" % (year_str, leap_prefix, month_str)
+        return "%s%s%s%s日" % (year_str, leap_prefix, month_str, day)
 
 
 # -------------------------------------------------------------------------
