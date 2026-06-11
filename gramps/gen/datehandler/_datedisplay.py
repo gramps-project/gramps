@@ -806,19 +806,15 @@ class DateDisplay:
         return self._display_calendar(date_val, self.islamic, **kwargs)
 
     def _display_chinese_lunar(self, date_val, **kwargs):
-        """Display a Chinese Lunar Calendar date. Months 101-112 are leap months."""
+        """Display a Chinese Lunar Calendar date. Months 101-112 are leap months.
+
+        For leap months the ISO encoding (month 101-112) is used regardless of
+        the selected format so the string always round-trips through the parser.
+        Locale-specific subclasses override this to render leap months natively.
+        """
         month = date_val[1]
-        if month > 100:
-            _ = self._locale.translation.sgettext
-            actual = month - 100
-            month_names = list(self.chinese_lunar)
-            if actual < len(month_names):
-                month_names[actual] = _("Leap ") + month_names[actual]
-            return self._display_calendar(
-                (date_val[0], actual, date_val[2], date_val[3]),
-                tuple(month_names),
-                **kwargs,
-            )
+        if self.format == 0 or month > 100:
+            return self.display_iso(date_val)
         return self._display_calendar(date_val, self.chinese_lunar, **kwargs)
 
 
