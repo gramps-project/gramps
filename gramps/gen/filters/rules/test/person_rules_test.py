@@ -1570,7 +1570,10 @@ class FilterMatchMissingFilterTest(unittest.TestCase):
         """Apply a filter with the given rule directly, no base filter registered."""
         filter_ = GenericFilter()
         filter_.add_rule(rule)
-        return set(filter_.apply(self.db))
+        with self.assertLogs(".filter", level="WARNING") as log:
+            result = set(filter_.apply(self.db))
+        self.assertTrue(any("Can't find filter" in m for m in log.output))
+        return result
 
     def test_IsDescendantOfFilterMatch_missing_filter(self):
         rule = IsDescendantOfFilterMatch(["_no_such_filter_"])
