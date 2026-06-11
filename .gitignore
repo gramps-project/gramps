@@ -36,3 +36,6 @@ ehthumbs.db
 
 # coverage
 .coverage
+
+# Visual Studio Code
+.vscode/*
