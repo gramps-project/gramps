@@ -353,6 +353,18 @@ for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
         d.set(quality, modifier, calendar, (4, month, 1789, False), "Text comment")
         dates.append(d)
 
+# Chinese Lunar: regular months 1-12 plus one known leap month (1976 leap 8th).
+for month in list(range(1, 13)) + [108]:
+    d = Date()
+    d.set(
+        quality,
+        modifier,
+        Date.CAL_CHINESE_LUNAR,
+        (4, month, 1976, False),
+        "Text comment",
+    )
+    dates.append(d)
+
 date_tests[testset] = dates
 
 swedish_dates = []
