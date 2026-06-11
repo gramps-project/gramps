@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2014       Paul Franklin
 # Copyright (C) 2010-2015  Craig J. Anderson
+# Copyright (C) 2025-2026  Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -87,15 +88,23 @@ class PersonBox(BoxBase):
     Calculates information about the box that will print on a page
     """
 
-    def __init__(self, level):
+    def __init__(self, level, database):
         BoxBase.__init__(self)
         self.boxstr = "AC2-box"
         # self.level = (level[0]-1, level[1])
         self.level = level
+        self.database = database
         self.idx = 0
+        self.report_gender_colors = GUIConnect().get_gender_colors()
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
+
+    def set_person_color(self, person):
+        """Set box color based on person's gender and alive status."""
+        self.boxstr = utils.get_gender_color_box_name(
+            person, self.database, "AC2-box", self.report_gender_colors
+        )
 
     def display(self):
         BoxBase.display(self)
@@ -115,14 +124,21 @@ class FamilyBox(BoxBase):
     Calculates information about the box that will print on a page
     """
 
-    def __init__(self, level):
+    def __init__(self, level, database):
         BoxBase.__init__(self)
         self.boxstr = "AC2-fam-box"
         # self.level = (level[0]-1, level[1])
         self.level = level
+        self.database = database
+        self.report_family_colors = GUIConnect().get_family_colors()
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
+
+    def set_family_color(self, family_handle):
+        self.boxstr = utils.get_family_color_box_name(
+            family_handle, self.database, "AC2-fam-box", self.report_family_colors
+        )
 
 
 # ------------------------------------------------------------------------
@@ -247,6 +263,9 @@ class MakeAncestorTree(AscendPerson):
         self.inlc_marr = _gui.inc_marr()
         self.inc_sib = _gui.inc_sib()
         self.compress_tree = _gui.compress_tree()
+
+        self.fill_box_color = _gui.get_val("fill_box_color")
+
         self.center_family = None
         self.lines = [None] * (_gui.maxgen() + 1)
         if _gui.get_val("show_idx"):
@@ -262,7 +281,7 @@ class MakeAncestorTree(AscendPerson):
         """Makes a person box and add that person into the Canvas."""
 
         # print str(index) + " add_person " + str(indi_handle)
-        myself = PersonBox((index[0] - 1,) + index[1:])
+        myself = PersonBox((index[0] - 1,) + index[1:], self.database)
 
         if index[LVL_GEN] == 1:  # Center Person
             self.center_family = fams_handle
@@ -277,10 +296,11 @@ class MakeAncestorTree(AscendPerson):
             genIdx = self.start_idx * (2 ** (index[LVL_GEN] - 1))
             genOff = index[LVL_INDX] - (2 ** (index[LVL_GEN] - 1))
             myself.idx = genIdx + genOff
+
+        person = None
         if indi_handle is not None:  # None is legal for an empty box
-            myself.add_mark(
-                self.database, self.database.get_person_from_handle(indi_handle)
-            )
+            person = self.database.get_person_from_handle(indi_handle)
+            myself.add_mark(self.database, person)
 
         self.canvas.add_box(myself)
 
@@ -296,6 +316,9 @@ class MakeAncestorTree(AscendPerson):
                 line = self.lines[indx - 1].line_to
             line.add_to(myself)
 
+        if self.fill_box_color and person:
+            myself.set_person_color(person)
+
         return myself
 
     def add_person_again(self, index, indi_handle, fams_handle):
@@ -307,12 +330,15 @@ class MakeAncestorTree(AscendPerson):
         if not self.inlc_marr:
             return
 
-        myself = FamilyBox((index[0] - 1,) + index[1:])
+        myself = FamilyBox((index[0] - 1,) + index[1:], self.database)
 
         # calculate the text.
         myself.text = self.calc_items.calc_marriage(indi_handle, fams_handle)
 
         self.canvas.add_box(myself)
+
+        if self.fill_box_color:
+            myself.set_family_color(fams_handle)
 
     def y_index(self, x_level, index):
         """Calculate the column or generation that this person is in.
@@ -530,7 +556,7 @@ class MakeReport:
 class GUIConnect:
     """This is a BORG object.  There is ONLY one.
     This give some common routines that EVERYONE can use like
-      get the value from a GUI variable
+    get the value from a GUI variable
     """
 
     __shared_state: dict[str, Any] = {}
@@ -539,18 +565,28 @@ class GUIConnect:
         self.__dict__ = self.__shared_state
 
     def set__opts(self, options, locale, name_displayer):
-        """Set only once as we are BORG."""
-        self.__opts = options
+        # This is now the Full Options object, not just .menu
+        self._opts = options
         self.locale = locale
         self.n_d = name_displayer
 
     def get_val(self, val):
         """Get a GUI value."""
-        value = self.__opts.get_option_by_name(val)
+        # Look for the option inside the .menu attribute of self._opts
+        value = self._opts.menu.get_option_by_name(val)
         if value:
             return value.get_value()
         else:
-            False
+            return False
+
+    # to bridge the gap between the GUI and the rest of the code, we have these two functions
+    def get_gender_colors(self):
+        """Retrieve the colors stored in the options instance."""
+        return self._opts.report_gender_colors
+
+    def get_family_colors(self):
+        """Retrieve the family colors stored in the options instance."""
+        return self._opts.report_family_colors
 
     def title_class(self, doc):
         """Return a class that holds the proper title based off of the
@@ -633,7 +669,8 @@ class AncestorTree(Report):
         database = self.database
 
         self.connect = GUIConnect()
-        self.connect.set__opts(self.options.menu, self._locale, self._nd)
+        # CHANGE THIS LINE: pass self.options instead of self.options.menu
+        self.connect.set__opts(self.options, self._locale, self._nd)
 
         # Set up the canvas that we will print on.
         style_sheet = self.doc.get_style_sheet()
@@ -826,6 +863,11 @@ class AncestorTreeOptions(MenuReportOptions):
         self.__pid = None
         self.box_Y_sf = None
         self.box_shadow_sf = None
+
+        # THE ONLY PLACE utils is called for these colors:
+        self.report_gender_colors = utils.get_report_gender_colors()
+        self.report_family_colors = utils.get_report_family_colors()
+
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
@@ -881,6 +923,17 @@ class AncestorTreeOptions(MenuReportOptions):
         self.start_idx = NumberOption(_("Start Index"), 1, 1, 50)
         self.start_idx.set_help(_("The start index"))
         menu.add_option(category_name, "start_idx", self.start_idx)
+
+        fill_box_color = BooleanOption(
+            _("Fill color in the person and marriage boxes"), True
+        )
+        fill_box_color.set_help(
+            _(
+                "Whether to fill color in the person and marriage boxes."
+                "  You may change the color scheme by creating a new style."
+            )
+        )
+        menu.add_option(category_name, "fill_box_color", fill_box_color)
 
         # better to 'Show siblings of\nthe center person
         # Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
@@ -1143,11 +1196,21 @@ class AncestorTreeOptions(MenuReportOptions):
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-box", graph_style)
 
+        # generate color box based on gender
+        utils.generate_gender_color_styles(
+            default_style, "AC2-box", graph_style, self.report_gender_colors
+        )
+
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Normal")
         # graph_style.set_shadow(0, PT2CM(9))  # shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-fam-box", graph_style)
+
+        # generate color box based for family
+        utils.generate_family_color_style(
+            default_style, "AC2-fam-box", graph_style, self.report_family_colors
+        )
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Note")
