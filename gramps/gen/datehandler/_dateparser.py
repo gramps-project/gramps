@@ -507,6 +507,7 @@ class DateParser:
         self._pmon_str = self.re_longest_first(list(self.persian_to_int.keys()))
         self._imon_str = self.re_longest_first(list(self.islamic_to_int.keys()))
         self._smon_str = self.re_longest_first(list(self.swedish_to_int.keys()))
+        self._clmon_str = self.re_longest_first(list(self.chinese_lunar_to_int.keys()))
         self._cal_str = self.re_longest_first(list(self.calendar_to_int.keys()))
         self._ny_str = self.re_longest_first(list(self.newyear_to_int.keys()))
 
@@ -586,6 +587,18 @@ class DateParser:
         self._stext2 = re.compile(
             r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._smon_str, re.IGNORECASE
         )
+        if self._clmon_str:
+            self._cltext = re.compile(
+                r"%s\.?(\s+\d+)?\s*,?\s+((\d+)(/\d+)?)?\s*$" % self._clmon_str,
+                re.IGNORECASE,
+            )
+            self._cltext2 = re.compile(
+                r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._clmon_str,
+                re.IGNORECASE,
+            )
+        else:
+            self._cltext = re.compile(r"$^")
+            self._cltext2 = re.compile(r"$^")
         self._numeric = re.compile(r"((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
         self._iso = re.compile(r"(\d+)(/(\d+))?-(\d+)(-(\d+))?\s*$")
         self._isotimestamp = re.compile(
@@ -646,7 +659,7 @@ class DateParser:
         import re
 
         result = self._parse_calendar(
-            text, self._text, self._text2, self.chinese_lunar_to_int
+            text, self._cltext, self._cltext2, self.chinese_lunar_to_int
         )
         if result != Date.EMPTY:
             return result
