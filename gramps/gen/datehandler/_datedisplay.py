@@ -130,6 +130,7 @@ class DateDisplay:
         self.french = self._ds.french
         self.persian = self._ds.persian
         self.islamic = self._ds.islamic
+        self.chinese_lunar = self._ds.chinese_lunar
         self.display_cal = [
             self._display_gregorian,
             self._display_julian,
@@ -138,6 +139,7 @@ class DateDisplay:
             self._display_persian,
             self._display_islamic,
             self._display_swedish,
+            self._display_chinese_lunar,
         ]
         self._mod_str = self._ds.modifiers
         self._qual_str = self._ds.qualifiers
@@ -802,6 +804,22 @@ class DateDisplay:
 
     def _display_islamic(self, date_val, **kwargs):
         return self._display_calendar(date_val, self.islamic, **kwargs)
+
+    def _display_chinese_lunar(self, date_val, **kwargs):
+        """Display a Chinese Lunar Calendar date. Months 101-112 are leap months."""
+        month = date_val[1]
+        if month > 100:
+            _ = self._locale.translation.sgettext
+            actual = month - 100
+            month_names = list(self.chinese_lunar)
+            if actual < len(month_names):
+                month_names[actual] = _("Leap ") + month_names[actual]
+            return self._display_calendar(
+                (date_val[0], actual, date_val[2], date_val[3]),
+                tuple(month_names),
+                **kwargs,
+            )
+        return self._display_calendar(date_val, self.chinese_lunar, **kwargs)
 
 
 class DateDisplayEn(DateDisplay):

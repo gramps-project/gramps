@@ -653,3 +653,297 @@ def swedish_ymd(sdn):
     if sdn >= 2361390:
         return gregorian_ymd(sdn)
     return julian_ymd(sdn)
+
+
+# -------------------------------------------------------------------------
+#
+# Chinese Lunar Calendar
+#
+# -------------------------------------------------------------------------
+
+# Year data derived from the lunardate package:
+#   Copyright (C) 1988,1989,1991,1992,2001 Fung F. Lee and Ricky Yeung
+#   Copyright (C) 2008 LI Daobing <lidaobing@gmail.com>
+#   Licensed under GNU General Public License version 2.
+#
+# Encoding per year (17-bit integer):
+#   bits  3-0 : leap month number (0 = none, 1-12)
+#   bits 15-4 : big-month flags for months 1-12
+#               (bit 15 = month 1, bit 4 = month 12; 1 = 30 days, 0 = 29)
+#   bit  16   : big-month flag for the leap month (1 = 30 days, 0 = 29)
+_CHN_YEAR_INFOS = [
+    0x04BD8,  # 1900
+    0x04AE0,
+    0x0A570,
+    0x054D5,
+    0x0D260,
+    0x0D950,  # 1905
+    0x16554,
+    0x056A0,
+    0x09AD0,
+    0x055D2,
+    0x04AE0,  # 1910
+    0x0A5B6,
+    0x0A4D0,
+    0x0D250,
+    0x1D255,
+    0x0B540,  # 1915
+    0x0D6A0,
+    0x0ADA2,
+    0x095B0,
+    0x14977,
+    0x04970,  # 1920
+    0x0A4B0,
+    0x0B4B5,
+    0x06A50,
+    0x06D40,
+    0x1AB54,  # 1925
+    0x02B60,
+    0x09570,
+    0x052F2,
+    0x04970,
+    0x06566,  # 1930
+    0x0D4A0,
+    0x0EA50,
+    0x06E95,
+    0x05AD0,
+    0x02B60,  # 1935
+    0x186E3,
+    0x092E0,
+    0x1C8D7,
+    0x0C950,
+    0x0D4A0,  # 1940
+    0x1D8A6,
+    0x0B550,
+    0x056A0,
+    0x1A5B4,
+    0x025D0,  # 1945
+    0x092D0,
+    0x0D2B2,
+    0x0A950,
+    0x0B557,
+    0x06CA0,  # 1950
+    0x0B550,
+    0x15355,
+    0x04DA0,
+    0x0A5D0,
+    0x14573,  # 1955
+    0x052B0,
+    0x0A9A8,
+    0x0E950,
+    0x06AA0,
+    0x0AEA6,  # 1960
+    0x0AB50,
+    0x04B60,
+    0x0AAE4,
+    0x0A570,
+    0x05260,  # 1965
+    0x0F263,
+    0x0D950,
+    0x05B57,
+    0x056A0,
+    0x096D0,  # 1970
+    0x04DD5,
+    0x04AD0,
+    0x0A4D0,
+    0x0D4D4,
+    0x0D250,  # 1975
+    0x0D558,
+    0x0B540,
+    0x0B5A0,
+    0x195A6,
+    0x095B0,  # 1980
+    0x049B0,
+    0x0A974,
+    0x0A4B0,
+    0x0B27A,
+    0x06A50,  # 1985
+    0x06D40,
+    0x0AF46,
+    0x0AB60,
+    0x09570,
+    0x04AF5,  # 1990
+    0x04970,
+    0x064B0,
+    0x074A3,
+    0x0EA50,
+    0x06B58,  # 1995
+    0x05AC0,
+    0x0AB60,
+    0x096D5,
+    0x092E0,
+    0x0C960,  # 2000
+    0x0D954,
+    0x0D4A0,
+    0x0DA50,
+    0x07552,
+    0x056A0,  # 2005
+    0x0ABB7,
+    0x025D0,
+    0x092D0,
+    0x0CAB5,
+    0x0A950,  # 2010
+    0x0B4A0,
+    0x0BAA4,
+    0x0AD50,
+    0x055D9,
+    0x04BA0,  # 2015
+    0x0A5B0,
+    0x15176,
+    0x052B0,
+    0x0A930,
+    0x07954,  # 2020
+    0x06AA0,
+    0x0AD50,
+    0x05B52,
+    0x04B60,
+    0x0A6E6,  # 2025
+    0x0A4E0,
+    0x0D260,
+    0x0EA65,
+    0x0D530,
+    0x05AA0,  # 2030
+    0x076A3,
+    0x096D0,
+    0x04AFB,
+    0x04AD0,
+    0x0A4D0,  # 2035
+    0x1D0B6,
+    0x0D250,
+    0x0D520,
+    0x0DD45,
+    0x0B5A0,  # 2040
+    0x056D0,
+    0x055B2,
+    0x049B0,
+    0x0A577,
+    0x0A4B0,  # 2045
+    0x0AA50,
+    0x1B255,
+    0x06D20,
+    0x0ADA0,
+    0x14B63,  # 2050
+    0x09370,
+    0x049F8,
+    0x04970,
+    0x064B0,
+    0x168A6,  # 2055
+    0x0EA50,
+    0x06AA0,
+    0x1A6C4,
+    0x0AAE0,
+    0x092E0,  # 2060
+    0x0D2E3,
+    0x0C960,
+    0x0D557,
+    0x0D4A0,
+    0x0DA50,  # 2065
+    0x05D55,
+    0x056A0,
+    0x0A6D0,
+    0x055D4,
+    0x052D0,  # 2070
+    0x0A9B8,
+    0x0A950,
+    0x0B4A0,
+    0x0B6A6,
+    0x0AD50,  # 2075
+    0x055A0,
+    0x0ABA4,
+    0x0A5B0,
+    0x052B0,
+    0x0B273,  # 2080
+    0x06930,
+    0x07337,
+    0x06AA0,
+    0x0AD50,
+    0x14B55,  # 2085
+    0x04B60,
+    0x0A570,
+    0x054E4,
+    0x0D160,
+    0x0E968,  # 2090
+    0x0D520,
+    0x0DAA0,
+    0x16AA6,
+    0x056D0,
+    0x04AE0,  # 2095
+    0x0A9D4,
+    0x0A2D0,
+    0x0D150,
+    0x0F252,  # 2099
+]
+
+# First day of Chinese Lunar year 1900 = Gregorian 1900-01-31.
+_CHN_BASE_YEAR = 1900
+_CHN_START_SDN = gregorian_sdn(1900, 1, 31)
+
+
+def _chn_iter_months(year_info: int):
+    """Yield (month, is_leap, days) in calendar order for one Chinese year."""
+    leap_month = year_info & 0xF
+    months = list(range(1, 13))
+    if leap_month:
+        months.insert(leap_month, -leap_month)
+    for m in months:
+        if m < 0:
+            days = ((year_info >> 16) & 1) + 29
+            yield -m, True, days
+        else:
+            days = ((year_info >> (16 - m)) & 1) + 29
+            yield m, False, days
+
+
+# Cumulative day offsets: _CHN_OFFSETS[i] is the number of days from
+# _CHN_START_SDN to the first day of (_CHN_BASE_YEAR + i).
+_CHN_OFFSETS: list[int] = []
+_chn_running = 0
+for _yi in _CHN_YEAR_INFOS:
+    _CHN_OFFSETS.append(_chn_running)
+    _chn_running += sum(d for _m, _lp, d in _chn_iter_months(_yi))
+_CHN_OFFSETS.append(_chn_running)  # sentinel: one past the last day in the table
+
+
+def chinese_lunar_sdn(year: int, month: int, day: int) -> int:
+    """Convert a Chinese Lunar date to an SDN number.
+
+    Months 1-12 are regular months; months 101-112 represent the leap
+    version of that month (e.g. 104 = intercalary 4th month).
+    Returns 0 for dates outside the supported range (1900-2099).
+    """
+    idx = year - _CHN_BASE_YEAR
+    if idx < 0 or idx >= len(_CHN_YEAR_INFOS):
+        return 0
+    is_leap = month > 100
+    target = month - 100 if is_leap else month
+    offset = _CHN_OFFSETS[idx]
+    for m, leap, days in _chn_iter_months(_CHN_YEAR_INFOS[idx]):
+        if m == target and leap == is_leap:
+            return _CHN_START_SDN + offset + day - 1
+        offset += days
+    return 0
+
+
+def chinese_lunar_ymd(sdn: int) -> tuple[int, int, int]:
+    """Convert an SDN number to a Chinese Lunar date.
+
+    The returned month is 1-12 for a regular month or 101-112 for a leap
+    month.  Returns (0, 0, 0) for SDN values outside the supported range.
+    """
+    offset = sdn - _CHN_START_SDN
+    if offset < 0 or offset >= _CHN_OFFSETS[-1]:
+        return (0, 0, 0)
+    lo, hi = 0, len(_CHN_YEAR_INFOS) - 1
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        if _CHN_OFFSETS[mid] <= offset:
+            lo = mid
+        else:
+            hi = mid - 1
+    year = _CHN_BASE_YEAR + lo
+    remaining = offset - _CHN_OFFSETS[lo]
+    for m, is_leap, days in _chn_iter_months(_CHN_YEAR_INFOS[lo]):
+        if remaining < days:
+            return (year, m + 100 if is_leap else m, remaining + 1)
+        remaining -= days
+    return (0, 0, 0)
