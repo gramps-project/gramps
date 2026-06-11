@@ -38,6 +38,7 @@ class TestChineseLunarConversion(unittest.TestCase):
     # Sources: published Chinese calendar tables and lunardate library.
     KNOWN_DATES = [
         # Chinese New Year dates (always lunar 1/1)
+        (1600, 1, 1, 1600, 2, 14),  # verified 1600 anchor year
         (1900, 1, 1, 1900, 1, 31),
         (1949, 1, 1, 1949, 1, 29),
         (1976, 1, 1, 1976, 1, 31),
@@ -114,8 +115,21 @@ class TestChineseLunarConversion(unittest.TestCase):
 
     def test_round_trip_sdn_to_ymd(self):
         """Every day in a sample range survives SDN -> ymd -> SDN round-trip."""
+        # Modern range
         start_sdn = gregorian_sdn(2020, 1, 1)
         end_sdn = gregorian_sdn(2026, 1, 1)
+        for sdn in range(start_sdn, end_sdn):
+            ymd = chinese_lunar_ymd(sdn)
+            self.assertNotEqual(ymd, (0, 0, 0), f"SDN {sdn} returned (0,0,0)")
+            recovered = chinese_lunar_sdn(*ymd)
+            self.assertEqual(
+                recovered,
+                sdn,
+                f"Round-trip failed for SDN {sdn}: ymd={ymd}, recovered SDN={recovered}",
+            )
+        # Pre-1600 range (exercises the backward-anchor extension)
+        start_sdn = chinese_lunar_sdn(500, 1, 1)
+        end_sdn = chinese_lunar_sdn(501, 1, 1)
         for sdn in range(start_sdn, end_sdn):
             ymd = chinese_lunar_ymd(sdn)
             self.assertNotEqual(ymd, (0, 0, 0), f"SDN {sdn} returned (0,0,0)")
@@ -129,22 +143,22 @@ class TestChineseLunarConversion(unittest.TestCase):
     def test_round_trip_ymd_to_sdn(self):
         """Lunar ymd -> SDN -> ymd round-trip for a sample of dates."""
         # Walk through year 2023 (has a leap 2nd month) day by day.
-        year = 2023
-        sdn = chinese_lunar_sdn(year, 1, 1)
-        end = chinese_lunar_sdn(year + 1, 1, 1)
-        while sdn < end:
-            ymd = chinese_lunar_ymd(sdn)
-            self.assertEqual(ymd[0], year)
-            recovered = chinese_lunar_sdn(*ymd)
-            self.assertEqual(recovered, sdn, f"Round-trip at SDN {sdn}: {ymd}")
-            sdn += 1
+        for year in [1776, 2023]:
+            sdn = chinese_lunar_sdn(year, 1, 1)
+            end = chinese_lunar_sdn(year + 1, 1, 1)
+            while sdn < end:
+                ymd = chinese_lunar_ymd(sdn)
+                self.assertEqual(ymd[0], year)
+                recovered = chinese_lunar_sdn(*ymd)
+                self.assertEqual(recovered, sdn, f"Round-trip at SDN {sdn}: {ymd}")
+                sdn += 1
 
     def test_out_of_range_returns_zero(self):
-        """Dates outside 1900-2099 return 0 / (0,0,0)."""
-        self.assertEqual(chinese_lunar_sdn(1899, 1, 1), 0)
-        self.assertEqual(chinese_lunar_sdn(2100, 1, 1), 0)
-        too_early = gregorian_sdn(1899, 1, 1)
-        too_late = gregorian_sdn(2101, 1, 1)
+        """Dates outside 400-9999 return 0 / (0,0,0)."""
+        self.assertEqual(chinese_lunar_sdn(399, 1, 1), 0)
+        self.assertEqual(chinese_lunar_sdn(10000, 1, 1), 0)
+        too_early = gregorian_sdn(399, 1, 1)
+        too_late = gregorian_sdn(10001, 1, 1)
         self.assertEqual(chinese_lunar_ymd(too_early), (0, 0, 0))
         self.assertEqual(chinese_lunar_ymd(too_late), (0, 0, 0))
 
