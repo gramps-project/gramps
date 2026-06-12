@@ -100,6 +100,7 @@ CAL_TO_MONTHS_NAMES = {
     Date.CAL_SWEDISH: displayer.swedish,
     Date.CAL_CHINESE_LUNAR: displayer.chinese_lunar,
     Date.CAL_KOREAN_LUNAR: displayer.korean_lunar,
+    Date.CAL_VIETNAMESE_LUNAR: displayer.vietnamese_lunar,
 }
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT1

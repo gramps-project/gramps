@@ -152,6 +152,7 @@ class DateStrings:
             _("Swedish", "calendar"),
             _("Chinese Lunar", "calendar"),
             _("Korean Lunar", "calendar"),
+            _("Vietnamese Lunar", "calendar"),
         )
         _ = locale.translation.lexgettext
 
@@ -185,6 +186,22 @@ class DateStrings:
             _("Siwol", "Korean Lunar month lexeme"),
             _("Sibirwol", "Korean Lunar month lexeme"),
             _("Sibiwol", "Korean Lunar month lexeme"),
+        )
+
+        self.vietnamese_lunar = (
+            "",
+            _("Tháng Giêng", "Vietnamese Lunar month lexeme"),
+            _("Tháng Hai", "Vietnamese Lunar month lexeme"),
+            _("Tháng Ba", "Vietnamese Lunar month lexeme"),
+            _("Tháng Tư", "Vietnamese Lunar month lexeme"),
+            _("Tháng Năm", "Vietnamese Lunar month lexeme"),
+            _("Tháng Sáu", "Vietnamese Lunar month lexeme"),
+            _("Tháng Bảy", "Vietnamese Lunar month lexeme"),
+            _("Tháng Tám", "Vietnamese Lunar month lexeme"),
+            _("Tháng Chín", "Vietnamese Lunar month lexeme"),
+            _("Tháng Mười", "Vietnamese Lunar month lexeme"),
+            _("Tháng Mười Một", "Vietnamese Lunar month lexeme"),
+            _("Tháng Chạp", "Vietnamese Lunar month lexeme"),
         )
 
         self.hebrew = (

@@ -60,6 +60,8 @@ from .gcalendar import (
     persian_ymd,
     swedish_sdn,
     swedish_ymd,
+    vietnamese_lunar_sdn,
+    vietnamese_lunar_ymd,
 )
 
 _ = glocale.translation.sgettext
@@ -609,7 +611,8 @@ class Date(BaseObject):
     CAL_SWEDISH = 6
     CAL_CHINESE_LUNAR = 7
     CAL_KOREAN_LUNAR = 8
-    CALENDARS = range(9)
+    CAL_VIETNAMESE_LUNAR = 9
+    CALENDARS = range(10)
 
     NEWYEAR_JAN1 = 0  # CODE
     NEWYEAR_MAR1 = 1
@@ -638,6 +641,7 @@ class Date(BaseObject):
         swedish_sdn,
         chinese_lunar_sdn,
         korean_lunar_sdn,
+        vietnamese_lunar_sdn,
     ]
 
     _calendar_change = [
@@ -650,6 +654,7 @@ class Date(BaseObject):
         swedish_ymd,
         chinese_lunar_ymd,
         korean_lunar_ymd,
+        vietnamese_lunar_ymd,
     ]
 
     calendar_names = [
@@ -662,6 +667,7 @@ class Date(BaseObject):
         "Swedish",
         "Chinese Lunar",
         "Korean Lunar",
+        "Vietnamese Lunar",
     ]
 
     ui_calendar_names = [
@@ -674,6 +680,7 @@ class Date(BaseObject):
         _("Swedish", "calendar"),
         _("Chinese Lunar", "calendar"),
         _("Korean Lunar", "calendar"),
+        _("Vietnamese Lunar", "calendar"),
     ]
 
     def __init__(self, *source):
