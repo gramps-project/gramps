@@ -171,11 +171,11 @@ class TestJapaneseEraToGregorian(unittest.TestCase):
     def test_roundtrip_modern_eras(self):
         """gregorian_to_japanese_era and japanese_era_to_gregorian are inverses."""
         for kanji, _romaji, sy, sm, sd in [
-            ("令和", "Reiwa",  2019, 5, 1),
+            ("令和", "Reiwa", 2019, 5, 1),
             ("平成", "Heisei", 1989, 1, 8),
-            ("昭和", "Showa",  1926, 12, 25),
+            ("昭和", "Showa", 1926, 12, 25),
             ("大正", "Taisho", 1912, 7, 30),
-            ("明治", "Meiji",  1868, 9, 8),
+            ("明治", "Meiji", 1868, 9, 8),
         ]:
             era, y_in_era = gregorian_to_japanese_era(sy, sm, sd)
             self.assertEqual(era, kanji)
@@ -216,9 +216,7 @@ class TestJapaneseImperialSDN(unittest.TestCase):
 
     def test_threshold_post(self):
         """1873-01-01 (first Gregorian day) uses gregorian_sdn."""
-        self.assertEqual(
-            japanese_imperial_sdn(1873, 1, 1), gregorian_sdn(1873, 1, 1)
-        )
+        self.assertEqual(japanese_imperial_sdn(1873, 1, 1), gregorian_sdn(1873, 1, 1))
 
     def test_threshold_ymd_post(self):
         """japanese_imperial_ymd for 1873-01-01 SDN returns Gregorian tuple."""

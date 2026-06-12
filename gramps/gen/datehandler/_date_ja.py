@@ -52,18 +52,18 @@ from ._datehandler import register_datehandler
 # Traditional Japanese lunisolar month names (和風月名), index 1–12.
 _JA_TRADITIONAL_MONTHS = (
     "",
-    "睦月",   # Mutsuki   (month 1)
-    "如月",   # Kisaragi  (month 2)
-    "弥生",   # Yayoi     (month 3)
-    "卯月",   # Uzuki     (month 4)
-    "皐月",   # Satsuki   (month 5)
+    "睦月",  # Mutsuki   (month 1)
+    "如月",  # Kisaragi  (month 2)
+    "弥生",  # Yayoi     (month 3)
+    "卯月",  # Uzuki     (month 4)
+    "皐月",  # Satsuki   (month 5)
     "水無月",  # Minazuki  (month 6)
-    "文月",   # Fumizuki  (month 7)
-    "葉月",   # Hazuki    (month 8)
-    "長月",   # Nagatsuki (month 9)
+    "文月",  # Fumizuki  (month 7)
+    "葉月",  # Hazuki    (month 8)
+    "長月",  # Nagatsuki (month 9)
     "神無月",  # Kannazuki (month 10)
-    "霜月",   # Shimotsuki (month 11)
-    "師走",   # Shiwasu   (month 12)
+    "霜月",  # Shimotsuki (month 11)
+    "師走",  # Shiwasu   (month 12)
 )
 
 # Build a regex alternation of all era kanji names, longest-first to avoid
@@ -71,12 +71,8 @@ _JA_TRADITIONAL_MONTHS = (
 _ERA_KANJI_LIST = [e[0] for e in JAPANESE_ERAS]
 _ERA_ROMAJI_LIST = [e[1].lower() for e in JAPANESE_ERAS]
 # Sort longest-first for the regex so longer era names match before shorter ones.
-_ERA_KANJI_PATTERN = "|".join(
-    sorted(set(_ERA_KANJI_LIST), key=len, reverse=True)
-)
-_ERA_ROMAJI_PATTERN = "|".join(
-    sorted(set(_ERA_ROMAJI_LIST), key=len, reverse=True)
-)
+_ERA_KANJI_PATTERN = "|".join(sorted(set(_ERA_KANJI_LIST), key=len, reverse=True))
+_ERA_ROMAJI_PATTERN = "|".join(sorted(set(_ERA_ROMAJI_LIST), key=len, reverse=True))
 
 # Matches:  <era_kanji><year>年[<month>月[<day>日]]
 # Also accepts "元" (= year 1) in place of a digit.
@@ -304,12 +300,12 @@ class DateDisplayJA(DateDisplay):
 
         # This definition must agree with its "_display_gregorian" method.
         self.formats = (
-            "YYYY-MM-DD (ISO)",                        # 0
+            "YYYY-MM-DD (ISO)",  # 0
             "システムデフォールト (" + example + ")",  # 1
-            "1999年12月31日",                          # 2
-            "1999年十二月31日",                        # 3
-            "昭和40年5月15日",                         # 4  Japanese Imperial era
-            "昭和40年皐月15日",                        # 5  era + traditional month
+            "1999年12月31日",  # 2
+            "1999年十二月31日",  # 3
+            "昭和40年5月15日",  # 4  Japanese Imperial era
+            "昭和40年皐月15日",  # 5  era + traditional month
         )
 
     def _display_gregorian(self, date_val, **kwargs):
