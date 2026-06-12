@@ -1,12 +1,12 @@
 0 HEAD
 1 SOUR Gramps
-2 VERS 6.0.0
+2 VERS 5.1.2
 2 NAME Gramps
-1 DATE 11 JUN 2026
-2 TIME 20:31:45
+1 DATE 7 JAN 2020
+2 TIME 13:39:43
 1 SUBM @SUBM@
-1 FILE /tmp/tmpp7utzfo8/exp_sample_ged.ged
-1 COPR Copyright (c) 2026 Alex Roitman,,,.
+1 FILE C:\Users\prc\AppData\Roaming\gramps\temp\exp_sample_ged.ged
+1 COPR Copyright (c) 2020 Alex Roitman,,,.
 1 GEDC
 2 VERS 5.5.1
 2 FORM LINEAGE-LINKED
@@ -18,7 +18,7 @@
 2 ADR1 Not Provided
 1 PHON 666-555-4444
 1 EMAIL an_email@@gmail.com
-0 @I00000@ INDI
+0 @I0000@ INDI
 1 NAME Anna /Hansdotter/
 2 TYPE birth
 2 GIVN Anna
@@ -37,15 +37,15 @@
 2 TYPE Death of Anna Hansdotter
 2 DATE 29 SEP 1945
 2 PLAC Sparks, Washoe Co., NV
-1 FAMS @F00003@
-1 ASSO @I00038@
+1 FAMS @F0003@
+1 ASSO @I0038@
 2 RELA Friend
-2 NOTE @N00015@
-1 NOTE @N00014@
+2 NOTE @N0015@
+1 NOTE @N0014@
 1 CHAN
 2 DATE 27 OCT 2016
-3 TIME 08:14:42
-0 @I00001@ INDI
+3 TIME 15:14:42
+0 @I0001@ INDI
 1 NAME Keith Lloyd /Smith/
 2 TYPE birth
 2 GIVN Keith Lloyd
@@ -55,12 +55,12 @@
 2 TYPE Birth of Keith Lloyd Smith
 2 DATE 11 AUG 1966
 2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F00008@
+1 FAMC @F0008@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00002@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0002@ INDI
 1 NAME Amber Marie /Smith/
 2 TYPE birth
 2 GIVN Amber Marie
@@ -75,12 +75,12 @@
 2 TYPE Christening of Amber Marie Smith
 2 DATE 26 APR 1998
 2 PLAC Community Presbyterian Church, Danville, CA
-1 FAMC @F00013@
+1 FAMC @F0013@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00003@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0003@ INDI
 1 NAME Magnes /Smith/
 2 TYPE birth
 2 GIVN Magnes
@@ -94,13 +94,13 @@
 2 TYPE Death of Magnes Smith
 2 DATE 20 FEB 1910
 2 PLAC Rønne, Bornholm, Denmark
-1 FAMC @F00002@
+1 FAMC @F0002@
 2 PEDI birth
-1 FAMS @F00011@
+1 FAMS @F0011@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00004@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0004@ INDI
 1 NAME Ingeman /Smith/
 2 TYPE birth
 2 GIVN Ingeman
@@ -110,12 +110,12 @@
 2 TYPE Birth of Ingeman Smith
 2 DATE 29 JAN 1826
 2 PLAC Gladsax, Kristianstad Län, Sweden
-1 FAMC @F00000@
+1 FAMC @F0000@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00005@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0005@ INDI
 1 NAME Mason Michael /Smith/
 2 TYPE birth
 2 GIVN Mason Michael
@@ -129,12 +129,12 @@
 2 TYPE Christening of Mason Michael Smith
 2 DATE 10 JUL 1996
 2 PLAC Community Presbyterian Church, Danville, CA
-1 FAMC @F00013@
+1 FAMC @F0013@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00006@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0006@ INDI
 1 NAME Edwin /Willard/
 2 TYPE birth
 2 GIVN Edwin
@@ -143,11 +143,11 @@
 1 BIRT
 2 TYPE Birth of Edwin Willard
 2 DATE ABT 1886
-1 FAMS @F00004@
+1 FAMS @F0004@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00007@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0007@ INDI
 1 NAME Ingar /Smith/
 2 TYPE birth
 2 GIVN Ingar
@@ -157,12 +157,12 @@
 2 TYPE Birth of Ingar Smith
 2 DATE AFT 1823
 2 PLAC Gladsax, Kristianstad Län, Sweden
-1 FAMC @F00000@
+1 FAMC @F0000@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00008@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0008@ INDI
 1 NAME Hjalmar /Smith/
 2 TYPE birth
 2 GIVN Hjalmar
@@ -184,14 +184,14 @@
 2 TYPE Immi
 2 DATE 14 NOV 1912
 2 PLAC Copenhagen, Denmark
-1 FAMC @F00003@
+1 FAMC @F0003@
 2 PEDI birth
-1 FAMS @F00006@
-1 NOTE @N00003@
+1 FAMS @F0006@
+1 NOTE @N0003@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00009@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0009@ INDI
 1 NAME Emil /Smith/
 2 TYPE birth
 2 GIVN Emil
@@ -201,12 +201,12 @@
 2 TYPE Birth of Emil Smith
 2 DATE 27 SEP 1860
 2 PLAC Simrishamn, Kristianstad Län, Sweden
-1 FAMC @F00002@
+1 FAMC @F0002@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00010@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0010@ INDI
 1 NAME Hans Peter /Smith/
 2 TYPE birth
 2 GIVN Hans Peter
@@ -216,12 +216,12 @@
 2 TYPE Birth of Hans Peter Smith
 2 DATE 17 APR 1904
 2 PLAC Rønne, Bornholm, Denmark
-2 SOUR @S00002@
+2 SOUR @S0002@
 3 PAGE 22 6
 3 DATA
 4 DATE 5 MAY 1955
 4 TEXT A citation Note Source text
-3 NOTE @N00018@
+3 NOTE @N0018@
 3 EVEN Citation Event?
 4 ROLE The Event type Role
 1 DEAT
@@ -232,18 +232,18 @@
 2 TYPE In cemetary
 2 DATE 5 FEB 1977
 2 PLAC San Francisco, San Francisco Co., CA
-2 SOUR @S00004@
+2 SOUR @S0004@
 3 QUAY 2
 3 DATA
 4 DATE 22 JUL 1977
-1 FAMC @F00003@
+1 FAMC @F0003@
 2 PEDI birth
-1 FAMS @F00009@
-1 FAMS @F00014@
+1 FAMS @F0009@
+1 FAMS @F0014@
 1 CHAN
 2 DATE 4 JUN 2016
-3 TIME 14:32:08
-0 @I00011@ INDI
+3 TIME 21:32:08
+0 @I0011@ INDI
 1 NAME Hanna /Smith/
 2 TYPE birth
 2 GIVN Hanna
@@ -253,12 +253,12 @@
 2 TYPE Birth of Hanna Smith
 2 DATE 29 JAN 1821
 2 PLAC Gladsax, Kristianstad Län, Sweden
-1 FAMC @F00000@
+1 FAMC @F0000@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00012@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0012@ INDI
 1 NAME Herman Julius /Nielsen/
 2 TYPE birth
 2 GIVN Herman Julius
@@ -271,11 +271,11 @@
 1 DEAT
 2 TYPE Death of Herman Julius Nielsen
 2 DATE 1945
-1 FAMS @F00005@
+1 FAMS @F0005@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00013@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0013@ INDI
 1 NAME Evelyn /Michaels/
 2 TYPE birth
 2 GIVN Evelyn
@@ -284,11 +284,11 @@
 1 BIRT
 2 TYPE Birth of Evelyn Michaels
 2 DATE ABT 1897
-1 FAMS @F00007@
+1 FAMS @F0007@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00014@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0014@ INDI
 1 NAME Marjorie Lee /Smith/
 2 TYPE birth
 2 GIVN Marjorie Lee
@@ -298,12 +298,12 @@
 2 TYPE Birth of Marjorie Lee Smith
 2 DATE 4 NOV 1934
 2 PLAC Reno, Washoe Co., NV
-1 FAMC @F00006@
+1 FAMC @F0006@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00015@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0015@ INDI
 1 NAME Gus /Smith/
 2 TYPE birth
 2 GIVN Gus
@@ -317,13 +317,13 @@
 2 TYPE Death of Gus Smith
 2 DATE 21 OCT 1963
 2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F00003@
+1 FAMC @F0003@
 2 PEDI birth
-1 FAMS @F00007@
+1 FAMS @F0007@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00016@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0016@ INDI
 1 NAME Jennifer /Anderson/
 2 TYPE birth
 2 GIVN Jennifer
@@ -337,11 +337,11 @@
 2 TYPE Death of Jennifer Anderson
 2 DATE 29 MAY 1985
 2 PLAC San Francisco, San Francisco Co., CA
-1 FAMS @F00014@
+1 FAMS @F0014@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00017@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0017@ INDI
 1 NAME Lillie Harriet /Jones/
 2 TYPE birth
 2 GIVN Lillie Harriet
@@ -354,11 +354,11 @@
 1 DEAT
 2 TYPE Death of Lillie Harriet Jones
 2 DATE 26 JUN 1990
-1 FAMS @F00009@
+1 FAMS @F0009@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00018@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0018@ INDI
 1 NAME John Hjalmar /Smith/
 2 TYPE birth
 2 GIVN John Hjalmar
@@ -368,13 +368,13 @@
 2 TYPE Birth of John Hjalmar Smith
 2 DATE 30 JAN 1932
 2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F00006@
+1 FAMC @F0006@
 2 PEDI birth
-1 FAMS @F00012@
+1 FAMS @F0012@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00019@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0019@ INDI
 1 NAME Eric Lloyd /Smith/
 2 TYPE birth
 2 GIVN Eric Lloyd
@@ -386,15 +386,15 @@
 2 DATE 28 AUG 1963
 2 PLAC San Francisco, San Francisco Co., CA
 1 ADOP Y
-2 FAMC @F00008@
+2 FAMC @F0008@
 3 ADOP BOTH
-1 FAMC @F00008@
+1 FAMC @F0008@
 2 PEDI adopted
-1 FAMS @F00010@
+1 FAMS @F0010@
 1 CHAN
 2 DATE 4 JUN 2016
-3 TIME 14:25:13
-0 @I00020@ INDI
+3 TIME 21:25:13
+0 @I0020@ INDI
 1 NAME Carl Emil /Smith/
 2 TYPE birth
 2 GIVN Carl Emil
@@ -409,12 +409,12 @@
 2 DATE 28 JAN 1959
 2 PLAC Reno, Washoe Co., NV
 2 CAUS Bad breath
-1 FAMC @F00003@
+1 FAMC @F0003@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00021@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0021@ INDI
 1 NAME Hjalmar /Smith/
 2 TYPE birth
 2 GIVN Hjalmar
@@ -428,12 +428,12 @@
 2 TYPE Death of Hjalmar Smith
 2 DATE 25 SEP 1894
 2 PLAC Rønne, Bornholm, Denmark
-1 FAMC @F00003@
+1 FAMC @F0003@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00022@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0022@ INDI
 1 NAME Martin /Smith/
 2 TYPE birth
 2 GIVN Martin
@@ -451,14 +451,14 @@
 2 TYPE Baptism of Martin Smith
 2 DATE 23 NOV 1830
 2 PLAC Gladsax, Kristianstad Län, Sweden
-1 FAMC @F00000@
+1 FAMC @F0000@
 2 PEDI birth
-1 FAMS @F00002@
-1 NOTE @N00002@
+1 FAMS @F0002@
+1 NOTE @N0002@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00023@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0023@ INDI
 1 NAME Astrid Shermanna Augusta /Smith/
 2 TYPE birth
 2 GIVN Astrid Shermanna Augusta
@@ -472,13 +472,13 @@
 2 TYPE Death of Astrid Shermanna Augusta Smith
 2 DATE 21 DEC 1963
 2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F00003@
+1 FAMC @F0003@
 2 PEDI birth
-1 FAMS @F00005@
+1 FAMS @F0005@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00024@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0024@ INDI
 1 NAME Gustaf /Smith/ Sr.
 2 TYPE birth
 2 GIVN Gustaf
@@ -501,13 +501,13 @@
 2 TYPE Christening of Gustaf Smith, Sr.
 2 DATE 7 DEC 1862
 2 PLAC Gladsax, Kristianstad Län, Sweden
-1 FAMC @F00002@
+1 FAMC @F0002@
 2 PEDI birth
-1 FAMS @F00003@
+1 FAMS @F0003@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00025@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0025@ INDI
 1 NAME Marta /Ericsdotter/
 2 TYPE birth
 2 GIVN Marta
@@ -517,11 +517,11 @@
 2 TYPE Birth of Marta Ericsdotter
 2 DATE ABT 1775
 2 PLAC Sweden
-1 FAMS @F00001@
+1 FAMS @F0001@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00026@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0026@ INDI
 1 NAME Kirsti Marie /Smith/
 2 TYPE birth
 2 GIVN Kirsti Marie
@@ -535,13 +535,13 @@
 2 TYPE Death of Kirsti Marie Smith
 2 DATE 18 JUL 1966
 2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F00003@
+1 FAMC @F0003@
 2 PEDI birth
-1 FAMS @F00004@
+1 FAMS @F0004@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00027@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0027@ INDI
 1 NAME Ingeman /Smith/
 2 TYPE birth
 2 GIVN Ingeman
@@ -551,11 +551,11 @@
 2 TYPE Birth of Ingeman Smith
 2 DATE ABT 1770
 2 PLAC Sweden
-1 FAMS @F00001@
+1 FAMS @F0001@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00028@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0028@ INDI
 1 NAME Anna /Streiffert/
 2 TYPE birth
 2 GIVN Anna
@@ -569,11 +569,11 @@
 2 TYPE Death of Anna Streiffert
 2 DATE 2 FEB 1927
 2 PLAC Rønne, Bornholm, Denmark
-1 FAMS @F00011@
+1 FAMS @F0011@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00029@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0029@ INDI
 1 NAME Craig Peter /Smith/
 2 TYPE birth
 2 GIVN Craig Peter
@@ -585,13 +585,13 @@
 2 PLAC San Francisco, San Francisco Co., CA
 1 CENS
 2 TYPE Census of Craig Peter Smith
-2 NOTE @N00000@
-1 FAMC @F00008@
+2 NOTE @N0000@
+1 FAMC @F0008@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00030@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0030@ INDI
 1 NAME Janice Ann /Adams/
 2 TYPE birth
 2 GIVN Janice Ann
@@ -605,11 +605,11 @@
 1 _DEG
 2 TYPE Business Management
 2 DATE 1988
-1 FAMS @F00013@
+1 FAMS @F0013@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00031@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0031@ INDI
 1 NAME Marjorie /Ohman/
 2 TYPE birth
 2 GIVN Marjorie
@@ -626,11 +626,11 @@
 2 TYPE Death of Marjorie Ohman
 2 DATE 22 JUN 1980
 2 PLAC Reno, Washoe Co., NV
-1 FAMS @F00006@
+1 FAMS @F0006@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00032@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0032@ INDI
 1 NAME Darcy /Horne/
 2 TYPE birth
 2 GIVN Darcy
@@ -640,11 +640,11 @@
 2 TYPE Birth of Darcy Horne
 2 DATE 2 JUL 1966
 2 PLAC Sacramento, Sacramento Co., CA
-1 FAMS @F00010@
+1 FAMS @F0010@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00033@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0033@ INDI
 1 NAME Lloyd /Smith/
 2 TYPE birth
 2 GIVN Lloyd
@@ -655,16 +655,16 @@
 2 DATE 13 MAR 1935
 2 PLAC San Francisco, San Francisco Co., CA
 1 ADOP Y
-2 FAMC @F00009@
+2 FAMC @F0009@
 3 ADOP HUSB
-1 FAMC @F00009@
+1 FAMC @F0009@
 2 _FREL Adopted
 2 _MREL Foster
-1 FAMS @F00008@
+1 FAMS @F0008@
 1 CHAN
 2 DATE 4 SEP 2016
-3 TIME 13:17:13
-0 @I00034@ INDI
+3 TIME 20:17:13
+0 @I0034@ INDI
 1 NAME Alice Paula /Perkins/
 2 TYPE birth
 2 GIVN Alice Paula
@@ -674,11 +674,11 @@
 2 TYPE Birth of Alice Paula Perkins
 2 DATE 22 NOV 1933
 2 PLAC Sparks, Washoe Co., NV
-1 FAMS @F00012@
+1 FAMS @F0012@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00035@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0035@ INDI
 1 NAME Lars Peter /Smith/
 2 TYPE birth
 2 GIVN Lars Peter
@@ -689,14 +689,14 @@
 2 DATE 16 SEP 1991
 2 PLAC Santa Rosa, Sonoma Co., CA
 1 ADOP Y
-2 FAMC @F00010@
+2 FAMC @F0010@
 3 ADOP BOTH
-1 FAMC @F00010@
+1 FAMC @F0010@
 2 PEDI adopted
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00036@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0036@ INDI
 1 NAME Elna /Jefferson/
 2 TYPE birth
 2 GIVN Elna
@@ -713,38 +713,38 @@
 2 TYPE Christening of Elna Jefferson
 2 DATE 16 SEP 1800
 2 PLAC Gladsax, Kristianstad Län, Sweden
-1 FAMS @F00000@
+1 FAMS @F0000@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00037@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0037@ INDI
 1 NAME Edwin Michael /Smith/
 2 TYPE birth
 2 GIVN Edwin Michael
 2 SURN Smith
-2 SOUR @S00001@
+2 SOUR @S0001@
 1 SEX M
 1 BIRT
 2 TYPE Birth of Edwin Michael Smith
 2 DATE 24 MAY 1961
 2 PLAC San Jose, Santa Clara Co., CA
-2 SOUR @S00003@
+2 SOUR @S0003@
 1 OCCU Software Engineer
 2 AGE 23
-2 NOTE @N00001@
+2 NOTE @N0001@
 1 EDUC Education of Edwin Michael Smith
 2 DATE BET 1979 AND 1984
 2 PLAC UC Berkeley
 1 _DEG
 2 TYPE B.S.E.E.
 2 DATE 1984
-1 FAMC @F00012@
+1 FAMC @F0012@
 2 PEDI birth
-1 FAMS @F00013@
+1 FAMS @F0013@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00038@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0038@ INDI
 1 NAME Kerstina /Hansdotter/
 2 TYPE birth
 2 GIVN Kerstina
@@ -758,11 +758,11 @@
 2 TYPE Death of Kerstina Hansdotter
 2 DATE BEF 1908
 2 PLAC Sweden
-1 FAMS @F00002@
+1 FAMS @F0002@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00039@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0039@ INDI
 1 NAME Martin /Smith/
 2 TYPE birth
 2 GIVN Martin
@@ -775,13 +775,13 @@
 1 DEAT
 2 TYPE Death of Martin Smith
 2 PLAC Sweden
-1 FAMC @F00001@
+1 FAMC @F0001@
 2 PEDI birth
-1 FAMS @F00000@
+1 FAMS @F0000@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00040@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0040@ INDI
 1 NAME Marjorie Alice /Smith/
 2 TYPE birth
 2 GIVN Marjorie Alice
@@ -791,12 +791,12 @@
 2 TYPE Birth of Marjorie Alice Smith
 2 DATE 5 FEB 1960
 2 PLAC San Jose, Santa Clara Co., CA
-1 FAMC @F00012@
+1 FAMC @F0012@
 2 PEDI birth
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00041@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0041@ INDI
 1 NAME Janis Elaine /Green/
 2 TYPE birth
 2 GIVN Janis Elaine
@@ -805,11 +805,11 @@
 1 BIRT
 2 TYPE Birth of Janis Elaine Green
 2 DATE 2 DEC 1935
-1 FAMS @F00008@
+1 FAMS @F0008@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @I00042@ INDI
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @I0042@ INDI
 1 NAME 雪 /Ke 柯/
 2 TYPE birth
 2 GIVN 雪
@@ -820,16 +820,16 @@
 2 SURN Neilsen
 1 SEX M
 1 ADOP Y
-2 FAMC @F00005@
+2 FAMC @F0005@
 3 ADOP BOTH
-1 FAMC @F00005@
+1 FAMC @F0005@
 2 PEDI adopted
-1 OBJE @O00000@
-1 NOTE @N00007@
+1 OBJE @O0000@
+1 NOTE @N0007@
 1 CHAN
 2 DATE 18 JUN 2016
-3 TIME 10:04:25
-0 @I00043@ INDI
+3 TIME 17:04:25
+0 @I0043@ INDI
 1 NAME ピーター /リチミシキスイミ/
 2 TYPE birth
 2 GIVN ピーター
@@ -837,8 +837,8 @@
 1 SEX M
 1 CHAN
 2 DATE 18 JUN 2016
-3 TIME 09:42:08
-0 @I00044@ INDI
+3 TIME 16:42:08
+0 @I0044@ INDI
 1 NAME The /Tester/
 2 TYPE birth
 2 GIVN The
@@ -862,10 +862,10 @@
 1 BAPL
 2 DATE 2 JAN 1955
 2 STAT INFANT
-1 FAMC @F00008@
+1 FAMC @F0008@
 2 PEDI birth
-1 FAMS @F00016@
-1 SOUR @S00005@
+1 FAMS @F0016@
+1 SOUR @S0005@
 1 RESI
 2 DATE 27 OCT 2017
 2 ADDR test village
@@ -880,8 +880,8 @@
 3 CTRY Cuyahoga
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 09:40:40
-0 @I00045@ INDI
+3 TIME 16:40:40
+0 @I0045@ INDI
 1 NAME Mrs /Tester/
 2 TYPE married
 2 GIVN Mrs
@@ -894,9 +894,9 @@
 2 EMAIL mrstester@@gmail.com
 2 FAX 440-321-4568
 2 WWW http://mrstester.com
-2 NOTE @N00011@
-1 FAMS @F00016@
-1 SOUR @S00005@
+2 NOTE @N0011@
+1 FAMS @F0016@
+1 SOUR @S0005@
 1 RESI
 2 ADDR 123 Main St.
 3 CONT Winslow
@@ -911,11 +911,11 @@
 1 EMAIL mrstester@@gmail.com
 1 FAX 440-321-4568
 1 WWW http://mrstester.com
-1 NOTE @N00010@
+1 NOTE @N0010@
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 07:22:58
-0 @I00046@ INDI
+3 TIME 14:22:58
+0 @I0046@ INDI
 1 NAME Tom /Von Tester y tested/
 2 TYPE birth
 2 GIVN Tom
@@ -938,23 +938,23 @@
 2 PLAC San Francisco, San Francisco Co., CA
 1 SLGC
 2 DATE ABT 1999
-2 FAMC @F00016@
+2 FAMC @F0016@
 2 TEMP DENVE
 2 PLAC Denver, Denver Co., CO, Denver Co., Colorado, USA
 3 MAP
 4 LATI N39.7392
 4 LONG W104.9903
-1 FAMC @F00016@
+1 FAMC @F0016@
 2 PEDI birth
-1 SOUR @S00005@
+1 SOUR @S0005@
 2 DATA
 3 TEXT A citation Note Source text
 1 OBJE
 2 FORM URL
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 09:27:59
-0 @I00047@ INDI
+3 TIME 16:27:59
+0 @I0047@ INDI
 1 NAME Fake /von Person/ I
 2 TYPE birth
 2 GIVN Fake
@@ -981,7 +981,7 @@
 2 DATE 1 JAN 2017
 1 RETI Y
 1 ADOP Y
-2 FAMC @F00016@
+2 FAMC @F0016@
 3 ADOP HUSB
 1 IDNO ID99999
 1 RFN RFN8888
@@ -999,7 +999,7 @@
 4 LATI N39.7392
 4 LONG W104.9903
 2 STAT QUALIFIED
-1 FAMC @F00016@
+1 FAMC @F0016@
 2 _FREL Adopted
 2 _MREL Step
 1 RESI
@@ -1021,208 +1021,208 @@
 2 FILE ftp://whoknows.org
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 09:27:59
-0 @I00048@ INDI
+3 TIME 16:27:59
+0 @I0048@ INDI
 1 NAME Mary /Tester/
 2 TYPE birth
 2 GIVN Mary
 2 SURN Tester
 1 SEX F
 1 ADOP Y
-2 FAMC @F00016@
+2 FAMC @F0016@
 3 ADOP WIFE
-1 FAMC @F00016@
+1 FAMC @F0016@
 2 _FREL birth
 2 _MREL Adopted
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 09:27:59
-0 @I00049@ INDI
+3 TIME 16:27:59
+0 @I0049@ INDI
 1 NAME Martha /Tester/
 2 TYPE Unknown
 2 GIVN Martha
 2 SURN Tester
 1 SEX F
-1 FAMC @F00016@
+1 FAMC @F0016@
 2 PEDI foster
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 09:27:59
-0 @I00050@ INDI
+3 TIME 16:27:59
+0 @I0050@ INDI
 1 NAME John /Tester/
 2 TYPE aka
 2 GIVN John
 2 SURN Tester
 1 SEX M
-1 FAMC @F00016@
+1 FAMC @F0016@
 2 PEDI stepchild
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 09:27:59
-0 @I00051@ INDI
+3 TIME 16:27:59
+0 @I0051@ INDI
 1 NAME Mark /Tester/
 2 TYPE birth
 2 GIVN Mark
 2 SURN Tester
 1 SEX M
-1 FAMC @F00016@
+1 FAMC @F0016@
 2 PEDI Sponsored
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 09:27:59
-0 @F00000@ FAM
-1 HUSB @I00039@
-1 WIFE @I00036@
+3 TIME 16:27:59
+0 @F0000@ FAM
+1 HUSB @I0039@
+1 WIFE @I0036@
 1 MARR
 2 TYPE Marriage of Martin Smith and Elna Jefferson
 2 DATE ABT 1816
 2 PLAC Gladsax, Kristianstad Län, Sweden
-1 CHIL @I00011@
-1 CHIL @I00007@
-1 CHIL @I00004@
-1 CHIL @I00022@
+1 CHIL @I0011@
+1 CHIL @I0007@
+1 CHIL @I0004@
+1 CHIL @I0022@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00001@ FAM
-1 HUSB @I00027@
-1 WIFE @I00025@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0001@ FAM
+1 HUSB @I0027@
+1 WIFE @I0025@
 1 MARR
 2 TYPE Marriage of Ingeman Smith and Marta Ericsdotter
 2 DATE ABT 1790
 2 PLAC Sweden
-1 CHIL @I00039@
+1 CHIL @I0039@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00002@ FAM
-1 HUSB @I00022@
-1 WIFE @I00038@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0002@ FAM
+1 HUSB @I0022@
+1 WIFE @I0038@
 1 MARR
 2 TYPE Marriage of Martin Smith and Kerstina Hansdotter
 2 DATE ABT 1856
-1 CHIL @I00003@
-1 CHIL @I00009@
-1 CHIL @I00024@
+1 CHIL @I0003@
+1 CHIL @I0009@
+1 CHIL @I0024@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00003@ FAM
-1 HUSB @I00024@
-1 WIFE @I00000@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0003@ FAM
+1 HUSB @I0024@
+1 WIFE @I0000@
 1 MARR
 2 TYPE Marriage of Gustaf Smith, Sr. and Anna Hansdotter
 2 DATE 27 NOV 1885
 2 PLAC Rønne, Bornholm, Denmark
-1 CHIL @I00026@
-1 CHIL @I00023@
-1 CHIL @I00021@
-1 CHIL @I00008@
-1 CHIL @I00015@
-1 CHIL @I00020@
-1 CHIL @I00010@
+1 CHIL @I0026@
+1 CHIL @I0023@
+1 CHIL @I0021@
+1 CHIL @I0008@
+1 CHIL @I0015@
+1 CHIL @I0020@
+1 CHIL @I0010@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00004@ FAM
-1 HUSB @I00006@
-1 WIFE @I00026@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0004@ FAM
+1 HUSB @I0006@
+1 WIFE @I0026@
 1 MARR
 2 TYPE Marriage of Edwin Willard and Kirsti Marie Smith
 2 DATE ABT 1910
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00005@ FAM
-1 HUSB @I00012@
-1 WIFE @I00023@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0005@ FAM
+1 HUSB @I0012@
+1 WIFE @I0023@
 1 MARR
 2 TYPE Marriage of Herman Julius Nielsen and Astrid Shermanna Augusta Smith
 2 DATE 30 NOV 1912
 2 PLAC Rønne, Bornholm, Denmark
-1 CHIL @I00042@
+1 CHIL @I0042@
 1 CHAN
 2 DATE 12 JUN 2016
-3 TIME 07:27:35
-0 @F00006@ FAM
-1 HUSB @I00008@
-1 WIFE @I00031@
+3 TIME 14:27:35
+0 @F0006@ FAM
+1 HUSB @I0008@
+1 WIFE @I0031@
 1 MARR
 2 TYPE Marriage of Hjalmar Smith and Marjorie Ohman
 2 DATE 31 OCT 1927
 2 PLAC Reno, Washoe Co., NV
-1 CHIL @I00018@
-1 CHIL @I00014@
+1 CHIL @I0018@
+1 CHIL @I0014@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00007@ FAM
-1 HUSB @I00015@
-1 WIFE @I00013@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0007@ FAM
+1 HUSB @I0015@
+1 WIFE @I0013@
 1 MARR
 2 TYPE Marriage of Gus Smith and Evelyn Michaels
 2 DATE ABT 1920
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00008@ FAM
-1 HUSB @I00033@
-1 WIFE @I00041@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0008@ FAM
+1 HUSB @I0033@
+1 WIFE @I0041@
 1 MARR
 2 TYPE Marriage of Lloyd Smith and Janis Elaine Green
 2 DATE 10 AUG 1958
 2 PLAC San Francisco, San Francisco Co., CA
-1 CHIL @I00019@
-1 CHIL @I00001@
-1 CHIL @I00029@
-1 CHIL @I00044@
+1 CHIL @I0019@
+1 CHIL @I0001@
+1 CHIL @I0029@
+1 CHIL @I0044@
 1 CHAN
 2 DATE 4 SEP 2016
-3 TIME 13:14:33
-0 @F00009@ FAM
-1 HUSB @I00010@
-1 WIFE @I00017@
-1 CHIL @I00033@
+3 TIME 20:14:33
+0 @F0009@ FAM
+1 HUSB @I0010@
+1 WIFE @I0017@
+1 CHIL @I0033@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00010@ FAM
-1 HUSB @I00019@
-1 WIFE @I00032@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0010@ FAM
+1 HUSB @I0019@
+1 WIFE @I0032@
 1 MARR
 2 TYPE Marriage of Eric Lloyd Smith and Darcy Horne
 2 DATE 12 JUL 1986
 2 PLAC Woodland, Yolo Co., CA
-1 CHIL @I00035@
+1 CHIL @I0035@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00011@ FAM
-1 HUSB @I00003@
-1 WIFE @I00028@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0011@ FAM
+1 HUSB @I0003@
+1 WIFE @I0028@
 1 MARR
 2 TYPE Marriage of Magnes Smith and Anna Streiffert
 2 DATE 24 AUG 1884
 2 PLAC Rønne, Bornholm, Denmark
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00012@ FAM
-1 HUSB @I00018@
-1 WIFE @I00034@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0012@ FAM
+1 HUSB @I0018@
+1 WIFE @I0034@
 1 MARR
 2 TYPE Marriage of John Hjalmar Smith and Alice Paula Perkins
 2 DATE 4 JUN 1954
 2 PLAC Sparks, Washoe Co., NV
-2 SOUR @S00000@
-1 CHIL @I00040@
-1 CHIL @I00037@
+2 SOUR @S0000@
+1 CHIL @I0040@
+1 CHIL @I0037@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00013@ FAM
-1 HUSB @I00037@
-1 WIFE @I00030@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0013@ FAM
+1 HUSB @I0037@
+1 WIFE @I0030@
 1 MARR
 2 TYPE Marriage of Edwin Michael Smith and Janice Ann Adams
 2 DATE 27 MAY 1995
@@ -1231,20 +1231,20 @@
 2 TYPE Engagement of Edwin Michael Smith and Janice Ann Adams
 2 DATE 5 OCT 1994
 2 PLAC San Francisco, San Francisco Co., CA
-1 CHIL @I00005@
-1 CHIL @I00002@
+1 CHIL @I0005@
+1 CHIL @I0002@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00014@ FAM
-1 HUSB @I00010@
-1 WIFE @I00016@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0014@ FAM
+1 HUSB @I0010@
+1 WIFE @I0016@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @F00016@ FAM
-1 HUSB @I00044@
-1 WIFE @I00045@
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @F0016@ FAM
+1 HUSB @I0044@
+1 WIFE @I0045@
 1 SLGS
 2 DATE 22 FEB 2000
 2 TEMP DENVE
@@ -1267,70 +1267,70 @@
 2 TYPE License Number
 1 FACT
 2 TYPE Unknown
-1 CHIL @I00046@
-1 CHIL @I00047@
-1 CHIL @I00048@
-1 CHIL @I00049@
-1 CHIL @I00050@
-1 CHIL @I00051@
+1 CHIL @I0046@
+1 CHIL @I0047@
+1 CHIL @I0048@
+1 CHIL @I0049@
+1 CHIL @I0050@
+1 CHIL @I0051@
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 09:27:59
-0 @S00000@ SOUR
+3 TIME 16:27:59
+0 @S0000@ SOUR
 1 TITL Marriage Certificae
-1 REPO @R00002@
+1 REPO @R0002@
 2 CALN what-321-ever
 3 MEDI Photo
-1 NOTE @N00004@
+1 NOTE @N0004@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @S00001@ SOUR
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @S0001@ SOUR
 1 TITL Birth Certificate
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @S00002@ SOUR
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @S0002@ SOUR
 1 TITL Birth Records
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @S00003@ SOUR
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @S0003@ SOUR
 1 TITL Birth, Death and Marriage Records
-1 REPO @R00002@
+1 REPO @R0002@
 2 CALN CA-123-LL-456_Num/ber
 3 MEDI Film
-1 NOTE @N00005@
+1 NOTE @N0005@
 1 CHAN
-2 DATE 20 DEC 2007
-3 TIME 23:35:26
-0 @S00004@ SOUR
+2 DATE 21 DEC 2007
+3 TIME 07:35:26
+0 @S0004@ SOUR
 1 TITL findagrave.com
 1 CHAN
 2 DATE 4 JUN 2016
-3 TIME 14:28:36
-0 @S00005@ SOUR
+3 TIME 21:28:36
+0 @S0005@ SOUR
 1 TITL Import from imp_FTM_LINK.ged
-1 REPO @R00000@
-1 REPO @R00001@
+1 REPO @R0000@
+1 REPO @R0001@
 1 CHAN
 2 DATE 29 AUG 2016
-3 TIME 12:51:48
-0 @S00006@ SOUR
+3 TIME 19:51:48
+0 @S0006@ SOUR
 1 TITL Ohio Births, 1958-2002
-1 REPO @R00004@
+1 REPO @R0004@
 1 CHAN
 2 DATE 29 AUG 2016
-3 TIME 12:51:48
-0 @S00007@ SOUR
+3 TIME 19:51:48
+0 @S0007@ SOUR
 1 AUTH The tester
 1 PUBL Published when the test was written
 1 ABBR TST
-1 REPO @R00006@
+1 REPO @R0006@
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 09:20:39
-0 @R00000@ REPO
+3 TIME 16:20:39
+0 @R0000@ REPO
 1 NAME Business that produced the product: Ancestry.com
 1 ADDR 360 W 4800 N, Provo, UT 84604
 2 ADR1 360 W 4800 N, Provo, UT 84604
@@ -1338,7 +1338,7 @@
 1 FAX (801) 705-7001
 1 EMAIL help@@ancestry.com
 1 WWW http://www.ancestry.com
-0 @R00001@ REPO
+0 @R0001@ REPO
 1 NAME SUBM (Submitter): (@@SUBM@@) The Subm /Tester/
 1 ADDR 123 Main St.
 2 CONT Winslow
@@ -1352,8 +1352,8 @@
 1 EMAIL mrstester@@gmail.com
 1 FAX 440-321-4568
 1 WWW http://mrstester.com
-1 NOTE @N00009@
-0 @R00002@ REPO
+1 NOTE @N0009@
+0 @R0002@ REPO
 1 NAME New York Public Library
 1 ADDR 5th Ave at 42 street
 2 CONT New York
@@ -1365,7 +1365,7 @@
 2 STAE New York
 2 POST 11111
 2 CTRY USA
-0 @R00003@ REPO
+0 @R0003@ REPO
 1 NAME Aunt Martha's Attic
 1 ADDR 123 Main St
 2 CONT Someville
@@ -1376,8 +1376,8 @@
 2 STAE ST
 2 CTRY USA
 1 WWW http://library.gramps-project.org
-1 NOTE @N00006@
-0 @R00004@ REPO
+1 NOTE @N0006@
+0 @R0004@ REPO
 1 NAME Testers Repository
 1 ADDR 123 High St., OSF village, CA, USA
 2 ADR1 123 High St., OSF village, CA, USA
@@ -1385,17 +1385,17 @@
 1 EMAIL tester_repo@@osf.com
 1 FAX 987-654-3210
 1 WWW http://www.tester_repo.com
-1 NOTE @N00012@
-1 NOTE @N00013@
-0 @R00005@ REPO
-0 @R00006@ REPO
-0 @N00000@ NOTE Witness name: John Doe
+1 NOTE @N0012@
+1 NOTE @N0013@
+0 @R0005@ REPO
+0 @R0006@ REPO
+0 @N0000@ NOTE Witness name: John Doe
 1 CONT Witness comment: This is a simple test.
-0 @N00001@ NOTE Witness name: No Name
-0 @N00002@ NOTE BIOGRAPHY
+0 @N0001@ NOTE Witness name: No Name
+0 @N0002@ NOTE BIOGRAPHY
 1 CONT Martin was listed as being a Husman, (owning a house as opposed to a far
 1 CONC m) in the house records of Gladsax.
-0 @N00003@ NOTE BIOGRAPHY
+0 @N0003@ NOTE BIOGRAPHY
 1 CONT 
 1 CONT Hjalmar sailed from Copenhagen, Denmark on the OSCAR II, 14 November 191
 1 CONC 2 arriving in New York 27 November 1912. He was seventeen years old. O
@@ -1408,47 +1408,47 @@
 1 CONC he Presidio in San Francisco, California. Both he and Marjorie are burie
 1 CONC d in the Masonic Memorial Gardens Mausoleum in Reno, he the 30th June 19
 1 CONC 75, and she the 25th of June 1980.
-0 @N00004@ NOTE But Aunt Martha still keeps the original!
-0 @N00005@ NOTE The repository reference from the source is important
-0 @N00006@ NOTE Some note on the repo
-0 @N00007@ NOTE Some Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
+0 @N0004@ NOTE But Aunt Martha still keeps the original!
+0 @N0005@ NOTE The repository reference from the source is important
+0 @N0006@ NOTE Some note on the repo
+0 @N0007@ NOTE Some Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
 1 CONT Some Bold Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
 1 CONT Some Italic Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
 1 CONT Some Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
 1 CONT Some Bold Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
 1 CONT Some Italic Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
-0 @N00008@ NOTE Records not imported into HEAD (header):
+0 @N0008@ NOTE Records not imported into HEAD (header):
 1 CONT 
 1 CONT Only one phone number supported                                     Lin
 1 CONC e     9: 3 PHON (800) 705-7000
-0 @N00009@ NOTE Records not imported into SUBM (Submitter): (@@SUBM@@) The Subm /Te
+0 @N0009@ NOTE Records not imported into SUBM (Submitter): (@@SUBM@@) The Subm /Te
 1 CONC ster/:
 1 CONT 
 1 CONT Only one phone number supported                                     Lin
 1 CONC e    29: 1 PHON 800-871-3401
-0 @N00010@ NOTE Address with PHON,FAX,EMAIL,WWW. attached directly to person is no
+0 @N0010@ NOTE Address with PHON,FAX,EMAIL,WWW. attached directly to person is no
 1 CONC t legal Gedcom, but allowed here.
-0 @N00011@ NOTE Address as event is legal, with PHON,FAX,EMAIL,WWW
-0 @N00012@ NOTE The repository record
-0 @N00013@ NOTE Records not imported into REPO (repository) Gramps ID R0002:
+0 @N0011@ NOTE Address as event is legal, with PHON,FAX,EMAIL,WWW
+0 @N0012@ NOTE The repository record
+0 @N0013@ NOTE Records not imported into REPO (repository) Gramps ID R0002:
 1 CONT 
 1 CONT Only one phone number supported                                     Lin
 1 CONC e    87: 1 PHON 800-765-4321
-0 @N00014@ NOTE ******************************************************************8
+0 @N0014@ NOTE ******************************************************************8
 1 CONC 90123456789
 1 CONT ******************************************************************89 123
 1 CONC 456789
-0 @N00015@ NOTE This should show up under the ASSO tag in Gedcom
-0 @N00016@ NOTE ??? What is RESN???
-0 @N00017@ NOTE A citation Note Source text
-0 @N00018@ NOTE Another Citation Note
-0 @N00019@ NOTE A bad photo for sure
-0 @O00000@ OBJE
-1 FILE /home/dsblank/gramps/gramps/build/share/gramps/tests/O0.jpg
+0 @N0015@ NOTE This should show up under the ASSO tag in Gedcom
+0 @N0016@ NOTE ??? What is RESN???
+0 @N0017@ NOTE A citation Note Source text
+0 @N0018@ NOTE Another Citation Note
+0 @N0019@ NOTE A bad photo for sure
+0 @O0000@ OBJE
+1 FILE d:\users\prc\documents\gramps\data\tests\O0.jpg
 2 FORM jpg
 2 TITL Michael O'Toole 2015-11
-1 NOTE @N00019@
+1 NOTE @N0019@
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 08:23:37
+3 TIME 15:23:37
 0 TRLR

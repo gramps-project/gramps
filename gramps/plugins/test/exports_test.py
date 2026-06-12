@@ -214,6 +214,15 @@ class ExportControl(unittest.TestCase):
         config.set("behavior.date-before-range", 50)
         config.set("behavior.date-after-range", 50)
         config.set("behavior.date-about-range", 10)
+        config.set("preferences.iprefix", "I%04d")
+        config.set("preferences.pprefix", "P%04d")
+        config.set("preferences.fprefix", "F%04d")
+        config.set("preferences.eprefix", "E%04d")
+        config.set("preferences.cprefix", "C%04d")
+        config.set("preferences.sprefix", "S%04d")
+        config.set("preferences.nprefix", "N%04d")
+        config.set("preferences.oprefix", "O%04d")
+        config.set("preferences.rprefix", "R%04d")
         self.tearDown()  # removes it if it existed
 
     #        out, err = self.call("-C", TREE_NAME,
