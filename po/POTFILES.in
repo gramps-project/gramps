@@ -110,6 +110,7 @@ gramps/gen/filters/rules/dnatest/_hastesttype.py
 gramps/gen/filters/rules/dnatest/_hasyhaplogroup.py
 gramps/gen/filters/rules/dnatest/_isunidentified.py
 gramps/gen/filters/rules/dnatest/_matchesfilter.py
+gramps/gen/filters/rules/dnatest/_matchespersonfilter.py
 gramps/gen/filters/rules/dnatest/_regexpidof.py
 gramps/gen/filters/rules/event/_allevents.py
 gramps/gen/filters/rules/event/_changedsince.py
