@@ -3133,28 +3133,28 @@ msgstr "trước "
 #: ../gramps/gen/datehandler/_datestrings.py:245
 msgctxt "date modifier"
 msgid "after "
-msgstr "sau "
+msgstr "sau"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:248
 msgctxt "date modifier"
 msgid "about "
-msgstr "khoảng "
+msgstr "khoảng"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "from "
-msgstr "từ "
+msgstr ""
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:257
 msgctxt "date modifier"
 msgid "to "
-msgstr "đến "
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:262
 msgctxt "date quality"
@@ -3164,7 +3164,7 @@ msgstr "phỏng chừng "
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
 msgid "calculated "
-msgstr "tính toán "
+msgstr "tính toán"
 
 #: ../gramps/gen/datehandler/_datestrings.py:270
 msgid "Sunday"
