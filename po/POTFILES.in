@@ -101,6 +101,7 @@ gramps/gen/filters/rules/dnatest/_hasmthaplogroup.py
 gramps/gen/filters/rules/dnatest/_hasnote.py
 gramps/gen/filters/rules/dnatest/_hasnoteregexp.py
 gramps/gen/filters/rules/dnatest/_hasnotetag.py
+gramps/gen/filters/rules/dnatest/_hasperson.py
 gramps/gen/filters/rules/dnatest/_hasprovider.py
 gramps/gen/filters/rules/dnatest/_hasreferencecountof.py
 gramps/gen/filters/rules/dnatest/_hastesttype.py
