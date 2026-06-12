@@ -44,6 +44,8 @@ from ..errors import DateError
 from .gcalendar import (
     chinese_lunar_sdn,
     chinese_lunar_ymd,
+    japanese_imperial_sdn,
+    japanese_imperial_ymd,
     korean_lunar_sdn,
     korean_lunar_ymd,
     french_sdn,
@@ -609,7 +611,8 @@ class Date(BaseObject):
     CAL_SWEDISH = 6
     CAL_CHINESE_LUNAR = 7
     CAL_KOREAN_LUNAR = 8
-    CALENDARS = range(9)
+    CAL_JAPANESE_IMPERIAL = 9
+    CALENDARS = range(10)
 
     NEWYEAR_JAN1 = 0  # CODE
     NEWYEAR_MAR1 = 1
@@ -638,6 +641,7 @@ class Date(BaseObject):
         swedish_sdn,
         chinese_lunar_sdn,
         korean_lunar_sdn,
+        japanese_imperial_sdn,
     ]
 
     _calendar_change = [
@@ -650,6 +654,7 @@ class Date(BaseObject):
         swedish_ymd,
         chinese_lunar_ymd,
         korean_lunar_ymd,
+        japanese_imperial_ymd,
     ]
 
     calendar_names = [
@@ -662,6 +667,7 @@ class Date(BaseObject):
         "Swedish",
         "Chinese Lunar",
         "Korean Lunar",
+        "Japanese Imperial",
     ]
 
     ui_calendar_names = [
@@ -674,6 +680,7 @@ class Date(BaseObject):
         _("Swedish", "calendar"),
         _("Chinese Lunar", "calendar"),
         _("Korean Lunar", "calendar"),
+        _("Japanese Imperial", "calendar"),
     ]
 
     def __init__(self, *source):

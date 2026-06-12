@@ -10451,3 +10451,342 @@ def korean_ganji_year(year: int) -> str:
     stem = _KOR_HEAVENLY_STEMS[(year - 4) % 10]
     branch = _KOR_EARTHLY_BRANCHES[(year - 4) % 12]
     return stem + branch
+
+
+# -------------------------------------------------------------------------
+#
+# Japanese Imperial Era Calendar (和暦)
+#
+# -------------------------------------------------------------------------
+
+# Japanese era table, newest first.
+# Each entry: (kanji, romaji_ascii, start_gregorian_year, start_month, start_day)
+# romaji_ascii uses no macrons so lookup works with plain ASCII input.
+# Gregorian dates before 1582 are proleptic Gregorian (converted from Julian).
+# Sources: 日本暦日原典 (Nishizawa 1975), CLDR ja.xml, Wikipedia "Japanese era
+# name".  Pre-Edo dates are accurate to ±1 day from conversion uncertainties.
+#
+# During the Nanboku-cho period (1336–1392) two courts issued rival era names.
+# This table uses the Northern Court eras (北朝), which appear in most extant
+# documents of that era.  Southern Court eras (延元, 興国, 正平 …) are not
+# included; users with Southern Court dates should record them as notes.
+JAPANESE_ERAS: list[tuple[str, str, int, int, int]] = [
+    # ---- Modern ----
+    ("令和", "Reiwa", 2019, 5, 1),
+    ("平成", "Heisei", 1989, 1, 8),
+    ("昭和", "Showa", 1926, 12, 25),
+    ("大正", "Taisho", 1912, 7, 30),
+    ("明治", "Meiji", 1868, 9, 8),
+    # ---- Edo period (1603–1868) ----
+    ("慶応", "Keio", 1865, 4, 7),
+    ("元治", "Genji", 1864, 3, 27),
+    ("文久", "Bunkyu", 1861, 3, 29),
+    ("万延", "Manen", 1860, 4, 8),
+    ("安政", "Ansei", 1854, 12, 2),
+    ("嘉永", "Kaei", 1848, 4, 1),
+    ("弘化", "Koka", 1844, 12, 2),
+    ("天保", "Tempo", 1830, 12, 10),
+    ("文政", "Bunsei", 1818, 5, 26),
+    ("文化", "Bunka", 1804, 3, 22),
+    ("享和", "Kyowa", 1801, 2, 5),
+    ("寛政", "Kansei", 1789, 2, 19),
+    ("天明", "Tenmei", 1781, 4, 25),
+    ("安永", "Anei", 1772, 12, 10),
+    ("明和", "Meiwa", 1764, 6, 30),
+    ("宝暦", "Horeki", 1751, 12, 14),
+    ("寛延", "Kanen", 1748, 7, 12),
+    ("延享", "Enkyo", 1744, 4, 3),
+    ("寛保", "Kanpo", 1741, 4, 12),
+    ("元文", "Genbun", 1736, 6, 7),
+    ("享保", "Kyoho", 1716, 8, 9),
+    ("正徳", "Shotoku", 1711, 6, 11),
+    ("宝永", "Hoei", 1704, 4, 16),
+    ("元禄", "Genroku", 1688, 10, 23),
+    ("貞享", "Jokyo", 1684, 4, 5),
+    ("天和", "Tenna", 1681, 11, 9),
+    ("延宝", "Enpo", 1673, 10, 30),
+    ("寛文", "Kanbun", 1661, 5, 23),
+    ("万治", "Manji", 1658, 8, 21),
+    ("明暦", "Meireki", 1655, 5, 18),
+    ("承応", "Joo", 1652, 10, 20),
+    ("慶安", "Keian", 1648, 4, 7),
+    ("正保", "Shoho", 1645, 1, 13),
+    ("寛永", "Kanei", 1624, 3, 7),
+    ("元和", "Genna", 1615, 9, 5),
+    ("慶長", "Keicho", 1596, 12, 16),
+    # ---- Azuchi-Momoyama (1573–1603) ----
+    ("文禄", "Bunroku", 1593, 2, 11),
+    ("天正", "Tensho", 1573, 8, 25),
+    # ---- Muromachi (1336–1573) ----
+    ("元亀", "Genki", 1570, 6, 3),
+    ("永禄", "Eiroku", 1558, 3, 18),
+    ("弘治", "Koji", 1555, 11, 7),
+    ("天文", "Tenbun", 1532, 8, 29),
+    ("享禄", "Kyoroku", 1528, 9, 3),
+    ("大永", "Daiei", 1521, 9, 23),
+    ("永正", "Eisho", 1504, 3, 16),
+    ("文亀", "Bunki", 1501, 3, 18),
+    ("明応", "Meio", 1492, 8, 12),
+    ("延徳", "Entoku", 1489, 9, 16),
+    ("長享", "Chokyo", 1487, 8, 9),
+    ("文明", "Bunmei", 1469, 6, 8),
+    ("応仁", "Onin", 1467, 4, 9),
+    ("文正", "Bunsho", 1466, 3, 14),
+    ("寛正", "Kansho", 1461, 2, 1),
+    ("長禄", "Choroku", 1457, 10, 16),
+    ("康正", "Kosho", 1455, 9, 6),
+    ("享徳", "Kyotoku", 1452, 8, 10),
+    ("宝徳", "Hotoku", 1449, 8, 16),
+    ("文安", "Bunan", 1444, 2, 23),
+    ("嘉吉", "Kakitsu", 1441, 3, 10),
+    ("永享", "Eikyo", 1429, 10, 3),
+    ("正長", "Shocho", 1428, 6, 10),
+    ("応永", "Oei", 1394, 8, 2),
+    # ---- Nanboku-cho, Northern Court (1336–1392) ----
+    ("明徳", "Meitoku", 1390, 4, 12),
+    ("康応", "Koo", 1389, 3, 7),
+    ("嘉慶", "Kakei", 1387, 10, 5),
+    ("至徳", "Shitoku", 1384, 3, 19),
+    ("永徳", "Eitoku", 1381, 3, 20),
+    ("康暦", "Koryaku", 1379, 4, 9),
+    ("永和", "Eiwa", 1375, 3, 29),
+    ("応安", "Oan", 1368, 3, 7),
+    ("貞治", "Joji", 1362, 10, 11),
+    ("康安", "Koan", 1361, 5, 4),
+    ("延文", "Enbun", 1356, 4, 29),
+    ("文和", "Bunna", 1352, 11, 4),
+    ("観応", "Kanno", 1350, 4, 4),
+    ("貞和", "Jowa", 1345, 11, 15),
+    ("康永", "Koei", 1342, 6, 1),
+    ("暦応", "Ryakuo", 1338, 10, 11),
+    ("建武", "Kenmu", 1334, 3, 5),
+    # ---- Kamakura (1185–1336) ----
+    ("元弘", "Genko", 1331, 9, 11),
+    ("元徳", "Gentoku", 1329, 9, 22),
+    ("嘉暦", "Karyaku", 1326, 5, 28),
+    ("正中", "Shochi", 1324, 12, 25),
+    ("元亨", "Genko2", 1321, 3, 22),
+    ("元応", "Genno", 1319, 5, 3),
+    ("文保", "Bunpo", 1317, 3, 16),
+    ("正和", "Showa2", 1312, 4, 27),
+    ("応長", "Ocho", 1311, 5, 17),
+    ("延慶", "Enkei", 1308, 11, 22),
+    ("徳治", "Tokuji", 1307, 1, 18),
+    ("嘉元", "Kagen", 1303, 9, 16),
+    ("乾元", "Kengen", 1302, 12, 10),
+    ("正安", "Shoan", 1299, 5, 25),
+    ("永仁", "Einin", 1293, 9, 2),
+    ("正応", "Shoo", 1288, 5, 29),
+    ("弘安", "Koan", 1278, 3, 23),
+    ("建治", "Kenji", 1275, 5, 22),
+    ("文永", "Bun'ei", 1264, 3, 27),
+    ("弘長", "Kocho", 1261, 3, 22),
+    ("文応", "Buneo", 1260, 5, 24),
+    ("正元", "Shogen", 1259, 4, 20),
+    ("正嘉", "Shoka", 1257, 3, 31),
+    ("康元", "Kogen", 1256, 10, 24),
+    ("建長", "Kencho", 1249, 5, 2),
+    ("宝治", "Hoji", 1247, 4, 5),
+    ("寛元", "Kangen", 1243, 3, 18),
+    ("仁治", "Ninji", 1240, 8, 5),
+    ("延応", "En'no", 1239, 3, 13),
+    ("暦仁", "Ryakunin", 1238, 12, 30),
+    ("嘉禎", "Katei", 1235, 11, 15),
+    ("文暦", "Bunryaku", 1234, 11, 5),
+    ("天福", "Tempuku", 1233, 4, 15),
+    ("貞永", "Joei", 1232, 4, 2),
+    ("寛喜", "Kanki", 1229, 3, 31),
+    ("安貞", "Antei", 1227, 12, 31),
+    ("嘉禄", "Karoku", 1225, 5, 28),
+    ("元仁", "Gennin", 1224, 12, 31),
+    ("貞応", "Joo2", 1222, 5, 25),
+    ("承久", "Jokyu", 1219, 5, 27),
+    ("建保", "Kenpo", 1213, 12, 25),
+    ("建暦", "Kenryaku", 1211, 4, 23),
+    ("承元", "Jogen", 1207, 11, 16),
+    ("建永", "Kenen", 1206, 6, 5),
+    ("元久", "Genku", 1204, 3, 23),
+    ("建仁", "Kennin", 1201, 3, 19),
+    ("正治", "Shoji", 1199, 5, 23),
+    ("建久", "Kenku", 1190, 5, 16),
+    # ---- Heian (794–1185) ----
+    ("文治", "Bunji", 1185, 9, 9),
+    ("元暦", "Genryaku", 1184, 5, 27),
+    ("寿永", "Juei", 1182, 6, 3),
+    ("養和", "Yowa", 1181, 8, 25),
+    ("治承", "Jisho", 1177, 8, 4),
+    ("安元", "Angen", 1175, 8, 16),
+    ("承安", "Shoan2", 1171, 5, 27),
+    ("嘉応", "Kao", 1169, 5, 6),
+    ("仁安", "Nin'an", 1166, 10, 27),
+    ("永万", "Eiman", 1165, 7, 14),
+    ("長寛", "Chokan", 1163, 4, 27),
+    ("応保", "Oho", 1161, 9, 4),
+    ("永暦", "Eiryaku", 1160, 2, 18),
+    ("平治", "Heiji", 1159, 5, 9),
+    ("保元", "Hogen", 1156, 5, 18),
+    ("久寿", "Kuju", 1154, 12, 4),
+    ("仁平", "Nimpei", 1151, 2, 14),
+    ("久安", "Kuan", 1145, 8, 12),
+    ("天養", "Tenyo", 1144, 3, 28),
+    ("康治", "Koji2", 1142, 5, 25),
+    ("永治", "Eiji", 1141, 8, 13),
+    ("保延", "Hoen", 1135, 6, 10),
+    ("長承", "Chosho", 1132, 9, 21),
+    ("天承", "Tensho2", 1131, 2, 28),
+    ("大治", "Daiji", 1126, 5, 6),
+    ("天治", "Tenji", 1124, 5, 18),
+    ("保安", "Hoan", 1120, 5, 11),
+    ("元永", "Gen'ei", 1118, 4, 25),
+    ("永久", "Eikyu", 1113, 8, 25),
+    ("天永", "Ten'ei", 1110, 8, 3),
+    ("天仁", "Tennin", 1108, 9, 9),
+    ("嘉承", "Kasho", 1106, 5, 13),
+    ("長治", "Choji", 1104, 3, 8),
+    ("康和", "Kowa2", 1099, 9, 15),
+    ("承徳", "Jotoku", 1097, 12, 27),
+    ("永長", "Eicho", 1097, 1, 3),
+    ("嘉保", "Kaho", 1094, 12, 5),
+    ("寛治", "Kanji", 1087, 5, 11),
+    ("応徳", "Otoku", 1084, 3, 15),
+    ("永保", "Eiho", 1081, 3, 22),
+    ("承暦", "Joryaku", 1077, 11, 17),
+    ("承保", "Jopo", 1074, 9, 16),
+    ("延久", "Enkyu", 1069, 5, 24),
+    ("治暦", "Jiryaku", 1065, 9, 4),
+    ("康平", "Kohei", 1058, 9, 19),
+    ("天喜", "Tengi", 1053, 2, 2),
+    ("永承", "Eisho2", 1046, 5, 22),
+    ("寛徳", "Kantoku", 1044, 12, 5),
+    ("長久", "Chokyu", 1040, 12, 16),
+    ("長暦", "Choryaku", 1037, 12, 9),
+    ("長元", "Chogen", 1028, 8, 18),
+    ("万寿", "Manju", 1024, 8, 19),
+    ("治安", "Jian", 1021, 3, 9),
+    ("寛仁", "Kannin", 1017, 5, 5),
+    ("長和", "Chowa", 1012, 12, 25),
+    ("寛弘", "Kanko", 1004, 8, 8),
+    ("長保", "Choho", 999, 2, 1),
+    ("長徳", "Chotoku", 995, 3, 25),
+    ("正暦", "Shoryaku", 990, 11, 7),
+    ("永祚", "Eiso", 989, 9, 10),
+    ("永延", "Eien", 987, 5, 5),
+    ("寛和", "Kanna", 985, 5, 19),
+    ("元慶", "Gankei", 877, 6, 1),
+    ("貞観", "Jogan", 859, 4, 15),
+    ("天安", "Tennan", 857, 3, 20),
+    ("斉衡", "Saiko", 854, 11, 30),
+    ("仁寿", "Nisu", 851, 6, 1),
+    ("嘉祥", "Kasho2", 848, 7, 16),
+    ("承和", "Showa3", 834, 2, 14),
+    ("天長", "Tencho", 824, 2, 8),
+    ("弘仁", "Konin", 810, 10, 20),
+    ("大同", "Daido", 806, 6, 8),
+    ("延暦", "Enryaku", 782, 9, 30),
+    # ---- Nara (710–794) ----
+    ("天応", "Tenno", 781, 1, 30),
+    ("宝亀", "Hoki", 770, 10, 23),
+    ("神護景雲", "Jingokeiun", 767, 9, 13),
+    ("天平神護", "Tempjingo", 765, 2, 1),
+    ("天平宝字", "Tenphoiji", 757, 9, 6),
+    ("天平勝宝", "Tempsho", 749, 8, 19),
+    ("天平感宝", "Tempkanpo", 749, 5, 4),
+    ("天平", "Tempyo", 729, 9, 2),
+    ("神亀", "Jinki", 724, 3, 3),
+    ("養老", "Yoro", 717, 11, 17),
+    ("霊亀", "Reiki", 715, 10, 3),
+    ("和銅", "Wado", 708, 2, 11),
+    # ---- Asuka/Early periods (593–710) ----
+    ("慶雲", "Keiun", 704, 6, 16),
+    ("大宝", "Taiho", 701, 5, 3),
+    ("朱鳥", "Suchow", 686, 8, 14),
+    ("白雉", "Hakuchi", 650, 3, 22),
+    ("大化", "Taika", 645, 7, 17),
+]
+
+# Build lookup dicts from the table.  Newer entries take precedence for
+# ambiguous romaji names (e.g. "Showa" → 昭和 1926, not 正和 1312).
+_JPN_KANJI_TO_ERA: dict[str, tuple[str, str, int, int, int]] = {
+    e[0]: e for e in JAPANESE_ERAS
+}
+_JPN_ROMAJI_TO_ERA: dict[str, tuple[str, str, int, int, int]] = {}
+for _e in reversed(JAPANESE_ERAS):  # reversed → newer entries overwrite older
+    _JPN_ROMAJI_TO_ERA[_e[1].lower()] = _e
+
+
+def _normalize_romaji(text: str) -> str:
+    """Strip macrons and lowercase for ASCII-tolerant era name lookup."""
+    return (
+        text.lower()
+        .replace("ō", "o")
+        .replace("ū", "u")
+        .replace("â", "a")
+        .replace("î", "i")
+    )
+
+
+def gregorian_to_japanese_era(
+    g_year: int, g_month: int, g_day: int
+) -> tuple[str, int] | None:
+    """Return the Japanese era name and year-within-era for a Gregorian date.
+
+    Iterates JAPANESE_ERAS newest-first and returns the first era whose start
+    date is on or before (g_year, g_month, g_day).  Returns None for dates
+    before the Taika era (645 CE).
+
+    :returns: (era_kanji, year_in_era) or None.
+    """
+    date_triple = (g_year, g_month, g_day)
+    for kanji, _romaji, sy, sm, sd in JAPANESE_ERAS:
+        if date_triple >= (sy, sm, sd):
+            year_in_era = g_year - sy + 1
+            return (kanji, year_in_era)
+    return None
+
+
+def japanese_era_to_gregorian(era: str, year_in_era: int) -> int | None:
+    """Return the Gregorian year for a Japanese era name and year-within-era.
+
+    Accepts kanji (昭和) or ASCII romaji (Showa / showa / shōwa).
+    Returns None for unrecognised era names or year_in_era < 1.
+
+    :param era: Era name in kanji or romaji (macrons optional).
+    :param year_in_era: Year within the era (1-based).
+    :returns: Gregorian year, or None.
+    """
+    if year_in_era < 1:
+        return None
+    entry = _JPN_KANJI_TO_ERA.get(era)
+    if entry is None:
+        entry = _JPN_ROMAJI_TO_ERA.get(_normalize_romaji(era))
+    if entry is None:
+        return None
+    return entry[2] + year_in_era - 1
+
+
+def japanese_imperial_sdn(year: int, month: int, day: int) -> int:
+    """Convert a Japanese Imperial (和暦) date to an SDN number.
+
+    For years >= 1873 (when Japan adopted the Gregorian calendar) month and
+    day are Gregorian.  For years < 1873 month and day are Japanese lunisolar
+    (same astronomical basis as the Chinese lunar calendar).
+
+    Returns 0 for dates outside the supported range.
+    """
+    if year >= 1873:
+        return gregorian_sdn(year, month, day)
+    return chinese_lunar_sdn(year, month, day)
+
+
+def japanese_imperial_ymd(sdn: int) -> tuple[int, int, int]:
+    """Convert an SDN number to a Japanese Imperial (和暦) date.
+
+    Returns (year, month, day) where month and day are Gregorian for dates
+    on or after 1873-01-01, and Japanese lunisolar (Chinese-lunar-compatible)
+    for earlier dates.  Returns (0, 0, 0) for SDN values outside the
+    supported range.
+    """
+    g_year, g_month, g_day = gregorian_ymd(sdn)
+    if g_year >= 1873:
+        return (g_year, g_month, g_day)
+    return chinese_lunar_ymd(sdn)

@@ -347,6 +347,9 @@ class DateParser:
     # seeded with __init_prefix_tables
     korean_lunar_to_int: dict[str, int] = {}
 
+    # seeded with __init_prefix_tables
+    japanese_imperial_to_int: dict[str, int] = {}
+
     bce = ["B.C.E.", "B.C.E", "BCE", "B.C.", "B.C", "BC"]
     # (overridden if a locale-specific date parser exists)
 
@@ -420,6 +423,10 @@ class DateParser:
             DateParser.korean_lunar_to_int,
             _generate_variants(zip(ds.korean_lunar)),
         )
+        _build_prefix_table(
+            DateParser.japanese_imperial_to_int,
+            _generate_variants(zip(ds.japanese_imperial)),
+        )
 
     def __init__(self, plocale=None):
         """
@@ -448,6 +455,7 @@ class DateParser:
             Date.CAL_SWEDISH: self._parse_swedish,
             Date.CAL_CHINESE_LUNAR: self._parse_chinese_lunar,
             Date.CAL_KOREAN_LUNAR: self._parse_korean_lunar,
+            Date.CAL_JAPANESE_IMPERIAL: self._parse_japanese_imperial,
         }
 
         match = self._dhformat_parse.match(self.dhformat.lower())
@@ -702,6 +710,25 @@ class DateParser:
         if result != Date.EMPTY:
             return result
         m = re.match(r"^(\d{1,4})(?:-(\d{1,3})(?:-(\d{1,2}))?)?$", text.strip())
+        if m:
+            year = int(m.group(1))
+            month = int(m.group(2)) if m.group(2) else 0
+            day = int(m.group(3)) if m.group(3) else 0
+            return (day, month, year, False)
+        return Date.EMPTY
+
+    def _parse_japanese_imperial(self, text):
+        """Parse a Japanese Imperial (和暦) date.
+
+        Accepts ISO-style YYYY-MM-DD where the year is the Gregorian year and
+        month/day follow the dual convention (Gregorian post-1872, lunisolar
+        pre-1873).  Era-name formats (昭和40年5月15日) are handled by the JA
+        locale subclass; the base parser only handles numeric ISO input so
+        that stored dates always round-trip correctly.
+        """
+        import re
+
+        m = re.match(r"^(\d{1,4})(?:-(\d{1,2})(?:-(\d{1,2}))?)?$", text.strip())
         if m:
             year = int(m.group(1))
             month = int(m.group(2)) if m.group(2) else 0

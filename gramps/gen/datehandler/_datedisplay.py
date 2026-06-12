@@ -132,6 +132,7 @@ class DateDisplay:
         self.islamic = self._ds.islamic
         self.chinese_lunar = self._ds.chinese_lunar
         self.korean_lunar = self._ds.korean_lunar
+        self.japanese_imperial = self._ds.japanese_imperial
         self.display_cal = [
             self._display_gregorian,
             self._display_julian,
@@ -142,6 +143,7 @@ class DateDisplay:
             self._display_swedish,
             self._display_chinese_lunar,
             self._display_korean_lunar,
+            self._display_japanese_imperial,
         ]
         self._mod_str = self._ds.modifiers
         self._qual_str = self._ds.qualifiers
@@ -830,6 +832,64 @@ class DateDisplay:
         if self.format == 0 or month > 100:
             return self.display_iso(date_val)
         return self._display_calendar(date_val, self.korean_lunar, **kwargs)
+
+    def _display_japanese_imperial(self, date_val, **kwargs):
+        """Display a Japanese Imperial (和暦) date.
+
+        Converts the stored (day, month, year) to a Gregorian date via SDN to
+        determine the era name, then formats as era + year-within-era + month
+        + day.  Falls back to ISO display for dates before the Taika era (645
+        CE) or when the SDN conversion fails.
+
+        Locale-specific subclasses (DateDisplayJA) override
+        _format_japanese_imperial for native Japanese rendering.
+        """
+        from ..lib.gcalendar import (
+            chinese_lunar_sdn,
+            japanese_imperial_sdn,
+            gregorian_ymd,
+            gregorian_to_japanese_era,
+        )
+
+        day, month, year = date_val[0], date_val[1], date_val[2]
+        # For year-only or month-only dates, avoid passing zeros into the SDN
+        # function (which would yield an invalid date).  Use January 1 of the
+        # stored year for post-1872 dates, or month 6 day 1 as a mid-year
+        # proxy for pre-1873 lunisolar years.
+        if day == 0 or month == 0:
+            if year >= 1873:
+                era_info = gregorian_to_japanese_era(year, 1, 1)
+            else:
+                proxy_sdn = chinese_lunar_sdn(year, 6, 1)
+                if proxy_sdn == 0:
+                    return self.display_iso(date_val)
+                pg_year, pg_month, pg_day = gregorian_ymd(proxy_sdn)
+                era_info = gregorian_to_japanese_era(pg_year, pg_month, pg_day)
+        else:
+            sdn = japanese_imperial_sdn(year, month, day)
+            if sdn == 0:
+                return self.display_iso(date_val)
+            g_year, g_month, g_day = gregorian_ymd(sdn)
+            era_info = gregorian_to_japanese_era(g_year, g_month, g_day)
+        if era_info is None:
+            return self.display_iso(date_val)
+        era_kanji, year_in_era = era_info
+        return self._format_japanese_imperial(era_kanji, year_in_era, month, day)
+
+    def _format_japanese_imperial(
+        self, era: str, year_in_era: int, month: int, day: int
+    ) -> str:
+        """Format a Japanese Imperial date as a string.
+
+        Default (non-JA locale) rendering uses the kanji era name with
+        numeric year, month, and day separated by slashes.  The JA locale
+        handler overrides this for full kanji/kana output.
+        """
+        if day == 0 and month == 0:
+            return "%s%d" % (era, year_in_era)
+        if day == 0:
+            return "%s%d/%02d" % (era, year_in_era, month)
+        return "%s%d/%02d/%02d" % (era, year_in_era, month, day)
 
 
 class DateDisplayEn(DateDisplay):
