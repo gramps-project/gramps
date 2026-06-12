@@ -76,6 +76,7 @@ gramps/gen/filters/rules/dnamatch/_alldnamatches.py
 gramps/gen/filters/rules/dnamatch/_changedsince.py
 gramps/gen/filters/rules/dnamatch/_dnamatchprivate.py
 gramps/gen/filters/rules/dnamatch/_hasattribute.py
+gramps/gen/filters/rules/dnamatch/_haschromosome.py
 gramps/gen/filters/rules/dnamatch/_hasgallery.py
 gramps/gen/filters/rules/dnamatch/_hasidof.py
 gramps/gen/filters/rules/dnamatch/_hasmatchaccountname.py
