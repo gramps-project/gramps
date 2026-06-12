@@ -38,6 +38,7 @@ class MatchesPersonFilter(MatchesFilterBase):
         "Matches DNA tests linked to a person matched by the specified "
         "person filter name"
     )
+    category = _("Person filters")
 
     # we want to have this filter show person filters
     namespace = "Person"
