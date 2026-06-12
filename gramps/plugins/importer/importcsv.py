@@ -39,6 +39,8 @@ import logging
 # Standard Python Modules
 #
 # -------------------------------------------------------------------------
+import mimetypes
+import os
 import time
 from io import TextIOWrapper
 
@@ -63,6 +65,8 @@ from gramps.gen.lib import (
     EventType,
     Family,
     FamilyRelType,
+    Media,
+    MediaRef,
     Name,
     NameType,
     Note,
@@ -181,17 +185,32 @@ class CSVParser:
         self.fref = {}  # family ref, internal to this sheet
         self.placeref = {}
         self.eventref = {}
+        self.citationref = {}
+        self.event_count = 0
+        self.citation_count = 0
         self.place_types = {}
         # Build reverse dictionary, name to type number
-        for items in PlaceType().get_map().items():  # (0, 'Custom')
-            self.place_types[items[1]] = items[0]
-            self.place_types[items[1].lower()] = items[0]
-            if _(items[1]) != items[1]:
-                self.place_types[_(items[1])] = items[0]
+        for code, trans, untrans in PlaceType._DATAMAP:
+            self.place_types[trans] = code
+            self.place_types[trans.lower()] = code
+            self.place_types[untrans] = code
+            self.place_types[untrans.lower()] = code
         # Add custom types:
         for custom_type in self.db.get_place_types():
             self.place_types[custom_type] = 0
             self.place_types[custom_type.lower()] = 0
+        self.event_types = {}
+        for code, trans, untrans in EventType._DATAMAP:
+            self.event_types[trans.lower()] = code
+            self.event_types[untrans.lower()] = code
+        self.note_types = {}
+        for code, trans, untrans in NoteType._DATAMAP:
+            self.note_types[trans.lower()] = code
+            self.note_types[untrans.lower()] = code
+        self.role_types = {}
+        for code, trans, untrans in EventRoleType._DATAMAP:
+            self.role_types[trans.lower()] = code
+            self.role_types[untrans.lower()] = code
         column2label = {
             "surname": ("lastname", "last_name", "surname", _("surname"), _("Surname")),
             "firstname": (
@@ -394,6 +413,41 @@ class CSVParser:
                 _("enclosed_by"),
                 "enclosedby",
             ),
+            "eventtype": (
+                "eventtype",
+                "event type",
+                _("event type"),
+                _("Event type"),
+            ),
+            "description": (
+                "description",
+                "descr",
+                _("description"),
+                _("Description"),
+            ),
+            "role": ("role", _("role"), _("Role")),
+            "citation": ("citation", _("citation"), _("Citation")),
+            "page": ("page", _("page"), _("Page")),
+            "confidence": ("confidence", _("confidence"), _("Confidence")),
+            "note_type": (
+                "note_type",
+                "note type",
+                _("note type"),
+                _("Note type"),
+            ),
+            "media": ("media", _("media"), _("Media")),
+            "media_description": (
+                "media_description",
+                "media description",
+                _("media description"),
+                _("Media description"),
+            ),
+            "media_date": (
+                "media_date",
+                "media date",
+                _("media date"),
+                _("Media date"),
+            ),
         }
         lab2col_dict = []
         for key in list(column2label.keys()):
@@ -501,6 +555,20 @@ class CSVParser:
                     return self.eventref[id_.lower()]
                 else:
                     return None
+        elif type_ == "citation":
+            if id_.startswith("[") and id_.endswith("]"):
+                id_ = self.db.cid2user_format(id_[1:-1])
+                db_lookup = self.db.get_citation_from_gramps_id(id_)
+                if db_lookup is None:
+                    return self.lookup(type_, id_)
+                else:
+                    return db_lookup
+            else:
+                id_ = self.db.cid2user_format(id_)
+                if id_.lower() in self.citationref:
+                    return self.citationref[id_.lower()]
+                else:
+                    return None
         else:
             LOG.warning("invalid lookup type in CSV import: '%s'" % type_)
             return None
@@ -519,6 +587,12 @@ class CSVParser:
         elif type_ == "place":
             id_ = self.db.pid2user_format(id_)
             self.placeref[id_.lower()] = object_
+        elif type_ == "event":
+            id_ = self.db.eid2user_format(id_)
+            self.eventref[id_.lower()] = object_
+        elif type_ == "citation":
+            id_ = self.db.cid2user_format(id_)
+            self.citationref[id_.lower()] = object_
         else:
             LOG.warning("invalid storeup type in CSV import: '%s'" % type_)
 
@@ -555,6 +629,8 @@ class CSVParser:
             LOG.debug("New Families: %d" % self.fam_count)
             LOG.debug("New Individuals: %d" % self.indi_count)
             LOG.debug("New Places: %d" % self.place_count)
+            LOG.debug("New Events: %d" % self.event_count)
+            LOG.debug("New Citations: %d" % self.citation_count)
         return err_msg
 
     def _check_refs(self):
@@ -580,10 +656,13 @@ class CSVParser:
         self.fam_count = 0
         self.indi_count = 0
         self.place_count = 0
+        self.event_count = 0
+        self.citation_count = 0
         self.pref = {}  # person ref, internal to this sheet
         self.fref = {}  # family ref, internal to this sheet
         self.placeref = {}
         self.eventref = {}
+        self.citationref = {}
         header = None
         line_number = 0
         for row in data:
@@ -601,9 +680,13 @@ class CSVParser:
                     col[key] = count
                     count += 1
                 continue
-            # four different kinds of data: person, family, and marriage
+            # different kinds of data: person, family, marriage, place, event, citation
             if ("marriage" in header) or ("husband" in header) or ("wife" in header):
                 self._parse_marriage(line_number, row, col)
+            elif "eventtype" in header:
+                self._parse_event(line_number, row, col)
+            elif "citation" in header:
+                self._parse_citation(line_number, row, col)
             elif "family" in header:
                 self._parse_family(line_number, row, col)
             elif any(("surname" in header, "person" in header)):
@@ -1111,6 +1194,245 @@ class CSVParser:
                 placeref.date = _dp.parse(place_date)
         #########################################################
         self.db.commit_place(place, self.trans)
+
+    def _resolve_type(self, type_class, type_map, value):
+        """Return a type_class instance for value, falling back to custom."""
+        key = value.lower()
+        if key in type_map:
+            return type_class(type_map[key])
+        return type_class((0, value))
+
+    def _parse_confidence(self, value, line_number):
+        """Return a Citation confidence integer from a string or digit."""
+        conf_map = {
+            "very low": Citation.CONF_VERY_LOW,
+            "low": Citation.CONF_LOW,
+            "normal": Citation.CONF_NORMAL,
+            "high": Citation.CONF_HIGH,
+            "very high": Citation.CONF_VERY_HIGH,
+        }
+        if value.isdigit():
+            int_val = int(value)
+            if 0 <= int_val <= 4:
+                return int_val
+        key = value.lower()
+        if key in conf_map:
+            return conf_map[key]
+        LOG.warning(
+            "unrecognised confidence '%s' on line %d, defaulting to Normal"
+            % (value, line_number)
+        )
+        return Citation.CONF_NORMAL
+
+    def _parse_event(self, line_number, row, col):
+        """Parse the content of an Event line."""
+        event_ref = rd(line_number, row, col, "event")
+        eventtype = rd(line_number, row, col, "eventtype")
+        date = rd(line_number, row, col, "date")
+        place = rd(line_number, row, col, "place")
+        description = rd(line_number, row, col, "description")
+        source = rd(line_number, row, col, "source")
+        note = rd(line_number, row, col, "note")
+        note_type = rd(line_number, row, col, "note_type")
+        tag = rd(line_number, row, col, "tag")
+        person_ref = rd(line_number, row, col, "person")
+        family_ref = rd(line_number, row, col, "family")
+        role = rd(line_number, row, col, "role")
+        media = rd(line_number, row, col, "media")
+        media_description = rd(line_number, row, col, "media_description")
+        media_date = rd(line_number, row, col, "media_date")
+
+        event = self.lookup("event", event_ref) if event_ref else None
+        if event is None:
+            if eventtype is None:
+                LOG.warning("no eventtype for new event on line %d" % line_number)
+                return
+            event = Event()
+            event.set_type(self._resolve_type(EventType, self.event_types, eventtype))
+            if self.default_tag:
+                event.add_tag(self.default_tag.handle)
+            self.db.add_event(event, self.trans)
+            self.event_count += 1
+        else:
+            if eventtype is not None:
+                event.set_type(
+                    self._resolve_type(EventType, self.event_types, eventtype)
+                )
+        if event_ref is not None:
+            self.storeup("event", event_ref, event)
+        if date is not None:
+            event.set_date_object(_dp.parse(date))
+        if place is not None:
+            new, place_obj = self.get_or_create_place(place)
+            event.set_place_handle(place_obj.get_handle())
+        if description is not None:
+            event.set_description(description)
+        if source is not None:
+            new, source_obj = self.get_or_create_source(source)
+            self.find_and_set_citation(event, source_obj)
+        if note is not None:
+            resolved_note_type = (
+                self._resolve_type(NoteType, self.note_types, note_type)
+                if note_type is not None
+                else NoteType(NoteType.EVENT)
+            )
+            self.add_note(resolved_note_type, event, note)
+        if tag is not None:
+            self.add_tag(event, tag)
+        if media is not None:
+            new, media_obj = self.get_or_create_media(
+                media, media_description, media_date
+            )
+            media_ref = MediaRef()
+            media_ref.set_reference_handle(media_obj.get_handle())
+            event.add_media_reference(media_ref)
+        self.db.commit_event(event, self.trans)
+        if person_ref is not None:
+            person = self.lookup("person", person_ref)
+            if person is None:
+                LOG.warning(
+                    "person ref '%s' not found on line %d" % (person_ref, line_number)
+                )
+            else:
+                role_type = (
+                    self._resolve_type(EventRoleType, self.role_types, role)
+                    if role is not None
+                    else EventRoleType(EventRoleType.PRIMARY)
+                )
+                eref = EventRef()
+                eref.set_reference_handle(event.get_handle())
+                eref.set_role(role_type)
+                person.add_event_ref(eref)
+                self.db.commit_person(person, self.trans)
+        if family_ref is not None:
+            family = self.lookup("family", family_ref)
+            if family is None:
+                LOG.warning(
+                    "family ref '%s' not found on line %d" % (family_ref, line_number)
+                )
+            else:
+                role_type = (
+                    self._resolve_type(EventRoleType, self.role_types, role)
+                    if role is not None
+                    else EventRoleType(EventRoleType.FAMILY)
+                )
+                eref = EventRef()
+                eref.set_reference_handle(event.get_handle())
+                eref.set_role(role_type)
+                family.add_event_ref(eref)
+                self.db.commit_family(family, self.trans)
+
+    def _parse_citation(self, line_number, row, col):
+        """Parse the content of a Citation line."""
+        citation_ref = rd(line_number, row, col, "citation")
+        source = rd(line_number, row, col, "source")
+        page = rd(line_number, row, col, "page")
+        date = rd(line_number, row, col, "date")
+        confidence = rd(line_number, row, col, "confidence")
+        note = rd(line_number, row, col, "note")
+        note_type = rd(line_number, row, col, "note_type")
+        tag = rd(line_number, row, col, "tag")
+        person_ref = rd(line_number, row, col, "person")
+        family_ref = rd(line_number, row, col, "family")
+        event_ref = rd(line_number, row, col, "event")
+        place_ref = rd(line_number, row, col, "place")
+        media = rd(line_number, row, col, "media")
+        media_description = rd(line_number, row, col, "media_description")
+        media_date = rd(line_number, row, col, "media_date")
+
+        citation = self.lookup("citation", citation_ref) if citation_ref else None
+        if citation is None:
+            if source is None:
+                LOG.warning("no source for new citation on line %d" % line_number)
+                return
+            citation = Citation()
+            new, source_obj = self.get_or_create_source(source)
+            citation.set_reference_handle(source_obj.get_handle())
+            if self.default_tag:
+                citation.add_tag(self.default_tag.handle)
+            self.db.add_citation(citation, self.trans)
+            self.citation_count += 1
+        else:
+            if source is not None:
+                new, source_obj = self.get_or_create_source(source)
+                citation.set_reference_handle(source_obj.get_handle())
+        if citation_ref is not None:
+            self.storeup("citation", citation_ref, citation)
+        if page is not None:
+            citation.set_page(page)
+        if date is not None:
+            citation.set_date_object(_dp.parse(date))
+        if confidence is not None:
+            citation.set_confidence_level(
+                self._parse_confidence(confidence, line_number)
+            )
+        if note is not None:
+            resolved_note_type = (
+                self._resolve_type(NoteType, self.note_types, note_type)
+                if note_type is not None
+                else NoteType(NoteType.CITATION)
+            )
+            self.add_note(resolved_note_type, citation, note)
+        if tag is not None:
+            self.add_tag(citation, tag)
+        if media is not None:
+            new, media_obj = self.get_or_create_media(
+                media, media_description, media_date
+            )
+            media_ref = MediaRef()
+            media_ref.set_reference_handle(media_obj.get_handle())
+            citation.add_media_reference(media_ref)
+        self.db.commit_citation(citation, self.trans)
+        for ref_val, lookup_type in [
+            (person_ref, "person"),
+            (family_ref, "family"),
+            (event_ref, "event"),
+        ]:
+            if ref_val is not None:
+                obj = self.lookup(lookup_type, ref_val)
+                if obj is None:
+                    LOG.warning(
+                        "%s ref '%s' not found on line %d"
+                        % (lookup_type, ref_val, line_number)
+                    )
+                else:
+                    obj.add_citation(citation.get_handle())
+                    if lookup_type == "person":
+                        self.db.commit_person(obj, self.trans)
+                    elif lookup_type == "family":
+                        self.db.commit_family(obj, self.trans)
+                    elif lookup_type == "event":
+                        self.db.commit_event(obj, self.trans)
+        if place_ref is not None:
+            place = self.lookup("place", place_ref)
+            if place is None:
+                LOG.warning(
+                    "place ref '%s' not found on line %d" % (place_ref, line_number)
+                )
+            else:
+                place.add_citation(citation.get_handle())
+                self.db.commit_place(place, self.trans)
+
+    def get_or_create_media(self, path, description=None, media_date=None):
+        """Return the requested media object tuple-packed with a new indicator."""
+        for handle in self.db.get_media_handles(sort_handles=False):
+            media_obj = self.db.get_media_from_handle(handle)
+            if media_obj.get_path() == path:
+                return (0, media_obj)
+        media_obj = Media()
+        media_obj.set_path(path)
+        media_obj.set_description(
+            description if description else os.path.basename(path)
+        )
+        if media_date is not None:
+            media_obj.set_date_object(_dp.parse(media_date))
+        mime = mimetypes.guess_type(path)[0]
+        if mime:
+            media_obj.set_mime_type(mime)
+        if self.default_tag:
+            media_obj.add_tag(self.default_tag.handle)
+        self.db.add_media(media_obj, self.trans)
+        return (1, media_obj)
 
     def get_place_type(self, place_type_str):
         if place_type_str in self.place_types:

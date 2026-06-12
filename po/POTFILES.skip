@@ -545,6 +545,7 @@ gramps/plugins/importer/__init__.py
 #
 # plugins/importer/test directory
 #
+gramps/plugins/importer/test/importcsv_test.py
 gramps/plugins/importer/test/importgeneweb_test.py
 gramps/plugins/importer/test/importvcard_test.py
 #
