@@ -345,6 +345,20 @@ class TestParseEvent(unittest.TestCase):
         self.assertEqual(updated.get_description(), "Updated description")
 
     # ------------------------------------------------------------------
+    # Gramps ID preservation (regression)
+    # ------------------------------------------------------------------
+
+    def test_gramps_id_preserved_from_bracket_ref(self):
+        """New event created via [E9991] gets that gramps_id, not the auto-ID."""
+        expected_id = self.db.eid2user_format("E9991")
+        self._run(["[E9991]", "Birth"], _col("event", "eventtype"))
+
+        event = self.parser.lookup("event", "[E9991]")
+        self.assertIsNotNone(event)
+        self.assertEqual(event.get_gramps_id(), expected_id)
+        self.assertIsNotNone(self.db.get_event_from_gramps_id(expected_id))
+
+    # ------------------------------------------------------------------
     # Error / skip cases
     # ------------------------------------------------------------------
 
@@ -606,6 +620,20 @@ class TestParseCitation(unittest.TestCase):
         self.assertEqual(updated.get_page(), "42a")
 
     # ------------------------------------------------------------------
+    # Gramps ID preservation (regression)
+    # ------------------------------------------------------------------
+
+    def test_gramps_id_preserved_from_bracket_ref(self):
+        """New citation created via [C9991] gets that gramps_id, not the auto-ID."""
+        expected_id = self.db.cid2user_format("C9991")
+        self._run(["[C9991]", "Test Source"], _col("citation", "source"))
+
+        citation = self.parser.lookup("citation", "[C9991]")
+        self.assertIsNotNone(citation)
+        self.assertEqual(citation.get_gramps_id(), expected_id)
+        self.assertIsNotNone(self.db.get_citation_from_gramps_id(expected_id))
+
+    # ------------------------------------------------------------------
     # Error / skip cases
     # ------------------------------------------------------------------
 
@@ -624,6 +652,204 @@ class TestParseCitation(unittest.TestCase):
         citation = self.parser.lookup("citation", "C_BADEV")
         self.assertIsNotNone(citation)
         self.assertEqual(citation.get_citation_list(), [])
+
+
+# -------------------------------------------------------------------------
+#
+# TestParsePerson
+#
+# -------------------------------------------------------------------------
+class TestParsePerson(unittest.TestCase):
+    """Tests for CSVParser._parse_person."""
+
+    @classmethod
+    def setUpClass(cls):
+        """Create a single in-memory DB shared by all person tests."""
+        cls.db = make_database("sqlite")
+        cls.db.load(":memory:")
+
+    def setUp(self):
+        """Fresh parser for every test."""
+        self.parser = CSVParser(self.db, _MockUser())
+
+    def _run(self, row, col):
+        """Run _parse_person inside a transaction."""
+        self.db.disable_signals()
+        with DbTxn("test", self.db, batch=True) as self.parser.trans:
+            self.parser._parse_person(1, row, col)
+        self.db.enable_signals()
+
+    # ------------------------------------------------------------------
+    # Creation
+    # ------------------------------------------------------------------
+
+    def test_create_minimal(self):
+        """New person with surname and firstname is stored and retrievable."""
+        self._run(["PERS_MIN", "Doe", "Jane"], _col("person", "surname", "firstname"))
+
+        person = self.parser.lookup("person", "PERS_MIN")
+        self.assertIsNotNone(person)
+        name = person.get_primary_name()
+        self.assertEqual(name.get_first_name(), "Jane")
+        self.assertEqual(name.get_primary_surname().get_surname(), "Doe")
+
+    def test_create_with_gender(self):
+        """Gender column is parsed and set on the person."""
+        self._run(
+            ["PERS_GENDER", "Smith", "Bob", "male"],
+            _col("person", "surname", "firstname", "gender"),
+        )
+
+        person = self.parser.lookup("person", "PERS_GENDER")
+        from gramps.gen.lib import Person as _Person
+
+        self.assertEqual(person.get_gender(), _Person.MALE)
+
+    # ------------------------------------------------------------------
+    # Gramps ID preservation (regression)
+    # ------------------------------------------------------------------
+
+    def test_gramps_id_from_grampsid_column(self):
+        """grampsid column value is stored as gramps_id, not the auto-ID."""
+        self._run(
+            ["PERS_GID", "Smith", "SMITH-001"],
+            _col("person", "surname", "grampsid"),
+        )
+
+        person = self.parser.lookup("person", "PERS_GID")
+        self.assertIsNotNone(person)
+        self.assertEqual(person.get_gramps_id(), "SMITH-001")
+
+    def test_gramps_id_from_bracket_ref(self):
+        """Bracket ref [I9991] becomes the person gramps_id, not the auto-ID."""
+        expected_id = self.db.id2user_format("I9991")
+        self._run(["[I9991]", "Jones"], _col("person", "surname"))
+
+        person = self.parser.lookup("person", "[I9991]")
+        self.assertIsNotNone(person)
+        self.assertEqual(person.get_gramps_id(), expected_id)
+        self.assertIsNotNone(self.db.get_person_from_gramps_id(expected_id))
+
+    def test_grampsid_column_takes_precedence_over_bracket_ref(self):
+        """Explicit grampsid column overrides the ID implied by a bracket ref."""
+        self._run(
+            ["[I9992]", "Brown", "BROWN-CUSTOM"],
+            _col("person", "surname", "grampsid"),
+        )
+
+        person = self.parser.lookup("person", "[I9992]")
+        self.assertIsNotNone(person)
+        self.assertEqual(person.get_gramps_id(), "BROWN-CUSTOM")
+
+    # ------------------------------------------------------------------
+    # Update existing
+    # ------------------------------------------------------------------
+
+    def test_update_existing_via_bracket_ref(self):
+        """Bracket ref finds an existing DB person and updates their name."""
+        with DbTxn("setup", self.db) as trans:
+            person = Person()
+            self.db.add_person(person, trans)
+        bracket_ref = "[%s]" % person.get_gramps_id()
+
+        self._run([bracket_ref, "UpdatedSurname"], _col("person", "surname"))
+
+        updated = self.db.get_person_from_handle(person.get_handle())
+        self.assertEqual(
+            updated.get_primary_name().get_primary_surname().get_surname(),
+            "UpdatedSurname",
+        )
+
+
+# -------------------------------------------------------------------------
+#
+# TestParsePlace
+#
+# -------------------------------------------------------------------------
+class TestParsePlace(unittest.TestCase):
+    """Tests for CSVParser._parse_place."""
+
+    @classmethod
+    def setUpClass(cls):
+        """Create a single in-memory DB shared by all place tests."""
+        cls.db = make_database("sqlite")
+        cls.db.load(":memory:")
+
+    def setUp(self):
+        """Fresh parser for every test."""
+        self.parser = CSVParser(self.db, _MockUser())
+
+    def _run(self, row, col):
+        """Run _parse_place inside a transaction."""
+        self.db.disable_signals()
+        with DbTxn("test", self.db, batch=True) as self.parser.trans:
+            self.parser._parse_place(1, row, col)
+        self.db.enable_signals()
+
+    # ------------------------------------------------------------------
+    # Creation
+    # ------------------------------------------------------------------
+
+    def test_create_minimal(self):
+        """New place with title is stored and retrievable."""
+        self._run(["PLACE_MIN", "Springfield"], _col("place", "title"))
+
+        place = self.parser.lookup("place", "PLACE_MIN")
+        self.assertIsNotNone(place)
+        self.assertEqual(place.get_title(), "Springfield")
+
+    def test_create_with_latitude_longitude(self):
+        """Latitude and longitude are stored on the place."""
+        self._run(
+            ["PLACE_LL", "Ocean", "51.5", "-0.1"],
+            _col("place", "title", "latitude", "longitude"),
+        )
+
+        place = self.parser.lookup("place", "PLACE_LL")
+        self.assertEqual(place.lat, "51.5")
+        self.assertEqual(place.long, "-0.1")
+
+    # ------------------------------------------------------------------
+    # Gramps ID preservation (regression)
+    # ------------------------------------------------------------------
+
+    def test_gramps_id_from_bracket_ref(self):
+        """Bracket ref [P9991] becomes the place gramps_id, not the auto-ID."""
+        expected_id = self.db.pid2user_format("P9991")
+        self._run(["[P9991]", "London Test"], _col("place", "title"))
+
+        place = self.parser.lookup("place", "[P9991]")
+        self.assertIsNotNone(place)
+        self.assertEqual(place.get_gramps_id(), expected_id)
+        self.assertIsNotNone(self.db.get_place_from_gramps_id(expected_id))
+
+    def test_enclosed_by_stub_gramps_id_preserved(self):
+        """Stub created for an unknown enclosed_by ref gets the correct gramps_id."""
+        expected_enc_id = self.db.pid2user_format("P9993")
+        self._run(
+            ["[P9992]", "Bow", "[P9993]"],
+            _col("place", "title", "enclosed_by"),
+        )
+
+        enc_place = self.parser.lookup("place", "[P9993]")
+        self.assertIsNotNone(enc_place)
+        self.assertEqual(enc_place.get_gramps_id(), expected_enc_id)
+
+    # ------------------------------------------------------------------
+    # Update existing
+    # ------------------------------------------------------------------
+
+    def test_update_existing_via_bracket_ref(self):
+        """Bracket ref finds an existing DB place and updates its title."""
+        with DbTxn("setup", self.db) as trans:
+            place = Place()
+            self.db.add_place(place, trans)
+        bracket_ref = "[%s]" % place.get_gramps_id()
+
+        self._run([bracket_ref, "Updated Title"], _col("place", "title"))
+
+        updated = self.db.get_place_from_handle(place.get_handle())
+        self.assertEqual(updated.get_title(), "Updated Title")
 
 
 if __name__ == "__main__":
