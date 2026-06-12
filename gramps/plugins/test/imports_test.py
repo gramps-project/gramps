@@ -198,6 +198,9 @@ def _report_details(path, diff1, diff2):
     # 'change' date is not significant for comparison
     if path.endswith(".change"):
         return ""
+    # gramps_id may be auto-generated and is not significant for comparison
+    if path.endswith(".gramps_id"):
+        return ""
     # the xml exporter edits the data base by converting media path
     # to unix '/' conventions, so we have to ignore these differences
     if path == "Media.path":
