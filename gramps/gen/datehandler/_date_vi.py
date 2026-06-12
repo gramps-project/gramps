@@ -84,7 +84,7 @@ class DateParserVI(DateParser):
     calendar_to_int = {
         "dương lịch": Date.CAL_GREGORIAN,
         "g": Date.CAL_GREGORIAN,
-        "julius": Date.CAL_JULIAN,
+        "julian": Date.CAL_JULIAN,
         "j": Date.CAL_JULIAN,
         "hebrew": Date.CAL_HEBREW,
         "h": Date.CAL_HEBREW,
@@ -102,6 +102,7 @@ class DateParserVI(DateParser):
     }
 
     quality_to_int = {
+        "phỏng chừng": Date.QUAL_ESTIMATED,
         "ước tính": Date.QUAL_ESTIMATED,
         "tính toán": Date.QUAL_CALCULATED,
     }
