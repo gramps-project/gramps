@@ -624,6 +624,7 @@ gramps/plugins/sidebar/expandersidebar.py
 #
 # plugins/test directory
 #
+gramps/plugins/test/_bsddb_avail.py
 gramps/plugins/test/db_undo_and_signals_test.py
 gramps/plugins/test/exports_test.py
 gramps/plugins/test/imports_test.py

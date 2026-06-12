@@ -64,6 +64,16 @@ from gramps.gen.db.exceptions import (
     DbConnectionError,
 )
 
+try:
+    from gramps.plugins.test._bsddb_avail import bsddb_backend_available
+except ImportError:  # pragma: no cover - defensive fallback
+
+    def bsddb_backend_available():
+        # If the availability prober cannot be imported, do not skip: let the
+        # real backend load attempt surface any problem rather than mask it.
+        return True
+
+
 # logger = logging.getLogger(__name__)
 
 # the following defines where to find test error diffs and import result XML files
@@ -241,9 +251,15 @@ def db_load(zipfn, self):
             else:
                 dbid = "bsddb"
 
-            # skip if the bsddb backend is not available
-            if dbid == "bsddb" and win():
-                self.skipTest("bsddb not supported on Windows")
+            # skip if the bsddb backend is not loadable on this platform
+            # (mirrors the loader's probe at
+            # gramps/plugins/db/bsddb/bsddb.py:32-35 — neither berkeleydb nor
+            # bsddb3 importable means make_database("bsddb") would raise)
+            if dbid == "bsddb" and not bsddb_backend_available():
+                self.skipTest(
+                    "bsddb backend not loadable on this platform "
+                    "(neither berkeleydb nor bsddb3 is installed)"
+                )
 
             db = make_database(dbid)
             db.disable_signals()
