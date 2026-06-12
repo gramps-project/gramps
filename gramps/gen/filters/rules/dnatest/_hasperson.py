@@ -35,7 +35,7 @@ class HasPerson(Rule):
     labels = [_("Person ID:")]
     name = _("DNA tests linked to <person>")
     description = _("Matches DNA tests linked to the specified person")
-    category = _("DNA test filters")
+    category = _("Person filters")
 
     def prepare(self, db: Database, user):
         self.person_handle = None
