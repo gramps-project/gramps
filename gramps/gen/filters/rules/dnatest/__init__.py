@@ -37,6 +37,8 @@ from ._matchesfilter import MatchesFilter
 from ._hasdnatest import HasDNATest
 from ._hasprovider import HasProvider
 from ._hastesttype import HasTestType
+from ._hasyhaplogroup import HasYHaplogroup
+from ._hasmthaplogroup import HasMtHaplogroup
 from ._isunidentified import IsUnidentified
 
 editor_rule_list: list[type] = [
@@ -55,5 +57,7 @@ editor_rule_list: list[type] = [
     MatchesFilter,
     HasProvider,
     HasTestType,
+    HasYHaplogroup,
+    HasMtHaplogroup,
     IsUnidentified,
 ]
