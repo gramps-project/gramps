@@ -2980,14 +2980,14 @@ msgstr "大約 "
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "from "
-msgstr "從 "
+msgstr ""
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:257
 msgctxt "date modifier"
 msgid "to "
-msgstr "到 "
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:262
 msgctxt "date quality"
