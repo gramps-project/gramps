@@ -2386,8 +2386,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:423
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
-"{nonstd_calendar_and_ny}{date_start}에서 {date_stop}까지 {date_quality}"
+msgstr "{date_quality}{date_start}에서 {date_stop}까지{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
@@ -2409,8 +2408,7 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
-"{nonstd_calendar_and_ny}{date_start}에서 {date_stop}사이 {date_quality}"
+msgstr "{date_quality}{date_start}에서 {date_stop}사이{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.

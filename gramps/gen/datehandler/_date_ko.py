@@ -79,22 +79,34 @@ class DateParserKO(DateParser):
         "약": Date.MOD_ABOUT,
         "부터": Date.MOD_FROM,
         "까지": Date.MOD_TO,
+        # English fallbacks (ko.po modifier msgstr are empty → English display)
+        "before": Date.MOD_BEFORE,
+        "after": Date.MOD_AFTER,
+        "about": Date.MOD_ABOUT,
+        "from": Date.MOD_FROM,
+        "to": Date.MOD_TO,
     }
 
     calendar_to_int = {
         "양력": Date.CAL_GREGORIAN,
         "g": Date.CAL_GREGORIAN,
         "율리우스": Date.CAL_JULIAN,
+        "율리우스력": Date.CAL_JULIAN,
         "j": Date.CAL_JULIAN,
         "히브리": Date.CAL_HEBREW,
+        "히브리력": Date.CAL_HEBREW,
         "h": Date.CAL_HEBREW,
         "이슬람": Date.CAL_ISLAMIC,
+        "이슬람력": Date.CAL_ISLAMIC,
         "i": Date.CAL_ISLAMIC,
         "프랑스": Date.CAL_FRENCH,
+        "프랑스 혁명력": Date.CAL_FRENCH,
         "f": Date.CAL_FRENCH,
         "페르시아": Date.CAL_PERSIAN,
+        "페르시안력": Date.CAL_PERSIAN,
         "p": Date.CAL_PERSIAN,
         "스웨덴": Date.CAL_SWEDISH,
+        "스웨덴 달력": Date.CAL_SWEDISH,
         "s": Date.CAL_SWEDISH,
         "음력": Date.CAL_KOREAN_LUNAR,
         "한국음력": Date.CAL_KOREAN_LUNAR,
@@ -104,6 +116,9 @@ class DateParserKO(DateParser):
     quality_to_int = {
         "추정": Date.QUAL_ESTIMATED,
         "계산": Date.QUAL_CALCULATED,
+        # English fallbacks (ko.po quality msgstr are empty → English display)
+        "estimated": Date.QUAL_ESTIMATED,
+        "calculated": Date.QUAL_CALCULATED,
     }
 
     bce = ["before calendar", "negative year"] + DateParser.bce
@@ -170,9 +185,7 @@ class DateParserKO(DateParser):
         )
 
         # Rebuild Korean Lunar regexes with the full name table.
-        self._klmon_str = self.re_longest_first(
-            list(self.korean_lunar_to_int.keys())
-        )
+        self._klmon_str = self.re_longest_first(list(self.korean_lunar_to_int.keys()))
         self._kltext = re.compile(
             r"%s\.?(\s+\d+)?\s*,?\s+((\d+)(/\d+)?)?\s*$" % self._klmon_str,
             re.IGNORECASE,
@@ -182,28 +195,15 @@ class DateParserKO(DateParser):
             re.IGNORECASE,
         )
 
-        _span_1 = ["부터"]
-        _span_2 = ["까지"]
-        _range_1 = ["사이"]
-        _range_2 = ["와", "과"]
-        _range_3 = []
+        # Korean span/range format: "<start>에서 <stop>까지" and "<start>에서 <stop>사이"
         self._span = re.compile(
-            r"(%s)\s*(?P<start>.+)\s*(%s)\s*(?P<stop>.+)"
-            % ("|".join(_span_1), "|".join(_span_2)),
+            r"(?P<start>.+?)\s*에서\s*(?P<stop>.+?)\s*까지\s*",
             re.IGNORECASE,
         )
-        if _range_3:
-            self._range = re.compile(
-                r"(%s)\s*(?P<start>.+)\s*(%s)\s*(?P<stop>.+)\s*(%s)"
-                % ("|".join(_range_1), "|".join(_range_2), "|".join(_range_3)),
-                re.IGNORECASE,
-            )
-        else:
-            self._range = re.compile(
-                r"(%s)\s*(?P<start>.+)\s*(%s)\s*(?P<stop>.+)"
-                % ("|".join(_range_1), "|".join(_range_2)),
-                re.IGNORECASE,
-            )
+        self._range = re.compile(
+            r"(?P<start>.+?)\s*에서\s*(?P<stop>.+?)\s*사이\s*",
+            re.IGNORECASE,
+        )
 
         self._numeric = re.compile(
             r"((\d+)\s*년\s*)?((\d+)\s*월\s*)?(\d+)?\s*일?\s*$",
