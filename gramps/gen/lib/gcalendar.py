@@ -10379,3 +10379,75 @@ def chinese_sexagenary_year(year: int) -> str:
     stem = _HEAVENLY_STEMS[(year - 4) % 10]
     branch = _EARTHLY_BRANCHES[(year - 4) % 12]
     return stem + branch
+
+
+# ------------------------------------------------------------
+#
+# Korean Lunar Calendar (음력)
+#
+# ------------------------------------------------------------
+# The Korean and Chinese lunar calendars follow the same astronomical
+# rules and produce identical dates.  The only differences are the
+# display names (Korean month names and 간지 year names).
+
+# Heavenly Stems (천간, Cheon-gan) and Earthly Branches (지지, Ji-ji)
+# for the Korean sexagenary (간지) cycle.
+_KOR_HEAVENLY_STEMS = (
+    "갑",
+    "을",
+    "병",
+    "정",
+    "무",
+    "기",
+    "경",
+    "신",
+    "임",
+    "계",
+)
+_KOR_EARTHLY_BRANCHES = (
+    "자",
+    "축",
+    "인",
+    "묘",
+    "진",
+    "사",
+    "오",
+    "미",
+    "신",
+    "유",
+    "술",
+    "해",
+)
+
+
+def korean_lunar_sdn(year: int, month: int, day: int) -> int:
+    """Convert a Korean Lunar (음력) date to an SDN number.
+
+    Delegates to the Chinese lunar calendar, which shares the same
+    astronomical rules and dates.  Months 1–12 are regular months;
+    months 101–112 represent the leap (윤) version of that month.
+    Returns 0 for dates outside the supported range.
+    """
+    return chinese_lunar_sdn(year, month, day)
+
+
+def korean_lunar_ymd(sdn: int) -> tuple[int, int, int]:
+    """Convert an SDN number to a Korean Lunar (음력) date.
+
+    Delegates to the Chinese lunar calendar, which shares the same
+    astronomical rules and dates.  The returned month is 1–12 for a
+    regular month or 101–112 for a leap (윤) month.  Returns
+    (0, 0, 0) for SDN values outside the supported range.
+    """
+    return chinese_lunar_ymd(sdn)
+
+
+def korean_ganji_year(year: int) -> str:
+    """Return the 간지 (干支) year name for a Gregorian-aligned Korean year.
+
+    For example, 1984 → '갑자', 2024 → '갑진'.
+    The cycle anchor is year 4 CE = 갑자 (stem 0, branch 0).
+    """
+    stem = _KOR_HEAVENLY_STEMS[(year - 4) % 10]
+    branch = _KOR_EARTHLY_BRANCHES[(year - 4) % 12]
+    return stem + branch

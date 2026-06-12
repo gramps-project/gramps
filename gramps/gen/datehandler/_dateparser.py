@@ -344,6 +344,9 @@ class DateParser:
     # seeded with __init_prefix_tables
     chinese_lunar_to_int: dict[str, int] = {}
 
+    # seeded with __init_prefix_tables
+    korean_lunar_to_int: dict[str, int] = {}
+
     bce = ["B.C.E.", "B.C.E", "BCE", "B.C.", "B.C", "BC"]
     # (overridden if a locale-specific date parser exists)
 
@@ -413,6 +416,10 @@ class DateParser:
             DateParser.chinese_lunar_to_int,
             _generate_variants(zip(ds.chinese_lunar)),
         )
+        _build_prefix_table(
+            DateParser.korean_lunar_to_int,
+            _generate_variants(zip(ds.korean_lunar)),
+        )
 
     def __init__(self, plocale=None):
         """
@@ -440,6 +447,7 @@ class DateParser:
             Date.CAL_ISLAMIC: self._parse_islamic,
             Date.CAL_SWEDISH: self._parse_swedish,
             Date.CAL_CHINESE_LUNAR: self._parse_chinese_lunar,
+            Date.CAL_KOREAN_LUNAR: self._parse_korean_lunar,
         }
 
         match = self._dhformat_parse.match(self.dhformat.lower())
@@ -508,6 +516,7 @@ class DateParser:
         self._imon_str = self.re_longest_first(list(self.islamic_to_int.keys()))
         self._smon_str = self.re_longest_first(list(self.swedish_to_int.keys()))
         self._clmon_str = self.re_longest_first(list(self.chinese_lunar_to_int.keys()))
+        self._klmon_str = self.re_longest_first(list(self.korean_lunar_to_int.keys()))
         self._cal_str = self.re_longest_first(list(self.calendar_to_int.keys()))
         self._ny_str = self.re_longest_first(list(self.newyear_to_int.keys()))
 
@@ -599,6 +608,18 @@ class DateParser:
         else:
             self._cltext = re.compile(r"$^")
             self._cltext2 = re.compile(r"$^")
+        if self._klmon_str:
+            self._kltext = re.compile(
+                r"%s\.?(\s+\d+)?\s*,?\s+((\d+)(/\d+)?)?\s*$" % self._klmon_str,
+                re.IGNORECASE,
+            )
+            self._kltext2 = re.compile(
+                r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._klmon_str,
+                re.IGNORECASE,
+            )
+        else:
+            self._kltext = re.compile(r"$^")
+            self._kltext2 = re.compile(r"$^")
         self._numeric = re.compile(r"((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
         self._iso = re.compile(r"(\d+)(/(\d+))?-(\d+)(-(\d+))?\s*$")
         self._isotimestamp = re.compile(
@@ -660,6 +681,23 @@ class DateParser:
 
         result = self._parse_calendar(
             text, self._cltext, self._cltext2, self.chinese_lunar_to_int
+        )
+        if result != Date.EMPTY:
+            return result
+        m = re.match(r"^(\d{1,4})(?:-(\d{1,3})(?:-(\d{1,2}))?)?$", text.strip())
+        if m:
+            year = int(m.group(1))
+            month = int(m.group(2)) if m.group(2) else 0
+            day = int(m.group(3)) if m.group(3) else 0
+            return (day, month, year, False)
+        return Date.EMPTY
+
+    def _parse_korean_lunar(self, text):
+        """Parse Korean Lunar (음력) date. Accepts month names or YYYY-MM-DD numeric."""
+        import re
+
+        result = self._parse_calendar(
+            text, self._kltext, self._kltext2, self.korean_lunar_to_int
         )
         if result != Date.EMPTY:
             return result
