@@ -2972,45 +2972,45 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:242
 msgctxt "date modifier"
 msgid "before "
-msgstr ""
+msgstr "이전 "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:245
 msgctxt "date modifier"
 msgid "after "
-msgstr ""
+msgstr "이후 "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:248
 msgctxt "date modifier"
 msgid "about "
-msgstr ""
+msgstr "약 "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "from "
-msgstr ""
+msgstr "부터 "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:257
 msgctxt "date modifier"
 msgid "to "
-msgstr ""
+msgstr "까지 "
 
 #: ../gramps/gen/datehandler/_datestrings.py:262
 msgctxt "date quality"
 msgid "estimated "
-msgstr ""
+msgstr "추정 "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
 msgid "calculated "
-msgstr ""
+msgstr "계산 "
 
 #: ../gramps/gen/datehandler/_datestrings.py:270
 msgid "Sunday"
