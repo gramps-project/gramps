@@ -131,11 +131,15 @@ class CSVWriterOptionBox(WriterOptionBox):
         self.include_marriages = 1
         self.include_children = 1
         self.include_places = 1
+        self.include_events = 1
+        self.include_citations = 1
         self.translate_headers = 1
         self.include_individuals_check = None
         self.include_marriages_check = None
         self.include_children_check = None
         self.include_places_check = None
+        self.include_events_check = None
+        self.include_citations_check = None
         self.translate_headers_check = None
 
     def get_option_box(self):
@@ -147,18 +151,24 @@ class CSVWriterOptionBox(WriterOptionBox):
         self.include_marriages_check = Gtk.CheckButton(label=_("Include marriages"))
         self.include_children_check = Gtk.CheckButton(label=_("Include children"))
         self.include_places_check = Gtk.CheckButton(label=_("Include places"))
+        self.include_events_check = Gtk.CheckButton(label=_("Include events"))
+        self.include_citations_check = Gtk.CheckButton(label=_("Include citations"))
         self.translate_headers_check = Gtk.CheckButton(label=_("Translate headers"))
 
         self.include_individuals_check.set_active(1)
         self.include_marriages_check.set_active(1)
         self.include_children_check.set_active(1)
         self.include_places_check.set_active(1)
+        self.include_events_check.set_active(1)
+        self.include_citations_check.set_active(1)
         self.translate_headers_check.set_active(1)
 
         option_box.pack_start(self.include_individuals_check, False, True, 0)
         option_box.pack_start(self.include_marriages_check, False, True, 0)
         option_box.pack_start(self.include_children_check, False, True, 0)
         option_box.pack_start(self.include_places_check, False, True, 0)
+        option_box.pack_start(self.include_events_check, False, True, 0)
+        option_box.pack_start(self.include_citations_check, False, True, 0)
         option_box.pack_start(self.translate_headers_check, False, True, 0)
 
         return option_box
@@ -170,6 +180,8 @@ class CSVWriterOptionBox(WriterOptionBox):
             self.include_marriages = self.include_marriages_check.get_active()
             self.include_children = self.include_children_check.get_active()
             self.include_places = self.include_places_check.get_active()
+            self.include_events = self.include_events_check.get_active()
+            self.include_citations = self.include_citations_check.get_active()
             self.translate_headers = self.translate_headers_check.get_active()
 
 
@@ -202,6 +214,8 @@ class CSVWriter:
             self.include_marriages = 1
             self.include_children = 1
             self.include_places = 1
+            self.include_events = 1
+            self.include_citations = 1
             self.translate_headers = 1
         else:
             self.option_box.parse_options()
@@ -211,6 +225,8 @@ class CSVWriter:
             self.include_marriages = self.option_box.include_marriages
             self.include_children = self.option_box.include_children
             self.include_places = self.option_box.include_places
+            self.include_events = self.option_box.include_events
+            self.include_citations = self.option_box.include_citations
             self.translate_headers = self.option_box.translate_headers
 
         self.plist = [x for x in self.db.iter_person_handles()]
@@ -295,6 +311,10 @@ class CSVWriter:
             self.total += len(self.flist)
         if self.include_places:
             self.total += len(self.place_list)
+        if self.include_events:
+            self.total += self.db.get_number_of_events()
+        if self.include_citations:
+            self.total += self.db.get_number_of_citations()
         ########################
         LOG.debug("Possible people to export: %s", len(self.plist))
         LOG.debug("Possible families to export: %s", len(self.flist))
@@ -645,10 +665,220 @@ class CSVWriter:
                         self.write_csv(family_id, grampsid_ref)
                 self.update()
             self.writeln()
+        if self.include_events:
+            self._write_events()
+        if self.include_citations:
+            self._write_citations()
         self.fp.close()
         return True
 
+    def _first_note(self, obj):
+        """Return (text, type_string) for the first note on obj, or ('', '')."""
+        for note_handle in obj.get_note_list():
+            note = self.db.get_note_from_handle(note_handle)
+            if note:
+                return note.get(), str(note.get_type())
+        return "", ""
+
+    def _first_tag(self, obj):
+        """Return the name of the first tag on obj, or ''."""
+        for tag_handle in obj.get_tag_list():
+            tag = self.db.get_tag_from_handle(tag_handle)
+            if tag:
+                return tag.get_name()
+        return ""
+
+    def _write_events(self):
+        """Write the events table."""
+        if self.translate_headers:
+            self.write_csv(
+                _("Event"),
+                _("Event type"),
+                _("Date"),
+                _("Place"),
+                _("Description"),
+                _("Source"),
+                _("Note"),
+                _("Note type"),
+                _("Tag"),
+                _("Person"),
+                _("Family"),
+                _("Role"),
+            )
+        else:
+            self.write_csv(
+                "event",
+                "eventtype",
+                "date",
+                "place",
+                "description",
+                "source",
+                "note",
+                "note_type",
+                "tag",
+                "person",
+                "family",
+                "role",
+            )
+        for event_handle in sorted(self.db.get_event_handles()):
+            event = self.db.get_event_from_handle(event_handle)
+            if not event:
+                continue
+            event_id = "[%s]" % event.get_gramps_id()
+            note_text, note_type_str = self._first_note(event)
+            refs = []
+            for backlink_class, backlink_handle in self.db.find_backlink_handles(
+                event_handle
+            ):
+                if backlink_class == "Person":
+                    person = self.db.get_person_from_handle(backlink_handle)
+                    if person:
+                        for eref in person.get_event_ref_list():
+                            if eref.ref == event_handle:
+                                refs.append(
+                                    (
+                                        "[%s]" % person.get_gramps_id(),
+                                        "",
+                                        str(eref.get_role()),
+                                    )
+                                )
+                elif backlink_class == "Family":
+                    family = self.db.get_family_from_handle(backlink_handle)
+                    if family:
+                        for eref in family.get_event_ref_list():
+                            if eref.ref == event_handle:
+                                refs.append(
+                                    (
+                                        "",
+                                        "[%s]" % family.get_gramps_id(),
+                                        str(eref.get_role()),
+                                    )
+                                )
+            if not refs:
+                refs = [("", "", "")]
+            person_id, family_id, role = refs[0]
+            self.write_csv(
+                event_id,
+                str(event.get_type()),
+                self.format_date(event),
+                self.format_place(event),
+                event.get_description(),
+                get_primary_source_title(self.db, event),
+                note_text,
+                note_type_str,
+                self._first_tag(event),
+                person_id,
+                family_id,
+                role,
+            )
+            for person_id, family_id, role in refs[1:]:
+                self.write_csv(
+                    event_id, "", "", "", "", "", "", "", "", person_id, family_id, role
+                )
+            self.update()
+        self.writeln()
+
+    def _write_citations(self):
+        """Write the citations table."""
+        if self.translate_headers:
+            self.write_csv(
+                _("Citation"),
+                _("Source"),
+                _("Page"),
+                _("Date"),
+                _("Confidence"),
+                _("Note"),
+                _("Note type"),
+                _("Tag"),
+                _("Person"),
+                _("Family"),
+                _("Event"),
+                _("Place"),
+            )
+        else:
+            self.write_csv(
+                "citation",
+                "source",
+                "page",
+                "date",
+                "confidence",
+                "note",
+                "note_type",
+                "tag",
+                "person",
+                "family",
+                "event",
+                "place",
+            )
+        for citation_handle in sorted(self.db.get_citation_handles()):
+            citation = self.db.get_citation_from_handle(citation_handle)
+            if not citation:
+                continue
+            citation_id = "[%s]" % citation.get_gramps_id()
+            source_title = ""
+            source_handle = citation.get_reference_handle()
+            if source_handle:
+                source = self.db.get_source_from_handle(source_handle)
+                if source:
+                    source_title = source.get_title()
+            note_text, note_type_str = self._first_note(citation)
+            refs = []
+            for backlink_class, backlink_handle in self.db.find_backlink_handles(
+                citation_handle
+            ):
+                if backlink_class == "Person":
+                    person = self.db.get_person_from_handle(backlink_handle)
+                    if person:
+                        refs.append(("[%s]" % person.get_gramps_id(), "", "", ""))
+                elif backlink_class == "Family":
+                    family = self.db.get_family_from_handle(backlink_handle)
+                    if family:
+                        refs.append(("", "[%s]" % family.get_gramps_id(), "", ""))
+                elif backlink_class == "Event":
+                    event = self.db.get_event_from_handle(backlink_handle)
+                    if event:
+                        refs.append(("", "", "[%s]" % event.get_gramps_id(), ""))
+                elif backlink_class == "Place":
+                    place = self.db.get_place_from_handle(backlink_handle)
+                    if place:
+                        refs.append(("", "", "", "[%s]" % place.get_gramps_id()))
+            if not refs:
+                refs = [("", "", "", "")]
+            person_id, family_id, event_id, place_id = refs[0]
+            self.write_csv(
+                citation_id,
+                source_title,
+                citation.get_page(),
+                get_date(citation),
+                citation.get_confidence_level(),
+                note_text,
+                note_type_str,
+                self._first_tag(citation),
+                person_id,
+                family_id,
+                event_id,
+                place_id,
+            )
+            for person_id, family_id, event_id, place_id in refs[1:]:
+                self.write_csv(
+                    citation_id,
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    person_id,
+                    family_id,
+                    event_id,
+                    place_id,
+                )
+            self.update()
+        self.writeln()
+
     def format_date(self, date):
+        """Return a formatted date string for a DateBase object."""
         return get_date(date)
 
     def format_place(self, event):
