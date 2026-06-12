@@ -10379,3 +10379,76 @@ def chinese_sexagenary_year(year: int) -> str:
     stem = _HEAVENLY_STEMS[(year - 4) % 10]
     branch = _EARTHLY_BRANCHES[(year - 4) % 12]
     return stem + branch
+
+
+# ------------------------------------------------------------
+#
+# Vietnamese Lunar Calendar (Âm Lịch)
+#
+# ------------------------------------------------------------
+# The Vietnamese and Chinese lunar calendars use the same astronomical
+# rules and produce identical dates in practice.  The only differences
+# are the display names (Vietnamese month names and Can-Chi year names).
+
+
+def vietnamese_lunar_sdn(year: int, month: int, day: int) -> int:
+    """Convert a Vietnamese Lunar (Âm Lịch) date to an SDN number.
+
+    Delegates to the Chinese lunar calendar, which shares the same
+    astronomical rules and dates.  Months 1–12 are regular months;
+    months 101–112 represent the leap (Nhuận) version of that month.
+    Returns 0 for dates outside the supported range.
+    """
+    return chinese_lunar_sdn(year, month, day)
+
+
+def vietnamese_lunar_ymd(sdn: int) -> tuple[int, int, int]:
+    """Convert an SDN number to a Vietnamese Lunar (Âm Lịch) date.
+
+    Delegates to the Chinese lunar calendar, which shares the same
+    astronomical rules and dates.  The returned month is 1–12 for a
+    regular month or 101–112 for a leap (Nhuận) month.  Returns
+    (0, 0, 0) for SDN values outside the supported range.
+    """
+    return chinese_lunar_ymd(sdn)
+
+
+# Heavenly Stems (Thiên Can) and Earthly Branches (Địa Chi) for the
+# Vietnamese sexagenary (Can-Chi) cycle.
+_VIE_HEAVENLY_STEMS = (
+    "Giáp",
+    "Ất",
+    "Bính",
+    "Đinh",
+    "Mậu",
+    "Kỷ",
+    "Canh",
+    "Tân",
+    "Nhâm",
+    "Quý",
+)
+_VIE_EARTHLY_BRANCHES = (
+    "Tý",
+    "Sửu",
+    "Dần",
+    "Mão",
+    "Thìn",
+    "Tỵ",
+    "Ngọ",
+    "Mùi",
+    "Thân",
+    "Dậu",
+    "Tuất",
+    "Hợi",
+)
+
+
+def vietnamese_can_chi_year(year: int) -> str:
+    """Return the Can-Chi (干支) year name for a Gregorian-aligned Vietnamese year.
+
+    For example, 1984 → 'Giáp Tý', 2024 → 'Giáp Thìn'.
+    The cycle anchor is year 4 CE = Giáp Tý (stem 0, branch 0).
+    """
+    stem = _VIE_HEAVENLY_STEMS[(year - 4) % 10]
+    branch = _VIE_EARTHLY_BRANCHES[(year - 4) % 12]
+    return stem + " " + branch
