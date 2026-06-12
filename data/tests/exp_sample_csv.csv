@@ -1,122 +1,224 @@
 Place,Title,Name,Type,Latitude,Longitude,Code,Enclosed_by,Date
-[P0000],"Löderup, Malmöhus Län, Sweden","Löderup, Malmöhus Län, Sweden",Unknown,,,,,
-[P0001],"Sparks, Washoe Co., NV","Sparks, Washoe Co., NV",Unknown,,,,,
-[P0002],"San Francisco, San Francisco Co., CA","San Francisco, San Francisco Co., CA",Unknown,,,,,
-[P0003],"Rønne, Bornholm, Denmark","Rønne, Bornholm, Denmark",Unknown,,,,,
-[P0004],"Gladsax, Kristianstad Län, Sweden","Gladsax, Kristianstad Län, Sweden",Unknown,,,,,
-[P0005],"Reno, Washoe Co., NV","Reno, Washoe Co., NV",Unknown,,,,,
-[P0006],"Hayward, Alameda Co., CA","Hayward, Alameda Co., CA",Unknown,,,,,
-[P0007],"Community Presbyterian Church, Danville, CA","Community Presbyterian Church, Danville, CA",Unknown,,,,,
-[P0008],Sweden,Sweden,Unknown,,,,,
-[P0009],"Grostorp, Kristianstad Län, Sweden","Grostorp, Kristianstad Län, Sweden",Unknown,,,,,
-[P0010],"Copenhagen, Denmark","Copenhagen, Denmark",Unknown,,,,,
-[P0011],"Hoya/Jona/Hoia, Sweden","Hoya/Jona/Hoia, Sweden",Unknown,,,,,
-[P0012],"Simrishamn, Kristianstad Län, Sweden","Simrishamn, Kristianstad Län, Sweden",Unknown,,,,,
-[P0013],"Fremont, Alameda Co., CA","Fremont, Alameda Co., CA",Unknown,,,,,
-[P0016],"Santa Rosa, Sonoma Co., CA","Santa Rosa, Sonoma Co., CA",Unknown,,,,,
-[P0017],"San Jose, Santa Clara Co., CA","San Jose, Santa Clara Co., CA",Unknown,,,,,
-[P0018],UC Berkeley,UC Berkeley,Unknown,,,,,
-[P0019],"Smestorp, Kristianstad Län, Sweden","Smestorp, Kristianstad Län, Sweden",Unknown,,,,,
-[P0020],"Tommarp, Kristianstad Län, Sweden","Tommarp, Kristianstad Län, Sweden",Unknown,,,,,
-[P0021],"Rønne Bornholm, Denmark","Rønne Bornholm, Denmark",Unknown,,,,,
-[P0022],"Woodland, Yolo Co., CA","Woodland, Yolo Co., CA",Unknown,,,,,
-[P0023],"San Ramon, Conta Costa Co., CA","San Ramon, Conta Costa Co., CA",Unknown,,,,,
-[P0026],United States of America,USA,Country,,,,,
-[P0028],"California, USA",California,State,,,,[P0026],2016-06-04
-[P0025],"Colorado, USA",Colorado,State,,,,[P0026],
-[P0027],"Sacramento Co., California, USA",Sacramento Co.,County,,,,[P0028],2016-06-01
-[P0015],"Sacramento, Sacramento Co., CA","Sacramento, Sacramento Co., CA",City,,,,[P0027],2016-06-04
-[P0024],"Denver Co., Colorado, USA",Denver Co.,County,,,,[P0025],
-[P0014],"Denver, Denver Co., CO","Denver, Denver Co., CO",City,39.7392,104.9903 W,,[P0024],
+[P00000],"Löderup, Malmöhus Län, Sweden","Löderup, Malmöhus Län, Sweden",Unknown,,,,,
+[P00001],"Sparks, Washoe Co., NV","Sparks, Washoe Co., NV",Unknown,,,,,
+[P00002],"San Francisco, San Francisco Co., CA","San Francisco, San Francisco Co., CA",Unknown,,,,,
+[P00003],"Rønne, Bornholm, Denmark","Rønne, Bornholm, Denmark",Unknown,,,,,
+[P00004],"Gladsax, Kristianstad Län, Sweden","Gladsax, Kristianstad Län, Sweden",Unknown,,,,,
+[P00005],"Reno, Washoe Co., NV","Reno, Washoe Co., NV",Unknown,,,,,
+[P00006],"Hayward, Alameda Co., CA","Hayward, Alameda Co., CA",Unknown,,,,,
+[P00007],"Community Presbyterian Church, Danville, CA","Community Presbyterian Church, Danville, CA",Unknown,,,,,
+[P00008],Sweden,Sweden,Unknown,,,,,
+[P00009],"Grostorp, Kristianstad Län, Sweden","Grostorp, Kristianstad Län, Sweden",Unknown,,,,,
+[P00010],"Copenhagen, Denmark","Copenhagen, Denmark",Unknown,,,,,
+[P00011],"Hoya/Jona/Hoia, Sweden","Hoya/Jona/Hoia, Sweden",Unknown,,,,,
+[P00012],"Simrishamn, Kristianstad Län, Sweden","Simrishamn, Kristianstad Län, Sweden",Unknown,,,,,
+[P00013],"Fremont, Alameda Co., CA","Fremont, Alameda Co., CA",Unknown,,,,,
+[P00016],"Santa Rosa, Sonoma Co., CA","Santa Rosa, Sonoma Co., CA",Unknown,,,,,
+[P00017],"San Jose, Santa Clara Co., CA","San Jose, Santa Clara Co., CA",Unknown,,,,,
+[P00018],UC Berkeley,UC Berkeley,Unknown,,,,,
+[P00019],"Smestorp, Kristianstad Län, Sweden","Smestorp, Kristianstad Län, Sweden",Unknown,,,,,
+[P00020],"Tommarp, Kristianstad Län, Sweden","Tommarp, Kristianstad Län, Sweden",Unknown,,,,,
+[P00021],"Rønne Bornholm, Denmark","Rønne Bornholm, Denmark",Unknown,,,,,
+[P00022],"Woodland, Yolo Co., CA","Woodland, Yolo Co., CA",Unknown,,,,,
+[P00023],"San Ramon, Conta Costa Co., CA","San Ramon, Conta Costa Co., CA",Unknown,,,,,
+[P00026],United States of America,USA,Country,,,,,
+[P00028],"California, USA",California,State,,,,[P00026],2016-06-04
+[P00025],"Colorado, USA",Colorado,State,,,,[P00026],
+[P00027],"Sacramento Co., California, USA",Sacramento Co.,County,,,,[P00028],2016-06-01
+[P00015],"Sacramento, Sacramento Co., CA","Sacramento, Sacramento Co., CA",City,,,,[P00027],2016-06-04
+[P00024],"Denver Co., Colorado, USA",Denver Co.,County,,,,[P00025],
+[P00014],"Denver, Denver Co., CO","Denver, Denver Co., CO",City,39.7392,104.9903 W,,[P00024],
 
 Person,Surname,Given,Call,Nickname,Suffix,Prefix,Title,Gender,Birth date,Birth place,Birth source,Baptism date,Baptism place,Baptism source,Death date,Death place,Death source,Burial date,Burial place,Burial source,Note
-[I0030],Adams,Janice Ann,,,,,,female,1965-08-26,[P0013],,,,,,,,,,,
-[I0016],Anderson,Jennifer,,,,,,female,1907-11-05,[P0003],,,,,1985-05-29,[P0002],,,,,
-[I0025],Ericsdotter,Marta,,,,,,female,about 1775,[P0008],,,,,,,,,,,
-[I0041],Green,Janis Elaine,,,,,,female,1935-12-02,,,,,,,,,,,,
-[I0000],Hansdotter,Anna,,,,,,female,1864-10-02,[P0000],,,,,1945-09-29,[P0001],,,,,
-[I0038],Hansdotter,Kerstina,,,,,,female,1832-11-29,[P0019],,,,,before 1908,[P0008],,,,,
-[I0032],Horne,Darcy,,,,,,female,1966-07-02,[P0015],,,,,,,,,,,
-[I0036],Jefferson,Elna,,,,,,female,1800-09-14,[P0004],,,,,,[P0008],,,,,
-[I0017],Jones,Lillie Harriet,,,,,,female,1910-05-02,[P0003],,,,,1990-06-26,,,,,,
-[I0042],Ke 柯,雪,,,,,,male,,,,,,,,,,,,,
-[I0013],Michaels,Evelyn,,,,,,female,about 1897,,,,,,,,,,,,
-[I0012],Nielsen,Herman Julius,,,,,,male,1889-08-31,[P0003],,,,,1945,,,,,,
-[I0031],Ohman,Marjorie,,,,,,female,1903-06-03,[P0014],,,,,1980-06-22,[P0005],,,,,
-[I0034],Perkins,Alice Paula,,,,,,female,1933-11-22,[P0001],,,,,,,,,,,
-[I0002],Smith,Amber Marie,,,,,,female,1998-04-12,[P0006],,,,,,,,,,,
-[I0023],Smith,Astrid Shermanna Augusta,,,,,,female,1889-01-31,[P0003],,,,,1963-12-21,[P0002],,,,,
-[I0020],Smith,Carl Emil,,,,,,male,1899-12-20,[P0003],,,,,1959-01-28,[P0005],,,,,
-[I0029],Smith,Craig Peter,,,,,,male,after 1966,[P0002],,,,,,,,,,,
-[I0037],Smith,Edwin Michael,,,,,,male,1961-05-24,[P0017],"Birth, Death and Marriage Records",,,,,,,,,,
-[I0009],Smith,Emil,,,,,,male,1860-09-27,[P0012],,,,,,,,,,,
-[I0019],Smith,Eric Lloyd,,,,,Dr.,male,1963-08-28,[P0002],,,,,,,,,,,
-[I0015],Smith,Gus,,,,,,male,1897-09-11,[P0003],,,,,1963-10-21,[P0002],,,,,
-[I0024],Smith,Gustaf,,,Sr.,,,male,1862-11-28,[P0009],,,,,before 1930-07-23,[P0001],,,,,
-[I0011],Smith,Hanna,,,,,,female,1821-01-29,[P0004],,,,,,,,,,,
-[I0010],Smith,Hans Peter,,,,,,male,1904-04-17,[P0003],Birth Records,,,,1977-01-29,[P0002],,1977-02-05,[P0002],findagrave.com,
-[I0021],Smith,Hjalmar,,,,,,male,1893-01-31,[P0003],,,,,1894-09-25,[P0003],,,,,
-[I0008],Smith,Hjalmar,,,,,,male,1895-04-07,[P0003],,1895-06-03,[P0021],,1975-06-26,[P0005],,,,,
-[I0007],Smith,Ingar,,,,,,female,after 1823,[P0004],,,,,,,,,,,
-[I0027],Smith,Ingeman,,,,,,male,about 1770,[P0008],,,,,,,,,,,
-[I0004],Smith,Ingeman,,,,,,male,1826-01-29,[P0004],,,,,,,,,,,
-[I0018],Smith,John Hjalmar,,,,,,male,1932-01-30,[P0002],,,,,,,,,,,
-[I0001],Smith,Keith Lloyd,,,,,,male,1966-08-11,[P0002],,,,,,,,,,,
-[I0026],Smith,Kirsti Marie,,,,,,female,1886-12-15,[P0003],,,,,1966-07-18,[P0002],,,,,
-[I0035],Smith,Lars Peter,,,,,,male,1991-09-16,[P0016],,,,,,,,,,,
-[I0033],Smith,Lloyd,,,,,,male,1935-03-13,[P0002],,,,,,,,,,,
-[I0003],Smith,Magnes,,,,,,male,1858-10-06,[P0012],,,,,1910-02-20,[P0003],,,,,
-[I0040],Smith,Marjorie Alice,,,,,,female,1960-02-05,[P0017],,,,,,,,,,,
-[I0014],Smith,Marjorie Lee,,,,,,female,1934-11-04,[P0005],,,,,,,,,,,
-[I0022],Smith,Martin,,,,,,male,1830-11-19,[P0004],,1830-11-23,[P0004],,between 1899 and 1905,[P0008],,,,,
-[I0039],Smith,Martin,,,,,,male,between 1794 and 1796,[P0020],,,,,,[P0008],,,,,
-[I0005],Smith,Mason Michael,,M-Dawg,,,,male,1996-06-26,[P0006],,,,,,,,,,,
-[I0028],Streiffert,Anna,,,,,,female,1860-09-23,[P0011],,,,,1927-02-02,[P0003],,,,,
-[I0006],Willard,Edwin,,,,,,male,about 1886,,,,,,,,,,,,
+[I00030],Adams,Janice Ann,,,,,,female,1965-08-26,[P00013],,,,,,,,,,,
+[I00016],Anderson,Jennifer,,,,,,female,1907-11-05,[P00003],,,,,1985-05-29,[P00002],,,,,
+[I00025],Ericsdotter,Marta,,,,,,female,about 1775,[P00008],,,,,,,,,,,
+[I00041],Green,Janis Elaine,,,,,,female,1935-12-02,,,,,,,,,,,,
+[I00000],Hansdotter,Anna,,,,,,female,1864-10-02,[P00000],,,,,1945-09-29,[P00001],,,,,
+[I00038],Hansdotter,Kerstina,,,,,,female,1832-11-29,[P00019],,,,,before 1908,[P00008],,,,,
+[I00032],Horne,Darcy,,,,,,female,1966-07-02,[P00015],,,,,,,,,,,
+[I00036],Jefferson,Elna,,,,,,female,1800-09-14,[P00004],,,,,,[P00008],,,,,
+[I00017],Jones,Lillie Harriet,,,,,,female,1910-05-02,[P00003],,,,,1990-06-26,,,,,,
+[I00042],Ke 柯,雪,,,,,,male,,,,,,,,,,,,,
+[I00013],Michaels,Evelyn,,,,,,female,about 1897,,,,,,,,,,,,
+[I00012],Nielsen,Herman Julius,,,,,,male,1889-08-31,[P00003],,,,,1945,,,,,,
+[I00031],Ohman,Marjorie,,,,,,female,1903-06-03,[P00014],,,,,1980-06-22,[P00005],,,,,
+[I00034],Perkins,Alice Paula,,,,,,female,1933-11-22,[P00001],,,,,,,,,,,
+[I00002],Smith,Amber Marie,,,,,,female,1998-04-12,[P00006],,,,,,,,,,,
+[I00023],Smith,Astrid Shermanna Augusta,,,,,,female,1889-01-31,[P00003],,,,,1963-12-21,[P00002],,,,,
+[I00020],Smith,Carl Emil,,,,,,male,1899-12-20,[P00003],,,,,1959-01-28,[P00005],,,,,
+[I00029],Smith,Craig Peter,,,,,,male,after 1966,[P00002],,,,,,,,,,,
+[I00037],Smith,Edwin Michael,,,,,,male,1961-05-24,[P00017],"Birth, Death and Marriage Records",,,,,,,,,,
+[I00009],Smith,Emil,,,,,,male,1860-09-27,[P00012],,,,,,,,,,,
+[I00019],Smith,Eric Lloyd,,,,,Dr.,male,1963-08-28,[P00002],,,,,,,,,,,
+[I00015],Smith,Gus,,,,,,male,1897-09-11,[P00003],,,,,1963-10-21,[P00002],,,,,
+[I00024],Smith,Gustaf,,,Sr.,,,male,1862-11-28,[P00009],,,,,before 1930-07-23,[P00001],,,,,
+[I00011],Smith,Hanna,,,,,,female,1821-01-29,[P00004],,,,,,,,,,,
+[I00010],Smith,Hans Peter,,,,,,male,1904-04-17,[P00003],Birth Records,,,,1977-01-29,[P00002],,1977-02-05,[P00002],findagrave.com,
+[I00021],Smith,Hjalmar,,,,,,male,1893-01-31,[P00003],,,,,1894-09-25,[P00003],,,,,
+[I00008],Smith,Hjalmar,,,,,,male,1895-04-07,[P00003],,1895-06-03,[P00021],,1975-06-26,[P00005],,,,,
+[I00007],Smith,Ingar,,,,,,female,after 1823,[P00004],,,,,,,,,,,
+[I00027],Smith,Ingeman,,,,,,male,about 1770,[P00008],,,,,,,,,,,
+[I00004],Smith,Ingeman,,,,,,male,1826-01-29,[P00004],,,,,,,,,,,
+[I00018],Smith,John Hjalmar,,,,,,male,1932-01-30,[P00002],,,,,,,,,,,
+[I00001],Smith,Keith Lloyd,,,,,,male,1966-08-11,[P00002],,,,,,,,,,,
+[I00026],Smith,Kirsti Marie,,,,,,female,1886-12-15,[P00003],,,,,1966-07-18,[P00002],,,,,
+[I00035],Smith,Lars Peter,,,,,,male,1991-09-16,[P00016],,,,,,,,,,,
+[I00033],Smith,Lloyd,,,,,,male,1935-03-13,[P00002],,,,,,,,,,,
+[I00003],Smith,Magnes,,,,,,male,1858-10-06,[P00012],,,,,1910-02-20,[P00003],,,,,
+[I00040],Smith,Marjorie Alice,,,,,,female,1960-02-05,[P00017],,,,,,,,,,,
+[I00014],Smith,Marjorie Lee,,,,,,female,1934-11-04,[P00005],,,,,,,,,,,
+[I00022],Smith,Martin,,,,,,male,1830-11-19,[P00004],,1830-11-23,[P00004],,between 1899 and 1905,[P00008],,,,,
+[I00039],Smith,Martin,,,,,,male,between 1794 and 1796,[P00020],,,,,,[P00008],,,,,
+[I00005],Smith,Mason Michael,,M-Dawg,,,,male,1996-06-26,[P00006],,,,,,,,,,,
+[I00028],Streiffert,Anna,,,,,,female,1860-09-23,[P00011],,,,,1927-02-02,[P00003],,,,,
+[I00006],Willard,Edwin,,,,,,male,about 1886,,,,,,,,,,,,
 
 Marriage,Husband,Wife,Date,Place,Source,Note
-[F0000],[I0039],[I0036],about 1816,[P0004],,
-[F0001],[I0027],[I0025],about 1790,[P0008],,
-[F0002],[I0022],[I0038],about 1856,,,
-[F0003],[I0024],[I0000],1885-11-27,[P0003],,
-[F0004],[I0006],[I0026],about 1910,,,
-[F0005],[I0012],[I0023],1912-11-30,[P0003],,
-[F0006],[I0008],[I0031],1927-10-31,[P0005],,
-[F0007],[I0015],[I0013],about 1920,,,
-[F0008],[I0033],[I0041],1958-08-10,[P0002],,
-[F0009],[I0010],[I0017],,,,
-[F0010],[I0019],[I0032],1986-07-12,[P0022],,
-[F0011],[I0003],[I0028],1884-08-24,[P0003],,
-[F0012],[I0018],[I0034],1954-06-04,[P0001],Marriage Certificae,
-[F0013],[I0037],[I0030],1995-05-27,[P0023],,
-[F0014],[I0010],[I0016],,,,
+[F00000],[I00039],[I00036],about 1816,[P00004],,
+[F00001],[I00027],[I00025],about 1790,[P00008],,
+[F00002],[I00022],[I00038],about 1856,,,
+[F00003],[I00024],[I00000],1885-11-27,[P00003],,
+[F00004],[I00006],[I00026],about 1910,,,
+[F00005],[I00012],[I00023],1912-11-30,[P00003],,
+[F00006],[I00008],[I00031],1927-10-31,[P00005],,
+[F00007],[I00015],[I00013],about 1920,,,
+[F00008],[I00033],[I00041],1958-08-10,[P00002],,
+[F00009],[I00010],[I00017],,,,
+[F00010],[I00019],[I00032],1986-07-12,[P00022],,
+[F00011],[I00003],[I00028],1884-08-24,[P00003],,
+[F00012],[I00018],[I00034],1954-06-04,[P00001],Marriage Certificae,
+[F00013],[I00037],[I00030],1995-05-27,[P00023],,
+[F00014],[I00010],[I00016],,,,
 
 Family,Child
-[F0000],[I0011]
-[F0000],[I0007]
-[F0000],[I0004]
-[F0000],[I0022]
-[F0001],[I0039]
-[F0002],[I0003]
-[F0002],[I0009]
-[F0002],[I0024]
-[F0003],[I0026]
-[F0003],[I0023]
-[F0003],[I0021]
-[F0003],[I0008]
-[F0003],[I0015]
-[F0003],[I0020]
-[F0003],[I0010]
-[F0005],[I0042]
-[F0006],[I0018]
-[F0006],[I0014]
-[F0008],[I0019]
-[F0008],[I0001]
-[F0008],[I0029]
-[F0009],[I0033]
-[F0010],[I0035]
-[F0012],[I0040]
-[F0012],[I0037]
-[F0013],[I0005]
-[F0013],[I0002]
+[F00000],[I00011]
+[F00000],[I00007]
+[F00000],[I00004]
+[F00000],[I00022]
+[F00001],[I00039]
+[F00002],[I00003]
+[F00002],[I00009]
+[F00002],[I00024]
+[F00003],[I00026]
+[F00003],[I00023]
+[F00003],[I00021]
+[F00003],[I00008]
+[F00003],[I00015]
+[F00003],[I00020]
+[F00003],[I00010]
+[F00005],[I00042]
+[F00006],[I00018]
+[F00006],[I00014]
+[F00008],[I00019]
+[F00008],[I00001]
+[F00008],[I00029]
+[F00009],[I00033]
+[F00010],[I00035]
+[F00012],[I00040]
+[F00012],[I00037]
+[F00013],[I00005]
+[F00013],[I00002]
+
+Event,Event type,Date,Place,Description,Source,Note,Note type,Tag,Person,Family,Role
+[E00000],Birth,1864-10-02,[P00000],Birth of Anna Hansdotter,,,,,[I00000],,Primary
+[E00001],Death,1945-09-29,[P00001],Death of Anna Hansdotter,,,,,[I00000],,Primary
+[E00002],Birth,1966-08-11,[P00002],Birth of Keith Lloyd Smith,,,,,[I00001],,Primary
+[E00003],Birth,1904-04-17,[P00003],Birth of Hans Peter Smith,Birth Records,,,,[I00010],,Primary
+[E00004],Death,1977-01-29,[P00002],Death of Hans Peter Smith,,,,,[I00010],,Primary
+[E00005],Birth,1821-01-29,[P00004],Birth of Hanna Smith,,,,,[I00011],,Primary
+[E00006],Birth,1889-08-31,[P00003],Birth of Herman Julius Nielsen,,,,,[I00012],,Primary
+[E00007],Death,1945,,Death of Herman Julius Nielsen,,,,,[I00012],,Primary
+[E00008],Birth,about 1897,,Birth of Evelyn Michaels,,,,,[I00013],,Primary
+[E00009],Birth,1934-11-04,[P00005],Birth of Marjorie Lee Smith,,,,,[I00014],,Primary
+[E00010],Birth,1897-09-11,[P00003],Birth of Gus Smith,,,,,[I00015],,Primary
+[E00011],Death,1963-10-21,[P00002],Death of Gus Smith,,,,,[I00015],,Primary
+[E00012],Birth,1907-11-05,[P00003],Birth of Jennifer Anderson,,,,,[I00016],,Primary
+[E00013],Death,1985-05-29,[P00002],Death of Jennifer Anderson,,,,,[I00016],,Primary
+[E00014],Birth,1910-05-02,[P00003],Birth of Lillie Harriet Jones,,,,,[I00017],,Primary
+[E00015],Death,1990-06-26,,Death of Lillie Harriet Jones,,,,,[I00017],,Primary
+[E00016],Birth,1932-01-30,[P00002],Birth of John Hjalmar Smith,,,,,[I00018],,Primary
+[E00017],Birth,1963-08-28,[P00002],Birth of Eric Lloyd Smith,,,,,[I00019],,Primary
+[E00018],Adopted,,,,,,,,[I00019],,Primary
+[E00019],Birth,1998-04-12,[P00006],Birth of Amber Marie Smith,,,,,[I00002],,Primary
+[E00020],Christening,1998-04-26,[P00007],Christening of Amber Marie Smith,,,,,[I00002],,Primary
+[E00021],Birth,1899-12-20,[P00003],Birth of Carl Emil Smith,,,,,[I00020],,Primary
+[E00022],Death,1959-01-28,[P00005],Death of Carl Emil Smith,,,,,[I00020],,Primary
+[E00023],Birth,1893-01-31,[P00003],Birth of Hjalmar Smith,,,,,[I00021],,Primary
+[E00024],Death,1894-09-25,[P00003],Death of Hjalmar Smith,,,,,[I00021],,Primary
+[E00025],Birth,1830-11-19,[P00004],Birth of Martin Smith,,,,,[I00022],,Primary
+[E00026],Death,between 1899 and 1905,[P00008],Death of Martin Smith,,,,,[I00022],,Primary
+[E00027],Baptism,1830-11-23,[P00004],Baptism of Martin Smith,,,,,[I00022],,Primary
+[E00028],Birth,1889-01-31,[P00003],Birth of Astrid Shermanna Augusta Smith,,,,,[I00023],,Primary
+[E00029],Death,1963-12-21,[P00002],Death of Astrid Shermanna Augusta Smith,,,,,[I00023],,Primary
+[E00030],Birth,1862-11-28,[P00009],"Birth of Gustaf Smith, Sr.",,,,,[I00024],,Primary
+[E00031],Death,before 1930-07-23,[P00001],"Death of Gustaf Smith, Sr.",,,,,[I00024],,Primary
+[E00032],Immi,1908-05-21,[P00010],,,,,,[I00024],,Primary
+[E00033],Christening,1862-12-07,[P00004],"Christening of Gustaf Smith, Sr.",,,,,[I00024],,Primary
+[E00034],Birth,about 1775,[P00008],Birth of Marta Ericsdotter,,,,,[I00025],,Primary
+[E00035],Birth,1886-12-15,[P00003],Birth of Kirsti Marie Smith,,,,,[I00026],,Primary
+[E00036],Death,1966-07-18,[P00002],Death of Kirsti Marie Smith,,,,,[I00026],,Primary
+[E00037],Birth,about 1770,[P00008],Birth of Ingeman Smith,,,,,[I00027],,Primary
+[E00038],Birth,1860-09-23,[P00011],Birth of Anna Streiffert,,,,,[I00028],,Primary
+[E00039],Death,1927-02-02,[P00003],Death of Anna Streiffert,,,,,[I00028],,Primary
+[E00040],Birth,after 1966,[P00002],Birth of Craig Peter Smith,,,,,[I00029],,Primary
+[E00041],Census,,,Census of Craig Peter Smith,,"Witness name: John Doe
+Witness comment: This is a simple test.",General,,[I00029],,Primary
+[E00042],Birth,1858-10-06,[P00012],Birth of Magnes Smith,,,,,[I00003],,Primary
+[E00043],Death,1910-02-20,[P00003],Death of Magnes Smith,,,,,[I00003],,Primary
+[E00044],Birth,1965-08-26,[P00013],Birth of Janice Ann Adams,,,,,[I00030],,Primary
+[E00045],Occupation,,,Retail Manager,,,,,[I00030],,Primary
+[E00046],Degree,1988,,Business Management,,,,,[I00030],,Primary
+[E00047],Birth,1903-06-03,[P00014],Birth of Marjorie Ohman,,,,,[I00031],,Primary
+[E00048],Death,1980-06-22,[P00005],Death of Marjorie Ohman,,,,,[I00031],,Primary
+[E00049],Birth,1966-07-02,[P00015],Birth of Darcy Horne,,,,,[I00032],,Primary
+[E00050],Birth,1935-03-13,[P00002],Birth of Lloyd Smith,,,,,[I00033],,Primary
+[E00051],Birth,1933-11-22,[P00001],Birth of Alice Paula Perkins,,,,,[I00034],,Primary
+[E00052],Birth,1991-09-16,[P00016],Birth of Lars Peter Smith,,,,,[I00035],,Primary
+[E00053],Adopted,,,,,,,,[I00035],,Primary
+[E00054],Birth,1800-09-14,[P00004],Birth of Elna Jefferson,,,,,[I00036],,Primary
+[E00055],Death,,[P00008],Death of Elna Jefferson,,,,,[I00036],,Primary
+[E00056],Christening,1800-09-16,[P00004],Christening of Elna Jefferson,,,,,[I00036],,Primary
+[E00057],Birth,1961-05-24,[P00017],Birth of Edwin Michael Smith,"Birth, Death and Marriage Records",,,,[I00037],,Primary
+[E00058],Occupation,,,Software Engineer,,Witness name: No Name,General,,[I00037],,Primary
+[E00059],Education,between 1979 and 1984,[P00018],Education of Edwin Michael Smith,,,,,[I00037],,Primary
+[E00060],Degree,1984,,B.S.E.E.,,,,,[I00037],,Primary
+[E00061],Birth,1832-11-29,[P00019],Birth of Kerstina Hansdotter,,,,,[I00038],,Primary
+[E00062],Death,before 1908,[P00008],Death of Kerstina Hansdotter,,,,,[I00038],,Primary
+[E00063],Birth,between 1794 and 1796,[P00020],Birth of Martin Smith,,,,,[I00039],,Primary
+[E00064],Death,,[P00008],Death of Martin Smith,,,,,[I00039],,Primary
+[E00065],Birth,1826-01-29,[P00004],Birth of Ingeman Smith,,,,,[I00004],,Primary
+[E00066],Birth,1960-02-05,[P00017],Birth of Marjorie Alice Smith,,,,,[I00040],,Primary
+[E00067],Birth,1935-12-02,,Birth of Janis Elaine Green,,,,,[I00041],,Primary
+[E00068],Birth,1996-06-26,[P00006],Birth of Mason Michael Smith,,,,,[I00005],,Primary
+[E00069],Christening,1996-07-10,[P00007],Christening of Mason Michael Smith,,,,,[I00005],,Primary
+[E00070],Birth,about 1886,,Birth of Edwin Willard,,,,,[I00006],,Primary
+[E00071],Birth,after 1823,[P00004],Birth of Ingar Smith,,,,,[I00007],,Primary
+[E00072],Birth,1895-04-07,[P00003],Birth of Hjalmar Smith,,,,,[I00008],,Primary
+[E00073],Death,1975-06-26,[P00005],Death of Hjalmar Smith,,,,,[I00008],,Primary
+[E00074],Baptism,1895-06-03,[P00021],Baptism of Hjalmar Smith,,,,,[I00008],,Primary
+[E00075],Immi,1912-11-14,[P00010],,,,,,[I00008],,Primary
+[E00076],Birth,1860-09-27,[P00012],Birth of Emil Smith,,,,,[I00009],,Primary
+[E00077],Marriage,about 1816,[P00004],Marriage of Martin Smith and Elna Jefferson,,,,,,[F00000],Family
+[E00078],Marriage,about 1790,[P00008],Marriage of Ingeman Smith and Marta Ericsdotter,,,,,,[F00001],Family
+[E00079],Marriage,1986-07-12,[P00022],Marriage of Eric Lloyd Smith and Darcy Horne,,,,,,[F00010],Family
+[E00080],Marriage,1884-08-24,[P00003],Marriage of Magnes Smith and Anna Streiffert,,,,,,[F00011],Family
+[E00081],Marriage,1954-06-04,[P00001],Marriage of John Hjalmar Smith and Alice Paula Perkins,Marriage Certificae,,,,,[F00012],Family
+[E00082],Marriage,1995-05-27,[P00023],Marriage of Edwin Michael Smith and Janice Ann Adams,,,,,,[F00013],Family
+[E00083],Engagement,1994-10-05,[P00002],Engagement of Edwin Michael Smith and Janice Ann Adams,,,,,,[F00013],Family
+[E00084],Marriage,about 1856,,Marriage of Martin Smith and Kerstina Hansdotter,,,,,,[F00002],Family
+[E00085],Marriage,1885-11-27,[P00003],"Marriage of Gustaf Smith, Sr. and Anna Hansdotter",,,,,,[F00003],Family
+[E00086],Marriage,about 1910,,Marriage of Edwin Willard and Kirsti Marie Smith,,,,,,[F00004],Family
+[E00087],Marriage,1912-11-30,[P00003],Marriage of Herman Julius Nielsen and Astrid Shermanna Augusta Smith,,,,,,[F00005],Family
+[E00088],Marriage,1927-10-31,[P00005],Marriage of Hjalmar Smith and Marjorie Ohman,,,,,,[F00006],Family
+[E00089],Marriage,about 1920,,Marriage of Gus Smith and Evelyn Michaels,,,,,,[F00007],Family
+[E00090],Marriage,1958-08-10,[P00002],Marriage of Lloyd Smith and Janis Elaine Green,,,,,,[F00008],Family
+[E00091],Burial,1977-02-05,[P00002],In cemetary,findagrave.com,,,,[I00010],,Primary
+
+Citation,Source,Page,Date,Confidence,Note,Note type,Tag,Person,Family,Event,Place
+[C00000],Birth Certificate,,,2,,,,[I00037],,,
+[C00001],"Birth, Death and Marriage Records",,,2,,,,,,[E00057],
+[C00002],Marriage Certificae,,,2,,,,,,[E00081],
+[C00003],findagrave.com,,1977-07-22,3,,,,,,[E00091],
+[C00004],Birth Records,22 6,1955-05-05,2,,,,,,[E00003],
 
