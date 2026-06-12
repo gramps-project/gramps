@@ -425,6 +425,19 @@ class MySource(MyID):
 
 # -------------------------------------------------------------------------
 #
+# MyPerson - select ID of people with a standard interface
+#
+# -------------------------------------------------------------------------
+class MyPerson(MyID):
+    _empty_id_txt = _("Give or select a person ID.")
+
+    def __init__(self, dbstate, uistate, track):
+        MyID.__init__(self, dbstate, uistate, track, namespace="Person")
+        self.entry.set_tooltip_text(self._empty_id_txt)
+
+
+# -------------------------------------------------------------------------
+#
 # MySelect
 #
 # -------------------------------------------------------------------------
@@ -573,6 +586,8 @@ class EditRule(ManagedWindow):
                     t = MyInteger(1, 32)
                 elif v == _("ID:"):
                     t = MyID(self.dbstate, self.uistate, self.track, self.namespace)
+                elif v == _("Person ID:"):
+                    t = MyPerson(self.dbstate, self.uistate, self.track)
                 elif v == _("Source ID:"):
                     t = MySource(self.dbstate, self.uistate, self.track)
                 elif v == _("Filter name:"):
