@@ -120,3 +120,105 @@ Family,Child
 [F0013],[I0005]
 [F0013],[I0002]
 
+Event,Event type,Date,Place,Description,Source,Note,Note type,Tag,Person,Family,Role
+[E0000],Birth,1864-10-02,[P0000],Birth of Anna Hansdotter,,,,,[I0000],,Primary
+[E0001],Death,1945-09-29,[P0001],Death of Anna Hansdotter,,,,,[I0000],,Primary
+[E0002],Birth,1966-08-11,[P0002],Birth of Keith Lloyd Smith,,,,,[I0001],,Primary
+[E0003],Birth,1904-04-17,[P0003],Birth of Hans Peter Smith,Birth Records,,,,[I0010],,Primary
+[E0004],Death,1977-01-29,[P0002],Death of Hans Peter Smith,,,,,[I0010],,Primary
+[E0005],Birth,1821-01-29,[P0004],Birth of Hanna Smith,,,,,[I0011],,Primary
+[E0006],Birth,1889-08-31,[P0003],Birth of Herman Julius Nielsen,,,,,[I0012],,Primary
+[E0007],Death,1945,,Death of Herman Julius Nielsen,,,,,[I0012],,Primary
+[E0008],Birth,about 1897,,Birth of Evelyn Michaels,,,,,[I0013],,Primary
+[E0009],Birth,1934-11-04,[P0005],Birth of Marjorie Lee Smith,,,,,[I0014],,Primary
+[E0010],Birth,1897-09-11,[P0003],Birth of Gus Smith,,,,,[I0015],,Primary
+[E0011],Death,1963-10-21,[P0002],Death of Gus Smith,,,,,[I0015],,Primary
+[E0012],Birth,1907-11-05,[P0003],Birth of Jennifer Anderson,,,,,[I0016],,Primary
+[E0013],Death,1985-05-29,[P0002],Death of Jennifer Anderson,,,,,[I0016],,Primary
+[E0014],Birth,1910-05-02,[P0003],Birth of Lillie Harriet Jones,,,,,[I0017],,Primary
+[E0015],Death,1990-06-26,,Death of Lillie Harriet Jones,,,,,[I0017],,Primary
+[E0016],Birth,1932-01-30,[P0002],Birth of John Hjalmar Smith,,,,,[I0018],,Primary
+[E0017],Birth,1963-08-28,[P0002],Birth of Eric Lloyd Smith,,,,,[I0019],,Primary
+[E0018],Adopted,,,,,,,,[I0019],,Primary
+[E0019],Birth,1998-04-12,[P0006],Birth of Amber Marie Smith,,,,,[I0002],,Primary
+[E0020],Christening,1998-04-26,[P0007],Christening of Amber Marie Smith,,,,,[I0002],,Primary
+[E0021],Birth,1899-12-20,[P0003],Birth of Carl Emil Smith,,,,,[I0020],,Primary
+[E0022],Death,1959-01-28,[P0005],Death of Carl Emil Smith,,,,,[I0020],,Primary
+[E0023],Birth,1893-01-31,[P0003],Birth of Hjalmar Smith,,,,,[I0021],,Primary
+[E0024],Death,1894-09-25,[P0003],Death of Hjalmar Smith,,,,,[I0021],,Primary
+[E0025],Birth,1830-11-19,[P0004],Birth of Martin Smith,,,,,[I0022],,Primary
+[E0026],Death,between 1899 and 1905,[P0008],Death of Martin Smith,,,,,[I0022],,Primary
+[E0027],Baptism,1830-11-23,[P0004],Baptism of Martin Smith,,,,,[I0022],,Primary
+[E0028],Birth,1889-01-31,[P0003],Birth of Astrid Shermanna Augusta Smith,,,,,[I0023],,Primary
+[E0029],Death,1963-12-21,[P0002],Death of Astrid Shermanna Augusta Smith,,,,,[I0023],,Primary
+[E0030],Birth,1862-11-28,[P0009],"Birth of Gustaf Smith, Sr.",,,,,[I0024],,Primary
+[E0031],Death,before 1930-07-23,[P0001],"Death of Gustaf Smith, Sr.",,,,,[I0024],,Primary
+[E0032],Immi,1908-05-21,[P0010],,,,,,[I0024],,Primary
+[E0033],Christening,1862-12-07,[P0004],"Christening of Gustaf Smith, Sr.",,,,,[I0024],,Primary
+[E0034],Birth,about 1775,[P0008],Birth of Marta Ericsdotter,,,,,[I0025],,Primary
+[E0035],Birth,1886-12-15,[P0003],Birth of Kirsti Marie Smith,,,,,[I0026],,Primary
+[E0036],Death,1966-07-18,[P0002],Death of Kirsti Marie Smith,,,,,[I0026],,Primary
+[E0037],Birth,about 1770,[P0008],Birth of Ingeman Smith,,,,,[I0027],,Primary
+[E0038],Birth,1860-09-23,[P0011],Birth of Anna Streiffert,,,,,[I0028],,Primary
+[E0039],Death,1927-02-02,[P0003],Death of Anna Streiffert,,,,,[I0028],,Primary
+[E0040],Birth,after 1966,[P0002],Birth of Craig Peter Smith,,,,,[I0029],,Primary
+[E0041],Census,,,Census of Craig Peter Smith,,"Witness name: John Doe
+Witness comment: This is a simple test.",General,,[I0029],,Primary
+[E0042],Birth,1858-10-06,[P0012],Birth of Magnes Smith,,,,,[I0003],,Primary
+[E0043],Death,1910-02-20,[P0003],Death of Magnes Smith,,,,,[I0003],,Primary
+[E0044],Birth,1965-08-26,[P0013],Birth of Janice Ann Adams,,,,,[I0030],,Primary
+[E0045],Occupation,,,Retail Manager,,,,,[I0030],,Primary
+[E0046],Degree,1988,,Business Management,,,,,[I0030],,Primary
+[E0047],Birth,1903-06-03,[P0014],Birth of Marjorie Ohman,,,,,[I0031],,Primary
+[E0048],Death,1980-06-22,[P0005],Death of Marjorie Ohman,,,,,[I0031],,Primary
+[E0049],Birth,1966-07-02,[P0015],Birth of Darcy Horne,,,,,[I0032],,Primary
+[E0050],Birth,1935-03-13,[P0002],Birth of Lloyd Smith,,,,,[I0033],,Primary
+[E0051],Birth,1933-11-22,[P0001],Birth of Alice Paula Perkins,,,,,[I0034],,Primary
+[E0052],Birth,1991-09-16,[P0016],Birth of Lars Peter Smith,,,,,[I0035],,Primary
+[E0053],Adopted,,,,,,,,[I0035],,Primary
+[E0054],Birth,1800-09-14,[P0004],Birth of Elna Jefferson,,,,,[I0036],,Primary
+[E0055],Death,,[P0008],Death of Elna Jefferson,,,,,[I0036],,Primary
+[E0056],Christening,1800-09-16,[P0004],Christening of Elna Jefferson,,,,,[I0036],,Primary
+[E0057],Birth,1961-05-24,[P0017],Birth of Edwin Michael Smith,"Birth, Death and Marriage Records",,,,[I0037],,Primary
+[E0058],Occupation,,,Software Engineer,,Witness name: No Name,General,,[I0037],,Primary
+[E0059],Education,between 1979 and 1984,[P0018],Education of Edwin Michael Smith,,,,,[I0037],,Primary
+[E0060],Degree,1984,,B.S.E.E.,,,,,[I0037],,Primary
+[E0061],Birth,1832-11-29,[P0019],Birth of Kerstina Hansdotter,,,,,[I0038],,Primary
+[E0062],Death,before 1908,[P0008],Death of Kerstina Hansdotter,,,,,[I0038],,Primary
+[E0063],Birth,between 1794 and 1796,[P0020],Birth of Martin Smith,,,,,[I0039],,Primary
+[E0064],Death,,[P0008],Death of Martin Smith,,,,,[I0039],,Primary
+[E0065],Birth,1826-01-29,[P0004],Birth of Ingeman Smith,,,,,[I0004],,Primary
+[E0066],Birth,1960-02-05,[P0017],Birth of Marjorie Alice Smith,,,,,[I0040],,Primary
+[E0067],Birth,1935-12-02,,Birth of Janis Elaine Green,,,,,[I0041],,Primary
+[E0068],Birth,1996-06-26,[P0006],Birth of Mason Michael Smith,,,,,[I0005],,Primary
+[E0069],Christening,1996-07-10,[P0007],Christening of Mason Michael Smith,,,,,[I0005],,Primary
+[E0070],Birth,about 1886,,Birth of Edwin Willard,,,,,[I0006],,Primary
+[E0071],Birth,after 1823,[P0004],Birth of Ingar Smith,,,,,[I0007],,Primary
+[E0072],Birth,1895-04-07,[P0003],Birth of Hjalmar Smith,,,,,[I0008],,Primary
+[E0073],Death,1975-06-26,[P0005],Death of Hjalmar Smith,,,,,[I0008],,Primary
+[E0074],Baptism,1895-06-03,[P0021],Baptism of Hjalmar Smith,,,,,[I0008],,Primary
+[E0075],Immi,1912-11-14,[P0010],,,,,,[I0008],,Primary
+[E0076],Birth,1860-09-27,[P0012],Birth of Emil Smith,,,,,[I0009],,Primary
+[E0077],Marriage,about 1816,[P0004],Marriage of Martin Smith and Elna Jefferson,,,,,,[F0000],Family
+[E0078],Marriage,about 1790,[P0008],Marriage of Ingeman Smith and Marta Ericsdotter,,,,,,[F0001],Family
+[E0079],Marriage,1986-07-12,[P0022],Marriage of Eric Lloyd Smith and Darcy Horne,,,,,,[F0010],Family
+[E0080],Marriage,1884-08-24,[P0003],Marriage of Magnes Smith and Anna Streiffert,,,,,,[F0011],Family
+[E0081],Marriage,1954-06-04,[P0001],Marriage of John Hjalmar Smith and Alice Paula Perkins,Marriage Certificae,,,,,[F0012],Family
+[E0082],Marriage,1995-05-27,[P0023],Marriage of Edwin Michael Smith and Janice Ann Adams,,,,,,[F0013],Family
+[E0083],Engagement,1994-10-05,[P0002],Engagement of Edwin Michael Smith and Janice Ann Adams,,,,,,[F0013],Family
+[E0084],Marriage,about 1856,,Marriage of Martin Smith and Kerstina Hansdotter,,,,,,[F0002],Family
+[E0085],Marriage,1885-11-27,[P0003],"Marriage of Gustaf Smith, Sr. and Anna Hansdotter",,,,,,[F0003],Family
+[E0086],Marriage,about 1910,,Marriage of Edwin Willard and Kirsti Marie Smith,,,,,,[F0004],Family
+[E0087],Marriage,1912-11-30,[P0003],Marriage of Herman Julius Nielsen and Astrid Shermanna Augusta Smith,,,,,,[F0005],Family
+[E0088],Marriage,1927-10-31,[P0005],Marriage of Hjalmar Smith and Marjorie Ohman,,,,,,[F0006],Family
+[E0089],Marriage,about 1920,,Marriage of Gus Smith and Evelyn Michaels,,,,,,[F0007],Family
+[E0090],Marriage,1958-08-10,[P0002],Marriage of Lloyd Smith and Janis Elaine Green,,,,,,[F0008],Family
+[E0091],Burial,1977-02-05,[P0002],In cemetary,findagrave.com,,,,[I0010],,Primary
+
+Citation,Source,Page,Date,Confidence,Note,Note type,Tag,Person,Family,Event,Place
+[C0000],Birth Certificate,,,2,,,,[I0037],,,
+[C0001],"Birth, Death and Marriage Records",,,2,,,,,,[E0057],
+[C0002],Marriage Certificae,,,2,,,,,,[E0081],
+[C0003],findagrave.com,,1977-07-22,3,,,,,,[E0091],
+[C0004],Birth Records,22 6,1955-05-05,2,,,,,,[E0003],
+
