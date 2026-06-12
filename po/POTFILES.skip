@@ -52,6 +52,7 @@ gramps/gen/datehandler/_date_hu.py
 gramps/gen/datehandler/_date_is.py
 gramps/gen/datehandler/_date_it.py
 gramps/gen/datehandler/_date_ja.py
+gramps/gen/datehandler/_date_ko.py
 gramps/gen/datehandler/_date_lt.py
 gramps/gen/datehandler/_date_nb.py
 gramps/gen/datehandler/_date_nl.py
