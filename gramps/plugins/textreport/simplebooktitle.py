@@ -107,17 +107,25 @@ class SimpleBookTitle(Report):
     def write_report(self):
         """Generate the contents of the report"""
         # Skip the whole page if we have no contents to output
-        if not self.title_string and not self.media_filename:
+        if (
+            not self.title_string
+            and not self.subtitle_string
+            and not self.footer_string
+            and not self.media_filename
+        ):
             return
 
         self.doc.start_paragraph("SBT-Title")
         if self.show_in_toc:
-            # Insert to TOC if requested
+            # Insert to TOC if requested using whatever is available
             if self.title_string:
                 toc_title = self.title_string
+            elif self.subtitle_string:
+                toc_title = self.subtitle_string
             elif self.media_filename:
                 toc_title = self.media_filename
             else:
+                # if nothing else is available, use a generic title for the TOC
                 toc_title = _("Book Title")
             mark = IndexMark(toc_title, INDEX_TYPE_TOC, 1)
             self.doc.write_text(self.title_string, mark)
@@ -133,14 +141,16 @@ class SimpleBookTitle(Report):
         if self.media_id:
             if self.media_path:
                 if self.image_size:
+                    # use size as specified
                     image_size = self.image_size
                 elif self.subtitle_string or self.footer_string:
+                    # normal size if any of the subtitle or footer is present
                     image_size = min(
                         0.8 * self.doc.get_usable_width(),
                         0.7 * self.doc.get_usable_height(),
                     )
                 else:
-                    # If there is no adtl text, use more of the page for the image
+                    # otherwise use the larger room for the image
                     image_size = min(
                         0.95 * self.doc.get_usable_width(),
                         0.85 * self.doc.get_usable_height(),
@@ -174,9 +184,12 @@ class SimpleBookTitleOptions(MenuReportOptions):
 
     def get_subject(self):
         """Return a string that describes the subject of the report."""
-        title = self.__title.get_value().strip()
-        if not title:
-            # If no title, fetch filename from database
+        title = _("not provided")
+        if self.__title.get_value().strip():
+            title = self.__title.get_value()
+        elif self.__subtitle.get_value().strip():
+            title = self.__subtitle.get_value()
+        else:
             media_id = self.__imgid.get_value()
             if media_id:
                 img_object = self.__db.get_media_from_gramps_id(media_id)
@@ -192,9 +205,9 @@ class SimpleBookTitleOptions(MenuReportOptions):
         self.__title.set_help(_("Title string for the book."))
         menu.add_option(category_name, "title", self.__title)
 
-        subtitle = StringOption(_("Subtitle"), _("Subtitle of the Book"))
-        subtitle.set_help(_("Subtitle string for the book."))
-        menu.add_option(category_name, "subtitle", subtitle)
+        self.__subtitle = StringOption(_("Subtitle"), _("Subtitle of the Book"))
+        self.__subtitle.set_help(_("Subtitle string for the book."))
+        menu.add_option(category_name, "subtitle", self.__subtitle)
 
         dateinfo = time.localtime(time.time())
         rname = self.__db.get_researcher().get_name()
