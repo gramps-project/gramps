@@ -34,6 +34,7 @@ from ._hasgallery import HasGallery
 from ._hasreferencecountof import HasReferenceCountOf
 from ._hasattribute import HasAttribute
 from ._matchesfilter import MatchesFilter
+from ._matchespersonfilter import MatchesPersonFilter
 from ._hasdnatest import HasDNATest
 from ._hasperson import HasPerson
 from ._hasprovider import HasProvider
@@ -56,6 +57,7 @@ editor_rule_list: list[type] = [
     HasReferenceCountOf,
     HasAttribute,
     MatchesFilter,
+    MatchesPersonFilter,
     HasPerson,
     HasProvider,
     HasTestType,
