@@ -57,17 +57,47 @@ from gramps.gen.lib import (
     Tag,
 )
 
-# Now stub out the GUI plug modules so that importing exportcsv.py does not
-# trigger the transitive GTK chain (gui.plug → gui.widgets → buttons.py →
-# GTK3 API that no longer exists in GTK4).
-for _gui_mod in [
+# CSVWriter is imported inside setUpModule() after applying temporary mocks,
+# so that the mocks are properly restored in tearDownModule() and do not
+# leak into other test modules (e.g. merge_ref_test loads CliMerge in-process
+# via Gramps.run() and needs the real gramps.gui.plug).
+CSVWriter = None
+
+_GUI_MOCKED_MODULES = [
     "gramps.gui.plug",
     "gramps.gui.plug.export",
     "gramps.gui.glade",
-]:
-    sys.modules[_gui_mod] = MagicMock()
+]
+_GUI_SAVED_MODULES: dict = {}
 
-from gramps.plugins.export.exportcsv import CSVWriter
+# -------------------------------------------------------------------------
+#
+# Module-level setup/teardown — scoped GUI mocks
+#
+# -------------------------------------------------------------------------
+
+
+def setUpModule():
+    """Apply GUI mocks and import CSVWriter, scoped to this test module."""
+    global CSVWriter
+    for mod in _GUI_MOCKED_MODULES:
+        _GUI_SAVED_MODULES[mod] = sys.modules.get(mod)
+        sys.modules[mod] = MagicMock()
+    from gramps.plugins.export.exportcsv import CSVWriter as _CSVWriter
+
+    CSVWriter = _CSVWriter
+
+
+def tearDownModule():
+    """Restore sys.modules entries that were mocked by setUpModule."""
+    for mod in _GUI_MOCKED_MODULES:
+        saved = _GUI_SAVED_MODULES.get(mod)
+        if saved is None:
+            sys.modules.pop(mod, None)
+        else:
+            sys.modules[mod] = saved
+    sys.modules.pop("gramps.plugins.export.exportcsv", None)
+
 
 # -------------------------------------------------------------------------
 #
