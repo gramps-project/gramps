@@ -2386,7 +2386,8 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:423
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{date_quality}{date_start}에서 {date_stop}까지{nonstd_calendar_and_ny}"
+msgstr ""
+"{nonstd_calendar_and_ny}{date_start}에서 {date_stop}까지 {date_quality}"
 
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
@@ -2408,7 +2409,8 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{date_quality}{date_start}에서 {date_stop}사이{nonstd_calendar_and_ny}"
+msgstr ""
+"{nonstd_calendar_and_ny}{date_start}에서 {date_stop}사이 {date_quality}"
 
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
@@ -2972,45 +2974,45 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:242
 msgctxt "date modifier"
 msgid "before "
-msgstr "이전 "
+msgstr ""
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:245
 msgctxt "date modifier"
 msgid "after "
-msgstr "이후 "
+msgstr ""
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:248
 msgctxt "date modifier"
 msgid "about "
-msgstr "약 "
+msgstr ""
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "from "
-msgstr "부터 "
+msgstr ""
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:257
 msgctxt "date modifier"
 msgid "to "
-msgstr "까지 "
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:262
 msgctxt "date quality"
 msgid "estimated "
-msgstr "추정 "
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
 msgid "calculated "
-msgstr "계산 "
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:270
 msgid "Sunday"
