@@ -94,6 +94,7 @@ gramps/gen/filters/rules/dnamatch/_matchesfilter.py
 gramps/gen/filters/rules/dnamatch/_matchesmatchtestfilter.py
 gramps/gen/filters/rules/dnamatch/_matchessubjecttestfilter.py
 gramps/gen/filters/rules/dnamatch/_regexpidof.py
+gramps/gen/filters/rules/dnamatch/_sharessegmentwithmatch.py
 gramps/gen/filters/rules/dnatest/_alldnatests.py
 gramps/gen/filters/rules/dnatest/_changedsince.py
 gramps/gen/filters/rules/dnatest/_dnatestprivate.py
@@ -667,6 +668,8 @@ gramps/gui/plug/report/_reportdialog.py
 gramps/gui/plug/report/_stylecombobox.py
 gramps/gui/plug/report/_styleeditor.py
 gramps/gui/plug/tool.py
+gramps/gui/selectors/selectdnamatch.py
+gramps/gui/selectors/selectdnatest.py
 gramps/gui/selectors/selectcitation.py
 gramps/gui/selectors/selectdnatest.py
 gramps/gui/selectors/selectevent.py
