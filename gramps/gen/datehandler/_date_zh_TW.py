@@ -63,6 +63,15 @@ _CHINESE_LUNAR_MONTHS_TW = (
     "十二月",
 )
 
+# Compound quality+modifier strings: both display and parser use this table.
+# Keys are the display prefix; values are (quality, modifier) integer pairs.
+_COMPOUND_QUAL_MOD_TW: dict[str, tuple[int, int]] = {
+    "估計早於": (Date.QUAL_ESTIMATED, Date.MOD_BEFORE),
+    "估計晚於": (Date.QUAL_ESTIMATED, Date.MOD_AFTER),
+    "推算早於": (Date.QUAL_CALCULATED, Date.MOD_BEFORE),
+    "推算晚於": (Date.QUAL_CALCULATED, Date.MOD_AFTER),
+}
+
 
 # -------------------------------------------------------------------------
 #
@@ -148,11 +157,25 @@ class DateParserZH_TW(DateParser):
     quality_to_int = {
         "據估計": Date.QUAL_ESTIMATED,
         "據計算": Date.QUAL_CALCULATED,
+        # New display forms; kept for round-trip parsing.
+        "估計為": Date.QUAL_ESTIMATED,
+        "推算為": Date.QUAL_CALCULATED,
     }
 
     bce = ["before calendar", "negative year"] + DateParser.bce
 
-    def init_strings(self):
+    def __init__(self, *args: object, **kwargs: object) -> None:
+        """
+        Initialize the parser and set pending-modifier state.
+
+        _pending_modifier is set by match_quality when a compound
+        quality+modifier prefix (e.g. "估計早於") is recognised, then
+        consumed by match_modifier to apply the encoded modifier.
+        """
+        self._pending_modifier: int = Date.MOD_NONE
+        super().__init__(*args, **kwargs)
+
+    def init_strings(self) -> None:
         """
         Compile date-matching regular expressions, adding Chinese Lunar
         month names to the shared chinese_lunar_to_int prefix table.
@@ -221,13 +244,63 @@ class DateParserZH_TW(DateParser):
             % ("|".join(_range_1), "|".join(_range_2), "|".join(_range_3)),
             re.IGNORECASE,
         )
-        self._numeric = re.compile(r"((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
+
+        # The dhformat "西元%Y年%m月%d日" produces display strings like
+        # "西元2000年3月". The non-capturing (?:西元)? prefix allows the
+        # numeric parser to round-trip those strings correctly.
+        self._numeric = re.compile(r"(?:西元)?((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
 
         # Chinese postfix modifiers attach directly to the date with no space:
         # "2000年以前". Override the base regex which requires \s+.
         self._modifier_after = re.compile(
             r"(.*?)\s*(%s)\s*$" % self._mod_after_str, re.IGNORECASE
         )
+
+        # Allow zero whitespace between a quality word and the date so that
+        # display strings like "估計為1800年" parse without a separating space.
+        self._qual = re.compile(r"(.* ?)%s\s*(.+)" % self._qual_str, re.IGNORECASE)
+
+        # Allow zero whitespace between a prefix modifier and the date so that
+        # display strings like "大約1850年" parse without a separating space.
+        self._modifier = re.compile(r"%s\s*(.*)" % self._mod_str, re.IGNORECASE)
+
+    def match_quality(self, text: str, qual: int) -> tuple[str, int]:
+        """
+        Try matching quality, including compound quality+modifier prefixes.
+
+        Compound strings like "估計早於" encode both QUAL_ESTIMATED and
+        MOD_BEFORE.  When one is found, the modifier is stashed in
+        _pending_modifier for match_modifier to consume.
+        """
+        for compound, (q, m) in _COMPOUND_QUAL_MOD_TW.items():
+            if text.startswith(compound):
+                self._pending_modifier = m
+                return (text[len(compound) :], q)
+        self._pending_modifier = Date.MOD_NONE
+        return super().match_quality(text, qual)
+
+    def match_modifier(
+        self, text: str, cal: int, ny: int, qual: int, bc: bool, date: Date
+    ) -> bool:
+        """
+        Try matching date with modifier, consuming any pending compound modifier.
+
+        If match_quality stashed a modifier from a compound prefix, apply it
+        directly to the remaining date text without another regex scan.
+        """
+        if self._pending_modifier != Date.MOD_NONE:
+            mod = self._pending_modifier
+            self._pending_modifier = Date.MOD_NONE
+            start = self._parse_subdate(text, self.parser[cal], cal)
+            if start == Date.EMPTY:
+                date.set_modifier(Date.MOD_TEXTONLY)
+                date.set_text_value(text)
+            elif bc:
+                date.set(qual, mod, cal, self.invert_year(start), newyear=ny)
+            else:
+                date.set(qual, mod, cal, start, newyear=ny)
+            return True
+        return super().match_modifier(text, cal, ny, qual, bc, date)
 
 
 # -------------------------------------------------------------------------
@@ -252,28 +325,27 @@ class DateDisplayZH_TW(DateDisplay):
     # Override pinyin month names with Chinese characters.
     chinese_lunar = _CHINESE_LUNAR_MONTHS_TW
 
-    display = DateDisplay.display_formatted
-
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: object, **kwargs: object) -> None:
         """
-        Initialize and set Chinese modifier strings with correct word order.
+        Initialize and restore Traditional Chinese lunar month names.
 
-        以前/以後 are postfix in Chinese ("2000年以前"), so they get a leading
-        space which signals display_formatted to append them after the date.
         DateDisplay.__init__ overwrites chinese_lunar with the pinyin locale
         default, so we restore the Traditional Chinese character names here.
         """
         super().__init__(*args, **kwargs)
         self.chinese_lunar = _CHINESE_LUNAR_MONTHS_TW
-        mod_list = list(self._mod_str)
-        mod_list[Date.MOD_BEFORE] = " 以前"
-        mod_list[Date.MOD_AFTER] = " 以後"
-        mod_list[Date.MOD_ABOUT] = "大約 "
-        mod_list[Date.MOD_FROM] = "從 "
-        mod_list[Date.MOD_TO] = "到 "
-        self._mod_str = tuple(mod_list)
 
-    def _display_calendar(self, date_val, long_months, short_months=None, inflect=""):
+    def _get_localized_year(self, year: str) -> str:
+        """Return the year string with the Chinese year suffix 年."""
+        return year + "年"
+
+    def _display_calendar(
+        self,
+        date_val: tuple,
+        long_months: tuple,
+        short_months: tuple | None = None,
+        inflect: str = "",
+    ) -> str:
         """Display a date using Chinese numeric format or ISO."""
         if short_months is None:
             short_months = long_months
@@ -287,7 +359,7 @@ class DateDisplayZH_TW(DateDisplay):
         else:
             return value
 
-    def _display_chinese_lunar(self, date_val, **kwargs):
+    def _display_chinese_lunar(self, date_val: tuple, **kwargs: object) -> str:
         """Display a Chinese Lunar date in 年/月/日 format.
 
         Format 0: ISO numeric.  Format 1: numeric year + month + day.
@@ -316,6 +388,82 @@ class DateDisplayZH_TW(DateDisplay):
         if day == 0:
             return "%s%s%s" % (year_str, leap_prefix, month_str)
         return "%s%s%s%s日" % (year_str, leap_prefix, month_str, day)
+
+    def display_formatted(self, date: Date) -> str:
+        """
+        Return a text string representing the date in Traditional Chinese.
+
+        Assembles quality, modifier, and date text according to Chinese word
+        order.  Compound quality+modifier cases (e.g. QUAL_ESTIMATED +
+        MOD_BEFORE) produce a single fused prefix like "估計早於".
+        """
+        mod = date.get_modifier()
+        cal = date.get_calendar()
+        qual = date.get_quality()
+        start = date.get_start_date()
+        newyear = date.get_new_year()
+
+        if mod == Date.MOD_TEXTONLY:
+            return date.get_text()
+        if start == Date.EMPTY:
+            return ""
+        if mod == Date.MOD_SPAN:
+            return self.dd_span(date)
+        if mod == Date.MOD_RANGE:
+            return self.dd_range(date)
+
+        text = self.display_cal[cal](start)
+        scal = self.format_extras(cal, newyear)
+
+        # Compound quality + directional modifier
+        if qual == Date.QUAL_ESTIMATED and mod == Date.MOD_BEFORE:
+            return "估計早於%s%s" % (text, scal)
+        if qual == Date.QUAL_ESTIMATED and mod == Date.MOD_AFTER:
+            return "估計晚於%s%s" % (text, scal)
+        if qual == Date.QUAL_CALCULATED and mod == Date.MOD_BEFORE:
+            return "推算早於%s%s" % (text, scal)
+        if qual == Date.QUAL_CALCULATED and mod == Date.MOD_AFTER:
+            return "推算晚於%s%s" % (text, scal)
+
+        # Simple directional modifiers (postfix in Chinese)
+        if mod == Date.MOD_BEFORE:
+            return "%s以前%s" % (text, scal)
+        if mod == Date.MOD_AFTER:
+            return "%s以後%s" % (text, scal)
+
+        # Other prefix modifiers
+        if mod == Date.MOD_ABOUT:
+            return "大約%s%s" % (text, scal)
+        if mod == Date.MOD_FROM:
+            return "從%s%s" % (text, scal)
+        if mod == Date.MOD_TO:
+            return "到%s%s" % (text, scal)
+
+        # Quality only, no modifier
+        if qual == Date.QUAL_ESTIMATED:
+            return "估計為%s%s" % (text, scal)
+        if qual == Date.QUAL_CALCULATED:
+            return "推算為%s%s" % (text, scal)
+
+        return "%s%s" % (text, scal)
+
+    display = display_formatted
+
+    def dd_span(self, date: Date) -> str:
+        """Return a span date as 自{start}至{stop}."""
+        cal = date.get_calendar()
+        scal = self.format_extras(cal, date.get_new_year())
+        d1 = self.display_cal[cal](date.get_start_date())
+        d2 = self.display_cal[cal](date.get_stop_date())
+        return "自%s至%s%s" % (d1, d2, scal)
+
+    def dd_range(self, date: Date) -> str:
+        """Return a range date as 介於{start}與{stop}之間."""
+        cal = date.get_calendar()
+        scal = self.format_extras(cal, date.get_new_year())
+        d1 = self.display_cal[cal](date.get_start_date())
+        d2 = self.display_cal[cal](date.get_stop_date())
+        return "介於%s與%s之間%s" % (d1, d2, scal)
 
 
 # -------------------------------------------------------------------------
