@@ -82,6 +82,12 @@ class DateParserZH_TW(DateParser):
         "大約": Date.MOD_ABOUT,
         "從": Date.MOD_FROM,
         "到": Date.MOD_TO,
+        # English fallbacks (zh_TW.po "from"/"to" msgstr are empty → English display)
+        "before": Date.MOD_BEFORE,
+        "after": Date.MOD_AFTER,
+        "about": Date.MOD_ABOUT,
+        "from": Date.MOD_FROM,
+        "to": Date.MOD_TO,
     }
 
     month_to_int = DateParser.month_to_int

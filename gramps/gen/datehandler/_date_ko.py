@@ -210,6 +210,47 @@ class DateParserKO(DateParser):
             re.IGNORECASE,
         )
 
+        # The Korean Weblate template puts the non-standard calendar indicator
+        # as a leading prefix  —  e.g. "(율리우스력)1789-01-05"  —  and the
+        # quality word as a trailing suffix  —  e.g. "...까지 calculated".
+        # These two patterns allow set_date() to normalise both positions
+        # into the canonical locations that the base-class parser expects.
+        self._ko_cal_prefix = re.compile(r"^\((%s)\)\s*" % self._cal_str, re.IGNORECASE)
+        self._ko_qual_suffix = re.compile(
+            r"\s+(%s)\s*$" % self._qual_str, re.IGNORECASE
+        )
+
+    def set_date(self, date, text):
+        """
+        Normalise Korean-format strings before parsing.
+
+        The Korean Weblate template places the calendar indicator as a
+        prefix and the quality word as a suffix, which is the reverse of
+        the positions the base-class parser expects.  Detect and move both
+        into their canonical positions, then delegate to DateParser.
+        """
+        text = text.strip()
+
+        cal_name = None
+        qual_word = None
+
+        m = self._ko_cal_prefix.match(text)
+        if m:
+            cal_name = m.group(1)
+            text = text[m.end() :].lstrip()
+
+        m = self._ko_qual_suffix.search(text)
+        if m:
+            qual_word = m.group(1)
+            text = text[: m.start()]
+
+        if qual_word:
+            text = qual_word + " " + text
+        if cal_name:
+            text = text.rstrip() + " (" + cal_name + ")"
+
+        DateParser.set_date(self, date, text)
+
 
 # ------------------------------------------------------------
 #
