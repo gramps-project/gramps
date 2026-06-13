@@ -86,6 +86,7 @@ gramps/gen/filters/rules/dnamatch/_hasnote.py
 gramps/gen/filters/rules/dnamatch/_hasnoteregexp.py
 gramps/gen/filters/rules/dnamatch/_hasnotetag.py
 gramps/gen/filters/rules/dnamatch/_hasreferencecountof.py
+gramps/gen/filters/rules/dnamatch/_hassharedancestor.py
 gramps/gen/filters/rules/dnamatch/_hassharedcm.py
 gramps/gen/filters/rules/dnamatch/_hassubjectaccountname.py
 gramps/gen/filters/rules/dnamatch/_hassubjectperson.py
