@@ -44,6 +44,8 @@ from ._hasmatchperson import HasMatchPerson
 from ._hassubjectperson import HasSubjectPerson
 from ._hassharedancestor import HasSharedAncestor
 from ._hasnosharedancestors import HasNoSharedAncestors
+from ._matchessubjecttestfilter import MatchesSubjectTestFilter
+from ._matchesmatchtestfilter import MatchesMatchTestFilter
 
 editor_rule_list: list[type] = [
     AllDNAMatches,
@@ -65,4 +67,6 @@ editor_rule_list: list[type] = [
     HasSubjectPerson,
     HasSharedAncestor,
     HasNoSharedAncestors,
+    MatchesSubjectTestFilter,
+    MatchesMatchTestFilter,
 ]

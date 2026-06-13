@@ -91,6 +91,8 @@ gramps/gen/filters/rules/dnamatch/_hassharedcm.py
 gramps/gen/filters/rules/dnamatch/_hassubjectperson.py
 gramps/gen/filters/rules/dnamatch/_hastag.py
 gramps/gen/filters/rules/dnamatch/_matchesfilter.py
+gramps/gen/filters/rules/dnamatch/_matchesmatchtestfilter.py
+gramps/gen/filters/rules/dnamatch/_matchessubjecttestfilter.py
 gramps/gen/filters/rules/dnamatch/_regexpidof.py
 gramps/gen/filters/rules/dnatest/_alldnatests.py
 gramps/gen/filters/rules/dnatest/_changedsince.py
