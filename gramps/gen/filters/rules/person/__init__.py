@@ -65,6 +65,7 @@ from ._hasmthaplogroup import HasMtHaplogroup
 from ._hasdnamatch import HasDNAMatch
 from ._hasdnamatchwithsharedancestor import HasDNAMatchWithSharedAncestor
 from ._issharedancestor import IsSharedAncestor
+from ._issharedancestorindnamatchesof import IsSharedAncestorInDNAMatchesOf
 from ._hastextmatchingregexpof import HasTextMatchingRegexpOf
 from ._hastextmatchingsubstringof import HasTextMatchingSubstringOf
 from ._hasunknowngender import HasUnknownGender
@@ -160,6 +161,7 @@ editor_rule_list = [
     HasDNAMatch,
     HasDNAMatchWithSharedAncestor,
     IsSharedAncestor,
+    IsSharedAncestorInDNAMatchesOf,
     HasSourceCount,
     HasSourceOf,
     HaveAltFamilies,
