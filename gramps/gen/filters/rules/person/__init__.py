@@ -62,6 +62,7 @@ from ._hasdnatestwithtag import HasDNATestWithTag
 from ._hasdnatestwithattribute import HasDNATestWithAttribute
 from ._hasyhaplogroup import HasYHaplogroup
 from ._hasmthaplogroup import HasMtHaplogroup
+from ._hasdnamatch import HasDNAMatch
 from ._hastextmatchingregexpof import HasTextMatchingRegexpOf
 from ._hastextmatchingsubstringof import HasTextMatchingSubstringOf
 from ._hasunknowngender import HasUnknownGender
@@ -154,6 +155,7 @@ editor_rule_list = [
     HasDNATestWithAttribute,
     HasYHaplogroup,
     HasMtHaplogroup,
+    HasDNAMatch,
     HasSourceCount,
     HasSourceOf,
     HaveAltFamilies,

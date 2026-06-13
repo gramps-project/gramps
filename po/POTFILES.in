@@ -231,6 +231,7 @@ gramps/gen/filters/rules/person/_hasdnatestwithtag.py
 gramps/gen/filters/rules/person/_hasdnatestwithattribute.py
 gramps/gen/filters/rules/person/_hasyhaplogroup.py
 gramps/gen/filters/rules/person/_hasmthaplogroup.py
+gramps/gen/filters/rules/person/_hasdnamatch.py
 gramps/gen/filters/rules/person/_hasevent.py
 gramps/gen/filters/rules/person/_hasfamilyattribute.py
 gramps/gen/filters/rules/person/_hasfamilyevent.py
