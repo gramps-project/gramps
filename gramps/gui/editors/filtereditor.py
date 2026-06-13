@@ -609,6 +609,8 @@ class EditRule(ManagedWindow):
                     t = MyFilters(self.filterdb.get_filters("Place"))
                 elif v == _("Citation filter name:"):
                     t = MyFilters(self.filterdb.get_filters("Citation"))
+                elif v == _("DNA test filter name:"):
+                    t = MyFilters(self.filterdb.get_filters("DNATest"))
                 elif v in _name2typeclass:
                     additional = None
                     if v in (
