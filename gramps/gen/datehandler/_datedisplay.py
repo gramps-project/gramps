@@ -130,6 +130,8 @@ class DateDisplay:
         self.french = self._ds.french
         self.persian = self._ds.persian
         self.islamic = self._ds.islamic
+        self.chinese_lunar = self._ds.chinese_lunar
+        self.korean_lunar = self._ds.korean_lunar
         self.display_cal = [
             self._display_gregorian,
             self._display_julian,
@@ -138,6 +140,8 @@ class DateDisplay:
             self._display_persian,
             self._display_islamic,
             self._display_swedish,
+            self._display_chinese_lunar,
+            self._display_korean_lunar,
         ]
         self._mod_str = self._ds.modifiers
         self._qual_str = self._ds.qualifiers
@@ -802,6 +806,30 @@ class DateDisplay:
 
     def _display_islamic(self, date_val, **kwargs):
         return self._display_calendar(date_val, self.islamic, **kwargs)
+
+    def _display_chinese_lunar(self, date_val, **kwargs):
+        """Display a Chinese Lunar Calendar date. Months 101-112 are leap months.
+
+        For leap months the ISO encoding (month 101-112) is used regardless of
+        the selected format so the string always round-trips through the parser.
+        Locale-specific subclasses override this to render leap months natively.
+        """
+        month = date_val[1]
+        if self.format == 0 or month > 100:
+            return self.display_iso(date_val)
+        return self._display_calendar(date_val, self.chinese_lunar, **kwargs)
+
+    def _display_korean_lunar(self, date_val, **kwargs):
+        """Display a Korean Lunar (음력) date. Months 101-112 are leap months.
+
+        For leap months the ISO encoding (month 101-112) is used regardless of
+        the selected format so the string always round-trips through the parser.
+        Locale-specific subclasses override this to render leap months natively.
+        """
+        month = date_val[1]
+        if self.format == 0 or month > 100:
+            return self.display_iso(date_val)
+        return self._display_calendar(date_val, self.korean_lunar, **kwargs)
 
 
 class DateDisplayEn(DateDisplay):
