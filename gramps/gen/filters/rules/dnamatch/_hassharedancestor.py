@@ -30,23 +30,42 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 class HasSharedAncestor(Rule):
-    """Rule that checks for a DNA match with a shared ancestor entry for a person."""
+    """Rule that checks for a DNA match with a shared ancestor entry that meets
+    all of the given criteria.
 
-    labels = [_("Person ID:")]
-    name = _("DNA matches with a shared ancestor entry for <person>")
+    Each criterion is optional; a blank criterion places no constraint. A match
+    succeeds when one shared ancestor entry satisfies every supplied criterion
+    at once."""
+
+    labels = [_("Person ID:"), _("Ancestor confidence:")]
+    name = _("DNA matches with a shared ancestor entry for <person> at <confidence>")
     description = _(
-        "Matches DNA matches with a shared ancestor entry for the specified person"
+        "Matches DNA matches with a shared ancestor entry for the given person "
+        "and/or at the given confidence level"
     )
     category = _("Person filters")
 
     def prepare(self, db: Database, user):
-        person = db.get_person_from_gramps_id(self.list[0])
-        self.person_handle = person.handle if person else None
+        self._person_handle = None
+        self._person_required = bool(self.list[0])
+        if self._person_required:
+            person = db.get_person_from_gramps_id(self.list[0])
+            self._person_handle = person.handle if person else None
+        self._confidence = int(self.list[1]) if self.list[1] else None
 
     def apply_to_one(self, db: Database, dnamatch) -> bool:
-        if not self.person_handle:
+        if self._person_required and self._person_handle is None:
             return False
         for shared_ancestor in dnamatch.shared_ancestor_list:
-            if shared_ancestor.person_handle == self.person_handle:
-                return True
+            if (
+                self._person_required
+                and shared_ancestor.person_handle != self._person_handle
+            ):
+                continue
+            if (
+                self._confidence is not None
+                and shared_ancestor.confidence != self._confidence
+            ):
+                continue
+            return True
         return False

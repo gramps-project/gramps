@@ -681,6 +681,17 @@ class EditRule(ManagedWindow):
                         ["", "0", "1", "2"],
                         [_("Any"), _("Unknown"), _("HIR"), _("FIR")],
                     )
+                elif v == _("Ancestor confidence:"):
+                    t = MyList(
+                        ["", "0", "1", "2", "3"],
+                        [
+                            _("Any"),
+                            _("Possible"),
+                            _("Probable"),
+                            _("Confirmed"),
+                            _("Rejected"),
+                        ],
+                    )
                 elif v == _("Date:"):
                     t = DateEntry(self.uistate, self.track)
                 elif v == _("Day of Week:"):
