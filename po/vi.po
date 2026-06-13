@@ -3164,7 +3164,7 @@ msgstr "phỏng chừng "
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
 msgid "calculated "
-msgstr "tính toán"
+msgstr "tính toán "
 
 #: ../gramps/gen/datehandler/_datestrings.py:270
 msgid "Sunday"
