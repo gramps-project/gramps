@@ -64,6 +64,8 @@ from ..display import display_help
 from gramps.gen.errors import WindowActiveError, FilterError
 from gramps.gen.lib import (
     AttributeType,
+    DNAProviderType,
+    DNATestType,
     EventType,
     FamilyRelType,
     NameOriginType,
@@ -123,6 +125,8 @@ _name2typeclass = {
     _("Place type:"): PlaceType,
     _("DNA test attribute:"): AttributeType,
     _("DNA match attribute:"): AttributeType,
+    _("Provider:"): DNAProviderType,
+    _("Test type:"): DNATestType,
 }
 
 
