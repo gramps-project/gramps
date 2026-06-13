@@ -118,12 +118,12 @@ class TestDateParserKO(unittest.TestCase):
     # --- modifier_to_int ---
 
     def test_modifier_ijeon(self):
-        """'이전' maps to MOD_BEFORE."""
-        self.assertEqual(self.dp.modifier_to_int["이전"], Date.MOD_BEFORE)
+        """'이전' is a postfix modifier mapping to MOD_BEFORE."""
+        self.assertEqual(self.dp.modifier_after_to_int["이전"], Date.MOD_BEFORE)
 
     def test_modifier_ihu(self):
-        """'이후' maps to MOD_AFTER."""
-        self.assertEqual(self.dp.modifier_to_int["이후"], Date.MOD_AFTER)
+        """'이후' is a postfix modifier mapping to MOD_AFTER."""
+        self.assertEqual(self.dp.modifier_after_to_int["이후"], Date.MOD_AFTER)
 
     def test_modifier_yak(self):
         """'약' maps to MOD_ABOUT."""
@@ -196,6 +196,112 @@ class TestDateDisplayKO(unittest.TestCase):
         self.dd.format = 1
         result = self.dd._display_korean_lunar((1, 6, 2024, False))
         self.assertIn("유월", result)
+
+
+class TestKoreanModifierParsing(unittest.TestCase):
+    """Tests for Korean postfix temporal modifier parsing."""
+
+    def setUp(self):
+        """Set up parser and displayer."""
+        self.dp = DateParserKO()
+        self.dd = DateDisplayKO(format=1)
+
+    def _parse(self, text):
+        """Parse text and return a Date."""
+        d = Date()
+        self.dp.set_date(d, text)
+        return d
+
+    def test_before_postfix_with_space(self):
+        """'2000년 이전' parses as MOD_BEFORE, year 2000."""
+        d = self._parse("2000년 이전")
+        self.assertEqual(d.get_modifier(), Date.MOD_BEFORE)
+        self.assertEqual(d.get_year(), 2000)
+
+    def test_after_postfix_with_space(self):
+        """'1949년 이후' parses as MOD_AFTER, year 1949."""
+        d = self._parse("1949년 이후")
+        self.assertEqual(d.get_modifier(), Date.MOD_AFTER)
+        self.assertEqual(d.get_year(), 1949)
+
+    def test_before_postfix_no_space(self):
+        """'2000년이전' (no space) also parses as MOD_BEFORE."""
+        d = self._parse("2000년이전")
+        self.assertEqual(d.get_modifier(), Date.MOD_BEFORE)
+        self.assertEqual(d.get_year(), 2000)
+
+    def test_about_prefix(self):
+        """'약 2000년' parses as MOD_ABOUT, year 2000 (약 stays prefix)."""
+        d = self._parse("약 2000년")
+        self.assertEqual(d.get_modifier(), Date.MOD_ABOUT)
+        self.assertEqual(d.get_year(), 2000)
+
+    def test_english_before_fallback(self):
+        """English 'before 2000' still parses as MOD_BEFORE."""
+        d = self._parse("before 2000")
+        self.assertEqual(d.get_modifier(), Date.MOD_BEFORE)
+        self.assertEqual(d.get_year(), 2000)
+
+    def test_english_after_fallback(self):
+        """English 'after 1949' still parses as MOD_AFTER."""
+        d = self._parse("after 1949")
+        self.assertEqual(d.get_modifier(), Date.MOD_AFTER)
+        self.assertEqual(d.get_year(), 1949)
+
+    def test_before_display_is_postfix(self):
+        """Display of MOD_BEFORE places 이전 after the date."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_BEFORE, Date.CAL_GREGORIAN, (0, 0, 2000, False))
+        result = self.dd.display(d)
+        self.assertIn("이전", result)
+        self.assertTrue(result.endswith("이전"), msg=repr(result))
+        self.assertFalse(result.startswith("이전"), msg=repr(result))
+
+    def test_after_display_is_postfix(self):
+        """Display of MOD_AFTER places 이후 after the date."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_AFTER, Date.CAL_GREGORIAN, (0, 0, 1949, False))
+        result = self.dd.display(d)
+        self.assertIn("이후", result)
+        self.assertTrue(result.endswith("이후"), msg=repr(result))
+
+    def test_about_display_is_prefix(self):
+        """Display of MOD_ABOUT places 약 before the date."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN, (0, 0, 1850, False))
+        result = self.dd.display(d)
+        self.assertIn("약", result)
+        self.assertTrue(result.startswith("약"), msg=repr(result))
+
+    def test_before_roundtrip(self):
+        """before-2000 round-trips through display and parse."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_BEFORE, Date.CAL_GREGORIAN, (0, 0, 2000, False))
+        text = self.dd.display(d)
+        d2 = Date()
+        self.dp.set_date(d2, text)
+        self.assertEqual(d2.get_modifier(), Date.MOD_BEFORE)
+        self.assertEqual(d2.get_year(), 2000)
+
+    def test_after_roundtrip(self):
+        """after-1949 round-trips through display and parse."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_AFTER, Date.CAL_GREGORIAN, (0, 0, 1949, False))
+        text = self.dd.display(d)
+        d2 = Date()
+        self.dp.set_date(d2, text)
+        self.assertEqual(d2.get_modifier(), Date.MOD_AFTER)
+        self.assertEqual(d2.get_year(), 1949)
+
+    def test_about_roundtrip(self):
+        """about-1850 round-trips through display and parse."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN, (0, 0, 1850, False))
+        text = self.dd.display(d)
+        d2 = Date()
+        self.dp.set_date(d2, text)
+        self.assertEqual(d2.get_modifier(), Date.MOD_ABOUT)
+        self.assertEqual(d2.get_year(), 1850)
 
 
 if __name__ == "__main__":

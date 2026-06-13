@@ -74,8 +74,6 @@ class DateParserKO(DateParser):
     """
 
     modifier_to_int = {
-        "이전": Date.MOD_BEFORE,
-        "이후": Date.MOD_AFTER,
         "약": Date.MOD_ABOUT,
         "부터": Date.MOD_FROM,
         "까지": Date.MOD_TO,
@@ -85,6 +83,12 @@ class DateParserKO(DateParser):
         "about": Date.MOD_ABOUT,
         "from": Date.MOD_FROM,
         "to": Date.MOD_TO,
+    }
+
+    # 이전/이후 follow the date in Korean: "2000년 이전", "1949년 이후"
+    modifier_after_to_int = {
+        "이전": Date.MOD_BEFORE,
+        "이후": Date.MOD_AFTER,
     }
 
     calendar_to_int = {
@@ -210,6 +214,13 @@ class DateParserKO(DateParser):
             re.IGNORECASE,
         )
 
+        # Korean postfix modifiers are separated by a space: "2000년 이전".
+        # Override the base regex which requires \s+ so \s* also accepts the
+        # no-space case for robustness.
+        self._modifier_after = re.compile(
+            r"(.*?)\s*(%s)\s*$" % self._mod_after_str, re.IGNORECASE
+        )
+
 
 # ------------------------------------------------------------
 #
@@ -234,6 +245,23 @@ class DateDisplayKO(DateDisplay):
     korean_lunar = _KOREAN_LUNAR_MONTHS
 
     display = DateDisplay.display_formatted
+
+    def __init__(self, *args, **kwargs):
+        """
+        Initialize and set Korean modifier strings with correct word order.
+
+        이전/이후 are postfix in Korean ("2000년 이전"), so they get a leading
+        space which signals display_formatted to append them after the date.
+        DateDisplay.__init__ overwrites korean_lunar with the romanized locale
+        default, so we restore the Korean Hangul month names here.
+        """
+        super().__init__(*args, **kwargs)
+        self.korean_lunar = _KOREAN_LUNAR_MONTHS
+        mod_list = list(self._mod_str)
+        mod_list[Date.MOD_BEFORE] = " 이전"
+        mod_list[Date.MOD_AFTER] = " 이후"
+        mod_list[Date.MOD_ABOUT] = "약 "
+        self._mod_str = tuple(mod_list)
 
     def _display_korean_lunar(self, date_val, **kwargs):
         """Display a Korean Lunar date in 년/월/일 format.
