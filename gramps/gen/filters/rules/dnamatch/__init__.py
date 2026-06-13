@@ -47,6 +47,7 @@ from ._hasnosharedancestors import HasNoSharedAncestors
 from ._matchessubjecttestfilter import MatchesSubjectTestFilter
 from ._matchesmatchtestfilter import MatchesMatchTestFilter
 from ._sharessegmentwithmatch import SharesSegmentWithMatch
+from ._hassegmentoverlapping import HasSegmentOverlapping
 
 editor_rule_list: list[type] = [
     AllDNAMatches,
@@ -71,4 +72,5 @@ editor_rule_list: list[type] = [
     MatchesSubjectTestFilter,
     MatchesMatchTestFilter,
     SharesSegmentWithMatch,
+    HasSegmentOverlapping,
 ]
