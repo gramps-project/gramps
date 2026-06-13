@@ -593,6 +593,10 @@ class EditDate(ManagedWindow):
         ) -> Date:
             """Create a Date object with the given parameters."""
             d = Date()
+            value: (
+                tuple[int, int, int, bool, int, int, int, bool]
+                | tuple[int, int, int, bool]
+            )
             if mod in (Date.MOD_RANGE, Date.MOD_SPAN):
                 value = (day, mon, yr, False, day2, mon2, yr2, False)
             else:
