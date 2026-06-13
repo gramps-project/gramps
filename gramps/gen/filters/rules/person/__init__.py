@@ -57,6 +57,7 @@ from ._hasrelationship import HasRelationship
 from ._hassourcecount import HasSourceCount
 from ._hassourceof import HasSourceOf
 from ._hastag import HasTag
+from ._hasdnatest import HasDNATest
 from ._hastextmatchingregexpof import HasTextMatchingRegexpOf
 from ._hastextmatchingsubstringof import HasTextMatchingSubstringOf
 from ._hasunknowngender import HasUnknownGender
@@ -144,6 +145,7 @@ editor_rule_list = [
     HasAttribute,
     HasFamilyAttribute,
     HasTag,
+    HasDNATest,
     HasSourceCount,
     HasSourceOf,
     HaveAltFamilies,
