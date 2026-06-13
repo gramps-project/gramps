@@ -40,6 +40,8 @@ from ._hassubjectpersonname import HasSubjectPersonName
 from ._hasmatchpersonname import HasMatchPersonName
 from ._hassharedcm import HasSharedCm
 from ._haschromosome import HasChromosome
+from ._hasmatchperson import HasMatchPerson
+from ._hassubjectperson import HasSubjectPerson
 
 editor_rule_list: list[type] = [
     AllDNAMatches,
@@ -57,4 +59,6 @@ editor_rule_list: list[type] = [
     MatchesFilter,
     HasSharedCm,
     HasChromosome,
+    HasMatchPerson,
+    HasSubjectPerson,
 ]
