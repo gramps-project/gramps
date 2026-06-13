@@ -235,6 +235,28 @@ class DateDisplayVI(DateDisplay):
 
     display = DateDisplay.display_formatted
 
+    def __init__(self, *args, **kwargs):
+        """
+        Initialise and override modifier strings with hardcoded Vietnamese.
+
+        vi.po has missing trailing spaces for "sau"/"khoảng" and empty
+        msgstr for "from"/"to" (which fall back to English), both of which
+        break the display→parse round-trip.  Hardcoding here ensures the
+        display always produces strings that DateParserVI can recognise.
+        """
+        DateDisplay.__init__(self, *args, **kwargs)
+        self._mod_str = (
+            "",  # MOD_NONE
+            "trước ",  # MOD_BEFORE
+            "sau ",  # MOD_AFTER
+            "khoảng ",  # MOD_ABOUT
+            "",  # MOD_RANGE
+            "",  # MOD_SPAN
+            "",  # MOD_TEXTONLY
+            "từ ",  # MOD_FROM
+            "đến ",  # MOD_TO
+        )
+
     def _display_vietnamese_lunar(self, date_val, **kwargs):
         """Display a Vietnamese Lunar date in ngày/tháng/năm format.
 
