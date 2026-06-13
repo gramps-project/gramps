@@ -64,6 +64,7 @@ from ..display import display_help
 from gramps.gen.errors import WindowActiveError, FilterError
 from gramps.gen.lib import (
     AttributeType,
+    DNAAttributeType,
     DNAProviderType,
     DNATestType,
     EventType,
@@ -123,8 +124,8 @@ _name2typeclass = {
     _("Name type:"): NameType,
     _("Surname origin type:"): NameOriginType,
     _("Place type:"): PlaceType,
-    _("DNA test attribute:"): AttributeType,
-    _("DNA match attribute:"): AttributeType,
+    _("DNA test attribute:"): DNAAttributeType,
+    _("DNA match attribute:"): DNAAttributeType,
     _("Provider:"): DNAProviderType,
     _("Test type:"): DNATestType,
 }
@@ -631,6 +632,10 @@ class EditRule(ManagedWindow):
                         additional = self.db.get_event_attribute_types()
                     elif v == _("Media attribute:"):
                         additional = self.db.get_media_attribute_types()
+                    elif v == _("DNA test attribute:"):
+                        additional = self.db.get_dnatest_attribute_types()
+                    elif v == _("DNA match attribute:"):
+                        additional = self.db.get_dnamatch_attribute_types()
                     elif v == _("Relationship type:"):
                         additional = self.db.get_family_relation_types()
                     elif v == _("Note type:"):

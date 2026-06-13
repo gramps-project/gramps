@@ -14,6 +14,7 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 
 from ....const import GRAMPS_LOCALE as glocale
+from ....lib.dnaattrtype import DNAAttributeType
 from .._hasattributebase import HasAttributeBase
 
 _ = glocale.translation.gettext
@@ -22,6 +23,7 @@ _ = glocale.translation.gettext
 class HasAttribute(HasAttributeBase):
     """Rule that checks for a DNA match with a particular attribute"""
 
+    attribute_class = DNAAttributeType
     labels = [_("DNA match attribute:"), _("Value:")]
     name = _("DNA matches with the attribute <attribute>")
     description = _("Matches DNA matches with the attribute of a particular value")
