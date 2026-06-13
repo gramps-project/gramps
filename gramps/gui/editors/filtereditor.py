@@ -659,6 +659,28 @@ class EditRule(ManagedWindow):
                         list(map(str, list(range(5)))),
                         [_(conf_strings[i]) for i in range(5)],
                     )
+                elif v == _("Chromosome:"):
+                    chromosomes = [str(i) for i in range(1, 23)] + ["X", "Y", "MT"]
+                    t = MyList(
+                        [""] + chromosomes,
+                        [_("Any")] + chromosomes,
+                    )
+                elif v == _("Phase:"):
+                    t = MyList(
+                        ["", "0", "1", "2", "3"],
+                        [
+                            _("Any"),
+                            _("Unassigned"),
+                            _("Unknown"),
+                            _("Maternal"),
+                            _("Paternal"),
+                        ],
+                    )
+                elif v == _("IBD state:"):
+                    t = MyList(
+                        ["", "0", "1", "2"],
+                        [_("Any"), _("Unknown"), _("HIR"), _("FIR")],
+                    )
                 elif v == _("Date:"):
                     t = DateEntry(self.uistate, self.track)
                 elif v == _("Day of Week:"):
