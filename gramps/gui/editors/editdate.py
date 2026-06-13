@@ -145,6 +145,9 @@ class EditDate(ManagedWindow):
         self.align_newyear_ui_with_calendar(cal)
         self.calendar_box.connect("changed", self.switch_calendar)
 
+        self.info_button = self.top.get_object("info_button")
+        self.info_button.connect("clicked", self.cb_show_date_syntax)
+
         self.quality_box = self.top.get_object("quality_box")
         for item_number, item in enumerate(QUAL_TEXT):
             self.quality_box.append_text(item[1])
@@ -571,3 +574,107 @@ class EditDate(ManagedWindow):
         LOG.debug(
             "<<<switch_calendar: {0} changed, {1} -> {2}".format(obj, old_cal, new_cal)
         )
+
+    def _build_date_examples(self) -> list[tuple[str, str]]:
+        """Build list of (description, example) pairs for the current locale displayer."""
+
+        def make(
+            yr: int,
+            mon: int = 0,
+            day: int = 0,
+            mod: int = Date.MOD_NONE,
+            qual: int = Date.QUAL_NONE,
+            cal: int = Date.CAL_GREGORIAN,
+            yr2: int = 0,
+            mon2: int = 0,
+            day2: int = 0,
+        ) -> Date:
+            """Create a Date object with the given parameters."""
+            d = Date()
+            if mod in (Date.MOD_RANGE, Date.MOD_SPAN):
+                value = (day, mon, yr, False, day2, mon2, yr2, False)
+            else:
+                value = (day, mon, yr, False)
+            d.set(
+                quality=qual,
+                modifier=mod,
+                calendar=cal,
+                value=value,
+                text="",
+                newyear=Date.NEWYEAR_JAN1,
+            )
+            return d
+
+        text_date = Date()
+        text_date.set(
+            quality=Date.QUAL_NONE,
+            modifier=Date.MOD_TEXTONLY,
+            calendar=Date.CAL_GREGORIAN,
+            value=Date.EMPTY,
+            text=_("sometime in the 1800s"),
+            newyear=Date.NEWYEAR_JAN1,
+        )
+
+        rows: list[tuple[str, Date]] = [
+            (_("Year only"), make(1800)),
+            (_("Month and year"), make(1800, mon=3)),
+            (_("Full date"), make(1800, mon=3, day=15)),
+            (_("Before"), make(1800, mod=Date.MOD_BEFORE)),
+            (_("After"), make(1800, mod=Date.MOD_AFTER)),
+            (_("About/circa"), make(1800, mod=Date.MOD_ABOUT)),
+            (_("Estimated"), make(1800, qual=Date.QUAL_ESTIMATED)),
+            (_("Calculated"), make(1800, qual=Date.QUAL_CALCULATED)),
+            (
+                _("Estimated, before"),
+                make(1800, mod=Date.MOD_BEFORE, qual=Date.QUAL_ESTIMATED),
+            ),
+            (
+                _("Calculated, after"),
+                make(1800, mod=Date.MOD_AFTER, qual=Date.QUAL_CALCULATED),
+            ),
+            (_("Span (from/to)"), make(1800, mod=Date.MOD_SPAN, yr2=1810)),
+            (_("Range (between/and)"), make(1800, mod=Date.MOD_RANGE, yr2=1810)),
+            (_("Julian calendar"), make(1800, mon=2, day=10, cal=Date.CAL_JULIAN)),
+            (_("Hebrew calendar"), make(5780, mon=1, day=1, cal=Date.CAL_HEBREW)),
+            (_("French Republican"), make(10, mon=3, day=1, cal=Date.CAL_FRENCH)),
+            (_("Persian calendar"), make(1400, mon=1, cal=Date.CAL_PERSIAN)),
+            (_("Islamic calendar"), make(1400, mon=1, cal=Date.CAL_ISLAMIC)),
+            (_("Swedish calendar"), make(1712, mon=3, cal=Date.CAL_SWEDISH)),
+            (_("Text only"), text_date),
+        ]
+        return [(desc, displayer.display(d)) for desc, d in rows]
+
+    def cb_show_date_syntax(self, obj: Gtk.Button) -> None:
+        """Show a popover with date entry syntax examples for the current locale."""
+        popover = Gtk.Popover()
+        popover.set_relative_to(self.info_button)
+
+        store = Gtk.ListStore(str, str)
+        for description, example in self._build_date_examples():
+            store.append([description, example])
+
+        view = Gtk.TreeView(model=store)
+        view.set_headers_visible(True)
+        view.set_grid_lines(Gtk.TreeViewGridLines.HORIZONTAL)
+
+        renderer1 = Gtk.CellRendererText()
+        renderer1.set_padding(6, 2)
+        col1 = Gtk.TreeViewColumn(_("What to express"), renderer1, text=0)
+        col1.set_expand(True)
+        view.append_column(col1)
+
+        renderer2 = Gtk.CellRendererText()
+        renderer2.set_padding(6, 2)
+        col2 = Gtk.TreeViewColumn(_("Example"), renderer2, text=1)
+        col2.set_expand(True)
+        view.append_column(col2)
+
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        scroll.set_min_content_height(300)
+        scroll.set_min_content_width(450)
+        scroll.add(view)
+
+        popover.add(scroll)
+        popover.show_all()
+        popover.popup()
