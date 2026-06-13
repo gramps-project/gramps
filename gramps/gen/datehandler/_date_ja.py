@@ -237,6 +237,12 @@ class DateParserJA(DateParser):
         self._cal = re.compile(r"(.*?)\s*\(%s\)\s*(.*)" % self._cal_str, re.IGNORECASE)
         self._qual = re.compile(r"(.*?)\s*%s\s*(.*)" % self._qual_str, re.IGNORECASE)
 
+        # Japanese postfix modifiers attach directly to the date with no space:
+        # "2000年以前", "昭和40年以降". Override the base regex which requires \s+.
+        self._modifier_after = re.compile(
+            r"(.*?)\s*(%s)\s*$" % self._mod_after_str, re.IGNORECASE
+        )
+
     def _parse_japanese_imperial_era(self, text: str) -> tuple | None:
         """
         Parse an era-format Japanese Imperial date string.

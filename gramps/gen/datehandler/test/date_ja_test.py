@@ -224,5 +224,91 @@ class TestJapaneseImperialParseDisplayRoundtrip(unittest.TestCase):
         self.assertEqual(d1.get_calendar(), d2.get_calendar())
 
 
+class TestJapaneseModifierParsing(unittest.TestCase):
+    """Tests for Japanese postfix temporal modifier parsing."""
+
+    def setUp(self):
+        """Set up parser and displayer."""
+        self.dp = DateParserJA()
+        self.dd = DateDisplayJA(format=2)
+
+    def _parse(self, text):
+        """Parse text and return a Date."""
+        d = Date()
+        self.dp.set_date(d, text)
+        return d
+
+    def test_before_no_space(self):
+        """'2000年以前' (no space) parses as MOD_BEFORE, year 2000."""
+        d = self._parse("2000年以前")
+        self.assertEqual(d.get_modifier(), Date.MOD_BEFORE)
+        self.assertEqual(d.get_year(), 2000)
+
+    def test_after_no_space(self):
+        """'1949年以降' (no space) parses as MOD_AFTER, year 1949."""
+        d = self._parse("1949年以降")
+        self.assertEqual(d.get_modifier(), Date.MOD_AFTER)
+        self.assertEqual(d.get_year(), 1949)
+
+    def test_about_koro_no_space(self):
+        """'1850年頃' (no space) parses as MOD_ABOUT, year 1850."""
+        d = self._parse("1850年頃")
+        self.assertEqual(d.get_modifier(), Date.MOD_ABOUT)
+        self.assertEqual(d.get_year(), 1850)
+
+    def test_before_with_space(self):
+        """'2000年 以前' (with space, as produced by display) also parses."""
+        d = self._parse("2000年 以前")
+        self.assertEqual(d.get_modifier(), Date.MOD_BEFORE)
+        self.assertEqual(d.get_year(), 2000)
+
+    def test_before_display_is_postfix(self):
+        """Display of MOD_BEFORE places 以前 after the date."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_BEFORE, Date.CAL_GREGORIAN, (0, 0, 2000, False))
+        result = self.dd.display(d)
+        self.assertIn("以前", result)
+        self.assertTrue(result.endswith("以前"), msg=repr(result))
+        self.assertFalse(result.startswith("以前"), msg=repr(result))
+
+    def test_after_display_is_postfix(self):
+        """Display of MOD_AFTER places 以降 after the date."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_AFTER, Date.CAL_GREGORIAN, (0, 0, 1949, False))
+        result = self.dd.display(d)
+        self.assertIn("以降", result)
+        self.assertTrue(result.endswith("以降"), msg=repr(result))
+
+    def test_before_roundtrip(self):
+        """before-2000 round-trips through display and parse."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_BEFORE, Date.CAL_GREGORIAN, (0, 0, 2000, False))
+        text = self.dd.display(d)
+        d2 = Date()
+        self.dp.set_date(d2, text)
+        self.assertEqual(d2.get_modifier(), Date.MOD_BEFORE)
+        self.assertEqual(d2.get_year(), 2000)
+
+    def test_after_roundtrip(self):
+        """after-1949 round-trips through display and parse."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_AFTER, Date.CAL_GREGORIAN, (0, 0, 1949, False))
+        text = self.dd.display(d)
+        d2 = Date()
+        self.dp.set_date(d2, text)
+        self.assertEqual(d2.get_modifier(), Date.MOD_AFTER)
+        self.assertEqual(d2.get_year(), 1949)
+
+    def test_about_roundtrip(self):
+        """about-1850 round-trips through display and parse."""
+        d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN, (0, 0, 1850, False))
+        text = self.dd.display(d)
+        d2 = Date()
+        self.dp.set_date(d2, text)
+        self.assertEqual(d2.get_modifier(), Date.MOD_ABOUT)
+        self.assertEqual(d2.get_year(), 1850)
+
+
 if __name__ == "__main__":
     unittest.main()
