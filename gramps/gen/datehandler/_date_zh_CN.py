@@ -416,7 +416,19 @@ class DateDisplayZH_CN(DateDisplay):
         if mod == Date.MOD_AFTER:
             return "%s以后%s" % (text, scal)
 
-        # Other prefix modifiers
+        # Other prefix modifiers (with optional quality prefix)
+        if qual == Date.QUAL_ESTIMATED and mod == Date.MOD_ABOUT:
+            return "估计为大约%s%s" % (text, scal)
+        if qual == Date.QUAL_CALCULATED and mod == Date.MOD_ABOUT:
+            return "推算为大约%s%s" % (text, scal)
+        if qual == Date.QUAL_ESTIMATED and mod == Date.MOD_FROM:
+            return "估计为从%s%s" % (text, scal)
+        if qual == Date.QUAL_CALCULATED and mod == Date.MOD_FROM:
+            return "推算为从%s%s" % (text, scal)
+        if qual == Date.QUAL_ESTIMATED and mod == Date.MOD_TO:
+            return "估计为到%s%s" % (text, scal)
+        if qual == Date.QUAL_CALCULATED and mod == Date.MOD_TO:
+            return "推算为到%s%s" % (text, scal)
         if mod == Date.MOD_ABOUT:
             return "大约%s%s" % (text, scal)
         if mod == Date.MOD_FROM:
@@ -435,19 +447,29 @@ class DateDisplayZH_CN(DateDisplay):
     display = display_formatted
 
     def dd_span(self, date: Date) -> str:
-        """Return a span date as 自{start}至{stop}."""
+        """Return a span date as [质量前缀]自{start}至{stop}."""
         cal = date.get_calendar()
+        qual = date.get_quality()
         scal = self.format_extras(cal, date.get_new_year())
         d1 = self.display_cal[cal](date.get_start_date())
         d2 = self.display_cal[cal](date.get_stop_date())
+        if qual == Date.QUAL_ESTIMATED:
+            return "估计为自%s至%s%s" % (d1, d2, scal)
+        if qual == Date.QUAL_CALCULATED:
+            return "推算为自%s至%s%s" % (d1, d2, scal)
         return "自%s至%s%s" % (d1, d2, scal)
 
     def dd_range(self, date: Date) -> str:
-        """Return a range date as 介于{start}与{stop}之间."""
+        """Return a range date as [质量前缀]介于{start}与{stop}之间."""
         cal = date.get_calendar()
+        qual = date.get_quality()
         scal = self.format_extras(cal, date.get_new_year())
         d1 = self.display_cal[cal](date.get_start_date())
         d2 = self.display_cal[cal](date.get_stop_date())
+        if qual == Date.QUAL_ESTIMATED:
+            return "估计为介于%s与%s之间%s" % (d1, d2, scal)
+        if qual == Date.QUAL_CALCULATED:
+            return "推算为介于%s与%s之间%s" % (d1, d2, scal)
         return "介于%s与%s之间%s" % (d1, d2, scal)
 
 
