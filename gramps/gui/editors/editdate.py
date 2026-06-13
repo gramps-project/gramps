@@ -277,6 +277,8 @@ class EditDate(ManagedWindow):
     def show_on_calendar(self, calendar, date):
         if self.calendar_box.get_active() != Date.CAL_GREGORIAN:
             return
+        if date.is_empty():
+            return
         date = date.to_calendar("gregorian")
         year = date.get_year()
         if year < 0:  # Gtk.Calendar only works for positive years
@@ -649,6 +651,59 @@ class EditDate(ManagedWindow):
         popover = Gtk.Popover()
         popover.set_relative_to(self.info_button)
 
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        vbox.set_margin_top(12)
+        vbox.set_margin_bottom(12)
+        vbox.set_margin_start(12)
+        vbox.set_margin_end(12)
+
+        def add_section(heading: str, body: str) -> None:
+            """Add a bold heading and wrapped body text to the popover."""
+            lbl = Gtk.Label()
+            lbl.set_markup("<b>" + heading + "</b>")
+            lbl.set_xalign(0)
+            vbox.pack_start(lbl, False, False, 0)
+            lbl = Gtk.Label(label=body)
+            lbl.set_line_wrap(True)
+            lbl.set_xalign(0)
+            lbl.set_max_width_chars(60)
+            vbox.pack_start(lbl, False, False, 0)
+
+        add_section(
+            _("Calendar"),
+            _(
+                "Choose the calendar system: Gregorian, Julian, Hebrew, "
+                "French Republican, Persian, Islamic, or Swedish. "
+                "The selector is disabled when the date type is "
+                '"Free text", when "Dual dated" is active, or when '
+                "the date contains a validation error (shown in the "
+                "status bar at the bottom of this dialog)."
+            ),
+        )
+
+        vbox.pack_start(Gtk.Separator(), False, False, 4)
+
+        add_section(
+            _("Dual-dated dates"),
+            _(
+                'Slash dates such as "Jan 23, 1735/6" mark a historic transition '
+                "between New Year conventions (e.g., March 25 vs. January 1). "
+                "Enter a slash between years to create one: 1721/2, 1719/20, "
+                "1799/800. Dual-dated dates use the Julian calendar. "
+                "An alternate New Year day can be added in parentheses after "
+                'the calendar name: "Jan 20, 1750 (Julian,Mar25)" or '
+                '"Feb 23, 1710/1 (Mar25)". Valid New Year codes: '
+                "Jan1, Mar1, Mar25, Sep1."
+            ),
+        )
+
+        vbox.pack_start(Gtk.Separator(), False, False, 4)
+
+        lbl = Gtk.Label()
+        lbl.set_markup("<b>" + _("Date entry syntax for this locale") + "</b>")
+        lbl.set_xalign(0)
+        vbox.pack_start(lbl, False, False, 0)
+
         store = Gtk.ListStore(str, str)
         for description, example in self._build_date_examples():
             store.append([description, example])
@@ -675,6 +730,8 @@ class EditDate(ManagedWindow):
         scroll.set_min_content_width(450)
         scroll.add(view)
 
-        popover.add(scroll)
+        vbox.pack_start(scroll, True, True, 0)
+
+        popover.add(vbox)
         popover.show_all()
         popover.popup()
