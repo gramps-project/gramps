@@ -150,8 +150,62 @@ class DateStrings:
             _("Persian", "calendar"),
             _("Islamic", "calendar"),
             _("Swedish", "calendar"),
+            _("Chinese Lunar", "calendar"),
+            _("Korean Lunar", "calendar"),
+            _("Japanese Imperial", "calendar"),
         )
         _ = locale.translation.lexgettext
+
+        self.chinese_lunar = (
+            "",
+            _("Zhengyue", "Chinese Lunar month lexeme"),
+            _("Eryue", "Chinese Lunar month lexeme"),
+            _("Sanyue", "Chinese Lunar month lexeme"),
+            _("Siyue", "Chinese Lunar month lexeme"),
+            _("Wuyue", "Chinese Lunar month lexeme"),
+            _("Liuyue", "Chinese Lunar month lexeme"),
+            _("Qiyue", "Chinese Lunar month lexeme"),
+            _("Bayue", "Chinese Lunar month lexeme"),
+            _("Jiuyue", "Chinese Lunar month lexeme"),
+            _("Shiyue", "Chinese Lunar month lexeme"),
+            _("Shiyiyue", "Chinese Lunar month lexeme"),
+            _("Shier'yue", "Chinese Lunar month lexeme"),
+        )
+
+        self.korean_lunar = (
+            "",
+            _("Jeongwol", "Korean Lunar month lexeme"),
+            _("Iwol", "Korean Lunar month lexeme"),
+            _("Samwol", "Korean Lunar month lexeme"),
+            _("Sawol", "Korean Lunar month lexeme"),
+            _("Owol", "Korean Lunar month lexeme"),
+            _("Yuwol", "Korean Lunar month lexeme"),
+            _("Chirwol", "Korean Lunar month lexeme"),
+            _("Palwol", "Korean Lunar month lexeme"),
+            _("Guwol", "Korean Lunar month lexeme"),
+            _("Siwol", "Korean Lunar month lexeme"),
+            _("Sibirwol", "Korean Lunar month lexeme"),
+            _("Sibiwol", "Korean Lunar month lexeme"),
+        )
+
+        # Japanese Imperial month names (romanised; JA locale overrides with
+        # kanji/kana).  Pre-1873 months are lunisolar; post-1872 are Gregorian.
+        # Both share the same 1-12 numbering so one name list serves both.
+        self.japanese_imperial = (
+            "",
+            _("Ichigatsu", "Japanese Imperial month lexeme"),
+            _("Nigatsu", "Japanese Imperial month lexeme"),
+            _("Sangatsu", "Japanese Imperial month lexeme"),
+            _("Shigatsu", "Japanese Imperial month lexeme"),
+            _("Gogatsu", "Japanese Imperial month lexeme"),
+            _("Rokugatsu", "Japanese Imperial month lexeme"),
+            _("Shichigatsu", "Japanese Imperial month lexeme"),
+            _("Hachigatsu", "Japanese Imperial month lexeme"),
+            _("Kugatsu", "Japanese Imperial month lexeme"),
+            _("Jugatsu", "Japanese Imperial month lexeme"),
+            _("Juichigatsu", "Japanese Imperial month lexeme"),
+            _("Junigatsu", "Japanese Imperial month lexeme"),
+        )
 
         self.hebrew = (
             "",
