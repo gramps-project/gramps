@@ -42,6 +42,7 @@ from ._hastesttype import HasTestType
 from ._hasyhaplogroup import HasYHaplogroup
 from ._hasmthaplogroup import HasMtHaplogroup
 from ._isunidentified import IsUnidentified
+from ._matchesbothtestsof import MatchesBothTestsOf
 
 editor_rule_list: list[type] = [
     AllDNATests,
@@ -58,6 +59,7 @@ editor_rule_list: list[type] = [
     HasAttribute,
     MatchesFilter,
     MatchesPersonFilter,
+    MatchesBothTestsOf,
     HasPerson,
     HasProvider,
     HasTestType,

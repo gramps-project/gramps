@@ -443,6 +443,19 @@ class MyPerson(MyID):
 
 # -------------------------------------------------------------------------
 #
+# MyDNAMatch - select ID of DNA matches with a standard interface
+#
+# -------------------------------------------------------------------------
+class MyDNAMatch(MyID):
+    _empty_id_txt = _("Give or select a DNA match ID.")
+
+    def __init__(self, dbstate, uistate, track):
+        MyID.__init__(self, dbstate, uistate, track, namespace="DNAMatch")
+        self.entry.set_tooltip_text(self._empty_id_txt)
+
+
+# -------------------------------------------------------------------------
+#
 # MySelect
 #
 # -------------------------------------------------------------------------
@@ -595,6 +608,8 @@ class EditRule(ManagedWindow):
                     t = MyPerson(self.dbstate, self.uistate, self.track)
                 elif v == _("Source ID:"):
                     t = MySource(self.dbstate, self.uistate, self.track)
+                elif v == _("DNA match ID:"):
+                    t = MyDNAMatch(self.dbstate, self.uistate, self.track)
                 elif v == _("Filter name:"):
                     t = MyFilters(
                         self.filterdb.get_filters(self.namespace), self.filter_name
