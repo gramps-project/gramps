@@ -29,6 +29,7 @@ Rule that checks for an object with a particular attribute.
 # -------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
 from ...lib.attrtype import AttributeType
+from ...lib.grampstype import GrampsType
 from . import Rule
 
 _ = glocale.translation.gettext
@@ -61,7 +62,7 @@ class HasAttributeBase(Rule):
 
     # GrampsType subclass used for the attribute type; subclasses that operate
     # on objects with a different attribute vocabulary override this.
-    attribute_class = AttributeType
+    attribute_class: type[GrampsType] = AttributeType
 
     def __init__(self, arg, use_regex=False, use_case=False):
         super().__init__(arg, use_regex, use_case)
