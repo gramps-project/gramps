@@ -532,18 +532,26 @@ class DateParser:
         # be parsed from the middle and will be in match.group(2).
         self._bce_re = re.compile(r"(.*)\s+%s( ?.*)" % self._bce_str)
 
-        self._cal = re.compile(r"(.*)\s+\(%s\)( ?.*)" % self._cal_str, re.IGNORECASE)
+        # Use non-greedy (.*?) + \s* so that a leading "(Calendar)" with no
+        # preceding whitespace is also recognised (some locale translations
+        # place the calendar label at the very beginning of the string).
+        self._cal = re.compile(r"(.*?)\s*\(%s\)( ?.*)" % self._cal_str, re.IGNORECASE)
         self._calny = re.compile(
-            r"(.*)\s+\(%s,\s*%s\)( ?.*)" % (self._cal_str, self._ny_str), re.IGNORECASE
+            r"(.*?)\s*\(%s,\s*%s\)( ?.*)" % (self._cal_str, self._ny_str),
+            re.IGNORECASE,
         )
         self._calny_iso = re.compile(
-            r"(.*)\s+\(%s,\s*(\d{1,2}-\d{1,2})\)( ?.*)" % self._cal_str, re.IGNORECASE
+            r"(.*?)\s*\(%s,\s*(\d{1,2}-\d{1,2})\)( ?.*)" % self._cal_str,
+            re.IGNORECASE,
         )
 
-        self._ny = re.compile(r"(.*)\s+\(%s\)( ?.*)" % self._ny_str, re.IGNORECASE)
-        self._ny_iso = re.compile(r"(.*)\s+\((\d{1,2}-\d{1,2})\)( ?.*)")
+        self._ny = re.compile(r"(.*?)\s*\(%s\)( ?.*)" % self._ny_str, re.IGNORECASE)
+        self._ny_iso = re.compile(r"(.*?)\s*\((\d{1,2}-\d{1,2})\)( ?.*)")
 
-        self._qual = re.compile(r"(.* ?)%s\s+(.+)" % self._qual_str, re.IGNORECASE)
+        # Allow quality at the end of the string (some locales place it there).
+        self._qual = re.compile(
+            r"(.* ?)%s(?:\s+(.+)|\s*$)" % self._qual_str, re.IGNORECASE
+        )
 
         self._span = re.compile(
             r"(from)\s+(?P<start>.+)\s+to\s+(?P<stop>.+)", re.IGNORECASE
@@ -962,7 +970,8 @@ class DateParser:
         match = self._qual.match(text)
         if match:
             qual = self.quality_to_int[match.group(2).lower()]
-            text = match.group(1) + match.group(3)
+            # group(3) is None when quality is at the end of the string.
+            text = match.group(1) + (match.group(3) or "")
         return (text, qual)
 
     def match_span(self, text, cal, ny, qual, date):
