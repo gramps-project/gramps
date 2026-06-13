@@ -76,11 +76,15 @@ class DateParserZH_CN(DateParser):
 
     # modifiers before the date
     modifier_to_int = {
-        "以前": Date.MOD_BEFORE,
-        "以后": Date.MOD_AFTER,
         "大约": Date.MOD_ABOUT,
         "从": Date.MOD_FROM,
         "到": Date.MOD_TO,
+    }
+
+    # 以前/以后 follow the date in Chinese: "2000年以前", "2000年以后"
+    modifier_after_to_int = {
+        "以前": Date.MOD_BEFORE,
+        "以后": Date.MOD_AFTER,
     }
 
     month_to_int = DateParser.month_to_int
@@ -209,6 +213,12 @@ class DateParserZH_CN(DateParser):
         )
         self._numeric = re.compile(r"((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
 
+        # Chinese postfix modifiers attach directly to the date with no space:
+        # "2000年以前". Override the base regex which requires \s+.
+        self._modifier_after = re.compile(
+            r"(.*?)\s*(%s)\s*$" % self._mod_after_str, re.IGNORECASE
+        )
+
 
 # -------------------------------------------------------------------------
 #
@@ -233,6 +243,25 @@ class DateDisplayZH_CN(DateDisplay):
     chinese_lunar = _CHINESE_LUNAR_MONTHS_CN
 
     display = DateDisplay.display_formatted
+
+    def __init__(self, *args, **kwargs):
+        """
+        Initialize and set Chinese modifier strings with correct word order.
+
+        以前/以后 are postfix in Chinese ("2000年以前"), so they get a leading
+        space which signals display_formatted to append them after the date.
+        DateDisplay.__init__ overwrites chinese_lunar with the pinyin locale
+        default, so we restore the Simplified Chinese character names here.
+        """
+        super().__init__(*args, **kwargs)
+        self.chinese_lunar = _CHINESE_LUNAR_MONTHS_CN
+        mod_list = list(self._mod_str)
+        mod_list[Date.MOD_BEFORE] = " 以前"
+        mod_list[Date.MOD_AFTER] = " 以后"
+        mod_list[Date.MOD_ABOUT] = "大约 "
+        mod_list[Date.MOD_FROM] = "从 "
+        mod_list[Date.MOD_TO] = "到 "
+        self._mod_str = tuple(mod_list)
 
     def _display_calendar(self, date_val, long_months, short_months=None, inflect=""):
         """Display a date using Chinese numeric format or ISO."""
