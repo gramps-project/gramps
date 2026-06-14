@@ -577,6 +577,39 @@ class EditDate(ManagedWindow):
             "<<<switch_calendar: {0} changed, {1} -> {2}".format(obj, old_cal, new_cal)
         )
 
+    def get_help_topics(self) -> list[dict]:
+        """Return help topics describing date entry syntax for this locale."""
+        return [
+            {
+                "title": _("Calendar"),
+                "body": _(
+                    "Choose the calendar system: Gregorian, Julian, Hebrew, "
+                    "French Republican, Persian, Islamic, or Swedish. "
+                    "The selector is disabled when the date type is "
+                    '"Free text", when "Dual dated" is active, or when '
+                    "the date contains a validation error (shown in the "
+                    "status bar at the bottom of this dialog)."
+                ),
+            },
+            {
+                "title": _("Dual-dated dates"),
+                "body": _(
+                    'Slash dates such as "Jan 23, 1735/6" mark a historic transition '
+                    "between New Year conventions (e.g., March 25 vs. January 1). "
+                    "Enter a slash between years to create one: 1721/2, 1719/20, "
+                    "1799/800. Dual-dated dates use the Julian calendar. "
+                    "An alternate New Year day can be added in parentheses after "
+                    'the calendar name: "Jan 20, 1750 (Julian,Mar25)" or '
+                    '"Feb 23, 1710/1 (Mar25)". Valid New Year codes: '
+                    "Jan1, Mar1, Mar25, Sep1."
+                ),
+            },
+            {
+                "title": _("Date entry syntax for this locale"),
+                "examples": self._build_date_examples(),
+            },
+        ]
+
     def _build_date_examples(self) -> list[tuple[str, str]]:
         """Build list of (description, example) pairs for the current locale displayer."""
 
@@ -651,7 +684,7 @@ class EditDate(ManagedWindow):
         return [(desc, displayer.display(d)) for desc, d in rows]
 
     def cb_show_date_syntax(self, obj: Gtk.Button) -> None:
-        """Show a popover with date entry syntax examples for the current locale."""
+        """Show a popover rendering the help topics for the current locale."""
         popover = Gtk.Popover()
         popover.set_relative_to(self.info_button)
 
@@ -661,80 +694,50 @@ class EditDate(ManagedWindow):
         vbox.set_margin_start(12)
         vbox.set_margin_end(12)
 
-        def add_section(heading: str, body: str) -> None:
-            """Add a bold heading and wrapped body text to the popover."""
+        for i, topic in enumerate(self.get_help_topics()):
+            if i > 0:
+                vbox.pack_start(Gtk.Separator(), False, False, 4)
+
             lbl = Gtk.Label()
-            lbl.set_markup("<b>" + heading + "</b>")
+            lbl.set_markup("<b>" + topic["title"] + "</b>")
             lbl.set_xalign(0)
             vbox.pack_start(lbl, False, False, 0)
-            lbl = Gtk.Label(label=body)
-            lbl.set_line_wrap(True)
-            lbl.set_xalign(0)
-            lbl.set_max_width_chars(60)
-            vbox.pack_start(lbl, False, False, 0)
 
-        add_section(
-            _("Calendar"),
-            _(
-                "Choose the calendar system: Gregorian, Julian, Hebrew, "
-                "French Republican, Persian, Islamic, or Swedish. "
-                "The selector is disabled when the date type is "
-                '"Free text", when "Dual dated" is active, or when '
-                "the date contains a validation error (shown in the "
-                "status bar at the bottom of this dialog)."
-            ),
-        )
+            if "body" in topic:
+                lbl = Gtk.Label(label=topic["body"])
+                lbl.set_line_wrap(True)
+                lbl.set_xalign(0)
+                lbl.set_max_width_chars(60)
+                vbox.pack_start(lbl, False, False, 0)
 
-        vbox.pack_start(Gtk.Separator(), False, False, 4)
+            if "examples" in topic:
+                store = Gtk.ListStore(str, str)
+                for description, example in topic["examples"]:
+                    store.append([description, example])
 
-        add_section(
-            _("Dual-dated dates"),
-            _(
-                'Slash dates such as "Jan 23, 1735/6" mark a historic transition '
-                "between New Year conventions (e.g., March 25 vs. January 1). "
-                "Enter a slash between years to create one: 1721/2, 1719/20, "
-                "1799/800. Dual-dated dates use the Julian calendar. "
-                "An alternate New Year day can be added in parentheses after "
-                'the calendar name: "Jan 20, 1750 (Julian,Mar25)" or '
-                '"Feb 23, 1710/1 (Mar25)". Valid New Year codes: '
-                "Jan1, Mar1, Mar25, Sep1."
-            ),
-        )
+                view = Gtk.TreeView(model=store)
+                view.set_headers_visible(True)
+                view.set_grid_lines(Gtk.TreeViewGridLines.HORIZONTAL)
 
-        vbox.pack_start(Gtk.Separator(), False, False, 4)
+                renderer1 = Gtk.CellRendererText()
+                renderer1.set_padding(6, 2)
+                col1 = Gtk.TreeViewColumn(_("What to express"), renderer1, text=0)
+                col1.set_expand(True)
+                view.append_column(col1)
 
-        lbl = Gtk.Label()
-        lbl.set_markup("<b>" + _("Date entry syntax for this locale") + "</b>")
-        lbl.set_xalign(0)
-        vbox.pack_start(lbl, False, False, 0)
+                renderer2 = Gtk.CellRendererText()
+                renderer2.set_padding(6, 2)
+                col2 = Gtk.TreeViewColumn(_("Example"), renderer2, text=1)
+                col2.set_expand(True)
+                view.append_column(col2)
 
-        store = Gtk.ListStore(str, str)
-        for description, example in self._build_date_examples():
-            store.append([description, example])
+                scroll = Gtk.ScrolledWindow()
+                scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+                scroll.set_min_content_height(300)
+                scroll.set_min_content_width(450)
+                scroll.add(view)
 
-        view = Gtk.TreeView(model=store)
-        view.set_headers_visible(True)
-        view.set_grid_lines(Gtk.TreeViewGridLines.HORIZONTAL)
-
-        renderer1 = Gtk.CellRendererText()
-        renderer1.set_padding(6, 2)
-        col1 = Gtk.TreeViewColumn(_("What to express"), renderer1, text=0)
-        col1.set_expand(True)
-        view.append_column(col1)
-
-        renderer2 = Gtk.CellRendererText()
-        renderer2.set_padding(6, 2)
-        col2 = Gtk.TreeViewColumn(_("Example"), renderer2, text=1)
-        col2.set_expand(True)
-        view.append_column(col2)
-
-        scroll = Gtk.ScrolledWindow()
-        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        scroll.set_min_content_height(300)
-        scroll.set_min_content_width(450)
-        scroll.add(view)
-
-        vbox.pack_start(scroll, True, True, 0)
+                vbox.pack_start(scroll, True, True, 0)
 
         popover.add(vbox)
         popover.show_all()
