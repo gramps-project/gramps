@@ -64,6 +64,7 @@ from gramps.gen.const import URL_MANUAL_SECT1
 from ..display import display_help
 from ..managedwindow import ManagedWindow
 from ..glade import Glade
+from ..widgets.markdown_render import render_md, setup_tags
 
 LOG = logging.getLogger(".EditDate")
 _ = glocale.translation.sgettext
@@ -144,6 +145,9 @@ class EditDate(ManagedWindow):
         self.calendar_box.set_active(cal)
         self.align_newyear_ui_with_calendar(cal)
         self.calendar_box.connect("changed", self.switch_calendar)
+
+        self.info_button = self.top.get_object("info_button")
+        self.info_button.connect("clicked", self.cb_show_date_syntax)
 
         self.quality_box = self.top.get_object("quality_box")
         for item_number, item in enumerate(QUAL_TEXT):
@@ -273,6 +277,8 @@ class EditDate(ManagedWindow):
 
     def show_on_calendar(self, calendar, date):
         if self.calendar_box.get_active() != Date.CAL_GREGORIAN:
+            return
+        if date.is_empty():
             return
         date = date.to_calendar("gregorian")
         year = date.get_year()
@@ -571,3 +577,179 @@ class EditDate(ManagedWindow):
         LOG.debug(
             "<<<switch_calendar: {0} changed, {1} -> {2}".format(obj, old_cal, new_cal)
         )
+
+    @classmethod
+    def get_help_topics(cls) -> list[dict]:
+        """Return help topics describing date entry syntax for this locale."""
+        return [
+            {
+                "title": _("Calendar"),
+                # fmt: off
+                # Translators: this string may contain markdown formatting; preserve it
+                "body": _("Choose the calendar system: **Gregorian**, **Julian**, "
+                          "**Hebrew**, **French Republican**, **Persian**, **Islamic**, "
+                          "or **Swedish**. "
+                          "The selector is disabled when the date type is "
+                          "**Free text**, when **Dual dated** is active, or when "
+                          "the date contains a validation error (shown in the "
+                          "status bar at the bottom of this dialog)."),
+                # fmt: on
+            },
+            {
+                "title": _("Dual-dated dates"),
+                # fmt: off
+                # Translators: this string may contain markdown formatting; preserve it
+                "body": _("Slash dates such as `Jan 23, 1735/6` mark a historic transition "
+                          "between New Year conventions (e.g., March 25 vs. January 1). "
+                          "Enter a slash between years to create one: `1721/2`, `1719/20`, "
+                          "`1799/800`. Dual-dated dates use the Julian calendar. "
+                          "An alternate New Year day can be added in parentheses after "
+                          "the calendar name: `Jan 20, 1750 (Julian,Mar25)` or "
+                          "`Feb 23, 1710/1 (Mar25)`. Valid New Year codes: "
+                          "`Jan1`, `Mar1`, `Mar25`, `Sep1`."),
+                # fmt: on
+            },
+            {
+                "title": _("Date entry syntax for this locale"),
+                "examples": cls._build_date_examples(),
+            },
+        ]
+
+    @staticmethod
+    def _build_date_examples() -> list[tuple[str, str]]:
+        """Build list of (description, example) pairs for the current locale displayer."""
+
+        def make(
+            yr: int,
+            mon: int = 0,
+            day: int = 0,
+            mod: int = Date.MOD_NONE,
+            qual: int = Date.QUAL_NONE,
+            cal: int = Date.CAL_GREGORIAN,
+            yr2: int = 0,
+            mon2: int = 0,
+            day2: int = 0,
+        ) -> Date:
+            """Create a Date object with the given parameters."""
+            d = Date()
+            value: (
+                tuple[int, int, int, bool, int, int, int, bool]
+                | tuple[int, int, int, bool]
+            )
+            if mod in (Date.MOD_RANGE, Date.MOD_SPAN):
+                value = (day, mon, yr, False, day2, mon2, yr2, False)
+            else:
+                value = (day, mon, yr, False)
+            d.set(
+                quality=qual,
+                modifier=mod,
+                calendar=cal,
+                value=value,
+                text="",
+                newyear=Date.NEWYEAR_JAN1,
+            )
+            return d
+
+        text_date = Date()
+        text_date.set(
+            quality=Date.QUAL_NONE,
+            modifier=Date.MOD_TEXTONLY,
+            calendar=Date.CAL_GREGORIAN,
+            value=Date.EMPTY,
+            text=_("sometime in the 1800s"),
+            newyear=Date.NEWYEAR_JAN1,
+        )
+
+        rows: list[tuple[str, Date]] = [
+            (_("Year only"), make(1800)),
+            (_("Month and year"), make(1800, mon=3)),
+            (_("Full date"), make(1800, mon=3, day=15)),
+            (_("Before"), make(1800, mod=Date.MOD_BEFORE)),
+            (_("After"), make(1800, mod=Date.MOD_AFTER)),
+            (_("About/circa"), make(1800, mod=Date.MOD_ABOUT)),
+            (_("Estimated"), make(1800, qual=Date.QUAL_ESTIMATED)),
+            (_("Calculated"), make(1800, qual=Date.QUAL_CALCULATED)),
+            (
+                _("Estimated, before"),
+                make(1800, mod=Date.MOD_BEFORE, qual=Date.QUAL_ESTIMATED),
+            ),
+            (
+                _("Calculated, after"),
+                make(1800, mod=Date.MOD_AFTER, qual=Date.QUAL_CALCULATED),
+            ),
+            (_("Span (from/to)"), make(1800, mod=Date.MOD_SPAN, yr2=1810)),
+            (_("Range (between/and)"), make(1800, mod=Date.MOD_RANGE, yr2=1810)),
+            (_("Julian calendar"), make(1800, mon=2, day=10, cal=Date.CAL_JULIAN)),
+            (_("Hebrew calendar"), make(5780, mon=1, day=1, cal=Date.CAL_HEBREW)),
+            (_("French Republican"), make(10, mon=3, day=1, cal=Date.CAL_FRENCH)),
+            (_("Persian calendar"), make(1400, mon=1, cal=Date.CAL_PERSIAN)),
+            (_("Islamic calendar"), make(1400, mon=1, cal=Date.CAL_ISLAMIC)),
+            (_("Swedish calendar"), make(1712, mon=3, cal=Date.CAL_SWEDISH)),
+            (_("Text only"), text_date),
+        ]
+        return [(desc, displayer.display(d)) for desc, d in rows]
+
+    def cb_show_date_syntax(self, obj: Gtk.Button) -> None:
+        """Show a popover rendering the help topics for the current locale."""
+        popover = Gtk.Popover()
+        popover.set_relative_to(self.info_button)
+
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        vbox.set_margin_top(12)
+        vbox.set_margin_bottom(12)
+        vbox.set_margin_start(12)
+        vbox.set_margin_end(12)
+
+        for i, topic in enumerate(self.get_help_topics()):
+            if i > 0:
+                vbox.pack_start(Gtk.Separator(), False, False, 4)
+
+            lbl = Gtk.Label()
+            lbl.set_markup("<b>" + topic["title"] + "</b>")
+            lbl.set_xalign(0)
+            vbox.pack_start(lbl, False, False, 0)
+
+            if "body" in topic:
+                buf = Gtk.TextBuffer()
+                setup_tags(buf)
+                links: list = []
+                render_md(topic["body"], buf, links)
+                tv = Gtk.TextView(buffer=buf)
+                tv.set_editable(False)
+                tv.set_cursor_visible(False)
+                tv.set_wrap_mode(Gtk.WrapMode.WORD)
+                tv.set_size_request(450, -1)
+                vbox.pack_start(tv, False, False, 0)
+
+            if "examples" in topic:
+                store = Gtk.ListStore(str, str)
+                for description, example in topic["examples"]:
+                    store.append([description, example])
+
+                view = Gtk.TreeView(model=store)
+                view.set_headers_visible(True)
+                view.set_grid_lines(Gtk.TreeViewGridLines.HORIZONTAL)
+
+                renderer1 = Gtk.CellRendererText()
+                renderer1.set_padding(6, 2)
+                col1 = Gtk.TreeViewColumn(_("What to express"), renderer1, text=0)
+                col1.set_expand(True)
+                view.append_column(col1)
+
+                renderer2 = Gtk.CellRendererText()
+                renderer2.set_padding(6, 2)
+                col2 = Gtk.TreeViewColumn(_("Example"), renderer2, text=1)
+                col2.set_expand(True)
+                view.append_column(col2)
+
+                scroll = Gtk.ScrolledWindow()
+                scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+                scroll.set_min_content_height(300)
+                scroll.set_min_content_width(450)
+                scroll.add(view)
+
+                vbox.pack_start(scroll, True, True, 0)
+
+        popover.add(vbox)
+        popover.show_all()
+        popover.popup()

@@ -1764,7 +1764,7 @@ class Date(BaseObject):
         if text:
             self.text = text
 
-        if modifier != Date.MOD_TEXTONLY:
+        if modifier != Date.MOD_TEXTONLY and not self.is_empty():
             sanity = Date(self)
             sanity.convert_calendar(self.calendar, known_valid=False)
             # convert_calendar resets slash and new year, restore these as needed
