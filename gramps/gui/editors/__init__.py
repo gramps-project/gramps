@@ -22,7 +22,23 @@
 from .editaddress import EditAddress
 from .editattribute import EditAttribute, EditSrcAttribute
 from .editchildref import EditChildRef
-from .editcitation import EditCitation
+from .editcitation import EditCitation as _EditCitation
+
+
+def EditCitation(
+    dbstate, uistate, track, obj, source=None, callback=None, callertitle=None
+):
+    from gramps.gen.config import config
+
+    if config.get("interface.use-simplified-interface") and not obj.get_handle():
+        from .editcitationsimplified import EditCitationSimplified
+
+        return EditCitationSimplified(
+            dbstate, uistate, track, obj, source, callback, callertitle
+        )
+    return _EditCitation(dbstate, uistate, track, obj, source, callback, callertitle)
+
+
 from .editdate import EditDate
 from .editevent import EditEvent
 from .editeventref import EditEventRef

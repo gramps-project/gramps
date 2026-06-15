@@ -27,6 +27,7 @@ manage pages in the main Gramps window.
 # GNOME modules
 #
 # -------------------------------------------------------------------------
+from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GObject
 
@@ -53,6 +54,29 @@ UICATEGORYBAR = """    <placeholder id='ViewsInCategoryBar'>
         %s
       </placeholder>
     """
+UICATEGORYBAR_SIMPLE = """    <placeholder id='ViewsInCategoryBar'>
+      <child>
+        <object class="GtkToolButton" id="ViewButton">
+          <property name="icon-name">view-list-symbolic</property>
+          <property name="action-name">win.ViewButton</property>
+          <property name="tooltip_text" translatable="yes">Switch view</property>
+          <property name="label" translatable="yes">View</property>
+        </object>
+        <packing>
+          <property name="homogeneous">False</property>
+        </packing>
+      </child>
+    </placeholder>
+    """
+UIVIEWPOPUP = """<menu id='ViewButtonPopup'>
+%s
+</menu>"""
+UIVIEWPOPUP_ITEM = """  <item>
+    <attribute name="action">win.ViewInCategory</attribute>
+    <attribute name="label" translatable="yes">%s</attribute>
+    <attribute name="target">%s</attribute>
+  </item>
+"""
 
 CATEGORY_ICON = {
     "Dashboard": "gramps-gramplet",
@@ -91,6 +115,8 @@ class Navigator:
         self.ui_category = {}
         self.cat_view_group = None
         self.merge_ids = []
+
+        self.use_simplified = config.get("interface.use-simplified-interface")
 
         self.config_name = "interface.favorite-menu"
         if not config.is_set(self.config_name):
@@ -188,13 +214,25 @@ class Navigator:
                 views[cat_num].append((view_num, page[0].name, stock_icon))
 
             if len(cat_views) > 1:
-                # allow for switching views in a category
-                self.ui_category[cat_num] = [
-                    UICATEGORY % uimenuitems,
-                    UICATEGORYBAR % uibaritems,
-                ]
+                if self.use_simplified:
+                    popup_items = "".join(
+                        UIVIEWPOPUP_ITEM % (name, "%d %d" % (cat_num, vnum))
+                        for vnum, name, _icon in views[cat_num]
+                    )
+                    self.ui_category[cat_num] = [
+                        UICATEGORY % uimenuitems,
+                        UICATEGORYBAR_SIMPLE,
+                        UIVIEWPOPUP % popup_items,
+                    ]
+                else:
+                    self.ui_category[cat_num] = [
+                        UICATEGORY % uimenuitems,
+                        UICATEGORYBAR % uibaritems,
+                    ]
 
         for pdata in plugman.get_reg_sidebars():
+            if self.use_simplified and pdata.id != "categorysidebar":
+                continue
             module = plugman.load_plugin(pdata)
             if not module:
                 print("Error loading sidebar '%s': skipping content" % pdata.name)
@@ -203,9 +241,10 @@ class Navigator:
             sidebar_class = getattr(module, pdata.sidebarclass)
             sidebar_page = sidebar_class(dbstate, uistate, categories, views)
             self.add(pdata.menu_label, sidebar_page, pdata.order)
-        self.fav_menu = config.get(self.config_name)
-        if self.fav_menu != "":
-            self.stack.set_visible_child_name(self.fav_menu)
+        if not self.use_simplified:
+            self.fav_menu = config.get(self.config_name)
+            if self.fav_menu != "":
+                self.stack.set_visible_child_name(self.fav_menu)
 
     def get_top(self):
         """
@@ -246,13 +285,17 @@ class Navigator:
             list(map(uimanager.remove_ui, self.merge_ids))
 
         if cat_num in self.ui_category:
-            action = (
-                "ViewInCategory",
-                self.cb_view_clicked,
-                "",
-                str(cat_num) + " " + str(view_num),
-            )
-            self.cat_view_group = ActionGroup("viewmenu", [action])
+            actions = [
+                (
+                    "ViewInCategory",
+                    self.cb_view_clicked,
+                    "",
+                    str(cat_num) + " " + str(view_num),
+                ),
+            ]
+            if self.use_simplified:
+                actions.append(("ViewButton", self.cb_view_button))
+            self.cat_view_group = ActionGroup("viewmenu", actions)
             uimanager.insert_action_group(self.cat_view_group)
             mergeid = uimanager.add_ui_from_string(self.ui_category[cat_num])
             self.merge_ids.append(mergeid)
@@ -263,6 +306,21 @@ class Navigator:
         except KeyError:
             return
         sidebar.view_changed(cat_num, view_num)
+
+    def cb_view_button(self, *args):
+        """
+        Display the popup menu when the View toolbar button is clicked.
+        """
+        uimanager = self.viewmanager.uimanager
+        menu_model = uimanager.get_widget("ViewButtonPopup")
+        button = uimanager.get_widget("ViewButton")
+        if menu_model and button:
+            popup_menu = Gtk.Menu.new_from_model(menu_model)
+            popup_menu.attach_to_widget(button, None)
+            popup_menu.show_all()
+            popup_menu.popup_at_widget(
+                button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
+            )
 
     def cb_view_clicked(self, radioaction, value):
         """

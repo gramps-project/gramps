@@ -2181,6 +2181,21 @@ class GrampsPreferences(ConfigureDialog):
             )
 
         row += 1
+        self.add_checkbox(
+            grid,
+            _("Use simplified interface *"),
+            row,
+            "interface.use-simplified-interface",
+            start=1,
+            stop=3,
+            tooltip=_(
+                "Share the sidebar and gramplet panels across all view "
+                "modes (list/tree/chart) within the same category.\n"
+                "Requires Gramps restart to apply."
+            ),
+        )
+
+        row += 1
         # Text in sidebar:
         self.add_checkbox(
             grid,

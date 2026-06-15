@@ -51,7 +51,6 @@ _ = glocale.translation.gettext
 # ----------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from ..dbguielement import DbGUIElement
-from ..widgets.grampletbar import GrampletBar
 from ..configure import ConfigureDialog
 from gramps.gen.config import config
 from ..uimanager import ActionGroup
@@ -149,74 +148,23 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
 
     def build_interface(self):
         """
-        Builds the container widget for the interface.
-        Returns a gtk container widget.
+        Builds the main content widget for this view mode.
+        The sidebar and bottombar are owned by the CategoryContainer and
+        must be set on ``self.sidebar`` / ``self.bottombar`` before calling
+        this method.
         """
-        defaults = self.get_default_gramplets()
-        self.sidebar = GrampletBar(
-            self.dbstate,
-            self.uistate,
-            self,
-            self.ident + "_sidebar",
-            defaults[0],
-            Gtk.Orientation.VERTICAL,
-        )
-        self.bottombar = GrampletBar(
-            self.dbstate,
-            self.uistate,
-            self,
-            self.ident + "_bottombar",
-            defaults[1],
-            Gtk.Orientation.HORIZONTAL,
-        )
-        hpane = Gtk.Paned()
-        self.vpane = Gtk.Paned(orientation=Gtk.Orientation.VERTICAL)
-        hpane.pack1(self.vpane, resize=True, shrink=False)
-        hpane.pack2(self.sidebar, resize=False, shrink=False)
-        hpane.show()
-        self.vpane.show()
-
         self.widget = self.build_widget()
         self.widget.show_all()
         self.widget.set_name("view")
-        self.vpane.pack1(self.widget, resize=True, shrink=False)
-        self.vpane.pack2(self.bottombar, resize=False, shrink=False)
-        self.vpane.show()
-        self._setup_slider_config(self.vpane, "vpane.slider-position", position=-1)
+        self.top = self.widget  # keep get_display() consistent
+        return self.widget
 
-        self.sidebar_toggled(self.sidebar.get_property("visible"))
-        self.hpane_sig = hpane.connect("draw", self.set_page_slider)
-
-        return hpane
-
-    def set_page_slider(self, widget, dummy):
-        """Setup slider.  We have the page realized at this point."""
-        widget.disconnect(self.hpane_sig)
-        # get current width of pane
-        width = widget.get_allocated_width()
-        # default will use natural size for sidebar until it gets to 400 pix
-        side_ch = self.sidebar.get_children()  # Gtk Notebook
-        try:
-            vp_ch = side_ch[0].get_children()  # Gtk Viewport child
-            ch_width = vp_ch[0].get_preferred_width()[0] + 3
-        except AttributeError:
-            ch_width = 300  # needed if no Gramplet installed
-        pos = width - min(ch_width, 400)
-        self._setup_slider_config(widget, "hpane.slider-position", position=pos)
-
-    def _setup_slider_config(self, widget, setting, position=-1):
+    def get_content_widget(self):
         """
-        Setup the slider configuration setting.
+        Return the main content widget for this view mode.
+        ``build_interface()`` must have been called first.
         """
-        self._config.register(setting, position)
-        widget.set_position(self._config.get(setting))
-        widget.connect("notify::position", self._position_changed, setting)
-
-    def _position_changed(self, widget, position, setting):
-        """
-        Called when the position property of the pane is changed.
-        """
-        self._config.set(setting, widget.get_position())
+        return self.widget
 
     def __sidebar_toggled(self, action, value):
         """
@@ -354,11 +302,10 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
 
     def set_active(self):
         """
-        Called with the PageView is set as active. If the page is "dirty",
+        Called when the PageView is set as active. If the page is "dirty",
         then we rebuild the data.
+        The shared sidebar/bottombar are activated by CategoryContainer.
         """
-        self.sidebar.set_active()
-        self.bottombar.set_active()
         self.active = True
         new_title = "%s - %s - Gramps" % (
             self.dbstate.db.get_dbname(),
@@ -372,16 +319,13 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
 
     def set_inactive(self):
         """
-        Marks page as being inactive (not currently displayed)
+        Marks page as being inactive (not currently displayed).
+        The shared sidebar/bottombar are deactivated by CategoryContainer.
         """
-        self.sidebar.set_inactive()
-        self.bottombar.set_inactive()
         self.active = False
 
     def post_create(self):
-        if self.vpane:
-            self._setup_slider_config(self.vpane, "vpane.slider-position")
-            self.vpane = None
+        pass
 
     @abstractmethod
     def build_tree(self):
@@ -542,9 +486,8 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         """
         Method called on shutdown. Data views should put code here
         that should be called when quiting the main application.
+        The shared sidebar/bottombar are saved by CategoryContainer.
         """
-        self.sidebar.on_delete()
-        self.bottombar.on_delete()
         self._config.save()
 
     def init_config(self):

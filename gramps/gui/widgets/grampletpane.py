@@ -368,7 +368,6 @@ class GuiGramplet:
         Internal constructor for GUI portion of a gramplet.
         """
         self.pane = pane
-        self.view = pane.pageview
         self.dbstate = dbstate
         self.uistate = uistate
         self.track = []
@@ -411,6 +410,16 @@ class GuiGramplet:
         self.scrolledwindow = None
         self.textview = None
         self.buffer = None
+
+    @property
+    def view(self):
+        """
+        Return the currently active PageView for this gramplet's pane.
+        Accessing this dynamically (rather than caching at construction time)
+        ensures gramplets always see the mode that is currently visible, even
+        after the category container swaps to a different view mode.
+        """
+        return self.pane.pageview
 
     def set_tooltip(self, tip):
         self.tooltips_text = tip

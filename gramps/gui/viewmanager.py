@@ -103,6 +103,7 @@ from .display import display_help, display_url
 from .configure import GrampsPreferences
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
+from .categorycontainer import CategoryContainer
 from .views.tags import Tags
 from .uimanager import ActionGroup, valid_action_name
 from gramps.gen.lib import (
@@ -212,8 +213,15 @@ class ViewManager(CLIManager):
         self.report_menu_ui_id = None
 
         self.active_page = None
-        self.pages = []
-        self.page_lookup = {}
+        self.use_simplified = config.get("interface.use-simplified-interface")
+        # Simplified: keys are cat_num.  Classic: keys are (cat_num, view_num).
+        self._active_key = None
+        self.pages = []  # List[CategoryContainer], indexed by notebook page
+        self.page_views = {}  # Dict[(cat_num, view_num), PageView]
+        self.category_containers = (
+            {}
+        )  # Dict[cat_num | (cat_num,view_num), CategoryContainer]
+        self.page_lookup = {}  # Dict[cat_num | (cat_num,view_num), notebook_page_num]
         self.views = None
         self.current_views = []  # The current view in each category
         self.view_changing = False
@@ -596,20 +604,28 @@ class ViewManager(CLIManager):
             return False
         self.goto_page(cat, None)
 
+    def _get_cat_num_from_page(self, page_num: int) -> int | None:
+        """
+        Return the category number for the given notebook page number.
+
+        :param page_num: Gtk notebook page index to look up.
+        :type page_num: int
+        :returns: Category number, or ``None`` if not found.
+        :rtype: int | None
+        """
+        for key, pnum in self.page_lookup.items():
+            if pnum == page_num:
+                return key if self.use_simplified else key[0]
+        return None
+
     def __next_view(self, action, value):
         """
         Callback that is called when the next category action is selected.  It
         selects the next category as the active category. If we reach the end,
         we wrap around to the first.
         """
-        curpage = self.notebook.get_current_page()
-        # find cat and view of the current page
-        for key in self.page_lookup:
-            if self.page_lookup[key] == curpage:
-                cat_num, view_num = key
-                break
-        # now go to next category
-        if cat_num >= len(self.current_views) - 1:
+        cat_num = self._get_cat_num_from_page(self.notebook.get_current_page())
+        if cat_num is None or cat_num >= len(self.current_views) - 1:
             self.goto_page(0, None)
         else:
             self.goto_page(cat_num + 1, None)
@@ -620,17 +636,11 @@ class ViewManager(CLIManager):
         It selects the previous category as the active category. If we reach
         the beginning of the list, we wrap around to the last.
         """
-        curpage = self.notebook.get_current_page()
-        # find cat and view of the current page
-        for key in self.page_lookup:
-            if self.page_lookup[key] == curpage:
-                cat_num, view_num = key
-                break
-        # now go to next category
-        if cat_num > 0:
-            self.goto_page(cat_num - 1, None)
-        else:
+        cat_num = self._get_cat_num_from_page(self.notebook.get_current_page())
+        if cat_num is None or cat_num == 0:
             self.goto_page(len(self.current_views) - 1, None)
+        else:
+            self.goto_page(cat_num - 1, None)
 
     def init_interface(self):
         """
@@ -919,27 +929,49 @@ class ViewManager(CLIManager):
 
     def goto_page(self, cat_num, view_num):
         """
-        Create the page if it doesn't exist and make it the current page.
+        Switch to a view mode.  Creates the CategoryContainer (notebook page)
+        and/or the PageView for that mode on first visit.
         """
         if view_num is None:
             view_num = self.current_views[cat_num]
         else:
             self.current_views[cat_num] = view_num
 
-        page_num = self.page_lookup.get((cat_num, view_num))
-        if page_num is None:
-            page_def = self.views[cat_num][view_num]
-            page_num = self.notebook.get_n_pages()
-            self.page_lookup[(cat_num, view_num)] = page_num
-            self.__create_page(page_def[0], page_def[1])
+        # Create the PageView for this mode if not yet built
+        if (cat_num, view_num) not in self.page_views:
+            self.__create_page_view(cat_num, view_num)
 
-        self.notebook.set_current_page(page_num)
-        try:
-            return self.pages[page_num]
-        except IndexError:
-            # The following is to avoid 'IndexError: list index out of range'
-            # Should solve bug 12636
-            return self.pages[0]
+        new_page_view = self.page_views[(cat_num, view_num)]
+
+        if self.use_simplified:
+            # Simplified: one notebook page per category; mode switch swaps content
+            if cat_num not in self.page_lookup:
+                self.__create_category_notebook_page(cat_num, new_page_view)
+            container = self.category_containers[cat_num]
+            page_num = self.page_lookup[cat_num]
+            # Swap the content widget to show the requested mode
+            container.set_view(new_page_view)
+            if self.notebook.get_current_page() == page_num:
+                # Already on this category's notebook page — handle mode switch
+                # directly (notebook won't emit switch-page)
+                self.__save_last_view(cat_num, view_num)
+                self.navigator.view_changed(cat_num, view_num)
+                self.__change_page(page_num, cat_num)
+            else:
+                self.notebook.set_current_page(page_num)
+        else:
+            # Classic: one notebook page per view mode
+            if (cat_num, view_num) not in self.page_lookup:
+                self.__create_viewmode_notebook_page(cat_num, view_num, new_page_view)
+            page_num = self.page_lookup[(cat_num, view_num)]
+            if self.notebook.get_current_page() == page_num:
+                self.__save_last_view(cat_num, view_num)
+                self.navigator.view_changed(cat_num, view_num)
+                self.__change_page(page_num, cat_num)
+            else:
+                self.notebook.set_current_page(page_num)
+
+        return new_page_view
 
     def get_category(self, cat_name):
         """
@@ -963,10 +995,26 @@ class ViewManager(CLIManager):
             error,
         )
 
-    def __create_page(self, pdata, page_def):
+    def __save_last_view(self, cat_num, view_num):
+        """Persist the last-used view to preferences."""
+        view_id = self.views[cat_num][view_num][0].id
+        config.set("preferences.last-view", view_id)
+        last_views = config.get("preferences.last-views")
+        if len(last_views) != len(self.views):
+            last_views = [""] * len(self.views)
+        last_views[cat_num] = view_id
+        config.set("preferences.last-views", last_views)
+        config.save()
+
+    def __create_page_view(self, cat_num, view_num):
         """
-        Create a new page and set it as the current page.
+        Instantiate the PageView for (cat_num, view_num) and register it in
+        self.page_views.  The CategoryContainer for this category must already
+        exist (or will be created by goto_page before this result is used) so
+        that sidebar/bottombar references can be set on the page.
         """
+        pdata, page_def = self.views[cat_num][view_num]
+
         try:
             page = page_def(pdata, self.dbstate, self.uistate)
         except:
@@ -976,79 +1024,204 @@ class ViewManager(CLIManager):
             traceback.print_exc()
             page = self.__create_dummy_page(pdata, traceback.format_exc())
 
+        # Determine the container key and gramplet-state name based on mode.
+        # Simplified: one container per category (shared gramplet state).
+        # Classic: one container per view mode (separate gramplet state).
+        if self.use_simplified:
+            container_key = cat_num
+            container_name = pdata.category[0]
+        else:
+            container_key = (cat_num, view_num)
+            container_name = page.ident  # preserves pre-branch per-view gramplet state
+
+        if container_key not in self.category_containers:
+            if (
+                self.use_simplified
+                and view_num != 0
+                and (cat_num, 0) not in self.page_views
+            ):
+                # In simplified mode always seed the container from the primary
+                # view (view_num=0) so defaults come from the list/tree view,
+                # not from a chart view that may return an empty bottombar.
+                self.__create_page_view(cat_num, 0)
+                container = self.category_containers[container_key]
+            else:
+                defaults = page.get_default_gramplets()
+                container = CategoryContainer(
+                    self.dbstate,
+                    self.uistate,
+                    container_name,
+                    defaults,
+                    initial_pageview=page,
+                )
+                self.category_containers[container_key] = container
+        else:
+            container = self.category_containers[container_key]
+
+        # Give the page references to the shared sidebar and bottombar
+        page.sidebar = container.sidebar
+        page.bottombar = container.bottombar
+
         try:
-            page_display = page.get_display()
+            page.build_interface()
         except:
             import traceback
 
-            print("ERROR: '%s' failed to create view" % pdata.name)
+            LOG.error("View '%s' failed to create display", pdata.name)
             traceback.print_exc()
             page = self.__create_dummy_page(pdata, traceback.format_exc())
-            page_display = page.get_display()
+            page.sidebar = container.sidebar
+            page.bottombar = container.bottombar
+            page.build_interface()
 
         page.define_actions()
         page.post()
 
-        self.pages.append(page)
+        self.page_views[(cat_num, view_num)] = page
 
-        # create icon/label for notebook tab (useful for debugging)
-        hbox = Gtk.Box()
-        image = Gtk.Image()
-        image.set_from_icon_name(page.get_stock(), Gtk.IconSize.MENU)
-        hbox.pack_start(image, False, True, 0)
-        hbox.add(Gtk.Label(label=pdata.name))
-        hbox.show_all()
-        page_num = self.notebook.append_page(page.get_display(), hbox)
-        if self.active_page:
-            self.active_page.post_create()
         if not self.file_loaded:
             self.uimanager.set_actions_visible(self.actiongroup, False)
             self.uimanager.set_actions_visible(self.readonlygroup, False)
             self.uimanager.set_actions_visible(self.undoactions, False)
             self.uimanager.set_actions_visible(self.redoactions, False)
+
         return page
+
+    def __create_category_notebook_page(self, cat_num, first_page_view):
+        """
+        Add a CategoryContainer for cat_num to the notebook (one page per
+        category).  If the container was already created by __create_page_view,
+        it is reused; otherwise a new one is created using first_page_view's
+        defaults.
+        """
+        if cat_num not in self.category_containers:
+            defaults = first_page_view.get_default_gramplets()
+            container = CategoryContainer(
+                self.dbstate,
+                self.uistate,
+                first_page_view.category,
+                defaults,
+                initial_pageview=first_page_view,
+            )
+            self.category_containers[cat_num] = container
+        else:
+            container = self.category_containers[cat_num]
+
+        # Build tab label (tabs are hidden but useful for debugging)
+        hbox = Gtk.Box()
+        image = Gtk.Image()
+        image.set_from_icon_name(first_page_view.get_stock(), Gtk.IconSize.MENU)
+        hbox.pack_start(image, False, True, 0)
+        hbox.add(Gtk.Label(label=first_page_view.get_translated_category()))
+        hbox.show_all()
+
+        top = container.get_display()
+        top.show_all()
+        self.notebook.append_page(top, hbox)
+        page_num = self.notebook.page_num(top)
+        self.page_lookup[cat_num] = page_num
+        self.pages.append(container)
+
+        return container
+
+    def __create_viewmode_notebook_page(
+        self, cat_num: int, view_num: int, page_view
+    ) -> CategoryContainer:
+        """
+        Classic mode: add a CategoryContainer for (cat_num, view_num) to the
+        notebook as its own page.  The container is reused from
+        category_containers if already created by __create_page_view.
+
+        :param cat_num: Category index.
+        :type cat_num: int
+        :param view_num: View-mode index within the category.
+        :type view_num: int
+        :param page_view: The PageView whose content will be displayed.
+        :returns: The CategoryContainer added to the notebook.
+        :rtype: :py:class:`CategoryContainer`
+        """
+        container = self.category_containers[(cat_num, view_num)]
+        container.set_view(page_view)
+
+        hbox = Gtk.Box()
+        image = Gtk.Image()
+        image.set_from_icon_name(page_view.get_stock(), Gtk.IconSize.MENU)
+        hbox.pack_start(image, False, True, 0)
+        hbox.add(Gtk.Label(label=page_view.pdata.name))
+        hbox.show_all()
+
+        top = container.get_display()
+        top.show_all()
+        self.notebook.append_page(top, hbox)
+        page_num = self.notebook.page_num(top)
+        self.page_lookup[(cat_num, view_num)] = page_num
+        self.pages.append(container)
+
+        return container
 
     def view_changed(self, notebook, page, page_num):
         """
         Called when the notebook page is changed.
+        Simplified: category switches only (within-category mode switches are
+        handled directly in goto_page).
+        Classic: every notebook page change is a view-mode switch.
         """
         if self.view_changing:
             return
         self.view_changing = True
 
-        cat_num = view_num = None
-        for key in self.page_lookup:
-            if self.page_lookup[key] == page_num:
-                cat_num, view_num = key
-                break
+        if self.use_simplified:
+            cat_num = None
+            for cat, pnum in self.page_lookup.items():
+                if pnum == page_num:
+                    cat_num = cat
+                    break
+            if cat_num is None:
+                self.view_changing = False
+                return
+            view_num = self.current_views[cat_num]
+        else:
+            cat_num = view_num = None
+            for (cat, view), pnum in self.page_lookup.items():
+                if pnum == page_num:
+                    cat_num, view_num = cat, view
+                    break
+            if cat_num is None:
+                self.view_changing = False
+                return
+            self.current_views[cat_num] = view_num
 
-        # Save last view in configuration
-        view_id = self.views[cat_num][view_num][0].id
-        config.set("preferences.last-view", view_id)
-        last_views = config.get("preferences.last-views")
-        if len(last_views) != len(self.views):
-            # If the number of categories has changed then reset the defaults
-            last_views = [""] * len(self.views)
-        last_views[cat_num] = view_id
-        config.set("preferences.last-views", last_views)
-        config.save()
-
+        self.__save_last_view(cat_num, view_num)
         self.navigator.view_changed(cat_num, view_num)
-        self.__change_page(page_num)
+        self.__change_page(page_num, cat_num)
         self.view_changing = False
 
-    def __change_page(self, page_num):
+    def __change_page(self, page_num, cat_num=None):
         """
         Perform necessary actions when a page is changed.
+        Handles both category switches (both modes) and within-category mode
+        switches (simplified mode only).
+        If cat_num is not supplied it is resolved from page_num.
         """
+        if cat_num is None:
+            cat_num = self._get_cat_num_from_page(page_num)
+
         self.__disconnect_previous_page()
 
-        # The following is to avoid 'IndexError: list index out of range'
-        # Bugs: 12304, 12429, 12623, 12695
-        try:
-            self.active_page = self.pages[page_num]
-        except IndexError:
-            self.active_page = self.pages[0]
+        view_num = self.current_views[cat_num]
+        container_key = cat_num if self.use_simplified else (cat_num, view_num)
+
+        if container_key != self._active_key:
+            if self._active_key is not None:
+                old_container = self.category_containers.get(self._active_key)
+                if old_container is not None:
+                    old_container.set_inactive()
+            self.category_containers[container_key].set_active()
+            self._active_key = container_key
+
+        container = self.category_containers[container_key]
+        self.active_page = container.current_view
+
         self.__connect_active_page(page_num)
         self.active_page.set_active()
         while Gtk.events_pending():
@@ -1067,10 +1240,12 @@ class ViewManager(CLIManager):
 
     def __delete_pages(self):
         """
-        Calls on_delete() for each view
+        Calls on_delete() for each view and category container.
         """
-        for page in self.pages:
-            page.on_delete()
+        for page_view in self.page_views.values():
+            page_view.on_delete()
+        for container in self.pages:
+            container.on_delete()
 
     def __disconnect_previous_page(self):
         """

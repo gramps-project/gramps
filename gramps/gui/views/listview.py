@@ -459,7 +459,7 @@ class ListView(NavigationView):
         To handle this, we set the self.inactive variable that we can check
         in row_change to look for this particular condition.
         """
-        if not handle or handle in self.selected_handles():
+        if not handle:
             return
 
         iter_ = self.model.get_iter_from_handle(handle)
@@ -477,8 +477,10 @@ class ListView(NavigationView):
                             )
                             self.list.expand_row(expand_path, False)
 
-            # Select active object
             path = self.model.get_path(iter_)
+            if handle in self.selected_handles():
+                return
+            # Select active object
             self.selection.unselect_all()
             self.selection.select_path(path)
             self.list.scroll_to_cell(path, None, 1, 0.5, 0)
