@@ -31,13 +31,14 @@
 # Petr Fedorov <petr.e.fedorov@yandex.ru>, 2026.
 # Stern <slava0@yandex.ru>, 2026.
 # Артур <atter192837@gmail.com>, 2026.
+# Vadim Barsukov <vadbars@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-30 15:00+0100\n"
-"PO-Revision-Date: 2026-06-08 11:01+0000\n"
-"Last-Translator: Артур <atter192837@gmail.com>\n"
+"PO-Revision-Date: 2026-06-09 16:08+0000\n"
+"Last-Translator: Vadim Barsukov <vadbars@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -25199,7 +25200,7 @@ msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
 msgstr ""
-"GEDCOM используется для переноски данных между генеалогическими программами. "
+"GEDCOM используется для переноса данных между генеалогическими программами. "
 "Большинство генеалогических программ принимает данные в формате GEDCOM."
 
 #: ../gramps/plugins/export/export.gpr.py:93
@@ -26337,7 +26338,7 @@ msgstr "Показывает заметки для выбранного доку
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:950
 msgid "Gramplet showing the selected note"
-msgstr "Gramplet, отображающий выбранную заметку"
+msgstr "Грамплет отображающий выбранную заметку"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:965
 msgid "Person Citations"
