@@ -43,6 +43,8 @@ class GenderStats:
     indicating the gender of the person.
     """
 
+    stats: dict[str, tuple[int, int, int]]
+
     def __init__(self, stats=None):
         if stats is None:
             self.stats = {}

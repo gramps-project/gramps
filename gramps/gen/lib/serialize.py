@@ -90,6 +90,11 @@ class BlobSerializer:
         return pickle.dumps(obj.serialize())
 
     @staticmethod
+    def object_to_data(obj):
+        LOG.debug("blob, object_to_data: %r", obj)
+        raise NotImplementedError
+
+    @staticmethod
     def data_to_string(data):
         LOG.debug("blob, data_to_string: %r", data)
         return pickle.dumps(data)

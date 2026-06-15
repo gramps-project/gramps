@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2025       Steve Youngs
 # Copyright (C) 2026       Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
@@ -30,7 +31,9 @@ from this class.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from collections.abc import Iterator
 import logging
+from typing import Any, Generator, Iterator
 
 # -------------------------------------------------------------------------
 #
@@ -39,8 +42,56 @@ import logging
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 from ..db.dbconst import DBLOGNAME
+from ..lib import (
+    Citation,
+    Event,
+    Family,
+    Media,
+    Note,
+    Person,
+    Place,
+    Repository,
+    Source,
+    Tag,
+    EventRef,
+)
+from ..types import (
+    AnyHandle,
+    PersonHandle,
+    EventHandle,
+    FamilyHandle,
+    PlaceHandle,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+    TagHandle,
+    PersonGrampsID,
+    EventGrampsID,
+    FamilyGrampsID,
+    PlaceGrampsID,
+    SourceGrampsID,
+    RepositoryGrampsID,
+    CitationGrampsID,
+    MediaGrampsID,
+    NoteGrampsID,
+    PersonDataDict,
+    EventDataDict,
+    FamilyDataDict,
+    PlaceDataDict,
+    SourceDataDict,
+    RepositoryDataDict,
+    CitationDataDict,
+    MediaDataDict,
+    NoteDataDict,
+    TagDataDict,
+)
 from ..lib.childref import ChildRef
 from ..lib.childreftype import ChildRefType
+from ..lib.researcher import Researcher
+from ..utils.grampslocale import GrampsLocale
+from .bookmarks import DbBookmarks
 from .exceptions import DbTransactionCancel
 from .txn import DbTxn
 
@@ -61,7 +112,9 @@ class DbReadBase:
     and must be implemented in the derived class as required.
     """
 
-    def __init__(self):
+    __feature: dict[str, Any]
+
+    def __init__(self) -> None:
         """
         Create a new DbReadBase instance.
 
@@ -71,32 +124,34 @@ class DbReadBase:
         self.basedb = self
         self.__feature = {}  # {"feature": VALUE, ...}
 
-    def get_feature(self, feature):
+    def get_feature(self, feature: str) -> Any:
         """
         Databases can implement certain features or not. The default is
         None, unless otherwise explicitly stated.
         """
         return self.__feature.get(feature, None)  # can also be explicitly None
 
-    def set_feature(self, feature, value):
+    def set_feature(self, feature: str, value: Any) -> None:
         """
         Databases can implement certain features.
         """
         self.__feature[feature] = value
 
-    def close(self):
+    def close(self) -> None:
         """
         Close the specified database.
         """
         raise NotImplementedError
 
-    def db_has_bm_changes(self):
+    def db_has_bm_changes(self) -> bool:
         """
         Return whether there were bookmark changes during the session.
         """
         raise NotImplementedError
 
-    def find_backlink_handles(self, handle, include_classes=None):
+    def find_backlink_handles(
+        self, handle: AnyHandle, include_classes: list[str] | None = None
+    ) -> Iterator[tuple[str, AnyHandle]]:
         """
         Find all objects that hold a reference to the object handle.
 
@@ -120,143 +175,143 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def find_initial_person(self):
+    def find_initial_person(self) -> Person | None:
         """
         Returns first person in the database
         """
         raise NotImplementedError
 
-    def get_child_reference_types(self):
+    def get_child_reference_types(self) -> list[str]:
         """
         Return a list of all child reference types associated with Family
         instances in the database.
         """
         raise NotImplementedError
 
-    def get_default_handle(self):
+    def get_default_handle(self) -> PersonHandle | None:
         """
         Return the default Person of the database.
         """
         raise NotImplementedError
 
-    def get_default_person(self):
+    def get_default_person(self) -> Person | None:
         """
         Return the default Person of the database.
         """
         raise NotImplementedError
 
-    def find_next_citation_gramps_id(self):
+    def find_next_citation_gramps_id(self) -> CitationGrampsID:
         """
         Return the next available Gramps ID for a Event object based off the
         event ID prefix.
         """
         raise NotImplementedError
 
-    def find_next_event_gramps_id(self):
+    def find_next_event_gramps_id(self) -> EventGrampsID:
         """
         Return the next available Gramps ID for a Event object based off the
         event ID prefix.
         """
         raise NotImplementedError
 
-    def find_next_family_gramps_id(self):
+    def find_next_family_gramps_id(self) -> FamilyGrampsID:
         """
         Return the next available Gramps ID for a Family object based off the
         family ID prefix.
         """
         raise NotImplementedError
 
-    def find_next_media_gramps_id(self):
+    def find_next_media_gramps_id(self) -> MediaGrampsID:
         """
         Return the next available Gramps ID for a Media object based
         off the media object ID prefix.
         """
         raise NotImplementedError
 
-    def find_next_note_gramps_id(self):
+    def find_next_note_gramps_id(self) -> NoteGrampsID:
         """
         Return the next available Gramps ID for a Note object based off the
         note ID prefix.
         """
         raise NotImplementedError
 
-    def find_next_person_gramps_id(self):
+    def find_next_person_gramps_id(self) -> PersonGrampsID:
         """
         Return the next available Gramps ID for a Person object based off the
         person ID prefix.
         """
         raise NotImplementedError
 
-    def find_next_place_gramps_id(self):
+    def find_next_place_gramps_id(self) -> PlaceGrampsID:
         """
         Return the next available Gramps ID for a Place object based off the
         place ID prefix.
         """
         raise NotImplementedError
 
-    def find_next_repository_gramps_id(self):
+    def find_next_repository_gramps_id(self) -> RepositoryGrampsID:
         """
         Return the next available Gramps ID for a Repository object based
         off the repository ID prefix.
         """
         raise NotImplementedError
 
-    def find_next_source_gramps_id(self):
+    def find_next_source_gramps_id(self) -> SourceGrampsID:
         """
         Return the next available Gramps ID for a Source object based off the
         source ID prefix.
         """
         raise NotImplementedError
 
-    def get_bookmarks(self):
+    def get_bookmarks(self) -> DbBookmarks:
         """
         Return the list of Person handles in the bookmarks.
         """
         raise NotImplementedError
 
-    def get_citation_bookmarks(self):
+    def get_citation_bookmarks(self) -> DbBookmarks:
         """
         Return the list of Citation handles in the bookmarks.
         """
         raise NotImplementedError
 
-    def get_event_bookmarks(self):
+    def get_event_bookmarks(self) -> DbBookmarks:
         """
         Return the list of Event handles in the bookmarks.
         """
         raise NotImplementedError
 
-    def get_family_bookmarks(self):
+    def get_family_bookmarks(self) -> DbBookmarks:
         """
         Return the list of Family handles in the bookmarks.
         """
         raise NotImplementedError
 
-    def get_media_bookmarks(self):
+    def get_media_bookmarks(self) -> DbBookmarks:
         """
         Return the list of Media handles in the bookmarks.
         """
         raise NotImplementedError
 
-    def get_note_bookmarks(self):
+    def get_note_bookmarks(self) -> DbBookmarks:
         """
         Return the list of Note handles in the bookmarks.
         """
         raise NotImplementedError
 
-    def get_place_bookmarks(self):
+    def get_place_bookmarks(self) -> DbBookmarks:
         """
         Return the list of Place handles in the bookmarks.
         """
         raise NotImplementedError
 
-    def get_repo_bookmarks(self):
+    def get_repo_bookmarks(self) -> DbBookmarks:
         """
         Return the list of Repository handles in the bookmarks.
         """
         raise NotImplementedError
 
-    def get_source_bookmarks(self):
+    def get_source_bookmarks(self) -> DbBookmarks:
         """
         Return the list of Source handles in the bookmarks.
         """
@@ -373,7 +428,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_citation_from_gramps_id(self, gramps_id):
+    def get_citation_from_gramps_id(
+        self, gramps_id: CitationGrampsID
+    ) -> Citation | None:
         """
         Find a Citation in the database from the passed Gramps ID.
 
@@ -384,7 +441,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_event_from_gramps_id(self, gramps_id):
+    def get_event_from_gramps_id(self, gramps_id: EventGrampsID) -> Event | None:
         """
         Find an Event in the database from the passed Gramps ID.
 
@@ -395,7 +452,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_family_from_gramps_id(self, gramps_id):
+    def get_family_from_gramps_id(self, gramps_id: FamilyGrampsID) -> Family | None:
         """
         Find a Family in the database from the passed Gramps ID.
 
@@ -406,7 +463,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_media_from_gramps_id(self, gramps_id):
+    def get_media_from_gramps_id(self, gramps_id: MediaGrampsID) -> Media | None:
         """
         Find a Media in the database from the passed Gramps ID.
 
@@ -417,7 +474,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_note_from_gramps_id(self, gramps_id):
+    def get_note_from_gramps_id(self, gramps_id: NoteGrampsID) -> Note | None:
         """
         Find a Note in the database from the passed Gramps ID.
 
@@ -428,7 +485,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_person_from_gramps_id(self, gramps_id):
+    def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
         """
         Find a Person in the database from the passed Gramps ID.
 
@@ -439,7 +496,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_place_from_gramps_id(self, gramps_id):
+    def get_place_from_gramps_id(self, gramps_id: PlaceGrampsID) -> Place | None:
         """
         Find a Place in the database from the passed Gramps ID.
 
@@ -450,7 +507,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_repository_from_gramps_id(self, gramps_id):
+    def get_repository_from_gramps_id(
+        self, gramps_id: RepositoryGrampsID
+    ) -> Repository | None:
         """
         Find a Repository in the database from the passed Gramps ID.
 
@@ -461,7 +520,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_source_from_gramps_id(self, gramps_id):
+    def get_source_from_gramps_id(self, gramps_id: SourceGrampsID) -> Source | None:
         """
         Find a Source in the database from the passed Gramps ID.
 
@@ -472,7 +531,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_citation_from_handle(self, handle):
+    def get_citation_from_handle(self, handle: CitationHandle) -> Citation:
         """
         Return a Citation in the database from the passed handle.
 
@@ -485,7 +544,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_event_from_handle(self, handle):
+    def get_event_from_handle(self, handle: EventHandle) -> Event:
         """
         Return an Event in the database from the passed handle.
 
@@ -498,7 +557,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_family_from_handle(self, handle):
+    def get_family_from_handle(self, handle: FamilyHandle) -> Family:
         """
         Return a Family in the database from the passed handle.
 
@@ -511,7 +570,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_media_from_handle(self, handle):
+    def get_media_from_handle(self, handle: MediaHandle) -> Media:
         """
         Return a Media in the database from the passed handle.
 
@@ -524,7 +583,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_note_from_handle(self, handle):
+    def get_note_from_handle(self, handle: NoteHandle) -> Note:
         """
         Return a Note in the database from the passed handle.
 
@@ -537,7 +596,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_person_from_handle(self, handle):
+    def get_person_from_handle(self, handle: PersonHandle) -> Person:
         """
         Return a Person in the database from the passed handle.
 
@@ -550,7 +609,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_place_from_handle(self, handle):
+    def get_place_from_handle(self, handle: PlaceHandle) -> Place:
         """
         Return a Place in the database from the passed handle.
 
@@ -563,7 +622,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_repository_from_handle(self, handle):
+    def get_repository_from_handle(self, handle: RepositoryHandle) -> Repository:
         """
         Return a Repository in the database from the passed handle.
 
@@ -576,7 +635,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_source_from_handle(self, handle):
+    def get_source_from_handle(self, handle: SourceHandle) -> Source:
         """
         Return a Source in the database from the passed handle.
 
@@ -589,7 +648,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_tag_from_handle(self, handle):
+    def get_tag_from_handle(self, handle: TagHandle) -> Tag:
         """
         Return a Tag in the database from the passed handle.
 
@@ -602,7 +661,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_citation_handles(self, sort_handles=False, locale=glocale):
+    def get_citation_handles(
+        self, sort_handles: bool = False, locale: GrampsLocale = glocale
+    ) -> list[CitationHandle]:
         """
         Return a list of database handles, one handle for each Citation in
         the database.
@@ -614,7 +675,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_event_handles(self):
+    def get_event_handles(self) -> list[EventHandle]:
         """
         Return a list of database handles, one handle for each Event in the
         database.
@@ -624,7 +685,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_family_handles(self, sort_handles=False, locale=glocale):
+    def get_family_handles(
+        self, sort_handles: bool = False, locale: GrampsLocale = glocale
+    ) -> list[FamilyHandle]:
         """
         Return a list of database handles, one handle for each Family in
         the database.
@@ -639,7 +702,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_media_handles(self, sort_handles=False, locale=glocale):
+    def get_media_handles(
+        self, sort_handles: bool = False, locale: GrampsLocale = glocale
+    ) -> list[MediaHandle]:
         """
         Return a list of database handles, one handle for each Media in
         the database.
@@ -654,7 +719,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_note_handles(self):
+    def get_note_handles(self) -> list[NoteHandle]:
         """
         Return a list of database handles, one handle for each Note in the
         database.
@@ -664,7 +729,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_person_handles(self, sort_handles=False, locale=glocale):
+    def get_person_handles(
+        self, sort_handles: bool = False, locale: GrampsLocale = glocale
+    ) -> list[PersonHandle]:
         """
         Return a list of database handles, one handle for each Person in
         the database.
@@ -679,7 +746,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_place_handles(self, sort_handles=False, locale=glocale):
+    def get_place_handles(
+        self, sort_handles: bool = False, locale: GrampsLocale = glocale
+    ) -> list[PlaceHandle]:
         """
         Return a list of database handles, one handle for each Place in
         the database.
@@ -694,7 +763,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_repository_handles(self):
+    def get_repository_handles(self) -> list[RepositoryHandle]:
         """
         Return a list of database handles, one handle for each Repository in
         the database.
@@ -704,7 +773,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_source_handles(self, sort_handles=False, locale=glocale):
+    def get_source_handles(
+        self, sort_handles: bool = False, locale: GrampsLocale = glocale
+    ) -> list[SourceHandle]:
         """
         Return a list of database handles, one handle for each Source in
         the database.
@@ -719,7 +790,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_tag_handles(self, sort_handles=False, locale=glocale):
+    def get_tag_handles(
+        self, sort_handles: bool = False, locale: GrampsLocale = glocale
+    ) -> list[TagHandle]:
         """
         Return a list of database handles, one handle for each Tag in
         the database.
@@ -734,117 +807,117 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_event_roles(self):
+    def get_event_roles(self) -> list[str]:
         """
         Return a list of all custom event role names associated with Event
         instances in the database.
         """
         raise NotImplementedError
 
-    def get_event_attribute_types(self):
+    def get_event_attribute_types(self) -> list[str]:
         """
         Return a list of all Attribute types assocated with Event instances
         in the database.
         """
         raise NotImplementedError
 
-    def get_family_attribute_types(self):
+    def get_family_attribute_types(self) -> list[str]:
         """
         Return a list of all Attribute types associated with Family instances
         in the database.
         """
         raise NotImplementedError
 
-    def get_media_attribute_types(self):
+    def get_media_attribute_types(self) -> list[str]:
         """
         Return a list of all Attribute types associated with Media and MediaRef
         instances in the database.
         """
         raise NotImplementedError
 
-    def get_person_attribute_types(self):
+    def get_person_attribute_types(self) -> list[str]:
         """
         Return a list of all Attribute types associated with Person instances
         in the database.
         """
         raise NotImplementedError
 
-    def get_source_attribute_types(self):
+    def get_source_attribute_types(self) -> list[str]:
         """
         Return a list of all Attribute types associated with Source/Citation
         instances in the database.
         """
         raise NotImplementedError
 
-    def get_event_types(self):
+    def get_event_types(self) -> list[str]:
         """
         Return a list of all event types in the database.
         """
         raise NotImplementedError
 
-    def get_family_event_types(self):
+    def get_family_event_types(self) -> list[str]:
         """
         Deprecated:  Use get_event_types
         """
         raise NotImplementedError
 
-    def get_family_relation_types(self):
+    def get_family_relation_types(self) -> list[str]:
         """
         Return a list of all relationship types associated with Family
         instances in the database.
         """
         raise NotImplementedError
 
-    def get_name_types(self):
+    def get_name_types(self) -> list[str]:
         """
         Return a list of all custom names types associated with Person
         instances in the database.
         """
         raise NotImplementedError
 
-    def get_note_types(self):
+    def get_note_types(self) -> list[str]:
         """
         Return a list of all custom note types associated with Note instances
         in the database.
         """
         raise NotImplementedError
 
-    def get_origin_types(self):
+    def get_origin_types(self) -> list[str]:
         """
         Return a list of all custom origin types associated with Person/Surname
         instances in the database.
         """
         raise NotImplementedError
 
-    def get_place_types(self):
+    def get_place_types(self) -> list[str]:
         """
         Return a list of all custom place types assocated with Place instances
         in the database.
         """
         raise NotImplementedError
 
-    def get_repository_types(self):
+    def get_repository_types(self) -> list[str]:
         """
         Return a list of all custom repository types associated with Repository
         instances in the database.
         """
         raise NotImplementedError
 
-    def get_source_media_types(self):
+    def get_source_media_types(self) -> list[str]:
         """
         Return a list of all custom source media types associated with Source
         instances in the database.
         """
         raise NotImplementedError
 
-    def get_url_types(self):
+    def get_url_types(self) -> list[str]:
         """
         Return a list of all custom url types associated with Url instances
         in the database.
         """
         raise NotImplementedError
 
-    def get_mediapath(self):
+    def get_mediapath(self) -> str | None:
         """
         Return the default media path of the database.
         """
@@ -856,139 +929,139 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_name_group_mapping(self, surname):
+    def get_name_group_mapping(self, surname: str) -> str:
         """
         Return the default grouping name for a surname.
         """
         raise NotImplementedError
 
-    def get_number_of_citations(self):
+    def get_number_of_citations(self) -> int:
         """
         Return the number of citations currently in the database.
         """
         raise NotImplementedError
 
-    def get_number_of_events(self):
+    def get_number_of_events(self) -> int:
         """
         Return the number of events currently in the database.
         """
         raise NotImplementedError
 
-    def get_number_of_families(self):
+    def get_number_of_families(self) -> int:
         """
         Return the number of families currently in the database.
         """
         raise NotImplementedError
 
-    def get_number_of_media(self):
+    def get_number_of_media(self) -> int:
         """
         Return the number of media objects currently in the database.
         """
         raise NotImplementedError
 
-    def get_number_of_notes(self):
+    def get_number_of_notes(self) -> int:
         """
         Return the number of notes currently in the database.
         """
         raise NotImplementedError
 
-    def get_number_of_people(self):
+    def get_number_of_people(self) -> int:
         """
         Return the number of people currently in the database.
         """
         raise NotImplementedError
 
-    def get_number_of_places(self):
+    def get_number_of_places(self) -> int:
         """
         Return the number of places currently in the database.
         """
         raise NotImplementedError
 
-    def get_number_of_repositories(self):
+    def get_number_of_repositories(self) -> int:
         """
         Return the number of source repositories currently in the database.
         """
         raise NotImplementedError
 
-    def get_number_of_sources(self):
+    def get_number_of_sources(self) -> int:
         """
         Return the number of sources currently in the database.
         """
         raise NotImplementedError
 
-    def get_number_of_tags(self):
+    def get_number_of_tags(self) -> int:
         """
         Return the number of tags currently in the database.
         """
         raise NotImplementedError
 
-    def get_person_event_types(self):
+    def get_person_event_types(self) -> list[str]:
         """
         Deprecated:  Use get_event_types
         """
         raise NotImplementedError
 
-    def get_raw_citation_data(self, handle):
+    def get_raw_citation_data(self, handle: CitationHandle) -> CitationDataDict:
         """
         Return raw (serialized and pickled) Citation object from handle
         """
         raise NotImplementedError
 
-    def get_raw_event_data(self, handle):
+    def get_raw_event_data(self, handle: EventHandle) -> EventDataDict:
         """
         Return raw (serialized and pickled) Event object from handle
         """
         raise NotImplementedError
 
-    def get_raw_family_data(self, handle):
+    def get_raw_family_data(self, handle: FamilyHandle) -> FamilyDataDict:
         """
         Return raw (serialized and pickled) Family object from handle
         """
         raise NotImplementedError
 
-    def get_raw_media_data(self, handle):
+    def get_raw_media_data(self, handle: MediaHandle) -> MediaDataDict:
         """
         Return raw (serialized and pickled) Media object from handle
         """
         raise NotImplementedError
 
-    def get_raw_note_data(self, handle):
+    def get_raw_note_data(self, handle: NoteHandle) -> NoteDataDict:
         """
         Return raw (serialized and pickled) Note object from handle
         """
         raise NotImplementedError
 
-    def get_raw_person_data(self, handle):
+    def get_raw_person_data(self, handle: PersonHandle) -> PersonDataDict:
         """
         Return raw (serialized and pickled) Person object from handle
         """
         raise NotImplementedError
 
-    def get_raw_place_data(self, handle):
+    def get_raw_place_data(self, handle: PlaceHandle) -> PlaceDataDict:
         """
         Return raw (serialized and pickled) Place object from handle
         """
         raise NotImplementedError
 
-    def get_raw_repository_data(self, handle):
+    def get_raw_repository_data(self, handle: RepositoryHandle) -> RepositoryDataDict:
         """
         Return raw (serialized and pickled) Repository object from handle
         """
         raise NotImplementedError
 
-    def get_raw_source_data(self, handle):
+    def get_raw_source_data(self, handle: SourceHandle) -> SourceDataDict:
         """
         Return raw (serialized and pickled) Source object from handle
         """
         raise NotImplementedError
 
-    def get_raw_tag_data(self, handle):
+    def get_raw_tag_data(self, handle: TagHandle) -> TagDataDict:
         """
         Return raw (serialized and pickled) Tag object from handle
         """
         raise NotImplementedError
 
-    def get_researcher(self):
+    def get_researcher(self) -> Researcher:
         """
         Return the Researcher instance, providing information about the owner
         of the database.
@@ -1007,7 +1080,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_tag_from_name(self, name):
+    def get_tag_from_name(self, name: str):
         """
         Find a Tag in the database from the passed Tag name.
 
@@ -1015,115 +1088,115 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def has_citation_gramps_id(self, gramps_id):
+    def has_citation_gramps_id(self, gramps_id: CitationGrampsID) -> bool:
         """
         Return True if the Gramps ID exists in the Citation table.
         """
         raise NotImplementedError
 
-    def has_event_gramps_id(self, gramps_id):
+    def has_event_gramps_id(self, gramps_id: EventGrampsID) -> bool:
         """
         Return True if the Gramps ID exists in the Event table.
         """
         raise NotImplementedError
 
-    def has_family_gramps_id(self, gramps_id):
+    def has_family_gramps_id(self, gramps_id: FamilyGrampsID) -> bool:
         """
         Return True if the Gramps ID exists in the Family table.
         """
         raise NotImplementedError
 
-    def has_media_gramps_id(self, gramps_id):
+    def has_media_gramps_id(self, gramps_id: MediaGrampsID) -> bool:
         """
         Return True if the Gramps ID exists in the Media table.
         """
         raise NotImplementedError
 
-    def has_note_gramps_id(self, gramps_id):
+    def has_note_gramps_id(self, gramps_id: NoteGrampsID) -> bool:
         """
         Return True if the Gramps ID exists in the Note table.
         """
         raise NotImplementedError
 
-    def has_person_gramps_id(self, gramps_id):
+    def has_person_gramps_id(self, gramps_id: PersonGrampsID) -> bool:
         """
         Return True if the Gramps ID exists in the Person table.
         """
         raise NotImplementedError
 
-    def has_place_gramps_id(self, gramps_id):
+    def has_place_gramps_id(self, gramps_id: PlaceGrampsID) -> bool:
         """
         Return True if the Gramps ID exists in the Place table.
         """
         raise NotImplementedError
 
-    def has_repository_gramps_id(self, gramps_id):
+    def has_repository_gramps_id(self, gramps_id: RepositoryGrampsID) -> bool:
         """
         Return True if the Gramps ID exists in the Repository table.
         """
         raise NotImplementedError
 
-    def has_source_gramps_id(self, gramps_id):
+    def has_source_gramps_id(self, gramps_id: SourceGrampsID) -> bool:
         """
         Return True if the Gramps ID exists in the Source table.
         """
         raise NotImplementedError
 
-    def has_event_handle(self, handle):
+    def has_event_handle(self, handle: EventHandle) -> bool:
         """
         Return True if the handle exists in the current Event database.
         """
         raise NotImplementedError
 
-    def has_family_handle(self, handle):
+    def has_family_handle(self, handle: FamilyHandle) -> bool:
         """
         Return True if the handle exists in the current Family database.
         """
         raise NotImplementedError
 
-    def has_media_handle(self, handle):
+    def has_media_handle(self, handle: MediaHandle) -> bool:
         """
         Return True if the handle exists in the current Mediadatabase.
         """
         raise NotImplementedError
 
-    def has_note_handle(self, handle):
+    def has_note_handle(self, handle: NoteHandle) -> bool:
         """
         Return True if the handle exists in the current Note database.
         """
         raise NotImplementedError
 
-    def has_person_handle(self, handle):
+    def has_person_handle(self, handle: PersonHandle) -> bool:
         """
         Return True if the handle exists in the current Person database.
         """
         raise NotImplementedError
 
-    def has_place_handle(self, handle):
+    def has_place_handle(self, handle: PlaceHandle) -> bool:
         """
         Return True if the handle exists in the current Place database.
         """
         raise NotImplementedError
 
-    def has_repository_handle(self, handle):
+    def has_repository_handle(self, handle: RepositoryHandle) -> bool:
         """
         Return True if the handle exists in the current Repository database.
         """
         raise NotImplementedError
 
-    def has_source_handle(self, handle):
+    def has_source_handle(self, handle: SourceHandle) -> bool:
         """
         Return True if the handle exists in the current Source database.
         """
         raise NotImplementedError
 
-    def has_citation_handle(self, handle):
+    def has_citation_handle(self, handle: CitationHandle) -> bool:
         """
         Return True if the handle exists in the current Citation database.
         """
         raise NotImplementedError
 
-    def has_tag_handle(self, handle):
+    def has_tag_handle(self, handle: TagHandle) -> bool:
         """
         Return True if the handle exists in the current Tag database.
         """
@@ -1135,127 +1208,127 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def is_open(self):
+    def is_open(self) -> bool:
         """
         Return True if the database has been opened.
         """
         raise NotImplementedError
 
-    def iter_citations(self):
+    def iter_citations(self) -> Iterator[Citation]:
         """
         Return an iterator over objects for Citations in the database
         """
         raise NotImplementedError
 
-    def iter_events(self):
+    def iter_events(self) -> Iterator[Event]:
         """
         Return an iterator over objects for Events in the database
         """
         raise NotImplementedError
 
-    def iter_families(self):
+    def iter_families(self) -> Iterator[Family]:
         """
         Return an iterator over objects for Families in the database
         """
         raise NotImplementedError
 
-    def iter_media(self):
+    def iter_media(self) -> Iterator[Media]:
         """
         Return an iterator over objects for Medias in the database
         """
         raise NotImplementedError
 
-    def iter_notes(self):
+    def iter_notes(self) -> Iterator[Note]:
         """
         Return an iterator over objects for Notes in the database
         """
         raise NotImplementedError
 
-    def iter_people(self):
+    def iter_people(self) -> Iterator[Person]:
         """
         Return an iterator over objects for Persons in the database
         """
         raise NotImplementedError
 
-    def iter_places(self):
+    def iter_places(self) -> Iterator[Place]:
         """
         Return an iterator over objects for Places in the database
         """
         raise NotImplementedError
 
-    def iter_repositories(self):
+    def iter_repositories(self) -> Iterator[Repository]:
         """
         Return an iterator over objects for Repositories in the database
         """
         raise NotImplementedError
 
-    def iter_sources(self):
+    def iter_sources(self) -> Iterator[Source]:
         """
         Return an iterator over objects for Sources in the database
         """
         raise NotImplementedError
 
-    def iter_tags(self):
+    def iter_tags(self) -> Iterator[Tag]:
         """
         Return an iterator over objects for Tags in the database
         """
         raise NotImplementedError
 
-    def iter_citation_handles(self):
+    def iter_citation_handles(self) -> Iterator[CitationHandle]:
         """
         Return an iterator over handles for Citations in the database
         """
         raise NotImplementedError
 
-    def iter_event_handles(self):
+    def iter_event_handles(self) -> Iterator[EventHandle]:
         """
         Return an iterator over handles for Events in the database
         """
         raise NotImplementedError
 
-    def iter_family_handles(self):
+    def iter_family_handles(self) -> Iterator[FamilyHandle]:
         """
         Return an iterator over handles for Families in the database
         """
         raise NotImplementedError
 
-    def iter_media_handles(self):
+    def iter_media_handles(self) -> Iterator[MediaHandle]:
         """
         Return an iterator over handles for Media in the database
         """
         raise NotImplementedError
 
-    def iter_note_handles(self):
+    def iter_note_handles(self) -> Iterator[NoteHandle]:
         """
         Return an iterator over handles for Notes in the database
         """
         raise NotImplementedError
 
-    def iter_person_handles(self):
+    def iter_person_handles(self) -> Iterator[PersonHandle]:
         """
         Return an iterator over handles for Persons in the database
         """
         raise NotImplementedError
 
-    def iter_place_handles(self):
+    def iter_place_handles(self) -> Iterator[PlaceHandle]:
         """
         Return an iterator over handles for Places in the database
         """
         raise NotImplementedError
 
-    def iter_repository_handles(self):
+    def iter_repository_handles(self) -> Iterator[RepositoryHandle]:
         """
         Return an iterator over handles for Repositories in the database
         """
         raise NotImplementedError
 
-    def iter_source_handles(self):
+    def iter_source_handles(self) -> Iterator[SourceHandle]:
         """
         Return an iterator over handles for Sources in the database
         """
         raise NotImplementedError
 
-    def iter_tag_handles(self):
+    def iter_tag_handles(self) -> Iterator[TagHandle]:
         """
         Return an iterator over handles for Tags in the database
         """
@@ -1274,7 +1347,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def report_bm_change(self):
+    def report_bm_change(self) -> None:
         """
         Add 1 to the number of bookmark changes during this session.
         """
@@ -1299,14 +1372,23 @@ class DbReadBase:
         raise NotImplementedError
 
     def set_prefixes(
-        self, person, media, family, source, citation, place, event, repository, note
-    ):
+        self,
+        person: str,
+        media: str,
+        family: str,
+        source: str,
+        citation: str,
+        place: str,
+        event: str,
+        repository: str,
+        note: str,
+    ) -> None:
         """
         Set the prefixes for the gramps ids for all gramps objects
         """
         raise NotImplementedError
 
-    def set_citation_id_prefix(self, val):
+    def set_citation_id_prefix(self, val: str) -> None:
         """
         Set the naming template for Gramps Citation ID values.
 
@@ -1316,7 +1398,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_event_id_prefix(self, val):
+    def set_event_id_prefix(self, val: str) -> None:
         """
         Set the naming template for Gramps Event ID values.
 
@@ -1326,7 +1408,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_family_id_prefix(self, val):
+    def set_family_id_prefix(self, val: str) -> None:
         """
         Set the naming template for Gramps Family ID values.
 
@@ -1336,7 +1418,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_note_id_prefix(self, val):
+    def set_note_id_prefix(self, val: str) -> None:
         """
         Set the naming template for Gramps Note ID values.
 
@@ -1346,7 +1428,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_media_id_prefix(self, val):
+    def set_media_id_prefix(self, val: str) -> None:
         """
         Set the naming template for Gramps Media ID values.
 
@@ -1356,7 +1438,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_person_id_prefix(self, val):
+    def set_person_id_prefix(self, val: str) -> None:
         """
         Set the naming template for Gramps Person ID values.
 
@@ -1366,7 +1448,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_place_id_prefix(self, val):
+    def set_place_id_prefix(self, val: str) -> None:
         """
         Set the naming template for Gramps Place ID values.
 
@@ -1376,7 +1458,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_repository_id_prefix(self, val):
+    def set_repository_id_prefix(self, val: str) -> None:
         """
         Set the naming template for Gramps Repository ID values.
 
@@ -1386,7 +1468,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_source_id_prefix(self, val):
+    def set_source_id_prefix(self, val: str) -> None:
         """
         Set the naming template for Gramps Source ID values.
 
@@ -1396,13 +1478,13 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_mediapath(self, mediapath):
+    def set_mediapath(self, mediapath: str | None) -> None:
         """
         Set the default media path for database.
         """
         raise NotImplementedError
 
-    def set_researcher(self, owner):
+    def set_researcher(self, owner: Researcher) -> None:
         """
         Set the information about the owner of the database.
         """
@@ -1420,7 +1502,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_summary(self):
+    def get_summary(self) -> dict[str, int | str]:
         """
         Returns dictionary of summary item.
         Should include, if possible:
@@ -1431,13 +1513,13 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def requires_login(self):
+    def requires_login(self) -> bool:
         """
         Returns True for backends that require a login dialog, else False.
         """
         return False
 
-    def method(self, fmt, *args):
+    def method(self, fmt: str, *args):
         """
         Convenience function to return database methods.
 
@@ -1493,7 +1575,7 @@ class DbWriteBase(DbReadBase):
     and must be implemented in the derived class as required.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Create a new DbWriteBase instance.
 
@@ -1502,7 +1584,9 @@ class DbWriteBase(DbReadBase):
         """
         DbReadBase.__init__(self)
 
-    def add_citation(self, citation, transaction, set_gid=True):
+    def add_citation(
+        self, citation: Citation, transaction: DbTxn, set_gid: bool = True
+    ) -> CitationHandle:
         """
         Add an Citation to the database, assigning internal IDs if they have
         not already been defined.
@@ -1511,7 +1595,9 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_event(self, event, transaction, set_gid=True):
+    def add_event(
+        self, event: Event, transaction: DbTxn, set_gid: bool = True
+    ) -> EventHandle:
         """
         Add an Event to the database, assigning internal IDs if they have
         not already been defined.
@@ -1520,7 +1606,9 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_family(self, family, transaction, set_gid=True):
+    def add_family(
+        self, family: Family, transaction: DbTxn, set_gid: bool = True
+    ) -> FamilyHandle:
         """
         Add a Family to the database, assigning internal IDs if they have
         not already been defined.
@@ -1529,7 +1617,9 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_media(self, media, transaction, set_gid=True):
+    def add_media(
+        self, media: Media, transaction: DbTxn, set_gid: bool = True
+    ) -> MediaHandle:
         """
         Add a Media to the database, assigning internal IDs if they have
         not already been defined.
@@ -1538,7 +1628,9 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_note(self, note, transaction, set_gid=True):
+    def add_note(
+        self, note: Note, transaction: DbTxn, set_gid: bool = True
+    ) -> NoteHandle:
         """
         Add a Note to the database, assigning internal IDs if they have
         not already been defined.
@@ -1547,7 +1639,9 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_person(self, person, transaction, set_gid=True):
+    def add_person(
+        self, person: Person, transaction: DbTxn, set_gid: bool = True
+    ) -> PersonHandle:
         """
         Add a Person to the database, assigning internal IDs if they have
         not already been defined.
@@ -1556,7 +1650,9 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_place(self, place, transaction, set_gid=True):
+    def add_place(
+        self, place: Place, transaction: DbTxn, set_gid: bool = True
+    ) -> PlaceHandle:
         """
         Add a Place to the database, assigning internal IDs if they have
         not already been defined.
@@ -1565,7 +1661,9 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_repository(self, repository, transaction, set_gid=True):
+    def add_repository(
+        self, repository: Repository, transaction: DbTxn, set_gid: bool = True
+    ) -> RepositoryHandle:
         """
         Add a Repository to the database, assigning internal IDs if they have
         not already been defined.
@@ -1574,7 +1672,9 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_source(self, source, transaction, set_gid=True):
+    def add_source(
+        self, source: Source, transaction: DbTxn, set_gid: bool = True
+    ) -> SourceHandle:
         """
         Add a Source to the database, assigning internal IDs if they have
         not already been defined.
@@ -1583,83 +1683,106 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_tag(self, tag, transaction):
+    def add_tag(self, tag: Tag, transaction: DbTxn) -> TagHandle:
         """
         Add a Tag to the database, assigning a handle if it has not already
         been defined.
         """
         raise NotImplementedError
 
-    def add_to_surname_list(self, person, batch_transaction, name):
+    def add_to_surname_list(self, person: Person, batch_transaction: bool) -> None:
         """
         Add surname from given person to list of surnames
         """
         raise NotImplementedError
 
-    def commit_citation(self, citation, transaction, change_time=None):
+    def commit_citation(
+        self, citation: Citation, transaction: DbTxn, change_time: int | None = None
+    ) -> None:
         """
         Commit the specified Event to the database, storing the changes as
         part of the transaction.
         """
         raise NotImplementedError
 
-    def commit_event(self, event, transaction, change_time=None):
+    def commit_event(
+        self, event: Event, transaction: DbTxn, change_time: int | None = None
+    ) -> None:
         """
         Commit the specified Event to the database, storing the changes as
         part of the transaction.
         """
         raise NotImplementedError
 
-    def commit_family(self, family, transaction, change_time=None):
+    def commit_family(
+        self, family: Family, transaction: DbTxn, change_time: int | None = None
+    ) -> None:
         """
         Commit the specified Family to the database, storing the changes as
         part of the transaction.
         """
         raise NotImplementedError
 
-    def commit_media(self, media, transaction, change_time=None):
+    def commit_media(
+        self, media: Media, transaction: DbTxn, change_time: int | None = None
+    ) -> None:
         """
         Commit the specified Media to the database, storing the changes
         as part of the transaction.
         """
         raise NotImplementedError
 
-    def commit_note(self, note, transaction, change_time=None):
+    def commit_note(
+        self, note, transaction: DbTxn, change_time: int | None = None
+    ) -> None:
         """
         Commit the specified Note to the database, storing the changes as part
         of the transaction.
         """
         raise NotImplementedError
 
-    def commit_person(self, person, transaction, change_time=None):
+    def commit_person(
+        self, person: Person, transaction: DbTxn, change_time: int | None = None
+    ) -> None:
         """
         Commit the specified Person to the database, storing the changes as
         part of the transaction.
         """
         raise NotImplementedError
 
-    def commit_place(self, place, transaction, change_time=None):
+    def commit_place(
+        self, place: Place, transaction: DbTxn, change_time: int | None = None
+    ) -> None:
         """
         Commit the specified Place to the database, storing the changes as
         part of the transaction.
         """
         raise NotImplementedError
 
-    def commit_repository(self, repository, transaction, change_time=None):
+    def commit_repository(
+        self,
+        repository: Repository,
+        transaction: DbTxn,
+        change_time: int | None = None,
+    ) -> None:
         """
         Commit the specified Repository to the database, storing the changes
         as part of the transaction.
         """
         raise NotImplementedError
 
-    def commit_source(self, source, transaction, change_time=None):
+    def commit_source(
+        self, source: Source, transaction: DbTxn, change_time: int | None = None
+    ) -> None:
         """
         Commit the specified Source to the database, storing the changes as
         part of the transaction.
         """
         raise NotImplementedError
 
-    def commit_tag(self, tag, transaction, change_time=None):
+    def commit_tag(
+        self, tag: Tag, transaction: DbTxn, change_time: int | None = None
+    ) -> None:
         """
         Commit the specified Tag to the database, storing the changes as
         part of the transaction.
@@ -1672,89 +1795,89 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def rebuild_secondary(self, callback):
+    def rebuild_secondary(self, callback) -> None:
         """
         Rebuild secondary indices
         """
         raise NotImplementedError
 
-    def reindex_reference_map(self, callback):
+    def reindex_reference_map(self, callback) -> None:
         """
         Reindex all primary records in the database.
         """
         raise NotImplementedError
 
-    def remove_citation(self, handle, transaction):
+    def remove_citation(self, handle: CitationHandle, transaction: DbTxn):
         """
         Remove the Event specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
-    def remove_event(self, handle, transaction):
+    def remove_event(self, handle: EventHandle, transaction: DbTxn):
         """
         Remove the Event specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
-    def remove_family(self, handle, transaction):
+    def remove_family(self, handle: FamilyHandle, transaction: DbTxn):
         """
         Remove the Family specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
-    def remove_media(self, handle, transaction):
+    def remove_media(self, handle: MediaHandle, transaction: DbTxn):
         """
         Remove the MediaPerson specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
-    def remove_note(self, handle, transaction):
+    def remove_note(self, handle: NoteHandle, transaction: DbTxn):
         """
         Remove the Note specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
-    def remove_person(self, handle, transaction):
+    def remove_person(self, handle: PersonHandle, transaction: DbTxn):
         """
         Remove the Person specified by the database handle from the database,
         preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
-    def remove_place(self, handle, transaction):
+    def remove_place(self, handle: PlaceHandle, transaction: DbTxn):
         """
         Remove the Place specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
-    def remove_repository(self, handle, transaction):
+    def remove_repository(self, handle: RepositoryHandle, transaction: DbTxn):
         """
         Remove the Repository specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
-    def remove_source(self, handle, transaction):
+    def remove_source(self, handle: SourceHandle, transaction: DbTxn):
         """
         Remove the Source specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
-    def remove_tag(self, handle, transaction):
+    def remove_tag(self, handle: TagHandle, transaction: DbTxn):
         """
         Remove the Tag specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
-    def remove_from_surname_list(self, person):
+    def remove_from_surname_list(self, person: Person):
         """
         Check whether there are persons with the same surname left in
         the database.
@@ -1764,7 +1887,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def set_default_person_handle(self, handle):
+    def set_default_person_handle(self, handle: PersonHandle | None) -> None:
         """
         Set the default Person to the passed instance.
         """
@@ -1778,7 +1901,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def transaction_begin(self, transaction):
+    def transaction_begin(self, transaction: DbTxn) -> DbTxn:
         """
         Prepare the database for the start of a new transaction.
 
@@ -1797,34 +1920,39 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def transaction_commit(self, transaction):
+    def transaction_commit(self, transaction: DbTxn) -> None:
         """
         Make the changes to the database final and add the content of the
         transaction to the undo database.
         """
         raise NotImplementedError
 
-    def transaction_abort(self, transaction):
+    def transaction_abort(self, transaction: DbTxn) -> None:
         """
         Revert the changes made to the database so far during the transaction.
         """
         raise NotImplementedError
 
-    def undo(self, update_history=True):
+    def undo(self, update_history: bool = True) -> bool:
         """
         Undo last transaction.
         """
         raise NotImplementedError
 
-    def redo(self, update_history=True):
+    def redo(self, update_history: bool = True) -> bool:
         """
         Redo last transaction.
         """
         raise NotImplementedError
 
     def add_child_to_family(
-        self, family, child, mrel=ChildRefType(), frel=ChildRefType(), trans=None
-    ):
+        self,
+        family: Family,
+        child: Person,
+        mrel: ChildRefType = ChildRefType(),
+        frel: ChildRefType = ChildRefType(),
+        trans: DbTxn | None = None,
+    ) -> None:
         """
         Adds a child to a family.
         """
@@ -1844,7 +1972,12 @@ class DbWriteBase(DbReadBase):
             self.commit_family(family, trans)
             self.commit_person(child, trans)
 
-    def remove_child_from_family(self, person_handle, family_handle, trans=None):
+    def remove_child_from_family(
+        self,
+        person_handle: PersonHandle,
+        family_handle: FamilyHandle,
+        trans: DbTxn | None = None,
+    ) -> None:
         """
         Remove a person as a child of the family, deleting the family if
         it becomes empty.
@@ -1858,7 +1991,9 @@ class DbWriteBase(DbReadBase):
             self.__remove_child_from_family(person_handle, family_handle, trans)
             trans.set_description(_("Remove child from family"))
 
-    def __remove_child_from_family(self, person_handle, family_handle, trans):
+    def __remove_child_from_family(
+        self, person_handle: PersonHandle, family_handle: FamilyHandle, trans: DbTxn
+    ) -> None:
         """
         Remove a person as a child of the family, deleting the family if
         it becomes empty; trans is compulsory.
@@ -1878,7 +2013,7 @@ class DbWriteBase(DbReadBase):
             self.commit_family(family, trans)
         self.commit_person(person, trans)
 
-    def delete_person_from_database(self, person, trans):
+    def delete_person_from_database(self, person: Person, trans: DbTxn) -> None:
         """
         Deletes a person from the database, cleaning up all associated
         references.
@@ -1930,7 +2065,9 @@ class DbWriteBase(DbReadBase):
             self.method("commit_%s", obj_type)(obj, trans)
         self.remove_person(handle, trans)
 
-    def remove_family_relationships(self, family_handle, trans=None):
+    def remove_family_relationships(
+        self, family_handle: FamilyHandle, trans: DbTxn | None = None
+    ) -> None:
         """
         Remove a family and its relationships.
         """
@@ -1941,7 +2078,9 @@ class DbWriteBase(DbReadBase):
             self.__remove_family_relationships(family_handle, trans)
             trans.set_description(_("Remove Family"))
 
-    def __remove_family_relationships(self, family_handle, trans):
+    def __remove_family_relationships(
+        self, family_handle: FamilyHandle, trans: DbTxn
+    ) -> None:
         """
         Remove a family and all that references it; trans is compulsory.
         """
@@ -1952,7 +2091,12 @@ class DbWriteBase(DbReadBase):
                 self.method("commit_%s", obj_type)(obj, trans)
         self.remove_family(family_handle, trans)
 
-    def remove_parent_from_family(self, person_handle, family_handle, trans=None):
+    def remove_parent_from_family(
+        self,
+        person_handle: PersonHandle,
+        family_handle: FamilyHandle,
+        trans: DbTxn | None = None,
+    ) -> None:
         """
         Remove a person as either the father or mother of a family,
         deleting the family if it becomes empty.
@@ -1967,7 +2111,9 @@ class DbWriteBase(DbReadBase):
             msg = self.__remove_parent_from_family(person_handle, family_handle, trans)
             trans.set_description(msg)
 
-    def __remove_parent_from_family(self, person_handle, family_handle, trans):
+    def __remove_parent_from_family(
+        self, person_handle: PersonHandle, family_handle: FamilyHandle, trans: DbTxn
+    ) -> str:
         """
         Remove a person as either the father or mother of a family,
         deleting the family if it becomes empty; trans is compulsory.
@@ -2001,7 +2147,9 @@ class DbWriteBase(DbReadBase):
         self.commit_person(person, trans)
         return msg
 
-    def marriage_from_eventref_list(self, eventref_list):
+    def marriage_from_eventref_list(
+        self, eventref_list: list[EventRef]
+    ) -> Event | None:
         """
         Get the marriage event from an eventref list.
         """
@@ -2011,7 +2159,7 @@ class DbWriteBase(DbReadBase):
                 return event
         return None
 
-    def get_total(self):
+    def get_total(self) -> int:
         """
         Get the total of primary objects.
         """
@@ -2039,7 +2187,7 @@ class DbWriteBase(DbReadBase):
             + tag_len
         )
 
-    def set_birth_death_index(self, person):
+    def set_birth_death_index(self, person: Person) -> None:
         """
         Set the birth and death indices for a person.
         """

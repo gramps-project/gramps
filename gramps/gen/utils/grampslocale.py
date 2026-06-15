@@ -822,7 +822,7 @@ class GrampsLocale:
             return string
         return key
 
-    def get_collation(self):
+    def get_collation(self) -> str:
         """
         Return the collation without any character encoding.
         """
@@ -830,7 +830,7 @@ class GrampsLocale:
             return self.collation.split(".")[0]
         return "C"
 
-    def strcoll(self, string1, string2):
+    def strcoll(self, string1: str, string2: str) -> int:
         """
         Given two localized strings, compare them and return -1 if
         string1 would sort first, 1 if string2 would, and 0 if
@@ -840,7 +840,7 @@ class GrampsLocale:
         key2 = self.sort_key(string2)
         return -1 if key1 < key2 else (1 if key1 > key2 else 0)
 
-    def get_date(self, date):
+    def get_date(self, date) -> str:
         """
         Return a string representing the date appropriate for the language being
         translated.

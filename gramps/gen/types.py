@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2025       David Straub
-# Copyright (C) 2025       Steve Youngs
+# Copyright (C) 2025-2026  Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,6 +37,12 @@ from .lib import (
     Tag,
 )
 from .lib.tableobj import TableObject
+from .lib.json_utils import DataDict
+
+AnyPrimaryObject = (
+    Person | Family | Event | Place | Source | Repository | Citation | Media | Note
+)
+AnyObject = AnyPrimaryObject | Tag
 
 PersonHandle = NewType("PersonHandle", str)
 FamilyHandle = NewType("FamilyHandle", str)
@@ -84,3 +90,26 @@ PrimaryObjectGrampsID = Union[
     NoteGrampsID,
 ]
 AnyGrampsID = PrimaryObjectGrampsID  # No Tag IDs
+
+PersonDataDict = NewType("PersonDataDict", DataDict)
+FamilyDataDict = NewType("FamilyDataDict", DataDict)
+EventDataDict = NewType("EventDataDict", DataDict)
+PlaceDataDict = NewType("PlaceDataDict", DataDict)
+SourceDataDict = NewType("SourceDataDict", DataDict)
+RepositoryDataDict = NewType("RepositoryDataDict", DataDict)
+CitationDataDict = NewType("CitationDataDict", DataDict)
+MediaDataDict = NewType("MediaDataDict", DataDict)
+NoteDataDict = NewType("NoteDataDict", DataDict)
+TagDataDict = NewType("TagDataDict", DataDict)
+PrimaryObjectDataDict = (
+    PersonDataDict
+    | FamilyDataDict
+    | EventDataDict
+    | PlaceDataDict
+    | SourceDataDict
+    | RepositoryDataDict
+    | CitationDataDict
+    | MediaDataDict
+    | NoteDataDict
+)
+AnyDataDict = PrimaryObjectDataDict | TagDataDict

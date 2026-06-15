@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
 # Copyright (C) 2016-2017 Nick Hall
+# Copyright (C) 2025      Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,10 +28,12 @@ Backend for SQLite database.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import logging
 import os
 import re
 import sqlite3
+from typing import Any
 
 # -------------------------------------------------------------------------
 #
@@ -39,6 +42,7 @@ import sqlite3
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.db.dbconst import ARRAYSIZE
+from gramps.gen.utils.grampslocale import GrampsLocale
 from gramps.plugins.db.dbapi.dbapi import DBAPI
 
 _ = glocale.translation.gettext
@@ -56,7 +60,7 @@ class SQLite(DBAPI):
     SQLite interface.
     """
 
-    def get_summary(self):
+    def get_summary(self) -> dict[str, int | str]:
         """
         Return a dictionary of information about this database backend.
         """
@@ -88,7 +92,10 @@ class Connection:
     backend for the DBAPI interface and the sqlite3 python module.
     """
 
-    def __init__(self, *args, **kwargs):
+    __connection: sqlite3.Connection
+    __collations: list[str]
+
+    def __init__(self, *args, **kwargs) -> None:
         """
         Create a new Sqlite instance.
 
@@ -109,7 +116,7 @@ class Connection:
         self.__tmap = str.maketrans("-.@=;", "_____")
         self.check_collation(glocale)
 
-    def check_collation(self, locale):
+    def check_collation(self, locale: GrampsLocale) -> str | None:
         """
         Checks that a collation exists and if not creates it.
 
@@ -125,7 +132,7 @@ class Connection:
             self.__collations.append(collation)
         return collation
 
-    def execute(self, *args, **kwargs):
+    def execute(self, *args, **kwargs) -> None:
         """
         Executes an SQL statement.
 
@@ -137,21 +144,21 @@ class Connection:
         self.log.debug(args)
         self.__cursor.execute(*args, **kwargs)
 
-    def fetchone(self):
+    def fetchone(self) -> Any:
         """
         Fetches the next row of a query result set, returning a single sequence,
         or None when no more data is available.
         """
         return self.__cursor.fetchone()
 
-    def fetchall(self):
+    def fetchall(self) -> list[Any]:
         """
         Fetches the next set of rows of a query result, returning a list. An
         empty list is returned when no more rows are available.
         """
         return self.__cursor.fetchall()
 
-    def begin(self):
+    def begin(self) -> None:
         """
         Start a transaction manually. This transactions usually persist until
         the next COMMIT or ROLLBACK command.
@@ -159,21 +166,21 @@ class Connection:
         self.log.debug("BEGIN TRANSACTION;")
         self.execute("BEGIN TRANSACTION;")
 
-    def commit(self):
+    def commit(self) -> None:
         """
         Commit the current transaction.
         """
         self.log.debug("COMMIT;")
         self.__connection.commit()
 
-    def rollback(self):
+    def rollback(self) -> None:
         """
         Roll back any changes to the database since the last call to commit().
         """
         self.log.debug("ROLLBACK;")
         self.__connection.rollback()
 
-    def table_exists(self, table):
+    def table_exists(self, table: str) -> bool:
         """
         Test whether the specified SQL database table exists.
 
@@ -189,7 +196,7 @@ class Connection:
         )
         return self.fetchone()[0] != 0
 
-    def column_exists(self, table, column):
+    def column_exists(self, table: str, column: str) -> bool:
         """
         Test whether the specified SQL column exists in the specified table.
 
@@ -207,20 +214,20 @@ class Connection:
         )
         return self.fetchone()[0] != 0
 
-    def drop_column(self, table_name, column_name):
+    def drop_column(self, table_name: str, column_name: str) -> None:
         # DROP COLUMN is available with Sqlite v 3.35.0, released 2021-03-12
         db_ver = sqlite3.sqlite_version.split(".")
         if int(db_ver[0]) == 3 and int(db_ver[1]) >= 35:
             self.execute(f"ALTER TABLE {table_name} DROP COLUMN {column_name};")
 
-    def close(self):
+    def close(self) -> None:
         """
         Close the current database.
         """
         self.log.debug("closing database...")
         self.__connection.close()
 
-    def cursor(self):
+    def cursor(self) -> Cursor:
         """
         Return a new cursor.
         """
@@ -237,18 +244,21 @@ class Cursor:
     Exposes access to a SQLite cursor as an iterator
     """
 
-    def __init__(self, connection):
+    __connection: sqlite3.Connection
+    __cursor: sqlite3.Cursor
+
+    def __init__(self, connection: sqlite3.Connection) -> None:
         self.__connection = connection
 
-    def __enter__(self):
+    def __enter__(self) -> Cursor:
         self.__cursor = self.__connection.cursor()
         self.__cursor.arraysize = ARRAYSIZE
         return self
 
-    def __exit__(self, *args, **kwargs):
+    def __exit__(self, *args, **kwargs) -> None:
         self.__cursor.close()
 
-    def execute(self, *args, **kwargs):
+    def execute(self, *args, **kwargs) -> None:
         """
         Executes an SQL statement.
 
@@ -259,7 +269,7 @@ class Cursor:
         """
         self.__cursor.execute(*args, **kwargs)
 
-    def fetchmany(self):
+    def fetchmany(self) -> list[Any]:
         """
         Fetches the next set of rows of a query result, returning a list. An
         empty list is returned when no more rows are available.
@@ -267,7 +277,7 @@ class Cursor:
         return self.__cursor.fetchmany()
 
 
-def regexp(expr, value):
+def regexp(expr: str, value) -> bool:
     """
     A user defined function that can be called from within an SQL statement.
 
