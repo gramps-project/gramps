@@ -64,6 +64,7 @@ from gramps.gen.const import URL_MANUAL_SECT1
 from ..display import display_help
 from ..managedwindow import ManagedWindow
 from ..glade import Glade
+from ..widgets.markdown_render import render_md, setup_tags
 
 LOG = logging.getLogger(".EditDate")
 _ = glocale.translation.sgettext
@@ -583,10 +584,11 @@ class EditDate(ManagedWindow):
             {
                 "title": _("Calendar"),
                 "body": _(
-                    "Choose the calendar system: Gregorian, Julian, Hebrew, "
-                    "French Republican, Persian, Islamic, or Swedish. "
+                    "Choose the calendar system: **Gregorian**, **Julian**, "
+                    "**Hebrew**, **French Republican**, **Persian**, **Islamic**, "
+                    "or **Swedish**. "
                     "The selector is disabled when the date type is "
-                    '"Free text", when "Dual dated" is active, or when '
+                    "**Free text**, when **Dual dated** is active, or when "
                     "the date contains a validation error (shown in the "
                     "status bar at the bottom of this dialog)."
                 ),
@@ -594,14 +596,14 @@ class EditDate(ManagedWindow):
             {
                 "title": _("Dual-dated dates"),
                 "body": _(
-                    'Slash dates such as "Jan 23, 1735/6" mark a historic transition '
+                    "Slash dates such as `Jan 23, 1735/6` mark a historic transition "
                     "between New Year conventions (e.g., March 25 vs. January 1). "
-                    "Enter a slash between years to create one: 1721/2, 1719/20, "
-                    "1799/800. Dual-dated dates use the Julian calendar. "
+                    "Enter a slash between years to create one: `1721/2`, `1719/20`, "
+                    "`1799/800`. Dual-dated dates use the Julian calendar. "
                     "An alternate New Year day can be added in parentheses after "
-                    'the calendar name: "Jan 20, 1750 (Julian,Mar25)" or '
-                    '"Feb 23, 1710/1 (Mar25)". Valid New Year codes: '
-                    "Jan1, Mar1, Mar25, Sep1."
+                    "the calendar name: `Jan 20, 1750 (Julian,Mar25)` or "
+                    "`Feb 23, 1710/1 (Mar25)`. Valid New Year codes: "
+                    "`Jan1`, `Mar1`, `Mar25`, `Sep1`."
                 ),
             },
             {
@@ -704,11 +706,16 @@ class EditDate(ManagedWindow):
             vbox.pack_start(lbl, False, False, 0)
 
             if "body" in topic:
-                lbl = Gtk.Label(label=topic["body"])
-                lbl.set_line_wrap(True)
-                lbl.set_xalign(0)
-                lbl.set_max_width_chars(60)
-                vbox.pack_start(lbl, False, False, 0)
+                buf = Gtk.TextBuffer()
+                setup_tags(buf)
+                links: list = []
+                render_md(topic["body"], buf, links)
+                tv = Gtk.TextView(buffer=buf)
+                tv.set_editable(False)
+                tv.set_cursor_visible(False)
+                tv.set_wrap_mode(Gtk.WrapMode.WORD)
+                tv.set_size_request(450, -1)
+                vbox.pack_start(tv, False, False, 0)
 
             if "examples" in topic:
                 store = Gtk.ListStore(str, str)
