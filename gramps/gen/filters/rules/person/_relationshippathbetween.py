@@ -38,7 +38,6 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, Dict
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -64,11 +63,11 @@ class RelationshipPathBetween(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         root1 = db.get_person_from_gramps_id(self.list[0])
         root2 = db.get_person_from_gramps_id(self.list[1])
         if root1 and root2:
-            self.init_list(root1.handle, root2.handle)
+            self.init_list(PersonHandle(root1.handle), PersonHandle(root2.handle))
 
     def reset(self):
         self.selected_handles.clear()
@@ -88,9 +87,9 @@ class RelationshipPathBetween(Rule):
     def apply_filter(
         self,
         rank: int,
-        handle: PersonHandle,
-        plist: Set[PersonHandle],
-        pmap: Dict[PersonHandle, int],
+        handle: PersonHandle | None,
+        plist: set[PersonHandle],
+        pmap: dict[PersonHandle, int],
     ):
         if not handle:
             return
@@ -98,7 +97,7 @@ class RelationshipPathBetween(Rule):
         if person is None:
             return
         plist.add(handle)
-        pmap[person.handle] = rank
+        pmap[PersonHandle(person.handle)] = rank
 
         fam_id = (
             person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
@@ -114,11 +113,11 @@ class RelationshipPathBetween(Rule):
         return person.handle in self.selected_handles
 
     def init_list(self, p1_handle: PersonHandle, p2_handle: PersonHandle):
-        firstMap: Dict[PersonHandle, int] = {}
-        firstSet: Set[PersonHandle] = set()
-        secondMap: Dict[PersonHandle, int] = {}
-        secondSet: Set[PersonHandle] = set()
-        common: List[PersonHandle] = []
+        firstMap: dict[PersonHandle, int] = {}
+        firstSet: set[PersonHandle] = set()
+        secondMap: dict[PersonHandle, int] = {}
+        secondSet: set[PersonHandle] = set()
+        common: list[PersonHandle] = []
         rank = 9999999
 
         self.apply_filter(0, p1_handle, firstSet, firstMap)
@@ -136,7 +135,7 @@ class RelationshipPathBetween(Rule):
         path2 = set([p2_handle])
 
         for person_handle in common:
-            new_map: Set[PersonHandle] = set()
+            new_map: set[PersonHandle] = set()
             self.desc_list(person_handle, new_map, True)
             path1.update(new_map.intersection(firstMap))
             path2.update(new_map.intersection(secondMap))

@@ -25,6 +25,13 @@
 Person object for Gramps.
 """
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ..types import FamilyHandle, PersonHandle
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -86,6 +93,16 @@ class Person(
     or the changes will be lost.
 
     """
+
+    # Type hints for Person-specific attributes
+    handle: "PersonHandle"
+    primary_name: Name
+    family_list: "list[FamilyHandle]"
+    parent_family_list: "list[FamilyHandle]"
+    alternate_names: list[Name]
+    person_ref_list: list[PersonRef]
+    death_ref_index: int
+    birth_ref_index: int
 
     OTHER = 3
     UNKNOWN = 2

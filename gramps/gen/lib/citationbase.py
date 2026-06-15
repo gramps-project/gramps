@@ -23,12 +23,18 @@
 CitationBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
 import logging
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ..types import CitationHandle
 
 LOG = logging.getLogger(".citation")
 
@@ -53,6 +59,9 @@ class CitationBase:
     This class, together with the Citation class, replaces the old SourceRef
     class. I.e. SourceRef = CitationBase + Citation
     """
+
+    # Type hints for CitationBase attributes
+    citation_list: "list[CitationHandle]"
 
     def __init__(self, source=None):
         """

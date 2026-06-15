@@ -55,6 +55,9 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
     Examples would be: godparent, friend, etc.
     """
 
+    # Type hints for PersonRef attributes
+    rel: str
+
     def __init__(self, source=None):
         PrivacyBase.__init__(self, source)
         CitationBase.__init__(self, source)

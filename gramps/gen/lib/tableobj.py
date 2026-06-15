@@ -57,6 +57,10 @@ class TableObject(BaseObject):
     It is the base class for the BasicPrimaryObject class and Tag class.
     """
 
+    # Type hints for TableObject attributes
+    handle: str
+    change: int
+
     def __init__(self, source=None):
         """
         Initialize a TableObject.

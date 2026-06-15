@@ -22,6 +22,8 @@
 MediaBase class for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
@@ -40,6 +42,9 @@ class MediaBase:
     """
     Base class for storing media references.
     """
+
+    # Type hints for MediaBase attributes
+    media_list: list[MediaRef]
 
     def __init__(self, source=None):
         """

@@ -57,5 +57,7 @@ class HasSourceIdOf(HasGrampsId):
     category = _("Source filters")
 
     def apply_to_one(self, dbase: Database, citation: Citation) -> bool:  # type: ignore[override]
+        if not citation.source_handle:
+            return False
         source = dbase.get_source_from_handle(citation.source_handle)
         return HasGrampsId.apply_to_one(self, dbase, source)  # type: ignore[override]

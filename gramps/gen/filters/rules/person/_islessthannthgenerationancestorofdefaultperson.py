@@ -38,7 +38,6 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -63,10 +62,10 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         p: Person = db.get_default_person()
         if p:
-            self.init_ancestor_list(p.handle, 1)
+            self.init_ancestor_list(PersonHandle(p.handle), 1)
 
     def init_ancestor_list(self, handle: PersonHandle, gen: int):
         if not handle or handle in self.selected_handles:

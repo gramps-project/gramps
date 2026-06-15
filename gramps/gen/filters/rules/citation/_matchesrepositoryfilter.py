@@ -75,6 +75,8 @@ class MatchesRepositoryFilter(MatchesFilterBase):
             return False
 
         source_handle = object.source_handle
+        if not source_handle:
+            return False
         source = db.get_source_from_handle(source_handle)
         repolist = [x.ref for x in source.reporef_list]
         for repohandle in repolist:
