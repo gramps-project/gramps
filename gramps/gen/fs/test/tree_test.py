@@ -219,9 +219,10 @@ class TestAddPersons(unittest.TestCase):
                 raise RuntimeError("network failure")
             return (fsid, mock_response, {"persons": [{"id": fsid}]})
 
-        with patch.object(self.tree, "_fetch_raw", side_effect=fake_fetch_raw):
-            with patch("gramps.gen.fs.tree.deserialize.deserialize_json"):
-                self.tree.add_persons(["FS-030", "FS-031"])
+        with patch("gramps.gen.fs.tree.LOG"):
+            with patch.object(self.tree, "_fetch_raw", side_effect=fake_fetch_raw):
+                with patch("gramps.gen.fs.tree.deserialize.deserialize_json"):
+                    self.tree.add_persons(["FS-030", "FS-031"])
 
         # FS-030 succeeded and should be in _persons
         self.assertIn("FS-030", self.tree._persons)
