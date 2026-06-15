@@ -39,9 +39,9 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -57,7 +57,7 @@ class IsBookmarked(Rule):
     description = _("Matches the people on the bookmark list")
 
     def prepare(self, db: Database, user):
-        self.selected_handles: Set[str] = set(list(db.get_bookmarks().get()))
+        self.selected_handles: set[PersonHandle] = set(list(db.get_bookmarks().get()))
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles

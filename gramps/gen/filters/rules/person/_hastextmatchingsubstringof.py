@@ -43,12 +43,13 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
 from ....types import (
     PersonHandle,
     EventHandle,
+    SourceHandle,
+    RepositoryHandle,
     PlaceHandle,
     MediaHandle,
     FamilyHandle,
@@ -69,13 +70,13 @@ class HasTextMatchingSubstringOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.person_map: Set[str] = set()
-        self.event_map: Set[str] = set()
-        self.source_map: Set[str] = set()
-        self.repo_map: Set[str] = set()
-        self.family_map: Set[str] = set()
-        self.place_map: Set[str] = set()
-        self.media_map: Set[str] = set()
+        self.person_map: set[PersonHandle] = set()
+        self.event_map: set[EventHandle] = set()
+        self.source_map: set[SourceHandle] = set()
+        self.repo_map: set[RepositoryHandle] = set()
+        self.family_map: set[FamilyHandle] = set()
+        self.place_map: set[PlaceHandle] = set()
+        self.media_map: set[MediaHandle] = set()
         try:
             if int(self.list[1]):
                 self.case_sensitive = True

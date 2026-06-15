@@ -57,7 +57,7 @@ from .optimizer import Optimizer
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import cast, Dict, List, Literal, Set, Tuple
+from typing import cast, Literal
 from ..db import Database
 from ..types import PrimaryObjectHandle
 
@@ -169,7 +169,7 @@ class GenericFilter:
     def apply_logical_op_to_all(
         self,
         db,
-        possible_handles: Set[PrimaryObjectHandle],
+        possible_handles: set[PrimaryObjectHandle],
         apply_logical_op,
         user=None,
     ):
@@ -246,11 +246,11 @@ class GenericFilter:
     def apply(
         self,
         db,
-        id_list: List[PrimaryObjectHandle | Tuple] | None = None,
+        id_list: list[PrimaryObjectHandle | tuple] | None = None,
         tupleind: int | None = None,
         user=None,
         tree: bool = False,
-    ) -> List[PrimaryObjectHandle | Tuple]:
+    ) -> list[PrimaryObjectHandle | tuple]:
         """
         Apply the filter using db.
 
@@ -294,18 +294,18 @@ class GenericFilter:
         start_time = time.time()
 
         # build the starting set of possible_handles to be filtered
-        possible_handles: Set[PrimaryObjectHandle]
+        possible_handles: set[PrimaryObjectHandle]
         if id_list is not None:
             if tupleind is not None:
                 # construct a dict from handle to corresponding tuple
                 # this is used to efficiently transform final_list from a list of
                 # handles to a list of tuples
-                handle_tuple: Dict[PrimaryObjectHandle, Tuple] = {
-                    data[tupleind]: data for data in cast(List[Tuple], id_list)
+                handle_tuple: dict[PrimaryObjectHandle, tuple] = {
+                    data[tupleind]: data for data in cast(list[tuple], id_list)
                 }
                 possible_handles = set(handle_tuple.keys())
             else:
-                possible_handles = set(cast(List[PrimaryObjectHandle], id_list))
+                possible_handles = set(cast(list[PrimaryObjectHandle], id_list))
         elif tree:
             tree_handles = [handle for handle, obj in self.get_tree_cursor(db)]
             possible_handles = set(tree_handles)

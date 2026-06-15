@@ -38,9 +38,9 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -62,7 +62,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: set[PersonHandle] = set()
         try:
             root_person = db._get_raw_person_from_id_data(self.list[0])
             self.init_list(root_person, 0)

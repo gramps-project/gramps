@@ -50,7 +50,7 @@ LOG = logging.getLogger(".")
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Any, List
+from typing import Any
 from ...db import Database
 
 

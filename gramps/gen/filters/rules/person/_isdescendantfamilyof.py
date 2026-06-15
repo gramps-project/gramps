@@ -26,10 +26,6 @@ from __future__ import annotations
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
-try:
-    set()
-except NameError:
-    from sets import Set as set
 
 # -------------------------------------------------------------------------
 #
@@ -43,7 +39,6 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -68,7 +63,7 @@ class IsDescendantFamilyOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         self.root_person = db.get_person_from_gramps_id(self.list[0])
         self.add_matches(self.root_person)
         try:
@@ -92,7 +87,7 @@ class IsDescendantFamilyOf(Rule):
             return
 
         # Add self
-        queue: List[Person] = [person]
+        queue: list[Person] = [person]
 
         while queue:
             person = queue.pop(0)

@@ -30,7 +30,7 @@ import logging
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, TYPE_CHECKING, Tuple
+from typing import TYPE_CHECKING
 from .rules import Rule
 
 if TYPE_CHECKING:
@@ -46,7 +46,7 @@ class Optimizer:
 
     def compute_potential_handles_for_filter(
         self, filter: GenericFilter
-    ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
+    ) -> tuple[set[PrimaryObjectHandle] | None, set[PrimaryObjectHandle] | None]:
         if len(filter.flist) == 0:
             return (None, None)
 
@@ -74,7 +74,7 @@ class Optimizer:
     def compute_potential_handles_for_rule(
         self,
         rule: Rule,
-    ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
+    ) -> tuple[set[PrimaryObjectHandle] | None, set[PrimaryObjectHandle] | None]:
         """
         Find the the handles for a particular rule.
         """

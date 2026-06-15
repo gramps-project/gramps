@@ -45,7 +45,7 @@ _ = glocale.translation.gettext
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Any, Union
+from typing import Any
 from ...db import Database
 
 
@@ -67,7 +67,7 @@ class MatchesFilterBase(Rule):
     name = "Objects matching the <filter>"
     description = "Matches objects matched by the specified filter name"
     category = _("General filters")
-    namespace: Union[str, None] = None
+    namespace: str | None = None
 
     def prepare(self, db: Database, user):
         if gramps.gen.filters.CustomFilters:

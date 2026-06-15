@@ -39,9 +39,9 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -63,7 +63,7 @@ class IsLessThanNthGenerationDescendantOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: set[PersonHandle] = set()
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
             self.init_list(root_person, 0)

@@ -39,9 +39,9 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -60,7 +60,7 @@ class IsAncestorOf(Rule):
     def prepare(self, db: Database, user):
         """Assume that if 'Inclusive' not defined, assume inclusive"""
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: set[PersonHandle] = set()
         try:
             first = False if int(self.list[1]) else True
         except IndexError:

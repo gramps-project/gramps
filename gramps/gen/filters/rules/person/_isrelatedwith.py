@@ -39,9 +39,9 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -64,7 +64,7 @@ class IsRelatedWith(Rule):
         """
         self.db = db
 
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: set[PersonHandle] = set()
         self.add_relative(db.get_person_from_gramps_id(self.list[0]))
 
     def reset(self):
@@ -78,7 +78,7 @@ class IsRelatedWith(Rule):
         if not start:
             return
 
-        queue: List[Person] = [start]
+        queue: list[Person] = [start]
 
         while queue:
             person = queue.pop()

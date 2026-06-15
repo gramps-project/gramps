@@ -38,7 +38,6 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, Tuple
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -63,7 +62,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: set[PersonHandle] = set()
         person = db.get_person_from_gramps_id(self.list[0])
         if person:
             root_handle = person.handle
@@ -71,7 +70,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
                 self.init_ancestor_list(root_handle)
 
     def init_ancestor_list(self, root_handle: PersonHandle):
-        queue: List[Tuple[PersonHandle, int]] = [
+        queue: list[tuple[PersonHandle, int]] = [
             (root_handle, 1)
         ]  # generation 1 is root
         while queue:

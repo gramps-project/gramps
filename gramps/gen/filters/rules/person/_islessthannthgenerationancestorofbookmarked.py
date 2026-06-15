@@ -43,7 +43,6 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
@@ -69,10 +68,10 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        bookmarks: List[str] = db.get_bookmarks().get()
-        self.selected_handles: Set[PersonHandle] = set()
+        bookmarks: list[PersonHandle] = db.get_bookmarks().get()
+        self.selected_handles: set[PersonHandle] = set()
         if len(bookmarks) != 0:
-            self.bookmarks: Set[PersonHandle] = set(bookmarks)
+            self.bookmarks: set[PersonHandle] = set(bookmarks)
             for self.bookmarkhandle in self.bookmarks:
                 self.init_ancestor_list(self.bookmarkhandle, 1)
 

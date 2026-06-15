@@ -38,9 +38,9 @@ from .. import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
 
 
 # -------------------------------------------------------------------------
@@ -56,7 +56,7 @@ class IsDefaultPerson(Rule):
     description = _("Matches the Home Person")
 
     def prepare(self, db: Database, user):
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: set[PersonHandle] = set()
         p: Person = db.get_default_person()
         if p:
             self.selected_handles.add(p.handle)

@@ -39,7 +39,6 @@ from . import Rule
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
 from ...types import PrimaryObjectHandle, PrimaryObject
 from ...db import Database
 
@@ -56,7 +55,7 @@ class HasGrampsId(Rule):
     name = "Object with <Id>"
     description = "Matches objects with a specified Gramps ID"
     category = _("General filters")
-    selected_handles: Set[PrimaryObjectHandle] = set([])
+    selected_handles: set[PrimaryObjectHandle] = set()
 
     def apply_to_one(self, db: Database, obj: PrimaryObject) -> bool:
         """
