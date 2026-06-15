@@ -584,28 +584,30 @@ class EditDate(ManagedWindow):
         return [
             {
                 "title": _("Calendar"),
-                "body": _(
-                    "Choose the calendar system: **Gregorian**, **Julian**, "
-                    "**Hebrew**, **French Republican**, **Persian**, **Islamic**, "
-                    "or **Swedish**. "
-                    "The selector is disabled when the date type is "
-                    "**Free text**, when **Dual dated** is active, or when "
-                    "the date contains a validation error (shown in the "
-                    "status bar at the bottom of this dialog)."
-                ),
+                # fmt: off
+                # Translators: this string may contain markdown formatting; preserve them
+                "body": _("Choose the calendar system: **Gregorian**, **Julian**, "
+                          "**Hebrew**, **French Republican**, **Persian**, **Islamic**, "
+                          "or **Swedish**. "
+                          "The selector is disabled when the date type is "
+                          "**Free text**, when **Dual dated** is active, or when "
+                          "the date contains a validation error (shown in the "
+                          "status bar at the bottom of this dialog)."),
+                # fmt: on
             },
             {
                 "title": _("Dual-dated dates"),
-                "body": _(
-                    "Slash dates such as `Jan 23, 1735/6` mark a historic transition "
-                    "between New Year conventions (e.g., March 25 vs. January 1). "
-                    "Enter a slash between years to create one: `1721/2`, `1719/20`, "
-                    "`1799/800`. Dual-dated dates use the Julian calendar. "
-                    "An alternate New Year day can be added in parentheses after "
-                    "the calendar name: `Jan 20, 1750 (Julian,Mar25)` or "
-                    "`Feb 23, 1710/1 (Mar25)`. Valid New Year codes: "
-                    "`Jan1`, `Mar1`, `Mar25`, `Sep1`."
-                ),
+                # fmt: off
+                # Translators: this string may contain markdown formatting; preserve them
+                "body": _("Slash dates such as `Jan 23, 1735/6` mark a historic transition "
+                          "between New Year conventions (e.g., March 25 vs. January 1). "
+                          "Enter a slash between years to create one: `1721/2`, `1719/20`, "
+                          "`1799/800`. Dual-dated dates use the Julian calendar. "
+                          "An alternate New Year day can be added in parentheses after "
+                          "the calendar name: `Jan 20, 1750 (Julian,Mar25)` or "
+                          "`Feb 23, 1710/1 (Mar25)`. Valid New Year codes: "
+                          "`Jan1`, `Mar1`, `Mar25`, `Sep1`."),
+                # fmt: on
             },
             {
                 "title": _("Date entry syntax for this locale"),
