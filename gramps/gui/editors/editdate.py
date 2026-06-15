@@ -578,7 +578,8 @@ class EditDate(ManagedWindow):
             "<<<switch_calendar: {0} changed, {1} -> {2}".format(obj, old_cal, new_cal)
         )
 
-    def get_help_topics(self) -> list[dict]:
+    @classmethod
+    def get_help_topics(cls) -> list[dict]:
         """Return help topics describing date entry syntax for this locale."""
         return [
             {
@@ -608,11 +609,12 @@ class EditDate(ManagedWindow):
             },
             {
                 "title": _("Date entry syntax for this locale"),
-                "examples": self._build_date_examples(),
+                "examples": cls._build_date_examples(),
             },
         ]
 
-    def _build_date_examples(self) -> list[tuple[str, str]]:
+    @staticmethod
+    def _build_date_examples() -> list[tuple[str, str]]:
         """Build list of (description, example) pairs for the current locale displayer."""
 
         def make(

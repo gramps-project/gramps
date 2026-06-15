@@ -551,7 +551,8 @@ class ManagedWindow:
     def build_window_key(self, obj):
         return id(obj)
 
-    def get_help_topics(self) -> list[dict]:
+    @classmethod
+    def get_help_topics(cls) -> list[dict]:
         """
         Return help topics for this window.
 
@@ -560,6 +561,8 @@ class ManagedWindow:
         - ``"examples"``: a list of ``(label, value)`` string pairs
 
         Override in subclasses to provide window-specific help content.
+        This is a classmethod so topics can be indexed without instantiating
+        the window.
         """
         return []
 
