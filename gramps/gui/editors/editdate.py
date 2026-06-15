@@ -585,7 +585,7 @@ class EditDate(ManagedWindow):
             {
                 "title": _("Calendar"),
                 # fmt: off
-                # Translators: this string may contain markdown formatting; preserve them
+                # Translators: this string may contain markdown formatting; preserve it
                 "body": _("Choose the calendar system: **Gregorian**, **Julian**, "
                           "**Hebrew**, **French Republican**, **Persian**, **Islamic**, "
                           "or **Swedish**. "
@@ -598,7 +598,7 @@ class EditDate(ManagedWindow):
             {
                 "title": _("Dual-dated dates"),
                 # fmt: off
-                # Translators: this string may contain markdown formatting; preserve them
+                # Translators: this string may contain markdown formatting; preserve it
                 "body": _("Slash dates such as `Jan 23, 1735/6` mark a historic transition "
                           "between New Year conventions (e.g., March 25 vs. January 1). "
                           "Enter a slash between years to create one: `1721/2`, `1719/20`, "
