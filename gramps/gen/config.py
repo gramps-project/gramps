@@ -8,6 +8,7 @@
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2015-      Serge Noiraud
 # Copyright (C) 2026       Gabriel Rios
+# Copyright (C) 2026       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -274,6 +275,9 @@ register("interface.toolbar-preference", True)
 register("interface.toolbar-reports", True)
 register("interface.toolbar-tools", True)
 register("interface.view", True)
+register("interface.side-panel", False)
+register("interface.side-panel-page", "")
+register("interface.side-panel-width", -1)
 register("interface.surname-box-height", 150)
 register("interface.treemodel-cache-size", 1000)
 register("interface.note-preview-length", 80)

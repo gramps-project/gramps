@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2026       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -96,6 +97,7 @@ DATABASE = 12
 RULE = 13
 THUMBNAILER = 14
 CITE = 15
+SIDEPANEL = 16
 PTYPE = [
     REPORT,
     QUICKREPORT,
@@ -113,6 +115,7 @@ PTYPE = [
     RULE,
     THUMBNAILER,
     CITE,
+    SIDEPANEL,
 ]
 PTYPE_STR = {
     REPORT: _("Report"),
@@ -131,6 +134,7 @@ PTYPE_STR = {
     RULE: _("Rule"),
     THUMBNAILER: _("Thumbnailer"),
     CITE: _("Citation formatter"),
+    SIDEPANEL: _("Side panel"),
 }
 
 # possible report categories
@@ -536,6 +540,9 @@ class PluginData:
         self._namespace = None
         # THUMBNAILER attr
         self._thumbnailer = None
+        # SIDEPANEL attr
+        self._sidepanelclass = None
+        self._panel_label = ""
 
     @property
     def id(self):
@@ -1152,9 +1159,9 @@ class PluginData:
 
     @order.setter
     def order(self, order):
-        if self._ptype not in [VIEW, SIDEBAR, THUMBNAILER]:
+        if self._ptype not in [VIEW, SIDEBAR, THUMBNAILER, SIDEPANEL]:
             raise ValueError(
-                "order may only be set for VIEW/SIDEBAR/THUMBNAILER plugins"
+                "order may only be set for VIEW/SIDEBAR/THUMBNAILER/SIDEPANEL plugins"
             )
         self._order = order
 
@@ -1232,6 +1239,27 @@ class PluginData:
             raise ValueError("thumbnailer may only be set for THUMBNAILER plugins")
         self._thumbnailer = data
 
+    # SIDEPANEL attributes
+    @property
+    def sidepanelclass(self):
+        return self._sidepanelclass
+
+    @sidepanelclass.setter
+    def sidepanelclass(self, sidepanelclass):
+        if self._ptype != SIDEPANEL:
+            raise ValueError("sidepanelclass may only be set for SIDEPANEL plugins")
+        self._sidepanelclass = sidepanelclass
+
+    @property
+    def panel_label(self):
+        return self._panel_label
+
+    @panel_label.setter
+    def panel_label(self, panel_label):
+        if self._ptype != SIDEPANEL:
+            raise ValueError("panel_label may only be set for SIDEPANEL plugins")
+        self._panel_label = panel_label
+
 
 def newplugin():
     """
@@ -1298,6 +1326,7 @@ def make_environment(**kwargs):
         "SIDEBAR": SIDEBAR,
         "THUMBNAILER": THUMBNAILER,
         "CITE": CITE,
+        "SIDEPANEL": SIDEPANEL,
         "CATEGORY_TEXT": CATEGORY_TEXT,
         "CATEGORY_DRAW": CATEGORY_DRAW,
         "CATEGORY_CODE": CATEGORY_CODE,
@@ -1656,6 +1685,12 @@ class PluginRegister:
         Return a list of :class:`PluginData` that are of type CITE
         """
         return self.type_plugins(CITE)
+
+    def side_panel_plugins(self):
+        """
+        Return a list of :class:`PluginData` that are of type SIDEPANEL
+        """
+        return self.type_plugins(SIDEPANEL)
 
     def filter_load_on_reg(self):
         """

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2005  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2026       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -204,6 +205,14 @@ class GuiPluginManager(Callback):
         return [
             plg
             for plg in self.basemgr.get_reg_sidebars()
+            if plg.id not in self.__hidden_plugins
+        ]
+
+    def get_reg_side_panels(self):
+        """Return list of non hidden registered side panels"""
+        return [
+            plg
+            for plg in self.basemgr.get_reg_side_panels()
             if plg.id not in self.__hidden_plugins
         ]
 

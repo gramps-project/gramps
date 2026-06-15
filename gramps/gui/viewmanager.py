@@ -8,6 +8,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Gary Burton
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2026       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -103,6 +104,7 @@ from .display import display_help, display_url
 from .configure import GrampsPreferences
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
+from .sidepanel import SidePanelManager
 from .views.tags import Tags
 from .uimanager import ActionGroup, valid_action_name
 from gramps.gen.lib import (
@@ -224,6 +226,7 @@ class ViewManager(CLIManager):
         self.show_navigator = config.get("interface.view")
         self.show_toolbar = config.get("interface.toolbar-on")
         self.fullscreen = config.get("interface.fullscreen")
+        self.show_side_panel = config.get("interface.side-panel")
 
         self.__build_main_window()  # sets self.uistate
         if self.user is None:
@@ -332,7 +335,11 @@ class ViewManager(CLIManager):
         self.__init_lists()
         self.__build_ui_manager()
 
-        self.hpane.add2(self.notebook)
+        self.side_panel_manager = SidePanelManager(self)
+        self.right_hpane = Gtk.Paned()
+        self.right_hpane.pack1(self.notebook, True, True)
+        self.hpane.add2(self.right_hpane)
+        self.right_hpane.show()
         toolbar = self.uimanager.get_widget("ToolBar")
         toolbar.show_all()
         self.statusbar = Statusbar()
@@ -423,6 +430,18 @@ class ViewManager(CLIManager):
         else:
             self.ebox.hide()
 
+    def __setup_side_panel(self):
+        """
+        Show or hide the side panel based on the current setting.
+        Only has effect if plugins were actually loaded.
+        """
+        child = self.right_hpane.get_child2()
+        if child is not None:
+            if self.show_side_panel:
+                child.show()
+            else:
+                child.hide()
+
     def __connect_signals(self):
         """
         Connects the signals needed
@@ -447,6 +466,7 @@ class ViewManager(CLIManager):
             # ('quit', self.quit, "<PRIMARY>q"),
             # ('ViewMenu', None, _('_View')),
             ("Navigator", self.navigator_toggle, "<PRIMARY>m", self.show_navigator),
+            ("SidePanel", self.side_panel_toggle, "", self.show_side_panel),
             ("Toolbar", self.toolbar_toggle, "", self.show_toolbar),
             ("Fullscreen", self.fullscreen_toggle, "F11", self.fullscreen),
             # ('EditMenu', None, _('_Edit')),
@@ -641,6 +661,48 @@ class ViewManager(CLIManager):
         self.current_views = defaults[2]
 
         self.navigator.load_plugins(self.dbstate, self.uistate)
+
+        self.side_panel_manager.load_plugins(self.dbstate, self.uistate)
+        if self.side_panel_manager.has_plugins():
+            if "SidePanel" not in self.uimanager.show_groups:
+                self.uimanager.show_groups.append("SidePanel")
+            panel_widget = self.side_panel_manager.get_top()
+            self.right_hpane.add2(panel_widget)
+            panel_widget.show()
+
+            # Restore saved sash position; default to 70/30 split on first use.
+            # Uses a one-shot size-allocate handler so the position is set after
+            # the pane has a real allocation width.
+            handler_id = None
+
+            def _set_panel_pos(pane, allocation):
+                nonlocal handler_id
+                saved = config.get("interface.side-panel-width")
+                if saved >= 0:
+                    pane.set_position(saved)
+                else:
+                    pane.set_position(int(allocation.width * 0.70))
+                pane.disconnect(handler_id)
+
+            handler_id = self.right_hpane.connect("size-allocate", _set_panel_pos)
+
+            _last_saved_pos = [-1]
+
+            def _save_panel_width(pane, _pspec):
+                pos = pane.get_position()
+                if pos != _last_saved_pos[0]:
+                    _last_saved_pos[0] = pos
+                    config.set("interface.side-panel-width", pos)
+                    config.save()
+
+            self.right_hpane.connect("notify::position", _save_panel_width)
+            self.right_hpane.connect(
+                "destroy", lambda pane: _save_panel_width(pane, None)
+            )
+        else:
+            if "SidePanel" in self.uimanager.show_groups:
+                self.uimanager.show_groups.remove("SidePanel")
+        self.__setup_side_panel()
 
         self.goto_page(defaults[0], defaults[1])
 
@@ -882,6 +944,17 @@ class ViewManager(CLIManager):
             self.show_navigator = False
         config.save()
 
+    def side_panel_toggle(self, action, value):
+        """
+        Show or hide the side panel based on the value of the toggle button.
+        Save the results in the configuration settings.
+        """
+        action.set_state(value)
+        self.show_side_panel = value.get_boolean()
+        config.set("interface.side-panel", self.show_side_panel)
+        config.save()
+        self.__setup_side_panel()
+
     def toolbar_toggle(self, action, value):
         """
         Set the toolbar based on the value of the toggle button. Save the
@@ -1034,6 +1107,7 @@ class ViewManager(CLIManager):
         config.save()
 
         self.navigator.view_changed(cat_num, view_num)
+        self.side_panel_manager.view_changed(cat_num, view_num)
         self.__change_page(page_num)
         self.view_changing = False
 

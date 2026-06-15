@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009 Benny Malengier
 # Copyright (C) 2018 Paul Culley
+# Copyright (C) 2026 Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -215,6 +216,10 @@ UIDEFAULT = (
         </item>
         <placeholder id='Bars'>
         </placeholder>
+        <item groups="SidePanel">
+          <attribute name="action">win.SidePanel</attribute>
+          <attribute name="label" translatable="yes">_Side Panel</attribute>
+        </item>
         <item>
           <attribute name="action">win.Fullscreen</attribute>
           <attribute name="label" translatable="yes">F_ull Screen</attribute>
