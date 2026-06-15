@@ -4,13 +4,14 @@
 # Vlad-Mihai Chirculete <mihai.chirculete@tutanota.com>, 2025.
 # mircea s <mircea.salajan@gmail.com>, 2025.
 # Stefan Zaharia <stefanzah2011@gmail.com>, 2025.
+# Ștefan Zaharia <sz475@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-30 15:00+0100\n"
-"PO-Revision-Date: 2025-09-28 12:02+0000\n"
-"Last-Translator: Stefan Zaharia <stefanzah2011@gmail.com>\n"
+"PO-Revision-Date: 2026-06-15 20:46+0000\n"
+"Last-Translator: Ștefan Zaharia <sz475@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ro/>\n"
 "Language: ro\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -72,7 +73,7 @@ msgstr "Japonia"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "Sărbători Evreiești"
 
 #: ../data/holidays.xml:359
 #, fuzzy
@@ -237,9 +238,8 @@ msgid "Gramps"
 msgstr "Rapoarte Grafice"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:3
-#, fuzzy
 msgid "Genealogy System"
-msgstr "ID intern GRAMPS"
+msgstr "Sistem de genealogie"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:5
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:5
@@ -272,9 +272,8 @@ msgid ""
 msgstr ""
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:13
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "ID intern GRAMPS"
+msgstr "Echipa de dezvoltare Gramps"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:30
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:286
@@ -308,9 +307,8 @@ msgstr "Persoane"
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
 #: ../gramps/plugins/view/relview.py:147 ../gramps/plugins/view/view.gpr.py:118
 #: ../gramps/plugins/view/view.gpr.py:126
-#, fuzzy
 msgid "Relationships"
-msgstr "Relaţie :"
+msgstr "Relaţii"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:192 ../gramps/gui/clipboard.py:722
@@ -355,22 +353,19 @@ msgstr "Relaţie :"
 #: ../gramps/plugins/webreport/family.py:314
 #: ../gramps/plugins/webreport/person.py:1639
 msgid "Person"
-msgstr "Persoana"
+msgstr "Persoană"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
-#, fuzzy
 msgid "Gramps database"
-msgstr "Verifică baza de date"
+msgstr "Dată de baze Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
-#, fuzzy
 msgid "Gramps package"
-msgstr "Export pachet GRAMPS"
+msgstr "Pachet Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
-#, fuzzy
 msgid "Gramps XML database"
-msgstr "Deschide Bază de Date GRAMPS"
+msgstr "Bază de date XML Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:22
 msgid "GeneWeb source file"
