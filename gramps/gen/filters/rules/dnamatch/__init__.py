@@ -23,7 +23,10 @@ Package providing filter rules for DNA matches.
 
 from ._regexpidof import RegExpIdOf
 from ._hastag import HasTag
-from ._hasdnamatch import HasDNAMatch
+from ._hassubjectaccountname import HasSubjectAccountName
+from ._hasmatchaccountname import HasMatchAccountName
+from ._hassubjectpersonname import HasSubjectPersonName
+from ._hasmatchpersonname import HasMatchPersonName
 from ._hassharedcm import HasSharedCm
 
 editor_rule_list: list[type] = []

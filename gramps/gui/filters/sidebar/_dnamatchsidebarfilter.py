@@ -29,7 +29,10 @@ from gramps.gen.filters import GenericFilterFactory
 from gramps.gen.filters.rules.dnamatch import (
     RegExpIdOf,
     HasTag,
-    HasDNAMatch,
+    HasSubjectAccountName,
+    HasMatchAccountName,
+    HasSubjectPersonName,
+    HasMatchPersonName,
     HasSharedCm,
 )
 
@@ -120,12 +123,26 @@ class DNAMatchSidebarFilter(SidebarFilter):
             rule = RegExpIdOf([gid], use_regex=regex, use_case=usecase)
             generic_filter.add_rule(rule)
 
-        if subject_person or subject_account or match_person or match_account:
-            rule = HasDNAMatch(
-                [subject_person, subject_account, match_person, match_account],
-                use_regex=regex,
-                use_case=usecase,
+        if subject_account:
+            rule = HasSubjectAccountName(
+                [subject_account], use_regex=regex, use_case=usecase
             )
+            generic_filter.add_rule(rule)
+
+        if match_account:
+            rule = HasMatchAccountName(
+                [match_account], use_regex=regex, use_case=usecase
+            )
+            generic_filter.add_rule(rule)
+
+        if subject_person:
+            rule = HasSubjectPersonName(
+                [subject_person], use_regex=regex, use_case=usecase
+            )
+            generic_filter.add_rule(rule)
+
+        if match_person:
+            rule = HasMatchPersonName([match_person], use_regex=regex, use_case=usecase)
             generic_filter.add_rule(rule)
 
         if min_cm or max_cm:

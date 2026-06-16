@@ -72,8 +72,11 @@ gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py
 gramps/gen/filters/rules/citation/_matchessourcefilter.py
 gramps/gen/filters/rules/citation/_regexpidof.py
 gramps/gen/filters/rules/citation/_regexpsourceidof.py
-gramps/gen/filters/rules/dnamatch/_hasdnamatch.py
+gramps/gen/filters/rules/dnamatch/_hasmatchaccountname.py
+gramps/gen/filters/rules/dnamatch/_hasmatchpersonname.py
 gramps/gen/filters/rules/dnamatch/_hassharedcm.py
+gramps/gen/filters/rules/dnamatch/_hassubjectaccountname.py
+gramps/gen/filters/rules/dnamatch/_hassubjectpersonname.py
 gramps/gen/filters/rules/dnamatch/_hastag.py
 gramps/gen/filters/rules/dnamatch/_regexpidof.py
 gramps/gen/filters/rules/dnatest/_hasdnatest.py
