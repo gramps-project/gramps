@@ -22,6 +22,8 @@
 # Standard python modules
 #
 # -------------------------------------------------------------------------
+import shutil
+import tempfile
 import unittest
 
 # -------------------------------------------------------------------------
@@ -29,7 +31,7 @@ import unittest
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.db import DbTxn
+from gramps.gen.db import DbTxn, DBMODE_R
 from gramps.gen.db.utils import make_database
 from gramps.gen.lib import (
     Person,
@@ -911,6 +913,56 @@ class DbPersonTest(unittest.TestCase):
         saved = self.db.get_gender_stats()
         self.assertEqual(saved["John"], (3, 1, 1))
         self.assertEqual(saved["Mary"], (1, 3, 1))
+
+
+# -------------------------------------------------------------------------
+#
+# DbMetadataInitTest class
+#
+# -------------------------------------------------------------------------
+class DbMetadataInitTest(unittest.TestCase):
+    """
+    Tests for metadata initialization of a new database.
+    """
+
+    def setUp(self):
+        self.directory = tempfile.mkdtemp()
+
+    def tearDown(self):
+        shutil.rmtree(self.directory)
+
+    def test_concurrent_load_during_metadata_init(self):
+        """
+        A second process opening the database while the first is still
+        writing initial metadata must never see rows with NULL json_data.
+        """
+        db = make_database("sqlite")
+        original_set_metadata = db._set_metadata
+        concurrent = {}
+
+        def set_metadata(key, value, use_txn=True):
+            original_set_metadata(key, value, use_txn)
+            # "bookmarks" is only written by _set_all_metadata
+            if key == "bookmarks" and "error" not in concurrent:
+                other = make_database("sqlite")
+                try:
+                    other.load(self.directory, mode=DBMODE_R)
+                    concurrent["error"] = None
+                    other.close()
+                except Exception as err:
+                    concurrent["error"] = err
+
+        db._set_metadata = set_metadata
+        db.load(self.directory)
+
+        self.assertIn("error", concurrent)
+        self.assertIsNone(concurrent["error"])
+
+        db.dbapi.execute(
+            "SELECT setting FROM metadata WHERE json_data IS NULL OR value IS NULL"
+        )
+        self.assertEqual(db.dbapi.fetchall(), [])
+        db.close()
 
 
 if __name__ == "__main__":
