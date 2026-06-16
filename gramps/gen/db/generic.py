@@ -817,6 +817,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self._set_all_metadata()
             self.set_serializer("blob")
             self._set_all_metadata()
+            if self.use_json_data():
+                # Restore the JSON serializer; the schema uses json_data columns
+                # and subsequent commits must target that column.
+                self.set_serializer("json")
             self.has_changed = 0  # number of commits
 
         self.db_is_open = True
