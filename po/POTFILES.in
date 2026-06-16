@@ -76,10 +76,11 @@ gramps/gen/filters/rules/dnamatch/_alldnamatches.py
 gramps/gen/filters/rules/dnamatch/_changedsince.py
 gramps/gen/filters/rules/dnamatch/_dnamatchprivate.py
 gramps/gen/filters/rules/dnamatch/_hasattribute.py
-gramps/gen/filters/rules/dnamatch/_hasdnamatch.py
 gramps/gen/filters/rules/dnamatch/_hasgallery.py
 gramps/gen/filters/rules/dnamatch/_hasidof.py
+gramps/gen/filters/rules/dnamatch/_hasmatchaccountname.py
 gramps/gen/filters/rules/dnamatch/_hasmatchperson.py
+gramps/gen/filters/rules/dnamatch/_hasmatchpersonname.py
 gramps/gen/filters/rules/dnamatch/_hasnosharedancestors.py
 gramps/gen/filters/rules/dnamatch/_hasnote.py
 gramps/gen/filters/rules/dnamatch/_hasnoteregexp.py
@@ -89,7 +90,9 @@ gramps/gen/filters/rules/dnamatch/_hassegment.py
 gramps/gen/filters/rules/dnamatch/_hassegmentoverlapping.py
 gramps/gen/filters/rules/dnamatch/_hassharedancestor.py
 gramps/gen/filters/rules/dnamatch/_hassharedcm.py
+gramps/gen/filters/rules/dnamatch/_hassubjectaccountname.py
 gramps/gen/filters/rules/dnamatch/_hassubjectperson.py
+gramps/gen/filters/rules/dnamatch/_hassubjectpersonname.py
 gramps/gen/filters/rules/dnamatch/_hastag.py
 gramps/gen/filters/rules/dnamatch/_matchesfilter.py
 gramps/gen/filters/rules/dnamatch/_matchesmatchtestfilter.py
