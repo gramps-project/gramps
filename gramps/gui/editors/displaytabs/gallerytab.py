@@ -229,7 +229,9 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self.iconlist.set_selection_mode(Gtk.SelectionMode.SINGLE)
 
         # connect the signals
-        self.iconlist.connect("selection-changed", self._selection_changed)
+        self._sel_changed_handler = self.iconlist.connect(
+            "selection-changed", self._selection_changed
+        )
         self.iconlist.connect("button_press_event", self.double_click)
         self.iconlist.connect("key_press_event", self.key_pressed)
         self._connect_icon_model()
@@ -657,4 +659,14 @@ class GalleryTab(ButtonTab, DbGUIElement):
         return self.get_data().index(obj)
 
     def clean_up(self):
+        # Disconnect selection-changed before super() deletes self.iconlist via
+        # track_ref_for_deletion. Otherwise a late selection-changed emission
+        # (e.g. when the parent dialog tears down on Cancel) re-enters
+        # _selection_changed -> get_selected() and crashes because self.iconlist
+        # no longer exists. Bug 13326.
+        sel_handler = getattr(self, "_sel_changed_handler", None)
+        if sel_handler and hasattr(self, "iconlist"):
+            if GObject.signal_handler_is_connected(self.iconlist, sel_handler):
+                self.iconlist.disconnect(sel_handler)
+            self._sel_changed_handler = None
         super(ButtonTab, self).clean_up()

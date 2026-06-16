@@ -384,6 +384,11 @@ gramps/gui/editors/displaytabs/srcattrmodel.py
 gramps/gui/editors/displaytabs/surnamemodel.py
 gramps/gui/editors/displaytabs/webmodel.py
 #
+# gui/editors/displaytabs/test
+#
+gramps/gui/editors/displaytabs/test/__init__.py
+gramps/gui/editors/displaytabs/test/gallerytab_test.py
+#
 # gui.editors.test package
 #
 gramps/gui/editors/test/editreference_test.py
