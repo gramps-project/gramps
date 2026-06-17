@@ -96,7 +96,10 @@ class BaseSelector(ManagedWindow):
         self.track_ref_for_deletion("renderer")
         self.renderer.set_property("ellipsize", Pango.EllipsizeMode.END)
 
-        self.db = dbstate.db
+        self.dbstate = dbstate
+        self.dbstate_connections: list[int] = []
+        self.db = self.dbstate.db
+        self.db_connections: list[int] = []
         self.tree = None
         self.model = None
 
@@ -165,7 +168,17 @@ class BaseSelector(ManagedWindow):
         self.set_show_search_bar(show_search_bar)
         while Gtk.events_pending():
             Gtk.main_iteration()
-        self.build_tree()
+
+        self.dbstate_connections = [
+            x
+            for x in [
+                self.dbstate.connect("database-changed", self._db_changed),
+                self.dbstate.connect("no-database", self._no_db),
+            ]
+            if x is not None
+        ]
+        self._db_changed(self.dbstate.db)
+
         loading = self.glade.get_object("loading")
         loading.hide()
 
@@ -321,6 +334,15 @@ class BaseSelector(ManagedWindow):
         ]
         self.search_bar.setup_searches(cols)
 
+    def _object_add_callback(self, handle_list):
+        self.build_tree()
+
+    def _object_delete_callback(self, handle_list):
+        self.build_tree()
+
+    def _object_update_callback(self, handle_list):
+        self.build_tree()
+
     def build_tree(self):
         """
         Builds the selection people see in the Selector
@@ -345,7 +367,7 @@ class BaseSelector(ManagedWindow):
         # reset the model with correct sorting
         self.clear_model()
         self.model = self.get_model_class()(
-            self.db,
+            self.dbstate.db,
             self.uistate,
             self.sort_col,
             self.sortorder,
@@ -398,15 +420,40 @@ class BaseSelector(ManagedWindow):
                 self.model.destroy()
             self.model = None
 
+    def apply_clear(self):
+        self.showall.set_active(False)
+
+    def _db_changed(self, db):
+        self.db = db
+        self._connect_db_signals()
+        self.build_tree()
+
+    def _no_db(self):
+        self.clear_model()
+        self._disconnect_db_signals()
+
+    def _connect_db_signals(self):
+        pass
+
+    def _disconnect_db_signals(self):
+        for key in self.db_connections:
+            self.db.disconnect(key)
+        self.db_connections.clear()
+
     def _cleanup_on_exit(self):
         """Unset all things that can block garbage collection.
         Finalize rest
         """
+        self._disconnect_db_signals()
+        for key in self.dbstate_connections:
+            self.dbstate.disconnect(key)
+        self.dbstate_connections.clear()
+
         self.clear_model()
-        self.db = None
         self.tree = None
-        self.columns = None
+        self.columns.clear()
         self.search_bar.destroy()
+        self.db = None
 
     def close(self, *obj):
         ManagedWindow.close(self)
