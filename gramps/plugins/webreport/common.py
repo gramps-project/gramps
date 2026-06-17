@@ -63,16 +63,16 @@ except ImportError:
         from PyICU import Locale
 
         HAVE_ICU = True
-        try:
-            from PyICU import AlphabeticIndex as icuAlphabeticIndex
 
-            HAVE_ALPHABETICINDEX = True
-        except ImportError:
-            from gramps.plugins.webreport.alphabeticindex import (
-                AlphabeticIndex as localAlphabeticIndex,
-            )
+        # Failure here is caught by the enclosing exception handling
+        from PyICU import AlphabeticIndex as icuAlphabeticIndex
+
+        HAVE_ALPHABETICINDEX = True
+
     except ImportError:
-        pass
+        from gramps.plugins.webreport.alphabeticindex import (
+            AlphabeticIndex as localAlphabeticIndex,
+        )
 
 LOG = logging.getLogger(".NarrativeWeb")
 
