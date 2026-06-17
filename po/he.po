@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-10 19:08+0000\n"
+"PO-Revision-Date: 2026-06-17 22:22+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 2026.6\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -16469,7 +16469,7 @@ msgstr "לכלול בני זוג"
 
 #: ../gramps/gui/fs/actions.py:685
 msgid "When off, import only the direct parent/child bloodline."
-msgstr ""
+msgstr "כאשר כבוי, לייבא רק את קו קשר־הדם הישיר הורה/צאצא."
 
 #: ../gramps/gui/fs/actions.py:688
 #, fuzzy
@@ -16479,7 +16479,7 @@ msgstr "לא לייבא שוב אנשים קיימים"
 
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
-msgstr ""
+msgstr "לא לשנות במהלך הייבוא אנשים מקושרים בגרמפס."
 
 #: ../gramps/gui/fs/actions.py:694 ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -16514,7 +16514,7 @@ msgstr "איתור קשרי־קרבה הוריים פגומים"
 #: ../gramps/gui/fs/actions.py:703
 msgid ""
 "Create or reuse families so imported parents and children are connected."
-msgstr ""
+msgstr "יצירה או שימוש במשפחות קיימות כך שהורים וצאצאים שיובאו יהיו מקושרים."
 
 #: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
 #, fuzzy
@@ -16556,7 +16556,7 @@ msgstr "חיפוש ברשת"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
-msgstr ""
+msgstr "חיים"
 
 #: ../gramps/gui/fs/actions.py:856
 #, fuzzy
@@ -16566,7 +16566,7 @@ msgstr "מזהה FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:860
 msgid "Enter a name, date, place, ID, or URL to search."
-msgstr ""
+msgstr "כדי לחפש, נא להזין: שם, תאריך, מקום, מזהה, או URL."
 
 #: ../gramps/gui/fs/actions.py:865
 #, fuzzy
@@ -16583,7 +16583,7 @@ msgstr "חיפוש שמות משפחה"
 #: ../gramps/gui/fs/actions.py:890
 #, python-format
 msgid "Search results: %(count)d"
-msgstr ""
+msgstr "תוצאות חיפוש: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:893
 #, fuzzy
@@ -16602,7 +16602,7 @@ msgstr "סנכרון FamilySearch"
 msgid ""
 "No FamilySearch person was imported. Check the selected person ID and try "
 "again."
-msgstr ""
+msgstr "לא יובאה אדם מ־FamilySearch. נא לבדוק את מזהה האדם ולנסות שוב."
 
 #: ../gramps/gui/fs/actions.py:993
 msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
