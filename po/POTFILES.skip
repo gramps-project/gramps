@@ -329,6 +329,7 @@ gramps/gui/basesidebar.py
 gramps/gui/dbguielement.py
 gramps/gui/ddtargets.py
 gramps/gui/display.py
+gramps/gui/grampletconfig.py
 gramps/gui/glade.py
 gramps/gui/listmodel.py
 gramps/gui/managedwindow.py

@@ -56,6 +56,7 @@ from ..plug.quick import run_quick_report_by_name
 from ..display import display_help, display_url
 from ..glade import Glade
 from ..pluginmanager import GuiPluginManager
+from ..grampletconfig import MAX_GRAMPLET_COLUMNS, clamp_column_count
 from .undoablebuffer import UndoableBuffer
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -1016,7 +1017,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         Gtk.ScrolledWindow.__init__(self)
         self.configfile = os.path.join(VERSION_DIR, "%s.ini" % configfile)
         # default for new user; may be overridden in config:
-        self.column_count = kwargs.get("column_count", 2)
+        self.column_count = clamp_column_count(kwargs.get("column_count", 2))
         # width of window, if sidebar; may be overridden in config:
         self.pane_position = kwargs.get("pane_position", -1)
         self.pane_orientation = kwargs.get("pane_orientation", "horizontal")
@@ -1196,7 +1197,9 @@ class GrampletPane(Gtk.ScrolledWindow):
             for sec in cp.sections():
                 if sec == "Gramplet View Options":
                     if "column_count" in cp.options(sec):
-                        self.column_count = int(cp.get(sec, "column_count"))
+                        self.column_count = clamp_column_count(
+                            cp.get(sec, "column_count")
+                        )
                     if "pane_position" in cp.options(sec):
                         self.pane_position = int(cp.get(sec, "pane_position"))
                     if "pane_orientation" in cp.options(sec):
@@ -1383,8 +1386,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         return True
 
     def set_columns(self, num):
-        if num < 1:
-            num = 1
+        num = clamp_column_count(num)
         # clear the gramplets:
         self.clear_gramplets()
         # clear the columns:
@@ -1638,6 +1640,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             "Gramplet View Options.column_count",
             self._config.set,
             config=self._config,
+            helptext=_("Enter a number from 1 to %d.") % MAX_GRAMPLET_COLUMNS,
         )
         return _("Gramplet Layout"), grid
 
