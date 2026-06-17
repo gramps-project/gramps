@@ -6,13 +6,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2022.
 # coolz daddy <coolzdaddy55@gmail.com>, 2025.
 # Aindriú Mac Giolla Eoin <aindriu80@gmail.com>, 2025.
+# たりこも <tarikomo289@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2025-03-31 18:14+0000\n"
-"Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
+"PO-Revision-Date: 2026-06-17 22:22+0000\n"
+"Last-Translator: たりこも <tarikomo289@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ja/>\n"
 "Language: ja\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=0;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../data/holidays.xml:3
@@ -705,6 +706,9 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
+"<b>親子関係の編集</b><br/>ファミリーエディターで子供をダブルクリックすると、"
+"親と子供の関係を編集できます。関係は、養子、出生、里親、なし、スポンサー、継"
+"子、不明のいずれかになります。"
 
 #: ../data/tips.xml:63
 msgid ""
@@ -714,6 +718,11 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
+"<b>全て表示するチェックボタン</b><br/>既存の人物を配偶者として追加する場合に"
+"表示される人物リストは、データベース内の日付に基づいて現実的にその役割に適任"
+"と思われる人物のみが表示されるようにフィルタリングされます。Grampsの選択が間"
+"違っている場合は「すべて表示」チェックボックスをオンにすることで、この"
+"フィルタリングを上書きできます。"
 
 #: ../data/tips.xml:65
 msgid ""
@@ -723,6 +732,11 @@ msgid ""
 "a Feature Request. Filing a Feature Request is preferred but it can be good "
 "to discuss your ideas on the email lists."
 msgstr ""
+"<b>Grampsの改善を提案</b><br/>Gramps の機能の強化を希望される方はぜひ"
+"リクエストをお寄せください。機能の強化案は、gramps-users または gramps-devel "
+"メーリングリスト、もしくは &bugs_url; にアクセスし、機能の改善案を作成するこ"
+"とで可能です。機能をリクエストすることが推奨されますが、メーリングリストで"
+"アイデアを話し合うのも良いでしょう。"
 
 #: ../data/tips.xml:67
 msgid ""
@@ -732,8 +746,14 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
+"<b>Gramps メーリングリスト</b><br/>Grampsに関するQ&Aをお探しならば、gramps-"
+"usersメーリングリストをチェックしてみてください。このリストには多くの親切な"
+"ユーザーが参加しているのですぐに回答がつく可能性があります。Grampsの開発に関"
+"する質問がある場合は、gramps-develリストをお試しください。「ヘルプ ＞ Gramps"
+"メーリングリスト」を選択すると、これらのリストが表示されます。"
 
 #: ../data/tips.xml:69
+#, fuzzy
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -743,6 +763,12 @@ msgid ""
 "and introducing yourself. Subscription information can be found at \"Help > "
 "Gramps Mailing Lists\"."
 msgstr ""
+"<b>Grampsへの貢献</b><br/>Grampsの開発に貢献したいが、プログラミングは苦手な"
+"場合があると思います。が、問題ありません。Grampsのような大規模プロジェクトに"
+"は幅広いスキルを持つ人材が必要です。貢献内容は、ドキュメント作成から開発版の"
+"テスト、ウェブサイトのサポートまで多岐にわたります。まずはGramps開発者向け"
+"メーリングリスト「gramps-devel」に登録し、自己紹介をしてください。登録方法は"
+"「ヘルプ > Grampsメーリングリスト」をご覧ください。"
 
 #: ../data/tips.xml:71
 msgid ""
@@ -753,6 +779,11 @@ msgid ""
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
+"<b>名前の由来について</b><br/>Grampsという名前は、開発者のドン・アリンガム氏"
+"が父親から提案されたものです。これは<i>Genealogical Research and Analysis "
+"Management Program System</i>の略です。系図データの保存、編集、調査が可能な多"
+"機能な家系図作成プログラムです。Grampsのデータベースバックエンドは非常に素晴"
+"らしく、数十万人もの人物を含む系図を管理しているユーザーもいます。"
 
 #: ../data/tips.xml:73
 msgid ""
@@ -762,6 +793,11 @@ msgid ""
 "Person then go to \"Bookmarks > Add Bookmark\" or press Ctrl+D. You can also "
 "bookmark most of the other objects."
 msgstr ""
+"<b>特定個人をブックマークする</b><br/>ブックマークメニューは、よく使う人物の"
+"名前を保存しておくのに便利な場所です。ブックマークを選択するとその人物が選択"
+"されます。ブックマークするには、まずその人物を選択した後「ブックマーク > "
+"ブックマークを追加」を選択するか、Ctrl+Dを押してください。他のほとんどの"
+"オブジェクトもブックマークできます。"
 
 #: ../data/tips.xml:75
 msgid ""
@@ -818,6 +854,9 @@ msgid ""
 "the database. These can be graphic images, videos, sound clips, "
 "spreadsheets, documents, and more."
 msgstr ""
+"<b>メディアビュー</b><br/>メディアビューにはデータベースに登録されているすべ"
+"てのメディアの一覧が表示されます。これには、画像、動画、音声クリップ、"
+"スプレッドシート、ドキュメントなどが含まれます。"
 
 #: ../data/tips.xml:89
 msgid ""
