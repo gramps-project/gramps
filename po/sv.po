@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-02 18:01+0000\n"
+"PO-Revision-Date: 2026-06-17 22:22+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7041,10 +7041,9 @@ msgid "Building FSID list for places"
 msgstr "Skapar FSID-lista för platser"
 
 #: ../gramps/gen/fs/fs_import/sources.py:406
-#, fuzzy, python-format
-#| msgid "No FamilySearch sources found to import."
+#, python-format
 msgid "Loading FamilySearch source %(current)d/%(total)d"
-msgstr "Inga FamilySearch-källor hittades att importera."
+msgstr "Laddar FamilySearch-källa %(current)d/%(total)d"
 
 #: ../gramps/gen/fs/fs_import/sources.py:611
 #: ../gramps/gen/fs/fs_import/sources.py:614
@@ -7117,21 +7116,17 @@ msgid "Internet Address"
 msgstr "Internetadress"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:434
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(header)s (%(current)d/%(total)d)"
-msgstr "%(current)d av %(total)d"
+msgstr "%(header)s (%(current)d/%(total)d)"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:443
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Loading FamilySearch person sources"
-msgstr "Importera FamilySearch-källor"
+msgstr "Laddar FamilySearch-personkällor"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:451
-#, fuzzy
 msgid "Loading FamilySearch relationship sources"
-msgstr "Skapar mediasidor"
+msgstr "Laddar FamilySearch-släktskapskällor"
 
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
@@ -7217,19 +7212,15 @@ msgid "Sources ? row %(row)d not green (%(color)s)"
 msgstr "Källor ? rad %(row)d inte grön (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:363
-#, fuzzy
-#| msgid ""
-#| "FamilySearch status tag colors can be customized in Gramps via Edit Tags. "
-#| "This add-on only sets default colors when the tags are first created and "
-#| "will not override your custom choices."
 msgid ""
 "FamilySearch status tag colors can be customized in Gramps via Edit > Tag > "
 "Organize Tags. This integration only sets default colors when the tags are "
 "first created and will not override your custom choices."
 msgstr ""
-"Färgerna på FamilySearch-statustaggarna kan anpassas i Gramps via Redigera "
-"taggar. Detta tillägg ställer bara in standardfärger när taggarna först "
-"skapas och åsidosätter inte dina anpassade val."
+"Färgerna på FamilySearch-statustaggarna kan anpassas i Gramps via Redigera > "
+"Taggar > Organisera taggar. Den här integrationen ställer bara in "
+"standardfärger när taggarna först skapas och åsidosätter inte dina anpassade "
+"val."
 
 #: ../gramps/gen/fs/utils/linking.py:48
 msgid "FamilySearch tags"
@@ -12718,10 +12709,8 @@ msgid "Middleware access code (issued secret)"
 msgstr "Åtkomstkod för middleware (utfärdad hemlighet)"
 
 #: ../gramps/gui/configure.py:1204
-#, fuzzy
-#| msgid "FamilySearch tags"
 msgid "Enable FamilySearch integration"
-msgstr "FamilySearch-taggar"
+msgstr "Aktivera FamilySearch-integration"
 
 #: ../gramps/gui/configure.py:1212
 msgid "Integrations"
@@ -14312,10 +14301,8 @@ msgid "Remove"
 msgstr "Ta bort"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select Existing"
-msgstr "Välj en befintlig notis"
+msgstr "Välj Befintlig"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 msgid "Jump To"
@@ -14351,10 +14338,8 @@ msgid "Edit the selected citation"
 msgstr "Redigera den valda citeringen"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
-#, fuzzy
-#| msgid "Add an existing citation or source"
 msgid "Select an existing citation or source"
-msgstr "Lägg till en existerande citering eller källa"
+msgstr "Välj en existerande citering eller källa"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Move the selected citation upwards"
@@ -14424,10 +14409,8 @@ msgstr "Redigera den valda familjehändelsen eller redigera person"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select an existing event"
-msgstr "Välj en befintlig notis"
+msgstr "Välj en befintlig händelse"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
@@ -14485,40 +14468,28 @@ msgid "%(groupname)s - %(groupnumber)d"
 msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:89
-#, fuzzy
-#| msgid "Add a new media object"
 msgid "Add a new Media record"
-msgstr "Lägg till nytt mediaobjekt"
+msgstr "Lägg till en ny mediepost"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:90
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Remove the selected Media record"
-msgstr "Ta bort det valda projektet"
+msgstr "Ta bort den valda medieposten"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:91
-#, fuzzy
-#| msgid "Edit the selected media object"
 msgid "Edit the selected Media record"
-msgstr "Redigera det valda mediaobjektet"
+msgstr "Redigera den valda medieposten"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:92
-#, fuzzy
-#| msgid "Select an existing media object"
 msgid "Select an existing Media record"
-msgstr "Välj ett befintligt mediaobjekt"
+msgstr "Välj en befintlig mediepost"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:93
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record Left"
-msgstr "Ta bort det valda projektet"
+msgstr "Flytta den markerade posten åt vänster"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:94
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record right"
-msgstr "Ta bort det valda projektet"
+msgstr "Flytta den markerade posten åt höger"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:104
 msgid "_Gallery"
@@ -14811,10 +14782,8 @@ msgid "Edit the selected repository"
 msgstr "Redigera den valda arkivplatsen"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
-#, fuzzy
-#| msgid "Add an existing repository"
 msgid "Select an existing repository"
-msgstr "Lägg till en existerande arkivplats"
+msgstr "Välj en existerande arkivplats"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Move the selected repository upwards"
@@ -15176,10 +15145,8 @@ msgid "Edit the child reference"
 msgstr "Redigera barnreferens"
 
 #: ../gramps/gui/editors/editfamily.py:130
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person to add as child of the family"
-msgstr "Lägg till en existerande person som barn i familjen"
+msgstr "Välj en existerande person som barn i familjen"
 
 #: ../gramps/gui/editors/editfamily.py:131
 msgid "Move the child up in the children list"
@@ -15255,10 +15222,8 @@ msgid "Edit child"
 msgstr "Redigera barn"
 
 #: ../gramps/gui/editors/editfamily.py:224
-#, fuzzy
-#| msgid "Select an existing person"
 msgid "Select an existing person to add as child"
-msgstr "Välj en existerande person"
+msgstr "Välj en existerande person som barn"
 
 #: ../gramps/gui/editors/editfamily.py:227
 msgid "Edit relationship"
@@ -16625,60 +16590,47 @@ msgid "Tip: uncheck anything you don't want to import."
 msgstr "Tips: avmarkera allt du inte vill importera."
 
 #: ../gramps/gui/fs/actions.py:471
-#, fuzzy, python-format
-#| msgid " (%(birth_date)s - %(death_date)s)"
+#, python-format
 msgid "%(birth)s - %(death)s"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "%(birth)s - %(death)s"
 
 #: ../gramps/gui/fs/actions.py:524
-#, fuzzy, python-format
-#| msgid "FamilySearch update failed (sources)."
+#, python-format
 msgid "FamilySearch search failed (HTTP %(status)s)."
-msgstr "FamilySearch-uppdateringen misslyckades (källor)."
+msgstr "FamilySearch-sökningen misslyckades (HTTP %(status)s)."
 
 #: ../gramps/gui/fs/actions.py:531
-#, fuzzy
-#| msgid "FamilySearch source creation failed for: {t}"
 msgid "FamilySearch search returned invalid data."
-msgstr "Skapandet av FamilySearch-källa misslyckades för: {t}"
+msgstr "FamilySearch-sökningen returnerade ogiltiga data."
 
 #: ../gramps/gui/fs/actions.py:584
-#, fuzzy
-#| msgid "Select Person"
 msgid "selected person"
-msgstr "Välj person"
+msgstr "vald person"
 
 #: ../gramps/gui/fs/actions.py:630 ../gramps/gui/fs/actions.py:632
-#, fuzzy
-#| msgid "Import relatives"
 msgid "Bulk import relatives"
-msgstr "Importera släktingar"
+msgstr "Massimport av släktingar"
 
 #: ../gramps/gui/fs/actions.py:646
-#, fuzzy, python-format
-#| msgid "Editor person: %(name)s  [%(gid)s]"
+#, python-format
 msgid "Starting person: %(name)s [%(fsid)s]"
-msgstr "Redaktör: %(name)s  [%(gid)s]"
+msgstr "Startande person: %(name)s [%(fsid)s]"
 
 #: ../gramps/gui/fs/actions.py:668 ../gramps/gui/fs/fs_import/options.py:42
 msgid "Ancestor generations"
 msgstr "Förfädersgenerationer"
 
 #: ../gramps/gui/fs/actions.py:670
-#, fuzzy
-#| msgid "Number of generations to fetch upwards"
 msgid "Number of generations to import upward from the starting person."
-msgstr "Antal generationer att hämta uppåt"
+msgstr "Antal generationer att importera uppåt från startpersonen."
 
 #: ../gramps/gui/fs/actions.py:675 ../gramps/gui/fs/fs_import/options.py:46
 msgid "Descendant generations"
 msgstr "Ättlingsgenerationer"
 
 #: ../gramps/gui/fs/actions.py:677
-#, fuzzy
-#| msgid "Number of generations to fetch downwards"
 msgid "Number of generations to import downward from the starting person."
-msgstr "Antal generationer att hämta nedåt"
+msgstr "Antal generationer att importera nedåt från startpersonen."
 
 #: ../gramps/gui/fs/actions.py:683 ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -16688,17 +16640,15 @@ msgstr "Ta med makar"
 
 #: ../gramps/gui/fs/actions.py:685
 msgid "When off, import only the direct parent/child bloodline."
-msgstr ""
+msgstr "När den är avstängd, importera endast den direkta förälder-/barnlinjen."
 
 #: ../gramps/gui/fs/actions.py:688
-#, fuzzy
-#| msgid "Do not re-import existing persons"
 msgid "Do not re-import existing people"
 msgstr "Återimportera inte befintliga personer"
 
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
-msgstr ""
+msgstr "Behåll befintliga länkade Gramps-personer oförändrade under importen."
 
 #: ../gramps/gui/fs/actions.py:694 ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -16707,10 +16657,8 @@ msgid "Include sources"
 msgstr "Ta med källor"
 
 #: ../gramps/gui/fs/actions.py:695
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Fetch and import FamilySearch sources."
-msgstr "Importera FamilySearch-källor"
+msgstr "Hämta och importera FamilySearch-källor."
 
 #: ../gramps/gui/fs/actions.py:697 ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -16719,131 +16667,106 @@ msgid "Include notes"
 msgstr "Ta med notiser"
 
 #: ../gramps/gui/fs/actions.py:698
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Fetch and import FamilySearch notes."
-msgstr "Importera FamilySearch-källor"
+msgstr "Hämta och importera FamilySearch-notiser."
 
 #: ../gramps/gui/fs/actions.py:700
-#, fuzzy
-#| msgid "Looking for broken parent relationships"
 msgid "Link imported parent/child relationships"
-msgstr "Söker efter trasiga föräldrarelationer"
+msgstr "Länka importerade föräldra/barn-släktskap"
 
 #: ../gramps/gui/fs/actions.py:703
 msgid ""
 "Create or reuse families so imported parents and children are connected."
 msgstr ""
+"Skapa eller återanvänd familjer så att importerade föräldrar och barn är "
+"sammankopplade."
 
 #: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
-#, fuzzy
-#| msgid "FamilySearch Import"
 msgid "Start FamilySearch import"
-msgstr "FamilySearch importera"
+msgstr "Starta FamilySearch-import"
 
 #: ../gramps/gui/fs/actions.py:758
-#, fuzzy
-#| msgid "No FamilySearch Person ID is set for this person."
 msgid ""
 "Choose the FamilySearch person to use as the starting point for this new "
 "Gramps tree."
-msgstr "Inget FamilySearch Person-ID är inställt för den här personen."
+msgstr ""
+"Välj den FamilySearch-person som ska användas som utgångspunkt för detta nya "
+"Gramps-träd."
 
 #: ../gramps/gui/fs/actions.py:775
-#, fuzzy
-#| msgid "FamilySearch Import Options"
 msgid "FamilySearch ID or person URL"
-msgstr "FamilySearch importalternativ"
+msgstr "FamilySearch-ID eller person-URL"
 
 #: ../gramps/gui/fs/actions.py:776
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "FamilySearch ID or URL"
-msgstr "FamilySearch-ID"
+msgstr "FamilySearch-ID eller URL"
 
 #: ../gramps/gui/fs/actions.py:781
-#, fuzzy
-#| msgid "(deleted on FamilySearch)"
 msgid "Name, date, place, or FamilySearch ID"
-msgstr "(borttagen på FamilySearch)"
+msgstr "Namn, datum, plats eller FamilySearch-ID"
 
 #: ../gramps/gui/fs/actions.py:782
-#, fuzzy
-#| msgid "Web Search"
 msgid "Search"
-msgstr "Webbsök"
+msgstr "Sök"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
-msgstr ""
+msgstr "Liv"
 
 #: ../gramps/gui/fs/actions.py:856
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "FamilySearch ID ready."
-msgstr "FamilySearch-ID"
+msgstr "FamilySearch-ID är klart."
 
 #: ../gramps/gui/fs/actions.py:860
 msgid "Enter a name, date, place, ID, or URL to search."
-msgstr ""
+msgstr "Ange ett namn, datum, plats, ID eller URL för att söka."
 
 #: ../gramps/gui/fs/actions.py:865
-#, fuzzy
-#| msgid "Sync to FamilySearch..."
 msgid "Searching FamilySearch..."
-msgstr "Synkronisera till FamilySearch..."
+msgstr "Söker i FamilySearch..."
 
 #: ../gramps/gui/fs/actions.py:880
-#, fuzzy, python-format
-#| msgid "Searching family names"
+#, python-format
 msgid "Search failed: %(error)s"
-msgstr "Söker efternamn"
+msgstr "Sökning misslyckades: %(error)s"
 
 #: ../gramps/gui/fs/actions.py:890
 #, python-format
 msgid "Search results: %(count)d"
-msgstr ""
+msgstr "Sökresultat: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:893
-#, fuzzy
-#| msgid "No FamilySearch sources found to import."
 msgid "No FamilySearch people found."
-msgstr "Inga FamilySearch-källor hittades att importera."
+msgstr "Inga FamilySearch-personer funna."
 
 #: ../gramps/gui/fs/actions.py:917
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1138
-#, fuzzy
-#| msgid "FamilySearch sync"
 msgid "FamilySearch person"
-msgstr "FamilySearch-synkning"
+msgstr "FamilySearch-person"
 
 #: ../gramps/gui/fs/actions.py:964
 msgid ""
 "No FamilySearch person was imported. Check the selected person ID and try "
 "again."
 msgstr ""
+"Ingen FamilySearch-person importerades. Kontrollera det valda person-ID:t "
+"och försök igen."
 
 #: ../gramps/gui/fs/actions.py:993
 msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
-msgstr ""
+msgstr "Ditt träd är tomt! Vill du massimportera från FamilySearch?"
 
 #: ../gramps/gui/fs/actions.py:994
-#, fuzzy
-#| msgid "Center Person"
 msgid "Choose Starting Person"
-msgstr "Huvudperson"
+msgstr "Välj startperson"
 
 #: ../gramps/gui/fs/actions.py:995
-#, fuzzy
-#| msgid "Not shown"
 msgid "Not now"
-msgstr "Visas inte"
+msgstr "Inte nu"
 
 #: ../gramps/gui/fs/actions.py:1012 ../gramps/gui/fs/actions.py:1073
-#, fuzzy
-#| msgid "family not complete"
 msgid "Bulk import complete."
-msgstr "familj ej fullständig"
+msgstr "Massimporten är klar."
 
 #: ../gramps/gui/fs/actions.py:1051 ../gramps/gui/fs/actions.py:1089
 #: ../gramps/gui/fs/actions.py:1217 ../gramps/gui/fs/actions.py:1384
@@ -17293,7 +17216,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:678
 msgid "Use FS"
-msgstr ""
+msgstr "Använd FS"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:685
 #: ../gramps/gui/fs/sync_directions.py:954
@@ -17303,102 +17226,78 @@ msgstr "Fält"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:686
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:831
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1205
-#, fuzzy
-#| msgid "Current Name"
 msgid "Current Gramps"
-msgstr "Aktuellt namn"
+msgstr "Aktuell Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:688
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:833
-#, fuzzy
-#| msgid "General Gramps settings"
 msgid "Final Gramps result"
-msgstr "Allmänna grampsinställningar"
+msgstr "Slutligt Gramps-resultat"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
-#, fuzzy
-#| msgid "Only in Gramps"
 msgid "Kept in Gramps"
-msgstr "Endast i Gramps"
+msgstr "Förvaras i Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:771
-#, fuzzy
-#| msgid "Sync from FamilySearch"
 msgid "Will copy from FamilySearch"
-msgstr "Synkronisera från FamilySearch"
+msgstr "Kommer att kopiera från FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:774
-#, fuzzy
-#| msgid "Run selected tool"
 msgid "Review and select to copy"
-msgstr "Kör valt verktyg"
+msgstr "Granska och välj att kopiera"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:776
 msgid "Not mergeable in this row"
-msgstr ""
+msgstr "Kan inte sammanfogas på den här raden"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:862
-#, fuzzy
-#| msgid "Critical mismatch"
 msgid "Critical"
-msgstr "Kritisk obalans"
+msgstr "Kritisk"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:869
-#, fuzzy
-#| msgid "Select all"
 msgid "Selectable"
-msgstr "Välj allt"
+msgstr "Valbara"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:930
-#, fuzzy
-#| msgid "FamilySearch value"
 msgid "Copy this FamilySearch value into Gramps"
-msgstr "FamilySearch-värde"
+msgstr "Kopiera detta FamilySearch-värde till Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:932
 msgid "This row cannot be merged directly"
-msgstr ""
+msgstr "Den här raden kan inte sammanfogas direkt"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:976
 msgid "Inconsistencies"
-msgstr ""
+msgstr "Inkonsekvenser"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:980
 msgid "The dates are different."
-msgstr ""
+msgstr "Datumen är olika."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:982
-#, fuzzy
-#| msgid "Select a different person"
 msgid "The values are different."
-msgstr "Välj en annan person"
+msgstr "Värdena är olika."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:984
 msgid "Review this difference before merging."
-msgstr ""
+msgstr "Granska denna skillnad innan du sammanfogar."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1120
-#, fuzzy
-#| msgid "Gramps package"
 msgid "Gramps person"
-msgstr "Gramps-paket"
+msgstr "Gramps-person"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1237
-#, fuzzy
-#| msgid "Only in Gramps"
 msgid "Result in Gramps"
-msgstr "Endast i Gramps"
+msgstr "Resultatet i Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1603
-#, fuzzy
-#| msgid "Could not resolve the selected person in the database."
 msgid "Could not resolve the selected person."
-msgstr "Kunde inte matcha den valda personen i databasen."
+msgstr "Kunde inte matcha den valda personen."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1612
 msgid "Select at least one FamilySearch row to merge."
-msgstr ""
+msgstr "Välj minst en FamilySearch-rad att sammanfoga."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1617
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1673
@@ -17406,45 +17305,37 @@ msgstr ""
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1687
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1733
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1741
-#, fuzzy
-#| msgid "FamilySearch Compare"
 msgid "FamilySearch Compare/Merge"
-msgstr "FamilySearch Jämför"
+msgstr "FamilySearch Jämför/Sammanfoga"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1620
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
+#, python-brace-format
 msgid "Copy {count} selected FamilySearch item(s) into the Gramps person?"
-msgstr ""
-"Skriv över valda FamilySearch-fält med Gramps-värden (inga borttagningar)."
+msgstr "Kopiera {count} valda FamilySearch-objekt till Gramps-person?"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1623
-#, fuzzy
-#| msgid "Merge"
 msgid "_Merge"
-msgstr "Slå samman"
+msgstr "_Slå samman"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1634
-#, fuzzy
-#| msgid "FamilySearch: Refresh merged ID"
 msgid "FamilySearch: Merge selected rows"
-msgstr "FamilySearch: Uppdatera sammanslaget ID"
+msgstr "FamilySearch: Sammanfoga valda rader"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1674
 #, python-brace-format
 msgid "{count} item(s) copied into Gramps."
-msgstr ""
+msgstr "{count} objekt kopierade till Gramps."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1681
 #, python-brace-format
 msgid ""
 "{count} item(s) copied into Gramps; {failed} row(s) could not be applied."
 msgstr ""
+"{count} objekt kopierade till Gramps; {failed} rad(er) kunde inte tillämpas."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1688
 msgid "No selected rows could be copied into Gramps."
-msgstr ""
+msgstr "Inga valda rader kunde kopieras till Gramps."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1696
 msgid "Select a person first."
@@ -17479,16 +17370,17 @@ msgid ""
 "Review FamilySearch differences, choose the rows to copy, then merge them "
 "into Gramps. The direction is FamilySearch to Gramps only."
 msgstr ""
+"Granska skillnaderna i FamilySearch, välj de rader som ska kopieras och "
+"sammanfoga dem sedan med Gramps. Riktningen är endast FamilySearch till "
+"Gramps."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1800
 msgid "Merge"
 msgstr "Slå samman"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1809
-#, fuzzy
-#| msgid "Details"
 msgid "Audit Details"
-msgstr "Detaljer"
+msgstr "Revisionsdetaljer"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1829
 #: ../gramps/plugins/importer/importxml.py:351
@@ -17513,10 +17405,8 @@ msgid "Sources"
 msgstr "Källor"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1838
-#, fuzzy
-#| msgid "Merge the selected notes"
 msgid "Merge selected"
-msgstr "Slå ihop de valda notiserna"
+msgstr "Sammanfoga valda"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1839
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
@@ -17524,22 +17414,16 @@ msgid "Refresh"
 msgstr "Läs om"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1968
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Preparing FamilySearch sources"
-msgstr "Importera FamilySearch-källor"
+msgstr "Förbered FamilySearch-källor"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1974
-#, fuzzy
-#| msgid "Building ordered list (1/2)"
 msgid "Loading source links (1/2)"
-msgstr "Bygger ordnad lista (1/2)"
+msgstr "Laddar käll-länkar (1/2)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1996
-#, fuzzy
-#| msgid "Processing list (2/2)"
 msgid "Parsing source details (2/2)"
-msgstr "Bearbetar lista (2/2)"
+msgstr "Bearbetar källdetaljer (2/2)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2017
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2051
@@ -17888,48 +17772,37 @@ msgid "Sync to FamilySearch"
 msgstr "Synkronisera till FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:815
-#, fuzzy
-#| msgid "Sync to FamilySearch"
 msgid "Gramps to FamilySearch"
-msgstr "Synkronisera till FamilySearch"
+msgstr "Gramps till FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:821
 msgid "Apply Selected"
 msgstr "Använd valda"
 
 #: ../gramps/gui/fs/sync_directions.py:839
-#, fuzzy
-#| msgid "FamilySearch tags"
 msgid "Choose FamilySearch updates"
-msgstr "FamilySearch-taggar"
+msgstr "Välj FamilySearch-uppdateringar"
 
 #: ../gramps/gui/fs/sync_directions.py:846
-#, fuzzy
-#| msgid ""
-#| "<b>Choose what to change on FamilySearch</b>\n"
-#| "Default is to keep FamilySearch.\n"
-#| "<i>No deletions are performed.</i>"
 msgid ""
 "Review each Gramps value before pushing it to FamilySearch. The default "
 "action keeps FamilySearch unchanged and no deletions are performed."
 msgstr ""
-"<b>Välj vad som ska ändras på FamilySearch</b>\n"
-"Standardinställningen är att behålla FamilySearch.\n"
-"<i>Inga borttagningar utförs.</i>"
+"Granska varje Gramps-värde innan du skickar det till FamilySearch. "
+"Standardåtgärden behåller FamilySearch oförändrad och inga borttagningar "
+"utförs."
 
 #: ../gramps/gui/fs/sync_directions.py:865
 msgid "Change message:"
 msgstr "Ändra meddelande:"
 
 #: ../gramps/gui/fs/sync_directions.py:891
-#, fuzzy
-#| msgid "No mention"
 msgid "Needs attention"
-msgstr "Inget omnämnande"
+msgstr "Behöver uppmärksamhet"
 
 #: ../gramps/gui/fs/sync_directions.py:893
 msgid "Use the Action column to choose what FamilySearch receives."
-msgstr ""
+msgstr "Använd Åtgärdskolumnen för att välja vad FamilySearch tar emot."
 
 #: ../gramps/gui/fs/sync_directions.py:957 ../gramps/gui/undohistory.py:115
 msgid "Action"
@@ -17941,13 +17814,12 @@ msgstr "Behåll FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:999
 msgid "Choose whether to keep FamilySearch or push this Gramps value."
-msgstr ""
+msgstr "Välj om du vill behålla FamilySearch eller överföra detta Gramps-värde."
 
 #: ../gramps/gui/fs/sync_directions.py:1021
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(selected)d of %(total)d selected"
-msgstr "%(current)d av %(total)d"
+msgstr "%(selected)d av %(total)d valda"
 
 #: ../gramps/gui/fs/sync_directions.py:1076
 #: ../gramps/gui/fs/sync_directions.py:1651
@@ -18143,16 +18015,12 @@ msgid "Editor person: (none)"
 msgstr "Redaktör: (ingen)"
 
 #: ../gramps/gui/fs/tools_window.py:378
-#, fuzzy
-#| msgid "Person actions"
 msgid "Single Person Actions"
-msgstr "Personåtgärder"
+msgstr "Åtgärder för enskilda personer"
 
 #: ../gramps/gui/fs/tools_window.py:382
-#, fuzzy
-#| msgid "Actions"
 msgid "Bulk Actions"
-msgstr "Åtgärder"
+msgstr "Massåtgärder"
 
 #: ../gramps/gui/fs/tools_window.py:388
 msgid "Import relatives"
@@ -18180,22 +18048,16 @@ msgid "Clear Cache"
 msgstr "Rensa cachen"
 
 #: ../gramps/gui/fs/tools_window.py:408
-#, fuzzy
-#| msgid "All generations"
 msgid "Import multiple generations"
-msgstr "Samtliga generationer"
+msgstr "Importera flera generationer"
 
 #: ../gramps/gui/fs/tools_window.py:412
-#, fuzzy
-#| msgid "Import relatives"
 msgid "Bulk Import Relatives"
-msgstr "Importera släktingar"
+msgstr "Massimport av släktingar"
 
 #: ../gramps/gui/fs/tools_window.py:414
-#, fuzzy
-#| msgid "Matches all descendants for the specified person"
 msgid "Import ancestors and descendants from the selected FamilySearch person."
-msgstr "Matchar alla ättlingar för den angivna personen"
+msgstr "Importera förfäder och ättlingar från den valda FamilySearch-personen."
 
 #: ../gramps/gui/fs/tools_window.py:422
 msgid "Tags..."
@@ -18223,10 +18085,8 @@ msgstr ""
 "Skriv över valda FamilySearch-fält med Gramps-värden (inga borttagningar)."
 
 #: ../gramps/gui/fs/tools_window.py:559
-#, fuzzy
-#| msgid "Export to FamilySearch (basic)"
 msgid "Export to FamilySearch"
-msgstr "Exportera till FamilySearch (grundläggande)"
+msgstr "Exportera till FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:562
 msgid ""
@@ -18247,16 +18107,12 @@ msgid "Editor person: %(name)s"
 msgstr "Redaktör: %(name)s"
 
 #: ../gramps/gui/fs/tools_window.py:809
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Add FamilySearch ID"
-msgstr "FamilySearch-ID"
+msgstr "Lägg till FamilySearch-ID"
 
 #: ../gramps/gui/fs/tools_window.py:815
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Edit FamilySearch ID"
-msgstr "FamilySearch-ID"
+msgstr "Redigera FamilySearch-ID"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
@@ -21435,6 +21291,12 @@ msgid ""
 "Addon Manager → Projects) targets a different Gramps version. Check that the "
 "project URL matches Gramps %(major_version)s."
 msgstr ""
+"Tillägget '%(addon_id)s' kunde inte registreras och kommer inte att vara "
+"tillgängligt i din nuvarande konfiguration.\n"
+"\n"
+"Detta händer vanligtvis när tilläggets projekt (under Redigera → "
+"Inställningar → Tilläggshanterare → Projekt) riktar sig mot en annan Gramps-"
+"version. Kontrollera att projektets URL matchar Gramps %(major_version)s."
 
 #: ../gramps/gui/plug/_windows.py:612
 msgid "No matching addons found."
@@ -22692,11 +22554,11 @@ msgstr "Inget släktträd"
 
 #: ../gramps/gui/viewmanager.py:415
 msgid "You are not logged in to FamilySearch. Would you like to sign in now?"
-msgstr ""
+msgstr "Du är inte inloggad på FamilySearch. Vill du logga in nu?"
 
 #: ../gramps/gui/viewmanager.py:418
 msgid "Sign in"
-msgstr ""
+msgstr "Logga in"
 
 #: ../gramps/gui/viewmanager.py:638
 msgid "User consent declined"
@@ -29543,6 +29405,9 @@ msgid ""
 "%(year)d-%(month)02d-%(day)02d. If your source uses DD/MM/YYYY (e.g. "
 "ancestry.com exports), verify and correct after import."
 msgstr ""
+"Det tvetydiga numeriska datumet '%(orig)s' tolkas som MM/DD/ÅÅÅÅ "
+"(amerikanskt format) = %(year)d-%(month)02d-%(day)02d. Om din källa använder "
+"DD/MM/ÅÅÅÅ (t.ex. ancestry.com-export), verifiera och korrigera efter import."
 
 #: ../gramps/plugins/lib/libgedcom.py:3619
 msgid "Records not imported into "
@@ -33973,12 +33838,17 @@ msgid ""
 "https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"För att använda en anpassad kartleverantör, klistra in dess kart-URL nedan.\n"
+"Använd #Z, #X, #Y som platshållare för zoom, x och y.\n"
+"t.ex.:\n"
+"https://api.maptiler.com/tiles/uk-osgb1888/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"https://api.maptiler.com/tiles/uk-osgb63k1885/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
-#, fuzzy
-#| msgid "Personal map"
 msgid "Personal map: "
-msgstr "Personlig karta"
+msgstr "Personlig karta: "
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
 msgid "The map"
@@ -39870,10 +39740,8 @@ msgstr "Lägg till nytt barn till familjen"
 
 #: ../gramps/plugins/view/relview.py:1172
 #: ../gramps/plugins/view/relview.py:1704
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person as a child of the family"
-msgstr "Lägg till en existerande person som barn i familjen"
+msgstr "Välj en existerande person som barn i familjen"
 
 #: ../gramps/plugins/view/relview.py:1467
 #, python-format
