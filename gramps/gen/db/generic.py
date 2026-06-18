@@ -809,11 +809,16 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             # for new db we always need blob metadata to allow prior Gramps versions
             # to make it to the downgrade version check
             # Note: downgrade check only works from v5.1.2 and later on sqlite
-            self.set_serializer("blob")
             self.has_changed = 1  # to make sure genderstats gets saved
-            self._set_all_metadata()
             if self.use_json_data():
                 self.set_serializer("json")
+                self._set_all_metadata()
+                # Write blob second, then restore JSON as the active serializer.
+                self.set_serializer("blob")
+                self._set_all_metadata()
+                self.set_serializer("json")
+            else:
+                self.set_serializer("blob")
                 self._set_all_metadata()
             self.has_changed = 0  # number of commits
 
