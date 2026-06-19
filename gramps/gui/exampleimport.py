@@ -138,10 +138,12 @@ def maybe_prompt_example_import(vm: object) -> None:
     dialog.destroy()
 
     if dont_ask or response != Gtk.ResponseType.ACCEPT:
+        # Only suppress future prompts when the user explicitly opts out.
+        # Importing leaves the config key True; the tree-name check handles
+        # suppression, so renaming the tree correctly re-triggers the prompt.
         config.set("behavior.show-example-prompt", False)
         return
 
-    config.set("behavior.show-example-prompt", False)
     _do_import(vm, _EXAMPLE_DATA)
 
 
