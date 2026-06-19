@@ -30,6 +30,7 @@ Prompt new users to import the bundled Example Family Tree on first startup.
 import logging
 import os
 import shutil
+from typing import TYPE_CHECKING
 
 # -------------------------------------------------------------------------
 #
@@ -48,6 +49,9 @@ from gramps.gen.config import config
 from gramps.gen.const import DATA_DIR, DOC_DIR, USER_CACHE, GRAMPS_LOCALE as glocale
 from gramps.gen.db.utils import make_database
 from gramps.gen.plug import BasePluginManager
+
+if TYPE_CHECKING:
+    from gramps.gui.viewmanager import ViewManager
 
 _ = glocale.translation.gettext
 
@@ -112,7 +116,7 @@ class ExampleImportDialog(Gtk.Dialog):
 # Public entry point
 #
 # -------------------------------------------------------------------------
-def maybe_prompt_example_import(vm: object) -> None:
+def maybe_prompt_example_import(vm: ViewManager) -> None:
     """
     Show the example-import prompt if conditions are met.
 
@@ -152,7 +156,7 @@ def maybe_prompt_example_import(vm: object) -> None:
 # Private helpers
 #
 # -------------------------------------------------------------------------
-def _do_import(vm: object, data_gramps_path: str) -> None:
+def _do_import(vm: ViewManager, data_gramps_path: str) -> None:
     """
     Create "Example Family Tree", import data.gramps into it, seed map
     tiles, then open the new tree in the main window.
