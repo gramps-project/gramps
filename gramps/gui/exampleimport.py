@@ -53,7 +53,7 @@ _ = glocale.translation.gettext
 
 LOG = logging.getLogger(__name__)
 
-_EXAMPLE_TREE_NAME = "Example Family Tree"
+_EXAMPLE_TREE_NAME = _("Example Family Tree")
 _EXAMPLE_DATA = os.path.join(DOC_DIR, "example", "gramps", "data.gramps")
 _BUNDLED_TILES_DIR = os.path.join(DATA_DIR, "maps", "openstreetmap")
 
