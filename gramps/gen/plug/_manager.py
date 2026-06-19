@@ -38,6 +38,8 @@ import importlib
 import logging
 import os
 import sys
+from collections.abc import Iterator
+from contextlib import contextmanager
 
 # -------------------------------------------------------------------------
 #
@@ -61,6 +63,28 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 _UNAVAILABLE = _("No description was provided")
+
+
+@contextmanager
+def _prepended_sys_path(path: str) -> Iterator[None]:
+    """Temporarily prepend *path* to ``sys.path``.
+
+    The entry is removed on exit regardless of how the ``with`` block
+    terminates, so plugin import failures cannot leak ``sys.path``
+    entries into the rest of the process.
+    """
+    inserted = False
+    if path and path not in sys.path:
+        sys.path.insert(0, path)
+        inserted = True
+    try:
+        yield
+    finally:
+        if inserted:
+            try:
+                sys.path.remove(path)
+            except ValueError:
+                pass
 
 
 # -------------------------------------------------------------------------
@@ -187,9 +211,13 @@ class BasePluginManager:
                             plugins_to_load.remove(plugin)
                 count += 1
                 if count > max_count:
-                    print("Cannot resolve the following plugin dependencies:")
+                    LOG.error("Cannot resolve the following plugin dependencies:")
                     for plugin in plugins_to_load:
-                        print(f"   Plugin '{plugin.id}' requires: {plugin.depends_on}")
+                        LOG.error(
+                            "   Plugin '%s' requires: %s",
+                            plugin.id,
+                            plugin.depends_on,
+                        )
                     break
             # now load them:
             for plugin in plugins_sorted:
@@ -201,16 +229,15 @@ class BasePluginManager:
                     # LOG.warning("\nRun %s at registration", plugin.id)
                     try:
                         results = mod.load_on_reg(dbstate, uistate, plugin)
-                    except:
-                        import traceback
-
-                        traceback.print_exc()
-                        print(f"Plugin '{plugin.name}' did not run; continuing...")
+                    except Exception:
+                        LOG.exception(
+                            "Plugin '%s' did not run; continuing...", plugin.name
+                        )
                         continue
                     try:
                         iter(results)
                         plugin.data += results
-                    except:
+                    except TypeError:
                         plugin.data = results
         # Get the addon rules and import them and make them findable
         for plugin in self.__pgr.rule_plugins():
@@ -279,10 +306,8 @@ class BasePluginManager:
                 self.__loaded_plugins[pdata.id] = _module
                 self.__mod2text[_module.__name__] = pdata.description
             return _module
-        except:
-            import traceback
-
-            traceback.print_exc()
+        except Exception:
+            LOG.exception("Failed to load plugin '%s' from %s", pdata.id, filename)
             self.__failmsg_list.append((filename, sys.exc_info(), pdata))
 
         return None
@@ -291,47 +316,46 @@ class BasePluginManager:
         """
         Rather than just __import__(id), this will add the pdata.fpath
         to sys.path first (if needed), import, and then reset path.
+
+        ``sys.path`` is restored to its prior state even when the import
+        raises an unexpected exception.
         """
-        module = None
         if isinstance(pdata, str):
             pdata = self.get_plugin(pdata)
         if not pdata:
             return None
-        if pdata.fpath not in sys.path:
-            if pdata.mod_name:
-                sys.path.insert(0, pdata.fpath)
-                try:
-                    module = __import__(pdata.mod_name)
-                except ValueError as err:
-                    # Python3 on Windows  work with unicode in sys.path
-                    # but they are mbcs encode for checking validity
-                    if win():
-                        # we don't want to load Gramps core plugin like this
-                        # only 3rd party plugins
-                        if "gramps" in pdata.fpath:
+        if pdata.fpath in sys.path:
+            return __import__(pdata.mod_name) if pdata.mod_name else None
+        if not pdata.mod_name:
+            LOG.warning("Module cannot be loaded for plugin '%s'", pdata.id)
+            return None
+        with _prepended_sys_path(pdata.fpath):
+            try:
+                return __import__(pdata.mod_name)
+            except ValueError as err:
+                # Python 3 on Windows works with unicode in sys.path but
+                # mbcs-encodes for checking validity. Retry third-party
+                # plugins after cd'ing into the plugin directory.
+                if win() and "gramps" in pdata.fpath:
+                    oldwd = os.getcwd()
+                    try:
+                        os.chdir(pdata.fpath)
+                        with _prepended_sys_path("."):
                             try:
-                                sys.path.insert(0, ".")
-                                oldwd = os.getcwd()
-                                os.chdir(pdata.fpath)
-                                module = __import__(pdata.mod_name)
-                                os.chdir(oldwd)
-                                sys.path.pop(0)
+                                return __import__(pdata.mod_name)
                             except ValueError as error:
                                 LOG.warning(
                                     "Plugin error (from '%s'): %s",
                                     pdata.mod_name,
                                     error,
                                 )
-                    else:
-                        LOG.warning("Plugin error (from '%s'): %s", pdata.mod_name, err)
-                except ImportError as err:
+                    finally:
+                        os.chdir(oldwd)
+                else:
                     LOG.warning("Plugin error (from '%s'): %s", pdata.mod_name, err)
-                sys.path.pop(0)
-            else:
-                print("WARNING: module cannot be loaded")
-        else:
-            module = __import__(pdata.mod_name)
-        return module
+            except ImportError as err:
+                LOG.warning("Plugin error (from '%s'): %s", pdata.mod_name, err)
+        return None
 
     def empty_managed_plugins(self):
         """For some plugins, managed Plugin are used. These are only
@@ -367,7 +391,10 @@ class BasePluginManager:
                 self.reload(plugin[1], pdata)
                 self.__modules[filename] = plugin[1]
                 self.__loaded_plugins[pdata.id] = plugin[1]
-            except:
+            except Exception:
+                LOG.exception(
+                    "Failed to reload plugin '%s' from %s", pdata.id, filename
+                )
                 dellist.append(index)
                 self.__failmsg_list.append((filename, sys.exc_info(), pdata))
 
@@ -391,7 +418,7 @@ class BasePluginManager:
             spec = importlib.util.find_spec(pdata.mod_name, [pdata.fpath])
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
-        except:
+        except Exception:
             if pdata.mod_name in sys.modules:
                 del sys.modules[pdata.mod_name]
             module = self.import_plugin(pdata)
@@ -508,7 +535,7 @@ class BasePluginManager:
             try:
                 iter(data)
                 retval.extend(data)
-            except:
+            except TypeError:
                 retval.append(data)
         return retval
 
@@ -534,7 +561,7 @@ class BasePluginManager:
                 try:
                     iter(data)
                     retval.extend(data)
-                except:
+                except TypeError:
                     retval.append(data)
         # LOG.warning("Process plugin data=%s, %s, items=%s",
         #             process is not None, category, len(retval))
