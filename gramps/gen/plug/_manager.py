@@ -187,9 +187,13 @@ class BasePluginManager:
                             plugins_to_load.remove(plugin)
                 count += 1
                 if count > max_count:
-                    print("Cannot resolve the following plugin dependencies:")
+                    LOG.error("Cannot resolve the following plugin dependencies:")
                     for plugin in plugins_to_load:
-                        print(f"   Plugin '{plugin.id}' requires: {plugin.depends_on}")
+                        LOG.error(
+                            "   Plugin '%s' requires: %s",
+                            plugin.id,
+                            plugin.depends_on,
+                        )
                     break
             # now load them:
             for plugin in plugins_sorted:
@@ -201,16 +205,15 @@ class BasePluginManager:
                     # LOG.warning("\nRun %s at registration", plugin.id)
                     try:
                         results = mod.load_on_reg(dbstate, uistate, plugin)
-                    except:
-                        import traceback
-
-                        traceback.print_exc()
-                        print(f"Plugin '{plugin.name}' did not run; continuing...")
+                    except Exception:
+                        LOG.exception(
+                            "Plugin '%s' did not run; continuing...", plugin.name
+                        )
                         continue
                     try:
                         iter(results)
                         plugin.data += results
-                    except:
+                    except TypeError:
                         plugin.data = results
         # Get the addon rules and import them and make them findable
         for plugin in self.__pgr.rule_plugins():
@@ -279,10 +282,8 @@ class BasePluginManager:
                 self.__loaded_plugins[pdata.id] = _module
                 self.__mod2text[_module.__name__] = pdata.description
             return _module
-        except:
-            import traceback
-
-            traceback.print_exc()
+        except Exception:
+            LOG.exception("Failed to load plugin '%s' from %s", pdata.id, filename)
             self.__failmsg_list.append((filename, sys.exc_info(), pdata))
 
         return None
@@ -328,7 +329,7 @@ class BasePluginManager:
                     LOG.warning("Plugin error (from '%s'): %s", pdata.mod_name, err)
                 sys.path.pop(0)
             else:
-                print("WARNING: module cannot be loaded")
+                LOG.warning("Module cannot be loaded for plugin '%s'", pdata.id)
         else:
             module = __import__(pdata.mod_name)
         return module
@@ -367,7 +368,10 @@ class BasePluginManager:
                 self.reload(plugin[1], pdata)
                 self.__modules[filename] = plugin[1]
                 self.__loaded_plugins[pdata.id] = plugin[1]
-            except:
+            except Exception:
+                LOG.exception(
+                    "Failed to reload plugin '%s' from %s", pdata.id, filename
+                )
                 dellist.append(index)
                 self.__failmsg_list.append((filename, sys.exc_info(), pdata))
 
@@ -391,7 +395,7 @@ class BasePluginManager:
             spec = importlib.util.find_spec(pdata.mod_name, [pdata.fpath])
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
-        except:
+        except Exception:
             if pdata.mod_name in sys.modules:
                 del sys.modules[pdata.mod_name]
             module = self.import_plugin(pdata)
@@ -508,7 +512,7 @@ class BasePluginManager:
             try:
                 iter(data)
                 retval.extend(data)
-            except:
+            except TypeError:
                 retval.append(data)
         return retval
 
@@ -534,7 +538,7 @@ class BasePluginManager:
                 try:
                     iter(data)
                     retval.extend(data)
-                except:
+                except TypeError:
                     retval.append(data)
         # LOG.warning("Process plugin data=%s, %s, items=%s",
         #             process is not None, category, len(retval))
