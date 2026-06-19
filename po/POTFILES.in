@@ -595,6 +595,7 @@ gramps/gui/selectors/selectperson.py
 gramps/gui/selectors/selectplace.py
 gramps/gui/selectors/selectrepository.py
 gramps/gui/selectors/selectsource.py
+gramps/gui/exampleimport.py
 gramps/gui/spell.py
 gramps/gui/tipofday.py
 gramps/gui/undohistory.py

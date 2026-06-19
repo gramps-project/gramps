@@ -203,6 +203,10 @@ class GrampsBuildHook(BuildHookInterface):
         destination = os.path.join(build_dir, "share", "gramps", "css")
         copytree(source, destination)
 
+        source = os.path.join(self.root, "data", "maps")
+        destination = os.path.join(build_dir, "share", "gramps", "maps")
+        copytree(source, destination)
+
         doc_files = [
             "AUTHORS",
             "COPYING",

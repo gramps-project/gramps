@@ -624,6 +624,10 @@ class Gramps:
         if config.get("behavior.use-tips"):
             TipOfDay(self._vm.uistate)
 
+        from .exampleimport import maybe_prompt_example_import
+
+        maybe_prompt_example_import(self._vm)
+
     def argerrorfunc(self, string):
         """Show basic errors in argument handling in GUI fashion"""
         from .dialog import ErrorDialog
