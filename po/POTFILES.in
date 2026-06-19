@@ -568,6 +568,7 @@ gramps/gui/merge/mergeperson.py
 gramps/gui/merge/mergeplace.py
 gramps/gui/merge/mergerepository.py
 gramps/gui/merge/mergesource.py
+gramps/gui/onboarding.py
 gramps/gui/plug/_dialogs.py
 gramps/gui/plug/_guioptions.py
 gramps/gui/plug/_windows.py

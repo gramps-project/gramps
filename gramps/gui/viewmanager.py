@@ -463,6 +463,7 @@ class ViewManager(CLIManager):
             ("KeyBindings", key_bindings),
             ("UserManual", manual_activate, "F1"),
             ("TipOfDay", self.tip_of_day_activate),
+            ("TakeATour", self.take_a_tour_activate),
         ]
 
         self._readonly_action_list = [
@@ -847,6 +848,14 @@ class ViewManager(CLIManager):
         from .tipofday import TipOfDay
 
         TipOfDay(self.uistate)
+
+    def take_a_tour_activate(self, *obj):
+        """
+        Start the onboarding tour from the beginning.
+        """
+        from .onboarding import OnboardingFlow
+
+        OnboardingFlow(self).start()
 
     def __plugin_status(self, obj=None, data=None):
         """

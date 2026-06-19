@@ -278,6 +278,10 @@ UIDEFAULT = (
           <attribute name="label" translatable="yes">Tip of the Day</attribute>
         </item>
         <item>
+          <attribute name="action">win.TakeATour</attribute>
+          <attribute name="label" translatable="yes">Take a Tour</attribute>
+        </item>
+        <item>
           <attribute name="action">win.PluginStatus</attribute>
           <attribute name="label" translatable="yes">"""
     """_Plugin Manager</attribute>
@@ -435,7 +439,7 @@ try:
     gi.require_version("Gtk", "3.0")
     # It is important to import Pango before Gtk, or some things start to go
     # wrong in GTK3 !
-    from gi.repository import Pango, PangoCairo
+    from gi.repository import GLib, Pango, PangoCairo
     from gi.repository import Gtk, Gdk
 except (ImportError, ValueError):
     print(
@@ -623,6 +627,11 @@ class Gramps:
 
         if config.get("behavior.use-tips"):
             TipOfDay(self._vm.uistate)
+
+        from .onboarding import OnboardingFlow
+
+        if OnboardingFlow.should_show():
+            GLib.idle_add(OnboardingFlow(self._vm).start)
 
     def argerrorfunc(self, string):
         """Show basic errors in argument handling in GUI fashion"""
