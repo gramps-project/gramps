@@ -404,6 +404,9 @@ gramps/gui/filters/_filtermenu.py
 # gui.filters.sidebar package
 #
 gramps/gui/filters/sidebar/__init__.py
+gramps/gui/filters/sidebar/_typefilterlist.py
+gramps/gui/filters/sidebar/test/__init__.py
+gramps/gui/filters/sidebar/test/_sidebarfilter_test.py
 #
 # gui.fs package
 #

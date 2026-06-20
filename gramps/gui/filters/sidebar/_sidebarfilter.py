@@ -46,6 +46,7 @@ from gramps.gen.config import config
 from ...utils import no_match_primary_mask
 
 from ...editors import EditFilter
+from ._typefilterlist import TypeFilterList
 import gramps.gen.filters
 
 # import gramps.gen.filters.rules.place
@@ -104,6 +105,8 @@ class SidebarFilter(DbGUIElement):
         self.uistate = uistate
         self.dbstate = dbstate
         self.namespace = namespace
+        self._type_filters = TypeFilterList()
+        self._register_type_filters()
         self.__tag_list = []
         self._tag_rebuild()
 
@@ -237,6 +240,7 @@ class SidebarFilter(DbGUIElement):
         """
         self._change_db(db)
         self.on_db_changed(db)
+        self._type_filters.refresh()
         self._tag_rebuild()
 
     def on_db_changed(self, db):
@@ -244,6 +248,49 @@ class SidebarFilter(DbGUIElement):
         Called when the database is changed.
         """
         pass
+
+    def _register_type_filters(self):
+        """
+        Register this filter's database-derived "Type" selectors so they stay
+        consistent with the database's current custom types (bug 13716).
+
+        Subclasses that offer a custom-type selector override this and call
+        :meth:`add_type_filter` once per selector.  The default does nothing
+        (filters without a type selector need no refresh).
+        """
+        pass
+
+    def add_type_filter(self, monitored, db_method):
+        """
+        Register a database-derived type selector for refresh.
+
+        :param monitored: the :class:`MonitoredDataType` wrapping the selector;
+                           its ``rebuild`` is called with the current custom
+                           types, and its ``obj`` combo box drives the refresh.
+        :param db_method: the name of the database method returning the current
+                          custom types (e.g. ``"get_note_types"``).  Resolved on
+                          the *live* database on every refresh, so custom types
+                          added after construction are picked up (bug 13716).
+        """
+
+        def _fetch():
+            if self.dbstate.is_open():
+                return getattr(self.dbstate.db, db_method)()
+            return []
+
+        self._type_filters.register(_fetch, monitored.rebuild)
+        # Mirror the editor dialogs, which rebuild their type selector anew
+        # every time they are shown: rebuild the selector from the database
+        # each time the user opens its drop-down.
+        monitored.obj.connect("notify::popup-shown", self._type_popup_shown)
+
+    def _type_popup_shown(self, combo, pspec):
+        """
+        Rebuild the database-derived type selectors when one is opened, so the
+        options offered reflect the database's current custom types.
+        """
+        if combo.get_property("popup-shown"):
+            self._type_filters.refresh()
 
     def _connect_db_signals(self):
         """
