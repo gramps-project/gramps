@@ -173,7 +173,7 @@ class KinshipReport(Report):
                     title = get_rel_str(Ga, Gb, in_law_b=True)
                     self.write_people(self._(title), self.spouse_map[Ga][Gb])
 
-    def traverse_down(self, person_handle, Ga, Gb, skip_handle=None):
+    def traverse_down(self, person_handle, Ga, Gb, skip_handle=None, visited=None):
         """
         Populate a map of arrays containing person handles for the descendants
         of the passed person. This function calls itself recursively until it
@@ -190,9 +190,14 @@ class KinshipReport(Report):
         skip_handle: an optional handle to skip when going down. This is useful
            to skip the descendant that brought you this generation in the first
            place.
+        visited: a set of already-visited handles for this descent chain, used
+           to prevent exponential re-traversal in endogamous trees.
         """
+        if visited is None:
+            visited = set()
         for child_handle in self.get_children_handles(person_handle):
-            if child_handle != skip_handle:
+            if child_handle != skip_handle and child_handle not in visited:
+                visited.add(child_handle)
                 self.add_kin(child_handle, Ga, Gb)
 
                 if self.inc_spouses:
@@ -200,7 +205,7 @@ class KinshipReport(Report):
                         self.add_spouse(spouse_handle, Ga, Gb)
 
                 if Gb < self.max_descend:
-                    self.traverse_down(child_handle, Ga, Gb + 1)
+                    self.traverse_down(child_handle, Ga, Gb + 1, visited=visited)
 
     def traverse_up(self, person_handle, Ga, Gb):
         """
