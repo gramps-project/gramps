@@ -97,7 +97,9 @@ ONBOARDING_STEPS: list[OnboardingStep] = [
         title=_("Welcome to Gramps!"),
         body=_(
             "Gramps helps you research, organize, and share your family history. "
-            "This short tour introduces the main areas of the interface."
+            "This short tour introduces the main areas of the interface. "
+            "This is the status bar — it shows the active database and a count "
+            "of the records in the current view."
         ),
         widget_getter=lambda vm: vm.statusbar,
         position=Gtk.PositionType.TOP,
