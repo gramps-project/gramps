@@ -312,14 +312,24 @@ class OnboardingFlow:
         body_label.set_line_wrap(True)
         outer.pack_start(body_label, False, False, 0)
 
-        btn_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
-        btn_row.set_halign(Gtk.Align.END)
+        is_first = self._step == 0
+        is_last = self._step == len(ONBOARDING_STEPS) - 1
 
-        skip_btn = Gtk.Button(label=_("Skip tour"))
+        btn_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+
+        skip_label = _("Skip") if is_first else _("Complete tour")
+        skip_btn = Gtk.Button(label=skip_label)
         skip_btn.connect("clicked", self.cb_skip)
         btn_row.pack_start(skip_btn, False, False, 0)
 
-        is_last = self._step == len(ONBOARDING_STEPS) - 1
+        spacer = Gtk.Box()
+        btn_row.pack_start(spacer, True, True, 0)
+
+        if not is_first:
+            back_btn = Gtk.Button(label=_("Back"))
+            back_btn.connect("clicked", self.cb_back)
+            btn_row.pack_start(back_btn, False, False, 0)
+
         next_btn = Gtk.Button(label=_("Done") if is_last else _("Next"))
         next_btn.get_style_context().add_class("suggested-action")
         next_btn.connect("clicked", self.cb_next)
@@ -333,6 +343,12 @@ class OnboardingFlow:
         """Advance to the next onboarding step."""
         self._step += 1
         self._show_step()
+
+    def cb_back(self, _button: Gtk.Button) -> None:
+        """Return to the previous onboarding step."""
+        if self._step > 0:
+            self._step -= 1
+            self._show_step()
 
     def cb_skip(self, _button: Gtk.Button) -> None:
         """Dismiss the tour without completing all steps."""
