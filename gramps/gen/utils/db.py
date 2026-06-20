@@ -37,6 +37,7 @@ from ..const import GRAMPS_LOCALE as glocale
 from ..display.name import displayer as name_displayer
 from ..display.place import displayer as place_displayer
 from ..lib import EventType, EventRoleType, NameOriginType, Surname
+from .graph import find_ancestors_iterative
 
 _ = glocale.translation.sgettext
 
@@ -458,34 +459,17 @@ def find_witnessed_people(db, person):
 # -------------------------------------------------------------------------
 def for_each_ancestor(db, start, func, data):
     """
-    Recursively iterate (breadth-first) over ancestors of
-    people listed in start.
-    Call func(data, pid) for the Id of each person encountered.
-    Exit and return 1, as soon as func returns true.
+    Iterate over ancestors of people listed in start using BFS.
+    Call func(data, pid) for the handle of each person encountered,
+    including the starting people themselves.
+    Exit and return 1 as soon as func returns true.
     Return 0 otherwise.
     """
-    todo = start
-    done_ids = set()
-    while len(todo):
-        person_handle = todo.pop()
-        # Don't process the same handle twice.  This can happen
-        # if there is a cycle in the database, or if the
-        # initial list contains X and some of X's ancestors.
-        if person_handle in done_ids:
-            continue
-        if func(data, person_handle):
+    for handle, _ in find_ancestors_iterative(
+        db, list(start), inclusive=True, include_all_parent_families=True
+    ):
+        if func(data, handle):
             return 1
-        person = db.get_person_from_handle(person_handle)
-        for family_handle in person.get_parent_family_handle_list():
-            family = db.get_family_from_handle(family_handle)
-            if family:
-                father_handle = family.get_father_handle()
-                if father_handle:
-                    todo.append(father_handle)
-                mother_handle = family.get_mother_handle()
-                if mother_handle:
-                    todo.append(mother_handle)
-        done_ids.add(person_handle)
     return 0
 
 
