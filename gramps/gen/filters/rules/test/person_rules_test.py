@@ -97,6 +97,7 @@ from ..person import (
     PersonWithIncompleteEvent,
     ProbablyAlive,
     RegExpName,
+    RelationshipPathBetween,
     RelationshipPathBetweenBookmarks,
 )
 
@@ -1297,6 +1298,39 @@ class BaseTest(unittest.TestCase):
                     "AWFKQCJELLUWDY2PD3",
                     "D3WJQCCGV58IP8PNHZ",
                     "Q8HKQC3VMRM1M6M7ES",
+                ]
+            ),
+        )
+
+    def test_relationship_path_between_direct(self):
+        """
+        Test RelationshipPathBetween with two people sharing a single common ancestor.
+        """
+        rule = RelationshipPathBetween(["I0044", "I0000"])
+        self.assertEqual(
+            self.filter_with_rule(rule),
+            set(
+                [
+                    "GNUJQCL9MD64AM56OH",
+                    "d5839c1237765987724",
+                ]
+            ),
+        )
+
+    def test_relationship_path_between_extended(self):
+        """
+        Test RelationshipPathBetween with two people connected through several ancestors.
+        """
+        rule = RelationshipPathBetween(["I0044", "I0002"])
+        self.assertEqual(
+            self.filter_with_rule(rule),
+            set(
+                [
+                    "B8TJQC53HJXOGXK8F7",
+                    "BBTJQCNT6N1H4X6TL4",
+                    "DPUJQCUYKKDPT78JJV",
+                    "GNUJQCL9MD64AM56OH",
+                    "TDTJQCGYRS2RCCGQN3",
                 ]
             ),
         )
