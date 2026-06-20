@@ -317,7 +317,7 @@ class OnboardingFlow:
 
         btn_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
 
-        skip_label = _("Skip") if is_first else _("Complete tour")
+        skip_label = _("Skip") if is_first else _("Done")
         skip_btn = Gtk.Button(label=skip_label)
         skip_btn.connect("clicked", self.cb_skip)
         btn_row.pack_start(skip_btn, False, False, 0)
@@ -330,10 +330,11 @@ class OnboardingFlow:
             back_btn.connect("clicked", self.cb_back)
             btn_row.pack_start(back_btn, False, False, 0)
 
-        next_btn = Gtk.Button(label=_("Done") if is_last else _("Next"))
-        next_btn.get_style_context().add_class("suggested-action")
-        next_btn.connect("clicked", self.cb_next)
-        btn_row.pack_start(next_btn, False, False, 0)
+        if not is_last:
+            next_btn = Gtk.Button(label=_("Next"))
+            next_btn.get_style_context().add_class("suggested-action")
+            next_btn.connect("clicked", self.cb_next)
+            btn_row.pack_start(next_btn, False, False, 0)
 
         outer.pack_start(btn_row, False, False, 0)
         popover.add(outer)
