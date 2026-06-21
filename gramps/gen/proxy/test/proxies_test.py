@@ -112,6 +112,32 @@ class PrivateProxyTest(unittest.TestCase):
         person = self.db.basedb.get_person_from_handle(handle)
         self.assertTrue(len(person.attribute_list) == 3)
 
+    def test_get_parent_handles_private_person(self):
+        # A private person's parents should not be returned through the proxy.
+        handle = "0GDKQC54XKSWZKEBWW"
+        parents = self.db.get_parent_handles(handle)
+        self.assertEqual(parents, [])
+
+    def test_get_parent_handles_non_private_person(self):
+        # A non-private person's parents should match the base db.
+        handle = "0FWJQCLYEP736P3YZK"
+        parents = self.db.get_parent_handles(handle)
+        parents_base = self.db.basedb.get_parent_handles(handle)
+        self.assertEqual(sorted(parents), sorted(parents_base))
+
+    def test_get_child_handles_private_person(self):
+        # A private person's children should not be returned through the proxy.
+        handle = "0GDKQC54XKSWZKEBWW"
+        children = self.db.get_child_handles(handle)
+        self.assertEqual(children, [])
+
+    def test_get_child_handles_non_private_person(self):
+        # A non-private person's children should match the base db.
+        handle = "0FWJQCLYEP736P3YZK"
+        children = self.db.get_child_handles(handle)
+        children_base = self.db.basedb.get_child_handles(handle)
+        self.assertEqual(sorted(children), sorted(children_base))
+
 
 class LivingProxyTest(unittest.TestCase):
     """
@@ -154,6 +180,32 @@ class LivingProxyTest(unittest.TestCase):
         handle = "66TJQC6CC7ZWL9YZ64"
         person = self.db.get_person_from_handle(handle)
         self.assertIs(person, None)
+
+    def test_get_parent_handles_dead_person(self):
+        # A living-excluded person's parents should not be returned.
+        handle = "66TJQC6CC7ZWL9YZ64"
+        parents = self.db.get_parent_handles(handle)
+        self.assertEqual(parents, [])
+
+    def test_get_parent_handles_live_person(self):
+        # A visible person's parents should match the base db.
+        handle = "004KQCGYT27EEPQHK"
+        parents = self.db.get_parent_handles(handle)
+        parents_base = self.db.basedb.get_parent_handles(handle)
+        self.assertEqual(sorted(parents), sorted(parents_base))
+
+    def test_get_child_handles_dead_person(self):
+        # A living-excluded person's children should not be returned.
+        handle = "66TJQC6CC7ZWL9YZ64"
+        children = self.db.get_child_handles(handle)
+        self.assertEqual(children, [])
+
+    def test_get_child_handles_live_person(self):
+        # A visible person's children should match the base db.
+        handle = "004KQCGYT27EEPQHK"
+        children = self.db.get_child_handles(handle)
+        children_base = self.db.basedb.get_child_handles(handle)
+        self.assertEqual(sorted(children), sorted(children_base))
 
 
 class LivingPrivateProxyTest(unittest.TestCase):
