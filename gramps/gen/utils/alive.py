@@ -201,12 +201,15 @@ class ProbablyAlive:
             death_found = False
             explain_birth = explain_death = ""
             birth_fb_date = death_fb_date = None
-            # Process direct death/birth refs first for early exit
+            # Process direct death/birth refs first for early exit.
+            # No type check: trust whatever event is stored at death_ref_index /
+            # birth_ref_index, matching the original get_death_ref/get_birth_ref
+            # behaviour that doesn't filter by event type.
             if 0 <= death_ref_index < n:
                 ev_ref = event_ref_list[death_ref_index]
                 if ev_ref["role"]["value"] == _PRIMARY_ROLE:
                     raw_event = self.db.get_raw_event_data(ev_ref["ref"])
-                    if raw_event and raw_event["type"]["value"] == _DEATH_TYPE:
+                    if raw_event:
                         death_found = True
                         d = _make_date_from_dict(raw_event.get("date"))
                         if d:
@@ -216,7 +219,7 @@ class ProbablyAlive:
                 ev_ref = event_ref_list[birth_ref_index]
                 if ev_ref["role"]["value"] == _PRIMARY_ROLE:
                     raw_event = self.db.get_raw_event_data(ev_ref["ref"])
-                    if raw_event and raw_event["type"]["value"] == _BIRTH_TYPE:
+                    if raw_event:
                         d = _make_date_from_dict(raw_event.get("date"))
                         if d and d.get_year_valid():
                             birth_date = d
@@ -252,14 +255,14 @@ class ProbablyAlive:
                     and type_val in _DEATH_FALLBACKS
                     and death_fb_date is None
                 ):
+                    death_found = True
                     d = _make_date_from_dict(date_dict)
                     if d:
-                        death_found = True
                         death_fb_date = d
                         explain_death = _("date fallback")
                         if d.get_modifier() == Date.MOD_NONE:
                             d.set_modifier(Date.MOD_BEFORE)
-                elif (
+                if (
                     not birth_date
                     and type_val in _BIRTH_FALLBACKS
                     and birth_fb_date is None

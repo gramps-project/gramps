@@ -256,9 +256,10 @@ class LivingProxyDb(ProxyDbBase):
         """
         from ..utils.alive import probably_alive
 
-        raw_person = self.db.get_raw_person_data(person.handle)
+        person_handle = person.get_handle()
+        unfil_person = self.get_unfiltered_person(person_handle)
         return probably_alive(
-            raw_person, self.db, self.current_date, self.years_after_death
+            unfil_person, self.db, self.current_date, self.years_after_death
         )
 
     def __remove_living_from_family(self, family):
