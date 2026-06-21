@@ -333,7 +333,7 @@ class GenericFilter:
         return res
 
     def get_object(self, db, handle):
-        return db.get_person_from_handle(handle)
+        return db.get_raw_person_data(handle)
 
 
 class GenericFamilyFilter(GenericFilter):
