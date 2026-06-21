@@ -31,17 +31,18 @@ _ = glocale.translation.gettext
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ....utils.db import for_each_ancestor
 from .. import Rule
+from ....utils.graph import find_ancestors
 
 # -------------------------------------------------------------------------
 #
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Dict, Set
 from ....lib import Person
 from ....db import Database
+from ....types import PersonHandle
+from ....user import UserBase
 
 
 # -------------------------------------------------------------------------
@@ -59,67 +60,48 @@ class HasCommonAncestorWith(Rule):
         "Matches people that have a common ancestor " "with a specified person"
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: UserBase) -> None:
         self.db = db
-        # For each(!) person we keep track of who their ancestors
-        # are, in a set(). So we only have to compute a person's
-        # ancestor list once.
-        # Start with filling the cache for root person (gramps_id in self.list[0])
-        self.ancestor_cache: Dict[str, Set[str]] = {}
+        self.ancestor_cache: dict[PersonHandle, set[PersonHandle]] = {}
         root_person = db.get_person_from_gramps_id(self.list[0])
         if root_person:
-            self.add_ancs(db, root_person)
-            self.with_people = [root_person.handle]
+            self._get_ancestors(db, root_person.handle)
+            self.with_people: list[PersonHandle] = [root_person.handle]
         else:
             self.with_people = []
 
-    def add_ancs(self, db: Database, person: Person):
-        if person and person.handle not in self.ancestor_cache:
-            self.ancestor_cache[person.handle] = set()
-            # We are going to compare ancestors of one person with that of
-            # another person; if that other person is an ancestor and itself
-            # has no ancestors is must be included, this is achieved by the
-            # little trick of making a person his own ancestor.
-            self.ancestor_cache[person.handle].add(person.handle)
-        else:
-            return
+    def _get_ancestors(self, db: Database, handle: PersonHandle) -> set[PersonHandle]:
+        """
+        Return the ancestor set for handle, computing and caching it on first access.
 
-        for fam_handle in person.parent_family_list:
-            parentless_fam = True
-            fam = db.get_family_from_handle(fam_handle)
-            if fam:
-                for par_handle in (fam.father_handle, fam.mother_handle):
-                    if par_handle:
-                        parentless_fam = False
-                        par = db.get_person_from_handle(par_handle)
-                        if par and par.handle not in self.ancestor_cache:
-                            self.add_ancs(db, par)
-                        if par:
-                            self.ancestor_cache[person.handle] |= self.ancestor_cache[
-                                par.handle
-                            ]
-                if parentless_fam:
-                    self.ancestor_cache[person.handle].add(fam_handle)
+        The set includes handle itself (inclusive traversal) so that a person
+        is always considered their own ancestor when checking for overlap.
+        All parent families are followed to match the behaviour of the
+        original recursive implementation.
+        """
+        if handle not in self.ancestor_cache:
+            self.ancestor_cache[handle] = find_ancestors(
+                db, [handle], inclusive=True, include_all_parent_families=True
+            )
+        return self.ancestor_cache[handle]
 
-    def reset(self):
+    def reset(self) -> None:
+        """Reset the ancestor cache."""
         self.ancestor_cache = {}
 
-    def has_common_ancestor(self, other: Person):
+    def has_common_ancestor(self, other: Person) -> bool:
+        """Return True if other shares at least one ancestor with any person in with_people."""
+        if not other:
+            return False
+        other_ancs = self.ancestor_cache.get(other.handle, set())
         for handle in self.with_people:
-            left_and = (
-                handle in self.ancestor_cache and self.ancestor_cache[handle]
-            )  # type: ignore
-            right_and = (
-                other
-                and other.handle in self.ancestor_cache
-                and self.ancestor_cache[other.handle]
-            )  # type: ignore
-            if left_and.intersection(right_and):  # type: ignore
+            root_ancs = self.ancestor_cache.get(handle, set())
+            if root_ancs & other_ancs:
                 return True
         return False
 
     def apply_to_one(self, db: Database, person: Person) -> bool:
+        """Apply the rule to a single person."""
         if person and person.handle not in self.ancestor_cache:
-            self.add_ancs(db, person)
-
+            self._get_ancestors(db, person.handle)
         return self.has_common_ancestor(person)

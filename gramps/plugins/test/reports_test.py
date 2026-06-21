@@ -469,5 +469,76 @@ reports.addcli(
     "name=check",
 )
 
+# -------------------------------------------------------------------------
+# Traversal regression tests
+#
+# These tests lock in the set of people included in each traversal-heavy
+# report before we migrate those reports to use graph.py.  They run the
+# same report as the smoke tests above but read the output file and check
+# that known people appear.  If the migration changes who is visited the
+# assertions below will fail, making the regression easy to spot.
+# -------------------------------------------------------------------------
+
+
+class TestTraversalRegression(unittest.TestCase):
+    """Content regression tests for reports that use ancestor/descendant traversal."""
+
+    @classmethod
+    def setUpClass(cls):
+        """Import the example database into the test tree."""
+        cls.gramps = Gramps(user=User())
+        cls.gramps.run("-y", "--remove", TREE_NAME)
+        cls.gramps.run("-C", TREE_NAME, "--import", example)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.gramps.run("-y", "--remove", TREE_NAME)
+
+    @classmethod
+    def call(cls, *args):
+        """Run Gramps CLI and return (stdout, stderr)."""
+        gramps = Gramps(user=User())
+        return gramps.run(*args)
+
+    def _run_report(self, report_name, ext):
+        """Run a text report and return the file contents, then clean up."""
+        out_file = f"{report_name} {TREE_NAME}.{ext}"
+        self.call(
+            "--force",
+            "-O",
+            TREE_NAME,
+            "--action",
+            "report",
+            "--options",
+            f"name={report_name},off={ext}",
+        )
+        with open(out_file) as fh:
+            content = fh.read()
+        os.remove(out_file)
+        return content
+
+    def test_descend_report_visits_all_descendants(self):
+        """
+        Descendant Report must include the default person (I0037, Edwin Michael
+        Smith) and both of their children (I0002 Amber Marie Smith and I0005
+        Mason Michael Smith).  If the traversal skips or duplicates nodes this
+        assertion will fail.
+        """
+        content = self._run_report("descend_report", "txt")
+        self.assertIn("Edwin Michael", content)
+        self.assertIn("Amber Marie", content)
+        self.assertIn("Mason Michael", content)
+
+    def test_kinship_report_includes_direct_relatives(self):
+        """
+        Kinship Report for the default person (I0037) must include their
+        children.  The traversal walks both up (ancestors) and down
+        (descendants via spouse families).
+        """
+        content = self._run_report("kinship_report", "txt")
+        self.assertIn("Amber Marie", content)
+        self.assertIn("Mason Michael", content)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1033,6 +1033,106 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(f"SELECT gramps_id FROM {table}")
         return [row[0] for row in self.dbapi.fetchall()]
 
+    def _json_first_scalar(self, subquery: str, field: str) -> str:
+        """
+        Return a SQL expression for the first element of a JSON scalar array field.
+
+        :param subquery: SQL subquery that returns a single json_data value.
+        :param field: JSON array field name inside json_data.
+        """
+        raise NotImplementedError
+
+    def _json_expand_scalar_array(self, col: str, field: str, alias: str) -> str:
+        """
+        Return a SQL FROM fragment that expands a JSON scalar array into rows.
+
+        Each row exposes the element as ``alias.value``.
+
+        :param col: Column expression containing json_data.
+        :param field: JSON array field name inside json_data.
+        :param alias: Table alias for the expanded rows.
+        """
+        raise NotImplementedError
+
+    def _json_expand_object_array(self, col: str, field: str, alias: str) -> str:
+        """
+        Return a SQL FROM fragment that expands a JSON object array into rows.
+
+        Each row exposes the element as ``alias.value``.
+
+        :param col: Column expression containing json_data.
+        :param field: JSON array field name inside json_data.
+        :param alias: Table alias for the expanded rows.
+        """
+        raise NotImplementedError
+
+    def _json_object_field(self, alias: str, field: str) -> str:
+        """
+        Return a SQL expression that extracts a named key from a JSON object row.
+
+        :param alias: Alias of a row produced by :meth:`_json_expand_object_array`.
+        :param field: Key name to extract.
+        """
+        raise NotImplementedError
+
+    def get_parent_handles(self, person_handle, first_only=True):
+        """
+        Return handles of all parents of a person across their parent families.
+        """
+        if first_only:
+            fam_handle = self._json_first_scalar(
+                "SELECT json_data FROM person WHERE handle = ?",
+                "parent_family_list",
+            )
+            self.dbapi.execute(
+                "SELECT f.father_handle, f.mother_handle "
+                "FROM family f "
+                f"WHERE f.handle = {fam_handle}",
+                [person_handle],
+            )
+        else:
+            pf = self._json_expand_scalar_array(
+                "p.json_data", "parent_family_list", "pf"
+            )
+            self.dbapi.execute(
+                "SELECT f.father_handle, f.mother_handle "
+                f"FROM person p, {pf} "
+                "JOIN family f ON f.handle = pf.value "
+                "WHERE p.handle = ?",
+                [person_handle],
+            )
+        return [h for row in self.dbapi.fetchall() for h in row if h]
+
+    def get_child_handles(self, person_handle, first_only=True):
+        """
+        Return handles of all children of a person across their families.
+        """
+        cr_field = self._json_object_field("cr", "ref")
+        if first_only:
+            fam_handle = self._json_first_scalar(
+                "SELECT json_data FROM person WHERE handle = ?",
+                "family_list",
+            )
+            cr = self._json_expand_object_array("f.json_data", "child_ref_list", "cr")
+            self.dbapi.execute(
+                f"SELECT {cr_field} "
+                f"FROM family f, {cr} "
+                f"WHERE f.handle = {fam_handle}",
+                [person_handle],
+            )
+        else:
+            fl = self._json_expand_scalar_array("p.json_data", "family_list", "fl")
+            cr = self._json_expand_object_array("f.json_data", "child_ref_list", "cr")
+            self.dbapi.execute(
+                f"SELECT {cr_field} "
+                f"FROM person p, {fl} "
+                "JOIN family f ON f.handle = fl.value, "
+                f"{cr} "
+                "WHERE p.handle = ?",
+                [person_handle],
+            )
+        return [row[0] for row in self.dbapi.fetchall() if row[0]]
+
     def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(

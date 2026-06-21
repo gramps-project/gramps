@@ -56,6 +56,30 @@ class SQLite(DBAPI):
     SQLite interface.
     """
 
+    def _json_first_scalar(self, subquery: str, field: str) -> str:
+        """
+        Return a SQLite json_extract expression for the first array element.
+        """
+        return f"json_extract(({subquery}), '$.{field}[0]')"
+
+    def _json_expand_scalar_array(self, col: str, field: str, alias: str) -> str:
+        """
+        Return a SQLite json_each FROM fragment for a scalar array field.
+        """
+        return f"json_each({col}, '$.{field}') {alias}"
+
+    def _json_expand_object_array(self, col: str, field: str, alias: str) -> str:
+        """
+        Return a SQLite json_each FROM fragment for an object array field.
+        """
+        return f"json_each({col}, '$.{field}') {alias}"
+
+    def _json_object_field(self, alias: str, field: str) -> str:
+        """
+        Return a SQLite json_extract expression for a field inside an object row.
+        """
+        return f"json_extract({alias}.value, '$.{field}')"
+
     def get_summary(self):
         """
         Return a dictionary of information about this database backend.

@@ -24,17 +24,11 @@ Rule that checks for a family that is an ancestor of a specified family.
 
 # -------------------------------------------------------------------------
 #
-# Standard python modules
-#
-# -------------------------------------------------------------------------
-from __future__ import annotations
-
-# -------------------------------------------------------------------------
-#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.graph import find_ancestors
 from ....const import GRAMPS_LOCALE as glocale
 
 # -------------------------------------------------------------------------
@@ -67,35 +61,28 @@ class IsAncestorOf(Rule):
 
     def prepare(self, db: Database, user: UserBase) -> None:
         self.selected_handles: set[FamilyHandle] = set()
-        first = False if int(self.list[1]) else True
+        try:
+            inclusive = bool(int(self.list[1]))
+        except IndexError:
+            inclusive = False
         root_family = db.get_family_from_gramps_id(self.list[0])
-        self.init_list(db, root_family, first)
+        if root_family is not None:
+            if inclusive:
+                self.selected_handles.add(root_family.handle)
+            parents = [
+                h
+                for h in [root_family.father_handle, root_family.mother_handle]
+                if h is not None
+            ]
+            if parents:
+                ancestors = find_ancestors(db, parents, inclusive=True)
+                for person_handle in ancestors:
+                    person = db.get_raw_person_data(person_handle)
+                    if person is not None and person.parent_family_list:
+                        self.selected_handles.add(person.parent_family_list[0])
 
     def reset(self) -> None:
         self.selected_handles.clear()
 
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
-
-    def init_list(self, db: Database, family: Family | None, first: bool) -> None:
-        """
-        Initialise family handle list.
-        """
-        if not family:
-            return
-        if family.handle in self.selected_handles:
-            return
-        if not first:
-            self.selected_handles.add(family.handle)
-
-        for parent_handle in [family.father_handle, family.mother_handle]:
-            if parent_handle:
-                parent = db.get_person_from_handle(parent_handle)
-                family_handle = (
-                    parent.parent_family_list[0]
-                    if len(parent.parent_family_list) > 0
-                    else None
-                )
-                if family_handle:
-                    parent_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, parent_family, False)

@@ -374,6 +374,32 @@ class BaseTest(unittest.TestCase):
             ),
         )
 
+    def test_isancestorof_inclusive(self):
+        """
+        Test IsAncestorOf rule with inclusive flag set.
+        """
+        rule = IsAncestorOf(["F0031", "1"])
+        self.assertEqual(
+            self.filter_with_rule(rule),
+            set(
+                [
+                    "4AXJQC96KTN3WGPTVE",
+                    "1RUJQCYX9QL1V45YLD",
+                    "5GTJQCXVYVAIQTBVKA",
+                    "X3WJQCSF48F6809142",
+                    "NSVJQC89IHEEBIPDP2",
+                    "9OUJQCBOHW9UEK9CNV",
+                    "1RUJQCCL9MVRYLMTBO",
+                    "RRVJQC5A8DDHQFPRDL",
+                    "0SUJQCOS78AXGWP8QR",
+                    "57WJQCTBJKR5QYPS6K",
+                    "8OUJQCUVZ0XML7BQLF",
+                    "7PUJQC4PPS4EDIVMYE",
+                    "9NWJQCJGLXUR3AQSFJ",
+                ]
+            ),
+        )
+
     def test_isdescendantof(self):
         """
         Test IsDescendantOf rule.

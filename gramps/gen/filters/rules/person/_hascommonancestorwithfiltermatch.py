@@ -31,7 +31,6 @@ _ = glocale.translation.gettext
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ....utils.db import for_each_ancestor
 from ._hascommonancestorwith import HasCommonAncestorWith
 from ._matchesfilter import MatchesFilter
 
@@ -80,7 +79,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
                 self.with_people.append(person.handle)
                 # fill list of ancestor of person if not present yet
                 if person.handle not in self.ancestor_cache:
-                    self.add_ancs(db, person)
+                    self._get_ancestors(db, person.handle)
         if user:
             user.end_progress()
 

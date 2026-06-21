@@ -32,16 +32,17 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import Rule
+from ....utils.graph import find_ancestors_iterative, find_descendants
 
 # -------------------------------------------------------------------------
 #
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import List, Set, Dict
 from ....lib import Person
 from ....db import Database
 from ....types import PersonHandle
+from ....user import UserBase
 
 
 # -------------------------------------------------------------------------
@@ -50,8 +51,7 @@ from ....types import PersonHandle
 #
 # -------------------------------------------------------------------------
 class RelationshipPathBetween(Rule):
-    """Rule that checks for a person that is a descendant of a specified person
-    not more than N generations away"""
+    """Rule that matches ancestors of two persons back to their common ancestor."""
 
     labels = [_("ID:"), _("ID:")]
     name = _("Relationship path between <persons>")
@@ -62,82 +62,59 @@ class RelationshipPathBetween(Rule):
         "path between two persons."
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: UserBase) -> None:
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
         root1 = db.get_person_from_gramps_id(self.list[0])
         root2 = db.get_person_from_gramps_id(self.list[1])
         if root1 and root2:
-            self.init_list(root1.handle, root2.handle)
+            self._init_list(db, root1.handle, root2.handle)
 
-    def reset(self):
+    def reset(self) -> None:
+        """Clear the selected handle set."""
         self.selected_handles.clear()
 
-    def desc_list(self, handle: PersonHandle, map, first: bool):
-        if not first:
-            map.add(handle)
+    def _init_list(
+        self, db: Database, p1_handle: PersonHandle, p2_handle: PersonHandle
+    ) -> None:
+        """Populate selected_handles with all persons on the path between p1 and p2."""
+        first_map: dict[PersonHandle, int] = {}
+        second_map: dict[PersonHandle, int] = {}
 
-        p = self.db.get_person_from_handle(handle)
-        for fam_id in p.family_list:
-            fam = self.db.get_family_from_handle(fam_id)
-            if fam:
-                for child_ref in fam.child_ref_list:
-                    if child_ref.ref:
-                        self.desc_list(child_ref.ref, map, False)
+        for handle, gen in find_ancestors_iterative(
+            db, [p1_handle], inclusive=True, include_all_parent_families=False
+        ):
+            first_map[handle] = gen
 
-    def apply_filter(
-        self,
-        rank: int,
-        handle: PersonHandle,
-        plist: Set[PersonHandle],
-        pmap: Dict[PersonHandle, int],
-    ):
-        if not handle:
-            return
-        person = self.db.get_person_from_handle(handle)
-        if person is None:
-            return
-        plist.add(handle)
-        pmap[person.handle] = rank
+        for handle, gen in find_ancestors_iterative(
+            db, [p2_handle], inclusive=True, include_all_parent_families=False
+        ):
+            second_map[handle] = gen
 
-        fam_id = (
-            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
-        )
-        if not fam_id:
-            return
-        family = self.db.get_family_from_handle(fam_id)
-        if family is not None:
-            self.apply_filter(rank + 1, family.father_handle, plist, pmap)
-            self.apply_filter(rank + 1, family.mother_handle, plist, pmap)
+        first_set = set(first_map)
+        second_set = set(second_map)
 
-    def apply_to_one(self, db: Database, person: Person) -> bool:
-        return person.handle in self.selected_handles
-
-    def init_list(self, p1_handle: PersonHandle, p2_handle: PersonHandle):
-        firstMap: Dict[PersonHandle, int] = {}
-        firstSet: Set[PersonHandle] = set()
-        secondMap: Dict[PersonHandle, int] = {}
-        secondSet: Set[PersonHandle] = set()
-        common: List[PersonHandle] = []
+        common: list[PersonHandle] = []
         rank = 9999999
-
-        self.apply_filter(0, p1_handle, firstSet, firstMap)
-        self.apply_filter(0, p2_handle, secondSet, secondMap)
-
-        for person_handle in firstSet & secondSet:
-            new_rank = firstMap[person_handle]
+        for person_handle in first_set & second_set:
+            new_rank = first_map[person_handle]
             if new_rank < rank:
                 rank = new_rank
                 common = [person_handle]
             elif new_rank == rank:
                 common.append(person_handle)
 
-        path1 = set([p1_handle])
-        path2 = set([p2_handle])
-
+        path1: set[PersonHandle] = {p1_handle}
+        path2: set[PersonHandle] = {p2_handle}
         for person_handle in common:
-            new_map: Set[PersonHandle] = set()
-            self.desc_list(person_handle, new_map, True)
-            path1.update(new_map.intersection(firstMap))
-            path2.update(new_map.intersection(secondMap))
+            desc = find_descendants(
+                db, [person_handle], inclusive=False, include_all_families=True
+            )
+            path1.update(desc & first_set)
+            path2.update(desc & second_set)
+
         self.selected_handles.update(path1, path2, common)
+
+    def apply_to_one(self, db: Database, person: Person) -> bool:
+        """Return True if this person is on the relationship path."""
+        return person.handle in self.selected_handles

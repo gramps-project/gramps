@@ -963,6 +963,45 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_parent_handles(self, person_handle, first_only=True):
+        """
+        Return handles of all parents of a person across their parent families.
+        """
+        person = self.get_raw_person_data(person_handle)
+        if person is None:
+            return []
+        families = person.parent_family_list
+        if first_only and families:
+            families = [families[0]]
+        result = []
+        for fam_handle in families:
+            family = self.get_raw_family_data(fam_handle)
+            if family is None:
+                continue
+            if family.father_handle:
+                result.append(family.father_handle)
+            if family.mother_handle:
+                result.append(family.mother_handle)
+        return result
+
+    def get_child_handles(self, person_handle, first_only=True):
+        """
+        Return handles of all children of a person across their families.
+        """
+        person = self.get_raw_person_data(person_handle)
+        if person is None:
+            return []
+        families = person.family_list
+        if first_only and families:
+            families = [families[0]]
+        result = []
+        for fam_handle in families:
+            family = self.get_raw_family_data(fam_handle)
+            if family is None:
+                continue
+            result.extend(cr.ref for cr in family.child_ref_list if cr.ref)
+        return result
+
     def get_raw_place_data(self, handle):
         """
         Return raw (serialized and pickled) Place object from handle

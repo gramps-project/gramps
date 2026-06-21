@@ -109,9 +109,9 @@ class HourGlassReport(Report):
         self.database = CacheProxyDb(self.database)
         self.__db = self.database
 
-        self.__used_people = []
-        self.__family_father = []  # links allocated from family to father
-        self.__family_mother = []  # links allocated from family to mother
+        self.__used_people = set()
+        self.__family_father = set()  # links allocated from family to father
+        self.__family_mother = set()  # links allocated from family to mother
 
         self.__node_label = {}  # labels of node for merge sosa number
 
@@ -179,7 +179,7 @@ class HourGlassReport(Report):
                 child_handle = child_ref.get_reference_handle()
                 if child_handle not in self.__used_people:
                     # Avoid going down paths twice when descendant cousins marry
-                    self.__used_people.append(child_handle)
+                    self.__used_people.add(child_handle)
                     child = self.__db.get_person_from_handle(child_handle)
                     self.add_person(child, 0)
                     self.doc.add_link(
@@ -214,7 +214,7 @@ class HourGlassReport(Report):
             father_handle = family.get_father_handle()
             if father_handle and family_handle not in self.__family_father:
                 # allocate only one father per family
-                self.__family_father.append(family_handle)
+                self.__family_father.add(family_handle)
                 father = self.__db.get_person_from_handle(father_handle)
                 self.add_person(father, fathersosanumber)
                 father_id = father.get_gramps_id()
@@ -244,7 +244,7 @@ class HourGlassReport(Report):
             mother_handle = family.get_mother_handle()
             if mother_handle and family_handle not in self.__family_mother:
                 # allocate only one mother per family
-                self.__family_mother.append(family_handle)
+                self.__family_mother.add(family_handle)
                 mother = self.__db.get_person_from_handle(mother_handle)
                 self.add_person(mother, mothersosanumber)
                 mother_id = mother.get_gramps_id()
