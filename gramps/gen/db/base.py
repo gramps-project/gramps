@@ -963,6 +963,18 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_parent_handles(self, person_handle, first_only=True):
+        """
+        Return handles of all parents of a person across their parent families.
+        """
+        raise NotImplementedError
+
+    def get_child_handles(self, person_handle, first_only=True):
+        """
+        Return handles of all children of a person across their families.
+        """
+        raise NotImplementedError
+
     def get_raw_place_data(self, handle):
         """
         Return raw (serialized and pickled) Place object from handle

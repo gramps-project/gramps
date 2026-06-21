@@ -1033,6 +1033,53 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(f"SELECT gramps_id FROM {table}")
         return [row[0] for row in self.dbapi.fetchall()]
 
+    def get_parent_handles(self, person_handle, first_only=True):
+        """
+        Return handles of all parents of a person across their parent families.
+        """
+        if first_only:
+            self.dbapi.execute(
+                "SELECT f.father_handle, f.mother_handle "
+                "FROM family f "
+                "WHERE f.handle = json_extract("
+                "  (SELECT json_data FROM person WHERE handle = ?),"
+                "  '$.parent_family_list[0]')",
+                [person_handle],
+            )
+        else:
+            self.dbapi.execute(
+                "SELECT f.father_handle, f.mother_handle "
+                "FROM person p, json_each(p.json_data, '$.parent_family_list') pf "
+                "JOIN family f ON f.handle = pf.value "
+                "WHERE p.handle = ?",
+                [person_handle],
+            )
+        return [h for row in self.dbapi.fetchall() for h in row if h]
+
+    def get_child_handles(self, person_handle, first_only=True):
+        """
+        Return handles of all children of a person across their families.
+        """
+        if first_only:
+            self.dbapi.execute(
+                "SELECT json_extract(cr.value, '$.ref') "
+                "FROM family f, json_each(f.json_data, '$.child_ref_list') cr "
+                "WHERE f.handle = json_extract("
+                "  (SELECT json_data FROM person WHERE handle = ?),"
+                "  '$.family_list[0]')",
+                [person_handle],
+            )
+        else:
+            self.dbapi.execute(
+                "SELECT json_extract(cr.value, '$.ref') "
+                "FROM person p, json_each(p.json_data, '$.family_list') fl "
+                "JOIN family f ON f.handle = fl.value, "
+                "json_each(f.json_data, '$.child_ref_list') cr "
+                "WHERE p.handle = ?",
+                [person_handle],
+            )
+        return [row[0] for row in self.dbapi.fetchall() if row[0]]
+
     def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
         self.dbapi.execute(

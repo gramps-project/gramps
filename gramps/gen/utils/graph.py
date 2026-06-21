@@ -168,31 +168,11 @@ def find_ancestors_iterative(
         if generation >= max_generation:
             continue
 
-        # Get person and their parent families
-        try:
-            person = db.get_raw_person_data(current_handle)
-            if person is None:
-                continue
-        except Exception:
-            # Handle non-existent handles gracefully
-            continue
-
-        # Determine which parent families to process
-        parent_families = person.parent_family_list
-        if not include_all_parent_families and parent_families:
-            parent_families = [parent_families[0]]  # Only first parent family
-
-        # Process each parent family
-        for family_handle in parent_families:
-            family = db.get_raw_family_data(family_handle)
-            if family is None:
-                continue
-
-            # Add parents to queue
-            if family.father_handle is not None:
-                queue.append((family.father_handle, generation + 1))
-            if family.mother_handle is not None:
-                queue.append((family.mother_handle, generation + 1))
+        # Add parents to queue
+        for parent_handle in db.get_parent_handles(
+            current_handle, first_only=not include_all_parent_families
+        ):
+            queue.append((parent_handle, generation + 1))
 
 
 def find_descendants(
@@ -318,27 +298,8 @@ def find_descendants_iterative(
         if generation >= max_generation:
             continue
 
-        # Get person and their families
-        try:
-            person = db.get_raw_person_data(current_handle)
-            if person is None:
-                continue
-        except Exception:
-            # Handle non-existent handles gracefully
-            continue
-
-        # Determine which families to process
-        families = person.family_list
-        if not include_all_families and families:
-            families = [families[0]]  # Only first family
-
-        # Process each family
-        for family_handle in families:
-            family = db.get_raw_family_data(family_handle)
-            if family is None:
-                continue
-
-            # Add children to queue
-            for child_ref in family.child_ref_list:
-                if child_ref.ref is not None:
-                    queue.append((child_ref.ref, generation + 1))
+        # Add children to queue
+        for child_handle in db.get_child_handles(
+            current_handle, first_only=not include_all_families
+        ):
+            queue.append((child_handle, generation + 1))
