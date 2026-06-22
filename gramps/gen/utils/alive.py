@@ -40,7 +40,7 @@ import logging
 from ..display.name import displayer as name_displayer
 from ..lib.date import Date, Today
 from ..lib.person import Person
-from ..lib.json_utils import DataDict
+from ..lib.json_utils import DataDict, convert_state_to_object
 from ..errors import DatabaseError
 from ..const import GRAMPS_LOCALE as glocale
 from ..proxy.proxybase import ProxyDbBase
@@ -70,16 +70,7 @@ def _make_date_from_dict(date_dict: dict | None) -> "Date | None":
     """Build a Date from a raw JSON date dict, or None if invalid."""
     if not date_dict:
         return None
-    d = Date()
-    dateval = date_dict.get("dateval")
-    if dateval:
-        d.dateval = tuple(dateval)
-    d.calendar = date_dict.get("calendar") or 0
-    d.modifier = date_dict.get("modifier") or 0
-    d.quality = date_dict.get("quality") or 0
-    d.text = date_dict.get("text") or ""
-    d.sortval = date_dict.get("sortval") or 0
-    d.newyear = date_dict.get("newyear") or 0
+    d = convert_state_to_object(dict(date_dict))
     return d if d.is_valid() else None
 
 
