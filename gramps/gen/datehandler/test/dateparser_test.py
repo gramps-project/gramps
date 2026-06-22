@@ -165,5 +165,69 @@ class Test_generate_variants(unittest.TestCase):
         self.assertIn("Maj", v)
 
 
+class TestCompact8DateParsing(unittest.TestCase):
+    """Tests for compact 8-digit date input (DDMMYYYY / MMDDYYYY / YYYYMMDD)."""
+
+    def setUp(self):
+        from .._dateparser import DateParser
+
+        self.parser_mdy = DateParser()
+        self.parser_mdy.dmy = False
+        self.parser_mdy.ymd = False
+
+        self.parser_dmy = DateParser()
+        self.parser_dmy.dmy = True
+        self.parser_dmy.ymd = False
+
+        self.parser_ymd = DateParser()
+        self.parser_ymd.dmy = False
+        self.parser_ymd.ymd = True
+
+    def test_mdy_compact(self):
+        """MMDDYYYY: 01121720 -> month=01, day=12, year=1720."""
+        date = self.parser_mdy.parse("01121720")
+        self.assertEqual(date.get_ymd(), (1720, 1, 12))
+
+    def test_dmy_compact(self):
+        """DDMMYYYY: 01121720 -> day=01, month=12, year=1720."""
+        date = self.parser_dmy.parse("01121720")
+        self.assertEqual(date.get_ymd(), (1720, 12, 1))
+
+    def test_ymd_yyyymmdd_via_isotimestamp(self):
+        """YMD locale: 17201201 parsed as YYYYMMDD -> year=1720, month=12, day=01."""
+        date = self.parser_ymd.parse("17201201")
+        self.assertEqual(date.get_ymd(), (1720, 12, 1))
+
+    def test_yyyymmdd_falls_through_compact_in_dmy(self):
+        """In a DMY locale, YYYYMMDD (e.g. 17201201) has invalid month under DMY
+        (month=20), so compact8 falls through to _isotimestamp which parses it
+        correctly as year=1720, month=12, day=01."""
+        date = self.parser_dmy.parse("17201201")
+        self.assertEqual(date.get_ymd(), (1720, 12, 1))
+
+    def test_yyyymmdd_falls_through_compact_in_mdy(self):
+        """In an MDY locale, YYYYMMDD (e.g. 17201201) has invalid month under MDY
+        (month=17), so compact8 falls through to _isotimestamp which parses it
+        correctly as year=1720, month=12, day=01."""
+        date = self.parser_mdy.parse("17201201")
+        self.assertEqual(date.get_ymd(), (1720, 12, 1))
+
+    def test_invalid_day_for_month_becomes_text(self):
+        """31021720 (February 31) is invalid in any calendar; must not silently
+        produce a wrong date — it should be stored as text."""
+        date = self.parser_dmy.parse("31021720")
+        self.assertEqual(date.get_modifier(), Date.MOD_TEXTONLY)
+
+    def test_invalid_month_becomes_text(self):
+        """99991720 has month=99 which is impossible; must become text."""
+        date = self.parser_mdy.parse("99991720")
+        self.assertEqual(date.get_modifier(), Date.MOD_TEXTONLY)
+
+    def test_whitespace_stripped(self):
+        """Leading/trailing whitespace is tolerated (strip() runs before parsing)."""
+        date = self.parser_dmy.parse("  01121720  ")
+        self.assertEqual(date.get_ymd(), (1720, 12, 1))
+
+
 if __name__ == "__main__":
     unittest.main()
