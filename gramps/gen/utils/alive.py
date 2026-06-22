@@ -40,7 +40,7 @@ import logging
 from ..display.name import displayer as name_displayer
 from ..lib.date import Date, Today
 from ..lib.person import Person
-from ..lib.json_utils import DataDict, convert_state_to_object
+from ..lib.json_utils import convert_state_to_object
 from ..errors import DatabaseError
 from ..const import GRAMPS_LOCALE as glocale
 from ..proxy.proxybase import ProxyDbBase
@@ -172,21 +172,18 @@ class ProbablyAlive:
             """
             if not class_or_handle:
                 return (None, None, False, "", "")
-            if isinstance(class_or_handle, DataDict):
-                handle = class_or_handle["handle"]
-            elif isinstance(class_or_handle, Person):
-                handle = class_or_handle.handle
-            elif isinstance(class_or_handle, str):
-                handle = class_or_handle
-            else:
-                return (None, None, False, "", "")
+            handle = (
+                class_or_handle
+                if isinstance(class_or_handle, str)
+                else class_or_handle.handle
+            )
             raw_person = self.db.get_raw_person_data(handle)
             if not raw_person:
                 LOG.debug("    get_person_bd(): null person called")
                 return (None, None, False, "", "")
             event_ref_list = raw_person["event_ref_list"]
-            death_ref_index = raw_person.get("death_ref_index", -1)
-            birth_ref_index = raw_person.get("birth_ref_index", -1)
+            death_ref_index = raw_person.death_ref_index
+            birth_ref_index = raw_person.birth_ref_index
             n = len(event_ref_list)
             birth_date = death_date = None
             death_found = False
@@ -202,7 +199,7 @@ class ProbablyAlive:
                     raw_event = self.db.get_raw_event_data(ev_ref["ref"])
                     if raw_event:
                         death_found = True
-                        d = _make_date_from_dict(raw_event.get("date"))
+                        d = _make_date_from_dict(raw_event.date)
                         if d:
                             death_date = d
                             explain_death = _("date")
@@ -211,7 +208,7 @@ class ProbablyAlive:
                 if ev_ref["role"]["value"] == _PRIMARY_ROLE:
                     raw_event = self.db.get_raw_event_data(ev_ref["ref"])
                     if raw_event:
-                        d = _make_date_from_dict(raw_event.get("date"))
+                        d = _make_date_from_dict(raw_event.date)
                         if d and d.get_year_valid():
                             birth_date = d
                             explain_birth = _("date")
@@ -220,7 +217,7 @@ class ProbablyAlive:
                 if DEBUGLEVEL > 3:
                     LOG.debug(
                         "           << get_person_bd for [%s], birth %s, death %s",
-                        raw_person.get("gramps_id", ""),
+                        raw_person.gramps_id,
                         birth_date,
                         death_date,
                     )
@@ -240,7 +237,7 @@ class ProbablyAlive:
                 if not raw_event:
                     continue
                 type_val = raw_event["type"]["value"]
-                date_dict = raw_event.get("date")
+                date_dict = raw_event.date
                 if (
                     not death_date
                     and type_val in _DEATH_FALLBACKS
@@ -271,7 +268,7 @@ class ProbablyAlive:
             if DEBUGLEVEL > 3:
                 LOG.debug(
                     "           << get_person_bd for [%s], birth %s, death %s",
-                    raw_person.get("gramps_id", ""),
+                    raw_person.gramps_id,
                     birth_date,
                     death_date,
                 )
@@ -321,9 +318,9 @@ class ProbablyAlive:
             if parenth_p1:
                 raw_parents = self.db.get_raw_family_data(parenth_p1)
                 if raw_parents:
-                    mother_handle_p1 = raw_parents.get("mother_handle")
+                    mother_handle_p1 = raw_parents.mother_handle
                     m_birth, m_death = get_person_bd(mother_handle_p1)[0:2]
-                    father_handle_p1 = raw_parents.get("father_handle")
+                    father_handle_p1 = raw_parents.father_handle
                     f_birth, f_death = get_person_bd(father_handle_p1)[0:2]
             # now scan siblings
             family_list = person.get_parent_family_handle_list()
@@ -334,8 +331,8 @@ class ProbablyAlive:
                 if raw_parents is not None and family_handle != parenth_p1:
                     LOG.debug(
                         "      skipping family %s but parents is %s.",
-                        raw_family.get("gramps_id", ""),
-                        raw_parents.get("gramps_id", ""),
+                        raw_family.gramps_id,
+                        raw_parents.gramps_id,
                     )
                     continue
                 for child_ref in raw_family["child_ref_list"]:
@@ -355,11 +352,11 @@ class ProbablyAlive:
                             continue
                         type_val = raw_event["type"]["value"]
                         if type_val == _BIRTH_TYPE:
-                            d = _make_date_from_dict(raw_event.get("date"))
+                            d = _make_date_from_dict(raw_event.date)
                             if d and d.get_year_valid():
                                 direct_years.append(d.get_year())
                         elif type_val in _BIRTH_FALLBACKS:
-                            d = _make_date_from_dict(raw_event.get("date"))
+                            d = _make_date_from_dict(raw_event.date)
                             if d and d.get_year_valid():
                                 fallback_years.append(d.get_year())
                     # if sibling birth date too far away, then cannot be alive
@@ -507,13 +504,13 @@ class ProbablyAlive:
             for family_handle in person.family_list:
                 raw_family = self.db.get_raw_family_data(family_handle)
                 if raw_family:
-                    mother_handle = raw_family.get("mother_handle")
-                    father_handle = raw_family.get("father_handle")
+                    mother_handle = raw_family.mother_handle
+                    father_handle = raw_family.father_handle
                     if mother_handle is None or father_handle is None:
                         if DEBUGLEVEL > 1:
                             LOG.debug(
                                 "         single parent family: [%s]",
-                                raw_family.get("gramps_id", ""),
+                                raw_family.gramps_id,
                             )
                         # no recorded spouse
                         continue
@@ -586,7 +583,7 @@ class ProbablyAlive:
                         if ev_ref:
                             raw_event = self.db.get_raw_event_data(ev_ref["ref"])
                             if raw_event:
-                                date = _make_date_from_dict(raw_event.get("date"))
+                                date = _make_date_from_dict(raw_event.date)
                                 if date:
                                     year = date.get_year()
                                     if year != 0:
@@ -874,7 +871,7 @@ class ProbablyAlive:
                 if not raw_family:
                     # can happen with LivingProxyDb(PrivateProxyDb(db))
                     return range_not_found
-                mother_handle = raw_family.get("mother_handle")
+                mother_handle = raw_family.mother_handle
                 (
                     mother_birth,
                     mother_death,
@@ -883,7 +880,7 @@ class ProbablyAlive:
                     mother_expl_d,
                 ) = get_person_bd(mother_handle)
 
-                father_handle = raw_family.get("father_handle")
+                father_handle = raw_family.father_handle
                 (
                     father_birth,
                     father_death,
