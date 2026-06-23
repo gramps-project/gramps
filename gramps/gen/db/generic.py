@@ -2978,6 +2978,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.emit("repository-rebuild")
         self.emit("note-rebuild")
         self.emit("tag-rebuild")
+        self.emit("dnatest-rebuild")
+        self.emit("dnamatch-rebuild")
 
     def get_save_path(self):
         return self._directory
