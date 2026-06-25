@@ -79,8 +79,11 @@ class _DbGUIElement:  # stand-in for gramps.gui.dbguielement.DbGUIElement
     pass
 
 
-sys.modules["gramps.gui.plug.export"].WriterOptionBox = _WriterOptionBox
-sys.modules["gramps.gui.dbguielement"].DbGUIElement = _DbGUIElement
+# ``setattr`` (rather than direct attribute assignment) keeps mypy happy: it
+# types ``sys.modules[<key>]`` as a bare ``types.ModuleType``, so assigning a
+# new attribute on it would otherwise raise ``attr-defined``.
+setattr(sys.modules["gramps.gui.plug.export"], "WriterOptionBox", _WriterOptionBox)
+setattr(sys.modules["gramps.gui.dbguielement"], "DbGUIElement", _DbGUIElement)
 
 from gramps.cli.user import User
 from gramps.gen.db import DbTxn
