@@ -422,6 +422,28 @@ _SHEADER_FOOTER = """\
 _CLICKABLE = r"""<text:a xlink:type="simple" xlink:href="\1">\1</text:a>"""
 
 
+def _column_style_suffix(col):
+    """
+    Return the table-column-style name suffix for the zero-based column
+    index *col*.
+
+    A column style is named ``<table-style>.<suffix>``.  The historical
+    suffix ``chr(ord("A") + col)`` is only a valid, unique token for the
+    first 26 columns: past column 25 it emits non-letter characters and
+    past column 62 it runs beyond ``chr(127)``, yielding malformed style
+    names and breaking ODF output for tables with many columns (bug
+    #6549).  Generate a spreadsheet-style bijective base-26 token
+    (A, B, ... Z, AA, AB, ... AZ, BA, ...) instead, which is a valid and
+    unique identifier for any column count.
+    """
+    suffix = ""
+    col += 1
+    while col > 0:
+        col, remainder = divmod(col - 1, 26)
+        suffix = chr(ord("A") + remainder) + suffix
+    return suffix
+
+
 # -------------------------------------------------------------------------
 #
 # ODFDoc
@@ -698,12 +720,12 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 + "</style:style>\n"
             )
 
-            for col in range(0, min(style.get_columns(), 50)):
+            for col in range(0, style.get_columns()):
                 width = table_width * float(style.get_column_width(col) / 100.0)
                 width_str = "%.4f" % width
                 wrt(
                     '<style:style style:name="%s.%s" '
-                    % (style_name, chr(ord("A") + col))
+                    % (style_name, _column_style_suffix(col))
                     + 'style:family="table-column">'
                     + "<style:table-column-properties "
                     + 'style:column-width="%scm"/>' % width_str
@@ -1093,7 +1115,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         for col in self.column_order:
             self.cntnt.write(
                 '<table:table-column table:style-name="%s.%s"/>\n'
-                % (style_name, str(chr(ord("A") + col)))
+                % (style_name, _column_style_suffix(col))
             )
 
     def end_table(self):
