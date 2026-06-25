@@ -218,6 +218,7 @@ class GrampsBuildHook(BuildHookInterface):
             copy2(source, destination)
 
         data_files = [
+            "familysearch.css",
             "gramps.css",
             "grampsxml.rng",
             "grampsxml.dtd",
