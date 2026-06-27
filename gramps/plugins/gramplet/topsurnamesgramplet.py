@@ -30,9 +30,9 @@ from collections import defaultdict
 from gramps.gen.plug import Gramplet
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import Person
 from gramps.gen.plug.menu import NumberOption
 from gramps.gen.types import PersonHandle
+from gramps.plugins.lib.libsurnames import record_surnames
 
 _ = glocale.translation.sgettext
 
@@ -44,38 +44,6 @@ _ = glocale.translation.sgettext
 _YIELD_INTERVAL = 350
 
 NUM_SURNAMES = _("Number of Surnames to display")
-
-
-# ------------------------------------------------------------------------
-#
-# Helper functions
-#
-# ------------------------------------------------------------------------
-def record_surnames(
-    person: Person,
-    surnames: dict[str, int],
-    representative_handle: dict[str, PersonHandle],
-) -> None:
-    """
-    Tally one person's surnames and choose representatives for them.
-
-    The person is counted under every group name taken from their primary and
-    alternate names.  They become the representative for a surname only when it
-    is their primary group name, or when no representative has been chosen yet.
-    The Same Surnames quick view re-derives the surname from the
-    representative's primary name, so a representative whose primary surname
-    differs would open a report for a different surname than the one clicked.
-    """
-    primary_name = person.get_primary_name()
-    primary_surname = primary_name.get_group_name().strip()
-    allnames = set(
-        name.get_group_name().strip()
-        for name in [primary_name] + person.get_alternate_names()
-    )
-    for surname in allnames:
-        surnames[surname] += 1
-        if surname == primary_surname or surname not in representative_handle:
-            representative_handle[surname] = person.handle
 
 
 # ------------------------------------------------------------------------
