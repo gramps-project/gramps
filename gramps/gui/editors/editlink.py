@@ -154,11 +154,20 @@ class EditLink(ManagedWindow):
         return self.simple_access.display(obj_class, prop, value)
 
     def _on_new_callback(self, obj):
-        object_class = obj.__class__.__name__
-        self.selected.set_text(self.display_link(object_class, "handle", obj.handle))
-        self.url_link.set_text(
-            "gramps://%s/%s/%s" % (object_class, "handle", obj.handle)
-        )
+        # The "new object created" callback may emit either the saved object or
+        # just its handle string: most editors pass the object, but some (e.g.
+        # EditCitation) pass ``self.obj.get_handle()``. Read the value as the
+        # reference type it actually is rather than assuming an object with a
+        # ``.handle`` attribute (bug #12260). When only a handle is supplied the
+        # object's class is taken from the type the user selected to create.
+        if isinstance(obj, str):
+            object_class = OBJECT_MAP[self.uri_list.get_active()]
+            handle = obj
+        else:
+            object_class = obj.__class__.__name__
+            handle = obj.handle
+        self.selected.set_text(self.display_link(object_class, "handle", handle))
+        self.url_link.set_text("gramps://%s/%s/%s" % (object_class, "handle", handle))
 
     def _on_new(self, widget):
         from ..editors import EditObject
