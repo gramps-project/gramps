@@ -8935,7 +8935,7 @@ msgstr "Analyse"
 
 #: ../gramps/gen/lib/notetype.py:88
 msgid "Transcript"
-msgstr "Vertaling"
+msgstr "Transcriptie"
 
 #: ../gramps/gen/lib/notetype.py:89
 msgid "Source text"
