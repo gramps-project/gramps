@@ -13,13 +13,14 @@
 # Gabriel Silva <santosdasilvag750@gmail.com>, 2025.
 # Isaki23 <isaquefonseca230706@gmail.com>, 2025.
 # Mateus Liberale Gomes <sergiogomes209403@gmail.com>, 2025.
+# Andre Magri <andremagri@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2025-12-20 01:02+0000\n"
-"Last-Translator: Mateus Liberale Gomes <sergiogomes209403@gmail.com>\n"
+"PO-Revision-Date: 2026-06-27 23:52+0000\n"
+"Last-Translator: Andre Magri <andremagri@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 "X-Poedit-Basepath: ../gramps-master/gramps\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -8547,10 +8548,8 @@ msgid "Informant"
 msgstr "Informante"
 
 #: ../gramps/gen/lib/eventroletype.py:81
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "genitor2"
+msgstr "Padrinho(Madrinha)"
 
 #: ../gramps/gen/lib/eventroletype.py:84
 #: ../gramps/gui/fs/sync_directions.py:1569
@@ -15031,7 +15030,7 @@ msgstr "Mover o evento selecionado para baixo"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:94
 #: ../gramps/plugins/gramplet/events.py:109
 msgid "Role"
-msgstr "Regra"
+msgstr "Papel"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:131
 msgid "_Events"
