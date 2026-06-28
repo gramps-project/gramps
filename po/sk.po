@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-17 22:22+0000\n"
+"PO-Revision-Date: 2026-06-26 03:01+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -6369,11 +6369,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:58
 msgid "Places enclosed by another place"
-msgstr "Miesta priliehajúce k inému miestu"
+msgstr "Miesta patriace pod ďalšie miesto"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:59
 msgid "Matches a place enclosed by a particular place"
-msgstr "Zodpovedá miestu priliehajúcemu konkrétnemu miestu"
+msgstr "Zodpovedá miestu, ktoré je podradené určitému miestu"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:59
 msgid "Places of events matching the <event filter>"
@@ -8496,7 +8496,7 @@ msgstr "Anulovanie"
 
 #: ../gramps/gen/lib/eventtype.py:242
 msgid "Alternate Marriage"
-msgstr "Ďalšie manželstvo"
+msgstr "Alternatívne manželstvo"
 
 #: ../gramps/gen/lib/eventtype.py:243
 msgid "Stillbirth"
@@ -8716,7 +8716,7 @@ msgstr "ohl."
 #: ../gramps/gen/lib/eventtype.py:288
 msgctxt "Alternate Marriage abbreviation"
 msgid "alt.mar."
-msgstr "ďal.manž."
+msgstr "alt.manž."
 
 #: ../gramps/gen/lib/eventtype.py:289
 msgctxt "Engagement abbreviation"
@@ -8786,7 +8786,7 @@ msgstr "Manželský"
 
 #: ../gramps/gen/lib/familyreltype.py:57
 msgid "Unmarried"
-msgstr "Slobodný"
+msgstr "Nezosobášený"
 
 #: ../gramps/gen/lib/familyreltype.py:58
 msgid "Civil Union"
@@ -9354,7 +9354,7 @@ msgstr "Pohlavie"
 
 #: ../gramps/gen/lib/person.py:207
 msgid "Alternate names"
-msgstr "Alternatívne mená"
+msgstr "Alternatívne názvy"
 
 #: ../gramps/gen/lib/person.py:211
 msgid "Death reference index"
@@ -9439,7 +9439,7 @@ msgstr "Miesta"
 #: ../gramps/plugins/textreport/indivcomplete.py:417
 #: ../gramps/plugins/webreport/basepage.py:3464
 msgid "Alternate Names"
-msgstr "Alternatívne mená"
+msgstr "Alternatívne názvy"
 
 #: ../gramps/gen/lib/place.py:177
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:118
@@ -9451,7 +9451,7 @@ msgstr "Kód"
 
 #: ../gramps/gen/lib/place.py:181 ../gramps/plugins/webreport/basepage.py:3494
 msgid "Alternate Locations"
-msgstr "Alernatívne miesta"
+msgstr "Alternatívne lokality"
 
 #: ../gramps/gen/lib/placename.py:94 ../gramps/gui/clipboard.py:593
 #: ../gramps/gui/editors/editplacename.py:135
@@ -14585,7 +14585,7 @@ msgstr "_SND"
 
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:69
 msgid "Alternate _Locations"
-msgstr "Alternatívne _Umiestnenia"
+msgstr "Alternatívne _Lokality"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:63
 msgid "Create and add a new name"
@@ -14783,7 +14783,7 @@ msgstr "Alternatívne mená"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1564
 #: ../gramps/plugins/webreport/basepage.py:3532
 msgid "Enclosed By"
-msgstr "Prilieha k"
+msgstr "Patrí pod"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:214
 msgid "Place cycle detected"
@@ -14791,7 +14791,7 @@ msgstr "Zistená slučka miesta"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:215
 msgid "The place you are adding is already enclosed by this place"
-msgstr "Miesto, ktoré pridávate, už prilieha tomuto miestu"
+msgstr "Miesto, ktoré pridávate, už patrí pod toto miesto"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
@@ -16011,7 +16011,7 @@ msgstr "Editor internetovej adresy"
 #: ../gramps/gui/editors/editurl.py:100
 #, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
-msgstr "Internetová adresa podľa potreby na navigáciu, napr. {gramps_url}"
+msgstr "Internetová adresa potrebná na prechod na stránku, napr. {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
@@ -16673,7 +16673,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:688
 msgid "Do not re-import existing people"
-msgstr "Neimportovať existujúce osoby znovu"
+msgstr "Neimportovať znovu existujúcich ľudí"
 
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
@@ -16919,7 +16919,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1616 ../gramps/gui/fs/actions.py:1617
 msgid "FamilySearch Tags"
-msgstr "štítky FamilySearch"
+msgstr "Štítky FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:1618
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1768
@@ -17186,7 +17186,7 @@ msgstr "Počet generácií, ktoré sa majú načítať smerom nadol"
 
 #: ../gramps/gui/fs/fs_import/options.py:51
 msgid "Do not re-import existing persons"
-msgstr "Neimportovať existujúce osoby"
+msgstr "Neimportovať znovu existujúce osoby"
 
 #: ../gramps/gui/fs/fs_import/options.py:53
 msgid "Only import persons not already present"
@@ -17640,7 +17640,7 @@ msgstr "Akcie"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:342
 msgid "Manage Images…"
-msgstr "Spravovať obrázky…"
+msgstr "Správa obrázkov…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:382
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:384
@@ -17669,7 +17669,7 @@ msgstr "Premenovať súbory"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:397
 msgid "Rename selected files on disk"
-msgstr "Pomenovať vybrané súbory na disku"
+msgstr "Premenovať vybrané súbory na disku"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:436
 msgid "Filename (without extension)"
@@ -17809,11 +17809,11 @@ msgstr "Zdroj: {title}"
 #: ../gramps/gui/fs/sync_directions.py:806
 #: ../gramps/gui/fs/sync_directions.py:814
 msgid "Sync to FamilySearch"
-msgstr "Synchronizovať do FamilySearch"
+msgstr "Synchronizovať s FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:815
 msgid "Gramps to FamilySearch"
-msgstr "Z Gramps do FamilySearch"
+msgstr "Gramps do FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:821
 msgid "Apply Selected"
@@ -17834,7 +17834,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:865
 msgid "Change message:"
-msgstr "Správa o zmene:"
+msgstr "Zmeniť správu:"
 
 #: ../gramps/gui/fs/sync_directions.py:891
 msgid "Needs attention"
@@ -19614,8 +19614,8 @@ msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be "
 "reflected in the place itself, for places that it encloses."
 msgstr ""
-"<b>Poznámka:</b> Akékoľvek zmeny v informácii obklopujúceho miesta sa "
-"prejavia v mieste samotnom, ako aj v miestach, ktoré obklopuje."
+"<b>Poznámka:</b> Akékoľvek zmeny v informácii o nadradenom mieste sa "
+"prejavia v mieste samotnom, ako aj v miestach, ktoré sú podradené."
 
 #: ../gramps/gui/glade/editreporef.glade:126
 msgid "_Media Type:"
@@ -20594,7 +20594,7 @@ msgstr "_Stromy rodiny"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_FamilySearch Sign in..."
-msgstr "_Prihlásenie do FamilySearch......"
+msgstr "_Prihlásenie do FamilySearch..."
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Go"
@@ -25329,7 +25329,7 @@ msgstr "Preložiť záhlavia"
 
 #: ../gramps/plugins/export/exportcsv.py:313
 msgid "Enclosed_by"
-msgstr "Prilieha_k"
+msgstr "Patrí_pod"
 
 #: ../gramps/plugins/export/exportcsv.py:392
 #, python-brace-format
@@ -26631,24 +26631,24 @@ msgstr "Gramplet na generovanie kódov SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1556
 msgid "Place Enclosed By"
-msgstr "Miesto priliehajúce k"
+msgstr "Miesto patrí pod"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1557
 msgid "Gramplet showing the places enclosed by the active place"
-msgstr "Gramplet zobrazujúci miesta, ktoré priliehajú aktívnemu miestu"
+msgstr "Gramplet zobrazujúci miesta, ktoré patria pod aktívne miesto"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1572
 #: ../gramps/plugins/webreport/basepage.py:3570
 msgid "Place Encloses"
-msgstr "Miesto obklopuje"
+msgstr "Miesto zahrñuje"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1573
 msgid "Gramplet showing the places that the active place encloses"
-msgstr "Gramplet zobrazujúci miesta, ktoré aktívne miesto obklopujú"
+msgstr "Gramplet zobrazujúci miesta, ktoré aktívne miesto zahrñuje"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1580
 msgid "Encloses"
-msgstr "Obklopuje"
+msgstr "Zahrňuje"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1588
 msgid "Geography coordinates for Person Events"
@@ -28447,11 +28447,11 @@ msgstr "kód"
 
 #: ../gramps/plugins/importer/importcsv.py:392
 msgid "enclosed by"
-msgstr "prilieha k"
+msgstr "patrí pod"
 
 #: ../gramps/plugins/importer/importcsv.py:394
 msgid "enclosed_by"
-msgstr "prilieha_k"
+msgstr "patrí_pod"
 
 #: ../gramps/plugins/importer/importcsv.py:435
 #, python-format
@@ -34751,10 +34751,10 @@ msgstr[0] ""
 "Existuje {number_of} osoba so zodpovedajúcim menom, alebo alternatívnym "
 "menom.\n"
 msgstr[1] ""
-"Existuje {number_of} ľudí so zodpovedajúcim menom, alebo alternatívnym "
+"Existujú {number_of} ľudia so zodpovedajúcim menom, alebo alternatívnym "
 "menom.\n"
 msgstr[2] ""
-"Existujú {number_of} ľudia so zodpovedajúcim menom, alebo alternatívnym "
+"Existuje {number_of} ľudí so zodpovedajúcim menom, alebo alternatívnym "
 "menom.\n"
 
 #: ../gramps/plugins/quickview/samesurnames.py:176
@@ -40595,7 +40595,7 @@ msgstr "%(idx)s – pre osoby: %(people)s"
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for family: %(family)s"
-msgstr "%(idx)s – pre rodinu: %(family)s"
+msgstr "%(idx)s - pre rodinu: %(family)s"
 
 #: ../gramps/plugins/webreport/media.py:760
 #, python-format
