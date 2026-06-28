@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-04-25 22:10+0000\n"
+"PO-Revision-Date: 2026-06-21 21:01+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17.1-dev\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -6851,7 +6851,7 @@ msgstr "Family"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2084
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2288
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "Not connected to FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:623
@@ -6908,7 +6908,7 @@ msgstr "Families"
 #: ../gramps/gen/fs/compare/aggregate.py:225
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:640
 msgid "Facts"
-msgstr ""
+msgstr "Facts"
 
 #: ../gramps/gen/fs/compare/comparators.py:334
 #: ../gramps/gen/fs/compare/comparators.py:341 ../gramps/gen/utils/string.py:49
@@ -7089,7 +7089,7 @@ msgstr "Child"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
 #, fuzzy
@@ -7125,7 +7125,7 @@ msgstr "Building display"
 #: ../gramps/gen/fs/fs_import/sources.py:406
 #, python-format
 msgid "Loading FamilySearch source %(current)d/%(total)d"
-msgstr ""
+msgstr "Loading FamilySearch source %(current)d/%(total)d"
 
 #: ../gramps/gen/fs/fs_import/sources.py:611
 #: ../gramps/gen/fs/fs_import/sources.py:614
@@ -7218,7 +7218,7 @@ msgstr "Family relationships"
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
 msgid "Memory: {t}"
-msgstr ""
+msgstr "Memory: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:600
@@ -7273,32 +7273,32 @@ msgstr "Note"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:871
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Updated from Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1680
 msgid "Created from Gramps"
-msgstr ""
+msgstr "Created from Gramps"
 
 #: ../gramps/gen/fs/tags.py:322
 #, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "Group %(num)d"
 
 #: ../gramps/gen/fs/tags.py:333
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:343
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Notes ? row %(row)d not green (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:353
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Sources ? row %(row)d not green (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:363
 msgid ""
@@ -7306,6 +7306,9 @@ msgid ""
 "Organize Tags. This integration only sets default colors when the tags are "
 "first created and will not override your custom choices."
 msgstr ""
+"FamilySearch status tag colours can be customised in Gramps via Edit > Tag > "
+"Organise Tags. This integration only sets default colours when the tags are "
+"first created and will not override your custom choices."
 
 #: ../gramps/gen/fs/utils/linking.py:48
 #, fuzzy
@@ -8856,7 +8859,7 @@ msgstr "Civil Union"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
 msgid "FamilySearch sync"
-msgstr ""
+msgstr "FamilySearch sync"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76 ../gramps/gui/fs/actions.py:801
 #: ../gramps/gui/fs/fs_import/options.py:38
@@ -8867,7 +8870,7 @@ msgstr "Family ID"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Is root"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
 #, fuzzy
