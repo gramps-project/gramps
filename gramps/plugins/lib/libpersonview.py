@@ -178,10 +178,24 @@ class BasePersonView(ListView):
             filter_class=PersonSidebarFilter,
         )
 
-        uistate.connect("nameformat-changed", self.build_tree)
-        uistate.connect("placeformat-changed", self.build_tree)
+        uistate.connect("nameformat-changed", self._format_changed)
+        uistate.connect("placeformat-changed", self._format_changed)
 
         self.additional_uis.append(self.additional_ui)
+
+    def _format_changed(self, *args):
+        """
+        A display-format change (name or place) alters the rendered -- and
+        therefore the sorted -- value of a column, so the model's cached sort
+        keys are stale. Invalidate them before rebuilding so the rows re-sort to
+        the new format without reopening the database. ``rebuild_sort`` is a
+        no-op on the tree model (which re-sorts from scratch on rebuild) and the
+        cache invalidation on the flat model, so this is safe for both the flat
+        and tree person views that share this base. (bug #9267)
+        """
+        if self.model:
+            self.model.rebuild_sort()
+        self.build_tree()
 
     def navigation_type(self):
         """

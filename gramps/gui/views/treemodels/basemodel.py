@@ -56,6 +56,19 @@ class BaseModel:
         # Invalidates all paths
         self.lru_path.clear()
 
+    def rebuild_sort(self):
+        """
+        Mark the model's sort order stale so the next rebuild recomputes it.
+
+        The default is a no-op: a hierarchical (tree) model clears and re-adds
+        every row on each :meth:`rebuild_data`, recomputing its sort keys from
+        scratch, so its order already tracks the current sort key.  A flat model
+        caches the ordered ``(sortkey, handle)`` map across rebuilds and must
+        override this to invalidate that cache. Defined here so a view can call
+        it uniformly on any model -- flat or tree -- when the sort key changes
+        (e.g. the display-name format is reconfigured). (bug #9267)
+        """
+
     def get_cached_value(self, handle, col):
         """
         Get the value of a "col". col may be a number (position in a model)
