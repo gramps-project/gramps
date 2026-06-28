@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-05-31 16:34+0000\n"
+"PO-Revision-Date: 2026-06-20 17:01+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -395,7 +395,7 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Mit Daten arbeiten</b><br/>Ein Zeitraum von Daten kann durch die "
+"<b>Mit Datumsangaben arbeiten</b><br/>Ein Zeitraum von Daten kann durch die "
 "Verwendung des Formats \"zwischen 4.1.2000 und 20.3.2003\" gegeben werden. "
 "Du kannst auch das Vertrauensniveau eines Datums angeben und sogar zwischen "
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
@@ -436,7 +436,7 @@ msgid ""
 msgstr ""
 "<b>Kinder in der Familie ordnen</b><br/>Die Reihenfolge der Kinder in einer "
 "Familie kann durch Ziehen und Ablegen festgelegt werden. Diese Reihenfolge "
-"bleibt auch dann erhalten, wenn die Kinder keine Geburtsdaten haben."
+"bleibt auch dann erhalten, wenn die Kinder keine Geburtsdatumsangaben haben."
 
 #: ../data/tips.xml:17
 msgid ""
@@ -536,9 +536,9 @@ msgstr ""
 "<b>Wer wurde wann geboren?</b><br/>Unter \"Werkzeuge > Analyse und "
 "Untersuchung > Einzelne Ereignisse vergleichen...\" kannst du die Daten von "
 "Personen in deiner Datenbank vergleichen. Das ist nützlich, z.B. wenn du "
-"vorhast, die Geburtsdaten von jedem aus deiner Datenbank aufzulisten. Zum "
-"Eingrenzen der Ergebnisse kannst du einen benutzerdefinierten Filter "
-"verwenden."
+"vorhast, die Geburtsdatumsangaben von jedem aus deiner Datenbank "
+"aufzulisten. Zum Eingrenzen der Ergebnisse kannst du einen "
+"benutzerdefinierten Filter verwenden."
 
 #: ../data/tips.xml:31
 msgid ""
@@ -765,9 +765,9 @@ msgid ""
 msgstr ""
 "<b>Alle anzeigen Kontrollkästchen</b><br/>Wenn man einen Partner oder Kind "
 "hinzufügen will, wird eine Liste von gefilterten Personen angezeigt, die "
-"realistisch in Frage kommen (durch die Daten in Datenbank). Falls Gramps "
-"sich bei dieser Auswahl irrt, kannst du den Filter außer Kraft setzen, indem "
-"du das Kontrollkästchen Alle anzeigen aktivierst."
+"realistisch in Frage kommen (durch die Datumsangaben in Datenbank). Falls "
+"Gramps sich bei dieser Auswahl irrt, kannst du den Filter außer Kraft "
+"setzen, indem du das Kontrollkästchen Alle anzeigen aktivierst."
 
 #: ../data/tips.xml:65
 msgid ""
@@ -858,9 +858,9 @@ msgid ""
 "on the date button. The format of the date is set under \"Edit > Preferences "
 "> Data\"."
 msgstr ""
-"<b>Fehlerhafte Daten</b><br/>Jeder trägt gelegentlich Daten mit ungültigem "
-"Format ein. Fehlerhafte Datenformate werden in Gramps mit einem rötlichen "
-"Hintergrund gezeigt. Du kannst das Datum durch Verwendung des "
+"<b>Fehlerhafte Datumsangaben</b><br/>Jeder trägt gelegentlich Daten mit "
+"ungültigem Format ein. Fehlerhafte Datenformate werden in Gramps mit einem "
+"rötlichen Hintergrund gezeigt. Du kannst das Datum durch Verwendung des "
 "Datumsauswahldialoges korrigieren, welcher durch das Klicken auf die "
 "Datumsauswahlschaltfläche geöffnet werden kann. Das Datumsformat wird "
 "eingestellt unter \"Bearbeiten > Einstellungen > Daten\"."
@@ -1120,10 +1120,11 @@ msgid ""
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
 "<b>Das \"Wie und Warum\" deiner Ahnenforschung</b><br/> Ahnenforschung "
-"beschäftigt sich nicht nur mit Daten und Namen: es geht um Menschen! Sei "
-"beschreibend. Erläutere, warum etwas passiert und wie die Nachkommen durch "
-"die Ereignisse geprägt sein könnten, die sie erlebt haben. Erzählungen sind "
-"eine lange erprobte Möglichkeit, deine Familiengeschichte erlebbar zu machen."
+"beschäftigt sich nicht nur mit Datumsangaben und Namen: es geht um Menschen! "
+"Sei beschreibend. Erläutere, warum etwas passiert und wie die Nachkommen "
+"durch die Ereignisse geprägt sein könnten, die sie erlebt haben. Erzählungen "
+"sind eine lange erprobte Möglichkeit, deine Familiengeschichte erlebbar zu "
+"machen."
 
 #: ../data/tips.xml:119
 msgid ""
@@ -3352,7 +3353,7 @@ msgstr "Anzahl der Quellen"
 #: ../gramps/plugins/webreport/statistics.py:208
 #: ../gramps/plugins/webreport/statistics.py:288
 msgid "Number of citations"
-msgstr "Anzahl der Fundstellen"
+msgstr "Anzahl der Quellenangaben"
 
 #: ../gramps/gen/db/generic.py:2708
 #: ../gramps/plugins/webreport/statistics.py:187
@@ -3393,50 +3394,55 @@ msgstr "Schemaversion"
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Personen      aktualisiert mit %(n2)6d Fundstellen in %(n3)6d Sek.\n"
+"%(n1)6d  Personen      aktualisiert mit %(n2)6d Quellenangaben in %(n3)6d "
+"Sek.\n"
 
 #: ../gramps/gen/db/upgrade.py:723
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Familien      aktualisiert mit %(n2)6d Fundstellen in %(n3)6d Sek.\n"
+"%(n1)6d  Familien      aktualisiert mit %(n2)6d Quellenangaben in %(n3)6d "
+"Sek.\n"
 
 #: ../gramps/gen/db/upgrade.py:727
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Ereignisse    aktualisiert mit %(n2)6d Fundstellen in %(n3)6d Sek.\n"
+"%(n1)6d  Ereignisse    aktualisiert mit %(n2)6d Quellenangaben in %(n3)6d "
+"Sek.\n"
 
 #: ../gramps/gen/db/upgrade.py:731
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Medienobjekte aktualisiert mit %(n2)6d Fundstellen in %(n3)6d Sek.\n"
+"%(n1)6d  Medienobjekte aktualisiert mit %(n2)6d Quellenangaben in %(n3)6d "
+"Sek.\n"
 
 #: ../gramps/gen/db/upgrade.py:735
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Orte          aktualisiert mit %(n2)6d Fundstellen in %(n3)6d Sek.\n"
+"%(n1)6d  Orte          aktualisiert mit %(n2)6d Quellenangaben in %(n3)6d "
+"Sek.\n"
 
 #: ../gramps/gen/db/upgrade.py:739
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Aufbewahrungsorte aktualisiert mit %(n2)6d Fundstellen in %(n3)6d "
-"Sek.\n"
+"%(n1)6d  Aufbewahrungsorte aktualisiert mit %(n2)6d Quellenangaben in %(n3)"
+"6d Sek.\n"
 
 #: ../gramps/gen/db/upgrade.py:743
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Quellen          aktualisiert mit %(n2)6d Fundstellen in %(n3)6d "
+"%(n1)6d  Quellen          aktualisiert mit %(n2)6d Quellenangaben in %(n3)6d "
 "Sek.\n"
 
 #: ../gramps/gen/db/upgrade.py:1308
@@ -3455,7 +3461,7 @@ msgstr ""
 "\n"
 "\n"
 "Du kannst Folgendes starten:\n"
-"„Werkzeuge → Stammbaumverarbeitung → Fundstellen zusammenführen“,\n"
+"„Werkzeuge → Stammbaumverarbeitung → Quellenangaben zusammenführen“,\n"
 "um Fundstellen zusammenzuführen, die identische\n"
 "Informationen enthalten"
 
@@ -3789,12 +3795,12 @@ msgstr "Band/Seite:"
 #: ../gramps/gen/filters/rules/_hascitationbase.py:60
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:59
 msgid "Citations matching parameters"
-msgstr "Fundstellen, die den Parametern entsprechen"
+msgstr "Quellenangaben, die den Parametern entsprechen"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:61
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:61
 msgid "Matches citations with particular parameters"
-msgstr "Passt auf Fundstellen mit bestimmten Parametern"
+msgstr "Passt auf Quellenangaben mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:62
 #: ../gramps/gen/filters/rules/_hassourcebase.py:57
@@ -3809,7 +3815,7 @@ msgstr "Passt auf Fundstellen mit bestimmten Parametern"
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:48
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
 msgid "Citation/source filters"
-msgstr "Fundstelle/Quelle Filter"
+msgstr "Quellenangabe/Quelle Filter"
 
 #: ../gramps/gen/filters/rules/_haseventbase.py:61
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:55
@@ -3952,7 +3958,7 @@ msgstr "Quelle ID:"
 #: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:33
 #: ../gramps/gui/editors/filtereditor.py:577
 msgid "Citation filter name:"
-msgstr "Fundstellenfiltername:"
+msgstr "Quellenangabenfiltername:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:66
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:147
@@ -4007,11 +4013,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:46
 msgid "Every citation"
-msgstr "Jede Fundstelle"
+msgstr "Jede Quellenangaben"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 msgid "Matches every citation in the database"
-msgstr "Passt auf jede Fundstelle in der Datenbank"
+msgstr "Passt auf jede Quellenangabe in der Datenbank"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:46
 #: ../gramps/gen/filters/rules/event/_changedsince.py:47
@@ -4039,28 +4045,28 @@ msgstr "aber vor:"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:47
 msgid "Citations changed after <date time>"
-msgstr "Fundstellen geändert nach <Datum Zeit>"
+msgstr "Quellenangaben geändert nach <Datum Zeit>"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:49
 msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Passt auf Fundstellendatensätze, die nach einem bestimmten Datum/Zeitpunkt "
-"(JJJJ-MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, wenn ein "
-"zweites Datum/Zeitpunkt angegeben ist."
+"Passt auf Quellenangabendatensätze, die nach einem bestimmten Datum/"
+"Zeitpunkt (JJJJ-MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, wenn "
+"ein zweites Datum/Zeitpunkt angegeben ist."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:44
 msgid "Citations marked private"
-msgstr "Als vertraulich markierte Fundstellen"
+msgstr "Als vertraulich markierte Quellenangaben"
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:45
 msgid "Matches citations that are indicated as private"
-msgstr "Passt auf Fundstellen, die als vertraulich markiert sind"
+msgstr "Passt auf Quellenangaben, die als vertraulich markiert sind"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 msgid "Citation attribute:"
-msgstr "Fundstellenattribut:"
+msgstr "Quellenangabenattribut:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
@@ -4076,11 +4082,11 @@ msgstr "Wert:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citations with the attribute <attribute>"
-msgstr "Fundstellen mit dem Attribut <Attribut>"
+msgstr "Quellenangaben mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
 msgid "Matches citations with the attribute of a particular value"
-msgstr "Passt auf Fundstellen mit dem Attribut mit einem bestimmten Wert"
+msgstr "Passt auf Quellenangaben mit dem Attribut mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:58
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -4099,58 +4105,58 @@ msgstr "Vertrauensniveau:"
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:46
 msgid "Citations with <count> media"
-msgstr "Fundstellen mit <Anzahl> Medien"
+msgstr "Quellenangaben mit <Anzahl> Medien"
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:47
 msgid "Matches citations with a certain number of items in the gallery"
 msgstr ""
-"Passt auf Fundstellen mit einer bestimmten Anzahl von Elementen in der "
+"Passt auf Quellenangaben mit einer bestimmten Anzahl von Elementen in der "
 "Galerie"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:47
 msgid "Citation with <Id>"
-msgstr "Fundstelle mit <ID>"
+msgstr "Quellenangabe mit <ID>"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:48
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Passt auf Fundstelle mit einer bestimmten Gramps-ID"
+msgstr "Passt auf Quellenangabe mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:47
 msgid "Citations having <count> notes"
-msgstr "Fundstellen mit <Anzahl> Notizen"
+msgstr "Quellenangaben mit <Anzahl> Notizen"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:48
 msgid "Matches citations having a certain number of notes"
-msgstr "Passt auf Fundstellen mit einer bestimmten Anzahl von Notizen"
+msgstr "Passt auf Quellenangabe mit einer bestimmten Anzahl von Notizen"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:44
 msgid "Citations having notes containing <substring>"
-msgstr "Fundstellen deren Notizen die <Teilzeichenfolge> enthalten"
+msgstr "Quellenangaben deren Notizen die <Teilzeichenfolge> enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:46
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr ""
-"Passt auf Fundstellen, deren Notizen einen Text mit gegebener "
+"Passt auf Quellenangaben, deren Notizen einen Text mit gegebener "
 "Teilzeichenfolge enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:42
 msgid "Citations having notes containing <text>"
-msgstr "Fundstellen, deren Notizen den <Text> enthalten"
+msgstr "Quellenangaben, deren Notizen den <Text> enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:44
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
-"Passt auf Fundstellen, deren Notizen einen Text entsprechend einem regulären "
-"Ausdruck enthalten"
+"Passt auf Quellenangaben, deren Notizen einen Text entsprechend einem "
+"regulären Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
 msgid "Citations with a note with the <tag>"
-msgstr "Fundstellen mit einer Notiz dem Etikett <Etikett>"
+msgstr "Quellenangaben mit einer Notiz dem Etikett <Etikett>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
 msgid "Matches citations with a note with a specified tag"
-msgstr "Passt auf Fundstelle mit einer Notiz mit einem angegebenen Etikett"
+msgstr "Passt auf Quellenangabe mit einer Notiz mit einem angegebenen Etikett"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4173,19 +4179,19 @@ msgstr "Notizenfilter"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:47
 msgid "Citations with a note of type <type>"
-msgstr "Fundstellen mit einer Notiz der Art <Art>"
+msgstr "Quellenangaben mit einer Notiz der Art <Art>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:48
 msgid "Matches citations with a note of the specified type"
-msgstr "Passt auf Fundstelle mit einer Notiz der angegebenen Art"
+msgstr "Passt auf Quellenangabe mit einer Notiz der angegebenen Art"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:44
 msgid "Citations with a reference count of <count>"
-msgstr "Fundstellen mit einer Anzahl von Referenzen von <Anzahl>"
+msgstr "Quellenangaben mit einer Anzahl von Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
 msgid "Matches citations with a certain reference count"
-msgstr "Passt auf Fundstellen mit einer bestimmten Anzahl von Referenzen"
+msgstr "Passt auf Quellenangaben mit einer bestimmten Anzahl von Referenzen"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:58
 #: ../gramps/gen/filters/rules/source/_hassource.py:49
@@ -4240,7 +4246,7 @@ msgstr "Quellen, die den Parametern entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:60
 msgid "Matches citations with a source of a particular value"
-msgstr "Passt auf Fundstellen mit einer Quelle eines bestimmten Wertes"
+msgstr "Passt auf Quellenangaben mit einer Quelle eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:61
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:57
@@ -4251,48 +4257,48 @@ msgstr "Quellfilter"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:55
 msgid "Citation with Source <Id>"
-msgstr "Fundstelle mit Quelle <ID>"
+msgstr "Quellenangabe mit Quelle <ID>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:56
 msgid "Matches a citation with a source with a specified Gramps ID"
-msgstr "Passt auf Fundstelle mit einer Quelle mit einer bestimmten Gramps-ID"
+msgstr "Passt auf Quellenangabe mit einer Quelle mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:61
 msgid "Citations having source notes containing <text>"
-msgstr "Fundstellen, deren Quellennotizen den <Text> enthalten"
+msgstr "Quellenangaben, deren Quellennotizen den <Text> enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:63
 msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
 "expression"
 msgstr ""
-"Passt auf Fundstellen, deren Quellennotizen einen Text entsprechend einem "
+"Passt auf Quellenangaben, deren Quellennotizen einen Text entsprechend einem "
 "regulären Ausdruck enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
 msgid "Citations with the <tag>"
-msgstr "Fundstellen mit dem <Etikett>"
+msgstr "Quellenangaben mit dem <Etikett>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Matches citations with the particular tag"
-msgstr "Passt auf Fundstellen mit dem jeweiligen Etikett"
+msgstr "Passt auf Quellenangaben mit dem jeweiligen Etikett"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:46
 msgid "Citations matching the <filter>"
-msgstr "Fundstellen , die dem <Filter> entsprechen"
+msgstr "Quellenangaben, die dem <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Matches citations matched by the specified filter name"
-msgstr "Passt auf Fundstellen, die dem angegebenen Filter entsprechen"
+msgstr "Passt auf Quellenangaben, die dem angegebenen Filter entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:52
 msgid "Citations with Volume/Page containing <text>"
-msgstr "Fundstellen mit Band/Seite, die <Text> enthalten"
+msgstr "Quellenangaben mit Band/Seite, die <Text> enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:54
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr ""
-"Passt auf Fundstellen, deren Band/Seite eine bestimmte Teilzeichenfolge "
+"Passt auf Quellenangaben, deren Band/Seite eine bestimmte Teilzeichenfolge "
 "enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:55
@@ -4306,7 +4312,7 @@ msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Fundstellen mit Quellen mit Aufbewahrungsortreferenz, die dem "
+"Quellenangaben mit Quellen mit Aufbewahrungsortreferenz, die dem "
 "<Aufbewahrungsortfilter> entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:61
@@ -4314,39 +4320,39 @@ msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
-"Passt auf Fundstellen mit Quellen mit einer Aufbewahrungsortreferenz, die "
+"Passt auf Quellenangaben mit Quellen mit einer Aufbewahrungsortreferenz, die "
 "einem bestimmten Aufbewahrungsortfilter entspricht"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:58
 msgid "Citations with source matching the <source filter>"
-msgstr "Fundstellen mit Quellen, die dem <Quellenfilter> entsprechen"
+msgstr "Quellenangaben mit Quellen, die dem <Quellenfilter> entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:60
 msgid ""
 "Matches citations with sources that match the specified source filter name"
 msgstr ""
-"Passt auf Fundstellen mit Quellen, die dem vorgegebenen Quellenfilternamen "
-"entsprechen"
+"Passt auf Quellenangaben mit Quellen, die dem vorgegebenen "
+"Quellenfilternamen entsprechen"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Citations with Id containing <text>"
-msgstr "Fundstellen, deren ID den <Text> enthalten"
+msgstr "Quellenangaben, deren ID den <Text> enthalten"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:51
 msgid "Matches citations whose Gramps ID matches the regular expression"
 msgstr ""
-"Passt auf Fundstellen, deren Gramps-ID dem regulären Ausdruck entspricht"
+"Passt auf Quellenangaben, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:57
 msgid "Citations with Source Id containing <text>"
-msgstr "Fundstellen mit einer Quelle, deren ID den <Text> enthält"
+msgstr "Quellenangaben mit einer Quelle, deren ID den <Text> enthält"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:59
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
 msgstr ""
-"Passt auf Fundstellen, deren Quelle eine Gramps-ID hat, die dem regulären "
+"Passt auf Quellenangaben, deren Quelle eine Gramps-ID hat, die dem regulären "
 "Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:45
@@ -4395,11 +4401,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Events with the <citation>"
-msgstr "Ereignisse mit der <Fundstelle>"
+msgstr "Ereignisse mit der <Quellenangabe>"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:52
 msgid "Matches events with a citation of a particular value"
-msgstr "Passt auf Ereignisse mit einer Fundstelle mit einem bestimmten Wert"
+msgstr "Passt auf Ereignisse mit einer Quellenangabe mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:57
 #: ../gramps/gen/filters/rules/event/_hasevent.py:53
@@ -4739,11 +4745,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:51
 msgid "Families with the <citation>"
-msgstr "Familien mit der <Fundstelle>"
+msgstr "Familien mit der <Quellenangabe>"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:52
 msgid "Matches families with a citation of a particular value"
-msgstr "Passt auf Familien mit einer Fundstelle mit einem bestimmten Wert"
+msgstr "Passt auf Familien mit einer Quellenangabe mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:58
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:57
@@ -5069,11 +5075,11 @@ msgstr "Passt auf Medienobjekten mit dem Attribut eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:50
 msgid "Media with the <citation>"
-msgstr "Medien mit der <Fundstelle>"
+msgstr "Medien mit der <Quellenangabe>"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:51
 msgid "Matches media with a citation of a particular value"
-msgstr "Passt auf Medien mit einer Fundstelle eines bestimmten Werts"
+msgstr "Passt auf Medien mit einer Quellenangabe eines bestimmten Werts"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
 msgid "Media object with <Id>"
@@ -5458,11 +5464,11 @@ msgstr "Passt auf Personen mit Geburtsdaten eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:50
 msgid "People with the <citation>"
-msgstr "Personen mit der <Fundstelle>"
+msgstr "Personen mit der <Quellenangabe>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:51
 msgid "Matches people with a citation of a particular value"
-msgstr "Passt auf Personen mit einer Fundstelle eines bestimmten Werts"
+msgstr "Passt auf Personen mit einer Quellenangabe eines bestimmten Werts"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:56
 msgid "People with a common ancestor with <person>"
@@ -6275,11 +6281,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
-msgstr "Ort mit der <Fundstelle>"
+msgstr "Ort mit der <Quellenangabe>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 msgid "Matches places with a citation of a particular value"
-msgstr "Passt auf Orte mit einer Fundstelle mit einem bestimmten Wert"
+msgstr "Passt auf Orte mit einer Quellenangabe mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:56
 #: ../gramps/gui/editors/editplace.py:105
@@ -7215,10 +7221,9 @@ msgid "Building FSID list for places"
 msgstr "Erstellung einer FSID-Liste für Orte"
 
 #: ../gramps/gen/fs/fs_import/sources.py:406
-#, fuzzy, python-format
-#| msgid "No FamilySearch sources found to import."
+#, python-format
 msgid "Loading FamilySearch source %(current)d/%(total)d"
-msgstr "Keine FamilySearch-Quellen zum Importieren gefunden."
+msgstr "FamilySearch-Quelle %(current)d/%(total)d wird geladen"
 
 #: ../gramps/gen/fs/fs_import/sources.py:611
 #: ../gramps/gen/fs/fs_import/sources.py:614
@@ -7291,22 +7296,17 @@ msgid "Internet Address"
 msgstr "Internetadresse"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:434
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(header)s (%(current)d/%(total)d)"
-msgstr "%(current)d von %(total)d"
+msgstr "%(header)s (%(current)d/%(total)d)"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:443
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Loading FamilySearch person sources"
-msgstr "FamilySearch-Quellen importieren"
+msgstr "Personenquellen aus FamilySearch werden geladen"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:451
-#, fuzzy
-#| msgid "Family relationships"
 msgid "Loading FamilySearch relationship sources"
-msgstr "Familienbeziehungen"
+msgstr "Laden der Quellen zu Verwandtschaftsbeziehungen von FamilySearch"
 
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
@@ -7392,20 +7392,16 @@ msgid "Sources ? row %(row)d not green (%(color)s)"
 msgstr "Quellen? Zeile %(row)d nicht grün (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:363
-#, fuzzy
-#| msgid ""
-#| "FamilySearch status tag colors can be customized in Gramps via Edit Tags. "
-#| "This add-on only sets default colors when the tags are first created and "
-#| "will not override your custom choices."
 msgid ""
 "FamilySearch status tag colors can be customized in Gramps via Edit > Tag > "
 "Organize Tags. This integration only sets default colors when the tags are "
 "first created and will not override your custom choices."
 msgstr ""
-"Die Farben der FamilySearch-Status-Etiketten können in Gramps über "
-"„Etiketten bearbeiten“ angepasst werden. Diese Erweiterung legt lediglich "
-"Standardfarben fest, wenn die Etiketten zum ersten Mal erstellt werden, und "
-"überschreibt deine benutzerdefinierten Einstellungen nicht."
+"Die Farben der FamilySearch-Status-Etiketten können in Gramps über „"
+"Bearbeiten“ > „Etikett“ > „Etiketten organisieren“ angepasst werden. Diese "
+"Integration legt nur bei der erstmaligen Erstellung der Etiketten "
+"Standardfarben fest und überschreibt deine benutzerdefinierten Einstellungen "
+"nicht."
 
 #: ../gramps/gen/fs/utils/linking.py:48
 msgid "FamilySearch tags"
@@ -7499,7 +7495,7 @@ msgstr "Vertraulich"
 #: ../gramps/plugins/view/view.gpr.py:300
 #: ../gramps/plugins/view/view.gpr.py:308
 msgid "Citations"
-msgstr "Fundstellen"
+msgstr "Quellenangaben"
 
 #: ../gramps/gen/lib/address.py:116 ../gramps/gen/lib/attribute.py:254
 #: ../gramps/gen/lib/childref.py:117 ../gramps/gen/lib/citation.py:131
@@ -7829,7 +7825,7 @@ msgstr "Pflegekind"
 #: ../gramps/plugins/tool/reorderids.glade:824
 #: ../gramps/plugins/webreport/updates.py:259
 msgid "Citation"
-msgstr "Fundstelle"
+msgstr "Quellenangabe"
 
 #: ../gramps/gen/lib/citation.py:114 ../gramps/gen/lib/event.py:183
 #: ../gramps/gen/lib/family.py:164 ../gramps/gen/lib/media.py:150
@@ -9983,7 +9979,7 @@ msgstr "Suche..."
 
 #: ../gramps/gen/merge/mergecitationquery.py:72
 msgid "Merge Citation"
-msgstr "Fundstellen zusammenführen"
+msgstr "Quellenangabe zusammenführen"
 
 #: ../gramps/gen/merge/mergeeventquery.py:61
 msgid "Merge Event Objects"
@@ -10149,7 +10145,7 @@ msgstr "Miniaturbilderzeuger"
 
 #: ../gramps/gen/plug/_pluginreg.py:133 ../gramps/gui/configure.py:1833
 msgid "Citation formatter"
-msgstr "Fundstelleninformatierer"
+msgstr "Quellenangabenformatierer"
 
 #: ../gramps/gen/plug/_pluginreg.py:644
 #: ../gramps/plugins/gramplet/faqgramplet.py:175
@@ -11078,7 +11074,7 @@ msgstr "Datumsformat"
 
 #: ../gramps/gen/plug/report/stdoptions.py:309
 msgid "The format and language for dates, with examples"
-msgstr "Format und Sprache für Daten, mit Beispielen"
+msgstr "Format und Sprache für Datumsangaben, mit Beispielen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:369
 #: ../gramps/gen/plug/report/stdoptions.py:394
@@ -11651,7 +11647,7 @@ msgstr "der Filter"
 
 #: ../gramps/gen/utils/grampslocale.py:787
 msgid "the citation"
-msgstr "die Fundstelle"
+msgstr "die Quellenangabe"
 
 #: ../gramps/gen/utils/grampslocale.py:789
 msgid "See details"
@@ -12913,10 +12909,8 @@ msgid "Middleware access code (issued secret)"
 msgstr "Middleware-Zugriffscode (ausgegebenes Geheimnis)"
 
 #: ../gramps/gui/configure.py:1204
-#, fuzzy
-#| msgid "FamilySearch tags"
 msgid "Enable FamilySearch integration"
-msgstr "FamilySearch Etikettens"
+msgstr "FamilySearch-Integration aktivieren"
 
 #: ../gramps/gui/configure.py:1212
 msgid "Integrations"
@@ -13196,8 +13190,8 @@ msgid ""
 "missing when dates are only in distant generations."
 msgstr ""
 "Begrenzt die Schätzungstiefe für Vorfahren und Nachkommen. Erhöhe diesen "
-"Wert, wenn Schätzungen fehlen, wenn Daten nur für entfernte Generationen "
-"vorliegen."
+"Wert, wenn Schätzungen fehlen, wenn Datumsangaben nur für entfernte "
+"Generationen vorliegen."
 
 #: ../gramps/gui/configure.py:2107
 msgid "Maximum sibling age difference"
@@ -14279,7 +14273,7 @@ msgstr "Keine aktive Quelle"
 
 #: ../gramps/gui/displaystate.py:454
 msgid "No active citation"
-msgstr "Keine aktive Fundstelle"
+msgstr "Keine aktive Quellenangabe"
 
 #: ../gramps/gui/displaystate.py:455
 msgid "No active repository"
@@ -14538,10 +14532,8 @@ msgid "Remove"
 msgstr "Entfernen"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select Existing"
-msgstr "Wähle eine vorhandene Notiz"
+msgstr "Vorhandenes auswählen"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 msgid "Jump To"
@@ -14565,30 +14557,29 @@ msgstr "Nach rechts verschieben"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:70
 msgid "Create and add a new citation and new source"
-msgstr "Erstellen und Hinzufügen einer neuen Fundstelle und einer neuen Quelle"
+msgstr ""
+"Erstellen und Hinzufügen einer neuen Quellenangabe und einer neuen Quelle"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:71
 msgid "Remove the existing citation"
-msgstr "Die vorhandene Fundstelle entfernen"
+msgstr "Die vorhandene Quellenangabe entfernen"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:72
 #: ../gramps/plugins/view/citationlistview.py:144
 msgid "Edit the selected citation"
-msgstr "Die ausgewählte Fundstelle bearbeiten"
+msgstr "Die ausgewählte Quellenangabe bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
-#, fuzzy
-#| msgid "Add an existing citation or source"
 msgid "Select an existing citation or source"
-msgstr "Eine vorhandene Fundstelle oder Quelle hinzufügen"
+msgstr "Wähle eine vorhandene Quellenangabe oder Quelle aus"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Move the selected citation upwards"
-msgstr "Die ausgewählte Fundstelle nach oben verschieben"
+msgstr "Die ausgewählte Quellenangabe nach oben verschieben"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:75
 msgid "Move the selected citation downwards"
-msgstr "Die ausgewählte Fundstelle nach unten verschieben"
+msgstr "Die ausgewählte Quellenangabe nach unten verschieben"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/plugins/gramplet/citations.py:106
@@ -14625,9 +14616,9 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Diese Fundstelle kann zu diesem Zeitpunkt nicht erstellt werden. Entweder "
+"Diese Quellenangabe kann zu diesem Zeitpunkt nicht erstellt werden. Entweder "
 "wird das zugehörige Quellenobjekt bereits bearbeitet oder eine andere "
-"Fundstelle, die mit der gleichen Quelle verknüpft ist, wird gerade "
+"Quellenangabe, die mit der gleichen Quelle verknüpft ist, wird gerade "
 "bearbeitet.\n"
 "\n"
 "Um diese Quellenangabe zu bearbeiten, musst du das Objekt schließen."
@@ -14653,10 +14644,8 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select an existing event"
-msgstr "Wähle eine vorhandene Notiz"
+msgstr "Wähle ein vorhandenes Ereignis aus"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
@@ -14715,40 +14704,28 @@ msgid "%(groupname)s - %(groupnumber)d"
 msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:89
-#, fuzzy
-#| msgid "Add a new media object"
 msgid "Add a new Media record"
-msgstr "Ein neues Medienobjekt hinzufügen"
+msgstr "Neuen Mediendatensatz hinzufügen"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:90
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Remove the selected Media record"
-msgstr "Das ausgewählte Projekt entfernen"
+msgstr "Den ausgewählten Mediendatensatz löschen"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:91
-#, fuzzy
-#| msgid "Edit the selected media object"
 msgid "Edit the selected Media record"
-msgstr "Ausgewähltes Medienobjekt bearbeiten"
+msgstr "Den ausgewählten Mediendatensatz bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:92
-#, fuzzy
-#| msgid "Select an existing media object"
 msgid "Select an existing Media record"
-msgstr "Vorhandene Medienobjekte auswählen"
+msgstr "Wähle einen vorhandenen Mediendatensatz aus"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:93
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record Left"
-msgstr "Das ausgewählte Projekt entfernen"
+msgstr "Den ausgewählten Datensatz nach links verschieben"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:94
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record right"
-msgstr "Das ausgewählte Projekt entfernen"
+msgstr "Den ausgewählten Datensatz nach rechts verschieben"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:104
 msgid "_Gallery"
@@ -15048,10 +15025,8 @@ msgid "Edit the selected repository"
 msgstr "Ausgewählten Aufbewahrungsort bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
-#, fuzzy
-#| msgid "Add an existing repository"
 msgid "Select an existing repository"
-msgstr "Einen bestehenden Aufbewahrungsort hinzufügen"
+msgstr "Wähle einen vorhandenen Aufbewahrungsort aus"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Move the selected repository upwards"
@@ -15199,16 +15174,16 @@ msgstr "Kindreferenzeditor"
 #: ../gramps/gui/editors/editcitation.py:74
 msgctxt "manual"
 msgid "New_Citation_dialog"
-msgstr "Neue_Fundstelle_Dialog"
+msgstr "Neue_Quellenangabe_Dialog"
 
 #: ../gramps/gui/editors/editcitation.py:143
 #: ../gramps/gui/editors/editcitation.py:147
 msgid "New Citation"
-msgstr "Neue Fundstelle"
+msgstr "Neue Quellenangabe"
 
 #: ../gramps/gui/editors/editcitation.py:348
 msgid "Edit Citation"
-msgstr "Fundstelle bearbeiten"
+msgstr "Quellenangabe bearbeiten"
 
 #: ../gramps/gui/editors/editcitation.py:357
 msgid "No source selected"
@@ -15224,13 +15199,13 @@ msgid ""
 msgstr ""
 "Eine Quelle ist alles (persönliches Zeugnis, Videoaufnahme, Foto, "
 "Zeitungsartikel, Grabstein...), aus dem Informationen abgeleitet werden "
-"können. Um eine Fundstelle zu erstellen, wähle zunächst die gewünschte "
+"können. Um eine Quellenangabe zu erstellen, wähle zunächst die gewünschte "
 "Quelle aus und gib dann im Feld 'Band/Seite' den Ort der Information an, auf "
 "die in der Quelle verwiesen wird."
 
 #: ../gramps/gui/editors/editcitation.py:376
 msgid "Cannot save citation. ID already exists."
-msgstr "Fundstelle kann nicht gespeichert werden. ID existiert bereits."
+msgstr "Quellenangabe kann nicht gespeichert werden. ID existiert bereits."
 
 #: ../gramps/gui/editors/editcitation.py:378
 #: ../gramps/gui/editors/editevent.py:301
@@ -15254,12 +15229,12 @@ msgstr ""
 #: ../gramps/gui/editors/editcitation.py:388
 #, python-format
 msgid "Add Citation (%s)"
-msgstr "Fundstelle hinzufügen (%s)"
+msgstr "Quellenangabe hinzufügen (%s)"
 
 #: ../gramps/gui/editors/editcitation.py:393
 #, python-format
 msgid "Edit Citation (%s)"
-msgstr "Fundstelle bearbeiten (%s)"
+msgstr "Quellenangabe bearbeiten (%s)"
 
 #: ../gramps/gui/editors/editdate.py:76 ../gramps/gui/editors/editdate.py:88
 msgid "Regular"
@@ -15304,7 +15279,7 @@ msgstr "Berechnet"
 #: ../gramps/gui/editors/editdate.py:104
 msgctxt "manual"
 msgid "Editing_dates"
-msgstr "Daten_bearbeiten"
+msgstr "Datumsangaben_bearbeiten"
 
 #: ../gramps/gui/editors/editdate.py:130 ../gramps/gui/editors/editdate.py:374
 msgid "Date selection"
@@ -15418,10 +15393,10 @@ msgid "Edit the child reference"
 msgstr "Die Kindreferenz bearbeiten"
 
 #: ../gramps/gui/editors/editfamily.py:130
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person to add as child of the family"
-msgstr "Eine vorhandene Person als Kind der Familie hinzufügen"
+msgstr ""
+"Wähle eine bereits vorhandene Person aus, um sie als Kind der Familie "
+"hinzuzufügen"
 
 #: ../gramps/gui/editors/editfamily.py:131
 msgid "Move the child up in the children list"
@@ -15497,10 +15472,8 @@ msgid "Edit child"
 msgstr "Kind bearbeiten"
 
 #: ../gramps/gui/editors/editfamily.py:224
-#, fuzzy
-#| msgid "Select an existing person"
 msgid "Select an existing person to add as child"
-msgstr "Wähle eine vorhandene Person aus"
+msgstr "Wähle eine bereits vorhandene Person aus, um sie als Kind hinzuzufügen"
 
 #: ../gramps/gui/editors/editfamily.py:227
 msgid "Edit relationship"
@@ -16327,7 +16300,7 @@ msgstr "Notizenfilter"
 
 #: ../gramps/gui/editors/filtereditor.py:106
 msgid "Citation Filters"
-msgstr "Fundstellenfilter"
+msgstr "Quellenangabenfilter"
 
 #: ../gramps/gui/editors/filtereditor.py:265
 msgid "equal to"
@@ -16703,7 +16676,7 @@ msgstr "Veröffentlichung"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:119
 msgid "Citation:"
-msgstr "Fundstelle:"
+msgstr "Quellenangabe:"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:121
 #: ../gramps/plugins/gramplet/citations.py:103
@@ -16892,60 +16865,51 @@ msgid "Tip: uncheck anything you don't want to import."
 msgstr "Tipp: Deaktiviere alle Optionen, die du nicht importieren möchtest."
 
 #: ../gramps/gui/fs/actions.py:471
-#, fuzzy, python-format
-#| msgid " (%(birth_date)s - %(death_date)s)"
+#, python-format
 msgid "%(birth)s - %(death)s"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "%(birth)s - %(death)s"
 
 #: ../gramps/gui/fs/actions.py:524
-#, fuzzy, python-format
-#| msgid "FamilySearch update failed (sources)."
+#, python-format
 msgid "FamilySearch search failed (HTTP %(status)s)."
-msgstr "Die Aktualisierung von FamilySearch ist fehlgeschlagen (Quellen)."
+msgstr "Die Suche bei FamilySearch ist fehlgeschlagen (HTTP %(status)s)."
 
 #: ../gramps/gui/fs/actions.py:531
-#, fuzzy
-#| msgid "FamilySearch source creation failed for: {t}"
 msgid "FamilySearch search returned invalid data."
-msgstr "Die Erstellung der FamilySearch-Quelle ist fehlgeschlagen für: {t}"
+msgstr "Die Suche bei FamilySearch hat ungültige Daten zurückgegeben."
 
 #: ../gramps/gui/fs/actions.py:584
-#, fuzzy
-#| msgid "Select Person"
 msgid "selected person"
-msgstr "Person auswählen"
+msgstr "ausgewählte Person"
 
 #: ../gramps/gui/fs/actions.py:630 ../gramps/gui/fs/actions.py:632
-#, fuzzy
-#| msgid "Import relatives"
 msgid "Bulk import relatives"
-msgstr "Verwandte importieren"
+msgstr "Verwandte im Massenimport"
 
 #: ../gramps/gui/fs/actions.py:646
-#, fuzzy, python-format
-#| msgid "Editor person: %(name)s  [%(gid)s]"
+#, python-format
 msgid "Starting person: %(name)s [%(fsid)s]"
-msgstr "Personen-Editor: %(name)s  [%(gid)s]"
+msgstr "Startperson: %(name)s [%(fsid)s]"
 
 #: ../gramps/gui/fs/actions.py:668 ../gramps/gui/fs/fs_import/options.py:42
 msgid "Ancestor generations"
 msgstr "Vorfahrengenerationen"
 
 #: ../gramps/gui/fs/actions.py:670
-#, fuzzy
-#| msgid "Number of generations to fetch upwards"
 msgid "Number of generations to import upward from the starting person."
-msgstr "Anzahl der Generationen, die nach oben abgerufen werden sollen"
+msgstr ""
+"Anzahl der Generationen, die von der Startperson aus aufwärts importiert "
+"werden sollen."
 
 #: ../gramps/gui/fs/actions.py:675 ../gramps/gui/fs/fs_import/options.py:46
 msgid "Descendant generations"
 msgstr "Nachkommengenerationen"
 
 #: ../gramps/gui/fs/actions.py:677
-#, fuzzy
-#| msgid "Number of generations to fetch downwards"
 msgid "Number of generations to import downward from the starting person."
-msgstr "Anzahl der Generationen, die nach unten abgerufen werden sollen"
+msgstr ""
+"Anzahl der Generationen, die von der Startperson ausgehend abwärts "
+"importiert werden sollen."
 
 #: ../gramps/gui/fs/actions.py:683 ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -16956,16 +16920,18 @@ msgstr "Ehepartner einbeziehen"
 #: ../gramps/gui/fs/actions.py:685
 msgid "When off, import only the direct parent/child bloodline."
 msgstr ""
+"Wenn diese Option deaktiviert ist, werden nur die direkten Vorfahren und "
+"Nachkommen der Blutlinie importiert."
 
 #: ../gramps/gui/fs/actions.py:688
-#, fuzzy
-#| msgid "Do not re-import existing persons"
 msgid "Do not re-import existing people"
-msgstr "Bestehende Personen nicht erneut importieren"
+msgstr "Vorhandene Personen nicht erneut importieren"
 
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
 msgstr ""
+"Behalte die bestehenden Verknüpfungen zu Personen in Gramps während des "
+"Imports unverändert bei."
 
 #: ../gramps/gui/fs/actions.py:694 ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -16974,10 +16940,8 @@ msgid "Include sources"
 msgstr "Quellen einbeziehen"
 
 #: ../gramps/gui/fs/actions.py:695
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Fetch and import FamilySearch sources."
-msgstr "FamilySearch-Quellen importieren"
+msgstr "FamilySearch-Quellen abrufen und importieren."
 
 #: ../gramps/gui/fs/actions.py:697 ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -16986,131 +16950,110 @@ msgid "Include notes"
 msgstr "Notizen einbeziehen"
 
 #: ../gramps/gui/fs/actions.py:698
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Fetch and import FamilySearch notes."
-msgstr "FamilySearch-Quellen importieren"
+msgstr "FamilySearch-Notizen abrufen und importieren."
 
 #: ../gramps/gui/fs/actions.py:700
-#, fuzzy
-#| msgid "Looking for broken parent relationships"
 msgid "Link imported parent/child relationships"
-msgstr "Suche nach zerbrochenen Elternbeziehungen"
+msgstr "Importierte Eltern-Kind-Beziehungen verknüpfen"
 
 #: ../gramps/gui/fs/actions.py:703
 msgid ""
 "Create or reuse families so imported parents and children are connected."
 msgstr ""
+"Erstelle Familien oder verwende vorhandene wieder, damit importierte Eltern "
+"und Kinder miteinander verknüpft sind."
 
 #: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
-#, fuzzy
-#| msgid "FamilySearch Import"
 msgid "Start FamilySearch import"
-msgstr "FamilySearch-Import"
+msgstr "FamilySearch-Import starten"
 
 #: ../gramps/gui/fs/actions.py:758
-#, fuzzy
-#| msgid "No FamilySearch Person ID is set for this person."
 msgid ""
 "Choose the FamilySearch person to use as the starting point for this new "
 "Gramps tree."
-msgstr "Für diese Person ist keine FamilySearch-Person-ID vergeben."
+msgstr ""
+"Wähle die Person aus FamilySearch aus, die als Ausgangspunkt für diesen "
+"neuen Gramps-Stammbaum dienen soll."
 
 #: ../gramps/gui/fs/actions.py:775
-#, fuzzy
-#| msgid "FamilySearch Import Options"
 msgid "FamilySearch ID or person URL"
-msgstr "FamilySearch-Importoptionen"
+msgstr "FamilySearch-ID oder Personen-URL"
 
 #: ../gramps/gui/fs/actions.py:776
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "FamilySearch ID or URL"
-msgstr "FamilySearch ID"
+msgstr "FamilySearch-ID oder URL"
 
 #: ../gramps/gui/fs/actions.py:781
-#, fuzzy
-#| msgid "(deleted on FamilySearch)"
 msgid "Name, date, place, or FamilySearch ID"
-msgstr "(auf FamilySearch gelöscht)"
+msgstr "Name, Datum, Ort oder FamilySearch-ID"
 
 #: ../gramps/gui/fs/actions.py:782
-#, fuzzy
-#| msgid "Web Search"
 msgid "Search"
-msgstr "Websuche"
+msgstr "Suche"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
-msgstr ""
+msgstr "Leben"
 
 #: ../gramps/gui/fs/actions.py:856
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "FamilySearch ID ready."
-msgstr "FamilySearch ID"
+msgstr "FamilySearch-ID bereit."
 
 #: ../gramps/gui/fs/actions.py:860
 msgid "Enter a name, date, place, ID, or URL to search."
 msgstr ""
+"Gib einen Namen, ein Datum, einen Ort, eine ID oder eine URL ein, um die "
+"Suche zu starten."
 
 #: ../gramps/gui/fs/actions.py:865
-#, fuzzy
-#| msgid "Sync to FamilySearch..."
 msgid "Searching FamilySearch..."
-msgstr "Nach FamilySearch synchronisieren..."
+msgstr "Suche auf FamilySearch..."
 
 #: ../gramps/gui/fs/actions.py:880
-#, fuzzy, python-format
-#| msgid "Searching family names"
+#, python-format
 msgid "Search failed: %(error)s"
-msgstr "Suche nach Familiennamen"
+msgstr "Suche fehlgeschlagen: %(error)s"
 
 #: ../gramps/gui/fs/actions.py:890
 #, python-format
 msgid "Search results: %(count)d"
-msgstr ""
+msgstr "Suchergebnisse: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:893
-#, fuzzy
-#| msgid "No FamilySearch sources found to import."
 msgid "No FamilySearch people found."
-msgstr "Keine FamilySearch-Quellen zum Importieren gefunden."
+msgstr "Es wurden keine Personen bei FamilySearch gefunden."
 
 #: ../gramps/gui/fs/actions.py:917
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1138
-#, fuzzy
-#| msgid "FamilySearch sync"
 msgid "FamilySearch person"
-msgstr "FamilySearch-Synchronisierung"
+msgstr "FamilySearch-Person"
 
 #: ../gramps/gui/fs/actions.py:964
 msgid ""
 "No FamilySearch person was imported. Check the selected person ID and try "
 "again."
 msgstr ""
+"Es wurde keine Person aus FamilySearch importiert. Überprüfe die ausgewählte "
+"Personen-ID und versuche es erneut."
 
 #: ../gramps/gui/fs/actions.py:993
 msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
 msgstr ""
+"Dein Stammbaum ist leer! Möchtest du Daten aus FamilySearch in großen Mengen "
+"importieren?"
 
 #: ../gramps/gui/fs/actions.py:994
-#, fuzzy
-#| msgid "Center Person"
 msgid "Choose Starting Person"
-msgstr "Zentrale Person"
+msgstr "Startperson auswählen"
 
 #: ../gramps/gui/fs/actions.py:995
-#, fuzzy
-#| msgid "Not shown"
 msgid "Not now"
-msgstr "Wird nicht angezeigt"
+msgstr "Nicht jetzt"
 
 #: ../gramps/gui/fs/actions.py:1012 ../gramps/gui/fs/actions.py:1073
-#, fuzzy
-#| msgid "family not complete"
 msgid "Bulk import complete."
-msgstr "Familie nicht vollständig"
+msgstr "Massenimport abgeschlossen."
 
 #: ../gramps/gui/fs/actions.py:1051 ../gramps/gui/fs/actions.py:1089
 #: ../gramps/gui/fs/actions.py:1217 ../gramps/gui/fs/actions.py:1384
@@ -17308,8 +17251,8 @@ msgstr "Synchronisierung fehlgeschlagen: {e}"
 msgid ""
 "Sync complete: facts/events, dates/places, and notes updated for this person."
 msgstr ""
-"Synchronisierung abgeschlossen: Fakten/Ereignisse, Daten/Orte und Notizen "
-"für diese Person wurden aktualisiert."
+"Synchronisierung abgeschlossen: Fakten/Ereignisse, Datumsangaben/Orte und "
+"Notizen für diese Person wurden aktualisiert."
 
 #: ../gramps/gui/fs/actions.py:1883
 #, python-brace-format
@@ -17572,7 +17515,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:678
 msgid "Use FS"
-msgstr ""
+msgstr "FS verwenden"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:685
 #: ../gramps/gui/fs/sync_directions.py:954
@@ -17582,102 +17525,79 @@ msgstr "Feld"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:686
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:831
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1205
-#, fuzzy
-#| msgid "Current Name"
 msgid "Current Gramps"
-msgstr "Aktueller Name"
+msgstr "Aktuell Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:688
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:833
-#, fuzzy
-#| msgid "General Gramps settings"
 msgid "Final Gramps result"
-msgstr "Allgemeine Gramps-Einstellungen"
+msgstr "Endgültiges Gramps-Ergebnis"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
-#, fuzzy
-#| msgid "Only in Gramps"
 msgid "Kept in Gramps"
-msgstr "Nur in Gramps"
+msgstr "In Gramps behalten"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:771
-#, fuzzy
-#| msgid "Sync from FamilySearch"
 msgid "Will copy from FamilySearch"
-msgstr "Von FamilySearch synchronisieren"
+msgstr "Wird aus FamilySearch kopiert"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:774
-#, fuzzy
-#| msgid "Run selected tool"
 msgid "Review and select to copy"
-msgstr "Ausgewähltes Werkzeug ausführen"
+msgstr "Überprüfen und zum Kopieren auswählen"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:776
 msgid "Not mergeable in this row"
-msgstr ""
+msgstr "In dieser Zeile nicht zusammenführbar"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:862
-#, fuzzy
-#| msgid "Critical mismatch"
 msgid "Critical"
-msgstr "Kritische Diskrepanz"
+msgstr "Kritisch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:869
-#, fuzzy
-#| msgid "Select all"
 msgid "Selectable"
-msgstr "Alle auswählen"
+msgstr "Wählbar"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:930
-#, fuzzy
-#| msgid "FamilySearch value"
 msgid "Copy this FamilySearch value into Gramps"
-msgstr "FamilySearch-Wert"
+msgstr "Diesen FamilySearch-Wert in Gramps kopieren"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:932
 msgid "This row cannot be merged directly"
-msgstr ""
+msgstr "Diese Zeile kann nicht direkt zusammengeführt werden"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:976
 msgid "Inconsistencies"
-msgstr ""
+msgstr "Unstimmigkeiten"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:980
 msgid "The dates are different."
-msgstr ""
+msgstr "Die Datumsangaben sind unterschiedlich."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:982
-#, fuzzy
-#| msgid "Select a different person"
 msgid "The values are different."
-msgstr "Eine andere Person auswählen"
+msgstr "Die Werte sind unterschiedlich."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:984
 msgid "Review this difference before merging."
-msgstr ""
+msgstr "Überprüfe diesen Unterschied vor dem Zusammenführen."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1120
-#, fuzzy
-#| msgid "Gramps package"
 msgid "Gramps person"
-msgstr "Gramps-Paket"
+msgstr "Gramps Person"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1237
-#, fuzzy
-#| msgid "Only in Gramps"
 msgid "Result in Gramps"
-msgstr "Nur in Gramps"
+msgstr "Ergebnis in Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1603
-#, fuzzy
-#| msgid "Could not resolve the selected person in the database."
 msgid "Could not resolve the selected person."
-msgstr "Die ausgewählte Person konnte in der Datenbank nicht gefunden werden."
+msgstr "Die ausgewählte Person konnte nicht aufgelöst werden."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1612
 msgid "Select at least one FamilySearch row to merge."
 msgstr ""
+"Wähle mindestens eine FamilySearch-Zeile aus, die du zusammenführen möchtest."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1617
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1673
@@ -17685,46 +17605,39 @@ msgstr ""
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1687
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1733
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1741
-#, fuzzy
-#| msgid "FamilySearch Compare"
 msgid "FamilySearch Compare/Merge"
-msgstr "FamilySearch Vergleich"
+msgstr "FamilySearch – Vergleichen/Zusammenführen"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1620
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
+#, python-brace-format
 msgid "Copy {count} selected FamilySearch item(s) into the Gramps person?"
 msgstr ""
-"Ausgewählte FamilySearch-Felder mit Gramps-Werten überschreiben (keine "
-"Löschungen)."
+"{count} ausgewählte FamilySearch-Einträge in die Gramps-Person kopieren?"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1623
-#, fuzzy
-#| msgid "Merge"
 msgid "_Merge"
-msgstr "Zusammenfassen"
+msgstr "_Zusammenführen"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1634
-#, fuzzy
-#| msgid "FamilySearch: Refresh merged ID"
 msgid "FamilySearch: Merge selected rows"
-msgstr "FamilySearch: Zusammengeführte ID aktualisieren"
+msgstr "FamilySearch: Ausgewählte Zeilen zusammenführen"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1674
 #, python-brace-format
 msgid "{count} item(s) copied into Gramps."
-msgstr ""
+msgstr "{count} Einträge wurden in Gramps kopiert."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1681
 #, python-brace-format
 msgid ""
 "{count} item(s) copied into Gramps; {failed} row(s) could not be applied."
 msgstr ""
+"{count} Einträge wurden in Gramps kopiert; {failed} Zeilen konnten nicht "
+"übernommen werden."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1688
 msgid "No selected rows could be copied into Gramps."
-msgstr ""
+msgstr "Es konnten keine ausgewählten Zeilen in Gramps kopiert werden."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1696
 msgid "Select a person first."
@@ -17759,16 +17672,17 @@ msgid ""
 "Review FamilySearch differences, choose the rows to copy, then merge them "
 "into Gramps. The direction is FamilySearch to Gramps only."
 msgstr ""
+"Überprüfe die Unterschiede zu FamilySearch, wähle die zu kopierenden Zeilen "
+"aus und füge sie anschließend in Gramps ein. Die Übertragung erfolgt "
+"ausschließlich von FamilySearch nach Gramps."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1800
 msgid "Merge"
 msgstr "Zusammenfassen"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1809
-#, fuzzy
-#| msgid "Details"
 msgid "Audit Details"
-msgstr "Details"
+msgstr "Prüfungsdetails"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1829
 #: ../gramps/plugins/importer/importxml.py:351
@@ -17793,10 +17707,8 @@ msgid "Sources"
 msgstr "Quellen"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1838
-#, fuzzy
-#| msgid "Merge the selected notes"
 msgid "Merge selected"
-msgstr "Die ausgewählten Notizen zusammenführen"
+msgstr "Ausgewählte zusammenführen"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1839
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
@@ -17804,22 +17716,16 @@ msgid "Refresh"
 msgstr "Aktualisieren"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1968
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Preparing FamilySearch sources"
-msgstr "FamilySearch-Quellen importieren"
+msgstr "Vorbereitung von FamilySearch-Quellen"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1974
-#, fuzzy
-#| msgid "Building ordered list (1/2)"
 msgid "Loading source links (1/2)"
-msgstr "Erstellen einer geordneten Liste (1/2)"
+msgstr "Quelllinks werden geladen (1/2)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1996
-#, fuzzy
-#| msgid "Processing list (2/2)"
 msgid "Parsing source details (2/2)"
-msgstr "Verarbeite Liste (2/2)"
+msgstr "Quellendetails analysieren (2/2)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2017
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2051
@@ -18170,48 +18076,39 @@ msgid "Sync to FamilySearch"
 msgstr "Mit FamilySearch synchronisieren"
 
 #: ../gramps/gui/fs/sync_directions.py:815
-#, fuzzy
-#| msgid "Sync to FamilySearch"
 msgid "Gramps to FamilySearch"
-msgstr "Mit FamilySearch synchronisieren"
+msgstr "Gramps zu FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:821
 msgid "Apply Selected"
 msgstr "Auswahl übernehmen"
 
 #: ../gramps/gui/fs/sync_directions.py:839
-#, fuzzy
-#| msgid "FamilySearch tags"
 msgid "Choose FamilySearch updates"
-msgstr "FamilySearch Etikettens"
+msgstr "Aktualisierungen von FamilySearch auswählen"
 
 #: ../gramps/gui/fs/sync_directions.py:846
-#, fuzzy
-#| msgid ""
-#| "<b>Choose what to change on FamilySearch</b>\n"
-#| "Default is to keep FamilySearch.\n"
-#| "<i>No deletions are performed.</i>"
 msgid ""
 "Review each Gramps value before pushing it to FamilySearch. The default "
 "action keeps FamilySearch unchanged and no deletions are performed."
 msgstr ""
-"<b>Wähle aus, was auf FamilySearch geändert werden soll</b>\n"
-"Standardmäßig bleibt FamilySearch erhalten.\n"
-"<i>Es werden keine Löschungen vorgenommen.</i>"
+"Überprüfe jeden Gramps-Wert, bevor du ihn an FamilySearch überträgst. Bei "
+"der Standardaktion bleibt FamilySearch unverändert, und es werden keine "
+"Löschungen vorgenommen."
 
 #: ../gramps/gui/fs/sync_directions.py:865
 msgid "Change message:"
 msgstr "Nachricht ändern:"
 
 #: ../gramps/gui/fs/sync_directions.py:891
-#, fuzzy
-#| msgid "No mention"
 msgid "Needs attention"
-msgstr "Keine Erwähnung"
+msgstr "Erfordert Aufmerksamkeit"
 
 #: ../gramps/gui/fs/sync_directions.py:893
 msgid "Use the Action column to choose what FamilySearch receives."
 msgstr ""
+"Verwende die Spalte Aktion, um auszuwählen, welche Daten an FamilySearch "
+"übermittelt werden sollen."
 
 #: ../gramps/gui/fs/sync_directions.py:957 ../gramps/gui/undohistory.py:115
 msgid "Action"
@@ -18224,12 +18121,13 @@ msgstr "FamilySearch behalten"
 #: ../gramps/gui/fs/sync_directions.py:999
 msgid "Choose whether to keep FamilySearch or push this Gramps value."
 msgstr ""
+"Wähle aus, ob du FamilySearch beibehalten oder diesen Gramps-Wert übernehmen "
+"möchtest."
 
 #: ../gramps/gui/fs/sync_directions.py:1021
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(selected)d of %(total)d selected"
-msgstr "%(current)d von %(total)d"
+msgstr "%(selected)d von %(total)d ausgewählt"
 
 #: ../gramps/gui/fs/sync_directions.py:1076
 #: ../gramps/gui/fs/sync_directions.py:1651
@@ -18432,16 +18330,12 @@ msgid "Editor person: (none)"
 msgstr "Personen-Editor: (keine)"
 
 #: ../gramps/gui/fs/tools_window.py:378
-#, fuzzy
-#| msgid "Person actions"
 msgid "Single Person Actions"
-msgstr "Handlungen von Personen"
+msgstr "Eine-Person-Aktionen"
 
 #: ../gramps/gui/fs/tools_window.py:382
-#, fuzzy
-#| msgid "Actions"
 msgid "Bulk Actions"
-msgstr "Aktionen"
+msgstr "Massenaktionen"
 
 #: ../gramps/gui/fs/tools_window.py:388
 msgid "Import relatives"
@@ -18469,22 +18363,18 @@ msgid "Clear Cache"
 msgstr "Cache leeren"
 
 #: ../gramps/gui/fs/tools_window.py:408
-#, fuzzy
-#| msgid "All generations"
 msgid "Import multiple generations"
-msgstr "Alle Generationen"
+msgstr "Mehrere Generationen importieren"
 
 #: ../gramps/gui/fs/tools_window.py:412
-#, fuzzy
-#| msgid "Import relatives"
 msgid "Bulk Import Relatives"
-msgstr "Verwandte importieren"
+msgstr "Verwandte Massenimport"
 
 #: ../gramps/gui/fs/tools_window.py:414
-#, fuzzy
-#| msgid "Matches all descendants for the specified person"
 msgid "Import ancestors and descendants from the selected FamilySearch person."
-msgstr "Passt auf alle Nachkommen der angegebenen Person"
+msgstr ""
+"Vorfahren und Nachkommen der ausgewählten Person aus FamilySearch "
+"importieren."
 
 #: ../gramps/gui/fs/tools_window.py:422
 msgid "Tags..."
@@ -18513,10 +18403,8 @@ msgstr ""
 "Löschungen)."
 
 #: ../gramps/gui/fs/tools_window.py:559
-#, fuzzy
-#| msgid "Export to FamilySearch (basic)"
 msgid "Export to FamilySearch"
-msgstr "Nach FamilySearch exportieren (Basis)"
+msgstr "Nach FamilySearch exportieren"
 
 #: ../gramps/gui/fs/tools_window.py:562
 msgid ""
@@ -18537,16 +18425,12 @@ msgid "Editor person: %(name)s"
 msgstr "Personen-Editor: %(name)s"
 
 #: ../gramps/gui/fs/tools_window.py:809
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Add FamilySearch ID"
-msgstr "FamilySearch ID"
+msgstr "FamilySearch-ID hinzufügen"
 
 #: ../gramps/gui/fs/tools_window.py:815
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Edit FamilySearch ID"
-msgstr "FamilySearch ID"
+msgstr "FamilySearch-ID bearbeiten"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
@@ -19145,7 +19029,7 @@ msgstr "_ID:"
 
 #: ../gramps/gui/glade/editcitation.glade:241
 msgid "A unique ID to identify the citation"
-msgstr "Eine eindeutige ID zur Identifizierung der Fundstelle"
+msgstr "Eine eindeutige ID zur Identifizierung der Quellenangabe"
 
 #: ../gramps/gui/glade/editcitation.glade:361
 #: ../gramps/gui/glade/editevent.glade:391
@@ -20176,8 +20060,8 @@ msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Wähle die Fundstelle aus, die die Primärdaten\n"
-"für das zusammengeführte Fundstelle liefert."
+"Wähle die Quellenangabe aus, die die Primärdaten\n"
+"für das zusammengeführte Quellenangabe liefert."
 
 #: ../gramps/gui/glade/mergecitation.glade:182
 #: ../gramps/gui/glade/mergedata.glade:758
@@ -20217,7 +20101,7 @@ msgstr "Gramps-ID:"
 #: ../gramps/gui/glade/mergecitation.glade:443
 msgid "Notes, media objects and data-items of both citations will be combined."
 msgstr ""
-"Notizen, Medienobjekte und Datenelemente der beiden Fundstellen werden "
+"Notizen, Medienobjekte und Datenelemente der beiden Quellenangaben werden "
 "kombiniert."
 
 #: ../gramps/gui/glade/mergecitation.glade:459
@@ -21429,12 +21313,12 @@ msgstr "Erstellt am %(year)4d/%(month)02d/%(day)02d"
 #: ../gramps/gui/merge/mergecitation.py:46
 msgctxt "manual"
 msgid "Merge_Citations"
-msgstr "Fundstellen_zusammenf.C3.BChren"
+msgstr "Quellenangaben_zusammenf.C3.BChren"
 
 #: ../gramps/gui/merge/mergecitation.py:71
 #: ../gramps/plugins/tool/tools.gpr.py:490
 msgid "Merge Citations"
-msgstr "Fundstellen zusammenführen"
+msgstr "Quellenangaben zusammenführen"
 
 #: ../gramps/gui/merge/mergeevent.py:45
 msgctxt "manual"
@@ -21769,6 +21653,13 @@ msgid ""
 "Addon Manager → Projects) targets a different Gramps version. Check that the "
 "project URL matches Gramps %(major_version)s."
 msgstr ""
+"Das Zusatzmodul „%(addon_id)s“ konnte nicht registriert werden und steht in "
+"deiner aktuellen Konfiguration nicht zur Verfügung.\n"
+"\n"
+"Dies tritt häufig auf, wenn das Projekt des Zusatzmoduls (unter Bearbeiten → "
+"Erweiterungsverwaltung→ Projekte) auf eine andere Gramps-Version "
+"ausgerichtet ist. Überprüfe, ob die Projekt-URL mit Gramps %(major_version)s "
+"übereinstimmt."
 
 #: ../gramps/gui/plug/_windows.py:612
 msgid "No matching addons found."
@@ -22824,12 +22715,12 @@ msgstr ""
 
 #: ../gramps/gui/selectors/selectcitation.py:64
 msgid "Select Source or Citation"
-msgstr "Quelle oder Fundstelle auswählen"
+msgstr "Quelle oder Quellenangabe auswählen"
 
 #: ../gramps/gui/selectors/selectcitation.py:71
 #: ../gramps/plugins/view/citationtreeview.py:95
 msgid "Source: Title or Citation: Volume/Page"
-msgstr "Quelle: Titel oder Fundstelle: Band/Seite"
+msgstr "Quelle: Titel oder Quellenangabe: Band/Seite"
 
 #: ../gramps/gui/selectors/selectcitation.py:74
 #: ../gramps/gui/selectors/selectevent.py:72
@@ -22846,7 +22737,7 @@ msgstr "Letzte Änderung"
 #: ../gramps/gui/selectors/selectcitation.py:90
 msgctxt "manual"
 msgid "Select_Source_or_Citation_selector"
-msgstr "Quelle_oder_Fundstelle_w.C3.A4hlen_Auswahl"
+msgstr "Quelle_oder_Quellenangabe_w.C3.A4hlen_Auswahl"
 
 #: ../gramps/gui/selectors/selectevent.py:59
 msgid "Select Event"
@@ -23020,18 +22911,18 @@ msgid ""
 "To edit the citation, close the source editor and open an editor for the "
 "citation alone"
 msgstr ""
-"Zur Zeit kann kein neuer Fundstelleneditor geöffnet werden. Entweder wird "
-"die Fundstelle bereits bearbeitet, oder die zugehörige Quelle wird bereits "
-"bearbeitet, und das Öffnen eines Fundstelleneditors (der auch die "
+"Zur Zeit kann kein neuer Quellenangabeneditor geöffnet werden. Entweder wird "
+"die Quellenangabe bereits bearbeitet, oder die zugehörige Quelle wird "
+"bereits bearbeitet, und das Öffnen eines Quellenangabeneditors (der auch die "
 "Bearbeitung der Quelle ermöglicht) würde zu Unklarheiten führen, da zwei "
 "Editoren für dieselbe Quelle geöffnet werden.\n"
 "\n"
-"Um die Fundstelle zu bearbeiten, schließe den Quelleneditor und öffne einen "
-"Editor nur für die Fundstelle"
+"Um die Quellenangabe zu bearbeiten, schließe den Quelleneditor und öffne "
+"einen Editor nur für die Quellenangabe"
 
 #: ../gramps/gui/utils.py:820
 msgid "Cannot open new citation editor"
-msgstr "Neuer Fundstelleneditor kann nicht geöffnet werden"
+msgstr "Neuer Quellenangabeneditor kann nicht geöffnet werden"
 
 #: ../gramps/gui/viewmanager.py:348
 msgid "FamilySearch tools"
@@ -23044,10 +22935,11 @@ msgstr "Kein Stammbaum"
 #: ../gramps/gui/viewmanager.py:415
 msgid "You are not logged in to FamilySearch. Would you like to sign in now?"
 msgstr ""
+"Du bist bei FamilySearch nicht angemeldet. Möchtest du dich jetzt anmelden?"
 
 #: ../gramps/gui/viewmanager.py:418
 msgid "Sign in"
-msgstr ""
+msgstr "Anmelden"
 
 #: ../gramps/gui/viewmanager.py:638
 msgid "User consent declined"
@@ -23829,7 +23721,7 @@ msgstr "Alt"
 
 #: ../gramps/plugins/cite/cite.gpr.py:35
 msgid "Legacy citation formatter"
-msgstr "Alter Fundstellenformatierer"
+msgstr "Alter Quellenangabenformatierer"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
@@ -24852,7 +24744,7 @@ msgstr "Ob Jahrestage einbezogen werden sollen"
 #: ../gramps/plugins/webreport/narrativeweb.py:3189
 #: ../gramps/plugins/webreport/webcal.py:2069
 msgid "Include death dates"
-msgstr "Todesdaten einbeziehen"
+msgstr "Todesdatumsangaben einbeziehen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:692
 #: ../gramps/plugins/webreport/narrativeweb.py:3190
@@ -25579,7 +25471,7 @@ msgstr "Name"
 
 #: ../gramps/plugins/drawreport/timeline.py:168
 msgid "Sorting dates..."
-msgstr "Daten sortieren..."
+msgstr "Datumsangaben sortieren..."
 
 #: ../gramps/plugins/drawreport/timeline.py:168
 #: ../gramps/plugins/drawreport/timeline.py:180
@@ -26067,7 +25959,7 @@ msgstr "Doppelklicke auf eine Zeile, um das ausgewählte Kind zu bearbeiten."
 #: ../gramps/plugins/gramplet/citations.py:93
 msgid "Double-click on a row to edit the selected source/citation."
 msgstr ""
-"Doppelklicke auf eine Zeile, um die ausgewählte Quelle/Fundstellet zu "
+"Doppelklicke auf eine Zeile, um die ausgewählte Quelle/Quellenangabe zu "
 "bearbeiten."
 
 #: ../gramps/plugins/gramplet/citations.py:102
@@ -26367,7 +26259,8 @@ msgstr "Gramplet mit Diagrammen verschiedener Altersstufen"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:84
 msgid "Gramplet showing calendar and events on specific dates in history"
 msgstr ""
-"Gramplet zeigt Kalender und Ereignisse an bestimmten Daten in der Geschichte"
+"Gramplet zeigt Kalender und Ereignisse an bestimmten Datumsangaben in der "
+"Geschichte"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:98
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:105
@@ -26701,11 +26594,11 @@ msgstr "Gramplet zeigt Medienobjekte für eine Quelle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:709
 msgid "Citation Gallery"
-msgstr "Fundstelle Galerie"
+msgstr "Quellenangabe Galerie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:710
 msgid "Gramplet showing media objects for a citation"
-msgstr "Gramplet zeigt Medienobjekte für eine Fundstelle"
+msgstr "Gramplet zeigt Medienobjekte für eine Quellenangabe"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:725
 msgid "Person Attributes"
@@ -26745,11 +26638,11 @@ msgstr "Gramplet zeigt die Attribute eines Quellenobjekts"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:805
 msgid "Citation Attributes"
-msgstr "Fundstellenattribute"
+msgstr "Quellenangabeattribute"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:806
 msgid "Gramplet showing the attributes of a citation object"
-msgstr "Gramplet zeigt die Attribute eines Fundstellenobjekts"
+msgstr "Gramplet, das die Attribute eines Quellenangabeobjekts anzeigt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:821
 msgid "Person Notes"
@@ -26794,11 +26687,11 @@ msgstr "Gramplet zeigt die Notizen für eine Quelle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:901
 msgid "Citation Notes"
-msgstr "Fundstelle Notizen"
+msgstr "Quellenangabennotiz"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:902
 msgid "Gramplet showing the notes for a citation"
-msgstr "Gramplet zeigt die Notizen für eine Fundstelle"
+msgstr "Gramplet zeigt die Notizen für eine Quellenangabe"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:917
 msgid "Repository Notes"
@@ -26822,43 +26715,43 @@ msgstr "Gramplet zeigt die ausgewählte Notiz"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:965
 msgid "Person Citations"
-msgstr "Person Fundstellen"
+msgstr "Person Quellenangaben"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:966
 msgid "Gramplet showing the citations for a person"
-msgstr "Gramplet zeigt die Fundstellen für eine Person"
+msgstr "Gramplet zeigt die Quellenangaben für eine Person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 msgid "Event Citations"
-msgstr "Ereignis Fundstellen"
+msgstr "Ereignis Quellenangaben"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:982
 msgid "Gramplet showing the citations for an event"
-msgstr "Gramplet zeigt die Fundstellen für ein Ereignis"
+msgstr "Gramplet zeigt die Quellenangaben für ein Ereignis"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:997
 msgid "Family Citations"
-msgstr "Familie Fundstellen"
+msgstr "Familie Quellenangaben"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:998
 msgid "Gramplet showing the citations for a family"
-msgstr "Gramplet zeigt die Fundstellen für eine Familie"
+msgstr "Gramplet zeigt die Quellenangaben für eine Familie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1013
 msgid "Place Citations"
-msgstr "Ort Fundstelle"
+msgstr "Ort Quellenangaben"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1014
 msgid "Gramplet showing the citations for a place"
-msgstr "Gramplet zeigt die Fundstellen für einen Ort"
+msgstr "Gramplet zeigt die Quellenangaben für einen Ort"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1029
 msgid "Media Citations"
-msgstr "Medium Fundstelle"
+msgstr "Medium Quellenangaben"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1030
 msgid "Gramplet showing the citations for a media object"
-msgstr "Gramplet zeigt die Fundstellen für ein Medienobjekt"
+msgstr "Gramplet zeigt die Quellenangaben für ein Medienobjekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1045
 msgid "Person Children"
@@ -26934,11 +26827,11 @@ msgstr "Gramplet zeigt die Rückverweise für eine Quelle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1157
 msgid "Citation References"
-msgstr "Fundstelle Referenzen"
+msgstr "Quellenangabe Referenzen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1158
 msgid "Gramplet showing the backlink references for a citation"
-msgstr "Gramplet zeigt die Rückverweise für eine Fundstelle"
+msgstr "Gramplet zeigt die Rückverweise für eine Quellenangabe"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1173
 #: ../gramps/plugins/quickview/quickview.gpr.py:275
@@ -26995,11 +26888,11 @@ msgstr "Gramplet stellt einen Quellenfilter zur Verfügung"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1285
 msgid "Citation Filter"
-msgstr "Fundstellenfilter"
+msgstr "Quellenangabefilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1286
 msgid "Gramplet providing a citation filter"
-msgstr "Gramplet stellt einen Fundstellenfilter zur Verfügung"
+msgstr "Gramplet stellt einen Quellenangabefilter zur Verfügung"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1301
 msgid "Place Filter"
@@ -27086,11 +26979,11 @@ msgstr "Gramplet zeigt die Aufgaben Notizen für eine Quelle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1463
 msgid "Citation To Do"
-msgstr "Fundstelle 'zu erledigen'"
+msgstr "Quellenangabe 'zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1464
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Gramplet zeigt die Aufgaben Notizen für eine Fundstelle"
+msgstr "Gramplet zeigt die Aufgaben Notizen für eine Quellenangabe"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1479
 msgid "Repository To Do"
@@ -27213,7 +27106,7 @@ msgstr "Max. Generationen"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:69
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:80
 msgid "Show dates"
-msgstr "Daten anzeigen"
+msgstr "Datumsangaben anzeigen"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:62
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:70
@@ -28149,15 +28042,15 @@ msgstr "Die maximale Anzahl von Nachkommen, die einbezogen werden sollen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:293
 msgid "Include dates"
-msgstr "Daten einbeziehen"
+msgstr "Datumsangaben einbeziehen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:295
 msgid "Whether to include dates for people and families."
-msgstr "Ob Daten für Personen und Familien aufgenommen werden sollen."
+msgstr "Ob Datumsangaben für Personen und Familien aufgenommen werden sollen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:300
 msgid "Limit dates to years only"
-msgstr "Daten nur auf Jahre beschränken"
+msgstr "Datumsangaben nur auf Jahre beschränken"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:303
 msgid ""
@@ -28440,25 +28333,25 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:980
 msgid "Dates and/or Places"
-msgstr "Daten und/oder Orte"
+msgstr "Datumsangaben und/oder Orte"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:981
 msgid "Do not include any dates or places"
-msgstr "Keine Daten oder Orte aufnehmen"
+msgstr "Keine Datumsangaben oder Orte aufnehmen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:983
 msgid "Include (birth, marriage, death) dates, but no places"
-msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -daten, aber keine Orte"
+msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -datumsangaben, aber keine Orte"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:986
 msgid "Include (birth, marriage, death) dates, and places"
-msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -daten, und Orte"
+msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -datumsangaben, und Orte"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:989
 msgid "Include (birth, marriage, death) dates, and places if no dates"
 msgstr ""
-"Aufnehmen (Geburts-, Heirats-, Todes-) -daten, und Orte falls keine Daten "
-"vorliegen"
+"Aufnehmen (Geburts-, Heirats-, Todes-) -datumsangaben, und Orte falls keine "
+"Daten vorliegen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:992
 msgid "Include (birth, marriage, death) years, but no places"
@@ -28470,24 +28363,25 @@ msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -jahre, und Orte"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:998
 msgid "Include (birth, marriage, death) places, but no dates"
-msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -orte, aber keine Daten"
+msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -orte, aber keine Datumsangaben"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1001
 msgid "Include (birth, marriage, death) dates and places on same line"
 msgstr ""
-"Aufnehmen (Geburts-, Heirats-, Todes-) -daten und -orte in derselben Zeile"
+"Aufnehmen (Geburts-, Heirats-, Todes-) -datumsangaben und -orte in derselben "
+"Zeile"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1003
 msgid "Whether to include dates and/or places"
-msgstr "Ob Daten und/oder Orte einbezogen werden sollen"
+msgstr "Ob Datumsangaben und/oder Orte einbezogen werden sollen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1006
 msgid "Only valid dates"
-msgstr "Nur gültige Daten"
+msgstr "Nur gültige Datumsangaben"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1007
 msgid "Only show valid dates."
-msgstr "Nur gültige Daten anzeigen."
+msgstr "Nur gültige Datumsangaben anzeigen."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1010
 msgid "Show all family nodes"
@@ -29276,14 +29170,14 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:241
 #: ../gramps/plugins/importer/importprogen.glade:255
 msgid "Citation reference."
-msgstr "Fundstellenreferenz."
+msgstr "Quellenangabereferenz."
 
 #: ../gramps/plugins/importer/importprogen.glade:317
 msgid ""
 "Citation confidence level\n"
 "(Very low - very high)."
 msgstr ""
-"Fundstellenvertrauensniveau\n"
+"Quellenangabevertrauensniveau\n"
 "(Sehr niedrig - sehr hoch)."
 
 #: ../gramps/plugins/importer/importprogen.glade:348
@@ -29291,7 +29185,7 @@ msgid ""
 "Citation volume/page text\n"
 "(Text & (System-)Date)."
 msgstr ""
-"Fundstelle Band/Seite Text\n"
+"Quellenangabe Band/Seite Text\n"
 "(Text & (System-)Datum)."
 
 #: ../gramps/plugins/importer/importprogen.glade:378
@@ -29299,7 +29193,7 @@ msgid ""
 "Citation attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
-"Fundstellenattributtext\n"
+"Quellenangabeattributtext\n"
 "(Text, Importdateiname & (System-)Datum)."
 
 #: ../gramps/plugins/importer/importprogen.glade:397
@@ -29987,6 +29881,10 @@ msgid ""
 "%(year)d-%(month)02d-%(day)02d. If your source uses DD/MM/YYYY (e.g. "
 "ancestry.com exports), verify and correct after import."
 msgstr ""
+"Das mehrdeutige numerische Datum „%(orig)s“ wird als MM/TT/JJJJ (US-Format) "
+"interpretiert = %(year)d-%(month)02d-%(day)02d. Wenn deine Quelle das Format "
+"TT/MM/JJJJ verwendet (z. B. Exporte von ancestry.com), überprüfe dies nach "
+"dem Import und korrigiere es gegebenenfalls."
 
 #: ../gramps/plugins/lib/libgedcom.py:3619
 msgid "Records not imported into "
@@ -30121,7 +30019,7 @@ msgstr "Warnung: ADDR überschrieben"
 
 #: ../gramps/plugins/lib/libgedcom.py:6901
 msgid "Citation Justification"
-msgstr "Fundstelle Begründung"
+msgstr "Quellenangabe Begründung"
 
 #: ../gramps/plugins/lib/libgedcom.py:6939
 msgid "REFN ignored"
@@ -34495,12 +34393,18 @@ msgid ""
 "https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"Um einen benutzerdefinierten Kachel-Anbieter zu verwenden, füge dessen "
+"Kachel-URL unten ein.\n"
+"Verwende #Z, #X und #Y als Platzhalter für Zoom, x und y.\n"
+"Beispiel:\n"
+"https://api.maptiler.com/tiles/uk-osgb1888/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"https://api.maptiler.com/tiles/uk-osgb63k1885/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
-#, fuzzy
-#| msgid "Personal map"
 msgid "Personal map: "
-msgstr "Persönliche Karte"
+msgstr "Persönliche Karte: "
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
 msgid "The map"
@@ -34929,7 +34833,7 @@ msgstr "unvollständige Namen"
 #: ../gramps/plugins/quickview/filterbyname.py:65
 msgctxt "Filtering_on"
 msgid "people with missing birth dates"
-msgstr "Personen mit fehlenden Geburtsdaten"
+msgstr "Personen mit fehlenden Geburtsdatumsangaben"
 
 #: ../gramps/plugins/quickview/filterbyname.py:67
 msgctxt "Filtering_on"
@@ -35243,7 +35147,7 @@ msgstr "Ereignisse an einem bestimmten Tag anzeigen"
 #: ../gramps/plugins/quickview/quickview.gpr.py:230
 #: ../gramps/plugins/quickview/references.py:94
 msgid "Source or Citation"
-msgstr "Quelle oder Fundstelle"
+msgstr "Quelle oder Quellenangabe"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:237
 #, python-format
@@ -36211,12 +36115,12 @@ msgstr "Ob fehlende Orte durch Leerzeichen ersetzt werden sollen."
 #: ../gramps/plugins/textreport/detancestralreport.py:997
 #: ../gramps/plugins/textreport/detdescendantreport.py:1228
 msgid "Replace missing dates with ______"
-msgstr "Ersetze fehlende Daten durch ______"
+msgstr "Ersetze fehlende Datumsangaben durch ______"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:998
 #: ../gramps/plugins/textreport/detdescendantreport.py:1229
 msgid "Whether to replace missing Dates with blanks."
-msgstr "Ob fehlende Daten durch Leerzeichen ersetzt werden sollen."
+msgstr "Ob fehlende Datumsangaben durch Leerzeichen ersetzt werden sollen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1031
 #: ../gramps/plugins/textreport/detdescendantreport.py:1262
@@ -36448,12 +36352,13 @@ msgstr "Ob Notizen für Familien aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:797
 msgid "Dates of Relatives"
-msgstr "Daten von Verwandten"
+msgstr "Datumsangaben von Verwandten"
 
 #: ../gramps/plugins/textreport/familygroup.py:799
 msgid "Whether to include dates for relatives (father, mother, spouse)."
 msgstr ""
-"Ob Daten für Verwandte (Vater, Mutter, Ehepartner) aufgenommen werden sollen."
+"Ob Datumsangaben für Verwandte (Vater, Mutter, Ehepartner) aufgenommen "
+"werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:803
 msgid "Children Marriages"
@@ -36932,12 +36837,12 @@ msgstr "Anzahl der Quellen: %d"
 
 #: ../gramps/plugins/textreport/summary.py:288
 msgid "Citation Information"
-msgstr "Fundstelleninformation"
+msgstr "Angaben zur Quellenangabe"
 
 #: ../gramps/plugins/textreport/summary.py:293
 #, python-format
 msgid "Number of citations: %d"
-msgstr "Anzahl der Fundstellen: %d"
+msgstr "Anzahl der Quellenangaben: %d"
 
 #: ../gramps/plugins/textreport/summary.py:302
 msgid "Repository Information"
@@ -37354,7 +37259,7 @@ msgstr "Suche nach leeren Quellendatensätzen"
 
 #: ../gramps/plugins/tool/check.py:989
 msgid "Looking for empty citation records"
-msgstr "Suche nach leeren Fundstellendatensätzen"
+msgstr "Suche nach leeren Quellenangaben"
 
 #: ../gramps/plugins/tool/check.py:998
 msgid "Looking for empty place records"
@@ -37407,7 +37312,7 @@ msgstr "Auf der Suche nach Ortsreferenzproblemen"
 
 #: ../gramps/plugins/tool/check.py:1704
 msgid "Looking for citation reference problems"
-msgstr "Suche nach Fundstelle Referenzproblemen"
+msgstr "Suche nach Quellenangabe Referenzproblemen"
 
 #: ../gramps/plugins/tool/check.py:1824
 msgid "Looking for source reference problems"
@@ -37553,7 +37458,7 @@ msgstr[1] "{quantity} Familien wurden referenziert, aber nicht gefunden\n"
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] "{quantity} Datum wurde korrigiert\n"
-msgstr[1] "{quantity} Daten wurden korrigiert\n"
+msgstr[1] "{quantity} Datumsangaben wurden korrigiert\n"
 
 #: ../gramps/plugins/tool/check.py:2952
 #, python-brace-format
@@ -37624,8 +37529,8 @@ msgstr[1] "{quantity} Orte wurden referenziert, aber nicht gefunden\n"
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
-msgstr[0] "{quantity} Fundstelle wurde referenziert, aber nicht gefunden\n"
-msgstr[1] "{quantity} Fundstellen wurden referenziert, aber nicht gefunden\n"
+msgstr[0] "{quantity} Quellenangabe wurde referenziert, aber nicht gefunden\n"
+msgstr[1] "{quantity} Quellenangaben wurden referenziert, aber nicht gefunden\n"
 
 #: ../gramps/plugins/tool/check.py:3052
 #, python-brace-format
@@ -37748,7 +37653,7 @@ msgstr "Laufender Datentest"
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:86
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:256
 msgid "Generating dates"
-msgstr "Erzeuge Daten"
+msgstr "Erzeuge Datumsangaben"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:254
 msgid "Date Test Plugin"
@@ -38164,7 +38069,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.glade:142
 msgid "Don't merge if citation has notes"
-msgstr "Nicht zusammenführen, wenn die Fundstelle Notizen enthält"
+msgstr "Nicht zusammenführen, wenn die Quellenangabe Notizen enthält"
 
 #: ../gramps/plugins/tool/mergecitations.py:76
 msgid "Match on Page/Volume, Date and Confidence"
@@ -38185,18 +38090,18 @@ msgstr "Datum und Vertrauen ignorieren"
 #: ../gramps/plugins/tool/mergecitations.py:83
 msgctxt "manual"
 msgid "Merge_citations"
-msgstr "Fundstellen_zusammenf.C3.BChren"
+msgstr "Quellenangaben_zusammenf.C3.BChren"
 
 #: ../gramps/plugins/tool/mergecitations.py:135
 msgid ""
 "Notes, media objects and data-items of matching citations will be combined."
 msgstr ""
-"Notizen, Medienobjekte und Datenelemente von übereinstimmenden Fundstellen "
-"werden kombiniert."
+"Notizen, Medienobjekte und Datenelemente von übereinstimmenden "
+"Quellenangaben werden kombiniert."
 
 #: ../gramps/plugins/tool/mergecitations.py:169
 msgid "Merge citations tool"
-msgstr "Werkzeug zum Zusammenführen von Fundstellen"
+msgstr "Werkzeug zum Zusammenführen von Quellenangaben"
 
 #: ../gramps/plugins/tool/mergecitations.py:190
 msgid "Checking Sources"
@@ -38204,7 +38109,7 @@ msgstr "Prüfe Quellen"
 
 #: ../gramps/plugins/tool/mergecitations.py:192
 msgid "Looking for citation fields"
-msgstr "Suche nach Fundstellenfeldern"
+msgstr "Suche nach Quellenangabefeldern"
 
 #: ../gramps/plugins/tool/mergecitations.py:245
 msgid "Number of merges done"
@@ -38214,8 +38119,8 @@ msgstr "Anzahl der durchgeführten Zusammenführungen"
 #, python-brace-format
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
-msgstr[0] "{number_of} Fundstelle zusammengeführt"
-msgstr[1] "{number_of} Fundstellen zusammengeführt"
+msgstr[0] "{number_of} Quellenangabe zusammengeführt"
+msgstr[1] "{number_of} Quellenangaben zusammengeführt"
 
 #: ../gramps/plugins/tool/notrelated.glade:159
 msgid "_Tag"
@@ -38547,7 +38452,7 @@ msgstr "Suche nach Quellen"
 
 #: ../gramps/plugins/tool/removeunused.glade:122
 msgid "Search for citations"
-msgstr "Suche nach Fundstellen"
+msgstr "Suche nach Quellenangaben"
 
 #: ../gramps/plugins/tool/removeunused.glade:137
 msgid "Search for places"
@@ -38974,8 +38879,8 @@ msgid ""
 "Searches the entire database, looking for citations that have the same "
 "Volume/Page, Date and Confidence."
 msgstr ""
-"Durchsucht die gesamte Datenbank nach Fundstellen, die denselben Band/Seite, "
-"dasselbe Datum und dasselbe Vertrauen aufweisen."
+"Durchsucht die gesamte Datenbank nach Quellenangaben, die denselben Band/"
+"Seite, dasselbe Datum und dasselbe Vertrauen aufweisen."
 
 #: ../gramps/plugins/tool/tools.gpr.py:518
 msgid "Searches the entire database, looking for a possible loop."
@@ -39029,7 +38934,7 @@ msgstr "Höchstalter für eine _unverheiratete Person"
 
 #: ../gramps/plugins/tool/verify.glade:359
 msgid "_Estimate missing or inexact dates"
-msgstr "_Schätzung fehlender oder ungenauer Daten"
+msgstr "_Schätzung fehlender oder ungenauer Datumsangaben"
 
 #: ../gramps/plugins/tool/verify.glade:375
 msgid "_Identify invalid dates"
@@ -39313,29 +39218,29 @@ msgstr "Quelle: Letzte Änderung"
 #: ../gramps/plugins/view/citationlistview.py:141
 #: ../gramps/plugins/view/citationtreeview.py:134
 msgid "Add a new citation and a new source"
-msgstr "Eine neue Fundstelle und eine neue Quelle hinzufügen"
+msgstr "Eine neue Quellenangabe und eine neue Quelle hinzufügen"
 
 #: ../gramps/plugins/view/citationlistview.py:143
 #: ../gramps/plugins/view/citationtreeview.py:136
 msgid "Add a new citation to an existing source"
-msgstr "Hinzufügen einer neuen Fundstelle zu einer vorhandenen Quelle"
+msgstr "Hinzufügen einer neuen Quellenangabe zu einer vorhandenen Quelle"
 
 #: ../gramps/plugins/view/citationlistview.py:145
 msgid "Delete the selected citation"
-msgstr "Löschen der ausgewählten Fundstelle"
+msgstr "Löschen der ausgewählten Quellenangabe"
 
 #: ../gramps/plugins/view/citationlistview.py:146
 msgid "Merge the selected citations"
-msgstr "Die ausgewählten Fundstellen zusammenführen"
+msgstr "Die ausgewählten Quellenangaben zusammenführen"
 
 #: ../gramps/plugins/view/citationlistview.py:160
 msgid "Citation View"
-msgstr "Fundstellenansicht"
+msgstr "Quellenangabenansicht"
 
 #: ../gramps/plugins/view/citationlistview.py:238
 #: ../gramps/plugins/view/citationtreeview.py:389
 msgid "Citation Filter Editor"
-msgstr "Fundstellenfiltereditor"
+msgstr "Quellenangabefiltereditor"
 
 #: ../gramps/plugins/view/citationlistview.py:414
 msgid ""
@@ -39345,18 +39250,18 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Diese Fundstelle kann zur Zeit nicht bearbeitet werden. Entweder wird die "
-"zugehörige Fundstelle bereits bearbeitet oder ein anderes Objekt, das mit "
-"derselben Fundstelle verbunden ist, wird gerade bearbeitet.\n"
+"Diese Quellenangabe kann zur Zeit nicht bearbeitet werden. Entweder wird die "
+"zugehörige Quellenangabe bereits bearbeitet oder ein anderes Objekt, das mit "
+"derselben Quellenangabe verbunden ist, wird gerade bearbeitet.\n"
 "\n"
-"Um diese Fundstelle zu bearbeiten, musst du das Objekt schließen."
+"Um diese Quellenangabe zu bearbeiten, musst du das Objekt schließen."
 
 #: ../gramps/plugins/view/citationlistview.py:428
 #: ../gramps/plugins/view/citationlistview.py:440
 #: ../gramps/plugins/view/citationtreeview.py:681
 #: ../gramps/plugins/view/citationtreeview.py:698
 msgid "Cannot merge citations."
-msgstr "Fundstellen können nicht zusammengeführt werden."
+msgstr "Quellenangaben können nicht zusammengeführt werden."
 
 #: ../gramps/plugins/view/citationlistview.py:430
 #: ../gramps/plugins/view/citationtreeview.py:683
@@ -39365,9 +39270,10 @@ msgid ""
 "can be selected by holding down the control key while clicking on the "
 "desired citation."
 msgstr ""
-"Es müssen genau zwei Fundstellen ausgewählt werden, um eine Zusammenführung "
-"durchzuführen. Eine zweite Fundstelle kann ausgewählt werden, indem du die "
-"Strg-Taste gedrückt hältst, während du auf die gewünschte Fundstelle klickst."
+"Es müssen genau zwei Quellenangaben ausgewählt werden, um eine "
+"Zusammenführung durchzuführen. Eine zweite Quellenangabe kann ausgewählt "
+"werden, indem du die Strg-Taste gedrückt hältst, während du auf die "
+"gewünschte Fundstelle klickst."
 
 #: ../gramps/plugins/view/citationlistview.py:442
 #: ../gramps/plugins/view/citationtreeview.py:700
@@ -39375,31 +39281,31 @@ msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
 msgstr ""
-"Die beiden ausgewählten Fundstellen müssen dieselbe Quelle haben, damit eine "
-"Zusammenführung möglich ist. Wenn du diese beiden Fundstellen zusammenführen "
-"willst, musst du zuerst die Quellen zusammenführen."
+"Die beiden ausgewählten Quellenangaben müssen dieselbe Quelle haben, damit "
+"eine Zusammenführung möglich ist. Wenn du diese beiden Quellenangaben "
+"zusammenführen willst, musst du zuerst die Quellen zusammenführen."
 
 #: ../gramps/plugins/view/citationtreeview.py:137
 msgid "Edit the selected citation or source"
-msgstr "Bearbeiten der ausgewählten Fundstelle oder der Quelle"
+msgstr "Bearbeiten der ausgewählten Quellenangabe oder der Quelle"
 
 #: ../gramps/plugins/view/citationtreeview.py:138
 msgid "Delete the selected citation or source"
-msgstr "Löschen der ausgewählten Fundstelle oder der Quelle"
+msgstr "Löschen der ausgewählten Quellenangabe oder der Quelle"
 
 #: ../gramps/plugins/view/citationtreeview.py:139
 msgid "Merge the selected citations or selected sources"
-msgstr "Die ausgewählten Fundstellen oder Quellen zusammenführen"
+msgstr "Die ausgewählten Quellenangaben oder Quellen zusammenführen"
 
 #: ../gramps/plugins/view/citationtreeview.py:157
 msgid "Citation Tree View"
-msgstr "Fundstellenbaumansicht"
+msgstr "Quellenangabenbaumansicht"
 
 #: ../gramps/plugins/view/citationtreeview.py:361
 #: ../gramps/plugins/view/citationtreeview.py:428
 #: ../gramps/plugins/view/citationtreeview.py:502
 msgid "Add citation..."
-msgstr "Fundstelle hinzufügen..."
+msgstr "Quellenangabe hinzufügen..."
 
 #: ../gramps/plugins/view/citationtreeview.py:361
 #: ../gramps/plugins/view/citationtreeview.py:428
@@ -39427,8 +39333,8 @@ msgid ""
 "To edit this source, you need to close the object."
 msgstr ""
 "Diese Quelle kann zur Zeit nicht bearbeitet werden. Entweder wird das "
-"zugehörige Quellenobjekt bereits bearbeitet oder eine andere Fundstelle, die "
-"mit derselben Quelle verknüpft ist, wird gerade bearbeitet.\n"
+"zugehörige Quellenobjekt bereits bearbeitet oder eine andere Quellenangabe, "
+"die mit derselben Quelle verknüpft ist, wird gerade bearbeitet.\n"
 "\n"
 "Um diese Quelle zu bearbeiten, musst du das Objekt schließen."
 
@@ -39442,7 +39348,7 @@ msgid ""
 "must be citations."
 msgstr ""
 "Beide Objekte müssen von der gleichen Art sein, entweder müssen beide "
-"Quellen sein, oder beide müssen Fundstellen sein."
+"Quellen sein, oder beide müssen Quellenangaben sein."
 
 #: ../gramps/plugins/view/dashboardview.py:52
 #: ../gramps/plugins/view/dashboardview.py:85
@@ -40002,7 +39908,7 @@ msgstr ""
 "Eine Ansicht, die alle Orte zeigt, die von allen Personen während ihres "
 "Lebens besucht wurden.\n"
 "Dies gilt für eine Person und alle Nachkommen.\n"
-"Du kannst die dem Zeitraum entsprechenden Daten sehen."
+"Du kannst die dem Zeitraum entsprechenden Datumsangaben sehen."
 
 #: ../gramps/plugins/view/geography.gpr.py:158
 msgid ""
@@ -40478,10 +40384,8 @@ msgstr "Neues Kind zur Familie hinzufügen"
 
 #: ../gramps/plugins/view/relview.py:1172
 #: ../gramps/plugins/view/relview.py:1704
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person as a child of the family"
-msgstr "Eine vorhandene Person als Kind der Familie hinzufügen"
+msgstr "Wähle eine bereits vorhandene Person als Kind der Familie aus"
 
 #: ../gramps/plugins/view/relview.py:1467
 #, python-format
@@ -40708,15 +40612,16 @@ msgstr "Die Ansicht zeigt alle Quellen"
 
 #: ../gramps/plugins/view/view.gpr.py:301
 msgid "The view showing all the citations"
-msgstr "Die Ansicht zeigt alle Fundstellen"
+msgstr "Die Ansicht zeigt alle Quellenangaben"
 
 #: ../gramps/plugins/view/view.gpr.py:316
 msgid "Citation Tree"
-msgstr "Fundstellenbaum"
+msgstr "Quellenangabenbaum"
 
 #: ../gramps/plugins/view/view.gpr.py:317
 msgid "A view displaying citations and sources in a tree format."
-msgstr "Eine Ansicht, die Fundstellen und Quellen in einem Baumformat anzeigt."
+msgstr ""
+"Eine Ansicht, die Quellenangaben und Quellen in einem Baumformat anzeigt."
 
 #: ../gramps/plugins/webreport/addressbook.py:92
 #: ../gramps/plugins/webreport/addressbooklist.py:84
@@ -41270,7 +41175,7 @@ msgstr "%(idx)s - für Quellen: %(source)s"
 #, python-format
 msgctxt "source"
 msgid "%(idx)s - for citation: %(citation)s from %(source)s"
-msgstr "%(idx)s - für Fundstellen: %(citation)s aus %(source)s"
+msgstr "%(idx)s - für Quellenangaben: %(citation)s aus %(source)s"
 
 #: ../gramps/plugins/webreport/media.py:919
 msgid "Missing media object:"
@@ -41458,15 +41363,15 @@ msgstr "Üblich Gliederungsstil"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Citation References Layout"
-msgstr "Fundstellenreferenzenlayout"
+msgstr "Quellenangabereferenzenlayout"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2228
 msgid ""
 "Specify the default layout for the Citation References section on the source "
 "page"
 msgstr ""
-"Legt das Standardlayout für den Abschnitt „Fundstelle“ auf der Quellenseite "
-"fest"
+"Legt das Standardlayout für den Abschnitt „Quellenangabe“ auf der "
+"Quellenseite fest"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2234
 msgid "Include ancestor's tree"
@@ -41826,7 +41731,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
 msgid "Include a column for birth dates on the index pages"
-msgstr "Einfügen einer Spalte für Geburtsdaten auf den Indexseiten"
+msgstr "Einfügen einer Spalte für Geburtsdatumsangaben auf den Indexseiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2562
 msgid "Whether to include a birth column"
@@ -41834,7 +41739,7 @@ msgstr "Ob eine Geburtsspalte aufgenommen werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Include a column for death dates on the index pages"
-msgstr "Aufnahme einer Spalte für Sterbedaten in die Indexseiten"
+msgstr "Aufnahme einer Spalte für Sterbedatumsangaben in die Indexseiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
 msgid "Whether to include a death column"
@@ -42267,8 +42172,8 @@ msgid ""
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
 "Daten nur nach diesem Jahr anzeigen. Standard ist das aktuelle Jahr - "
-"\"Höchstalter wahrscheinlich lebend\", das in der Registerkarte \"Daten\" "
-"definiert ist."
+"\"Höchstalter wahrscheinlich lebend\", das in der Registerkarte "
+"\"Grenzwerte\" definiert ist."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3223
 msgid "HeatMap Options"
