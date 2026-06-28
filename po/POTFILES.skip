@@ -90,6 +90,11 @@ gramps/gen/db/utils.py
 gramps/gen/db/conversion_tools/__init__.py
 gramps/gen/db/conversion_tools/conversion_21.py
 #
+# gen.db.test package
+#
+gramps/gen/db/test/__init__.py
+gramps/gen/db/test/gen_db_upgrade_imports_test.py
+#
 # gen.display package
 #
 gramps/gen/display/__init__.py
