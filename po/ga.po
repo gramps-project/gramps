@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-05-31 16:34+0000\n"
+"PO-Revision-Date: 2026-06-21 21:01+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
@@ -20,9 +20,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :"
-"(n>6 && n<11) ? 3 : 4;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :(n>"
+"6 && n<11) ? 3 : 4;\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7113,10 +7113,9 @@ msgid "Building FSID list for places"
 msgstr "Ag tógáil liosta FSID d'áiteanna"
 
 #: ../gramps/gen/fs/fs_import/sources.py:406
-#, fuzzy, python-format
-#| msgid "No FamilySearch sources found to import."
+#, python-format
 msgid "Loading FamilySearch source %(current)d/%(total)d"
-msgstr "Ní bhfuarthas aon fhoinsí FamilySearch le hallmhairiú."
+msgstr "Ag lódáil foinse FamilySearch %(current)d/%(total)d"
 
 #: ../gramps/gen/fs/fs_import/sources.py:611
 #: ../gramps/gen/fs/fs_import/sources.py:614
@@ -7189,22 +7188,17 @@ msgid "Internet Address"
 msgstr "Seoladh Idirlín"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:434
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(header)s (%(current)d/%(total)d)"
-msgstr "%(current)d de %(total)d"
+msgstr "%(header)s (%(current)d/%(total)d)"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:443
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Loading FamilySearch person sources"
-msgstr "Iompórtáil foinsí FamilySearch"
+msgstr "Ag lódáil foinsí pearsanta FamilySearch"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:451
-#, fuzzy
-#| msgid "Family relationships"
 msgid "Loading FamilySearch relationship sources"
-msgstr "Caidreamh teaghlaigh"
+msgstr "Ag lódáil foinsí caidrimh FamilySearch"
 
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
@@ -7290,20 +7284,15 @@ msgid "Sources ? row %(row)d not green (%(color)s)"
 msgstr "Foinsí ? sraith %(row)d gan a bheith glas (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:363
-#, fuzzy
-#| msgid ""
-#| "FamilySearch status tag colors can be customized in Gramps via Edit Tags. "
-#| "This add-on only sets default colors when the tags are first created and "
-#| "will not override your custom choices."
 msgid ""
 "FamilySearch status tag colors can be customized in Gramps via Edit > Tag > "
 "Organize Tags. This integration only sets default colors when the tags are "
 "first created and will not override your custom choices."
 msgstr ""
 "Is féidir dathanna clibeanna stádais FamilySearch a shaincheapadh i Gramps "
-"trí Cuir Clibeanna in Eagar. Ní shocraíonn an breiseán seo ach dathanna "
-"réamhshocraithe nuair a chruthaítear na clibeanna den chéad uair agus ní "
-"sháróidh sé do roghanna saincheaptha."
+"trí Cuir in Eagar > Clib > Eagraigh Clibeanna. Ní shocraíonn an comhtháthú "
+"seo dathanna réamhshocraithe ach amháin nuair a chruthaítear na clibeanna "
+"den chéad uair agus ní sháróidh sé do roghanna saincheaptha."
 
 #: ../gramps/gen/fs/utils/linking.py:48
 msgid "FamilySearch tags"
@@ -12812,10 +12801,8 @@ msgid "Middleware access code (issued secret)"
 msgstr "Cód rochtana meánbhogearraí (rún eisithe)"
 
 #: ../gramps/gui/configure.py:1204
-#, fuzzy
-#| msgid "FamilySearch tags"
 msgid "Enable FamilySearch integration"
-msgstr "Clibeanna FamilySearch"
+msgstr "Cumasaigh comhtháthú FamilySearch"
 
 #: ../gramps/gui/configure.py:1212
 msgid "Integrations"
@@ -14431,10 +14418,8 @@ msgid "Remove"
 msgstr "Bain"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select Existing"
-msgstr "Roghnaigh nóta atá ann cheana"
+msgstr "Roghnaigh atá ann cheana"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 msgid "Jump To"
@@ -14470,10 +14455,8 @@ msgid "Edit the selected citation"
 msgstr "Athraigh an lua roghnaithe"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
-#, fuzzy
-#| msgid "Add an existing citation or source"
 msgid "Select an existing citation or source"
-msgstr "Cuir lua nó foinse atá ann cheana leis"
+msgstr "Roghnaigh lua nó foinse atá ann cheana féin"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Move the selected citation upwards"
@@ -14544,10 +14527,8 @@ msgstr "Cuir an imeacht teaghlaigh roghnaithe in eagar nó an duine"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select an existing event"
-msgstr "Roghnaigh nóta atá ann cheana"
+msgstr "Roghnaigh imeacht atá ann cheana féin"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
@@ -14605,40 +14586,28 @@ msgid "%(groupname)s - %(groupnumber)d"
 msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:89
-#, fuzzy
-#| msgid "Add a new media object"
 msgid "Add a new Media record"
-msgstr "Cuir réad meán nua leis"
+msgstr "Cuir taifead Meán nua leis"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:90
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Remove the selected Media record"
-msgstr "Bain an tionscadal roghnaithe"
+msgstr "Bain an taifead Meán roghnaithe"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:91
-#, fuzzy
-#| msgid "Edit the selected media object"
 msgid "Edit the selected Media record"
-msgstr "Cuir an réad meán roghnaithe in eagar"
+msgstr "Cuir an taifead Meán roghnaithe in eagar"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:92
-#, fuzzy
-#| msgid "Select an existing media object"
 msgid "Select an existing Media record"
-msgstr "Roghnaigh réad meán atá ann cheana"
+msgstr "Roghnaigh taifead Meán atá ann cheana féin"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:93
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record Left"
-msgstr "Bain an tionscadal roghnaithe"
+msgstr "Bog an taifead roghnaithe ar chlé"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:94
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record right"
-msgstr "Bain an tionscadal roghnaithe"
+msgstr "Bog an taifead roghnaithe ar dheis"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:104
 msgid "_Gallery"
@@ -14932,10 +14901,8 @@ msgid "Edit the selected repository"
 msgstr "Cuir an stór roghnaithe in eagar"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
-#, fuzzy
-#| msgid "Add an existing repository"
 msgid "Select an existing repository"
-msgstr "Cuir stór atá ann cheana leis"
+msgstr "Roghnaigh stórlann atá ann cheana féin"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Move the selected repository upwards"
@@ -15299,10 +15266,8 @@ msgid "Edit the child reference"
 msgstr "Cuir in eagar tagairt an linbh"
 
 #: ../gramps/gui/editors/editfamily.py:130
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person to add as child of the family"
-msgstr "Cuir duine atá ann cheana mar leanbh den teaghlach"
+msgstr "Roghnaigh duine atá ann cheana le cur leis mar leanbh den teaghlach"
 
 #: ../gramps/gui/editors/editfamily.py:131
 msgid "Move the child up in the children list"
@@ -15378,10 +15343,8 @@ msgid "Edit child"
 msgstr "Cuir páiste in eagar"
 
 #: ../gramps/gui/editors/editfamily.py:224
-#, fuzzy
-#| msgid "Select an existing person"
 msgid "Select an existing person to add as child"
-msgstr "Roghnaigh duine atá ann cheana"
+msgstr "Roghnaigh duine atá ann cheana le cur leis mar leanbh"
 
 #: ../gramps/gui/editors/editfamily.py:227
 msgid "Edit relationship"
@@ -16765,60 +16728,47 @@ msgid "Tip: uncheck anything you don't want to import."
 msgstr "Leid: díthiceáil aon rud nach mian leat a allmhairiú."
 
 #: ../gramps/gui/fs/actions.py:471
-#, fuzzy, python-format
-#| msgid "%(abbr)s %(date)s"
+#, python-format
 msgid "%(birth)s - %(death)s"
-msgstr "%(abbr)s %(date)s"
+msgstr "%(birth)s - %(death)s"
 
 #: ../gramps/gui/fs/actions.py:524
-#, fuzzy, python-format
-#| msgid "FamilySearch update failed (sources)."
+#, python-format
 msgid "FamilySearch search failed (HTTP %(status)s)."
-msgstr "Theip ar nuashonrú FamilySearch (foinsí)."
+msgstr "Theip ar chuardach FamilySearch (HTTP %(status)s)."
 
 #: ../gramps/gui/fs/actions.py:531
-#, fuzzy
-#| msgid "FamilySearch source creation failed for: {t}"
 msgid "FamilySearch search returned invalid data."
-msgstr "Theip ar chruthú foinse FamilySearch do: {t}"
+msgstr "Thug cuardach FamilySearch sonraí neamhbhailí ar ais."
 
 #: ../gramps/gui/fs/actions.py:584
-#, fuzzy
-#| msgid "Select Person"
 msgid "selected person"
-msgstr "Roghnaigh Duine"
+msgstr "duine roghnaithe"
 
 #: ../gramps/gui/fs/actions.py:630 ../gramps/gui/fs/actions.py:632
-#, fuzzy
-#| msgid "Import relatives"
 msgid "Bulk import relatives"
-msgstr "Iompórtáil gaolta"
+msgstr "Gaolta allmhairithe mórchóir"
 
 #: ../gramps/gui/fs/actions.py:646
-#, fuzzy, python-format
-#| msgid "Editor person: %(name)s  [%(gid)s]"
+#, python-format
 msgid "Starting person: %(name)s [%(fsid)s]"
-msgstr "Eagarthóir: %(name)s [%(gid)s]"
+msgstr "Duine tosaigh: %(name)s [%(fsid)s]"
 
 #: ../gramps/gui/fs/actions.py:668 ../gramps/gui/fs/fs_import/options.py:42
 msgid "Ancestor generations"
 msgstr "Glúnta sinsear"
 
 #: ../gramps/gui/fs/actions.py:670
-#, fuzzy
-#| msgid "Number of generations to fetch upwards"
 msgid "Number of generations to import upward from the starting person."
-msgstr "Líon na nglún le hathshlánú"
+msgstr "Líon na nglún le hallmhairiú suas ón duine tosaigh."
 
 #: ../gramps/gui/fs/actions.py:675 ../gramps/gui/fs/fs_import/options.py:46
 msgid "Descendant generations"
 msgstr "Glúnta sliochtacha"
 
 #: ../gramps/gui/fs/actions.py:677
-#, fuzzy
-#| msgid "Number of generations to fetch downwards"
 msgid "Number of generations to import downward from the starting person."
-msgstr "Líon na nglún le híoslódáil"
+msgstr "Líon na nglún le hallmhairiú anuas ón duine tosaigh."
 
 #: ../gramps/gui/fs/actions.py:683 ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -16829,16 +16779,18 @@ msgstr "Céilí a chur san áireamh"
 #: ../gramps/gui/fs/actions.py:685
 msgid "When off, import only the direct parent/child bloodline."
 msgstr ""
+"Nuair a bhíonn sé múchta, ní allmhairítear ach an líne fola dhíreach "
+"tuismitheora/linbh."
 
 #: ../gramps/gui/fs/actions.py:688
-#, fuzzy
-#| msgid "Do not re-import existing persons"
 msgid "Do not re-import existing people"
 msgstr "Ná hath-allmhairigh daoine atá ann cheana féin"
 
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
 msgstr ""
+"Coinnigh daoine nasctha Gramps atá ann cheana gan athrú le linn na "
+"hiompórtála."
 
 #: ../gramps/gui/fs/actions.py:694 ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -16847,10 +16799,8 @@ msgid "Include sources"
 msgstr "Cuir foinsí san áireamh"
 
 #: ../gramps/gui/fs/actions.py:695
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Fetch and import FamilySearch sources."
-msgstr "Iompórtáil foinsí FamilySearch"
+msgstr "Faigh agus iompórtáil foinsí FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:697 ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -16859,131 +16809,106 @@ msgid "Include notes"
 msgstr "Cuir nótaí san áireamh"
 
 #: ../gramps/gui/fs/actions.py:698
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Fetch and import FamilySearch notes."
-msgstr "Iompórtáil foinsí FamilySearch"
+msgstr "Faigh agus iompórtáil nótaí FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:700
-#, fuzzy
-#| msgid "Looking for broken parent relationships"
 msgid "Link imported parent/child relationships"
-msgstr "Ag lorg caidrimh tuismitheoirí briste"
+msgstr "Nasc idir caidrimh tuismitheora/linbh allmhairithe"
 
 #: ../gramps/gui/fs/actions.py:703
 msgid ""
 "Create or reuse families so imported parents and children are connected."
 msgstr ""
+"Cruthaigh nó athúsáid teaghlaigh ionas go mbeidh tuismitheoirí agus páistí "
+"allmhairithe ceangailte."
 
 #: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
-#, fuzzy
-#| msgid "FamilySearch Import"
 msgid "Start FamilySearch import"
-msgstr "Iompórtáil FamilySearch"
+msgstr "Tosaigh ag allmhairiú FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:758
-#, fuzzy
-#| msgid "No FamilySearch Person ID is set for this person."
 msgid ""
 "Choose the FamilySearch person to use as the starting point for this new "
 "Gramps tree."
-msgstr "Níl aon ID Pearsanta FamilySearch socraithe don duine seo."
+msgstr ""
+"Roghnaigh an duine FamilySearch le húsáid mar phointe tosaigh don chrann nua "
+"seo de chuid na seanathair."
 
 #: ../gramps/gui/fs/actions.py:775
-#, fuzzy
-#| msgid "FamilySearch Import Options"
 msgid "FamilySearch ID or person URL"
-msgstr "Roghanna Iompórtála FamilySearch"
+msgstr "ID FamilySearch nó URL duine"
 
 #: ../gramps/gui/fs/actions.py:776
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "FamilySearch ID or URL"
-msgstr "Aitheantas FamilySearch"
+msgstr "Aitheantas nó URL FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:781
-#, fuzzy
-#| msgid "(deleted on FamilySearch)"
 msgid "Name, date, place, or FamilySearch ID"
-msgstr "(scriosta ar FamilySearch)"
+msgstr "Ainm, dáta, áit, nó ID FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:782
-#, fuzzy
-#| msgid "Web Search"
 msgid "Search"
-msgstr "Cuardach Gréasáin"
+msgstr "Cuardaigh"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
-msgstr ""
+msgstr "Saol"
 
 #: ../gramps/gui/fs/actions.py:856
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "FamilySearch ID ready."
-msgstr "Aitheantas FamilySearch"
+msgstr "Tá ID FamilySearch réidh."
 
 #: ../gramps/gui/fs/actions.py:860
 msgid "Enter a name, date, place, ID, or URL to search."
-msgstr ""
+msgstr "Cuir isteach ainm, dáta, áit, aitheantas, nó URL le cuardach."
 
 #: ../gramps/gui/fs/actions.py:865
-#, fuzzy
-#| msgid "Sync to FamilySearch..."
 msgid "Searching FamilySearch..."
-msgstr "Sioncrónaigh le FamilySearch..."
+msgstr "Ag cuardach FamilySearch..."
 
 #: ../gramps/gui/fs/actions.py:880
-#, fuzzy, python-format
-#| msgid "Searching family names"
+#, python-format
 msgid "Search failed: %(error)s"
-msgstr "Sloinnte á gcuardach"
+msgstr "Theip ar an gcuardach: %(error)s"
 
 #: ../gramps/gui/fs/actions.py:890
 #, python-format
 msgid "Search results: %(count)d"
-msgstr ""
+msgstr "Torthaí cuardaigh: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:893
-#, fuzzy
-#| msgid "No FamilySearch sources found to import."
 msgid "No FamilySearch people found."
-msgstr "Ní bhfuarthas aon fhoinsí FamilySearch le hallmhairiú."
+msgstr "Ní bhfuarthas aon duine ar FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:917
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1138
-#, fuzzy
-#| msgid "FamilySearch sync"
 msgid "FamilySearch person"
-msgstr "Sioncrónú FamilySearch"
+msgstr "Duine FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:964
 msgid ""
 "No FamilySearch person was imported. Check the selected person ID and try "
 "again."
 msgstr ""
+"Níor allmhairíodh aon duine FamilySearch. Seiceáil aitheantas an duine "
+"roghnaithe agus déan iarracht arís."
 
 #: ../gramps/gui/fs/actions.py:993
 msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
-msgstr ""
+msgstr "Tá do chrann folamh! Ar mhaith leat iompórtáil mórchóir ó FamilySearch?"
 
 #: ../gramps/gui/fs/actions.py:994
-#, fuzzy
-#| msgid "Center Person"
 msgid "Choose Starting Person"
-msgstr "Duine Lárionaid"
+msgstr "Roghnaigh Duine Tosaigh"
 
 #: ../gramps/gui/fs/actions.py:995
-#, fuzzy
-#| msgid "Not shown"
 msgid "Not now"
-msgstr "Ní thaispeántar"
+msgstr "Ní anois"
 
 #: ../gramps/gui/fs/actions.py:1012 ../gramps/gui/fs/actions.py:1073
-#, fuzzy
-#| msgid "family not complete"
 msgid "Bulk import complete."
-msgstr "teaghlach nach bhfuil críochnaithe"
+msgstr "Iompórtáil mórchóir críochnaithe."
 
 #: ../gramps/gui/fs/actions.py:1051 ../gramps/gui/fs/actions.py:1089
 #: ../gramps/gui/fs/actions.py:1217 ../gramps/gui/fs/actions.py:1384
@@ -17443,7 +17368,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:678
 msgid "Use FS"
-msgstr ""
+msgstr "Úsáid FS"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:685
 #: ../gramps/gui/fs/sync_directions.py:954
@@ -17453,100 +17378,78 @@ msgstr "Réimse"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:686
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:831
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1205
-#, fuzzy
-#| msgid "Current Name"
 msgid "Current Gramps"
-msgstr "Ainm Reatha"
+msgstr "Gramps Reatha"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:688
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:833
 msgid "Final Gramps result"
-msgstr ""
+msgstr "Toradh deiridh Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
-#, fuzzy
-#| msgid "Only in Gramps"
 msgid "Kept in Gramps"
-msgstr "I measc Seanathair amháin"
+msgstr "Coinnithe i Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:771
-#, fuzzy
-#| msgid "Sync from FamilySearch"
 msgid "Will copy from FamilySearch"
-msgstr "Sioncrónaigh ó FamilySearch"
+msgstr "Cóipeálfar ó FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:774
-#, fuzzy
-#| msgid "Run selected tool"
 msgid "Review and select to copy"
-msgstr "Rith uirlis roghnaithe"
+msgstr "Athbhreithnigh agus roghnaigh le cóipeáil"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:776
 msgid "Not mergeable in this row"
-msgstr ""
+msgstr "Ní féidir é a chumasc sa tsraith seo"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:862
-#, fuzzy
-#| msgid "Critical mismatch"
 msgid "Critical"
-msgstr "Mí-oiriúnacht chriticiúil"
+msgstr "Criticiúil"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:869
-#, fuzzy
-#| msgid "Select all"
 msgid "Selectable"
-msgstr "Roghnaigh gach rud"
+msgstr "Inroghnaithe"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:930
-#, fuzzy
-#| msgid "FamilySearch value"
 msgid "Copy this FamilySearch value into Gramps"
-msgstr "Luach FamilySearch"
+msgstr "Cóipeáil an luach FamilySearch seo isteach i Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:932
 msgid "This row cannot be merged directly"
-msgstr ""
+msgstr "Ní féidir an tsraith seo a chumasc go díreach"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:976
 msgid "Inconsistencies"
-msgstr ""
+msgstr "Neamhréireachtaí"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:980
 msgid "The dates are different."
-msgstr ""
+msgstr "Tá na dátaí difriúil."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:982
-#, fuzzy
-#| msgid "Select a different person"
 msgid "The values are different."
-msgstr "Roghnaigh duine difriúil"
+msgstr "Tá na luachanna difriúil."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:984
 msgid "Review this difference before merging."
-msgstr ""
+msgstr "Athbhreithnigh an difríocht seo sula ndéantar é a chumasc."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1120
-#, fuzzy
-#| msgid "Gramps package"
 msgid "Gramps person"
-msgstr "Pacáiste Gramps"
+msgstr "Duine seanathair"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1237
-#, fuzzy
-#| msgid "Only in Gramps"
 msgid "Result in Gramps"
-msgstr "I measc Seanathair amháin"
+msgstr "Toradh i Seanathair"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1603
-#, fuzzy
-#| msgid "Could not resolve the selected person in the database."
 msgid "Could not resolve the selected person."
-msgstr "Níorbh fhéidir an duine roghnaithe a réiteach sa bhunachar sonraí."
+msgstr "Níorbh fhéidir an duine roghnaithe a réiteach."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1612
 msgid "Select at least one FamilySearch row to merge."
-msgstr ""
+msgstr "Roghnaigh sraith FamilySearch amháin ar a laghad le cumasc."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1617
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1673
@@ -17554,45 +17457,39 @@ msgstr ""
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1687
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1733
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1741
-#, fuzzy
-#| msgid "FamilySearch Compare"
 msgid "FamilySearch Compare/Merge"
-msgstr "Déan Comparáid idir FamilySearch"
+msgstr "Déan Comparáid/Cumasc le FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1620
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
+#, python-brace-format
 msgid "Copy {count} selected FamilySearch item(s) into the Gramps person?"
 msgstr ""
-"Scríobh luachanna Gramps thar réimsí roghnaithe FamilySearch (gan scriosadh)."
+"Cóipeáil {count} mír(í) FamilySearch roghnaithe isteach sa duine Gramps?"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1623
-#, fuzzy
-#| msgid "_Merge..."
 msgid "_Merge"
-msgstr "_Merge..."
+msgstr "_Cumaisc"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1634
-#, fuzzy
-#| msgid "FamilySearch: Refresh merged ID"
 msgid "FamilySearch: Merge selected rows"
-msgstr "FamilySearch: Athnuachan an ID chumasctha"
+msgstr "FamilySearch: Cumaisc na sraitheanna roghnaithe"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1674
 #, python-brace-format
 msgid "{count} item(s) copied into Gramps."
-msgstr ""
+msgstr "Cóipeáladh {count} mír(eanna) isteach i Gramps."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1681
 #, python-brace-format
 msgid ""
 "{count} item(s) copied into Gramps; {failed} row(s) could not be applied."
 msgstr ""
+"Cóipeáladh {count} mír(í) isteach i Gramps; níorbh fhéidir {failed} ró(anna) "
+"a chur i bhfeidhm."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1688
 msgid "No selected rows could be copied into Gramps."
-msgstr ""
+msgstr "Níorbh fhéidir aon sraitheanna roghnaithe a chóipeáil isteach i Gramps."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1696
 msgid "Select a person first."
@@ -17627,18 +17524,17 @@ msgid ""
 "Review FamilySearch differences, choose the rows to copy, then merge them "
 "into Gramps. The direction is FamilySearch to Gramps only."
 msgstr ""
+"Athbhreithnigh na difríochtaí idir FamilySearch, roghnaigh na sraitheanna le "
+"cóipeáil, agus ansin cumasc iad le Gramps. Is é an treo ná FamilySearch "
+"chuig Gramps amháin."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1800
-#, fuzzy
-#| msgid "_Merge..."
 msgid "Merge"
-msgstr "_Merge..."
+msgstr "Cumaisc"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1809
-#, fuzzy
-#| msgid "Details"
 msgid "Audit Details"
-msgstr "Sonraí: %s"
+msgstr "Sonraí Iniúchta"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1829
 #: ../gramps/plugins/importer/importxml.py:351
@@ -17663,10 +17559,8 @@ msgid "Sources"
 msgstr "Foinsí"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1838
-#, fuzzy
-#| msgid "Merge the selected notes"
 msgid "Merge selected"
-msgstr "Cumaisc na nótaí roghnaithe"
+msgstr "Cumaisc roghnaithe"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1839
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
@@ -17674,22 +17568,16 @@ msgid "Refresh"
 msgstr "Athnuachan"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1968
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Preparing FamilySearch sources"
-msgstr "Iompórtáil foinsí FamilySearch"
+msgstr "Foinsí FamilySearch á n-ullmhú"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1974
-#, fuzzy
-#| msgid "Building ordered list (1/2)"
 msgid "Loading source links (1/2)"
-msgstr "Liosta ordaithe foirgnimh (1/2)"
+msgstr "Ag luchtú naisc foinse (1/2)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1996
-#, fuzzy
-#| msgid "Processing list (2/2)"
 msgid "Parsing source details (2/2)"
-msgstr "Liosta próiseála (2/2)"
+msgstr "Ag parsáil sonraí foinse (2/2)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2017
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2051
@@ -18038,48 +17926,38 @@ msgid "Sync to FamilySearch"
 msgstr "Sioncrónaigh le FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:815
-#, fuzzy
-#| msgid "Sync to FamilySearch"
 msgid "Gramps to FamilySearch"
-msgstr "Sioncrónaigh le FamilySearch"
+msgstr "Gramps chuig FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:821
 msgid "Apply Selected"
 msgstr "Cuir an Roghnaithe i bhFeidhm"
 
 #: ../gramps/gui/fs/sync_directions.py:839
-#, fuzzy
-#| msgid "FamilySearch tags"
 msgid "Choose FamilySearch updates"
-msgstr "Clibeanna FamilySearch"
+msgstr "Roghnaigh nuashonruithe FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:846
-#, fuzzy
-#| msgid ""
-#| "<b>Choose what to change on FamilySearch</b>\n"
-#| "Default is to keep FamilySearch.\n"
-#| "<i>No deletions are performed.</i>"
 msgid ""
 "Review each Gramps value before pushing it to FamilySearch. The default "
 "action keeps FamilySearch unchanged and no deletions are performed."
 msgstr ""
-"<b>Roghnaigh cad atá le hathrú ar FamilySearch</b>\n"
-"Is é an réamhshocrú ná FamilySearch a choinneáil.\n"
-"<i>Ní dhéantar aon scriosadh.</i>"
+"Déan athbhreithniú ar gach luach de chuid Gramps sula seoltar chuig "
+"FamilySearch é. Coinníonn an gníomh réamhshocraithe FamilySearch gan athrú "
+"agus ní dhéantar aon scriosadh."
 
 #: ../gramps/gui/fs/sync_directions.py:865
 msgid "Change message:"
 msgstr "Athraigh an teachtaireacht:"
 
 #: ../gramps/gui/fs/sync_directions.py:891
-#, fuzzy
-#| msgid "No mention"
 msgid "Needs attention"
-msgstr "Dearbhú"
+msgstr "Riachtanas aire"
 
 #: ../gramps/gui/fs/sync_directions.py:893
 msgid "Use the Action column to choose what FamilySearch receives."
 msgstr ""
+"Úsáid an colún Gníomhaíochta chun a roghnú cad a fhaigheann FamilySearch."
 
 #: ../gramps/gui/fs/sync_directions.py:957 ../gramps/gui/undohistory.py:115
 msgid "Action"
@@ -18092,12 +17970,13 @@ msgstr "Coinnigh FamilySearch"
 #: ../gramps/gui/fs/sync_directions.py:999
 msgid "Choose whether to keep FamilySearch or push this Gramps value."
 msgstr ""
+"Roghnaigh cibé acu ar mhaith leat FamilySearch a choinneáil nó an luach seo "
+"do Gramps a bhrú."
 
 #: ../gramps/gui/fs/sync_directions.py:1021
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(selected)d of %(total)d selected"
-msgstr "%(current)d de %(total)d"
+msgstr "%(selected)d de %(total)d roghnaithe"
 
 #: ../gramps/gui/fs/sync_directions.py:1076
 #: ../gramps/gui/fs/sync_directions.py:1651
@@ -18297,16 +18176,12 @@ msgid "Editor person: (none)"
 msgstr "Eagarthóir: (níl aon duine)"
 
 #: ../gramps/gui/fs/tools_window.py:378
-#, fuzzy
-#| msgid "Person actions"
 msgid "Single Person Actions"
-msgstr "Gníomhartha duine"
+msgstr "Gníomhartha Duine Aonair"
 
 #: ../gramps/gui/fs/tools_window.py:382
-#, fuzzy
-#| msgid "Actions"
 msgid "Bulk Actions"
-msgstr "Gníomhartha"
+msgstr "Gníomhartha Bulc"
 
 #: ../gramps/gui/fs/tools_window.py:388
 msgid "Import relatives"
@@ -18334,22 +18209,16 @@ msgid "Clear Cache"
 msgstr "Glan an Taisce"
 
 #: ../gramps/gui/fs/tools_window.py:408
-#, fuzzy
-#| msgid "All generations"
 msgid "Import multiple generations"
-msgstr "Gach glúin"
+msgstr "Iompórtáil glúnta iolracha"
 
 #: ../gramps/gui/fs/tools_window.py:412
-#, fuzzy
-#| msgid "Import relatives"
 msgid "Bulk Import Relatives"
-msgstr "Iompórtáil gaolta"
+msgstr "Gaolta Iompórtála Bulc"
 
 #: ../gramps/gui/fs/tools_window.py:414
-#, fuzzy
-#| msgid "Matches all descendants for the specified person"
 msgid "Import ancestors and descendants from the selected FamilySearch person."
-msgstr "Meaitseálann gach sliocht don duine sonraithe"
+msgstr "Iompórtáil sinsir agus sliocht ón duine FamilySearch roghnaithe."
 
 #: ../gramps/gui/fs/tools_window.py:422
 msgid "Tags..."
@@ -18377,10 +18246,8 @@ msgstr ""
 "Scríobh luachanna Gramps thar réimsí roghnaithe FamilySearch (gan scriosadh)."
 
 #: ../gramps/gui/fs/tools_window.py:559
-#, fuzzy
-#| msgid "Export to FamilySearch (basic)"
 msgid "Export to FamilySearch"
-msgstr "Easpórtáil chuig FamilySearch (bunúsach)"
+msgstr "Easpórtáil chuig FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:562
 msgid ""
@@ -18401,16 +18268,12 @@ msgid "Editor person: %(name)s"
 msgstr "Eagarthóir: %(name)s"
 
 #: ../gramps/gui/fs/tools_window.py:809
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Add FamilySearch ID"
-msgstr "Aitheantas FamilySearch"
+msgstr "Cuir ID FamilySearch leis"
 
 #: ../gramps/gui/fs/tools_window.py:815
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Edit FamilySearch ID"
-msgstr "Aitheantas FamilySearch"
+msgstr "Cuir ID FamilySearch in Eagar"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
@@ -21605,6 +21468,13 @@ msgid ""
 "Addon Manager → Projects) targets a different Gramps version. Check that the "
 "project URL matches Gramps %(major_version)s."
 msgstr ""
+"Níorbh fhéidir an breiseán '%(addon_id)s' a chlárú agus ní bheidh sé ar fáil "
+"i do chumraíocht reatha.\n"
+"\n"
+"Tarlaíonn sé seo go coitianta nuair a dhíríonn tionscadal an bhreiseáin "
+"(faoi Eagar → Roghanna → Bainisteoir Breiseán → Tionscadail) ar leagan "
+"difriúil de Gramps. Seiceáil go bhfuil URL an tionscadail ag teacht le "
+"Gramps %(major_version)s."
 
 #: ../gramps/gui/plug/_windows.py:612
 msgid "No matching addons found."
@@ -22876,10 +22746,11 @@ msgstr "Gan Crann Ginealaigh"
 #: ../gramps/gui/viewmanager.py:415
 msgid "You are not logged in to FamilySearch. Would you like to sign in now?"
 msgstr ""
+"Níl tú logáilte isteach i FamilySearch. Ar mhaith leat síniú isteach anois?"
 
 #: ../gramps/gui/viewmanager.py:418
 msgid "Sign in"
-msgstr ""
+msgstr "Sínigh isteach"
 
 #: ../gramps/gui/viewmanager.py:638
 msgid "User consent declined"
@@ -29813,6 +29684,10 @@ msgid ""
 "%(year)d-%(month)02d-%(day)02d. If your source uses DD/MM/YYYY (e.g. "
 "ancestry.com exports), verify and correct after import."
 msgstr ""
+"Dáta uimhriúil débhríoch '%(orig)s' léirmhínithe mar MM/DD/YYYY (formáid "
+"SAM) = %(year)d-%(month)02d-%(day)02d. Má úsáideann do fhoinse DD/MM/YYYY "
+"(e.g. easpórtálacha ancestry.com), fíoraigh agus ceartaigh tar éis "
+"allmhairithe."
 
 #: ../gramps/plugins/lib/libgedcom.py:3619
 msgid "Records not imported into "
@@ -34270,11 +34145,18 @@ msgid ""
 "https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"Chun soláthraí tíleanna saincheaptha a úsáid, greamaigh a URL tíleanna "
+"thíos.\n"
+"Úsáid #Z, #X, #Y mar áitchoinneoirí le haghaidh súmáil, x agus y.\n"
+"m.sh.:\n"
+"https://api.maptiler.com/tiles/uk-osgb1888/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"https://api.maptiler.com/tiles/uk-osgb63k1885/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
-#, fuzzy
 msgid "Personal map: "
-msgstr "Peirsis"
+msgstr "Léarscáil phearsanta: "
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
 msgid "The map"
@@ -40355,10 +40237,8 @@ msgstr "Cuir leanbh nua leis an teaghlach"
 
 #: ../gramps/plugins/view/relview.py:1172
 #: ../gramps/plugins/view/relview.py:1704
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person as a child of the family"
-msgstr "Cuir duine atá ann cheana mar leanbh den teaghlach"
+msgstr "Roghnaigh duine atá ann cheana mar leanbh den teaghlach"
 
 #: ../gramps/plugins/view/relview.py:1467
 #, python-format
