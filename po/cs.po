@@ -42,7 +42,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-05-11 10:36+0000\n"
+"PO-Revision-Date: 2026-06-28 21:01+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -51,7 +51,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.5-dev\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -296,8 +296,8 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
-"Dává vám možnost zaznamenat nespočet podrobností o životě jedince stejně "
-"jako popsat komplexní vztahy mezi různými lidmi, místy a událostmi."
+"Dává vám možnost zaznamenat nespočet detailů o životě jedince stejně jako "
+"popsat komplexní vztahy mezi různými lidmi, místy a událostmi."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:9
 msgid ""
@@ -1086,7 +1086,7 @@ msgid ""
 msgstr ""
 "<b>Popisujte své prameny</b><br/>Informace sebrané o vaší rodině jsou pouze "
 "tak dobré, jak je dobrý pramen, z kterého pochází. Nelitujte času ani úsilí, "
-"které vynaložíte na zaznamenání podrobností o tom, odkud informace pochází. "
+"které vynaložíte na zaznamenání detailů o tom, odkud informace pochází. "
 "Kdykoli je to možné, získejte kopii původních dokumentů."
 
 #: ../data/tips.xml:115
@@ -1489,7 +1489,7 @@ msgstr ""
 "  -p, --options=ŘETĚZEC_MOŽNOSTÍ         Specifikovat volby\n"
 "  -d, --debug=NÁZEV_LOGGERU              Povolit ladicí log\n"
 "  -l [ŠABLONA_RODOKMENU...]            Seznam rodokmenů\n"
-"  -L [ŠABLONA_RODOKMENU...]            Seznam rodokmenů s podrobnostmi\n"
+"  -L [ŠABLONA_RODOKMENU...]            Seznam rodokmenů v detailech \n"
 "  -t [ŠABLONA_RODOKMENU...]            Seznam rodokmenů oddělený tabelátory\n"
 "  -u, --force-unlock                     Rozlomit zámek na rodokmenu\n"
 "  -s, --show                             Zobrazit konfigurační parametry\n"
@@ -1501,8 +1501,8 @@ msgstr ""
 "(non GUI režim)\n"
 "  -v, --version                          Zobrazit verze\n"
 " -S, --safe                             Spustit Gramps v 'Safe mode'\n"
-"                                          (dočasně použít výchozí "
-"nastavení)\n"
+"                                          (dočasně použít výchozí nastavení)"
+"\n"
 "  -D, --default=[APXFE]                  Resetovat nastavení na výchozí "
 "hodnoty\n"
 "                 A - vyčistit moduly\n"
@@ -3919,10 +3919,8 @@ msgstr "ID pramene:"
 
 #: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:33
 #: ../gramps/gui/editors/filtereditor.py:577
-#, fuzzy
-#| msgid "Citation Filter"
 msgid "Citation filter name:"
-msgstr "Filtr citací"
+msgstr "Název filtru citací:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:66
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:147
@@ -6805,10 +6803,8 @@ msgstr "Vyhovují prameny označené jako soukromé"
 #: ../gramps/gui/fs/sync_directions.py:955 ../gramps/gui/viewmanager.py:413
 #: ../gramps/gui/viewmanager.py:624 ../gramps/gui/viewmanager.py:637
 #: ../gramps/gui/viewmanager.py:645
-#, fuzzy
-#| msgid "Family"
 msgid "FamilySearch"
-msgstr "Rodina"
+msgstr "FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:160
 #: ../gramps/gui/fs/compare/window.py:224
@@ -6816,21 +6812,17 @@ msgstr "Rodina"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2084
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2288
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "Nepřipojeno do FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:623
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "iniciály"
+msgstr "Náležitosti"
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:627
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "Název položky"
+msgstr "Další jména"
 
 #: ../gramps/gen/fs/compare/aggregate.py:211
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:632
@@ -7057,40 +7049,29 @@ msgid "LifeSketch"
 msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
-#, fuzzy
-#| msgid "the citation"
 msgid "Birth Registration"
-msgstr "citace"
+msgstr "Registrace narození"
 
 #: ../gramps/gen/fs/constants.py:83 ../gramps/gen/fs/constants.py:84
-#, fuzzy
-#| msgid "the citation"
 msgid "Death Registration"
-msgstr "citace"
+msgstr "Registrace úmrtí"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "P=únor|D=února|T=únoru|O=únorem"
+msgstr "Nekrolog"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "Vztah"
+msgstr "Občanství"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
-#, fuzzy
-#| msgid "Building display"
 msgid "Building FSID list for places"
-msgstr "Aktualizuji zobrazení"
+msgstr "Vytváření seznamu FSID pro místa"
 
 #: ../gramps/gen/fs/fs_import/sources.py:406
 #, python-format
 msgid "Loading FamilySearch source %(current)d/%(total)d"
-msgstr ""
+msgstr "Načítání zdroje FamilySearch %(current)d/%(total)d"
 
 #: ../gramps/gen/fs/fs_import/sources.py:611
 #: ../gramps/gen/fs/fs_import/sources.py:614
@@ -7163,22 +7144,17 @@ msgid "Internet Address"
 msgstr "Internetová adresa"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:434
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(header)s (%(current)d/%(total)d)"
-msgstr "%(current)d z %(total)d"
+msgstr "%(header)s (%(current)d/%(total)d)"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:443
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Loading FamilySearch person sources"
-msgstr "Importovat rodokmen"
+msgstr "Načítání zdrojů osob z FamilySearch"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:451
-#, fuzzy
-#| msgid "Family relationships"
 msgid "Loading FamilySearch relationship sources"
-msgstr "Rodinné vztahy"
+msgstr "Načítání zdrojů vztahů z FamilySearch"
 
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
@@ -7240,16 +7216,13 @@ msgstr "Aktualizováno z Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1680
-#, fuzzy
-#| msgid "Created for %(author)s"
 msgid "Created from Gramps"
-msgstr "Vytvořeno pro %(author)s"
+msgstr "Vytvořeno z Gramps"
 
 #: ../gramps/gen/fs/tags.py:322
-#, fuzzy, python-format
-#| msgid "Group (Short)"
+#, python-format
 msgid "Group %(num)d"
-msgstr "Skupina (zkráceně)"
+msgstr "Skupina %(num)d"
 
 #: ../gramps/gen/fs/tags.py:333
 #, python-format
@@ -7282,10 +7255,8 @@ msgstr ""
 "vytvoření štítků a nepřepíše vaše vlastní volby."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch tags"
-msgstr "Rodina byla změněna"
+msgstr "Štítky FamilySearch"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:749 ../gramps/gui/editors/editaddress.py:199
@@ -8838,24 +8809,20 @@ msgstr "Synchronizace FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76 ../gramps/gui/fs/actions.py:801
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "ID rodiny"
+msgstr "ID FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
 msgstr "Je kořen"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Timestamp"
 msgid "Status timestamp"
-msgstr "Časová značka"
+msgstr "Stavová časová značka"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
-msgstr ""
+msgstr "Potvrzená časová značka"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
@@ -8870,10 +8837,8 @@ msgid "Essential conflict"
 msgstr "Zásadní konflikt"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "Nastavit"
+msgstr "Konflikt"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -10630,7 +10595,7 @@ msgstr "Možnosti uzlu"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:197
 msgid "Node detail"
-msgstr "Podrobnosti uzlu"
+msgstr "Detail uzlu"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:200
 msgid "Detail of information to be shown in a node."
@@ -11419,7 +11384,7 @@ msgstr[2] "úmrtí potomka: {number_of} generací "
 #: ../gramps/gen/utils/alive.py:812
 #, python-format
 msgid "Database error: loop in descendants of %s."
-msgstr "Chyba databáze: smyčka v potomcích osoby %s"
+msgstr "Chyba databáze: smyčka v potomcích osoby %s."
 
 #: ../gramps/gen/utils/alive.py:871
 msgid "mother birth "
@@ -11444,7 +11409,7 @@ msgstr "úmrtí otce "
 #: ../gramps/gen/utils/alive.py:978
 #, python-format
 msgid "Database error: loop in ancestors of %s."
-msgstr "Chyba databáze: smyčka v předcích osoby %s"
+msgstr "Chyba databáze: smyčka v předcích osoby %s."
 
 #: ../gramps/gen/utils/alive.py:1060 ../gramps/gen/utils/alive.py:1069
 msgid "no evidence"
@@ -11521,7 +11486,7 @@ msgstr "citace"
 
 #: ../gramps/gen/utils/grampslocale.py:789
 msgid "See details"
-msgstr "Zobrazit podrobnosti"
+msgstr "Zobrazit detaily"
 
 #: ../gramps/gen/utils/image.py:132
 msgid ""
@@ -12752,16 +12717,12 @@ msgid "Foundation middleware"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1132
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "Duplikovat rodinu"
+msgstr "Přímo na FamilySearch"
 
 #: ../gramps/gui/configure.py:1147
-#, fuzzy
-#| msgid "Author"
 msgid "Auth provider"
-msgstr "Autor"
+msgstr "Poskytovatel autentifikace"
 
 #: ../gramps/gui/configure.py:1156
 msgid "App key (direct mode only)"
@@ -12780,16 +12741,12 @@ msgid "Middleware access code (issued secret)"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1204
-#, fuzzy
-#| msgid "Family has changed"
 msgid "Enable FamilySearch integration"
-msgstr "Rodina byla změněna"
+msgstr "Povolit integraci s FamilySearch"
 
 #: ../gramps/gui/configure.py:1212
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "Generace"
+msgstr "Integrace"
 
 #: ../gramps/gui/configure.py:1279 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -13051,10 +13008,8 @@ msgid "Maximum age probably alive"
 msgstr "Nejvyšší věk pravděpodobně žijících"
 
 #: ../gramps/gui/configure.py:2095
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "Nejvyšší počet generací pro vztahy mezi osobami"
+msgstr "Maximální počet generací pro odhad věku"
 
 #: ../gramps/gui/configure.py:2100
 msgid ""
@@ -13260,10 +13215,8 @@ msgstr ""
 "poli. Toto nastavení určuje velikost pole."
 
 #: ../gramps/gui/configure.py:2379
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "Pohled poznámek"
+msgstr "Délka náhledu poznámek"
 
 #: ../gramps/gui/configure.py:2438
 msgid "Database Setting"
@@ -14376,10 +14329,8 @@ msgid "Remove"
 msgstr "Odstranit"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select Existing"
-msgstr "Vybrat existující poznámku"
+msgstr "Výběr existujících"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 msgid "Jump To"
@@ -14415,10 +14366,8 @@ msgid "Edit the selected citation"
 msgstr "Upravit vybranou citaci"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
-#, fuzzy
-#| msgid "Add an existing citation or source"
 msgid "Select an existing citation or source"
-msgstr "Přidat existující citaci nebo pramen"
+msgstr "Vyberte existující citaci nebo pramen"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Move the selected citation upwards"
@@ -14488,10 +14437,8 @@ msgstr "Upravit zvolenou rodinnou událost nebo upravit osobu"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select an existing event"
-msgstr "Vybrat existující poznámku"
+msgstr "Vyberte existující událost"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
@@ -14548,40 +14495,28 @@ msgid "%(groupname)s - %(groupnumber)d"
 msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:89
-#, fuzzy
-#| msgid "Add a new media object"
 msgid "Add a new Media record"
-msgstr "Přidat nový mediální objekt"
+msgstr "Přidat nový mediální záznam"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:90
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Remove the selected Media record"
-msgstr "Odstranit zvolený projekt"
+msgstr "Odstranit vybraný mediální záznam"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:91
-#, fuzzy
-#| msgid "Edit the selected media object"
 msgid "Edit the selected Media record"
-msgstr "Upravit vybraný mediální objekt"
+msgstr "Upravit vybraný mediální záznam"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:92
-#, fuzzy
-#| msgid "Select an existing media object"
 msgid "Select an existing Media record"
-msgstr "Vybrat existující mediální objekt"
+msgstr "Vyberte existující mediální záznam"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:93
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record Left"
-msgstr "Odstranit zvolený projekt"
+msgstr "Posunout vybraný záznam doleva"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:94
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record right"
-msgstr "Odstranit zvolený projekt"
+msgstr "Posunout vybraný záznam doprava"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:104
 msgid "_Gallery"
@@ -14712,7 +14647,7 @@ msgstr "Preferované jméno"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:66
 msgid "Alternative names"
-msgstr "Další jména"
+msgstr "Alternativní jména"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:74
 msgid "Create and add a new note"
@@ -14844,7 +14779,7 @@ msgstr "Posunout vybraný název místa níže"
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:75
 #: ../gramps/plugins/gramplet/placedetails.py:158
 msgid "Alternative Names"
-msgstr "Další jména"
+msgstr "Alternativní jména"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:75
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:119
@@ -14875,10 +14810,8 @@ msgid "Edit the selected repository"
 msgstr "Upravit zvolený archiv"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
-#, fuzzy
-#| msgid "Add an existing repository"
 msgid "Select an existing repository"
-msgstr "Přidat existující archiv"
+msgstr "Vyberte existující archiv"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Move the selected repository upwards"
@@ -15240,11 +15173,8 @@ msgid "Edit the child reference"
 msgstr "Upravit odkaz na dítě"
 
 #: ../gramps/gui/editors/editfamily.py:130
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person to add as child of the family"
-msgstr ""
-"Vybrat existující osobu z databáze a přidat ji jako dítě k současné rodině"
+msgstr "Vyberte existující osobu, kterou chcete přidat jako dítě v rodině"
 
 #: ../gramps/gui/editors/editfamily.py:131
 msgid "Move the child up in the children list"
@@ -15320,10 +15250,8 @@ msgid "Edit child"
 msgstr "Upravit dítě"
 
 #: ../gramps/gui/editors/editfamily.py:224
-#, fuzzy
-#| msgid "Select an existing person"
 msgid "Select an existing person to add as child"
-msgstr "Vybrat existující osobu"
+msgstr "Vyberte existující osobu, kterou chcete přidat jako dítě"
 
 #: ../gramps/gui/editors/editfamily.py:227
 msgid "Edit relationship"
@@ -16087,12 +16015,9 @@ msgid "Internet Address Editor"
 msgstr "Editor internetových adres"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
-msgstr "Internetová adresa dle potřeby, např. http://gramps-project.org"
+msgstr "Internetová adresa potřebná k přechodu na stránku, např. {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
@@ -16639,10 +16564,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:170 ../gramps/gui/fs/actions.py:171
 #: ../gramps/gui/fs/tools_window.py:356 ../gramps/gui/fs/tools_window.py:817
-#, fuzzy
-#| msgid "Family ID"
 msgid "Link FamilySearch ID"
-msgstr "ID rodiny"
+msgstr "Propojit ID FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:173 ../gramps/gui/plug/_windows.py:1555
 #: ../gramps/gui/widgets/grampletbar.py:599
@@ -16661,10 +16584,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:246
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:194
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import selected"
-msgstr "Import selhal"
+msgstr "Importovat vybrané"
 
 #: ../gramps/gui/fs/actions.py:270
 #, python-brace-format
@@ -16673,22 +16594,16 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:277 ../gramps/gui/fs/sync_directions.py:875
 #: ../gramps/gui/fs/sync_directions.py:1592
-#, fuzzy
-#| msgid "Select _None"
 msgid "Select none"
-msgstr "_Zrušit výběr"
+msgstr "Nevybrat nic"
 
 #: ../gramps/gui/fs/actions.py:278
-#, fuzzy
-#| msgid "Select a file"
 msgid "Select all new"
-msgstr "Vyberte soubor"
+msgstr "Vyberte všechny nové"
 
 #: ../gramps/gui/fs/actions.py:325
-#, fuzzy
-#| msgid "Already dead"
 msgid "Already in tree"
-msgstr "Již po smrti"
+msgstr "Již ve stromu"
 
 #: ../gramps/gui/fs/actions.py:325
 msgid "New (will import)"
@@ -16699,10 +16614,9 @@ msgid "Tip: uncheck anything you don't want to import."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:471
-#, fuzzy, python-format
-#| msgid " (%(birth_date)s - %(death_date)s)"
+#, python-format
 msgid "%(birth)s - %(death)s"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "%(birth)s - %(death)s"
 
 #: ../gramps/gui/fs/actions.py:524
 #, python-format
@@ -16714,46 +16628,35 @@ msgid "FamilySearch search returned invalid data."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:584
-#, fuzzy
-#| msgid "Select Person"
 msgid "selected person"
-msgstr "Vybrat osobu"
+msgstr "vybraná osoba"
 
 #: ../gramps/gui/fs/actions.py:630 ../gramps/gui/fs/actions.py:632
-#, fuzzy
-#| msgid "Import failed"
 msgid "Bulk import relatives"
-msgstr "Import selhal"
+msgstr "Hromadný import příbuzných"
 
 #: ../gramps/gui/fs/actions.py:646
-#, fuzzy, python-format
-#| msgid "%(name)s [%(gid)s]"
+#, python-format
 msgid "Starting person: %(name)s [%(fsid)s]"
-msgstr "%(name)s [%(gid)s]"
+msgstr "Počáteční osoba: %(name)s [%(fsid)s]"
 
 #: ../gramps/gui/fs/actions.py:668 ../gramps/gui/fs/fs_import/options.py:42
-#, fuzzy
-#| msgid "Max ancestor generations"
 msgid "Ancestor generations"
-msgstr "Max generací předků"
+msgstr "Generace předků"
 
 #: ../gramps/gui/fs/actions.py:670
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to import upward from the starting person."
-msgstr "Počet generací:"
+msgstr ""
+"Počet generací, které se mají importovat směrem nahoru od počáteční osoby."
 
 #: ../gramps/gui/fs/actions.py:675 ../gramps/gui/fs/fs_import/options.py:46
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "Descendant generations"
-msgstr "Max generací potomků"
+msgstr "Generace potomků"
 
 #: ../gramps/gui/fs/actions.py:677
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to import downward from the starting person."
-msgstr "Počet generací:"
+msgstr ""
+"Počet generací, které se mají importovat směrem dolů od počáteční osoby."
 
 #: ../gramps/gui/fs/actions.py:683 ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -16766,10 +16669,8 @@ msgid "When off, import only the direct parent/child bloodline."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:688
-#, fuzzy
-#| msgid "Non existing person"
 msgid "Do not re-import existing people"
-msgstr "Neexistující osoba"
+msgstr "Neimportovat znovu existující lidi"
 
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
@@ -16782,10 +16683,8 @@ msgid "Include sources"
 msgstr "Zahrnout prameny"
 
 #: ../gramps/gui/fs/actions.py:695
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Fetch and import FamilySearch sources."
-msgstr "Importovat rodokmen"
+msgstr "Načítat a Importovat prameny FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:697 ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -16794,16 +16693,12 @@ msgid "Include notes"
 msgstr "Zahrnout poznámky"
 
 #: ../gramps/gui/fs/actions.py:698
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Fetch and import FamilySearch notes."
-msgstr "Importovat rodokmen"
+msgstr "Načítat a importovat poznámky FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:700
-#, fuzzy
-#| msgid "Looking for broken parent relationships"
 msgid "Link imported parent/child relationships"
-msgstr "Vyhledávají se přerušené vztahy rodičů"
+msgstr "Propojit importované vztahy rodič/dítě"
 
 #: ../gramps/gui/fs/actions.py:703
 msgid ""
@@ -16811,10 +16706,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "Start FamilySearch import"
-msgstr "Sestava o rodině"
+msgstr "Spustit import z FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:758
 msgid ""
@@ -16823,54 +16716,41 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:775
-#, fuzzy
-#| msgid "Web Family Tree export options"
 msgid "FamilySearch ID or person URL"
-msgstr "Možnosti exportu Web Family Tree"
+msgstr "ID FamilySearch nebo URL osoby"
 
 #: ../gramps/gui/fs/actions.py:776
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID or URL"
-msgstr "ID rodiny"
+msgstr "ID FamilySearch nebo URL"
 
 #: ../gramps/gui/fs/actions.py:781
-#, fuzzy
-#| msgid "_Delete Family"
 msgid "Name, date, place, or FamilySearch ID"
-msgstr "O_dstranit rodinu"
+msgstr "Jméno, datum, místo nebo ID FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:782
-#, fuzzy
-#| msgid "Web Search"
 msgid "Search"
-msgstr "Hledání na webu"
+msgstr "Vyhledávání"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:856
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID ready."
-msgstr "ID rodiny"
+msgstr "ID FamilySearch připraveno."
 
 #: ../gramps/gui/fs/actions.py:860
 msgid "Enter a name, date, place, ID, or URL to search."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:865
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Searching FamilySearch..."
-msgstr "Duplikovat rodinu"
+msgstr "Vyhledávání ve FamilySearch..."
 
 #: ../gramps/gui/fs/actions.py:880
-#, fuzzy, python-format
-#| msgid "Searching family names"
+#, python-format
 msgid "Search failed: %(error)s"
-msgstr "Hledají se jména rodin"
+msgstr "Vyhledávání selhalo: %(error)s"
 
 #: ../gramps/gui/fs/actions.py:890
 #, python-format
@@ -16901,22 +16781,16 @@ msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:994
-#, fuzzy
-#| msgid "Center Person"
 msgid "Choose Starting Person"
-msgstr "Ústřední osoba"
+msgstr "Výběr počáteční osoby"
 
 #: ../gramps/gui/fs/actions.py:995
-#, fuzzy
-#| msgid "Not shown"
 msgid "Not now"
-msgstr "Není zobrazeno"
+msgstr "Teď ne"
 
 #: ../gramps/gui/fs/actions.py:1012 ../gramps/gui/fs/actions.py:1073
-#, fuzzy
-#| msgid "family not complete"
 msgid "Bulk import complete."
-msgstr "nekompletní rodina"
+msgstr "Hromadný import dokončen."
 
 #: ../gramps/gui/fs/actions.py:1051 ../gramps/gui/fs/actions.py:1089
 #: ../gramps/gui/fs/actions.py:1217 ../gramps/gui/fs/actions.py:1384
@@ -16925,10 +16799,9 @@ msgid "No FamilySearch ID linked. Click 'Link FamilySearch ID' first."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1104
-#, fuzzy, python-brace-format
-#| msgid "Sealed to Parents"
+#, python-brace-format
 msgid "Failed to fetch parents: {e}"
-msgstr "Závislý na rodičích"
+msgstr "Selhalo načítání rodičů: {e}"
 
 #: ../gramps/gui/fs/actions.py:1126
 msgid "No parents found on FamilySearch for this person."
@@ -16940,20 +16813,16 @@ msgid "  - already in tree"
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1138
-#, fuzzy
-#| msgid "Import Text"
 msgid "Import parents"
-msgstr "Import textu"
+msgstr "Importovat rodiče"
 
 #: ../gramps/gui/fs/actions.py:1153
 msgid "Parents imported but could not be located in the local database."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1157
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link parents"
-msgstr "Linky rodiny"
+msgstr "FamilySearch: Propojit rodiče"
 
 #: ../gramps/gui/fs/actions.py:1206
 msgid "Parent(s) imported and linked."
@@ -16974,20 +16843,16 @@ msgid " (other parent: {name})"
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1275
-#, fuzzy
-#| msgid "List children"
 msgid "Import children"
-msgstr "Zobrazit děti"
+msgstr "Importovat děti"
 
 #: ../gramps/gui/fs/actions.py:1295
 msgid "Children imported but could not be located in the local database."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1299
-#, fuzzy
-#| msgid "Family Children"
 msgid "FamilySearch: Link children"
-msgstr "Potomci rodiny"
+msgstr "FamilySearch: Propojit děti"
 
 #: ../gramps/gui/fs/actions.py:1367
 msgid "Child(ren) imported and linked."
@@ -17013,10 +16878,8 @@ msgid "Spouses imported but could not be located in the local database."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1461
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link spouses"
-msgstr "Linky rodiny"
+msgstr "FamilySearch: Propojit manžele"
 
 #: ../gramps/gui/fs/actions.py:1511
 msgid "Spouse(s) imported and linked."
@@ -17041,10 +16904,8 @@ msgid "Cleared on-disk cache: (not available / not supported by cache helper)"
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1616 ../gramps/gui/fs/actions.py:1617
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch Tags"
-msgstr "Rodina byla změněna"
+msgstr "Štítky FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:1618
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1768
@@ -17077,10 +16938,9 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1661
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "Přejmenování selhalo"
+msgstr "Přeštítkování selhalo: {e}"
 
 #: ../gramps/gui/fs/actions.py:1712
 msgid "FamilySearch: Update FSID after redirect"
@@ -17097,16 +16957,13 @@ msgid "Failed to download from FamilySearch: {e}"
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1770
-#, fuzzy
-#| msgid "Bookmark this person"
 msgid "FamilySearch: Sync this person"
-msgstr "Záložka pro tuto osobu"
+msgstr "FamilySearch: Synchronizovat tuto osobu"
 
 #: ../gramps/gui/fs/actions.py:1830
-#, fuzzy, python-brace-format
-#| msgid "Saving failed"
+#, python-brace-format
 msgid "Sync failed: {e}"
-msgstr "Ukládání selhalo"
+msgstr "Synchronizace selhala: {e}"
 
 #: ../gramps/gui/fs/actions.py:1838
 msgid ""
@@ -17124,10 +16981,8 @@ msgid "Sync to FamilySearch failed: {e}"
 msgstr ""
 
 #: ../gramps/gui/fs/compare/options.py:46
-#, fuzzy
-#| msgid "Family Citations"
 msgid "FamilySearch Compare Options"
-msgstr "Citace rodiny"
+msgstr "Nastavení porovnání FamilySearch"
 
 #: ../gramps/gui/fs/compare/options.py:49
 msgid "Days between comparisons"
@@ -17138,10 +16993,8 @@ msgid "Number of days between two comparisons."
 msgstr ""
 
 #: ../gramps/gui/fs/compare/options.py:54
-#, fuzzy
-#| msgid "Source Information"
 msgid "Force comparison"
-msgstr "Informace o prameni"
+msgstr "Vynutit porovnání"
 
 #: ../gramps/gui/fs/compare/options.py:56
 msgid "Compare regardless of the number of days since the last run."
@@ -17165,10 +17018,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/compare/window.py:214
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1967
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch Compare"
-msgstr "Barvy rodiny"
+msgstr "Porovnání FamilySearch"
 
 #: ../gramps/gui/fs/compare/window.py:217 ../gramps/gui/glade/rule.glade:509
 #: ../gramps/gui/glade/styleeditor.glade:416
@@ -17200,46 +17051,39 @@ msgid "Processing list (2/2)"
 msgstr ""
 
 #: ../gramps/gui/fs/compare/window.py:320
-#, fuzzy, python-format
-#| msgid "not found"
+#, python-format
 msgid "FS ID %s not found"
-msgstr "nenalezeno"
+msgstr "ID FS %s nebylo nalezeno"
 
 #: ../gramps/gui/fs/fs_import/importer.py:59
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "FamilySearch Import"
-msgstr "Sestava o rodině"
+msgstr "Import FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/importer.py:90
 msgid "Downloading persons… (3/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:92
-#, fuzzy
-#| msgid "Youngest living person"
 msgid "Downloading person…"
-msgstr "Nejmladší žijící osoba"
+msgstr "Stahování osoby…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:104
 msgid "Downloading ancestors… (4/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:112
-#, fuzzy, python-format
-#| msgid "Submission: Generations of ancestors"
+#, python-format
 msgid "Downloading %d generations of ancestors…"
-msgstr "Zařazení: Genrací předků"
+msgstr "Stahování %d generací předků…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:115
 msgid "Downloading descendants… (5/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:123
-#, fuzzy, python-format
-#| msgid "Submission: Generations of descendants"
+#, python-format
 msgid "Downloading %d generations of descendants…"
-msgstr "Zařazení: Generace potomků"
+msgstr "Stahování %d generací potomků…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:128
 msgid "Downloading spouses… (6/11)"
@@ -17258,44 +17102,32 @@ msgid "Downloading notes and sources…"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:182
-#, fuzzy
-#| msgid "Import"
 msgid "Importing…"
-msgstr "Import"
+msgstr "Importování…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:194
 msgid "Importing places… (8/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing places…"
-msgstr "Importují se osoby."
+msgstr "Importování míst…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons… (9/11)"
-msgstr "Importují se osoby."
+msgstr "Importování osob... (9/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:201
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons…"
-msgstr "Importují se osoby."
+msgstr "Importování osob…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:207
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families… (10/11)"
-msgstr "Importují se rodiny."
+msgstr "Importování rodin... (10/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:209
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families…"
-msgstr "Importují se rodiny."
+msgstr "Importování rodin…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:217
 #: ../gramps/gui/fs/fs_import/importer.py:229
@@ -17303,39 +17135,29 @@ msgid "Importing children… (11/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:220
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Importing children…"
-msgstr "Importuji archiv..."
+msgstr "Importování dětí…"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
-#, fuzzy
-#| msgid "Web Family Tree export options"
 msgid "FamilySearch Import Options"
-msgstr "Možnosti exportu Web Family Tree"
+msgstr "Nastavení importu FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/options.py:39
 msgid "identifier to be copied from the FamilySearch website"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/options.py:43
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch upwards"
-msgstr "Počet generací:"
+msgstr "Počet generací, které se mají načíst směrem nahoru"
 
 #: ../gramps/gui/fs/fs_import/options.py:47
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch downwards"
-msgstr "Počet generací:"
+msgstr "Počet generací, které se mají načíst směrem dolů"
 
 #: ../gramps/gui/fs/fs_import/options.py:51
-#, fuzzy
-#| msgid "Non existing person"
 msgid "Do not re-import existing persons"
-msgstr "Neexistující osoba"
+msgstr "Neimportovat znovu existující osoby"
 
 #: ../gramps/gui/fs/fs_import/options.py:53
 msgid "Only import persons not already present"
@@ -17348,22 +17170,16 @@ msgid "Include spouse information"
 msgstr "Zahrnout informaci o pramenu"
 
 #: ../gramps/gui/fs/fs_import/options.py:61
-#, fuzzy
-#| msgid "Birth source"
 msgid "Import sources"
-msgstr "Pramen narození"
+msgstr "Importovat prameny"
 
 #: ../gramps/gui/fs/fs_import/options.py:65
-#, fuzzy
-#| msgid "Importer"
 msgid "Import notes"
-msgstr "Importér"
+msgstr "Importovat poznámky"
 
 #: ../gramps/gui/fs/fs_import/options.py:68
-#, fuzzy
-#| msgid "Repository"
 msgid "Verbosity"
-msgstr "Archiv"
+msgstr "Úroveň detailů"
 
 #: ../gramps/gui/fs/fs_import/options.py:70
 msgid "Verbosity level from 0 (min) to 3 (very verbose)"
@@ -17383,26 +17199,20 @@ msgstr ""
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:864
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:648
 #: ../gramps/gui/fs/sync_directions.py:887
-#, fuzzy
-#| msgid "Different database"
 msgid "Different"
-msgstr "Jiná databáze"
+msgstr "Rozdílné"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:519
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:866
 #: ../gramps/gui/fs/sync_directions.py:889
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in Gramps"
-msgstr "Pouze v přestupných letech"
+msgstr "Pouze v Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:520
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:868
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:649
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in FamilySearch"
-msgstr "Pouze v přestupných letech"
+msgstr "Pouze ve FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:521
 msgid "Critical mismatch"
@@ -17426,36 +17236,26 @@ msgstr ""
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:686
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:831
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1205
-#, fuzzy
-#| msgid "Current Name"
 msgid "Current Gramps"
-msgstr "Současný název"
+msgstr "Aktuální stav v Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:688
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:833
-#, fuzzy
-#| msgid "General Gramps settings"
 msgid "Final Gramps result"
-msgstr "Obecné nastavení Gramps"
+msgstr "Konečný výsledek v Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Kept in Gramps"
-msgstr "Pouze v přestupných letech"
+msgstr "Zachováno v Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:771
-#, fuzzy
-#| msgid "Remove child from family"
 msgid "Will copy from FamilySearch"
-msgstr "Odstranit dítě z rodiny"
+msgstr "Zkopíruje se z FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:774
-#, fuzzy
-#| msgid "Run selected tool"
 msgid "Review and select to copy"
-msgstr "Spustit vybraný nástroj"
+msgstr "Zkontrolujte a vyberte pro zkopírování"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:776
 msgid "Not mergeable in this row"
@@ -17472,10 +17272,8 @@ msgid "Selectable"
 msgstr "Vybrat _vše"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:930
-#, fuzzy
-#| msgid "Family Gallery"
 msgid "Copy this FamilySearch value into Gramps"
-msgstr "Galerie rodiny"
+msgstr "Zkopírujte tuto hodnotu z FamilySearch do Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:932
 msgid "This row cannot be merged directly"
@@ -17490,10 +17288,8 @@ msgid "The dates are different."
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:982
-#, fuzzy
-#| msgid "Select a different person"
 msgid "The values are different."
-msgstr "Vybrat jinou osobu"
+msgstr "Hodnoty se liší."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:984
 msgid "Review this difference before merging."
@@ -17506,16 +17302,12 @@ msgid "Gramps person"
 msgstr "Balíček Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1237
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Result in Gramps"
-msgstr "Pouze v přestupných letech"
+msgstr "Výsledek v Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1603
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve the selected person."
-msgstr "Odstraněním osoby dojde k vymazání osoby z databáze."
+msgstr "Nelze najít vybranou osobu."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1612
 msgid "Select at least one FamilySearch row to merge."
@@ -17527,10 +17319,8 @@ msgstr ""
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1687
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1733
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1741
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch Compare/Merge"
-msgstr "Barvy rodiny"
+msgstr "Porovnání/Sloučení FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1620
 #, python-brace-format
@@ -17538,16 +17328,12 @@ msgid "Copy {count} selected FamilySearch item(s) into the Gramps person?"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1623
-#, fuzzy
-#| msgid "Merge"
 msgid "_Merge"
-msgstr "Sloučit"
+msgstr "_Sloučit"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1634
-#, fuzzy
-#| msgid "Tag selected rows"
 msgid "FamilySearch: Merge selected rows"
-msgstr "Opatřit vybraný řádek štítkem"
+msgstr "FamilySearch: Sloučit vybrané řádky"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1674
 #, python-brace-format
@@ -17565,20 +17351,16 @@ msgid "No selected rows could be copied into Gramps."
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1696
-#, fuzzy
-#| msgid "Select a person for the report"
 msgid "Select a person first."
-msgstr "Vybrat osobu do sestavy"
+msgstr "Nejprve vyberte osobu."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1700
 msgid "You must login first."
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1716
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve the selected person in the database."
-msgstr "Odstraněním osoby dojde k vymazání osoby z databáze."
+msgstr "Vybranou osobu se nepodařilo najít v databázi."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1723
 msgid ""
@@ -17586,17 +17368,13 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1752
-#, fuzzy
-#| msgid "Remove child from family"
 msgid "Refresh from FamilySearch"
-msgstr "Odstranit dítě z rodiny"
+msgstr "Obnovit z FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1759
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1840
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Import sources..."
-msgstr "Importuji archiv..."
+msgstr "Import pramenů..."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1781
 msgid ""
@@ -17609,10 +17387,8 @@ msgid "Merge"
 msgstr "Sloučit"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1809
-#, fuzzy
-#| msgid "Details"
 msgid "Audit Details"
-msgstr "Podrobnosti"
+msgstr "Kontrola detailů"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1829
 #: ../gramps/plugins/importer/importxml.py:351
@@ -17637,10 +17413,8 @@ msgid "Sources"
 msgstr "Prameny"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1838
-#, fuzzy
-#| msgid "Merge the selected notes"
 msgid "Merge selected"
-msgstr "Odstranit zvolené poznámky"
+msgstr "Sloučit vybrané"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1839
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
@@ -17648,10 +17422,8 @@ msgid "Refresh"
 msgstr "Aktualizovat"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1968
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Preparing FamilySearch sources"
-msgstr "Importovat rodokmen"
+msgstr "Připravování pramenů FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1974
 msgid "Loading source links (1/2)"
@@ -17739,10 +17511,8 @@ msgid "Gramps title"
 msgstr "Položka Gramps:"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2053
-#, fuzzy
-#| msgid "Gramps"
 msgid "Gramps URL"
-msgstr "Gramps"
+msgstr "URL Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2055
 #, fuzzy
@@ -17751,17 +17521,13 @@ msgid "FS title"
 msgstr "název"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2056
-#, fuzzy
-#| msgid "Search URL"
 msgid "FS URL"
-msgstr "Hledat URL"
+msgstr "URL FS"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2058
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:313
-#, fuzzy
-#| msgid "Contributions by"
 msgid "Contributor"
-msgstr "Příspěvky od"
+msgstr "Přispěvatel"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2059
 #, fuzzy
@@ -17774,24 +17540,19 @@ msgid "FS ID"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2074
-#, fuzzy, python-brace-format
-#| msgid "Import failed"
+#, python-brace-format
 msgid "Compare failed: {e}"
-msgstr "Import selhal"
+msgstr "Porovnání selhalo: {e}"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2166
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2257
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2272
-#, fuzzy
-#| msgid "Missing Given Name"
 msgid "(missing in Gramps)"
-msgstr "Chybí křestní jméno"
+msgstr "(chybějící v Gramps)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2436
-#, fuzzy
-#| msgid "Section"
 msgid "Mention"
-msgstr "Sekce"
+msgstr "Zmínka"
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:69
 msgid "FamilySearch is not configured (missing app key / redirect)."
@@ -17806,10 +17567,8 @@ msgid "Logged in to FamilySearch."
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:90
-#, fuzzy
-#| msgid "Saving failed"
 msgid "Login failed."
-msgstr "Ukládání selhalo"
+msgstr "Přihlášení selhalo."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:93
 #, python-brace-format
@@ -17821,18 +17580,17 @@ msgstr ""
 #: ../gramps/gui/fs/person/mixins/source_import.py:338
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:186
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:191
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Import FamilySearch sources"
-msgstr "Importovat rodokmen"
+msgstr "Importovat prameny FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:468
-#, fuzzy, python-brace-format
-#| msgid "%s could not be imported"
+#, python-brace-format
 msgid ""
 "Some sources could not be imported:\n"
 "{errs}"
-msgstr "%s nemůže být importován"
+msgstr ""
+"Některé prameny nemohly být importovány\n"
+"{errs}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:119
 msgid "No FamilySearch sources found to import."
@@ -17845,16 +17603,12 @@ msgid "Detected"
 msgstr "Vybráno"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:284
-#, fuzzy
-#| msgid "Import"
 msgid "Import as"
-msgstr "Import"
+msgstr "Importovat jako"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:295
-#, fuzzy
-#| msgid "Date"
 msgid "FS Date"
-msgstr "Datum"
+msgstr "Datum FS"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:314
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:520
@@ -17863,73 +17617,53 @@ msgid "Images"
 msgstr "Obrázky"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:322
-#, fuzzy
-#| msgid "Person Gallery"
 msgid "To Person gallery"
-msgstr "Galerie osoby"
+msgstr "Do galerie osoby"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:339
-#, fuzzy
-#| msgid "Action"
 msgid "Actions"
 msgstr "Akce"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:342
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage Images…"
-msgstr "Spravovat databáze"
+msgstr "Správa obrázků…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:382
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:384
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage images"
-msgstr "Spravovat databáze"
+msgstr "Spravovat obrázky"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:390
-#, fuzzy
-#| msgid "Add a new source"
 msgid "Add from source…"
-msgstr "Vytvořit nový pramen"
+msgstr "Přidat z pramene…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:391
 msgid "Open the source page and download images"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:393
-#, fuzzy
-#| msgid "Choose font"
 msgid "Choose file…"
-msgstr "Zvolit písmo"
+msgstr "Vybrat soubor…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:394
 msgid "Pick existing files from disk"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:396
-#, fuzzy
-#| msgid "Rename failed"
 msgid "Rename files"
-msgstr "Přejmenování selhalo"
+msgstr "Přejmenovat soubory"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:397
-#, fuzzy
-#| msgid "Remove selected items?"
 msgid "Rename selected files on disk"
-msgstr "Odstranit vybrané záznamy?"
+msgstr "Přejmenovat vybrané soubory na disku"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:436
-#, fuzzy
-#| msgid "File extension"
 msgid "Filename (without extension)"
-msgstr "Přípona souboru"
+msgstr "Název souboru (bez přípony)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:440
-#, fuzzy
-#| msgid "Expression:"
 msgid "Extension"
-msgstr "Výraz:"
+msgstr "Přípona"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:453
 msgid ""
@@ -17940,10 +17674,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:474
-#, fuzzy
-#| msgid "No map service is available."
 msgid "Image picker module is not available."
-msgstr "Žádná mapová služba není k dispozici."
+msgstr "Modul pro výběr obrázků není k dispozici."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:481
 #, fuzzy
@@ -17974,21 +17706,22 @@ msgid "Select"
 msgstr "Vybrat"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:598
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid ""
 "Rename failed for:\n"
 "{p}\n"
 "\n"
 "{err}"
-msgstr "Přejmenování selhalo"
+msgstr ""
+"Přejmenování selhalo pro:\n"
+"{p}\n"
+"\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:631
 #: ../gramps/gui/fs/sync_directions.py:874
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select all"
-msgstr "Vybrat _vše"
+msgstr "Vybrat vše"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:652
 msgid ""
@@ -18001,26 +17734,20 @@ msgid "{n} source(s) imported."
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:208
-#, fuzzy
-#| msgid "Produced with Gramps"
 msgid "Overwrite with Gramps"
-msgstr "Vytvořeno v Gramps"
+msgstr "Přepsat z Gramps"
 
 #: ../gramps/gui/fs/sync_directions.py:210
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Add from Gramps"
-msgstr "Přidat gramplet"
+msgstr "Přidat z Gramps"
 
 #: ../gramps/gui/fs/sync_directions.py:211
 msgid "Apply from Gramps"
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:516
-#, fuzzy
-#| msgid "Primary name"
 msgid "Primary Name"
-msgstr "Primární"
+msgstr "Primární jméno"
 
 #: ../gramps/gui/fs/sync_directions.py:596
 #: ../gramps/gui/fs/sync_directions.py:622
@@ -18045,16 +17772,12 @@ msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:761
 #: ../gramps/gui/fs/sync_directions.py:1289
-#, fuzzy
-#| msgid "Source filter name:"
 msgid "Source from Gramps"
-msgstr "Název filtru pramenů:"
+msgstr "Pramen z Gramps"
 
 #: ../gramps/gui/fs/sync_directions.py:772
-#, fuzzy
-#| msgid "_Delete Family"
 msgid "(deleted on FamilySearch)"
-msgstr "O_dstranit rodinu"
+msgstr "(odstraněno na FamilySearch)"
 
 #: ../gramps/gui/fs/sync_directions.py:774
 #, fuzzy
@@ -18074,16 +17797,12 @@ msgstr "Pramen: Titulek"
 
 #: ../gramps/gui/fs/sync_directions.py:806
 #: ../gramps/gui/fs/sync_directions.py:814
-#, fuzzy
-#| msgid "Select Family"
 msgid "Sync to FamilySearch"
-msgstr "Vybrat rodinu"
+msgstr "Synchronizovat s FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:815
-#, fuzzy
-#| msgid "Select Family"
 msgid "Gramps to FamilySearch"
-msgstr "Vybrat rodinu"
+msgstr "Gramps do FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:821
 #, fuzzy
@@ -18104,16 +17823,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:865
-#, fuzzy
-#| msgid "Warning messages"
 msgid "Change message:"
-msgstr "Varování"
+msgstr "Změnit zprávu:"
 
 #: ../gramps/gui/fs/sync_directions.py:891
-#, fuzzy
-#| msgid "No mention"
 msgid "Needs attention"
-msgstr "Bez popisu"
+msgstr "Vyžaduje pozornost"
 
 #: ../gramps/gui/fs/sync_directions.py:893
 msgid "Use the Action column to choose what FamilySearch receives."
@@ -18124,20 +17839,17 @@ msgid "Action"
 msgstr "Akce"
 
 #: ../gramps/gui/fs/sync_directions.py:995
-#, fuzzy
-#| msgid "Merge Family"
 msgid "Keep FamilySearch"
-msgstr "Sloučit rodinu"
+msgstr "Zachovat FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:999
 msgid "Choose whether to keep FamilySearch or push this Gramps value."
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1021
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(selected)d of %(total)d selected"
-msgstr "%(current)d z %(total)d"
+msgstr "%(selected)d z %(total)d vybraných"
 
 #: ../gramps/gui/fs/sync_directions.py:1076
 #: ../gramps/gui/fs/sync_directions.py:1651
@@ -18229,10 +17941,8 @@ msgid "Export to FamilySearch (basic)"
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1495
-#, fuzzy
-#| msgid "Export:"
 msgid "Export"
-msgstr "Export:"
+msgstr "Export"
 
 #: ../gramps/gui/fs/sync_directions.py:1507
 msgid ""
@@ -18242,10 +17952,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1514
-#, fuzzy
-#| msgid "Include places"
 msgid "Include parents"
-msgstr "Zahrnout místa"
+msgstr "Zahrnout rodiče"
 
 #: ../gramps/gui/fs/sync_directions.py:1515
 #, fuzzy
@@ -18261,16 +17969,12 @@ msgid "Include children"
 msgstr "Zahrnout potomky"
 
 #: ../gramps/gui/fs/sync_directions.py:1538
-#, fuzzy
-#| msgid "person"
 msgid "(person)"
-msgstr "osoba"
+msgstr "(osoba)"
 
 #: ../gramps/gui/fs/sync_directions.py:1557
-#, fuzzy
-#| msgid "the person"
 msgid "This person: "
-msgstr "osoba"
+msgstr "Tato osoba: "
 
 #: ../gramps/gui/fs/sync_directions.py:1585
 #, fuzzy
@@ -18324,10 +18028,8 @@ msgid "FamilySearch export failed: {e}"
 msgstr ""
 
 #: ../gramps/gui/fs/tools_window.py:331
-#, fuzzy
-#| msgid "Family To Do"
 msgid "FamilySearch Tools"
-msgstr "Úkoly rodiny"
+msgstr "Nástroje FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:350 ../gramps/gui/fs/tools_window.py:770
 #, fuzzy
@@ -18336,40 +18038,28 @@ msgid "Editor person: (none)"
 msgstr "Upravit osobu (%s)"
 
 #: ../gramps/gui/fs/tools_window.py:378
-#, fuzzy
-#| msgid "Person Citations"
 msgid "Single Person Actions"
-msgstr "Citace osoby"
+msgstr "Akce jedné osoby"
 
 #: ../gramps/gui/fs/tools_window.py:382
-#, fuzzy
-#| msgid "Action"
 msgid "Bulk Actions"
-msgstr "Akce"
+msgstr "Hromadné akce"
 
 #: ../gramps/gui/fs/tools_window.py:388
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import relatives"
-msgstr "Import selhal"
+msgstr "Importovat příbuzné"
 
 #: ../gramps/gui/fs/tools_window.py:392
-#, fuzzy
-#| msgid "Import Pro-Gen"
 msgid "Import Parents"
-msgstr "Importovat Pro-Gen"
+msgstr "Import rodičů"
 
 #: ../gramps/gui/fs/tools_window.py:393
-#, fuzzy
-#| msgid "Indent Spouses"
 msgid "Import Spouse"
-msgstr "Odsadit partnery"
+msgstr "Import manžela"
 
 #: ../gramps/gui/fs/tools_window.py:394
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import Children"
-msgstr "Import selhal"
+msgstr "Import dětí"
 
 #: ../gramps/gui/fs/tools_window.py:399 ../gramps/gui/fs/tools_window.py:419
 #: ../gramps/gui/plug/tool.py:71
@@ -18377,22 +18067,16 @@ msgid "Utilities"
 msgstr "Pomůcky"
 
 #: ../gramps/gui/fs/tools_window.py:402
-#, fuzzy
-#| msgid "Cleared"
 msgid "Clear Cache"
-msgstr "Schváleno"
+msgstr "Vymazání mezipaměti"
 
 #: ../gramps/gui/fs/tools_window.py:408
-#, fuzzy
-#| msgid "All generations"
 msgid "Import multiple generations"
-msgstr "Všechny generace"
+msgstr "Import více generací"
 
 #: ../gramps/gui/fs/tools_window.py:412
-#, fuzzy
-#| msgid "Import failed"
 msgid "Bulk Import Relatives"
-msgstr "Import selhal"
+msgstr "Hromadný Import Příbuzných"
 
 #: ../gramps/gui/fs/tools_window.py:414
 #, fuzzy
@@ -18401,40 +18085,32 @@ msgid "Import ancestors and descendants from the selected FamilySearch person."
 msgstr "Vyhovují všichni potomci určené osoby"
 
 #: ../gramps/gui/fs/tools_window.py:422
-#, fuzzy
-#| msgid "Tags"
 msgid "Tags..."
-msgstr "Štítky"
+msgstr "Štítky..."
 
 #: ../gramps/gui/fs/tools_window.py:534
-#, fuzzy
-#| msgid "Person Citations"
 msgid "Person actions"
-msgstr "Citace osoby"
+msgstr "Akce osoby"
 
 #: ../gramps/gui/fs/tools_window.py:544
-#, fuzzy
-#| msgid "Co_mpare"
 msgid "Compare"
-msgstr "Po_rovnat"
+msgstr "Porovnat"
 
 #: ../gramps/gui/fs/tools_window.py:549
 msgid "Sync from FamilySearch"
-msgstr ""
+msgstr "Synchronizovat z FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:550
 msgid "Sync to FamilySearch..."
-msgstr ""
+msgstr "Synchronizovat do FamilySearch..."
 
 #: ../gramps/gui/fs/tools_window.py:552
 msgid "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
-msgstr ""
+msgstr "Přepíše vybraná pole FamilySearch hodnotami z Gramps (bez vymazání)."
 
 #: ../gramps/gui/fs/tools_window.py:559
-#, fuzzy
-#| msgid "Select Family"
 msgid "Export to FamilySearch"
-msgstr "Vybrat rodinu"
+msgstr "Export do FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:562
 msgid ""
@@ -18455,10 +18131,8 @@ msgid "Editor person: %(name)s"
 msgstr "Osoba: %(name)s"
 
 #: ../gramps/gui/fs/tools_window.py:809
-#, fuzzy
-#| msgid "Family ID"
 msgid "Add FamilySearch ID"
-msgstr "ID rodiny"
+msgstr "Přidat ID FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:815
 #, fuzzy
@@ -18472,16 +18146,13 @@ msgid "Build FSID list (1/%(total)d)"
 msgstr ""
 
 #: ../gramps/gui/fs/utils/index.py:57 ../gramps/gui/fs/utils/index.py:61
-#, fuzzy, python-format
-#| msgid "Family places for %s"
+#, python-format
 msgid "FamilySearch duplicate ID: %s "
-msgstr "Místa rodiny %s"
+msgstr "Duplicitní ID FamilySearch: %s "
 
 #: ../gramps/gui/fs/utils/index.py:60
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Duplicate FSFTID"
-msgstr "Duplikovat rodinu"
+msgstr "Duplicitní FSFTID"
 
 #: ../gramps/gui/fs/utils/index.py:62
 #, fuzzy
@@ -20897,10 +20568,8 @@ msgid "_Family Trees"
 msgstr "_Rodokmeny"
 
 #: ../gramps/gui/grampsgui.py:57
-#, fuzzy
-#| msgid "Searching..."
 msgid "_FamilySearch Sign in..."
-msgstr "Vyhledává se..."
+msgstr "_Přihlášení do FamilySearch..."
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Go"
@@ -21271,7 +20940,7 @@ msgstr ""
 #: ../gramps/gui/logger/_errorview.py:164
 #: ../gramps/gui/logger/_errorview.py:180
 msgid "Error Detail"
-msgstr "Podrobnosti chyby"
+msgstr "Detail chyby"
 
 #: ../gramps/gui/makefilter.py:46
 #, python-format
@@ -22864,10 +22533,8 @@ msgid "Cannot open new citation editor"
 msgstr "Nelze otevřít nový editor citací"
 
 #: ../gramps/gui/viewmanager.py:348
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch tools"
-msgstr "Barvy rodiny"
+msgstr "Nástroje FamilySearch"
 
 #: ../gramps/gui/viewmanager.py:392 ../gramps/gui/viewmanager.py:1403
 msgid "No Family Tree"
@@ -22882,16 +22549,12 @@ msgid "Sign in"
 msgstr ""
 
 #: ../gramps/gui/viewmanager.py:638
-#, fuzzy
-#| msgid "Use complete sentences"
 msgid "User consent declined"
-msgstr "Použít rozvité věty"
+msgstr "Souhlas uživatele odmítnut"
 
 #: ../gramps/gui/viewmanager.py:646
-#, fuzzy
-#| msgid "Configuration error:"
 msgid "Authorization error"
-msgstr "Chyba nastavení:"
+msgstr "Chyba autorizace"
 
 #: ../gramps/gui/viewmanager.py:838
 msgid "Registering plugins..."
@@ -26165,55 +25828,39 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:98
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:105
-#, fuzzy
-#| msgid "Web Calendar"
 msgid "Person's birth Calendar"
-msgstr "Webový kalendář"
+msgstr "Kalendář narození osob"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:99
-#, fuzzy
-#| msgid "Gramplet showing the notes for a person"
 msgid "Gramplet showing the birth for a person on the calendar"
-msgstr "Gramplet zobrazující poznámky osoby"
+msgstr "Gramplet zobrazující narození osoby v kalendáři"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:113
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:120
-#, fuzzy
-#| msgid "person's death"
 msgid "Person's death Calendar"
-msgstr "úmrtí osoby"
+msgstr "Kalendář úmrtí osob"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:114
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the death for a person on the calendar"
-msgstr "Gramplet zobrazující události dané osoby"
+msgstr "Gramplet zobrazující úmrtí osoby v kalendáři"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:128
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
-#, fuzzy
-#| msgid "My Family Calendar"
 msgid "Family Calendar"
-msgstr "Kalendář mé rodiny"
+msgstr "Kalendář rodiny"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:129
-#, fuzzy
-#| msgid "Gramplet showing the notes for a family"
 msgid "Gramplet showing the marriage for a family on the calendar"
-msgstr "Gramplet zobrazující poznámky rodiny"
+msgstr "Gramplet zobrazující sňatek pro rodinu v kalendáři"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:143
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:150
-#, fuzzy
-#| msgid "vCalendar"
 msgid "Event Calendar"
-msgstr "vCalendar"
+msgstr "Kalendář událostí"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:144
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Gramplet showing the date for an event on the calendar"
-msgstr "Gramplet zobrazující poznámky události"
+msgstr "Gramplet zobrazující datum události v kalendáři"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:158
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
@@ -26374,7 +26021,7 @@ msgstr "Co dále?"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:456
 msgid "Person Details"
-msgstr "Podrobnosti osoby"
+msgstr "Detaily osoby"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:457
 msgid "Gramplet showing details of a person"
@@ -26384,11 +26031,11 @@ msgstr "Gramplet zobrazující podrobnosti o osobě"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:480
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:496
 msgid "Details"
-msgstr "Podrobnosti"
+msgstr "Detaily"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:472
 msgid "Repository Details"
-msgstr "Podrobnosti archivu"
+msgstr "Detaily archivu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:473
 msgid "Gramplet showing details of a repository"
@@ -26396,7 +26043,7 @@ msgstr "Gramplet zobrazující podrobnosti o archivu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:488
 msgid "Place Details"
-msgstr "Podrobnosti místa"
+msgstr "Detaily místa"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:489
 msgid "Gramplet showing details of a place"
@@ -29860,7 +29507,7 @@ msgstr "Druhý PLAC ignorován"
 
 #: ../gramps/plugins/lib/libgedcom.py:6320
 msgid "Detail"
-msgstr "Podrobnosti"
+msgstr "Detail"
 
 #: ../gramps/plugins/lib/libgedcom.py:6336
 msgid "Location already populated; ADDR ignored"
@@ -30027,7 +29674,7 @@ msgstr "Vklad: Kód kostela"
 
 #: ../gramps/plugins/lib/libgedcom.py:8280
 msgid "Submission: Generations of ancestors"
-msgstr "Zařazení: Genrací předků"
+msgstr "Zařazení: Generace předků"
 
 #: ../gramps/plugins/lib/libgedcom.py:8282
 msgid "Submission: Generations of descendants"
@@ -34151,10 +33798,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
-#, fuzzy
-#| msgid "Personal map"
 msgid "Personal map: "
-msgstr "Osobní mapa"
+msgstr "Osobní mapa: "
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
 msgid "The map"
@@ -35156,10 +34801,8 @@ msgstr "Kliknutím vybrat pohled"
 #: ../gramps/plugins/sidebar/favoritessidebar.py:79
 #: ../gramps/plugins/sidebar/favoritessidebar.py:81
 #: ../gramps/plugins/sidebar/favoritessidebar.py:219
-#, fuzzy
-#| msgid "Choose your dialect"
 msgid "Choose your favorite views"
-msgstr "Zvolte si dialekt"
+msgstr "Zvolte si vaše oblíbené pohledy"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:85
 #: ../gramps/plugins/tool/mediamanager.py:94
@@ -35168,16 +34811,12 @@ msgid "Help"
 msgstr "Nápověda"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:86
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select All"
-msgstr "Vybrat _vše"
+msgstr "Vybrat vše"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:87
-#, fuzzy
-#| msgid "Clear _All"
 msgid "Clear All"
-msgstr "Vym_azat vše"
+msgstr "Vymazat vše"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:136
 msgid "Switching_Navigator_modes"
@@ -35220,10 +34859,8 @@ msgid "Expander"
 msgstr "Rozpínač"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:82
-#, fuzzy
-#| msgid "Category Sidebar"
 msgid "Favorites Sidebar"
-msgstr "Postranní lišta kategorií"
+msgstr "Postranní lišta oblíbených"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:83
 #, fuzzy
@@ -36207,8 +35844,6 @@ msgid "Include Attributes"
 msgstr "Zahrnout atributy"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
-#, fuzzy
-#| msgid "Include addresses"
 msgid "Include Addresses"
 msgstr "Zahrnout adresy"
 
@@ -40093,11 +39728,8 @@ msgstr "Přidat nové dítě do rodiny"
 
 #: ../gramps/plugins/view/relview.py:1172
 #: ../gramps/plugins/view/relview.py:1704
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person as a child of the family"
-msgstr ""
-"Vybrat existující osobu z databáze a přidat ji jako dítě k současné rodině"
+msgstr "Vybrat existující osobu jako dítě rodiny"
 
 #: ../gramps/plugins/view/relview.py:1467
 #, python-format
@@ -40166,7 +39798,7 @@ msgstr "Zobrazit odkazy jako odkazy na web"
 
 #: ../gramps/plugins/view/relview.py:1968
 msgid "Show Details"
-msgstr "Zobrazit detaily"
+msgstr "Zobrazení detailů"
 
 #: ../gramps/plugins/view/relview.py:1971
 msgid "Show Siblings"
@@ -40848,25 +40480,22 @@ msgid "%(idx)s - for people: %(people)s"
 msgstr ""
 
 #: ../gramps/plugins/webreport/media.py:736
-#, fuzzy, python-format
-#| msgid "%(person)s was restored to the family of %(family)s\n"
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for family: %(family)s"
-msgstr "%(person)s byl(a) vrácen(a) do rodiny %(family)s\n"
+msgstr "%(idx)s - pro rodinu: %(family)s"
 
 #: ../gramps/plugins/webreport/media.py:760
-#, fuzzy, python-format
-#| msgid "%(eventtype)s : %(name)s"
+#, python-format
 msgctxt "name"
 msgid "%(idx)s - for event: %(event)s: %(name)s"
-msgstr "%(eventtype)s : %(name)s"
+msgstr "%(idx)s - pro událost: %(event)s: %(name)s"
 
 #: ../gramps/plugins/webreport/media.py:775
-#, fuzzy, python-format
-#| msgid "%(date)s - %(place)s."
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for place: %(place)s"
-msgstr "%(date)s - %(place)s."
+msgstr "%(idx)s - pro místo: %(place)s"
 
 #: ../gramps/plugins/webreport/media.py:790
 #, python-format
@@ -41110,14 +40739,13 @@ msgid "The maximum number of rows to include in an index page"
 msgstr "Maximální počet řádků, které lze zahrnout do stránky indexu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2259
-#, fuzzy
-#| msgid "Allow editing database owner information."
 msgid "Allow internet indexation."
-msgstr "Umožní modifikaci informací o vlastníku databáze."
+msgstr "Povolit indexaci na internetu."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Allow search engines (Google, Bing, etc.) to index your website."
 msgstr ""
+"Povolit vyhledávačům (Google, Bing atd.) indexovat vaši webovou stránku."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2272
 msgid "Extra Pages"
