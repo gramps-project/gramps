@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-06 17:29+0000\n"
+"PO-Revision-Date: 2026-06-28 21:01+0000\n"
 "Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.6\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -16701,7 +16701,7 @@ msgstr "Eşleri dahil et"
 
 #: ../gramps/gui/fs/actions.py:685
 msgid "When off, import only the direct parent/child bloodline."
-msgstr ""
+msgstr "Kapalıyken, yalnızca doğrudan ebeveyn/çocuk soy hattını içe aktarın."
 
 #: ../gramps/gui/fs/actions.py:688
 #, fuzzy
@@ -16712,6 +16712,8 @@ msgstr "Mevcut kişileri yeniden içe aktarmayın"
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
 msgstr ""
+"İçe aktarma işlemi sırasında mevcut bağlantılı Gramps kişilerinde herhangi "
+"bir değişiklik yapmayın."
 
 #: ../gramps/gui/fs/actions.py:694 ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -16747,6 +16749,8 @@ msgstr "Bozuk ebeveyn ilişkileri aranıyor"
 msgid ""
 "Create or reuse families so imported parents and children are connected."
 msgstr ""
+"İçe aktarılan ebeveyn ve çocukların birbirine bağlanması için yeni aileler "
+"oluşturun veya mevcut aileleri yeniden kullanın."
 
 #: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
 #, fuzzy
@@ -16788,7 +16792,7 @@ msgstr "Web Araması"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
-msgstr ""
+msgstr "Canlı"
 
 #: ../gramps/gui/fs/actions.py:856
 #, fuzzy
@@ -16798,7 +16802,7 @@ msgstr "FamilySearch Kimliği"
 
 #: ../gramps/gui/fs/actions.py:860
 msgid "Enter a name, date, place, ID, or URL to search."
-msgstr ""
+msgstr "Arama yapmak için bir isim, tarih, yer, kimlik numarası veya URL girin."
 
 #: ../gramps/gui/fs/actions.py:865
 #, fuzzy
@@ -16815,7 +16819,7 @@ msgstr "Aile adlarını ara"
 #: ../gramps/gui/fs/actions.py:890
 #, python-format
 msgid "Search results: %(count)d"
-msgstr ""
+msgstr "Arama sonuçları: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:893
 #, fuzzy
@@ -16835,10 +16839,12 @@ msgid ""
 "No FamilySearch person was imported. Check the selected person ID and try "
 "again."
 msgstr ""
+"Hiçbir FamilySearch kişisi içe aktarılmadı. Seçilen kişi kimliğini kontrol "
+"edin ve yeniden deneyin."
 
 #: ../gramps/gui/fs/actions.py:993
 msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
-msgstr ""
+msgstr "Ağacınız boş! FamilySearch'ten toplu içe aktarma yapmak ister misiniz?"
 
 #: ../gramps/gui/fs/actions.py:994
 #, fuzzy
@@ -17312,7 +17318,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:678
 msgid "Use FS"
-msgstr ""
+msgstr "FS kullanın"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:685
 #: ../gramps/gui/fs/sync_directions.py:954
@@ -17355,7 +17361,7 @@ msgstr "Seçilen aracı çalıştır"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:776
 msgid "Not mergeable in this row"
-msgstr ""
+msgstr "Bu satırda birleştirilemez"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:862
 #, fuzzy
@@ -17377,15 +17383,15 @@ msgstr "FamilySearch değeri"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:932
 msgid "This row cannot be merged directly"
-msgstr ""
+msgstr "Bu satır doğrudan birleştirilemez"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:976
 msgid "Inconsistencies"
-msgstr ""
+msgstr "Tutarsızlıklar"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:980
 msgid "The dates are different."
-msgstr ""
+msgstr "Tarihler farklı."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:982
 #, fuzzy
@@ -17395,7 +17401,7 @@ msgstr "Farklı bir kişi seçin"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:984
 msgid "Review this difference before merging."
-msgstr ""
+msgstr "Birleştirmeden önce bu farkı inceleyin."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1120
 #, fuzzy
@@ -17417,7 +17423,7 @@ msgstr "Seçilen kişi veri tabanında bulunamadı."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1612
 msgid "Select at least one FamilySearch row to merge."
-msgstr ""
+msgstr "Birleştirmek için en az bir FamilySearch satırı seçin."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1617
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1673
@@ -17454,17 +17460,17 @@ msgstr "FamilySearch: Birleştirilmiş kimlikleri yenile"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1674
 #, python-brace-format
 msgid "{count} item(s) copied into Gramps."
-msgstr ""
+msgstr "{count} öğe Gramps'e kopyalandı."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1681
 #, python-brace-format
 msgid ""
 "{count} item(s) copied into Gramps; {failed} row(s) could not be applied."
-msgstr ""
+msgstr "{count} öğe Gramps'e kopyalandı; {failed} satır uygulanamadı."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1688
 msgid "No selected rows could be copied into Gramps."
-msgstr ""
+msgstr "Seçilen satırlardan hiçbiri Gramps'e kopyalanamadı."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1696
 msgid "Select a person first."
@@ -17499,6 +17505,9 @@ msgid ""
 "Review FamilySearch differences, choose the rows to copy, then merge them "
 "into Gramps. The direction is FamilySearch to Gramps only."
 msgstr ""
+"FamilySearch'teki farklılıkları inceleyin, kopyalamak istediğiniz satırları "
+"seçin ve ardından bunları Gramps'e birleştirin. Birleştirme yönü yalnızca "
+"FamilySearch'ten Gramps'e doğrudur."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1800
 #, fuzzy
@@ -17958,7 +17967,7 @@ msgstr "Açıklama yok"
 
 #: ../gramps/gui/fs/sync_directions.py:893
 msgid "Use the Action column to choose what FamilySearch receives."
-msgstr ""
+msgstr "FamilySearch'ün ne alacağını seçmek için Eylem sütununu kullanın."
 
 #: ../gramps/gui/fs/sync_directions.py:957 ../gramps/gui/undohistory.py:115
 msgid "Action"
@@ -17971,6 +17980,8 @@ msgstr "FamilySearch'ü koruyun"
 #: ../gramps/gui/fs/sync_directions.py:999
 msgid "Choose whether to keep FamilySearch or push this Gramps value."
 msgstr ""
+"FamilySearch'ü kullanmaya devam etmeyi mi yoksa bu Gramps değerini öne "
+"çıkarmayı mı tercih edeceğinizi seçin."
 
 #: ../gramps/gui/fs/sync_directions.py:1021
 #, fuzzy, python-format
@@ -21464,6 +21475,13 @@ msgid ""
 "Addon Manager → Projects) targets a different Gramps version. Check that the "
 "project URL matches Gramps %(major_version)s."
 msgstr ""
+"'%(addon_id)s' eklentisi kaydedilemedi ve mevcut yapılandırmanızda "
+"kullanılamayacak.\n"
+"\n"
+"Bu genellikle eklentinin projesi (Düzenle → Tercihler → Eklenti Yöneticisi → "
+"Projeler altında) farklı bir Gramps sürümünü hedeflediğinde meydana gelir. "
+"Proje URL'sinin Gramps %(major_version)s ile eşleşip eşleşmediğini kontrol "
+"edin."
 
 #: ../gramps/gui/plug/_windows.py:612
 msgid "No matching addons found."
@@ -22716,11 +22734,11 @@ msgstr "Aile Ağacı Yok"
 
 #: ../gramps/gui/viewmanager.py:415
 msgid "You are not logged in to FamilySearch. Would you like to sign in now?"
-msgstr ""
+msgstr "FamilySearch'e giriş yapmadınız. Şimdi giriş yapmak ister misiniz?"
 
 #: ../gramps/gui/viewmanager.py:418
 msgid "Sign in"
-msgstr ""
+msgstr "Giriş yap"
 
 #: ../gramps/gui/viewmanager.py:638
 msgid "User consent declined"
@@ -29586,6 +29604,10 @@ msgid ""
 "%(year)d-%(month)02d-%(day)02d. If your source uses DD/MM/YYYY (e.g. "
 "ancestry.com exports), verify and correct after import."
 msgstr ""
+"Belirsiz sayısal tarih '%(orig)s' AA/GG/YYYY (ABD biçimi) = %(year)d-%(month)"
+"02d-%(day)02d olarak yorumlanıyor. Kaynağınız GG/AA/YYYY kullanıyorsa "
+"(örneğin ancestry.com dışa aktarımları), içe aktardıktan sonra doğrulayın ve "
+"düzeltin."
 
 #: ../gramps/plugins/lib/libgedcom.py:3619
 msgid "Records not imported into "
@@ -34120,6 +34142,15 @@ msgid ""
 "https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"Özel bir harita döşeme sağlayıcısı kullanmak için, döşeme URL’sini aşağıya "
+"yapıştırın.\n"
+"#Z, #X, #Y değerlerini yakınlaştırma, x ve y için yer tutucu olarak "
+"kullanın.\n"
+"Örneğin:\n"
+"https://api.maptiler.com/tiles/uk-osgb1888/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"https://api.maptiler.com/tiles/uk-osgb63k1885/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
 #, fuzzy
