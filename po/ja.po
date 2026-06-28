@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-17 22:22+0000\n"
+"PO-Revision-Date: 2026-06-19 16:01+0000\n"
 "Last-Translator: たりこも <tarikomo289@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ja/>\n"
@@ -808,6 +808,10 @@ msgid ""
 "on the date button. The format of the date is set under \"Edit > Preferences "
 "> Data\"."
 msgstr ""
+"<b>日付の入力修正</b><br/>日付を誤った形式で入力した場合、Gramps上では日付の"
+"形式が正しくない場合に背景が赤みがかった色になるか、入力欄の右端に赤い点が表"
+"示されます。日付ボタンをクリックすると「日付選択」から日付を修正できます。日"
+"付の形式は、「編集 > 環境設定 > データ」で設定できます。"
 
 #: ../data/tips.xml:77
 msgid ""
@@ -818,12 +822,16 @@ msgid ""
 msgstr ""
 
 #: ../data/tips.xml:79
+#, fuzzy
 msgid ""
 "<b>Managing Names</b><br/>It is easy to manage people with several names in "
 "Gramps. In the Person Editor select the Names tab. You can add names of "
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
+"<b>名前の管理</b><br/>Grampsでは、複数の名前を持つ人物を簡単に管理できます。"
+"人物エディタで「名前」タブを選択します。さまざまな種類の名前を追加し優先名を"
+"「優先名」セクションにドラッグして設定できます。"
 
 #: ../data/tips.xml:81
 msgid ""
@@ -832,6 +840,10 @@ msgid ""
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
+"<b>家系図の表示</b><br/>家系図表示では従来の家系図が表示されます。"
+"マウスカーソルを各人物の上に置くと、その人物に関する詳細情報が表示されます。"
+"また、各人物を右クリックすると他の家族構成員や設定にアクセスできます。設定を"
+"いろいろ試して様々なオプションをご確認ください。"
 
 #: ../data/tips.xml:83
 msgid ""
@@ -847,6 +859,9 @@ msgid ""
 "database. The list can be sorted by a number of different criteria, such as "
 "City, County or State."
 msgstr ""
+"<b>場所の管理</b><br/>場所ビューにはデータベース内のすべての場所のリストが表"
+"示されます。リストは、都市、郡、州などの様々な基準で並べ替えることができます"
+"。"
 
 #: ../data/tips.xml:87
 msgid ""
@@ -865,6 +880,10 @@ msgid ""
 "limited only by your imagination. Custom filters are created from \"Edit > "
 "Person Filter Editor\"."
 msgstr ""
+"<b>フィルター</b><br/>フィルターを使用すると人物ビューに表示される人物を制限"
+"できます。多数のプリセットフィルターに加えてカスタムフィルターは想像力次第で"
+"自由に作成できます。カスタムフィルターは「編集 > 人物フィルターエディター」か"
+"ら作成します。"
 
 #: ../data/tips.xml:91
 msgid ""
@@ -874,6 +893,10 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
+"<b>GEDCOMファイル</b><br/>GrampsではGEDCOMファイルのインポートとエクスポート"
+"が可能です。業界標準のGEDCOMバージョン5.5を幅広くサポートしているため、Gramps"
+"の情報を他のほとんどの系図作成プログラムのユーザーとやり取りできます。GEDCOM"
+"ファイルのインポートとエクスポートを容易にするフィルターも用意されています。"
 
 #: ../data/tips.xml:93
 msgid ""
@@ -905,18 +928,25 @@ msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
+"<b>Grampsのバグを報告する</b><br/>Gramps のバグを報告する方法は、&bugs_url; "
+"の Gramps バグ追跡システムを使用することです。"
 
 #: ../data/tips.xml:101
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
-msgstr ""
+msgstr "<b>Grampsのホームページ</b><br/>Grampsのホームページは&gramps_url;です。"
 
 #: ../data/tips.xml:103
+#, fuzzy
 msgid ""
 "<b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information "
 "secure by allowing you to mark information as private. Data marked as "
 "private can be excluded from reports and data exports. Look for the padlock "
 "which toggles records between private and public."
 msgstr ""
+"<b>Grampsのプライバシー</b><br/>Grampsでは個人情報を非公開としてマークするこ"
+"とで個人情報の安全性を確保できます。非公開としてマークされたデータは、"
+"レポートやデータのエクスポートから除外できます。レコードを非公開と公開に切り"
+"替えるためには南京錠のアイコンを探してください。"
 
 #: ../data/tips.xml:105
 msgid ""
