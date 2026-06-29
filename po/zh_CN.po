@@ -24,8 +24,8 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-28 21:01+0000\n"
-"Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
+"PO-Revision-Date: 2026-06-29 21:28+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -16408,7 +16408,7 @@ msgstr "%(birth)s - %(death)s"
 #: ../gramps/gui/fs/actions.py:524
 #, python-format
 msgid "FamilySearch search failed (HTTP %(status)s)."
-msgstr "FamilySearch 搜索失败（HTTP %(status)）。"
+msgstr "FamilySearch 搜索失败（HTTP %(status)s）。"
 
 #: ../gramps/gui/fs/actions.py:531
 msgid "FamilySearch search returned invalid data."
