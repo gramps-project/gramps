@@ -42,7 +42,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-28 21:01+0000\n"
+"PO-Revision-Date: 2026-06-29 14:56+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -17505,10 +17505,8 @@ msgid "Kind"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2052
-#, fuzzy
-#| msgid "Gramps item:"
 msgid "Gramps title"
-msgstr "Položka Gramps:"
+msgstr "Názov Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2053
 msgid "Gramps URL"
