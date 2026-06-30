@@ -111,6 +111,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.allfonts = [x for x in enumerate(SystemFonts().get_system_fonts())]
 
         self.uistate.connect("font-changed", self.font_changed)
+        self.uistate.connect("nameformat-changed", self.person_rebuild)
 
     def font_changed(self):
         self.format_helper.reload_symbols()
