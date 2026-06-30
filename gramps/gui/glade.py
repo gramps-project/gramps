@@ -59,7 +59,19 @@ class Glade(Gtk.Builder):
     Glade class: Manage glade files as Gtk.Builder objects
     """
 
-    __slots__ = ["__toplevel", "__filename", "__dirname"]
+    _ALLOWED_ATTRIBUTES = {
+        "__toplevel",
+        "__filename",
+        "__dirname",
+        "_Glade__toplevel",
+        "_Glade__filename",
+        "_Glade__dirname",
+    }
+
+    def __setattr__(self, name, value):
+        if not hasattr(self, name) and name not in self._ALLOWED_ATTRIBUTES:
+            raise AttributeError(f"Ad-hoc attribute {name} is not permitted.")
+        super().__setattr__(name, value)
 
     def __init__(self, filename=None, dirname=None, toplevel=None, also_load=[]):
         """

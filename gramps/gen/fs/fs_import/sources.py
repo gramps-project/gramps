@@ -27,7 +27,7 @@ from __future__ import annotations
 
 import logging
 import re
-from typing import Any, Iterator
+from typing import Any, Callable, Iterable, Iterator
 from urllib.parse import urljoin, urlparse, urlunparse
 
 from gramps.gen.lib import (
@@ -170,6 +170,78 @@ def _canon_fs_web(url: str) -> str:
     return u
 
 
+def normalize_source_url(url: str | None) -> str:
+    """
+    Return a stable URL value for source import/compare checks.
+    """
+    normalized = _canon_fs_web(url or "")
+    if not normalized:
+        return ""
+    try:
+        parsed = urlparse(normalized)
+        host = (parsed.netloc or "").lower()
+        scheme = parsed.scheme or "https"
+        path = parsed.path or ""
+        if host.endswith("familysearch.org"):
+            host = "www.familysearch.org"
+            scheme = "https"
+        if path != "/":
+            path = path.rstrip("/")
+        return urlunparse(
+            (
+                scheme,
+                host,
+                path,
+                parsed.params or "",
+                parsed.query or "",
+                parsed.fragment or "",
+            )
+        )
+    except Exception:
+        LOG.debug("Failed to normalize source URL: %s", url, exc_info=True)
+    return normalized.strip()
+
+
+def normalize_source_date(date_value: Any) -> str:
+    """
+    Return a stable date value for source import/compare checks.
+    """
+    if not date_value:
+        return ""
+    text = str(date_value).strip()
+    if text == "None":
+        return ""
+    return text
+
+
+def normalize_source_text(text_value: Any) -> str:
+    """
+    Return a stable text value for source import/compare checks.
+    """
+    return str(text_value or "").strip()
+
+
+def source_values_match(
+    gramps_date: Any,
+    gramps_title: Any,
+    gramps_url: str | None,
+    gramps_note: Any,
+    fs_date: Any,
+    fs_title: Any,
+    fs_url: str | None,
+    fs_note: Any,
+) -> bool:
+    """
+    Return True when Gramps and FamilySearch source values are equivalent.
+    """
+    return (
+        normalize_source_date(gramps_date) == normalize_source_date(fs_date)
+        and normalize_source_text(gramps_title) == normalize_source_text(fs_title)
+        and normalize_source_url(gramps_url) == normalize_source_url(fs_url)
+        and normalize_source_text(gramps_note) == normalize_source_text(fs_note)
+    )
+
+
 def _looks_like_record_page(u: str) -> bool:
     if not u:
         return False
@@ -302,7 +374,11 @@ def _hydrate_source_description(fs_tree, sdid: str) -> None:
         return
 
 
-def fetch_source_dates(fs_tree):
+def fetch_source_dates(
+    fs_tree,
+    source_ids: Iterable[str] | None = None,
+    progress_callback: Callable[[str], None] | None = None,
+):
     """
     Populate source descriptions with extra FS date/collection/url data.
     """
@@ -311,13 +387,25 @@ def fetch_source_dates(fs_tree):
         return
 
     web_base = _get_fs_web_base()
+    wanted_ids = {sdid for sdid in (source_ids or []) if sdid}
+    source_descriptions = list(getattr(fs_tree, "sourceDescriptions", []) or [])
+    if wanted_ids:
+        source_descriptions = [
+            sd for sd in source_descriptions if getattr(sd, "id", "") in wanted_ids
+        ]
+    source_descriptions = [
+        sd
+        for sd in source_descriptions
+        if getattr(sd, "id", "") and not str(getattr(sd, "id", "")).startswith("SD")
+    ]
+    total = len(source_descriptions)
 
-    for sd in getattr(fs_tree, "sourceDescriptions", []) or []:
-        if not getattr(sd, "id", ""):
-            continue
-
-        if sd.id[:2] == "SD":
-            continue
+    for index, sd in enumerate(source_descriptions, start=1):
+        if progress_callback:
+            progress_callback(
+                _("Loading FamilySearch source %(current)d/%(total)d")
+                % {"current": index, "total": total}
+            )
 
         if not hasattr(sd, "_date"):
             sd._date = None

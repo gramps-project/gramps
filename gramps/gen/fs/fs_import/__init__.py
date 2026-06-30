@@ -29,7 +29,15 @@ from .importer import FSToGrampsImporter
 from .names import add_name, add_names
 from .notes import add_note
 from .places import create_place, add_place, get_place_by_id
-from .sources import fetch_source_dates, add_source, IntermediateSource
+from .sources import (
+    IntermediateSource,
+    add_source,
+    fetch_source_dates,
+    normalize_source_date,
+    normalize_source_text,
+    normalize_source_url,
+    source_values_match,
+)
 
 __all__ = [
     "_",
@@ -45,4 +53,8 @@ __all__ = [
     "add_names",
     "fetch_source_dates",
     "add_source",
+    "normalize_source_date",
+    "normalize_source_text",
+    "normalize_source_url",
+    "source_values_match",
 ]

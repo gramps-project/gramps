@@ -92,10 +92,16 @@ class EditSource(EditPrimary):
     def empty_object(self):
         return Source()
 
-    def get_menu_title(self):
-        title = self.obj.get_title()
-        if title:
-            title = _("Source") + ": " + title
+    def get_menu_title(self) -> str:
+        """
+        Construct the menu title for this source editor.
+
+        :returns: The window/menu title for this source editor.
+        :rtype: str
+        """
+        if self.obj.get_handle():
+            name = self.obj.get_title()
+            title = _("Source") + (": " + name if name else "")
         else:
             title = _("New Source")
         return title

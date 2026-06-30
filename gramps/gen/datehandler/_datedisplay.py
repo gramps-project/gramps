@@ -179,128 +179,148 @@ class DateDisplay:
             #
             # Not moving to DateStrings, as this is part of display code only,
             # coupled tightly with the formats used in this file.
-            "": _("{long_month} {year}"),
+            "": _( # xgettext: no-python-brace-format
+            "{long_month} {year}"),
             "from"
             # first date in a span
             # Translators: If "from <Month>" needs a special inflection
             # in your language, translate to "{long_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{long_month} {year}", "from"),
+            : _( # xgettext: no-python-brace-format
+            "{long_month} {year}", "from"),
             "to"
             # second date in a span
             # Translators: If "to <Month>" needs a special inflection
             # in your language, translate to "{long_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{long_month} {year}", "to"),
+            : _( # xgettext: no-python-brace-format
+            "{long_month} {year}", "to"),
             "between"
             # first date in a range
             # Translators: If "between <Month>" needs a special inflection
             # in your language, translate to "{long_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{long_month} {year}", "between"),
+            : _( # xgettext: no-python-brace-format
+            "{long_month} {year}", "between"),
             "and"
             # second date in a range
             # Translators: If "and <Month>" needs a special inflection
             # in your language, translate to "{long_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{long_month} {year}", "and"),
+            : _( # xgettext: no-python-brace-format
+            "{long_month} {year}", "and"),
             "before"
             # Translators: If "before <Month>" needs a special inflection
             # in your language, translate to "{long_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{long_month} {year}", "before"),
+            : _( # xgettext: no-python-brace-format
+            "{long_month} {year}", "before"),
             "after"
             # Translators: If "after <Month>" needs a special inflection
             # in your language, translate to "{long_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{long_month} {year}", "after"),
+            : _( # xgettext: no-python-brace-format
+            "{long_month} {year}", "after"),
             "about"
             # Translators: If "about <Month>" needs a special inflection
             # in your language, translate to "{long_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{long_month} {year}", "about"),
+            : _( # xgettext: no-python-brace-format
+            "{long_month} {year}", "about"),
             "estimated"
             # Translators: If "estimated <Month>" needs a special inflection
             # in your language, translate to "{long_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{long_month} {year}", "estimated"),
+            : _( # xgettext: no-python-brace-format
+            "{long_month} {year}", "estimated"),
             "calculated"
             # Translators: If "calculated <Month>" needs a special inflection
             # in your language, translate to "{long_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{long_month} {year}", "calculated"),
-        }
+            : _( # xgettext: no-python-brace-format
+            "{long_month} {year}", "calculated"),
+        } # fmt: skip
 
         self.FORMATS_short_month_year = {
-            "": _("{short_month} {year}"),
+            "": _( # xgettext: no-python-brace-format
+            "{short_month} {year}"),
             "from"
             # first date in a span
             # Translators: If "from <Month>" needs a special inflection
             # in your language, translate to "{short_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{short_month} {year}", "from"),
+            : _( # xgettext: no-python-brace-format
+            "{short_month} {year}", "from"),
             "to"
             # second date in a span
             # Translators: If "to <Month>" needs a special inflection
             # in your language, translate to "{short_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{short_month} {year}", "to"),
+            : _( # xgettext: no-python-brace-format
+            "{short_month} {year}", "to"),
             "between"
             # first date in a range
             # Translators: If "between <Month>" needs a special inflection
             # in your language, translate to "{short_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{short_month} {year}", "between"),
+            : _( # xgettext: no-python-brace-format
+            "{short_month} {year}", "between"),
             "and"
             # second date in a range
             # Translators: If "and <Month>" needs a special inflection
             # in your language, translate to "{short_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{short_month} {year}", "and"),
+            : _( # xgettext: no-python-brace-format
+            "{short_month} {year}", "and"),
             "before"
             # Translators: If "before <Month>" needs a special inflection
             # in your language, translate to "{short_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{short_month} {year}", "before"),
+            : _( # xgettext: no-python-brace-format
+            "{short_month} {year}", "before"),
             "after"
             # Translators: If "after <Month>" needs a special inflection
             # in your language, translate to "{short_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{short_month} {year}", "after"),
+            : _( # xgettext: no-python-brace-format
+            "{short_month} {year}", "after"),
             "about"
             # Translators: If "about <Month>" needs a special inflection
             # in your language, translate to "{short_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{short_month} {year}", "about"),
+            : _( # xgettext: no-python-brace-format
+            "{short_month} {year}", "about"),
             "estimated"
             # Translators: If "estimated <Month>" needs a special inflection
             # in your language, translate to "{short_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{short_month} {year}", "estimated"),
+            : _( # xgettext: no-python-brace-format
+            "{short_month} {year}", "estimated"),
             "calculated"
             # Translators: If "calculated <Month>" needs a special inflection
             # in your language, translate to "{short_month.forms[X]} {year}"
             # (where X is one of the month-name inflections you defined)
             # else leave it untranslated
-            : _("{short_month} {year}", "calculated"),
-        }
+            : _( # xgettext: no-python-brace-format
+            "{short_month} {year}", "calculated"),
+        } # fmt: skip
 
     def formats_changed(self):
         """Allow overriding so a subclass can modify"""
@@ -557,24 +577,29 @@ class DateDisplay:
             return "{long_month} {year}".format(
                 long_month=long_months[month], year=year
             )
-        return self.FORMATS_long_month_year[inflect].format(
-            long_month=long_months[month], year=year
-        )
+        # bug 14100: an inflection key not present in the dict (e.g. from a
+        # locale whose .po mistranslated the inflection context) falls back
+        # to the uninflected format ("") instead of raising KeyError.
+        return self.FORMATS_long_month_year.get(
+            inflect, self.FORMATS_long_month_year[""]
+        ).format(long_month=long_months[month], year=year)
 
     def format_short_month_year(self, month, year, inflect, short_months):
         if not hasattr(short_months[1], "forms"):  # not a Lexeme: no inflection
             return "{short_month} {year}".format(
                 short_month=short_months[month], year=year
             )
-        return self.FORMATS_short_month_year[inflect].format(
-            short_month=short_months[month], year=year
-        )
+        # bug 14100: fall back to the uninflected format on an unknown key.
+        return self.FORMATS_short_month_year.get(
+            inflect, self.FORMATS_short_month_year[""]
+        ).format(short_month=short_months[month], year=year)
 
     def format_long_month(self, month, inflect, long_months):
         if not hasattr(long_months[1], "forms"):  # not a Lexeme: no inflection
             return "{long_month}".format(long_month=long_months[month])
+        # bug 14100: fall back to the uninflected format on an unknown key.
         return (
-            self.FORMATS_long_month_year[inflect]
+            self.FORMATS_long_month_year.get(inflect, self.FORMATS_long_month_year[""])
             .format(long_month=long_months[month], year="")
             .rstrip()
         )
@@ -582,8 +607,11 @@ class DateDisplay:
     def format_short_month(self, month, inflect, short_months):
         if not hasattr(short_months[1], "forms"):  # not a Lexeme: no inflection
             return "{short_month}".format(short_month=short_months[month])
+        # bug 14100: fall back to the uninflected format on an unknown key.
         return (
-            self.FORMATS_short_month_year[inflect]
+            self.FORMATS_short_month_year.get(
+                inflect, self.FORMATS_short_month_year[""]
+            )
             .format(short_month=short_months[month], year="")
             .rstrip()
         )

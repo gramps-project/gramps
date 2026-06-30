@@ -26,7 +26,8 @@ import unittest
 import random
 
 from gramps.test.test_util import Gramps
-from gramps.gen.const import TEST_DIR, TEST_RANDOM
+from gramps.gen.const import GRAMPS_LOCALE as glocale, TEST_DIR, TEST_RANDOM
+from gramps.gen.constfunc import win
 from gramps.gen.user import User
 from gramps.gen.utils.id import set_det_id
 from gramps.gen import const
@@ -86,6 +87,10 @@ class ToolControl(unittest.TestCase):
         config.set("database.backend", self.db_backend)
         call("-y", "-q", "--remove", TREE_NAME)
 
+    @unittest.skipUnless(
+        (glocale.lang == "en_US") or (win() and (glocale.lang == "en")),
+        "skipping tcg_and_check_and_repair test. en_US locale is required.",
+    )
     def test_tcg_and_check_and_repair(self):
         """
         Run a 'Test Case Generator' and 'Check & Repair Database' test.
@@ -151,8 +156,8 @@ class ToolControl(unittest.TestCase):
             "1 invalid birth event name was fixed",
             "1 invalid death event name was fixed",
             "2 places were referenced, but not found",
-            "16 citations were referenced, but not found",
-            "19 sources were referenced, but not found",
+            "7 citations were referenced, but not found",
+            "10 sources were referenced, but not found",
             "9 Duplicated Gramps IDs fixed",
             "9 empty objects removed:",
             "1 person objects",

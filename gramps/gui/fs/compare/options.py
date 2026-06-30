@@ -65,7 +65,7 @@ class CompareOptions(MenuToolOptions):
         filter_list = CustomFilters.get_filters("Person")
         GenericFilter = GenericFilterFactory("Person")
         all_filter = GenericFilter()
-        all_filter.set_name(_("All %s") % (_("Persons")))
+        all_filter.set_name(_("Everyone"))
         all_filter.add_rule(all_persons_rule)
 
         # only add the generic filter if it isn't already in the menu

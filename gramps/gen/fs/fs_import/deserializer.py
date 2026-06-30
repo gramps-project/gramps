@@ -147,7 +147,7 @@ class SimpleDate:
 
         s = value.strip()
         if len(s) < 2:
-            print("invalid formal date: " + value)
+            logger.debug("invalid formal date: %s", value)
             return
 
         if "Z" in s:
@@ -157,7 +157,7 @@ class SimpleDate:
         # split date / time
         date_part, _, time_part = s.partition("T")
         if not date_part or len(date_part) < 2:
-            print("invalid formal date: " + value)
+            logger.debug("invalid formal date: %s", value)
             return
 
         # drop explicit leading '+'
@@ -179,7 +179,7 @@ class SimpleDate:
             if len(ymd) > 2 and ymd[2]:
                 self.day = int(ymd[2])
         except ValueError:
-            print("invalid formal date: " + value)
+            logger.debug("invalid formal date: %s", value)
             return
 
         if time_part:
@@ -204,7 +204,7 @@ class SimpleDate:
                 if len(t) > 2 and t[2]:
                     self.second = float(t[2])
             except ValueError:
-                print("invalid formal date: " + value)
+                logger.debug("invalid formal date: %s", value)
                 return
 
     def __str__(self) -> str:
@@ -490,9 +490,7 @@ def deserialize_json(obj: Any, data: Any, required: bool = False):
         declared = ann.get(attr_name)
 
         if declared is None:
-            print(
-                "Unknown JSON Value: Error: " + obj.__class__.__name__ + ":" + raw_key
-            )
+            logger.debug("Unknown JSON key %r on %s", raw_key, obj.__class__.__name__)
             continue
 
         declared = _unwrap_optional(declared)
@@ -622,8 +620,11 @@ def deserialize_json(obj: Any, data: Any, required: bool = False):
                 child = _construct_object(declared, raw_value, obj)
                 setattr(obj, attr_name, child)
             except Exception:
-                print(
-                    "deserialize_json:error : k=" + raw_key + "; d[k]=" + str(raw_value)
+                logger.debug(
+                    "deserialize_json error: key=%r value=%r",
+                    raw_key,
+                    raw_value,
+                    exc_info=True,
                 )
             continue
 
@@ -1079,6 +1080,8 @@ class Person(Subject):
     _spouses: set[Relationship]
     _childrenCP: set[ChildAndParentsRelationship]
     _parentsCP: set[ChildAndParentsRelationship]
+    _last_modified: int | None
+    _etag: str | None
 
     def preferred_name(self):
         for n in self.names or []:

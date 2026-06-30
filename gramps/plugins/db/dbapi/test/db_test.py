@@ -122,6 +122,10 @@ class DbRandomTest(unittest.TestCase):
             for handle in self.handles["Tag"]:
                 self.db.remove_tag(handle, trans)
 
+    @classmethod
+    def tearDownClass(cls):
+        cls.db.close()
+
     def __add_object(self, obj_class, add_func, trans):
         obj = obj_class()
         if obj_class == Tag:
@@ -746,6 +750,10 @@ class DbEmptyTest(unittest.TestCase):
         cls.db = make_database("sqlite")
         cls.db.load(":memory:")
 
+    @classmethod
+    def tearDownClass(cls):
+        cls.db.close()
+
     ################################################################
     #
     # Test metadata methods
@@ -873,6 +881,10 @@ class DbPersonTest(unittest.TestCase):
         with DbTxn("Remove test objects", self.db) as trans:
             for handle in self.db.get_person_handles():
                 self.db.remove_person(handle, trans)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.db.close()
 
     ################################################################
     #

@@ -140,7 +140,18 @@ class BasePluginManager:
         #             direct in self.__scanned_dirs, os.path.isdir(direct))
 
         if os.path.isdir(direct):
-            for dirpath, dirnames, filenames in os.walk(direct, topdown=True):
+            # Follow symlinks so users can organize plugins by symlinking
+            # directories into their plugin path.  Track resolved paths to
+            # avoid infinite recursion on symlink loops.
+            visited_realpaths: set[str] = set()
+            for dirpath, dirnames, filenames in os.walk(
+                direct, topdown=True, followlinks=True
+            ):
+                real = os.path.realpath(dirpath)
+                if real in visited_realpaths:
+                    dirnames[:] = []
+                    continue
+                visited_realpaths.add(real)
                 for dirname in dirnames[:]:
                     # Skip hidden and system directories:
                     if dirname.startswith(".") or dirname in [

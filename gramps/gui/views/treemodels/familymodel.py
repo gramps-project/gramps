@@ -191,7 +191,7 @@ class FamilyModel(FlatBaseModel):
             family = self.db.get_family_from_handle(data.handle)
             event = get_marriage_or_fallback(self.db, family)
             if event:
-                value = "%09d" % event.date.get_sort_value()
+                value = "%09d" % event.date.get_sort_key()
             else:
                 value = ""
             self.set_cached_value(handle, "SORT_MARRIAGE", value)

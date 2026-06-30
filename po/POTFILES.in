@@ -42,6 +42,7 @@ gramps/gen/filters/rules/_hastagbase.py
 gramps/gen/filters/rules/_hastextmatchingsubstringof.py
 gramps/gen/filters/rules/_isprivate.py
 gramps/gen/filters/rules/_ispublic.py
+gramps/gen/filters/rules/_matchescitationfilterbase.py
 gramps/gen/filters/rules/_matcheseventfilterbase.py
 gramps/gen/filters/rules/_matchesfilterbase.py
 gramps/gen/filters/rules/_matchessourceconfidencebase.py
@@ -313,6 +314,7 @@ gramps/gen/fs/constants.py
 gramps/gen/fs/fs_import/importer.py
 gramps/gen/fs/fs_import/places.py
 gramps/gen/fs/fs_import/sources.py
+gramps/gen/fs/person/mixins/cache.py
 gramps/gen/fs/sync_directions.py
 gramps/gen/fs/tags.py
 gramps/gen/fs/utils/attributes.py
@@ -406,6 +408,7 @@ gramps/gen/utils/image.py
 gramps/gen/utils/keyword.py
 gramps/gen/utils/lds.py
 gramps/gen/utils/place.py
+gramps/gen/utils/pypi.py
 gramps/gen/utils/requirements.py
 gramps/gen/utils/string.py
 gramps/gen/utils/symbols.py

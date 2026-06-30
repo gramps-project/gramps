@@ -865,6 +865,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 clear_lock_file(self.get_save_path())
             except IOError:
                 pass
+        else:
+            self._close()
 
         self.db_is_open = False
         self._directory = None

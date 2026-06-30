@@ -252,6 +252,15 @@ The program checks whether these environment variables are set:
     Describe which language to use.
     E.g., for the Polish language this variable has to be set to `pl_PL.UTF-8`.
 
+``LANGUAGE``
+    A colon-separated list of language codes (e.g. `ru` or `pt_BR:pt`)
+    in preference order. When set, this overrides ``LANG`` for translated
+    messages — Gramps splits it on `:` and walks the list looking for a
+    matching message catalog. Use it together with ``LANG`` when ``LANG``
+    alone does not pick up a translation, e.g.::
+
+        LANG=ru_RU.UTF-8 LANGUAGE=ru gramps
+
 ``GRAMPSHOME``
     Force Gramps to use the specified directory to keep program
     settings and databases in.

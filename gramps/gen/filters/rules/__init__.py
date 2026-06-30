@@ -49,6 +49,7 @@ _MatchesFilterBase           Object matches another filter
 _RegExpldBase                Object has Gramps Id matching regular expression
 
 Match on related objects
+_MatchesCitationFilterBase   Object matches another filter on direct citations
 _MatchesFilterEventBase      Object has an event that matches another filter
 _MatchesSourceConfidenceBase Object with specific confidence on direct sources
 _MatchesSourceFilterBase     Object matches another filter on direct sources
@@ -76,6 +77,7 @@ from ._ispublic import IsPublic
 from ._hastextmatchingsubstringof import HasTextMatchingSubstringOf
 from ._hastextmatchingregexpof import HasTextMatchingRegexpOf
 from ._matchesfilterbase import MatchesFilterBase
+from ._matchescitationfilterbase import MatchesCitationFilterBase
 from ._matcheseventfilterbase import MatchesEventFilterBase
 from ._matchessourceconfidencebase import MatchesSourceConfidenceBase
 from ._matchessourcefilterbase import MatchesSourceFilterBase

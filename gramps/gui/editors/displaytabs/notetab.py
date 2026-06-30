@@ -74,7 +74,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         "add": _("Create and add a new note"),
         "del": _("Remove the existing note"),
         "edit": _("Edit the selected note"),
-        "share": _("Add an existing note"),
+        "share": _("Select an existing note"),
         "up": _("Move the selected note upwards"),
         "down": _("Move the selected note downwards"),
     }

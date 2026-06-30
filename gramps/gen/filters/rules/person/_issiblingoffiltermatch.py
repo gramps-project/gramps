@@ -23,25 +23,12 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
-
-# -------------------------------------------------------------------------
-#
-# Gramps modules
-#
-# -------------------------------------------------------------------------
 from .. import Rule
 from ._matchesfilter import MatchesFilter
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
+
+_ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
@@ -59,22 +46,15 @@ class IsSiblingOfFilterMatch(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: set[str] = set()
         self.matchfilt = MatchesFilter(self.list)
         self.matchfilt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        for person in db.iter_people():
-            if user:
-                user.step_progress()
-            if self.matchfilt.apply_to_one(db, person):
+
+        filt = self.matchfilt.find_filter()
+        if filt:
+            for handle in filt.apply(db, user=user):
+                person = db.get_raw_person_data(handle)
                 self.init_list(person)
-        if user:
-            user.end_progress()
 
     def reset(self):
         self.matchfilt.requestreset()
@@ -86,11 +66,10 @@ class IsSiblingOfFilterMatch(Rule):
     def init_list(self, person: Person):
         if not person:
             return
-        fam_id = (
-            person.parent_family_list[0] if len(person.parent_family_list) > 0 else None
-        )
+        fam_list = person.parent_family_list
+        fam_id = fam_list[0] if fam_list else None
         if fam_id:
-            fam = self.db.get_family_from_handle(fam_id)
+            fam = self.db.get_raw_family_data(fam_id)
             if fam:
                 self.selected_handles.update(
                     child_ref.ref

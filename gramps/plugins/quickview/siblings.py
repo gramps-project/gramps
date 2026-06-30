@@ -40,7 +40,7 @@ def run(database, document, person):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = QuickTable(sdb)
-    rel_class = get_relationship_calculator(glocale)
+    rel_class = get_relationship_calculator()
 
     # display the title
     # feature request 2356: avoid genitive form

@@ -70,7 +70,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         "add": _("Create and add a new citation and new source"),
         "del": _("Remove the existing citation"),
         "edit": _("Edit the selected citation"),
-        "share": _("Add an existing citation or source"),
+        "share": _("Select an existing citation or source"),
         "up": _("Move the selected citation upwards"),
         "down": _("Move the selected citation downwards"),
     }

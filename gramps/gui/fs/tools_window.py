@@ -38,9 +38,10 @@ from gi.repository import GdkPixbuf, GLib, Gtk
 from gramps.gen.const import DATA_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.const import IMAGE_DIR as _GRAMPS_IMAGE_DIR
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.errors import HandleError
+from gramps.gen.fs.actions import _get_fs_id
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.editors.editperson import EditPerson
-from gramps.gen.errors import HandleError
 
 from . import actions
 from . import sync_directions as fs_syncdir
@@ -176,6 +177,19 @@ def notify_from_person_editor(
     _dbg(f"notify_from_person_editor: handle={person_handle}")
 
 
+def _on_editor_destroyed(editor_wr: "weakref.ReferenceType[Any]") -> None:
+    """Clear the shared editor context when the tracked editor window is destroyed."""
+    global _LAST_EDITOR
+    editor = editor_wr()
+    current = _LAST_EDITOR.editor_obj()
+    if current is not None and editor is not None and current is not editor:
+        return
+    _LAST_EDITOR = _EditorCtx()
+    if _SINGLETON is not None and _SINGLETON.is_alive():
+        GLib.idle_add(_SINGLETON._on_editor_ctx_changed)
+    _dbg("Editor closed — cleared editor context")
+
+
 def _install_editperson_hook() -> None:
     """Hook EditPerson once so the tools window can follow focus/context changes."""
     global _EDITPERSON_HOOK_INSTALLED
@@ -189,10 +203,11 @@ def _install_editperson_hook() -> None:
         _EDITPERSON_HOOK_INSTALLED = True
         return
 
-    original_post_init = getattr(editor_class, "_post_init", None)
-    if not callable(original_post_init):
+    original_post_init_obj = getattr(editor_class, "_post_init", None)
+    if not callable(original_post_init_obj):
         _dbg("EditPerson._post_init is not callable; skipping hook install")
         return
+    original_post_init = cast(Callable[..., Any], original_post_init_obj)
 
     def _attach_editor_hook(editor: Any) -> None:
         if getattr(editor, "_fs_tools_hook_attached", False):
@@ -220,6 +235,8 @@ def _install_editperson_hook() -> None:
         if window is not None:
             window.connect("focus-in-event", lambda *_args: _fire())
             window.connect("map-event", lambda *_args: _fire())
+            editor_wr: weakref.ReferenceType[Any] = weakref.ref(editor)
+            window.connect("destroy", lambda *_args: _on_editor_destroyed(editor_wr))
 
     def wrapped_post_init(editor: Any, *args: Any, **kwargs: Any) -> Any:
         result = original_post_init(editor, *args, **kwargs)
@@ -318,7 +335,7 @@ class FamilySearchToolsWindow:
 
         self._install_css()
 
-        # layout is simple on purpose, status row, person actions, imports & utilities
+        # layout is simple on purpose: name + link row, then grouped actions in tabs
         outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.window.add(outer)
 
@@ -326,24 +343,21 @@ class FamilySearchToolsWindow:
         if banner is not None:
             outer.pack_start(banner, False, False, 0)
 
-        status_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-        status_row.get_style_context().add_class("fs-status-row")
-        outer.pack_start(status_row, False, False, 0)
-
-        status_widget = None
-        get_status_widget = getattr(self.session, "get_status_widget", None)
-        if callable(get_status_widget):
-            status_widget = get_status_widget()
-
-        if status_widget is not None:
-            status_widget.set_halign(Gtk.Align.START)
-            status_row.pack_start(status_widget, False, False, 0)
+        name_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        name_row.get_style_context().add_class("fs-name-row")
+        outer.pack_start(name_row, False, False, 0)
 
         self.active_label = Gtk.Label(label=_("Editor person: (none)"))
         self.active_label.set_xalign(0.0)
         self.active_label.set_ellipsize(3)
         self.active_label.get_style_context().add_class("fs-active-label")
-        status_row.pack_start(self.active_label, True, True, 0)
+        name_row.pack_start(self.active_label, True, True, 0)
+
+        self.btn_link = Gtk.Button(label=_("Link FamilySearch ID"))
+        link_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        link_row.get_style_context().add_class("fs-link-row")
+        link_row.pack_start(self.btn_link, False, False, 0)
+        outer.pack_start(link_row, False, False, 0)
 
         outer.pack_start(
             Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL),
@@ -354,41 +368,26 @@ class FamilySearchToolsWindow:
 
         self._size_group = Gtk.SizeGroup(mode=Gtk.SizeGroupMode.BOTH)
 
-        sec_person, box_person = self._make_section(
-            _("Person actions"), "fs-sec-person"
-        )
-        outer.pack_start(sec_person, False, False, 0)
+        notebook = Gtk.Notebook()
+        notebook.set_scrollable(True)
+        notebook.get_style_context().add_class("fs-tools-notebook")
+        outer.pack_start(notebook, True, True, 0)
 
-        self.btn_link = Gtk.Button(label=_("Link FamilySearch ID"))
-        self.btn_cmp = Gtk.Button(label=_("Compare"))
-        self.btn_sync = Gtk.Button(label=_("Sync from FamilySearch"))
-        self.btn_sync.get_style_context().add_class("suggested-action")
+        tab_single = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        tab_single.set_border_width(2)
+        notebook.append_page(tab_single, Gtk.Label(label=_("Single Person Actions")))
 
-        self.btn_sync_to = Gtk.Button(label=_("Sync to FamilySearch..."))
-        self.btn_sync_to.set_tooltip_text(
-            _("Overwrite selected FamilySearch fields with Gramps values (no deletes).")
-        )
+        tab_bulk = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        tab_bulk.set_border_width(2)
+        notebook.append_page(tab_bulk, Gtk.Label(label=_("Bulk Actions")))
 
-        self.btn_export_basic = Gtk.Button(label=_("Export to FamilySearch (basic)..."))
-        self.btn_export_basic.set_tooltip_text(
-            _(
-                "Create missing people on FamilySearch and link relationships (name + birth/death)."
-            )
-        )
-
-        for button in (
-            self.btn_link,
-            self.btn_cmp,
-            self.btn_sync,
-            self.btn_sync_to,
-            self.btn_export_basic,
-        ):
-            self._add_btn(box_person, button)
+        sec_person = self._build_person_actions_section()
+        tab_single.pack_start(sec_person, False, False, 0)
 
         sec_import, box_import = self._make_section(
             _("Import relatives"), "fs-sec-import"
         )
-        outer.pack_start(sec_import, False, False, 0)
+        tab_single.pack_start(sec_import, False, False, 0)
 
         self.btn_imp_par = Gtk.Button(label=_("Import Parents"))
         self.btn_imp_spo = Gtk.Button(label=_("Import Spouse"))
@@ -398,21 +397,56 @@ class FamilySearchToolsWindow:
             self._add_btn(box_import, button)
 
         sec_util, box_util = self._make_section(_("Utilities"), "fs-sec-util")
-        outer.pack_start(sec_util, False, False, 0)
+        tab_single.pack_start(sec_util, False, False, 0)
 
-        self.btn_tags = Gtk.Button(label=_("Tags..."))
         self.btn_clear_cache = Gtk.Button(label=_("Clear Cache"))
         self.btn_clear_cache.get_style_context().add_class("destructive-action")
 
-        self._add_btn(box_util, self.btn_tags)
         self._add_btn(box_util, self.btn_clear_cache)
+
+        sec_bulk_import, box_bulk_import = self._make_section(
+            _("Import multiple generations"), "fs-sec-import"
+        )
+        tab_bulk.pack_start(sec_bulk_import, False, False, 0)
+
+        self.btn_bulk_import = Gtk.Button(label=_("Bulk Import Relatives"))
+        self.btn_bulk_import.set_tooltip_text(
+            _("Import ancestors and descendants from the selected FamilySearch person.")
+        )
+        self.btn_bulk_import.get_style_context().add_class("suggested-action")
+        self._add_btn(box_bulk_import, self.btn_bulk_import)
+
+        sec_bulk_util, box_bulk_util = self._make_section(_("Utilities"), "fs-sec-util")
+        tab_bulk.pack_start(sec_bulk_util, False, False, 0)
+
+        self.btn_tags = Gtk.Button(label=_("Tags..."))
+        self._add_btn(box_bulk_util, self.btn_tags)
 
         note = build_tag_color_note_widget()
         if note is not None:
             note.set_margin_top(6)
-            util_inner = sec_util.get_child()
+            util_inner = sec_bulk_util.get_child()
             if isinstance(util_inner, Gtk.Box):
                 util_inner.pack_start(note, False, False, 0)
+
+        outer.pack_start(
+            Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL),
+            False,
+            False,
+            0,
+        )
+
+        bottom_bar = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        bottom_bar.get_style_context().add_class("fs-bottom-statusbar")
+        outer.pack_start(bottom_bar, False, False, 0)
+
+        status_widget = None
+        get_status_widget = getattr(self.session, "get_status_widget", None)
+        if callable(get_status_widget):
+            status_widget = get_status_widget()
+        if status_widget is not None:
+            status_widget.set_halign(Gtk.Align.START)
+            bottom_bar.pack_start(status_widget, False, False, 0)
 
         self.btn_link.connect("clicked", self._on_link)
         self.btn_cmp.connect("clicked", self._on_compare)
@@ -424,6 +458,7 @@ class FamilySearchToolsWindow:
         self.btn_imp_spo.connect("clicked", self._on_import_spouse)
         self.btn_imp_chi.connect("clicked", self._on_import_children)
 
+        self.btn_bulk_import.connect("clicked", self._on_bulk_import)
         self.btn_tags.connect("clicked", self._on_tags)
         self.btn_clear_cache.connect("clicked", self._on_clear_cache)
 
@@ -444,31 +479,95 @@ class FamilySearchToolsWindow:
         self._tick()
 
     def _install_css(self) -> None:
-        """Install the shared gramps.css file for the tools window."""
-        candidate_paths = [
-            self._repo_gramps_css_path(),
-            os.path.join(DATA_DIR, "gramps.css"),
-        ]
-        for css_path in candidate_paths:
-            try:
-                if not os.path.isfile(css_path):
+        """Install gramps.css and familysearch.css for the tools window."""
+        for name, key, repo_path in (
+            (
+                "gramps.css",
+                "fs.tools_window.gramps",
+                self._repo_css_path("gramps.css"),
+            ),
+            (
+                "familysearch.css",
+                "fs.tools_window.fs",
+                self._repo_css_path("familysearch.css"),
+            ),
+        ):
+            for css_path in (repo_path, os.path.join(DATA_DIR, name)):
+                try:
+                    if not os.path.isfile(css_path):
+                        continue
+                    with open(css_path, "rb") as handle:
+                        css = handle.read()
+                    if fs_ui.install_css_once(key, css):
+                        _dbg(f"Loaded tools CSS from {css_path}")
+                        break
+                except Exception:
                     continue
-                with open(css_path, "rb") as handle:
-                    css = handle.read()
-                if fs_ui.install_css_once("fs.tools_window", css):
-                    _dbg(f"Loaded tools CSS from {css_path}")
-                    return
-            except Exception:
-                continue
 
     @staticmethod
     def _repo_gramps_css_path() -> str:
         """Return this project copy of data/gramps.css before falling back to DATA_DIR."""
+        return FamilySearchToolsWindow._repo_css_path("gramps.css")
+
+    @staticmethod
+    def _repo_css_path(filename: str) -> str:
+        """Return the repo source copy of a data/ CSS file."""
         return os.path.abspath(
-            os.path.join(
-                os.path.dirname(__file__), "..", "..", "..", "data", "gramps.css"
+            os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", filename)
+        )
+
+    def _build_person_actions_section(self) -> Gtk.Widget:
+        """Build the Person actions section with explicit three-row button layout."""
+        wrapper = Gtk.EventBox()
+        wrapper.set_visible_window(True)
+        style = wrapper.get_style_context()
+        style.add_class("fs-section")
+        style.add_class("fs-sec-person")
+
+        inner = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
+        inner.set_border_width(10)
+        wrapper.add(inner)
+
+        lbl = Gtk.Label()
+        lbl.set_markup(
+            "<span size='large'><b>"
+            + GLib.markup_escape_text(_("Person actions"))
+            + "</b></span>"
+        )
+        lbl.set_xalign(0.0)
+        lbl.get_style_context().add_class("fs-section-title")
+        inner.pack_start(lbl, False, False, 0)
+        inner.pack_start(
+            Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL), False, False, 0
+        )
+
+        self.btn_cmp = Gtk.Button(label=_("Compare"))
+        row1 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        row1.pack_start(self.btn_cmp, True, True, 0)
+        inner.pack_start(row1, False, False, 0)
+
+        self.btn_sync = Gtk.Button(label=_("Sync from FamilySearch"))
+        self.btn_sync_to = Gtk.Button(label=_("Sync to FamilySearch..."))
+        self.btn_sync_to.set_tooltip_text(
+            _("Overwrite selected FamilySearch fields with Gramps values (no deletes).")
+        )
+        row2 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        row2.pack_start(self.btn_sync, True, True, 0)
+        row2.pack_start(self.btn_sync_to, True, True, 0)
+        inner.pack_start(row2, False, False, 0)
+
+        self.btn_export_basic = Gtk.Button(label=_("Export to FamilySearch"))
+        self.btn_export_basic.set_tooltip_text(
+            _(
+                "Create missing people on FamilySearch and link relationships"
+                " (name + birth/death)."
             )
         )
+        row3 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        row3.pack_start(self.btn_export_basic, True, True, 0)
+        inner.pack_start(row3, False, False, 0)
+
+        return wrapper
 
     def _make_section(
         self, title: str, css_class: str
@@ -654,6 +753,16 @@ class FamilySearchToolsWindow:
 
         return None
 
+    def _live_person_obj(self) -> Any:
+        """Return the live in-memory person from the editor (not the DB copy)."""
+        person = _LAST_EDITOR.person_obj()
+        if person is not None:
+            return person
+        editor = _LAST_EDITOR.editor_obj()
+        if editor is not None:
+            return getattr(editor, "obj", None)
+        return None
+
     def _update_label(self) -> None:
         """Refresh the label that shows which editor person were on"""
         person = self._editor_person_obj()
@@ -682,10 +791,9 @@ class FamilySearchToolsWindow:
                 _("Editor person: %(name)s") % {"name": display_name}
             )
 
-    def _set_action_sensitivity(self, enabled: bool) -> None:
+    def _set_action_sensitivity(self, enabled: bool, has_fsid: bool = True) -> None:
         """Enable/disable buttons based on connection state and editor readiness."""
-        for button in (
-            self.btn_link,
+        other_buttons = (
             self.btn_cmp,
             self.btn_sync,
             self.btn_sync_to,
@@ -693,8 +801,23 @@ class FamilySearchToolsWindow:
             self.btn_imp_par,
             self.btn_imp_spo,
             self.btn_imp_chi,
-        ):
-            button.set_sensitive(enabled)
+            self.btn_bulk_import,
+        )
+
+        if enabled and not has_fsid:
+            self.btn_link.set_sensitive(True)
+            self.btn_link.set_label(_("Add FamilySearch ID"))
+            for button in other_buttons:
+                button.set_sensitive(False)
+        else:
+            self.btn_link.set_sensitive(enabled)
+            self.btn_link.set_label(
+                _("Edit FamilySearch ID")
+                if (enabled and has_fsid)
+                else _("Link FamilySearch ID")
+            )
+            for button in other_buttons:
+                button.set_sensitive(enabled)
 
         self.btn_tags.set_sensitive(
             bool(self._fs_connected() and _LAST_EDITOR.dbstate is not None)
@@ -712,8 +835,11 @@ class FamilySearchToolsWindow:
             and _person_exists_in_db(_LAST_EDITOR.dbstate, person_handle)
         )
 
+        editing = bool(self._fs_connected() and db_ready)
+        has_fsid = bool(_get_fs_id(self._live_person_obj())) if editing else True
+
         self._update_label()
-        self._set_action_sensitivity(bool(self._fs_connected() and db_ready))
+        self._set_action_sensitivity(editing, has_fsid)
         return True
 
     def _on_editor_ctx_changed(self) -> bool:
@@ -927,6 +1053,13 @@ class FamilySearchToolsWindow:
             return
 
         self._call_action(actions.import_children, "Import children failed", ctx)
+
+    def _on_bulk_import(self, *_args: Any) -> None:
+        ctx = self._ctx()
+        if not ctx:
+            return
+
+        self._call_action(actions.bulk_import_relatives, "Bulk import failed", ctx)
 
     def _on_tags(self, *_args: Any) -> None:
         ctx = self._ctx_db_only()

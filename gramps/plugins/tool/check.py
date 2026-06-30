@@ -1409,7 +1409,11 @@ class CheckIntegrity:
                         '    FAIL: the "%(cls)s" [%(gid)s] '
                         'has a "%(cls2)s" reference'
                         " with no corresponding backlink.",
-                        {"gid": pri_obj.gramps_id, "cls": key[0], "cls2": item[0]},
+                        {
+                            "gid": getattr(pri_obj, "gramps_id", key[1]),
+                            "cls": key[0],
+                            "cls2": item[0],
+                        },
                     )
 
         # Now we go through the db table and make checks against ours
@@ -1428,7 +1432,11 @@ class CheckIntegrity:
                         '    FAIL: the "%(cls)s" [%(gid)s] '
                         "has a backlink to a missing"
                         ' "%(cls2)s" object.',
-                        {"gid": pri_obj.gramps_id, "cls": key[0], "cls2": item[0]},
+                        {
+                            "gid": getattr(pri_obj, "gramps_id", key[1]),
+                            "cls": key[0],
+                            "cls2": item[0],
+                        },
                     )
                     continue
                 # Check if the object has a reference to the backlinked one
@@ -1440,7 +1448,11 @@ class CheckIntegrity:
                         '    FAIL: the "%(cls)s" [%(gid)s] '
                         'has a backlink to a "%(cls2)s"'
                         " with no corresponding reference.",
-                        {"gid": pri_obj.gramps_id, "cls": key[0], "cls2": item[0]},
+                        {
+                            "gid": getattr(pri_obj, "gramps_id", key[1]),
+                            "cls": key[0],
+                            "cls2": item[0],
+                        },
                     )
 
     def callback(self, *args):

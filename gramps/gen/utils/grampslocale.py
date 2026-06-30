@@ -63,18 +63,13 @@ try:
     from icu import Locale, Collator, ICUError
 
     HAVE_ICU = True
-except ImportError:
-    try:
-        from PyICU import Locale, Collator, ICUError
-
-        HAVE_ICU = True
-    except ImportError as err:
-        ERRSTR = str(err)
-        # No logger, save the warning message for later.
-        _ICU_ERR = (
-            f"ICU not loaded because {ERRSTR}. Localization will be "
-            "impaired. Use your package manager to install PyICU"
-        )
+except ImportError as err:
+    ERRSTR = str(err)
+    # No logger, save the warning message for later.
+    _ICU_ERR = (
+        f"ICU not loaded because {ERRSTR}. Localization will be "
+        "impaired. Use your package manager to install PyICU"
+    )
 
 ICU_LOCALES = None
 if HAVE_ICU:

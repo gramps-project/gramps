@@ -42,9 +42,9 @@ import os
 import re
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
-from gi.repository import Gtk
+from gi.repository import Gdk, Gtk
 
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import DATA_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.db import DbTxn
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.fs import tree as fs_tree_mod
@@ -61,6 +61,8 @@ import gramps.gui.fs.person.fsg_sync as fsg_sync
 
 _ = glocale.translation.gettext
 
+_SYNC_CSS_INSTALLED = False
+
 
 COL_PROP = 1
 COL_GR_DATE = 2
@@ -72,6 +74,183 @@ COL_XGR_ID = 9
 COL_XFS_ID = 10
 COL_XGR2 = 11
 COL_XFS2 = 12
+
+
+def _live_editor_person(person: Any, editor: Any) -> Any:
+    """
+    Return the live editor person when it represents the same database person.
+
+    The FamilySearch tools window may pass a database-backed person object
+    while also passing the active EditPerson instance.  The editor object holds
+    unsaved tab changes, such as note handles added before the person editor is
+    closed.
+
+    :param person: The person object passed by the caller.
+    :type person: typing.Any
+    :param editor: The active EditPerson instance, if any.
+    :type editor: typing.Any
+    :returns: The live editor person for matching handles, otherwise ``person``.
+    :rtype: typing.Any
+    """
+    editor_person = getattr(editor, "obj", None) if editor is not None else None
+    if editor_person is None:
+        return person
+
+    person_handle = fs_sync_core._person_handle(person)
+    editor_handle = fs_sync_core._person_handle(editor_person)
+    if person_handle and editor_handle and person_handle == editor_handle:
+        return editor_person
+
+    return person
+
+
+def _repo_css_path(filename: str) -> str:
+    """
+    Return the repository copy of a data CSS file.
+
+    :param filename: The CSS filename.
+    :type filename: str
+    :returns: Absolute path to the source-tree CSS file.
+    :rtype: str
+    """
+    return os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", filename)
+    )
+
+
+def _install_sync_css() -> None:
+    """
+    Install the shared FamilySearch CSS for the sync picker.
+
+    :returns: ``None``.
+    :rtype: None
+    """
+    global _SYNC_CSS_INSTALLED
+
+    if _SYNC_CSS_INSTALLED:
+        return
+
+    screen = Gdk.Screen.get_default()
+    if screen is None:
+        return
+
+    installed = False
+    for filename in ("gramps.css", "familysearch.css"):
+        for css_path in (_repo_css_path(filename), os.path.join(DATA_DIR, filename)):
+            try:
+                if not os.path.isfile(css_path):
+                    continue
+                provider = Gtk.CssProvider()
+                provider.load_from_path(css_path)
+                Gtk.StyleContext.add_provider_for_screen(
+                    screen, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                )
+                installed = True
+                break
+            except Exception:
+                continue
+
+    _SYNC_CSS_INSTALLED = installed
+
+
+def _add_style(widget: Gtk.Widget, *classes: str) -> None:
+    """
+    Add CSS classes to a widget, ignoring toolkit differences.
+
+    :param widget: The GTK widget to style.
+    :type widget: :py:class:`Gtk.Widget`
+    :param classes: CSS classes to add.
+    :type classes: str
+    :returns: ``None``.
+    :rtype: None
+    """
+    try:
+        context = widget.get_style_context()
+        for css_class in classes:
+            if css_class:
+                context.add_class(css_class)
+    except Exception:
+        pass
+
+
+def _sync_item_status(item: Dict[str, Any]) -> str:
+    """
+    Return the visual status class suffix for a sync item.
+
+    :param item: A sync item dictionary.
+    :type item: dict[str, typing.Any]
+    :returns: One of the FamilySearch sync status suffixes.
+    :rtype: str
+    """
+    kind = str(item.get("kind") or "")
+    fs_val = str(item.get("fs_val") or "").lower()
+    fs_state = str(item.get("fs_state") or "").lower()
+
+    if fs_state in ("deleted", "missing") or "deleted on familysearch" in fs_val:
+        return "critical"
+
+    if kind in ("note_create", "source_create", "memory_create"):
+        return "only-gramps"
+
+    return "different"
+
+
+def _sync_item_action(kind: str) -> str:
+    """
+    Return the apply action label for a sync item kind.
+
+    :param kind: The item kind.
+    :type kind: str
+    :returns: The localized action label.
+    :rtype: str
+    """
+    if kind in ("primary_name", "fact", "note_update"):
+        return _("Overwrite with Gramps")
+    if kind in ("note_create", "source_create", "memory_create"):
+        return _("Add from Gramps")
+    return _("Apply from Gramps")
+
+
+def _sync_label(text: str, css_class: str = "") -> Gtk.Label:
+    """
+    Build a wrapping label for sync picker cells.
+
+    :param text: The label text.
+    :type text: str
+    :param css_class: Optional CSS class to apply.
+    :type css_class: str
+    :returns: A configured GTK label.
+    :rtype: :py:class:`Gtk.Label`
+    """
+    label = Gtk.Label(label=text)
+    label.set_xalign(0.0)
+    label.set_yalign(0.0)
+    label.set_line_wrap(True)
+    label.set_selectable(True)
+    if css_class:
+        _add_style(label, css_class)
+    return label
+
+
+def _sync_pill(text: str, css_class: str) -> Gtk.Widget:
+    """
+    Build a compact legend pill.
+
+    :param text: The pill text.
+    :type text: str
+    :param css_class: The semantic pill CSS class.
+    :type css_class: str
+    :returns: A styled GTK widget.
+    :rtype: :py:class:`Gtk.Widget`
+    """
+    pill = Gtk.EventBox()
+    pill.set_visible_window(True)
+    _add_style(pill, "fs-legend-pill", css_class)
+
+    label = Gtk.Label(label=text)
+    _add_style(label, "fs-legend-label")
+    pill.add(label)
+    return pill
 
 
 def _bind_global_session(session: Any) -> None:
@@ -622,75 +801,165 @@ def _prompt(
     parent: Gtk.Window, items: List[Dict[str, Any]]
 ) -> Tuple[str, List[Dict[str, Any]]]:
     """Show the sync picker and return the change message + chosen items."""
+    _install_sync_css()
+
     dialog = Gtk.Dialog(title=_("Sync to FamilySearch"), transient_for=parent, flags=0)
     dialog.set_modal(True)
-    dialog.set_default_size(820, 620)
+    dialog.set_default_size(980, 660)
+    _add_style(dialog, "fs-sync-dialog")
+
+    try:
+        headerbar = Gtk.HeaderBar()
+        headerbar.set_show_close_button(True)
+        headerbar.props.title = _("Sync to FamilySearch")
+        headerbar.props.subtitle = _("Gramps to FamilySearch")
+        dialog.set_titlebar(headerbar)
+    except Exception:
+        pass
+
     dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
-    dialog.add_button(_("Apply Selected"), Gtk.ResponseType.OK)
+    apply_button = dialog.add_button(_("Apply Selected"), Gtk.ResponseType.OK)
+    _add_style(apply_button, "suggested-action")
     dialog.set_default_response(Gtk.ResponseType.OK)
 
     box = dialog.get_content_area()
-    box.set_border_width(10)
-    box.set_spacing(8)
+    box.set_spacing(10)
+    box.set_margin_top(10)
+    box.set_margin_bottom(10)
+    box.set_margin_start(10)
+    box.set_margin_end(10)
 
-    intro = Gtk.Label()
-    intro.set_xalign(0.0)
-    intro.set_line_wrap(True)
-    intro.set_markup(
-        _(
-            "<b>Choose what to change on FamilySearch</b>\n"
-            "Default is to keep FamilySearch.\n"
-            "<i>No deletions are performed.</i>"
+    intro_wrap = Gtk.EventBox()
+    intro_wrap.set_visible_window(True)
+    _add_style(intro_wrap, "fs-sync-instruction")
+
+    intro_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
+    intro_wrap.add(intro_box)
+
+    intro_title = Gtk.Label(label=_("Choose FamilySearch updates"))
+    intro_title.set_xalign(0.0)
+    _add_style(intro_title, "fs-sync-title")
+    intro_box.pack_start(intro_title, False, False, 0)
+
+    intro_body = Gtk.Label(
+        label=_(
+            "Review each Gramps value before pushing it to FamilySearch. "
+            "The default action keeps FamilySearch unchanged and no deletions are performed."
         )
     )
-    box.pack_start(intro, False, False, 0)
+    intro_body.set_xalign(0.0)
+    intro_body.set_line_wrap(True)
+    intro_box.pack_start(intro_body, False, False, 0)
+    box.pack_start(intro_wrap, False, False, 0)
 
-    message_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
-    message_row.pack_start(Gtk.Label(label=_("Change message:")), False, False, 0)
+    controls_wrap = Gtk.EventBox()
+    controls_wrap.set_visible_window(True)
+    _add_style(controls_wrap, "fs-sync-panel")
+
+    controls_grid = Gtk.Grid()
+    controls_grid.set_border_width(10)
+    controls_grid.set_column_spacing(8)
+    controls_grid.set_row_spacing(8)
+    controls_wrap.add(controls_grid)
+
+    message_label = Gtk.Label(label=_("Change message:"))
+    message_label.set_xalign(0.0)
+    controls_grid.attach(message_label, 0, 0, 1, 1)
 
     change_entry = Gtk.Entry()
     change_entry.set_hexpand(True)
     change_entry.set_text(_("Updated from Gramps"))
-    message_row.pack_start(change_entry, True, True, 0)
-    box.pack_start(message_row, False, False, 0)
+    controls_grid.attach(change_entry, 1, 0, 3, 1)
 
-    button_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
     select_all = Gtk.Button(label=_("Select all"))
     select_none = Gtk.Button(label=_("Select none"))
-    button_row.pack_start(select_all, False, False, 0)
-    button_row.pack_start(select_none, False, False, 0)
-    button_row.set_halign(Gtk.Align.START)
-    box.pack_start(button_row, False, False, 0)
+    selected_label = Gtk.Label()
+    selected_label.set_xalign(1.0)
+    _add_style(selected_label, "fs-sync-selected-count")
+
+    controls_grid.attach(select_all, 0, 1, 1, 1)
+    controls_grid.attach(select_none, 1, 1, 1, 1)
+    controls_grid.attach(selected_label, 2, 1, 2, 1)
+    box.pack_start(controls_wrap, False, False, 0)
+
+    legend = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+    _add_style(legend, "fs-sync-legend")
+    legend.pack_start(_sync_pill(_("Different"), "fs-different"), False, False, 0)
+    legend.pack_start(
+        _sync_pill(_("Only in Gramps"), "fs-only-gramps"), False, False, 0
+    )
+    legend.pack_start(_sync_pill(_("Needs attention"), "fs-critical"), False, False, 0)
+    legend_hint = Gtk.Label(
+        label=_("Use the Action column to choose what FamilySearch receives.")
+    )
+    legend_hint.set_xalign(1.0)
+    legend.pack_end(legend_hint, True, True, 0)
+    box.pack_start(legend, False, False, 0)
 
     scroll = Gtk.ScrolledWindow()
     scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
     scroll.set_hexpand(True)
     scroll.set_vexpand(True)
+    try:
+        scroll.set_min_content_height(340)
+    except Exception:
+        pass
     box.pack_start(scroll, True, True, 0)
 
-    grid = Gtk.Grid()
-    grid.set_column_spacing(12)
-    grid.set_row_spacing(10)
-    grid.set_border_width(4)
-    scroll.add(grid)
+    list_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
+    _add_style(list_box, "fs-sync-list")
+    scroll.add(list_box)
 
-    headings = [
-        Gtk.Label(label=_("Field")),
-        Gtk.Label(label=_("FamilySearch")),
-        Gtk.Label(label=_("Gramps")),
-        Gtk.Label(label=_("Action")),
-    ]
-    for heading in headings:
-        heading.set_xalign(0.0)
-        try:
-            heading.get_style_context().add_class("heading")
-        except Exception:
-            pass
+    field_group = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
+    fs_group = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
+    gr_group = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
+    action_group = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
 
-    grid.attach(headings[0], 0, 0, 1, 1)
-    grid.attach(headings[1], 1, 0, 1, 1)
-    grid.attach(headings[2], 2, 0, 1, 1)
-    grid.attach(headings[3], 3, 0, 1, 1)
+    def configure_cell(
+        widget: Gtk.Widget,
+        group: Gtk.SizeGroup,
+        width: int,
+        max_width: int,
+    ) -> None:
+        """
+        Align a cell across independent row grids.
+
+        :param widget: The cell widget.
+        :type widget: :py:class:`Gtk.Widget`
+        :param group: The size group that aligns the column.
+        :type group: :py:class:`Gtk.SizeGroup`
+        :param width: Suggested label width in characters.
+        :type width: int
+        :param max_width: Maximum wrapping width in characters.
+        :type max_width: int
+        :returns: ``None``.
+        :rtype: None
+        """
+        group.add_widget(widget)
+        if isinstance(widget, Gtk.Label):
+            widget.set_width_chars(width)
+            widget.set_max_width_chars(max_width)
+
+    header_wrap = Gtk.EventBox()
+    header_wrap.set_visible_window(True)
+    _add_style(header_wrap, "fs-sync-header")
+
+    header_grid = Gtk.Grid()
+    header_grid.set_border_width(8)
+    header_grid.set_column_spacing(12)
+    header_wrap.add(header_grid)
+    list_box.pack_start(header_wrap, False, False, 0)
+
+    headings = (
+        (_("Field"), field_group, 24, 30),
+        (_("FamilySearch"), fs_group, 24, 34),
+        (_("Gramps"), gr_group, 34, 48),
+        (_("Action"), action_group, 18, 22),
+    )
+    for column, (heading, group, width, max_width) in enumerate(headings):
+        label = _sync_label(heading, "fs-sync-heading")
+        configure_cell(label, group, width, max_width)
+        header_grid.attach(label, column, 0, 1, 1)
 
     combos: List[Gtk.ComboBoxText] = []
     effective_items: List[Dict[str, Any]] = []
@@ -699,50 +968,80 @@ def _prompt(
         text = (value or "").strip()
         return text if text else _("(empty)")
 
-    row = 1
     for item in items:
-        kind = item.get("kind", "")
+        kind = str(item.get("kind") or "")
+        status = _sync_item_status(item)
 
-        field_label = Gtk.Label(label=str(item.get("label") or ""))
-        field_label.set_xalign(0.0)
-        field_label.set_line_wrap(True)
+        row_wrap = Gtk.EventBox()
+        row_wrap.set_visible_window(True)
+        _add_style(row_wrap, "fs-sync-row", "fs-sync-row-" + status)
 
-        fs_label = Gtk.Label(label=fmt(str(item.get("fs_val") or "")))
-        fs_label.set_xalign(0.0)
-        fs_label.set_line_wrap(True)
+        row_grid = Gtk.Grid()
+        row_grid.set_column_spacing(12)
+        row_grid.set_row_spacing(4)
+        row_grid.set_border_width(8)
+        row_wrap.add(row_grid)
 
-        gr_label = Gtk.Label(label=fmt(str(item.get("gr_val") or "")))
-        gr_label.set_xalign(0.0)
-        gr_label.set_line_wrap(True)
+        field_label = _sync_label(str(item.get("label") or ""), "fs-sync-field")
+        configure_cell(field_label, field_group, 24, 30)
+
+        fs_label = _sync_label(fmt(str(item.get("fs_val") or "")), "fs-sync-value")
+        configure_cell(fs_label, fs_group, 24, 34)
+
+        gr_label = _sync_label(fmt(str(item.get("gr_val") or "")), "fs-sync-value")
+        configure_cell(gr_label, gr_group, 34, 48)
 
         combo = Gtk.ComboBoxText()
         combo.append_text(_("Keep FamilySearch"))
-
-        if kind in ("primary_name", "fact", "note_update"):
-            combo.append_text(_("Overwrite with Gramps"))
-        elif kind in ("note_create", "source_create", "memory_create"):
-            combo.append_text(_("Add from Gramps"))
-        else:
-            combo.append_text(_("Apply from Gramps"))
-
+        combo.append_text(_sync_item_action(kind))
         combo.set_active(0)
+        combo.set_tooltip_text(
+            _("Choose whether to keep FamilySearch or push this Gramps value.")
+        )
+        configure_cell(combo, action_group, 18, 22)
 
-        grid.attach(field_label, 0, row, 1, 1)
-        grid.attach(fs_label, 1, row, 1, 1)
-        grid.attach(gr_label, 2, row, 1, 1)
-        grid.attach(combo, 3, row, 1, 1)
+        row_grid.attach(field_label, 0, 0, 1, 1)
+        row_grid.attach(fs_label, 1, 0, 1, 1)
+        row_grid.attach(gr_label, 2, 0, 1, 1)
+        row_grid.attach(combo, 3, 0, 1, 1)
+        list_box.pack_start(row_wrap, False, False, 0)
 
         combos.append(combo)
         effective_items.append(item)
-        row += 1
+
+    def update_selected_count(*_args: Any) -> None:
+        """
+        Refresh the selected-row counter.
+
+        :returns: ``None``.
+        :rtype: None
+        """
+        selected = sum(1 for combo in combos if combo.get_active() == 1)
+        selected_label.set_text(
+            _("%(selected)d of %(total)d selected")
+            % {"selected": selected, "total": len(combos)}
+        )
+
+    for combo in combos:
+        combo.connect("changed", update_selected_count)
 
     def set_all(apply_changes: bool) -> None:
+        """
+        Apply the same action to all rows.
+
+        :param apply_changes: Whether every row should be selected for push.
+        :type apply_changes: bool
+        :returns: ``None``.
+        :rtype: None
+        """
         index = 1 if apply_changes else 0
         for combo in combos:
             combo.set_active(index)
+        update_selected_count()
 
     select_all.connect("clicked", lambda *_: set_all(True))
     select_none.connect("clicked", lambda *_: set_all(False))
+    update_selected_count()
 
     dialog.show_all()
     response = dialog.run()
@@ -777,8 +1076,12 @@ def sync_to_familysearch(
             WarningDialog(_("Not connected to FamilySearch."), parent=parent)
             return
 
+        editor_obj = getattr(editor, "obj", None) if editor is not None else None
+        person = _live_editor_person(person, editor)
+        using_live_editor_person = editor_obj is not None and person is editor_obj
+
         handle = fs_sync_core._person_handle(person)
-        if handle:
+        if handle and not using_live_editor_person:
             db_person = dbstate.db.get_person_from_handle(handle)
             if db_person is not None:
                 person = db_person
@@ -816,10 +1119,16 @@ def sync_to_familysearch(
         fsid = resolved_fsid or fsid_raw
 
         if fs_state == "merged" and fsid and fsid != fsid_raw:
-            with DbTxn(_("FamilySearch: Refresh merged ID"), dbstate.db) as txn:
-                fs_sync_core._get_or_set_person_fsid(dbstate.db, txn, person, fsid)
-
+            fsid_person = person
             if handle:
+                db_person = dbstate.db.get_person_from_handle(handle)
+                if db_person is not None:
+                    fsid_person = db_person
+
+            with DbTxn(_("FamilySearch: Refresh merged ID"), dbstate.db) as txn:
+                fs_sync_core._get_or_set_person_fsid(dbstate.db, txn, fsid_person, fsid)
+
+            if handle and not using_live_editor_person:
                 db_person = dbstate.db.get_person_from_handle(handle)
                 if db_person is not None:
                     person = db_person

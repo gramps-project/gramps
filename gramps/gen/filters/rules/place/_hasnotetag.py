@@ -41,6 +41,6 @@ from .._hasnotetagbase import HasNoteTagBase
 class HasNoteTag(HasNoteTagBase):
     """Rule that checks for places with a note with a specified tag."""
 
-    name = _("Places with a note with a tag of <type>")
+    name = _("Places with a note with the <tag>")
     description = _("Matches places with a note with a specified tag")
     category = _("Note filters")

@@ -35,6 +35,7 @@ This package implements access to Gramps configuration.
 import os
 import re
 import logging
+import sys
 
 # ---------------------------------------------------------------
 #
@@ -392,6 +393,7 @@ register("utf8.cremated-symbol", "⚱")
 register("utf8.killed-symbol", "x")
 
 register("familysearch.server", 0)  # beta
+register("familysearch.enable", False)
 register("familysearch.app-key", "")
 register("familysearch.redirect", "http://127.0.0.1:57938/familysearch-auth")
 register("familysearch.auth-provider", "foundation")
@@ -458,7 +460,8 @@ if not os.path.exists(CONFIGMAN.filename):
 # Now, load the settings from the config file, if one
 #
 # ---------------------------------------------------------------
-CONFIGMAN.load()
+if not "unittest" in sys.modules.keys():
+    CONFIGMAN.load()
 
 config = CONFIGMAN
 if config.get("database.backend") == "bsddb":

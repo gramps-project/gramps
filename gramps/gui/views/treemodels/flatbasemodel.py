@@ -75,6 +75,8 @@ from .basemodel import BaseModel
 from ...user import User
 from gramps.gen.proxy.cache import CacheProxyDb
 
+_ = glocale.translation.gettext
+
 # -------------------------------------------------------------------------
 #
 # FlatNodeMap
@@ -625,12 +627,21 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 allkeys = self.sort_keys()
             if self.search:
                 ident = False
-                if ignore is None:
-                    dlist = self.search.apply(cdb, allkeys, tupleind=1, user=self.user)
-                else:
-                    dlist = self.search.apply(
-                        cdb, [k for k in allkeys if k[1] != ignore], tupleind=1
-                    )
+                self.user.begin_filter_progress()
+                try:
+                    if ignore is None:
+                        dlist = self.search.apply(
+                            cdb, allkeys, tupleind=1, user=self.user
+                        )
+                    else:
+                        dlist = self.search.apply(
+                            cdb,
+                            [k for k in allkeys if k[1] != ignore],
+                            tupleind=1,
+                            user=self.user,
+                        )
+                finally:
+                    self.user.end_filter_progress()
             elif ignore is None:
                 ident = True
                 dlist = allkeys

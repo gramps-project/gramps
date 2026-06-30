@@ -59,12 +59,16 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             _("FamilySearch Import"), _("Starting"), parent=caller.uistate.window
         )
         caller.uistate.set_busy_cursor(True)
+        signals_disabled = False
 
         if self.refresh_signals:
             caller.dbstate.db.disable_signals()
+            signals_disabled = True
 
         if not FSG_Sync.FSG_Sync.ensure_session(caller, self.verbosity):
             WarningDialog(_("Not connected to FamilySearch"))
+            if signals_disabled:
+                caller.dbstate.db.enable_signals()
             caller.uistate.set_busy_cursor(False)
             progress.close()
             if active_handle:
@@ -89,6 +93,8 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         if self.FS_ID:
             self.fs_TreeImp.add_persons([self.FS_ID])
         else:
+            if signals_disabled:
+                caller.dbstate.db.enable_signals()
             caller.uistate.set_busy_cursor(False)
             progress.close()
             if active_handle:
@@ -231,7 +237,7 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         caller.uistate.set_busy_cursor(False)
         progress.close()
 
-        if self.refresh_signals:
+        if signals_disabled:
             caller.dbstate.db.enable_signals()
             if self.added_person:
                 caller.dbstate.db.request_rebuild()

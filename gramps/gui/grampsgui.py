@@ -76,7 +76,7 @@ UIDEFAULT = (
           <attribute name="label" translatable="yes">_Close</attribute>
         </item>
       </section>
-      <section groups='RO RW'>
+      <section groups='FS'>
         <item groups='RW'>
           <attribute name="action">win.Login</attribute>
           <attribute name="label" translatable="yes">_FamilySearch Sign in...</attribute>

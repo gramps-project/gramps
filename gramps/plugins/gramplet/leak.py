@@ -185,10 +185,10 @@ class Leak(Gramplet):
 
     def display(self):
         try:
-            from bsddb3.db import DBError
+            from berkeleydb.db import DBError
         except:
             try:
-                from berkeleydb.db import DBError
+                from bsddb3.db import DBError
             except:
 
                 class DBError(Exception):

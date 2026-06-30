@@ -45,12 +45,7 @@ try:
 
     HAVE_ICU = True
 except ImportError:
-    try:
-        from PyICU import Locale, Collator
-
-        HAVE_ICU = True
-    except ImportError:
-        pass
+    pass
 
 LOG = logging.getLogger(".NarrativeWeb")
 COLLATE_LANG = glocale.collation

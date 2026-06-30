@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2010    Nick Hall
+# Copyright (C) 2026    ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -254,7 +255,7 @@ class Tags(DbGUIElement):
         for tag_name, handle in self.__tag_list:
             tag_menu += menuitem % (
                 "TAG-%s" % handle,
-                _("Add tag '%s'") % escape(tag_name),
+                _("Add tag '%s'") % escape(tag_name.replace("_", "__")),
             )
             actions.append(
                 ("TAG-%s" % handle, make_callback(self.tag_selected_rows, handle))
@@ -262,7 +263,7 @@ class Tags(DbGUIElement):
         for tag_name, handle in self.__tag_list:
             tag_menu += menuitem % (
                 "R-TAG-%s" % handle,
-                _("Remove tag '%s'") % escape(tag_name),
+                _("Remove tag '%s'") % escape(tag_name.replace("_", "__")),
             )
             actions.append(
                 (

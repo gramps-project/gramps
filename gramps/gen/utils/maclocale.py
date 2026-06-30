@@ -98,7 +98,7 @@ def mac_setup_localization(glocale):
 
             answer = None
             with subprocess.Popen(
-                args, stderr=open("/dev/null", encoding="utf8"), stdout=subprocess.PIPE
+                args, stderr=subprocess.DEVNULL, stdout=subprocess.PIPE
             ) as proc:
                 answer = proc.communicate()[0]
             if not answer:

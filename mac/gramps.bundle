@@ -42,7 +42,7 @@
   </binary>
 
   <binary recurse="True">
-    ${prefix}/lib/python3.13/*.so
+    ${prefix}/lib/python3.14/*.so
   </binary>
 
   <binary dest="${bundle}/Contents/MacOS/">
@@ -62,7 +62,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libgexiv2.dylib
+    ${prefix}/lib/libgexiv2-0.16.dylib
   </binary>
 
   <binary>
@@ -161,15 +161,15 @@
   <!-- We have to pull in the python modules, which are mixed python
        and loadable modules.  -->
   <data recurse="True">
-    ${prefix}/lib/python3.13/*.py
+    ${prefix}/lib/python3.14/*.py
   </data>
 
   <data>
-    ${prefix}/lib/python3.13/config-3.13-darwin/
+    ${prefix}/lib/python3.14/config-3.14-darwin/
   </data>
 
   <data>
-    ${prefix}/include/python3.13/pyconfig.h
+    ${prefix}/include/python3.14/pyconfig.h
   </data>
 
 
@@ -186,7 +186,7 @@
   </data>
 
   <data recurse="True">
-    ${prefix}/lib/python3.13/site-packages/gramps/*.glade
+    ${prefix}/lib/python3.14/site-packages/gramps/*.glade
   </data>
 
   <data>
@@ -203,7 +203,7 @@
 
 <!-- Note that you must run `dot -c` to create this file -->
   <data>
-    ${prefix}/lib/graphviz/config6
+    ${prefix}/lib/graphviz/config8
   </data>
 
   <!-- Copy in the themes data. You may want to trim this to save space

@@ -448,7 +448,7 @@ class FamilyView(ListView):
         fhandle = self.first_selected()
         if fhandle:
             family = self.dbstate.db.get_family_from_handle(fhandle)
-            if family:
+            if family and family.father_handle:
                 self.uistate.set_active(family.father_handle, "Person")
 
     def _make_mother_active(self, *obj):
@@ -458,7 +458,7 @@ class FamilyView(ListView):
         fhandle = self.first_selected()
         if fhandle:
             family = self.dbstate.db.get_family_from_handle(fhandle)
-            if family:
+            if family and family.mother_handle:
                 self.uistate.set_active(family.mother_handle, "Person")
 
     def drag_info(self):

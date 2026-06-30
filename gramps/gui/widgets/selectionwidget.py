@@ -767,18 +767,27 @@ class SelectionWidget(Gtk.ScrolledWindow):
                             event.y - self.start_point_screen[1],
                         )
                         self.grabber_to_draw = self._modify_selection(dx, dy)
-                        self.current.set_coords(*self.selection)
-                        self.emit("region-modified")
+                        if self.selection is not None:
+                            self.current.set_coords(*self.selection)
+                            self.emit("region-modified")
                     elif self.grabber is None and self.multiple_selection:
                         # clicked outside of the grabbing area
                         self.current = None
                         self.selection = None
                         self.emit("selection-cleared")
                     else:
-                        # update current selection
-                        self.current.set_coords(*self.selection)
-                        self.region = self.current
-                        self.emit("region-modified")
+                        # update current selection. Click-after-resize (Mantis
+                        # 13059, dup 12659) lands here with ``self.selection``
+                        # still ``None`` -- the previous resize-release path
+                        # set ``self.grabber = INSIDE`` and then the no-motion
+                        # click never rebuilt ``selection``. Splatting None
+                        # into ``set_coords`` raises ``TypeError``; the
+                        # correct no-op here is to leave the region's stored
+                        # coordinates as they are.
+                        if self.selection is not None:
+                            self.current.set_coords(*self.selection)
+                            self.region = self.current
+                            self.emit("region-modified")
                 else:
                     # nothing is currently selected
                     if (

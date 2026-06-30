@@ -20,13 +20,17 @@
 
 from __future__ import annotations
 
+import calendar
 import email.utils
 import json
+import logging
 import os
 import time
-from typing import Any, ClassVar, Optional, Tuple
+from typing import Any, Callable, ClassVar, Optional, Tuple
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+LOG = logging.getLogger(__name__)
 
 from gramps.gen.fs import tree
 from gramps.gen.fs.fs_import import deserializer as deserialize
@@ -106,7 +110,7 @@ class _FsCache:
                 os.fsync(f.fileno())
             os.replace(tmp_path, path)
         except Exception as e:
-            print(f"[FS Cache] failed to write {fsid}: {e}")
+            LOG.warning("FS Cache: failed to write %s: %s", fsid, e)
             try:
                 if os.path.exists(tmp_path):
                     os.remove(tmp_path)
@@ -147,7 +151,7 @@ class _FsCache:
                 except Exception:
                     pass
         except Exception as e:
-            print(f"[FS Cache] failed to clear cache dir {self.base_dir}: {e}")
+            LOG.warning("FS Cache: failed to clear cache dir %s: %s", self.base_dir, e)
 
 
 class CacheMixin:
@@ -179,6 +183,64 @@ class CacheMixin:
             )
         return fs_session
 
+    def _hydrate_relative_payloads(
+        self, fsid: str, fs_tree: Any, fs_session: Any
+    ) -> None:
+        """
+        Fetch relative payloads when the base person payload omits them.
+        """
+        person = deserialize.Person.index.get(fsid)
+        if person is None:
+            return
+
+        missing_endpoints: list[str] = []
+        if not list(getattr(person, "_spouses", []) or []):
+            missing_endpoints.append("spouses")
+        if not (
+            list(getattr(person, "_children", []) or [])
+            or list(getattr(person, "_childrenCP", []) or [])
+        ):
+            missing_endpoints.append("children")
+        if not (
+            list(getattr(person, "_parents", []) or [])
+            or list(getattr(person, "_parentsCP", []) or [])
+        ):
+            missing_endpoints.append("parents")
+        if not missing_endpoints:
+            return
+
+        get_json = getattr(fs_session, "get_jsonurl", None) or getattr(
+            fs_session, "get_json", None
+        )
+        if not callable(get_json):
+            return
+
+        for endpoint in missing_endpoints:
+            try:
+                payload = get_json(f"/platform/tree/persons/{fsid}/{endpoint}")
+            except Exception as exc:
+                LOG.warning(
+                    "FS Cache: failed to fetch %s for %s: %s", endpoint, fsid, exc
+                )
+                continue
+
+            if not isinstance(payload, dict) or not payload:
+                continue
+
+            try:
+                deserialize.deserialize_json(fs_tree, payload)
+            except Exception as exc:
+                LOG.warning(
+                    "FS Cache: failed to deserialize %s for %s: %s",
+                    endpoint,
+                    fsid,
+                    exc,
+                )
+
+        person = deserialize.Person.index.get(fsid)
+        if person is not None:
+            fs_tree._persons[fsid] = person
+
     def _ensure_person_cached(
         self,
         fsid: str,
@@ -201,7 +263,16 @@ class CacheMixin:
             if r:
                 etag = r.headers.get("Etag")
                 lm = r.headers.get("Last-Modified")
-                last_mod = int(time.mktime(email.utils.parsedate(lm))) if lm else None
+                if lm:
+                    try:
+                        parsed = email.utils.parsedate(lm)
+                        last_mod = (
+                            calendar.timegm(parsed) if parsed is not None else None
+                        )
+                    except Exception:
+                        last_mod = None
+                else:
+                    last_mod = None
 
         ce = cache.get_meta(fsid) if cache else None
         up_to_date = (
@@ -225,7 +296,9 @@ class CacheMixin:
                     # disk[0] := {"persons":[ <person json> ]}
                     deserialize.deserialize_json(fs_tree, disk[0])
                 except Exception as e:
-                    print(f"[FS Cache] deserialize (disk) failed for {fsid}: {e}")
+                    LOG.warning(
+                        "FS Cache: deserialize (disk) failed for %s: %s", fsid, e
+                    )
 
                 p = deserialize.Person.index.get(fsid)
                 if p:
@@ -278,9 +351,12 @@ class CacheMixin:
                                 getattr(p, "_last_modified", None),
                             )
                         except Exception as e:
-                            print(f"[FS Cache] serialize/write failed for {fsid}: {e}")
+                            LOG.warning(
+                                "FS Cache: serialize/write failed for %s: %s", fsid, e
+                            )
 
         if with_relatives:
+            self._hydrate_relative_payloads(fsid, fs_tree, fs_session)
             fs_tree.add_spouses({fsid})
             fs_tree.add_children({fsid})
             fs_tree.add_parents({fsid})
@@ -315,7 +391,14 @@ class CacheMixin:
         if cache:
             cache.mark_loaded(fsid, notes=True)
 
-    def _ensure_sources_cached(self, fsid: str) -> None:
+    def _ensure_sources_cached(
+        self,
+        fsid: str,
+        progress_callback: Callable[[str], None] | None = None,
+    ) -> None:
+        """
+        Ensure FamilySearch source payloads are cached for a person.
+        """
         cache = self.__class__._cache
         # loaded this session, dont fetch again
         if cache:
@@ -327,19 +410,45 @@ class CacheMixin:
         _get_json = getattr(fs_session, "get_jsonurl", None) or getattr(
             fs_session, "get_json", None
         )
-        if _get_json:
-            _get_json(f"/platform/tree/persons/{fsid}/sources")
+        total_steps = 1
 
-        # compute spouses if not already present
         p0 = deserialize.Person.index.get(fsid)
-        if not (p0 and getattr(p0, "_spouses", None) is not None):
-            self.__class__._get_fs_tree().add_spouses({fsid})
+        spouses = list(getattr(p0, "_spouses", []) or []) if p0 else []
+        if not spouses:
+            try:
+                spouses = list(self.__class__._get_fs_tree().add_spouses({fsid}) or [])
+            except Exception:
+                spouses = []
+            p0 = deserialize.Person.index.get(fsid)
+            spouses = list(getattr(p0, "_spouses", []) or spouses or [])
+
+        total_steps += len(spouses)
+        step_index = 0
+
+        def _notify_progress(header: str) -> None:
+            nonlocal step_index
+
+            step_index += 1
+            if progress_callback:
+                progress_callback(
+                    _("%(header)s (%(current)d/%(total)d)")
+                    % {
+                        "header": header,
+                        "current": step_index,
+                        "total": total_steps,
+                    }
+                )
+
+        if _get_json:
+            _notify_progress(_("Loading FamilySearch person sources"))
+            _get_json(f"/platform/tree/persons/{fsid}/sources")
 
         p = deserialize.Person.index.get(fsid)
         if p:
             for rel in getattr(p, "_spouses", []) or []:
                 try:
                     if _get_json:
+                        _notify_progress(_("Loading FamilySearch relationship sources"))
                         _get_json(
                             f"/platform/tree/couple-relationships/{rel.id}/sources"
                         )

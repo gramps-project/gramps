@@ -140,6 +140,54 @@ class TestDynamic(unittest.TestCase):
         out, err = cls.call("-y", "--remove", TREE_NAME)
         # out, err = cls.call("-y", "--remove", TREE_NAME + "_import_gedcom")
 
+    def test_hourglass_graph_includes_spouse_mantis_9628(self):
+        """Regression for Mantis 9628: Hourglass Graph in descendant
+        direction omits the spouse (other parent) of every family —
+        ``traverse_down`` linked focal → family → children but never
+        added the other parent. Fixed by mirroring traverse_up's
+        father+mother linking inside the family-handle loop.
+
+        Test fixture: data.gramps family F0001 — Smith Ingeman
+        (I0027) + Ericsdotter Marta (I0025) → Smith Martin (I0039).
+        Center person I0027 with maxdescend=1, maxascend=0 should
+        produce a DOT that names Marta. Pre-fix the DOT contained
+        Ingeman + Martin (child) but not Marta; post-fix Marta is
+        added with an edge to F0001.
+        """
+        out, err = self.call(
+            "--force",
+            "-O",
+            TREE_NAME,
+            "--action",
+            "report",
+            "--options",
+            "name=hourglass_graph"
+            ",pid=I0027"
+            ",maxdescend=1"
+            ",maxascend=0"
+            ",off=dot",
+        )
+        self.assertNotIn(
+            "Failed to write report.",
+            err,
+            "hourglass_graph report failed: " + err,
+        )
+        # Graphviz docgen writes the source file with a ``.gv``
+        # extension regardless of whether ``off=dot`` or ``off=gv`` is
+        # requested (CLI prints "Ignoring 'off=gv' and using 'off=dot'"
+        # on the gv → dot alias).
+        dot_path = "hourglass_graph " + TREE_NAME + ".gv"
+        with open(dot_path) as fp:
+            contents = fp.read()
+        os.remove(dot_path)
+        self.assertIn(
+            "Ericsdotter",
+            contents,
+            "Mantis 9628: Ericsdotter (Marta, spouse of focal I0027) "
+            "missing from descendant graph — traverse_down did not "
+            "add the other parent of the family.",
+        )
+
 
 reports = ReportControl()
 

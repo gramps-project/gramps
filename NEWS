@@ -1,3 +1,70 @@
+2026-04-21
+Version 6.1.0-beta1
+* Update translations: da, es, fr, hr, nl, pl, pt_PT, sk, sv, zh_CN.
+* Improve Windows AIO `README.md`.
+* Skip bsddb tests on Windows.
+* Run unit test suite in AIO pipeline.
+* Call `self.close()` for ":memory:" DBs to avoid warnings.
+* Close database in `tearDownClass` method.
+* Avoid hard-coded paths and close the db at the end of the test.
+* Refactor media path tests to ensure environment restoration and database
+  closure.
+* Skip tests which are locale dependent when the correct locale is not selected.
+* When running unittests make the environment invariant of the current users
+  configuration.
+* Fix some translated strings.
+* Remove mingw64 entry from gitignore.
+* Fix local Windows AIO build.
+* Migrate Windows AIO to MSYS2 UCRT64 environment. Fixes #14149.
+* Replace hexlify with `getSortKey()` bytes, drop binascii import. Bug #10077.
+* Add config to allow ignore XML media flag.
+* Implement FamilySearch-Gramps Integration.
+* Pass an object rather than a handle to the note editor callback.
+  Fixes #13702, #13884.
+* Add a HasNoteTag filter rule.
+* Add HasNoteType filters for Media and Repository objects.
+* Add a "References" tab to the family editor dialog. Fixes #13673.
+* Avoid opening a Citation when dragging or selecting an existing one.
+* Improve birth/death estimation.
+* Update the `INSTALL` file.
+* Add `tearDownClass` method to cleaup after unit test.
+* Fix ProbablyAlive ignoring fallback when birth event has no year.
+* Add non-sharable notes to media. Fixes #13922.
+* Add a favorites sidebar and all persistent sidebar.
+* Narrative web: Add an option to allow internet indexing.
+* Allow invalid dates in the relationship graph. Fixes #13672.
+* Calendar enhancements. Fixes #13754.
+* Add an Address option to the Individual Complete Report. Implements #14170.
+* Remove duplicated name formats.
+* Small one-line fixes mainly to comments and log messages.
+* Change the default gramps IDs to %05d.
+* Tidy up the add_row method in the PlaceDetails gramplet.
+* Move embedded URLs out of translated strings.
+* Add `AGENTS.md` with contributor and agent guidelines.
+* Update minimum python version. Python 3.9 reached EOL in October 2025.
+* Remove out of date comments.
+* Maintain compatibility with the directories used by Gramps 6.0.
+* Fix home directory location on Windows.
+* When writing a gramps XML file use the NS URI not the homepage URL.
+* Update http://developers.gramps-project.org.
+* Use https instead of http.
+* Fix spelling mistake in comment.
+* Fix code formatting.
+* Convert Windows AIO to use the new build process.
+* Provide a fallback for locale module without gettext support.
+* Decouple the core library code from GObject introspection.
+* Fix license issues in the `pyproject.toml` file.
+* Fix test path.
+* Dev version correctly reports the SHA of the local HEAD commit.
+* Rename apply to apply_to_one to reflect global change in v6.0.
+* Code improvements.
+* Unrelated formatting fixes.
+* Fix test directory location in unit tests.
+* Convert to using a `pyproject.toml` based build system.
+* Add a configuration option for the length of note previews.
+* Add mypy configuration.
+* Add `py.typed` to indicate the code base is (becoming) typed.
+
 2026-04-09
 Version 6.0.8
 * Update translations: cs, de_AT, en_GB, fa, fi, fr, ga, he, hr, it, mn, nl, pl,

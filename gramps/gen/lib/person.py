@@ -247,7 +247,7 @@ class Person(
                 "urls": {
                     "type": "array",
                     "items": Url.get_schema(),
-                    "title": _("Urls"),
+                    "title": _("URLs"),
                 },
                 "lds_ord_list": {
                     "type": "array",

@@ -25,9 +25,9 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
-MODULE_VERSION = "6.0"
-GRAMPLET_HELP = _("Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List")
-DEBUG_HELP = _("Gramps_6.0_Wiki_Manual_-_Tools#Debug")
+MODULE_VERSION = "6.1"
+GRAMPLET_HELP = _("Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List")
+DEBUG_HELP = _("Gramps_6.1_Wiki_Manual_-_Tools#Debug")
 
 # ------------------------------------------------------------------------
 #
@@ -518,10 +518,11 @@ try:
     from gi import Repository
 
     repository = Repository.get_default()
-    if repository.enumerate_versions("GExiv2"):
+    v_array = repository.enumerate_versions("GExiv2")
+    if v_array:
         import gi
 
-        gi.require_version("GExiv2", "0.10")
+        gi.require_version("GExiv2", v_array[-1])
         from gi.repository import GExiv2
 
         available = True

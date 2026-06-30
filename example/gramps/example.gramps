@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.2/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.2/">
   <header>
-    <created date="2025-03-18" version="6.0.0"/>
+    <created date="2026-04-28" version="6.0.0"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
@@ -13952,23 +13952,30 @@
       <place hlink="_c965872633b600e8b5ca4d5e6db"/>
       <description>Burial of Schultz, Rev.Isaac</description>
     </event>
-    <event handle="_a5af0ed3f9b07f938fb" change="1284030602" id="E02619">
+    <event handle="_a5af0ed3f9b07f938fb" change="1777310869" id="E02619">
       <type>Birth</type>
       <dateval val="1820"/>
       <place hlink="_AVVJQC9N4VQSW4GS3M"/>
       <description>Birth of Boucher, Michael</description>
+      <objref hlink="_102a1df4e2472b8fae1fb0150a90"/>
+      <objref hlink="_102a1de9071f47b5c0e70cdc1d99"/>
     </event>
-    <event handle="_a5af0ed3fac3f37bc9d" change="1284030602" id="E02620">
+    <event handle="_a5af0ed3fac3f37bc9d" change="1777310888" id="E02620">
       <type>Death</type>
       <dateval val="1859-01-09"/>
       <place hlink="_KVVJQCC5VSODDBDZDP"/>
       <description>Death of Boucher, Michael</description>
+      <objref hlink="_102a1dfe5d87156bc97a6de1371a"/>
+      <objref hlink="_102a1de5878031f06a6d1323d87"/>
     </event>
-    <event handle="_a5af0ed3fc33e383531" change="1284030602" id="E02621">
+    <event handle="_a5af0ed3fc33e383531" change="1777310654" id="E02621">
       <type>Burial</type>
       <dateval val="1859"/>
       <place hlink="_RVVJQCHNMAWOU0XC2V"/>
       <description>Burial of Boucher, Michael</description>
+      <objref hlink="_102a1dfc8e7439df9fa1903537eb"/>
+      <objref hlink="_102a1e00c7857cd8bba59e0b98de"/>
+      <objref hlink="_102a1de0364919bca9a295dd8618"/>
     </event>
     <event handle="_a5af0ed40015b4c12f2" change="1284030596" id="E02622">
       <type>Death</type>
@@ -16189,10 +16196,13 @@
       <place hlink="_5AGKQCJBVO185NHDZA"/>
       <description>Marriage of Lefebvre, Rev. John L. and Kowalski, Hannah</description>
     </event>
-    <event handle="_a5af0ed9e02354d41e5" change="1284030620" id="E03046">
+    <event handle="_a5af0ed9e02354d41e5" change="1777310831" id="E03046">
       <type>Marriage</type>
+      <datestr val=""/>
       <place hlink="_HY2LQC6E6Z1YLCN0V4"/>
       <description>Marriage of Boucher, Michael and Boucher, Honora</description>
+      <objref hlink="_102a1e0303b07c85778edb3ea5ea"/>
+      <objref hlink="_102a1de3344a61436b700af73419"/>
     </event>
     <event handle="_a5af0ed9e3f6f82ae19" change="1284030623" id="E03047">
       <type>Marriage</type>
@@ -60210,11 +60220,12 @@
       <coord long="-89.3648183" lat="40.1483768"/>
       <placeref hlink="_c9658727152459a99ec5d63885d"/>
     </placeobj>
-    <placeobj handle="_AVVJQC9N4VQSW4GS3M" change="1234390730" id="P01104" type="City">
+    <placeobj handle="_AVVJQC9N4VQSW4GS3M" change="1777310130" id="P01104" type="City">
       <ptitle>Andrews, TX</ptitle>
       <pname value="Andrews"/>
       <coord long="-102.5457155" lat="32.3187158"/>
       <placeref hlink="_c965872653e2e15c6ab3ffdefcb"/>
+      <objref hlink="_102a1df4e2472b8fae1fb0150a90"/>
     </placeobj>
     <placeobj handle="_AX4KQC7839YK5ANKJI" change="1234373374" id="P01105" type="City">
       <ptitle>San Juan, PR</ptitle>
@@ -61094,11 +61105,12 @@
       <pname value="Ellensburg"/>
       <placeref hlink="_c96587263316456e0a6104af113"/>
     </placeobj>
-    <placeobj handle="_HY2LQC6E6Z1YLCN0V4" change="1234390691" id="P01267" type="City">
+    <placeobj handle="_HY2LQC6E6Z1YLCN0V4" change="1777309640" id="P01267" type="City">
       <ptitle>Buffalo, NY</ptitle>
       <pname value="Buffalo"/>
       <coord long="-78.8783689" lat="42.8864468"/>
       <placeref hlink="_c965872716f3918e01e200c9c5d"/>
+      <objref hlink="_102a1e0303b07c85778edb3ea5ea"/>
     </placeobj>
     <placeobj handle="_HYWJQCL563RRLWZ4DB" change="1234373375" id="P01268" type="City">
       <ptitle>Wheeling, WV-OH</ptitle>
@@ -61534,11 +61546,12 @@
       <coord long="-84.2326876" lat="32.0723862"/>
       <placeref hlink="_c96587263f54159b73260cf9a02"/>
     </placeobj>
-    <placeobj handle="_KVVJQCC5VSODDBDZDP" change="1234390730" id="P01348" type="City">
+    <placeobj handle="_KVVJQCC5VSODDBDZDP" change="1777309826" id="P01348" type="City">
       <ptitle>Beaumont, TX</ptitle>
       <pname value="Beaumont"/>
       <coord long="-94.1018461" lat="30.0860459"/>
       <placeref hlink="_c9658726df434b4337a2b0c3a36"/>
+      <objref hlink="_102a1dfc8e7439df9fa1903537eb"/>
     </placeobj>
     <placeobj handle="_L3UJQCWIJVOYAF2HRV" change="1234390730" id="P01349" type="City">
       <ptitle>Amarillo, TX</ptitle>
@@ -63519,10 +63532,11 @@
       <pname value="WI"/>
       <placeref hlink="_4ECKQCWCLO5YIHXEXC"/>
     </placeobj>
-    <placeobj handle="_c965872630a68ebd32322c4a30a" change="1383986851" id="P00010" type="State">
+    <placeobj handle="_c965872630a68ebd32322c4a30a" change="1777310049" id="P00010" type="State">
       <ptitle>TX, USA</ptitle>
       <pname value="TX"/>
       <placeref hlink="_4ECKQCWCLO5YIHXEXC"/>
+      <objref hlink="_102a1de5878031f06a6d1323d87"/>
     </placeobj>
     <placeobj handle="_c965872630c2b6ae7344482a204" change="1383986851" id="P00011" type="County">
       <ptitle>Navarro, TX, USA</ptitle>
@@ -63754,10 +63768,11 @@
       <pname value="Gray"/>
       <placeref hlink="_c965872630a68ebd32322c4a30a"/>
     </placeobj>
-    <placeobj handle="_c96587263cc11e217c35cc9003f" change="1383986851" id="P00057" type="State">
+    <placeobj handle="_c96587263cc11e217c35cc9003f" change="1777309990" id="P00057" type="State">
       <ptitle>NY, USA</ptitle>
       <pname value="NY"/>
       <placeref hlink="_4ECKQCWCLO5YIHXEXC"/>
+      <objref hlink="_102a1de3344a61436b700af73419"/>
     </placeobj>
     <placeobj handle="_c96587263d1197a0e69cbd455cb" change="1383986851" id="P00058" type="State">
       <ptitle>WY, USA</ptitle>
@@ -63954,10 +63969,11 @@
       <pname value="San Mateo"/>
       <placeref hlink="_c96587262ff262aaac31f6db7af"/>
     </placeobj>
-    <placeobj handle="_c96587264a63e2b3bfdae4249ff" change="1383986851" id="P00097" type="State">
+    <placeobj handle="_c96587264a63e2b3bfdae4249ff" change="1777309965" id="P00097" type="State">
       <ptitle>NE, USA</ptitle>
       <pname value="NE"/>
       <placeref hlink="_4ECKQCWCLO5YIHXEXC"/>
+      <objref hlink="_102a1de0364919bca9a295dd8618"/>
     </placeobj>
     <placeobj handle="_c96587264aa45ffb3227fae18b4" change="1383986851" id="P00098" type="County">
       <ptitle>Pope, AR, USA</ptitle>
@@ -64084,10 +64100,11 @@
       <pname value="Sumter"/>
       <placeref hlink="_c96587262f24c33ab2420276737"/>
     </placeobj>
-    <placeobj handle="_c965872653e2e15c6ab3ffdefcb" change="1383986851" id="P00123" type="County">
+    <placeobj handle="_c965872653e2e15c6ab3ffdefcb" change="1777310116" id="P00123" type="County">
       <ptitle>Andrews, TX, USA</ptitle>
       <pname value="Andrews"/>
       <placeref hlink="_c965872630a68ebd32322c4a30a"/>
+      <objref hlink="_102a1de9071f47b5c0e70cdc1d99"/>
     </placeobj>
     <placeobj handle="_c96587265442d1fdde24b2ca5d9" change="1383986851" id="P00124" type="County">
       <ptitle>Clinton, IA, USA</ptitle>
@@ -65700,6 +65717,33 @@
     </placeobj>
   </places>
   <objects>
+    <object handle="_102a1de0364919bca9a295dd8618" change="1777307590" id="O00001">
+      <file src="nebraska.kml" mime="application/vnd.google-earth.kml+xml" checksum="9eb1b35ac027e339884452cd19305c57" description="nebraska"/>
+    </object>
+    <object handle="_102a1de3344a61436b700af73419" change="1777307610" id="O00002">
+      <file src="new-york.kml" mime="application/vnd.google-earth.kml+xml" checksum="9d8d7e88448339f177f880f29242370a" description="new-york"/>
+    </object>
+    <object handle="_102a1de5878031f06a6d1323d87" change="1777307625" id="O00003">
+      <file src="texas.kml" mime="application/vnd.google-earth.kml+xml" checksum="b5451ca8c7a12abd069cc9a5cbfed6e2" description="texas"/>
+    </object>
+    <object handle="_102a1de9071f47b5c0e70cdc1d99" change="1777307648" id="O00004">
+      <file src="andrews-county-tx.kml" mime="application/vnd.google-earth.kml+xml" checksum="02d68eff4d56bc2b62b5f5cf0a6a0e33" description="andrews-county-tx"/>
+    </object>
+    <object handle="_102a1df4e2472b8fae1fb0150a90" change="1777307725" id="O00005">
+      <file src="andrews-county-tx-zip-codes.kml" mime="application/vnd.google-earth.kml+xml" checksum="43281a340116f581ad4229b1179dcfc6" description="andrews-county-tx-zip-codes"/>
+    </object>
+    <object handle="_102a1dfc8e7439df9fa1903537eb" change="1777307776" id="O00012">
+      <file src="zip-code-68850.kml" mime="application/vnd.google-earth.kml+xml" checksum="f4a6b0a8559c933e00ded234d70a8f8b" description="zip-code-68850"/>
+    </object>
+    <object handle="_102a1dfe5d87156bc97a6de1371a" change="1777307788" id="O00013">
+      <file src="jefferson-county-tx.kml" mime="application/vnd.google-earth.kml+xml" checksum="3b0add5d9b4941bc0e0a89f0ac2f76c1" description="jefferson-county-tx"/>
+    </object>
+    <object handle="_102a1e00c7857cd8bba59e0b98de" change="1777307803" id="O00014">
+      <file src="Route_to_lexington.kml" mime="application/vnd.google-earth.kml+xml" checksum="1073154ea8ed51604ab7422d1dfbd9b5" description="Route_to_lexington"/>
+    </object>
+    <object handle="_102a1e0303b07c85778edb3ea5ea" change="1777307818" id="O00015">
+      <file src="zip-code-14213.kml" mime="application/vnd.google-earth.kml+xml" checksum="98c60d26ca3ed43d0e073e2386e1da1a" description="zip-code-14213"/>
+    </object>
     <object handle="_238CGQ939HG18SS5MG" change="1328027353" id="O00010">
       <file src="1897_expeditionsmannschaft_rio_a.jpg" mime="image/jpeg" checksum="352c7ae13b8b642471ecae6fa78ce206" description="1897_expeditionsmannschaft_rio_a"/>
       <dateval val="1897"/>

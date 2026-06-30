@@ -41,6 +41,6 @@ from .._hasnotetagbase import HasNoteTagBase
 class HasNoteTag(HasNoteTagBase):
     """Rule that checks for sources with a note with a specified tag."""
 
-    name = _("Sources with a note with a tag of <type>")
+    name = _("Sources with a note with the <tag>")
     description = _("Matches sources with a note with a specified tag")
     category = _("Note filters")

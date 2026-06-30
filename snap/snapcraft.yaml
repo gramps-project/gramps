@@ -1,0 +1,112 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2025-2026  Nick Hall
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
+
+name: gramps
+# version: "6.1.0-beta1"
+icon: images/gramps.png
+base: core24
+adopt-info: gramps
+
+grade: stable
+confinement: strict
+
+apps:
+  gramps:
+    command: bin/gramps
+    plugs:
+      - home
+      - network
+      - network-status
+      - removable-media
+      - hunspell-dictionaries
+      - password-manager-service
+    slots:
+      - dbus-svc
+    extensions: [gnome]
+    common-id: org.gramps_project.Gramps
+    environment:
+      PYTHONPATH: $SNAP/usr/lib/python3/dist-packages:$PYTHONPATH
+      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy
+      GRAMPS_RESOURCES: $SNAP/usr/share
+
+parts:
+  gramps:
+    plugin: python
+    source: .
+    parse-info: [usr/share/metainfo/org.gramps_project.Gramps.metainfo.xml]
+    stage-packages:
+      - python3-bsddb3
+      - python3-icu
+      - python3-pil
+      - python3-requests
+      - python3-certifi
+      - python3-pycountry
+      - python3-imagesize
+      - gir1.2-osmgpsmap-1.0
+      - gir1.2-gexiv2-0.10
+      - gir1.2-geocodeglib-2.0
+      - gir1.2-goocanvas-2.0
+      - gir1.2-gspell-1
+      - enchant-2
+      - hunspell
+      - ghostscript
+      - python3-networkx
+      - python3-keyring
+      - fonts-freefont-ttf
+    override-build: |
+      craftctl default
+      cp -R $CRAFT_PART_INSTALL/share/* $CRAFT_PART_INSTALL/usr/share
+      rm -rf $CRAFT_PART_INSTALL/share
+  graphviz:
+    plugin: nil
+    build-packages:
+      - graphviz
+    stage-packages:
+      - graphviz
+      - python3-pygraphviz
+    override-build: |
+      $CRAFT_PART_INSTALL/usr/bin/dot -c
+      cp \
+        /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/graphviz/config* \
+        $CRAFT_PART_INSTALL/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/graphviz/
+    build-environment:
+      - LD_LIBRARY_PATH: /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
+
+plugs:
+  hunspell-dictionaries:
+    interface: content
+    default-provider: hunspell-dictionaries-1-7-2004
+    target: $SNAP/usr/share/hunspell
+
+slots:
+  dbus-svc:
+    interface: dbus
+    bus: session
+    name: org.gramps_project.Gramps
+
+layout:
+  /etc/httpd/conf:
+    bind: $SNAP_DATA/etc/httpd/conf
+  /usr/share/hunspell:
+    symlink: $SNAP/usr/share/hunspell
+  /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/enchant-2:
+    symlink: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/enchant-2
+
+lint:
+  ignore:
+    - library
