@@ -260,6 +260,43 @@ class DbLoader(CLIDbLoader):
 # FileChooser filters: what to show in the file chooser
 #
 # -------------------------------------------------------------------------
+def _choose_import_plugin(plugins, extension, filename):
+    """
+    Return the best import plugin for *filename* among *plugins*.
+
+    Plugins that declare a ``sniff_function`` are tested first; the first one
+    whose sniff function returns ``True`` for *filename* is returned.  If none
+    matches, the first plugin whose extension equals *extension* and that has
+    no sniff function is returned as a fallback.  Returns ``None`` when no
+    suitable plugin is found.
+
+    This allows multiple importers to share the same file extension while
+    each handling a distinct file version (e.g. GEDCOM 5.5 vs GEDCOM 7.0).
+
+    :param plugins: list of :class:`~gramps.gen.plug.ImportPlugin` instances
+    :type plugins: list
+    :param extension: lower-case file extension without leading dot
+    :type extension: str
+    :param filename: full path of the file to import
+    :type filename: str
+    :returns: the chosen plugin, or ``None``
+    :rtype: :class:`~gramps.gen.plug.ImportPlugin` | None
+    """
+    candidates = [p for p in plugins if extension == p.get_extension()]
+    for plugin in candidates:
+        sniff = plugin.get_sniff_function()
+        if sniff is not None:
+            try:
+                if sniff(filename):
+                    return plugin
+            except Exception:  # pylint: disable=broad-except
+                pass
+    for plugin in candidates:
+        if plugin.get_sniff_function() is None:
+            return plugin
+    return None
+
+
 def add_all_files_filter(chooser):
     """
     Add an all-permitting filter to the file chooser dialog.
@@ -447,13 +484,15 @@ class GrampsImportFileDialog(ManagedWindow):
                     # or an empty string.
                     extension = os.path.splitext(filename)[-1][1:].lower()
 
-                for plugin in pmgr.get_import_plugins():
-                    if extension == plugin.get_extension():
-                        self.close()
-                        self.do_import(plugin.get_import_function(), filename)
-                        if callback is not None:
-                            callback(self.import_info)
-                        return
+                plugin = _choose_import_plugin(
+                    pmgr.get_import_plugins(), extension, filename
+                )
+                if plugin is not None:
+                    self.close()
+                    self.do_import(plugin.get_import_function(), filename)
+                    if callback is not None:
+                        callback(self.import_info)
+                    return
 
                 # Finally, we give up and declare this an unknown format
                 ErrorDialog(
