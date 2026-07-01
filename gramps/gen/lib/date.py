@@ -995,7 +995,9 @@ class Date(BaseObject):
                 startmin = date_offset(stopmax, 1)
             fdiff = config.get("behavior.date-after-range")
             stopmax = (startmin[0] + fdiff, startmin[1], startmin[2])
-        elif self.modifier == Date.MOD_ABOUT or self.quality == Date.QUAL_ESTIMATED:
+        elif self.modifier == Date.MOD_ABOUT or (
+            self.quality == Date.QUAL_ESTIMATED and not self.is_compound()
+        ):
             fdiff = config.get("behavior.date-about-range")
             startmin = (startmin[0] - fdiff, startmin[1], startmin[2])
             stopmax = (stopmax[0] + fdiff, stopmax[1], stopmax[2])
