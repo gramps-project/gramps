@@ -448,6 +448,7 @@ gramps/gui/editors/displaytabs/placenameembedlist.py
 gramps/gui/editors/displaytabs/placerefembedlist.py
 gramps/gui/editors/displaytabs/repoembedlist.py
 gramps/gui/editors/displaytabs/srcattrembedlist.py
+gramps/gui/editors/displaytabs/supereventembedlist.py
 gramps/gui/editors/displaytabs/surnametab.py
 gramps/gui/editors/displaytabs/webembedlist.py
 gramps/gui/editors/editaddress.py
@@ -812,6 +813,7 @@ gramps/plugins/tool/verify.py
 gramps/plugins/view/citationlistview.py
 gramps/plugins/view/citationtreeview.py
 gramps/plugins/view/dashboardview.py
+gramps/plugins/view/eventtreeview.py
 gramps/plugins/view/eventview.py
 gramps/plugins/view/familyview.py
 gramps/plugins/view/fanchart2wayview.py
