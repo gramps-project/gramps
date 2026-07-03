@@ -883,7 +883,7 @@ NOTE_RE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+NOTE(.*)$")
 CONT_RE = re.compile(r"\s*\d+\s+CONT\s?(.*)$")
 CONC_RE = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
 PERSON_RE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
-MOD = re.compile(r"\s*(INT|EST|CAL)\s+(.*)$")
+MOD = re.compile(r"\s*(INT|EST|CAL)\s+(.*)$", re.IGNORECASE)
 CAL = re.compile(r"\s*(ABT|BEF|AFT|FROM|TO)?\s*@#D?([^@]+)@\s*(.*)$")
 RANGE = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
 RANGE1 = re.compile(r"\s*BET\s+\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
@@ -1104,6 +1104,11 @@ class GedLine:
         mod = ""
         if match:
             mod, text = match.groups()
+            # GEDCOM 5.5.1 specifies these qualifiers in uppercase, but
+            # non-conformant exporters emit mixed case (e.g. "Cal 1847").
+            # Normalise before the (uppercase-keyed) QUALITY_MAP lookup and
+            # before mod is reused in the range/span text reconstruction.
+            mod = mod.upper()
             qual = QUALITY_MAP.get(mod, Date.QUAL_NONE)
             mod += " "
         else:
