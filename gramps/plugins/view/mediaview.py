@@ -311,7 +311,7 @@ class MediaView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-""" % _("_Edit...", "action"),  # to use sgettext()
+""" % _("_Edit", "action"),  # to use sgettext()
         """
         <placeholder id='otheredit'>
         <item>
@@ -370,7 +370,7 @@ class MediaView(ListView):
         <property name="icon-name">gtk-edit</property>
         <property name="action-name">win.Edit</property>
         <property name="tooltip_text">%s</property>
-        <property name="label" translatable="yes">Edit...</property>
+        <property name="label" translatable="yes">Edit</property>
         <property name="use-underline">True</property>
       </object>
       <packing>
@@ -472,7 +472,7 @@ class MediaView(ListView):
       </section>
     </menu>
 """
-        % _("_Edit...", "action"),  # to use sgettext()
+        % _("_Edit", "action"),  # to use sgettext()
     ]
 
     def add(self, *obj):
