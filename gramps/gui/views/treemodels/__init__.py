@@ -32,3 +32,4 @@ from .notemodel import NoteModel
 from .citationbasemodel import CitationBaseModel
 from .citationlistmodel import CitationListModel
 from .citationtreemodel import CitationTreeModel
+from .citationtreemodel import CitationTreeSelectorModel
