@@ -637,7 +637,7 @@ class Convert2Rel(BatchOp):
     description = _(
         "This tool allows converting absolute media paths "
         "to a relative path. The relative path is relative "
-        "viz-a-viz the base path as given in the Preferences, "
+        "vis-à-vis the base path as given in the Preferences, "
         "or if that is not set, user's directory. "
         "A relative path allows to tie the file location to "
         "a base path that can change to your needs."
