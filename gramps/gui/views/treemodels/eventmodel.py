@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2024       Doug Blank
+# Copyright (C) 2026       Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,33 +42,33 @@ from gi.repository import Gtk
 #
 # -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
+from gramps.gen.db.generic import Cursor
 from gramps.gen.lib import Event, EventType
 from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from .flatbasemodel import FlatBaseModel
+from .treebasemodel import TreeBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+_ = glocale.translation.gettext
 
 INVALID_DATE_FORMAT = config.get("preferences.invalid-date-format")
 
 
 # -------------------------------------------------------------------------
 #
-# EventModel
+# EventBaseModel
 #
 # -------------------------------------------------------------------------
-class EventModel(FlatBaseModel):
-    def __init__(
-        self,
-        db,
-        uistate,
-        scol=0,
-        order=Gtk.SortType.ASCENDING,
-        search=None,
-        skip=set(),
-        sort_map=None,
-    ):
+class EventBaseModel:
+    """
+    Column definitions shared by the flat (:class:`EventModel`) and
+    hierarchical (:class:`EventTreeModel`) event models.
+    """
+
+    def __init__(self, db):
         self.gen_cursor = db.get_event_cursor
         self.map = db.get_raw_event_data
 
@@ -95,9 +96,6 @@ class EventModel(FlatBaseModel):
             self.column_participant,
             self.column_tag_color,
         ]
-        FlatBaseModel.__init__(
-            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
-        )
 
     def destroy(self):
         """
@@ -108,7 +106,6 @@ class EventModel(FlatBaseModel):
         self.map = None
         self.fmap = None
         self.smap = None
-        FlatBaseModel.destroy(self)
 
     def color_column(self):
         """
@@ -223,3 +220,151 @@ class EventModel(FlatBaseModel):
         tag_list = list(map(self.get_tag_name, data.tag_list))
         # TODO for Arabic, should the next line's comma be translated?
         return ", ".join(sorted(tag_list, key=glocale.sort_key))
+
+
+# -------------------------------------------------------------------------
+#
+# EventModel
+#
+# -------------------------------------------------------------------------
+class EventModel(EventBaseModel, FlatBaseModel):
+    """
+    Flat event model.
+    """
+
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
+        EventBaseModel.__init__(self, db)
+        FlatBaseModel.__init__(
+            self, db, uistate, scol, order, search=search, skip=skip, sort_map=sort_map
+        )
+
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        EventBaseModel.destroy(self)
+        FlatBaseModel.destroy(self)
+
+
+# -------------------------------------------------------------------------
+#
+# EventTreeModel
+#
+# -------------------------------------------------------------------------
+class EventTreeModel(EventBaseModel, TreeBaseModel):
+    """
+    Hierarchical event model, showing sub-events under their super-event.
+
+    An event with more than one super-event (``super_event_list``) is
+    placed under the first one; the "Part of" tab in the event editor
+    remains the authoritative view of every super-event relationship.
+    This mirrors how :class:`~.placemodel.PlaceTreeModel` places a Place
+    under only the first of its ``placeref_list`` entries.
+    """
+
+    def __init__(
+        self,
+        db,
+        uistate,
+        scol=0,
+        order=Gtk.SortType.ASCENDING,
+        search=None,
+        skip=set(),
+        sort_map=None,
+    ):
+        EventBaseModel.__init__(self, db)
+        TreeBaseModel.__init__(
+            self,
+            db,
+            uistate,
+            scol=scol,
+            order=order,
+            search=search,
+            skip=skip,
+            sort_map=sort_map,
+            nrgroups=1,
+            group_can_have_handle=True,
+        )
+
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        EventBaseModel.destroy(self)
+        TreeBaseModel.destroy(self)
+
+    def _set_base_data(self):
+        """See TreeBaseModel; most has been set in EventBaseModel.__init__."""
+        self.number_items = self.db.get_number_of_events
+        self.gen_cursor = self._get_event_tree_cursor
+
+    def _get_event_tree_cursor(self):
+        return Cursor(self._iter_event_tree_data)
+
+    def _iter_event_tree_data(self):
+        """
+        Yield (handle, data) for every event, parents before children, so
+        that TreeBaseModel.add_row can place each event under its primary
+        super-event. Events unreachable from a root (e.g. a data-entry
+        cycle that slipped past the editor's guard) are yielded last,
+        rather than silently dropped.
+        """
+        all_data = dict(self.db.get_event_cursor())
+        children = {}
+        roots = []
+        for handle, data in all_data.items():
+            super_list = data.super_event_list
+            parent = super_list[0] if super_list else None
+            if parent not in all_data:
+                parent = None
+            if parent is None:
+                roots.append(handle)
+            else:
+                children.setdefault(parent, []).append(handle)
+
+        visited = set()
+        queue = list(roots)
+        while queue:
+            handle = queue.pop(0)
+            if handle in visited:
+                continue
+            visited.add(handle)
+            yield (handle, all_data[handle])
+            queue.extend(children.get(handle, []))
+
+        for handle, data in all_data.items():
+            if handle not in visited:
+                yield (handle, data)
+
+    def get_tree_levels(self):
+        """
+        Return the headings of the levels in the hierarchy.
+        """
+        return [_("Event")]
+
+    def add_row(self, handle, data):
+        """
+        Add a node to the node map for a single event.
+
+        handle      The handle of the gramps object.
+        data        The object data.
+        """
+        sort_key = self.sort_func(data)
+        super_list = data.super_event_list
+        parent = super_list[0] if super_list else None
+
+        # Add the node as a root node if the parent is not in the tree.
+        # This will happen when the view is filtered.
+        if not self._get_node(parent):
+            parent = None
+
+        self.add_node(parent, handle, sort_key, handle, add_parent=False)

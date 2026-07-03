@@ -63,4 +63,5 @@ from .repoembedlist import RepoEmbedList
 from .surnametab import SurnameTab
 from .sourcebackreflist import SourceBackRefList
 from .srcattrembedlist import SrcAttrEmbedList
+from .supereventembedlist import SuperEventEmbedList
 from .webembedlist import WebEmbedList

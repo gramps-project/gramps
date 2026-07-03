@@ -732,6 +732,7 @@ class GrampsParser(UpdateCallback):
             "noteref": (self.start_noteref, None),
             "p": (None, self.stop_ptag),
             "parentin": (self.start_parentin, None),
+            "partof": (self.start_partof, None),
             "people": (self.start_people, self.stop_people),
             "person": (self.start_person, self.stop_person),
             "img": (self.start_photo, self.stop_photo),
@@ -1480,6 +1481,13 @@ class GrampsParser(UpdateCallback):
         handle = self.inaugurate(attrs["hlink"], "place", Place)
         self.placeref.ref = handle
         self.placeobj.add_placeref(self.placeref)
+
+    def start_partof(self, attrs):
+        """
+        Add a super-event reference to the event currently being processed.
+        """
+        handle = self.inaugurate(attrs["hlink"], "event", Event)
+        self.event.add_super_event(handle)
 
     def start_attribute(self, attrs):
         self.attribute = Attribute()

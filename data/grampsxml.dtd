@@ -218,13 +218,16 @@ EVENT
 
 <!ELEMENT event (type?, (daterange|datespan|dateval|datestr)?, place?, cause?,
                  description?, attribute*, noteref*, citationref*, objref*,
-                 tagref*)>
+                 tagref*, partof*)>
 <!ATTLIST event
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
         change    CDATA #REQUIRED
 >
+
+<!ELEMENT partof EMPTY>
+<!ATTLIST partof hlink IDREF #REQUIRED>
 
 <!--    ************************************************************
 SOURCES

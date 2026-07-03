@@ -21,12 +21,15 @@
 Utilities for getting information from the database.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Standard python modules
 #
 # -------------------------------------------------------------------------
 import logging
+from typing import TYPE_CHECKING
 
 # -------------------------------------------------------------------------
 #
@@ -36,7 +39,12 @@ import logging
 from ..const import GRAMPS_LOCALE as glocale
 from ..display.name import displayer as name_displayer
 from ..display.place import displayer as place_displayer
+from ..errors import HandleError
 from ..lib import EventType, EventRoleType, NameOriginType, Surname
+
+if TYPE_CHECKING:
+    from ..db.base import DbReadBase
+    from ..types import EventHandle
 
 _ = glocale.translation.sgettext
 
@@ -487,6 +495,54 @@ def for_each_ancestor(db, start, func, data):
                     todo.append(mother_handle)
         done_ids.add(person_handle)
     return 0
+
+
+# -------------------------------------------------------------------------
+#
+# Detect event super-event cycles.
+#
+# -------------------------------------------------------------------------
+def event_creates_cycle(
+    db: DbReadBase,
+    event_handle: EventHandle,
+    candidate_super_handle: EventHandle,
+) -> bool:
+    """
+    Return True if adding candidate_super_handle as a super-event of the
+    event at event_handle would create a cycle.
+
+    This walks the ancestry of candidate_super_handle looking for
+    event_handle. If found, event_handle is already an ancestor of
+    candidate_super_handle, so making candidate_super_handle a super-event
+    of event_handle would close a loop.
+
+    :param db: database to query
+    :type db: DbReadBase
+    :param event_handle: handle of the event that would gain a super-event
+    :type event_handle: EventHandle
+    :param candidate_super_handle: handle of the proposed super-event
+    :type candidate_super_handle: EventHandle
+    :returns: True if the addition would create a cycle
+    :rtype: bool
+    """
+    if event_handle == candidate_super_handle:
+        return True
+
+    todo = [candidate_super_handle]
+    seen = set()
+    while todo:
+        handle = todo.pop()
+        if handle == event_handle:
+            return True
+        if handle in seen:
+            continue
+        seen.add(handle)
+        try:
+            event = db.get_event_from_handle(handle)
+        except HandleError:
+            continue
+        todo.extend(event.get_super_event_list())
+    return False
 
 
 # -------------------------------------------------------------------------

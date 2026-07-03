@@ -409,6 +409,30 @@ class EventCheck(
         self.titanic = Event(self.phoenix)
         self.ref_obj = Event(self.phoenix)
 
+    def test_super_event_list_merge(self):
+        self.titanic.add_super_event("123456")
+        self.ref_obj.add_super_event("123456")
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_super_event_list_merge_dedup(self):
+        self.phoenix.add_super_event("123456")
+        self.titanic.add_super_event("123456")
+        self.ref_obj.add_super_event("123456")
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_super_event_absent(self):
+        self.phoenix.add_super_event("123456")
+        self.ref_obj.add_super_event("654321")
+        self.phoenix.replace_handle_reference("Event", "123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_remove_super_event_references(self):
+        self.phoenix.add_super_event("123456")
+        self.phoenix.remove_handle_references("Event", ["123456"])
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
 
 class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, AttrBaseTest):
     def setUp(self):
