@@ -28,6 +28,7 @@
 # -------------------------------------------------------------------------
 import sys
 import os
+import gettext
 import logging
 
 LOG = logging.getLogger(".grampsgui")
@@ -492,6 +493,22 @@ if glocale.no_gettext_support:
 # -------------------------------------------------------------------------
 
 
+def _gtk_translations_found() -> bool:
+    """
+    Return True if GTK translations exist in any standard locale directory.
+
+    Python's gettext.find() defaults to the Python prefix's share/locale,
+    which may not contain GTK translations when running from a virtualenv or
+    conda environment.  We also search XDG_DATA_DIRS and Ubuntu's
+    locale-langpack directory so that system-installed GTK translations are
+    found regardless of which Python is used.
+    """
+    xdg_dirs = os.environ.get("XDG_DATA_DIRS", "/usr/local/share:/usr/share").split(":")
+    locale_dirs = [os.path.join(d, "locale") for d in xdg_dirs]
+    locale_dirs.append("/usr/share/locale-langpack")
+    return any(gettext.find(GTK_GETTEXT_DOMAIN, localedir=d) for d in locale_dirs)
+
+
 def _display_gtk_gettext_message(parent=None):
     """
     Display a GTK-translations-missing message to the user.
@@ -578,7 +595,6 @@ class Gramps:
         from .viewmanager import ViewManager
         from gramps.cli.arghandler import ArgHandler
         from .tipofday import TipOfDay
-        import gettext
 
         # Append image directory to the theme search path
         theme = Gtk.IconTheme.get_default()
@@ -591,7 +607,7 @@ class Gramps:
             lin()
             and "SNAP" not in os.environ
             and glocale.lang != "C"
-            and not gettext.find(GTK_GETTEXT_DOMAIN)
+            and not _gtk_translations_found()
         ):
             _display_gtk_gettext_message(parent=self._vm.window)
 
