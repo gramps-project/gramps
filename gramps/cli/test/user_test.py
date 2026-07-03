@@ -128,6 +128,24 @@ class TestUser_prompt(unittest.TestCase):
         self.user._input.assert_called_once_with()
 
 
+class TestUser_get_cancelled(unittest.TestCase):
+    def setUp(self):
+        self.user = user.User()
+        self.user._fileout = Mock(spec=sys.stderr)
+
+    def test_default_is_not_cancelled(self):
+        self.assertFalse(self.user.get_cancelled())
+
+    def test_never_cancelled_even_with_can_cancel(self):
+        # The CLI has no way to interactively cancel, so get_cancelled()
+        # must always report False, even when can_cancel=True is passed.
+        self.user.begin_progress("Foo", "Bar", 10, can_cancel=True)
+        for i in range(10):
+            self.user.step_progress()
+            self.assertFalse(self.user.get_cancelled())
+        self.user.end_progress()
+
+
 class TestUser_quiet(unittest.TestCase):
     def setUp(self):
         self.user = user.User(quiet=True)

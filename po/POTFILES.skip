@@ -162,6 +162,7 @@ gramps/gen/filters/rules/test/repository_rules_test.py
 # gen.filters.test package
 #
 gramps/gen/filters/test/__init__.py
+gramps/gen/filters/test/filter_cancel_test.py
 gramps/gen/filters/test/filter_optimizer_test.py
 #
 # gen lib API
@@ -299,6 +300,7 @@ gramps/gen/simple/_simpledoc.py
 #
 gramps/gen/test/config_test.py
 gramps/gen/test/constfunc_test.py
+gramps/gen/test/user_test.py
 #
 # gen utils API
 #

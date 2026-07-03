@@ -57,5 +57,51 @@ class TestUser_init_accepts_uistate(unittest.TestCase):
         user.User(uistate=None)
 
 
+class TestUser_get_cancelled(unittest.TestCase):
+    def setUp(self):
+        self.user = user.User()
+
+    def test_default_is_not_cancelled(self):
+        self.assertFalse(self.user.get_cancelled())
+
+    def test_begin_progress_passes_can_cancel_and_callback_to_progressmeter(self):
+        callback = Mock()
+        with (
+            patch("gramps.gui.user.ProgressMeter") as MockPM,
+            patch("gramps.gui.user.Gtk") as MockGtk,
+        ):
+            MockGtk.events_pending.return_value = False
+            self.user.begin_progress(
+                "Title", "Message", 10, can_cancel=True, cancel_callback=callback
+            )
+        MockPM.assert_called_once_with(
+            "Title",
+            parent=self.user.parent,
+            can_cancel=True,
+            cancel_callback=callback,
+        )
+
+    def test_get_cancelled_delegates_to_active_progress_meter(self):
+        with (
+            patch("gramps.gui.user.ProgressMeter") as MockPM,
+            patch("gramps.gui.user.Gtk") as MockGtk,
+        ):
+            MockGtk.events_pending.return_value = False
+            MockPM.return_value.get_cancelled.return_value = True
+            self.user.begin_progress("Title", "Message", 10, can_cancel=True)
+            self.assertTrue(self.user.get_cancelled())
+
+    def test_get_cancelled_false_once_progress_ends(self):
+        with (
+            patch("gramps.gui.user.ProgressMeter") as MockPM,
+            patch("gramps.gui.user.Gtk") as MockGtk,
+        ):
+            MockGtk.events_pending.return_value = False
+            MockPM.return_value.get_cancelled.return_value = True
+            self.user.begin_progress("Title", "Message", 10, can_cancel=True)
+            self.user.end_progress()
+        self.assertFalse(self.user.get_cancelled())
+
+
 if __name__ == "__main__":
     unittest.main()
