@@ -608,6 +608,10 @@ class HtmlDoc(BaseDoc, TextDoc):
             refname = "is%s" % os.path.basename(name)
 
         imdir = self._backend.datadirfull()
+        # The on-disk copy goes to the absolute datadirfull() path, but the
+        # <img src> must be relative to the report (the data subdirectory
+        # basename), so the generated .html stays valid when moved/shared.
+        imref = self._backend.datadir()
 
         try:
             resize_to_jpeg(name, imdir + os.sep + refname, size, size, crop=crop)
@@ -621,24 +625,24 @@ class HtmlDoc(BaseDoc, TextDoc):
         if pos not in ["right", "left"]:
             if len(alt):
                 self.htmllist[-1] += Html("div") + (
-                    Html("img", src=imdir + os.sep + refname, border="0", alt=alt),
+                    Html("img", src=imref + "/" + refname, border="0", alt=alt),
                     Html("p", class_="DDR-Caption") + alt,
                 )
             else:
                 self.htmllist[-1] += Html(
-                    "img", src=imdir + os.sep + refname, border="0", alt=alt
+                    "img", src=imref + "/" + refname, border="0", alt=alt
                 )
         else:
             if len(alt):
                 self.htmllist[-1] += Html(
                     "div", style_="float: %s; padding: 5px; margin: 0;" % pos
                 ) + (
-                    Html("img", src=imdir + os.sep + refname, border="0", alt=alt),
+                    Html("img", src=imref + "/" + refname, border="0", alt=alt),
                     Html("p", class_="DDR-Caption") + alt,
                 )
             else:
                 self.htmllist[-1] += Html(
-                    "img", src=imdir + os.sep + refname, border="0", alt=alt, align=pos
+                    "img", src=imref + "/" + refname, border="0", alt=alt, align=pos
                 )
 
     def page_break(self):
