@@ -28,6 +28,7 @@ Package providing filtering framework for Gramps.
 # -------------------------------------------------------------------------
 from ._genericfilter import GenericFilter
 from ..errors import FilterError
+from ..user import User
 
 
 # -------------------------------------------------------------------------
@@ -45,6 +46,8 @@ class ParamFilter(GenericFilter):
         self.param_list = [param]
 
     def apply(self, db, id_list=None, user=None):
+        if user is None:
+            user = User()
         for rule in self.flist:
             # rule.set_list(self.param_list)
             #
@@ -61,7 +64,7 @@ class ParamFilter(GenericFilter):
                     "Custom filters can not twice be used" " in a parameter filter"
                 )
             rule.requestprepare(db, user)
-        result = GenericFilter.apply(self, db, id_list)
+        result = GenericFilter.apply(self, db, id_list, user=user)
         for rule in self.flist:
             rule.requestreset()
         return result

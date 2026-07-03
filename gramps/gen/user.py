@@ -42,7 +42,9 @@ class UserBase(metaclass=ABCMeta):
         self._print_func = lambda msg: None
 
     @abstractmethod
-    def begin_progress(self, title, message, steps):
+    def begin_progress(
+        self, title, message, steps, can_cancel=False, cancel_callback=None
+    ):
         """
         Start showing a progress indicator to the user.
 
@@ -56,7 +58,17 @@ class UserBase(metaclass=ABCMeta):
             a value of 0 indicates that the ending is unknown and the
             meter should just show activity.
         :type steps: int
+        :param can_cancel: whether the user may cancel the operation
+        :type can_cancel: bool
+        :param cancel_callback: called when the user requests cancellation
+        :type cancel_callback: callable or None
         :returns: none
+        """
+
+    @abstractmethod
+    def get_cancelled(self):
+        """
+        Return whether the user has requested cancellation.
         """
 
     @abstractmethod
@@ -223,8 +235,13 @@ class User(UserBase):
     def __cb(self, percent, text=None):
         return
 
-    def begin_progress(self, title, message, steps):
+    def begin_progress(
+        self, title, message, steps, can_cancel=False, cancel_callback=None
+    ):
         pass
+
+    def get_cancelled(self):
+        return False
 
     def step_progress(self):
         pass

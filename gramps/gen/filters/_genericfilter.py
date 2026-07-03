@@ -49,6 +49,7 @@ from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
 from ..const import GRAMPS_LOCALE as glocale
+from ..user import User
 from .rules import Rule
 from .optimizer import Optimizer
 
@@ -97,8 +98,9 @@ class GenericFilter:
         Return True or False depending on whether the handle matches the filter.
         """
         obj = self.get_object(db, handle)
+        user = User()
         for rule in self.flist:
-            rule.requestprepare(db, user=None)
+            rule.requestprepare(db, user)
 
         results = self.apply_to_one(db, obj)
 
@@ -171,7 +173,7 @@ class GenericFilter:
         db,
         possible_handles: Set[PrimaryObjectHandle],
         apply_logical_op,
-        user=None,
+        user: User,
     ):
         LOG.debug(
             "Starting possible_handles: %s",
@@ -187,8 +189,9 @@ class GenericFilter:
         #    len(possible_handles),
         # )
 
-        # if user:
-        #    user.begin_progress(_("Filter"), _("Applying ..."), len(possible_handles))
+        user.begin_progress(
+            _("Filter"), _("Applying ..."), len(possible_handles), can_cancel=True
+        )
 
         # test each value in possible_handles to compute the final_list
         final_list = []
@@ -198,16 +201,16 @@ class GenericFilter:
             if handles_out is not None and handle in handles_out:
                 continue
 
-            if user:
-                user.step_progress()
+            if user.get_cancelled():
+                break
+            user.step_progress()
 
             obj = self.get_object(db, handle)
 
             if apply_logical_op(db, obj, self.flist) != self.invert:
                 final_list.append(obj.handle)
 
-        if user:
-            user.end_progress()
+        user.end_progress()
 
         return final_list
 
@@ -271,19 +274,30 @@ class GenericFilter:
         id_list takes precendence over tree
 
         user is optional. If present it must be an instance of a User class.
+        If the user cancels via the progress dialog, apply stops early,
+        returning an empty list or whatever matches were already found.
 
         :Returns: if id_list given, it is returned with the items that
                 do not match the filter, filtered out.
                 if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
+        if user is None:
+            user = User()
+
         t0 = time.perf_counter()
         for rule in self.flist:
+            if user.get_cancelled():
+                break
             rule.requestprepare(db, user)
         t1 = time.perf_counter()
         LOG.debug("Prepare time: %s seconds", t1 - t0)
-        if user:
-            user.notify("Prepare time: %.3fs" % (t1 - t0))
+        user.notify("Prepare time: %.3fs" % (t1 - t0))
+
+        if user.get_cancelled():
+            for rule in self.flist:
+                rule.requestreset()
+            return []
 
         if self.logical_op == "and":
             apply_logical_op = self.and_test
@@ -314,11 +328,15 @@ class GenericFilter:
             possible_handles = set(self.get_all_handles(db))
 
         t2 = time.perf_counter()
-        res = self.apply_logical_op_to_all(db, possible_handles, apply_logical_op, user)
+        if user.get_cancelled():
+            res = []
+        else:
+            res = self.apply_logical_op_to_all(
+                db, possible_handles, apply_logical_op, user
+            )
         t3 = time.perf_counter()
         LOG.debug("Apply time: %s seconds", t3 - t2)
-        if user:
-            user.notify("Apply time: %.3fs" % (t3 - t2))
+        user.notify("Apply time: %.3fs" % (t3 - t2))
 
         # convert the filtered set of handles to the correct result type
         if id_list is not None and tupleind is not None:
