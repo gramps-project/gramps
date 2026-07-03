@@ -435,17 +435,28 @@ class StyledTextEditor(Gtk.TextView):
         iter_at_location = self.get_iter_at_location(x, y)
         if isinstance(iter_at_location, tuple):
             iter_at_location = iter_at_location[1]
-        self.match = self.textbuffer.match_check(iter_at_location.get_offset())
-        tooltip = None
-        for tag in (
-            tag
-            for tag in iter_at_location.get_tags()
-            if tag.get_property("name") is not None
-            and tag.get_property("name").startswith("link")
-        ):
-            self.match = (x, y, LINK, tag.data, tag)
-            tooltip = self.make_tooltip_from_link(tag)
-            break
+        # get_iter_at_location() snaps to the NEAREST character position, so a
+        # click past the end of a line or below the last line still resolves to
+        # a valid iter (typically the end of the text). Without confirming the
+        # pointer is genuinely inside that character's rendered glyph, a click in
+        # the empty area beside/below a link would register as being on the link
+        # and open it (bug 8841). Only treat the position as a real match when
+        # the pointer actually lies within the character.
+        if self._pointer_over_iter(x, y, iter_at_location):
+            self.match = self.textbuffer.match_check(iter_at_location.get_offset())
+            tooltip = None
+            for tag in (
+                tag
+                for tag in iter_at_location.get_tags()
+                if tag.get_property("name") is not None
+                and tag.get_property("name").startswith("link")
+            ):
+                self.match = (x, y, LINK, tag.data, tag)
+                tooltip = self.make_tooltip_from_link(tag)
+                break
+        else:
+            self.match = None
+            tooltip = None
 
         if self.match != self.last_match:
             self.emit("match-changed", self.match)
@@ -454,6 +465,38 @@ class StyledTextEditor(Gtk.TextView):
         # self.get_root_window().get_pointer()  # Doesn't seem to do anythhing!
         self.set_tooltip_text(tooltip)
         return False
+
+    def _pointer_over_iter(self, x, y, text_iter):
+        """
+        Return True when the buffer point (x, y) lies within the rendered
+        glyph of the character at (or immediately before) ``text_iter``.
+
+        :param x: horizontal buffer coordinate of the pointer.
+        :param y: vertical buffer coordinate of the pointer.
+        :param text_iter: iter returned by :meth:`get_iter_at_location`.
+
+        ``Gtk.TextView.get_iter_at_location()`` returns the nearest iter even
+        for a point past the end of a line or below the last line, so the
+        iter's link/URL tags cannot on their own decide whether the pointer is
+        actually over the link. It also advances past a glyph when the point
+        falls in that glyph's trailing (right) half, so the glyph under the
+        pointer may be the character *before* ``text_iter``. Checking the point
+        against both the char at the iter and the one before it keeps a click
+        in the empty area beside/below a link from being treated as a hit on it
+        (bug 8841) without rejecting a genuine click on a link glyph's right
+        half.
+        """
+
+        def _inside(where):
+            rect = self.get_iter_location(where)
+            return (
+                rect.x <= x < rect.x + rect.width and rect.y <= y < rect.y + rect.height
+            )
+
+        if _inside(text_iter):
+            return True
+        prev = text_iter.copy()
+        return prev.backward_char() and _inside(prev)
 
     def make_tooltip_from_link(self, link_tag):
         """
