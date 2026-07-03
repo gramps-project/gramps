@@ -485,6 +485,17 @@ class NavigationView(PageView):
         if self.active:
             if event.type == Gdk.EventType.KEY_PRESS:
                 if event.keyval == Gdk.KEY_c and match_primary_mask(event.get_state()):
+                    # Do not shadow the standard Copy of a focused
+                    # text-editable widget (e.g. a sidebar/filter entry).
+                    # The focused editable owns Copy/Cut/Paste, so let the
+                    # key event propagate to it instead of copying the
+                    # selected list object to the Gramps clipboard.  The
+                    # object copy is still performed when the list/tree
+                    # itself (not a text entry) holds the focus.  (Mantis
+                    # #6170)
+                    focus = self.uistate.window.get_focus()
+                    if isinstance(focus, (Gtk.Editable, Gtk.TextView)):
+                        return False
                     self.call_copy()
                     return True
         return super(NavigationView, self).key_press_handler(widget, event)
