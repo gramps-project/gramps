@@ -88,7 +88,7 @@ class HasBirth(Rule):
                 place_id = event.place
                 if place_id:
                     place = db.get_place_from_handle(place_id)
-                    place_title = place_displayer.display(db, place)
+                    place_title = place_displayer.display(db, place, event.date)
                     if not self.match_substring(1, place_title):
                         # No match: wrong place
                         continue
