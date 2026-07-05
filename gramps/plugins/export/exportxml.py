@@ -850,6 +850,9 @@ class GrampsXmlWriter(UpdateCallback):
         for tag_handle in event.get_tag_list():
             self.write_ref("tagref", tag_handle, index + 1)
 
+        for super_handle in event.get_super_event_list():
+            self.write_ref("partof", super_handle, index + 1)
+
         self.g.write("%s</event>\n" % sp)
 
     def dump_ordinance(self, ord, index=1):

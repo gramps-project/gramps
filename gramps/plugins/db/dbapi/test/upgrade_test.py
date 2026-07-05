@@ -70,13 +70,20 @@ def _ensure_test_resources():
 os.environ["GRAMPS_RESOURCES"] = _ensure_test_resources()
 os.environ["HOME"] = os.environ.get("HOME") or tempfile.mkdtemp(prefix="gramps-home-")
 
-dialog_module = types.ModuleType("gramps.gui.dialog")
-setattr(dialog_module, "InfoDialog", object)
-sys.modules.setdefault("gramps.gui.dialog", dialog_module)
+_dialog_stub_installed = "gramps.gui.dialog" not in sys.modules
+if _dialog_stub_installed:
+    dialog_module = types.ModuleType("gramps.gui.dialog")
+    setattr(dialog_module, "InfoDialog", object)
+    sys.modules["gramps.gui.dialog"] = dialog_module
 
+from gramps.gen.db.dbconst import EVENT_KEY, PERSON_KEY
+from gramps.gen.db.upgrade import gramps_upgrade_22, gramps_upgrade_23
 
-from gramps.gen.db.dbconst import PERSON_KEY
-from gramps.gen.db.upgrade import gramps_upgrade_22
+if _dialog_stub_installed:
+    # Don't leave the stub in sys.modules: later test modules in the same
+    # process (e.g. discover runs) that need the real gramps.gui.dialog
+    # would otherwise silently get this fake one instead.
+    del sys.modules["gramps.gui.dialog"]
 
 DEFAULT_FAMILYSEARCH_SYNC_JSON = {
     "_class": "FamilySearchSync",
@@ -96,8 +103,9 @@ class FakeUpgradeDb:
     Minimal database stub for testing schema upgrade functions.
     """
 
-    def __init__(self, people):
-        self.people = copy.deepcopy(people)
+    def __init__(self, people=None, events=None):
+        self.people = copy.deepcopy(people) if people else {}
+        self.events = copy.deepcopy(events) if events else {}
         self.metadata = {}
         self.total = None
         self.serializer_name = None
@@ -113,6 +121,9 @@ class FakeUpgradeDb:
     def get_number_of_people(self):
         return len(self.people)
 
+    def get_number_of_events(self):
+        return len(self.events)
+
     def set_total(self, total):
         self.total = total
 
@@ -122,15 +133,24 @@ class FakeUpgradeDb:
     def get_person_handles(self):
         return list(self.people.keys())
 
+    def get_event_handles(self):
+        return list(self.events.keys())
+
     def get_raw_person_data(self, handle):
         return self.people[handle]
+
+    def get_raw_event_data(self, handle):
+        return self.events[handle]
 
     def get_person_from_handle(self, handle):
         raise AssertionError("gramps_upgrade_22 should use raw person JSON only")
 
     def _commit_raw(self, data, obj_key):
         self.commits.append((copy.deepcopy(data), obj_key))
-        self.people[data["handle"]] = copy.deepcopy(data)
+        if obj_key == EVENT_KEY:
+            self.events[data["handle"]] = copy.deepcopy(data)
+        else:
+            self.people[data["handle"]] = copy.deepcopy(data)
 
     def update(self):
         self.updates += 1
@@ -194,6 +214,37 @@ class DbUpgradeTest(unittest.TestCase):
             DEFAULT_FAMILYSEARCH_SYNC_JSON,
         )
         self.assertEqual(db.people["person-2"]["familysearch_sync"], existing_sync)
+
+    def test_upgrade_23_updates_raw_event_json_without_event_model(self):
+        db = FakeUpgradeDb(
+            events={
+                "event-1": {
+                    "_class": "Event",
+                    "handle": "event-1",
+                    "gramps_id": "E0001",
+                },
+                "event-2": {
+                    "_class": "Event",
+                    "handle": "event-2",
+                    "gramps_id": "E0002",
+                    "super_event_list": ["event-1"],
+                },
+            }
+        )
+
+        gramps_upgrade_23(db)
+
+        self.assertEqual(db.serializer_name, "json")
+        self.assertEqual(db.total, 2)
+        self.assertTrue(db.txn_started)
+        self.assertTrue(db.txn_committed)
+        self.assertFalse(db.txn_aborted)
+        self.assertEqual(db.updates, 2)
+        self.assertEqual(db.metadata["version"], 23)
+        self.assertEqual(len(db.commits), 1)
+        self.assertEqual(db.commits[0][1], EVENT_KEY)
+        self.assertEqual(db.events["event-1"]["super_event_list"], [])
+        self.assertEqual(db.events["event-2"]["super_event_list"], ["event-1"])
 
 
 if __name__ == "__main__":

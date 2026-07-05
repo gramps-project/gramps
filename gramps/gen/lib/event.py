@@ -24,12 +24,15 @@
 Event object for Gramps.
 """
 
+from __future__ import annotations
+
 # -------------------------------------------------------------------------
 #
 # Python modules
 #
 # -------------------------------------------------------------------------
 import logging
+from typing import TYPE_CHECKING
 
 # -------------------------------------------------------------------------
 #
@@ -46,6 +49,9 @@ from .notebase import NoteBase
 from .placebase import PlaceBase
 from .primaryobj import PrimaryObject
 from .tagbase import TagBase
+
+if TYPE_CHECKING:
+    from ..types import EventHandle
 
 _ = glocale.translation.gettext
 
@@ -97,9 +103,11 @@ class Event(
         if source:
             self.__description = source.description
             self.__type = EventType(source.type)
+            self.super_event_list: list[EventHandle] = list(source.super_event_list)
         else:
             self.__description = ""
             self.__type = EventType()
+            self.super_event_list: list[EventHandle] = []
 
     def serialize(self, no_text_date=False):
         """
@@ -133,6 +141,7 @@ class Event(
             self.change,
             TagBase.serialize(self),
             self.private,
+            self.super_event_list,
         )
 
     def get_object_state(self):
@@ -216,6 +225,11 @@ class Event(
                     "title": _("Tags"),
                 },
                 "private": {"type": "boolean", "title": _("Private")},
+                "super_event_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Part of"),
+                },
             },
         }
 
@@ -242,6 +256,7 @@ class Event(
             self.change,
             tag_list,
             self.private,
+            self.super_event_list,
         ) = data
 
         self.__type = EventType()
@@ -269,6 +284,8 @@ class Event(
         """
         if classname == "Place":
             return self.place == handle
+        if classname == "Event":
+            return handle in self.super_event_list
         return False
 
     def _remove_handle_references(self, classname, handle_list):
@@ -282,6 +299,10 @@ class Event(
         """
         if classname == "Place" and self.place in handle_list:
             self.place = ""
+        if classname == "Event":
+            self.super_event_list = [
+                handle for handle in self.super_event_list if handle not in handle_list
+            ]
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         """
@@ -296,6 +317,13 @@ class Event(
         """
         if classname == "Place" and self.place == old_handle:
             self.place = new_handle
+        if classname == "Event" and old_handle in self.super_event_list:
+            self.super_event_list = list(
+                dict.fromkeys(
+                    new_handle if handle == old_handle else handle
+                    for handle in self.super_event_list
+                )
+            )
 
     def get_text_data_list(self):
         """
@@ -350,6 +378,8 @@ class Event(
         )
         if self.place:
             ret.append(("Place", self.place))
+        for handle in self.super_event_list:
+            ret.append(("Event", handle))
         return ret
 
     def get_handle_referents(self):
@@ -427,6 +457,18 @@ class Event(
         self._merge_citation_list(acquisition)
         self._merge_media_list(acquisition)
         self._merge_tag_list(acquisition)
+        self._merge_super_event_list(acquisition)
+
+    def _merge_super_event_list(self, acquisition):
+        """
+        Add the super-events of acquisition to this event's super-event list.
+
+        :param acquisition: The event to merge with the present event.
+        :type acquisition: Event
+        """
+        for handle in acquisition.super_event_list:
+            if handle not in self.super_event_list and handle != self.handle:
+                self.super_event_list.append(handle)
 
     def set_type(self, the_type):
         """
@@ -474,3 +516,34 @@ class Event(
         None,
         "Returns or sets description of the event",
     )
+
+    def get_super_event_list(self) -> list[EventHandle]:
+        """
+        Return the list of super-event handles for the Event object.
+
+        :returns: Returns the super-event handle list for the Event
+        :rtype: list[EventHandle]
+        """
+        return self.super_event_list
+
+    def set_super_event_list(self, super_event_list: list[EventHandle]):
+        """
+        Set the super-event handle list for the Event object.
+
+        :param super_event_list: super-event handle list to assign to the Event
+        :type super_event_list: list[EventHandle]
+        """
+        self.super_event_list = super_event_list
+
+    def add_super_event(self, handle: EventHandle):
+        """
+        Add a super-event handle to the Event's super-event list.
+
+        Does nothing if the handle is already present or refers to this
+        event itself.
+
+        :param handle: handle of the super-event to add
+        :type handle: EventHandle
+        """
+        if handle != self.handle and handle not in self.super_event_list:
+            self.super_event_list.append(handle)

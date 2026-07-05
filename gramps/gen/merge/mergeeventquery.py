@@ -26,7 +26,7 @@ Provide merge capabilities for events.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ..lib import Person, Family, Note
+from ..lib import Event, Person, Family, Note
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 
@@ -90,6 +90,18 @@ class MergeEventQuery:
                     assert note.has_handle_reference("Event", old_handle)
                     note.replace_handle_reference("Event", old_handle, new_handle)
                     self.database.commit_note(note, trans)
+                elif class_name == Event.__name__:
+                    event = self.database.get_event_from_handle(handle)
+                    assert event.has_handle_reference("Event", old_handle)
+                    if handle == new_handle:
+                        # phoenix referred to titanic as a super-event; now
+                        # that titanic has become phoenix, drop the
+                        # reference instead of making phoenix its own
+                        # super-event.
+                        event.remove_handle_references("Event", [old_handle])
+                    else:
+                        event.replace_handle_reference("Event", old_handle, new_handle)
+                    self.database.commit_event(event, trans)
                 else:
                     raise MergeError(
                         "Encounter an object of type %s that has "

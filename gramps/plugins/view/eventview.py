@@ -116,7 +116,7 @@ class EventView(ListView):
     FILTER_TYPE = "Event"
     QR_CATEGORY = CATEGORY_QR_EVENT
 
-    def __init__(self, pdata, dbstate, uistate, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, nav_group=0, model_class=EventModel):
         """
         Create the Event View
         """
@@ -140,7 +140,7 @@ class EventView(ListView):
             pdata,
             dbstate,
             uistate,
-            EventModel,
+            model_class,
             signal_map,
             EventBookmarks,
             nav_group,

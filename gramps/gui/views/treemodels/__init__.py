@@ -23,7 +23,7 @@ Package init for the treemodels package.
 
 from .peoplemodel import PeopleBaseModel, PersonListModel, PersonTreeModel
 from .familymodel import FamilyModel
-from .eventmodel import EventModel
+from .eventmodel import EventModel, EventTreeModel
 from .sourcemodel import SourceModel
 from .placemodel import PlaceBaseModel, PlaceListModel, PlaceTreeModel
 from .mediamodel import MediaModel

@@ -50,6 +50,23 @@ register(
 
 register(
     VIEW,
+    id="eventtreeview",
+    name=_("Event Tree"),
+    description=_("A view displaying events in a tree format."),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="eventtreeview.py",
+    authors=["The Gramps project"],
+    authors_email=["https://gramps-project.org"],
+    category=("Events", _("Events")),
+    viewclass="EventTreeView",
+    stock_icon="gramps-tree-group",
+    order=START,
+)
+
+register(
+    VIEW,
     id="familyview",
     name=_("Families"),
     description=_("The view showing all families"),

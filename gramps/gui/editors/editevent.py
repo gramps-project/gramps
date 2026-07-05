@@ -54,6 +54,7 @@ from .displaytabs import (
     GalleryTab,
     EventBackRefList,
     EventAttrEmbedList,
+    SuperEventEmbedList,
 )
 from ..widgets import (
     MonitoredEntry,
@@ -250,6 +251,17 @@ class EditEvent(EditPrimary):
         )
         self._add_tab(notebook, self.attr_list)
 
+        self.super_event_list = SuperEventEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_super_event_list(),
+            "event_editor_super_events",
+            self.obj.handle,
+            lambda: None,
+        )
+        self._add_tab(notebook, self.super_event_list)
+
         handle_list = self.dbstate.db.find_backlink_handles(self.obj.handle)
         self.backref_list = EventBackRefList(
             self.dbstate,
@@ -269,6 +281,7 @@ class EditEvent(EditPrimary):
         self.track_ref_for_deletion("note_list")
         self.track_ref_for_deletion("gallery_list")
         self.track_ref_for_deletion("attr_list")
+        self.track_ref_for_deletion("super_event_list")
         self.track_ref_for_deletion("backref_list")
 
     def build_menu_names(self, event):

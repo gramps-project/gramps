@@ -402,6 +402,9 @@
     <zeroOrMore><element name="tagref">
         <ref name="tagref-content"/>
     </element></zeroOrMore>
+    <zeroOrMore><element name="partof">
+        <attribute name="hlink"><data type="IDREF"/></attribute>
+    </element></zeroOrMore>
   </define>
 
   <define name="citation-content">

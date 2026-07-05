@@ -81,6 +81,45 @@ def _upgrade_person_json_22(person_data):
     return True
 
 
+def _upgrade_event_json_23(event_data):
+    """
+    Upgrade raw Event JSON data from version 22 to 23 in place.
+    """
+    if event_data.get("super_event_list") is not None:
+        return False
+
+    event_data["super_event_list"] = []
+
+    return True
+
+
+def gramps_upgrade_23(self):
+    """
+    Upgrade database from version 22 to 23.
+
+    Rewrite Event JSON data so every Event has a super_event_list,
+    defaulting to an empty list when missing.
+    """
+    self.set_serializer("json")
+
+    length = self.get_number_of_events()
+    self.set_total(length)
+
+    self._txn_begin()
+    try:
+        for handle in self.get_event_handles():
+            json_data = self.get_raw_event_data(handle)
+            if _upgrade_event_json_23(json_data):
+                self._commit_raw(json_data, EVENT_KEY)
+            self.update()
+
+        self._set_metadata("version", 23, use_txn=False)
+        self._txn_commit()
+    except Exception:
+        self._txn_abort()
+        raise
+
+
 def gramps_upgrade_22(self):
     """
     Upgrade database from version 21 to 22.
