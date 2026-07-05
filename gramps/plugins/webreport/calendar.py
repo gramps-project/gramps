@@ -1063,9 +1063,8 @@ class CalendarPage(BasePage):
                 else:
                     death_date = None
                 if self.death_anniv and death_date:
-                    year = death_date.get_year() or this_year
-                    month = death_date.get_month()
-                    day = death_date.get_day()
+                    greg_year, month, day = death_date.get_gregorian_ymd()
+                    year = greg_year or this_year
 
                     short_name = self.get_name(person)
                     prob_alive_date = Date(this_year, month, day)

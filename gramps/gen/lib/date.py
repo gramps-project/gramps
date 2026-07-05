@@ -1986,6 +1986,24 @@ class Date(BaseObject):
         """
         return (self.get_year(), self.get_month(), self.get_day())
 
+    def get_gregorian_ymd(self) -> tuple[int, int, int]:
+        """
+        Return (year, month, day) converted to the Gregorian calendar.
+
+        Use this instead of :meth:`get_ymd` whenever the year, month, or
+        day will be compared against, or used to build, another Gregorian
+        date (for example "today" or "this year"), so that dates recorded
+        in a non-Gregorian calendar are not mixed up with Gregorian ones.
+
+        >>> persian_new_year = Date()
+        >>> persian_new_year.set(0, Date.MOD_NONE, Date.CAL_PERSIAN, (1, 1, 1400, False))
+        >>> persian_new_year.get_gregorian_ymd()
+        (2021, 3, 21)
+        """
+        if self.calendar == Date.CAL_GREGORIAN:
+            return self.get_ymd()
+        return self.to_calendar("gregorian").get_ymd()
+
     def get_dmy(self, get_slash=False):
         """
         Return (day, month, year, [slash]).
