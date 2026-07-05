@@ -96,6 +96,7 @@ DATABASE = 12
 RULE = 13
 THUMBNAILER = 14
 CITE = 15
+NAMEGUESSER = 16
 PTYPE = [
     REPORT,
     QUICKREPORT,
@@ -113,6 +114,7 @@ PTYPE = [
     RULE,
     THUMBNAILER,
     CITE,
+    NAMEGUESSER
 ]
 PTYPE_STR = {
     REPORT: _("Report"),
@@ -131,6 +133,7 @@ PTYPE_STR = {
     RULE: _("Rule"),
     THUMBNAILER: _("Thumbnailer"),
     CITE: _("Citation formatter"),
+    NAMEGUESSER: _("Name guesser")
 }
 
 # possible report categories
@@ -446,6 +449,13 @@ class PluginData:
 
     .. attribute:: thumbnailer
        The exact class name of the thumbnailer
+       
+    Attributes for NAMEGUESSER plugins:
+
+    .. attribute:: nameguesserclass
+       The class in the module that is the NameGuesser class
+    .. attribute:: lang_list
+       List of languages this plugin handles
     """
 
     def __init__(self):
@@ -536,6 +546,8 @@ class PluginData:
         self._namespace = None
         # THUMBNAILER attr
         self._thumbnailer = None
+        # NAMEGUESSER attr
+        self._nameguesser = None
 
     @property
     def id(self):
@@ -806,8 +818,8 @@ class PluginData:
 
     @lang_list.setter
     def lang_list(self, lang_list):
-        if self._ptype != RELCALC:
-            raise ValueError("relcalcclass may only be set for RELCALC plugins")
+        if self._ptype != RELCALC and self._ptype != NAMEGUESSER:
+            raise ValueError("lang_list may only be set for RELCALC and NAMEGUESSER plugins")
         self._lang_list = lang_list
 
     # REPORT attributes
@@ -1231,6 +1243,17 @@ class PluginData:
         if self._ptype != THUMBNAILER:
             raise ValueError("thumbnailer may only be set for THUMBNAILER plugins")
         self._thumbnailer = data
+        
+    # NAMEGUESSER attr
+    @property
+    def nameguesserclass(self):
+        return self._nameguesserclass
+
+    @nameguesserclass.setter
+    def nameguesserclass(self, nameguesserclass):
+        if self._ptype != NAMEGUESSER:
+            raise ValueError("nameguesserclass may only be set for NAMEGUESSER plugins")
+        self._nameguesserclass = nameguesserclass
 
 
 def newplugin():
@@ -1333,6 +1356,7 @@ def make_environment(**kwargs):
         "START": START,
         "END": END,
         "IMAGE_DIR": IMAGE_DIR,
+        "NAMEGUESSER": NAMEGUESSER
     }
     env.update(kwargs)
     return env
@@ -1656,6 +1680,12 @@ class PluginRegister:
         Return a list of :class:`PluginData` that are of type CITE
         """
         return self.type_plugins(CITE)
+    
+    def nameguesser_plugins(self):
+        """
+        Return a list of :class:`PluginData` that are of type NAMEGUESSER
+        """
+        return self.type_plugins(NAMEGUESSER)
 
     def filter_load_on_reg(self):
         """
