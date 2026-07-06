@@ -31,7 +31,10 @@ import json
 import logging
 import os
 import sys
+from dataclasses import dataclass, field
 from io import BytesIO
+from typing import Any
+from urllib.error import HTTPError, URLError
 
 # -------------------------------------------------------------------------
 #
@@ -212,6 +215,297 @@ def urlopen_maybe_no_check_cert(url):
     except TypeError:
         fptr = urlopen(url, timeout=timeout)
     return fptr
+
+
+_PROJECT_URL_SCHEMES = ("http://", "https://", "file://")
+
+
+def normalize_project_url(url: object) -> str | None:
+    """
+    Normalize an Addon Manager "project" URL.
+
+    Strips surrounding whitespace and trailing slashes so that callers
+    can build ``{url}/listings/addons-<lang>.json`` deterministically.
+    Returns ``None`` for values that are not a string, are empty, or do
+    not begin with a supported scheme (``http://``, ``https://``,
+    ``file://``); these are the same schemes accepted by
+    :func:`get_addons` today.
+    """
+    if not isinstance(url, str):
+        return None
+    stripped = url.strip()
+    if not stripped:
+        return None
+    if not stripped.startswith(_PROJECT_URL_SCHEMES):
+        return None
+    while stripped.endswith("/") and not stripped.endswith("://"):
+        stripped = stripped[:-1]
+    return stripped
+
+
+# ------------------------------------------------------------
+#
+# ProjectFetchStatus
+#
+# ------------------------------------------------------------
+class ProjectFetchStatus:
+    """
+    String constants describing the outcome of a single Addon Manager
+    project fetch. These are used both as machine-readable statuses
+    and as stable identifiers for UI indicators, so values are kept
+    short and untranslated.
+    """
+
+    OK = "ok"
+    INVALID_URL = "invalid_url"
+    NETWORK_ERROR = "network_error"
+    HTTP_ERROR = "http_error"
+    JSON_ERROR = "json_error"
+    EMPTY_LISTING = "empty_listing"
+    NO_COMPATIBLE_ADDONS = "no_compatible_addons"
+    LANG_FALLBACK_EN = "lang_fallback_en"
+
+
+# ------------------------------------------------------------
+#
+# ProjectFetchResult
+#
+# ------------------------------------------------------------
+@dataclass
+class ProjectFetchResult:
+    """
+    Structured result of :func:`classify_project_fetch`.
+
+    ``status`` is one of the :class:`ProjectFetchStatus` constants.
+    ``normalized_url`` is the cleaned URL that was actually tried, or
+    ``None`` when the input could not be normalized. ``fetched_url``
+    is the full listing URL that succeeded, if any; ``fetched_language``
+    is the language code whose ``addons-<lang>.json`` was returned.
+    ``http_code`` is populated for :data:`ProjectFetchStatus.HTTP_ERROR`.
+    ``detail`` is a short English string suitable for logging or a
+    tooltip. ``addon_count`` is the number of records in the listing;
+    ``compatible_count`` is how many of them target the running major.
+    minor Gramps version.
+    """
+
+    status: str
+    requested_url: str
+    normalized_url: str | None = None
+    fetched_url: str | None = None
+    fetched_language: str | None = None
+    http_code: int | None = None
+    detail: str | None = None
+    addon_count: int = 0
+    compatible_count: int = 0
+    tried_languages: list[str] = field(default_factory=list)
+
+
+def _candidate_languages(languages: list[str] | None) -> list[str]:
+    """Build the ordered list of language codes to try, matching
+    :func:`get_addons` behaviour: the user's locale chain followed by
+    ``en`` as a final fallback, with duplicates removed."""
+    if languages is None:
+        langs = list(glocale.get_language_list())
+        langs.append("en")
+    else:
+        langs = list(languages)
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for lang in langs:
+        if lang and lang not in seen:
+            ordered.append(lang)
+            seen.add(lang)
+    return ordered
+
+
+def _try_fetch_listing(url: str, lang: str) -> tuple[Any, str | None, int]:
+    """Try ``addons-<lang>.json`` then ``addons-<lang[:2]>.json``.
+
+    Returns ``(fptr, fetched_url, http_code)`` on a 200-or-file success,
+    or ``(None, None, code)`` otherwise. ``code`` is ``0`` when no HTTP
+    status was obtained (network error, file:// not found, ...).
+    Raises :class:`URLError` for pure network failures so that the
+    caller can distinguish them from HTTP errors.
+    """
+    candidates = [f"{url}/listings/addons-{lang}.json"]
+    short = lang[:2]
+    if short and short != lang:
+        candidates.append(f"{url}/listings/addons-{short}.json")
+    last_http_code = 0
+    last_network_error: URLError | None = None
+    for addon_url in candidates:
+        try:
+            fptr = urlopen_maybe_no_check_cert(addon_url)
+        except HTTPError as err:
+            last_http_code = err.code
+            continue
+        except URLError as err:
+            last_network_error = err
+            continue
+        code = 0
+        try:
+            code = fptr.getcode() or 0
+        except AttributeError:
+            code = 0
+        is_file = getattr(fptr, "file", None) is not None
+        if code == 200 or is_file:
+            return fptr, addon_url, code or 200
+        last_http_code = code
+        try:
+            fptr.close()
+        except Exception:
+            pass
+    if last_http_code:
+        return None, None, last_http_code
+    if last_network_error is not None:
+        raise last_network_error
+    return None, None, 0
+
+
+def classify_project_fetch(
+    url: object,
+    current_version: tuple[int, int, int] | None = None,
+    languages: list[str] | None = None,
+) -> ProjectFetchResult:
+    """
+    Fetch the ``addons-<lang>.json`` listing for ``url`` and classify
+    the outcome.
+
+    The classifier never raises: any problem is reported via
+    :class:`ProjectFetchResult`. The call does not mutate any global
+    state and does not update the plugin manager; it exists so that
+    the Addon Manager UI can render a per-project status indicator
+    (bug #13069) without re-implementing the lookup logic.
+
+    ``current_version`` defaults to the running Gramps
+    :data:`VERSION_TUPLE`; pass an explicit tuple in tests to pin the
+    compatibility check. ``languages`` overrides the locale list in
+    the same way.
+    """
+    requested_url = url if isinstance(url, str) else ""
+    normalized = normalize_project_url(url)
+    if normalized is None:
+        return ProjectFetchResult(
+            status=ProjectFetchStatus.INVALID_URL,
+            requested_url=requested_url,
+            detail=_(
+                "URL is empty or does not start with http://, https:// or file://"
+            ),
+        )
+    candidate_langs = _candidate_languages(languages)
+    tried: list[str] = []
+    fptr: Any = None
+    fetched_url: str | None = None
+    fetched_language: str | None = None
+    last_http_code = 0
+    network_error: URLError | None = None
+    for lang in candidate_langs:
+        tried.append(lang)
+        try:
+            fptr, fetched_url, code = _try_fetch_listing(normalized, lang)
+        except URLError as err:
+            network_error = err
+            continue
+        if fptr is not None:
+            fetched_language = lang
+            break
+        if code:
+            last_http_code = code
+    if fptr is None:
+        if network_error is not None:
+            return ProjectFetchResult(
+                status=ProjectFetchStatus.NETWORK_ERROR,
+                requested_url=requested_url,
+                normalized_url=normalized,
+                detail=_("Network error: %s") % network_error.reason,
+                tried_languages=tried,
+            )
+        if last_http_code:
+            return ProjectFetchResult(
+                status=ProjectFetchStatus.HTTP_ERROR,
+                requested_url=requested_url,
+                normalized_url=normalized,
+                http_code=last_http_code,
+                detail=_("HTTP %s while fetching listing") % last_http_code,
+                tried_languages=tried,
+            )
+        return ProjectFetchResult(
+            status=ProjectFetchStatus.NETWORK_ERROR,
+            requested_url=requested_url,
+            normalized_url=normalized,
+            detail=_("No listing could be fetched"),
+            tried_languages=tried,
+        )
+    try:
+        try:
+            payload = json.load(fptr)
+        except (ValueError, UnicodeDecodeError) as err:
+            return ProjectFetchResult(
+                status=ProjectFetchStatus.JSON_ERROR,
+                requested_url=requested_url,
+                normalized_url=normalized,
+                fetched_url=fetched_url,
+                fetched_language=fetched_language,
+                detail=_("Listing is not valid JSON: %s") % err,
+                tried_languages=tried,
+            )
+    finally:
+        try:
+            fptr.close()
+        except Exception:
+            pass
+    if not isinstance(payload, list):
+        return ProjectFetchResult(
+            status=ProjectFetchStatus.JSON_ERROR,
+            requested_url=requested_url,
+            normalized_url=normalized,
+            fetched_url=fetched_url,
+            fetched_language=fetched_language,
+            detail=_("Listing is not a JSON array"),
+            tried_languages=tried,
+        )
+    addon_count = len(payload)
+    target_major_minor = (
+        current_version[:2] if current_version is not None else VERSION_TUPLE[:2]
+    )
+    compatible = 0
+    for entry in payload:
+        if not isinstance(entry, dict):
+            continue
+        entry_version = entry.get("t")
+        if not isinstance(entry_version, str):
+            continue
+        if version_str_to_tup(entry_version, 2) == target_major_minor:
+            compatible += 1
+    if addon_count == 0:
+        status = ProjectFetchStatus.EMPTY_LISTING
+        detail = _("Listing fetched but contained no entries")
+    elif compatible == 0:
+        status = ProjectFetchStatus.NO_COMPATIBLE_ADDONS
+        detail = _("Listing fetched but no entries target the running Gramps %s.%s") % (
+            target_major_minor[0],
+            target_major_minor[1],
+        )
+    elif fetched_language == "en" and candidate_langs and candidate_langs[0] != "en":
+        status = ProjectFetchStatus.LANG_FALLBACK_EN
+        detail = (
+            _("No listing for the requested language; fell back to %s")
+            % fetched_language
+        )
+    else:
+        status = ProjectFetchStatus.OK
+        detail = None
+    return ProjectFetchResult(
+        status=status,
+        requested_url=requested_url,
+        normalized_url=normalized,
+        fetched_url=fetched_url,
+        fetched_language=fetched_language,
+        detail=detail,
+        addon_count=addon_count,
+        compatible_count=compatible,
+        tried_languages=tried,
+    )
 
 
 def get_addons(project, url):
