@@ -43,6 +43,7 @@ from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 from ..const import USER_PLUGINS
 from ..constfunc import mac
+from ..utils.safearchive import is_safe_archive_member, is_safe_tar_member
 from . import BasePluginManager
 from ._pluginreg import make_environment
 
@@ -119,8 +120,14 @@ class Zipfile:
     def extractall(self, path, members=None):
         """
         Extract all of the files in the zip into path.
+
+        Raises ``ValueError`` if an entry's path would resolve outside of
+        ``path`` (Zip Slip / CVE-2007-4559).
         """
         names = self.zip_obj.namelist()
+        for name in names:
+            if not is_safe_archive_member(name, path):
+                raise ValueError("Unsafe path in archive member: %s" % name)
         for name in self.get_paths(names):
             fullname = os.path.join(path, name)
             if not os.path.exists(fullname):
@@ -446,10 +453,16 @@ def load_addon_file(path, callback=None):
     if len(good_gpr) > 0:
         # Now, install the ok ones
         try:
+            if isinstance(file_obj, tarfile.TarFile):
+                for member in file_obj.getmembers():
+                    if not is_safe_tar_member(member, USER_PLUGINS):
+                        raise tarfile.TarError(
+                            "Unsafe path in archive member: %s" % member.name
+                        )
             file_obj.extractall(USER_PLUGINS)
-        except OSError:
+        except (OSError, ValueError, tarfile.TarError):
             if callback:
-                callback(f"OSError installing '{path}', skipped!")
+                callback(f"Error installing '{path}', skipped!")
             file_obj.close()
             return False
         if callback:

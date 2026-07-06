@@ -50,45 +50,10 @@ log = logging.getLogger(".ReadPkg")
 # -------------------------------------------------------------------------
 from gramps.gen.const import XMLFILE
 from gramps.gen.utils.file import media_path
+from gramps.gen.utils.safearchive import is_safe_tar_member
 
 ## we need absolute import as this is dynamically loaded:
 from gramps.plugins.importer.importxml import importData
-
-
-# -------------------------------------------------------------------------
-#
-# Safe tar extraction (CVE-2007-4559)
-#
-# -------------------------------------------------------------------------
-def _is_within_directory(directory: str, target: str) -> bool:
-    """
-    Return True if ``target`` resolves to a path inside ``directory``.
-    """
-    abs_directory = os.path.abspath(directory)
-    abs_target = os.path.abspath(target)
-    return os.path.commonpath([abs_directory, abs_target]) == abs_directory
-
-
-def _is_safe_member(tarinfo: tarfile.TarInfo, target_dir: str) -> bool:
-    """
-    Check that extracting ``tarinfo`` into ``target_dir`` cannot write or
-    link outside of it.
-
-    A malicious .gpkg file could otherwise use an absolute path, a
-    path-traversal name (e.g. ``../../etc/passwd``), or a symlink/hardlink
-    to make ``TarFile.extract()`` create or overwrite files outside the
-    intended media directory (CVE-2007-4559).
-    """
-    if os.path.isabs(tarinfo.name) or tarinfo.name.startswith(("/", "\\")):
-        return False
-    target_path = os.path.join(target_dir, tarinfo.name)
-    if not _is_within_directory(target_dir, target_path):
-        return False
-    if tarinfo.issym() or tarinfo.islnk():
-        link_target = os.path.join(os.path.dirname(target_path), tarinfo.linkname)
-        if not _is_within_directory(target_dir, link_target):
-            return False
-    return True
 
 
 # -------------------------------------------------------------------------
@@ -128,7 +93,7 @@ def impData(database, name, user):
     try:
         archive = tarfile.open(name)
         for tarinfo in archive:
-            if not _is_safe_member(tarinfo, tmpdir_path):
+            if not is_safe_tar_member(tarinfo, tmpdir_path):
                 raise tarfile.TarError(
                     "Unsafe path in archive member: %s" % tarinfo.name
                 )
