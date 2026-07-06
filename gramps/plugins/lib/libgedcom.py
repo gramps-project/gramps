@@ -752,7 +752,6 @@ CUSTOMEVENTTAGS = {
     "_NAMS": _("Namesake"),
     "_ORDI": _("Ordinance"),
     "_ORIG": _("Origin"),
-    "_SEPR": _("Separation"),  # Applies to Families
     "_WEIG": _("Weight"),
 }
 # table for skipping illegal control chars in GEDCOM import
@@ -768,6 +767,7 @@ DEL_AND_C1 = dict.fromkeys(list(range(0x7F, 0x9F)))
 # GEDCOM events to Gramps events conversion
 #
 # -------------------------------------------------------------------------
+
 GED_TO_GRAMPS_EVENT = {}
 for __val, __key in PERSONALCONSTANTEVENTS.items():
     if __key != "":
@@ -777,6 +777,8 @@ GED_TO_GRAMPS_EVENT["Stillbirth"] = EventType.STILLBIRTH
 for __val, __key in FAMILYCONSTANTEVENTS.items():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
+GED_TO_GRAMPS_EVENT["Separation"] = EventType.SEPARATION
+GED_TO_GRAMPS_EVENT["_SEPR"] = EventType.SEPARATION  # FTM custom tag
 
 GED_TO_GRAMPS_ATTR = {}
 for __val, __key in PERSONALCONSTANTATTRIBUTES.items():
@@ -4206,8 +4208,11 @@ class GedcomParser(UpdateCallback):
         # parse table is encountered. The tag may be of the form "_XXX".  We
         # try to convert to a friendly name, if fails use the tag itself as
         # the TYPE in a custom event
-        cust_tag = CUSTOMEVENTTAGS.get(line.token_text, line.token_text)
-        cust_type = EventType((EventType.CUSTOM, cust_tag))
+        if line.token_text in GED_TO_GRAMPS_EVENT:
+            cust_type = EventType(GED_TO_GRAMPS_EVENT[line.token_text])
+        else:
+            cust_tag = CUSTOMEVENTTAGS.get(line.token_text, line.token_text)
+            cust_type = EventType((EventType.CUSTOM, cust_tag))
         event_ref = self.__build_event_pair(
             state, cust_type, self.event_parse_tbl, str(line.data)
         )
@@ -5638,8 +5643,11 @@ class GedcomParser(UpdateCallback):
         # parse table is encountered. The tag may be of the form "_XXX".  We
         # try to convert to a friendly name, if fails use the tag itself as
         # the TYPE in a custom event
-        cust_tag = CUSTOMEVENTTAGS.get(line.token_text, line.token_text)
-        cust_type = EventType((EventType.CUSTOM, cust_tag))
+        if line.token_text in GED_TO_GRAMPS_EVENT:
+            cust_type = EventType(GED_TO_GRAMPS_EVENT[line.token_text])
+        else:
+            cust_tag = CUSTOMEVENTTAGS.get(line.token_text, line.token_text)
+            cust_type = EventType((EventType.CUSTOM, cust_tag))
         event = Event()
         event_ref = EventRef()
         event_ref.set_role(EventRoleType.FAMILY)
