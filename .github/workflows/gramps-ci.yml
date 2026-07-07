@@ -95,6 +95,7 @@ jobs:
         elif [ $missing_found -eq 1 ]; then
           echo "ERROR - A new file is not listed in either POTFILES.in or POTFILES.skip."
           exit 1
+        fi
 
   pypi-installer:
     name: PyPI installer tests (${{ matrix.os }})
