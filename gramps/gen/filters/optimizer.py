@@ -46,46 +46,60 @@ class Optimizer:
 
     def compute_potential_handles_for_filter(
         self, filter: GenericFilter
-    ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
+    ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None, bool]:
         if len(filter.flist) == 0:
-            return (None, None)
+            # Empty filters need to apply logical operation logic (and/or/one),
+            # so we can't skip the loop - return False for all_optimized
+            return (None, None, False)
 
         handles_in = None
         handles_out = None
-        for rule in filter.flist:
-            if filter.logical_op == "and" or len(filter.flist) == 1:
-                rule_in, rule_out = self.compute_potential_handles_for_rule(rule)
-                if rule_in is not None:
-                    if handles_in is None:
-                        handles_in = rule_in
-                    else:
-                        handles_in = handles_in.intersection(rule_in)
-                if rule_out is not None:
-                    if handles_out is None:
-                        handles_out = rule_out
-                    else:
-                        handles_out = handles_out.union(rule_out)
+        all_optimized = True
+
+        # For "or" and "one" operations with multiple rules, we can't fully optimize
+        if filter.logical_op in ("or", "one") and len(filter.flist) > 1:
+            all_optimized = False
+        else:
+            # For "and" operations or single rule, check if all rules are optimized
+            for rule in filter.flist:
+                if filter.logical_op == "and" or len(filter.flist) == 1:
+                    rule_in, rule_out, rule_optimized = (
+                        self.compute_potential_handles_for_rule(rule)
+                    )
+                    if not rule_optimized:
+                        all_optimized = False
+                    if rule_in is not None:
+                        if handles_in is None:
+                            handles_in = rule_in
+                        else:
+                            handles_in = handles_in.intersection(rule_in)
+                    if rule_out is not None:
+                        if handles_out is None:
+                            handles_out = rule_out
+                        else:
+                            handles_out = handles_out.union(rule_out)
 
         if filter.invert:
             handles_in, handles_out = handles_out, handles_in
+            # all_optimized flag remains unchanged after inversion
 
-        return handles_in, handles_out
+        return handles_in, handles_out, all_optimized
 
     def compute_potential_handles_for_rule(
         self,
         rule: Rule,
-    ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
+    ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None, bool]:
         """
         Find the the handles for a particular rule.
         """
         # Has to be of the appropriate type
         if hasattr(rule, "selected_handles"):
-            return (rule.selected_handles, None)
+            return (rule.selected_handles, None, True)
         if hasattr(rule, "find_filter"):
             filter = rule.find_filter()
             if filter and self.is_same_namespace(filter):
                 return self.compute_potential_handles_for_filter(filter)
-        return (None, None)
+        return (None, None, False)
 
     def is_same_namespace(self, filter):
         """
