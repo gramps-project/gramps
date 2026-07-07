@@ -83,16 +83,16 @@ jobs:
         intltool-update -m
         missing_found=0
         notexist_found=0
-        [[ -s missing  ]] && missing_found=1
-        [[ -s notexist ]] && notexist_found=1
-        if [[ $missing_found -eq 1 && $notexist_found -eq 1 ]]; then
+        [ -s missing  ] && missing_found=1
+        [ -s notexist ] && notexist_found=1
+        if [ $missing_found -eq 1 ] && [ $notexist_found -eq 1 ]; then
           echo "ERROR - A new file is not listed in either POTFILES.in or POTFILES.skip."
           echo "ERROR: stale entries in POTFILES.in that no longer exist."
           exit 1
-        elif [[ $notexist_found -eq 1 ]]; then
+        elif [ $notexist_found -eq 1 ]; then
           echo "ERROR: POTFILES.in lists files that no longer exist."
           exit 1
-        elif [[ $missing_found -eq 1 ]]; then
+        elif [ $missing_found -eq 1 ]; then
           echo "ERROR - A new file is not listed in either POTFILES.in or POTFILES.skip."
           exit 1
 
