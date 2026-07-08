@@ -1707,10 +1707,17 @@ class GrampsPreferences(ConfigureDialog):
         )
 
         row += 1
-        # Date format:
+        # Use 2001-04-21 (first GRAMPS release) so the example always has a
+        # two-digit month (04) and an unambiguous day number (> 12), making
+        # every format visually distinct.
+        gramps_birthday = Date(2001, 4, 21)
         obox = Gtk.ComboBoxText()
         formats = get_date_formats()
-        list(map(obox.append_text, formats))
+        for i, fmt_name in enumerate(formats):
+            # Temporary displayer per format so the global state is never mutated.
+            tmp_displayer = glocale.date_displayer.__class__(format=i, blocale=glocale)
+            example = tmp_displayer.display(gramps_birthday)
+            obox.append_text("%s  (%s)" % (fmt_name, example))
         active = config.get("preferences.date-format")
         if active >= len(formats):
             active = 0
