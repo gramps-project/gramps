@@ -1469,6 +1469,8 @@ class GeoGraphyView(OsmGps, NavigationView):
             _(
                 "To use a custom tile provider, paste its tile URL below.\n"
                 "Use #Z, #X, #Y as placeholders for zoom, x and y.\ni.e:\n"
+            )
+            + (
                 "https://api.maptiler.com/tiles/uk-osgb1888/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
                 "https://api.maptiler.com/tiles/uk-osgb63k1885/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
                 "https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
