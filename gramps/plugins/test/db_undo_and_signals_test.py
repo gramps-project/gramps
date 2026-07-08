@@ -184,8 +184,16 @@ class DbTestClassBase(object):
             ),
         ]
         self.assertEqual(sigs, self.sigs, msg="make families")
-        # save state for later undo/redo check
-        step1 = (family1, father1, mother1, family2, father2, mother2)
+        # save state for later undo/redo check; re-read from DB so the
+        # serialized change timestamps match what the DB actually stored.
+        step1 = (
+            self.db.get_family_from_handle(family1.handle),
+            self.db.get_person_from_handle(father1.handle),
+            self.db.get_person_from_handle(mother1.handle),
+            self.db.get_family_from_handle(family2.handle),
+            self.db.get_person_from_handle(father2.handle),
+            self.db.get_person_from_handle(mother2.handle),
+        )
         fam_cnt = self.db.get_number_of_families()
         pers_cnt = self.db.get_number_of_people()
         self.assertEqual(fam_cnt, 2, msg="make families check")
