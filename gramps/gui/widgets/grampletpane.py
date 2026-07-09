@@ -760,6 +760,10 @@ class GuiGramplet:
                                 self.dbstate, self.uistate, "attribute_match", handle
                             )
                     return True
+
+                elif link_type == "None":
+                    # Link not clickable
+                    return True
                 else:  # overzealous l10n while setting the link?
                     logging.warning(
                         "Unknown link type %s, %s" % (link_type, RuntimeWarning)

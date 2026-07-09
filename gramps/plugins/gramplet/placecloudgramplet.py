@@ -32,29 +32,25 @@
 from gramps.plugins.gramplet.cloudgramplet import CloudGramplet
 
 
-class GivenNameCloudGramplet(CloudGramplet):
-    """Implementation of a Cloud gramplet for given name"""
+class PlaceCloudGramplet(CloudGramplet):
+    """Implementation of a Cloud gramplet for place name"""
 
     def init(self):
         CloudGramplet.init(self)
-        self.set_value_name("given name")
-        self.set_item_name("person")
-        self.set_preference_no_value("preferences.no-given-text")
-        self.set_link_type("Given")
+        self.set_value_name("place name")
+        self.set_item_name("place")
 
     def db_changed(self):
-        self.connect(self.dbstate.db, "person-add", self.update)
-        self.connect(self.dbstate.db, "person-delete", self.update)
-        self.connect(self.dbstate.db, "person-update", self.update)
+        self.connect(self.dbstate.db, "place-add", self.update)
+        self.connect(self.dbstate.db, "place-delete", self.update)
+        self.connect(self.dbstate.db, "place-update", self.update)
 
-    def get_items(self):
+    def get_items(self) -> list:
         items = []
 
-        for person in self.dbstate.db.iter_people():
-            allnames = [person.get_primary_name()] + person.get_alternate_names()
-            for name in allnames:
-                name = name.get_first_name().strip()
-                items.append((name,name))
+        for place in self.dbstate.db.iter_places():
+            placename = place.name.get_value()
+            items.append((placename,place.handle))
+
         return items
-        
 
