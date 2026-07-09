@@ -302,19 +302,31 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         skip_list.extend(x.ref for x in self.family.get_child_ref_list())
 
         sel = SelectPerson(
-            self.dbstate, self.uistate, self.track, _("Select Child"), skip=skip_list
+            self.dbstate,
+            self.uistate,
+            self.track,
+            _("Select Child"),
+            skip=skip_list,
+            allow_multiple_selection=True,
         )
-        person = sel.run()
+        people = sel.run()
 
-        if person:
-            ref = ChildRef()
-            ref.ref = person.get_handle()
-            self.family.add_child_ref(ref)
+        if people:
+            # add the child references to the family
+            first_new_index = len(self.family.get_child_ref_list())
+            ref = None
+            for person in people:
+                ref = ChildRef()
+                ref.ref = person.get_handle()
+                self.family.add_child_ref(ref)
             self.rebuild()
+            # scroll to the first added child
             GLib.idle_add(
-                self.tree.scroll_to_cell, len(self.family.get_child_ref_list()) - 1
+                self.tree.scroll_to_cell,
+                first_new_index,
             )
-            self.call_edit_childref(ref)
+            if len(people) == 1:
+                self.call_edit_childref(ref)
 
     def run(self, skip):
         skip_list = [_f for _f in skip if _f]

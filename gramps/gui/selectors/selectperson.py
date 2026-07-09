@@ -61,6 +61,7 @@ class SelectPerson(BaseSelector):
         skip=set(),
         show_search_bar=True,
         default=None,
+        allow_multiple_selection=False,
     ):
         # SelectPerson may have a title passed to it which should be used
         # instead of the default defined for get_window_title()
@@ -85,6 +86,7 @@ class SelectPerson(BaseSelector):
             skip,
             show_search_bar,
             default,
+            allow_multiple_selection,
         )
 
     def _local_init(self):
