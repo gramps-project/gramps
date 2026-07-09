@@ -85,6 +85,7 @@ from .dnagenomebuildtype import DNAGenomeBuildType
 from .dnatest import DNATest
 from .dnasegment import DNASegment
 from .sharedancestor import SharedAncestor
+from .predictedrelationship import PredictedRelationship
 from .dnamatch import DNAMatch
 
 # Text

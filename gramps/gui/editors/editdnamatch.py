@@ -41,6 +41,7 @@ from .displaytabs import (
     NoteTab,
     GalleryTab,
 )
+from .displaytabs.predictedrelationshipembedlist import PredictedRelationshipEmbedList
 from .displaytabs.sharedancestorembedlist import SharedAncestorEmbedList
 from .displaytabs.dnasegmentembedlist import DNASegmentEmbedList
 from ..widgets import (
@@ -158,10 +159,24 @@ class EditDNAMatch(EditPrimary):
             self.db.readonly,
         )
 
+        self.shared_cm_weighted_field = MonitoredEntry(
+            self.top.get_object("shared_cm_weighted"),
+            lambda x: self.obj.set_shared_cm_weighted(_str_to_float(x)),
+            lambda: _float_to_str(self.obj.get_shared_cm_weighted()),
+            self.db.readonly,
+        )
+
         self.largest_segment_cm_field = MonitoredEntry(
             self.top.get_object("largest_segment_cm"),
             lambda x: self.obj.set_largest_segment_cm(_str_to_float(x)),
             lambda: _float_to_str(self.obj.get_largest_segment_cm()),
+            self.db.readonly,
+        )
+
+        self.largest_segment_cm_weighted_field = MonitoredEntry(
+            self.top.get_object("largest_segment_cm_weighted"),
+            lambda x: self.obj.set_largest_segment_cm_weighted(_str_to_float(x)),
+            lambda: _float_to_str(self.obj.get_largest_segment_cm_weighted()),
             self.db.readonly,
         )
 
@@ -176,26 +191,6 @@ class EditDNAMatch(EditPrimary):
             self.top.get_object("segment_count"),
             lambda x: self.obj.set_segment_count(_str_to_int(x)),
             lambda: _int_to_str(self.obj.get_segment_count()),
-            self.db.readonly,
-        )
-
-        self.predicted_relationship_field = MonitoredEntry(
-            self.top.get_object("predicted_relationship"),
-            self.obj.set_predicted_relationship,
-            self.obj.get_predicted_relationship,
-            self.db.readonly,
-        )
-
-        self.predicted_generations_field = MonitoredEntry(
-            self.top.get_object("predicted_generations"),
-            lambda x: self.obj.set_predicted_generations(
-                float(x.strip()) if x.strip() else None
-            ),
-            lambda: (
-                str(self.obj.get_predicted_generations())
-                if self.obj.get_predicted_generations() is not None
-                else ""
-            ),
             self.db.readonly,
         )
 
@@ -223,6 +218,15 @@ class EditDNAMatch(EditPrimary):
 
     def _create_tabbed_pages(self):
         notebook = Gtk.Notebook()
+
+        self.predicted_relationship_list = PredictedRelationshipEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.obj.get_predicted_relationship_list(),
+            "dnamatch_editor_predicted_relationships",
+        )
+        self._add_tab(notebook, self.predicted_relationship_list)
 
         self.shared_ancestor_list = SharedAncestorEmbedList(
             self.dbstate,
@@ -283,6 +287,7 @@ class EditDNAMatch(EditPrimary):
         notebook.show_all()
         self.top.get_object("vbox").pack_start(notebook, True, True, 0)
 
+        self.track_ref_for_deletion("predicted_relationship_list")
         self.track_ref_for_deletion("shared_ancestor_list")
         self.track_ref_for_deletion("segment_list")
         self.track_ref_for_deletion("attr_list")

@@ -273,7 +273,7 @@
                     <property name="top-attach">1</property>
                   </packing>
                 </child>
-                <!-- Row 2: Shared cM / Largest segment cM -->
+                <!-- Row 2: Shared cM / Weighted shared cM -->
                 <child>
                   <object class="GtkLabel" id="lbl_shared_cm">
                     <property name="visible">True</property>
@@ -293,7 +293,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Total centimorgans shared with this match</property>
+                    <property name="tooltip-text" translatable="yes">Unweighted total centimorgans shared with this match</property>
                     <property name="invisible-char">●</property>
                   </object>
                   <packing>
@@ -301,6 +301,35 @@
                     <property name="top-attach">2</property>
                   </packing>
                 </child>
+                <child>
+                  <object class="GtkLabel" id="lbl_shared_cm_weighted">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">_Weighted cM:</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">shared_cm_weighted</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">2</property>
+                    <property name="top-attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="UndoableEntry" id="shared_cm_weighted">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="tooltip-text" translatable="yes">Total shared DNA weighted by the provider's algorithm</property>
+                    <property name="invisible-char">●</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">3</property>
+                    <property name="top-attach">2</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <!-- Row 3: Largest segment cM / Weighted largest segment cM -->
                 <child>
                   <object class="GtkLabel" id="lbl_largest_segment_cm">
                     <property name="visible">True</property>
@@ -311,8 +340,8 @@
                     <property name="mnemonic-widget">largest_segment_cm</property>
                   </object>
                   <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">2</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -320,16 +349,43 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Size of the largest shared segment in centimorgans</property>
+                    <property name="tooltip-text" translatable="yes">Unweighted size of the largest shared segment in centimorgans</property>
+                    <property name="invisible-char">●</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="lbl_largest_segment_cm_weighted">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">W_eighted largest:</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">largest_segment_cm_weighted</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">2</property>
+                    <property name="top-attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="UndoableEntry" id="largest_segment_cm_weighted">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="tooltip-text" translatable="yes">Largest segment weighted by the provider's algorithm</property>
                     <property name="invisible-char">●</property>
                   </object>
                   <packing>
                     <property name="left-attach">3</property>
-                    <property name="top-attach">2</property>
+                    <property name="top-attach">3</property>
                     <property name="width">2</property>
                   </packing>
                 </child>
-                <!-- Row 3: Percent shared / Segment count -->
+                <!-- Row 4: Percent shared / Segment count -->
                 <child>
                   <object class="GtkLabel" id="lbl_percent_shared">
                     <property name="visible">True</property>
@@ -341,7 +397,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
-                    <property name="top-attach">3</property>
+                    <property name="top-attach">4</property>
                   </packing>
                 </child>
                 <child>
@@ -354,7 +410,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="top-attach">3</property>
+                    <property name="top-attach">4</property>
                   </packing>
                 </child>
                 <child>
@@ -368,7 +424,7 @@
                   </object>
                   <packing>
                     <property name="left-attach">2</property>
-                    <property name="top-attach">3</property>
+                    <property name="top-attach">4</property>
                   </packing>
                 </child>
                 <child>
@@ -377,62 +433,6 @@
                     <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
                     <property name="tooltip-text" translatable="yes">Number of shared segments</property>
-                    <property name="invisible-char">●</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">3</property>
-                    <property name="top-attach">3</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <!-- Row 4: Predicted relationship / Predicted generations -->
-                <child>
-                  <object class="GtkLabel" id="lbl_predicted_relationship">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">P_redicted:</property>
-                    <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">predicted_relationship</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">0</property>
-                    <property name="top-attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="UndoableEntry" id="predicted_relationship">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Predicted relationship of the match to the subject, as reported by the testing provider - for example 'daughter' means the match is the subject's daughter</property>
-                    <property name="invisible-char">●</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="lbl_predicted_generations">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">_Gen:</property>
-                    <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">predicted_generations</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="UndoableEntry" id="predicted_generations">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Predicted number of generations to the most recent common ancestor (optional)</property>
                     <property name="invisible-char">●</property>
                   </object>
                   <packing>

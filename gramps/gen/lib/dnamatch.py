@@ -39,6 +39,7 @@ from .citationbase import CitationBase
 from .dnasegment import DNASegment
 from .mediabase import MediaBase
 from .notebase import NoteBase
+from .predictedrelationship import PredictedRelationship
 from .primaryobj import PrimaryObject
 from .sharedancestor import SharedAncestor
 from .tagbase import TagBase
@@ -68,8 +69,8 @@ class DNAMatch(
 
     The match does not store a confirmed relationship. Once both
     DNATest records have person_handle set the relationship is computable
-    from the tree. predicted_relationship retains the raw label reported
-    by the testing platform.
+    from the tree. predicted_relationship_list holds the possible
+    relationships predicted for the pair before they are placed in the tree.
     """
 
     def __init__(self, source=None):
@@ -89,11 +90,14 @@ class DNAMatch(
             self.__subject_test_handle = source.__subject_test_handle
             self.__match_test_handle = source.__match_test_handle
             self.__shared_cm = source.__shared_cm
+            self.__shared_cm_weighted = source.__shared_cm_weighted
             self.__percent_shared = source.__percent_shared
             self.__segment_count = source.__segment_count
             self.__largest_segment_cm = source.__largest_segment_cm
-            self.__predicted_relationship = source.__predicted_relationship
-            self.__predicted_generations = source.__predicted_generations
+            self.__largest_segment_cm_weighted = source.__largest_segment_cm_weighted
+            self.__predicted_relationship_list = [
+                PredictedRelationship(pr) for pr in source.__predicted_relationship_list
+            ]
             self.__shared_ancestor_list = [
                 SharedAncestor(sa) for sa in source.__shared_ancestor_list
             ]
@@ -102,11 +106,12 @@ class DNAMatch(
             self.__subject_test_handle = None
             self.__match_test_handle = None
             self.__shared_cm = 0.0
+            self.__shared_cm_weighted = 0.0
             self.__percent_shared = 0.0
             self.__segment_count = 0
             self.__largest_segment_cm = 0.0
-            self.__predicted_relationship = ""
-            self.__predicted_generations = 0.0
+            self.__largest_segment_cm_weighted = 0.0
+            self.__predicted_relationship_list = []
             self.__shared_ancestor_list = []
             self.__segment_list = []
 
@@ -124,11 +129,12 @@ class DNAMatch(
             self.__subject_test_handle,
             self.__match_test_handle,
             self.__shared_cm,
+            self.__shared_cm_weighted,
             self.__percent_shared,
             self.__segment_count,
             self.__largest_segment_cm,
-            self.__predicted_relationship,
-            self.__predicted_generations,
+            self.__largest_segment_cm_weighted,
+            [pr.serialize() for pr in self.__predicted_relationship_list],
             [sa.serialize() for sa in self.__shared_ancestor_list],
             [seg.serialize() for seg in self.__segment_list],
             CitationBase.serialize(self),
@@ -148,11 +154,12 @@ class DNAMatch(
         attr_dict["subject_test_handle"] = self.__subject_test_handle
         attr_dict["match_test_handle"] = self.__match_test_handle
         attr_dict["shared_cm"] = self.__shared_cm
+        attr_dict["shared_cm_weighted"] = self.__shared_cm_weighted
         attr_dict["percent_shared"] = self.__percent_shared
         attr_dict["segment_count"] = self.__segment_count
         attr_dict["largest_segment_cm"] = self.__largest_segment_cm
-        attr_dict["predicted_relationship"] = self.__predicted_relationship
-        attr_dict["predicted_generations"] = self.__predicted_generations
+        attr_dict["largest_segment_cm_weighted"] = self.__largest_segment_cm_weighted
+        attr_dict["predicted_relationship_list"] = self.__predicted_relationship_list
         attr_dict["shared_ancestor_list"] = self.__shared_ancestor_list
         attr_dict["segment_list"] = self.__segment_list
         return attr_dict
@@ -164,11 +171,16 @@ class DNAMatch(
         self.__subject_test_handle = attr_dict.pop("subject_test_handle")
         self.__match_test_handle = attr_dict.pop("match_test_handle")
         self.__shared_cm = attr_dict.pop("shared_cm")
+        self.__shared_cm_weighted = attr_dict.pop("shared_cm_weighted", 0.0)
         self.__percent_shared = attr_dict.pop("percent_shared")
         self.__segment_count = attr_dict.pop("segment_count")
         self.__largest_segment_cm = attr_dict.pop("largest_segment_cm")
-        self.__predicted_relationship = attr_dict.pop("predicted_relationship")
-        self.__predicted_generations = attr_dict.pop("predicted_generations")
+        self.__largest_segment_cm_weighted = attr_dict.pop(
+            "largest_segment_cm_weighted", 0.0
+        )
+        self.__predicted_relationship_list = attr_dict.pop(
+            "predicted_relationship_list"
+        )
         self.__shared_ancestor_list = attr_dict.pop("shared_ancestor_list")
         self.__segment_list = attr_dict.pop("segment_list")
         super().set_object_state(attr_dict)
@@ -207,6 +219,10 @@ class DNAMatch(
                     "title": _("Match kit"),
                 },
                 "shared_cm": {"type": "number", "title": _("Shared cM")},
+                "shared_cm_weighted": {
+                    "type": "number",
+                    "title": _("Weighted shared cM"),
+                },
                 "percent_shared": {
                     "type": "number",
                     "title": _("Percent shared"),
@@ -219,13 +235,14 @@ class DNAMatch(
                     "type": "number",
                     "title": _("Largest segment cM"),
                 },
-                "predicted_relationship": {
-                    "type": "string",
-                    "title": _("Predicted relationship"),
+                "largest_segment_cm_weighted": {
+                    "type": "number",
+                    "title": _("Weighted largest segment cM"),
                 },
-                "predicted_generations": {
-                    "type": ["number", "null"],
-                    "title": _("Predicted generations"),
+                "predicted_relationship_list": {
+                    "type": "array",
+                    "items": PredictedRelationship.get_schema(),
+                    "title": _("Predicted relationships"),
                 },
                 "shared_ancestor_list": {
                     "type": "array",
@@ -281,11 +298,12 @@ class DNAMatch(
             self.__subject_test_handle,
             self.__match_test_handle,
             self.__shared_cm,
+            self.__shared_cm_weighted,
             self.__percent_shared,
             self.__segment_count,
             self.__largest_segment_cm,
-            self.__predicted_relationship,
-            self.__predicted_generations,
+            self.__largest_segment_cm_weighted,
+            predicted_relationship_list,
             shared_ancestor_list,
             segment_list,
             citation_list,
@@ -297,6 +315,10 @@ class DNAMatch(
             self.private,
         ) = data
 
+        self.__predicted_relationship_list = [
+            PredictedRelationship().unserialize(pr)
+            for pr in predicted_relationship_list
+        ]
         self.__shared_ancestor_list = [
             SharedAncestor().unserialize(sa) for sa in shared_ancestor_list
         ]
@@ -355,25 +377,40 @@ class DNAMatch(
         """
         Return the list of all textual attributes of the object.
         """
-        return [self.__predicted_relationship, self.gramps_id]
+        return [self.gramps_id]
 
     def get_text_data_child_list(self):
         """
         Return the list of child objects that may carry textual data.
         """
-        return self.media_list + self.attribute_list + self.__shared_ancestor_list
+        return (
+            self.media_list
+            + self.attribute_list
+            + self.__predicted_relationship_list
+            + self.__shared_ancestor_list
+        )
 
     def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
         """
-        return self.media_list + self.attribute_list + self.__shared_ancestor_list
+        return (
+            self.media_list
+            + self.attribute_list
+            + self.__predicted_relationship_list
+            + self.__shared_ancestor_list
+        )
 
     def get_note_child_list(self):
         """
         Return the list of child secondary objects that may refer notes.
         """
-        return self.media_list + self.attribute_list + self.__shared_ancestor_list
+        return (
+            self.media_list
+            + self.attribute_list
+            + self.__predicted_relationship_list
+            + self.__shared_ancestor_list
+        )
 
     def get_referenced_handles(self):
         """
@@ -397,6 +434,20 @@ class DNAMatch(
         their children, reference primary objects.
         """
         return self.get_citation_child_list()
+
+    def _merge_predicted_relationship_list(self, acquisition):
+        """
+        Merge the predicted relationship list from acquisition into our own.
+
+        Entries whose serialized form is already present are skipped.
+
+        :param acquisition: source DNAMatch
+        :type acquisition: DNAMatch
+        """
+        existing = [pr.serialize() for pr in self.__predicted_relationship_list]
+        for addendum in acquisition.get_predicted_relationship_list():
+            if addendum.serialize() not in existing:
+                self.__predicted_relationship_list.append(addendum)
 
     def _merge_shared_ancestor_list(self, acquisition):
         """
@@ -434,6 +485,7 @@ class DNAMatch(
         :type acquisition: DNAMatch
         """
         self._merge_privacy(acquisition)
+        self._merge_predicted_relationship_list(acquisition)
         self._merge_shared_ancestor_list(acquisition)
         self._merge_segment_list(acquisition)
         self._merge_attribute_list(acquisition)
@@ -463,14 +515,24 @@ class DNAMatch(
     match_test_handle = property(get_match_test_handle, set_match_test_handle)
 
     def set_shared_cm(self, cm):
-        """Set the total shared centimorgans."""
+        """Set the unweighted total shared centimorgans."""
         self.__shared_cm = cm
 
     def get_shared_cm(self):
-        """Return the total shared centimorgans."""
+        """Return the unweighted total shared centimorgans."""
         return self.__shared_cm
 
     shared_cm = property(get_shared_cm, set_shared_cm)
+
+    def set_shared_cm_weighted(self, cm):
+        """Set the provider-weighted total shared centimorgans."""
+        self.__shared_cm_weighted = cm
+
+    def get_shared_cm_weighted(self):
+        """Return the provider-weighted total shared centimorgans."""
+        return self.__shared_cm_weighted
+
+    shared_cm_weighted = property(get_shared_cm_weighted, set_shared_cm_weighted)
 
     def set_percent_shared(self, percent):
         """Set the percentage of genome shared."""
@@ -493,38 +555,42 @@ class DNAMatch(
     segment_count = property(get_segment_count, set_segment_count)
 
     def set_largest_segment_cm(self, cm):
-        """Set the largest segment size in cM."""
+        """Set the unweighted largest segment size in cM."""
         self.__largest_segment_cm = cm
 
     def get_largest_segment_cm(self):
-        """Return the largest segment size in cM."""
+        """Return the unweighted largest segment size in cM."""
         return self.__largest_segment_cm
 
     largest_segment_cm = property(get_largest_segment_cm, set_largest_segment_cm)
 
-    def set_predicted_relationship(self, relationship):
-        """Set the platform's predicted relationship label."""
-        self.__predicted_relationship = relationship
+    def set_largest_segment_cm_weighted(self, cm):
+        """Set the provider-weighted largest segment size in cM."""
+        self.__largest_segment_cm_weighted = cm
 
-    def get_predicted_relationship(self):
-        """Return the platform's predicted relationship label."""
-        return self.__predicted_relationship
+    def get_largest_segment_cm_weighted(self):
+        """Return the provider-weighted largest segment size in cM."""
+        return self.__largest_segment_cm_weighted
 
-    predicted_relationship = property(
-        get_predicted_relationship, set_predicted_relationship
+    largest_segment_cm_weighted = property(
+        get_largest_segment_cm_weighted, set_largest_segment_cm_weighted
     )
 
-    def set_predicted_generations(self, generations):
-        """Set the platform's estimated generations to MRCA, or None."""
-        self.__predicted_generations = generations
+    def set_predicted_relationship_list(self, relationship_list):
+        """Set the list of PredictedRelationship objects."""
+        self.__predicted_relationship_list = relationship_list
 
-    def get_predicted_generations(self):
-        """Return the platform's estimated generations to MRCA, or None."""
-        return self.__predicted_generations
+    def get_predicted_relationship_list(self):
+        """Return the list of PredictedRelationship objects."""
+        return self.__predicted_relationship_list
 
-    predicted_generations = property(
-        get_predicted_generations, set_predicted_generations
+    predicted_relationship_list = property(
+        get_predicted_relationship_list, set_predicted_relationship_list
     )
+
+    def add_predicted_relationship(self, relationship):
+        """Append a PredictedRelationship to the list."""
+        self.__predicted_relationship_list.append(relationship)
 
     def set_shared_ancestor_list(self, ancestor_list):
         """Set the list of SharedAncestor objects."""

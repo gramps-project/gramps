@@ -27,6 +27,7 @@ DNASegment secondary object for Gramps.
 #
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from .dnagenomebuildtype import DNAGenomeBuildType
 from .secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
@@ -42,13 +43,13 @@ class DNASegment(SecondaryObject):
     A single shared DNA segment within a DNAMatch.
 
     Coordinates are in base pairs in the reference assembly recorded on
-    the subject DNATest (DNAMatch.subject_test_handle.genome_build).
+    the segment's genome_build.
     """
 
-    PHASE_UNASSIGNED = 0
-    PHASE_UNKNOWN = 1
-    PHASE_MATERNAL = 2
-    PHASE_PATERNAL = 3
+    ORIGIN_UNASSIGNED = 0
+    ORIGIN_UNKNOWN = 1
+    ORIGIN_MATERNAL = 2
+    ORIGIN_PATERNAL = 3
 
     IBD_UNKNOWN = 0
     IBD_HIR = 1
@@ -68,9 +69,11 @@ class DNASegment(SecondaryObject):
             self.__start_rsid = source.__start_rsid
             self.__end_rsid = source.__end_rsid
             self.__shared_cm = source.__shared_cm
+            self.__shared_cm_weighted = source.__shared_cm_weighted
             self.__snp_count = source.__snp_count
-            self.__phase = source.__phase
+            self.__origin = source.__origin
             self.__ibd_state = source.__ibd_state
+            self.__genome_build = DNAGenomeBuildType(source.__genome_build)
         else:
             self.__chromosome = ""
             self.__start_bp = 0
@@ -78,9 +81,11 @@ class DNASegment(SecondaryObject):
             self.__start_rsid = None
             self.__end_rsid = None
             self.__shared_cm = 0.0
+            self.__shared_cm_weighted = 0.0
             self.__snp_count = 0
-            self.__phase = DNASegment.PHASE_UNASSIGNED
+            self.__origin = DNASegment.ORIGIN_UNASSIGNED
             self.__ibd_state = DNASegment.IBD_UNKNOWN
+            self.__genome_build = DNAGenomeBuildType()
 
     def serialize(self):
         """
@@ -93,9 +98,11 @@ class DNASegment(SecondaryObject):
             self.__start_rsid,
             self.__end_rsid,
             self.__shared_cm,
+            self.__shared_cm_weighted,
             self.__snp_count,
-            self.__phase,
+            self.__origin,
             self.__ibd_state,
+            self.__genome_build.serialize(),
         )
 
     def unserialize(self, data):
@@ -109,10 +116,14 @@ class DNASegment(SecondaryObject):
             self.__start_rsid,
             self.__end_rsid,
             self.__shared_cm,
+            self.__shared_cm_weighted,
             self.__snp_count,
-            self.__phase,
+            self.__origin,
             self.__ibd_state,
+            genome_build,
         ) = data
+        self.__genome_build = DNAGenomeBuildType()
+        self.__genome_build.unserialize(genome_build)
         return self
 
     def get_object_state(self):
@@ -126,9 +137,11 @@ class DNASegment(SecondaryObject):
         attr_dict["start_rsid"] = self.__start_rsid
         attr_dict["end_rsid"] = self.__end_rsid
         attr_dict["shared_cm"] = self.__shared_cm
+        attr_dict["shared_cm_weighted"] = self.__shared_cm_weighted
         attr_dict["snp_count"] = self.__snp_count
-        attr_dict["phase"] = self.__phase
+        attr_dict["origin"] = self.__origin
         attr_dict["ibd_state"] = self.__ibd_state
+        attr_dict["genome_build"] = self.__genome_build
         return attr_dict
 
     def set_object_state(self, attr_dict):
@@ -141,9 +154,11 @@ class DNASegment(SecondaryObject):
         self.__start_rsid = attr_dict.pop("start_rsid")
         self.__end_rsid = attr_dict.pop("end_rsid")
         self.__shared_cm = attr_dict.pop("shared_cm")
+        self.__shared_cm_weighted = attr_dict.pop("shared_cm_weighted", 0.0)
         self.__snp_count = attr_dict.pop("snp_count")
-        self.__phase = attr_dict.pop("phase")
+        self.__origin = attr_dict.pop("origin")
         self.__ibd_state = attr_dict.pop("ibd_state", DNASegment.IBD_UNKNOWN)
+        self.__genome_build = attr_dict.pop("genome_build", DNAGenomeBuildType())
         super().set_object_state(attr_dict)
 
     @classmethod
@@ -168,9 +183,14 @@ class DNASegment(SecondaryObject):
                     "title": _("End RSID"),
                 },
                 "shared_cm": {"type": "number", "title": _("Shared cM")},
+                "shared_cm_weighted": {
+                    "type": "number",
+                    "title": _("Weighted shared cM"),
+                },
                 "snp_count": {"type": "integer", "title": _("SNP count")},
-                "phase": {"type": "integer", "title": _("Phase")},
+                "origin": {"type": "integer", "title": _("Origin")},
                 "ibd_state": {"type": "integer", "title": _("IBD state")},
+                "genome_build": DNAGenomeBuildType.get_schema(),
             },
         }
 
@@ -250,14 +270,24 @@ class DNASegment(SecondaryObject):
     end_rsid = property(get_end_rsid, set_end_rsid)
 
     def set_shared_cm(self, cm):
-        """Set the shared cM for this segment."""
+        """Set the unweighted shared cM for this segment."""
         self.__shared_cm = cm
 
     def get_shared_cm(self):
-        """Return the shared cM for this segment."""
+        """Return the unweighted shared cM for this segment."""
         return self.__shared_cm
 
     shared_cm = property(get_shared_cm, set_shared_cm)
+
+    def set_shared_cm_weighted(self, cm):
+        """Set the provider-weighted shared cM for this segment."""
+        self.__shared_cm_weighted = cm
+
+    def get_shared_cm_weighted(self):
+        """Return the provider-weighted shared cM for this segment."""
+        return self.__shared_cm_weighted
+
+    shared_cm_weighted = property(get_shared_cm_weighted, set_shared_cm_weighted)
 
     def set_snp_count(self, count):
         """Set the number of SNPs compared in this segment."""
@@ -269,15 +299,15 @@ class DNASegment(SecondaryObject):
 
     snp_count = property(get_snp_count, set_snp_count)
 
-    def set_phase(self, phase):
-        """Set the phase assignment for this segment."""
-        self.__phase = phase
+    def set_origin(self, origin):
+        """Set the parental origin assignment for this segment."""
+        self.__origin = origin
 
-    def get_phase(self):
-        """Return the phase assignment for this segment."""
-        return self.__phase
+    def get_origin(self):
+        """Return the parental origin assignment for this segment."""
+        return self.__origin
 
-    phase = property(get_phase, set_phase)
+    origin = property(get_origin, set_origin)
 
     def set_ibd_state(self, ibd_state):
         """Set the IBD state for this segment."""
@@ -288,3 +318,13 @@ class DNASegment(SecondaryObject):
         return self.__ibd_state
 
     ibd_state = property(get_ibd_state, set_ibd_state)
+
+    def set_genome_build(self, build):
+        """Set the genome reference assembly for this segment's coordinates."""
+        self.__genome_build.set(build)
+
+    def get_genome_build(self):
+        """Return the genome reference assembly for this segment's coordinates."""
+        return self.__genome_build
+
+    genome_build = property(get_genome_build, set_genome_build)

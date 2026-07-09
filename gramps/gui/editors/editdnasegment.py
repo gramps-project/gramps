@@ -26,12 +26,12 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
 from ..glade import Glade
-from ..widgets import MonitoredEntry
+from ..widgets import MonitoredDataType, MonitoredEntry
 from .editsecondary import EditSecondary
 
 _CHROMOSOMES = [str(i) for i in range(1, 23)] + ["X", "Y", "MT"]
 
-_PHASE_LABELS = [
+_ORIGIN_LABELS = [
     _("Unassigned"),
     _("Unknown"),
     _("Maternal"),
@@ -135,6 +135,13 @@ class EditDNASegment(EditSecondary):
             self.db.readonly,
         )
 
+        self.shared_cm_weighted_field = MonitoredEntry(
+            self.top.get_object("shared_cm_weighted"),
+            lambda x: self.obj.set_shared_cm_weighted(_str_to_float(x)),
+            lambda: _float_to_str(self.obj.get_shared_cm_weighted()),
+            self.db.readonly,
+        )
+
         self.snp_count_field = MonitoredEntry(
             self.top.get_object("snp_count"),
             lambda x: self.obj.set_snp_count(_str_to_int(x)),
@@ -142,12 +149,19 @@ class EditDNASegment(EditSecondary):
             self.db.readonly,
         )
 
-        phase_combo = self.top.get_object("phase")
-        for label in _PHASE_LABELS:
-            phase_combo.append_text(label)
-        phase_combo.connect("changed", self._on_phase_changed)
-        phase_combo.set_active(self.obj.get_phase())
-        phase_combo.set_sensitive(not self.db.readonly)
+        self.genome_build_field = MonitoredDataType(
+            self.top.get_object("genome_build"),
+            self.obj.set_genome_build,
+            self.obj.get_genome_build,
+            self.db.readonly,
+        )
+
+        origin_combo = self.top.get_object("origin")
+        for label in _ORIGIN_LABELS:
+            origin_combo.append_text(label)
+        origin_combo.connect("changed", self._on_origin_changed)
+        origin_combo.set_active(self.obj.get_origin())
+        origin_combo.set_sensitive(not self.db.readonly)
 
         ibd_combo = self.top.get_object("ibd_state")
         for label in _IBD_STATE_LABELS:
@@ -161,8 +175,8 @@ class EditDNASegment(EditSecondary):
         if 0 <= idx < len(_CHROMOSOMES):
             self.obj.set_chromosome(_CHROMOSOMES[idx])
 
-    def _on_phase_changed(self, combo):
-        self.obj.set_phase(combo.get_active())
+    def _on_origin_changed(self, combo):
+        self.obj.set_origin(combo.get_active())
 
     def _on_ibd_state_changed(self, combo):
         self.obj.set_ibd_state(combo.get_active())

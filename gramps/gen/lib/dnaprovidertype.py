@@ -48,7 +48,7 @@ class DNAProviderType(GrampsType):
     TWENTY_THREE_AND_ME = 2
     MYHERITAGE = 3
     FTDNA = 4
-    GEDMATCH = 5
+    # value 5 was GEDmatch, removed as it is not a test provider
     LIVINGDNA = 6
 
     _CUSTOM = CUSTOM
@@ -61,7 +61,6 @@ class DNAProviderType(GrampsType):
         (TWENTY_THREE_AND_ME, _("23andMe"), "23andMe"),
         (MYHERITAGE, _("MyHeritage"), "MyHeritage"),
         (FTDNA, _("FTDNA"), "FTDNA"),
-        (GEDMATCH, _("GEDmatch"), "GEDmatch"),
         (LIVINGDNA, _("LivingDNA"), "LivingDNA"),
     ]
 

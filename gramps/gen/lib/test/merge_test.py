@@ -71,6 +71,7 @@ from ..dnamatch import DNAMatch
 from ..dnasegment import DNASegment
 from ..mediabase import MediaBase
 from ..notebase import NoteBase
+from ..predictedrelationship import PredictedRelationship
 from ..privacybase import PrivacyBase
 from ..sharedancestor import SharedAncestor
 from ..surnamebase import SurnameBase
@@ -2092,6 +2093,24 @@ class DNAMatchCheck(
         self.titanic.add_shared_ancestor(sa2)
         self.phoenix.merge(self.titanic)
         self.assertEqual(len(self.phoenix.get_shared_ancestor_list()), 2)
+
+    def test_merge_predicted_relationship_identical(self):
+        rel = PredictedRelationship()
+        rel.set_description("Second cousins")
+        self.phoenix.add_predicted_relationship(rel)
+        self.titanic.add_predicted_relationship(PredictedRelationship(rel))
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(len(self.phoenix.get_predicted_relationship_list()), 1)
+
+    def test_merge_predicted_relationship_different(self):
+        rel1 = PredictedRelationship()
+        rel1.set_description("Second cousins")
+        rel2 = PredictedRelationship()
+        rel2.set_description("Third cousins")
+        self.phoenix.add_predicted_relationship(rel1)
+        self.titanic.add_predicted_relationship(rel2)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(len(self.phoenix.get_predicted_relationship_list()), 2)
 
     def test_merge_segment_identical(self):
         seg = DNASegment()

@@ -65,6 +65,7 @@ from .sourcebackreflist import SourceBackRefList
 from .srcattrembedlist import SrcAttrEmbedList
 from .webembedlist import WebEmbedList
 from .dnatestbackreflist import DNATestBackRefList
+from .predictedrelationshipembedlist import PredictedRelationshipEmbedList
 from .sharedancestorembedlist import SharedAncestorEmbedList
 from .dnasegmentembedlist import DNASegmentEmbedList
 from .dnatestattr import DNATestAttrEmbedList

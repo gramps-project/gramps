@@ -24,89 +24,80 @@ _ = glocale.translation.sgettext
 from gi.repository import GLib, Gtk
 
 from gramps.gen.errors import WindowActiveError
-from gramps.gen.lib import DNASegment
-from .embeddedlist import EmbeddedList, TEXT_COL
+from gramps.gen.lib import PredictedRelationship
+from .embeddedlist import EmbeddedList, TEXT_COL, ICON_COL
 
 # -------------------------------------------------------------------------
 #
-# DNASegmentModel
+# PredictedRelationshipModel
 #
 # -------------------------------------------------------------------------
-_ORIGIN_LABELS = [
-    _("Unassigned"),
+_SIDE_LABELS = [
     _("Unknown"),
     _("Maternal"),
     _("Paternal"),
+    _("Both"),
 ]
 
-_IBD_STATE_LABELS = [
+_FOH_LABELS = [
     _("Unknown"),
-    _("HIR"),
-    _("FIR"),
+    _("Half"),
+    _("Full"),
 ]
 
 
-class DNASegmentModel(Gtk.ListStore):
-    def __init__(self, segment_list, db):
-        # columns: chromosome, start_bp, end_bp, shared_cm, snp_count, origin, ibd_state, object
-        Gtk.ListStore.__init__(self, str, str, str, str, str, str, str, object)
+def _side_label(side):
+    return _SIDE_LABELS[side] if 0 <= side < len(_SIDE_LABELS) else str(side)
+
+
+class PredictedRelationshipModel(Gtk.ListStore):
+    def __init__(self, relationship_list, db):
+        # columns: description, subject_side, match_side, foh, probability,
+        #          has_citations, object
+        Gtk.ListStore.__init__(self, str, str, str, str, str, bool, object)
         self.db = db
-        for seg in segment_list:
-            origin = seg.get_origin()
-            origin_label = (
-                _ORIGIN_LABELS[origin]
-                if 0 <= origin < len(_ORIGIN_LABELS)
-                else str(origin)
-            )
-            ibd = seg.get_ibd_state()
-            ibd_label = (
-                _IBD_STATE_LABELS[ibd]
-                if 0 <= ibd < len(_IBD_STATE_LABELS)
-                else str(ibd)
-            )
-            start = str(seg.get_start_bp()) if seg.get_start_bp() else ""
-            end = str(seg.get_end_bp()) if seg.get_end_bp() else ""
-            cm = str(seg.get_shared_cm()) if seg.get_shared_cm() else ""
-            snps = str(seg.get_snp_count()) if seg.get_snp_count() else ""
+        for rel in relationship_list:
+            foh = rel.get_full_or_half()
+            foh_label = _FOH_LABELS[foh] if 0 <= foh < len(_FOH_LABELS) else str(foh)
+            prob = rel.get_probability()
+            prob_str = ("%g%%" % prob) if prob else ""
             self.append(
                 [
-                    seg.get_chromosome(),
-                    start,
-                    end,
-                    cm,
-                    snps,
-                    origin_label,
-                    ibd_label,
-                    seg,
+                    rel.get_description(),
+                    _side_label(rel.get_subject_side()),
+                    _side_label(rel.get_match_side()),
+                    foh_label,
+                    prob_str,
+                    rel.has_citations(),
+                    rel,
                 ]
             )
 
 
 # -------------------------------------------------------------------------
 #
-# DNASegmentEmbedList
+# PredictedRelationshipEmbedList
 #
 # -------------------------------------------------------------------------
-class DNASegmentEmbedList(EmbeddedList):
-    _HANDLE_COL = 7
+class PredictedRelationshipEmbedList(EmbeddedList):
+    _HANDLE_COL = 6
     _DND_TYPE = None
 
     _MSG = {
-        "add": _("Create and add a new segment"),
-        "del": _("Remove the selected segment"),
-        "edit": _("Edit the selected segment"),
-        "up": _("Move the selected segment upwards"),
-        "down": _("Move the selected segment downwards"),
+        "add": _("Create and add a new predicted relationship"),
+        "del": _("Remove the selected predicted relationship"),
+        "edit": _("Edit the selected predicted relationship"),
+        "up": _("Move the selected predicted relationship upwards"),
+        "down": _("Move the selected predicted relationship downwards"),
     }
 
     _column_names = [
-        (_("Chr"), 0, 50, TEXT_COL, -1, None),
-        (_("Start"), 1, 100, TEXT_COL, -1, None),
-        (_("End"), 2, 100, TEXT_COL, -1, None),
-        (_("cM"), 3, 70, TEXT_COL, -1, None),
-        (_("SNPs"), 4, 70, TEXT_COL, -1, None),
-        (_("Origin"), 5, 90, TEXT_COL, -1, None),
-        (_("IBD"), 6, 70, TEXT_COL, -1, None),
+        (_("Description"), 0, 250, TEXT_COL, -1, None),
+        (_("Subject side"), 1, 100, TEXT_COL, -1, None),
+        (_("Match side"), 2, 100, TEXT_COL, -1, None),
+        (_("Full/Half"), 3, 80, TEXT_COL, -1, None),
+        (_("Probability"), 4, 90, TEXT_COL, -1, None),
+        (_("Source"), 5, 30, ICON_COL, -1, "gramps-source"),
     ]
 
     def __init__(self, dbstate, uistate, track, data, config_key):
@@ -116,60 +107,60 @@ class DNASegmentEmbedList(EmbeddedList):
             dbstate,
             uistate,
             track,
-            _("_Segments"),
-            DNASegmentModel,
+            _("_Predicted Relationships"),
+            PredictedRelationshipModel,
             config_key,
             move_buttons=True,
         )
 
     def get_editor(self):
-        from .. import EditDNASegment
+        from .. import EditPredictedRelationship
 
-        return EditDNASegment
+        return EditPredictedRelationship
 
     def get_icon_name(self):
-        return "gramps-media"
+        return "gramps-person"
 
     def get_data(self):
         return self.data
 
     def column_order(self):
-        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6))
+        return ((1, 5), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
 
     def add_button_clicked(self, obj):
-        seg = DNASegment()
+        rel = PredictedRelationship()
         try:
             self.get_editor()(
                 self.dbstate,
                 self.uistate,
                 self.track,
-                seg,
+                rel,
                 self.add_callback,
             )
         except WindowActiveError:
             pass
 
-    def add_callback(self, seg):
+    def add_callback(self, rel):
         data = self.get_data()
-        data.append(seg)
+        data.append(rel)
         self.changed = True
         self.rebuild()
         GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
-        seg = self.get_selected()
-        if seg:
+        rel = self.get_selected()
+        if rel:
             try:
                 self.get_editor()(
                     self.dbstate,
                     self.uistate,
                     self.track,
-                    seg,
+                    rel,
                     self.edit_callback,
                 )
             except WindowActiveError:
                 pass
 
-    def edit_callback(self, seg):
+    def edit_callback(self, rel):
         self.changed = True
         self.rebuild()

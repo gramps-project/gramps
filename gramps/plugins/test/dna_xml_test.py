@@ -24,7 +24,7 @@ import tempfile
 import unittest
 
 from gramps.gen.db.utils import import_as_dict
-from gramps.gen.lib import DNASegment, SharedAncestor
+from gramps.gen.lib import DNASegment, PredictedRelationship, SharedAncestor
 from gramps.gen.user import User
 
 # Minimal Gramps XML 1.8.0 document with a DNATest.
@@ -100,17 +100,23 @@ _DNAMATCH_XML = """\
       <subject_test hlink="_dt0001"/>
       <match_test hlink="_dt0002"/>
       <shared_cm val="45.3"/>
+      <shared_cm_weighted val="44.1"/>
       <percent_shared val="0.67"/>
       <segment_count val="3"/>
       <largest_segment_cm val="20.1"/>
-      <predicted_relationship>2nd cousin</predicted_relationship>
-      <predicted_generations val="3.5"/>
+      <largest_segment_cm_weighted val="19.5"/>
+      <predicted_relationship subject_mrca_gens="3" subject_side="1"
+                              match_mrca_gens="3" match_side="2"
+                              full_or_half="2" probability="0.8">
+        <description>Second cousins</description>
+      </predicted_relationship>
       <shared_ancestor confidence="1">
         <description>Through maternal line</description>
         <person hlink="_pa0003"/>
       </shared_ancestor>
       <dna_segment chromosome="3" start_bp="10000000" end_bp="20000000"
-                   shared_cm="12.5" snp_count="1200" phase="2"
+                   shared_cm="12.5" shared_cm_weighted="12.0" snp_count="1200"
+                   origin="2" genome_build="GRCh37"
                    start_rsid="rs123456" end_rsid="rs789012"/>
     </dnamatch>
   </dnamatches>
@@ -218,14 +224,23 @@ class TestDNAMatchImport(unittest.TestCase):
     def test_statistics(self):
         dm = self._dm()
         self.assertAlmostEqual(dm.get_shared_cm(), 45.3, places=4)
+        self.assertAlmostEqual(dm.get_shared_cm_weighted(), 44.1, places=4)
         self.assertAlmostEqual(dm.get_percent_shared(), 0.67, places=4)
         self.assertEqual(dm.get_segment_count(), 3)
         self.assertAlmostEqual(dm.get_largest_segment_cm(), 20.1, places=4)
+        self.assertAlmostEqual(dm.get_largest_segment_cm_weighted(), 19.5, places=4)
 
-    def test_predicted_fields(self):
-        dm = self._dm()
-        self.assertEqual(dm.get_predicted_relationship(), "2nd cousin")
-        self.assertAlmostEqual(dm.get_predicted_generations(), 3.5, places=4)
+    def test_predicted_relationship(self):
+        rels = self._dm().get_predicted_relationship_list()
+        self.assertEqual(len(rels), 1)
+        rel = rels[0]
+        self.assertEqual(rel.get_description(), "Second cousins")
+        self.assertEqual(rel.get_subject_mrca_gens(), 3)
+        self.assertEqual(rel.get_subject_side(), PredictedRelationship.SIDE_MATERNAL)
+        self.assertEqual(rel.get_match_mrca_gens(), 3)
+        self.assertEqual(rel.get_match_side(), PredictedRelationship.SIDE_PATERNAL)
+        self.assertEqual(rel.get_full_or_half(), PredictedRelationship.FOH_FULL)
+        self.assertAlmostEqual(rel.get_probability(), 0.8, places=4)
 
     def test_shared_ancestor(self):
         ancestors = self._dm().get_shared_ancestor_list()
@@ -243,8 +258,10 @@ class TestDNAMatchImport(unittest.TestCase):
         self.assertEqual(seg.get_start_bp(), 10000000)
         self.assertEqual(seg.get_end_bp(), 20000000)
         self.assertAlmostEqual(seg.get_shared_cm(), 12.5, places=4)
+        self.assertAlmostEqual(seg.get_shared_cm_weighted(), 12.0, places=4)
         self.assertEqual(seg.get_snp_count(), 1200)
-        self.assertEqual(seg.get_phase(), DNASegment.PHASE_MATERNAL)
+        self.assertEqual(seg.get_origin(), DNASegment.ORIGIN_MATERNAL)
+        self.assertEqual(seg.get_genome_build().xml_str(), "GRCh37")
         self.assertEqual(seg.get_start_rsid(), "rs123456")
         self.assertEqual(seg.get_end_rsid(), "rs789012")
 
@@ -262,7 +279,7 @@ _DNATEST_UNIDENTIFIED_XML = """\
   <dnatests>
     <dnatest handle="_dt0001" change="0" id="T00001">
       <account_name>jcbrown52</account_name>
-      <provider>GEDmatch</provider>
+      <provider>MyHeritage</provider>
       <kit_id>MM2847A</kit_id>
       <test_type>Autosomal</test_type>
       <genome_build>GRCh37</genome_build>
@@ -294,7 +311,7 @@ class TestDNATestUnidentified(unittest.TestCase):
     def test_fields_intact(self):
         dt = self._dt()
         self.assertEqual(dt.get_account_name(), "jcbrown52")
-        self.assertEqual(dt.get_provider().xml_str(), "GEDmatch")
+        self.assertEqual(dt.get_provider().xml_str(), "MyHeritage")
         self.assertEqual(dt.get_kit_id(), "MM2847A")
         self.assertEqual(dt.get_test_type().xml_str(), "Autosomal")
         self.assertEqual(dt.get_genome_build().xml_str(), "GRCh37")

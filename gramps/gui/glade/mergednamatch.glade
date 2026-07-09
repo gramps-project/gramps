@@ -369,8 +369,8 @@ primary data for the merged record.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="relationship_btn1">
-                            <property name="label" translatable="yes">Predicted relationship:</property>
+                          <object class="GtkRadioButton" id="shared_cm_weighted_btn1">
+                            <property name="label" translatable="yes">Weighted shared cM:</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -384,7 +384,7 @@ primary data for the merged record.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="relationship1">
+                          <object class="GtkEntry" id="shared_cm_weighted1">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="hexpand">True</property>
@@ -396,15 +396,15 @@ primary data for the merged record.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="relationship_btn2">
-                            <property name="label" translatable="yes">Predicted relationship:</property>
+                          <object class="GtkRadioButton" id="shared_cm_weighted_btn2">
+                            <property name="label" translatable="yes">Weighted shared cM:</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="halign">center</property>
                             <property name="use-underline">True</property>
                             <property name="draw-indicator">True</property>
-                            <property name="group">relationship_btn1</property>
+                            <property name="group">shared_cm_weighted_btn1</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
@@ -412,7 +412,7 @@ primary data for the merged record.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="relationship2">
+                          <object class="GtkEntry" id="shared_cm_weighted2">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="hexpand">True</property>
@@ -589,8 +589,8 @@ primary data for the merged record.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="generations_btn1">
-                            <property name="label" translatable="yes">Predicted generations:</property>
+                          <object class="GtkRadioButton" id="largest_segment_weighted_btn1">
+                            <property name="label" translatable="yes">Weighted largest segment cM:</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
@@ -604,7 +604,7 @@ primary data for the merged record.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="generations1">
+                          <object class="GtkEntry" id="largest_segment_weighted1">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="hexpand">True</property>
@@ -616,15 +616,15 @@ primary data for the merged record.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="generations_btn2">
-                            <property name="label" translatable="yes">Predicted generations:</property>
+                          <object class="GtkRadioButton" id="largest_segment_weighted_btn2">
+                            <property name="label" translatable="yes">Weighted largest segment cM:</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
                             <property name="halign">center</property>
                             <property name="use-underline">True</property>
                             <property name="draw-indicator">True</property>
-                            <property name="group">generations_btn1</property>
+                            <property name="group">largest_segment_weighted_btn1</property>
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
@@ -632,7 +632,7 @@ primary data for the merged record.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="generations2">
+                          <object class="GtkEntry" id="largest_segment_weighted2">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="hexpand">True</property>

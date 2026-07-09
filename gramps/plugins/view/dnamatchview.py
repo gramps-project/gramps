@@ -67,7 +67,7 @@ class DNAMatchView(ListView):
     COL_LARGEST_SEG = 4
     COL_SEG_COUNT = 5
     COL_PREDICTED_REL = 6
-    COL_PRED_GEN = 7
+    COL_PRED_PROB = 7
     COL_SHARED_ANCS = 8
     COL_PRIV = 9
     COL_TAGS = 10
@@ -81,7 +81,7 @@ class DNAMatchView(ListView):
         (_("Largest segment cM"), TEXT, None),
         (_("Segment count"), TEXT, None),
         (_("Predicted relationship"), TEXT, None),
-        (_("Predicted generations"), TEXT, None),
+        (_("Probability"), TEXT, None),
         (_("Shared ancestors"), TEXT, None),
         (_("Private"), ICON, "gramps-lock"),
         (_("Tags"), TEXT, None),
@@ -109,7 +109,7 @@ class DNAMatchView(ListView):
                 COL_LARGEST_SEG,
                 COL_SEG_COUNT,
                 COL_PREDICTED_REL,
-                COL_PRED_GEN,
+                COL_PRED_PROB,
                 COL_SHARED_ANCS,
                 COL_PRIV,
                 COL_TAGS,

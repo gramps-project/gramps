@@ -47,6 +47,8 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.utils.db import dnatest_short_label
 from .flatbasemodel import FlatBaseModel
 
+_ = glocale.translation.sgettext
+
 
 # -------------------------------------------------------------------------
 #
@@ -65,7 +67,7 @@ class DNAMatchModel(FlatBaseModel):
       4  Largest segment cM
       5  Segment count
       6  Predicted relationship
-      7  Predicted generations
+      7  Predicted relationship probability
       8  Shared ancestors count
       9  Private
      10  Tags
@@ -94,7 +96,7 @@ class DNAMatchModel(FlatBaseModel):
             self.column_largest_seg,
             self.column_seg_count,
             self.column_predicted_rel,
-            self.column_pred_gen,
+            self.column_pred_prob,
             self.column_shared_ancestors,
             self.column_private,
             self.column_tags,
@@ -109,7 +111,7 @@ class DNAMatchModel(FlatBaseModel):
             self.sort_largest_seg,
             self.sort_seg_count,
             self.column_predicted_rel,
-            self.sort_pred_gen,
+            self.sort_pred_prob,
             self.sort_shared_ancestors,
             self.column_private,
             self.column_tags,
@@ -195,18 +197,32 @@ class DNAMatchModel(FlatBaseModel):
         return "%010d" % (int(data.segment_count) if data.segment_count else 0)
 
     def column_predicted_rel(self, data):
-        return data.predicted_relationship or ""
+        lst = data.predicted_relationship_list
+        if not lst:
+            return ""
+        descriptions = [rel.description for rel in lst if rel.description]
+        text = descriptions[0] if descriptions else _("(unnamed)")
+        if len(lst) > 1:
+            text += " (+%d)" % (len(lst) - 1)
+        return text
 
-    def column_pred_gen(self, data):
-        val = data.predicted_generations
+    def _best_probability(self, data):
+        lst = data.predicted_relationship_list
+        if not lst:
+            return None
+        probs = [rel.probability for rel in lst if rel.probability]
+        return max(probs) if probs else None
+
+    def column_pred_prob(self, data):
+        val = self._best_probability(data)
         if val is None:
             return ""
-        return "%.1f" % val
+        return "%g%%" % val
 
-    def sort_pred_gen(self, data):
-        val = data.predicted_generations
+    def sort_pred_prob(self, data):
+        val = self._best_probability(data)
         if val is None:
-            return "99999.0"
+            return "99999.9999"
         return "%010.4f" % val
 
     def column_shared_ancestors(self, data):

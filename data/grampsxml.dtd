@@ -412,9 +412,10 @@ DNA MATCHES
 
 <!ELEMENT dnamatches (dnamatch)*>
 
-<!ELEMENT dnamatch (subject_test?, match_test?, shared_cm?, percent_shared?,
-                    segment_count?, largest_segment_cm?, predicted_relationship?,
-                    predicted_generations?, shared_ancestor*, dna_segment*,
+<!ELEMENT dnamatch (subject_test?, match_test?, shared_cm?, shared_cm_weighted?,
+                    percent_shared?, segment_count?, largest_segment_cm?,
+                    largest_segment_cm_weighted?, predicted_relationship*,
+                    shared_ancestor*, dna_segment*,
                     attribute*, objref*, noteref*, citationref*, tagref*)>
 <!ATTLIST dnamatch
         id        CDATA #IMPLIED
@@ -432,6 +433,9 @@ DNA MATCHES
 <!ELEMENT shared_cm EMPTY>
 <!ATTLIST shared_cm val CDATA #REQUIRED>
 
+<!ELEMENT shared_cm_weighted EMPTY>
+<!ATTLIST shared_cm_weighted val CDATA #REQUIRED>
+
 <!ELEMENT percent_shared EMPTY>
 <!ATTLIST percent_shared val CDATA #REQUIRED>
 
@@ -441,9 +445,18 @@ DNA MATCHES
 <!ELEMENT largest_segment_cm EMPTY>
 <!ATTLIST largest_segment_cm val CDATA #REQUIRED>
 
-<!ELEMENT predicted_relationship (#PCDATA)>
-<!ELEMENT predicted_generations EMPTY>
-<!ATTLIST predicted_generations val CDATA #REQUIRED>
+<!ELEMENT largest_segment_cm_weighted EMPTY>
+<!ATTLIST largest_segment_cm_weighted val CDATA #REQUIRED>
+
+<!ELEMENT predicted_relationship (description?, noteref*, citationref*)>
+<!ATTLIST predicted_relationship
+        subject_mrca_gens CDATA #IMPLIED
+        subject_side      CDATA #IMPLIED
+        match_mrca_gens   CDATA #IMPLIED
+        match_side        CDATA #IMPLIED
+        full_or_half      CDATA #IMPLIED
+        probability       CDATA #IMPLIED
+>
 
 <!ELEMENT shared_ancestor (description?, person?, noteref*, citationref*)>
 <!ATTLIST shared_ancestor
@@ -452,15 +465,17 @@ DNA MATCHES
 
 <!ELEMENT dna_segment EMPTY>
 <!ATTLIST dna_segment
-        chromosome  CDATA #REQUIRED
-        start_bp    CDATA #REQUIRED
-        end_bp      CDATA #REQUIRED
-        shared_cm   CDATA #REQUIRED
-        snp_count   CDATA #REQUIRED
-        phase       CDATA #REQUIRED
-        ibd_state   CDATA #IMPLIED
-        start_rsid  CDATA #IMPLIED
-        end_rsid    CDATA #IMPLIED
+        chromosome         CDATA #REQUIRED
+        start_bp           CDATA #REQUIRED
+        end_bp             CDATA #REQUIRED
+        shared_cm          CDATA #REQUIRED
+        shared_cm_weighted CDATA #IMPLIED
+        snp_count          CDATA #REQUIRED
+        origin             CDATA #REQUIRED
+        ibd_state          CDATA #IMPLIED
+        genome_build       CDATA #IMPLIED
+        start_rsid         CDATA #IMPLIED
+        end_rsid           CDATA #IMPLIED
 >
 
 <!ELEMENT account_name (#PCDATA)>

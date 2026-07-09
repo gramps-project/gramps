@@ -76,16 +76,16 @@ class MergeDNAMatch(ManagedWindow):
 
         shared_cm1 = _fmt_float(self.dm1.get_shared_cm())
         shared_cm2 = _fmt_float(self.dm2.get_shared_cm())
+        shared_cm_w1 = _fmt_float(self.dm1.get_shared_cm_weighted())
+        shared_cm_w2 = _fmt_float(self.dm2.get_shared_cm_weighted())
         pct1 = _fmt_float(self.dm1.get_percent_shared())
         pct2 = _fmt_float(self.dm2.get_percent_shared())
         seg_count1 = _fmt_int(self.dm1.get_segment_count())
         seg_count2 = _fmt_int(self.dm2.get_segment_count())
         largest1 = _fmt_float(self.dm1.get_largest_segment_cm())
         largest2 = _fmt_float(self.dm2.get_largest_segment_cm())
-        rel1 = self.dm1.get_predicted_relationship()
-        rel2 = self.dm2.get_predicted_relationship()
-        gen1 = _fmt_float(self.dm1.get_predicted_generations())
-        gen2 = _fmt_float(self.dm2.get_predicted_generations())
+        largest_w1 = _fmt_float(self.dm1.get_largest_segment_cm_weighted())
+        largest_w2 = _fmt_float(self.dm2.get_largest_segment_cm_weighted())
 
         label1 = "%s / %s [%s]" % (
             subject1 or _("unknown"),
@@ -114,6 +114,14 @@ class MergeDNAMatch(ManagedWindow):
             shared_cm2,
         )
         self._init_field(
+            "shared_cm_weighted1",
+            "shared_cm_weighted2",
+            "shared_cm_weighted_btn1",
+            "shared_cm_weighted_btn2",
+            shared_cm_w1,
+            shared_cm_w2,
+        )
+        self._init_field(
             "percent_shared1",
             "percent_shared2",
             "percent_shared_btn1",
@@ -138,20 +146,12 @@ class MergeDNAMatch(ManagedWindow):
             largest2,
         )
         self._init_field(
-            "relationship1",
-            "relationship2",
-            "relationship_btn1",
-            "relationship_btn2",
-            rel1,
-            rel2,
-        )
-        self._init_field(
-            "generations1",
-            "generations2",
-            "generations_btn1",
-            "generations_btn2",
-            gen1,
-            gen2,
+            "largest_segment_weighted1",
+            "largest_segment_weighted2",
+            "largest_segment_weighted_btn1",
+            "largest_segment_weighted_btn2",
+            largest_w1,
+            largest_w2,
         )
         self._init_field(
             "gramps1", "gramps2", "gramps_btn1", "gramps_btn2", gramps1, gramps2
@@ -175,11 +175,11 @@ class MergeDNAMatch(ManagedWindow):
                 "subject_btn1",
                 "match_btn1",
                 "shared_cm_btn1",
+                "shared_cm_weighted_btn1",
                 "percent_shared_btn1",
                 "segment_count_btn1",
                 "largest_segment_btn1",
-                "relationship_btn1",
-                "generations_btn1",
+                "largest_segment_weighted_btn1",
                 "gramps_btn1",
             ):
                 self.get_widget(btn).set_active(True)
@@ -188,11 +188,11 @@ class MergeDNAMatch(ManagedWindow):
                 "subject_btn2",
                 "match_btn2",
                 "shared_cm_btn2",
+                "shared_cm_weighted_btn2",
                 "percent_shared_btn2",
                 "segment_count_btn2",
                 "largest_segment_btn2",
-                "relationship_btn2",
-                "generations_btn2",
+                "largest_segment_weighted_btn2",
                 "gramps_btn2",
             ):
                 self.get_widget(btn).set_active(True)
@@ -215,16 +215,18 @@ class MergeDNAMatch(ManagedWindow):
             phoenix.set_match_test_handle(titanic.get_match_test_handle())
         if self.get_widget("shared_cm_btn1").get_active() ^ use_handle1:
             phoenix.set_shared_cm(titanic.get_shared_cm())
+        if self.get_widget("shared_cm_weighted_btn1").get_active() ^ use_handle1:
+            phoenix.set_shared_cm_weighted(titanic.get_shared_cm_weighted())
         if self.get_widget("percent_shared_btn1").get_active() ^ use_handle1:
             phoenix.set_percent_shared(titanic.get_percent_shared())
         if self.get_widget("segment_count_btn1").get_active() ^ use_handle1:
             phoenix.set_segment_count(titanic.get_segment_count())
         if self.get_widget("largest_segment_btn1").get_active() ^ use_handle1:
             phoenix.set_largest_segment_cm(titanic.get_largest_segment_cm())
-        if self.get_widget("relationship_btn1").get_active() ^ use_handle1:
-            phoenix.set_predicted_relationship(titanic.get_predicted_relationship())
-        if self.get_widget("generations_btn1").get_active() ^ use_handle1:
-            phoenix.set_predicted_generations(titanic.get_predicted_generations())
+        if self.get_widget("largest_segment_weighted_btn1").get_active() ^ use_handle1:
+            phoenix.set_largest_segment_cm_weighted(
+                titanic.get_largest_segment_cm_weighted()
+            )
         if self.get_widget("gramps_btn1").get_active() ^ use_handle1:
             phoenix.set_gramps_id(titanic.get_gramps_id())
 

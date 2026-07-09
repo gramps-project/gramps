@@ -58,7 +58,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 from gramps.gen.const import URL_NS
-from gramps.gen.lib import Date, Person
+from gramps.gen.lib import Date, DNAGenomeBuildType, Person
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.version import VERSION
@@ -1482,6 +1482,11 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write(
                 '%s<shared_cm val="%.6g"/>\n' % (sp2, dnamatch.get_shared_cm())
             )
+        if dnamatch.get_shared_cm_weighted():
+            self.g.write(
+                '%s<shared_cm_weighted val="%.6g"/>\n'
+                % (sp2, dnamatch.get_shared_cm_weighted())
+            )
         if dnamatch.get_percent_shared():
             self.g.write(
                 '%s<percent_shared val="%.6g"/>\n'
@@ -1496,16 +1501,32 @@ class GrampsXmlWriter(UpdateCallback):
                 '%s<largest_segment_cm val="%.6g"/>\n'
                 % (sp2, dnamatch.get_largest_segment_cm())
             )
-        self.write_line(
-            "predicted_relationship",
-            dnamatch.get_predicted_relationship(),
-            index + 1,
-        )
-        if dnamatch.get_predicted_generations():
+        if dnamatch.get_largest_segment_cm_weighted():
             self.g.write(
-                '%s<predicted_generations val="%.6g"/>\n'
-                % (sp2, dnamatch.get_predicted_generations())
+                '%s<largest_segment_cm_weighted val="%.6g"/>\n'
+                % (sp2, dnamatch.get_largest_segment_cm_weighted())
             )
+        for rel in dnamatch.get_predicted_relationship_list():
+            self.g.write(
+                '%s<predicted_relationship subject_mrca_gens="%d"'
+                ' subject_side="%d" match_mrca_gens="%d" match_side="%d"'
+                ' full_or_half="%d" probability="%.6g">\n'
+                % (
+                    sp2,
+                    rel.get_subject_mrca_gens(),
+                    rel.get_subject_side(),
+                    rel.get_match_mrca_gens(),
+                    rel.get_match_side(),
+                    rel.get_full_or_half(),
+                    rel.get_probability(),
+                )
+            )
+            self.write_line("description", rel.get_description(), index + 2)
+            for note_handle in rel.get_note_list():
+                self.write_ref("noteref", note_handle, index + 2)
+            for citation_handle in rel.get_citation_list():
+                self.write_ref("citationref", citation_handle, index + 2)
+            self.g.write("%s</predicted_relationship>\n" % sp2)
         for ancestor in dnamatch.get_shared_ancestor_list():
             conf = ancestor.get_confidence()
             self.g.write('%s<shared_ancestor confidence="%d">\n' % (sp2, conf))
@@ -1521,15 +1542,23 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write("%s</shared_ancestor>\n" % sp2)
         for seg in dnamatch.get_segment_list():
             extra_attrs = ""
+            if seg.get_shared_cm_weighted():
+                extra_attrs += (
+                    ' shared_cm_weighted="%.6g"' % seg.get_shared_cm_weighted()
+                )
             if seg.get_ibd_state():
                 extra_attrs += ' ibd_state="%d"' % seg.get_ibd_state()
+            if seg.get_genome_build() != DNAGenomeBuildType.UNKNOWN:
+                extra_attrs += ' genome_build="%s"' % self.fix(
+                    seg.get_genome_build().xml_str()
+                )
             if seg.get_start_rsid():
                 extra_attrs += ' start_rsid="%s"' % self.fix(seg.get_start_rsid())
             if seg.get_end_rsid():
                 extra_attrs += ' end_rsid="%s"' % self.fix(seg.get_end_rsid())
             self.g.write(
                 '%s<dna_segment chromosome="%s" start_bp="%d" end_bp="%d"'
-                ' shared_cm="%.6g" snp_count="%d" phase="%d"%s/>\n'
+                ' shared_cm="%.6g" snp_count="%d" origin="%d"%s/>\n'
                 % (
                     sp2,
                     self.fix(seg.get_chromosome()),
@@ -1537,7 +1566,7 @@ class GrampsXmlWriter(UpdateCallback):
                     seg.get_end_bp(),
                     seg.get_shared_cm(),
                     seg.get_snp_count(),
-                    seg.get_phase(),
+                    seg.get_origin(),
                     extra_attrs,
                 )
             )

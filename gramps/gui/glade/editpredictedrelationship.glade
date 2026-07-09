@@ -3,18 +3,18 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="grampswidgets" version="0.0"/>
-  <object class="GtkDialog" id="editdnasegment">
+  <object class="GtkDialog" id="editpredictedrelationship">
     <property name="can-focus">False</property>
-    <property name="default-width">480</property>
-    <property name="default-height">280</property>
+    <property name="default-width">560</property>
+    <property name="default-height">420</property>
     <property name="type-hint">dialog</property>
     <child internal-child="vbox">
-      <object class="GtkBox" id="dialog-vbox1">
+      <object class="GtkBox" id="dialog-vbox3">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child internal-child="action_area">
-          <object class="GtkButtonBox" id="dialog-action_area1">
+          <object class="GtkButtonBox" id="dialog-action_area3">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="layout-style">end</property>
@@ -63,22 +63,22 @@
             <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <!-- n-columns=4 n-rows=6 -->
-              <object class="GtkGrid" id="grid1">
+              <!-- n-columns=4 n-rows=4 -->
+              <object class="GtkGrid" id="grid3">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="border-width">12</property>
                 <property name="row-spacing">6</property>
                 <property name="column-spacing">12</property>
-                <!-- Row 0: Chromosome -->
+                <!-- Row 0: Description -->
                 <child>
-                  <object class="GtkLabel" id="lbl_chromosome">
+                  <object class="GtkLabel" id="lbl_description">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">_Chromosome:</property>
+                    <property name="label" translatable="yes">_Description:</property>
                     <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">chromosome</property>
+                    <property name="mnemonic-widget">description</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
@@ -86,11 +86,12 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBoxText" id="chromosome">
+                  <object class="UndoableEntry" id="description">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
+                    <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Chromosome containing this segment</property>
+                    <property name="tooltip-text" translatable="yes">Textual description of the predicted relationship</property>
+                    <property name="invisible-char">●</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
@@ -98,15 +99,15 @@
                     <property name="width">3</property>
                   </packing>
                 </child>
-                <!-- Row 1: Start / End positions -->
+                <!-- Row 1: Subject generations / Subject side -->
                 <child>
-                  <object class="GtkLabel" id="lbl_start_bp">
+                  <object class="GtkLabel" id="lbl_subject_mrca_gens">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">_Start:</property>
+                    <property name="label" translatable="yes">Su_bject gens:</property>
                     <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">start_bp</property>
+                    <property name="mnemonic-widget">subject_mrca_gens</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
@@ -114,11 +115,11 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="UndoableEntry" id="start_bp">
+                  <object class="UndoableEntry" id="subject_mrca_gens">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Start position in base pairs</property>
+                    <property name="tooltip-text" translatable="yes">Predicted generations from the subject up to the possible MRCA</property>
                     <property name="invisible-char">●</property>
                   </object>
                   <packing>
@@ -127,13 +128,13 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="lbl_end_bp">
+                  <object class="GtkLabel" id="lbl_subject_side">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">_End:</property>
+                    <property name="label" translatable="yes">Subject _side:</property>
                     <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">end_bp</property>
+                    <property name="mnemonic-widget">subject_side</property>
                   </object>
                   <packing>
                     <property name="left-attach">2</property>
@@ -141,27 +142,26 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="UndoableEntry" id="end_bp">
+                  <object class="GtkComboBoxText" id="subject_side">
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">End position in base pairs</property>
-                    <property name="invisible-char">●</property>
+                    <property name="tooltip-text" translatable="yes">Which side the subject is related to the match on</property>
                   </object>
                   <packing>
                     <property name="left-attach">3</property>
                     <property name="top-attach">1</property>
                   </packing>
                 </child>
-                <!-- Row 2: Start RSID / End RSID -->
+                <!-- Row 2: Match generations / Match side -->
                 <child>
-                  <object class="GtkLabel" id="lbl_start_rsid">
+                  <object class="GtkLabel" id="lbl_match_mrca_gens">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Start _RSID:</property>
+                    <property name="label" translatable="yes">Match _gens:</property>
                     <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">start_rsid</property>
+                    <property name="mnemonic-widget">match_mrca_gens</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
@@ -169,11 +169,11 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="UndoableEntry" id="start_rsid">
+                  <object class="UndoableEntry" id="match_mrca_gens">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">RSID of the first SNP in this segment (optional)</property>
+                    <property name="tooltip-text" translatable="yes">Predicted generations from the match up to the possible MRCA</property>
                     <property name="invisible-char">●</property>
                   </object>
                   <packing>
@@ -182,13 +182,13 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="lbl_end_rsid">
+                  <object class="GtkLabel" id="lbl_match_side">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">End R_SID:</property>
+                    <property name="label" translatable="yes">Match si_de:</property>
                     <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">end_rsid</property>
+                    <property name="mnemonic-widget">match_side</property>
                   </object>
                   <packing>
                     <property name="left-attach">2</property>
@@ -196,27 +196,26 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="UndoableEntry" id="end_rsid">
+                  <object class="GtkComboBoxText" id="match_side">
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">RSID of the last SNP in this segment (optional)</property>
-                    <property name="invisible-char">●</property>
+                    <property name="tooltip-text" translatable="yes">Which side the match is related to the subject on</property>
                   </object>
                   <packing>
                     <property name="left-attach">3</property>
                     <property name="top-attach">2</property>
                   </packing>
                 </child>
-                <!-- Row 3: Shared cM / Weighted cM -->
+                <!-- Row 3: Full or half / Probability -->
                 <child>
-                  <object class="GtkLabel" id="lbl_shared_cm">
+                  <object class="GtkLabel" id="lbl_full_or_half">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Shared c_M:</property>
+                    <property name="label" translatable="yes">_Full or half:</property>
                     <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">shared_cm</property>
+                    <property name="mnemonic-widget">full_or_half</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
@@ -224,12 +223,11 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="UndoableEntry" id="shared_cm">
+                  <object class="GtkComboBoxText" id="full_or_half">
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="can-focus">False</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Unweighted size of this segment in centimorgans</property>
-                    <property name="invisible-char">●</property>
+                    <property name="tooltip-text" translatable="yes">Whether the relationship is full, half (one shared ancestor), or unknown</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
@@ -237,13 +235,13 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="lbl_shared_cm_weighted">
+                  <object class="GtkLabel" id="lbl_probability">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">_Weighted cM:</property>
+                    <property name="label" translatable="yes">_Probability (%):</property>
                     <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">shared_cm_weighted</property>
+                    <property name="mnemonic-widget">probability</property>
                   </object>
                   <packing>
                     <property name="left-attach">2</property>
@@ -251,131 +249,16 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="UndoableEntry" id="shared_cm_weighted">
+                  <object class="UndoableEntry" id="probability">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Size of this segment weighted by the provider's algorithm</property>
+                    <property name="tooltip-text" translatable="yes">Estimated probability of this relationship, as a percentage (0-100)</property>
                     <property name="invisible-char">●</property>
                   </object>
                   <packing>
                     <property name="left-attach">3</property>
                     <property name="top-attach">3</property>
-                  </packing>
-                </child>
-                <!-- Row 4: SNP count / Genome build -->
-                <child>
-                  <object class="GtkLabel" id="lbl_snp_count">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">S_NPs:</property>
-                    <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">snp_count</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">0</property>
-                    <property name="top-attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="UndoableEntry" id="snp_count">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Number of SNPs compared in this segment</property>
-                    <property name="invisible-char">●</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="lbl_genome_build">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">_Genome build:</property>
-                    <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">genome_build</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="genome_build">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Genome reference assembly this segment's coordinates are expressed in</property>
-                    <property name="has-entry">True</property>
-                    <child internal-child="entry">
-                      <object class="GtkEntry" id="genome_build-entry">
-                        <property name="can-focus">True</property>
-                        <property name="hexpand">True</property>
-                        <property name="overwrite-mode">True</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left-attach">3</property>
-                    <property name="top-attach">4</property>
-                  </packing>
-                </child>
-                <!-- Row 5: Origin / IBD state -->
-                <child>
-                  <object class="GtkLabel" id="lbl_origin">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">_Origin:</property>
-                    <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">origin</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">0</property>
-                    <property name="top-attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBoxText" id="origin">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Parental origin assignment for this segment</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="lbl_ibd_state">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">_IBD State:</property>
-                    <property name="use-underline">True</property>
-                    <property name="mnemonic-widget">ibd_state</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBoxText" id="ibd_state">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="hexpand">True</property>
-                    <property name="tooltip-text" translatable="yes">Identity by descent state: HIR (Half-Identical Region) means one chromosome copy is shared; FIR (Fully-Identical Region) means both chromosome copies are shared, which can occur between close relatives. Unknown means the state has not been determined.</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">3</property>
-                    <property name="top-attach">5</property>
                   </packing>
                 </child>
               </object>

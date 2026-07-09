@@ -49,6 +49,7 @@ from .editdnatest import EditDNATest
 from .editdnamatch import EditDNAMatch
 from .editdnasegment import EditDNASegment
 from .editsharedancestor import EditSharedAncestor
+from .editpredictedrelationship import EditPredictedRelationship
 from gramps.gen.lib import (
     Person,
     Family,

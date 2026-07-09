@@ -62,6 +62,7 @@ from gramps.gen.lib import (
     DNAMatch,
     DNASegment,
     DNATest,
+    PredictedRelationship,
     Event,
     EventRef,
     EventRoleType,
@@ -669,6 +670,7 @@ class GrampsParser(UpdateCallback):
         self.dnatest = None
         self.dnamatch = None
         self.shared_ancestor = None
+        self.predicted_relationship = None
 
         if default_tag_format:
             name = time.strftime(default_tag_format)
@@ -817,6 +819,10 @@ class GrampsParser(UpdateCallback):
             "dnatest": (self.start_dnatest, self.stop_dnatest),
             "dnamatch": (self.start_dnamatch, self.stop_dnamatch),
             "shared_ancestor": (self.start_shared_ancestor, self.stop_shared_ancestor),
+            "predicted_relationship": (
+                self.start_predicted_relationship,
+                self.stop_predicted_relationship,
+            ),
             "dna_segment": (self.start_dna_segment, None),
             "subject_test": (self.start_subject_test, None),
             "match_test": (self.start_match_test, None),
@@ -828,11 +834,14 @@ class GrampsParser(UpdateCallback):
             "y_haplogroup": (None, self.stop_y_haplogroup),
             "mt_haplogroup": (None, self.stop_mt_haplogroup),
             "shared_cm": (self.start_shared_cm, None),
+            "shared_cm_weighted": (self.start_shared_cm_weighted, None),
             "percent_shared": (self.start_percent_shared, None),
             "segment_count": (self.start_segment_count, None),
             "largest_segment_cm": (self.start_largest_segment_cm, None),
-            "predicted_relationship": (None, self.stop_predicted_relationship),
-            "predicted_generations": (self.start_predicted_generations, None),
+            "largest_segment_cm_weighted": (
+                self.start_largest_segment_cm_weighted,
+                None,
+            ),
         }
         self.grampsuri = re.compile(
             r"^gramps://(?P<object_class>[A-Z][a-z]+)/" r"handle/(?P<handle>\w+)$"
@@ -2287,6 +2296,8 @@ class GrampsParser(UpdateCallback):
             self.family.add_note(handle)
         elif self.shared_ancestor:
             self.shared_ancestor.add_note(handle)
+        elif self.predicted_relationship:
+            self.predicted_relationship.add_note(handle)
         elif self.dnatest:
             self.dnatest.add_note(handle)
         elif self.dnamatch:
@@ -2326,6 +2337,8 @@ class GrampsParser(UpdateCallback):
             self.family.add_citation(citation_handle)
         elif self.shared_ancestor:
             self.shared_ancestor.add_citation(citation_handle)
+        elif self.predicted_relationship:
+            self.predicted_relationship.add_citation(citation_handle)
         elif self.dnatest:
             self.dnatest.add_citation(citation_handle)
         elif self.dnamatch:
@@ -3176,6 +3189,8 @@ class GrampsParser(UpdateCallback):
     def stop_description(self, tag):
         if self.shared_ancestor:
             self.shared_ancestor.set_description(tag)
+        elif self.predicted_relationship:
+            self.predicted_relationship.set_description(tag)
         else:
             self.event.set_description(tag)
 
@@ -3434,15 +3449,38 @@ class GrampsParser(UpdateCallback):
             self.dnamatch.add_shared_ancestor(self.shared_ancestor)
         self.shared_ancestor = None
 
+    def start_predicted_relationship(self, attrs):
+        self.predicted_relationship = PredictedRelationship()
+        self.predicted_relationship.set_subject_mrca_gens(
+            int(attrs.get("subject_mrca_gens", 0))
+        )
+        self.predicted_relationship.set_subject_side(int(attrs.get("subject_side", 0)))
+        self.predicted_relationship.set_match_mrca_gens(
+            int(attrs.get("match_mrca_gens", 0))
+        )
+        self.predicted_relationship.set_match_side(int(attrs.get("match_side", 0)))
+        self.predicted_relationship.set_full_or_half(int(attrs.get("full_or_half", 0)))
+        self.predicted_relationship.set_probability(
+            float(attrs.get("probability", 0.0))
+        )
+
+    def stop_predicted_relationship(self, *tag):
+        if self.dnamatch:
+            self.dnamatch.add_predicted_relationship(self.predicted_relationship)
+        self.predicted_relationship = None
+
     def start_dna_segment(self, attrs):
         seg = DNASegment()
         seg.set_chromosome(attrs.get("chromosome", ""))
         seg.set_start_bp(int(attrs.get("start_bp", 0)))
         seg.set_end_bp(int(attrs.get("end_bp", 0)))
         seg.set_shared_cm(float(attrs.get("shared_cm", 0.0)))
+        seg.set_shared_cm_weighted(float(attrs.get("shared_cm_weighted", 0.0)))
         seg.set_snp_count(int(attrs.get("snp_count", 0)))
-        seg.set_phase(int(attrs.get("phase", 0)))
+        seg.set_origin(int(attrs.get("origin", 0)))
         seg.set_ibd_state(int(attrs.get("ibd_state", 0)))
+        if "genome_build" in attrs:
+            seg.get_genome_build().set_from_xml_str(attrs["genome_build"])
         if "start_rsid" in attrs:
             seg.set_start_rsid(attrs["start_rsid"])
         if "end_rsid" in attrs:
@@ -3492,6 +3530,10 @@ class GrampsParser(UpdateCallback):
         if self.dnamatch:
             self.dnamatch.set_shared_cm(float(attrs.get("val", 0.0)))
 
+    def start_shared_cm_weighted(self, attrs):
+        if self.dnamatch:
+            self.dnamatch.set_shared_cm_weighted(float(attrs.get("val", 0.0)))
+
     def start_percent_shared(self, attrs):
         if self.dnamatch:
             self.dnamatch.set_percent_shared(float(attrs.get("val", 0.0)))
@@ -3504,13 +3546,9 @@ class GrampsParser(UpdateCallback):
         if self.dnamatch:
             self.dnamatch.set_largest_segment_cm(float(attrs.get("val", 0.0)))
 
-    def stop_predicted_relationship(self, tag):
+    def start_largest_segment_cm_weighted(self, attrs):
         if self.dnamatch:
-            self.dnamatch.set_predicted_relationship(tag)
-
-    def start_predicted_generations(self, attrs):
-        if self.dnamatch:
-            self.dnamatch.set_predicted_generations(float(attrs.get("val", 0.0)))
+            self.dnamatch.set_largest_segment_cm_weighted(float(attrs.get("val", 0.0)))
 
     def stop_note(self, tag):
         self.in_note = 0
@@ -3558,6 +3596,8 @@ class GrampsParser(UpdateCallback):
             self.family.add_note(self.note.handle)
         elif self.shared_ancestor:
             self.shared_ancestor.add_note(self.note.handle)
+        elif self.predicted_relationship:
+            self.predicted_relationship.add_note(self.note.handle)
         elif self.dnatest:
             self.dnatest.add_note(self.note.handle)
         elif self.dnamatch:
