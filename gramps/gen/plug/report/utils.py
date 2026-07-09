@@ -6,7 +6,7 @@
 # Copyright (C) 2008       James Friedmann <jfriedmannj@gmail.com>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2015-2016  Paul Franklin
-# Copyright (C) 2025       Dave Khuon
+# Copyright (C) 2025-2026  Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,10 +47,73 @@ from ...utils.file import media_path_full
 from ...utils.symbols import Symbols
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 
+# just to borrow these constants from Person, Family, and for marriage_type
+from ...config import config
+from ...lib import Person, Family, FamilyRelType
+from ...utils.alive import probably_alive
+
+_G_FEMALE, _G_MALE, _G_UNKNOWN, _G_OTHER = (
+    Person.FEMALE,
+    Person.MALE,
+    Person.UNKNOWN,
+    Person.OTHER,
+)
+
+_G_ALIVE = True
+_G_DEAD = False
+
+_F_MARRIED, _F_UNMARRIED, _F_CIVIL_UNION, _F_UNKNOWN = (
+    FamilyRelType.MARRIED,
+    FamilyRelType.UNMARRIED,
+    FamilyRelType.CIVIL_UNION,
+    FamilyRelType.UNKNOWN,
+)
+
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value, context=""):  # enable deferred translations
     return "%s\x04%s" % (context, value) if context else value
+
+
+def get_rgb_color(color_name):
+    # Converts a hex string (e.g., "#FFFFFF" or "FFFFFF") to an RGB tuple.
+    hex_color = config.get(color_name)[0].lstrip("#")
+    try:
+        # convert each hex to integer
+        return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
+    except (ValueError, IndexError):
+        return (0, 0, 0)  # use default if error occurs
+
+
+# -------------------------------------------------------------------------
+#  Fetch current color preferences from configuration at runtime of report
+# -------------------------------------------------------------------------
+def get_report_gender_colors():
+    return {
+        (_G_FEMALE, _G_ALIVE): [get_rgb_color("colors.female-alive"), "_FEMALE_ALIVE"],
+        (_G_MALE, _G_ALIVE): [get_rgb_color("colors.male-alive"), "_MALE_ALIVE"],
+        (_G_UNKNOWN, _G_ALIVE): [
+            get_rgb_color("colors.unknown-alive"),
+            "_UNKNOWN_ALIVE",
+        ],
+        (_G_OTHER, _G_ALIVE): [get_rgb_color("colors.other-alive"), "_OTHER_ALIVE"],
+        (_G_FEMALE, _G_DEAD): [get_rgb_color("colors.female-dead"), "_FEMALE_DEAD"],
+        (_G_MALE, _G_DEAD): [get_rgb_color("colors.male-dead"), "_MALE_DEAD"],
+        (_G_UNKNOWN, _G_DEAD): [get_rgb_color("colors.unknown-dead"), "_UNKNOWN_DEAD"],
+        (_G_OTHER, _G_DEAD): [get_rgb_color("colors.other-dead"), "_OTHER_DEAD"],
+    }
+
+
+def get_report_family_colors():
+    return {
+        _F_MARRIED: [get_rgb_color("colors.family-married"), "_MARRIED"],
+        _F_UNMARRIED: [get_rgb_color("colors.family-unmarried"), "_UNMARRIED"],
+        _F_CIVIL_UNION: [
+            get_rgb_color("colors.family-civil-union"),
+            "_CIVIL_UNION",
+        ],
+        _F_UNKNOWN: [get_rgb_color("colors.family-unknown"), "_UNKNOWN"],
+    }
 
 
 SYMBOLS = Symbols()
@@ -437,3 +500,98 @@ def get_family_filters(database, family, include_single=True, name_format=None):
 def get_gender_symbol(person):
     """generate gender symbol"""
     return SYMBOLS.get_symbol_for_string(person.gender)
+
+
+# -------------------------------------------------------------------------
+#
+# Generate all possible genders for the given style
+# and its graph and return their name set
+#
+# -------------------------------------------------------------------------
+def generate_gender_color_styles(
+    style, base_draw_name, graph_style, report_gender_colors
+):
+    for (gender, life_status), (gen_color, gen_suffix) in report_gender_colors.items():
+        graph_style.set_fill_color(gen_color)
+        graph_style.set_description(
+            _("The style for the person box for %s.") % gen_suffix
+        )
+        box_name = base_draw_name + gen_suffix
+        style.add_draw_style(box_name, graph_style)
+
+
+# -------------------------------------------------------------------------
+#
+# Get color box name based on the person's gender
+#
+# -------------------------------------------------------------------------
+
+
+def get_gender_color_box_name(person, db, base_draw_name, report_gender_colors):
+    """select gender box name"""
+    try:
+        gender = person.gender
+    except AttributeError:
+        gender = _G_UNKNOWN
+
+    try:
+        is_alive = get_life_status(person, db)
+        gen_color, gen_suffix = report_gender_colors[(gender, is_alive)]
+    except KeyError:
+        gen_color, gen_suffix = report_gender_colors[
+            (gender, _G_DEAD)
+        ]  # default values
+    return base_draw_name + gen_suffix
+
+
+def get_life_status(person, db):
+    is_alive = bool(probably_alive(person, db))
+    return is_alive
+
+
+# -------------------------------------------------------------------------
+#
+# Generate the color family for the given style
+# and its graph and return its name
+#
+# -------------------------------------------------------------------------
+def generate_family_color_style(
+    style, base_draw_name, graph_style, report_family_colors
+):
+    for marr_status, (marr_color, marr_suffix) in report_family_colors.items():
+        graph_style.set_fill_color(marr_color)
+        graph_style.set_description(
+            _("The style for the family box for %s.") % marr_suffix
+        )
+        box_name = base_draw_name + marr_suffix
+        style.add_draw_style(box_name, graph_style)
+
+
+# -------------------------------------------------------------------------
+#
+# Get color box name based on the person's gender
+#
+# -------------------------------------------------------------------------
+
+
+def get_family_color_box_name(family_handle, db, base_draw_name, report_family_colors):
+    """select family box name"""
+    try:
+        marr_type = get_marriage_type(family_handle, db)
+        marr_color, marr_suffix = report_family_colors[marr_type]
+    except KeyError:
+        marr_color, marr_suffix = report_family_colors[_F_UNKNOWN]  # default values
+    return base_draw_name + marr_suffix
+
+
+def get_marriage_type(family_handle, db):
+    # get family from handle
+    family = db.get_family_from_handle(family_handle)
+    if not family:
+        # I guess _F_UNKNOWN is the most appropriate, among all others
+        return _F_UNKNOWN
+    try:
+        # Return marriage type: _F_MARRIED, _F_UNMARRIED, _F_CIVIL_UNION
+        return int(family.type)
+    except Exception:
+        return _F_UNKNOWN
