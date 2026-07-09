@@ -25,6 +25,7 @@
 from ....const import GRAMPS_LOCALE as glocale
 from ._hascommonancestorwith import HasCommonAncestorWith
 from ._matchesfilter import MatchesFilter
+from ....user import User
 
 _ = glocale.translation.gettext
 
@@ -50,7 +51,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         HasCommonAncestorWith.__init__(self, list, use_regex, use_case)
         self.ancestor_cache = {}
 
-    def prepare(self, db, user):
+    def prepare(self, db, user: User):
         self.db = db
         # For each(!) person we keep track of who their ancestors
         # are, in a set(). So we only have to compute a person's
@@ -63,12 +64,23 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
 
         filt = self.filt.find_filter()
         if filt:
-            for handle in filt.apply(db, user=user):
+            matches = filt.apply(db, user=user)
+            user.begin_progress(
+                self.category,
+                _("Retrieving all sub-filter matches"),
+                len(matches),
+                can_cancel=True,
+            )
+            for handle in matches:
+                if user.get_cancelled():
+                    break
+                user.step_progress()
                 self.with_people.append(handle)
                 # fill list of ancestor of person if not present yet
                 if handle not in self.ancestor_cache:
                     person = db.get_raw_person_data(handle)
                     self.add_ancs(db, person)
+            user.end_progress()
 
     def reset(self):
         self.filt.requestreset()

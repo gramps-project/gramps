@@ -27,6 +27,7 @@ from ._isdescendantfamilyof import IsDescendantFamilyOf
 from ._matchesfilter import MatchesFilter
 from ....types import PersonHandle
 from ....db.generic import Database
+from ....user import User
 
 _ = glocale.translation.gettext
 
@@ -48,7 +49,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
         "of anybody matched by a filter"
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: set[PersonHandle] = set()
 
@@ -57,9 +58,20 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
         filt = self.matchfilt.find_filter()
         if filt:
-            for handle in filt.apply(db, user=user):
+            matches = filt.apply(db, user=user)
+            user.begin_progress(
+                self.category,
+                _("Retrieving all sub-filter matches"),
+                len(matches),
+                can_cancel=True,
+            )
+            for handle in matches:
+                if user.get_cancelled():
+                    break
+                user.step_progress()
                 person = db.get_raw_person_data(handle)
-                self.add_matches(person)
+                self.add_matches(person, user)
+            user.end_progress()
 
     def reset(self):
         self.matchfilt.requestreset()

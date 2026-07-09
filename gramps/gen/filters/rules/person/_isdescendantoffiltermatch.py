@@ -27,6 +27,7 @@ from ._isdescendantof import IsDescendantOf
 from ._matchesfilter import MatchesFilter
 from ....lib import Person
 from ....db import Database
+from ....user import User
 
 _ = glocale.translation.gettext
 
@@ -47,7 +48,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         "Matches people that are descendants " "of anybody matched by a filter"
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: set[str] = set()
         try:
@@ -63,9 +64,20 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
 
         filt = self.filt.find_filter()
         if filt:
-            for handle in filt.apply(db, user=user):
+            matches = filt.apply(db, user=user)
+            user.begin_progress(
+                self.category,
+                _("Retrieving all sub-filter matches"),
+                len(matches),
+                can_cancel=True,
+            )
+            for handle in matches:
+                if user.get_cancelled():
+                    break
+                user.step_progress()
                 person = db.get_raw_person_data(handle)
-                self.init_list(person, first)
+                self.init_list(person, first, user)
+            user.end_progress()
 
     def reset(self):
         self.filt.requestreset()

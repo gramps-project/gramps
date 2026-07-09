@@ -42,6 +42,7 @@ from .. import Rule
 from typing import Set
 from ....lib import Person
 from ....db import Database
+from ....user import User
 
 
 # -------------------------------------------------------------------------
@@ -61,12 +62,12 @@ class IsLessThanNthGenerationDescendantOf(Rule):
         "specified person not more than N generations away"
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.db = db
         self.selected_handles: Set[str] = set()
         try:
             root_person = db.get_person_from_gramps_id(self.list[0])
-            self.init_list(root_person, 0)
+            self.init_list(root_person, 0, user)
         except:
             pass
 
@@ -76,7 +77,9 @@ class IsLessThanNthGenerationDescendantOf(Rule):
     def apply_to_one(self, db: Database, person: Person) -> bool:
         return person.handle in self.selected_handles
 
-    def init_list(self, person: Person | None, gen: int):
+    def init_list(self, person: Person | None, gen: int, user: User):
+        if user.get_cancelled():
+            return
         if not person or person.handle in self.selected_handles:
             # if we have been here before, skip
             return
@@ -90,5 +93,5 @@ class IsLessThanNthGenerationDescendantOf(Rule):
             if fam:
                 for child_ref in fam.child_ref_list:
                     self.init_list(
-                        self.db.get_person_from_handle(child_ref.ref), gen + 1
+                        self.db.get_person_from_handle(child_ref.ref), gen + 1, user
                     )
