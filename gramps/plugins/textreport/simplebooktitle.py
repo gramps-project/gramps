@@ -4,6 +4,7 @@
 # Copyright (C) 2008,2012  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Paul Franklin
+# Copyright (C) 2026       Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +38,7 @@ import os
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
-from gramps.gen.plug.menu import StringOption, MediaOption, NumberOption
+from gramps.gen.plug.menu import StringOption, MediaOption, NumberOption, BooleanOption
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
@@ -46,6 +47,8 @@ from gramps.gen.plug.docgen import (
     ParagraphStyle,
     FONT_SANS_SERIF,
     PARA_ALIGN_CENTER,
+    IndexMark,
+    INDEX_TYPE_TOC,
 )
 
 
@@ -75,48 +78,94 @@ class SimpleBookTitle(Report):
         imgid     - Gramps ID of the media object to use as an image.
         imgsize   - Size for the image.
         footer    - Footer string.
+        showintoc - Whether to show the title (or the image file name if no title) in the TOC.
         """
         Report.__init__(self, database, options, user)
+        self.database = database
         self._user = user
 
         menu = options.menu
-        self.title_string = menu.get_option_by_name("title").get_value()
+        self.title_string = menu.get_option_by_name("title").get_value().strip()
         self.image_size = menu.get_option_by_name("imgsize").get_value()
-        self.subtitle_string = menu.get_option_by_name("subtitle").get_value()
-        self.footer_string = menu.get_option_by_name("footer").get_value()
+        self.subtitle_string = menu.get_option_by_name("subtitle").get_value().strip()
+        self.footer_string = menu.get_option_by_name("footer").get_value().strip()
         self.media_id = menu.get_option_by_name("imgid").get_value()
+        self.show_in_toc = menu.get_option_by_name("showintoc").get_value()
+
+        # PRE-FETCH: Store the resolved path/filename here
+        self.media_path = None
+        self.media_filename = None
+        if self.media_id:
+            img_object = self.database.get_media_from_gramps_id(self.media_id)
+            if img_object:
+                path = img_object.get_path()
+                full_path = media_path_full(self.database, path)
+                if os.path.exists(full_path):
+                    self.media_path = full_path
+                    self.media_filename = os.path.basename(path)
 
     def write_report(self):
         """Generate the contents of the report"""
+        # Skip the whole page if we have no contents to output
+        if (
+            not self.title_string
+            and not self.subtitle_string
+            and not self.footer_string
+            and not self.media_filename
+        ):
+            return
+
         self.doc.start_paragraph("SBT-Title")
-        self.doc.write_text(self.title_string)
+        if self.show_in_toc:
+            # Insert to TOC if requested using whatever is available
+            if self.title_string:
+                toc_title = self.title_string
+            elif self.subtitle_string:
+                toc_title = self.subtitle_string
+            elif self.media_filename:
+                toc_title = self.media_filename
+            else:
+                # if nothing else is available, use a generic title for the TOC
+                toc_title = _("Book Title")
+            mark = IndexMark(toc_title, INDEX_TYPE_TOC, 1)
+            self.doc.write_text(self.title_string, mark)
+        else:
+            self.doc.write_text(self.title_string)
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph("SBT-Subtitle")
-        self.doc.write_text(self.subtitle_string)
-        self.doc.end_paragraph()
+        if self.subtitle_string:
+            self.doc.start_paragraph("SBT-Subtitle")
+            self.doc.write_text(self.subtitle_string)
+            self.doc.end_paragraph()
 
         if self.media_id:
-            the_object = self.database.get_media_from_gramps_id(self.media_id)
-            filename = media_path_full(self.database, the_object.get_path())
-            if os.path.exists(filename):
+            if self.media_path:
                 if self.image_size:
+                    # use size as specified
                     image_size = self.image_size
-                else:
+                elif self.subtitle_string or self.footer_string:
+                    # normal size if any of the subtitle or footer is present
                     image_size = min(
                         0.8 * self.doc.get_usable_width(),
                         0.7 * self.doc.get_usable_height(),
                     )
-                self.doc.add_media(filename, "center", image_size, image_size)
+                else:
+                    # otherwise use the larger room for the image
+                    image_size = min(
+                        0.95 * self.doc.get_usable_width(),
+                        0.85 * self.doc.get_usable_height(),
+                    )
+                self.doc.add_media(self.media_path, "center", image_size, image_size)
             else:
                 self._user.warn(
                     _("Could not add photo to page"),
-                    _("File %s does not exist") % filename,
+                    _("File %s does not exist") % self.media_path,
                 )
 
-        self.doc.start_paragraph("SBT-Footer")
-        self.doc.write_text(self.footer_string)
-        self.doc.end_paragraph()
+        if self.footer_string:
+            self.doc.start_paragraph("SBT-Footer")
+            self.doc.write_text(self.footer_string)
+            self.doc.end_paragraph()
 
 
 # ------------------------------------------------------------------------
@@ -135,7 +184,18 @@ class SimpleBookTitleOptions(MenuReportOptions):
 
     def get_subject(self):
         """Return a string that describes the subject of the report."""
-        return self.__title.get_value()
+        title = _("not provided")
+        if self.__title.get_value().strip():
+            title = self.__title.get_value()
+        elif self.__subtitle.get_value().strip():
+            title = self.__subtitle.get_value()
+        else:
+            media_id = self.__imgid.get_value()
+            if media_id:
+                img_object = self.__db.get_media_from_gramps_id(media_id)
+                if img_object:
+                    title = os.path.basename(img_object.get_path())
+        return title
 
     def add_menu_options(self, menu):
         """Add the options for this report"""
@@ -145,9 +205,9 @@ class SimpleBookTitleOptions(MenuReportOptions):
         self.__title.set_help(_("Title string for the book."))
         menu.add_option(category_name, "title", self.__title)
 
-        subtitle = StringOption(_("Subtitle"), _("Subtitle of the Book"))
-        subtitle.set_help(_("Subtitle string for the book."))
-        menu.add_option(category_name, "subtitle", subtitle)
+        self.__subtitle = StringOption(_("Subtitle"), _("Subtitle of the Book"))
+        self.__subtitle.set_help(_("Subtitle string for the book."))
+        menu.add_option(category_name, "subtitle", self.__subtitle)
 
         dateinfo = time.localtime(time.time())
         rname = self.__db.get_researcher().get_name()
@@ -159,9 +219,9 @@ class SimpleBookTitleOptions(MenuReportOptions):
         footer.set_help(_("Footer string for the page."))
         menu.add_option(category_name, "footer", footer)
 
-        imgid = MediaOption(_("Image"))
-        imgid.set_help(_("Gramps ID of the media object to use as an image."))
-        menu.add_option(category_name, "imgid", imgid)
+        self.__imgid = MediaOption(_("Image"))
+        self.__imgid.set_help(_("Gramps ID of the media object to use as an image."))
+        menu.add_option(category_name, "imgid", self.__imgid)
 
         imgsize = NumberOption(_("Image Size"), 0, 0, 20, 0.1)
         imgsize.set_help(
@@ -171,6 +231,14 @@ class SimpleBookTitleOptions(MenuReportOptions):
             )
         )
         menu.add_option(category_name, "imgsize", imgsize)
+
+        showintoc = BooleanOption(_("Show in TOC"), True)
+        showintoc.set_help(
+            _(
+                "Whether to show the title (or the image file name if no title) in the TOC."
+            )
+        )
+        menu.add_option(category_name, "showintoc", showintoc)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Simple Book Title report."""
