@@ -577,6 +577,8 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
                 config.get("preferences.eprefix"),
                 config.get("preferences.rprefix"),
                 config.get("preferences.nprefix"),
+                config.get("preferences.tprefix"),
+                config.get("preferences.mprefix"),
             )
 
     def _execute(self):

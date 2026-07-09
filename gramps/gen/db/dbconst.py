@@ -56,6 +56,8 @@ __all__ = (
     "NOTE_KEY",
     "REFERENCE_KEY",
     "TAG_KEY",
+    "DNATEST_KEY",
+    "DNAMATCH_KEY",
     "TXNADD",
     "TXNUPD",
     "TXNDEL",
@@ -94,6 +96,8 @@ REFERENCE_KEY = 7
 NOTE_KEY = 8
 TAG_KEY = 9
 CITATION_KEY = 10
+DNATEST_KEY = 11
+DNAMATCH_KEY = 12
 
 TXNADD, TXNUPD, TXNDEL = 0, 1, 2
 
@@ -108,6 +112,8 @@ CLASS_TO_KEY_MAP = {
     "Repository": REPOSITORY_KEY,
     "Note": NOTE_KEY,
     "Tag": TAG_KEY,
+    "DNATest": DNATEST_KEY,
+    "DNAMatch": DNAMATCH_KEY,
 }
 
 KEY_TO_CLASS_MAP = {
@@ -121,6 +127,8 @@ KEY_TO_CLASS_MAP = {
     REPOSITORY_KEY: "Repository",
     NOTE_KEY: "Note",
     TAG_KEY: "Tag",
+    DNATEST_KEY: "DNATest",
+    DNAMATCH_KEY: "DNAMatch",
 }
 
 KEY_TO_NAME_MAP = {
@@ -135,4 +143,6 @@ KEY_TO_NAME_MAP = {
     # REFERENCE_KEY: 'reference',
     NOTE_KEY: "note",
     TAG_KEY: "tag",
+    DNATEST_KEY: "dnatest",
+    DNAMATCH_KEY: "dnamatch",
 }

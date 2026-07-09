@@ -32,3 +32,5 @@ from ._placesidebarfilter import PlaceSidebarFilter
 from ._mediasidebarfilter import MediaSidebarFilter
 from ._reposidebarfilter import RepoSidebarFilter
 from ._notesidebarfilter import NoteSidebarFilter
+from ._dnatestsidebarfilter import DNATestSidebarFilter
+from ._dnamatchsidebarfilter import DNAMatchSidebarFilter
