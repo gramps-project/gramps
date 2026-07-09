@@ -4,7 +4,7 @@
 # Copyright (C) 2015-2016 Gramps Development Team
 # Copyright (C) 2016      Nick Hall
 # Copyright (C) 2024      Doug Blank
-# Copyright (C) 2024,2025 Steve Youngs <steve@youngs.cc>
+# Copyright (C) 2024-2026 Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,10 +26,11 @@ Gramps generic database handler
 
 # ------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # ------------------------------------------------------------------------
 from __future__ import annotations
+from abc import ABCMeta, abstractmethod
 import bisect
 import logging
 import os
@@ -37,6 +38,7 @@ import pickle
 import random
 import re
 import time
+from collections.abc import Iterator
 from pathlib import Path
 from typing import Any, Generator, Type
 
@@ -142,7 +144,7 @@ SIGBASE = (
 # DbGenericUndo class
 #
 # ------------------------------------------------------------------------
-class DbGenericUndo(DbUndo):
+class DbGenericUndo(DbUndo, metaclass=ABCMeta):
     """
     Generic undo/redo handler
     """
@@ -341,8 +343,8 @@ class Cursor:
         return self
 
     def __iter__(self):
-        for handle, data in self.iterator():
-            yield (handle, data)
+        for data in self.iterator():
+            yield (data.handle, data)
 
     def __next__(self):
         try:
@@ -354,8 +356,8 @@ class Cursor:
         pass
 
     def iter(self):
-        for handle, data in self.iterator():
-            yield (handle, data)
+        for data in self.iterator():
+            yield (data.handle, data)
 
     def first(self):
         self._iter = self.__iter__()
@@ -608,7 +610,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.place_bookmarks = DbBookmarks()
         self.citation_bookmarks = DbBookmarks()
         self.source_bookmarks = DbBookmarks()
-        self.repo_bookmarks = DbBookmarks()
+        self.repository_bookmarks = DbBookmarks()
         self.media_bookmarks = DbBookmarks()
         self.note_bookmarks = DbBookmarks()
         self.set_person_id_prefix("I%05d")
@@ -753,7 +755,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.event_bookmarks.load(self._get_metadata("event_bookmarks"))
         self.source_bookmarks.load(self._get_metadata("source_bookmarks"))
         self.citation_bookmarks.load(self._get_metadata("citation_bookmarks"))
-        self.repo_bookmarks.load(self._get_metadata("repo_bookmarks"))
+        self.repository_bookmarks.load(self._get_metadata("repo_bookmarks"))
         self.media_bookmarks.load(self._get_metadata("media_bookmarks"))
         self.place_bookmarks.load(self._get_metadata("place_bookmarks"))
         self.note_bookmarks.load(self._get_metadata("note_bookmarks"))
@@ -888,7 +890,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._set_metadata("family_bookmarks", self.family_bookmarks.get())
         self._set_metadata("event_bookmarks", self.event_bookmarks.get())
         self._set_metadata("place_bookmarks", self.place_bookmarks.get())
-        self._set_metadata("repo_bookmarks", self.repo_bookmarks.get())
+        self._set_metadata("repo_bookmarks", self.repository_bookmarks.get())
         self._set_metadata("source_bookmarks", self.source_bookmarks.get())
         self._set_metadata("citation_bookmarks", self.citation_bookmarks.get())
         self._set_metadata("media_bookmarks", self.media_bookmarks.get())
@@ -1781,6 +1783,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    @abstractmethod
     def _iter_raw_data(self, obj_key):
         raise NotImplementedError
 
@@ -1856,6 +1859,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    @abstractmethod
     def _get_raw_data(self, obj_key, handle):
         """
         Return raw (serialized) object from handle.
@@ -1898,6 +1902,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    @abstractmethod
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         raise NotImplementedError
 
@@ -2551,8 +2556,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_place_bookmarks(self):
         return self.place_bookmarks
 
-    def get_repo_bookmarks(self):
-        return self.repo_bookmarks
+    def get_repository_bookmarks(self):
+        """
+        Return the Repository bookmarks.
+
+        :returns: The Repository bookmarks object.
+        :rtype: :py:class:`DbBookmarks`
+        """
+        return self.repository_bookmarks
 
     def get_source_bookmarks(self):
         return self.source_bookmarks

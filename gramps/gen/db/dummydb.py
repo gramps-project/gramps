@@ -174,7 +174,7 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         self.place_bookmarks = DbBookmarks()
         self.citation_bookmarks = DbBookmarks()
         self.source_bookmarks = DbBookmarks()
-        self.repo_bookmarks = DbBookmarks()
+        self.repository_bookmarks = DbBookmarks()
         self.media_bookmarks = DbBookmarks()
         self.note_bookmarks = DbBookmarks()
         self.owner = Researcher()
@@ -943,13 +943,22 @@ class DummyDb(DbReadBase, Callback, object, metaclass=M_A_M_B):
         LOG.warning("handle %s does not exist in the dummy database", handle)
         raise HandleError(f"Handle {handle} not found")
 
-    def get_repo_bookmarks(self):
+    def get_repository_bookmarks(self):
         """
         Return the list of Repository handles in the bookmarks.
         """
         if not self.db_is_open:
             LOG.debug("database is closed")
-        return self.repo_bookmarks
+        return self.repository_bookmarks
+
+    def get_repo_bookmarks(self):
+        """
+        Deprecated alias for get_repository_bookmarks().
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_repository_bookmarks` instead.
+        """
+        return self.get_repository_bookmarks()
 
     def get_repository_cursor(self):
         """

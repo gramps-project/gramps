@@ -564,7 +564,7 @@ class RepoBookmarks(ListBookmarks):
         self.dbstate.db.connect("repository-delete", self.remove_handles)
 
     def get_bookmarks(self):
-        return self.dbstate.db.get_repo_bookmarks()
+        return self.dbstate.db.get_repository_bookmarks()
 
     def get_config_name(self):
         return __name__

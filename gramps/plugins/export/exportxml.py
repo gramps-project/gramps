@@ -421,7 +421,7 @@ class GrampsXmlWriter(UpdateCallback):
         bm_source_len = len(self.db.source_bookmarks.get())
         bm_citation_len = len(self.db.citation_bookmarks.get())
         bm_place_len = len(self.db.place_bookmarks.get())
-        bm_repo_len = len(self.db.repo_bookmarks.get())
+        bm_repo_len = len(self.db.repository_bookmarks.get())
         bm_obj_len = len(self.db.media_bookmarks.get())
         bm_note_len = len(self.db.note_bookmarks.get())
 
@@ -454,7 +454,7 @@ class GrampsXmlWriter(UpdateCallback):
                 self.g.write('    <bookmark target="place" hlink="_%s"/>\n' % handle)
             for handle in self.db.get_media_bookmarks().get():
                 self.g.write('    <bookmark target="media" hlink="_%s"/>\n' % handle)
-            for handle in self.db.get_repo_bookmarks().get():
+            for handle in self.db.get_repository_bookmarks().get():
                 self.g.write(
                     '    <bookmark target="repository" hlink="_%s"/>\n' % handle
                 )

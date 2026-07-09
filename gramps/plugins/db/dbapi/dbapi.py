@@ -935,7 +935,7 @@ class DBAPI(DbGeneric):
             rows = cursor.fetchmany()
             while rows:
                 for row in rows:
-                    yield (row[0], self.serializer.string_to_data(row[1]))
+                    yield self.serializer.string_to_data(row[1])
                 rows = cursor.fetchmany()
 
     def _iter_raw_place_tree_data(self):
@@ -952,7 +952,7 @@ class DBAPI(DbGeneric):
             rows = self.dbapi.fetchall()
             for row in rows:
                 to_do.append(row[0])
-                yield (row[0], self.serializer.string_to_data(row[1]))
+                yield self.serializer.string_to_data(row[1])
 
     def reindex_reference_map(self, callback):
         """

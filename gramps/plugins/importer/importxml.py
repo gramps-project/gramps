@@ -1585,9 +1585,9 @@ class GrampsParser(UpdateCallback):
         elif target == "repository":
             if (
                 self.db.get_repository_from_handle(handle) is not None
-                and handle not in self.db.repo_bookmarks.get()
+                and handle not in self.db.repository_bookmarks.get()
             ):
-                self.db.repo_bookmarks.append(handle)
+                self.db.repository_bookmarks.append(handle)
         elif target == "note":
             if (
                 self.db.get_note_from_handle(handle) is not None

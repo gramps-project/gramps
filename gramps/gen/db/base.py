@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2026       Gabriel Rios
+# Copyright (C) 2026       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,9 +28,11 @@ from this class.
 
 # -------------------------------------------------------------------------
 #
-# Python modules
+# Standard Python modules
 #
 # -------------------------------------------------------------------------
+from collections.abc import Iterator
+from typing import cast
 import logging
 
 # -------------------------------------------------------------------------
@@ -41,6 +44,49 @@ from ..const import GRAMPS_LOCALE as glocale
 from ..db.dbconst import DBLOGNAME
 from ..lib.childref import ChildRef
 from ..lib.childreftype import ChildRefType
+from ..lib.json_utils import DataDict
+from ..types import (
+    Person,
+    Family,
+    Event,
+    Place,
+    Source,
+    Repository,
+    Citation,
+    Media,
+    Note,
+    Tag,
+    PersonHandle,
+    FamilyHandle,
+    EventHandle,
+    PlaceHandle,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+    TagHandle,
+    PersonGrampsID,
+    FamilyGrampsID,
+    EventGrampsID,
+    PlaceGrampsID,
+    SourceGrampsID,
+    RepositoryGrampsID,
+    CitationGrampsID,
+    MediaGrampsID,
+    NoteGrampsID,
+    PersonDataDict,
+    EventDataDict,
+    FamilyDataDict,
+    PlaceDataDict,
+    SourceDataDict,
+    RepositoryDataDict,
+    CitationDataDict,
+    MediaDataDict,
+    NoteDataDict,
+    TagDataDict,
+    AnyDataDict,
+)
 from .exceptions import DbTransactionCancel
 from .txn import DbTxn
 
@@ -250,11 +296,20 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_repo_bookmarks(self):
+    def get_repository_bookmarks(self):
         """
         Return the list of Repository handles in the bookmarks.
         """
         raise NotImplementedError
+
+    def get_repo_bookmarks(self):
+        """
+        Deprecated alias for get_repository_bookmarks().
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_repository_bookmarks` instead.
+        """
+        return self.get_repository_bookmarks()
 
     def get_source_bookmarks(self):
         """
@@ -865,126 +920,96 @@ class DbReadBase:
     def get_number_of_citations(self):
         """
         Return the number of citations currently in the database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`count_citation` instead.
         """
         raise NotImplementedError
 
     def get_number_of_events(self):
         """
         Return the number of events currently in the database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`count_event` instead.
         """
         raise NotImplementedError
 
     def get_number_of_families(self):
         """
         Return the number of families currently in the database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`count_family` instead.
         """
         raise NotImplementedError
 
     def get_number_of_media(self):
         """
         Return the number of media objects currently in the database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`count_media` instead.
         """
         raise NotImplementedError
 
     def get_number_of_notes(self):
         """
         Return the number of notes currently in the database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`count_note` instead.
         """
         raise NotImplementedError
 
     def get_number_of_people(self):
         """
         Return the number of people currently in the database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`count_person` instead.
         """
         raise NotImplementedError
 
     def get_number_of_places(self):
         """
         Return the number of places currently in the database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`count_place` instead.
         """
         raise NotImplementedError
 
     def get_number_of_repositories(self):
         """
         Return the number of source repositories currently in the database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`count_repository` instead.
         """
         raise NotImplementedError
 
     def get_number_of_sources(self):
         """
         Return the number of sources currently in the database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`count_source` instead.
         """
         raise NotImplementedError
 
     def get_number_of_tags(self):
         """
         Return the number of tags currently in the database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`count_tag` instead.
         """
         raise NotImplementedError
 
     def get_person_event_types(self):
         """
         Deprecated:  Use get_event_types
-        """
-        raise NotImplementedError
-
-    def get_raw_citation_data(self, handle):
-        """
-        Return raw (serialized and pickled) Citation object from handle
-        """
-        raise NotImplementedError
-
-    def get_raw_event_data(self, handle):
-        """
-        Return raw (serialized and pickled) Event object from handle
-        """
-        raise NotImplementedError
-
-    def get_raw_family_data(self, handle):
-        """
-        Return raw (serialized and pickled) Family object from handle
-        """
-        raise NotImplementedError
-
-    def get_raw_media_data(self, handle):
-        """
-        Return raw (serialized and pickled) Media object from handle
-        """
-        raise NotImplementedError
-
-    def get_raw_note_data(self, handle):
-        """
-        Return raw (serialized and pickled) Note object from handle
-        """
-        raise NotImplementedError
-
-    def get_raw_person_data(self, handle):
-        """
-        Return raw (serialized and pickled) Person object from handle
-        """
-        raise NotImplementedError
-
-    def get_raw_place_data(self, handle):
-        """
-        Return raw (serialized and pickled) Place object from handle
-        """
-        raise NotImplementedError
-
-    def get_raw_repository_data(self, handle):
-        """
-        Return raw (serialized and pickled) Repository object from handle
-        """
-        raise NotImplementedError
-
-    def get_raw_source_data(self, handle):
-        """
-        Return raw (serialized and pickled) Source object from handle
-        """
-        raise NotImplementedError
-
-    def get_raw_tag_data(self, handle):
-        """
-        Return raw (serialized and pickled) Tag object from handle
         """
         raise NotImplementedError
 
@@ -1018,114 +1043,171 @@ class DbReadBase:
     def has_citation_gramps_id(self, gramps_id):
         """
         Return True if the Gramps ID exists in the Citation table.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_citation_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def has_event_gramps_id(self, gramps_id):
         """
         Return True if the Gramps ID exists in the Event table.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_event_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def has_family_gramps_id(self, gramps_id):
         """
         Return True if the Gramps ID exists in the Family table.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_family_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def has_media_gramps_id(self, gramps_id):
         """
         Return True if the Gramps ID exists in the Media table.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_media_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def has_note_gramps_id(self, gramps_id):
         """
         Return True if the Gramps ID exists in the Note table.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_note_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def has_person_gramps_id(self, gramps_id):
         """
         Return True if the Gramps ID exists in the Person table.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_person_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def has_place_gramps_id(self, gramps_id):
         """
         Return True if the Gramps ID exists in the Place table.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_place_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def has_repository_gramps_id(self, gramps_id):
         """
         Return True if the Gramps ID exists in the Repository table.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_repository_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def has_source_gramps_id(self, gramps_id):
         """
         Return True if the Gramps ID exists in the Source table.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_source_from_gramps_id` instead.
         """
         raise NotImplementedError
 
     def has_event_handle(self, handle):
         """
         Return True if the handle exists in the current Event database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_event_from_handle` instead.
         """
         raise NotImplementedError
 
     def has_family_handle(self, handle):
         """
         Return True if the handle exists in the current Family database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_family_from_handle` instead.
         """
         raise NotImplementedError
 
     def has_media_handle(self, handle):
         """
         Return True if the handle exists in the current Mediadatabase.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_media_from_handle` instead.
         """
         raise NotImplementedError
 
     def has_note_handle(self, handle):
         """
         Return True if the handle exists in the current Note database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_note_from_handle` instead.
         """
         raise NotImplementedError
 
     def has_person_handle(self, handle):
         """
         Return True if the handle exists in the current Person database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_person_from_handle` instead.
         """
         raise NotImplementedError
 
     def has_place_handle(self, handle):
         """
         Return True if the handle exists in the current Place database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_place_from_handle` instead.
         """
         raise NotImplementedError
 
     def has_repository_handle(self, handle):
         """
         Return True if the handle exists in the current Repository database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_repository_from_handle` instead.
         """
         raise NotImplementedError
 
     def has_source_handle(self, handle):
         """
         Return True if the handle exists in the current Source database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_source_from_handle` instead.
         """
         raise NotImplementedError
 
     def has_citation_handle(self, handle):
         """
         Return True if the handle exists in the current Citation database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_citation_from_handle` instead.
         """
         raise NotImplementedError
 
     def has_tag_handle(self, handle):
         """
         Return True if the handle exists in the current Tag database.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`has_tag_from_handle` instead.
         """
         raise NotImplementedError
 
@@ -1144,18 +1226,27 @@ class DbReadBase:
     def iter_citations(self):
         """
         Return an iterator over objects for Citations in the database
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_citation` instead.
         """
         raise NotImplementedError
 
     def iter_events(self):
         """
         Return an iterator over objects for Events in the database
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_event` instead.
         """
         raise NotImplementedError
 
     def iter_families(self):
         """
         Return an iterator over objects for Families in the database
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_family` instead.
         """
         raise NotImplementedError
 
@@ -1168,36 +1259,54 @@ class DbReadBase:
     def iter_notes(self):
         """
         Return an iterator over objects for Notes in the database
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_note` instead.
         """
         raise NotImplementedError
 
     def iter_people(self):
         """
         Return an iterator over objects for Persons in the database
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_person` instead.
         """
         raise NotImplementedError
 
     def iter_places(self):
         """
         Return an iterator over objects for Places in the database
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_place` instead.
         """
         raise NotImplementedError
 
     def iter_repositories(self):
         """
         Return an iterator over objects for Repositories in the database
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_repository` instead.
         """
         raise NotImplementedError
 
     def iter_sources(self):
         """
         Return an iterator over objects for Sources in the database
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_source` instead.
         """
         raise NotImplementedError
 
     def iter_tags(self):
         """
         Return an iterator over objects for Tags in the database
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_tag` instead.
         """
         raise NotImplementedError
 
@@ -1479,6 +1588,868 @@ class DbReadBase:
             conflict
         """
         raise NotImplementedError
+
+    # add methods with consistent names for the public API
+    def get_person_data_from_handle(self, handle: PersonHandle) -> PersonDataDict:
+        """
+        Return raw (DataDict) Person object from handle
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+        """
+        return self.get_raw_person_data(handle)
+
+    def get_family_data_from_handle(self, handle: FamilyHandle) -> FamilyDataDict:
+        """
+        Return raw (DataDict) Family object from handle
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+        """
+        return self.get_raw_family_data(handle)
+
+    def get_source_data_from_handle(self, handle: SourceHandle) -> SourceDataDict:
+        """
+        Return raw (DataDict) Source object from handle
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+        """
+        return self.get_raw_source_data(handle)
+
+    def get_citation_data_from_handle(self, handle: CitationHandle) -> CitationDataDict:
+        """
+        Return raw (DataDict) Citation object from handle
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+        """
+        return self.get_raw_citation_data(handle)
+
+    def get_event_data_from_handle(self, handle: EventHandle) -> EventDataDict:
+        """
+        Return raw (DataDict) Event object from handle
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+        """
+        return self.get_raw_event_data(handle)
+
+    def get_media_data_from_handle(self, handle: MediaHandle) -> MediaDataDict:
+        """
+        Return raw (DataDict) Media object from handle
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+        """
+        return self.get_raw_media_data(handle)
+
+    def get_place_data_from_handle(self, handle: PlaceHandle) -> PlaceDataDict:
+        """
+        Return raw (DataDict) Place object from handle
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+        """
+        return self.get_raw_place_data(handle)
+
+    def get_repository_data_from_handle(
+        self, handle: RepositoryHandle
+    ) -> RepositoryDataDict:
+        """
+        Return raw (DataDict) Repository object from handle
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+        """
+        return self.get_raw_repository_data(handle)
+
+    def get_note_data_from_handle(self, handle: NoteHandle) -> NoteDataDict:
+        """
+        Return raw (DataDict) Note object from handle
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+        """
+        return self.get_raw_note_data(handle)
+
+    def get_tag_data_from_handle(self, handle: TagHandle) -> TagDataDict:
+        """
+        Return raw (DataDict) Tag object from handle
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+        """
+        return self.get_raw_tag_data(handle)
+
+    def count_person(self) -> int:
+        """
+        Return the number of Person objects currently in the database.
+        """
+        return self.get_number_of_people()
+
+    def count_family(self) -> int:
+        """
+        Return the number of Family objects currently in the database.
+        """
+        return self.get_number_of_families()
+
+    def count_source(self) -> int:
+        """
+        Return the number of Source objects currently in the database.
+        """
+        return self.get_number_of_sources()
+
+    def count_citation(self) -> int:
+        """
+        Return the number of Citation objects currently in the database.
+        """
+        return self.get_number_of_citations()
+
+    def count_event(self) -> int:
+        """
+        Return the number of Event objects currently in the database.
+        """
+        return self.get_number_of_events()
+
+    def count_media(self) -> int:
+        """
+        Return the number of Media objects currently in the database.
+        """
+        return self.get_number_of_media()
+
+    def count_place(self) -> int:
+        """
+        Return the number of Place objects currently in the database.
+        """
+        return self.get_number_of_places()
+
+    def count_repository(self) -> int:
+        """
+        Return the number of Repository objects currently in the database.
+        """
+        return self.get_number_of_repositories()
+
+    def count_note(self) -> int:
+        """
+        Return the number of Note objects currently in the database.
+        """
+        return self.get_number_of_notes()
+
+    def count_tag(self) -> int:
+        """
+        Return the number of Tag objects currently in the database.
+        """
+        return self.get_number_of_tags()
+
+    def iter_person(self) -> Iterator[Person]:
+        """
+        Return an iterator over Person objects in the database
+        """
+        return self.iter_people()
+
+    def iter_family(self) -> Iterator[Family]:
+        """
+        Return an iterator over Family objects in the database
+        """
+        return self.iter_families()
+
+    def iter_source(self) -> Iterator[Source]:
+        """
+        Return an iterator over Source objects in the database
+        """
+        return self.iter_sources()
+
+    def iter_citation(self) -> Iterator[Citation]:
+        """
+        Return an iterator over Citation objects in the database
+        """
+        return self.iter_citations()
+
+    def iter_event(self) -> Iterator[Event]:
+        """
+        Return an iterator over Event objects in the database
+        """
+        return self.iter_events()
+
+    # iter_media is already defined
+
+    def iter_place(self) -> Iterator[Place]:
+        """
+        Return an iterator over Place objects in the database
+        """
+        return self.iter_places()
+
+    def iter_repository(self) -> Iterator[Repository]:
+        """
+        Return an iterator over Repository objects in the database
+        """
+        return self.iter_repositories()
+
+    def iter_note(self) -> Iterator[Note]:
+        """
+        Return an iterator over Note objects in the database
+        """
+        return self.iter_notes()
+
+    def iter_tag(self) -> Iterator[Tag]:
+        """
+        Return an iterator over Tag objects in the database
+        """
+        return self.iter_tags()
+
+    def has_person_from_handle(self, handle: PersonHandle) -> bool:
+        """
+        Return True if the handle exists in the Person table.
+
+        :param handle: handle of the object to search for.
+        :type handle: PersonHandle
+        """
+        return self.has_person_handle(handle)
+
+    def has_family_from_handle(self, handle: FamilyHandle) -> bool:
+        """
+        Return True if the handle exists in the Family table.
+
+        :param handle: handle of the object to search for.
+        :type handle: FamilyHandle
+        """
+        return self.has_family_handle(handle)
+
+    def has_source_from_handle(self, handle: SourceHandle) -> bool:
+        """
+        Return True if the handle exists in the Source table.
+
+        :param handle: handle of the object to search for.
+        :type handle: SourceHandle
+        """
+        return self.has_source_handle(handle)
+
+    def has_citation_from_handle(self, handle: CitationHandle) -> bool:
+        """
+        Return True if the handle exists in the Citation table.
+
+        :param handle: handle of the object to search for.
+        :type handle: CitationHandle
+        """
+        return self.has_citation_handle(handle)
+
+    def has_event_from_handle(self, handle: EventHandle) -> bool:
+        """
+        Return True if the handle exists in the Event table.
+
+        :param handle: handle of the object to search for.
+        :type handle: EventHandle
+        """
+        return self.has_event_handle(handle)
+
+    def has_media_from_handle(self, handle: MediaHandle) -> bool:
+        """
+        Return True if the handle exists in the Media table.
+
+        :param handle: handle of the object to search for.
+        :type handle: MediaHandle
+        """
+        return self.has_media_handle(handle)
+
+    def has_place_from_handle(self, handle: PlaceHandle) -> bool:
+        """
+        Return True if the handle exists in the Place table.
+
+        :param handle: handle of the object to search for.
+        :type handle: PlaceHandle
+        """
+        return self.has_place_handle(handle)
+
+    def has_repository_from_handle(self, handle: RepositoryHandle) -> bool:
+        """
+        Return True if the handle exists in the Repository table.
+
+        :param handle: handle of the object to search for.
+        :type handle: RepositoryHandle
+        """
+        return self.has_repository_handle(handle)
+
+    def has_note_from_handle(self, handle: NoteHandle) -> bool:
+        """
+        Return True if the handle exists in the Note table.
+
+        :param handle: handle of the object to search for.
+        :type handle: NoteHandle
+        """
+        return self.has_note_handle(handle)
+
+    def has_tag_from_handle(self, handle: TagHandle) -> bool:
+        """
+        Return True if the handle exists in the Tag table.
+
+        :param handle: handle of the object to search for.
+        :type handle: TagHandle
+        """
+        return self.has_tag_handle(handle)
+
+    def has_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> bool:
+        """
+        Return True if the Gramps ID exists in the Person table.
+
+        :param gramps_id: Gramps ID of the object to search for.
+        :type gramps_id: PersonGrampsID
+        """
+        return self.has_person_gramps_id(gramps_id)
+
+    def has_family_from_gramps_id(self, gramps_id: FamilyGrampsID) -> bool:
+        """
+        Return True if the Gramps ID exists in the Family table.
+
+        :param gramps_id: Gramps ID of the object to search for.
+        :type gramps_id: FamilyGrampsID
+        """
+        return self.has_family_gramps_id(gramps_id)
+
+    def has_source_from_gramps_id(self, gramps_id: SourceGrampsID) -> bool:
+        """
+        Return True if the Gramps ID exists in the Source table.
+
+        :param gramps_id: Gramps ID of the object to search for.
+        :type gramps_id: SourceGrampsID
+        """
+        return self.has_source_gramps_id(gramps_id)
+
+    def has_citation_from_gramps_id(self, gramps_id: CitationGrampsID) -> bool:
+        """
+        Return True if the Gramps ID exists in the Citation table.
+
+        :param gramps_id: Gramps ID of the object to search for.
+        :type gramps_id: CitationGrampsID
+        """
+        return self.has_citation_gramps_id(gramps_id)
+
+    def has_event_from_gramps_id(self, gramps_id: EventGrampsID) -> bool:
+        """
+        Return True if the Gramps ID exists in the Event table.
+
+        :param gramps_id: Gramps ID of the object to search for.
+        :type gramps_id: EventGrampsID
+        """
+        return self.has_event_gramps_id(gramps_id)
+
+    def has_media_from_gramps_id(self, gramps_id: MediaGrampsID) -> bool:
+        """
+        Return True if the Gramps ID exists in the Media table.
+
+        :param gramps_id: Gramps ID of the object to search for.
+        :type gramps_id: MediaGrampsID
+        """
+        return self.has_media_gramps_id(gramps_id)
+
+    def has_place_from_gramps_id(self, gramps_id: PlaceGrampsID) -> bool:
+        """
+        Return True if the Gramps ID exists in the Place table.
+
+        :param gramps_id: Gramps ID of the object to search for.
+        :type gramps_id: PlaceGrampsID
+        """
+        return self.has_place_gramps_id(gramps_id)
+
+    def has_repository_from_gramps_id(self, gramps_id: RepositoryGrampsID) -> bool:
+        """
+        Return True if the Gramps ID exists in the Repository table.
+
+        :param gramps_id: Gramps ID of the object to search for.
+        :type gramps_id: RepositoryGrampsID
+        """
+        return self.has_repository_gramps_id(gramps_id)
+
+    def has_note_from_gramps_id(self, gramps_id: NoteGrampsID) -> bool:
+        """
+        Return True if the Gramps ID exists in the Note table.
+
+        :param gramps_id: Gramps ID of the object to search for.
+        :type gramps_id: NoteGrampsID
+        """
+        return self.has_note_gramps_id(gramps_id)
+
+    ################################################################
+    #
+    # get_raw_*_data methods
+    #
+    ################################################################
+
+    def get_raw_person_data(self, handle):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_person_data_from_handle` instead.
+        """
+        raise NotImplementedError
+
+    def get_raw_family_data(self, handle):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_family_data_from_handle` instead.
+        """
+        raise NotImplementedError
+
+    def get_raw_source_data(self, handle):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_source_data_from_handle` instead.
+        """
+        raise NotImplementedError
+
+    def get_raw_citation_data(self, handle):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_citation_data_from_handle` instead.
+        """
+        raise NotImplementedError
+
+    def get_raw_event_data(self, handle):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_event_data_from_handle` instead.
+        """
+        raise NotImplementedError
+
+    def get_raw_media_data(self, handle):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_media_data_from_handle` instead.
+        """
+        raise NotImplementedError
+
+    def get_raw_place_data(self, handle):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_place_data_from_handle` instead.
+        """
+        raise NotImplementedError
+
+    def get_raw_repository_data(self, handle):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_repository_data_from_handle` instead.
+        """
+        raise NotImplementedError
+
+    def get_raw_note_data(self, handle):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_note_data_from_handle` instead.
+        """
+        raise NotImplementedError
+
+    def get_raw_tag_data(self, handle):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_tag_data_from_handle` instead.
+        """
+        raise NotImplementedError
+
+    ################################################################
+    #
+    # _iter_raw_*_data methods
+    #
+    ################################################################
+
+    def _iter_raw_person_data(self):
+        """
+        Return an iterator over raw Person data.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_person_data` instead.
+        """
+        raise NotImplementedError
+
+    def _iter_raw_family_data(self):
+        """
+        Return an iterator over raw Family data.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_family_data` instead.
+        """
+        raise NotImplementedError
+
+    def _iter_raw_event_data(self):
+        """
+        Return an iterator over raw Event data.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_event_data` instead.
+        """
+        raise NotImplementedError
+
+    def _iter_raw_place_data(self):
+        """
+        Return an iterator over raw Place data.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_place_data` instead.
+        """
+        raise NotImplementedError
+
+    def _iter_raw_repository_data(self):
+        """
+        Return an iterator over raw Repository data.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_repository_data` instead.
+        """
+        raise NotImplementedError
+
+    def _iter_raw_source_data(self):
+        """
+        Return an iterator over raw Source data.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_source_data` instead.
+        """
+        raise NotImplementedError
+
+    def _iter_raw_citation_data(self):
+        """
+        Return an iterator over raw Citation data.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_citation_data` instead.
+        """
+        raise NotImplementedError
+
+    def _iter_raw_media_data(self):
+        """
+        Return an iterator over raw Media data.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_media_data` instead.
+        """
+        raise NotImplementedError
+
+    def _iter_raw_note_data(self):
+        """
+        Return an iterator over raw Note data.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_note_data` instead.
+        """
+        raise NotImplementedError
+
+    def _iter_raw_tag_data(self):
+        """
+        Return an iterator over raw Tag data.
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`iter_tag_data` instead.
+        """
+        raise NotImplementedError
+
+    ################################################################
+    #
+    # _get_raw_*_from_id_data methods
+    #
+    ################################################################
+
+    def _get_raw_person_from_id_data(self, gramps_id: PersonGrampsID):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_person_data_from_gramps_id` instead.
+        """
+        raise NotImplementedError
+
+    def _get_raw_family_from_id_data(self, gramps_id: FamilyGrampsID):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_family_data_from_gramps_id` instead.
+        """
+        raise NotImplementedError
+
+    def _get_raw_source_from_id_data(self, gramps_id: SourceGrampsID):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_source_data_from_gramps_id` instead.
+        """
+        raise NotImplementedError
+
+    def _get_raw_citation_from_id_data(self, gramps_id: CitationGrampsID):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_citation_data_from_gramps_id` instead.
+        """
+        raise NotImplementedError
+
+    def _get_raw_event_from_id_data(self, gramps_id: EventGrampsID):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_event_data_from_gramps_id` instead.
+        """
+        raise NotImplementedError
+
+    def _get_raw_media_from_id_data(self, gramps_id: MediaGrampsID):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_media_data_from_gramps_id` instead.
+        """
+        raise NotImplementedError
+
+    def _get_raw_place_from_id_data(self, gramps_id: PlaceGrampsID):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_place_data_from_gramps_id` instead.
+        """
+        raise NotImplementedError
+
+    def _get_raw_repository_from_id_data(self, gramps_id: RepositoryGrampsID):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_repository_data_from_gramps_id` instead.
+        """
+        raise NotImplementedError
+
+    def _get_raw_note_from_id_data(self, gramps_id: NoteGrampsID):
+        """
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_note_data_from_gramps_id` instead.
+        """
+        raise NotImplementedError
+
+    ################################################################
+    #
+    # get_*_data_from_gramps_id methods
+    #
+    ################################################################
+
+    # add consistent [public] method names for _get_raw_*_from_id_data
+    # and _iter_raw_*_data
+    def get_person_data_from_gramps_id(
+        self, gramps_id: PersonGrampsID
+    ) -> PersonDataDict:
+        """
+        Return the raw data for the Person with the specified Gramps ID.
+
+        :param gramps_id: The Gramps ID of the Person to retrieve.
+        :type gramps_id: PersonGrampsID
+        :returns: The raw data for the Person with the specified Gramps ID.
+        :rtype: PersonDataDict
+        """
+        return self._get_raw_person_from_id_data(gramps_id)
+
+    def get_family_data_from_gramps_id(
+        self, gramps_id: FamilyGrampsID
+    ) -> FamilyDataDict:
+        """
+        Return the raw data for the Family with the specified Gramps ID.
+
+        :param gramps_id: The Gramps ID of the Family to retrieve.
+        :type gramps_id: FamilyGrampsID
+        :returns: The raw data for the Family with the specified Gramps ID.
+        :rtype: FamilyDataDict
+        """
+        return self._get_raw_family_from_id_data(gramps_id)
+
+    def get_source_data_from_gramps_id(
+        self, gramps_id: SourceGrampsID
+    ) -> SourceDataDict:
+        """
+        Return the raw data for the Source with the specified Gramps ID.
+
+        :param gramps_id: The Gramps ID of the Source to retrieve.
+        :type gramps_id: SourceGrampsID
+        :returns: The raw data for the Source with the specified Gramps ID.
+        :rtype: SourceDataDict
+        """
+        return self._get_raw_source_from_id_data(gramps_id)
+
+    def get_citation_data_from_gramps_id(
+        self, gramps_id: CitationGrampsID
+    ) -> CitationDataDict:
+        """
+        Return the raw data for the Citation with the specified Gramps ID.
+
+        :param gramps_id: The Gramps ID of the Citation to retrieve.
+        :type gramps_id: CitationGrampsID
+        :returns: The raw data for the Citation with the specified Gramps ID.
+        :rtype: CitationDataDict
+        """
+        return self._get_raw_citation_from_id_data(gramps_id)
+
+    def get_event_data_from_gramps_id(self, gramps_id: EventGrampsID) -> EventDataDict:
+        """
+        Return the raw data for the Event with the specified Gramps ID.
+
+        :param gramps_id: The Gramps ID of the Event to retrieve.
+        :type gramps_id: EventGrampsID
+        :returns: The raw data for the Event with the specified Gramps ID.
+        :rtype: EventDataDict
+        """
+        return self._get_raw_event_from_id_data(gramps_id)
+
+    def get_media_data_from_gramps_id(self, gramps_id: MediaGrampsID) -> MediaDataDict:
+        """
+        Return the raw data for the Media with the specified Gramps ID.
+
+        :param gramps_id: The Gramps ID of the Media to retrieve.
+        :type gramps_id: MediaGrampsID
+        :returns: The raw data for the Media with the specified Gramps ID.
+        :rtype: MediaDataDict
+        """
+        return self._get_raw_media_from_id_data(gramps_id)
+
+    def get_place_data_from_gramps_id(self, gramps_id: PlaceGrampsID) -> PlaceDataDict:
+        """
+        Return the raw data for the Place with the specified Gramps ID.
+
+        :param gramps_id: The Gramps ID of the Place to retrieve.
+        :type gramps_id: PlaceGrampsID
+        :returns: The raw data for the Place with the specified Gramps ID.
+        :rtype: PlaceDataDict
+        """
+        return self._get_raw_place_from_id_data(gramps_id)
+
+    def get_repository_data_from_gramps_id(
+        self, gramps_id: RepositoryGrampsID
+    ) -> RepositoryDataDict:
+        """
+        Return the raw data for the Repository with the specified Gramps ID.
+
+        :param gramps_id: The Gramps ID of the Repository to retrieve.
+        :type gramps_id: RepositoryGrampsID
+        :returns: The raw data for the Repository with the specified Gramps ID.
+        :rtype: RepositoryDataDict
+        """
+        return self._get_raw_repository_from_id_data(gramps_id)
+
+    def get_note_data_from_gramps_id(self, gramps_id: NoteGrampsID) -> NoteDataDict:
+        """
+        Return the raw data for the Note with the specified Gramps ID.
+
+        :param gramps_id: The Gramps ID of the Note to retrieve.
+        :type gramps_id: NoteGrampsID
+        :returns: The raw data for the Note with the specified Gramps ID.
+        :rtype: NoteDataDict
+        """
+        return self._get_raw_note_from_id_data(gramps_id)
+
+    ################################################################
+    #
+    # iter_*_data methods
+    #
+    ################################################################
+
+    def iter_person_data(self) -> Iterator[PersonDataDict]:
+        """
+        Return an iterator over the raw data for all Person instances in the
+        database.
+
+        :returns: An iterator over the raw data for all Person instances in the
+            database.
+        :rtype: Iterator[PersonDataDict]
+        """
+        return cast(Iterator[PersonDataDict], self._iter_raw_person_data())
+
+    def iter_family_data(self) -> Iterator[FamilyDataDict]:
+        """
+        Return an iterator over the raw data for all Family instances in the
+        database.
+
+        :returns: An iterator over the raw data for all Family instances in the
+            database.
+        :rtype: Iterator[FamilyDataDict]
+        """
+        return cast(Iterator[FamilyDataDict], self._iter_raw_family_data())
+
+    def iter_source_data(self) -> Iterator[SourceDataDict]:
+        """
+        Return an iterator over the raw data for all Source instances in the
+        database.
+
+        :returns: An iterator over the raw data for all Source instances in the
+            database.
+        :rtype: Iterator[SourceDataDict]
+        """
+        return cast(Iterator[SourceDataDict], self._iter_raw_source_data())
+
+    def iter_citation_data(self) -> Iterator[CitationDataDict]:
+        """
+        Return an iterator over the raw data for all Citation instances in the
+        database.
+
+        :returns: An iterator over the raw data for all Citation instances in the
+            database.
+        :rtype: Iterator[CitationDataDict]
+        """
+        return cast(
+            Iterator[CitationDataDict],
+            self._iter_raw_citation_data(),
+        )
+
+    def iter_event_data(self) -> Iterator[EventDataDict]:
+        """
+        Return an iterator over the raw data for all Event instances in the
+        database.
+
+        :returns: An iterator over the raw data for all Event instances in the
+            database.
+        :rtype: Iterator[EventDataDict]
+        """
+        return cast(Iterator[EventDataDict], self._iter_raw_event_data())
+
+    def iter_media_data(self) -> Iterator[MediaDataDict]:
+        """
+        Return an iterator over the raw data for all Media instances in the
+        database.
+
+        :returns: An iterator over the raw data for all Media instances in the
+            database.
+        :rtype: Iterator[MediaDataDict]
+        """
+        return cast(Iterator[MediaDataDict], self._iter_raw_media_data())
+
+    def iter_place_data(self) -> Iterator[PlaceDataDict]:
+        """
+        Return an iterator over the raw data for all Place instances in the
+        database.
+
+        :returns: An iterator over the raw data for all Place instances in the
+            database.
+        :rtype: Iterator[PlaceDataDict]
+        """
+        return cast(Iterator[PlaceDataDict], self._iter_raw_place_data())
+
+    def iter_repository_data(
+        self,
+    ) -> Iterator[RepositoryDataDict]:
+        """
+        Return an iterator over the raw data for all Repository instances in the
+        database.
+
+        :returns: An iterator over the raw data for all Repository instances in
+            the database.
+        :rtype: Iterator[RepositoryDataDict]
+        """
+        return cast(
+            Iterator[RepositoryDataDict],
+            self._iter_raw_repository_data(),
+        )
+
+    def iter_note_data(self) -> Iterator[NoteDataDict]:
+        """
+        Return an iterator over the raw data for all Note instances in the
+        database.
+
+        :returns: An iterator over the raw data for all Note instances in the
+            database.
+        :rtype: Iterator[NoteDataDict]
+        """
+        return cast(Iterator[NoteDataDict], self._iter_raw_note_data())
+
+    def iter_tag_data(self) -> Iterator[TagDataDict]:
+        """
+        Return an iterator over the raw data for all Tag instances in the
+        database.
+
+        :returns: An iterator over the raw data for all Tag instances in the
+            database.
+        :rtype: Iterator[TagDataDict]
+        """
+        return cast(Iterator[TagDataDict], self._iter_raw_tag_data())
 
 
 # -------------------------------------------------------------------------

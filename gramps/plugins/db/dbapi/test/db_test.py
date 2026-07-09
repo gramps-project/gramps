@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2016      Nick Hall
+# Copyright (C) 2026      Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,6 +46,7 @@ from gramps.gen.lib import (
     Researcher,
     Surname,
 )
+from gramps.gen.lib.json_utils import DataDict, data_to_object
 
 
 # -------------------------------------------------------------------------
@@ -141,39 +143,75 @@ class DbRandomTest(unittest.TestCase):
     #
     ################################################################
 
-    def test_number_of_people(self):
+    def test_get_number_of_people(self):
         self.assertEqual(self.db.get_number_of_people(), len(self.handles["Person"]))
 
-    def test_number_of_families(self):
+    def test_get_number_of_families(self):
         self.assertEqual(self.db.get_number_of_families(), len(self.handles["Family"]))
 
-    def test_number_of_events(self):
+    def test_get_number_of_events(self):
         self.assertEqual(self.db.get_number_of_events(), len(self.handles["Event"]))
 
-    def test_number_of_places(self):
+    def test_get_number_of_places(self):
         self.assertEqual(self.db.get_number_of_places(), len(self.handles["Place"]))
 
-    def test_number_of_repositories(self):
+    def test_get_number_of_repositories(self):
         self.assertEqual(
             self.db.get_number_of_repositories(), len(self.handles["Repository"])
         )
 
-    def test_number_of_sources(self):
+    def test_get_number_of_sources(self):
         self.assertEqual(self.db.get_number_of_sources(), len(self.handles["Source"]))
 
-    def test_number_of_citations(self):
+    def test_get_number_of_citations(self):
         self.assertEqual(
             self.db.get_number_of_citations(), len(self.handles["Citation"])
         )
 
-    def test_number_of_media(self):
+    def test_get_number_of_media(self):
         self.assertEqual(self.db.get_number_of_media(), len(self.handles["Media"]))
 
-    def test_number_of_notes(self):
+    def test_get_number_of_notes(self):
         self.assertEqual(self.db.get_number_of_notes(), len(self.handles["Note"]))
 
-    def test_number_of_tags(self):
+    def test_get_number_of_tags(self):
         self.assertEqual(self.db.get_number_of_tags(), len(self.handles["Tag"]))
+
+    ################################################################
+    #
+    # Test count_* methods
+    #
+    ################################################################
+
+    def test_count_person(self):
+        self.assertEqual(self.db.count_person(), len(self.handles["Person"]))
+
+    def test_count_family(self):
+        self.assertEqual(self.db.count_family(), len(self.handles["Family"]))
+
+    def test_count_event(self):
+        self.assertEqual(self.db.count_event(), len(self.handles["Event"]))
+
+    def test_count_place(self):
+        self.assertEqual(self.db.count_place(), len(self.handles["Place"]))
+
+    def test_count_repository(self):
+        self.assertEqual(self.db.count_repository(), len(self.handles["Repository"]))
+
+    def test_count_source(self):
+        self.assertEqual(self.db.count_source(), len(self.handles["Source"]))
+
+    def test_count_citation(self):
+        self.assertEqual(self.db.count_citation(), len(self.handles["Citation"]))
+
+    def test_count_media(self):
+        self.assertEqual(self.db.count_media(), len(self.handles["Media"]))
+
+    def test_count_note(self):
+        self.assertEqual(self.db.count_note(), len(self.handles["Note"]))
+
+    def test_count_tag(self):
+        self.assertEqual(self.db.count_tag(), len(self.handles["Tag"]))
 
     ################################################################
     #
@@ -423,6 +461,74 @@ class DbRandomTest(unittest.TestCase):
 
     ################################################################
     #
+    # Test get_*_data_from_handle methods
+    #
+    ################################################################
+
+    def __get_data_from_handle_test(self, obj_class, handles_func, get_func):
+        for handle in handles_func():
+            data = get_func(handle)
+            self.assertIsInstance(data, DataDict)
+            obj = data_to_object(data)
+            self.assertIsInstance(obj, obj_class)
+            self.assertEqual(obj.handle, handle)
+
+    def test_get_person_data_from_handle(self):
+        self.__get_data_from_handle_test(
+            Person, self.db.get_person_handles, self.db.get_person_data_from_handle
+        )
+
+    def test_get_family_data_from_handle(self):
+        self.__get_data_from_handle_test(
+            Family, self.db.get_family_handles, self.db.get_family_data_from_handle
+        )
+
+    def test_get_event_data_from_handle(self):
+        self.__get_data_from_handle_test(
+            Event, self.db.get_event_handles, self.db.get_event_data_from_handle
+        )
+
+    def test_get_place_data_from_handle(self):
+        self.__get_data_from_handle_test(
+            Place, self.db.get_place_handles, self.db.get_place_data_from_handle
+        )
+
+    def test_get_repository_data_from_handle(self):
+        self.__get_data_from_handle_test(
+            Repository,
+            self.db.get_repository_handles,
+            self.db.get_repository_data_from_handle,
+        )
+
+    def test_get_source_data_from_handle(self):
+        self.__get_data_from_handle_test(
+            Source, self.db.get_source_handles, self.db.get_source_data_from_handle
+        )
+
+    def test_get_citation_data_from_handle(self):
+        self.__get_data_from_handle_test(
+            Citation,
+            self.db.get_citation_handles,
+            self.db.get_citation_data_from_handle,
+        )
+
+    def test_get_media_data_from_handle(self):
+        self.__get_data_from_handle_test(
+            Media, self.db.get_media_handles, self.db.get_media_data_from_handle
+        )
+
+    def test_get_note_data_from_handle(self):
+        self.__get_data_from_handle_test(
+            Note, self.db.get_note_handles, self.db.get_note_data_from_handle
+        )
+
+    def test_get_tag_data_from_handle(self):
+        self.__get_data_from_handle_test(
+            Tag, self.db.get_tag_handles, self.db.get_tag_data_from_handle
+        )
+
+    ################################################################
+    #
     # Test get_*_from_gramps_id methods
     #
     ################################################################
@@ -488,6 +594,75 @@ class DbRandomTest(unittest.TestCase):
 
     ################################################################
     #
+    # Test get_*_data_from_gramps_id methods
+    #
+    ################################################################
+
+    def __get_data_from_gid_test(self, obj_class, gids_func, get_func):
+        for gid in gids_func():
+            data = get_func(gid)
+            self.assertIsInstance(data, DataDict)
+            obj = data_to_object(data)
+            self.assertIsInstance(obj, obj_class)
+            self.assertEqual(obj.gramps_id, gid)
+
+    def test_get_person_data_from_gid(self):
+        self.__get_data_from_gid_test(
+            Person,
+            self.db.get_person_gramps_ids,
+            self.db.get_person_data_from_gramps_id,
+        )
+
+    def test_get_family_data_from_gid(self):
+        self.__get_data_from_gid_test(
+            Family,
+            self.db.get_family_gramps_ids,
+            self.db.get_family_data_from_gramps_id,
+        )
+
+    def test_get_event_data_from_gid(self):
+        self.__get_data_from_gid_test(
+            Event, self.db.get_event_gramps_ids, self.db.get_event_data_from_gramps_id
+        )
+
+    def test_get_place_data_from_gid(self):
+        self.__get_data_from_gid_test(
+            Place, self.db.get_place_gramps_ids, self.db.get_place_data_from_gramps_id
+        )
+
+    def test_get_repository_data_from_gid(self):
+        self.__get_data_from_gid_test(
+            Repository,
+            self.db.get_repository_gramps_ids,
+            self.db.get_repository_data_from_gramps_id,
+        )
+
+    def test_get_source_data_from_gid(self):
+        self.__get_data_from_gid_test(
+            Source,
+            self.db.get_source_gramps_ids,
+            self.db.get_source_data_from_gramps_id,
+        )
+
+    def test_get_citation_data_from_gid(self):
+        self.__get_data_from_gid_test(
+            Citation,
+            self.db.get_citation_gramps_ids,
+            self.db.get_citation_data_from_gramps_id,
+        )
+
+    def test_get_media_data_from_gid(self):
+        self.__get_data_from_gid_test(
+            Media, self.db.get_media_gramps_ids, self.db.get_media_data_from_gramps_id
+        )
+
+    def test_get_note_data_from_gid(self):
+        self.__get_data_from_gid_test(
+            Note, self.db.get_note_gramps_ids, self.db.get_note_data_from_gramps_id
+        )
+
+    ################################################################
+    #
     # Test has_*_handle methods
     #
     ################################################################
@@ -533,6 +708,51 @@ class DbRandomTest(unittest.TestCase):
 
     ################################################################
     #
+    # Test has_*_from_handle methods
+    #
+    ################################################################
+    def test_has_person_from_handle(self):
+        for handle in self.handles["Person"]:
+            self.assertTrue(self.db.has_person_from_handle(handle))
+
+    def test_has_family_from_handle(self):
+        for handle in self.handles["Family"]:
+            self.assertTrue(self.db.has_family_from_handle(handle))
+
+    def test_has_event_from_handle(self):
+        for handle in self.handles["Event"]:
+            self.assertTrue(self.db.has_event_from_handle(handle))
+
+    def test_has_place_from_handle(self):
+        for handle in self.handles["Place"]:
+            self.assertTrue(self.db.has_place_from_handle(handle))
+
+    def test_has_repository_from_handle(self):
+        for handle in self.handles["Repository"]:
+            self.assertTrue(self.db.has_repository_from_handle(handle))
+
+    def test_has_source_from_handle(self):
+        for handle in self.handles["Source"]:
+            self.assertTrue(self.db.has_source_from_handle(handle))
+
+    def test_has_citation_from_handle(self):
+        for handle in self.handles["Citation"]:
+            self.assertTrue(self.db.has_citation_from_handle(handle))
+
+    def test_has_media_from_handle(self):
+        for handle in self.handles["Media"]:
+            self.assertTrue(self.db.has_media_from_handle(handle))
+
+    def test_has_note_from_handle(self):
+        for handle in self.handles["Note"]:
+            self.assertTrue(self.db.has_note_from_handle(handle))
+
+    def test_has_tag_from_handle(self):
+        for handle in self.handles["Tag"]:
+            self.assertTrue(self.db.has_tag_from_handle(handle))
+
+    ################################################################
+    #
     # Test has_*_gramps_id methods
     #
     ################################################################
@@ -571,6 +791,47 @@ class DbRandomTest(unittest.TestCase):
     def test_has_note_gramps_id(self):
         for gramps_id in self.gids["Note"]:
             self.assertTrue(self.db.has_note_gramps_id(gramps_id))
+
+    ################################################################
+    #
+    # Test has_*_from_gramps_id methods
+    #
+    ################################################################
+    def test_has_person_from_gramps_id(self):
+        for gramps_id in self.gids["Person"]:
+            self.assertTrue(self.db.has_person_from_gramps_id(gramps_id))
+
+    def test_has_family_from_gramps_id(self):
+        for gramps_id in self.gids["Family"]:
+            self.assertTrue(self.db.has_family_from_gramps_id(gramps_id))
+
+    def test_has_event_from_gramps_id(self):
+        for gramps_id in self.gids["Event"]:
+            self.assertTrue(self.db.has_event_from_gramps_id(gramps_id))
+
+    def test_has_place_from_gramps_id(self):
+        for gramps_id in self.gids["Place"]:
+            self.assertTrue(self.db.has_place_from_gramps_id(gramps_id))
+
+    def test_has_repository_from_gramps_id(self):
+        for gramps_id in self.gids["Repository"]:
+            self.assertTrue(self.db.has_repository_from_gramps_id(gramps_id))
+
+    def test_has_source_from_gramps_id(self):
+        for gramps_id in self.gids["Source"]:
+            self.assertTrue(self.db.has_source_from_gramps_id(gramps_id))
+
+    def test_has_citation_from_gramps_id(self):
+        for gramps_id in self.gids["Citation"]:
+            self.assertTrue(self.db.has_citation_from_gramps_id(gramps_id))
+
+    def test_has_media_from_gramps_id(self):
+        for gramps_id in self.gids["Media"]:
+            self.assertTrue(self.db.has_media_from_gramps_id(gramps_id))
+
+    def test_has_note_from_gramps_id(self):
+        for gramps_id in self.gids["Note"]:
+            self.assertTrue(self.db.has_note_from_gramps_id(gramps_id))
 
     ################################################################
     #
@@ -699,6 +960,84 @@ class DbRandomTest(unittest.TestCase):
 
     def test_iter_tags(self):
         self.__iter_objects_test(Tag, self.db.iter_tags)
+
+    ################################################################
+    #
+    # Test iter_*_data methods
+    #
+    ################################################################
+
+    def __iter_data_test(self, obj_class, iter_func):
+        for data in iter_func():
+            self.assertIsInstance(data, DataDict)
+            obj = data_to_object(data)
+            self.assertIsInstance(obj, obj_class)
+            self.assertEqual(obj.handle, data.handle)
+
+    def test_iter_person_data(self):
+        self.__iter_data_test(Person, self.db.iter_person_data)
+
+    def test_iter_family_data(self):
+        self.__iter_data_test(Family, self.db.iter_family_data)
+
+    def test_iter_event_data(self):
+        self.__iter_data_test(Event, self.db.iter_event_data)
+
+    def test_iter_place_data(self):
+        self.__iter_data_test(Place, self.db.iter_place_data)
+
+    def test_iter_repository_data(self):
+        self.__iter_data_test(Repository, self.db.iter_repository_data)
+
+    def test_iter_source_data(self):
+        self.__iter_data_test(Source, self.db.iter_source_data)
+
+    def test_iter_citation_data(self):
+        self.__iter_data_test(Citation, self.db.iter_citation_data)
+
+    def test_iter_media_data(self):
+        self.__iter_data_test(Media, self.db.iter_media_data)
+
+    def test_iter_note_data(self):
+        self.__iter_data_test(Note, self.db.iter_note_data)
+
+    def test_iter_tag_data(self):
+        self.__iter_data_test(Tag, self.db.iter_tag_data)
+
+    ################################################################
+    #
+    # Test iter_* methods
+    #
+    ################################################################
+
+    def test_iter_person(self):
+        self.__iter_objects_test(Person, self.db.iter_person)
+
+    def test_iter_family(self):
+        self.__iter_objects_test(Family, self.db.iter_family)
+
+    def test_iter_event(self):
+        self.__iter_objects_test(Event, self.db.iter_event)
+
+    def test_iter_place(self):
+        self.__iter_objects_test(Place, self.db.iter_place)
+
+    def test_iter_repository(self):
+        self.__iter_objects_test(Repository, self.db.iter_repository)
+
+    def test_iter_source(self):
+        self.__iter_objects_test(Source, self.db.iter_source)
+
+    def test_iter_citation(self):
+        self.__iter_objects_test(Citation, self.db.iter_citation)
+
+    # test_iter_media already tested
+
+    def test_iter_note(self):
+        self.__iter_objects_test(Note, self.db.iter_note)
+
+    def test_iter_tag(self):
+        self.__iter_objects_test(Tag, self.db.iter_tag)
 
     ################################################################
     #

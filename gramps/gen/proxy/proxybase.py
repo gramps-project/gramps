@@ -118,7 +118,7 @@ class ProxyDbBase(DbReadBase):
         self.place_bookmarks = db.place_bookmarks
         self.source_bookmarks = db.source_bookmarks
         self.citation_bookmarks = db.citation_bookmarks
-        self.repo_bookmarks = db.repo_bookmarks
+        self.repository_bookmarks = db.repository_bookmarks
         self.media_bookmarks = db.media_bookmarks
         self.note_bookmarks = db.note_bookmarks
 
@@ -958,9 +958,18 @@ class ProxyDbBase(DbReadBase):
         """returns the list of Media handles in the bookmarks"""
         return self.media_bookmarks
 
-    def get_repo_bookmarks(self):
+    def get_repository_bookmarks(self):
         """returns the list of Repository handles in the bookmarks"""
-        return self.repo_bookmarks
+        return self.repository_bookmarks
+
+    def get_repo_bookmarks(self):
+        """
+        returns the list of Repository handles in the bookmarks
+
+        .. version-deprecated:: 6.2
+        Use :py:meth:`get_repository_bookmarks` instead.
+        """
+        return self.get_repository_bookmarks()
 
     def get_note_bookmarks(self):
         """returns the list of Note handles in the bookmarks"""
