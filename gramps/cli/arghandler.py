@@ -177,6 +177,7 @@ class ArgHandler:
         self.open_gui = parser.open_gui
         self.imp_db_path = None
         self.dbman = CLIDbManager(self.dbstate)
+        self.locked = False
         self.force_unlock = parser.force_unlock
         self.cl_bool = False
         self.imports = []
@@ -225,7 +226,8 @@ class ArgHandler:
             # We have a potential database path.
             # Check if it is good.
             if not self.check_db(db_path, self.force_unlock):
-                sys.exit(1)
+                if not (self.gui and self.locked):
+                    sys.exit(1)
             if create:
                 self.__error(
                     _(
@@ -571,6 +573,7 @@ class ArgHandler:
         if force_unlock:
             self.dbman.break_lock(dbpath)
         if self.dbman.is_locked(dbpath):
+            self.locked = True
             self.__error(
                 (_("Database is locked, cannot open it!") + "\n" + _("  Info: %s"))
                 % find_locker_name(dbpath)
