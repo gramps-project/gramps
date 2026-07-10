@@ -151,9 +151,12 @@ class _DdTargets:
         self.SOURCEREF = _DdType(self, "srcref")
         self.SOURCE_LINK = _DdType(self, "source-link")
         self.SRCATTRIBUTE = _DdType(self, "sattr")
+        self.DNAATTRIBUTE = _DdType(self, "dnaattr")
         self.URL = _DdType(self, "url")
         self.SURNAME = _DdType(self, "surname")
         self.CITATION_LINK = _DdType(self, "citation-link")
+        self.DNATEST_LINK = _DdType(self, "dnatest-link")
+        self.SHAREDANCESTOR = _DdType(self, "sharedancestor")
 
         # List of all types that are used between
         # gramps widgets but should not be exported
@@ -183,9 +186,12 @@ class _DdTargets:
             self.SOURCEREF,
             self.SOURCE_LINK,
             self.SRCATTRIBUTE,
+            self.DNAATTRIBUTE,
             self.URL,
             self.SURNAME,
             self.CITATION_LINK,
+            self.DNATEST_LINK,
+            self.SHAREDANCESTOR,
         ]
 
         self.CHILD = _DdType(self, "child")

@@ -39,6 +39,7 @@ import copy
 # ------------------------------------------------------------------------
 from gramps.gen.db.dbconst import (
     DBLOGNAME,
+    DNAMATCH_KEY,
     KEY_TO_CLASS_MAP,
     KEY_TO_NAME_MAP,
     PERSON_KEY,
@@ -50,6 +51,8 @@ from gramps.gen.db.dbconst import (
 from gramps.gen.db.generic import DbGeneric
 from gramps.gen.lib import (
     Citation,
+    DNAMatch,
+    DNATest,
     Event,
     Family,
     FamilySearchSync,
@@ -220,6 +223,20 @@ class DBAPI(DbGeneric):
             f"{col_data}"
             ")"
         )
+        self.dbapi.execute(
+            "CREATE TABLE dnatest "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE dnamatch "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
         # Secondary:
         self.dbapi.execute(
             "CREATE TABLE reference "
@@ -276,6 +293,8 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX repository_gramps_id ON repository(gramps_id)")
         self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
+        self.dbapi.execute("CREATE INDEX dnatest_gramps_id ON dnatest(gramps_id)")
+        self.dbapi.execute("CREATE INDEX dnamatch_gramps_id ON dnamatch(gramps_id)")
 
         self.dbapi.commit()
 
@@ -361,7 +380,7 @@ class DBAPI(DbGeneric):
             # Now, emit signals:
             # do deletes and adds first
             for trans_type in [TXNDEL, TXNADD, TXNUPD]:
-                for obj_type in range(11):
+                for obj_type in range(DNAMATCH_KEY + 1):
                     if (
                         obj_type != REFERENCE_KEY
                         and (obj_type, trans_type) in transaction
@@ -645,6 +664,22 @@ class DBAPI(DbGeneric):
             )
         else:
             self.dbapi.execute("SELECT handle FROM tag")
+        return [row[0] for row in self.dbapi.fetchall()]
+
+    def get_dnatest_handles(self):
+        """
+        Return a list of database handles, one handle for each DNATest in the
+        database.
+        """
+        self.dbapi.execute("SELECT handle FROM dnatest")
+        return [row[0] for row in self.dbapi.fetchall()]
+
+    def get_dnamatch_handles(self):
+        """
+        Return a list of database handles, one handle for each DNAMatch in the
+        database.
+        """
+        self.dbapi.execute("SELECT handle FROM dnamatch")
         return [row[0] for row in self.dbapi.fetchall()]
 
     def get_tag_from_name(self, name):
@@ -972,6 +1007,8 @@ class DBAPI(DbGeneric):
             "repositories",
             "notes",
             "tags",
+            "dnatests",
+            "dnamatches",
         ):
             total += self.method("get_number_of_%s", tbl)()
         UpdateCallback.__init__(self, callback)
@@ -987,6 +1024,8 @@ class DBAPI(DbGeneric):
             (self.get_repository_cursor, Repository),
             (self.get_note_cursor, Note),
             (self.get_tag_cursor, Tag),
+            (self.get_dnatest_cursor, DNATest),
+            (self.get_dnamatch_cursor, DNAMatch),
         )
         # Now we use the functions and classes defined above
         # to loop through each of the primary object tables.
@@ -1031,6 +1070,8 @@ class DBAPI(DbGeneric):
             "repositories",
             "notes",
             "tags",
+            "dnatests",
+            "dnamatches",
         ):
             total += self.method("get_number_of_%s", tbl)()
         UpdateCallback.__init__(self, callback)
@@ -1049,6 +1090,8 @@ class DBAPI(DbGeneric):
             "Media",
             "Note",
             "Tag",
+            "DNATest",
+            "DNAMatch",
         ):
             for handle in self.method("get_%s_handles", obj_type)():
                 obj = self.method("get_%s_from_handle", obj_type)(handle)
@@ -1201,6 +1244,8 @@ class DBAPI(DbGeneric):
             Media,
             Note,
             Tag,
+            DNATest,
+            DNAMatch,
         ):
             table_name = cls.__name__.lower()
             for field, schema_type, max_length in cls.get_secondary_fields():

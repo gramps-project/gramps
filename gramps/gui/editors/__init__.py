@@ -45,6 +45,11 @@ from .edittaglist import EditTagList
 from .editurl import EditUrl
 from .editlink import EditLink
 from .filtereditor import FilterEditor, EditFilter
+from .editdnatest import EditDNATest
+from .editdnamatch import EditDNAMatch
+from .editdnasegment import EditDNASegment
+from .editsharedancestor import EditSharedAncestor
+from .editpredictedrelationship import EditPredictedRelationship
 from gramps.gen.lib import (
     Person,
     Family,
@@ -55,6 +60,8 @@ from gramps.gen.lib import (
     Citation,
     Media,
     Note,
+    DNATest,
+    DNAMatch,
 )
 
 # Map from gramps.gen.lib name to Editor:
@@ -68,6 +75,8 @@ EDITORS = {
     "Place": EditPlace,
     "Repository": EditRepository,
     "Note": EditNote,
+    "DNATest": EditDNATest,
+    "DNAMatch": EditDNAMatch,
 }
 
 CLASSES = {
@@ -80,6 +89,8 @@ CLASSES = {
     "Place": Place,
     "Repository": Repository,
     "Note": Note,
+    "DNATest": DNATest,
+    "DNAMatch": DNAMatch,
 }
 
 

@@ -458,6 +458,8 @@ class DisplayState(Callback):
         "Repository": _("No active repository"),
         "Media": _("No active media"),
         "Note": _("No active note"),
+        "DNATest": _("No active DNA test"),
+        "DNAMatch": _("No active DNA match"),
     }
 
     BUSY_CURSOR = Gdk.Cursor.new_for_display(

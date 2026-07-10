@@ -673,6 +673,7 @@ gramps/plugins/sidebar/expandersidebar.py
 # plugins/test directory
 #
 gramps/plugins/test/db_undo_and_signals_test.py
+gramps/plugins/test/dna_xml_test.py
 gramps/plugins/test/exports_test.py
 gramps/plugins/test/imports_test.py
 gramps/plugins/test/reports_test.py
