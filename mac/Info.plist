@@ -22,6 +22,10 @@
     <string>????</string>
     <key>CFBundleVersion</key>
     <string>Gramps-6.1.0-req-mod-1</string>
+    <key>CFBundleSupportedPlatforms</key>
+    <array>
+      <string>MacOSX</string>
+    </array>
     <key>NSHumanReadableCopyright</key>
     <string>Copyright 1997 - 2026 The Gramps Team, GNU General Public License.</string>
     <key>LSMinimumSystemVersion</key>
