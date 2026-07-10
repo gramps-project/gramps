@@ -115,7 +115,6 @@ gramps/gen/filters/rules/dnatest/_hasprovider.py
 gramps/gen/filters/rules/dnatest/_hasreferencecountof.py
 gramps/gen/filters/rules/dnatest/_hastesttype.py
 gramps/gen/filters/rules/dnatest/_hastag.py
-gramps/gen/filters/rules/dnatest/_hastesttype.py
 gramps/gen/filters/rules/dnatest/_hasyhaplogroup.py
 gramps/gen/filters/rules/dnatest/_isunidentified.py
 gramps/gen/filters/rules/dnatest/_matchesbothtestsof.py

@@ -40,13 +40,13 @@ class HasSegment(Rule):
         _("Chromosome:"),
         _("Minimum cM:"),
         _("Minimum SNPs:"),
-        _("Phase:"),
+        _("Origin:"),
         _("IBD state:"),
     ]
     name = _("DNA matches with a segment matching the given criteria")
     description = _(
         "Matches DNA matches containing a segment that meets all of the "
-        "given chromosome, cM, SNP, phase and IBD state criteria"
+        "given chromosome, cM, SNP, origin and IBD state criteria"
     )
     category = _("DNA match filters")
 
@@ -62,7 +62,7 @@ class HasSegment(Rule):
 
     def apply_to_one(self, db: Database, dnamatch) -> bool:
         chromosome = self.list[0].upper()
-        phase = self.list[3]
+        origin = self.list[3]
         ibd_state = self.list[4]
         for segment in dnamatch.segment_list:
             if chromosome and segment.chromosome.upper() != chromosome:
@@ -71,7 +71,7 @@ class HasSegment(Rule):
                 continue
             if self._min_snps is not None and segment.snp_count < self._min_snps:
                 continue
-            if phase != "" and segment.phase != int(phase):
+            if origin != "" and segment.origin != int(origin):
                 continue
             if ibd_state != "" and segment.ibd_state != int(ibd_state):
                 continue
