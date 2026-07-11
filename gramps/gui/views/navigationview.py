@@ -38,7 +38,6 @@ _LOG = logging.getLogger(".navigationview")
 # gtk
 #
 # ----------------------------------------------------------------
-from gi.repository import Gdk
 from gi.repository import Gtk
 
 # ----------------------------------------------------------------
@@ -53,7 +52,6 @@ from .pageview import PageView
 from ..uimanager import ActionGroup
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.constfunc import mod_key
-from ..utils import match_primary_mask
 
 DISABLED = -1
 MRU_SIZE = 10
@@ -97,6 +95,25 @@ class NavigationView(PageView):
         created for it, see DisplayState.History
         """
         return None
+
+    @classmethod
+    def get_shortcut_specs(cls):
+        """
+        Return the (action_name, default_accel, label) triples this view
+        type always defines, independent of any live instance. Used to
+        populate the customizable keyboard shortcuts list without needing
+        to build a real view. Keep in sync with bookmark_actions() and
+        navigation_actions().
+        """
+        return super().get_shortcut_specs() + [
+            ("AddBook", "<PRIMARY>d", _("Add Bookmark")),
+            ("EditBook", "<shift><PRIMARY>D", _("Edit Bookmarks")),
+            ("Forward", "%sRight" % mod_key(), _("Go Forward")),
+            ("Back", "%sLeft" % mod_key(), _("Go Back")),
+            ("HomePerson", "%sHome" % mod_key(), _("Go to Home Person")),
+            ("SetActive", "", _("Set as Home Person")),
+            ("CopyToClipboard", "<PRIMARY>c", _("Copy to Clipboard")),
+        ]
 
     def define_actions(self):
         """
@@ -263,11 +280,12 @@ class NavigationView(PageView):
         """
         Define the bookmark menu actions.
         """
+        accels = {name: accel for name, accel, _label in self.get_shortcut_specs()}
         self.book_action = ActionGroup(name=self.title + "/Bookmark")
         self.book_action.add_actions(
             [
-                ("AddBook", self.add_bookmark, "<PRIMARY>d"),
-                ("EditBook", self.edit_bookmarks, "<shift><PRIMARY>D"),
+                ("AddBook", self.add_bookmark, accels["AddBook"]),
+                ("EditBook", self.edit_bookmarks, accels["EditBook"]),
             ]
         )
 
@@ -280,19 +298,20 @@ class NavigationView(PageView):
         """
         Define the navigation menu actions.
         """
+        accels = {name: accel for name, accel, _label in self.get_shortcut_specs()}
+
         # add the Forward action group to handle the Forward button
         self.fwd_action = ActionGroup(name=self.title + "/Forward")
-        self.fwd_action.add_actions(
-            [("Forward", self.fwd_clicked, "%sRight" % mod_key())]
-        )
+        self.fwd_action.add_actions([("Forward", self.fwd_clicked, accels["Forward"])])
 
         # add the Backward action group to handle the Forward button
         self.back_action = ActionGroup(name=self.title + "/Backward")
-        self.back_action.add_actions(
-            [("Back", self.back_clicked, "%sLeft" % mod_key())]
-        )
+        self.back_action.add_actions([("Back", self.back_clicked, accels["Back"])])
 
-        self._add_action("HomePerson", self.home, "%sHome" % mod_key())
+        self._add_action("HomePerson", self.home, accels["HomePerson"])
+        self._add_action(
+            "CopyToClipboard", self.cb_copy_to_clipboard, accels["CopyToClipboard"]
+        )
 
         self.other_action = ActionGroup(name=self.title + "/PersonOther")
         self.other_action.add_actions([("SetActive", self.set_default_person)])
@@ -478,17 +497,6 @@ class NavigationView(PageView):
         the base class. Returns a gtk container widget.
         """
 
-    def key_press_handler(self, widget, event):
-        """
-        Handle the control+c (copy) and control+v (paste), or pass it on.
-        """
-        if self.active:
-            if event.type == Gdk.EventType.KEY_PRESS:
-                if event.keyval == Gdk.KEY_c and match_primary_mask(event.get_state()):
-                    self.call_copy()
-                    return True
-        return super(NavigationView, self).key_press_handler(widget, event)
-
     def button_press_handler(self, widget, event):
         """
         Handle forward and backward buttons, or pass it on.
@@ -502,10 +510,10 @@ class NavigationView(PageView):
                 return True
         return super(NavigationView, self).button_press_handler(widget, event)
 
-    def call_copy(self):
+    def cb_copy_to_clipboard(self, *obj):
         """
-        Navigation specific copy (control+c) hander. If the
-        copy can be handled, it returns true, otherwise false.
+        Navigation specific copy (Ctrl+C) action callback. If the copy can
+        be handled, it returns true, otherwise false.
 
         The code brings up the Clipboard (if already exists) or
         creates it. The copy is handled through the drag and drop

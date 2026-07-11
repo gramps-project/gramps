@@ -51,7 +51,13 @@ from gi.repository import Pango
 # -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.const import USER_DATA, URL_WIKISTRING, URL_MANUAL_PAGE
+from gramps.gen.const import (
+    USER_DATA,
+    URL_WIKISTRING,
+    URL_MANUAL_PAGE,
+    VERSION_DIR,
+    KEYBINDING_THEMES_DIR,
+)
 from gramps.gen.datehandler import get_date_formats
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.name import NameDisplayError
@@ -69,7 +75,7 @@ from gramps.gen.lib import Date, FamilyRelType
 from gramps.gen.lib import Name, Surname, NameOriginType
 from .managedwindow import ManagedWindow
 from .widgets import MarkupLabel, BasicLabel
-from .dialog import ErrorDialog, OkDialog
+from .dialog import ErrorDialog, OkDialog, QuestionDialog2
 from .editors.editplaceformat import EditPlaceFormat
 from .display import display_help
 from gramps.gen.plug.utils import available_updates
@@ -674,6 +680,7 @@ class GrampsPreferences(ConfigureDialog):
         "warnings",
         "researcher",
         PANEL_INTEGRATIONS,
+        "shortcuts",
     )
 
     def __init__(self, uistate, dbstate, initial_panel: str | None = None) -> None:
@@ -690,6 +697,7 @@ class GrampsPreferences(ConfigureDialog):
             self.add_warnings_panel,
             self.add_researcher_panel,
             self.add_integrations_panel,
+            self.add_shortcuts_panel,
         )
         ConfigureDialog.__init__(
             self,
@@ -794,6 +802,323 @@ class GrampsPreferences(ConfigureDialog):
         label.set_margin_top(10)
 
         return _("Researcher"), scroll_window
+
+    def add_shortcuts_panel(self, configdialog):
+        """
+        Add the Keyboard Shortcuts tab to the preferences.
+        """
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        vbox.set_border_width(12)
+
+        search = Gtk.SearchEntry()
+        search.set_placeholder_text(_("Search actions or shortcuts…"))
+        search.connect("search-changed", self.cb_accel_search_changed)
+        vbox.pack_start(search, False, False, 0)
+
+        # columns: group name, action label, shortcut display, action id,
+        # current raw shortcut
+        self.accel_store = Gtk.ListStore(str, str, str, str, str)
+        self._accel_search_text = ""
+        self.accel_filter = self.accel_store.filter_new()
+        self.accel_filter.set_visible_func(self.__accel_row_visible)
+        self.__populate_accel_store()
+
+        accel_tree = Gtk.TreeView(model=self.accel_filter)
+        self.accel_tree = accel_tree
+
+        group_column = Gtk.TreeViewColumn(_("Category"), Gtk.CellRendererText(), text=0)
+        group_column.set_sort_column_id(0)
+        accel_tree.append_column(group_column)
+
+        label_column = Gtk.TreeViewColumn(_("Action"), Gtk.CellRendererText(), text=1)
+        label_column.set_expand(True)
+        accel_tree.append_column(label_column)
+
+        accel_renderer = Gtk.CellRendererAccel()
+        accel_renderer.set_property("editable", True)
+        accel_renderer.set_property("accel-mode", Gtk.CellRendererAccelMode.OTHER)
+        accel_renderer.connect("accel-edited", self.cb_accel_edited)
+        accel_renderer.connect("accel-cleared", self.cb_accel_cleared)
+        accel_column = Gtk.TreeViewColumn(_("Shortcut"), accel_renderer, text=2)
+        accel_tree.append_column(accel_column)
+
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        scroll.set_shadow_type(Gtk.ShadowType.IN)
+        scroll.set_hexpand(True)
+        scroll.set_vexpand(True)
+        scroll.add(accel_tree)
+        vbox.pack_start(scroll, True, True, 0)
+
+        theme_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        theme_box.pack_start(Gtk.Label(label=_("Theme:")), False, False, 0)
+
+        self.theme_combo = Gtk.ComboBoxText()
+        self.__populate_theme_combo()
+        theme_box.pack_start(self.theme_combo, True, True, 0)
+
+        load_button = Gtk.Button.new_with_mnemonic(_("_Load"))
+        load_button.connect("clicked", self.cb_theme_load)
+        theme_box.pack_start(load_button, False, False, 0)
+
+        save_button = Gtk.Button.new_with_mnemonic(_("_Save…"))
+        save_button.connect("clicked", self.cb_theme_save)
+        theme_box.pack_start(save_button, False, False, 0)
+
+        vbox.pack_start(theme_box, False, False, 0)
+
+        button_box = Gtk.ButtonBox(orientation=Gtk.Orientation.HORIZONTAL)
+        button_box.set_layout(Gtk.ButtonBoxStyle.START)
+        button_box.set_spacing(6)
+
+        reset_button = Gtk.Button.new_with_mnemonic(_("_Reset to Default"))
+        reset_button.connect("clicked", self.cb_accel_reset_selected)
+        button_box.add(reset_button)
+
+        reset_all_button = Gtk.Button.new_with_mnemonic(_("Reset _All to Defaults"))
+        reset_all_button.connect("clicked", self.cb_accel_reset_all)
+        button_box.add(reset_all_button)
+
+        vbox.pack_start(button_box, False, False, 0)
+
+        return _("Keyboard Shortcuts"), vbox
+
+    @staticmethod
+    def __accel_display(accel: str) -> str:
+        """Return a human-readable label for a Gtk accelerator string."""
+        if not accel:
+            return ""
+        key, mods = Gtk.accelerator_parse(accel)
+        return Gtk.accelerator_get_label(key, mods) if key else accel
+
+    def __populate_accel_store(self) -> None:
+        """(Re)fill the shortcut table from the running UIManager."""
+        self.accel_store.clear()
+        actions = sorted(
+            self.uistate.uimanager.list_actions(),
+            key=lambda action: (action["group_name"], action["label"]),
+        )
+        for action in actions:
+            accel = action["current_accel"]
+            self.accel_store.append(
+                [
+                    action["group_name"],
+                    action["label"],
+                    self.__accel_display(accel),
+                    action["action_id"],
+                    accel,
+                ]
+            )
+
+    def __refresh_row(self, row_iter: Gtk.TreeIter, action_id: str) -> None:
+        """Sync one row of the shortcut table with the current binding."""
+        accel = self.uistate.uimanager.get_accel(action_id)
+        self.accel_store[row_iter][2] = self.__accel_display(accel)
+        self.accel_store[row_iter][4] = accel
+
+    def __refresh_row_by_action(self, action_id: str) -> None:
+        for row in self.accel_store:
+            if row[3] == action_id:
+                self.__refresh_row(row.iter, action_id)
+                return
+
+    def __save_user_accels(self) -> None:
+        os.makedirs(VERSION_DIR, exist_ok=True)
+        self.uistate.uimanager.save_accels(os.path.join(VERSION_DIR, "gramps.accel"))
+
+    def __accel_row_visible(self, model, row_iter, *_args) -> bool:
+        text = self._accel_search_text
+        if not text:
+            return True
+        return (
+            text in (model[row_iter][0] or "").lower()
+            or text in (model[row_iter][1] or "").lower()
+            or text in (model[row_iter][2] or "").lower()
+        )
+
+    def cb_accel_search_changed(self, entry) -> None:
+        """Filter the shortcut table as the search text changes."""
+        self._accel_search_text = entry.get_text().lower()
+        self.accel_filter.refilter()
+
+    def cb_accel_edited(
+        self, renderer, path, accel_key, accel_mods, hardware_keycode
+    ) -> None:
+        """Apply a newly captured shortcut, handling conflicts."""
+        accel = Gtk.accelerator_name(accel_key, accel_mods)
+        child_path = self.accel_filter.convert_path_to_child_path(
+            Gtk.TreePath.new_from_string(path)
+        )
+        row_iter = self.accel_store.get_iter(child_path)
+        action_id = self.accel_store[row_iter][3]
+        old_accel = self.accel_store[row_iter][4]
+        uimanager = self.uistate.uimanager
+
+        conflicts = uimanager.set_accel(action_id, accel)
+        if conflicts:
+            other_labels = ", ".join(
+                uimanager.get_action_label(other) for other in conflicts
+            )
+            question = QuestionDialog2(
+                _("Shortcut Already in Use"),
+                _(
+                    '"%(accel)s" is already assigned to: %(actions)s.\n'
+                    "Reassign it to this action instead?"
+                )
+                % {"accel": self.__accel_display(accel), "actions": other_labels},
+                _("_Reassign"),
+                _("_Cancel"),
+                self.window,
+            )
+            if not question.run():
+                if old_accel:
+                    uimanager.set_accel(action_id, old_accel)
+                else:
+                    uimanager.clear_accel(action_id)
+                self.__refresh_row(row_iter, action_id)
+                return
+            for other in conflicts:
+                uimanager.clear_accel(other)
+                self.__refresh_row_by_action(other)
+
+        self.__refresh_row(row_iter, action_id)
+        self.__save_user_accels()
+
+    def cb_accel_cleared(self, renderer, path) -> None:
+        """Remove a shortcut."""
+        child_path = self.accel_filter.convert_path_to_child_path(
+            Gtk.TreePath.new_from_string(path)
+        )
+        row_iter = self.accel_store.get_iter(child_path)
+        action_id = self.accel_store[row_iter][3]
+        self.uistate.uimanager.clear_accel(action_id)
+        self.__refresh_row(row_iter, action_id)
+        self.__save_user_accels()
+
+    def cb_accel_reset_selected(self, button) -> None:
+        """Reset the selected action's shortcut to its default."""
+        model, tree_iter = self.accel_tree.get_selection().get_selected()
+        if tree_iter is None:
+            return
+        child_iter = model.convert_iter_to_child_iter(tree_iter)
+        action_id = self.accel_store[child_iter][3]
+        self.uistate.uimanager.reset_accel(action_id)
+        self.__refresh_row(child_iter, action_id)
+        self.__save_user_accels()
+
+    def cb_accel_reset_all(self, button) -> None:
+        """Reset every shortcut back to its default, after confirming."""
+        question = QuestionDialog2(
+            _("Reset All Shortcuts?"),
+            _(
+                "This will discard all of your customized keyboard "
+                "shortcuts and restore the defaults."
+            ),
+            _("_Reset All"),
+            _("_Cancel"),
+            self.window,
+        )
+        if not question.run():
+            return
+        uimanager = self.uistate.uimanager
+        for row in self.accel_store:
+            uimanager.reset_accel(row[3])
+            self.__refresh_row(row.iter, row[3])
+        self.__save_user_accels()
+
+    @staticmethod
+    def __theme_dirs() -> list[str]:
+        """User themes take precedence over same-named bundled ones."""
+        return [os.path.join(VERSION_DIR, "keybinding_themes"), KEYBINDING_THEMES_DIR]
+
+    def __list_themes(self) -> list[str]:
+        """Return every available theme name, bundled and user, deduped."""
+        names: set[str] = set()
+        for theme_dir in self.__theme_dirs():
+            try:
+                filenames = os.listdir(theme_dir)
+            except OSError:
+                continue
+            names.update(f[: -len(".accel")] for f in filenames if f.endswith(".accel"))
+        return sorted(names)
+
+    def __theme_path(self, name: str) -> str | None:
+        """Resolve a theme name to a file, preferring a user theme over a
+        bundled one with the same name."""
+        for theme_dir in self.__theme_dirs():
+            path = os.path.join(theme_dir, f"{name}.accel")
+            if os.path.exists(path):
+                return path
+        return None
+
+    def __populate_theme_combo(self) -> None:
+        self.theme_combo.remove_all()
+        for name in self.__list_themes():
+            self.theme_combo.append_text(name)
+
+    def __ask_theme_name(self) -> str | None:
+        """Prompt for a theme name; return it, or None if cancelled/empty."""
+        dialog = Gtk.Dialog(
+            title=_("Save Keyboard Shortcuts Theme"),
+            transient_for=self.window,
+            modal=True,
+        )
+        dialog.add_buttons(
+            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Save"), Gtk.ResponseType.OK
+        )
+        box = dialog.get_content_area()
+        box.set_border_width(12)
+        box.set_spacing(6)
+        box.add(Gtk.Label(label=_("Theme name:")))
+        entry = Gtk.Entry()
+        entry.set_activates_default(True)
+        box.add(entry)
+        dialog.set_default_response(Gtk.ResponseType.OK)
+        dialog.show_all()
+        try:
+            response = dialog.run()
+            name = entry.get_text().strip()
+        finally:
+            dialog.destroy()
+        if response != Gtk.ResponseType.OK or not name:
+            return None
+        # keep it filesystem-safe -- it becomes "<name>.accel"
+        return "".join(c for c in name if c not in '/\\:*?"<>|')
+
+    def cb_theme_load(self, button) -> None:
+        """Replace the current shortcuts with the selected theme's."""
+        name = self.theme_combo.get_active_text()
+        if not name:
+            return
+        path = self.__theme_path(name)
+        if not path:
+            return
+        try:
+            self.uistate.uimanager.load_accels(path, merge=False)
+        except (OSError, ValueError, SyntaxError) as err:
+            ErrorDialog(_("Could Not Load Theme"), str(err), parent=self.window)
+            return
+        self.__populate_accel_store()
+        self.__save_user_accels()
+
+    def cb_theme_save(self, button) -> None:
+        """Save the current shortcuts as a new named theme."""
+        name = self.__ask_theme_name()
+        if not name:
+            return
+        theme_dir = os.path.join(VERSION_DIR, "keybinding_themes")
+        os.makedirs(theme_dir, exist_ok=True)
+        path = os.path.join(theme_dir, f"{name}.accel")
+        try:
+            self.uistate.uimanager.save_accels(path, only_changed=False)
+        except OSError as err:
+            ErrorDialog(_("Could Not Save Theme"), str(err), parent=self.window)
+            return
+        self.__populate_theme_combo()
+        for indx, theme_name in enumerate(self.__list_themes()):
+            if theme_name == name:
+                self.theme_combo.set_active(indx)
+                break
 
     def add_idformats_panel(self, configdialog):
         """

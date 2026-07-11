@@ -560,8 +560,27 @@ class RelationshipView(NavigationView):
      """,
     ]
 
+    @classmethod
+    def get_shortcut_specs(cls):
+        """
+        Return the (action_name, default_accel, label) triples this view
+        type always defines, independent of any live instance. Used to
+        populate the customizable keyboard shortcuts list without needing
+        to build a real view. Keep in sync with define_actions().
+        """
+        return super().get_shortcut_specs() + [
+            ("Edit", "<PRIMARY>Return", _("Edit")),
+            ("AddSpouse", "", _("Add Spouse")),
+            ("AddParents", "", _("Add Parents")),
+            ("ShareFamily", "", _("Share Existing Family")),
+            ("ChangeOrder", "", _("Change Order")),
+            ("FilterEdit", "", _("Edit Filter")),
+            ("PRIMARY-J", "<PRIMARY>J", _("Go to Gramps ID")),
+        ]
+
     def define_actions(self):
         NavigationView.define_actions(self)
+        accels = {name: accel for name, accel, _label in self.get_shortcut_specs()}
 
         self.order_action = ActionGroup(name=self.title + "/ChangeOrder")
         self.order_action.add_actions([("ChangeOrder", self.reorder)])
@@ -569,7 +588,7 @@ class RelationshipView(NavigationView):
         self.family_action = ActionGroup(name=self.title + "/Family")
         self.family_action.add_actions(
             [
-                ("Edit", self.edit_active, "<PRIMARY>Return"),
+                ("Edit", self.edit_active, accels["Edit"]),
                 ("AddSpouse", self.add_spouse),
                 ("AddParents", self.add_parents),
                 ("ShareFamily", self.select_parents),
@@ -577,7 +596,7 @@ class RelationshipView(NavigationView):
         )
 
         self._add_action("FilterEdit", callback=self.filter_editor)
-        self._add_action("PRIMARY-J", self.jump, "<PRIMARY>J")
+        self._add_action("PRIMARY-J", self.jump, accels["PRIMARY-J"])
 
         self._add_action_group(self.order_action)
         self._add_action_group(self.family_action)
