@@ -271,7 +271,17 @@ class TestAddChild(unittest.TestCase):
 
         with patch.dict(fs_utilities.FS_INDEX_PEOPLE, {}, clear=False):
             with patch.dict(deserialize.Person.index, {}, clear=False):
-                importer.add_child(cpr)
+                with self.assertLogs(
+                    "gramps.gen.fs.fs_import.importer", level="WARNING"
+                ) as cm:
+                    importer.add_child(cpr)
+                self.assertTrue(
+                    any(
+                        "Skipping child relationship with unresolved FS parent(s): ['P1', 'P2']"
+                        in msg
+                        for msg in cm.output
+                    )
+                )
 
         mock_db.add_family.assert_not_called()
 
