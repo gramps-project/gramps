@@ -157,6 +157,7 @@ class TestIsPureWheel(unittest.TestCase):
 #
 # -------------------------------------------------------------------------
 class TestResolvePypiName(unittest.TestCase):
+
     def test_pil_maps_to_pillow(self):
         """PIL (current addon-source import name) maps to Pillow and warns."""
         with self.assertLogs("gramps.gen.utils.pypi", level="WARNING") as cm:
@@ -166,23 +167,44 @@ class TestResolvePypiName(unittest.TestCase):
 
     def test_yaml_maps_to_pyyaml(self):
         """yaml import name maps to PyYAML."""
-        self.assertEqual(resolve_pypi_name("yaml"), "PyYAML")
+        with self.assertLogs("gramps.gen.utils.pypi", level="WARNING") as cm:
+            result = resolve_pypi_name("yaml")
+        self.assertEqual(result, "PyYAML")
+        self.assertTrue(any("yaml" in msg and "PyYAML" in msg for msg in cm.output))
 
     def test_cv2_maps_to_opencv(self):
         """cv2 import name maps to opencv-python."""
-        self.assertEqual(resolve_pypi_name("cv2"), "opencv-python")
+        with self.assertLogs("gramps.gen.utils.pypi", level="WARNING") as cm:
+            result = resolve_pypi_name("cv2")
+        self.assertEqual(result, "opencv-python")
+        self.assertTrue(
+            any("cv2" in msg and "opencv-python" in msg for msg in cm.output)
+        )
 
     def test_bs4_maps_to_beautifulsoup4(self):
         """bs4 import name maps to beautifulsoup4."""
-        self.assertEqual(resolve_pypi_name("bs4"), "beautifulsoup4")
+        with self.assertLogs("gramps.gen.utils.pypi", level="WARNING") as cm:
+            result = resolve_pypi_name("bs4")
+        self.assertEqual(result, "beautifulsoup4")
+        self.assertTrue(
+            any("bs4" in msg and "beautifulsoup4" in msg for msg in cm.output)
+        )
 
     def test_serial_maps_to_pyserial(self):
         """serial import name maps to pyserial (not the unrelated 'serial' package)."""
-        self.assertEqual(resolve_pypi_name("serial"), "pyserial")
+        with self.assertLogs("gramps.gen.utils.pypi", level="WARNING") as cm:
+            result = resolve_pypi_name("serial")
+        self.assertEqual(result, "pyserial")
+        self.assertTrue(any("serial" in msg and "pyserial" in msg for msg in cm.output))
 
     def test_sklearn_maps_to_scikit_learn(self):
         """sklearn stub has no wheels; maps to scikit-learn."""
-        self.assertEqual(resolve_pypi_name("sklearn"), "scikit-learn")
+        with self.assertLogs("gramps.gen.utils.pypi", level="WARNING") as cm:
+            result = resolve_pypi_name("sklearn")
+        self.assertEqual(result, "scikit-learn")
+        self.assertTrue(
+            any("sklearn" in msg and "scikit-learn" in msg for msg in cm.output)
+        )
 
     def test_unknown_name_returned_unchanged_no_warning(self):
         """A name not in the table is returned as-is and emits no warning."""
@@ -319,7 +341,17 @@ class TestCompatibleTags(unittest.TestCase):
                     import gramps.gen.utils.pypi as pypi_mod
 
                     pypi_mod._COMPAT_TAGS = None
-                    py_tags, abi_tags, plat_tags = _compatible_tags()
+                    with self.assertLogs(
+                        "gramps.gen.utils.pypi", level="WARNING"
+                    ) as cm:
+                        py_tags, abi_tags, plat_tags = _compatible_tags()
+                        self.assertTrue(
+                            any(
+                                "Could not determine macOS version from platform.mac_ver(); compiled wheels will not be matched."
+                                in msg
+                                for msg in cm.output
+                            )
+                        )
         # Must not raise; "any" must still be present so pure wheels match.
         self.assertIn("any", plat_tags)
         # No macosx_* tags should be generated when version is unknown.
