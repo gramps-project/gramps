@@ -45,6 +45,7 @@ from ..glade import Glade
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.dbstate import DbState
 from gramps.gen.filters import GenericFilter
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 from gramps.gui.widgets.multitreeview import MultiTreeView
@@ -96,6 +97,7 @@ class BaseSelector(ManagedWindow):
         self.track_ref_for_deletion("renderer")
         self.renderer.set_property("ellipsize", Pango.EllipsizeMode.END)
 
+        self.dbstate: DbState = dbstate
         self.db = dbstate.db
         self.tree = None
         self.model = None
@@ -125,6 +127,8 @@ class BaseSelector(ManagedWindow):
         self.define_help_button(
             self.glade.get_object("help"), self.WIKI_HELP_PAGE, self.WIKI_HELP_SEC
         )
+        self.new_button = self.glade.get_object("newbutton")
+        self.new_button.connect("clicked", self.cb_new_button_clicked)
 
         # connect to signal for custom interactive-search
         self.searchbox = InteractiveSearchBox(self.tree)
@@ -219,8 +223,20 @@ class BaseSelector(ManagedWindow):
             self.columns.append(column)
             tree.append_column(column)
 
-    def build_menu_names(self, obj):
-        return (self.title, None)
+    def build_menu_names(self, obj: object) -> tuple[str, str]:
+        """
+        Return the menu label and submenu label for the Windows menu.
+
+        Returning a non-None submenu label registers this window as a
+        branch in the GrampsWindowManager tree, which allows child
+        windows (such as the editor opened by the 'New' button) to be
+        attached to it.
+
+        :param obj: Unused; required by the ManagedWindow interface.
+        :returns: Tuple of (menu_label, submenu_label).
+        :rtype: tuple[str, str]
+        """
+        return (self.title, self.title)
 
     def get_selected_ids(self):
         mlist = []
@@ -261,6 +277,24 @@ class BaseSelector(ManagedWindow):
 
     def _on_row_activated(self, treeview, path, view_col):
         self.window.response(Gtk.ResponseType.OK)
+
+    def enable_new_button(self) -> None:
+        """
+        Show the 'New' button. Call from ``_local_init()`` in subclasses
+        that want to offer in-place object creation.
+        """
+        self.new_button.show()
+
+    def cb_new_button_clicked(self, obj: Gtk.Button) -> None:
+        """
+        Handle a click on the 'New' button.
+
+        The default implementation is a no-op.  Subclasses should override
+        this to open the appropriate editor for creating a new object.
+
+        :param obj: The 'New' button that was clicked.
+        :type obj: Gtk.Button
+        """
 
     def _local_init(self):
         # define selector-specific init routine
@@ -403,6 +437,7 @@ class BaseSelector(ManagedWindow):
         Finalize rest
         """
         self.clear_model()
+        self.dbstate = None
         self.db = None
         self.tree = None
         self.columns = None
