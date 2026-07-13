@@ -136,6 +136,13 @@ def _generate(output_path):
     for cat_num, cat_views in enumerate(view_manager.views):
         for view_num in range(len(cat_views)):
             view_manager.goto_page(cat_num, view_num)
+            # UIManager.list_actions() only remembers a view's own
+            # label/category the moment it's actually live (see its
+            # label_cache docstring) -- call it now, while this view is
+            # still the active one, so an action whose only view isn't
+            # the last one visited doesn't lose its label/category by the
+            # time save_accels() runs below.
+            view_manager.uimanager.list_actions()
 
     view_manager.uimanager.save_accels(output_path, only_changed=False)
 

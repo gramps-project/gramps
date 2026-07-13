@@ -268,6 +268,10 @@ class UIManager:
         self.accel_dict = {}  # used to store accel overrides from file
         self.default_accels = {}  # hard-coded accel for each action_id
         self.static_registry = {}  # label/category for statically-known actions
+        # label/category last seen for an action whose group is not
+        # currently live (e.g. a different view's own menu action) --
+        # see list_actions() for why this needs to persist.
+        self.label_cache = {}
 
     def update_menu(self, init=False):
         """This updates the menus and toolbar when there is a change in the
@@ -766,11 +770,19 @@ class UIManager:
 
     def _all_known_action_ids(self) -> set[str]:
         """Return every action_id known from static registration, a saved
-        override, a recorded default, or a currently live action group."""
+        override, a recorded default, or a currently live action group.
+
+        Excludes _DYNAMIC_GROUP_NAMES groups: their ids are generated
+        per-open-window (e.g. "win.wm-<window id>") and are not meaningful
+        targets for a customizable shortcut, conflict check, or exported
+        theme entry -- the same reason list_actions() excludes them.
+        """
         ids = (
             set(self.static_registry) | set(self.default_accels) | set(self.accel_dict)
         )
         for group in self.action_groups:
+            if group.name in _DYNAMIC_GROUP_NAMES:
+                continue
             for item in group.actionlist:
                 ids.add(group.prefix + item[ACTION_NAME])
         return ids
@@ -836,8 +848,21 @@ class UIManager:
         return self.accel_dict.get(action_id, self.default_accels.get(action_id, ""))
 
     def list_actions(self) -> list[dict[str, str]]:
-        """Return metadata for every known action -- statically registered
-        or currently live -- for use by a keyboard-shortcut editor.
+        """Return metadata for every known action -- statically registered,
+        currently live, or previously seen live earlier this session -- for
+        use by a keyboard-shortcut editor.
+
+        A view's own menu actions (as opposed to ones registered via
+        register_static_shortcuts) are only "live" -- with a resolvable
+        label and category -- while that view is the one currently showing:
+        switching views tears down the previous view's action groups and
+        menu XML (see ViewManager.__disconnect_previous_page). Without
+        label_cache, an action like a Geography view's "Print..." command
+        would only appear labeled in the editor while that specific view
+        happened to be the one on screen, and would look blank the rest of
+        the time. label_cache remembers the label/category the first time
+        each such action is seen live, so it keeps showing correctly once
+        any view defining it has been visited at all this session.
 
         :returns: one dict per action with keys 'action_id', 'label',
             'group_name', 'current_accel', 'default_accel'
@@ -859,13 +884,28 @@ class UIManager:
                 action_id = group.prefix + item[ACTION_NAME]
                 if action_id in actions:
                     continue
+                label = self.get_action_label(action_id)
+                self.label_cache[action_id] = (label, group.name)
                 actions[action_id] = {
                     "action_id": action_id,
-                    "label": self.get_action_label(action_id),
+                    "label": label,
                     "group_name": group.name,
                     "current_accel": self.get_accel(action_id),
                     "default_accel": self.default_accels.get(action_id, ""),
                 }
+        for action_id in self._all_known_action_ids():
+            if action_id in actions:
+                continue
+            label, group_name = self.label_cache.get(
+                action_id, (action_id.split(".", 1)[-1], "")
+            )
+            actions[action_id] = {
+                "action_id": action_id,
+                "label": label,
+                "group_name": group_name,
+                "current_accel": self.get_accel(action_id),
+                "default_accel": self.default_accels.get(action_id, ""),
+            }
         return list(actions.values())
 
     def check_accel(self, accel: str) -> str:

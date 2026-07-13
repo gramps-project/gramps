@@ -165,6 +165,38 @@ class ListActionsTest(unittest.TestCase):
         actions = {a["action_id"] for a in manager.list_actions()}
         self.assertNotIn("win.wm-12345", actions)
 
+    def test_label_and_category_survive_group_removal(self):
+        """A view's own menu actions are only "live" while that view is
+        showing (switching views removes its action groups and menu XML --
+        see ViewManager.__disconnect_previous_page), so list_actions() must
+        remember a label/category once seen instead of losing it the
+        moment a different view becomes active."""
+        manager = make_manager()
+        # Establish the cache entries while the group is still live.
+        manager.list_actions()
+        for group in list(manager.action_groups):
+            manager.remove_action_group(group)
+
+        actions = {a["action_id"]: a for a in manager.list_actions()}
+        self.assertEqual(actions["win.Clipboard"]["label"], "Clipboard")
+        self.assertEqual(actions["win.Clipboard"]["group_name"], "Main")
+        self.assertEqual(actions["win.Clipboard"]["current_accel"], "<Primary>b")
+        # win.Undo has no menu-XML label at all, even while live -- the
+        # id-derived fallback itself must still survive the same way.
+        self.assertEqual(actions["win.Undo"]["label"], "Undo")
+        self.assertEqual(actions["win.Undo"]["group_name"], "Main")
+
+    def test_window_manager_group_stays_excluded_after_removal(self):
+        """The dynamic-group exclusion must hold even via the persisted-
+        label fallback path, not just while the group is still live."""
+        manager = make_manager()
+        group = ActionGroup("WindowManager", [("wm-12345", None, "")])
+        manager.insert_action_group(group, MagicMock())
+        manager.list_actions()
+        manager.remove_action_group(group)
+        actions = {a["action_id"] for a in manager.list_actions()}
+        self.assertNotIn("win.wm-12345", actions)
+
 
 class MenuActionIdsTest(unittest.TestCase):
     """menu_action_ids reports actions reachable by clicking a menu item,

@@ -85,7 +85,7 @@
 {"id": "win.Export", "label": "Export...", "category": "RO", "accel": "<Primary>e"}
 {"id": "win.ExportTab", "label": "Export View", "category": "Notes", "accel": ""}
 {"id": "win.ExtraPlugins", "label": "Extra Reports/Tools", "category": "FileWindow", "accel": ""}
-{"id": "win.F2", "label": "", "category": "", "accel": "F2"}
+{"id": "win.F2", "label": "F2", "category": "Pedigree", "accel": "F2"}
 {"id": "win.FAQ", "label": "FAQ", "category": "FileWindow", "accel": ""}
 {"id": "win.FamilyAdd", "label": "Family", "category": "RW", "accel": "<Shift><Alt>f"}
 {"id": "win.FilterEdit", "label": "Edit Filter", "category": "Notes", "accel": ""}
@@ -119,7 +119,7 @@
 {"id": "win.PersonAdd", "label": "Person", "category": "RW", "accel": "<Shift><Alt>p"}
 {"id": "win.PlaceAdd", "label": "Place", "category": "RW", "accel": "<Shift><Alt>l"}
 {"id": "win.PluginStatus", "label": "Plugin Manager", "category": "FileWindow", "accel": ""}
-{"id": "win.PrintView", "label": "", "category": "", "accel": "<Primary><Shift>p"}
+{"id": "win.PrintView", "label": "Print...", "category": "2-Way Fan Chart", "accel": "<Primary><Shift>p"}
 {"id": "win.Redo", "label": "Redo", "category": "Redo", "accel": "<Primary><Shift>z"}
 {"id": "win.Remove", "label": "Remove", "category": "Notes", "accel": "<Primary>Delete"}
 {"id": "win.ReportBug", "label": "Report a Bug", "category": "FileWindow", "accel": ""}
