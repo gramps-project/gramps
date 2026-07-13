@@ -22,6 +22,7 @@ A replacement UIManager and ActionGroup.
 """
 
 import copy
+import json
 import os
 import sys
 import logging
@@ -87,11 +88,24 @@ def check_accel(accel: str) -> str:
     if not accel:
         return ""
     accel = _normalize_accel(accel)
-    keyval, mods = Gtk.accelerator_parse(accel)
+    parseable = accel
+    if os.environ.get("GDK_BACKEND") == "-":
+        # Without a real display, Gtk.accelerator_parse() can't resolve a
+        # virtual modifier like <Primary> to a concrete one and silently
+        # drops it instead -- which would make an ordinary "<Primary>c"
+        # look like a bare, unmodified "c" below. Substitute a concrete
+        # stand-in for this validity check only (the accel returned to
+        # the caller is untouched); this only matters for headless test
+        # runs, since a live Gramps process always has a real display for
+        # Gtk to resolve it with.
+        parseable = parseable.replace("<Primary>", "<Control>").replace(
+            "<PRIMARY>", "<Control>"
+        )
+    keyval, mods = Gtk.accelerator_parse(parseable)
     mods &= Gtk.accelerator_get_default_mod_mask()
     if not Gtk.accelerator_valid(keyval, mods):
         return _("Not a valid keyboard shortcut.")
-    if keyval in _NAV_KEYVALS:
+    if mods == 0 and keyval in _NAV_KEYVALS:
         return _("This key is reserved for keyboard navigation.")
     if mods == 0 and keyval not in _SAFE_BARE_KEYVALS:
         return _(
@@ -125,6 +139,20 @@ def _normalize_accel(accel: str) -> str:
     return Gtk.accelerator_name(key, mods) if key else accel
 
 
+def accel_display_label(accel: str) -> str:
+    """Return a human-readable label for a Gtk accelerator string, e.g.
+    '<Primary>c' -> 'Ctrl+C', for display in tooltips and the shortcuts
+    editor.
+
+    :param accel: a Gtk accelerator string, or '' for none
+    :type accel: str
+    """
+    if not accel:
+        return ""
+    key, mods = Gtk.accelerator_parse(accel)
+    return Gtk.accelerator_get_label(key, mods) if key else accel
+
+
 def theme_dirs() -> list[str]:
     """Directories to search for keybinding theme files, in precedence
     order -- user-saved themes take precedence over bundled ones with
@@ -136,7 +164,7 @@ def theme_path(name: str) -> str | None:
     """Resolve a theme name to a file, preferring a user theme over a
     bundled one with the same name."""
     for theme_dir in theme_dirs():
-        path = os.path.join(theme_dir, f"{name}.accel")
+        path = os.path.join(theme_dir, f"{name}.jsonl")
         if os.path.exists(path):
             return path
     return None
@@ -641,35 +669,23 @@ class UIManager:
                         # UIManager yet
                         action.set_enabled(group.sensitive if state else False)
 
-    def dump_all_accels(self):
-        """A function used diagnostically to see what accels are present.
-        This will only dump the current accel set, if other non-open windows
-        or views have accels, you will need to open them and run this again
-        and manually merge the result files.  The results are in a
-        'gramps.accel' file located in the current working directory."""
-        out_dict = {}
-        for group in self.action_groups:
-            for item in group.actionlist:
-                act = group.prefix + item[ACTION_NAME]
-                accels = self.app.get_accels_for_action(
-                    group.prefix + item[ACTION_NAME]
-                )
-                out_dict[act] = accels[0] if accels else ""
-        import json
-
-        with open(
-            "gramps.accel",
-            "w",
-        ) as hndl:
-            accels = json.dumps(out_dict, indent=0).replace('\n"', '\n# "')
-            hndl.write(accels)
-
     def load_accels(self, filename: str, merge: bool = False) -> None:
-        """This function loads accels from a file such as created by
-        save_accels or dump_all_accels.  The file contents is basically a
-        Python dict definition.  As such it contains a line for each dict
-        element.  These elements can be commented out with '#' at the
-        beginning of the line.
+        """Load accels from a JSON Lines file such as one written by
+        save_accels: one JSON object per line, of the form
+        ``{"id": action_id, "label": ..., "category": ..., "accel": ...}``.
+        "label" and "category" are metadata for a human reader (so the
+        file is self-documenting when opened directly in a text editor)
+        and are ignored on load. Blank lines and lines starting with '#'
+        are skipped, so an exported file can be hand-trimmed or annotated.
+
+        A malformed *line* is logged and skipped rather than aborting the
+        whole load: this file is meant to be safely hand-editable, and one
+        typo should not cost every other binding in it. A caller that
+        wants the whole load to be best-effort (e.g. at startup, where a
+        bad keybinding file must never prevent Gramps from launching)
+        should additionally catch OSError around the call; a caller that
+        wants to report a genuinely unreadable file to the user (e.g. the
+        shortcuts editor's theme switcher) can let it propagate.
 
         If used before any insert_action_group calls, this overrides the
         accels defined in other Gramps code.  If used afterwards (e.g. an
@@ -683,14 +699,42 @@ class UIManager:
             replacing them, so a system-level file and a user-level file
             can be layered
         :type merge: bool
+        :raises OSError: if filename can't be opened
         """
-        import ast
+        loaded: dict[str, str] = {}
+        with open(filename, "r", encoding="utf-8") as hndl:
+            lines = hndl.readlines()
 
-        with open(filename, "r") as hndl:
-            loaded = {
-                action_id: _normalize_accel(accel)
-                for action_id, accel in ast.literal_eval(hndl.read()).items()
-            }
+        for line_number, raw_line in enumerate(lines, start=1):
+            line = raw_line.strip()
+            if not line or line.startswith("#"):
+                continue
+            try:
+                entry = json.loads(line)
+                action_id = entry["id"]
+                if not isinstance(action_id, str):
+                    raise TypeError(f"'id' must be a string, got {action_id!r}")
+                accel = _normalize_accel(entry.get("accel", ""))
+            except (json.JSONDecodeError, KeyError, TypeError) as err:
+                LOG.warning(
+                    "load_accels: skipping malformed line %d in %s: %s",
+                    line_number,
+                    filename,
+                    err,
+                )
+                continue
+            reason = check_accel(accel)
+            if reason:
+                LOG.warning(
+                    "load_accels: skipping %r for %s in %s: %s",
+                    accel,
+                    action_id,
+                    filename,
+                    reason,
+                )
+                continue
+            loaded[action_id] = accel
+
         if merge:
             self.accel_dict.update(loaded)
         else:
@@ -895,8 +939,11 @@ class UIManager:
         self.accel_dict.pop(action_id, None)
 
     def save_accels(self, filename: str, only_changed: bool = True) -> None:
-        """Write the current accelerator set to filename, in the same
-        Python-dict-literal format read by load_accels.
+        """Write the current accelerator set to filename, in the same JSON
+        Lines format read by load_accels: one ``{"id", "label",
+        "category", "accel"}`` object per line. "label" and "category" are
+        included purely so the file is self-documenting to a human reader;
+        load_accels ignores them.
 
         :param filename: path to write to
         :type filename: str
@@ -906,18 +953,29 @@ class UIManager:
             known accel (a self-contained file suitable for export/sharing)
         :type only_changed: bool
         """
-        out_dict = {}
         if only_changed:
-            for action_id, accel in self.accel_dict.items():
-                if accel != self.default_accels.get(action_id, ""):
-                    out_dict[action_id] = accel
+            action_ids = [
+                action_id
+                for action_id, accel in self.accel_dict.items()
+                if accel != self.default_accels.get(action_id, "")
+            ]
         else:
-            for action_id in self._all_known_action_ids():
-                out_dict[action_id] = self.get_accel(action_id)
-        import json
-
-        with open(filename, "w") as hndl:
-            hndl.write(json.dumps(out_dict, indent=0))
+            action_ids = sorted(self._all_known_action_ids())
+        meta_by_id = {action["action_id"]: action for action in self.list_actions()}
+        with open(filename, "w", encoding="utf-8") as hndl:
+            for action_id in action_ids:
+                meta = meta_by_id.get(action_id, {})
+                hndl.write(
+                    json.dumps(
+                        {
+                            "id": action_id,
+                            "label": meta.get("label", ""),
+                            "category": meta.get("group_name", ""),
+                            "accel": self.get_accel(action_id),
+                        }
+                    )
+                    + "\n"
+                )
 
 
 INVALID_CHARS = [" ", "_", "(", ")", ",", "'"]

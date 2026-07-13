@@ -1,0 +1,104 @@
+{"id": "app.quit", "label": "", "category": "", "accel": "<Primary>q"}
+{"id": "glade.book.button52", "label": "Add an item to the book", "category": "Book Editor", "accel": "<Primary>a"}
+{"id": "glade.book.button62", "label": "Save current set of configured selections", "category": "Book Editor", "accel": "<Primary>r"}
+{"id": "glade.book.button64", "label": "Manage previously created books", "category": "Book Editor", "accel": "<Primary>s"}
+{"id": "glade.editaddress.date_stat", "label": "Invoke date editor", "category": "Address Editor", "accel": "<Primary>d"}
+{"id": "glade.editaddress.private", "label": "Private", "category": "Address Editor", "accel": "<Primary>p"}
+{"id": "glade.editattribute.private", "label": "Private", "category": "Attribute Editor", "accel": "<Primary>p"}
+{"id": "glade.editchildref.edit", "label": "Open person editor of this child", "category": "Child Reference Editor", "accel": "<Primary>e"}
+{"id": "glade.editchildref.private", "label": "Private", "category": "Child Reference Editor", "accel": "<Primary>p"}
+{"id": "glade.editcitation.date_stat", "label": "Invoke date editor", "category": "Citation Editor", "accel": "<Primary>d"}
+{"id": "glade.editcitation.privacy", "label": "Private", "category": "Citation Editor", "accel": "<Primary>p"}
+{"id": "glade.editdate.newyear", "label": "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")", "category": "Date Editor", "accel": "<Alt>w"}
+{"id": "glade.editevent.add_del_place", "label": "Add a new place", "category": "Event Editor", "accel": "<Primary>a"}
+{"id": "glade.editevent.date_stat", "label": "Invoke date editor", "category": "Event Editor", "accel": "<Primary>d"}
+{"id": "glade.editevent.private", "label": "Private", "category": "Event Editor", "accel": "<Primary>p"}
+{"id": "glade.editevent.select_place", "label": "Place", "category": "Event Editor", "accel": "<Primary>s"}
+{"id": "glade.editeventref.eer_date_stat", "label": "Invoke date editor", "category": "Event Reference Editor", "accel": "<Primary>d"}
+{"id": "glade.editeventref.eer_ref_priv", "label": "Private", "category": "Event Reference Editor", "accel": "<Primary>p"}
+{"id": "glade.editfamily.fbutton_edit", "label": "Edit", "category": "Family Editor", "accel": "<Primary>f"}
+{"id": "glade.editfamily.mbutton_edit", "label": "Edit", "category": "Family Editor", "accel": "<Primary>m"}
+{"id": "glade.editfamily.private", "label": "Indicates if the record is private", "category": "Family Editor", "accel": "<Primary>p"}
+{"id": "glade.editldsord.date_stat", "label": "Invoke date editor", "category": "LDS Ordinance Editor", "accel": "<Primary>d"}
+{"id": "glade.editldsord.parents_select", "label": "Select Family", "category": "LDS Ordinance Editor", "accel": "<Primary>s"}
+{"id": "glade.editldsord.private", "label": "Private", "category": "LDS Ordinance Editor", "accel": "<Primary>p"}
+{"id": "glade.editlink.button1", "label": "Link", "category": "Link Editor", "accel": "<Primary>s"}
+{"id": "glade.editmedia.date_edit", "label": "Invoke date editor", "category": "Media Editor", "accel": "<Primary>d"}
+{"id": "glade.editmedia.private", "label": "Private", "category": "Media Editor", "accel": "<Primary>p"}
+{"id": "glade.editmediaref.date_edit", "label": "Invoke date editor", "category": "Media Reference Editor", "accel": "<Primary>d"}
+{"id": "glade.editmediaref.private", "label": "Private", "category": "Media Reference Editor", "accel": "<Primary>p"}
+{"id": "glade.editname.date_stat", "label": "Invoke date editor", "category": "Name Editor", "accel": "<Primary>d"}
+{"id": "glade.editname.priv", "label": "Private", "category": "Name Editor", "accel": "<Primary>p"}
+{"id": "glade.editnote.private", "label": "Private", "category": "Note Editor", "accel": "<Primary>p"}
+{"id": "glade.editperson.editnamebtn", "label": "Go to Name Editor to add more information about this name", "category": "Person Editor", "accel": "<Primary>e"}
+{"id": "glade.editperson.multsurnamebtn", "label": "Use Multiple Surnames", "category": "Person Editor", "accel": "<Primary>a"}
+{"id": "glade.editperson.private", "label": "Set person as private data", "category": "Person Editor", "accel": "<Primary>p"}
+{"id": "glade.editpersonref.add_del", "label": "Select a person that has an association to the edited person.", "category": "Person Reference Editor", "accel": "<Primary>s"}
+{"id": "glade.editpersonref.private", "label": "Private", "category": "Person Reference Editor", "accel": "<Primary>p"}
+{"id": "glade.editpersonref.select", "label": "Select a person that has an association to the edited person.", "category": "Person Reference Editor", "accel": "<Primary>s"}
+{"id": "glade.editplace.private", "label": "Private", "category": "Place Editor", "accel": "<Primary>p"}
+{"id": "glade.editplacename.date_stat", "label": "Invoke date editor", "category": "Place Name Editor", "accel": "<Primary>d"}
+{"id": "glade.editplaceref.private", "label": "Private", "category": "Place Reference Editor", "accel": "<Primary>p"}
+{"id": "glade.editreporef.private_ref", "label": "Indicates if the record is private", "category": "Repository Reference Editor", "accel": "<Primary>p"}
+{"id": "glade.editrepository.private", "label": "Indicates if the record is private", "category": "Repository Editor", "accel": "<Primary>p"}
+{"id": "glade.editsource.private", "label": "Indicates if the record is private", "category": "Source Editor", "accel": "<Primary>p"}
+{"id": "glade.editurl.priv", "label": "Private", "category": "Internet Address Editor", "accel": "<Primary>p"}
+{"id": "glade.importprogen.imp_citation_priv", "label": "Private", "category": "ProGen Import Assistant", "accel": "<Primary>p"}
+{"id": "glade.importprogen.imp_source_priv", "label": "Private", "category": "ProGen Import Assistant", "accel": "<Primary>p"}
+{"id": "glade.importprogen.tag_default_date_btn", "label": "Invoke date editor", "category": "ProGen Import Assistant", "accel": "<Primary>d"}
+{"id": "glade.notrelated.tagcombo", "label": "tagcombo", "category": "Not Related Tool", "accel": "<Alt>t"}
+{"id": "ste.BOLD", "label": "Bold", "category": "Note Editor", "accel": "<Primary>b"}
+{"id": "ste.ITALIC", "label": "Italic", "category": "Note Editor", "accel": "<Primary>i"}
+{"id": "ste.STRIKETHROUGH", "label": "Strikethrough", "category": "Note Editor", "accel": "<Primary>s"}
+{"id": "ste.STRedo", "label": "Redo", "category": "Note Editor", "accel": "<Primary><Shift>z"}
+{"id": "ste.STUndo", "label": "Undo", "category": "Note Editor", "accel": "<Primary>z"}
+{"id": "ste.SUBSCRIPT", "label": "Subscript", "category": "Note Editor", "accel": "<Primary>r"}
+{"id": "ste.SUPERSCRIPT", "label": "Superscript", "category": "Note Editor", "accel": "<Primary>p"}
+{"id": "ste.UNDERLINE", "label": "Underline", "category": "Note Editor", "accel": "<Primary>u"}
+{"id": "win.Add", "label": "Add", "category": "", "accel": "<Primary>Insert"}
+{"id": "win.AddBook", "label": "Add Bookmark", "category": "", "accel": "<Primary>d"}
+{"id": "win.Back", "label": "Go Back", "category": "", "accel": "<Alt>Left"}
+{"id": "win.Bottombar", "label": "Bottombar", "category": "", "accel": "<Primary><Shift>b"}
+{"id": "win.CitationAdd", "label": "", "category": "", "accel": "<Shift><Alt>c"}
+{"id": "win.Clipboard", "label": "", "category": "", "accel": "<Primary>b"}
+{"id": "win.Close", "label": "", "category": "", "accel": "<Primary>w"}
+{"id": "win.ConfigView", "label": "", "category": "", "accel": "<Primary><Shift>c"}
+{"id": "win.CopyToClipboard", "label": "Copy to Clipboard", "category": "", "accel": "<Primary>c"}
+{"id": "win.Edit", "label": "Edit", "category": "", "accel": "<Primary>Return"}
+{"id": "win.EditBook", "label": "Edit Bookmarks", "category": "", "accel": "<Primary><Shift>d"}
+{"id": "win.EventAdd", "label": "", "category": "", "accel": "<Shift><Alt>e"}
+{"id": "win.Export", "label": "", "category": "", "accel": "<Primary>e"}
+{"id": "win.FamilyAdd", "label": "", "category": "", "accel": "<Shift><Alt>f"}
+{"id": "win.Forward", "label": "Go Forward", "category": "", "accel": "<Alt>Right"}
+{"id": "win.Fullscreen", "label": "", "category": "", "accel": "F11"}
+{"id": "win.HomePerson", "label": "Go to Home Person", "category": "", "accel": "<Alt>Home"}
+{"id": "win.Import", "label": "", "category": "", "accel": "<Primary>i"}
+{"id": "win.Login", "label": "", "category": "", "accel": "<Primary>l"}
+{"id": "win.MediaAdd", "label": "", "category": "", "accel": "<Shift><Alt>m"}
+{"id": "win.Navigator", "label": "", "category": "", "accel": "<Primary>m"}
+{"id": "win.NoteAdd", "label": "", "category": "", "accel": "<Shift><Alt>n"}
+{"id": "win.Open", "label": "", "category": "", "accel": "<Primary>o"}
+{"id": "win.PRIMARY-0", "label": "", "category": "", "accel": "<Primary>0"}
+{"id": "win.PRIMARY-1", "label": "", "category": "", "accel": "<Primary>1"}
+{"id": "win.PRIMARY-2", "label": "", "category": "", "accel": "<Primary>2"}
+{"id": "win.PRIMARY-3", "label": "", "category": "", "accel": "<Primary>3"}
+{"id": "win.PRIMARY-4", "label": "", "category": "", "accel": "<Primary>4"}
+{"id": "win.PRIMARY-5", "label": "", "category": "", "accel": "<Primary>5"}
+{"id": "win.PRIMARY-6", "label": "", "category": "", "accel": "<Primary>6"}
+{"id": "win.PRIMARY-7", "label": "", "category": "", "accel": "<Primary>7"}
+{"id": "win.PRIMARY-8", "label": "", "category": "", "accel": "<Primary>8"}
+{"id": "win.PRIMARY-9", "label": "", "category": "", "accel": "<Primary>9"}
+{"id": "win.PRIMARY-BackSpace", "label": "Remove (Alternate)", "category": "", "accel": "<Primary>BackSpace"}
+{"id": "win.PRIMARY-J", "label": "Go to Gramps ID", "category": "", "accel": "<Primary>j"}
+{"id": "win.PRIMARY-N", "label": "", "category": "", "accel": "<Primary>n"}
+{"id": "win.PRIMARY-P", "label": "", "category": "", "accel": "<Primary>p"}
+{"id": "win.PersonAdd", "label": "", "category": "", "accel": "<Shift><Alt>p"}
+{"id": "win.PlaceAdd", "label": "", "category": "", "accel": "<Shift><Alt>l"}
+{"id": "win.Redo", "label": "", "category": "", "accel": "<Primary><Shift>z"}
+{"id": "win.Remove", "label": "Remove", "category": "", "accel": "<Primary>Delete"}
+{"id": "win.RepositoryAdd", "label": "", "category": "", "accel": "<Shift><Alt>r"}
+{"id": "win.Sidebar", "label": "Sidebar", "category": "", "accel": "<Primary><Shift>r"}
+{"id": "win.SourceAdd", "label": "", "category": "", "accel": "<Shift><Alt>s"}
+{"id": "win.Undo", "label": "", "category": "", "accel": "<Primary>z"}
+{"id": "win.UndoHistory", "label": "", "category": "", "accel": "<Primary>h"}
+{"id": "win.UserManual", "label": "", "category": "", "accel": "F1"}

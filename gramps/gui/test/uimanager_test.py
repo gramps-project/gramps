@@ -26,7 +26,7 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-import ast
+import json
 import os
 import tempfile
 import unittest
@@ -85,6 +85,26 @@ def make_manager():
     )
     manager.insert_action_group(group, MagicMock())
     return manager
+
+
+def _read_jsonl_ids(path):
+    """Return {id: accel} from a JSON Lines accel file, for assertions."""
+    ids = {}
+    with open(path) as hndl:
+        for line in hndl:
+            line = line.strip()
+            if not line:
+                continue
+            entry = json.loads(line)
+            ids[entry["id"]] = entry["accel"]
+    return ids
+
+
+def _write_jsonl(path, entries):
+    """Write a minimal JSON Lines accel file from an {id: accel} dict."""
+    with open(path, "w") as hndl:
+        for action_id, accel in entries.items():
+            hndl.write(json.dumps({"id": action_id, "accel": accel}) + "\n")
 
 
 class NormalizeAccelTest(unittest.TestCase):
@@ -227,6 +247,13 @@ class CheckAccelTest(unittest.TestCase):
     def test_bare_arrow_is_reserved(self):
         self.assertNotEqual(check_accel("Up"), "")
 
+    def test_modified_arrow_is_allowed(self):
+        # Only a bare arrow key conflicts with cursor movement; Gramps'
+        # own "Go Back"/"Go Forward" default shortcuts are <Alt>Left and
+        # <Alt>Right (see navigationview.py), so a modified arrow must
+        # not be rejected as reserved.
+        self.assertEqual(check_accel("<Alt>Left"), "")
+
     def test_bare_function_key_is_allowed(self):
         self.assertEqual(check_accel("F1"), "")
 
@@ -250,28 +277,43 @@ class SaveLoadAccelsTest(unittest.TestCase):
     def test_save_only_changed_omits_untouched_defaults(self):
         manager = make_manager()
         manager.set_accel("win.Clipboard", "<Primary>k")
-        path = self._path("gramps.accel")
+        path = self._path("gramps.jsonl")
+        manager.save_accels(path, only_changed=True)
+        self.assertEqual(_read_jsonl_ids(path), {"win.Clipboard": "<Primary>k"})
+
+    def test_save_writes_one_json_object_per_line(self):
+        manager = make_manager()
+        manager.set_accel("win.Clipboard", "<Primary>k")
+        path = self._path("gramps.jsonl")
         manager.save_accels(path, only_changed=True)
         with open(path) as hndl:
-            data = ast.literal_eval(hndl.read())
-        self.assertEqual(data, {"win.Clipboard": "<Primary>k"})
+            lines = [line for line in hndl if line.strip()]
+        self.assertEqual(len(lines), 1)
+        entry = json.loads(lines[0])
+        self.assertEqual(
+            entry,
+            {
+                "id": "win.Clipboard",
+                "label": "Clipboard",
+                "category": "Main",
+                "accel": "<Primary>k",
+            },
+        )
 
     def test_save_full_dump_includes_every_action(self):
         manager = make_manager()
-        path = self._path("gramps.accel")
+        path = self._path("gramps.jsonl")
         manager.save_accels(path, only_changed=False)
-        with open(path) as hndl:
-            data = ast.literal_eval(hndl.read())
         self.assertEqual(
-            data, {"win.Clipboard": "<Primary>b", "win.Undo": "<Primary>z"}
+            _read_jsonl_ids(path),
+            {"win.Clipboard": "<Primary>b", "win.Undo": "<Primary>z"},
         )
 
     def test_load_accels_replaces_by_default(self):
         manager = make_manager()
         manager.accel_dict = {"win.Undo": "<Primary>y"}
-        path = self._path("gramps.accel")
-        with open(path, "w") as hndl:
-            hndl.write(repr({"win.Clipboard": "<Primary>x"}))
+        path = self._path("gramps.jsonl")
+        _write_jsonl(path, {"win.Clipboard": "<Primary>x"})
         manager.load_accels(path)
         self.assertEqual(manager.accel_dict, {"win.Clipboard": "<Primary>x"})
         self.assertEqual(manager.get_accel("win.Clipboard"), "<Primary>x")
@@ -279,19 +321,54 @@ class SaveLoadAccelsTest(unittest.TestCase):
     def test_load_accels_merge_layers_on_top(self):
         manager = make_manager()
         manager.accel_dict = {"win.Undo": "<Primary>y"}
-        path = self._path("gramps.accel")
-        with open(path, "w") as hndl:
-            hndl.write(repr({"win.Clipboard": "<Primary>x"}))
+        path = self._path("gramps.jsonl")
+        _write_jsonl(path, {"win.Clipboard": "<Primary>x"})
         manager.load_accels(path, merge=True)
         self.assertEqual(
             manager.accel_dict,
             {"win.Undo": "<Primary>y", "win.Clipboard": "<Primary>x"},
         )
 
+    def test_load_accels_skips_blank_and_comment_lines(self):
+        manager = make_manager()
+        path = self._path("gramps.jsonl")
+        with open(path, "w") as hndl:
+            hndl.write("# a hand-written comment\n")
+            hndl.write("\n")
+            hndl.write(json.dumps({"id": "win.Clipboard", "accel": "<Primary>x"}))
+            hndl.write("\n")
+        manager.load_accels(path)
+        self.assertEqual(manager.accel_dict, {"win.Clipboard": "<Primary>x"})
+
+    def test_load_accels_skips_one_malformed_line_but_keeps_the_rest(self):
+        manager = make_manager()
+        path = self._path("gramps.jsonl")
+        with open(path, "w") as hndl:
+            hndl.write("not valid json at all\n")
+            hndl.write(json.dumps({"id": "win.Clipboard", "accel": "<Primary>x"}))
+            hndl.write("\n")
+        manager.load_accels(path)
+        self.assertEqual(manager.accel_dict, {"win.Clipboard": "<Primary>x"})
+
+    def test_load_accels_skips_entry_with_disallowed_accel(self):
+        manager = make_manager()
+        path = self._path("gramps.jsonl")
+        with open(path, "w") as hndl:
+            hndl.write(json.dumps({"id": "win.Clipboard", "accel": "a"}))
+            hndl.write("\n")
+        manager.load_accels(path)
+        self.assertEqual(manager.accel_dict, {})
+
+    def test_load_accels_raises_for_unreadable_file(self):
+        manager = make_manager()
+        path = self._path("does-not-exist.jsonl")
+        with self.assertRaises(OSError):
+            manager.load_accels(path)
+
     def test_save_then_load_round_trip(self):
         manager = make_manager()
         manager.set_accel("win.Clipboard", "<Primary>k")
-        path = self._path("gramps.accel")
+        path = self._path("gramps.jsonl")
         manager.save_accels(path, only_changed=True)
 
         reloaded = make_manager()
@@ -357,10 +434,9 @@ class StaticRegistrationTest(unittest.TestCase):
     def test_save_full_dump_includes_never_live_action(self):
         manager = self._manager_with_static_action()
         with tempfile.TemporaryDirectory() as tmpdir:
-            path = os.path.join(tmpdir, "gramps.accel")
+            path = os.path.join(tmpdir, "gramps.jsonl")
             manager.save_accels(path, only_changed=False)
-            with open(path) as hndl:
-                data = ast.literal_eval(hndl.read())
+            data = _read_jsonl_ids(path)
         self.assertEqual(data["win.Sidebar"], "<shift><PRIMARY>R")
 
     def test_action_with_no_default_accel_is_listed_but_unbound(self):

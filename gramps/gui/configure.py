@@ -73,6 +73,7 @@ from gramps.gen.utils.keyword import (
 from gramps.gen.lib import Date, FamilyRelType
 from gramps.gen.lib import Name, Surname, NameOriginType
 from .managedwindow import ManagedWindow
+from .uimanager import accel_display_label
 from .uimanager import theme_dirs as _theme_dirs
 from .uimanager import theme_path as _resolve_theme_path
 from .widgets import MarkupLabel, BasicLabel
@@ -883,14 +884,6 @@ class GrampsPreferences(ConfigureDialog):
 
         return _("Keyboard Shortcuts"), vbox
 
-    @staticmethod
-    def __accel_display(accel: str) -> str:
-        """Return a human-readable label for a Gtk accelerator string."""
-        if not accel:
-            return ""
-        key, mods = Gtk.accelerator_parse(accel)
-        return Gtk.accelerator_get_label(key, mods) if key else accel
-
     # Internal ActionGroup names are not meant for display; map the ones
     # that show up in the shortcut editor's Category column to something
     # a user can make sense of. Anything not listed here (e.g. per-view
@@ -941,7 +934,7 @@ class GrampsPreferences(ConfigureDialog):
                 [
                     display_category(action),
                     action["label"],
-                    self.__accel_display(accel),
+                    accel_display_label(accel),
                     action["action_id"],
                     accel,
                 ]
@@ -950,7 +943,7 @@ class GrampsPreferences(ConfigureDialog):
     def __refresh_row(self, row_iter: Gtk.TreeIter, action_id: str) -> None:
         """Sync one row of the shortcut table with the current binding."""
         accel = self.uistate.uimanager.get_accel(action_id)
-        self.accel_store[row_iter][2] = self.__accel_display(accel)
+        self.accel_store[row_iter][2] = accel_display_label(accel)
         self.accel_store[row_iter][4] = accel
 
     def __refresh_row_by_action(self, action_id: str) -> None:
@@ -964,7 +957,7 @@ class GrampsPreferences(ConfigureDialog):
         theme_name = config.get("interface.keybinding-theme")
         theme_dir = os.path.join(VERSION_DIR, "keybinding_themes")
         os.makedirs(theme_dir, exist_ok=True)
-        path = os.path.join(theme_dir, f"{theme_name}.accel")
+        path = os.path.join(theme_dir, f"{theme_name}.jsonl")
         self.uistate.uimanager.save_accels(path, only_changed=False)
 
     def __accel_row_visible(self, model, row_iter, *_args) -> bool:
@@ -1000,7 +993,7 @@ class GrampsPreferences(ConfigureDialog):
             ErrorDialog(
                 _("Shortcut Not Allowed"),
                 _('"%(accel)s" cannot be used: %(reason)s')
-                % {"accel": self.__accel_display(accel), "reason": reason},
+                % {"accel": accel_display_label(accel), "reason": reason},
                 parent=self.window,
             )
             self.__refresh_row(row_iter, action_id)
@@ -1017,7 +1010,7 @@ class GrampsPreferences(ConfigureDialog):
                     '"%(accel)s" is already assigned to: %(actions)s.\n'
                     "Reassign it to this action instead?"
                 )
-                % {"accel": self.__accel_display(accel), "actions": other_labels},
+                % {"accel": accel_display_label(accel), "actions": other_labels},
                 _("_Reassign"),
                 _("_Cancel"),
                 self.window,
@@ -1087,7 +1080,7 @@ class GrampsPreferences(ConfigureDialog):
                 filenames = os.listdir(theme_dir)
             except OSError:
                 continue
-            names.update(f[: -len(".accel")] for f in filenames if f.endswith(".accel"))
+            names.update(f[: -len(".jsonl")] for f in filenames if f.endswith(".jsonl"))
         return sorted(names)
 
     def __populate_theme_combo(self) -> None:
@@ -1130,7 +1123,7 @@ class GrampsPreferences(ConfigureDialog):
             dialog.destroy()
         if response != Gtk.ResponseType.OK or not name:
             return None
-        # keep it filesystem-safe -- it becomes "<name>.accel"
+        # keep it filesystem-safe -- it becomes "<name>.jsonl"
         return "".join(c for c in name if c not in '/\\:*?"<>|')
 
     def cb_theme_switch(self, combo) -> None:
@@ -1144,7 +1137,7 @@ class GrampsPreferences(ConfigureDialog):
             return
         try:
             self.uistate.uimanager.load_accels(path, merge=False)
-        except (OSError, ValueError, SyntaxError) as err:
+        except OSError as err:
             ErrorDialog(_("Could Not Load Theme"), str(err), parent=self.window)
             return
         self.__populate_accel_store()
@@ -1159,7 +1152,7 @@ class GrampsPreferences(ConfigureDialog):
             return
         theme_dir = os.path.join(VERSION_DIR, "keybinding_themes")
         os.makedirs(theme_dir, exist_ok=True)
-        path = os.path.join(theme_dir, f"{name}.accel")
+        path = os.path.join(theme_dir, f"{name}.jsonl")
         try:
             self.uistate.uimanager.save_accels(path, only_changed=False)
         except OSError as err:

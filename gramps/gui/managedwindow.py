@@ -52,13 +52,15 @@ from gi.repository import Gdk
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.const import GLADE_FILE, ICON
+from gramps.gen.const import GLADE_FILE, ICON, GRAMPS_LOCALE as glocale
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
-from .uimanager import ActionGroup, valid_action_name
+from .uimanager import ActionGroup, accel_display_label, valid_action_name
 from .utils import get_display_size
 from .glade import Glade
+
+_ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
@@ -523,52 +525,7 @@ class ManagedWindow:
         # together, allows shared menu/action lookups).
         if self.uistate:
             self.window.set_application(self.uistate.uimanager.app)
-
-            # Wire the global "Accept Dialog (OK)" / "Cancel Dialog"
-            # shortcuts directly to this window's own accelerator group.
-            # GtkApplication's automatic accelerator-to-action routing only
-            # applies to genuine GtkApplicationWindow instances -- a plain
-            # Gtk.Dialog never receives it, even once associated with the
-            # application via set_application() above -- so the keypress
-            # is caught here instead and turned into the same response()
-            # call a click on the dialog's own OK/Cancel button would emit.
-            uimanager = self.uistate.uimanager
-            accel_group = Gtk.AccelGroup()
-            self.window.add_accel_group(accel_group)
-            for action_name, response_id in (
-                ("dialog-ok", Gtk.ResponseType.OK),
-                ("dialog-cancel", Gtk.ResponseType.CANCEL),
-            ):
-                accel = uimanager.get_accel(f"app.{action_name}")
-                if not accel:
-                    continue
-                key, mods = Gtk.accelerator_parse(accel)
-                if not key:
-                    _LOG.debug(
-                        "ManagedWindow: could not parse accel %r for %s",
-                        accel,
-                        action_name,
-                    )
-                    continue
-
-                def cb_dialog_response(*_args, response_id=response_id):
-                    if isinstance(self.window, Gtk.Dialog):
-                        # Most Gramps editors wire their save/cancel logic to
-                        # the button's own "clicked" signal rather than the
-                        # dialog's "response" signal, so emitting response()
-                        # directly would be a no-op. Look up the actual
-                        # button registered for this response code (from the
-                        # glade <action-widgets>) and click it for real.
-                        widget = self.window.get_widget_for_response(response_id)
-                        if widget is not None:
-                            widget.clicked()
-                        else:
-                            self.window.response(response_id)
-                    return True
-
-                accel_group.connect(
-                    key, mods, Gtk.AccelFlags.VISIBLE, cb_dialog_response
-                )
+            self._wire_dialog_accels()
 
         if self.modal:
             self.window.set_modal(True)
@@ -580,6 +537,80 @@ class ManagedWindow:
             self.other_modal_window.set_modal(False)
             self.window.set_modal(True)
             self.modal = True
+
+    def _wire_dialog_accels(self):
+        """
+        Wire the "Accept Dialog (OK)" / "Cancel Dialog" shortcuts for this
+        window, respecting per-user customization.
+
+        GtkApplication's automatic accelerator-to-action routing only
+        applies to genuine GtkApplicationWindow instances -- a plain
+        Gtk.Dialog never receives it, even once associated with the
+        application via set_application() -- so each dialog gets its own
+        Gtk.AccelGroup here instead.
+
+        When the current shortcut still matches the shipped default, the
+        button's own glade-defined mnemonic (e.g. "_OK") already handles
+        both activation and the Alt-hold underline, so nothing further is
+        needed. Once the user customizes (or clears) the shortcut, that
+        mnemonic no longer reflects reality: the mnemonic is stripped from
+        the button's label, the real key is bound with
+        Gtk.Widget.add_accelerator() -- so assistive technology still sees
+        an actual widget-level binding, unlike a bare AccelGroup callback
+        -- and the current shortcut is shown as a tooltip instead. (An
+        arbitrary user-chosen key, e.g. F9, cannot be represented as an
+        underlined letter in a translated "OK"/"Cancel" label at all, so a
+        tooltip is the only affordance that works for every binding.)
+        """
+        if not isinstance(self.window, Gtk.Dialog):
+            return
+        uimanager = self.uistate.uimanager
+        accel_group = Gtk.AccelGroup()
+        self.window.add_accel_group(accel_group)
+        for action_name, response_id in (
+            ("dialog-ok", Gtk.ResponseType.OK),
+            ("dialog-cancel", Gtk.ResponseType.CANCEL),
+        ):
+            action_id = f"app.{action_name}"
+            accel = uimanager.get_accel(action_id)
+            if accel == uimanager.default_accels.get(action_id, ""):
+                continue
+
+            widget = self.window.get_widget_for_response(response_id)
+            if widget is not None:
+                label = widget.get_label()
+                if label:
+                    widget.set_label(label.replace("_", "", 1))
+                widget.set_tooltip_text(
+                    _("Shortcut: %s") % accel_display_label(accel) if accel else None
+                )
+
+            if not accel:
+                continue
+            key, mods = Gtk.accelerator_parse(accel)
+            if not key:
+                _LOG.debug(
+                    "ManagedWindow: could not parse accel %r for %s",
+                    accel,
+                    action_name,
+                )
+                continue
+
+            if widget is not None:
+                widget.add_accelerator(
+                    "clicked", accel_group, key, mods, Gtk.AccelFlags.VISIBLE
+                )
+            else:
+                # No button registered for this response (e.g. no <action-
+                # widgets> entry) -- fall back to driving the dialog's
+                # response directly.
+                def cb_dialog_response(*_args, response_id=response_id):
+                    self.window.response(response_id)
+                    return True
+
+                accel_group.connect(
+                    key, mods, Gtk.AccelFlags.VISIBLE, cb_dialog_response
+                )
 
     def get_window(self):
         """

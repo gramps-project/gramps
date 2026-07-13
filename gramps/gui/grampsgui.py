@@ -721,11 +721,18 @@ class GrampsApplication(Gtk.Application):
             self.uimanager.show_groups = ["OSX"]
         self.uimanager.update_menu(init=True)
 
-        if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
-            self.uimanager.load_accels(os.path.join(DATA_DIR, "gramps.accel"))
-        active_theme = theme_path(config.get("interface.keybinding-theme"))
-        if active_theme:
-            self.uimanager.load_accels(active_theme, merge=True)
+        # load_accels() already tolerates a malformed *line* on its own
+        # (see its docstring), but still raises OSError for a file it
+        # can't open at all, and startup must never fail just because a
+        # hand-edited keybinding file is missing or unreadable.
+        try:
+            if os.path.exists(os.path.join(DATA_DIR, "gramps.jsonl")):
+                self.uimanager.load_accels(os.path.join(DATA_DIR, "gramps.jsonl"))
+            active_theme = theme_path(config.get("interface.keybinding-theme"))
+            if active_theme:
+                self.uimanager.load_accels(active_theme, merge=True)
+        except Exception:
+            LOG.exception("Failed to load keyboard shortcut overrides")
         try:
             from .dialog import ErrorDialog
 

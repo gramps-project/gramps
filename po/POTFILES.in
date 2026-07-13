@@ -562,6 +562,7 @@ gramps/gui/grampsgui.py
 gramps/gui/logger/_errorreportassistant.py
 gramps/gui/logger/_errorview.py
 gramps/gui/makefilter.py
+gramps/gui/managedwindow.py
 gramps/gui/merge/mergecitation.py
 gramps/gui/merge/mergeevent.py
 gramps/gui/merge/mergefamily.py
@@ -600,6 +601,7 @@ gramps/gui/selectors/selectrepository.py
 gramps/gui/selectors/selectsource.py
 gramps/gui/spell.py
 gramps/gui/tipofday.py
+gramps/gui/uimanager.py
 gramps/gui/undohistory.py
 gramps/gui/utils.py
 gramps/gui/viewmanager.py

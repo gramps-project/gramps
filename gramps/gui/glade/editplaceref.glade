@@ -35,7 +35,7 @@
             </child>
             <child>
               <object class="GtkButton" id="cancel">
-                <property name="label" translatable="yes">Cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
@@ -50,7 +50,7 @@
             </child>
             <child>
               <object class="GtkButton" id="ok">
-                <property name="label" translatable="yes">OK</property>
+                <property name="label" translatable="yes">_OK</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
