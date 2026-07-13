@@ -4,6 +4,7 @@
 # Copyright (C) 2020-2026 Gramps Development Team
 # Copyright (C) 2020      Paul Culley
 # Copyright (C) 2024      Doug Blank
+# Copyright (C) 2025-2026 Steve Youngs
 # Copyright (C) 2026      Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
@@ -37,8 +38,18 @@ import logging
 #
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
+from gramps.gen.db import DbTxn
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
-from gramps.gen.lib import EventType, FamilySearchSync, NameOriginType, Tag, MarkerType
+from gramps.gen.lib import (
+    EventRoleType,
+    EventType,
+    Family,
+    FamilySearchSync,
+    NameOriginType,
+    Person,
+    Tag,
+    MarkerType,
+)
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
 from gramps.gui.dialog import InfoDialog
@@ -60,6 +71,62 @@ from .conversion_tools import convert_21
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(".upgrade")
+
+
+def gramps_upgrade_23(db):
+    """
+    Coalesce custom event role types in to built-in role types
+    """
+
+    def update_event_ref_list(
+        person_or_family: Person | Family, duplicate_roles: set[str]
+    ) -> bool:
+        modified = False
+        for event_ref in person_or_family.event_ref_list:
+            event_role = event_ref.get_role()
+            # only update custom event roles which have the same name as one of the duplicate event role names
+            if (event_role.value == EventRoleType.CUSTOM) and (
+                event_role.string in duplicate_roles
+            ):
+                event_ref.set_role(event_role.string)
+                modified = True
+        return modified
+
+    # Searches for duplicated event role names
+    #
+    # Note: Locale sensitivity — this routine matches custom event role strings against the results of
+    # EventRoleType().get_standard_names(), which returns localized display strings. If a database contains
+    # custom role names entered under a different locale than the one in effect when this repair runs, exact
+    # matches may not be found and those custom roles will not be coalesced. Improving this would require
+    # matching against locale-independent identifiers or performing additional normalization/mapping; for now,
+    # this is a known limitation.
+    custom_roles = set(db.get_event_roles())
+    standard_roles = set(EventRoleType().get_standard_names())
+    duplicate_roles = standard_roles.intersection(custom_roles)
+    with DbTxn("Update to schema 23", db) as transaction:
+        if duplicate_roles:
+            # there are some custom roles which duplicate standard roles.
+            # it is not guaranteed that the duplicate custom roles are actually used by any EventRefs
+
+            # loop over all people and coalesce duplicate custom event role names
+            for person in db.iter_people():
+                if update_event_ref_list(person, duplicate_roles):
+                    db._commit_base(person, PERSON_KEY, transaction, None)
+                    db.update()
+
+            # loop over all families and coalesce duplicate custom event role names
+            for family in db.iter_families():
+                if update_event_ref_list(family, duplicate_roles):
+                    db._commit_base(family, FAMILY_KEY, transaction, None)
+                    db.update()
+
+            # finally delete the, now unused, duplicate custom role names
+            event_role_names = getattr(db, "event_role_names", None)
+            if event_role_names is not None:
+                for role_name in duplicate_roles:
+                    event_role_names.discard(role_name)
+
+        db._set_metadata("version", 23, use_txn=False)
 
 
 def _default_familysearch_sync_json_22():

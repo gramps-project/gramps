@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2026-03-29" version="AIO64-5.2.4-r1-1f16a69"/>
+    <researcher>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_10244803069b4da10dbcf0155316" change="1774815225" id="E0002">
+      <type>Birth</type>
+    </event>
+    <event handle="_1024480498a5bf0d5b912f535d9" change="1774814488" id="E0001">
+      <type>Marriage</type>
+    </event>
+  </events>
+  <people>
+    <person handle="_10244800c8436c7c90191cadb6db" change="1774814475" id="I0000">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Given</first>
+        <surname>Surname</surname>
+      </name>
+      <eventref hlink="_10244803069b4da10dbcf0155316" role="Father"/>
+      <parentin hlink="_1024480084506485fb2d96b3b179"/>
+    </person>
+  </people>
+  <families>
+    <family handle="_1024480084506485fb2d96b3b179" change="1774801314" id="F0000">
+      <rel type="Unknown"/>
+      <father hlink="_10244800c8436c7c90191cadb6db"/>
+      <eventref hlink="_1024480498a5bf0d5b912f535d9" role="Father"/>
+    </family>
+  </families>
+</database>
