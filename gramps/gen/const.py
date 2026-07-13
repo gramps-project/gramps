@@ -208,6 +208,7 @@ USE_TIPS = False
 # -------------------------------------------------------------------------
 _resources = ResourcePath()
 DATA_DIR = _resources.data_dir
+DOC_DIR = _resources.doc_dir
 IMAGE_DIR = _resources.image_dir
 
 TIP_DATA = os.path.join(DATA_DIR, "tips.xml")
@@ -242,6 +243,7 @@ ENV = {
     "PLUGINS_DIR": PLUGINS_DIR,
     "DATA_DIR": DATA_DIR,
     "IMAGE_DIR": IMAGE_DIR,
+    "GRAMPS_RESOURCES": os.path.dirname(os.path.dirname(DOC_DIR)),
 }
 
 # -------------------------------------------------------------------------
