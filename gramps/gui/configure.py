@@ -891,18 +891,55 @@ class GrampsPreferences(ConfigureDialog):
         key, mods = Gtk.accelerator_parse(accel)
         return Gtk.accelerator_get_label(key, mods) if key else accel
 
+    # Internal ActionGroup names are not meant for display; map the ones
+    # that show up in the shortcut editor's Category column to something
+    # a user can make sense of. Anything not listed here (e.g. per-view
+    # group names) is already a readable label and is shown as-is.
+    _CATEGORY_DISPLAY_NAMES = {
+        "RO": _("General (available without an editable tree)"),
+        "RW": _("General (requires an editable tree)"),
+        "FS": _("FamilySearch"),
+        "FileWindow": _("File"),
+        "Undo": _("Undo"),
+        "Redo": _("Redo"),
+        "AppActions": _("Application"),
+        "RecentFiles": _("Recent Files"),
+        "Bookmarks": _("Bookmarks"),
+        "Tag": _("Tags"),
+        "viewmenu": _("View switching"),
+        "AtPopupActions": _("Context menu"),
+        "Format": _("Text formatting"),
+    }
+
+    @classmethod
+    def __category_display(cls, group_name: str) -> str:
+        """Return a human-readable Category label for an action group name."""
+        return cls._CATEGORY_DISPLAY_NAMES.get(group_name, group_name)
+
     def __populate_accel_store(self) -> None:
         """(Re)fill the shortcut table from the running UIManager."""
         self.accel_store.clear()
-        actions = sorted(
-            self.uistate.uimanager.list_actions(),
-            key=lambda action: (action["group_name"], action["label"]),
-        )
+        uimanager = self.uistate.uimanager
+        actions = uimanager.list_actions()
+        menu_action_ids = uimanager.menu_action_ids()
+        categories_with_menu = {
+            self.__category_display(action["group_name"])
+            for action in actions
+            if action["action_id"] in menu_action_ids
+        }
+
+        def display_category(action: dict[str, str]) -> str:
+            category = self.__category_display(action["group_name"])
+            if category in categories_with_menu:
+                return _("%s (menu)") % category
+            return category
+
+        actions.sort(key=lambda action: (display_category(action), action["label"]))
         for action in actions:
             accel = action["current_accel"]
             self.accel_store.append(
                 [
-                    action["group_name"],
+                    display_category(action),
                     action["label"],
                     self.__accel_display(accel),
                     action["action_id"],
@@ -953,6 +990,17 @@ class GrampsPreferences(ConfigureDialog):
         action_id = self.accel_store[row_iter][3]
         old_accel = self.accel_store[row_iter][4]
         uimanager = self.uistate.uimanager
+
+        reason = uimanager.check_accel(accel)
+        if reason:
+            ErrorDialog(
+                _("Shortcut Not Allowed"),
+                _('"%(accel)s" cannot be used: %(reason)s')
+                % {"accel": self.__accel_display(accel), "reason": reason},
+                parent=self.window,
+            )
+            self.__refresh_row(row_iter, action_id)
+            return
 
         conflicts = uimanager.set_accel(action_id, accel)
         if conflicts:

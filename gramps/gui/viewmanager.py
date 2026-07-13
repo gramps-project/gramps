@@ -854,6 +854,15 @@ class ViewManager(CLIManager):
             StyledTextEditor.get_shortcut_specs(), _("Note Editor"), prefix="ste"
         )
 
+        self.uimanager.register_static_shortcuts(
+            [
+                ("dialog-ok", "<Alt>o", _("Accept Dialog (OK)")),
+                ("dialog-cancel", "<Alt>c", _("Cancel Dialog")),
+            ],
+            _("Dialogs"),
+            prefix="app",
+        )
+
         self.__register_glade_shortcuts()
 
     def __register_glade_shortcuts(self):

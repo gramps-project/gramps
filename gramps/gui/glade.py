@@ -83,12 +83,14 @@ def _glade_modifiers_to_prefix(modifiers):
 
 def _find_glade_label(obj):
     """Find a human-readable label for a glade <object>: prefer its
-    tooltip_text property, fall back to its accessible-name.
+    tooltip-text property, fall back to its accessible-name. Only the
+    first line is used, since some tooltips add further explanation on
+    subsequent lines.
     """
-    for name in ("tooltip_text", "AtkObject::accessible-name"):
+    for name in ("tooltip-text", "AtkObject::accessible-name"):
         prop = obj.find('.//property[@name="%s"]' % name)
         if prop is not None and prop.text:
-            return prop.text
+            return prop.text.split("\n", 1)[0]
     return None
 
 

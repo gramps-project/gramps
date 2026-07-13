@@ -64,13 +64,20 @@ SAMPLE_XML = """<object id="mybutton" class="GtkButton">
 """
 
 SAMPLE_XML_TOOLTIP = """<object id="datebtn" class="GtkButton">
-  <property name="tooltip_text" translatable="yes">Invoke date editor</property>
+  <property name="tooltip-text" translatable="yes">Invoke date editor</property>
   <child internal-child="accessible">
     <object class="AtkObject">
       <property name="AtkObject::accessible-name" translatable="yes">Date</property>
     </object>
   </child>
   <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+</object>
+"""
+
+SAMPLE_XML_MULTILINE_TOOLTIP = """<object id="multsurnamebtn" class="GtkButton">
+  <property name="tooltip-text" translatable="yes">Use Multiple Surnames
+Indicate that the surname consists of different parts.</property>
+  <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
 </object>
 """
 
@@ -132,6 +139,12 @@ class IterGladeAcceleratorsTest(unittest.TestCase):
     def test_prefers_tooltip_over_accessible_name(self):
         results = list(iter_glade_accelerators(SAMPLE_XML_TOOLTIP))
         self.assertEqual(results, [("datebtn", "<Primary>d", "Invoke date editor")])
+
+    def test_multiline_tooltip_uses_first_line_only(self):
+        results = list(iter_glade_accelerators(SAMPLE_XML_MULTILINE_TOOLTIP))
+        self.assertEqual(
+            results, [("multsurnamebtn", "<Primary>a", "Use Multiple Surnames")]
+        )
 
     def test_falls_back_to_object_id_when_no_label(self):
         results = list(iter_glade_accelerators(SAMPLE_XML_NO_LABEL))

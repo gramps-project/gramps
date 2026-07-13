@@ -119,7 +119,7 @@ class GrampsWindowManager:
         self.uimanager = uimanager
         self.window_tree = []
         self.id2item = {}
-        self.action_group = ActionGroup(name="WindowManger")
+        self.action_group = ActionGroup(name="WindowManager")
         self.active = DISABLED
         self.ui = _win_top + _win_btm
 
@@ -335,7 +335,7 @@ class GrampsWindowManager:
             self.uimanager.remove_ui(self.active)
             self.uimanager.remove_action_group(self.action_group)
 
-        self.action_group = ActionGroup(name="WindowManger")
+        self.action_group = ActionGroup(name="WindowManager")
         action_data = []
 
         data = StringIO()
@@ -518,6 +518,57 @@ class ManagedWindow:
             self.window.set_mnemonic_modifier(
                 Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK
             )
+
+        # Associate this window with the application (keeps it alive
+        # together, allows shared menu/action lookups).
+        if self.uistate:
+            self.window.set_application(self.uistate.uimanager.app)
+
+            # Wire the global "Accept Dialog (OK)" / "Cancel Dialog"
+            # shortcuts directly to this window's own accelerator group.
+            # GtkApplication's automatic accelerator-to-action routing only
+            # applies to genuine GtkApplicationWindow instances -- a plain
+            # Gtk.Dialog never receives it, even once associated with the
+            # application via set_application() above -- so the keypress
+            # is caught here instead and turned into the same response()
+            # call a click on the dialog's own OK/Cancel button would emit.
+            uimanager = self.uistate.uimanager
+            accel_group = Gtk.AccelGroup()
+            self.window.add_accel_group(accel_group)
+            for action_name, response_id in (
+                ("dialog-ok", Gtk.ResponseType.OK),
+                ("dialog-cancel", Gtk.ResponseType.CANCEL),
+            ):
+                accel = uimanager.get_accel(f"app.{action_name}")
+                if not accel:
+                    continue
+                key, mods = Gtk.accelerator_parse(accel)
+                if not key:
+                    _LOG.debug(
+                        "ManagedWindow: could not parse accel %r for %s",
+                        accel,
+                        action_name,
+                    )
+                    continue
+
+                def cb_dialog_response(*_args, response_id=response_id):
+                    if isinstance(self.window, Gtk.Dialog):
+                        # Most Gramps editors wire their save/cancel logic to
+                        # the button's own "clicked" signal rather than the
+                        # dialog's "response" signal, so emitting response()
+                        # directly would be a no-op. Look up the actual
+                        # button registered for this response code (from the
+                        # glade <action-widgets>) and click it for real.
+                        widget = self.window.get_widget_for_response(response_id)
+                        if widget is not None:
+                            widget.clicked()
+                        else:
+                            self.window.response(response_id)
+                    return True
+
+                accel_group.connect(
+                    key, mods, Gtk.AccelFlags.VISIBLE, cb_dialog_response
+                )
 
         if self.modal:
             self.window.set_modal(True)

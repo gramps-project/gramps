@@ -44,7 +44,7 @@ gi.require_version("Gtk", "3.0")
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.gui.uimanager import ActionGroup, UIManager, _normalize_accel
+from gramps.gui.uimanager import ActionGroup, UIManager, _normalize_accel, check_accel
 
 SAMPLE_XML = """<?xml version="1.0" encoding="UTF-8"?>
 <interface>
@@ -134,6 +134,30 @@ class ListActionsTest(unittest.TestCase):
         self.assertEqual(actions["win.Clipboard"]["default_accel"], "<Primary>b")
         self.assertEqual(actions["win.Clipboard"]["group_name"], "Main")
 
+    def test_window_manager_group_is_excluded(self):
+        """The WindowManager group holds per-open-window switcher actions
+        (generate_id() in managedwindow.py keys them off the window's
+        instance id), so they are not stable, listable commands and must
+        not clutter the shortcut editor."""
+        manager = make_manager()
+        group = ActionGroup("WindowManager", [("wm-12345", None, "")])
+        manager.insert_action_group(group, MagicMock())
+        actions = {a["action_id"] for a in manager.list_actions()}
+        self.assertNotIn("win.wm-12345", actions)
+
+
+class MenuActionIdsTest(unittest.TestCase):
+    """menu_action_ids reports actions reachable by clicking a menu item,
+    as opposed to toolbar-only or keyboard-only actions."""
+
+    def test_action_present_in_menu_xml_is_reported(self):
+        manager = make_manager()
+        self.assertIn("win.Clipboard", manager.menu_action_ids())
+
+    def test_action_absent_from_menu_xml_is_not_reported(self):
+        manager = make_manager()
+        self.assertNotIn("win.Undo", manager.menu_action_ids())
+
 
 class SetClearResetAccelTest(unittest.TestCase):
     def test_set_accel_rebinds_and_records_override(self):
@@ -170,6 +194,49 @@ class SetClearResetAccelTest(unittest.TestCase):
         manager.default_accels.pop("win.Clipboard")
         manager.reset_accel("win.Clipboard")
         self.assertEqual(manager.get_accel("win.Clipboard"), "")
+
+
+class CheckAccelTest(unittest.TestCase):
+    def test_empty_string_is_allowed(self):
+        self.assertEqual(check_accel(""), "")
+
+    def test_modified_letter_is_allowed(self):
+        # Gtk.accelerator_name() -- what the shortcut editor actually
+        # feeds check_accel() -- always emits a concrete modifier name
+        # like '<Control>', never the virtual '<Primary>'.
+        self.assertEqual(check_accel("<Control>a"), "")
+
+    def test_bare_letter_is_reserved(self):
+        self.assertNotEqual(check_accel("a"), "")
+
+    def test_bare_space_is_reserved(self):
+        self.assertNotEqual(check_accel("space"), "")
+
+    def test_bare_escape_is_reserved(self):
+        self.assertNotEqual(check_accel("Escape"), "")
+
+    def test_bare_return_is_reserved(self):
+        self.assertNotEqual(check_accel("Return"), "")
+
+    def test_bare_delete_is_reserved(self):
+        self.assertNotEqual(check_accel("Delete"), "")
+
+    def test_bare_tab_is_reserved(self):
+        self.assertNotEqual(check_accel("Tab"), "")
+
+    def test_bare_arrow_is_reserved(self):
+        self.assertNotEqual(check_accel("Up"), "")
+
+    def test_bare_function_key_is_allowed(self):
+        self.assertEqual(check_accel("F1"), "")
+
+    def test_bare_menu_key_is_allowed(self):
+        self.assertEqual(check_accel("Menu"), "")
+
+    def test_uimanager_method_delegates(self):
+        manager = make_manager()
+        self.assertEqual(manager.check_accel("<Control>a"), "")
+        self.assertNotEqual(manager.check_accel("a"), "")
 
 
 class SaveLoadAccelsTest(unittest.TestCase):
@@ -402,6 +469,55 @@ class GladeAccelConflictScopeTest(unittest.TestCase):
         # since win.* actions are unaffected by the glade-only scoping.
         conflicts = manager.set_accel("win.Undo", "<Primary>b")
         self.assertEqual(conflicts, ["win.Clipboard"])
+
+
+class StaticAppActionConflictScopeTest(unittest.TestCase):
+    """
+    Static-only "app." entries such as "app.dialog-ok"/"app.dialog-cancel"
+    have no live Gio.SimpleAction: ManagedWindow wires them into a
+    per-dialog Gtk.AccelGroup that only fires while that dialog holds
+    keyboard focus. A background view's "win." actions can never receive
+    that same keypress while a dialog is focused, so they must not be
+    reported as conflicting -- only other "app." actions (dispatched
+    regardless of window focus) or a dialog's own "glade." shortcuts
+    (live in that same focused window) can genuinely collide.
+    """
+
+    def _manager_with_static_dialog_action(self):
+        manager = make_manager()
+        manager.register_static_shortcuts(
+            [("dialog-ok", "<Alt>o", "Accept Dialog (OK)")],
+            "Dialogs",
+            prefix="app",
+        )
+        manager.register_static_shortcuts(
+            [("select", "<Primary>d", "Select")],
+            "Note Editor",
+            prefix="glade.editnote",
+        )
+        live_app_group = ActionGroup(
+            "App", [("quit", None, "<Primary>q")], prefix="app"
+        )
+        manager.insert_action_group(live_app_group, MagicMock())
+        return manager
+
+    def test_no_conflict_with_win_action(self):
+        manager = self._manager_with_static_dialog_action()
+        # "win.Clipboard" defaults to "<Primary>b" in make_manager(); a
+        # dialog can never be open and focused at the same moment as the
+        # main window's own view actions are live, so this must not flag.
+        conflicts = manager.set_accel("app.dialog-ok", "<Primary>b")
+        self.assertEqual(conflicts, [])
+
+    def test_conflict_with_live_app_action(self):
+        manager = self._manager_with_static_dialog_action()
+        conflicts = manager.set_accel("app.dialog-ok", "<Primary>q")
+        self.assertEqual(conflicts, ["app.quit"])
+
+    def test_conflict_with_glade_action(self):
+        manager = self._manager_with_static_dialog_action()
+        conflicts = manager.set_accel("app.dialog-ok", "<Primary>d")
+        self.assertEqual(conflicts, ["glade.editnote.select"])
 
 
 if __name__ == "__main__":

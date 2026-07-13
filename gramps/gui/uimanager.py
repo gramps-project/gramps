@@ -28,10 +28,15 @@ import logging
 import xml.etree.ElementTree as ET
 from collections.abc import Iterable
 
-from gi.repository import GLib, Gio, Gtk
+import gi
+
+gi.require_version("Gdk", "3.0")
+from gi.repository import Gdk, GLib, Gio, Gtk
 
 from ..gen.const import GRAMPS_LOCALE as glocale
 from ..gen.config import config
+
+_ = glocale.translation.gettext
 
 LOG = logging.getLogger("gui.uimanager")
 
@@ -40,6 +45,59 @@ ACTION_NAME = 0  # tuple index for action name
 ACTION_CB = 1  # tuple index for action callback
 ACTION_ACC = 2  # tuple index for action accelerator
 ACTION_ST = 3  # tuple index for action state
+
+# Action groups whose actions are generated per open-window instance
+# (e.g. the "Windows" switcher list) rather than representing a fixed
+# command. Their action ids are not stable across sessions -- or even
+# across the lifetime of the window they refer to -- so they are not
+# meaningful targets for a customizable keyboard shortcut and must be
+# excluded from the shortcut editor's action list.
+_DYNAMIC_GROUP_NAMES = frozenset({"WindowManager"})
+
+# Keyvals that must stay unmodified everywhere, because GTK's own focus
+# and cursor navigation depends on receiving them within any widget.
+_NAV_KEYVALS = frozenset(
+    Gdk.keyval_from_name(name)
+    for name in ("Tab", "ISO_Left_Tab", "Up", "Down", "Left", "Right")
+)
+
+# Keyvals safe to bind with no modifier at all: nothing in Gramps'
+# editors or views consumes these for text entry, cursor movement, or
+# list navigation.
+_SAFE_BARE_KEYVALS = frozenset(
+    Gdk.keyval_from_name(name) for name in [f"F{i}" for i in range(1, 13)] + ["Menu"]
+)
+
+
+def check_accel(accel: str) -> str:
+    """Return '' if accel is safe for a user to bind, otherwise a
+    user-facing reason it is reserved.
+
+    Gtk.CellRendererAccelMode.OTHER (used by the shortcut editor) lets a
+    user capture almost any key, including ones GTK itself never blocks
+    -- a bare letter, Escape, Return, Delete -- that would collide with
+    typing or in-place editing in Gramps' many text-entry fields.
+    Gtk.accelerator_valid() alone does not protect against this: it only
+    rejects Tab/arrow keys and bare modifier keys.
+
+    :param accel: a Gtk accelerator string, e.g. '<Primary>c' or 'a'
+    :type accel: str
+    """
+    if not accel:
+        return ""
+    accel = _normalize_accel(accel)
+    keyval, mods = Gtk.accelerator_parse(accel)
+    mods &= Gtk.accelerator_get_default_mod_mask()
+    if not Gtk.accelerator_valid(keyval, mods):
+        return _("Not a valid keyboard shortcut.")
+    if keyval in _NAV_KEYVALS:
+        return _("This key is reserved for keyboard navigation.")
+    if mods == 0 and keyval not in _SAFE_BARE_KEYVALS:
+        return _(
+            "This key needs a modifier such as Ctrl, Alt, or Super -- "
+            "otherwise it would conflict with typing in text fields."
+        )
+    return ""
 
 
 def _normalize_accel(accel: str) -> str:
@@ -655,6 +713,14 @@ class UIManager:
                 ids.add(group.prefix + item[ACTION_NAME])
         return ids
 
+    def _live_action_ids(self) -> set[str]:
+        """Return action ids backed by an actual live Gio.SimpleAction."""
+        return {
+            group.prefix + item[ACTION_NAME]
+            for group in self.action_groups
+            for item in group.actionlist
+        }
+
     def get_action_label(self, action_id: str) -> str:
         """Return a human-readable label for an action: from the static
         registry if known, otherwise from its menu entry if it has one,
@@ -677,6 +743,22 @@ class UIManager:
                 if label:
                     return label.replace("_", "", 1)
         return action_id.split(".", 1)[-1]
+
+    def menu_action_ids(self) -> set[str]:
+        """Return the action ids that appear as a clickable entry
+        somewhere in the current menu XML (main menu bar or a popup
+        context menu), as opposed to being reachable only via a toolbar
+        button or a bare keyboard shortcut.
+
+        :rtype: set[str]
+        """
+        return {
+            attr.text
+            for item in self.et_xml.iter()
+            if item.tag in ("item", "submenu")
+            for attr in item.findall("attribute")
+            if attr.get("name") == "action" and attr.text
+        }
 
     def get_accel(self, action_id: str) -> str:
         """Return the current accelerator string for action_id, or ''.
@@ -709,6 +791,8 @@ class UIManager:
                 "default_accel": self.default_accels.get(action_id, ""),
             }
         for group in self.action_groups:
+            if group.name in _DYNAMIC_GROUP_NAMES:
+                continue
             for item in group.actionlist:
                 action_id = group.prefix + item[ACTION_NAME]
                 if action_id in actions:
@@ -721,6 +805,16 @@ class UIManager:
                     "default_accel": self.default_accels.get(action_id, ""),
                 }
         return list(actions.values())
+
+    def check_accel(self, accel: str) -> str:
+        """Return '' if accel is safe for a user to bind, otherwise a
+        user-facing reason it is reserved. See the module-level
+        :py:func:`check_accel` for details.
+
+        :param accel: a Gtk accelerator string, e.g. '<Primary>c' or 'a'
+        :type accel: str
+        """
+        return check_accel(accel)
 
     def set_accel(self, action_id: str, accel: str) -> list[str]:
         """Bind action_id to a new accelerator, recording the override.
@@ -741,6 +835,19 @@ class UIManager:
             # same key in an unrelated dialog is never actually ambiguous.
             scope = action_id.rsplit(".", 1)[0] + "."
             candidates = [c for c in candidates if c.startswith(scope)]
+        elif action_id.startswith("app.") and action_id not in self._live_action_ids():
+            # Static-only "app." entries such as "dialog-ok"/"dialog-cancel"
+            # have no live Gio.SimpleAction of their own: they are dispatched
+            # by a per-dialog Gtk.AccelGroup (see ManagedWindow.set_window)
+            # that only fires while that dialog holds keyboard focus. A
+            # background view's "win." actions can never receive that same
+            # keypress while a dialog is focused, so they can't really
+            # conflict -- only a genuinely global "app." action (dispatched
+            # regardless of window focus) or another dialog's own "glade."
+            # shortcut (live in the same focused window) can.
+            candidates = [
+                c for c in candidates if c.startswith("app.") or c.startswith("glade.")
+            ]
         conflicts = [
             other
             for other in candidates
