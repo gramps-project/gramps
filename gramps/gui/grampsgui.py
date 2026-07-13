@@ -38,7 +38,7 @@ LOG = logging.getLogger(".grampsgui")
 #
 # -------------------------------------------------------------------------
 from gramps.gen.config import config
-from gramps.gen.const import DATA_DIR, IMAGE_DIR, GTK_GETTEXT_DOMAIN, VERSION_DIR
+from gramps.gen.const import DATA_DIR, IMAGE_DIR, GTK_GETTEXT_DOMAIN
 from gramps.gen.constfunc import has_display, lin
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -703,7 +703,7 @@ def startgramps(errors, argparser):
 
 
 # we do the following import here to avoid the Gtk require version warning
-from .uimanager import UIManager
+from .uimanager import UIManager, theme_path
 from gramps.gen.constfunc import is_quartz
 
 
@@ -723,9 +723,9 @@ class GrampsApplication(Gtk.Application):
 
         if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
             self.uimanager.load_accels(os.path.join(DATA_DIR, "gramps.accel"))
-        user_accel_file = os.path.join(VERSION_DIR, "gramps.accel")
-        if os.path.exists(user_accel_file):
-            self.uimanager.load_accels(user_accel_file, merge=True)
+        active_theme = theme_path(config.get("interface.keybinding-theme"))
+        if active_theme:
+            self.uimanager.load_accels(active_theme, merge=True)
         try:
             from .dialog import ErrorDialog
 

@@ -56,7 +56,6 @@ from gramps.gen.const import (
     URL_WIKISTRING,
     URL_MANUAL_PAGE,
     VERSION_DIR,
-    KEYBINDING_THEMES_DIR,
 )
 from gramps.gen.datehandler import get_date_formats
 from gramps.gen.display.name import displayer as _nd
@@ -74,6 +73,8 @@ from gramps.gen.utils.keyword import (
 from gramps.gen.lib import Date, FamilyRelType
 from gramps.gen.lib import Name, Surname, NameOriginType
 from .managedwindow import ManagedWindow
+from .uimanager import theme_dirs as _theme_dirs
+from .uimanager import theme_path as _resolve_theme_path
 from .widgets import MarkupLabel, BasicLabel
 from .dialog import ErrorDialog, OkDialog, QuestionDialog2
 from .editors.editplaceformat import EditPlaceFormat
@@ -855,15 +856,12 @@ class GrampsPreferences(ConfigureDialog):
 
         self.theme_combo = Gtk.ComboBoxText()
         self.__populate_theme_combo()
+        self.theme_combo.connect("changed", self.cb_theme_switch)
         theme_box.pack_start(self.theme_combo, True, True, 0)
 
-        load_button = Gtk.Button.new_with_mnemonic(_("_Load"))
-        load_button.connect("clicked", self.cb_theme_load)
-        theme_box.pack_start(load_button, False, False, 0)
-
-        save_button = Gtk.Button.new_with_mnemonic(_("_Save…"))
-        save_button.connect("clicked", self.cb_theme_save)
-        theme_box.pack_start(save_button, False, False, 0)
+        new_theme_button = Gtk.Button.new_with_mnemonic(_("_New Theme…"))
+        new_theme_button.connect("clicked", self.cb_theme_new)
+        theme_box.pack_start(new_theme_button, False, False, 0)
 
         vbox.pack_start(theme_box, False, False, 0)
 
@@ -871,11 +869,13 @@ class GrampsPreferences(ConfigureDialog):
         button_box.set_layout(Gtk.ButtonBoxStyle.START)
         button_box.set_spacing(6)
 
-        reset_button = Gtk.Button.new_with_mnemonic(_("_Reset to Default"))
+        reset_button = Gtk.Button.new_with_mnemonic(_("_Reset to Factory Default"))
         reset_button.connect("clicked", self.cb_accel_reset_selected)
         button_box.add(reset_button)
 
-        reset_all_button = Gtk.Button.new_with_mnemonic(_("Reset _All to Defaults"))
+        reset_all_button = Gtk.Button.new_with_mnemonic(
+            _("Reset _All to Factory Defaults")
+        )
         reset_all_button.connect("clicked", self.cb_accel_reset_all)
         button_box.add(reset_all_button)
 
@@ -959,9 +959,13 @@ class GrampsPreferences(ConfigureDialog):
                 self.__refresh_row(row.iter, action_id)
                 return
 
-    def __save_user_accels(self) -> None:
-        os.makedirs(VERSION_DIR, exist_ok=True)
-        self.uistate.uimanager.save_accels(os.path.join(VERSION_DIR, "gramps.accel"))
+    def __save_active_theme(self) -> None:
+        """Persist the current shortcuts into the active theme's file."""
+        theme_name = config.get("interface.keybinding-theme")
+        theme_dir = os.path.join(VERSION_DIR, "keybinding_themes")
+        os.makedirs(theme_dir, exist_ok=True)
+        path = os.path.join(theme_dir, f"{theme_name}.accel")
+        self.uistate.uimanager.save_accels(path, only_changed=False)
 
     def __accel_row_visible(self, model, row_iter, *_args) -> bool:
         text = self._accel_search_text
@@ -1030,7 +1034,7 @@ class GrampsPreferences(ConfigureDialog):
                 self.__refresh_row_by_action(other)
 
         self.__refresh_row(row_iter, action_id)
-        self.__save_user_accels()
+        self.__save_active_theme()
 
     def cb_accel_cleared(self, renderer, path) -> None:
         """Remove a shortcut."""
@@ -1041,10 +1045,10 @@ class GrampsPreferences(ConfigureDialog):
         action_id = self.accel_store[row_iter][3]
         self.uistate.uimanager.clear_accel(action_id)
         self.__refresh_row(row_iter, action_id)
-        self.__save_user_accels()
+        self.__save_active_theme()
 
     def cb_accel_reset_selected(self, button) -> None:
-        """Reset the selected action's shortcut to its default."""
+        """Reset the selected action's shortcut to its factory default."""
         model, tree_iter = self.accel_tree.get_selection().get_selected()
         if tree_iter is None:
             return
@@ -1052,15 +1056,16 @@ class GrampsPreferences(ConfigureDialog):
         action_id = self.accel_store[child_iter][3]
         self.uistate.uimanager.reset_accel(action_id)
         self.__refresh_row(child_iter, action_id)
-        self.__save_user_accels()
+        self.__save_active_theme()
 
     def cb_accel_reset_all(self, button) -> None:
-        """Reset every shortcut back to its default, after confirming."""
+        """Reset every shortcut back to its factory default, after
+        confirming."""
         question = QuestionDialog2(
             _("Reset All Shortcuts?"),
             _(
                 "This will discard all of your customized keyboard "
-                "shortcuts and restore the defaults."
+                "shortcuts and restore the factory defaults."
             ),
             _("_Reset All"),
             _("_Cancel"),
@@ -1072,17 +1077,12 @@ class GrampsPreferences(ConfigureDialog):
         for row in self.accel_store:
             uimanager.reset_accel(row[3])
             self.__refresh_row(row.iter, row[3])
-        self.__save_user_accels()
-
-    @staticmethod
-    def __theme_dirs() -> list[str]:
-        """User themes take precedence over same-named bundled ones."""
-        return [os.path.join(VERSION_DIR, "keybinding_themes"), KEYBINDING_THEMES_DIR]
+        self.__save_active_theme()
 
     def __list_themes(self) -> list[str]:
         """Return every available theme name, bundled and user, deduped."""
         names: set[str] = set()
-        for theme_dir in self.__theme_dirs():
+        for theme_dir in _theme_dirs():
             try:
                 filenames = os.listdir(theme_dir)
             except OSError:
@@ -1090,29 +1090,29 @@ class GrampsPreferences(ConfigureDialog):
             names.update(f[: -len(".accel")] for f in filenames if f.endswith(".accel"))
         return sorted(names)
 
-    def __theme_path(self, name: str) -> str | None:
-        """Resolve a theme name to a file, preferring a user theme over a
-        bundled one with the same name."""
-        for theme_dir in self.__theme_dirs():
-            path = os.path.join(theme_dir, f"{name}.accel")
-            if os.path.exists(path):
-                return path
-        return None
-
     def __populate_theme_combo(self) -> None:
+        """Fill the theme combo and select the active theme, falling
+        back to the first available theme if it no longer exists."""
         self.theme_combo.remove_all()
-        for name in self.__list_themes():
+        themes = self.__list_themes()
+        for name in themes:
             self.theme_combo.append_text(name)
+        active_theme = config.get("interface.keybinding-theme")
+        try:
+            self.theme_combo.set_active(themes.index(active_theme))
+        except ValueError:
+            if themes:
+                self.theme_combo.set_active(0)
 
     def __ask_theme_name(self) -> str | None:
         """Prompt for a theme name; return it, or None if cancelled/empty."""
         dialog = Gtk.Dialog(
-            title=_("Save Keyboard Shortcuts Theme"),
+            title=_("New Keyboard Shortcuts Theme"),
             transient_for=self.window,
             modal=True,
         )
         dialog.add_buttons(
-            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Save"), Gtk.ResponseType.OK
+            _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Create"), Gtk.ResponseType.OK
         )
         box = dialog.get_content_area()
         box.set_border_width(12)
@@ -1133,12 +1133,13 @@ class GrampsPreferences(ConfigureDialog):
         # keep it filesystem-safe -- it becomes "<name>.accel"
         return "".join(c for c in name if c not in '/\\:*?"<>|')
 
-    def cb_theme_load(self, button) -> None:
-        """Replace the current shortcuts with the selected theme's."""
+    def cb_theme_switch(self, combo) -> None:
+        """Make the selected theme active, replacing the current shortcuts
+        with its bindings."""
         name = self.theme_combo.get_active_text()
         if not name:
             return
-        path = self.__theme_path(name)
+        path = _resolve_theme_path(name)
         if not path:
             return
         try:
@@ -1147,10 +1148,12 @@ class GrampsPreferences(ConfigureDialog):
             ErrorDialog(_("Could Not Load Theme"), str(err), parent=self.window)
             return
         self.__populate_accel_store()
-        self.__save_user_accels()
+        config.set("interface.keybinding-theme", name)
+        config.save()
 
-    def cb_theme_save(self, button) -> None:
-        """Save the current shortcuts as a new named theme."""
+    def cb_theme_new(self, button) -> None:
+        """Save the current shortcuts as a new named theme and make it the
+        active theme."""
         name = self.__ask_theme_name()
         if not name:
             return
@@ -1162,11 +1165,9 @@ class GrampsPreferences(ConfigureDialog):
         except OSError as err:
             ErrorDialog(_("Could Not Save Theme"), str(err), parent=self.window)
             return
+        config.set("interface.keybinding-theme", name)
+        config.save()
         self.__populate_theme_combo()
-        for indx, theme_name in enumerate(self.__list_themes()):
-            if theme_name == name:
-                self.theme_combo.set_active(indx)
-                break
 
     def add_idformats_panel(self, configdialog):
         """

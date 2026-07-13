@@ -34,6 +34,7 @@ gi.require_version("Gdk", "3.0")
 from gi.repository import Gdk, GLib, Gio, Gtk
 
 from ..gen.const import GRAMPS_LOCALE as glocale
+from ..gen.const import KEYBINDING_THEMES_DIR, VERSION_DIR
 from ..gen.config import config
 
 _ = glocale.translation.gettext
@@ -122,6 +123,23 @@ def _normalize_accel(accel: str) -> str:
         return accel
     key, mods = Gtk.accelerator_parse(accel)
     return Gtk.accelerator_name(key, mods) if key else accel
+
+
+def theme_dirs() -> list[str]:
+    """Directories to search for keybinding theme files, in precedence
+    order -- user-saved themes take precedence over bundled ones with
+    the same name."""
+    return [os.path.join(VERSION_DIR, "keybinding_themes"), KEYBINDING_THEMES_DIR]
+
+
+def theme_path(name: str) -> str | None:
+    """Resolve a theme name to a file, preferring a user theme over a
+    bundled one with the same name."""
+    for theme_dir in theme_dirs():
+        path = os.path.join(theme_dir, f"{name}.accel")
+        if os.path.exists(path):
+            return path
+    return None
 
 
 class ActionGroup:
