@@ -1,4 +1,8 @@
-{"id": "app.quit", "label": "", "category": "", "accel": "<Primary>q"}
+{"id": "app.about", "label": "About", "category": "AppActions", "accel": ""}
+{"id": "app.dialog-cancel", "label": "Cancel Dialog", "category": "Dialogs", "accel": "<Alt>c"}
+{"id": "app.dialog-ok", "label": "Accept Dialog (OK)", "category": "Dialogs", "accel": "<Alt>o"}
+{"id": "app.preferences", "label": "Preferences...", "category": "AppActions", "accel": ""}
+{"id": "app.quit", "label": "Quit", "category": "AppActions", "accel": "<Primary>q"}
 {"id": "glade.book.button52", "label": "Add an item to the book", "category": "Book Editor", "accel": "<Primary>a"}
 {"id": "glade.book.button62", "label": "Save current set of configured selections", "category": "Book Editor", "accel": "<Primary>r"}
 {"id": "glade.book.button64", "label": "Manage previously created books", "category": "Book Editor", "accel": "<Primary>s"}
@@ -48,57 +52,138 @@
 {"id": "glade.importprogen.tag_default_date_btn", "label": "Invoke date editor", "category": "ProGen Import Assistant", "accel": "<Primary>d"}
 {"id": "glade.notrelated.tagcombo", "label": "tagcombo", "category": "Not Related Tool", "accel": "<Alt>t"}
 {"id": "ste.BOLD", "label": "Bold", "category": "Note Editor", "accel": "<Primary>b"}
+{"id": "ste.CLEAR", "label": "Clear Markup", "category": "Note Editor", "accel": ""}
+{"id": "ste.FONTCOLOR", "label": "Font Color", "category": "Note Editor", "accel": ""}
+{"id": "ste.HIGHLIGHT", "label": "Background Color", "category": "Note Editor", "accel": ""}
 {"id": "ste.ITALIC", "label": "Italic", "category": "Note Editor", "accel": "<Primary>i"}
+{"id": "ste.LINK", "label": "Link", "category": "Note Editor", "accel": ""}
 {"id": "ste.STRIKETHROUGH", "label": "Strikethrough", "category": "Note Editor", "accel": "<Primary>s"}
 {"id": "ste.STRedo", "label": "Redo", "category": "Note Editor", "accel": "<Primary><Shift>z"}
 {"id": "ste.STUndo", "label": "Undo", "category": "Note Editor", "accel": "<Primary>z"}
 {"id": "ste.SUBSCRIPT", "label": "Subscript", "category": "Note Editor", "accel": "<Primary>r"}
 {"id": "ste.SUPERSCRIPT", "label": "Superscript", "category": "Note Editor", "accel": "<Primary>p"}
 {"id": "ste.UNDERLINE", "label": "Underline", "category": "Note Editor", "accel": "<Primary>u"}
-{"id": "win.Add", "label": "Add", "category": "", "accel": "<Primary>Insert"}
-{"id": "win.AddBook", "label": "Add Bookmark", "category": "", "accel": "<Primary>d"}
-{"id": "win.Back", "label": "Go Back", "category": "", "accel": "<Alt>Left"}
-{"id": "win.Bottombar", "label": "Bottombar", "category": "", "accel": "<Primary><Shift>b"}
-{"id": "win.CitationAdd", "label": "", "category": "", "accel": "<Shift><Alt>c"}
-{"id": "win.Clipboard", "label": "", "category": "", "accel": "<Primary>b"}
-{"id": "win.Close", "label": "", "category": "", "accel": "<Primary>w"}
-{"id": "win.ConfigView", "label": "", "category": "", "accel": "<Primary><Shift>c"}
-{"id": "win.CopyToClipboard", "label": "Copy to Clipboard", "category": "", "accel": "<Primary>c"}
-{"id": "win.Edit", "label": "Edit", "category": "", "accel": "<Primary>Return"}
-{"id": "win.EditBook", "label": "Edit Bookmarks", "category": "", "accel": "<Primary><Shift>d"}
-{"id": "win.EventAdd", "label": "", "category": "", "accel": "<Shift><Alt>e"}
-{"id": "win.Export", "label": "", "category": "", "accel": "<Primary>e"}
-{"id": "win.FamilyAdd", "label": "", "category": "", "accel": "<Shift><Alt>f"}
-{"id": "win.Forward", "label": "Go Forward", "category": "", "accel": "<Alt>Right"}
-{"id": "win.Fullscreen", "label": "", "category": "", "accel": "F11"}
-{"id": "win.HomePerson", "label": "Go to Home Person", "category": "", "accel": "<Alt>Home"}
-{"id": "win.Import", "label": "", "category": "", "accel": "<Primary>i"}
-{"id": "win.Login", "label": "", "category": "", "accel": "<Primary>l"}
-{"id": "win.MediaAdd", "label": "", "category": "", "accel": "<Shift><Alt>m"}
-{"id": "win.Navigator", "label": "", "category": "", "accel": "<Primary>m"}
-{"id": "win.NoteAdd", "label": "", "category": "", "accel": "<Shift><Alt>n"}
-{"id": "win.Open", "label": "", "category": "", "accel": "<Primary>o"}
-{"id": "win.PRIMARY-0", "label": "", "category": "", "accel": "<Primary>0"}
-{"id": "win.PRIMARY-1", "label": "", "category": "", "accel": "<Primary>1"}
-{"id": "win.PRIMARY-2", "label": "", "category": "", "accel": "<Primary>2"}
-{"id": "win.PRIMARY-3", "label": "", "category": "", "accel": "<Primary>3"}
-{"id": "win.PRIMARY-4", "label": "", "category": "", "accel": "<Primary>4"}
-{"id": "win.PRIMARY-5", "label": "", "category": "", "accel": "<Primary>5"}
-{"id": "win.PRIMARY-6", "label": "", "category": "", "accel": "<Primary>6"}
-{"id": "win.PRIMARY-7", "label": "", "category": "", "accel": "<Primary>7"}
-{"id": "win.PRIMARY-8", "label": "", "category": "", "accel": "<Primary>8"}
-{"id": "win.PRIMARY-9", "label": "", "category": "", "accel": "<Primary>9"}
-{"id": "win.PRIMARY-BackSpace", "label": "Remove (Alternate)", "category": "", "accel": "<Primary>BackSpace"}
-{"id": "win.PRIMARY-J", "label": "Go to Gramps ID", "category": "", "accel": "<Primary>j"}
-{"id": "win.PRIMARY-N", "label": "", "category": "", "accel": "<Primary>n"}
-{"id": "win.PRIMARY-P", "label": "", "category": "", "accel": "<Primary>p"}
-{"id": "win.PersonAdd", "label": "", "category": "", "accel": "<Shift><Alt>p"}
-{"id": "win.PlaceAdd", "label": "", "category": "", "accel": "<Shift><Alt>l"}
-{"id": "win.Redo", "label": "", "category": "", "accel": "<Primary><Shift>z"}
-{"id": "win.Remove", "label": "Remove", "category": "", "accel": "<Primary>Delete"}
-{"id": "win.RepositoryAdd", "label": "", "category": "", "accel": "<Shift><Alt>r"}
-{"id": "win.Sidebar", "label": "Sidebar", "category": "", "accel": "<Primary><Shift>r"}
-{"id": "win.SourceAdd", "label": "", "category": "", "accel": "<Shift><Alt>s"}
-{"id": "win.Undo", "label": "", "category": "", "accel": "<Primary>z"}
-{"id": "win.UndoHistory", "label": "", "category": "", "accel": "<Primary>h"}
-{"id": "win.UserManual", "label": "", "category": "", "accel": "F1"}
+{"id": "win.Abandon", "label": "Abandon Changes and Quit", "category": "RO", "accel": ""}
+{"id": "win.Add", "label": "Add", "category": "Notes", "accel": "<Primary>Insert"}
+{"id": "win.AddBook", "label": "Add Bookmark", "category": "Notes", "accel": "<Primary>d"}
+{"id": "win.AddParents", "label": "Add Parents", "category": "Relationships", "accel": ""}
+{"id": "win.AddSpouse", "label": "Add Spouse", "category": "Relationships", "accel": ""}
+{"id": "win.AddonManager", "label": "Addon Manager...", "category": "FileWindow", "accel": ""}
+{"id": "win.Back", "label": "Go Back", "category": "Notes", "accel": "<Alt>Left"}
+{"id": "win.Backup", "label": "Make Backup...", "category": "RO", "accel": ""}
+{"id": "win.Books", "label": "Books...", "category": "RO", "accel": ""}
+{"id": "win.Bottombar", "label": "Bottombar", "category": "Notes", "accel": "<Primary><Shift>b"}
+{"id": "win.ChangeOrder", "label": "Change Order", "category": "Relationships", "accel": ""}
+{"id": "win.CitationAdd", "label": "Citation", "category": "RW", "accel": "<Shift><Alt>c"}
+{"id": "win.Clipboard", "label": "Clipboard", "category": "RW", "accel": "<Primary>b"}
+{"id": "win.Close", "label": "Close", "category": "RO", "accel": "<Primary>w"}
+{"id": "win.ConfigView", "label": "Configure...", "category": "RW", "accel": "<Primary><Shift>c"}
+{"id": "win.CopyToClipboard", "label": "Copy to Clipboard", "category": "Notes", "accel": "<Primary>c"}
+{"id": "win.Edit", "label": "Edit", "category": "Notes", "accel": "<Primary>Return"}
+{"id": "win.EditBook", "label": "Edit Bookmarks", "category": "Notes", "accel": "<Primary><Shift>d"}
+{"id": "win.EventAdd", "label": "Event", "category": "RW", "accel": "<Shift><Alt>e"}
+{"id": "win.Export", "label": "Export...", "category": "RO", "accel": "<Primary>e"}
+{"id": "win.ExportTab", "label": "Export View", "category": "Notes", "accel": ""}
+{"id": "win.ExtraPlugins", "label": "Extra Reports/Tools", "category": "FileWindow", "accel": ""}
+{"id": "win.F2", "label": "", "category": "", "accel": "F2"}
+{"id": "win.FAQ", "label": "FAQ", "category": "FileWindow", "accel": ""}
+{"id": "win.FamilyAdd", "label": "Family", "category": "RW", "accel": "<Shift><Alt>f"}
+{"id": "win.FilterEdit", "label": "Edit Filter", "category": "Notes", "accel": ""}
+{"id": "win.Forward", "label": "Go Forward", "category": "Notes", "accel": "<Alt>Right"}
+{"id": "win.Fullscreen", "label": "Full Screen", "category": "FileWindow", "accel": "F11"}
+{"id": "win.HomePage", "label": "Gramps Home Page", "category": "FileWindow", "accel": ""}
+{"id": "win.HomePerson", "label": "Go to Home Person", "category": "Notes", "accel": "<Alt>Home"}
+{"id": "win.Import", "label": "Import...", "category": "RW", "accel": "<Primary>i"}
+{"id": "win.KeyBindings", "label": "Key Bindings", "category": "FileWindow", "accel": ""}
+{"id": "win.Login", "label": "FamilySearch Sign in...", "category": "FS", "accel": "<Primary>l"}
+{"id": "win.MailingLists", "label": "Gramps Mailing Lists", "category": "FileWindow", "accel": ""}
+{"id": "win.MediaAdd", "label": "Media", "category": "RW", "accel": "<Shift><Alt>m"}
+{"id": "win.Merge", "label": "Merge", "category": "Notes", "accel": ""}
+{"id": "win.Navigator", "label": "Navigator", "category": "FileWindow", "accel": "<Primary>m"}
+{"id": "win.NoteAdd", "label": "Note", "category": "RW", "accel": "<Shift><Alt>n"}
+{"id": "win.Open", "label": "Manage Family Trees...", "category": "FileWindow", "accel": "<Primary>o"}
+{"id": "win.PRIMARY-0", "label": "PRIMARY-0", "category": "RO", "accel": "<Primary>0"}
+{"id": "win.PRIMARY-1", "label": "PRIMARY-1", "category": "RO", "accel": "<Primary>1"}
+{"id": "win.PRIMARY-2", "label": "PRIMARY-2", "category": "RO", "accel": "<Primary>2"}
+{"id": "win.PRIMARY-3", "label": "PRIMARY-3", "category": "RO", "accel": "<Primary>3"}
+{"id": "win.PRIMARY-4", "label": "PRIMARY-4", "category": "RO", "accel": "<Primary>4"}
+{"id": "win.PRIMARY-5", "label": "PRIMARY-5", "category": "RO", "accel": "<Primary>5"}
+{"id": "win.PRIMARY-6", "label": "PRIMARY-6", "category": "RO", "accel": "<Primary>6"}
+{"id": "win.PRIMARY-7", "label": "PRIMARY-7", "category": "RO", "accel": "<Primary>7"}
+{"id": "win.PRIMARY-8", "label": "PRIMARY-8", "category": "RO", "accel": "<Primary>8"}
+{"id": "win.PRIMARY-9", "label": "PRIMARY-9", "category": "RO", "accel": "<Primary>9"}
+{"id": "win.PRIMARY-BackSpace", "label": "Remove (Alternate)", "category": "Notes", "accel": "<Primary>BackSpace"}
+{"id": "win.PRIMARY-J", "label": "Go to Gramps ID", "category": "Notes", "accel": "<Primary>j"}
+{"id": "win.PRIMARY-N", "label": "PRIMARY-N", "category": "RO", "accel": "<Primary>n"}
+{"id": "win.PRIMARY-P", "label": "PRIMARY-P", "category": "RO", "accel": "<Primary>p"}
+{"id": "win.PersonAdd", "label": "Person", "category": "RW", "accel": "<Shift><Alt>p"}
+{"id": "win.PlaceAdd", "label": "Place", "category": "RW", "accel": "<Shift><Alt>l"}
+{"id": "win.PluginStatus", "label": "Plugin Manager", "category": "FileWindow", "accel": ""}
+{"id": "win.PrintView", "label": "", "category": "", "accel": "<Primary><Shift>p"}
+{"id": "win.Redo", "label": "Redo", "category": "Redo", "accel": "<Primary><Shift>z"}
+{"id": "win.Remove", "label": "Remove", "category": "Notes", "accel": "<Primary>Delete"}
+{"id": "win.ReportBug", "label": "Report a Bug", "category": "FileWindow", "accel": ""}
+{"id": "win.Reports", "label": "Reports", "category": "RO", "accel": ""}
+{"id": "win.RepositoryAdd", "label": "Repository", "category": "RW", "accel": "<Shift><Alt>r"}
+{"id": "win.SetActive", "label": "Set as Home Person", "category": "Notes", "accel": ""}
+{"id": "win.ShareFamily", "label": "Share Existing Family", "category": "Relationships", "accel": ""}
+{"id": "win.Sidebar", "label": "Sidebar", "category": "Notes", "accel": "<Primary><Shift>r"}
+{"id": "win.SourceAdd", "label": "Source", "category": "RW", "accel": "<Shift><Alt>s"}
+{"id": "win.TipOfDay", "label": "Tip of the Day", "category": "FileWindow", "accel": ""}
+{"id": "win.Toolbar", "label": "Toolbar", "category": "FileWindow", "accel": ""}
+{"id": "win.Tools", "label": "Tools", "category": "RW", "accel": ""}
+{"id": "win.Undo", "label": "Undo", "category": "Undo", "accel": "<Primary>z"}
+{"id": "win.UndoHistory", "label": "Undo History", "category": "RW", "accel": "<Primary>h"}
+{"id": "win.UserManual", "label": "User Manual", "category": "FileWindow", "accel": "F1"}
+{"id": "win.WebCal", "label": "Web Calendar...", "category": "Reports", "accel": ""}
+{"id": "win.ancestor-chart", "label": "Ancestor Tree...", "category": "Reports", "accel": ""}
+{"id": "win.ancestor-report", "label": "Ahnentafel Report...", "category": "Reports", "accel": ""}
+{"id": "win.birthday-report", "label": "Birthday and Anniversary Report...", "category": "Reports", "accel": ""}
+{"id": "win.calendar", "label": "Calendar...", "category": "Reports", "accel": ""}
+{"id": "win.check", "label": "Check and Repair Database...", "category": "Tools", "accel": ""}
+{"id": "win.chname", "label": "Fix Capitalization of Family Names...", "category": "Tools", "accel": ""}
+{"id": "win.chtype", "label": "Rename Event Types...", "category": "Tools", "accel": ""}
+{"id": "win.descend-chart", "label": "Descendant Tree...", "category": "Reports", "accel": ""}
+{"id": "win.descend-report", "label": "Descendant Report...", "category": "Reports", "accel": ""}
+{"id": "win.det-ancestor-report", "label": "Detailed Ancestral Report...", "category": "Reports", "accel": ""}
+{"id": "win.det-descendant-report", "label": "Detailed Descendant Report...", "category": "Reports", "accel": ""}
+{"id": "win.dgenstats", "label": "Dump Gender Statistics...", "category": "Tools", "accel": ""}
+{"id": "win.dupfind", "label": "Find Possible Duplicate People...", "category": "Tools", "accel": ""}
+{"id": "win.editowner", "label": "Edit Database Owner Information...", "category": "Tools", "accel": ""}
+{"id": "win.endofline-report", "label": "End of Line Report...", "category": "Reports", "accel": ""}
+{"id": "win.eventcmp", "label": "Compare Individual Events...", "category": "Tools", "accel": ""}
+{"id": "win.evname", "label": "Extract Event Description...", "category": "Tools", "accel": ""}
+{"id": "win.family-descend-chart", "label": "Family Descendant Tree...", "category": "Reports", "accel": ""}
+{"id": "win.family-group", "label": "Family Group Report...", "category": "Reports", "accel": ""}
+{"id": "win.familylines-graph", "label": "Family Lines Graph...", "category": "Reports", "accel": ""}
+{"id": "win.fan-chart", "label": "Fan Chart...", "category": "Reports", "accel": ""}
+{"id": "win.hourglass-graph", "label": "Hourglass Graph...", "category": "Reports", "accel": ""}
+{"id": "win.indiv-complete", "label": "Complete Individual Report...", "category": "Reports", "accel": ""}
+{"id": "win.kinship-report", "label": "Kinship Report...", "category": "Reports", "accel": ""}
+{"id": "win.loop", "label": "Find database loop...", "category": "Tools", "accel": ""}
+{"id": "win.mediaman", "label": "Media Manager...", "category": "Tools", "accel": ""}
+{"id": "win.mergecitations", "label": "Merge Citations...", "category": "Tools", "accel": ""}
+{"id": "win.navwebpage", "label": "Narrated Web Site...", "category": "Reports", "accel": ""}
+{"id": "win.not-related", "label": "Not Related...", "category": "Tools", "accel": ""}
+{"id": "win.notelinkreport", "label": "Note Link Report...", "category": "Reports", "accel": ""}
+{"id": "win.number-of-ancestors", "label": "Number of Ancestors Report...", "category": "Reports", "accel": ""}
+{"id": "win.patchnames", "label": "Extract Information from Names...", "category": "Tools", "accel": ""}
+{"id": "win.place-report", "label": "Place Report...", "category": "Reports", "accel": ""}
+{"id": "win.populatesources", "label": "Populate Sources and Citations...", "category": "Tools", "accel": ""}
+{"id": "win.rebuild", "label": "Rebuild Secondary Indexes...", "category": "Tools", "accel": ""}
+{"id": "win.rebuild-genstats", "label": "Rebuild Gender Statistics...", "category": "Tools", "accel": ""}
+{"id": "win.rebuild-refmap", "label": "Rebuild Reference Maps...", "category": "Tools", "accel": ""}
+{"id": "win.records", "label": "Records Report...", "category": "Reports", "accel": ""}
+{"id": "win.rel-graph", "label": "Relationship Graph...", "category": "Reports", "accel": ""}
+{"id": "win.relcalc", "label": "Relationship Calculator...", "category": "Tools", "accel": ""}
+{"id": "win.remove-unused", "label": "Remove Unused Objects...", "category": "Tools", "accel": ""}
+{"id": "win.removespaces", "label": "Clean input data...", "category": "Tools", "accel": ""}
+{"id": "win.reorder-ids", "label": "Reorder Gramps IDs...", "category": "Tools", "accel": ""}
+{"id": "win.sortevents", "label": "Sort events...", "category": "Tools", "accel": ""}
+{"id": "win.statistics-chart", "label": "Statistics Charts...", "category": "Reports", "accel": ""}
+{"id": "win.summary", "label": "Database Summary Report...", "category": "Reports", "accel": ""}
+{"id": "win.tag-report", "label": "Tag Report...", "category": "Reports", "accel": ""}
+{"id": "win.test-for-date-parser-and-displayer", "label": "Check Localized Date Displayer and Parser...", "category": "Tools", "accel": ""}
+{"id": "win.testcasegenerator", "label": "Generate Testcases for Persons and Families...", "category": "Tools", "accel": ""}
+{"id": "win.timeline", "label": "Timeline Chart...", "category": "Reports", "accel": ""}
+{"id": "win.verify", "label": "Verify the Data...", "category": "Tools", "accel": ""}
