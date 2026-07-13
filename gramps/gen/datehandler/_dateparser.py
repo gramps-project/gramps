@@ -341,6 +341,12 @@ class DateParser:
     # seeded with __init_prefix_tables
     persian_to_int: dict[str, int] = {}
 
+    # seeded with __init_prefix_tables
+    chinese_lunar_to_int: dict[str, int] = {}
+
+    # seeded with __init_prefix_tables
+    vietnamese_lunar_to_int: dict[str, int] = {}
+
     bce = ["B.C.E.", "B.C.E", "BCE", "B.C.", "B.C", "BC"]
     # (overridden if a locale-specific date parser exists)
 
@@ -406,6 +412,14 @@ class DateParser:
         _build_prefix_table(
             DateParser.calendar_to_int, _generate_variants(zip(ds.calendar))
         )
+        _build_prefix_table(
+            DateParser.chinese_lunar_to_int,
+            _generate_variants(zip(ds.chinese_lunar)),
+        )
+        _build_prefix_table(
+            DateParser.vietnamese_lunar_to_int,
+            _generate_variants(zip(ds.vietnamese_lunar)),
+        )
 
     def __init__(self, plocale=None):
         """
@@ -432,6 +446,8 @@ class DateParser:
             Date.CAL_HEBREW: self._parse_hebrew,
             Date.CAL_ISLAMIC: self._parse_islamic,
             Date.CAL_SWEDISH: self._parse_swedish,
+            Date.CAL_CHINESE_LUNAR: self._parse_chinese_lunar,
+            Date.CAL_VIETNAMESE_LUNAR: self._parse_vietnamese_lunar,
         }
 
         match = self._dhformat_parse.match(self.dhformat.lower())
@@ -499,6 +515,10 @@ class DateParser:
         self._pmon_str = self.re_longest_first(list(self.persian_to_int.keys()))
         self._imon_str = self.re_longest_first(list(self.islamic_to_int.keys()))
         self._smon_str = self.re_longest_first(list(self.swedish_to_int.keys()))
+        self._clmon_str = self.re_longest_first(list(self.chinese_lunar_to_int.keys()))
+        self._vlmon_str = self.re_longest_first(
+            list(self.vietnamese_lunar_to_int.keys())
+        )
         self._cal_str = self.re_longest_first(list(self.calendar_to_int.keys()))
         self._ny_str = self.re_longest_first(list(self.newyear_to_int.keys()))
 
@@ -578,6 +598,30 @@ class DateParser:
         self._stext2 = re.compile(
             r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._smon_str, re.IGNORECASE
         )
+        if self._clmon_str:
+            self._cltext = re.compile(
+                r"%s\.?(\s+\d+)?\s*,?\s+((\d+)(/\d+)?)?\s*$" % self._clmon_str,
+                re.IGNORECASE,
+            )
+            self._cltext2 = re.compile(
+                r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._clmon_str,
+                re.IGNORECASE,
+            )
+        else:
+            self._cltext = re.compile(r"$^")
+            self._cltext2 = re.compile(r"$^")
+        if self._vlmon_str:
+            self._vltext = re.compile(
+                r"%s\.?(\s+\d+)?\s*,?\s+((\d+)(/\d+)?)?\s*$" % self._vlmon_str,
+                re.IGNORECASE,
+            )
+            self._vltext2 = re.compile(
+                r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._vlmon_str,
+                re.IGNORECASE,
+            )
+        else:
+            self._vltext = re.compile(r"$^")
+            self._vltext2 = re.compile(r"$^")
         self._numeric = re.compile(r"((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
         self._iso = re.compile(r"(\d+)(/(\d+))?-(\d+)(-(\d+))?\s*$")
         self._isotimestamp = re.compile(
@@ -632,6 +676,40 @@ class DateParser:
         return self._parse_calendar(
             text, self._stext, self._stext2, self.swedish_to_int, swedish_valid
         )
+
+    def _parse_chinese_lunar(self, text):
+        """Parse Chinese Lunar date. Accepts month names or YYYY-MM-DD numeric."""
+        import re
+
+        result = self._parse_calendar(
+            text, self._cltext, self._cltext2, self.chinese_lunar_to_int
+        )
+        if result != Date.EMPTY:
+            return result
+        m = re.match(r"^(\d{1,4})(?:-(\d{1,3})(?:-(\d{1,2}))?)?$", text.strip())
+        if m:
+            year = int(m.group(1))
+            month = int(m.group(2)) if m.group(2) else 0
+            day = int(m.group(3)) if m.group(3) else 0
+            return (day, month, year, False)
+        return Date.EMPTY
+
+    def _parse_vietnamese_lunar(self, text):
+        """Parse Vietnamese Lunar (Âm Lịch) date. Accepts month names or YYYY-MM-DD."""
+        import re
+
+        result = self._parse_calendar(
+            text, self._vltext, self._vltext2, self.vietnamese_lunar_to_int
+        )
+        if result != Date.EMPTY:
+            return result
+        m = re.match(r"^(\d{1,4})(?:-(\d{1,3})(?:-(\d{1,2}))?)?$", text.strip())
+        if m:
+            year = int(m.group(1))
+            month = int(m.group(2)) if m.group(2) else 0
+            day = int(m.group(3)) if m.group(3) else 0
+            return (day, month, year, False)
+        return Date.EMPTY
 
     def _parse_calendar(self, text, regex1, regex2, mmap, check=None):
         match = regex1.match(text.lower())
