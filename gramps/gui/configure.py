@@ -749,9 +749,15 @@ class GrampsPreferences(ConfigureDialog):
         if dlg.run():
             from .restartstate import capture_state, write_state_file, restart_gramps
 
+            # os.execv replaces this process before ConfigureDialog.close()
+            # runs, so the config.save() it would normally trigger (via
+            # ManagedWindow._save_size/_save_position) never happens. Without
+            # this, changed settings like preferences.language stay in
+            # memory only and are lost when the process image is replaced.
+            config.save()
             state = capture_state(self.dbstate, self.uistate, self.uistate.viewmanager)
             path = write_state_file(state)
-            restart_gramps(path)
+            restart_gramps(path, self.dbstate)
 
     def _resolve_unsaved_editors(self) -> None:
         """
@@ -2213,13 +2219,12 @@ class GrampsPreferences(ConfigureDialog):
         row = 1
         # Language:
         obox = Gtk.ComboBoxText()
-        languages = glocale.get_language_dict()
-        language_codes = [""] + sorted(languages, key=glocale.sort_key)
+        language_labels = glocale.get_language_labels()
+        codes = [""] + sorted(language_labels)
         obox.append_text(_("Use system default"))
-        for language in language_codes[1:]:
-            obox.append_text(language)
+        for code in codes[1:]:
+            obox.append_text(language_labels[code])
         current_language = config.get("preferences.language")
-        codes = [""] + [languages[language] for language in language_codes[1:]]
         try:
             obox.set_active(codes.index(current_language))
         except ValueError:

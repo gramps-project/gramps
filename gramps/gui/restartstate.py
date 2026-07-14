@@ -113,10 +113,18 @@ def write_state_file(state: dict[str, Any]) -> str:
     return path
 
 
-def restart_gramps(path: str) -> None:
+def restart_gramps(path: str, dbstate: "DbState | None" = None) -> None:
     """
     Relaunch the current Gramps process, passing it the restore-state file.
+
+    Closes the open database first, if any, so its lock file is released
+    and the relaunched process can reopen the same tree. Without this, the
+    new process finds the tree locked by itself (``os.execv`` keeps the same
+    pid but never runs the close/unlock code) and aborts while still inside
+    GTK's application-activate callback.
     """
+    if dbstate is not None and dbstate.is_open():
+        dbstate.db.close()
     os.execv(sys.executable, [sys.executable] + sys.argv + ["--restore-state", path])
 
 

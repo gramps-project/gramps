@@ -542,23 +542,29 @@ class GrampsLocale:
         translator.lang = "en"
         return translator
 
+    def _get_english_language_name(self, lang_code: str) -> str | None:
+        """
+        Given a language code of the form "lang_region", return the
+        untranslated English name of that language, or ``None``.
+        """
+        try:
+            return _LOCALE_NAMES[lang_code][2]
+        except KeyError:
+            try:
+                return _LOCALE_NAMES[lang_code[:2]][2]
+            except KeyError:
+                LOG.debug("Gramps has no translation for %s", lang_code)
+                return None
+        except IndexError:
+            LOG.debug("Bad Index for tuple %s\n", _LOCALE_NAMES[lang_code][0])
+            return None
+
     def _get_language_string(self, lang_code):
         """
         Given a language code of the form "lang_region", return a text string
         representing that language.
         """
-        try:
-            lang = _LOCALE_NAMES[lang_code][2]
-        except KeyError:
-            try:
-                lang = _LOCALE_NAMES[lang_code[:2]][2]
-            except KeyError:
-                LOG.debug("Gramps has no translation for %s", lang_code)
-                lang = None
-        except IndexError:
-            LOG.debug("Bad Index for tuple %s\n", _LOCALE_NAMES[lang_code][0])
-            lang = None
-
+        lang = self._get_english_language_name(lang_code)
         if lang:
             return self.translation.gettext(lang)
         return lang
@@ -757,6 +763,30 @@ class GrampsLocale:
             for code in self.get_available_translations()
             if self._get_language_string(code)
         }
+
+    def get_language_labels(self) -> dict[str, str]:
+        """
+        Return a dict of code : label for use by language pickers that want
+        to show each language's own name for itself, independent of the
+        currently active UI language, e.g. ``{"fr": "fr - Français (French)"}``.
+
+        Unlike :func:`get_language_dict`, which renders every language's
+        English name translated into the *current* UI language, this looks
+        up each language's endonym in its own translation catalog.
+        """
+        labels = {}
+        for code in self.get_available_translations():
+            english_name = self._get_english_language_name(code)
+            if not english_name:
+                continue
+            try:
+                translator = self._get_translation(languages=[code])
+            except ValueError:
+                endonym = english_name
+            else:
+                endonym = translator.gettext(english_name)
+            labels[code] = f"{code} - {endonym} ({english_name})"
+        return labels
 
     def trans_objclass(self, objclass_str):
         """
