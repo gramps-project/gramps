@@ -46,6 +46,32 @@ if "-S" in sys.argv or "--safe" in sys.argv:
     os.environ["SAFEMODE"] = tempdir.name
 
 # -------------------------------------------------------------------------
+# restore the UI language from a restart-state file, if one was passed.
+# This must happen before the .gen.const import below, because that import
+# constructs the GRAMPS_LOCALE singleton from the environment.
+if "--restore-state" in sys.argv:
+    _state_ix = sys.argv.index("--restore-state")
+    if _state_ix + 1 < len(sys.argv):
+        import json
+
+        try:
+            with open(sys.argv[_state_ix + 1], encoding="utf-8") as _state_file:
+                _restore_language = json.load(_state_file).get("language")
+        except (OSError, ValueError):
+            _restore_language = None
+        if _restore_language:
+            # LANGUAGE is gettext's own message-catalog selector and takes
+            # bare/short codes ("fr", "zh_CN") -- exactly what's stored in
+            # preferences.language. LANG is a different namespace: it must
+            # be a full OS locale name (e.g. "fr_FR.UTF-8") for setlocale()
+            # to succeed, and setting it to a bare code here would make
+            # locale.setlocale(LC_ALL, "") fail and fall back to "C",
+            # degrading LC_TIME/LC_COLLATE along with it. Leave LANG (and
+            # LC_*) alone so date/number/collation keep following the
+            # user's actual system locale.
+            os.environ["LANGUAGE"] = _restore_language
+
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #

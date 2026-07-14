@@ -37,6 +37,7 @@ Module responsible for handling the command line arguments for Gramps.
 import sys
 import os
 import getopt
+import json
 import logging
 import shutil
 from glob import glob
@@ -72,6 +73,7 @@ Help options
 
 Application options
   -O, --open=FAMILY_TREE                 Open Family Tree
+  --restore-state=STATE_FILE             Restore session state from a restart
   -U, --username=USERNAME                Database username
   -P, --password=PASSWORD                Database password
   -C, --create=FAMILY_TREE               Create on open if new Family Tree
@@ -159,6 +161,7 @@ class ArgParser:
     The valid options are:
 
     -O, --open=FAMILY_TREE          Open Family Tree
+    --restore-state=STATE_FILE      Restore session state from a restart
     -U, --username=USERNAME         Database username
     -P, --password=PASSWORD         Database password
     -C, --create=FAMILY_TREE        Create on open if new Family Tree
@@ -219,6 +222,7 @@ class ArgParser:
 
         self.open_gui = None
         self.open = None
+        self.restore_state_path = None
         self.username = None
         self.password = None
         self.exports = []
@@ -287,6 +291,15 @@ class ArgParser:
         for opt_ix, (option, value) in enumerate(options):
             if option in ["-O", "--open"]:
                 self.open = value
+            elif option in ["--restore-state"]:
+                self.restore_state_path = value
+                try:
+                    with open(value, encoding="utf-8") as restore_file:
+                        restore_state = json.load(restore_file)
+                except (OSError, ValueError):
+                    restore_state = {}
+                if restore_state.get("tree"):
+                    self.open = restore_state["tree"]
             elif option in ["-C", "--create"]:
                 self.create = value
             elif option in ["-U", "--username"]:

@@ -69,7 +69,7 @@ from gramps.gen.lib import Date, FamilyRelType
 from gramps.gen.lib import Name, Surname, NameOriginType
 from .managedwindow import ManagedWindow
 from .widgets import MarkupLabel, BasicLabel
-from .dialog import ErrorDialog, OkDialog
+from .dialog import ErrorDialog, QuestionDialog2
 from .editors.editplaceformat import EditPlaceFormat
 from .display import display_help
 from gramps.gen.plug.utils import available_updates
@@ -677,6 +677,7 @@ class GrampsPreferences(ConfigureDialog):
     )
 
     def __init__(self, uistate, dbstate, initial_panel: str | None = None) -> None:
+        self._restart_settings: set[str] = set()
         page_funcs = (
             self.add_data_panel,
             self.add_general_panel,
@@ -717,6 +718,52 @@ class GrampsPreferences(ConfigureDialog):
         except ValueError:
             return
         self.panel.set_current_page(page_num)
+
+    def mark_restart_required(self, key: str, *_args) -> None:
+        """
+        Record that the given config key was changed and needs a restart to
+        take effect. Compatible with add_checkbox's extra_callback signature.
+        """
+        self._restart_settings.add(key)
+
+    def done(self, obj, value) -> None:
+        if value == Gtk.ResponseType.HELP:
+            return
+        if self._restart_settings:
+            self.offer_restart()
+        ConfigureDialog.done(self, obj, value)
+
+    def offer_restart(self) -> None:
+        """
+        Offer to restart Gramps so that changed restart-required settings
+        take effect, restoring the current tree/view/selection/editors.
+        """
+        self._resolve_unsaved_editors()
+        dlg = QuestionDialog2(
+            _("Restart Gramps?"),
+            _("Some changes require Gramps to restart to take effect. " "Restart now?"),
+            _("Restart Now"),
+            _("Restart Later"),
+            parent=self.window,
+        )
+        if dlg.run():
+            from .restartstate import capture_state, write_state_file, restart_gramps
+
+            state = capture_state(self.dbstate, self.uistate, self.uistate.viewmanager)
+            path = write_state_file(state)
+            restart_gramps(path)
+
+    def _resolve_unsaved_editors(self) -> None:
+        """
+        Force a save-or-discard decision on every open primary-object editor
+        with unsaved changes, so a restart never silently loses or silently
+        carries forward in-progress edits.
+        """
+        from .editors.editprimary import EditPrimary
+
+        for item in list(self.uistate.gwm.id2item.values()):
+            if isinstance(item, EditPrimary) and item.data_has_changed():
+                item.close()
 
     def create_grid(self):
         """
@@ -1732,12 +1779,7 @@ class GrampsPreferences(ConfigureDialog):
             obox.set_active(active)
         else:
             obox.set_active(0)
-        obox.connect(
-            "changed",
-            lambda obj: config.set(
-                "preferences.age-display-precision", obj.get_active() + 1
-            ),
-        )
+        obox.connect("changed", self.age_precision_changed)
         lwidget = BasicLabel(_("%s: ") % _("Age display precision *"))
         grid.attach(lwidget, 1, row, 1, 1)
         grid.attach(obox, 2, row, 2, 1)
@@ -1762,6 +1804,9 @@ class GrampsPreferences(ConfigureDialog):
             "preferences.age-after-death",
             start=2,
             stop=3,
+            extra_callback=lambda obj: self.mark_restart_required(
+                "preferences.age-after-death"
+            ),
         )
 
         row += 1
@@ -2005,20 +2050,28 @@ class GrampsPreferences(ConfigureDialog):
         """
         self.tag_format_entry.set_sensitive(obj.get_active())
 
+    def language_changed(self, obj, codes: list[str]) -> None:
+        """
+        Save "Language" option, requires a restart to take effect.
+        """
+        config.set("preferences.language", codes[obj.get_active()])
+        self.mark_restart_required("preferences.language")
+
     def date_format_changed(self, obj):
         """
-        Save "Date format" option.
-        And show notify message to restart Gramps.
+        Save "Date format" option, requires a restart to take effect.
         """
         config.set("preferences.date-format", obj.get_active())
-        OkDialog(
-            _("Change is not immediate"),
-            _(
-                "Changing the date format will not take "
-                "effect until the next time Gramps is started."
-            ),
-            parent=self.window,
-        )
+        self.mark_restart_required("preferences.date-format")
+
+    def age_precision_changed(self, obj):
+        """
+        Save "Age display precision" option, requires a restart to take
+        effect.
+        """
+        # Combo_box active index is from 0 to 2, we need values from 1 to 3
+        config.set("preferences.age-display-precision", obj.get_active() + 1)
+        self.mark_restart_required("preferences.age-display-precision")
 
     def date_calendar_changed(self, obj):
         """
@@ -2158,6 +2211,33 @@ class GrampsPreferences(ConfigureDialog):
         label.set_margin_top(10)
 
         row = 1
+        # Language:
+        obox = Gtk.ComboBoxText()
+        languages = glocale.get_language_dict()
+        language_codes = [""] + sorted(languages, key=glocale.sort_key)
+        obox.append_text(_("Use system default"))
+        for language in language_codes[1:]:
+            obox.append_text(language)
+        current_language = config.get("preferences.language")
+        codes = [""] + [languages[language] for language in language_codes[1:]]
+        try:
+            obox.set_active(codes.index(current_language))
+        except ValueError:
+            obox.set_active(0)
+        obox.connect("changed", self.language_changed, codes)
+        lwidget = BasicLabel(_("%s: ") % _("Language *"))
+        lwidget.set_use_underline(True)
+        lwidget.set_mnemonic_widget(obox)
+        obox.set_tooltip_text(
+            _(
+                "The language used for the Gramps user interface.\n"
+                "Requires Gramps restart to apply."
+            )
+        )
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(obox, 2, row, 2, 1)
+
+        row += 1
         self.add_checkbox(
             grid,
             _("Display Tip of the Day"),
@@ -2231,6 +2311,9 @@ class GrampsPreferences(ConfigureDialog):
                 "Show or hide text beside Navigator buttons "
                 "(People, Families, Events...).\n"
                 "Requires Gramps restart to apply."
+            ),
+            extra_callback=lambda obj: self.mark_restart_required(
+                "interface.sidebar-text"
             ),
         )
 

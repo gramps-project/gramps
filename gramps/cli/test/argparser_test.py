@@ -21,6 +21,9 @@
 """Unittest for argparser.py"""
 
 import unittest
+import os
+import json
+import tempfile
 from unittest.mock import Mock
 from ..argparser import ArgParser
 
@@ -95,6 +98,36 @@ class TestArgParser(unittest.TestCase):
     def test_option_with_multiple_arguments(self):
         argument_parser = self.create_parser("-l", "family_tree_name")
         self.assertEqual(argument_parser.database_names, ["family_tree_name"])
+
+    def write_state_file(self, contents):
+        state_file = tempfile.NamedTemporaryFile(
+            mode="w", suffix=".json", delete=False, encoding="utf-8"
+        )
+        self.addCleanup(os.remove, state_file.name)
+        json.dump(contents, state_file)
+        state_file.close()
+        return state_file.name
+
+    def test_restore_state_longopt_sets_open_from_tree(self):
+        path = self.write_state_file({"tree": "My Family Tree"})
+        ap = self.create_parser("--restore-state", path)
+        self.assertEqual(ap.open, "My Family Tree")
+        self.assertEqual(ap.restore_state_path, path)
+
+    def test_restore_state_without_tree_key_leaves_open_none(self):
+        path = self.write_state_file({"language": "fr_FR.UTF-8"})
+        ap = self.create_parser("--restore-state", path)
+        self.assertIsNone(ap.open)
+        self.assertEqual(ap.restore_state_path, path)
+
+    def test_restore_state_missing_file_does_not_crash(self):
+        ap = self.create_parser("--restore-state", "/no/such/file.json")
+        self.assertIsNone(ap.open)
+        self.assertEqual(ap.restore_state_path, "/no/such/file.json")
+
+    def test_restore_state_path_defaults_to_none(self):
+        ap = self.create_parser()
+        self.assertIsNone(ap.restore_state_path)
 
 
 if __name__ == "__main__":

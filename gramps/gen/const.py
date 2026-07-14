@@ -339,6 +339,7 @@ LONGOPTS = [
     "password=",
     "create=",
     "options=",
+    "restore-state=",
     "safe",
     "screen=",
     "show",
