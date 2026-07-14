@@ -23,6 +23,9 @@
 # standard python modules
 #
 # ------------------------------------------------------------------------
+import base64
+import json
+import logging
 import pickle
 import os
 from xml.sax.saxutils import escape
@@ -46,7 +49,7 @@ import cairo
 # gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_PAGE, USER_DATA_VERSION
 from gramps.gen.lib import NoteType
 from gramps.gen.datehandler import get_date
 from gramps.gen.display.place import displayer as place_displayer
@@ -68,9 +71,11 @@ _ = glocale.translation.sgettext
 # Constants
 #
 # -------------------------------------------------------------------------
+LOG = logging.getLogger(__name__)
 WIKI_HELP_PAGE = "%s_-_Navigation" % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _("Using_the_Clipboard", "manual")
 clipdb = None  # current db to avoid different transient dbs during db change
+CLIPBOARD_FILE = os.path.join(USER_DATA_VERSION, "clipboard.json")
 
 # -------------------------------------------------------------------------
 #
@@ -79,7 +84,7 @@ clipdb = None  # current db to avoid different transient dbs during db change
 # -------------------------------------------------------------------------
 
 theme = Gtk.IconTheme.get_default()
-LINK_PIC = theme.load_icon("stock_link", 16, 0)
+LINK_PIC = theme.load_icon("stock_link", 16, 0) if theme else None
 OBJ2ICON = {
     "media": "gramps-media",
     "note": "gramps-notes",
@@ -105,8 +110,9 @@ def obj2icon(target):
 
 
 ICONS = {}
-for name, icon in OBJ2ICON.items():
-    ICONS[name] = theme.load_icon(icon, 16, 0)
+if theme:
+    for name, icon in OBJ2ICON.items():
+        ICONS[name] = theme.load_icon(icon, 16, 0)
 
 
 # -------------------------------------------------------------------------
@@ -195,8 +201,16 @@ def model_contains(model, data):
 # wrapper classes to provide object specific listing in the ListView
 #
 # -------------------------------------------------------------------------
+class _NullDragTarget:
+    """Null-object sentinel used as the base-class default for DRAG_TARGET."""
+
+    drag_type = None
+
+
 class ClipWrapper:
     UNAVAILABLE_ICON = "dialog-error"
+    DRAG_TARGET = _NullDragTarget()
+    ICON = None
 
     def __init__(self, obj):
         self._obj = obj
@@ -309,7 +323,7 @@ class ClipObjWrapper(ClipWrapper):
 class ClipAddress(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.ADDRESS]
     DRAG_TARGET = DdTargets.ADDRESS
-    ICON = ICONS["address"]
+    ICON = ICONS.get("address")
 
     def __init__(self, obj):
         super(ClipAddress, self).__init__(obj)
@@ -330,7 +344,7 @@ class ClipAddress(ClipObjWrapper):
 class ClipLocation(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.LOCATION]
     DRAG_TARGET = DdTargets.LOCATION
-    ICON = ICONS["location"]
+    ICON = ICONS.get("location")
 
     def __init__(self, obj):
         super(ClipLocation, self).__init__(obj)
@@ -348,7 +362,7 @@ class ClipLocation(ClipObjWrapper):
 class ClipEvent(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.EVENT]
     DRAG_TARGET = DdTargets.EVENT
-    ICON = ICONS["event"]
+    ICON = ICONS.get("event")
 
     def __init__(self, obj):
         super(ClipEvent, self).__init__(obj)
@@ -367,7 +381,7 @@ class ClipEvent(ClipHandleWrapper):
 class ClipPlace(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.PLACE_LINK]
     DRAG_TARGET = DdTargets.PLACE_LINK
-    ICON = ICONS["place"]
+    ICON = ICONS.get("place")
 
     def __init__(self, obj):
         super(ClipPlace, self).__init__(obj)
@@ -386,7 +400,7 @@ class ClipPlace(ClipHandleWrapper):
 class ClipNote(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.NOTE_LINK]
     DRAG_TARGET = DdTargets.NOTE_LINK
-    ICON = ICONS["note"]
+    ICON = ICONS.get("note")
 
     def __init__(self, obj):
         super(ClipNote, self).__init__(obj)
@@ -404,7 +418,7 @@ class ClipNote(ClipHandleWrapper):
 class ClipFamilyEvent(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.FAMILY_EVENT]
     DRAG_TARGET = DdTargets.FAMILY_EVENT
-    ICON = ICONS["family"]
+    ICON = ICONS.get("family")
 
     def __init__(self, obj):
         super(ClipFamilyEvent, self).__init__(obj)
@@ -420,7 +434,7 @@ class ClipFamilyEvent(ClipObjWrapper):
 class ClipUrl(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.URL]
     DRAG_TARGET = DdTargets.URL
-    ICON = ICONS["url"]
+    ICON = ICONS.get("url")
 
     def __init__(self, obj):
         super(ClipUrl, self).__init__(obj)
@@ -436,7 +450,7 @@ class ClipUrl(ClipObjWrapper):
 class ClipAttribute(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.ATTRIBUTE]
     DRAG_TARGET = DdTargets.ATTRIBUTE
-    ICON = ICONS["attribute"]
+    ICON = ICONS.get("attribute")
 
     def __init__(self, obj):
         super(ClipAttribute, self).__init__(obj)
@@ -451,7 +465,7 @@ class ClipAttribute(ClipObjWrapper):
 class ClipFamilyAttribute(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.FAMILY_ATTRIBUTE]
     DRAG_TARGET = DdTargets.FAMILY_ATTRIBUTE
-    ICON = ICONS["attribute"]
+    ICON = ICONS.get("attribute")
 
     def __init__(self, obj):
         super(ClipFamilyAttribute, self).__init__(obj)
@@ -467,7 +481,7 @@ class ClipFamilyAttribute(ClipObjWrapper):
 class ClipCitation(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.CITATION_LINK]
     DRAG_TARGET = DdTargets.CITATION_LINK
-    ICON = ICONS["citation"]
+    ICON = ICONS.get("citation")
 
     def __init__(self, obj):
         super(ClipCitation, self).__init__(obj)
@@ -570,7 +584,7 @@ class ClipPlaceRef(ClipObjWrapper):
 class ClipName(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.NAME]
     DRAG_TARGET = DdTargets.NAME
-    ICON = ICONS["name"]
+    ICON = ICONS.get("name")
 
     def __init__(self, obj):
         super(ClipName, self).__init__(obj)
@@ -586,7 +600,7 @@ class ClipName(ClipObjWrapper):
 class ClipPlaceName(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.PLACENAME]
     DRAG_TARGET = DdTargets.PLACENAME
-    ICON = ICONS["name"]
+    ICON = ICONS.get("name")
 
     def __init__(self, obj):
         super(ClipPlaceName, self).__init__(obj)
@@ -602,7 +616,7 @@ class ClipPlaceName(ClipObjWrapper):
 class ClipSurname(ClipObjWrapper):
     DROP_TARGETS = [DdTargets.SURNAME]
     DRAG_TARGET = DdTargets.SURNAME
-    ICON = ICONS["name"]
+    ICON = ICONS.get("name")
 
     def __init__(self, obj):
         super(ClipSurname, self).__init__(obj)
@@ -618,7 +632,7 @@ class ClipSurname(ClipObjWrapper):
 class ClipText(ClipWrapper):
     DROP_TARGETS = DdTargets.all_text()
     DRAG_TARGET = DdTargets.TEXT
-    ICON = ICONS["text"]
+    ICON = ICONS.get("text")
 
     def __init__(self, obj):
         super(ClipText, self).__init__(obj)
@@ -640,7 +654,7 @@ class ClipText(ClipWrapper):
 class ClipMediaObj(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.MEDIAOBJ]
     DRAG_TARGET = DdTargets.MEDIAOBJ
-    ICON = ICONS["media"]
+    ICON = ICONS.get("media")
 
     def __init__(self, obj):
         super(ClipMediaObj, self).__init__(obj)
@@ -715,7 +729,7 @@ class ClipChildRef(ClipObjWrapper):
 class ClipPersonLink(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.PERSON_LINK]
     DRAG_TARGET = DdTargets.PERSON_LINK
-    ICON = ICONS["person"]
+    ICON = ICONS.get("person")
 
     def __init__(self, obj):
         super(ClipPersonLink, self).__init__(obj)
@@ -734,7 +748,7 @@ class ClipPersonLink(ClipHandleWrapper):
 class ClipFamilyLink(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.FAMILY_LINK]
     DRAG_TARGET = DdTargets.FAMILY_LINK
-    ICON = ICONS["family"]
+    ICON = ICONS.get("family")
 
     def __init__(self, obj):
         super(ClipFamilyLink, self).__init__(obj)
@@ -756,7 +770,7 @@ class ClipFamilyLink(ClipHandleWrapper):
 class ClipSourceLink(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.SOURCE_LINK]
     DRAG_TARGET = DdTargets.SOURCE_LINK
-    ICON = ICONS["source"]
+    ICON = ICONS.get("source")
 
     def __init__(self, obj):
         super(ClipSourceLink, self).__init__(obj)
@@ -775,7 +789,7 @@ class ClipSourceLink(ClipHandleWrapper):
 class ClipRepositoryLink(ClipHandleWrapper):
     DROP_TARGETS = [DdTargets.REPO_LINK]
     DRAG_TARGET = DdTargets.REPO_LINK
-    ICON = ICONS["repository"]
+    ICON = ICONS.get("repository")
 
     def __init__(self, obj):
         super(ClipRepositoryLink, self).__init__(obj)
@@ -867,6 +881,47 @@ class ClipDropHandleList(ClipDropList):
 # FIXME: add family
 
 
+def _build_drag_type_map() -> dict:
+    """
+    Return a mapping of drag-type string to wrapper class for all saveable types.
+
+    :returns: dict mapping drag_type string to ClipWrapper subclass.
+    :rtype: dict
+    """
+    classes = [
+        ClipAddress,
+        ClipLocation,
+        ClipEvent,
+        ClipPlace,
+        ClipNote,
+        ClipFamilyEvent,
+        ClipUrl,
+        ClipAttribute,
+        ClipFamilyAttribute,
+        ClipCitation,
+        ClipRepoRef,
+        ClipEventRef,
+        ClipPlaceRef,
+        ClipName,
+        ClipPlaceName,
+        ClipSurname,
+        ClipMediaObj,
+        ClipMediaRef,
+        ClipPersonRef,
+        ClipChildRef,
+        ClipPersonLink,
+        ClipFamilyLink,
+        ClipSourceLink,
+        ClipRepositoryLink,
+        ClipText,
+    ]
+    return {
+        cls.DRAG_TARGET.drag_type: cls
+        for cls in classes
+        if cls.DRAG_TARGET.drag_type is not None
+    }
+
+
 # -------------------------------------------------------------------------
 #
 # ClipboardListModel class
@@ -899,6 +954,7 @@ class ClipboardListView:
 
     def __init__(self, dbstate, widget):
         self._widget = widget
+        self._filter = None
         self.dbstate = dbstate
         self.dbstate.connect("database-changed", self.database_changed)
         self.database_changed(dbstate.db)
@@ -967,6 +1023,9 @@ class ClipboardListView:
             return
         global clipdb
         clipdb = db
+        if self._filter:
+            self._filter.refilter()
+        self._widget.queue_draw()
         # Note: delete event is emitted before the delete, so checking
         #        if valid on this is useless !
         db_signals = (
@@ -1008,22 +1067,17 @@ class ClipboardListView:
         clipdb.connect("note-delete", gen_del_obj(self.delete_object, "note-link"))
         # family-delete not needed, cannot be dragged!
 
-        self.refresh_objects()
-
     def refresh_objects(self, dummy=None):
-        model = self._widget.get_model()
-
+        model = ClipboardWindow.otree
         if model:
             for _ob in model:
-                if not _ob[1].is_valid():
-                    model.remove(_ob.iter)
-                else:
+                if _ob[1].is_valid():
                     _ob[1].refresh()
-                    _ob[4] = _ob[1].get_value()  # Force listview to update
+                    _ob[4] = _ob[1].get_value()
+            self._widget.queue_draw()
 
     def delete_object(self, handle_list, link_type):
-        model = self._widget.get_model()
-
+        model = ClipboardWindow.otree
         if model:
             for _ob in model:
                 if _ob[0] == link_type:
@@ -1032,8 +1086,7 @@ class ClipboardListView:
                         model.remove(_ob.iter)
 
     def delete_object_ref(self, handle_list, link_type):
-        model = self._widget.get_model()
-
+        model = ClipboardWindow.otree
         if model:
             for _ob in model:
                 if _ob[0] == link_type:
@@ -1279,30 +1332,34 @@ class ClipboardListView:
                     _ob._dbid,
                     _ob._dbname,
                 ]
-                contains = model_contains(model, data)
+                store = ClipboardWindow.otree
+                contains = model_contains(store, data)
                 if contains and not (context.get_actions() & Gdk.DragAction.MOVE):
                     continue
                 drop_info = widget.get_dest_row_at_pos(x, y)
                 if drop_info:
                     path, position = drop_info
-                    node = model.get_iter(path)
+                    # path is in filter-space; convert to store path for insertion
+                    if self._filter:
+                        path = self._filter.convert_path_to_child_path(path)
+                    node = store.get_iter(path)
                     if (
                         position == Gtk.TreeViewDropPosition.BEFORE
                         or position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE
                     ):
-                        model.insert_before(node, data)
+                        store.insert_before(node, data)
                     else:
-                        model.insert_after(node, data)
+                        store.insert_after(node, data)
                 elif isinstance(data[1], ClipCitation):
                     if data[3]:
                         # we have a real citation
-                        model.append(data)
+                        store.append(data)
                     # else:
                     #   We are in a Source treeview and trying
                     #   to copy a source with a shortcut.
                     #   Use drag and drop to do that.
                 else:
-                    model.append(data)
+                    store.append(data)
 
             # FIXME: there is one bug here: if you multi-select and drop
             # on self, then it moves the first, and copies the rest.
@@ -1318,8 +1375,32 @@ class ClipboardListView:
 
     # proxy methods to provide access to the real widget functions.
 
+    def _row_visible(
+        self, model: Gtk.TreeModel, iter: Gtk.TreeIter, data: object
+    ) -> bool:
+        """
+        Return True if a clipboard row should be shown in the current view.
+
+        Rows belonging to the currently active database are visible; rows
+        from other databases are hidden (but retained in the backing store).
+
+        :param model: the Gtk.TreeModel being filtered.
+        :param iter: the Gtk.TreeIter pointing to the row being tested.
+        :param data: user data passed to set_visible_func (unused).
+        :returns: True if the row should be displayed.
+        :rtype: bool
+        """
+        dbid = model.get_value(iter, 5)
+        return dbid is None or clipdb is None or dbid == clipdb.get_dbid()
+
     def set_model(self, model=None):
-        self._widget.set_model(model)
+        if model is not None:
+            self._filter = Gtk.TreeModelFilter(child_model=model)
+            self._filter.set_visible_func(self._row_visible)
+            self._widget.set_model(self._filter)
+        else:
+            self._filter = None
+            self._widget.set_model(None)
         self._widget.get_selection().connect("changed", self.on_object_select_row)
         self._widget.get_selection().set_mode(Gtk.SelectionMode.MULTIPLE)
 
@@ -1363,6 +1444,114 @@ class ClipboardWindow(ManagedWindow):
     # maintain a list of these.
     otree = None
 
+    @classmethod
+    def save_clipboard(cls) -> None:
+        """
+        Serialize all clipboard items to CLIPBOARD_FILE as JSON.
+
+        Each item is saved with its drag type, base64-encoded raw bytes,
+        display title and value, and the source database id and name so
+        that cross-database items can be identified on reload.  Items
+        without serialisable bytes are silently skipped.  The file is
+        written atomically; any I/O error is silently ignored so that a
+        save failure never crashes the application.
+        """
+        if cls.otree is None:
+            return
+        items = []
+        for row in cls.otree:
+            drag_type = row[0]
+            wrapper = row[1]
+            # Use raw original bytes, never pack() which calls is_valid().
+            # ClipObjWrapper stores original bytes in _pickle; all others in _obj.
+            raw = (
+                wrapper._pickle if isinstance(wrapper, ClipObjWrapper) else wrapper._obj
+            )
+            if raw is None:
+                continue
+            if isinstance(raw, str):
+                raw = raw.encode("utf-8")
+            if not isinstance(raw, bytes):
+                continue
+            items.append(
+                {
+                    "drag_type": drag_type,
+                    "data": base64.b64encode(raw).decode("ascii"),
+                    "title": wrapper._title,
+                    "value": wrapper._value,
+                    "dbid": wrapper._dbid,
+                    "dbname": wrapper._dbname,
+                }
+            )
+        try:
+            with open(CLIPBOARD_FILE, "w", encoding="utf-8") as fp:
+                json.dump(items, fp)
+        except Exception:
+            pass
+
+    @classmethod
+    def load_clipboard(cls) -> None:
+        """
+        Restore clipboard items from CLIPBOARD_FILE into the in-memory store.
+
+        Each saved item is reconstructed using the appropriate wrapper class.
+        The wrapper's refresh() call is suppressed during construction so that
+        handles belonging to other databases do not raise HandleError.  The
+        saved title, value, dbid and dbname are restored after construction.
+        Items with unknown drag types or undecodable data are skipped with a
+        warning.  Missing or corrupt files are silently ignored.
+        """
+        if not os.path.exists(CLIPBOARD_FILE):
+            return
+        try:
+            with open(CLIPBOARD_FILE, "r", encoding="utf-8") as fp:
+                items = json.load(fp)
+        except Exception:
+            return
+        drag_map = _build_drag_type_map()
+        for item in items:
+            drag_type = item.get("drag_type")
+            wrapper_class = drag_map.get(drag_type)
+            if wrapper_class is None:
+                continue
+            try:
+                data = base64.b64decode(item["data"])
+                # Suppress refresh() during construction — cross-db handles raise
+                # HandleError in the current db; we restore title/value from JSON.
+                orig_refresh = wrapper_class.refresh
+                wrapper_class.refresh = lambda self: None
+                try:
+                    wrapper = wrapper_class(data)
+                finally:
+                    wrapper_class.refresh = orig_refresh
+            except Exception as exc:
+                LOG.warning("load_clipboard: skipping %s: %s", drag_type, exc)
+                continue
+            wrapper._dbid = item.get("dbid", wrapper._dbid)
+            wrapper._dbname = item.get("dbname", wrapper._dbname)
+            if item.get("title"):
+                wrapper._title = item["title"]
+            if item.get("value"):
+                wrapper._value = item["value"]
+            LOG.debug(
+                "load_clipboard: loaded %s dbid=%s title=%s",
+                drag_type,
+                wrapper._dbid,
+                wrapper._title,
+            )
+            assert cls.otree is not None
+            cls.otree.append(
+                [
+                    wrapper_class.DRAG_TARGET.drag_type,
+                    wrapper,
+                    None,
+                    wrapper._type,
+                    wrapper._value,
+                    wrapper._dbid,
+                    wrapper._dbname,
+                ]
+            )
+
     def __init__(self, dbstate, uistate):
         """Initialize the ClipboardWindow class, and display the window"""
 
@@ -1394,18 +1583,21 @@ class ClipboardWindow(ManagedWindow):
 
         if not ClipboardWindow.otree:
             ClipboardWindow.otree = ClipboardListModel()
+            ClipboardWindow.load_clipboard()
 
         self.set_clear_all_btn_sensitivity(treemodel=ClipboardWindow.otree)
         ClipboardWindow.otree.connect("row-deleted", self.set_clear_all_btn_sensitivity)
         ClipboardWindow.otree.connect(
             "row-inserted", self.set_clear_all_btn_sensitivity
         )
+        ClipboardWindow.otree.connect(
+            "row-deleted", lambda *a: ClipboardWindow.save_clipboard()
+        )
+        ClipboardWindow.otree.connect(
+            "row-inserted", lambda *a: ClipboardWindow.save_clipboard()
+        )
 
         self.object_list.set_model(ClipboardWindow.otree)
-
-        # Database might have changed, objects might have been removed,
-        # we need to reevaluate if all data is valid
-        self.object_list.refresh_objects()
 
         self.top.connect_signals(
             {
@@ -1418,7 +1610,6 @@ class ClipboardWindow(ManagedWindow):
         self.clear_all_btn.connect_object(
             "clicked", Gtk.ListStore.clear, ClipboardWindow.otree
         )
-        self.db.connect("database-changed", lambda x: ClipboardWindow.otree.clear())
 
         mtv.restore_column_size()
         self.show()
