@@ -349,5 +349,48 @@ class StrcollTest(unittest.TestCase):
         self.assertEqual(self.glocale.strcoll("Abel", "Abel"), 0)
 
 
+class LocaleIsInstalledTest(unittest.TestCase):
+    """
+    Tests for _locale_is_installed(), which probes whether a full locale
+    (e.g. "fi_FI.UTF-8") is actually installed on this system.
+
+    GrampsLocale.__init_first_instance() uses this to detect, ahead of
+    time, the same condition that otherwise surfaces only as Gtk's own
+    opaque "Locale not supported by C library" warning once Gtk makes its
+    own setlocale(LC_ALL, "") call. When the probe fails, GrampsLocale.
+    __init__ later logs a translatable warning -- once self.translation
+    exists, which it doesn't yet this early in construction -- naming the
+    missing locale, the Gramps language that needed it, and a wiki link.
+    """
+
+    def test_uninstalled_locale_is_reported_missing(self):
+        from ..grampslocale import _locale_is_installed
+
+        self.assertFalse(_locale_is_installed("xx_XX.UTF-8"))
+
+    def test_installed_locale_is_reported_present(self):
+        from ..grampslocale import _locale_is_installed
+
+        self.assertTrue(_locale_is_installed("C"))
+
+    def test_process_locale_restored_after_successful_probe(self):
+        import locale
+
+        from ..grampslocale import _locale_is_installed
+
+        before = locale.setlocale(locale.LC_ALL)
+        _locale_is_installed("C")
+        self.assertEqual(locale.setlocale(locale.LC_ALL), before)
+
+    def test_process_locale_unchanged_after_failed_probe(self):
+        import locale
+
+        from ..grampslocale import _locale_is_installed
+
+        before = locale.setlocale(locale.LC_ALL)
+        _locale_is_installed("xx_XX.UTF-8")
+        self.assertEqual(locale.setlocale(locale.LC_ALL), before)
+
+
 if __name__ == "__main__":
     unittest.main()
