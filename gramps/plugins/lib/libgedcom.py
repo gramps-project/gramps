@@ -1025,12 +1025,12 @@ class Lexer:
                     tag = line[0]
                     line_value = line[2]
             except:
-                problem = _("Line ignored ")
+                problem = _("Line %d ignored ") % self.index
                 text = original_line.rstrip("\n\r")
                 prob_width = 66
                 problem = problem.ljust(prob_width)[0 : (prob_width - 1)]
                 text = text.replace("\n", "\n".ljust(prob_width + 22))
-                message = "%s              %s" % (problem, text)
+                message = "%s         %s" % (problem, text)
                 self.__add_msg(message)
                 continue
 
@@ -3492,10 +3492,21 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        # If the current line tag is '_PREF', bypass parsing entirely.
+        # Legacy has the concept of "Preferred" spouses, siblings and children
+        # to help determine what shows on charts when multiple choices exist.
+        # To help eliminate clutter, let's supress this from the logs if
+        # we don't plan to use it.
+        # Legacy also adds parens and italics to the source notation, but gramps
+        # handles this through the Bibliography and Report Engine to set either
+        # Chicago, Oxford, or custom style
+        if line.token_text in ('_PREF', '_PAREN', '_ITALIC', '_NAME'):
+            return True  # Tells the state engine this tag is handled/skipped cleanly
+
         if line.token == TOKEN_UNKNOWN:
             self.__add_msg(_("Line ignored as not understood"), line, state)
         else:
-            self.__add_msg(_("Tag recognized but not supported"), line, state)
+            self.__add_msg(_("Tag recognized but not supported: \'" + line.data + "\' on line "), line, state)
         self.__skip_subordinate_levels(line.level + 1, state)
 
     def __not_recognized(self, line, state):
@@ -4037,6 +4048,25 @@ class GedcomParser(UpdateCallback):
         """
         while True:
             line = self.__get_next_line()
+
+            # --- ENHANCED SILENT INTERCEPT ---
+            # Catch Legacy's custom place and event definitions, swallowing all children silently
+            if line and (
+                line.data in ("_PLAC_DEFN", "_EVENT_DEFN") or 
+                getattr(line, 'token_text', '') in ("_PLAC_DEFN", "_EVENT_DEFN") or
+                (isinstance(line.data, str) and line.data.startswith(("_PLAC_DEFN", "_EVENT_DEFN")))
+            ):
+                # Advance the file pointer and completely ignore everything until the next Level 0 record
+                while True:
+                    next_line = self.__get_next_line()
+                    if not next_line:
+                        break
+                    if next_line.level == 0:
+                        self._backup() # Push the next valid Level 0 record back onto the stack
+                        break
+                continue # Immediately jump to the next iteration of the main loop
+            # -------------------------------
+
             key = line.data
             if not line or line.token == TOKEN_TRLR:
                 self._backup()
