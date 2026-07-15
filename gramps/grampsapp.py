@@ -46,6 +46,98 @@ if "-S" in sys.argv or "--safe" in sys.argv:
     os.environ["SAFEMODE"] = tempdir.name
 
 # -------------------------------------------------------------------------
+# restore a persisted preferences.language on ordinary startup, i.e. any
+# startup that isn't itself a --restore-state relaunch (that case is
+# handled below) or safe mode (which intentionally ignores customized
+# settings). preferences.language is an ordinary ConfigManager setting
+# (gen/config.py), but ConfigManager can't be used this early -- it
+# itself imports .gen.const, which is what's about to construct the
+# GRAMPS_LOCALE singleton this code needs to run before. Read the ini
+# file directly instead, using only the lightweight, .gen.const-independent
+# path helpers from .gen.constfunc, and tolerate any failure by simply not
+# overriding anything, same as if this block didn't run at all.
+if (
+    "--restore-state" not in sys.argv
+    and "SAFEMODE" not in os.environ
+    and "LANGUAGE" not in os.environ
+):
+    from .gen.constfunc import get_env_var, get_user_config_dir
+    from .version import VERSION_TUPLE
+
+    if "GRAMPSHOME" in os.environ:
+        _user_config = os.path.join(get_env_var("GRAMPSHOME"), "gramps")
+    else:
+        _user_config = os.path.join(get_user_config_dir(), "gramps")
+    _inifile = os.path.join(
+        _user_config,
+        "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]),
+        "gramps.ini",
+    )
+    if os.path.exists(_inifile):
+        import ast
+        import configparser
+
+        _cp = configparser.ConfigParser(interpolation=None)
+        try:
+            _cp.read(_inifile)
+            _persisted_language = ast.literal_eval(_cp.get("preferences", "language"))
+        except (
+            configparser.Error,
+            ValueError,
+            SyntaxError,
+        ):
+            _persisted_language = None
+        if _persisted_language:
+            os.environ["LANGUAGE"] = _persisted_language
+
+# -------------------------------------------------------------------------
+# restore the UI language from a restart-state file, if one was passed.
+# This must happen before the .gen.const import below, because that import
+# constructs the GRAMPS_LOCALE singleton from the environment.
+if "--restore-state" in sys.argv:
+    _state_ix = sys.argv.index("--restore-state")
+    if _state_ix + 1 < len(sys.argv):
+        import json
+
+        try:
+            with open(sys.argv[_state_ix + 1], encoding="utf-8") as _state_file:
+                _restore_language = json.load(_state_file).get("language")
+        except (OSError, ValueError):
+            _restore_language = None
+        if _restore_language:
+            # LANGUAGE is gettext's own message-catalog selector and takes
+            # bare/short codes ("fr", "zh_CN") -- exactly what's stored in
+            # preferences.language. LANG is a different namespace: it must
+            # be a full OS locale name (e.g. "fr_FR.UTF-8") for setlocale()
+            # to succeed, and setting it to a bare code here would make
+            # locale.setlocale(LC_ALL, "") fail and fall back to "C",
+            # degrading LC_TIME/LC_COLLATE along with it. Leave LANG (and
+            # LC_*) alone so date/number/collation keep following the
+            # user's actual system locale.
+            os.environ["LANGUAGE"] = _restore_language
+
+# -------------------------------------------------------------------------
+# an explicit --language=CODE (or --language CODE) command line argument
+# always wins over both of the above, including any LANGUAGE already set in
+# the shell environment. It is a one-off override for this run only -- it
+# is deliberately not written to preferences.language, so it never changes
+# what a plain "gramps" invocation picks up next time. Parsed by hand,
+# rather than deferred to cli.argparser.ArgParser, because it must be
+# resolved before the .gen.const import below constructs GRAMPS_LOCALE from
+# the environment; ArgParser itself imports .gen.const and so cannot run
+# yet.
+for _ix, _arg in enumerate(sys.argv[1:], start=1):
+    if _arg.startswith("--language="):
+        _cli_language = _arg.split("=", 1)[1]
+    elif _arg == "--language" and _ix + 1 < len(sys.argv):
+        _cli_language = sys.argv[_ix + 1]
+    else:
+        continue
+    if _cli_language:
+        os.environ["LANGUAGE"] = _cli_language
+    break
+
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #

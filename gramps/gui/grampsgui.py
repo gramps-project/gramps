@@ -621,6 +621,11 @@ class Gramps:
             # open without fam tree loaded
             self._vm.post_init_interface()
 
+        if getattr(argparser, "restore_state_path", None):
+            from .restartstate import apply_post_init_state
+
+            apply_post_init_state(argparser.restore_state_path, dbstate, self._vm)
+
         if config.get("behavior.use-tips"):
             TipOfDay(self._vm.uistate)
 

@@ -297,6 +297,7 @@ register(
 
 register("preferences.quick-backup-include-mode", False)
 register("preferences.date-format", 0)
+register("preferences.language", "")
 register("preferences.calendar-format-report", 0)
 register("preferences.calendar-format-input", 0)
 register("preferences.february-29", 0)  # 0: 02/28; 1: 03/01; 2: only the 02/29

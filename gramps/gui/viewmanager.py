@@ -1105,6 +1105,16 @@ class ViewManager(CLIManager):
             # Should solve bug 12636
             return self.pages[0]
 
+    def get_active_view_id(self):
+        """
+        Return the id of the currently active view, or None.
+        """
+        page_num = self.notebook.get_current_page()
+        for (cat_num, view_num), num in self.page_lookup.items():
+            if num == page_num:
+                return self.views[cat_num][view_num][0].id
+        return None
+
     def get_category(self, cat_name):
         """
         Return the category number from the given category name.
