@@ -37,6 +37,8 @@ This module exports the Glade class.
 # ------------------------------------------------------------------------
 import sys
 import os
+import re
+import xml.etree.ElementTree as ET
 from gi.repository import Gtk
 
 # ------------------------------------------------------------------------
@@ -46,6 +48,159 @@ from gi.repository import Gtk
 # ------------------------------------------------------------------------
 from gramps.gen.const import GLADE_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.constfunc import is_quartz
+
+# ------------------------------------------------------------------------
+#
+# Glade accelerator scanning/override support
+#
+# ------------------------------------------------------------------------
+
+# Only the modifiers actually used by <accelerator> tags in Gramps' glade
+# files need to be here; GDK_META_MASK covers the mac remap below, which
+# runs before this and turns GDK_CONTROL_MASK into GDK_META_MASK in the
+# text.
+_GDK_MASK_TOKENS = {
+    "GDK_SHIFT_MASK": "<Shift>",
+    "GDK_CONTROL_MASK": "<Primary>",
+    "GDK_META_MASK": "<Primary>",
+    "GDK_MOD1_MASK": "<Alt>",
+    "GDK_SUPER_MASK": "<Super>",
+    "GDK_HYPER_MASK": "<Hyper>",
+}
+
+
+def _glade_modifiers_to_prefix(modifiers):
+    """Convert a glade `modifiers="GDK_X_MASK|GDK_Y_MASK"` attribute value
+    into an accelerator-string modifier prefix, e.g. '<Primary><Shift>'.
+    """
+    tokens = []
+    for name in modifiers.split("|"):
+        name = name.strip()
+        if name in _GDK_MASK_TOKENS:
+            tokens.append(_GDK_MASK_TOKENS[name])
+    return "".join(tokens)
+
+
+def _find_glade_label(obj):
+    """Find a human-readable label for a glade <object>: prefer its
+    tooltip-text property, fall back to its accessible-name. Only the
+    first line is used, since some tooltips add further explanation on
+    subsequent lines.
+    """
+    for name in ("tooltip-text", "AtkObject::accessible-name"):
+        prop = obj.find('.//property[@name="%s"]' % name)
+        if prop is not None and prop.text:
+            return prop.text.split("\n", 1)[0]
+    return None
+
+
+def iter_glade_accelerators(xml_text):
+    """Yield (object_id, accel, label) for every <accelerator> element in
+    a glade XML string.
+
+    :param xml_text: the glade file contents, already read from disk
+    :type xml_text: str
+    :returns: object_id is the id of the accelerator's enclosing
+        <object>; accel is a Gtk accelerator string, e.g. '<Primary>a';
+        label is pulled from that object's tooltip or accessible-name,
+        falling back to the raw object id
+    :rtype: Iterator[tuple[str, str, str]]
+    """
+    tree = ET.fromstring(xml_text)
+    for obj in tree.iter("object"):
+        obj_id = obj.get("id")
+        if not obj_id:
+            continue
+        for accel_el in obj.findall("accelerator"):
+            key = accel_el.get("key")
+            if not key:
+                continue
+            accel = _glade_modifiers_to_prefix(accel_el.get("modifiers", "")) + key
+            label = _find_glade_label(obj) or obj_id
+            yield obj_id, accel, label
+
+
+_ACCEL_TOKEN_RE = re.compile(r"<[A-Za-z]+>")
+_ACCEL_TOKEN_TO_MASK = {
+    "<Shift>": "GDK_SHIFT_MASK",
+    "<Primary>": "GDK_CONTROL_MASK",
+    "<Control>": "GDK_CONTROL_MASK",
+    "<Ctrl>": "GDK_CONTROL_MASK",
+    "<Alt>": "GDK_MOD1_MASK",
+    "<Super>": "GDK_SUPER_MASK",
+    "<Hyper>": "GDK_HYPER_MASK",
+    "<Meta>": "GDK_META_MASK",
+}
+
+
+def _accel_to_glade_key_modifiers(accel):
+    """Convert an accelerator string like '<Primary><Shift>a' into the
+    (key, modifiers) pair glade's <accelerator> attributes expect, e.g.
+    ('a', 'GDK_CONTROL_MASK|GDK_SHIFT_MASK'). Pure string parsing -- does
+    not touch Gtk/Gdk, so unlike Gtk.accelerator_parse() it's safe to call
+    without a real display connection.
+
+    :param accel: a Gtk accelerator string
+    :type accel: str
+    :returns: (key, modifiers), or (None, None) if accel has no key part
+    :rtype: tuple[str | None, str | None]
+    """
+    key = _ACCEL_TOKEN_RE.sub("", accel)
+    if not key:
+        return None, None
+    mask_names = []
+    for token in _ACCEL_TOKEN_RE.findall(accel):
+        mask = _ACCEL_TOKEN_TO_MASK.get(token)
+        if mask and mask not in mask_names:
+            mask_names.append(mask)
+    return key, "|".join(mask_names)
+
+
+def apply_glade_accel_overrides(xml_text, file_stem):
+    """Rewrite <accelerator> key/modifiers attributes in a glade XML
+    string to reflect saved user overrides, leaving everything else
+    untouched.
+
+    :param xml_text: the glade file contents
+    :type xml_text: str
+    :param file_stem: the glade file's name without extension, used as
+        part of the action id namespace (see iter_glade_accelerators)
+    :type file_stem: str
+    :returns: the original text, unchanged, if there's no running
+        application to read overrides from, or nothing to override;
+        otherwise the rewritten XML
+    :rtype: str
+    """
+    if "<accelerator" not in xml_text:
+        return xml_text
+    app = Gtk.Application.get_default()
+    uimanager = getattr(app, "uimanager", None)
+    if uimanager is None:
+        return xml_text
+
+    tree = ET.fromstring(xml_text)
+    changed = False
+    for obj in tree.iter("object"):
+        obj_id = obj.get("id")
+        if not obj_id:
+            continue
+        for accel_el in obj.findall("accelerator"):
+            if not accel_el.get("key"):
+                continue
+            action_id = f"glade.{file_stem}.{obj_id}"
+            override = uimanager.accel_dict.get(action_id)
+            if not override:
+                continue
+            key, modifiers = _accel_to_glade_key_modifiers(override)
+            if not key:
+                continue
+            accel_el.set("key", key)
+            accel_el.set("modifiers", modifiers)
+            changed = True
+    if not changed:
+        return xml_text
+    return ET.tostring(tree, encoding="unicode")
+
 
 # ------------------------------------------------------------------------
 #
@@ -149,6 +304,7 @@ class Glade(Gtk.Builder):
         # try to build Gtk objects from glade file.  Let exceptions happen
 
         self.__dirname, self.__filename = os.path.split(path)
+        file_stem = os.path.splitext(self.__filename)[0]
 
         # try to find the toplevel widget
 
@@ -159,6 +315,7 @@ class Glade(Gtk.Builder):
                 data = builder_file.read()
                 if is_quartz():
                     data = data.replace("GDK_CONTROL_MASK", "GDK_META_MASK")
+                data = apply_glade_accel_overrides(data, file_stem)
                 self.add_objects_from_string(data, loadlist)
             self.__toplevel = self.get_object(toplevel)
         # toplevel not given
@@ -167,6 +324,7 @@ class Glade(Gtk.Builder):
                 data = builder_file.read()
                 if is_quartz():
                     data = data.replace("GDK_CONTROL_MASK", "GDK_META_MASK")
+                data = apply_glade_accel_overrides(data, file_stem)
                 self.add_from_string(data)
             # first, use filename as possible toplevel widget name
             self.__toplevel = self.get_object(filename.rpartition(".")[0])

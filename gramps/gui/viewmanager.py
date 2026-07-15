@@ -92,12 +92,16 @@ from gramps.gen.const import (
     WIKI_EXTRAPLUGINS,
     URL_BUGHOME,
     DATA_DIR,
+    GLADE_DIR,
+    PLUGINS_DIR,
 )
 from gramps.gen.constfunc import is_quartz
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
 from .dialog import ErrorDialog, WarningDialog, QuestionDialog2, InfoDialog
 from .widgets import Statusbar
+from .widgets.styledtexteditor import StyledTextEditor
+from .glade import iter_glade_accelerators
 from .undohistory import UndoHistory
 from gramps.gen.utils.file import media_path_full
 from .dbloader import DbLoader
@@ -155,6 +159,44 @@ CSS_FONT = """
     font-family: %s;
   }
 """
+
+# Glade files (by stem, no directory or extension) that carry <accelerator>
+# tags, mapped to a human category shown in the keyboard shortcuts editor.
+# See gramps.gui.glade.iter_glade_accelerators().
+GLADE_ACCEL_CATEGORIES = {
+    "editaddress": _("Address Editor"),
+    "editattribute": _("Attribute Editor"),
+    "editchildref": _("Child Reference Editor"),
+    "editcitation": _("Citation Editor"),
+    "editdate": _("Date Editor"),
+    "editevent": _("Event Editor"),
+    "editeventref": _("Event Reference Editor"),
+    "editfamily": _("Family Editor"),
+    "editldsord": _("LDS Ordinance Editor"),
+    "editlink": _("Link Editor"),
+    "editmedia": _("Media Editor"),
+    "editmediaref": _("Media Reference Editor"),
+    "editname": _("Name Editor"),
+    "editnote": _("Note Editor"),
+    "editperson": _("Person Editor"),
+    "editpersonref": _("Person Reference Editor"),
+    "editplace": _("Place Editor"),
+    "editplacename": _("Place Name Editor"),
+    "editplaceref": _("Place Reference Editor"),
+    "editreporef": _("Repository Reference Editor"),
+    "editrepository": _("Repository Editor"),
+    "editsource": _("Source Editor"),
+    "editurl": _("Internet Address Editor"),
+    "book": _("Book Editor"),
+    "importprogen": _("ProGen Import Assistant"),
+    "notrelated": _("Not Related Tool"),
+}
+
+# Glade files that carry <accelerator> tags but live outside GLADE_DIR.
+GLADE_ACCEL_EXTRA_DIRS = [
+    os.path.join(PLUGINS_DIR, "importer"),
+    os.path.join(PLUGINS_DIR, "tool"),
+]
 
 
 # -------------------------------------------------------------------------
@@ -783,11 +825,106 @@ class ViewManager(CLIManager):
         else:
             self.goto_page(len(self.current_views) - 1, None)
 
+    def __register_static_shortcuts(self):
+        """
+        Register the keyboard shortcuts that view and widget classes
+        declare statically (via get_shortcut_specs()), so the customizable
+        keyboard shortcuts editor lists them even before a matching view
+        has been visited in this session.
+        """
+        seen = set()
+        for cat_views in self.views:
+            for pdata, viewclass in cat_views:
+                if viewclass in seen:
+                    continue
+                seen.add(viewclass)
+                get_specs = getattr(viewclass, "get_shortcut_specs", None)
+                if get_specs is None:
+                    continue
+                category = (
+                    pdata.category[1]
+                    if isinstance(pdata.category, tuple)
+                    else pdata.category
+                )
+                self.uimanager.register_static_shortcuts(
+                    get_specs(), category, prefix="win"
+                )
+
+        self.uimanager.register_static_shortcuts(
+            StyledTextEditor.get_shortcut_specs(), _("Note Editor"), prefix="ste"
+        )
+
+        self.uimanager.register_static_shortcuts(
+            [
+                ("dialog-ok", "<Alt>o", _("Accept Dialog (OK)")),
+                ("dialog-cancel", "<Alt>c", _("Cancel Dialog")),
+            ],
+            _("Dialogs"),
+            prefix="app",
+        )
+
+        self.uimanager.register_static_shortcuts(
+            [
+                (f"dialog-goto-tab-{i}", f"<Alt>{i}", _("Go to Tab %d") % i)
+                for i in range(1, 10)
+            ],
+            _("Dialogs"),
+            prefix="app",
+        )
+
+        self.__register_glade_shortcuts()
+
+    def __register_glade_shortcuts(self):
+        """
+        Scan every .glade file that carries <accelerator> tags and
+        register them, so editor-dialog-local shortcuts (e.g. Ctrl+A on
+        an "Add" button) appear in the keyboard shortcuts editor too.
+        Pure file I/O and XML parsing -- no dialog is built, so this
+        costs nothing meaningful even though it runs on every startup.
+        """
+        for glade_dir in [GLADE_DIR] + GLADE_ACCEL_EXTRA_DIRS:
+            try:
+                filenames = sorted(os.listdir(glade_dir))
+            except OSError:
+                continue
+            for filename in filenames:
+                if not filename.endswith(".glade"):
+                    continue
+                file_stem = filename[: -len(".glade")]
+                try:
+                    with open(
+                        os.path.join(glade_dir, filename), "r", encoding="utf-8"
+                    ) as handle:
+                        data = handle.read()
+                except OSError:
+                    continue
+                if "<accelerator" not in data:
+                    continue
+                category = GLADE_ACCEL_CATEGORIES.get(file_stem, file_stem)
+                specs = []
+                seen_defaults = {}
+                for obj_id, accel, label in iter_glade_accelerators(data):
+                    specs.append((f"{file_stem}.{obj_id}", accel, label))
+                    if accel in seen_defaults:
+                        LOG.warning(
+                            "Duplicate default accelerator %s in %s: %s and %s",
+                            accel,
+                            filename,
+                            seen_defaults[accel],
+                            obj_id,
+                        )
+                    else:
+                        seen_defaults[accel] = obj_id
+                self.uimanager.register_static_shortcuts(
+                    specs, category, prefix="glade"
+                )
+
     def init_interface(self):
         """
         Initialize the interface.
         """
         self.views = self.get_available_views()
+        self.__register_static_shortcuts()
         defaults = views_to_show(self.views, config.get("preferences.use-last-view"))
         self.current_views = defaults[2]
 
@@ -1720,7 +1857,7 @@ class ViewManager(CLIManager):
         if self.toolactions:
             self.uistate.uimanager.remove_action_group(self.toolactions)
             self.uistate.uimanager.remove_ui(self.tool_menu_ui_id)
-        self.toolactions = ActionGroup(name="ToolWindow")
+        self.toolactions = ActionGroup(name=_("Tools"))
         uidef, actions = self.build_plugin_menu(
             "ToolsMenu", tool_menu_list, tool.tool_categories, make_plugin_callback
         )
@@ -1735,7 +1872,7 @@ class ViewManager(CLIManager):
         if self.reportactions:
             self.uistate.uimanager.remove_action_group(self.reportactions)
             self.uistate.uimanager.remove_ui(self.report_menu_ui_id)
-        self.reportactions = ActionGroup(name="ReportWindow")
+        self.reportactions = ActionGroup(name=_("Reports"))
         udef, actions = self.build_plugin_menu(
             "ReportsMenu", report_menu_list, standalone_categories, make_plugin_callback
         )
@@ -1745,7 +1882,10 @@ class ViewManager(CLIManager):
 
     def build_plugin_menu(self, text, item_list, categories, func):
         """
-        Builds a new XML description for a menu based on the list of plugindata
+        Builds a new XML description for a menu based on the list of plugindata.
+        No plugin declares a default accelerator, but the actions still carry
+        an explicit (empty) accel slot so they remain user-bindable through
+        the keyboard shortcuts editor like any other action.
         """
         menuitem = (
             "<item>\n"
@@ -1779,7 +1919,7 @@ class ViewManager(CLIManager):
                 new_key = valid_action_name(pdata.id)
                 name = html.escape(pdata.name.replace("_", "__"))
                 ofile.write(menuitem % (new_key, name))
-                actions.append((new_key, func(pdata, self.dbstate, self.uistate)))
+                actions.append((new_key, func(pdata, self.dbstate, self.uistate), ""))
             ofile.write("</submenu>\n")
 
         # If there are any unsupported items we add separator
@@ -1795,7 +1935,7 @@ class ViewManager(CLIManager):
                 new_key = valid_action_name(pdata.id)
                 name = html.escape(pdata.name.replace("_", "__"))
                 ofile.write(menuitem % (new_key, name))
-                actions.append((new_key, func(pdata, self.dbstate, self.uistate)))
+                actions.append((new_key, func(pdata, self.dbstate, self.uistate), ""))
             ofile.write("</submenu>\n")
 
         ofile.write("</section>\n")

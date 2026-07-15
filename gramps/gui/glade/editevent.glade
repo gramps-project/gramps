@@ -208,6 +208,7 @@
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <property name="relief">none</property>
+                    <property name="tooltip-text" translatable="yes">Add a new place</property>
                     <child>
                       <object class="GtkImage" id="image2699">
                         <property name="visible">True</property>

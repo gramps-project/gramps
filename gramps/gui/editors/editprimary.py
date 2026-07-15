@@ -143,6 +143,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
             child.set_parent_notebook(notebook)
 
         notebook.connect("key-press-event", self.key_pressed, notebook)
+        self._wire_tab_accels(notebook)
 
     def key_pressed(self, obj, event, notebook):
         """
@@ -152,6 +153,36 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         pag = notebook.get_current_page()
         if not pag == -1:
             notebook.get_nth_page(pag).key_pressed(obj, event)
+
+    def _wire_tab_accels(self, notebook):
+        """
+        Bind Alt+1..Alt+9 (or the user's customized keys) to jump directly
+        to the corresponding notebook tab.
+
+        A bare Gtk.Dialog gets no automatic accel routing from
+        GtkApplication, so this uses its own Gtk.AccelGroup -- the same
+        pattern as ManagedWindow._wire_dialog_accels for
+        dialog-ok/dialog-cancel.
+        """
+        if not self.uistate:
+            return
+        uimanager = self.uistate.uimanager
+        accel_group = Gtk.AccelGroup()
+        self.window.add_accel_group(accel_group)
+        for i in range(1, min(9, notebook.get_n_pages()) + 1):
+            accel = uimanager.get_accel(f"app.dialog-goto-tab-{i}")
+            if not accel:
+                continue
+            key, mods = Gtk.accelerator_parse(accel)
+            if not key:
+                continue
+            page_index = i - 1
+            accel_group.connect(
+                key,
+                mods,
+                Gtk.AccelFlags.VISIBLE,
+                lambda *_a, idx=page_index: notebook.set_current_page(idx) or True,
+            )
 
     def _switch_page_on_dnd(self, widget, context, x, y, time, notebook, page_no):
         if notebook.get_current_page() != page_no:
