@@ -863,6 +863,15 @@ class ViewManager(CLIManager):
             prefix="app",
         )
 
+        self.uimanager.register_static_shortcuts(
+            [
+                (f"dialog-goto-tab-{i}", f"<Alt>{i}", _("Go to Tab %d") % i)
+                for i in range(1, 10)
+            ],
+            _("Dialogs"),
+            prefix="app",
+        )
+
         self.__register_glade_shortcuts()
 
     def __register_glade_shortcuts(self):
