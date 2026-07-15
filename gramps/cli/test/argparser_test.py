@@ -129,6 +129,14 @@ class TestArgParser(unittest.TestCase):
         ap = self.create_parser()
         self.assertIsNone(ap.restore_state_path)
 
+    def test_language_longopt_sets_language(self):
+        ap = self.create_parser("--language", "fr")
+        self.assertEqual(ap.language, "fr")
+
+    def test_language_defaults_to_none(self):
+        ap = self.create_parser()
+        self.assertIsNone(ap.language)
+
 
 if __name__ == "__main__":
     unittest.main()

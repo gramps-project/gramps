@@ -117,6 +117,27 @@ if "--restore-state" in sys.argv:
             os.environ["LANGUAGE"] = _restore_language
 
 # -------------------------------------------------------------------------
+# an explicit --language=CODE (or --language CODE) command line argument
+# always wins over both of the above, including any LANGUAGE already set in
+# the shell environment. It is a one-off override for this run only -- it
+# is deliberately not written to preferences.language, so it never changes
+# what a plain "gramps" invocation picks up next time. Parsed by hand,
+# rather than deferred to cli.argparser.ArgParser, because it must be
+# resolved before the .gen.const import below constructs GRAMPS_LOCALE from
+# the environment; ArgParser itself imports .gen.const and so cannot run
+# yet.
+for _ix, _arg in enumerate(sys.argv[1:], start=1):
+    if _arg.startswith("--language="):
+        _cli_language = _arg.split("=", 1)[1]
+    elif _arg == "--language" and _ix + 1 < len(sys.argv):
+        _cli_language = sys.argv[_ix + 1]
+    else:
+        continue
+    if _cli_language:
+        os.environ["LANGUAGE"] = _cli_language
+    break
+
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #

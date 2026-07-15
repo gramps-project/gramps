@@ -329,6 +329,7 @@ LONGOPTS = [
     "g-fatal-warnings",
     "help",
     "import=",
+    "language=",
     "load-modules=",
     "list" "name=",
     "oaf-activate-iid=",
