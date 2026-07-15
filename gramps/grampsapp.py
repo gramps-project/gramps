@@ -46,6 +46,51 @@ if "-S" in sys.argv or "--safe" in sys.argv:
     os.environ["SAFEMODE"] = tempdir.name
 
 # -------------------------------------------------------------------------
+# restore a persisted preferences.language on ordinary startup, i.e. any
+# startup that isn't itself a --restore-state relaunch (that case is
+# handled below) or safe mode (which intentionally ignores customized
+# settings). preferences.language is an ordinary ConfigManager setting
+# (gen/config.py), but ConfigManager can't be used this early -- it
+# itself imports .gen.const, which is what's about to construct the
+# GRAMPS_LOCALE singleton this code needs to run before. Read the ini
+# file directly instead, using only the lightweight, .gen.const-independent
+# path helpers from .gen.constfunc, and tolerate any failure by simply not
+# overriding anything, same as if this block didn't run at all.
+if (
+    "--restore-state" not in sys.argv
+    and "SAFEMODE" not in os.environ
+    and "LANGUAGE" not in os.environ
+):
+    from .gen.constfunc import get_env_var, get_user_config_dir
+    from .version import VERSION_TUPLE
+
+    if "GRAMPSHOME" in os.environ:
+        _user_config = os.path.join(get_env_var("GRAMPSHOME"), "gramps")
+    else:
+        _user_config = os.path.join(get_user_config_dir(), "gramps")
+    _inifile = os.path.join(
+        _user_config,
+        "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]),
+        "gramps.ini",
+    )
+    if os.path.exists(_inifile):
+        import ast
+        import configparser
+
+        _cp = configparser.ConfigParser(interpolation=None)
+        try:
+            _cp.read(_inifile)
+            _persisted_language = ast.literal_eval(_cp.get("preferences", "language"))
+        except (
+            configparser.Error,
+            ValueError,
+            SyntaxError,
+        ):
+            _persisted_language = None
+        if _persisted_language:
+            os.environ["LANGUAGE"] = _persisted_language
+
+# -------------------------------------------------------------------------
 # restore the UI language from a restart-state file, if one was passed.
 # This must happen before the .gen.const import below, because that import
 # constructs the GRAMPS_LOCALE singleton from the environment.
