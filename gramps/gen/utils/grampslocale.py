@@ -380,16 +380,23 @@ class GrampsLocale:
             if len(check_lang) < 2 or check_lang[1] not in ("utf-8", "UTF-8"):
                 lang = ".".join((check_lang[0], "UTF-8"))
 
-        os.environ["LANG"] = lang
         if (
             check_lang[0] not in ("C", "en")
             and sys.platform not in ("darwin", "win32")
             and not _locale_is_installed(lang)
         ):
-            # Translations aren't available yet this early in construction
-            # (self.translation is set later, in __init__); remember the
-            # missing locale and warn about it once they are.
+            # Don't hand Gtk a LANG it can't satisfy -- that's exactly what
+            # triggers its own opaque "Locale not supported by C library"
+            # warning when it makes its own setlocale(LC_ALL, "") call.
+            # Leave LANG as whatever the environment already provided (it
+            # hasn't been touched above) so date/number/collation
+            # formatting keeps following that instead. Translations aren't
+            # available yet this early in construction (self.translation
+            # is set later, in __init__); remember the missing locale and
+            # warn about it, in the user's chosen language, once they are.
             self._missing_locale = lang
+        else:
+            os.environ["LANG"] = lang
         # We need to convert 'en' and 'en_US' to 'C' to avoid confusing
         # GtkBuilder when it's retrieving strings from our Glade files
         # since we have neither an en.po nor an en_US.po.
