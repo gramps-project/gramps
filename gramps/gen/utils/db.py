@@ -424,7 +424,7 @@ def get_preferred_parent_family_handle(db, person):
     :returns: The preferred family handle, or None if no parent families.
     :rtype: str or None
     """
-    from ...config import config
+    from ..config import config
     from ..lib import ChildRefType
 
     family_handles = person.get_parent_family_handle_list()

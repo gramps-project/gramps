@@ -89,9 +89,7 @@ class Ancestor(Gramplet):
         """
         if active_handle:
             person = self.dbstate.db.get_person_from_handle(active_handle)
-            family_handle = get_preferred_parent_family_handle(
-                self.dbstate.db, person
-            )
+            family_handle = get_preferred_parent_family_handle(self.dbstate.db, person)
             if family_handle:
                 family = self.dbstate.db.get_family_from_handle(family_handle)
                 if family and (
@@ -209,9 +207,7 @@ class Ancestor(Gramplet):
             [label, birth_date, birth_sort, tooltip, person_handle], node=parent_id
         )
 
-        family_handle = get_preferred_parent_family_handle(
-            self.dbstate.db, person
-        )
+        family_handle = get_preferred_parent_family_handle(self.dbstate.db, person)
         if family_handle:
             family = self.dbstate.db.get_family_from_handle(family_handle)
             if family:
