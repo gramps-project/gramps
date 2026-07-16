@@ -407,6 +407,50 @@ def find_parents(db, person):
 
 # -------------------------------------------------------------------------
 #
+# Function to return the preferred parent family for a person.
+#
+# -------------------------------------------------------------------------
+def get_preferred_parent_family_handle(db, person):
+    """
+    Return the preferred parent family handle for a person.
+
+    If the "Prefer birth parent family" preference is enabled and the
+    person has multiple parent families, the family where the child
+    relationship is marked as Birth is returned. Otherwise, the first
+    (default) parent family is returned.
+
+    :param db: The database instance.
+    :param person: The :class:`~.person.Person` instance.
+    :returns: The preferred family handle, or None if no parent families.
+    :rtype: str or None
+    """
+    from ...config import config
+    from ..lib import ChildRefType
+
+    family_handles = person.get_parent_family_handle_list()
+    if not family_handles:
+        return None
+
+    if not config.get("behavior.prefer-birth-parent-family"):
+        return family_handles[0]
+
+    person_handle = person.get_handle()
+    for fh in family_handles:
+        family = db.get_family_from_handle(fh)
+        if family:
+            for child_ref in family.get_child_ref_list():
+                if child_ref.ref == person_handle:
+                    if (
+                        child_ref.frel == ChildRefType.BIRTH
+                        or child_ref.mrel == ChildRefType.BIRTH
+                    ):
+                        return fh
+
+    return family_handles[0]
+
+
+# -------------------------------------------------------------------------
+#
 # Function to return persons, that share the same event.
 # This for example links witnesses to the tree
 #

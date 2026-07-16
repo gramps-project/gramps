@@ -37,7 +37,11 @@ from gramps.gui.editors import EditPerson
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
-from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.utils.db import (
+    get_birth_or_fallback,
+    get_death_or_fallback,
+    get_preferred_parent_family_handle,
+)
 from gramps.gen.config import config
 from gramps.gui.utils import model_to_text, text_to_clipboard
 
@@ -85,7 +89,9 @@ class Ancestor(Gramplet):
         """
         if active_handle:
             person = self.dbstate.db.get_person_from_handle(active_handle)
-            family_handle = person.get_main_parents_family_handle()
+            family_handle = get_preferred_parent_family_handle(
+                self.dbstate.db, person
+            )
             if family_handle:
                 family = self.dbstate.db.get_family_from_handle(family_handle)
                 if family and (
@@ -203,7 +209,9 @@ class Ancestor(Gramplet):
             [label, birth_date, birth_sort, tooltip, person_handle], node=parent_id
         )
 
-        family_handle = person.get_main_parents_family_handle()
+        family_handle = get_preferred_parent_family_handle(
+            self.dbstate.db, person
+        )
         if family_handle:
             family = self.dbstate.db.get_family_from_handle(family_handle)
             if family:

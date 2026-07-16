@@ -1880,6 +1880,25 @@ class GrampsPreferences(ConfigureDialog):
         )
 
         row += 1
+        self.add_checkbox(
+            grid,
+            _(
+                "Prefer birth parent family in ancestor views"
+                " (for persons with dual parentage)"
+            ),
+            row,
+            "behavior.prefer-birth-parent-family",
+            start=1,
+            stop=3,
+            tooltip=_(
+                "When enabled, Pedigree View, Ancestor gramplet, and"
+                " Person Details follow the parent family where the"
+                " child relationship is marked as 'Birth' instead of"
+                " the default first parent family."
+            ),
+        )
+
+        row += 1
         label = self.add_text(
             grid,
             _("* Requires Restart"),

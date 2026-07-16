@@ -37,6 +37,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.file import media_path_full
+from gramps.gen.utils.db import get_preferred_parent_family_handle
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -124,7 +125,9 @@ class PersonDetails(Gramplet):
                         has_data = True
                         break
                 if not has_data:
-                    family_handle = active_person.get_main_parents_family_handle()
+                    family_handle = get_preferred_parent_family_handle(
+                        self.dbstate.db, active_person
+                    )
                     if family_handle:
                         family = self.dbstate.db.get_family_from_handle(family_handle)
                         handle = family.get_father_handle()
@@ -209,7 +212,9 @@ class PersonDetails(Gramplet):
         """
         Display the parents of the active person.
         """
-        family_handle = active_person.get_main_parents_family_handle()
+        family_handle = get_preferred_parent_family_handle(
+            self.dbstate.db, active_person
+        )
         if family_handle:
             family = self.dbstate.db.get_family_from_handle(family_handle)
             handle = family.get_father_handle()

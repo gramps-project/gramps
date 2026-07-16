@@ -54,7 +54,12 @@ from gramps.gui.display import display_url
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.file import media_path_full
-from gramps.gen.utils.db import find_children, find_parents, find_witnessed_people
+from gramps.gen.utils.db import (
+    find_children,
+    find_parents,
+    find_witnessed_people,
+    get_preferred_parent_family_handle,
+)
 from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.utils.thumbnails import get_thumbnail_path
 from gramps.gen.errors import WindowActiveError
@@ -1730,10 +1735,8 @@ class PedigreeView(NavigationView):
             alive = False
         lst[index] = [person, val, None, alive, None]
 
-        parent_families = person.get_parent_family_handle_list()
-        if parent_families:
-            family_handle = parent_families[0]
-        else:
+        family_handle = get_preferred_parent_family_handle(self.dbstate.db, person)
+        if not family_handle:
             return
 
         mrel = True
