@@ -1663,15 +1663,20 @@ class FilterMatchProxyDbTest(unittest.TestCase):
         # Confirm setup assumptions
         private_person = raw_db.get_person_from_gramps_id(cls.PRIVATE_PERSON_ID)
         person_prefix = config.get("preferences.iprefix")
+        from gramps.gen.config import CONFIGMAN
+        CONFIGMAN.save()  # Creates the file on disk
+
+        # Print directly to stdout within the running test step
         import sys
-        try:
-            with open(config.filename, "r") as f:
-                sys.stdout.write("\n=== DUMPING GRAMPS.INI CONTENTS ===\n")
-                sys.stdout.write(f.read())
-                sys.stdout.write("\n====================================\n")
-                sys.stdout.flush()
-        except Exception as e:
-            sys.stdout.write(f"Failed to read file: {e}\n")
+        if "gramps.ini" in CONFIGMAN.filename:
+            try:
+                with open(CONFIGMAN.filename, "r") as f:
+                    sys.stdout.write("\n=== DUMPING GRAMPS.INI CONTENTS ===\n")
+                    sys.stdout.write(f.read())
+                    sys.stdout.write("\n====================================\n")
+                    sys.stdout.flush()
+            except Exception as e:
+                sys.stdout.write(f"Failed to read file: {e}\n")
 
         assert False, config.filename
         assert (
