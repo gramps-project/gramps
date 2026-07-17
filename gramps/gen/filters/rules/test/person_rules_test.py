@@ -1653,7 +1653,21 @@ class FilterMatchProxyDbTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        raw_db = import_as_dict(EXAMPLE, User())
+        # raw_db = import_as_dict(EXAMPLE, User())
+        raw_db = import_as_dict(
+            EXAMPLE,
+            User(),
+            person_prefix="I%04d",
+            media_prefix="O%04d",
+            family_prefix="F%04d",
+            source_prefix="S%04d",
+            citation_prefix="C%04d",
+            place_prefix="P%04d",
+            event_prefix="E%04d",
+            repository_prefix="R%04d",
+            note_prefix="N%04d",
+        )
+
         cls.db = raw_db
         cls.proxy_db = PrivateProxyDb(raw_db)
 
@@ -1665,6 +1679,8 @@ class FilterMatchProxyDbTest(unittest.TestCase):
         assert (
             cls.proxy_db.get_person_from_handle(private_person.handle) is None
         ), "Test setup: PrivateProxyDb must hide private people"
+
+        assert False, "Failed!"
 
     def _apply_rule_on(self, rule, db, baserule, base_name="Base"):
         """Register base filter and apply the outer rule against db."""
