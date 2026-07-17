@@ -1663,7 +1663,7 @@ class FilterMatchProxyDbTest(unittest.TestCase):
         # Confirm setup assumptions
         private_person = raw_db.get_person_from_gramps_id(cls.PRIVATE_PERSON_ID)
         person_prefix = config.get("preferences.iprefix")
-        assert False, person_prefix
+        assert False, config.filename
         assert (
             private_person is not None and private_person.private
         ), "Test setup: I0988 must be private in example.gramps"
