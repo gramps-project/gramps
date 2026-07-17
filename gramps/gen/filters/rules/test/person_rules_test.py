@@ -1653,20 +1653,7 @@ class FilterMatchProxyDbTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        # raw_db = import_as_dict(EXAMPLE, User())
-        raw_db = import_as_dict(
-            EXAMPLE,
-            User(),
-            person_prefix="I%04d",
-            media_prefix="O%04d",
-            family_prefix="F%04d",
-            source_prefix="S%04d",
-            citation_prefix="C%04d",
-            place_prefix="P%04d",
-            event_prefix="E%04d",
-            repository_prefix="R%04d",
-            note_prefix="N%04d",
-        )
+        raw_db = import_as_dict(EXAMPLE, User())
 
         cls.db = raw_db
         cls.proxy_db = PrivateProxyDb(raw_db)
