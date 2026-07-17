@@ -1660,6 +1660,7 @@ class FilterMatchProxyDbTest(unittest.TestCase):
 
         # Confirm setup assumptions
         private_person = raw_db.get_person_from_gramps_id(cls.PRIVATE_PERSON_ID)
+        assert private_person is None, "private_person is not None!"
         assert (
             private_person is not None and private_person.private
         ), "Test setup: I0988 must be private in example.gramps"
