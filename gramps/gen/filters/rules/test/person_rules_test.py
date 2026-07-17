@@ -29,6 +29,8 @@ from typing import Any, ClassVar
 import inspect
 from contextlib import contextmanager
 
+from ....config import config
+
 from ....filters import reload_custom_filters
 
 reload_custom_filters()
@@ -1660,7 +1662,8 @@ class FilterMatchProxyDbTest(unittest.TestCase):
 
         # Confirm setup assumptions
         private_person = raw_db.get_person_from_gramps_id(cls.PRIVATE_PERSON_ID)
-        assert private_person is None, "private_person is not None!"
+        person_prefix = config.get("preferences.iprefix")
+        assert False, person_prefix
         assert (
             private_person is not None and private_person.private
         ), "Test setup: I0988 must be private in example.gramps"
