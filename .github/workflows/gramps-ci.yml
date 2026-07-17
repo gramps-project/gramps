@@ -85,6 +85,12 @@ jobs:
           echo "ERROR - A new file is not listed in either POTFILES.in or POTFILES.skip";
           exit 1;
         fi
+    - name: Upload Gramps Config on Failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: gramps-ini-file
+        path: /home/runner/.config/gramps/gramps61/gramps.ini
 
   pypi-installer:
     name: PyPI installer tests (${{ matrix.os }})
