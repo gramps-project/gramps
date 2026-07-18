@@ -21,7 +21,7 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Iterable, Set
+from typing import Callable, Iterable, Set
 import calendar
 import email.utils
 import logging
@@ -100,10 +100,19 @@ class Tree(deserialize.Gedcomx):
 
         self._persons[fsid] = fs_person
 
-    def add_persons(self, fids: Iterable[str]) -> None:
+    def add_persons(
+        self,
+        fids: Iterable[str],
+        progress_callback: Callable[[], None] | None = None,
+    ) -> None:
         """
         Add multiple FamilySearch persons, fetching HTTP responses concurrently
         and deserializing sequentially to avoid shared-state races.
+
+        :param progress_callback: optional callable invoked after each
+            concurrent fetch completes, so a caller (e.g. the GUI layer) can
+            report progress and keep the interface responsive during what
+            may be a long-running batch of network requests.
         """
         requested_fids = list(fids)
         to_fetch = [fid for fid in requested_fids if fid not in self._persons]
@@ -126,6 +135,8 @@ class Tree(deserialize.Gedcomx):
                             futures[future],
                             exc_info=True,
                         )
+                    if progress_callback is not None:
+                        progress_callback()
 
             for fid in to_fetch:
                 if fid not in raw_results:
@@ -151,7 +162,11 @@ class Tree(deserialize.Gedcomx):
             if fid not in self._persons and fid in deserialize.Person.index:
                 self._persons[fid] = deserialize.Person.index[fid]
 
-    def add_parents(self, fids: Set[str]) -> Set[str]:
+    def add_parents(
+        self,
+        fids: Set[str],
+        progress_callback: Callable[[], None] | None = None,
+    ) -> Set[str]:
         rels: Set[str] = set()
         for fid in fids & set(self._persons.keys()):
             p = self._persons[fid]
@@ -167,10 +182,14 @@ class Tree(deserialize.Gedcomx):
                     rels.add(cp.parent2.resourceId)
 
         rels.difference_update(fids)
-        self.add_persons(rels)
+        self.add_persons(rels, progress_callback=progress_callback)
         return set(filter(None, rels))
 
-    def add_spouses(self, fids: Set[str]) -> Set[str]:
+    def add_spouses(
+        self,
+        fids: Set[str],
+        progress_callback: Callable[[], None] | None = None,
+    ) -> Set[str]:
         rels: Set[str] = set()
         for fid in fids & set(self._persons.keys()):
             p = self._persons[fid]
@@ -188,10 +207,14 @@ class Tree(deserialize.Gedcomx):
                     rels.add(family.parent2.resourceId)
 
         rels.difference_update(fids)
-        self.add_persons(rels)
+        self.add_persons(rels, progress_callback=progress_callback)
         return set(filter(None, rels))
 
-    def add_children(self, fids: Set[str]) -> Set[str]:
+    def add_children(
+        self,
+        fids: Set[str],
+        progress_callback: Callable[[], None] | None = None,
+    ) -> Set[str]:
         rels: Set[str] = set()
         for fid in fids & set(self._persons.keys()):
             p = self._persons[fid]
@@ -215,7 +238,7 @@ class Tree(deserialize.Gedcomx):
                         rels.add(child.resourceId)
 
         rels.difference_update(fids)
-        self.add_persons(rels)
+        self.add_persons(rels, progress_callback=progress_callback)
         return set(filter(None, rels))
 
 

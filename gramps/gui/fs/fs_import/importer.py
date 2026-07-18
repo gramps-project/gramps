@@ -23,6 +23,11 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 from typing import Any
 
+import gi
+
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk  # noqa: E402
+
 from gramps.gen.db import DbTxn
 from gramps.gui.dialog import WarningDialog
 from gramps.gui.utils import ProgressMeter
@@ -40,6 +45,19 @@ from gramps.gen.fs import utils as fs_utilities
 import gramps.gui.fs.person.fsg_sync as FSG_Sync
 from gramps.gui.fs.utils.index import build_fs_index
 from gramps.gen.fs.compare import compare_fs_to_gramps
+
+
+def _pump_gtk_events() -> None:
+    """
+    Process pending GTK events.
+
+    The bulk download phases block the main thread on network I/O in
+    ThreadPoolExecutor batches, so without this the window manager sees an
+    unresponsive main loop and offers to force-quit the app even though the
+    download is progressing normally.
+    """
+    while Gtk.events_pending():
+        Gtk.main_iteration()
 
 
 class FSToGrampsImporter(CoreFSToGrampsImporter):
@@ -93,7 +111,9 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         )
         print(_("Downloading person…"))
         if self.FS_ID:
-            self.fs_TreeImp.add_persons([self.FS_ID])
+            self.fs_TreeImp.add_persons(
+                [self.FS_ID], progress_callback=_pump_gtk_events
+            )
         else:
             if signals_disabled:
                 caller.dbstate.db.enable_signals()
@@ -112,7 +132,12 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                 break
             done |= todo
             print(_("Downloading %d generations of ancestors…") % (i + 1))
-            todo = self.fs_TreeImp.add_parents(set(todo)) - done
+            todo = (
+                self.fs_TreeImp.add_parents(
+                    set(todo), progress_callback=_pump_gtk_events
+                )
+                - done
+            )
 
         progress.set_pass(_("Downloading descendants… (5/11)"), self.desc)
         todo = set(self.fs_TreeImp._persons.keys())
@@ -123,7 +148,12 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                 break
             done |= todo
             print(_("Downloading %d generations of descendants…") % (i + 1))
-            todo = self.fs_TreeImp.add_children(set(todo)) - done
+            todo = (
+                self.fs_TreeImp.add_children(
+                    set(todo), progress_callback=_pump_gtk_events
+                )
+                - done
+            )
 
         if self.include_spouses:
             progress.set_pass(
@@ -131,7 +161,7 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             )
             print(_("Downloading spouses…"))
             todo = set(self.fs_TreeImp._persons.keys())
-            self.fs_TreeImp.add_spouses(set(todo))
+            self.fs_TreeImp.add_spouses(set(todo), progress_callback=_pump_gtk_events)
 
         if self.include_notes or self.include_sources:
             progress.set_pass(
@@ -193,6 +223,7 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                             raw_payloads[url] = future.result()
                         except Exception as exc:
                             print(f"WARNING: failed to fetch {url}: {exc}")
+                        _pump_gtk_events()
 
             # Deserializing mutates shared tree state, so do it sequentially
             # in the main thread even though the fetches above ran
