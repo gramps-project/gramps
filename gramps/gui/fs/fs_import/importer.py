@@ -34,7 +34,7 @@ from gramps.gen.db import DbTxn
 from gramps.gui.dialog import WarningDialog
 from gramps.gui.utils import ProgressMeter
 
-from . import _
+from . import _, ngettext
 from gramps.gen.fs import tree
 from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gen.fs.fs_import.sources import fetch_source_dates
@@ -148,8 +148,10 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                 break
             done |= todo
             print(
-                _(
-                    "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
+                ngettext(
+                    "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)",
+                    "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)",
+                    len(todo),
                 )
                 % {"gen": i + 1, "total": self.asc, "count": len(todo)}
             )
@@ -172,8 +174,10 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                 break
             done |= todo
             print(
-                _(
-                    "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
+                ngettext(
+                    "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)",
+                    "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)",
+                    len(todo),
                 )
                 % {"gen": i + 1, "total": self.desc, "count": len(todo)}
             )
@@ -191,7 +195,14 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                 _("Downloading spouses… (6/11)"), mode=ProgressMeter.MODE_ACTIVITY
             )
             todo = set(self.fs_TreeImp._persons.keys())
-            print(_("Downloading spouses for %d people…") % len(todo))
+            print(
+                ngettext(
+                    "Downloading spouses for %d person…",
+                    "Downloading spouses for %d people…",
+                    len(todo),
+                )
+                % len(todo)
+            )
             self.fs_TreeImp.add_spouses(set(todo), progress_callback=progress.step)
 
         if self.include_notes or self.include_sources:
@@ -370,14 +381,23 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             _("Resolving FamilySearch timestamps…"), mode=ProgressMeter.MODE_ACTIVITY
         )
         print(
-            _("Resolving FamilySearch timestamps for %d people…") % len(compare_pairs)
+            ngettext(
+                "Resolving FamilySearch timestamps for %d person…",
+                "Resolving FamilySearch timestamps for %d people…",
+                len(compare_pairs),
+            )
+            % len(compare_pairs)
         )
         backfill_start = time.monotonic()
         backfilled = backfill_last_modified(
             caller.dbstate.db, compare_pairs, progress_callback=progress.step
         )
         print(
-            _("Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs")
+            ngettext(
+                "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs",
+                "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs",
+                backfilled,
+            )
             % {"count": backfilled, "elapsed": time.monotonic() - backfill_start}
         )
 
@@ -385,7 +405,14 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             _("Refreshing comparison status…"),
             len(compare_pairs) or 1,
         )
-        print(_("Refreshing comparison status for %d people…") % len(compare_pairs))
+        print(
+            ngettext(
+                "Refreshing comparison status for %d person…",
+                "Refreshing comparison status for %d people…",
+                len(compare_pairs),
+            )
+            % len(compare_pairs)
+        )
         compare_start = time.monotonic()
         compared = 0
         failed = 0
