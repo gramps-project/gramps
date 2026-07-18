@@ -254,22 +254,38 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         caller.uistate.set_busy_cursor(False)
         progress.close()
 
-        if signals_disabled:
-            caller.dbstate.db.enable_signals()
-            if self.added_person:
-                caller.dbstate.db.request_rebuild()
-
-        # keep existing post-import compare refresh behavior in GUI layer
+        # Keep existing post-import compare refresh behavior in the GUI
+        # layer, batched into a single transaction with signals suppressed.
+        # Without this, compare_fs_to_gramps() opens its own DbTxn per
+        # person, which for a large bulk import meant thousands of separate
+        # commits, each firing a live GUI signal and growing the undo
+        # history by one entry -- effectively O(N) commits/signals/undo
+        # entries instead of one.
+        caller.dbstate.db.disable_signals()
         try:
-            for fs_person in list(self.fs_TreeImp.persons or []):
-                gr_handle = fs_utilities.FS_INDEX_PEOPLE.get(fs_person.id)
-                if not gr_handle:
-                    continue
-                gr_person = caller.dbstate.db.get_person_from_handle(gr_handle)
-                if gr_person:
-                    compare_fs_to_gramps(fs_person, gr_person, caller.dbstate.db, None)
+            with DbTxn(
+                "FamilySearch: refresh comparison status", caller.dbstate.db
+            ) as compare_txn:
+                for fs_person in list(self.fs_TreeImp.persons or []):
+                    gr_handle = fs_utilities.FS_INDEX_PEOPLE.get(fs_person.id)
+                    if not gr_handle:
+                        continue
+                    gr_person = caller.dbstate.db.get_person_from_handle(gr_handle)
+                    if gr_person:
+                        compare_fs_to_gramps(
+                            fs_person,
+                            gr_person,
+                            caller.dbstate.db,
+                            None,
+                            txn=compare_txn,
+                        )
         except Exception:
             pass
+        finally:
+            caller.dbstate.db.enable_signals()
+
+        if signals_disabled and self.added_person:
+            caller.dbstate.db.request_rebuild()
 
         if active_handle:
             caller.uistate.set_active(active_handle, "Person")
