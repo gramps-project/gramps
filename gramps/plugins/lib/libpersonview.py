@@ -329,7 +329,7 @@ class BasePersonView(ListView):
         """
     <placeholder id='BarCommonEdit'>
     <child groups='RW'>
-      <object class="GtkToolButton">
+      <object class="GtkToolButton" id="AddButton">
         <property name="icon-name">list-add</property>
         <property name="action-name">win.Add</property>
         <property name="tooltip_text">%s</property>
