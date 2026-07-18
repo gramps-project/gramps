@@ -21,6 +21,8 @@ from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
+import logging
+import time
 from typing import Any
 
 import gi
@@ -45,6 +47,12 @@ from gramps.gen.fs import utils as fs_utilities
 import gramps.gui.fs.person.fsg_sync as FSG_Sync
 from gramps.gui.fs.utils.index import build_fs_index
 from gramps.gen.fs.compare import compare_fs_to_gramps
+
+LOG = logging.getLogger(__name__)
+
+# Log (and print) any single person's comparison refresh that takes longer
+# than this, to help pinpoint slow/stalled FamilySearch requests.
+_SLOW_COMPARE_THRESHOLD_S = 1.0
 
 
 def _pump_gtk_events() -> None:
@@ -306,8 +314,6 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         self.txn = None
 
         print("import done.")
-        caller.uistate.set_busy_cursor(False)
-        progress.close()
 
         # Keep existing post-import compare refresh behavior in the GUI
         # layer, batched into a single transaction with signals suppressed.
@@ -316,17 +322,38 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         # commits, each firing a live GUI signal and growing the undo
         # history by one entry -- effectively O(N) commits/signals/undo
         # entries instead of one.
+        #
+        # This pass can be slow: compare_fs_to_gramps() may issue a
+        # synchronous FamilySearch HEAD request per person if the person's
+        # Last-Modified wasn't already captured during download. The
+        # progress dialog is kept open (rather than closed before this
+        # loop, as before) so progress.step() keeps pumping GTK events and
+        # the app doesn't look hung while this runs.
+        compare_people = list(self.fs_TreeImp.persons or [])
+        progress.set_pass(
+            _("Refreshing comparison status…"),
+            len(compare_people) or 1,
+        )
+        print(_("Refreshing comparison status for %d people…") % len(compare_people))
+        compare_start = time.monotonic()
+        compared = 0
+        failed = 0
         caller.dbstate.db.disable_signals()
         try:
             with DbTxn(
                 "FamilySearch: refresh comparison status", caller.dbstate.db
             ) as compare_txn:
-                for fs_person in list(self.fs_TreeImp.persons or []):
+                for done, fs_person in enumerate(compare_people, start=1):
+                    progress.step()
                     gr_handle = fs_utilities.FS_INDEX_PEOPLE.get(fs_person.id)
                     if not gr_handle:
                         continue
                     gr_person = caller.dbstate.db.get_person_from_handle(gr_handle)
-                    if gr_person:
+                    if not gr_person:
+                        continue
+
+                    person_start = time.monotonic()
+                    try:
                         compare_fs_to_gramps(
                             fs_person,
                             gr_person,
@@ -334,10 +361,45 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                             None,
                             txn=compare_txn,
                         )
+                        compared += 1
+                    except Exception:
+                        failed += 1
+                        LOG.warning(
+                            "Comparison refresh failed for FamilySearch id %s",
+                            fs_person.id,
+                            exc_info=True,
+                        )
+
+                    elapsed = time.monotonic() - person_start
+                    if elapsed > _SLOW_COMPARE_THRESHOLD_S:
+                        print(
+                            _("  …comparison for %(fsid)s took %(elapsed).1fs")
+                            % {"fsid": fs_person.id, "elapsed": elapsed}
+                        )
+                    if done == 1 or done % 25 == 0 or done == len(compare_people):
+                        print(
+                            _("  …comparison status: %(done)d/%(total)d")
+                            % {"done": done, "total": len(compare_people)}
+                        )
         except Exception:
-            pass
+            LOG.warning("Comparison refresh loop aborted early", exc_info=True)
         finally:
             caller.dbstate.db.enable_signals()
+
+        print(
+            _(
+                "Comparison status refresh done in %(elapsed).1fs "
+                "(%(compared)d compared, %(failed)d failed)"
+            )
+            % {
+                "elapsed": time.monotonic() - compare_start,
+                "compared": compared,
+                "failed": failed,
+            }
+        )
+
+        caller.uistate.set_busy_cursor(False)
+        progress.close()
 
         if signals_disabled and self.added_person:
             caller.dbstate.db.request_rebuild()
