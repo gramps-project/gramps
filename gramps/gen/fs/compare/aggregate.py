@@ -20,10 +20,11 @@
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import email.utils
 import logging
 import time
-from typing import Any, Optional, Tuple
+from typing import Any, Callable, Optional, Tuple
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import EventType, Person
@@ -68,6 +69,123 @@ def _ui_row(row: Any) -> Any:
     r = list(row)
     r[0] = _ui_color(r[0])
     return r
+
+
+def _resolve_last_modified(
+    fs_session: Any, fs_id: str
+) -> tuple[list[str], int | None, str | None]:
+    """
+    Follow FSID redirects and resolve Last-Modified/Etag for one person.
+
+    Pure network I/O -- safe to run from a worker thread. Returns the chain
+    of redirected-to FSIDs (empty if none), the resolved Last-Modified as a
+    Unix timestamp (or None if unavailable), and the Etag (or None).
+    """
+    redirects: list[str] = []
+    path = "/platform/tree/persons/" + fs_id
+    r = fs_session.head_url(path)
+
+    while (
+        r is not None
+        and getattr(r, "status_code", 0) == 301
+        and hasattr(r, "headers")
+        and "X-Entity-Forwarded-Id" in r.headers
+    ):
+        fs_id = r.headers["X-Entity-Forwarded-Id"]
+        redirects.append(fs_id)
+        path = "/platform/tree/persons/" + fs_id
+        r = fs_session.head_url(path)
+
+    last_modified: int | None = None
+    etag: str | None = None
+    if r is not None and hasattr(r, "headers"):
+        if "Last-Modified" in r.headers:
+            try:
+                last_modified = int(
+                    time.mktime(email.utils.parsedate(r.headers["Last-Modified"]))
+                )
+            except Exception:
+                last_modified = None
+        if "Etag" in r.headers:
+            etag = r.headers["Etag"]
+
+    return redirects, last_modified, etag
+
+
+def backfill_last_modified(
+    db: Any,
+    pairs: list[tuple[Any, Person]],
+    progress_callback: Callable[[], None] | None = None,
+    max_workers: int = 8,
+) -> int:
+    """
+    Concurrently resolve Last-Modified/Etag for FamilySearch persons that
+    don't already have it cached, following FSID redirects along the way.
+
+    compare_fs_to_gramps() issues this same HEAD request per person, one at
+    a time, whenever a person's Last-Modified wasn't already captured
+    during download -- for a large bulk import that serial fallback can add
+    up to many minutes. Call this once, before comparing a batch of
+    persons, to resolve them all concurrently first; compare_fs_to_gramps()
+    then finds Last-Modified already set and skips its own network call.
+
+    :param pairs: (fs_person, gr_person) pairs to resolve. Pairs whose
+        fs_person already has a Last-Modified are skipped.
+    :param progress_callback: optional callable invoked after each
+        concurrent resolution completes.
+    :returns: the number of persons successfully resolved.
+    """
+    fs_session = getattr(tree, "_fs_session", None)
+    if fs_session is None:
+        return 0
+
+    to_resolve = [
+        (fs_person, gr_person)
+        for fs_person, gr_person in pairs
+        if getattr(fs_person, "id", None)
+        and not getattr(fs_person, "_last_modified", 0)
+    ]
+    if not to_resolve:
+        return 0
+
+    resolved = 0
+    max_workers = min(max_workers, len(to_resolve))
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {
+            executor.submit(_resolve_last_modified, fs_session, fs_person.id): (
+                fs_person,
+                gr_person,
+            )
+            for fs_person, gr_person in to_resolve
+        }
+        for future in as_completed(futures):
+            fs_person, gr_person = futures[future]
+            try:
+                redirects, last_modified, etag = future.result()
+            except Exception:
+                logger.warning(
+                    "Failed to backfill Last-Modified for FamilySearch id %s",
+                    fs_person.id,
+                    exc_info=True,
+                )
+                if progress_callback is not None:
+                    progress_callback()
+                continue
+
+            for fsid in redirects:
+                fs_utilities.link_gramps_fs_id(db, gr_person, fsid)
+            if redirects:
+                fs_person.id = redirects[-1]
+            if last_modified is not None:
+                fs_person._last_modified = last_modified
+                resolved += 1
+            if etag is not None:
+                fs_person._etag = etag
+
+            if progress_callback is not None:
+                progress_callback()
+
+    return resolved
 
 
 def compare_fs_to_gramps(

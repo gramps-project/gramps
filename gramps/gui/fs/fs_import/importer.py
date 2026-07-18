@@ -46,7 +46,7 @@ from gramps.gen.fs import utils as fs_utilities
 
 import gramps.gui.fs.person.fsg_sync as FSG_Sync
 from gramps.gui.fs.utils.index import build_fs_index
-from gramps.gen.fs.compare import compare_fs_to_gramps
+from gramps.gen.fs.compare import compare_fs_to_gramps, backfill_last_modified
 
 LOG = logging.getLogger(__name__)
 
@@ -352,12 +352,40 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         # progress dialog is kept open (rather than closed before this
         # loop, as before) so progress.step() keeps pumping GTK events and
         # the app doesn't look hung while this runs.
-        compare_people = list(self.fs_TreeImp.persons or [])
+        compare_pairs: list[tuple[Any, Any]] = []
+        for fs_person in list(self.fs_TreeImp.persons or []):
+            gr_handle = fs_utilities.FS_INDEX_PEOPLE.get(fs_person.id)
+            if not gr_handle:
+                continue
+            gr_person = caller.dbstate.db.get_person_from_handle(gr_handle)
+            if gr_person:
+                compare_pairs.append((fs_person, gr_person))
+
+        # Resolve Last-Modified/Etag for the whole batch concurrently first,
+        # so the sequential loop below finds it already cached and skips
+        # its own per-person HEAD request. Without this, resolving each
+        # person's Last-Modified serially (one HTTP round trip at a time)
+        # was by far the slowest part of a large bulk import.
+        progress.set_pass(
+            _("Resolving FamilySearch timestamps…"), mode=ProgressMeter.MODE_ACTIVITY
+        )
+        print(
+            _("Resolving FamilySearch timestamps for %d people…") % len(compare_pairs)
+        )
+        backfill_start = time.monotonic()
+        backfilled = backfill_last_modified(
+            caller.dbstate.db, compare_pairs, progress_callback=progress.step
+        )
+        print(
+            _("Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs")
+            % {"count": backfilled, "elapsed": time.monotonic() - backfill_start}
+        )
+
         progress.set_pass(
             _("Refreshing comparison status…"),
-            len(compare_people) or 1,
+            len(compare_pairs) or 1,
         )
-        print(_("Refreshing comparison status for %d people…") % len(compare_people))
+        print(_("Refreshing comparison status for %d people…") % len(compare_pairs))
         compare_start = time.monotonic()
         compared = 0
         failed = 0
@@ -366,14 +394,8 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             with DbTxn(
                 "FamilySearch: refresh comparison status", caller.dbstate.db
             ) as compare_txn:
-                for done, fs_person in enumerate(compare_people, start=1):
+                for done, (fs_person, gr_person) in enumerate(compare_pairs, start=1):
                     progress.step()
-                    gr_handle = fs_utilities.FS_INDEX_PEOPLE.get(fs_person.id)
-                    if not gr_handle:
-                        continue
-                    gr_person = caller.dbstate.db.get_person_from_handle(gr_handle)
-                    if not gr_person:
-                        continue
 
                     person_start = time.monotonic()
                     try:
@@ -399,10 +421,10 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                             _("  …comparison for %(fsid)s took %(elapsed).1fs")
                             % {"fsid": fs_person.id, "elapsed": elapsed}
                         )
-                    if done == 1 or done % 25 == 0 or done == len(compare_people):
+                    if done == 1 or done % 25 == 0 or done == len(compare_pairs):
                         print(
                             _("  …comparison status: %(done)d/%(total)d")
-                            % {"done": done, "total": len(compare_people)}
+                            % {"done": done, "total": len(compare_pairs)}
                         )
         except Exception:
             LOG.warning("Comparison refresh loop aborted early", exc_info=True)
