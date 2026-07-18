@@ -202,7 +202,31 @@ All user-visible strings must be wrapped with `_()` for translation support:
 raise ValueError(_("Invalid handle: %s") % handle)
 ```
 The alias `_(string , context)` is preferred to `pgettext(context, message)`.
-Use `ngettext(singular, plural, n)` for plural forms.
+
+Use `ngettext(singular, plural, n)` instead of `_()` whenever a formatted
+string embeds a count next to a noun whose English form changes between 1
+and 2+ (person/people, entry/entries, generation/generations, match/matches,
+timestamp/timestamps, etc.):
+
+```python
+ngettext(
+    "%(count)d person",
+    "%(count)d people",
+    count,
+) % {"count": count}
+```
+
+Before finishing a change, check every `_("...%d..."` / `_("...%(name)d..."`
+string you wrote or touched against this rule — `_("Found %d people")`
+produces "Found 1 people" for translators with no way to fix it.
+
+Ordinal or fraction displays with no inflecting noun (`"page %(cur)d/%(total)d"`,
+`"generation %(gen)d/%(total)d"`, `"row %(row)d"`) do *not* need `ngettext` —
+only convert a string when an actual noun in it would change form.
+
+If a package centralizes its `_` alias (e.g. `_ = glocale.translation.gettext`
+in an `__init__.py`), also export `ngettext = glocale.translation.ngettext`
+there, so submodules can import both together.
 
 ## Submodule Import Rules
 
