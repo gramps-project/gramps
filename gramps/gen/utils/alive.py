@@ -40,7 +40,7 @@ import logging
 from ..display.name import displayer as name_displayer
 from ..lib.date import Date, Today
 from ..lib.person import Person
-from ..lib.json_utils import DataDict
+from ..lib.json_utils import convert_state_to_object
 from ..errors import DatabaseError
 from ..const import GRAMPS_LOCALE as glocale
 from ..proxy.proxybase import ProxyDbBase
@@ -53,6 +53,27 @@ ngettext = glocale.translation.ngettext
 # DEBUGLEVEL should be 1 for production, as higher levels are rather cryptic unless
 # viewed in the context of the source code.
 DEBUGLEVEL = 1  # 4 = everything; 3 much detail; 2= minor detail; 1 = summary
+
+# -------------------------------------------------------------------------
+#
+# Event type constants for raw data access
+#
+# -------------------------------------------------------------------------
+_BIRTH_TYPE = 12
+_DEATH_TYPE = 13
+_PRIMARY_ROLE = 1
+_BIRTH_FALLBACKS = frozenset([15, 22, 45])
+_DEATH_FALLBACKS = frozenset([45, 19, 24, 20, 39])
+
+
+def _make_date_from_dict(date_dict: dict | None) -> "Date | None":
+    """Build a Date from a raw JSON date dict, or None if invalid."""
+    if not date_dict:
+        return None
+    d = convert_state_to_object(dict(date_dict))
+    return d if d.is_valid() else None
+
+
 # -------------------------------------------------------------------------
 #
 # Constants from config .ini keys
@@ -142,39 +163,64 @@ class ProbablyAlive:
 
         def get_person_bd(class_or_handle):
             """
-                Looks up birth and death events for referenced person,
-                using fallback dates if necessary.
-                The dates will always be either None or valid values, avoiding EMPTYs.
-                Only actual recorded dates are returned - there are no inferred
-                limit values supplied for missing dates.
+            Look up birth and death events using raw data to avoid full
+            object deserialization. Processes direct birth/death refs first
+            for an early exit when both dates are found directly.
 
-            returns  (birth_date, death_date, death_found, explain_birth, explain_death)
-                                 for the referenced person
+            Returns (birth_date, death_date, death_found, explain_birth,
+            explain_death) for the referenced person.
             """
-            birth_date = None
-            death_date = None
-            death_found = False
-            explain_birth = ""
-            explain_death = ""
-
             if not class_or_handle:
-                return (
-                    birth_date,
-                    death_date,
-                    death_found,
-                    explain_birth,
-                    explain_death,
-                )
-
-            if isinstance(class_or_handle, (Person, DataDict)):
-                thisperson = class_or_handle
-            elif isinstance(class_or_handle, str):
-                thisperson = self.db.get_person_from_handle(class_or_handle)
-            else:
-                thisperson = None
-
-            if not thisperson:
+                return (None, None, False, "", "")
+            handle = (
+                class_or_handle
+                if isinstance(class_or_handle, str)
+                else class_or_handle.handle
+            )
+            raw_person = self.db.get_raw_person_data(handle)
+            if not raw_person:
                 LOG.debug("    get_person_bd(): null person called")
+                return (None, None, False, "", "")
+            event_ref_list = raw_person["event_ref_list"]
+            death_ref_index = raw_person.death_ref_index
+            birth_ref_index = raw_person.birth_ref_index
+            n = len(event_ref_list)
+            birth_date = death_date = None
+            death_found = False
+            explain_birth = explain_death = ""
+            birth_fb_date = death_fb_date = None
+            # Process direct death/birth refs first for early exit.
+            # No type check: trust whatever event is stored at death_ref_index /
+            # birth_ref_index, matching the original get_death_ref/get_birth_ref
+            # behaviour that doesn't filter by event type.
+            if 0 <= death_ref_index < n:
+                ev_ref = event_ref_list[death_ref_index]
+                if ev_ref["role"]["value"] == _PRIMARY_ROLE:
+                    raw_event = self.db.get_raw_event_data(ev_ref["ref"])
+                    if raw_event:
+                        death_found = True
+                        d = _make_date_from_dict(raw_event.date)
+                        if d:
+                            death_date = d
+                            explain_death = _("date")
+            if 0 <= birth_ref_index < n:
+                ev_ref = event_ref_list[birth_ref_index]
+                if ev_ref["role"]["value"] == _PRIMARY_ROLE:
+                    raw_event = self.db.get_raw_event_data(ev_ref["ref"])
+                    if raw_event:
+                        d = _make_date_from_dict(raw_event.date)
+                        if d and d.get_year_valid():
+                            birth_date = d
+                            explain_birth = _("date")
+            # Early exit if both found from direct refs
+            if birth_date and death_date:
+                if DEBUGLEVEL > 3:
+                    LOG.debug(
+                        "           << get_person_bd for [%s], birth %s, death %s",
+                        raw_person.gramps_id,
+                        birth_date,
+                        death_date,
+                    )
                 return (
                     birth_date,
                     death_date,
@@ -182,73 +228,47 @@ class ProbablyAlive:
                     explain_birth,
                     explain_death,
                 )
-            # is there an actual death record?  Even if yes, there may be no date,
-            # in which case the EMPTY date is reported for the event.
-            death_ref = thisperson.get_death_ref()
-            if death_ref and death_ref.get_role().is_primary():
-                evnt = self.db.get_event_from_handle(death_ref.ref)
-                if evnt:
+            # Scan remaining events for fallbacks
+            skip = {birth_ref_index, death_ref_index}
+            for i, ev_ref in enumerate(event_ref_list):
+                if i in skip or ev_ref["role"]["value"] != _PRIMARY_ROLE:
+                    continue
+                raw_event = self.db.get_raw_event_data(ev_ref["ref"])
+                if not raw_event:
+                    continue
+                type_val = raw_event["type"]["value"]
+                date_dict = raw_event.date
+                if (
+                    not death_date
+                    and type_val in _DEATH_FALLBACKS
+                    and death_fb_date is None
+                ):
                     death_found = True
-                    dateobj = evnt.get_date_object()
-                    if dateobj and dateobj.is_valid():
-                        death_date = dateobj
-                        explain_death = _("date")
-
-            # at this stage death_date is None or a valid date.
-            # death_found is true if thisperson is known to be dead,
-            #        whether or not a date was found.
-            # If we have no death_date then look for fallback event such as Burial.
-            # These fallbacks are fairly good indications that someone's not alive.
-            # If the fallback death event does not have a valid date then it means
-            # we know they are dead but not when they died.
-            # So keep checking in case we get a date.
-            if not death_date:
-                for ev_ref in thisperson.get_primary_event_ref_list():
-                    if ev_ref:
-                        evnt = self.db.get_event_from_handle(ev_ref.ref)
-                        if evnt and evnt.type.is_death_fallback():
-                            death_date_fb = evnt.get_date_object()
-                            death_found = True
-                            if death_date_fb.is_valid():
-                                death_date = death_date_fb
-                                explain_death = _("date fallback")
-                                if death_date.get_modifier() == Date.MOD_NONE:
-                                    death_date.set_modifier(Date.MOD_BEFORE)
-                                break  # we found a valid date, stop looking.
-            # At this point:
-            # * death_found is False: (no death indication found); or
-            # * death_found is True. (death confirmed somehow);  In which case:
-            #       * (death_date is valid) some form of death date found; or
-            #       * (death_date is None and no date was recorded)
-            # now repeat, looking for birth date
-            birth_ref = thisperson.get_birth_ref()
-            if birth_ref and birth_ref.get_role().is_primary():
-                evnt = self.db.get_event_from_handle(birth_ref.ref)
-                if evnt:
-                    dateobj = evnt.get_date_object()
-                    if dateobj and dateobj.get_year_valid():
-                        birth_date = dateobj
-                        explain_birth = _("date")
-
-            # to here:
-            #   birth_date is None: either no birth record, or the birth event
-            #   has no valid date (missing or year-less date like "February 3");
-            #   birth_date is a valid date with a known year
-            # Look for Baptism, etc events.
-            # These are fairly good indications of someone's birth date.
-            if not birth_date:
-                for ev_ref in thisperson.get_primary_event_ref_list():
-                    evnt = self.db.get_event_from_handle(ev_ref.ref)
-                    if evnt and evnt.type.is_birth_fallback():
-                        birth_date_fb = evnt.get_date_object()
-                        if birth_date_fb and birth_date_fb.get_year_valid():
-                            birth_date = birth_date_fb
-                            explain_birth = _("date fallback")
-                            break
+                    d = _make_date_from_dict(date_dict)
+                    if d:
+                        death_fb_date = d
+                        explain_death = _("date fallback")
+                        if d.get_modifier() == Date.MOD_NONE:
+                            d.set_modifier(Date.MOD_BEFORE)
+                if (
+                    not birth_date
+                    and type_val in _BIRTH_FALLBACKS
+                    and birth_fb_date is None
+                ):
+                    d = _make_date_from_dict(date_dict)
+                    if d and d.get_year_valid():
+                        birth_fb_date = d
+                        explain_birth = _("date fallback")
+                if (birth_date or birth_fb_date) and (death_date or death_fb_date):
+                    break
+            if death_date is None and death_fb_date is not None:
+                death_date = death_fb_date
+            if birth_date is None and birth_fb_date is not None:
+                birth_date = birth_fb_date
             if DEBUGLEVEL > 3:
                 LOG.debug(
                     "           << get_person_bd for [%s], birth %s, death %s",
-                    thisperson.get_gramps_id(),
+                    raw_person.gramps_id,
                     birth_date,
                     death_date,
                 )
@@ -293,60 +313,58 @@ class ProbablyAlive:
 
             m_birth = m_death = None  # mother's birth and death dates
             f_birth = f_death = None  # father's
-            parents = None  # Family with parents
+            raw_parents = None  # raw family dict with parents
             parenth_p1 = person.get_main_parents_family_handle()
             if parenth_p1:
-                parents = self.db.get_family_from_handle(parenth_p1)
-                mother_handle_p1 = parents.get_mother_handle()
-                m_birth, m_death = get_person_bd(mother_handle_p1)[0:2]
-                father_handle_p1 = parents.get_father_handle()
-                f_birth, f_death = get_person_bd(father_handle_p1)[0:2]
+                raw_parents = self.db.get_raw_family_data(parenth_p1)
+                if raw_parents:
+                    mother_handle_p1 = raw_parents.mother_handle
+                    m_birth, m_death = get_person_bd(mother_handle_p1)[0:2]
+                    father_handle_p1 = raw_parents.father_handle
+                    f_birth, f_death = get_person_bd(father_handle_p1)[0:2]
             # now scan siblings
             family_list = person.get_parent_family_handle_list()
             for family_handle in family_list:
-                family = self.db.get_family_from_handle(family_handle)
-                if family is None:
+                raw_family = self.db.get_raw_family_data(family_handle)
+                if raw_family is None:
                     continue
-                if parents is not None and family_handle != parenth_p1:
+                if raw_parents is not None and family_handle != parenth_p1:
                     LOG.debug(
                         "      skipping family %s but parents is %s.",
-                        family.get_gramps_id(),
-                        parents.get_gramps_id(),
+                        raw_family.gramps_id,
+                        raw_parents.gramps_id,
                     )
                     continue
-                for child_ref in family.get_child_ref_list():
-                    child_handle = child_ref.ref
-                    child = self.db.get_person_from_handle(child_handle)
-                    if child is None or child == person:
+                for child_ref in raw_family["child_ref_list"]:
+                    child_handle = child_ref["ref"]
+                    if child_handle == person.handle:
                         continue
-                    need_birth_fallback = True
-                    # Go through once looking for direct evidence:
-                    # extract the range of birth dates, either direct or fallback
-                    for ev_ref in child.get_primary_event_ref_list():
-                        evnt = self.db.get_event_from_handle(ev_ref.ref)
-                        if evnt and evnt.type.is_birth():
-                            dobj = evnt.get_date_object()
-                            if dobj and dobj.get_year_valid():
-                                year = dobj.get_year()
-                                need_birth_fallback = False
-                                if sib_birth_min is None or year < sib_birth_min:
-                                    sib_birth_min = year
-                                if sib_birth_max is None or year > sib_birth_max:
-                                    sib_birth_max = year
-                    # scan event list again looking for fallback:
-                    if need_birth_fallback:
-                        for ev_ref in child.get_primary_event_ref_list():
-                            evnt = self.db.get_event_from_handle(ev_ref.ref)
-                            if evnt and evnt.type.is_birth_fallback():
-                                dobj = evnt.get_date_object()
-                                if dobj and dobj.get_year_valid():
-                                    # if sibling birth date too far away, then
-                                    # cannot be alive:
-                                    year = dobj.get_year()
-                                    if sib_birth_min is None or year < sib_birth_min:
-                                        sib_birth_min = year
-                                    if sib_birth_max is None or year > sib_birth_max:
-                                        sib_birth_max = year
+                    raw_child = self.db.get_raw_person_data(child_handle)
+                    if not raw_child:
+                        continue
+                    direct_years = []
+                    fallback_years = []
+                    for ev_ref in raw_child["event_ref_list"]:
+                        if ev_ref["role"]["value"] != _PRIMARY_ROLE:
+                            continue
+                        raw_event = self.db.get_raw_event_data(ev_ref["ref"])
+                        if not raw_event:
+                            continue
+                        type_val = raw_event["type"]["value"]
+                        if type_val == _BIRTH_TYPE:
+                            d = _make_date_from_dict(raw_event.date)
+                            if d and d.get_year_valid():
+                                direct_years.append(d.get_year())
+                        elif type_val in _BIRTH_FALLBACKS:
+                            d = _make_date_from_dict(raw_event.date)
+                            if d and d.get_year_valid():
+                                fallback_years.append(d.get_year())
+                    # if sibling birth date too far away, then cannot be alive
+                    for year in direct_years or fallback_years:
+                        if sib_birth_min is None or year < sib_birth_min:
+                            sib_birth_min = year
+                        if sib_birth_max is None or year > sib_birth_max:
+                            sib_birth_max = year
             # Now combine estimates based on parents and siblings:
             # Make sure child is born after both parents are old enough
             if m_birth:
@@ -483,24 +501,24 @@ class ProbablyAlive:
                 "    ----- trying spouse check: %s",
                 "immediate family only" if only_immediate_family else "full tree",
             )
-            for family_handle in person.get_family_handle_list():
-                family = self.db.get_family_from_handle(family_handle)
-                if family:
-                    mother_handle = family.get_mother_handle()
-                    father_handle = family.get_father_handle()
+            for family_handle in person.family_list:
+                raw_family = self.db.get_raw_family_data(family_handle)
+                if raw_family:
+                    mother_handle = raw_family.mother_handle
+                    father_handle = raw_family.father_handle
                     if mother_handle is None or father_handle is None:
                         if DEBUGLEVEL > 1:
                             LOG.debug(
                                 "         single parent family: [%s]",
-                                family.get_gramps_id(),
+                                raw_family.gramps_id,
                             )
                         # no recorded spouse
                         continue
                     spouse = None
                     if mother_handle == person.handle:
-                        spouse = self.db.get_person_from_handle(father_handle)
+                        spouse = self.db.get_raw_person_data(father_handle)
                     elif father_handle == person.handle:
-                        spouse = self.db.get_person_from_handle(mother_handle)
+                        spouse = self.db.get_raw_person_data(mother_handle)
                     if spouse is not None:
                         date1, date2, explain, other = self.probably_alive_range(
                             spouse,
@@ -510,7 +528,7 @@ class ProbablyAlive:
                         if DEBUGLEVEL > 2:
                             LOG.debug(
                                 "            found spouse [%s], returned b:%s, d:%s, because:%s",
-                                spouse.get_gramps_id(),
+                                spouse.gramps_id,
                                 date1,
                                 date2,
                                 explain,
@@ -561,34 +579,41 @@ class ProbablyAlive:
                             )
 
                     # Let's check the family events and see if we find something
-                    for ref in family.get_event_ref_list():
-                        if ref:
-                            event = self.db.get_event_from_handle(ref.ref)
-                            if event:
-                                date = event.get_date_object()
-                                year = date.get_year()
-                                if year != 0:
-                                    other = None
-                                    if person.handle == mother_handle and father_handle:
-                                        other = self.db.get_person_from_handle(
-                                            father_handle
+                    for ev_ref in raw_family["event_ref_list"]:
+                        if ev_ref:
+                            raw_event = self.db.get_raw_event_data(ev_ref["ref"])
+                            if raw_event:
+                                date = _make_date_from_dict(raw_event.date)
+                                if date:
+                                    year = date.get_year()
+                                    if year != 0:
+                                        other = None
+                                        if (
+                                            person.handle == mother_handle
+                                            and father_handle
+                                        ):
+                                            other = self.db.get_raw_person_data(
+                                                father_handle
+                                            )
+                                        elif (
+                                            person.handle == father_handle
+                                            and mother_handle
+                                        ):
+                                            other = self.db.get_raw_person_data(
+                                                mother_handle
+                                            )
+                                        return (
+                                            Date().copy_ymd(
+                                                year - self.AVG_GENERATION_GAP
+                                            ),
+                                            Date().copy_ymd(
+                                                year
+                                                - self.AVG_GENERATION_GAP
+                                                + self.MAX_AGE_PROB_ALIVE
+                                            ),
+                                            _("event with spouse"),
+                                            other,
                                         )
-                                    elif (
-                                        person.handle == father_handle and mother_handle
-                                    ):
-                                        other = self.db.get_person_from_handle(
-                                            mother_handle
-                                        )
-                                    return (
-                                        Date().copy_ymd(year - self.AVG_GENERATION_GAP),
-                                        Date().copy_ymd(
-                                            year
-                                            - self.AVG_GENERATION_GAP
-                                            + self.MAX_AGE_PROB_ALIVE
-                                        ),
-                                        _("event with spouse"),
-                                        other,
-                                    )
             return (None, None, "", None)
 
         if not is_spouse:
@@ -619,36 +644,36 @@ class ProbablyAlive:
             if person.handle in self.pset:
                 LOG.debug(
                     "....... person %s skipped - already seen in descendants test",
-                    person.get_gramps_id(),
+                    person.gramps_id,
                 )
                 return no_valid_descendant
             if generation > _MAX_GEN_ESTIMATE:
                 LOG.debug(
                     "....... person %s skipped - already done %d generations",
-                    person.get_gramps_id(),
+                    person.gramps_id,
                     _MAX_GEN_ESTIMATE,
                 )
                 return no_valid_descendant
             if DEBUGLEVEL > 2:
                 LOG.debug(
-                    "     %s recursing into person [%s] %s, gen %s",
+                    "     %s recursing into person [%s] gen %s",
                     "..." * generation,
-                    person.get_gramps_id(),
-                    person.get_primary_name().get_gedcom_name(),
+                    person.gramps_id,
                     generation,
                 )
             self.pset.add(person.handle)
+            p_family_handles = person.family_list
             child_result = list()
             birth_min = birth_max = None
             death_min = death_max = None
-            for family_handle in person.get_family_handle_list():
+            for family_handle in p_family_handles:
                 # only families in which person is a parent or spouse of parent
-                family = self.db.get_family_from_handle(family_handle)
-                if not family:
+                raw_family = self.db.get_raw_family_data(family_handle)
+                if not raw_family:
                     # can happen with LivingProxyDb(PrivateProxyDb(db))
                     continue
-                for child_ref in family.get_child_ref_list():
-                    child_handle = child_ref.ref
+                for child_ref in raw_family["child_ref_list"]:
+                    child_handle = child_ref["ref"]
                     bdate, ddate, dfound, expb, expd = get_person_bd(child_handle)
                     cd = dict(
                         handle=child_handle,
@@ -681,10 +706,10 @@ class ProbablyAlive:
             mingen = None
             for childdict in child_result:
                 child_handle = childdict["handle"]
-                child = self.db.get_person_from_handle(child_handle)
+                raw_child = self.db.get_raw_person_data(child_handle)
 
                 bmin, bmax, dmin, dmax, ngens, who = recurse_descendants(
-                    child, 1 + generation
+                    raw_child, 1 + generation
                 )
                 if ngens is not None:
                     if mingen is None or ngens < mingen:
@@ -753,17 +778,13 @@ class ProbablyAlive:
                 if DEBUGLEVEL > 2:
                     LOG.debug(
                         "     == desc for %s returned bmin:%s, bmax:%s, ngens:%s, dmin:%s, dmax:%s, who:%s",
-                        person.get_gramps_id(),
+                        person.gramps_id,
                         bmin,
                         bmax,
                         ngens,
                         dmin,
                         dmax,
-                        (
-                            "None"
-                            if other is None
-                            else other.get_primary_name().get_gedcom_name()
-                        ),
+                        "None" if other is None else other.gramps_id,
                     )
                 birth_year = int(meanbirth - (ngens * self.AVG_GENERATION_GAP))
                 date1 = Date()
@@ -802,7 +823,7 @@ class ProbablyAlive:
                 return (date1, date2, explain, other)
             return (None, None, "", None)
 
-        LOG.debug("    ------- checking descendants of [%s]", person.get_gramps_id())
+        LOG.debug("    ------- checking descendants of [%s]", person.gramps_id)
         date1, date2, explain, other = None, None, "", None
         try:
             date1, date2, explain, other = estimate_bd_range_from_descendants(person)
@@ -831,25 +852,26 @@ class ProbablyAlive:
             if person.handle in self.pset:
                 LOG.debug(
                     "....... person %s skipped - already seen in ancestor test",
-                    person.get_gramps_id(),
+                    person.gramps_id,
                 )
                 return range_not_found
             if generation > _MAX_GEN_ESTIMATE:
                 LOG.debug(
                     "....... person %s skipped - already done %d generations",
-                    person.get_gramps_id(),
+                    person.gramps_id,
                     _MAX_GEN_ESTIMATE,
                 )
                 return range_not_found
             self.pset.add(person.handle)
 
-            family_handle = person.get_main_parents_family_handle()
+            p_parent_list = person.parent_family_list
+            family_handle = p_parent_list[0] if p_parent_list else None
             if family_handle:
-                family = self.db.get_family_from_handle(family_handle)
-                if not family:
+                raw_family = self.db.get_raw_family_data(family_handle)
+                if not raw_family:
                     # can happen with LivingProxyDb(PrivateProxyDb(db))
                     return range_not_found
-                mother_handle = family.get_mother_handle()
+                mother_handle = raw_family.mother_handle
                 (
                     mother_birth,
                     mother_death,
@@ -858,7 +880,7 @@ class ProbablyAlive:
                     mother_expl_d,
                 ) = get_person_bd(mother_handle)
 
-                father_handle = family.get_father_handle()
+                father_handle = raw_family.father_handle
                 (
                     father_birth,
                     father_death,
@@ -887,7 +909,7 @@ class ProbablyAlive:
                         person_birth,
                         person_death,
                         _("ancestor ") + explan,
-                        self.db.get_person_from_handle(parenth),
+                        self.db.get_raw_person_data(parenth),
                         generation,
                     )
                 # no useful birth, try death...
@@ -918,7 +940,7 @@ class ProbablyAlive:
                         person_birth,
                         person_death,
                         _("ancestor ") + explan,
-                        self.db.get_person_from_handle(parenth),
+                        self.db.get_raw_person_data(parenth),
                         generation,
                     )
 
@@ -928,22 +950,26 @@ class ProbablyAlive:
                 # not very efficient, but...
                 gen_m = gen_f = None
                 if mother_handle is not None:
-                    date1_m, date2_m, explan_m, other_m, gen_m = (
-                        estimate_bd_range_from_ancestors(
-                            self.db.get_person_from_handle(mother_handle),
-                            year + self.AVG_GENERATION_GAP,
-                            generation + 1,
+                    raw_mother = self.db.get_raw_person_data(mother_handle)
+                    if raw_mother is not None:
+                        date1_m, date2_m, explan_m, other_m, gen_m = (
+                            estimate_bd_range_from_ancestors(
+                                raw_mother,
+                                year + self.AVG_GENERATION_GAP,
+                                generation + 1,
+                            )
                         )
-                    )
                 # now try the father's line
                 if father_handle is not None:
-                    date1_f, date2_f, explan_f, other_f, gen_f = (
-                        estimate_bd_range_from_ancestors(
-                            self.db.get_person_from_handle(father_handle),
-                            year + self.AVG_GENERATION_GAP,
-                            generation + 1,
+                    raw_father = self.db.get_raw_person_data(father_handle)
+                    if raw_father is not None:
+                        date1_f, date2_f, explan_f, other_f, gen_f = (
+                            estimate_bd_range_from_ancestors(
+                                raw_father,
+                                year + self.AVG_GENERATION_GAP,
+                                generation + 1,
+                            )
                         )
-                    )
                 # now decide which of maternal/paternal lines is better choice.
                 use_side = "none"
                 if gen_m is not None and gen_f is not None:
@@ -968,7 +994,7 @@ class ProbablyAlive:
             return range_not_found
 
         if parenth_p1:
-            LOG.debug("    ------ checking ancestors %s", person.get_gramps_id())
+            LOG.debug("    ------ checking ancestors %s", person.gramps_id)
             try:
                 date1, date2, explain, other, gen = estimate_bd_range_from_ancestors(
                     person, int(self.AVG_GENERATION_GAP), 1
@@ -1025,9 +1051,8 @@ def probably_alive(
     :param avg_generation_gap: average generation gap, in years
     """
     LOG.debug(
-        " *** probably_alive() called for [%s] %s: ",
-        person.get_gramps_id(),
-        person.get_primary_name().get_gedcom_name(),
+        " *** probably_alive() called for [%s]: ",
+        person.gramps_id,
     )
     # First, get the probable birth and death ranges for
     # this person from the real database:
@@ -1041,7 +1066,7 @@ def probably_alive(
         if relative is None:
             rel_id = "nobody"
         else:
-            rel_id = relative.get_gramps_id()
+            rel_id = relative.gramps_id
         LOG.debug(
             "      range: b.%s, d.%s vs %s reason: %s to [%s]",
             birth,
@@ -1053,17 +1078,15 @@ def probably_alive(
     if not birth and not death:
         # no evidence, must consider alive
         LOG.debug(
-            "      [%s] %s: decided alive - no evidence",
-            person.get_gramps_id(),
-            person.get_primary_name().get_gedcom_name(),
+            "      [%s]: decided alive - no evidence",
+            person.gramps_id,
         )
         return (True, None, None, _("no evidence"), None) if return_range else True
     if not birth or not death:
         # insufficient evidence, must consider alive
         LOG.debug(
-            "   LOGIC ERROR -  [%s] %s: only %s found; decided alive",
-            person.get_gramps_id(),
-            person.get_primary_name().get_gedcom_name(),
+            "   LOGIC ERROR -  [%s]: only %s found; decided alive",
+            person.gramps_id,
             "birth" if birth else "death",
         )
         return (True, None, None, _("no evidence"), None) if return_range else True

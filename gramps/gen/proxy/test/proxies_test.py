@@ -32,6 +32,7 @@ from ...lib.person import Person
 from ...lib.json_utils import remove_object
 
 from ...proxy import PrivateProxyDb, LivingProxyDb
+from ...config import config
 
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
@@ -194,6 +195,9 @@ class LivingPrivateProxyTest(unittest.TestCase):
         """
         Import example database.
         """
+        config.set("behavior.date-about-range", 10)
+        config.set("behavior.date-before-range", 9999)
+        config.set("behavior.date-after-range", 9999)
         cls.db = LivingProxyDb(
             PrivateProxyDb(
                 import_as_dict(
