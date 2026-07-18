@@ -164,13 +164,30 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                     f"/platform/tree/couple-relationships/{rel_id}/sources"
                 )
 
-            for fs_person in list(self.fs_TreeImp.persons or []):
+            fs_persons = list(self.fs_TreeImp.persons or [])
+            fs_families = list(self.fs_TreeImp.relationships or [])
+            total = len(fs_persons) + len(fs_families)
+            done = 0
+
+            for fs_person in fs_persons:
                 progress.step()
                 _load_person_extras(fs_person.id)
+                done += 1
+                if done == 1 or done % 25 == 0 or done == total:
+                    print(
+                        _("  …notes/sources: %(done)d/%(total)d")
+                        % {"done": done, "total": total}
+                    )
 
-            for fs_family in list(self.fs_TreeImp.relationships or []):
+            for fs_family in fs_families:
                 progress.step()
                 _load_couple_extras(fs_family.id)
+                done += 1
+                if done % 25 == 0 or done == total:
+                    print(
+                        _("  …notes/sources: %(done)d/%(total)d")
+                        % {"done": done, "total": total}
+                    )
 
             fetch_source_dates(self.fs_TreeImp)
 
