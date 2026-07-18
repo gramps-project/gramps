@@ -62,6 +62,7 @@ from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gen.fs.fs_import.notes import add_note
 import gramps.gen.fs.person.mixins.cache as cache_mod
 from gramps.gui.dialog import ErrorDialog, OkDialog, QuestionDialog2
+from gramps.gui.display import display_url
 
 from . import sync_directions
 from . import ui as fs_ui
@@ -226,6 +227,35 @@ def compare_person(dbstate, uistate, track, person, session, parent, editor=None
         )
     except TypeError:
         CompareWindow(dbstate, uistate, track, person, fsid, session, parent)
+
+
+def _fs_url_lang() -> str:
+    """Return a 2-letter language code for FamilySearch URLs, defaulting to 'en'."""
+    try:
+        lang = (glocale.language[0] or "en")[:2].lower()
+    except Exception:
+        return "en"
+    return lang if lang.isalpha() else "en"
+
+
+def open_person_in_familysearch(
+    dbstate, uistate, track, person, session, parent, editor=None
+):
+    """Open the current person's FamilySearch person page in a web browser."""
+    _bind_global_session(session)
+
+    fsid = _get_fs_id(person)
+    if not fsid:
+        _info(
+            parent,
+            _("FamilySearch"),
+            _("No FamilySearch ID linked.\nClick 'Link FamilySearch ID' first."),
+        )
+        return
+
+    display_url(
+        f"https://www.familysearch.org/{_fs_url_lang()}/tree/person/details/{fsid}"
+    )
 
 
 # --------------------------
