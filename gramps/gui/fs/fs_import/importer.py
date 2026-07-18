@@ -19,7 +19,9 @@
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
+from typing import Any
 
 from gramps.gen.db import DbTxn
 from gramps.gui.dialog import WarningDialog
@@ -138,52 +140,74 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             )
             print(_("Downloading notes and sources…"))
 
-            def _fetch_into_tree(url_path: str) -> None:
+            def _fetch_raw(url_path: str) -> Any:
                 sess = getattr(tree, "_fs_session", None)
                 if sess is None:
-                    return
+                    return None
 
                 fn = getattr(sess, "get_jsonurl", None) or getattr(
                     sess, "get_json", None
                 )
                 if not callable(fn):
-                    return
+                    return None
 
-                payload = fn(url_path)
-                self._strip_unknowns(payload)
-                deserialize.deserialize_json(self.fs_TreeImp, payload)
-
-            def _load_person_extras(person_id: str) -> None:
-                _fetch_into_tree(f"/platform/tree/persons/{person_id}/notes")
-                _fetch_into_tree(f"/platform/tree/persons/{person_id}/sources")
-                _fetch_into_tree(f"/platform/tree/persons/{person_id}/memories")
-
-            def _load_couple_extras(rel_id: str) -> None:
-                _fetch_into_tree(f"/platform/tree/couple-relationships/{rel_id}/notes")
-                _fetch_into_tree(
-                    f"/platform/tree/couple-relationships/{rel_id}/sources"
-                )
+                return fn(url_path)
 
             fs_persons = list(self.fs_TreeImp.persons or [])
             fs_families = list(self.fs_TreeImp.relationships or [])
             total = len(fs_persons) + len(fs_families)
-            done = 0
 
-            for fs_person in fs_persons:
+            # Group the URLs to fetch per person/family (for progress
+            # reporting), but fetch all of them concurrently -- matching
+            # the worker count Tree.add_persons already uses for the
+            # ancestor/descendant/spouse phases. This was previously a
+            # fully serial loop: 3 requests per person + 2 per couple,
+            # one at a time, which was by far the slowest part of a bulk
+            # import.
+            work_items: list[list[str]] = [
+                [
+                    f"/platform/tree/persons/{fs_person.id}/notes",
+                    f"/platform/tree/persons/{fs_person.id}/sources",
+                    f"/platform/tree/persons/{fs_person.id}/memories",
+                ]
+                for fs_person in fs_persons
+            ] + [
+                [
+                    f"/platform/tree/couple-relationships/{fs_family.id}/notes",
+                    f"/platform/tree/couple-relationships/{fs_family.id}/sources",
+                ]
+                for fs_family in fs_families
+            ]
+
+            all_urls = [url for urls in work_items for url in urls]
+            raw_payloads: dict[str, Any] = {}
+            if all_urls:
+                max_workers = min(8, len(all_urls))
+                with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                    futures = {
+                        executor.submit(_fetch_raw, url): url for url in all_urls
+                    }
+                    for future in as_completed(futures):
+                        url = futures[future]
+                        try:
+                            raw_payloads[url] = future.result()
+                        except Exception as exc:
+                            print(f"WARNING: failed to fetch {url}: {exc}")
+
+            # Deserializing mutates shared tree state, so do it sequentially
+            # in the main thread even though the fetches above ran
+            # concurrently.
+            done = 0
+            for urls in work_items:
                 progress.step()
-                _load_person_extras(fs_person.id)
+                for url in urls:
+                    payload = raw_payloads.get(url)
+                    if not payload:
+                        continue
+                    self._strip_unknowns(payload)
+                    deserialize.deserialize_json(self.fs_TreeImp, payload)
                 done += 1
                 if done == 1 or done % 25 == 0 or done == total:
-                    print(
-                        _("  …notes/sources: %(done)d/%(total)d")
-                        % {"done": done, "total": total}
-                    )
-
-            for fs_family in fs_families:
-                progress.step()
-                _load_couple_extras(fs_family.id)
-                done += 1
-                if done % 25 == 0 or done == total:
                     print(
                         _("  …notes/sources: %(done)d/%(total)d")
                         % {"done": done, "total": total}
