@@ -19,13 +19,22 @@
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
+import logging
+import time
+from typing import Any
+
+import gi
+
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk  # noqa: E402
 
 from gramps.gen.db import DbTxn
 from gramps.gui.dialog import WarningDialog
 from gramps.gui.utils import ProgressMeter
 
-from . import _
+from . import _, ngettext
 from gramps.gen.fs import tree
 from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gen.fs.fs_import.sources import fetch_source_dates
@@ -37,7 +46,26 @@ from gramps.gen.fs import utils as fs_utilities
 
 import gramps.gui.fs.person.fsg_sync as FSG_Sync
 from gramps.gui.fs.utils.index import build_fs_index
-from gramps.gen.fs.compare import compare_fs_to_gramps
+from gramps.gen.fs.compare import compare_fs_to_gramps, backfill_last_modified
+
+LOG = logging.getLogger(__name__)
+
+# Log (and print) any single person's comparison refresh that takes longer
+# than this, to help pinpoint slow/stalled FamilySearch requests.
+_SLOW_COMPARE_THRESHOLD_S = 1.0
+
+
+def _pump_gtk_events() -> None:
+    """
+    Process pending GTK events.
+
+    The bulk download phases block the main thread on network I/O in
+    ThreadPoolExecutor batches, so without this the window manager sees an
+    unresponsive main loop and offers to force-quit the app even though the
+    download is progressing normally.
+    """
+    while Gtk.events_pending():
+        Gtk.main_iteration()
 
 
 class FSToGrampsImporter(CoreFSToGrampsImporter):
@@ -91,7 +119,9 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         )
         print(_("Downloading person…"))
         if self.FS_ID:
-            self.fs_TreeImp.add_persons([self.FS_ID])
+            self.fs_TreeImp.add_persons(
+                [self.FS_ID], progress_callback=_pump_gtk_events
+            )
         else:
             if signals_disabled:
                 caller.dbstate.db.enable_signals()
@@ -101,35 +131,79 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                 caller.uistate.set_active(active_handle, "Person")
             return
 
-        progress.set_pass(_("Downloading ancestors… (4/11)"), self.asc)
+        # Each generation can involve fetching anywhere from a handful to
+        # thousands of people, so a single progress.step() per generation
+        # (the previous behavior) made the bar sit still for the entire
+        # duration of a large generation's fetch. Use activity mode and
+        # pulse/pump once per person actually fetched instead, via the
+        # progress_callback Tree.add_parents/add_children/add_spouses
+        # invoke for each completed network request.
+        progress.set_pass(
+            _("Downloading ancestors… (4/11)"), mode=ProgressMeter.MODE_ACTIVITY
+        )
         todo = set(self.fs_TreeImp._persons.keys())
         done = set()
         for i in range(self.asc):
-            progress.step()
             if not todo:
                 break
             done |= todo
-            print(_("Downloading %d generations of ancestors…") % (i + 1))
-            todo = self.fs_TreeImp.add_parents(set(todo)) - done
+            print(
+                ngettext(
+                    "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)",
+                    "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)",
+                    len(todo),
+                )
+                % {"gen": i + 1, "total": self.asc, "count": len(todo)}
+            )
+            progress.set_header(
+                _("Downloading ancestors… (4/11) — generation %(gen)d/%(total)d")
+                % {"gen": i + 1, "total": self.asc}
+            )
+            todo = (
+                self.fs_TreeImp.add_parents(set(todo), progress_callback=progress.step)
+                - done
+            )
 
-        progress.set_pass(_("Downloading descendants… (5/11)"), self.desc)
+        progress.set_pass(
+            _("Downloading descendants… (5/11)"), mode=ProgressMeter.MODE_ACTIVITY
+        )
         todo = set(self.fs_TreeImp._persons.keys())
         done = set()
         for i in range(self.desc):
-            progress.step()
             if not todo:
                 break
             done |= todo
-            print(_("Downloading %d generations of descendants…") % (i + 1))
-            todo = self.fs_TreeImp.add_children(set(todo)) - done
+            print(
+                ngettext(
+                    "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)",
+                    "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)",
+                    len(todo),
+                )
+                % {"gen": i + 1, "total": self.desc, "count": len(todo)}
+            )
+            progress.set_header(
+                _("Downloading descendants… (5/11) — generation %(gen)d/%(total)d")
+                % {"gen": i + 1, "total": self.desc}
+            )
+            todo = (
+                self.fs_TreeImp.add_children(set(todo), progress_callback=progress.step)
+                - done
+            )
 
         if self.include_spouses:
             progress.set_pass(
                 _("Downloading spouses… (6/11)"), mode=ProgressMeter.MODE_ACTIVITY
             )
-            print(_("Downloading spouses…"))
             todo = set(self.fs_TreeImp._persons.keys())
-            self.fs_TreeImp.add_spouses(set(todo))
+            print(
+                ngettext(
+                    "Downloading spouses for %d person…",
+                    "Downloading spouses for %d people…",
+                    len(todo),
+                )
+                % len(todo)
+            )
+            self.fs_TreeImp.add_spouses(set(todo), progress_callback=progress.step)
 
         if self.include_notes or self.include_sources:
             progress.set_pass(
@@ -138,39 +212,79 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             )
             print(_("Downloading notes and sources…"))
 
-            def _fetch_into_tree(url_path: str) -> None:
+            def _fetch_raw(url_path: str) -> Any:
                 sess = getattr(tree, "_fs_session", None)
                 if sess is None:
-                    return
+                    return None
 
                 fn = getattr(sess, "get_jsonurl", None) or getattr(
                     sess, "get_json", None
                 )
                 if not callable(fn):
-                    return
+                    return None
 
-                payload = fn(url_path)
-                self._strip_unknowns(payload)
-                deserialize.deserialize_json(self.fs_TreeImp, payload)
+                return fn(url_path)
 
-            def _load_person_extras(person_id: str) -> None:
-                _fetch_into_tree(f"/platform/tree/persons/{person_id}/notes")
-                _fetch_into_tree(f"/platform/tree/persons/{person_id}/sources")
-                _fetch_into_tree(f"/platform/tree/persons/{person_id}/memories")
+            fs_persons = list(self.fs_TreeImp.persons or [])
+            fs_families = list(self.fs_TreeImp.relationships or [])
+            total = len(fs_persons) + len(fs_families)
 
-            def _load_couple_extras(rel_id: str) -> None:
-                _fetch_into_tree(f"/platform/tree/couple-relationships/{rel_id}/notes")
-                _fetch_into_tree(
-                    f"/platform/tree/couple-relationships/{rel_id}/sources"
-                )
+            # Group the URLs to fetch per person/family (for progress
+            # reporting), but fetch all of them concurrently -- matching
+            # the worker count Tree.add_persons already uses for the
+            # ancestor/descendant/spouse phases. This was previously a
+            # fully serial loop: 3 requests per person + 2 per couple,
+            # one at a time, which was by far the slowest part of a bulk
+            # import.
+            work_items: list[list[str]] = [
+                [
+                    f"/platform/tree/persons/{fs_person.id}/notes",
+                    f"/platform/tree/persons/{fs_person.id}/sources",
+                    f"/platform/tree/persons/{fs_person.id}/memories",
+                ]
+                for fs_person in fs_persons
+            ] + [
+                [
+                    f"/platform/tree/couple-relationships/{fs_family.id}/notes",
+                    f"/platform/tree/couple-relationships/{fs_family.id}/sources",
+                ]
+                for fs_family in fs_families
+            ]
 
-            for fs_person in list(self.fs_TreeImp.persons or []):
+            all_urls = [url for urls in work_items for url in urls]
+            raw_payloads: dict[str, Any] = {}
+            if all_urls:
+                max_workers = min(8, len(all_urls))
+                with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                    futures = {
+                        executor.submit(_fetch_raw, url): url for url in all_urls
+                    }
+                    for future in as_completed(futures):
+                        url = futures[future]
+                        try:
+                            raw_payloads[url] = future.result()
+                        except Exception as exc:
+                            print(f"WARNING: failed to fetch {url}: {exc}")
+                        _pump_gtk_events()
+
+            # Deserializing mutates shared tree state, so do it sequentially
+            # in the main thread even though the fetches above ran
+            # concurrently.
+            done = 0
+            for urls in work_items:
                 progress.step()
-                _load_person_extras(fs_person.id)
-
-            for fs_family in list(self.fs_TreeImp.relationships or []):
-                progress.step()
-                _load_couple_extras(fs_family.id)
+                for url in urls:
+                    payload = raw_payloads.get(url)
+                    if not payload:
+                        continue
+                    self._strip_unknowns(payload)
+                    deserialize.deserialize_json(self.fs_TreeImp, payload)
+                done += 1
+                if done == 1 or done % 25 == 0 or done == total:
+                    print(
+                        _("  …notes/sources: %(done)d/%(total)d")
+                        % {"done": done, "total": total}
+                    )
 
             fetch_source_dates(self.fs_TreeImp)
 
@@ -234,25 +348,133 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         self.txn = None
 
         print("import done.")
+
+        # Keep existing post-import compare refresh behavior in the GUI
+        # layer, batched into a single transaction with signals suppressed.
+        # Without this, compare_fs_to_gramps() opens its own DbTxn per
+        # person, which for a large bulk import meant thousands of separate
+        # commits, each firing a live GUI signal and growing the undo
+        # history by one entry -- effectively O(N) commits/signals/undo
+        # entries instead of one.
+        #
+        # This pass can be slow: compare_fs_to_gramps() may issue a
+        # synchronous FamilySearch HEAD request per person if the person's
+        # Last-Modified wasn't already captured during download. The
+        # progress dialog is kept open (rather than closed before this
+        # loop, as before) so progress.step() keeps pumping GTK events and
+        # the app doesn't look hung while this runs.
+        compare_pairs: list[tuple[Any, Any]] = []
+        for fs_person in list(self.fs_TreeImp.persons or []):
+            gr_handle = fs_utilities.FS_INDEX_PEOPLE.get(fs_person.id)
+            if not gr_handle:
+                continue
+            gr_person = caller.dbstate.db.get_person_from_handle(gr_handle)
+            if gr_person:
+                compare_pairs.append((fs_person, gr_person))
+
+        # Resolve Last-Modified/Etag for the whole batch concurrently first,
+        # so the sequential loop below finds it already cached and skips
+        # its own per-person HEAD request. Without this, resolving each
+        # person's Last-Modified serially (one HTTP round trip at a time)
+        # was by far the slowest part of a large bulk import.
+        progress.set_pass(
+            _("Resolving FamilySearch timestamps…"), mode=ProgressMeter.MODE_ACTIVITY
+        )
+        print(
+            ngettext(
+                "Resolving FamilySearch timestamps for %d person…",
+                "Resolving FamilySearch timestamps for %d people…",
+                len(compare_pairs),
+            )
+            % len(compare_pairs)
+        )
+        backfill_start = time.monotonic()
+        backfilled = backfill_last_modified(
+            caller.dbstate.db, compare_pairs, progress_callback=progress.step
+        )
+        print(
+            ngettext(
+                "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs",
+                "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs",
+                backfilled,
+            )
+            % {"count": backfilled, "elapsed": time.monotonic() - backfill_start}
+        )
+
+        progress.set_pass(
+            _("Refreshing comparison status…"),
+            len(compare_pairs) or 1,
+        )
+        print(
+            ngettext(
+                "Refreshing comparison status for %d person…",
+                "Refreshing comparison status for %d people…",
+                len(compare_pairs),
+            )
+            % len(compare_pairs)
+        )
+        compare_start = time.monotonic()
+        compared = 0
+        failed = 0
+        caller.dbstate.db.disable_signals()
+        try:
+            with DbTxn(
+                "FamilySearch: refresh comparison status", caller.dbstate.db
+            ) as compare_txn:
+                for done, (fs_person, gr_person) in enumerate(compare_pairs, start=1):
+                    progress.step()
+
+                    person_start = time.monotonic()
+                    try:
+                        compare_fs_to_gramps(
+                            fs_person,
+                            gr_person,
+                            caller.dbstate.db,
+                            None,
+                            txn=compare_txn,
+                        )
+                        compared += 1
+                    except Exception:
+                        failed += 1
+                        LOG.warning(
+                            "Comparison refresh failed for FamilySearch id %s",
+                            fs_person.id,
+                            exc_info=True,
+                        )
+
+                    elapsed = time.monotonic() - person_start
+                    if elapsed > _SLOW_COMPARE_THRESHOLD_S:
+                        print(
+                            _("  …comparison for %(fsid)s took %(elapsed).1fs")
+                            % {"fsid": fs_person.id, "elapsed": elapsed}
+                        )
+                    if done == 1 or done % 25 == 0 or done == len(compare_pairs):
+                        print(
+                            _("  …comparison status: %(done)d/%(total)d")
+                            % {"done": done, "total": len(compare_pairs)}
+                        )
+        except Exception:
+            LOG.warning("Comparison refresh loop aborted early", exc_info=True)
+        finally:
+            caller.dbstate.db.enable_signals()
+
+        print(
+            _(
+                "Comparison status refresh done in %(elapsed).1fs "
+                "(%(compared)d compared, %(failed)d failed)"
+            )
+            % {
+                "elapsed": time.monotonic() - compare_start,
+                "compared": compared,
+                "failed": failed,
+            }
+        )
+
         caller.uistate.set_busy_cursor(False)
         progress.close()
 
-        if signals_disabled:
-            caller.dbstate.db.enable_signals()
-            if self.added_person:
-                caller.dbstate.db.request_rebuild()
-
-        # keep existing post-import compare refresh behavior in GUI layer
-        try:
-            for fs_person in list(self.fs_TreeImp.persons or []):
-                gr_handle = fs_utilities.FS_INDEX_PEOPLE.get(fs_person.id)
-                if not gr_handle:
-                    continue
-                gr_person = caller.dbstate.db.get_person_from_handle(gr_handle)
-                if gr_person:
-                    compare_fs_to_gramps(fs_person, gr_person, caller.dbstate.db, None)
-        except Exception:
-            pass
+        if signals_disabled and self.added_person:
+            caller.dbstate.db.request_rebuild()
 
         if active_handle:
             caller.uistate.set_active(active_handle, "Person")

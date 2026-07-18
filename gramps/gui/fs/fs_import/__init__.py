@@ -23,5 +23,6 @@ from __future__ import annotations
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext
 
-__all__ = ["_"]
+__all__ = ["_", "ngettext"]

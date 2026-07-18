@@ -229,6 +229,40 @@ class TestAddPersons(unittest.TestCase):
         # FS-031 failed — it may or may not be in _persons, but no exception should propagate
         # (the important guarantee is that the call didn't raise)
 
+    def test_add_persons_progress_callback_called_once_per_fetch(self):
+        """progress_callback is invoked once per completed fetch, success or failure."""
+        mock_person_a = MagicMock(spec=deserialize.Person)
+        mock_response = MagicMock()
+        mock_response.headers = {}
+
+        deserialize.Person.index["FS-040"] = mock_person_a
+
+        def fake_fetch_raw(fsid):
+            if fsid == "FS-041":
+                raise RuntimeError("network failure")
+            return (fsid, mock_response, {"persons": [{"id": fsid}]})
+
+        callback = MagicMock()
+
+        with patch("gramps.gen.fs.tree.LOG"):
+            with patch.object(self.tree, "_fetch_raw", side_effect=fake_fetch_raw):
+                with patch("gramps.gen.fs.tree.deserialize.deserialize_json"):
+                    self.tree.add_persons(
+                        ["FS-040", "FS-041"], progress_callback=callback
+                    )
+
+        self.assertEqual(callback.call_count, 2)
+
+    def test_add_persons_no_fetch_needed_never_calls_progress_callback(self):
+        """progress_callback is not called when every fid is already cached."""
+        mock_person = MagicMock(spec=deserialize.Person)
+        self.tree._persons["FS-050"] = mock_person
+
+        callback = MagicMock()
+        self.tree.add_persons(["FS-050"], progress_callback=callback)
+
+        callback.assert_not_called()
+
 
 # -------------------------------------------------------------------------
 #

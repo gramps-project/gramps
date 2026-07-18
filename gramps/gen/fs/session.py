@@ -509,6 +509,9 @@ class Session(requests.Session):
         self.listen_timeout: int = int(
             os.environ.get("GRAMPS_FS_LISTENER_TIMEOUT", "300") or "300"
         )
+        self.api_timeout_s: int = int(
+            os.environ.get("GRAMPS_FS_API_TIMEOUT", "30") or "30"
+        )
         self.auth_provider: str = _normalize_auth_provider(
             os.environ.get("GRAMPS_FS_AUTH_PROVIDER", "").strip()
             or str(
@@ -940,6 +943,7 @@ class Session(requests.Session):
         return method(url, **retry_kwargs)
 
     def _route_api_request(self, method_name: str, url: str, **kwargs):
+        kwargs.setdefault("timeout", self.api_timeout_s)
         text_url = str(url)
         if self._using_foundation_middleware() and text_url.startswith(
             ("http://", "https://")
