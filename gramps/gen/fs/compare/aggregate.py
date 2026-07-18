@@ -71,11 +71,20 @@ def _ui_row(row: Any) -> Any:
 
 
 def compare_fs_to_gramps(
-    fs_person: Any, gr_person: Person, db: Any, model: Any = None, dupdoc: bool = False
+    fs_person: Any,
+    gr_person: Person,
+    db: Any,
+    model: Any = None,
+    dupdoc: bool = False,
+    txn: Any = None,
 ):
     """
     stores comparison timestamps/flags on the Person
     via db_familysearch.FSStatusDB (JSON attribute blob).
+
+    :param txn: optional shared DbTxn to commit the status update into,
+        instead of opening a new one. Pass this when calling in a loop
+        over many people, to avoid one commit (and GUI signal) per person.
     """
     db_state = db_familysearch.FSStatusDB(db, gr_person.handle)
     db_state.get()
@@ -318,7 +327,7 @@ def compare_fs_to_gramps(
 
     # Persist the updated db_state
     try:
-        db_state.commit()
+        db_state.commit(txn)
     except Exception:
         pass
 
