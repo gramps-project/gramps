@@ -4053,27 +4053,6 @@ class GedcomParser(UpdateCallback):
         while True:
             line = self.__get_next_line()
 
-            # --- ENHANCED SILENT INTERCEPT ---
-            # Catch Legacy's custom place and event definitions, swallowing all children silently
-            if line and (
-                line.data in ("_PLAC_DEFN", "_EVENT_DEFN")
-                or getattr(line, 'token_text', '') in ("_PLAC_DEFN", "_EVENT_DEFN")
-                or (
-                    isinstance(line.data, str)
-                    and line.data.startswith(("_PLAC_DEFN", "_EVENT_DEFN"))
-                )
-            ):
-                # Advance the file pointer and completely ignore everything until the next Level 0 record
-                while True:
-                    next_line = self.__get_next_line()
-                    if not next_line:
-                        break
-                    if next_line.level == 0:
-                        self._backup() # Push the next valid Level 0 record back onto the stack
-                        break
-                continue # Immediately jump to the next iteration of the main loop
-            # -------------------------------
-
             key = line.data
             if not line or line.token == TOKEN_TRLR:
                 self._backup()
