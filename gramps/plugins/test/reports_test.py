@@ -1,0 +1,550 @@
+#! /usr/bin/env python3
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (c) 2016 Gramps Development Team
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
+#
+
+import unittest
+import os
+import shutil
+import copy
+
+from gramps.gen.config import config
+from gramps.test.test_util import Gramps
+from gramps.gen.user import User
+from gramps.gen.const import TEST_DIR
+
+# ddir = os.path.dirname(__file__)
+# example = os.path.join(ddir, "..", "..", "..",
+#                        "example", "gramps", "data.gramps")
+# sample = os.path.join(ddir, "..", "..", "..",
+#                       "example", "gedcom", "sample.ged")
+example = os.path.join(TEST_DIR, "data.gramps")
+
+TREE_NAME = "Test_reporttest"
+_ORIGINAL_CONFIG_STATE = None
+reports = None
+
+
+def setUpModule():
+    """Capture a snapshot of the config state before ReportControl runs."""
+    global _ORIGINAL_CONFIG_STATE
+    _ORIGINAL_CONFIG_STATE = copy.deepcopy(config.__dict__)
+    global reports
+    reports = ReportControl()
+    reports.addreport(
+        TestDynamic,
+        "tag_report",
+        report_contains("I0037  Smith, Edwin Michael"),
+        [],
+        off="txt",
+        tag="tag1",
+    )
+
+    reports.addreport(
+        TestDynamic,
+        "navwebpage",
+        err_does_not_contain("Failed to write report."),
+        ["/tmp/NAVWEB"],
+        off="html",
+        target="/tmp/NAVWEB",
+    )
+
+    reports.addreport(
+        TestDynamic,
+        "WebCal",
+        err_does_not_contain("Failed to write report."),
+        ["/tmp/WEBCAL"],
+        off="html",
+        target="/tmp/WEBCAL",
+    )
+
+    # THIRD-PARTY
+    # reports.addreport(TestDynamic, "database-differences-report",
+    #                  err_does_not_contain("Failed to write report."),
+    #                  [],
+    #                  off="txt", filename=example)
+
+    reports.addcli(
+        TestDynamic,
+        "export_gedcom",
+        err_does_contain("Cleaning up."),
+        ["test_export.ged"],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "--export",
+        "test_export.ged",
+    )
+
+    # reports.addcli(TestDynamic, "export_csv",
+    #                err_does_contain("Cleaning up."),
+    #                ["test_export.csv"],
+    #                "--force",
+    #                "-O", TREE_NAME,
+    #                "--export", "test_export.csv")
+
+    # reports.addcli(TestDynamic, "export_wtf",
+    #                err_does_contain("Cleaning up."),
+    #                ["test_export.wtf"],
+    #                "--force",
+    #                "-O", TREE_NAME,
+    #                "--export", "test_export.wtf")
+
+    reports.addcli(
+        TestDynamic,
+        "export_gw",
+        err_does_contain("Cleaning up."),
+        ["test_export.gw"],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "--export",
+        "test_export.gw",
+    )
+
+    reports.addcli(
+        TestDynamic,
+        "export_gpkg",
+        err_does_contain("Cleaning up."),
+        ["test_export.gpkg"],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "--export",
+        "test_export.gpkg",
+    )
+
+    reports.addcli(
+        TestDynamic,
+        "export_vcs",
+        err_does_contain("Cleaning up."),
+        ["test_export.vcs"],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "--export",
+        "test_export.vcs",
+    )
+
+    reports.addcli(
+        TestDynamic,
+        "export_vcf",
+        err_does_contain("Cleaning up."),
+        ["test_export.vcf"],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "--export",
+        "test_export.vcf",
+    )
+
+    report_list = [
+        (
+            "ancestor_chart",
+            "svg",
+            [
+                "ancestor_chart %s.svg" % TREE_NAME,
+                "ancestor_chart %s-2.svg" % TREE_NAME,
+                "ancestor_chart %s-3.svg" % TREE_NAME,
+                "ancestor_chart %s-4.svg" % TREE_NAME,
+                "ancestor_chart %s-5.svg" % TREE_NAME,
+                "ancestor_chart %s-6.svg" % TREE_NAME,
+            ],
+        ),  # Ancestor Tree
+        ("ancestor_report", "txt", []),  # Ahnentafel Report
+        ("birthday_report", "txt", []),  # Birthday and Anniversary Report
+        (
+            "calendar",
+            "svg",
+            [
+                "calendar %s-10.svg" % TREE_NAME,
+                "calendar %s-11.svg" % TREE_NAME,
+                "calendar %s-12.svg" % TREE_NAME,
+                "calendar %s-2.svg" % TREE_NAME,
+                "calendar %s-3.svg" % TREE_NAME,
+                "calendar %s-4.svg" % TREE_NAME,
+                "calendar %s-5.svg" % TREE_NAME,
+                "calendar %s-6.svg" % TREE_NAME,
+                "calendar %s-7.svg" % TREE_NAME,
+                "calendar %s-8.svg" % TREE_NAME,
+                "calendar %s-9.svg" % TREE_NAME,
+                "calendar %s.svg" % TREE_NAME,
+            ],
+        ),  # Calendar
+        ("descend_chart", "svg", []),  # Descendant Tree
+        ("descend_report", "txt", []),  # Descendant Report
+        ("det_ancestor_report", "txt", []),  # Detailed Ancestral Report
+        ("det_descendant_report", "txt", []),  # Detailed Descendant Report
+        ("endofline_report", "txt", []),  # End of Line Report
+        ("family_descend_chart", "svg", []),  # Family Descendant Tree
+        ("family_group", "txt", []),  # Family Group Report
+        # COULD be dot ("familylines_graph", "dot", []),  # Family Lines Graph
+        ("fan_chart", "svg", []),  # Fan Chart
+        # COULD be dot ("hourglass_graph", "dot", []),  # Hourglass Graph
+        ("indiv_complete", "txt", []),  # Complete Individual Report
+        ("kinship_report", "txt", []),  # Kinship Report
+        ("notelinkreport", "txt", []),  # Note Link Report
+        ("number_of_ancestors", "txt", []),  # Number of Ancestors Report
+        # NEED a place ("place_report", "txt", []),  # Place Report
+        ("records", "txt", []),  # Records Report
+        # COULD be dot ("rel_graph", "dot", []),  # Relationship Graph
+        (
+            "statistics_chart",
+            "svg",
+            [
+                "statistics_chart %s.svg" % TREE_NAME,  # Statistics Charts
+                "statistics_chart %s-2.svg" % TREE_NAME,
+                "statistics_chart %s-3.svg" % TREE_NAME,
+            ],
+        ),
+        ("summary", "txt", []),  # Database Summary Report
+        (
+            "timeline",
+            "svg",
+            [
+                "timeline %s.svg" % TREE_NAME,
+                "timeline %s-2.svg" % TREE_NAME,
+            ],
+        ),  # Timeline Chart
+    ]
+
+    for _report_name, _off, _files in report_list:
+        reports.addreport(
+            TestDynamic,
+            _report_name,
+            err_does_not_contain("Failed to write report."),
+            files=_files,
+            off=_off,
+        )
+
+    txt_list = [
+        "W: Early marriage, Family: F0000, Smith, Martin and Jefferson, Elna",
+        "W: Multiple parents, Person: I0061, Jones, Roberta Michele",
+        "W: Multiple parents, Person: I0063, Jones, Frank Albert",
+        "W: Multiple parents, Person: I0076, Smith, Marie Astri",
+        "W: Multiple parents, Person: I0077, Smith, Susan Elizabeth",
+        "W: Old age but no death, Person: I0004, Smith, Ingeman",
+        "W: Old age but no death, Person: I0009, Smith, Emil",
+        "W: Old age but no death, Person: I0011, Smith, Hanna",
+        "W: Old age but no death, Person: I0058, Smith, Elaine Marie",
+        "W: Old age but no death, Person: I0072, Iverson, Alice Hannah",
+    ]
+    reports.addcli(
+        TestDynamic,
+        "tool_verify",
+        out_does_contain(txt_list),
+        [None],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "-y",
+        "--action",
+        "tool",
+        "--options",
+        "name=verify",
+    )
+
+    txt_list = [
+        "6 media objects were referenced, but not found",
+        "References to 6 missing media objects were kept",
+    ]
+    reports.addcli(
+        TestDynamic,
+        "tool_check",
+        out_does_contain(txt_list),
+        [None],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "-y",
+        "--action",
+        "tool",
+        "--options",
+        "name=check",
+    )
+
+
+def tearDownModule():
+    """Restore the config state completely after all tests in this file finish."""
+    config.__dict__.clear()
+    config.__dict__.update(_ORIGINAL_CONFIG_STATE)
+
+
+class ReportControl:
+    def tearDown(self):
+        out, err = self.call("-y", "--remove", TREE_NAME)
+        # out, err = self.call("-y", "--remove", TREE_NAME + "_import_gedcom")
+
+    def call(self, *args):
+        # print("call:", args)
+        self.gramps = Gramps(user=User())
+        out, err = self.gramps.run(*args)
+        # print("out:", out, "err:", err)
+        return out, err
+
+    def __init__(self):
+        super().__init__()
+        self.tearDown()  # removes it if it existed
+        out, err = self.call(
+            "-C",
+            TREE_NAME,
+            "--import",
+            example,
+            # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+            "--config=preferences.iprefix:I%04d",
+            "--config=preferences.oprefix:O%04d",
+            "--config=preferences.fprefix:F%04d",
+            "--config=preferences.sprefix:S%04d",
+            "--config=preferences.cprefix:C%04d",
+            "--config=preferences.pprefix:P%04d",
+            "--config=preferences.eprefix:E%04d",
+            "--config=preferences.rprefix:R%04d",
+            "--config=preferences.nprefix:N%04d",
+        )
+
+    def addreport(self, class_, report_name, test_function, files, **options):
+        test_name = "test_" + report_name.replace("-", "_")
+        setattr(
+            class_,
+            test_name,
+            dynamic_report_method(
+                report_name + " " + TREE_NAME,
+                test_function,
+                files,
+                "--force",
+                "-O",
+                TREE_NAME,
+                "--action",
+                "report",
+                "--options",
+                "name=%s" % report_name,
+                **options,
+            ),
+        )
+
+    def addcli(self, class_, report_name, test_function, files, *args, **options):
+        test_name = "test_" + report_name.replace("-", "_")
+        setattr(
+            class_,
+            test_name,
+            dynamic_cli_method(report_name, test_function, files, *args, **options),
+        )
+
+
+def dynamic_report_method(report_name, test_function, files, *args, **options):
+    args = list(args)
+    args[-1] += "," + (",".join(["%s=%s" % (k, v) for (k, v) in options.items()]))
+    options["files"] = files
+
+    def test_method(self):  # This needs to have "test" in name
+        out, err = self.call(*args)
+        self.assertTrue(test_function(out, err, report_name, **options), out + err)
+
+    return test_method
+
+
+def dynamic_cli_method(report_name, test_function, files, *args, **options):
+    options["files"] = files
+
+    def test_method(self):  # This needs to have "test" in name
+        out, err = self.call(*args)
+        self.assertTrue(test_function(out, err, report_name, **options), out + err)
+
+    return test_method
+
+
+class TestDynamic(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        try:
+            os.makedirs("temp")
+        except:
+            pass
+
+    @classmethod
+    def call(cls, *args):
+        # print("call:", args)
+        gramps = Gramps(user=User())
+        out, err = gramps.run(*args)
+        # print("out:", out, "err:", err)
+        return out, err
+
+    @classmethod
+    def tearDownClass(cls):
+        out, err = cls.call("-y", "--remove", TREE_NAME)
+        # out, err = cls.call("-y", "--remove", TREE_NAME + "_import_gedcom")
+
+    def test_hourglass_graph_includes_spouse_mantis_9628(self):
+        """Regression for Mantis 9628: Hourglass Graph in descendant
+        direction omits the spouse (other parent) of every family —
+        ``traverse_down`` linked focal → family → children but never
+        added the other parent. Fixed by mirroring traverse_up's
+        father+mother linking inside the family-handle loop.
+
+        Test fixture: data.gramps family F0001 — Smith Ingeman
+        (I0027) + Ericsdotter Marta (I0025) → Smith Martin (I0039).
+        Center person I0027 with maxdescend=1, maxascend=0 should
+        produce a DOT that names Marta. Pre-fix the DOT contained
+        Ingeman + Martin (child) but not Marta; post-fix Marta is
+        added with an edge to F0001.
+        """
+        out, err = self.call(
+            "--force",
+            "-O",
+            TREE_NAME,
+            "--action",
+            "report",
+            "--options",
+            "name=hourglass_graph"
+            ",pid=I0027"
+            ",maxdescend=1"
+            ",maxascend=0"
+            ",off=dot",
+        )
+        self.assertNotIn(
+            "Failed to write report.",
+            err,
+            "hourglass_graph report failed: " + err,
+        )
+        # Graphviz docgen writes the source file with a ``.gv``
+        # extension regardless of whether ``off=dot`` or ``off=gv`` is
+        # requested (CLI prints "Ignoring 'off=gv' and using 'off=dot'"
+        # on the gv → dot alias).
+        dot_path = "hourglass_graph " + TREE_NAME + ".gv"
+        with open(dot_path) as fp:
+            contents = fp.read()
+        os.remove(dot_path)
+        self.assertIn(
+            "Ericsdotter",
+            contents,
+            "Mantis 9628: Ericsdotter (Marta, spouse of focal I0027) "
+            "missing from descendant graph — traverse_down did not "
+            "add the other parent of the family.",
+        )
+
+
+def report_contains(text):
+    def test_output_file(out, err, report_name, **options):
+        ext = options["off"]
+        with open(report_name + "." + ext) as fp:
+            contents = fp.read()
+        # print(contents)
+        if options.get("files", []):
+            for filename in options.get("files", []):
+                if filename is None:
+                    pass
+                elif os.path.isdir(filename):
+                    shutil.rmtree(filename)
+                elif os.path.isfile(filename):
+                    os.remove(filename)
+                else:
+                    raise Exception("can't find '%s' in order to delete it" % filename)
+        elif os.path.isfile(report_name + "." + ext):
+            os.remove(report_name + "." + ext)
+        else:
+            raise Exception(
+                "can't find '%s' in order to delete it" % (report_name + "." + ext)
+            )
+        return text in contents
+
+    return test_output_file
+
+
+def err_does_not_contain(text):
+    def test_output_file(dummy, err, report_name, **options):
+        if options.get("files", []):
+            for filename in options.get("files", []):
+                if filename is None:
+                    pass
+                elif os.path.isdir(filename):
+                    shutil.rmtree(filename)
+                elif os.path.isfile(filename):
+                    os.remove(filename)
+                else:
+                    raise Exception("can't find '%s' in order to delete it" % filename)
+        else:
+            ext = options["off"]
+            if os.path.isfile(report_name + "." + ext):
+                os.remove(report_name + "." + ext)
+            else:
+                raise Exception(
+                    "can't find '%s' in order to delete it" % (report_name + "." + ext)
+                )
+        return text not in err
+
+    return test_output_file
+
+
+def err_does_contain(text):
+    def test_output_file(dummy, err, report_name, **options):
+        if options.get("files", []):
+            for filename in options.get("files", []):
+                if filename is None:
+                    pass
+                elif os.path.isdir(filename):
+                    shutil.rmtree(filename)
+                elif os.path.isfile(filename):
+                    os.remove(filename)
+                else:
+                    raise Exception("can't find '%s' in order to delete it" % filename)
+        else:
+            ext = options["off"]
+            if os.path.isfile(report_name + "." + ext):
+                os.remove(report_name + "." + ext)
+            else:
+                raise Exception(
+                    "can't find '%s' in order to delete it" % (report_name + "." + ext)
+                )
+        if isinstance(text, list):
+            return all([(line in err) for line in text])
+        else:
+            return text in err
+
+    return test_output_file
+
+
+def out_does_contain(text):
+    def test_output_file(out, dummy, report_name, **options):
+        if options.get("files", []):
+            for filename in options.get("files", []):
+                if filename is None:
+                    pass
+                elif os.path.isdir(filename):
+                    shutil.rmtree(filename)
+                elif os.path.isfile(filename):
+                    os.remove(filename)
+                else:
+                    raise Exception("can't find '%s' in order to delete it" % filename)
+        else:
+            ext = options["off"]
+            if os.path.isfile(report_name + "." + ext):
+                os.remove(report_name + "." + ext)
+            else:
+                raise Exception(
+                    "can't find '%s' in order to delete it" % (report_name + "." + ext)
+                )
+        if isinstance(text, list):
+            return all([(line in out) for line in text])
+        else:
+            return text in out
+
+    return test_output_file
+
+
+if __name__ == "__main__":
+    unittest.main()
