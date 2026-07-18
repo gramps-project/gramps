@@ -3500,16 +3500,16 @@ class GedcomParser(UpdateCallback):
         # Legacy also adds parens and italics to the source notation, but gramps
         # handles this through the Bibliography and Report Engine to set either
         # Chicago, Oxford, or custom style
-        if line.token_text in ('_PREF', '_PAREN', '_ITALIC', '_NAME'):
+        if line.token_text in ("_PREF", "_PAREN", "_ITALIC", "_NAME"):
             return True  # Tells the state engine this tag is handled/skipped cleanly
 
         if line.token == TOKEN_UNKNOWN:
             self.__add_msg(_("Line ignored as not understood"), line, state)
         else:
             self.__add_msg(
-                _("Tag recognized but not supported: \'" + line.data + "\' on line "),
+                _("Tag recognized but not supported: '" + str(line.data) + "' on line "),
                 line,
-                state
+                state,
             )
         self.__skip_subordinate_levels(line.level + 1, state)
 
