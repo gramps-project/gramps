@@ -793,12 +793,12 @@ class FamilySearchToolsWindow:
             self.btn_imp_spo,
             self.btn_imp_chi,
             self.btn_bulk_import,
+            self.btn_open_person,
         )
 
         if enabled and not has_fsid:
             self.btn_link.set_sensitive(True)
             self.btn_link.set_label(_("Add FamilySearch ID"))
-            self.btn_open_person.set_sensitive(True)
             for button in other_buttons:
                 button.set_sensitive(False)
         else:
@@ -808,7 +808,6 @@ class FamilySearchToolsWindow:
                 if (enabled and has_fsid)
                 else _("Link FamilySearch ID")
             )
-            self.btn_open_person.set_sensitive(enabled)
             for button in other_buttons:
                 button.set_sensitive(enabled)
 
