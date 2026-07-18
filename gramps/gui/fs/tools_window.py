@@ -33,7 +33,7 @@ import weakref
 from dataclasses import dataclass
 from typing import Any, Callable, Optional, cast
 
-from gi.repository import GdkPixbuf, GLib, Gtk
+from gi.repository import Gdk, GdkPixbuf, GLib, Gtk
 
 from gramps.gen.const import DATA_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.const import IMAGE_DIR as _GRAMPS_IMAGE_DIR
@@ -41,6 +41,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import HandleError
 from gramps.gen.fs.actions import _get_fs_id
 from gramps.gui.dialog import ErrorDialog
+from gramps.gui.display import display_url
 from gramps.gui.editors.editperson import EditPerson
 
 from . import actions
@@ -354,9 +355,11 @@ class FamilySearchToolsWindow:
         name_row.pack_start(self.active_label, True, True, 0)
 
         self.btn_link = Gtk.Button(label=_("Link FamilySearch ID"))
-        link_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        self.btn_open_person = Gtk.Button(label=_("Open Person in FamilySearch"))
+        link_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         link_row.get_style_context().add_class("fs-link-row")
         link_row.pack_start(self.btn_link, False, False, 0)
+        link_row.pack_start(self.btn_open_person, False, False, 0)
         outer.pack_start(link_row, False, False, 0)
 
         outer.pack_start(
@@ -449,6 +452,7 @@ class FamilySearchToolsWindow:
             bottom_bar.pack_start(status_widget, False, False, 0)
 
         self.btn_link.connect("clicked", self._on_link)
+        self.btn_open_person.connect("clicked", self._on_open_person)
         self.btn_cmp.connect("clicked", self._on_compare)
         self.btn_sync.connect("clicked", self._on_sync)
         self.btn_sync_to.connect("clicked", self._on_sync_to)
@@ -628,6 +632,7 @@ class FamilySearchToolsWindow:
 
         wrapper = Gtk.EventBox()
         wrapper.set_visible_window(True)
+        wrapper.set_tooltip_text(_("Open FamilySearch.org"))
         wrapper.get_style_context().add_class("fs-banner")
 
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -643,7 +648,17 @@ class FamilySearchToolsWindow:
         self._set_logo_width(width)
 
         wrapper.connect("size-allocate", self._on_banner_size_allocate)
+        wrapper.connect("button-press-event", self._on_logo_clicked)
+        wrapper.connect("realize", self._on_banner_realize)
         return wrapper
+
+    def _on_banner_realize(self, widget: Gtk.Widget) -> None:
+        widget.get_window().set_cursor(
+            Gdk.Cursor.new_for_display(Gdk.Display.get_default(), Gdk.CursorType.HAND2)
+        )
+
+    def _on_logo_clicked(self, *_args: Any) -> None:
+        display_url("https://www.familysearch.org/")
 
     def _load_logo_pixbuf(self) -> Optional[GdkPixbuf.Pixbuf]:
         candidates: list[str] = []
@@ -729,30 +744,6 @@ class FamilySearchToolsWindow:
             getattr(self.session, "access_token", None)
         )
 
-    def _editor_person_obj(self) -> Any:
-        # Return the db-backed editor person when possible
-        # The DB copy is the one that matters for compare/sync logic.
-        person_handle = _LAST_EDITOR.person_handle
-        dbstate = _LAST_EDITOR.dbstate
-
-        if person_handle and dbstate is not None:
-            db = getattr(dbstate, "db", None)
-            if db is not None:
-                try:
-                    return db.get_person_from_handle(person_handle)
-                except HandleError:
-                    pass
-                except Exception as exc:
-                    _dbg(
-                        f"Could not get person from db for handle {person_handle}: {exc}"
-                    )
-
-        person = _LAST_EDITOR.person_obj()
-        if person is not None:
-            return person
-
-        return None
-
     def _live_person_obj(self) -> Any:
         """Return the live in-memory person from the editor (not the DB copy)."""
         person = _LAST_EDITOR.person_obj()
@@ -765,7 +756,7 @@ class FamilySearchToolsWindow:
 
     def _update_label(self) -> None:
         """Refresh the label that shows which editor person were on"""
-        person = self._editor_person_obj()
+        person = self._live_person_obj()
         if person is None:
             self.active_label.set_text(_("Editor person: (none)"))
             return
@@ -807,6 +798,7 @@ class FamilySearchToolsWindow:
         if enabled and not has_fsid:
             self.btn_link.set_sensitive(True)
             self.btn_link.set_label(_("Add FamilySearch ID"))
+            self.btn_open_person.set_sensitive(True)
             for button in other_buttons:
                 button.set_sensitive(False)
         else:
@@ -816,6 +808,7 @@ class FamilySearchToolsWindow:
                 if (enabled and has_fsid)
                 else _("Link FamilySearch ID")
             )
+            self.btn_open_person.set_sensitive(enabled)
             for button in other_buttons:
                 button.set_sensitive(enabled)
 
@@ -869,7 +862,7 @@ class FamilySearchToolsWindow:
             )
             return None
 
-        person = self._editor_person_obj()
+        person = self._live_person_obj()
         if person is None:
             _show_info(
                 self.window,
@@ -984,6 +977,15 @@ class FamilySearchToolsWindow:
             return
 
         self._call_action(actions.link_familysearch_id, "Link failed", ctx)
+
+    def _on_open_person(self, *_args: Any) -> None:
+        ctx = self._ctx()
+        if not ctx:
+            return
+
+        self._call_action(
+            actions.open_person_in_familysearch, "Open in FamilySearch failed", ctx
+        )
 
     def _on_compare(self, *_args: Any) -> None:
         ctx = self._ctx()
