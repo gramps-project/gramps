@@ -131,35 +131,58 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                 caller.uistate.set_active(active_handle, "Person")
             return
 
-        progress.set_pass(_("Downloading ancestors… (4/11)"), self.asc)
+        # Each generation can involve fetching anywhere from a handful to
+        # thousands of people, so a single progress.step() per generation
+        # (the previous behavior) made the bar sit still for the entire
+        # duration of a large generation's fetch. Use activity mode and
+        # pulse/pump once per person actually fetched instead, via the
+        # progress_callback Tree.add_parents/add_children/add_spouses
+        # invoke for each completed network request.
+        progress.set_pass(
+            _("Downloading ancestors… (4/11)"), mode=ProgressMeter.MODE_ACTIVITY
+        )
         todo = set(self.fs_TreeImp._persons.keys())
         done = set()
         for i in range(self.asc):
-            progress.step()
             if not todo:
                 break
             done |= todo
-            print(_("Downloading %d generations of ancestors…") % (i + 1))
-            todo = (
-                self.fs_TreeImp.add_parents(
-                    set(todo), progress_callback=_pump_gtk_events
+            print(
+                _(
+                    "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
                 )
+                % {"gen": i + 1, "total": self.asc, "count": len(todo)}
+            )
+            progress.set_header(
+                _("Downloading ancestors… (4/11) — generation %(gen)d/%(total)d")
+                % {"gen": i + 1, "total": self.asc}
+            )
+            todo = (
+                self.fs_TreeImp.add_parents(set(todo), progress_callback=progress.step)
                 - done
             )
 
-        progress.set_pass(_("Downloading descendants… (5/11)"), self.desc)
+        progress.set_pass(
+            _("Downloading descendants… (5/11)"), mode=ProgressMeter.MODE_ACTIVITY
+        )
         todo = set(self.fs_TreeImp._persons.keys())
         done = set()
         for i in range(self.desc):
-            progress.step()
             if not todo:
                 break
             done |= todo
-            print(_("Downloading %d generations of descendants…") % (i + 1))
-            todo = (
-                self.fs_TreeImp.add_children(
-                    set(todo), progress_callback=_pump_gtk_events
+            print(
+                _(
+                    "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
                 )
+                % {"gen": i + 1, "total": self.desc, "count": len(todo)}
+            )
+            progress.set_header(
+                _("Downloading descendants… (5/11) — generation %(gen)d/%(total)d")
+                % {"gen": i + 1, "total": self.desc}
+            )
+            todo = (
+                self.fs_TreeImp.add_children(set(todo), progress_callback=progress.step)
                 - done
             )
 
@@ -167,9 +190,9 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             progress.set_pass(
                 _("Downloading spouses… (6/11)"), mode=ProgressMeter.MODE_ACTIVITY
             )
-            print(_("Downloading spouses…"))
             todo = set(self.fs_TreeImp._persons.keys())
-            self.fs_TreeImp.add_spouses(set(todo), progress_callback=_pump_gtk_events)
+            print(_("Downloading spouses for %d people…") % len(todo))
+            self.fs_TreeImp.add_spouses(set(todo), progress_callback=progress.step)
 
         if self.include_notes or self.include_sources:
             progress.set_pass(
