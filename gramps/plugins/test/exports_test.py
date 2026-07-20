@@ -58,15 +58,33 @@ def tearDownModule():
     config.__dict__.clear()
     config.__dict__.update(_ORIGINAL_CONFIG_STATE)
 
-    assert config.get("preferences.iprefix") == "I%05d", config.get("preferences.iprefix")
-    assert config.get("preferences.oprefix") == "O%05d", config.get("preferences.oprefix")
-    assert config.get("preferences.fprefix") == "F%05d", config.get("preferences.fprefix")
-    assert config.get("preferences.sprefix") == "S%05d", config.get("preferences.sprefix")
-    assert config.get("preferences.cprefix") == "C%05d", config.get("preferences.cprefix")
-    assert config.get("preferences.pprefix") == "P%05d", config.get("preferences.pprefix")
-    assert config.get("preferences.eprefix") == "E%05d", config.get("preferences.eprefix")
-    assert config.get("preferences.rprefix") == "R%05d", config.get("preferences.rprefix")
-    assert config.get("preferences.nprefix") == "N%05d", config.get("preferences.nprefix")
+    assert config.get("preferences.iprefix") == "I%05d", config.get(
+        "preferences.iprefix"
+    )
+    assert config.get("preferences.oprefix") == "O%05d", config.get(
+        "preferences.oprefix"
+    )
+    assert config.get("preferences.fprefix") == "F%05d", config.get(
+        "preferences.fprefix"
+    )
+    assert config.get("preferences.sprefix") == "S%05d", config.get(
+        "preferences.sprefix"
+    )
+    assert config.get("preferences.cprefix") == "C%05d", config.get(
+        "preferences.cprefix"
+    )
+    assert config.get("preferences.pprefix") == "P%05d", config.get(
+        "preferences.pprefix"
+    )
+    assert config.get("preferences.eprefix") == "E%05d", config.get(
+        "preferences.eprefix"
+    )
+    assert config.get("preferences.rprefix") == "R%05d", config.get(
+        "preferences.rprefix"
+    )
+    assert config.get("preferences.nprefix") == "N%05d", config.get(
+        "preferences.nprefix"
+    )
 
 
 def mock_localtime(*args):
