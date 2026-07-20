@@ -41,7 +41,7 @@ _ = glocale.translation.gettext
 
 
 def get_description(mime_type):
-    """Return the description of the specfied mime type"""
+    """Return the description of the specified mime type"""
     desc = None
     extension = _get_extension(mime_type)
     progid = _get_prog_id(extension)
