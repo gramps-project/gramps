@@ -23,8 +23,9 @@ import unittest
 import os
 import difflib
 from unittest.mock import patch
-from time import localtime, strptime
+from time import strptime
 import tempfile
+import copy
 
 from gramps.test.test_util import Gramps
 from gramps.gen.const import TEST_DIR
@@ -33,6 +34,39 @@ from gramps.gen.user import User
 from gramps.gen.utils.config import config
 
 TREE_NAME = "Test_exporttest"
+_ORIGINAL_CONFIG_STATE = None
+
+
+def setUpModule():
+    """Capture a snapshot of the config state before all tests in this file runs."""
+    assert config.get("preferences.iprefix") == "I%05d"
+    assert config.get("preferences.oprefix") == "O%05d"
+    assert config.get("preferences.fprefix") == "F%05d"
+    assert config.get("preferences.sprefix") == "S%05d"
+    assert config.get("preferences.cprefix") == "C%05d"
+    assert config.get("preferences.pprefix") == "P%05d"
+    assert config.get("preferences.eprefix") == "E%05d"
+    assert config.get("preferences.rprefix") == "R%05d"
+    assert config.get("preferences.nprefix") == "N%05d"
+
+    global _ORIGINAL_CONFIG_STATE
+    _ORIGINAL_CONFIG_STATE = copy.deepcopy(config.__dict__)
+
+
+def tearDownModule():
+    """Restore the config state completely after all tests in this file finish."""
+    config.__dict__.clear()
+    config.__dict__.update(_ORIGINAL_CONFIG_STATE)
+
+    assert config.get("preferences.iprefix") == "I%05d", config.get("preferences.iprefix")
+    assert config.get("preferences.oprefix") == "O%05d", config.get("preferences.oprefix")
+    assert config.get("preferences.fprefix") == "F%05d", config.get("preferences.fprefix")
+    assert config.get("preferences.sprefix") == "S%05d", config.get("preferences.sprefix")
+    assert config.get("preferences.cprefix") == "C%05d", config.get("preferences.cprefix")
+    assert config.get("preferences.pprefix") == "P%05d", config.get("preferences.pprefix")
+    assert config.get("preferences.eprefix") == "E%05d", config.get("preferences.eprefix")
+    assert config.get("preferences.rprefix") == "R%05d", config.get("preferences.rprefix")
+    assert config.get("preferences.nprefix") == "N%05d", config.get("preferences.nprefix")
 
 
 def mock_localtime(*args):
@@ -60,7 +94,23 @@ def do_it(srcfile, tstfile, dfilter=None):
     with tempfile.TemporaryDirectory() as tmpdirname:
         result_file = os.path.join(tmpdirname, tstfile)
         err = call(
-            "-C", TREE_NAME, "-q", "--import", tst_file, "--export", result_file
+            "-C",
+            TREE_NAME,
+            "-q",
+            "--import",
+            tst_file,
+            # the test results depend on specific grampsIds, so we need to use the same prefixes as the example database
+            "--config=preferences.iprefix:I%04d",
+            "--config=preferences.oprefix:O%04d",
+            "--config=preferences.fprefix:F%04d",
+            "--config=preferences.sprefix:S%04d",
+            "--config=preferences.cprefix:C%04d",
+            "--config=preferences.pprefix:P%04d",
+            "--config=preferences.eprefix:E%04d",
+            "--config=preferences.rprefix:R%04d",
+            "--config=preferences.nprefix:N%04d",
+            "--export",
+            result_file,
         )[1]
         if "Cleaning up." not in err:
             return "Export failed, no 'Cleaning up.'"
