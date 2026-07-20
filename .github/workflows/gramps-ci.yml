@@ -20,7 +20,7 @@ name: Gramps CI
 
 on:
   push:
-    branches: [ unittests ]
+    branches: [ maintenance/gramps61 ]
   pull_request:
     branches: [ maintenance/gramps61 ]
 
