@@ -97,10 +97,6 @@
 2 DATE 11 Jan 2001
 3 TIME 16:00:06
 1 OBJE @M1@
-1 _PPEXCLUDE
-1 _UID EAE358D5CAEC4F4A8146EFCAFB572480BF11
-1 _FSFTID LBYN-GFG
-1 _FSLINK https://familysearch.org
 0 @N4@ NOTE Tom Tester xref note
 0 @N5@ NOTE Death Event xref note
 0 @N6@ NOTE Media xref note
@@ -178,12 +174,9 @@
 5 TIME 16:00:06
 0 @F1@ FAM
 1 HUSB @I1@
-2 _PREF Y
 1 TEST family
 1 WIFE @I2@
-2 _PREF Y
 1 CHIL @I3@
-2 _PREF Y
 1 SOUR @S1@
 1 NOTE @N7@
 1 NOTE Family note
@@ -225,160 +218,10 @@
 3 DATE 11 Jan 2001
 4 TIME 16:00:06
 0 @N8@ NOTE LDS xref note
-1 NOTE note embedded in the SOURCE Record
-2 CHAN
-3 DATE 11 Jan 2001
-4 TIME 16:00:06
-0 @S55@ SOUR
-1 ABBR 1860 United States Federal Census
-1 TITL 1860 United States Federal Census
-1 _PAREN Y
-0 @S33@ SOUR
-1 ABBR 1870 United States Federal Census
-1 TITL 1870 United States Federal Census
-1 _PAREN Y
-0 @S28@ SOUR
-1 ABBR 1880 United States Federal Census
-1 TITL 1880 United States Federal Census
-0 @S71@ SOUR
-1 ABBR FamilySearch Family Tree (https://www.familysearch.org)
-1 TITL "FamilySearch Family Tree," database, <i>FamilySearch</i>
-1 AUTH The Church of Jesus Christ of Latter-day Saints
-1 PUBL (https://www.familysearch.org)
-1 _ITALIC Y
-1 _PAREN Y
-0 @N8@ NOTE LDS xref note
-0 @R2@ REPO
-1 NAME The National Archives and Records Administration (NARA)
-1 ADDR The National Archives and Records Administration (NARA)
-2 _NAME The National Archives and Records Administration (NARA)
-2 ADR1 The National Archives and Records Administration (NARA)
-0 _PLAC_DEFN
-1 PLAC New Rochelle, New York
-2 ABBR New Rochelle, New York
-2 _RESOLVED -1
-0 _PLAC_DEFN
-1 PLAC Austin, Texas
-2 ABBR Austin, Texas
-2 _RESOLVED -1
-0 _PLAC_DEFN
-1 PLAC Cedar Rapids, Linn, Iowa, United States
-2 ABBR Cedar Rapids, Linn, Iowa, United States
-2 _RESOLVED -1
-0 _PLAC_DEFN
-1 PLAC Philadelphia, Philadelphia, Penn.
-2 ABBR Philadelphia, Philadelphia, Penn.
-2 _RESOLVED -1
-0 _PLAC_DEFN
-1 PLAC Oakland Cemetery, Philadelphia, Pennsylvania, United States
-2 ABBR Oakland Cemetery, Philadelphia, Pennsylvania, United States
-2 _RESOLVED -1
-0 _PLAC_DEFN
-1 PLAC Greenmount Cemetery, Philadelphia, Pennsylvania, United States
-2 ABBR Greenmount Cemetery, Philadelphia, Pennsylvania, United States
-2 _RESOLVED -1
-0 _EVENT_DEFN Adoption
-1 TYPE I
-1 TITL Adoption
-1 _SEN1 [HeShe] was adopted [onDate] [inPlace] by [Desc].
-1 _SEN2 [HeShe] was adopted [onDate].
-1 _SEN3 [HeShe] was adopted [inPlace].
-1 _SEN4 [HeShe] was adopted by [Desc].
-1 _SEN5 [HeShe] was adopted [onDate] by [Desc].
-1 _SEN6 [HeShe] was adopted [inPlace] by [Desc].
-1 _SEN7 [HeShe] was adopted [onDate] [inPlace].
-1 _SEN8 [HeShe] was adopted.
-1 ROLE Witness
-2 _SEN1 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate] [inPlace]: [Desc].
-2 _SEN2 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate].
-2 _SEN3 [FirstHeShe] witnessed the adoption of [MainPerson] [inPlace].
-2 _SEN4 [FirstHeShe] witnessed the adoption of [MainPerson]: [Desc].
-2 _SEN5 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate]: [Desc].
-2 _SEN6 [FirstHeShe] witnessed the adoption of [MainPerson] [inPlace]: [Desc].
-2 _SEN7 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate] [inPlace].
-2 _SEN8 [FirstHeShe] witnessed the adoption of [MainPerson].
-2 _DEF Y
-1 _DATE_TYPE 1
-1 _PLACE_TYPE 1
-1 _DESC_FLAG 1
-1 _INC_NOTES
-0 _EVENT_DEFN Alt. Birth
-1 TYPE I
-1 TITL Alt. Birth
-1 _SEN1 [HeShe] has conflicting birth information of [Desc], [Date] and [Place].
-1 _SEN2 [HeShe] has conflicting birth information of [Date].
-1 _SEN3 [HeShe] has conflicting birth information of [Place].
-1 _SEN4 [HeShe] has conflicting birth information of [Desc].
-1 _SEN5 [HeShe] has conflicting birth information of [Desc] and [Date].
-1 _SEN6 [HeShe] has conflicting birth information of [Desc] and [Place].
-1 _SEN7 [HeShe] has conflicting birth information of [Date] and [Place].
-1 _SEN8 [HeShe] has conflicting birth information.
-1 ROLE Doctor
-2 _SEN1 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace]: [Desc].
-2 _SEN2 [FirstHeShe] delivered [MainPerson] [onDate].
-2 _SEN3 [FirstHeShe] delivered [MainPerson] [inPlace].
-2 _SEN4 [FirstHeShe] delivered [MainPerson]: [Desc].
-2 _SEN5 [FirstHeShe] delivered [MainPerson] [onDate]: [Desc].
-2 _SEN6 [FirstHeShe] delivered [MainPerson] [inPlace]: [Desc].
-2 _SEN7 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace].
-2 _SEN8 [FirstHeShe] delivered [MainPerson].
-1 ROLE Father
-2 _SEN1 [FirstHeShe] is the father of [MainPerson] born [onDate] [inPlace]: [Desc].
-2 _SEN2 [FirstHeShe] is the father of [MainPerson] born [onDate].
-2 _SEN3 [FirstHeShe] is the father of [MainPerson] born [inPlace].
-2 _SEN4 [FirstHeShe] is the father of [MainPerson] born: [Desc].
-2 _SEN5 [FirstHeShe] is the father of [MainPerson] born [onDate]: [Desc].
-2 _SEN6 [FirstHeShe] is the father of [MainPerson] born [inPlace]: [Desc].
-2 _SEN7 [FirstHeShe] is the father of [MainPerson] born [onDate] [inPlace].
-2 _SEN8 [FirstHeShe] is the father of [MainPerson] born.
-1 ROLE Godfather
-2 _SEN1 [FirstHeShe] is the godfather of [MainPerson] [onDate] [inPlace]: [Desc].
-2 _SEN2 [FirstHeShe] is the godfather of [MainPerson] [onDate].
-2 _SEN3 [FirstHeShe] is the godfather of [MainPerson] [inPlace].
-2 _SEN4 [FirstHeShe] is the godfather of [MainPerson]: [Desc].
-2 _SEN5 [FirstHeShe] is the godfather of [MainPerson] [onDate]: [Desc].
-2 _SEN6 [FirstHeShe] is the godfather of [MainPerson] [inPlace]: [Desc].
-2 _SEN7 [FirstHeShe] is the godfather of [MainPerson] [onDate] [inPlace].
-2 _SEN8 [FirstHeShe] is the godfather of [MainPerson].
-1 ROLE Godmother
-2 _SEN1 [FirstHeShe] is the godmother of [MainPerson] [onDate] [inPlace]: [Desc].
-2 _SEN2 [FirstHeShe] is the godmother of [MainPerson] [onDate].
-2 _SEN3 [FirstHeShe] is the godmother of [MainPerson] [inPlace].
-2 _SEN4 [FirstHeShe] is the godmother of [MainPerson]: [Desc].
-2 _SEN5 [FirstHeShe] is the godmother of [MainPerson] [onDate]: [Desc].
-2 _SEN6 [FirstHeShe] is the godmother of [MainPerson] [inPlace]: [Desc].
-2 _SEN7 [FirstHeShe] is the godmother of [MainPerson] [onDate] [inPlace].
-2 _SEN8 [FirstHeShe] is the godmother of [MainPerson].
-1 ROLE Midwife
-2 _SEN1 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace]: [Desc].
-2 _SEN2 [FirstHeShe] delivered [MainPerson] [onDate].
-2 _SEN3 [FirstHeShe] delivered [MainPerson] [inPlace].
-2 _SEN4 [FirstHeShe] delivered [MainPerson]: [Desc].
-2 _SEN5 [FirstHeShe] delivered [MainPerson] [onDate]: [Desc].
-2 _SEN6 [FirstHeShe] delivered [MainPerson] [inPlace]: [Desc].
-2 _SEN7 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace].
-2 _SEN8 [FirstHeShe] delivered [MainPerson].
-1 ROLE Mother
-2 _SEN1 [FirstHeShe] is the mother of [MainPerson] born [onDate] [inPlace]: [Desc].
-2 _SEN2 [FirstHeShe] is the mother of [MainPerson] born [onDate].
-2 _SEN3 [FirstHeShe] is the mother of [MainPerson] born [inPlace].
-2 _SEN4 [FirstHeShe] is the mother of [MainPerson] born: [Desc].
-2 _SEN5 [FirstHeShe] is the mother of [MainPerson] born [onDate]: [Desc].
-2 _SEN6 [FirstHeShe] is the mother of [MainPerson] born [inPlace]: [Desc].
-2 _SEN7 [FirstHeShe] is the mother of [MainPerson] born [onDate] [inPlace].
-2 _SEN8 [FirstHeShe] is the mother of [MainPerson] born.
-1 ROLE Witness
-2 _SEN1 [FirstHeShe] witnessed the birth of [MainPerson] [onDate] [inPlace]: [Desc].
-2 _SEN2 [FirstHeShe] witnessed the birth of [MainPerson] [onDate].
-2 _SEN3 [FirstHeShe] witnessed the birth of [MainPerson] [inPlace].
-2 _SEN4 [FirstHeShe] witnessed the birth of [MainPerson]: [Desc].
-2 _SEN5 [FirstHeShe] witnessed the birth of [MainPerson] [onDate]: [Desc].
-2 _SEN6 [FirstHeShe] witnessed the birth of [MainPerson] [inPlace]: [Desc].
-2 _SEN7 [FirstHeShe] witnessed the birth of [MainPerson] [onDate] [inPlace].
-2 _SEN8 [FirstHeShe] witnessed the birth of [MainPerson].
-2 _DEF Y
-1 _DATE_TYPE 1
-1 _PLACE_TYPE 1
-1 _DESC_FLAG 1
-1 _INC_NOTES
+0 @R1@ REPO
+1 NAME The Testers repository
+1 TEST Repo
+1 NOTE
+2 TEST Empty Note
+1 NOTE Repository Note
 0 TRLR
