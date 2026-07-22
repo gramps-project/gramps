@@ -225,6 +225,29 @@
 3 DATE 11 Jan 2001
 4 TIME 16:00:06
 0 @N8@ NOTE LDS xref note
+1 NOTE note embedded in the SOURCE Record
+2 CHAN
+3 DATE 11 Jan 2001
+4 TIME 16:00:06
+0 @S55@ SOUR
+1 ABBR 1860 United States Federal Census
+1 TITL 1860 United States Federal Census
+1 _PAREN Y
+0 @S33@ SOUR
+1 ABBR 1870 United States Federal Census
+1 TITL 1870 United States Federal Census
+1 _PAREN Y
+0 @S28@ SOUR
+1 ABBR 1880 United States Federal Census
+1 TITL 1880 United States Federal Census
+0 @S71@ SOUR
+1 ABBR FamilySearch Family Tree (https://www.familysearch.org)
+1 TITL "FamilySearch Family Tree," database, <i>FamilySearch</i>
+1 AUTH The Church of Jesus Christ of Latter-day Saints
+1 PUBL (https://www.familysearch.org)
+1 _ITALIC Y
+1 _PAREN Y
+0 @N8@ NOTE LDS xref note
 0 @R1@ REPO
 1 NAME The Testers repository
 1 TEST Repo
