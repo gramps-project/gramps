@@ -31,7 +31,7 @@ from gramps.test.test_util import Gramps
 from gramps.gen.const import TEST_DIR
 from gramps.gen.datehandler import set_format
 from gramps.gen.user import User
-from gramps.gen.utils.config import config
+from gramps.gen.config import config
 
 TREE_NAME = "Test_exporttest"
 _ORIGINAL_CONFIG_STATE = None
@@ -39,15 +39,33 @@ _ORIGINAL_CONFIG_STATE = None
 
 def setUpModule():
     """Capture a snapshot of the config state before all tests in this file runs."""
-    assert config.get("preferences.iprefix") == "I%05d"
-    assert config.get("preferences.oprefix") == "O%05d"
-    assert config.get("preferences.fprefix") == "F%05d"
-    assert config.get("preferences.sprefix") == "S%05d"
-    assert config.get("preferences.cprefix") == "C%05d"
-    assert config.get("preferences.pprefix") == "P%05d"
-    assert config.get("preferences.eprefix") == "E%05d"
-    assert config.get("preferences.rprefix") == "R%05d"
-    assert config.get("preferences.nprefix") == "N%05d"
+    assert config.get("preferences.iprefix") == "I%05d", config.get(
+        "preferences.iprefix"
+    )
+    assert config.get("preferences.oprefix") == "O%05d", config.get(
+        "preferences.oprefix"
+    )
+    assert config.get("preferences.fprefix") == "F%05d", config.get(
+        "preferences.fprefix"
+    )
+    assert config.get("preferences.sprefix") == "S%05d", config.get(
+        "preferences.sprefix"
+    )
+    assert config.get("preferences.cprefix") == "C%05d", config.get(
+        "preferences.cprefix"
+    )
+    assert config.get("preferences.pprefix") == "P%05d", config.get(
+        "preferences.pprefix"
+    )
+    assert config.get("preferences.eprefix") == "E%05d", config.get(
+        "preferences.eprefix"
+    )
+    assert config.get("preferences.rprefix") == "R%05d", config.get(
+        "preferences.rprefix"
+    )
+    assert config.get("preferences.nprefix") == "N%05d", config.get(
+        "preferences.nprefix"
+    )
 
     global _ORIGINAL_CONFIG_STATE
     _ORIGINAL_CONFIG_STATE = copy.deepcopy(config.__dict__)
