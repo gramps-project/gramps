@@ -19,13 +19,15 @@
 # pyccl <changcongliang@163.com>, 2024.
 # Zizhuo JIa <jzz0313@outlook.com>, 2026.
 # reducedradius <137701630+flytothehighest@users.noreply.github.com>, 2026.
+# Arnie97 <arnie97@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-29 21:28+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2026-07-22 05:01+0000\n"
+"Last-Translator: reducedradius "
+"<137701630+flytothehighest@users.noreply.github.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -33,7 +35,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -1867,7 +1869,6 @@ msgid "=number"
 msgstr "=编号"
 
 #: ../gramps/cli/plug/__init__.py:326
-#, fuzzy
 msgid "Paper orientation number."
 msgstr "纸张方向编号。"
 
@@ -1898,7 +1899,7 @@ msgstr "=css 文件名"
 
 #: ../gramps/cli/plug/__init__.py:331
 msgid "CSS filename to use, html format only"
-msgstr "要使用的 CSS 文件名，仅可用 html 格式"
+msgstr "CSS 文件名，仅对 HTML 格式有效"
 
 #. Translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:446
@@ -2072,7 +2073,7 @@ msgstr ":"
 #: ../gramps/gen/datehandler/__init__.py:94
 #, python-format
 msgid "Date parser for '%s' not available, using default"
-msgstr "'%s'的日期分析器不可用，使用默认值"
+msgstr "'%s'的日期解析器不可用，使用默认值"
 
 #: ../gramps/gen/datehandler/__init__.py:111
 #, python-format
@@ -6352,10 +6353,8 @@ msgid "Matches repositories with a note with a specified tag"
 msgstr "匹配含有特定注释类型的来源"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "注释类型为 <type> 的来源"
+msgstr "注释类型为 <type> 的仓库"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
 #, fuzzy
@@ -6512,10 +6511,8 @@ msgid "Sources with a note with the <tag>"
 msgstr "笔记中带有 <tag> 的来源"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "匹配含有特定注释类型的来源"
+msgstr "匹配含有特定注释类型的标签"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6654,8 +6651,6 @@ msgstr ""
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:627
-#, fuzzy
-#| msgid "Other Name"
 msgid "Other names"
 msgstr "其他名字"
 
@@ -6881,7 +6876,7 @@ msgstr "子女"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "生活描述"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
 msgid "Birth Registration"
@@ -6995,7 +6990,7 @@ msgstr "导入 FamilySearch 关系来源"
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
 msgid "Memory: {t}"
-msgstr ""
+msgstr "记忆：{t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:600
@@ -7390,7 +7385,7 @@ msgstr "子女数"
 
 #: ../gramps/gen/lib/attrtype.py:80
 msgid "Social Security Number"
-msgstr "社会安全号"
+msgstr "社会保障号码"
 
 #: ../gramps/gen/lib/attrtype.py:81 ../gramps/gen/utils/keyword.py:73
 #: ../gramps/gui/configure.py:1275 ../gramps/gui/configure.py:1277
@@ -8757,7 +8752,7 @@ msgstr "与配偶印证"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "<No Status>"
-msgstr "<No Status>"
+msgstr "<无状态>"
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Born in Covenant"
@@ -8765,19 +8760,19 @@ msgstr "生于圣约"
 
 #: ../gramps/gen/lib/ldsord.py:105
 msgid "Canceled"
-msgstr "取消"
+msgstr "已取消"
 
 #: ../gramps/gen/lib/ldsord.py:107
 msgid "Cleared"
-msgstr "清除"
+msgstr "已核准"
 
 #: ../gramps/gen/lib/ldsord.py:108
 msgid "Completed"
-msgstr "完成"
+msgstr "已完成"
 
 #: ../gramps/gen/lib/ldsord.py:109
 msgid "Do not seal"
-msgstr "不要密封"
+msgstr "不予印证"
 
 #: ../gramps/gen/lib/ldsord.py:110
 msgid "Infant"
@@ -8785,15 +8780,15 @@ msgstr "婴儿"
 
 #: ../gramps/gen/lib/ldsord.py:111
 msgid "Pre-1970"
-msgstr "1970前"
+msgstr "1970年之前"
 
 #: ../gramps/gen/lib/ldsord.py:112
 msgid "Qualified"
-msgstr "合格的"
+msgstr "符合资格"
 
 #: ../gramps/gen/lib/ldsord.py:113
 msgid "Do not seal/Cancel"
-msgstr "不要密封/取消"
+msgstr "不予印证/取消"
 
 #: ../gramps/gen/lib/ldsord.py:114
 msgid "Stillborn"
@@ -8801,11 +8796,11 @@ msgstr "死胎"
 
 #: ../gramps/gen/lib/ldsord.py:115
 msgid "Submitted"
-msgstr "提交"
+msgstr "已提交"
 
 #: ../gramps/gen/lib/ldsord.py:116
 msgid "Uncleared"
-msgstr "模糊的"
+msgstr "未核准"
 
 #: ../gramps/gen/lib/ldsord.py:187 ../gramps/gui/editors/editldsord.py:349
 #: ../gramps/gui/editors/editldsord.py:497
@@ -8813,7 +8808,7 @@ msgstr "模糊的"
 #: ../gramps/plugins/textreport/indivcomplete.py:735
 #: ../gramps/plugins/webreport/basepage.py:588
 msgid "LDS Ordinance"
-msgstr "LDS Ordinance"
+msgstr "后期圣徒教仪"
 
 #: ../gramps/gen/lib/ldsord.py:204
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
@@ -8855,7 +8850,7 @@ msgstr "完成"
 
 #: ../gramps/gen/lib/markertype.py:60 ../gramps/plugins/tool/notrelated.py:104
 msgid "ToDo"
-msgstr "ToDo"
+msgstr "待办"
 
 #: ../gramps/gen/lib/media.py:152
 msgid "MIME"
@@ -8876,7 +8871,7 @@ msgstr "地区 (Region)"
 
 #: ../gramps/gen/lib/name.py:180 ../gramps/plugins/importer/importcsv.py:206
 msgid "Given name"
-msgstr "指定名称"
+msgstr "名字"
 
 #: ../gramps/gen/lib/name.py:184 ../gramps/plugins/webreport/basepage.py:2061
 #: ../gramps/plugins/webreport/basepage.py:2119
@@ -9005,12 +9000,12 @@ msgstr "自选的姓"
 #: ../gramps/gen/lib/nameorigintype.py:85 ../gramps/gen/utils/keyword.py:66
 #: ../gramps/gui/configure.py:1284
 msgid "Patronymic"
-msgstr "取自父的名"
+msgstr "取自父亲之名"
 
 # MATRONYMIC: name is derived from mother's given name
 #: ../gramps/gen/lib/nameorigintype.py:86
 msgid "Matronymic"
-msgstr "取自母名的姓"
+msgstr "取自母亲之名"
 
 # FEUDAL: name refers to the holding of land in a fief
 #: ../gramps/gen/lib/nameorigintype.py:87
@@ -9137,7 +9132,7 @@ msgstr "关联性笔记"
 
 #: ../gramps/gen/lib/notetype.py:103
 msgid "LDS Note"
-msgstr "LDS 注释"
+msgstr "后期圣徒教会笔记"
 
 #: ../gramps/gen/lib/notetype.py:104
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:138
@@ -9203,17 +9198,16 @@ msgid "Alternate names"
 msgstr "别名"
 
 #: ../gramps/gen/lib/person.py:211
-#, fuzzy
 msgid "Death reference index"
-msgstr "事件参照笔记"
+msgstr "死亡记录索引"
 
 #: ../gramps/gen/lib/person.py:215
 msgid "Birth reference index"
-msgstr "出生参考索引"
+msgstr "出生记录索引"
 
 #: ../gramps/gen/lib/person.py:220
 msgid "Event references"
-msgstr "参考事件"
+msgstr "事件参考"
 
 #: ../gramps/gen/lib/person.py:230
 msgid "Parent families"
@@ -10716,7 +10710,7 @@ msgstr "如何处理健在人员"
 
 #: ../gramps/gen/plug/report/stdoptions.py:227
 msgid "Years from death to consider living"
-msgstr ""
+msgstr "由死亡推测的生活年限"
 
 #: ../gramps/gen/plug/report/stdoptions.py:229
 msgid "Whether to restrict data on recently-dead people"
@@ -11221,10 +11215,8 @@ msgid "mother death "
 msgstr "计算去世年龄"
 
 #: ../gramps/gen/utils/alive.py:899 ../gramps/gen/utils/alive.py:905
-#, fuzzy
-#| msgid "Age at death"
 msgid "father death "
-msgstr "去世年龄"
+msgstr "父亲去世 "
 
 #: ../gramps/gen/utils/alive.py:978
 #, python-format
@@ -34561,10 +34553,9 @@ msgid "Relationships shown are to %s"
 msgstr "与%s 的关系显示"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:371
-#, fuzzy, python-format
-#| msgid "* %(person)s, birth%(relation)s"
+#, python-format
 msgid "* %(person)s, birth %(relation)s"
-msgstr "* %(person)s, birth%(relation)s"
+msgstr "* %(person)s, birth %(relation)s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:378
 #, python-brace-format
@@ -35460,8 +35451,6 @@ msgid "Include Attributes"
 msgstr "包含属性"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
-#, fuzzy
-#| msgid "Include addresses"
 msgid "Include Addresses"
 msgstr "包含地址"
 
@@ -37420,10 +37409,8 @@ msgid "Change"
 msgstr "修改"
 
 #: ../gramps/plugins/tool/reorderids.glade:1451
-#, fuzzy
-#| msgid "Enable ID reordering."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr "开启 ID 重新排序。"
+msgstr "按照开始/步长生成的序列进行 ID 重新排序。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1462
 msgid "Start"
@@ -37439,7 +37426,7 @@ msgstr "梯度"
 
 #: ../gramps/plugins/tool/reorderids.glade:1485
 msgid "Reorder ID step width."
-msgstr ""
+msgstr "ID 重排的步长。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1497
 msgid "Keep"
@@ -37821,23 +37808,23 @@ msgstr "最大子女数(_D)"
 
 #: ../gramps/plugins/tool/verify.glade:583
 msgid "Mi_nimum age to father a child"
-msgstr "作爸爸的最小年龄(_N)"
+msgstr "成为父亲的最小年龄(_N)"
 
 #: ../gramps/plugins/tool/verify.glade:602
 msgid "Ma_ximum age to father a child"
-msgstr "作爸爸的最大年龄(_X)"
+msgstr "成为父亲的最大年龄(_X)"
 
 #: ../gramps/plugins/tool/verify.glade:745
 msgid "Maximum husband-wife age _difference"
-msgstr "最大夫妻相差岁数(_D)"
+msgstr "夫妻最大年龄差(_D)"
 
 #: ../gramps/plugins/tool/verify.glade:760
 msgid "Maximum number of years _between children"
-msgstr "连续两次生育相隔的最大年数(_B)"
+msgstr "两次生育的最大间隔(_B)"
 
 #: ../gramps/plugins/tool/verify.glade:775
 msgid "Maximum _span of years for all children"
-msgstr "首尾两个孩子相隔的最大年数(_S)"
+msgstr "首尾两个孩子的最大年龄差(_S)"
 
 #: ../gramps/plugins/tool/verify.glade:1030
 #: ../gramps/plugins/tool/verify.py:944
@@ -37872,7 +37859,7 @@ msgstr "出生前洗礼"
 
 #: ../gramps/plugins/tool/verify.py:1393
 msgid "Death before baptism"
-msgstr "死前洗礼"
+msgstr "死亡后洗礼"
 
 #: ../gramps/plugins/tool/verify.py:1412
 msgid "Burial before birth"
@@ -37880,7 +37867,7 @@ msgstr "未出生前埋葬"
 
 #: ../gramps/plugins/tool/verify.py:1431
 msgid "Burial before death"
-msgstr "活埋"
+msgstr "未死亡前埋葬"
 
 #: ../gramps/plugins/tool/verify.py:1450
 msgid "Death before birth"
@@ -37892,7 +37879,7 @@ msgstr "洗礼前埋葬"
 
 #: ../gramps/plugins/tool/verify.py:1495
 msgid "Old age at death"
-msgstr "老死"
+msgstr "死亡时年龄过高"
 
 #: ../gramps/plugins/tool/verify.py:1526
 msgid "Multiple parents"
@@ -37900,7 +37887,7 @@ msgstr "多个父母"
 
 #: ../gramps/plugins/tool/verify.py:1551
 msgid "Married often"
-msgstr "常结婚"
+msgstr "结婚次数过多"
 
 #: ../gramps/plugins/tool/verify.py:1578
 msgid "Old and unmarried"
@@ -37928,79 +37915,79 @@ msgstr "夫妇同姓"
 
 #: ../gramps/plugins/tool/verify.py:1728
 msgid "Large age difference between spouses"
-msgstr "夫妻年龄差异大"
+msgstr "夫妻年龄差异过大"
 
 #: ../gramps/plugins/tool/verify.py:1769
 msgid "Marriage before birth"
-msgstr "指腹为婚"
+msgstr "出生前结婚"
 
 #: ../gramps/plugins/tool/verify.py:1810
 msgid "Marriage after death"
-msgstr "离逝后婚姻"
+msgstr "去世后结婚"
 
 #: ../gramps/plugins/tool/verify.py:1861
 msgid "Early marriage"
-msgstr "早婚"
+msgstr "结婚过早"
 
 #: ../gramps/plugins/tool/verify.py:1907
 msgid "Late marriage"
-msgstr "晚婚"
+msgstr "结婚过晚"
 
 #: ../gramps/plugins/tool/verify.py:1959
 msgid "Old father"
-msgstr "老父"
+msgstr "过晚成为父亲"
 
 #: ../gramps/plugins/tool/verify.py:1963
 msgid "Old mother"
-msgstr "慈母"
+msgstr "过晚成为母亲"
 
 #: ../gramps/plugins/tool/verify.py:2015
 msgid "Young father"
-msgstr "年轻的父亲"
+msgstr "过早成为父亲"
 
 #: ../gramps/plugins/tool/verify.py:2019
 msgid "Young mother"
-msgstr "年轻的母亲"
+msgstr "过早成为母亲"
 
 #: ../gramps/plugins/tool/verify.py:2069
 msgid "Unborn father"
-msgstr "无生育的父亲"
+msgstr "成为父亲时，本人还未出生"
 
 #: ../gramps/plugins/tool/verify.py:2073
 msgid "Unborn mother"
-msgstr "无生育的母亲"
+msgstr "成为母亲时，本人还未出生"
 
 #: ../gramps/plugins/tool/verify.py:2131
 msgid "Dead father"
-msgstr "亡父"
+msgstr "成为父亲时，本人已经去世"
 
 #: ../gramps/plugins/tool/verify.py:2135
 msgid "Dead mother"
-msgstr "亡母"
+msgstr "成为母亲时，本人已经去世"
 
 #: ../gramps/plugins/tool/verify.py:2165
 msgid "Large year span for all children"
-msgstr "首尾两个孩子相隔的最大年数"
+msgstr "首末两个孩子间年龄差异过大"
 
 #: ../gramps/plugins/tool/verify.py:2196
 msgid "Large age differences between children"
-msgstr "孩子的最大年龄差"
+msgstr "相邻两次生育间隔过长"
 
 #: ../gramps/plugins/tool/verify.py:2215
 msgid "Disconnected individual"
-msgstr "独立的个体成员"
+msgstr "缺少家庭关系"
 
 #: ../gramps/plugins/tool/verify.py:2238
 msgid "Invalid birth date"
-msgstr "无效的出生日期"
+msgstr "出生日期无效"
 
 #: ../gramps/plugins/tool/verify.py:2261
 msgid "Invalid death date"
-msgstr "无效去世日期"
+msgstr "去世日期无效"
 
 #: ../gramps/plugins/tool/verify.py:2284
 msgid "Marriage date but not married"
-msgstr "结婚日期但是未结婚"
+msgstr "填写了结婚日期，但是未婚"
 
 #: ../gramps/plugins/tool/verify.py:2315
 msgid "Old age but no death"
@@ -38008,15 +37995,15 @@ msgstr "高龄但未去世"
 
 #: ../gramps/plugins/tool/verify.py:2334
 msgid "Birth date equals death date"
-msgstr "出生日期等同于死亡日期"
+msgstr "出生日期等于死亡日期"
 
 #: ../gramps/plugins/tool/verify.py:2355
 msgid "Birth date equals marriage date"
-msgstr "出生日期等同于结婚日期"
+msgstr "出生日期等于结婚日期"
 
 #: ../gramps/plugins/tool/verify.py:2376
 msgid "Death date equals marriage date"
-msgstr "死亡日期等同于结婚日期"
+msgstr "死亡日期等于结婚日期"
 
 #: ../gramps/plugins/tool/verify.py:2437
 msgid "Baptism too late according to family tradition"
@@ -38024,7 +38011,7 @@ msgstr "按照家族传统受洗过晚"
 
 #: ../gramps/plugins/tool/verify.py:2462
 msgid "Burial too late"
-msgstr "下葬很晚"
+msgstr "下葬过晚"
 
 #: ../gramps/plugins/tool/verify.py:2499
 msgid "Children are not in chronological order"
@@ -38039,10 +38026,8 @@ msgid "Family has events with role Unknown"
 msgstr "家庭含有未知角色的事件"
 
 #: ../gramps/plugins/tool/verify.py:2589
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "拥有未知角色事件的人员"
+msgstr "人员在事件中角色未知"
 
 #: ../gramps/plugins/tool/verify.py:2602
 msgid "Family events are not in chronological order"
@@ -39840,13 +39825,11 @@ msgstr "以字母 %s 开头的地点"
 #: ../gramps/plugins/webreport/heatmap.py:306
 #: ../gramps/plugins/webreport/heatmap.py:440
 #: ../gramps/plugins/webreport/heatmap.py:572
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "测试所选筛选器"
+msgstr "所选筛选器中 %s 的热图"
 
 #: ../gramps/plugins/webreport/heatmap.py:326
-#, fuzzy
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr "接下来的部分包含了热图中所有姓氏的索引。"
@@ -39857,7 +39840,6 @@ msgid "Surname"
 msgstr "姓"
 
 #: ../gramps/plugins/webreport/heatmap.py:460
-#, fuzzy
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr "接下来的部分包含了热图中所有标签的索引。"
 
@@ -41249,7 +41231,7 @@ msgstr "日历起始年"
 
 #: ../gramps/plugins/webreport/webcal.py:1936
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr "为日历输入鉴于1900～3000的起始年份"
+msgstr "输入日历起始年份，范围 1900 年 - 3000 年"
 
 #: ../gramps/plugins/webreport/webcal.py:1941
 msgid "End Year for the Calendar(s)"
@@ -41258,7 +41240,7 @@ msgstr "日历的结束年"
 # FIXME
 #: ../gramps/plugins/webreport/webcal.py:1944
 msgid "Enter the ending year for the calendars between 1900 - 3000."
-msgstr "为日历输入鉴于1900～3000的结束年份"
+msgstr "输入日历结束年份，范围 1900 年 - 3000 年"
 
 #: ../gramps/plugins/webreport/webcal.py:1962
 msgid "Holidays will be included for the selected country"

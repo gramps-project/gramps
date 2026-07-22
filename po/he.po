@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-24 14:01+0000\n"
+"PO-Revision-Date: 2026-07-12 14:01+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.7.1.dev0\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -16481,10 +16481,8 @@ msgid "Name, date, place, or FamilySearch ID"
 msgstr "שם, תאריך, מקום, או מזהה FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:782
-#, fuzzy
-#| msgid "Web Search"
 msgid "Search"
-msgstr "חיפוש ברשת"
+msgstr "חיפוש"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
@@ -16499,10 +16497,8 @@ msgid "Enter a name, date, place, ID, or URL to search."
 msgstr "כדי לחפש, נא להזין: שם, תאריך, מקום, מזהה, או URL."
 
 #: ../gramps/gui/fs/actions.py:865
-#, fuzzy
-#| msgid "Sync to FamilySearch..."
 msgid "Searching FamilySearch..."
-msgstr "סנכרון ל־FamilySearch..."
+msgstr "חיפוש FamilySearch..."
 
 #: ../gramps/gui/fs/actions.py:880
 #, python-format
@@ -16515,17 +16511,13 @@ msgid "Search results: %(count)d"
 msgstr "תוצאות חיפוש: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:893
-#, fuzzy
-#| msgid "No FamilySearch sources found to import."
 msgid "No FamilySearch people found."
-msgstr "לא נמצא מקור FamilySearch לייבוא."
+msgstr "לא נמצא אדם FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:917
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1138
-#, fuzzy
-#| msgid "FamilySearch sync"
 msgid "FamilySearch person"
-msgstr "סנכרון FamilySearch"
+msgstr "אדם FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:964
 msgid ""
@@ -16538,16 +16530,12 @@ msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
 msgstr "אילן־היוחסין ריק! האם לייבא כמות גדולה מ־FamilySearch?"
 
 #: ../gramps/gui/fs/actions.py:994
-#, fuzzy
-#| msgid "Center Person"
 msgid "Choose Starting Person"
-msgstr "אדם מרכזי"
+msgstr "בחירצ אדם להתחיל ממנו"
 
 #: ../gramps/gui/fs/actions.py:995
-#, fuzzy
-#| msgid "Not shown"
 msgid "Not now"
-msgstr "לא מוצג"
+msgstr "לא כעת"
 
 #: ../gramps/gui/fs/actions.py:1012 ../gramps/gui/fs/actions.py:1073
 msgid "Bulk import complete."
@@ -17006,23 +16994,17 @@ msgstr "שדה"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:686
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:831
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1205
-#, fuzzy
-#| msgid "Current Name"
 msgid "Current Gramps"
-msgstr "שם נוכחי"
+msgstr "גרמפס נוכחי"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:688
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:833
-#, fuzzy
-#| msgid "General Gramps settings"
 msgid "Final Gramps result"
-msgstr "הגדרות גרמפס כלליות"
+msgstr "תוצאות גרמפס סופיות"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
-#, fuzzy
-#| msgid "Only in Gramps"
 msgid "Kept in Gramps"
-msgstr "רק בגרמפס"
+msgstr "נשאר בגרמפס"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:771
@@ -17792,16 +17774,12 @@ msgid "Editor person: (none)"
 msgstr "האדם העורך: (ללא)"
 
 #: ../gramps/gui/fs/tools_window.py:378
-#, fuzzy
-#| msgid "Person actions"
 msgid "Single Person Actions"
-msgstr "פעולות אדם"
+msgstr "פעולות אדם יחיד"
 
 #: ../gramps/gui/fs/tools_window.py:382
-#, fuzzy
-#| msgid "Actions"
 msgid "Bulk Actions"
-msgstr "פעולות"
+msgstr "פעולות צובר"
 
 #: ../gramps/gui/fs/tools_window.py:388
 msgid "Import relatives"
@@ -17829,16 +17807,12 @@ msgid "Clear Cache"
 msgstr "נוקוי מטמון"
 
 #: ../gramps/gui/fs/tools_window.py:408
-#, fuzzy
-#| msgid "All generations"
 msgid "Import multiple generations"
-msgstr "כל הדורות"
+msgstr "ייבוא דורות מרובים"
 
 #: ../gramps/gui/fs/tools_window.py:412
-#, fuzzy
-#| msgid "Import relatives"
 msgid "Bulk Import Relatives"
-msgstr "ייבוא קרובי משפחה"
+msgstr "ייבוא צובר קרובי משפחה"
 
 #: ../gramps/gui/fs/tools_window.py:414
 msgid "Import ancestors and descendants from the selected FamilySearch person."
@@ -17869,10 +17843,8 @@ msgid "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
 msgstr "כתיבה מעל שדות FamilySearch שנבחרו בערכי גרמפס (ללא מחיקה)."
 
 #: ../gramps/gui/fs/tools_window.py:559
-#, fuzzy
-#| msgid "Export to FamilySearch (basic)"
 msgid "Export to FamilySearch"
-msgstr "יצוא ל־FamilySearch (בסיסי)"
+msgstr "יצוא ל־FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:562
 msgid ""
@@ -17891,16 +17863,12 @@ msgid "Editor person: %(name)s"
 msgstr "האדם העורך: %(name)s"
 
 #: ../gramps/gui/fs/tools_window.py:809
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Add FamilySearch ID"
-msgstr "מזהה FamilySearch"
+msgstr "הוספת מזהה FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:815
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Edit FamilySearch ID"
-msgstr "מזהה FamilySearch"
+msgstr "עריכת מזהה FamilySearch"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
@@ -20498,8 +20466,8 @@ msgid ""
 "so that you can paste it into the form on the bug tracking website and "
 "review exactly what information you want to include."
 msgstr ""
-"זהו הסייען לדיווח תקלים. תפקידו לסייע בדיווח תקלים, באופן מפורט ככל הניתן, "
-"לצוות פיתוח גרמפס .\n"
+"זהו סייען דיווח התקלים. תפקידו לסייע בדיווח לצוות פיתוח גרמפס, על תקלים "
+"באופן מפורט ככל הניתן.\n"
 "\n"
 "הסייען ישאל מספר שאלות ויאסוף מידע על השגיאה שהתרחשה וסביבת העבודה. עם סיום "
 "פעולת הסייען, ניתן יהיה להגיש דוח תקלים במערכת מעקב התקלים של גרמפס. הסייען "
@@ -21322,7 +21290,7 @@ msgstr "לא הותקנו תוספים."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:125
 msgid "Export Assistant"
-msgstr "סייען הייצוא"
+msgstr "סייען ייצוא"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:187
 msgid "Saving your data"
@@ -39234,10 +39202,8 @@ msgstr "הוספת צאצא חדש למשפחה"
 
 #: ../gramps/plugins/view/relview.py:1172
 #: ../gramps/plugins/view/relview.py:1704
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person as a child of the family"
-msgstr "הוספת אדם קיים כצאצא של המשפחה"
+msgstr "בחירת אדם קיים כצאצא של המשפחה"
 
 #: ../gramps/plugins/view/relview.py:1467
 #, python-format

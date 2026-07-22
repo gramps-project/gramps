@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-26 03:01+0000\n"
+"PO-Revision-Date: 2026-07-05 08:01+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.7.1.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -9354,7 +9354,7 @@ msgstr "Pohlavie"
 
 #: ../gramps/gen/lib/person.py:207
 msgid "Alternate names"
-msgstr "Alternatívne názvy"
+msgstr "Alternatívne mená"
 
 #: ../gramps/gen/lib/person.py:211
 msgid "Death reference index"
@@ -14776,7 +14776,7 @@ msgstr "Presunúť vybraný názov miesta nižšie"
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:75
 #: ../gramps/plugins/gramplet/placedetails.py:158
 msgid "Alternative Names"
-msgstr "Alternatívne mená"
+msgstr "Alternatívne názvy"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:75
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:119
@@ -16678,7 +16678,7 @@ msgstr "Neimportovať znovu existujúcich ľudí"
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
 msgstr ""
-"Počas importu ponechať existujúce prepojené osoby v programe Gramps bez "
+"Počas importu ponechajte existujúce prepojené osoby v programe Gramps bez "
 "zmien."
 
 #: ../gramps/gui/fs/actions.py:694 ../gramps/gui/fs/fs_import/options.py:60
@@ -16904,7 +16904,7 @@ msgstr "Vymazané indexy GEDCOMX v pamäti: {n}"
 
 #: ../gramps/gui/fs/actions.py:1602
 msgid "Reset shared FS Tree cache: yes"
-msgstr "Resetovať zdieľanú vyrovnávaciu pamäť FS Tree: áno"
+msgstr "Resetovať zdieľanú vyrovnávaciu pamäť stromu FS: áno"
 
 #: ../gramps/gui/fs/actions.py:1604
 #, python-brace-format
@@ -17677,7 +17677,7 @@ msgstr "Názov súboru (bez rozšírenia)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:440
 msgid "Extension"
-msgstr "Rozšírenie"
+msgstr "Prípona"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:453
 msgid ""
@@ -17829,7 +17829,7 @@ msgid ""
 "action keeps FamilySearch unchanged and no deletions are performed."
 msgstr ""
 "Skontrolujte každú hodnotu v Gramps pred jej odoslaním do FamilySearch. "
-"Predvolená akcia ponechá FamilySearch bez zmien a nevykonajú sa žiadne "
+"Predvolenú akciu ponechá FamilySearch bez zmien a nevykonajú sa žiadne "
 "vymazania."
 
 #: ../gramps/gui/fs/sync_directions.py:865
@@ -25639,7 +25639,7 @@ msgstr "Chyba"
 
 #: ../gramps/plugins/gramplet/eval.py:80
 msgid "Apply"
-msgstr "Použiť"
+msgstr "Aplikovať"
 
 #: ../gramps/plugins/gramplet/events.py:92
 #: ../gramps/plugins/gramplet/personresidence.py:58
@@ -40589,7 +40589,7 @@ msgstr "Typ súboru"
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for people: %(people)s"
-msgstr "%(idx)s – pre osoby: %(people)s"
+msgstr "%(idx)s - pre osoby: %(people)s"
 
 #: ../gramps/plugins/webreport/media.py:736
 #, python-format
@@ -40613,7 +40613,7 @@ msgstr "%(idx)s - pre miesto: %(place)s"
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for source: %(source)s"
-msgstr "%(idx)s – pre zdroj: %(source)s"
+msgstr "%(idx)s - pre zdroj: %(source)s"
 
 #: ../gramps/plugins/webreport/media.py:808
 #, python-format
