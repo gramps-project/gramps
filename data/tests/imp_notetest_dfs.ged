@@ -248,14 +248,17 @@
 1 _ITALIC Y
 1 _PAREN Y
 0 @N8@ NOTE LDS xref note
-0 @R1@ REPO
-1 NAME Local Government and Municipal Registries (Genoa, IT / Broward County, FL)
-1 ADDR Local Government and Municipal Registries (Genoa, IT / Broward County, FL)
-2 _NAME Local Government and Municipal Registries (Genoa, IT / Broward County, FL)
-2 ADR1 Local Government and Municipal Registries (Genoa, IT / Broward County, FL)
 0 @R2@ REPO
 1 NAME The National Archives and Records Administration (NARA)
 1 ADDR The National Archives and Records Administration (NARA)
 2 _NAME The National Archives and Records Administration (NARA)
 2 ADR1 The National Archives and Records Administration (NARA)
+0 _PLAC_DEFN
+1 PLAC New Rochelle, New York
+2 ABBR New Rochelle, New York
+2 _RESOLVED -1
+0 _PLAC_DEFN
+1 PLAC Austin, Texas
+2 ABBR Austin, Texas
+2 _RESOLVED -1
 0 TRLR
