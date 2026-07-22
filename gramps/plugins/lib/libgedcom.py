@@ -4073,9 +4073,9 @@ class GedcomParser(UpdateCallback):
                     if not next_line:
                         break
                     if next_line.level == 0:
-                        self._backup() # Push the next valid Level 0 record back onto the stack
+                        self._backup()  # Push the next valid Level 0 record back onto the stack
                         break
-                continue # Immediately jump to the next iteration of the main loop
+                continue  # Immediately jump to the next iteration of the main loop
             # -------------------------------
 
             key = line.data
