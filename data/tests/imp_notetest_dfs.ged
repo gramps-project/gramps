@@ -261,4 +261,124 @@
 1 PLAC Austin, Texas
 2 ABBR Austin, Texas
 2 _RESOLVED -1
+0 _PLAC_DEFN
+1 PLAC Cedar Rapids, Linn, Iowa, United States
+2 ABBR Cedar Rapids, Linn, Iowa, United States
+2 _RESOLVED -1
+0 _PLAC_DEFN
+1 PLAC Philadelphia, Philadelphia, Penn.
+2 ABBR Philadelphia, Philadelphia, Penn.
+2 _RESOLVED -1
+0 _PLAC_DEFN
+1 PLAC Oakland Cemetery, Philadelphia, Pennsylvania, United States
+2 ABBR Oakland Cemetery, Philadelphia, Pennsylvania, United States
+2 _RESOLVED -1
+0 _PLAC_DEFN
+1 PLAC Greenmount Cemetery, Philadelphia, Pennsylvania, United States
+2 ABBR Greenmount Cemetery, Philadelphia, Pennsylvania, United States
+2 _RESOLVED -1
+0 _EVENT_DEFN Adoption
+1 TYPE I
+1 TITL Adoption
+1 _SEN1 [HeShe] was adopted [onDate] [inPlace] by [Desc].
+1 _SEN2 [HeShe] was adopted [onDate].
+1 _SEN3 [HeShe] was adopted [inPlace].
+1 _SEN4 [HeShe] was adopted by [Desc].
+1 _SEN5 [HeShe] was adopted [onDate] by [Desc].
+1 _SEN6 [HeShe] was adopted [inPlace] by [Desc].
+1 _SEN7 [HeShe] was adopted [onDate] [inPlace].
+1 _SEN8 [HeShe] was adopted.
+1 ROLE Witness
+2 _SEN1 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate] [inPlace]: [Desc].
+2 _SEN2 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate].
+2 _SEN3 [FirstHeShe] witnessed the adoption of [MainPerson] [inPlace].
+2 _SEN4 [FirstHeShe] witnessed the adoption of [MainPerson]: [Desc].
+2 _SEN5 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate]: [Desc].
+2 _SEN6 [FirstHeShe] witnessed the adoption of [MainPerson] [inPlace]: [Desc].
+2 _SEN7 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate] [inPlace].
+2 _SEN8 [FirstHeShe] witnessed the adoption of [MainPerson].
+2 _DEF Y
+1 _DATE_TYPE 1
+1 _PLACE_TYPE 1
+1 _DESC_FLAG 1
+1 _INC_NOTES
+0 _EVENT_DEFN Alt. Birth
+1 TYPE I
+1 TITL Alt. Birth
+1 _SEN1 [HeShe] has conflicting birth information of [Desc], [Date] and [Place].
+1 _SEN2 [HeShe] has conflicting birth information of [Date].
+1 _SEN3 [HeShe] has conflicting birth information of [Place].
+1 _SEN4 [HeShe] has conflicting birth information of [Desc].
+1 _SEN5 [HeShe] has conflicting birth information of [Desc] and [Date].
+1 _SEN6 [HeShe] has conflicting birth information of [Desc] and [Place].
+1 _SEN7 [HeShe] has conflicting birth information of [Date] and [Place].
+1 _SEN8 [HeShe] has conflicting birth information.
+1 ROLE Doctor
+2 _SEN1 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace]: [Desc].
+2 _SEN2 [FirstHeShe] delivered [MainPerson] [onDate].
+2 _SEN3 [FirstHeShe] delivered [MainPerson] [inPlace].
+2 _SEN4 [FirstHeShe] delivered [MainPerson]: [Desc].
+2 _SEN5 [FirstHeShe] delivered [MainPerson] [onDate]: [Desc].
+2 _SEN6 [FirstHeShe] delivered [MainPerson] [inPlace]: [Desc].
+2 _SEN7 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace].
+2 _SEN8 [FirstHeShe] delivered [MainPerson].
+1 ROLE Father
+2 _SEN1 [FirstHeShe] is the father of [MainPerson] born [onDate] [inPlace]: [Desc].
+2 _SEN2 [FirstHeShe] is the father of [MainPerson] born [onDate].
+2 _SEN3 [FirstHeShe] is the father of [MainPerson] born [inPlace].
+2 _SEN4 [FirstHeShe] is the father of [MainPerson] born: [Desc].
+2 _SEN5 [FirstHeShe] is the father of [MainPerson] born [onDate]: [Desc].
+2 _SEN6 [FirstHeShe] is the father of [MainPerson] born [inPlace]: [Desc].
+2 _SEN7 [FirstHeShe] is the father of [MainPerson] born [onDate] [inPlace].
+2 _SEN8 [FirstHeShe] is the father of [MainPerson] born.
+1 ROLE Godfather
+2 _SEN1 [FirstHeShe] is the godfather of [MainPerson] [onDate] [inPlace]: [Desc].
+2 _SEN2 [FirstHeShe] is the godfather of [MainPerson] [onDate].
+2 _SEN3 [FirstHeShe] is the godfather of [MainPerson] [inPlace].
+2 _SEN4 [FirstHeShe] is the godfather of [MainPerson]: [Desc].
+2 _SEN5 [FirstHeShe] is the godfather of [MainPerson] [onDate]: [Desc].
+2 _SEN6 [FirstHeShe] is the godfather of [MainPerson] [inPlace]: [Desc].
+2 _SEN7 [FirstHeShe] is the godfather of [MainPerson] [onDate] [inPlace].
+2 _SEN8 [FirstHeShe] is the godfather of [MainPerson].
+1 ROLE Godmother
+2 _SEN1 [FirstHeShe] is the godmother of [MainPerson] [onDate] [inPlace]: [Desc].
+2 _SEN2 [FirstHeShe] is the godmother of [MainPerson] [onDate].
+2 _SEN3 [FirstHeShe] is the godmother of [MainPerson] [inPlace].
+2 _SEN4 [FirstHeShe] is the godmother of [MainPerson]: [Desc].
+2 _SEN5 [FirstHeShe] is the godmother of [MainPerson] [onDate]: [Desc].
+2 _SEN6 [FirstHeShe] is the godmother of [MainPerson] [inPlace]: [Desc].
+2 _SEN7 [FirstHeShe] is the godmother of [MainPerson] [onDate] [inPlace].
+2 _SEN8 [FirstHeShe] is the godmother of [MainPerson].
+1 ROLE Midwife
+2 _SEN1 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace]: [Desc].
+2 _SEN2 [FirstHeShe] delivered [MainPerson] [onDate].
+2 _SEN3 [FirstHeShe] delivered [MainPerson] [inPlace].
+2 _SEN4 [FirstHeShe] delivered [MainPerson]: [Desc].
+2 _SEN5 [FirstHeShe] delivered [MainPerson] [onDate]: [Desc].
+2 _SEN6 [FirstHeShe] delivered [MainPerson] [inPlace]: [Desc].
+2 _SEN7 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace].
+2 _SEN8 [FirstHeShe] delivered [MainPerson].
+1 ROLE Mother
+2 _SEN1 [FirstHeShe] is the mother of [MainPerson] born [onDate] [inPlace]: [Desc].
+2 _SEN2 [FirstHeShe] is the mother of [MainPerson] born [onDate].
+2 _SEN3 [FirstHeShe] is the mother of [MainPerson] born [inPlace].
+2 _SEN4 [FirstHeShe] is the mother of [MainPerson] born: [Desc].
+2 _SEN5 [FirstHeShe] is the mother of [MainPerson] born [onDate]: [Desc].
+2 _SEN6 [FirstHeShe] is the mother of [MainPerson] born [inPlace]: [Desc].
+2 _SEN7 [FirstHeShe] is the mother of [MainPerson] born [onDate] [inPlace].
+2 _SEN8 [FirstHeShe] is the mother of [MainPerson] born.
+1 ROLE Witness
+2 _SEN1 [FirstHeShe] witnessed the birth of [MainPerson] [onDate] [inPlace]: [Desc].
+2 _SEN2 [FirstHeShe] witnessed the birth of [MainPerson] [onDate].
+2 _SEN3 [FirstHeShe] witnessed the birth of [MainPerson] [inPlace].
+2 _SEN4 [FirstHeShe] witnessed the birth of [MainPerson]: [Desc].
+2 _SEN5 [FirstHeShe] witnessed the birth of [MainPerson] [onDate]: [Desc].
+2 _SEN6 [FirstHeShe] witnessed the birth of [MainPerson] [inPlace]: [Desc].
+2 _SEN7 [FirstHeShe] witnessed the birth of [MainPerson] [onDate] [inPlace].
+2 _SEN8 [FirstHeShe] witnessed the birth of [MainPerson].
+2 _DEF Y
+1 _DATE_TYPE 1
+1 _PLACE_TYPE 1
+1 _DESC_FLAG 1
+1 _INC_NOTES
 0 TRLR
