@@ -97,6 +97,10 @@
 2 DATE 11 Jan 2001
 3 TIME 16:00:06
 1 OBJE @M1@
+1 _PPEXCLUDE
+1 _UID EAE358D5CAEC4F4A8146EFCAFB572480BF11
+1 _FSFTID LBYN-GFG
+1 _FSLINK https://familysearch.org
 0 @N4@ NOTE Tom Tester xref note
 0 @N5@ NOTE Death Event xref note
 0 @N6@ NOTE Media xref note
@@ -174,9 +178,12 @@
 5 TIME 16:00:06
 0 @F1@ FAM
 1 HUSB @I1@
+2 _PREF Y
 1 TEST family
 1 WIFE @I2@
+2 _PREF Y
 1 CHIL @I3@
+2 _PREF Y
 1 SOUR @S1@
 1 NOTE @N7@
 1 NOTE Family note
