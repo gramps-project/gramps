@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-03-03 01:09+0000\n"
+"PO-Revision-Date: 2026-07-22 05:01+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ka/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -11978,10 +11978,8 @@ msgid "Middleware access code (issued secret)"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1204
-#, fuzzy
-#| msgid "Searching..."
 msgid "Enable FamilySearch integration"
-msgstr "იძებნება..."
+msgstr "FamilySearch-ის ინტეგრაციის ჩართვა"
 
 #: ../gramps/gui/configure.py:1212
 #, fuzzy
@@ -15781,20 +15779,16 @@ msgid "Life"
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:856
-#, fuzzy
-#| msgid "Family"
 msgid "FamilySearch ID ready."
-msgstr "ოჯახი"
+msgstr "FamilySearch-ის ID მზადაა."
 
 #: ../gramps/gui/fs/actions.py:860
 msgid "Enter a name, date, place, ID, or URL to search."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:865
-#, fuzzy
-#| msgid "Family"
 msgid "Searching FamilySearch..."
-msgstr "ოჯახი"
+msgstr "FamilySearch-ით ძებნა..."
 
 #: ../gramps/gui/fs/actions.py:880
 #, python-format
@@ -16153,10 +16147,8 @@ msgid "Downloading notes and sources…"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:182
-#, fuzzy
-#| msgid "Import"
 msgid "Importing…"
-msgstr "შემოტანა"
+msgstr "შემოტანა…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:194
 msgid "Importing places… (8/11)"
@@ -16598,10 +16590,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2058
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:313
-#, fuzzy
-#| msgid "Continue"
 msgid "Contributor"
-msgstr "გაგრძელება"
+msgstr "მოხალისე"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2059
 #, fuzzy
@@ -17161,10 +17151,8 @@ msgid "Import ancestors and descendants from the selected FamilySearch person."
 msgstr ""
 
 #: ../gramps/gui/fs/tools_window.py:422
-#, fuzzy
-#| msgid "Tags"
 msgid "Tags..."
-msgstr "ჭდეები"
+msgstr "ჭდეები…"
 
 #: ../gramps/gui/fs/tools_window.py:534
 #, fuzzy
@@ -18187,11 +18175,9 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "Given"
 msgctxt "Given names"
 msgid "_Given:"
-msgstr "დარქმეული სახელი"
+msgstr "_დარქმეული სახელი:"
 
 #: ../gramps/gui/glade/editname.glade:204
 #: ../gramps/gui/glade/editperson.glade:195
@@ -31941,10 +31927,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
-#, fuzzy
-#| msgid "Personal"
 msgid "Personal map: "
-msgstr "პერსონალური"
+msgstr "პერსონალური რუკა: "
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
 msgid "The map"
