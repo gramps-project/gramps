@@ -3500,13 +3500,21 @@ class GedcomParser(UpdateCallback):
         # Legacy also adds parens and italics to the source notation, but gramps
         # handles this through the Bibliography and Report Engine to set either
         # Chicago, Oxford, or custom style
-        if line.token_text in ('_PREF', '_PAREN', '_ITALIC', '_NAME'):
+        if line.token_text in ("_PREF", "_PAREN", "_ITALIC", "_NAME"):
             return True  # Tells the state engine this tag is handled/skipped cleanly
 
         if line.token == TOKEN_UNKNOWN:
             self.__add_msg(_("Line ignored as not understood"), line, state)
         else:
-            self.__add_msg(_("Tag recognized but not supported: \'" + str(line.data) + "\' on line "), line, state)
+            self.__add_msg(
+                _(
+                    "Tag recognized but not supported: '"
+                    + str(line.data)
+                    + "' on line "
+                ),
+                line,
+                state,
+            )
         self.__skip_subordinate_levels(line.level + 1, state)
 
     def __not_recognized(self, line, state):
@@ -4052,9 +4060,12 @@ class GedcomParser(UpdateCallback):
             # --- ENHANCED SILENT INTERCEPT ---
             # Catch Legacy's custom place and event definitions, swallowing all children silently
             if line and (
-                line.data in ("_PLAC_DEFN", "_EVENT_DEFN") or 
-                getattr(line, 'token_text', '') in ("_PLAC_DEFN", "_EVENT_DEFN") or
-                (isinstance(line.data, str) and line.data.startswith(("_PLAC_DEFN", "_EVENT_DEFN")))
+                line.data in ("_PLAC_DEFN", "_EVENT_DEFN")
+                or getattr(line, "token_text", "") in ("_PLAC_DEFN", "_EVENT_DEFN")
+                or (
+                    isinstance(line.data, str)
+                    and line.data.startswith(("_PLAC_DEFN", "_EVENT_DEFN"))
+                )
             ):
                 # Advance the file pointer and completely ignore everything until the next Level 0 record
                 while True:
