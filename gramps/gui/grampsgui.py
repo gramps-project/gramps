@@ -580,6 +580,8 @@ class Gramps:
         from .tipofday import TipOfDay
         import gettext
 
+        GLib.set_prgname("org.gramps_project.Gramps")
+
         # Append image directory to the theme search path
         theme = Gtk.IconTheme.get_default()
         theme.append_search_path(IMAGE_DIR)
