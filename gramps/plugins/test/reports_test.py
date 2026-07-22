@@ -37,10 +37,9 @@ example = os.path.join(TEST_DIR, "data.gramps")
 
 TREE_NAME = "Test_reporttest"
 _ORIGINAL_CONFIG_STATE = None
-reports = None
 
 
-def setUpModule():
+def load_tests(loader, standard_tests, pattern):
     """Capture a snapshot of the config state before all tests in thif file runs."""
     assert config.get("preferences.iprefix") == "I%05d", config.get(
         "preferences.iprefix"
@@ -71,7 +70,6 @@ def setUpModule():
     )
     global _ORIGINAL_CONFIG_STATE
     _ORIGINAL_CONFIG_STATE = copy.deepcopy(config.__dict__)
-    global reports
     reports = ReportControl()
     reports.addreport(
         TestDynamic,
@@ -304,6 +302,7 @@ def setUpModule():
         "--options",
         "name=check",
     )
+    return loader.loadTestsFromTestCase(TestDynamic)
 
 
 def tearDownModule():
