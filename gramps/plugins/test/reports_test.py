@@ -21,7 +21,9 @@
 import unittest
 import os
 import shutil
+import copy
 
+from gramps.gen.config import config
 from gramps.test.test_util import Gramps
 from gramps.gen.user import User
 from gramps.gen.const import TEST_DIR
@@ -34,6 +36,304 @@ from gramps.gen.const import TEST_DIR
 example = os.path.join(TEST_DIR, "data.gramps")
 
 TREE_NAME = "Test_reporttest"
+_ORIGINAL_CONFIG_STATE = None
+
+
+def load_tests(loader, standard_tests, pattern):
+    """Capture a snapshot of the config state before all tests in thif file runs."""
+    assert config.get("preferences.iprefix") == "I%05d", config.get(
+        "preferences.iprefix"
+    )
+    assert config.get("preferences.oprefix") == "O%05d", config.get(
+        "preferences.oprefix"
+    )
+    assert config.get("preferences.fprefix") == "F%05d", config.get(
+        "preferences.fprefix"
+    )
+    assert config.get("preferences.sprefix") == "S%05d", config.get(
+        "preferences.sprefix"
+    )
+    assert config.get("preferences.cprefix") == "C%05d", config.get(
+        "preferences.cprefix"
+    )
+    assert config.get("preferences.pprefix") == "P%05d", config.get(
+        "preferences.pprefix"
+    )
+    assert config.get("preferences.eprefix") == "E%05d", config.get(
+        "preferences.eprefix"
+    )
+    assert config.get("preferences.rprefix") == "R%05d", config.get(
+        "preferences.rprefix"
+    )
+    assert config.get("preferences.nprefix") == "N%05d", config.get(
+        "preferences.nprefix"
+    )
+    global _ORIGINAL_CONFIG_STATE
+    _ORIGINAL_CONFIG_STATE = copy.deepcopy(config.__dict__)
+    reports = ReportControl()
+    reports.addreport(
+        TestDynamic,
+        "tag_report",
+        report_contains("I0037  Smith, Edwin Michael"),
+        [],
+        off="txt",
+        tag="tag1",
+    )
+
+    reports.addreport(
+        TestDynamic,
+        "navwebpage",
+        err_does_not_contain("Failed to write report."),
+        ["/tmp/NAVWEB"],
+        off="html",
+        target="/tmp/NAVWEB",
+    )
+
+    reports.addreport(
+        TestDynamic,
+        "WebCal",
+        err_does_not_contain("Failed to write report."),
+        ["/tmp/WEBCAL"],
+        off="html",
+        target="/tmp/WEBCAL",
+    )
+
+    # THIRD-PARTY
+    # reports.addreport(TestDynamic, "database-differences-report",
+    #                  err_does_not_contain("Failed to write report."),
+    #                  [],
+    #                  off="txt", filename=example)
+
+    reports.addcli(
+        TestDynamic,
+        "export_gedcom",
+        err_does_contain("Cleaning up."),
+        ["test_export.ged"],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "--export",
+        "test_export.ged",
+    )
+
+    # reports.addcli(TestDynamic, "export_csv",
+    #                err_does_contain("Cleaning up."),
+    #                ["test_export.csv"],
+    #                "--force",
+    #                "-O", TREE_NAME,
+    #                "--export", "test_export.csv")
+
+    # reports.addcli(TestDynamic, "export_wtf",
+    #                err_does_contain("Cleaning up."),
+    #                ["test_export.wtf"],
+    #                "--force",
+    #                "-O", TREE_NAME,
+    #                "--export", "test_export.wtf")
+
+    reports.addcli(
+        TestDynamic,
+        "export_gw",
+        err_does_contain("Cleaning up."),
+        ["test_export.gw"],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "--export",
+        "test_export.gw",
+    )
+
+    reports.addcli(
+        TestDynamic,
+        "export_gpkg",
+        err_does_contain("Cleaning up."),
+        ["test_export.gpkg"],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "--export",
+        "test_export.gpkg",
+    )
+
+    reports.addcli(
+        TestDynamic,
+        "export_vcs",
+        err_does_contain("Cleaning up."),
+        ["test_export.vcs"],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "--export",
+        "test_export.vcs",
+    )
+
+    reports.addcli(
+        TestDynamic,
+        "export_vcf",
+        err_does_contain("Cleaning up."),
+        ["test_export.vcf"],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "--export",
+        "test_export.vcf",
+    )
+
+    report_list = [
+        (
+            "ancestor_chart",
+            "svg",
+            [
+                "ancestor_chart %s.svg" % TREE_NAME,
+                "ancestor_chart %s-2.svg" % TREE_NAME,
+                "ancestor_chart %s-3.svg" % TREE_NAME,
+                "ancestor_chart %s-4.svg" % TREE_NAME,
+                "ancestor_chart %s-5.svg" % TREE_NAME,
+                "ancestor_chart %s-6.svg" % TREE_NAME,
+            ],
+        ),  # Ancestor Tree
+        ("ancestor_report", "txt", []),  # Ahnentafel Report
+        ("birthday_report", "txt", []),  # Birthday and Anniversary Report
+        (
+            "calendar",
+            "svg",
+            [
+                "calendar %s-10.svg" % TREE_NAME,
+                "calendar %s-11.svg" % TREE_NAME,
+                "calendar %s-12.svg" % TREE_NAME,
+                "calendar %s-2.svg" % TREE_NAME,
+                "calendar %s-3.svg" % TREE_NAME,
+                "calendar %s-4.svg" % TREE_NAME,
+                "calendar %s-5.svg" % TREE_NAME,
+                "calendar %s-6.svg" % TREE_NAME,
+                "calendar %s-7.svg" % TREE_NAME,
+                "calendar %s-8.svg" % TREE_NAME,
+                "calendar %s-9.svg" % TREE_NAME,
+                "calendar %s.svg" % TREE_NAME,
+            ],
+        ),  # Calendar
+        ("descend_chart", "svg", []),  # Descendant Tree
+        ("descend_report", "txt", []),  # Descendant Report
+        ("det_ancestor_report", "txt", []),  # Detailed Ancestral Report
+        ("det_descendant_report", "txt", []),  # Detailed Descendant Report
+        ("endofline_report", "txt", []),  # End of Line Report
+        ("family_descend_chart", "svg", []),  # Family Descendant Tree
+        ("family_group", "txt", []),  # Family Group Report
+        # COULD be dot ("familylines_graph", "dot", []),  # Family Lines Graph
+        ("fan_chart", "svg", []),  # Fan Chart
+        # COULD be dot ("hourglass_graph", "dot", []),  # Hourglass Graph
+        ("indiv_complete", "txt", []),  # Complete Individual Report
+        ("kinship_report", "txt", []),  # Kinship Report
+        ("notelinkreport", "txt", []),  # Note Link Report
+        ("number_of_ancestors", "txt", []),  # Number of Ancestors Report
+        # NEED a place ("place_report", "txt", []),  # Place Report
+        ("records", "txt", []),  # Records Report
+        # COULD be dot ("rel_graph", "dot", []),  # Relationship Graph
+        (
+            "statistics_chart",
+            "svg",
+            [
+                "statistics_chart %s.svg" % TREE_NAME,  # Statistics Charts
+                "statistics_chart %s-2.svg" % TREE_NAME,
+                "statistics_chart %s-3.svg" % TREE_NAME,
+            ],
+        ),
+        ("summary", "txt", []),  # Database Summary Report
+        (
+            "timeline",
+            "svg",
+            [
+                "timeline %s.svg" % TREE_NAME,
+                "timeline %s-2.svg" % TREE_NAME,
+            ],
+        ),  # Timeline Chart
+    ]
+
+    for _report_name, _off, _files in report_list:
+        reports.addreport(
+            TestDynamic,
+            _report_name,
+            err_does_not_contain("Failed to write report."),
+            files=_files,
+            off=_off,
+        )
+
+    txt_list = [
+        "W: Early marriage, Family: F0000, Smith, Martin and Jefferson, Elna",
+        "W: Multiple parents, Person: I0061, Jones, Roberta Michele",
+        "W: Multiple parents, Person: I0063, Jones, Frank Albert",
+        "W: Multiple parents, Person: I0076, Smith, Marie Astri",
+        "W: Multiple parents, Person: I0077, Smith, Susan Elizabeth",
+        "W: Old age but no death, Person: I0004, Smith, Ingeman",
+        "W: Old age but no death, Person: I0009, Smith, Emil",
+        "W: Old age but no death, Person: I0011, Smith, Hanna",
+        "W: Old age but no death, Person: I0058, Smith, Elaine Marie",
+        "W: Old age but no death, Person: I0072, Iverson, Alice Hannah",
+    ]
+    reports.addcli(
+        TestDynamic,
+        "tool_verify",
+        out_does_contain(txt_list),
+        [None],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "-y",
+        "--action",
+        "tool",
+        "--options",
+        "name=verify",
+    )
+
+    txt_list = [
+        "6 media objects were referenced, but not found",
+        "References to 6 missing media objects were kept",
+    ]
+    reports.addcli(
+        TestDynamic,
+        "tool_check",
+        out_does_contain(txt_list),
+        [None],
+        "--force",
+        "-O",
+        TREE_NAME,
+        "-y",
+        "--action",
+        "tool",
+        "--options",
+        "name=check",
+    )
+
+    config.__dict__.clear()
+    config.__dict__.update(_ORIGINAL_CONFIG_STATE)
+
+    assert config.get("preferences.iprefix") == "I%05d", config.get(
+        "preferences.iprefix"
+    )
+    assert config.get("preferences.oprefix") == "O%05d", config.get(
+        "preferences.oprefix"
+    )
+    assert config.get("preferences.fprefix") == "F%05d", config.get(
+        "preferences.fprefix"
+    )
+    assert config.get("preferences.sprefix") == "S%05d", config.get(
+        "preferences.sprefix"
+    )
+    assert config.get("preferences.cprefix") == "C%05d", config.get(
+        "preferences.cprefix"
+    )
+    assert config.get("preferences.pprefix") == "P%05d", config.get(
+        "preferences.pprefix"
+    )
+    assert config.get("preferences.eprefix") == "E%05d", config.get(
+        "preferences.eprefix"
+    )
+    assert config.get("preferences.rprefix") == "R%05d", config.get(
+        "preferences.rprefix"
+    )
+    assert config.get("preferences.nprefix") == "N%05d", config.get(
+        "preferences.nprefix"
+    )
+    return loader.loadTestsFromTestCase(TestDynamic)
 
 
 class ReportControl:
@@ -189,9 +489,6 @@ class TestDynamic(unittest.TestCase):
         )
 
 
-reports = ReportControl()
-
-
 def report_contains(text):
     def test_output_file(out, err, report_name, **options):
         ext = options["off"]
@@ -299,238 +596,6 @@ def out_does_contain(text):
 
     return test_output_file
 
-
-reports.addreport(
-    TestDynamic,
-    "tag_report",
-    report_contains("I0037  Smith, Edwin Michael"),
-    [],
-    off="txt",
-    tag="tag1",
-)
-
-reports.addreport(
-    TestDynamic,
-    "navwebpage",
-    err_does_not_contain("Failed to write report."),
-    ["/tmp/NAVWEB"],
-    off="html",
-    target="/tmp/NAVWEB",
-)
-
-reports.addreport(
-    TestDynamic,
-    "WebCal",
-    err_does_not_contain("Failed to write report."),
-    ["/tmp/WEBCAL"],
-    off="html",
-    target="/tmp/WEBCAL",
-)
-
-# THIRD-PARTY
-# reports.addreport(TestDynamic, "database-differences-report",
-#                  err_does_not_contain("Failed to write report."),
-#                  [],
-#                  off="txt", filename=example)
-
-reports.addcli(
-    TestDynamic,
-    "export_gedcom",
-    err_does_contain("Cleaning up."),
-    ["test_export.ged"],
-    "--force",
-    "-O",
-    TREE_NAME,
-    "--export",
-    "test_export.ged",
-)
-
-# reports.addcli(TestDynamic, "export_csv",
-#                err_does_contain("Cleaning up."),
-#                ["test_export.csv"],
-#                "--force",
-#                "-O", TREE_NAME,
-#                "--export", "test_export.csv")
-
-# reports.addcli(TestDynamic, "export_wtf",
-#                err_does_contain("Cleaning up."),
-#                ["test_export.wtf"],
-#                "--force",
-#                "-O", TREE_NAME,
-#                "--export", "test_export.wtf")
-
-reports.addcli(
-    TestDynamic,
-    "export_gw",
-    err_does_contain("Cleaning up."),
-    ["test_export.gw"],
-    "--force",
-    "-O",
-    TREE_NAME,
-    "--export",
-    "test_export.gw",
-)
-
-reports.addcli(
-    TestDynamic,
-    "export_gpkg",
-    err_does_contain("Cleaning up."),
-    ["test_export.gpkg"],
-    "--force",
-    "-O",
-    TREE_NAME,
-    "--export",
-    "test_export.gpkg",
-)
-
-reports.addcli(
-    TestDynamic,
-    "export_vcs",
-    err_does_contain("Cleaning up."),
-    ["test_export.vcs"],
-    "--force",
-    "-O",
-    TREE_NAME,
-    "--export",
-    "test_export.vcs",
-)
-
-reports.addcli(
-    TestDynamic,
-    "export_vcf",
-    err_does_contain("Cleaning up."),
-    ["test_export.vcf"],
-    "--force",
-    "-O",
-    TREE_NAME,
-    "--export",
-    "test_export.vcf",
-)
-
-report_list = [
-    (
-        "ancestor_chart",
-        "svg",
-        [
-            "ancestor_chart %s.svg" % TREE_NAME,
-            "ancestor_chart %s-2.svg" % TREE_NAME,
-            "ancestor_chart %s-3.svg" % TREE_NAME,
-            "ancestor_chart %s-4.svg" % TREE_NAME,
-            "ancestor_chart %s-5.svg" % TREE_NAME,
-            "ancestor_chart %s-6.svg" % TREE_NAME,
-        ],
-    ),  # Ancestor Tree
-    ("ancestor_report", "txt", []),  # Ahnentafel Report
-    ("birthday_report", "txt", []),  # Birthday and Anniversary Report
-    (
-        "calendar",
-        "svg",
-        [
-            "calendar %s-10.svg" % TREE_NAME,
-            "calendar %s-11.svg" % TREE_NAME,
-            "calendar %s-12.svg" % TREE_NAME,
-            "calendar %s-2.svg" % TREE_NAME,
-            "calendar %s-3.svg" % TREE_NAME,
-            "calendar %s-4.svg" % TREE_NAME,
-            "calendar %s-5.svg" % TREE_NAME,
-            "calendar %s-6.svg" % TREE_NAME,
-            "calendar %s-7.svg" % TREE_NAME,
-            "calendar %s-8.svg" % TREE_NAME,
-            "calendar %s-9.svg" % TREE_NAME,
-            "calendar %s.svg" % TREE_NAME,
-        ],
-    ),  # Calendar
-    ("descend_chart", "svg", []),  # Descendant Tree
-    ("descend_report", "txt", []),  # Descendant Report
-    ("det_ancestor_report", "txt", []),  # Detailed Ancestral Report
-    ("det_descendant_report", "txt", []),  # Detailed Descendant Report
-    ("endofline_report", "txt", []),  # End of Line Report
-    ("family_descend_chart", "svg", []),  # Family Descendant Tree
-    ("family_group", "txt", []),  # Family Group Report
-    # COULD be dot ("familylines_graph", "dot", []),  # Family Lines Graph
-    ("fan_chart", "svg", []),  # Fan Chart
-    # COULD be dot ("hourglass_graph", "dot", []),  # Hourglass Graph
-    ("indiv_complete", "txt", []),  # Complete Individual Report
-    ("kinship_report", "txt", []),  # Kinship Report
-    ("notelinkreport", "txt", []),  # Note Link Report
-    ("number_of_ancestors", "txt", []),  # Number of Ancestors Report
-    # NEED a place ("place_report", "txt", []),  # Place Report
-    ("records", "txt", []),  # Records Report
-    # COULD be dot ("rel_graph", "dot", []),  # Relationship Graph
-    (
-        "statistics_chart",
-        "svg",
-        [
-            "statistics_chart %s.svg" % TREE_NAME,  # Statistics Charts
-            "statistics_chart %s-2.svg" % TREE_NAME,
-            "statistics_chart %s-3.svg" % TREE_NAME,
-        ],
-    ),
-    ("summary", "txt", []),  # Database Summary Report
-    (
-        "timeline",
-        "svg",
-        [
-            "timeline %s.svg" % TREE_NAME,
-            "timeline %s-2.svg" % TREE_NAME,
-        ],
-    ),  # Timeline Chart
-]
-
-for _report_name, _off, _files in report_list:
-    reports.addreport(
-        TestDynamic,
-        _report_name,
-        err_does_not_contain("Failed to write report."),
-        files=_files,
-        off=_off,
-    )
-
-txt_list = [
-    "W: Early marriage, Family: F0000, Smith, Martin and Jefferson, Elna",
-    "W: Multiple parents, Person: I0061, Jones, Roberta Michele",
-    "W: Multiple parents, Person: I0063, Jones, Frank Albert",
-    "W: Multiple parents, Person: I0076, Smith, Marie Astri",
-    "W: Multiple parents, Person: I0077, Smith, Susan Elizabeth",
-    "W: Old age but no death, Person: I0004, Smith, Ingeman",
-    "W: Old age but no death, Person: I0009, Smith, Emil",
-    "W: Old age but no death, Person: I0011, Smith, Hanna",
-    "W: Old age but no death, Person: I0058, Smith, Elaine Marie",
-    "W: Old age but no death, Person: I0072, Iverson, Alice Hannah",
-]
-reports.addcli(
-    TestDynamic,
-    "tool_verify",
-    out_does_contain(txt_list),
-    [None],
-    "--force",
-    "-O",
-    TREE_NAME,
-    "-y",
-    "--action",
-    "tool",
-    "--options",
-    "name=verify",
-)
-
-txt_list = [
-    "6 media objects were referenced, but not found",
-    "References to 6 missing media objects were kept",
-]
-reports.addcli(
-    TestDynamic,
-    "tool_check",
-    out_does_contain(txt_list),
-    [None],
-    "--force",
-    "-O",
-    TREE_NAME,
-    "-y",
-    "--action",
-    "tool",
-    "--options",
-    "name=check",
-)
 
 if __name__ == "__main__":
     unittest.main()
