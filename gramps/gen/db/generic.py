@@ -880,6 +880,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         # Save metadata
         self._set_metadata("version", str(self.VERSION[0]))
+        self._set_metadata("last_changed", time.time())
         self._set_metadata("name_formats", self.name_formats)
         self._set_metadata("researcher", self.owner)
 
@@ -2815,6 +2816,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def set_schema_version(self, value):
         """set the current schema version"""
         self._set_metadata("version", str(value))
+
+    def get_last_changed_time(self):
+        return self._get_metadata("last_changed", default=0)
 
     def set_serializer(self, serializer_name):
         """
