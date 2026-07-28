@@ -41,6 +41,7 @@ import time
 
 
 from .grampstranslation import GrampsTranslations, GrampsNullTranslations
+from .translationoverride import get_overrides_for_language
 
 if sys.platform == "darwin":
     from .maclocale import mac_setup_localization
@@ -497,6 +498,10 @@ class GrampsLocale:
             )
             self.translation = GrampsNullTranslations()
             self.translation.lang = "en"
+
+        self.translation.set_overrides(
+            get_overrides_for_language(self.translation.lang)
+        )
 
         if _HDLR:
             LOG.removeHandler(_HDLR)

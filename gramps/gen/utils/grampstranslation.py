@@ -162,7 +162,27 @@ class Lexeme(str):
         return self._forms
 
 
-class GrampsTranslations(gettext.GNUTranslations):
+class TranslationOverrideMixin:
+    """
+    Adds support for user-defined translation overrides, consulted before
+    the normal translation catalog. See
+    :mod:`gramps.gen.utils.translationoverride`.
+    """
+
+    _overrides: dict[tuple[str, str], str] = {}
+
+    def set_overrides(self, overrides: dict[tuple[str, str], str]) -> None:
+        """
+        Install user-defined (context, msgid) -> text overrides.
+
+        :param overrides: mapping of (context, msgid) to the replacement
+                           text the user wants used instead.
+        :type overrides: dict[tuple[str, str], str]
+        """
+        self._overrides = overrides
+
+
+class GrampsTranslations(TranslationOverrideMixin, gettext.GNUTranslations):
     """
     Overrides and extends gettext.GNUTranslations. See the Python gettext
     "Class API" documentation for how to use this.
@@ -195,6 +215,9 @@ class GrampsTranslations(gettext.GNUTranslations):
         # and that's not what we want.
         if len((context + msgid).strip()) == 0:
             return msgid
+        override = self._overrides.get((context, msgid))
+        if override is not None:
+            return override
         if context:
             return self.pgettext(context, msgid)
         return gettext.GNUTranslations.gettext(self, msgid)
@@ -274,6 +297,9 @@ class GrampsTranslations(gettext.GNUTranslations):
         """
         Copied from python 3.8
         """
+        override = self._overrides.get((context, message))
+        if override is not None:
+            return override
         ctxt_msg_id = self.CONTEXT % (context, message)
         missing = object()
         tmsg = self._catalog.get(ctxt_msg_id, missing)
@@ -284,7 +310,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         return tmsg
 
 
-class GrampsNullTranslations(gettext.NullTranslations):
+class GrampsNullTranslations(TranslationOverrideMixin, gettext.NullTranslations):
     """
     Extends gettext.NullTranslations to provide the sgettext method.
 
@@ -296,6 +322,9 @@ class GrampsNullTranslations(gettext.NullTranslations):
         """
         Apply the context if there is one, otherwise just pass it on.
         """
+        override = self._overrides.get((context, msgid))
+        if override is not None:
+            return override
         if context:
             return self.pgettext(context, msgid)
         return gettext.NullTranslations.gettext(self, msgid)
@@ -322,6 +351,9 @@ class GrampsNullTranslations(gettext.NullTranslations):
         """
         Copied from python 3.8
         """
+        override = self._overrides.get((context, message))
+        if override is not None:
+            return override
         if self._fallback:
             return self._fallback.pgettext(context, message)
         return message
