@@ -7,6 +7,7 @@
 # Contribution 2009 by     Bob Ham <rah@bash.sh>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011-2014  Paul Franklin
+# Copyright (C) 2026       Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -260,6 +261,7 @@ class FamilyLinesOptions(MenuReportOptions):
             )
         )
         add_option("gidlist", person_list)
+        indent_spaces = " " * 4
 
         # --- Ancestor Options Structure ---
         self.limit_parents = BooleanOption(_("Limit ancestors"), False)
@@ -267,7 +269,9 @@ class FamilyLinesOptions(MenuReportOptions):
         add_option("limitparents", self.limit_parents)
         self.limit_parents.connect("value-changed", self.limit_parents_changed)
 
-        self.parent_limit_type = EnumeratedListOption(_("   -> Limitation type"), 0)
+        self.parent_limit_type = EnumeratedListOption(
+            indent_spaces + _("Limitation type"), 0
+        )
         self.parent_limit_type.add_item(0, _("Count"))
         self.parent_limit_type.add_item(1, _("Generations"))
         self.parent_limit_type.set_help(
@@ -275,7 +279,7 @@ class FamilyLinesOptions(MenuReportOptions):
         )
         add_option("parentlimittype", self.parent_limit_type)
 
-        self.max_parents = NumberOption(_("   -> Maximum value"), 50, 0, 9999)
+        self.max_parents = NumberOption(indent_spaces + _("Maximum value"), 50, 0, 9999)
         self.max_parents.set_help(_("The maximum value for ancestor limitation."))
         add_option("maxparents", self.max_parents)
 
@@ -285,7 +289,9 @@ class FamilyLinesOptions(MenuReportOptions):
         add_option("limitchildren", self.limit_children)
         self.limit_children.connect("value-changed", self.limit_children_changed)
 
-        self.child_limit_type = EnumeratedListOption(_("   -> Limitation type"), 0)
+        self.child_limit_type = EnumeratedListOption(
+            indent_spaces + _("Limitation type"), 0
+        )
         self.child_limit_type.add_item(0, _("Count"))
         self.child_limit_type.add_item(1, _("Generations"))
         self.child_limit_type.set_help(
@@ -293,7 +299,9 @@ class FamilyLinesOptions(MenuReportOptions):
         )
         add_option("childlimittype", self.child_limit_type)
 
-        self.max_children = NumberOption(_("   -> Maximum value"), 50, 0, 9999)
+        self.max_children = NumberOption(
+            indent_spaces + _("Maximum value"), 50, 0, 9999
+        )
         self.max_children.set_help(_("The maximum value for descendant limitation."))
         add_option("maxchildren", self.max_children)
 
