@@ -49,6 +49,7 @@ from ..utils import is_right_click
 from ..display import display_help
 from ..dialog import SaveDialog
 from gramps.gen.lib import PrimaryObject
+from gramps.gen.utils.xmltranslate import translate_xml_string
 from ..dbguielement import DbGUIElement
 from ..uimanager import ActionGroup
 
@@ -348,7 +349,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
             </interface>"""
         )
 
-        builder = Gtk.Builder.new_from_string(popupui, -1)
+        builder = Gtk.Builder.new_from_string(translate_xml_string(popupui), -1)
 
         self.action_group = ActionGroup("EditPopup" + prefix, actions, prefix)
         act_grp = SimpleActionGroup()

@@ -67,6 +67,7 @@ from ..display import display_url
 from ..utils import SystemFonts, match_primary_mask, get_link_color
 from gramps.gen.config import config
 from gramps.gen.constfunc import has_display, mac
+from gramps.gen.utils.xmltranslate import translate_xml_string
 from ..uimanager import ActionGroup
 
 # -------------------------------------------------------------------------
@@ -618,7 +619,7 @@ class StyledTextEditor(Gtk.TextView):
         # build the toolbar
         builder = Gtk.Builder()
         builder.set_translation_domain(glocale.get_localedomain())
-        builder.add_from_string(FORMAT_TOOLBAR)
+        builder.add_from_string(translate_xml_string(FORMAT_TOOLBAR))
 
         # define the actions...
         _actions = [

@@ -46,6 +46,7 @@ from gi.repository import Gtk
 # ------------------------------------------------------------------------
 from gramps.gen.const import GLADE_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.constfunc import is_quartz
+from gramps.gen.utils.xmltranslate import translate_xml_string
 
 # ------------------------------------------------------------------------
 #
@@ -159,6 +160,7 @@ class Glade(Gtk.Builder):
                 data = builder_file.read()
                 if is_quartz():
                     data = data.replace("GDK_CONTROL_MASK", "GDK_META_MASK")
+                data = translate_xml_string(data)
                 self.add_objects_from_string(data, loadlist)
             self.__toplevel = self.get_object(toplevel)
         # toplevel not given
@@ -167,6 +169,7 @@ class Glade(Gtk.Builder):
                 data = builder_file.read()
                 if is_quartz():
                     data = data.replace("GDK_CONTROL_MASK", "GDK_META_MASK")
+                data = translate_xml_string(data)
                 self.add_from_string(data)
             # first, use filename as possible toplevel widget name
             self.__toplevel = self.get_object(filename.rpartition(".")[0])

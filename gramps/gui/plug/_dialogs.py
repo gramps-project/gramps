@@ -43,6 +43,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.const import PLUGINS_GLADE
 from gramps.gen.plug.report._constants import standalone_categories
+from gramps.gen.utils.xmltranslate import translate_xml_string
 from . import tool
 from gramps.gen.plug import REPORT
 from .report import report
@@ -101,7 +102,9 @@ class PluginDialog(ManagedWindow):
 
         self.dialog = Gtk.Builder()
         self.dialog.set_translation_domain(glocale.get_localedomain())
-        self.dialog.add_from_file(PLUGINS_GLADE)
+        with open(PLUGINS_GLADE, "r", encoding="utf-8") as builder_file:
+            data = translate_xml_string(builder_file.read())
+        self.dialog.add_from_string(data)
         self.dialog.connect_signals(
             {
                 "on_report_apply_clicked": self.on_apply_clicked,
