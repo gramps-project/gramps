@@ -107,18 +107,13 @@ class CompareWindow:
                     db = self.dbstate.get_database()
 
                 # self.person may be the live, in-progress object from an
-                # open person editor. Link/commit a fresh copy loaded from
-                # the db instead, so any of the editor's other unsaved
-                # field edits are never persisted as a side effect of
-                # opening the compare window.
-                commit_target = self.person
-                if isinstance(person_handle, str) and person_handle:
-                    try:
-                        commit_target = db.get_person_from_handle(person_handle)
-                    except Exception:
-                        commit_target = self.person
-
-                fs_utilities.link_gramps_fs_id(db, commit_target, self.fsid)
+                # open person editor. Link/commit the db's own copy
+                # instead, so any of the editor's other unsaved field
+                # edits are never persisted as a side effect of opening
+                # the compare window.
+                fs_utilities.link_gramps_fs_id_by_handle(
+                    db, person_handle, self.person, self.fsid
+                )
         except Exception:
             pass
 

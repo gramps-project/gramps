@@ -37,6 +37,7 @@ from gramps.gen.db import DbTxn
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.fs import tags as fs_tags
 from gramps.gen.fs import tree as fs_tree
+from gramps.gen.fs import utils as fs_utilities
 from gramps.gen.lib import Family, Person, EventRef, EventRoleType, EventType
 from gramps.gen.fs.actions import (
     _bind_global_session,
@@ -188,7 +189,20 @@ def link_familysearch_id(dbstate, uistate, track, person, session, parent, edito
     dlg.show_all()
     resp = dlg.run()
     if resp == Gtk.ResponseType.OK:
-        _set_fs_id(target_person, entry.get_text())
+        fsid = entry.get_text()
+        _set_fs_id(target_person, fsid)
+
+        # A link, once made, should be durable even if the live person
+        # editor is later cancelled -- persist it onto the database's
+        # own copy of this person, independent of any other unsaved
+        # edits sitting in the editor.
+        handle = getattr(target_person, "handle", None)
+        try:
+            fs_utilities.link_gramps_fs_id_by_handle(
+                dbstate.db, handle, target_person, fsid
+            )
+        except Exception:
+            pass
 
         if editor is not None and hasattr(editor, "attr_list"):
             try:

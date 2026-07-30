@@ -80,3 +80,32 @@ def link_gramps_fs_id(db: Any, gr_object: Any, fsid: str) -> None:
 
     if internal_txn:
         db.transaction_commit(txn)
+
+
+def link_gramps_fs_id_by_handle(
+    db: Any, handle: Optional[str], fallback_object: Any, fsid: str
+) -> Any:
+    """
+    Attach/update the _FSFTID attribute on the database's own copy of a
+    person and commit it, so a FamilySearch link is saved immediately,
+    independent of any other unsaved edits sitting in a live person
+    editor for the same person.
+
+    Falls back to committing `fallback_object` directly when `handle`
+    does not resolve in the database, e.g. a brand-new, not-yet-saved
+    person for which there is no separate database copy to commit.
+
+    :returns: the object that was actually committed.
+    """
+    target = None
+    if isinstance(handle, str) and handle:
+        try:
+            target = db.get_person_from_handle(handle)
+        except Exception:
+            target = None
+
+    if target is None:
+        target = fallback_object
+
+    link_gramps_fs_id(db, target, fsid)
+    return target
