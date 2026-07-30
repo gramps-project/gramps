@@ -693,6 +693,12 @@ class GrampsLocale:
             addon_translator = self._get_translation(domain, path, languages=languages)
         else:
             addon_translator = self._get_translation(domain, path)
+        gramps_translator.set_overrides(
+            get_overrides_for_language(gramps_translator.lang)
+        )
+        addon_translator.set_overrides(
+            get_overrides_for_language(addon_translator.lang)
+        )
         gramps_translator.add_fallback(addon_translator)
         return gramps_translator  # with a language fallback
 
