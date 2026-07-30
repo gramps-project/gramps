@@ -450,12 +450,12 @@ SHARED ELEMENTS
 
 <!ELEMENT dateval EMPTY>
 <!ATTLIST dateval
-        val       CDATA                  #REQUIRED
-        type      (before|after|about)   #IMPLIED
-        quality   (estimated|calculated) #IMPLIED
-        cformat   CDATA                  #IMPLIED
-        dualdated (0|1)                  #IMPLIED
-        newyear   CDATA                  #IMPLIED
+        val       CDATA                        #REQUIRED
+        type      (before|after|about|from|to) #IMPLIED
+        quality   (estimated|calculated)       #IMPLIED
+        cformat   CDATA                        #IMPLIED
+        dualdated (0|1)                        #IMPLIED
+        newyear   CDATA                        #IMPLIED
 >
 
 <!ELEMENT datestr EMPTY>
