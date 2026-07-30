@@ -96,21 +96,34 @@ class CompareWindow:
         except Exception:
             pass
 
+        # person handle
+        person_handle = getattr(self.person, "handle", None) or self.person
+
         try:
             if self.fsid:
                 try:
                     db = self.dbstate.db
                 except Exception:
                     db = self.dbstate.get_database()
-                fs_utilities.link_gramps_fs_id(db, self.person, self.fsid)
+
+                # self.person may be the live, in-progress object from an
+                # open person editor. Link/commit a fresh copy loaded from
+                # the db instead, so any of the editor's other unsaved
+                # field edits are never persisted as a side effect of
+                # opening the compare window.
+                commit_target = self.person
+                if isinstance(person_handle, str) and person_handle:
+                    try:
+                        commit_target = db.get_person_from_handle(person_handle)
+                    except Exception:
+                        commit_target = self.person
+
+                fs_utilities.link_gramps_fs_id(db, commit_target, self.fsid)
         except Exception:
             pass
 
         # parent window
         parent_win = self.parent or getattr(self.uistate, "window", None)
-
-        # person handle
-        person_handle = getattr(self.person, "handle", None) or self.person
 
         class _UistateProxy:
             """
