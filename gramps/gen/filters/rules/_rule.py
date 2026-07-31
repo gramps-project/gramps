@@ -28,6 +28,7 @@ Base class for filter rules.
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+import functools
 import re
 
 from ...errors import FilterError
@@ -42,7 +43,7 @@ _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
 import logging
 
-LOG = logging.getLogger(".")
+LOG = logging.getLogger(".rules")
 
 
 # -------------------------------------------------------------------------
@@ -52,6 +53,96 @@ LOG = logging.getLogger(".")
 # -------------------------------------------------------------------------
 from typing import Any, List
 from ...db import Database
+
+
+def _wrap_prepare(method):
+    @functools.wraps(method)
+    def wrapper(self, db, user):
+        if not db.is_proxy() and not getattr(self, "_in_prepare_override", False):
+            cls = type(self)
+            parts = cls.__module__.split(".")
+            try:
+                key = (parts[parts.index("rules") + 1], cls.__name__)
+            except (ValueError, IndexError):
+                key = (None, cls.__name__)
+            override_class = (
+                getattr(db, "_override_registry", {}).get("rule", {}).get(key)
+            )
+            if override_class is not None:
+                LOG.debug("%s using optimized prepare", cls.__name__)
+                self._in_prepare_override = True
+                try:
+                    instance = override_class(self)
+                    self._db_override = instance
+                    return instance.prepare(method, db, user)
+                finally:
+                    self._in_prepare_override = False
+        LOG.debug("%s using non-optimized prepare", type(self).__name__)
+        return method(self, db, user)
+
+    return wrapper
+
+
+def _wrap_apply_to_one(method):
+    @functools.wraps(method)
+    def wrapper(self, db, obj):
+        if not db.is_proxy() and not getattr(self, "_in_apply_override", False):
+            cls = type(self)
+            parts = cls.__module__.split(".")
+            try:
+                key = (parts[parts.index("rules") + 1], cls.__name__)
+            except (ValueError, IndexError):
+                key = (None, cls.__name__)
+            override_class = (
+                getattr(db, "_override_registry", {}).get("rule", {}).get(key)
+            )
+            if override_class is not None:
+                LOG.debug("%s using optimized apply_to_one", cls.__name__)
+                self._in_apply_override = True
+                try:
+                    instance = getattr(self, "_db_override", None)
+                    if instance is None:
+                        instance = override_class(self)
+                        self._db_override = instance
+                    return instance.apply_to_one(method, db, obj)
+                finally:
+                    self._in_apply_override = False
+        LOG.debug("%s using non-optimized apply_to_one", type(self).__name__)
+        return method(self, db, obj)
+
+    return wrapper
+
+
+# ------------------------------------------------------------
+#
+# RuleOverride
+#
+# ------------------------------------------------------------
+class RuleOverride:
+    """Base class for database-optimised rule overrides.
+
+    Subclass this and register with ``db.register_rule_override()``.
+    Override ``prepare`` and/or ``apply_to_one``; the default
+    implementations delegate to the original rule methods.
+    """
+
+    def __init__(self, rule: "Rule") -> None:
+        """
+        Initialise the override, bound to the given Rule instance.
+        """
+        self.rule = rule
+
+    def prepare(self, original, db: Database, user) -> None:
+        """
+        Prepare the rule for filtering. Calls the original by default.
+        """
+        original(self.rule, db, user)
+
+    def apply_to_one(self, original, db: Database, obj) -> bool:
+        """
+        Test one object against the rule. Calls the original by default.
+        """
+        return original(self.rule, db, obj)
 
 
 # -------------------------------------------------------------------------
@@ -67,6 +158,26 @@ class Rule:
     category = _("Miscellaneous filters")
     description = _("No description")
     allow_regex = False
+
+    @classmethod
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        parts = cls.__module__.split(".")
+        try:
+            cat = parts[parts.index("rules") + 1]
+        except (ValueError, IndexError):
+            cat = None
+        # Skip abstract base classes (live directly under rules/, module
+        # component after "rules" starts with "_").  Wrapping those would
+        # cause every super().apply_to_one() call to re-enter the registry.
+        if cat is None or cat.startswith("_"):
+            return
+        # Wrap if the class defines the method itself, OR if it inherits an
+        # unwrapped one from an abstract base (not Rule's already-wrapped version).
+        if "prepare" in cls.__dict__ or cls.prepare is not Rule.prepare:
+            cls.prepare = _wrap_prepare(cls.prepare)
+        if "apply_to_one" in cls.__dict__ or cls.apply_to_one is not Rule.apply_to_one:
+            cls.apply_to_one = _wrap_apply_to_one(cls.apply_to_one)
 
     def __init__(self, arg, use_regex=False, use_case=False):
         self.list = []
@@ -208,3 +319,9 @@ class Rule:
             return False
         else:
             return True
+
+
+# Wrap Rule.prepare and Rule.apply_to_one so that concrete rules which inherit
+# only from Rule (no intermediate abstract base) also go through override dispatch.
+Rule.prepare = _wrap_prepare(Rule.prepare)  # type: ignore[method-assign]
+Rule.apply_to_one = _wrap_apply_to_one(Rule.apply_to_one)  # type: ignore[method-assign]
