@@ -81,6 +81,17 @@ def _upgrade_person_json_22(person_data):
     return True
 
 
+def gramps_upgrade_23(self):
+    """
+    Upgrade database from version 22 to 23.
+
+    Add JSON handle indexes on json_data for faster JOINs. The indexes are
+    created by rebuild_secondary(), which is called by _gramps_upgrade()
+    after this function returns.
+    """
+    self._set_metadata("version", 23)
+
+
 def gramps_upgrade_22(self):
     """
     Upgrade database from version 21 to 22.

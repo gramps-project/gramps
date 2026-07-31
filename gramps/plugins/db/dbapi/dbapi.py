@@ -105,6 +105,10 @@ class DBAPI(DbGeneric):
     Database backends class for DB-API 2.0 databases
     """
 
+    # The indices need to be aware of the SQL dialect.
+    # Options are "sqlite" or "postgres".
+    dialect: str | None = None
+
     def _initialize(self, directory, username, password):
         raise NotImplementedError
 
@@ -139,12 +143,13 @@ class DBAPI(DbGeneric):
         Create and update schema.
         """
         self.dbapi.begin()
+        blob_type = self._sql_type("blob", 0)
         if json_data:
             col_data = "json_data TEXT"
-            meta_col_data = "json_data TEXT, value BLOB"
+            meta_col_data = f"json_data TEXT, value {blob_type}"
         else:
-            col_data = "blob_data BLOB"
-            meta_col_data = "value BLOB"
+            col_data = f"blob_data {blob_type}"
+            meta_col_data = f"value {blob_type}"
 
         # make sure schema is up to date:
         self.dbapi.execute(
@@ -264,7 +269,9 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX source_gramps_id ON source(gramps_id)")
         self.dbapi.execute("CREATE INDEX citation_page ON citation(page)")
         self.dbapi.execute("CREATE INDEX citation_gramps_id ON citation(gramps_id)")
-        self.dbapi.execute("CREATE INDEX media_desc ON media(desc)")
+        self.dbapi.execute(
+            f"CREATE INDEX media_desc ON media({self._quote_column('desc')})"
+        )
         self.dbapi.execute("CREATE INDEX media_gramps_id ON media(gramps_id)")
         self.dbapi.execute("CREATE INDEX place_title ON place(title)")
         self.dbapi.execute("CREATE INDEX place_enclosed_by ON place(enclosed_by)")
@@ -277,7 +284,48 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX note_gramps_id ON note(gramps_id)")
         self.dbapi.execute("CREATE INDEX reference_obj_handle ON reference(obj_handle)")
 
+        # JSON handle indexes for faster JOINs on json_data (only when using JSON storage)
+        if json_data:
+            for table in [
+                "person",
+                "source",
+                "citation",
+                "media",
+                "place",
+                "family",
+                "event",
+                "repository",
+                "note",
+            ]:
+                self.dbapi.execute(
+                    f"CREATE INDEX {table}_handle_json "
+                    f"ON {table}({self._format_json_extract_for_index()})"
+                )
+
         self.dbapi.commit()
+
+    def _format_json_extract_for_index(self):
+        """
+        Format JSON extract expression for index creation based on dialect.
+
+        This matches the logic used in QueryBuilder.format_json_extract() to ensure
+        indexes use the same JSON extraction syntax as queries.
+
+        Returns:
+            SQL expression string for JSON handle extraction (e.g.,
+            "json_extract(json_data, '$.handle')" for SQLite or
+            "JSON_EXTRACT_PATH(json_data, 'handle')" for PostgreSQL)
+        """
+        if self.dialect is None:
+            raise Exception("Please add 'dialect' property to your subclass")
+
+        if self.dialect == "sqlite":
+            return "json_extract(json_data, '$.handle')"
+        elif self.dialect == "postgres":
+            return "JSON_EXTRACT_PATH(json_data, 'handle')"
+        else:
+            # Default to SQLite format for backward compatibility
+            return "json_extract(json_data, '$.handle')"
 
     def _drop_column(self, table_name, column_name):
         """
@@ -612,7 +660,7 @@ class DBAPI(DbGeneric):
         if sort_handles:
             self.dbapi.execute(
                 "SELECT handle FROM media "
-                "ORDER BY desc "
+                f"ORDER BY {self._quote_column('desc')} "
                 f'COLLATE "{self._collation(locale)}"'
             )
         else:
@@ -1056,6 +1104,29 @@ class DBAPI(DbGeneric):
                 self.update()
         self._txn_commit()
 
+        # Rebuild JSON handle indices for faster JOINs
+        self._txn_begin()
+        tables = [
+            "person",
+            "source",
+            "citation",
+            "media",
+            "place",
+            "family",
+            "event",
+            "repository",
+            "note",
+        ]
+        for table in tables:
+            index_name = f"{table}_handle_json"
+            # Drop index if it exists (for rebuild)
+            self.dbapi.execute(f"DROP INDEX IF EXISTS {index_name}")
+            # Create the index
+            self.dbapi.execute(
+                f"CREATE INDEX {index_name} ON {table}({self._format_json_extract_for_index()})"
+            )
+        self._txn_commit()
+
         # Next, rebuild stats:
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
@@ -1184,6 +1255,14 @@ class DBAPI(DbGeneric):
         if schema_type == "number":
             return "REAL"
         return "BLOB"
+
+    def _quote_column(self, col):
+        """
+        Return a safe column name for the current dialect.
+        Override in dialect subclasses to handle reserved keywords, e.g. by
+        quoting or renaming them.
+        """
+        return col
 
     def _create_secondary_columns(self):
         """
