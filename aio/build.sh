@@ -48,6 +48,7 @@ pacman -S --needed --noconfirm \
     git \
     intltool \
     mingw-w64-ucrt-x86_64-adwaita-icon-theme \
+	mingw-w64-ucrt-x86_64-db \
     mingw-w64-ucrt-x86_64-geocode-glib \
     mingw-w64-ucrt-x86_64-gexiv2 \
     mingw-w64-ucrt-x86_64-ghostscript \
@@ -57,6 +58,7 @@ pacman -S --needed --noconfirm \
     mingw-w64-ucrt-x86_64-nsis \
     mingw-w64-ucrt-x86_64-osm-gps-map \
     mingw-w64-ucrt-x86_64-python \
+	mingw-w64-ucrt-x86_64-python-bsddb3 \
     mingw-w64-ucrt-x86_64-python-build \
     mingw-w64-ucrt-x86_64-python-cairo \
     mingw-w64-ucrt-x86_64-python-cffi \
