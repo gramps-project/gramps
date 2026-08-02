@@ -87,7 +87,7 @@ class TableObject(BaseObject):
         Convert a serialized tuple of data to an object.
         """
 
-    def get_change_time(self):
+    def get_change_time(self) -> int:
         """
         Return the time that the data was last changed.
 
@@ -99,7 +99,7 @@ class TableObject(BaseObject):
         """
         return self.change
 
-    def set_change_time(self, change):
+    def set_change_time(self, change: int):
         """
         Modify the time that the data was last changed.
 

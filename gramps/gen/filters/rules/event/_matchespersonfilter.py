@@ -22,6 +22,7 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
+from typing import cast
 from ....const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -32,6 +33,7 @@ _ = glocale.translation.gettext
 #
 # -------------------------------------------------------------------------
 from .. import MatchesFilterBase
+from ....types import FamilyHandle
 
 # -------------------------------------------------------------------------
 #
@@ -89,7 +91,7 @@ class MatchesPersonFilter(MatchesFilterBase):
                 for classname, handle in db.find_backlink_handles(
                     event.handle, ["Family"]
                 ):
-                    family = db.get_family_from_handle(handle)
+                    family = db.get_family_from_handle(cast(FamilyHandle, handle))
                     if family:
                         if family.father_handle:
                             father = db.get_person_from_handle(family.father_handle)

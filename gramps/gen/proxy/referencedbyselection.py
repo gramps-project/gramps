@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,6 +27,14 @@ a person.
 
 # -------------------------------------------------------------------------
 #
+# Standard python modules
+#
+# -------------------------------------------------------------------------
+from __future__ import annotations
+from typing import Iterator
+
+# -------------------------------------------------------------------------
+#
 # Gramps libraries
 #
 # -------------------------------------------------------------------------
@@ -40,7 +49,28 @@ from ..lib import (
     Place,
     Repository,
     Note,
-    Tag,
+)
+from ..lib.addressbase import AddressBase
+from ..lib.address import Address
+from ..lib.attrbase import AttributeRootBase
+from ..lib.citationbase import CitationBase
+from ..lib.name import Name
+from ..lib.notebase import NoteBase
+from ..lib.tagbase import TagBase
+from ..lib.urlbase import UrlBase
+from ..types import (
+    AnyHandle,
+    PersonHandle,
+    EventHandle,
+    FamilyHandle,
+    PlaceHandle,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+    TagHandle,
+    PrimaryObjectHandle,
 )
 
 
@@ -52,7 +82,11 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
     is eventually referenced by one of the selected objects.
     """
 
-    def __init__(self, dbase, all_people=False):
+    referenced: dict[str, set[PrimaryObjectHandle]]
+    restricted_to: dict[str, set[PrimaryObjectHandle]]
+    queue: list[tuple[str, PrimaryObjectHandle, bool]]
+
+    def __init__(self, dbase, all_people: bool = False):
         """
         Create a new ReferencedByPeopleProxyDb instance.
 
@@ -65,14 +99,14 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.reset_references()
         # If restricted_to["Person"] is a set, restrict process to
         # them, and do not process others outside of them
-        self.restricted_to = {"Person": None}
+        self.restricted_to = {"Person": set()}
         # Build lists of referenced objects
         # iter through whatever object(s) you want to start
         # the trace.
         self.queue = []
         if all_people:
             # Do not add references to those not already included
-            self.restricted_to["Person"] = [x for x in self.db.iter_person_handles()]
+            self.restricted_to["Person"] = set(self.db.iter_person_handles())
             # Spread activation to all other items:
             for handle in self.restricted_to["Person"]:
                 if handle:
@@ -94,10 +128,12 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             obj_type, handle, reference = self.queue.pop()
             self.process_object(obj_type, handle, reference)
 
-    def queue_object(self, obj_type, handle, reference=True):
+    def queue_object(
+        self, obj_type: str, handle: PrimaryObjectHandle, reference: bool = True
+    ) -> None:
         self.queue.append((obj_type, handle, reference))
 
-    def reset_references(self):
+    def reset_references(self) -> None:
         self.referenced = {
             "Person": set(),
             "Family": set(),
@@ -111,7 +147,9 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             "Tag": set(),
         }
 
-    def process_object(self, class_name, handle, reference=True):
+    def process_object(
+        self, class_name, handle: PrimaryObjectHandle, reference: bool = True
+    ) -> None:
         if class_name == "Person":
             obj = self.db.get_person_from_handle(handle)
             if obj:
@@ -151,7 +189,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         else:
             raise AttributeError("unknown class: '%s'" % class_name)
 
-    def process_person(self, person, reference=True):
+    def process_person(self, person: Person, reference: bool = True) -> None:
         """
         Follow the person object and find all of the primary objects
         that it references.
@@ -211,7 +249,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_associations(person)
         self.process_tags(person)
 
-    def process_family(self, family):
+    def process_family(self, family: Family) -> None:
         """
         Follow the family object and find all of the primary objects
         that it references.
@@ -244,7 +282,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_lds_ords(family)
         self.process_tags(family)
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> None:
         """
         Follow the event object and find all of the primary objects
         that it references.
@@ -265,7 +303,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
 
         self.process_tags(event)
 
-    def process_place(self, place):
+    def process_place(self, place: Place) -> None:
         """
         Follow the place object and find all of the primary objects
         that it references.
@@ -285,7 +323,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
 
         self.process_tags(place)
 
-    def process_source(self, source):
+    def process_source(self, source: Source) -> None:
         """
         Follow the source object and find all of the primary objects
         that it references.
@@ -304,7 +342,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_notes(source)
         self.process_tags(source)
 
-    def process_citation(self, citation):
+    def process_citation(self, citation: Citation) -> None:
         """
         Follow the citation object and find all of the primary objects
         that it references.
@@ -321,7 +359,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_notes(citation)
         self.process_tags(citation)
 
-    def process_repository(self, repository):
+    def process_repository(self, repository: Repository) -> None:
         """
         Follow the repository object and find all of the primary objects
         that it references.
@@ -334,7 +372,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_urls(repository)
         self.process_tags(repository)
 
-    def process_media(self, media):
+    def process_media(self, media: Media) -> None:
         """
         Follow the media object and find all of the primary objects
         that it references.
@@ -347,7 +385,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_notes(media)
         self.process_tags(media)
 
-    def process_note(self, note):
+    def process_note(self, note: Note) -> None:
         """
         Follow the note object and find all of the primary objects
         that it references.
@@ -365,7 +403,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                         self.queue_object(obj_class, value)
         self.process_tags(note)
 
-    def process_notes(self, original_obj):
+    def process_notes(self, original_obj: NoteBase) -> None:
         """Find all of the primary objects referred to"""
         for note_handle in original_obj.get_note_list():
             if note_handle:
@@ -374,7 +412,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
 
     # --------------------------------------------
 
-    def process_tags(self, original_obj):
+    def process_tags(self, original_obj: TagBase) -> None:
         """
         Record the tags referenced by the primary object.
         """
@@ -383,30 +421,30 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
 
     # --------------------------------------------
 
-    def process_name(self, name):
+    def process_name(self, name: Name) -> None:
         """Find all of the primary objects referred to"""
         self.process_citation_ref_list(name)
         self.process_notes(name)
 
-    def process_addresses(self, original_obj):
+    def process_addresses(self, original_obj: AddressBase) -> None:
         """Find all of the primary objects referred to"""
         for address in original_obj.get_address_list():
             if address:
                 self.process_address(address)
 
-    def process_address(self, address):
+    def process_address(self, address: Address) -> None:
         """Find all of the primary objects referred to"""
         self.process_citation_ref_list(address)
         self.process_notes(address)
 
-    def process_attributes(self, original_obj):
+    def process_attributes(self, original_obj: AttributeRootBase) -> None:
         """Find all of the primary objects referred to"""
         for attribute in original_obj.get_attribute_list():
             if attribute:
                 self.process_notes(attribute)
                 self.process_citation_ref_list(attribute)
 
-    def process_citation_ref_list(self, original_obj):
+    def process_citation_ref_list(self, original_obj: CitationBase) -> None:
         """Find all of the primary objects referred to"""
         for handle in original_obj.get_citation_list():
             if handle:
@@ -414,7 +452,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 if citation:
                     self.process_citation(citation)
 
-    def process_urls(self, original_obj):
+    def process_urls(self, original_obj: UrlBase) -> None:
         """Find all of the primary objects referred to"""
         pass
 
@@ -473,67 +511,69 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
 
     # ---------------------------------------------------
 
-    def include_person(self, handle):
+    def include_person(self, handle: PersonHandle) -> bool:
         """
         Filter for person
         """
         return handle in self.referenced["Person"]
 
-    def include_place(self, handle):
+    def include_place(self, handle: PlaceHandle) -> bool:
         """
         Filter for places
         """
         return handle in self.referenced["Place"]
 
-    def include_family(self, handle):
+    def include_family(self, handle: FamilyHandle) -> bool:
         """
         Filter for families
         """
         return handle in self.referenced["Family"]
 
-    def include_media(self, handle):
+    def include_media(self, handle: MediaHandle) -> bool:
         """
         Filter for media objects
         """
         return handle in self.referenced["Media"]
 
-    def include_event(self, handle):
+    def include_event(self, handle: EventHandle) -> bool:
         """
         Filter for events
         """
         return handle in self.referenced["Event"]
 
-    def include_source(self, handle):
+    def include_source(self, handle: SourceHandle) -> bool:
         """
         Filter for sources
         """
         return handle in self.referenced["Source"]
 
-    def include_citation(self, handle):
+    def include_citation(self, handle: CitationHandle) -> bool:
         """
         Filter for citations
         """
         return handle in self.referenced["Citation"]
 
-    def include_repository(self, handle):
+    def include_repository(self, handle: RepositoryHandle) -> bool:
         """
         Filter for repositories
         """
         return handle in self.referenced["Repository"]
 
-    def include_note(self, handle):
+    def include_note(self, handle: NoteHandle) -> bool:
         """
         Filter for notes
         """
         return handle in self.referenced["Note"]
 
-    def include_tag(self, handle):
+    def include_tag(self, handle: TagHandle) -> bool:
         """
         Filter for tags
         """
         return handle in self.referenced["Tag"]
 
-    def find_backlink_handles(self, handle, include_classes=None):
+    def find_backlink_handles(
+        self, handle: AnyHandle, include_classes: list[str] | None = None
+    ) -> Iterator[tuple[str, AnyHandle]]:
         """
         Return appropriate backlink handles for this proxy.
         """

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2016       Matt Keenan <matt.keenan@gmail.com>
+# Copyright (C) 2025       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,6 +25,13 @@ Proxy class for the Gramps databases. Filter out all living people.
 
 # -------------------------------------------------------------------------
 #
+# Standard python modules
+#
+# -------------------------------------------------------------------------
+from collections.abc import Iterator
+
+# -------------------------------------------------------------------------
+#
 # Gramps libraries
 #
 # -------------------------------------------------------------------------
@@ -35,17 +43,10 @@ from ..lib import (
     Surname,
     NameOriginType,
     Family,
-    Source,
-    Citation,
-    Event,
-    Media,
-    Place,
-    Repository,
-    Note,
-    Tag,
 )
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
+from ..types import AnyHandle, FamilyGrampsID, PersonGrampsID
 
 
 # -------------------------------------------------------------------------
@@ -145,12 +146,12 @@ class LivingProxyDb(ProxyDbBase):
             else:
                 yield person
 
-    def get_person_from_gramps_id(self, val):
+    def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
         """
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
-        person = self.db.get_person_from_gramps_id(val)
+        person = self.db.get_person_from_gramps_id(gramps_id)
         if person and self.__is_living(person):
             if self.mode == self.MODE_EXCLUDE_ALL:
                 return None
@@ -159,12 +160,12 @@ class LivingProxyDb(ProxyDbBase):
         else:
             return person
 
-    def get_family_from_gramps_id(self, val):
+    def get_family_from_gramps_id(self, gramps_id: FamilyGrampsID) -> Family | None:
         """
         Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
-        family = self.db.get_family_from_gramps_id(val)
+        family = self.db.get_family_from_gramps_id(gramps_id)
         family = self.__remove_living_from_family(family)
         return family
 
@@ -197,7 +198,9 @@ class LivingProxyDb(ProxyDbBase):
             return True
         return False
 
-    def find_backlink_handles(self, handle, include_classes=None):
+    def find_backlink_handles(
+        self, handle: AnyHandle, include_classes: list[str] | None = None
+    ) -> Iterator[tuple[str, AnyHandle]]:
         """
         Find all objects that hold a reference to the object handle.
         Returns an iterator over a list of (class_name, handle) tuples.

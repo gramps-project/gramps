@@ -25,9 +25,21 @@ Base class for undo/redo functionality.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
 import time
 from abc import ABCMeta, abstractmethod
 from collections import deque
+from typing import TYPE_CHECKING
+
+# -------------------------------------------------------------------------
+#
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+from . import DbTxn
+
+if TYPE_CHECKING:
+    from .generic import DbGeneric
 
 
 # -------------------------------------------------------------------------
@@ -42,8 +54,12 @@ class DbUndo(metaclass=ABCMeta):
     """
 
     __slots__ = ("undodb", "db", "undo_history_timestamp", "undoq", "redoq")
+    db: DbGeneric
+    undo_history_timestamp: float
+    undoq: deque[DbTxn]
+    redoq: deque[DbTxn]
 
-    def __init__(self, db):
+    def __init__(self, db: DbGeneric) -> None:
         """
         Class constructor. Set up main instance variables
         """
@@ -52,7 +68,7 @@ class DbUndo(metaclass=ABCMeta):
         self.redoq = deque()
         self.undo_history_timestamp = time.time()
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Clear the undo/redo list (but not the backing storage)
         """
@@ -83,7 +99,7 @@ class DbUndo(metaclass=ABCMeta):
         """
 
     @abstractmethod
-    def close(self):
+    def close(self) -> None:
         """
         Close the backing storage.  Needs to be overridden in the derived
         class.
@@ -97,34 +113,34 @@ class DbUndo(metaclass=ABCMeta):
         """
 
     @abstractmethod
-    def __getitem__(self, index):
+    def __getitem__(self, index: int):
         """
         Returns an entry by index number.  Needs to be overridden in the
         derived class.
         """
 
     @abstractmethod
-    def __setitem__(self, index, value):
+    def __setitem__(self, index: int, value):
         """
         Set an entry to a value.  Needs to be overridden in the derived class.
         """
 
     @abstractmethod
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Returns the number of entries.  Needs to be overridden in the derived
         class.
         """
 
     @abstractmethod
-    def _redo(self, update_history):
+    def _redo(self, update_history: bool) -> bool:
         """ """
 
     @abstractmethod
-    def _undo(self, update_history):
+    def _undo(self, update_history: bool) -> bool:
         """ """
 
-    def commit(self, txn, msg):
+    def commit(self, txn: DbTxn, msg: str) -> None:
         """
         Commit the transaction to the undo/redo database.  "txn" should be
         an instance of Gramps transaction class
@@ -134,12 +150,12 @@ class DbUndo(metaclass=ABCMeta):
         self.undoq.append(txn)
         self._after_commit(txn)
 
-    def _after_commit(self, transaction):
+    def _after_commit(self, transaction: DbTxn) -> None:
         """
         Post-transaction commit processing.
         """
 
-    def undo(self, update_history=True):
+    def undo(self, update_history: bool = True) -> bool:
         """
         Undo a previously committed transaction
         """
@@ -147,7 +163,7 @@ class DbUndo(metaclass=ABCMeta):
             return False
         return self._undo(update_history)
 
-    def redo(self, update_history=True):
+    def redo(self, update_history: bool = True) -> bool:
         """
         Redo a previously committed, then undone, transaction
         """

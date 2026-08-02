@@ -21,6 +21,52 @@
 Proxy class for the Gramps databases. Caches lookups from handles.
 """
 
+# -------------------------------------------------------------------------
+#
+# Gramps libraries
+#
+# -------------------------------------------------------------------------
+from ..lib import (
+    Date,
+    Person,
+    Name,
+    Surname,
+    NameOriginType,
+    Family,
+    Source,
+    Citation,
+    Event,
+    Media,
+    Place,
+    Repository,
+    Note,
+    Tag,
+)
+from ..types import (
+    AnyHandle,
+    PersonHandle,
+    EventHandle,
+    FamilyHandle,
+    PlaceHandle,
+    PrimaryObject,
+    SourceHandle,
+    RepositoryHandle,
+    CitationHandle,
+    MediaHandle,
+    NoteHandle,
+    TagHandle,
+    PrimaryObjectHandle,
+    TableObjectType,
+    PersonGrampsID,
+    EventGrampsID,
+    FamilyGrampsID,
+    PlaceGrampsID,
+    SourceGrampsID,
+    RepositoryGrampsID,
+    CitationGrampsID,
+    MediaGrampsID,
+    NoteGrampsID,
+)
 from ..utils.lru import LRU
 
 
@@ -56,7 +102,7 @@ class CacheProxyDb:
         """
         return getattr(self.db, attr)
 
-    def clear_cache(self, handle=None):
+    def clear_cache(self, handle: PrimaryObjectHandle | None = None):
         """
         Clears all caches if handle is None, or
         specific entry.
@@ -66,7 +112,7 @@ class CacheProxyDb:
         else:
             self.cache_handle.clear()
 
-    def get_person_from_handle(self, handle):
+    def get_person_from_handle(self, handle: PersonHandle) -> Person:
         """
         Gets item from cache if it exists. Converts
         handles to string, for uniformity.
@@ -75,7 +121,7 @@ class CacheProxyDb:
             self.cache_handle[handle] = self.db.get_person_from_handle(handle)
         return self.cache_handle[handle]
 
-    def get_event_from_handle(self, handle):
+    def get_event_from_handle(self, handle: EventHandle) -> Event:
         """
         Gets item from cache if it exists. Converts
         handles to string, for uniformity.
@@ -84,7 +130,7 @@ class CacheProxyDb:
             self.cache_handle[handle] = self.db.get_event_from_handle(handle)
         return self.cache_handle[handle]
 
-    def get_family_from_handle(self, handle):
+    def get_family_from_handle(self, handle: FamilyHandle) -> Family:
         """
         Gets item from cache if it exists. Converts
         handles to string, for uniformity.
@@ -93,7 +139,7 @@ class CacheProxyDb:
             self.cache_handle[handle] = self.db.get_family_from_handle(handle)
         return self.cache_handle[handle]
 
-    def get_repository_from_handle(self, handle):
+    def get_repository_from_handle(self, handle: RepositoryHandle) -> Repository:
         """
         Gets item from cache if it exists. Converts
         handles to string, for uniformity.
@@ -102,7 +148,7 @@ class CacheProxyDb:
             self.cache_handle[handle] = self.db.get_repository_from_handle(handle)
         return self.cache_handle[handle]
 
-    def get_place_from_handle(self, handle):
+    def get_place_from_handle(self, handle: PlaceHandle) -> Place:
         """
         Gets item from cache if it exists. Converts
         handles to string, for uniformity.
@@ -111,7 +157,7 @@ class CacheProxyDb:
             self.cache_handle[handle] = self.db.get_place_from_handle(handle)
         return self.cache_handle[handle]
 
-    def get_citation_from_handle(self, handle):
+    def get_citation_from_handle(self, handle: CitationHandle) -> Citation:
         """
         Gets item from cache if it exists. Converts
         handles to string, for uniformity.
@@ -120,7 +166,7 @@ class CacheProxyDb:
             self.cache_handle[handle] = self.db.get_citation_from_handle(handle)
         return self.cache_handle[handle]
 
-    def get_source_from_handle(self, handle):
+    def get_source_from_handle(self, handle: SourceHandle) -> Source:
         """
         Gets item from cache if it exists. Converts
         handles to string, for uniformity.
@@ -129,7 +175,7 @@ class CacheProxyDb:
             self.cache_handle[handle] = self.db.get_source_from_handle(handle)
         return self.cache_handle[handle]
 
-    def get_note_from_handle(self, handle):
+    def get_note_from_handle(self, handle: NoteHandle) -> Note:
         """
         Gets item from cache if it exists. Converts
         handles to string, for uniformity.
@@ -138,7 +184,7 @@ class CacheProxyDb:
             self.cache_handle[handle] = self.db.get_note_from_handle(handle)
         return self.cache_handle[handle]
 
-    def get_media_from_handle(self, handle):
+    def get_media_from_handle(self, handle: MediaHandle) -> Media:
         """
         Gets item from cache if it exists. Converts
         handles to string, for uniformity.
@@ -147,7 +193,7 @@ class CacheProxyDb:
             self.cache_handle[handle] = self.db.get_media_from_handle(handle)
         return self.cache_handle[handle]
 
-    def get_tag_from_handle(self, handle):
+    def get_tag_from_handle(self, handle: TagHandle) -> Tag:
         """
         Gets item from cache if it exists. Converts
         handles to string, for uniformity.
