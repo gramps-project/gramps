@@ -24,8 +24,8 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-29 21:28+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2026-07-01 16:01+0000\n"
+"Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -34561,10 +34561,9 @@ msgid "Relationships shown are to %s"
 msgstr "与%s 的关系显示"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:371
-#, fuzzy, python-format
-#| msgid "* %(person)s, birth%(relation)s"
+#, python-format
 msgid "* %(person)s, birth %(relation)s"
-msgstr "* %(person)s, birth%(relation)s"
+msgstr "* %(person)s, birth %(relation)s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:378
 #, python-brace-format
@@ -35460,8 +35459,6 @@ msgid "Include Attributes"
 msgstr "包含属性"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
-#, fuzzy
-#| msgid "Include addresses"
 msgid "Include Addresses"
 msgstr "包含地址"
 
@@ -37420,10 +37417,8 @@ msgid "Change"
 msgstr "修改"
 
 #: ../gramps/plugins/tool/reorderids.glade:1451
-#, fuzzy
-#| msgid "Enable ID reordering."
 msgid "Enable ID reordering with Start / Step sequence."
-msgstr "开启 ID 重新排序。"
+msgstr "按照开始/步长生成的序列进行 ID 重新排序。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1462
 msgid "Start"
@@ -37439,7 +37434,7 @@ msgstr "梯度"
 
 #: ../gramps/plugins/tool/reorderids.glade:1485
 msgid "Reorder ID step width."
-msgstr ""
+msgstr "ID 重排的步长。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1497
 msgid "Keep"
@@ -38039,10 +38034,8 @@ msgid "Family has events with role Unknown"
 msgstr "家庭含有未知角色的事件"
 
 #: ../gramps/plugins/tool/verify.py:2589
-#, fuzzy
-#| msgid "Personal events of the children"
 msgid "Person has events with role Unknown"
-msgstr "拥有未知角色事件的人员"
+msgstr "事件中角色未知的人员"
 
 #: ../gramps/plugins/tool/verify.py:2602
 msgid "Family events are not in chronological order"
@@ -39840,13 +39833,11 @@ msgstr "以字母 %s 开头的地点"
 #: ../gramps/plugins/webreport/heatmap.py:306
 #: ../gramps/plugins/webreport/heatmap.py:440
 #: ../gramps/plugins/webreport/heatmap.py:572
-#, fuzzy, python-format
-#| msgid "Test the selected filter"
+#, python-format
 msgid "Heatmap for %s within the selected filter"
-msgstr "测试所选筛选器"
+msgstr "所选筛选器中 %s 的热图"
 
 #: ../gramps/plugins/webreport/heatmap.py:326
-#, fuzzy
 msgid ""
 "The next section contains an index of all the surnames for an Heatmap map."
 msgstr "接下来的部分包含了热图中所有姓氏的索引。"
@@ -39857,7 +39848,6 @@ msgid "Surname"
 msgstr "姓"
 
 #: ../gramps/plugins/webreport/heatmap.py:460
-#, fuzzy
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr "接下来的部分包含了热图中所有标签的索引。"
 
