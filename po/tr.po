@@ -21,8 +21,8 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-07-01 16:01+0000\n"
-"Last-Translator: batuhan Okmen <batuhanokmen@gmail.com>\n"
+"PO-Revision-Date: 2026-07-07 13:01+0000\n"
+"Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.7.1.dev0\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -645,7 +645,7 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Yinelenen Girişler</b><br/>\"Araçlar > Aile Ağacı İşleme &gt; Olası "
+"<b>Yinelenen Girişler</b><br/>\"Araçlar > Aile Ağacı İşleme > Olası "
 "Yinelenen Kişileri Bul...\" aracı, aynı kişinin veri tabanına birden fazla "
 "kez girilmiş girişlerini bulmanızı (ve birleştirmenizi) sağlar."
 
@@ -808,8 +808,7 @@ msgid ""
 msgstr ""
 "<b>Peki Bu Adda Ne Var?</b><br/>Gramps adı, orijinal geliştirici Don "
 "Allingham'a babası tarafından önerildi. <i>Soy Araştırma ve Analiz Yönetim "
-"Programı Sistemi (Genealogical Research and Analysis Management Program "
-"System)</i> anlamına gelir. Soy araştırma verilerinizi saklamanıza, "
+"Programı Sistemi</i> anlamına gelir. Soy araştırma verilerinizi saklamanıza, "
 "düzenlemenize ve araştırmanıza izin veren tam özellikli bir soy araştırma "
 "programıdır. Gramps veri tabanı arka ucu o kadar sağlamdır ki, bazı "
 "kullanıcılar yüz binlerce kişiyi içeren soy kütüklerini yönetmektedir."
@@ -2837,7 +2836,7 @@ msgstr "İlul"
 #: ../gramps/gen/datehandler/_datestrings.py:183
 msgctxt "French month lexeme"
 msgid "Vendémiaire"
-msgstr "Vendémiaire"
+msgstr "Bağbozumu Ayı"
 
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgctxt "French month lexeme"
@@ -2852,17 +2851,17 @@ msgstr "Frimaire"
 #: ../gramps/gen/datehandler/_datestrings.py:186
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr "Nivôse"
+msgstr "Nivöz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:187
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr "Pluviôse"
+msgstr "Plüviyöz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr "Ventôse"
+msgstr "Ventoz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "French month lexeme"
@@ -2872,12 +2871,12 @@ msgstr "Germinal"
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr "Floréal"
+msgstr "Çiçeklenme ayı"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr "Prairial"
+msgstr "Çayır ayı"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "French month lexeme"
@@ -2887,7 +2886,7 @@ msgstr "Messidor"
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr "Thermidor"
+msgstr "Termidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "French month lexeme"
@@ -14833,8 +14832,6 @@ msgid "Move the selected surname downwards"
 msgstr "Seçili soyadını aşağı taşı"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "Soyadı"
@@ -16613,10 +16610,8 @@ msgid "FamilySearch search returned invalid data."
 msgstr "FamilySearch aramasında geçersiz veri döndü."
 
 #: ../gramps/gui/fs/actions.py:584
-#, fuzzy
-#| msgid "Select Person"
 msgid "selected person"
-msgstr "Kişi Seç"
+msgstr "kişi seç"
 
 #: ../gramps/gui/fs/actions.py:630 ../gramps/gui/fs/actions.py:632
 msgid "Bulk import relatives"
@@ -17468,8 +17463,6 @@ msgstr "FamilySearch değeri"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2023
 #: ../gramps/gui/fs/sync_directions.py:460
-#, fuzzy
-#| msgid "Type"
 msgid "xType"
 msgstr "xType"
 
@@ -17480,19 +17473,16 @@ msgstr "xGr"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2025
 #: ../gramps/gui/fs/sync_directions.py:462
-#, fuzzy
 msgid "xFs"
 msgstr "xFs"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2026
 #: ../gramps/gui/fs/sync_directions.py:463
-#, fuzzy
 msgid "xGr2"
 msgstr "xGr2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2027
 #: ../gramps/gui/fs/sync_directions.py:464
-#, fuzzy
 msgid "xFs2"
 msgstr "xFs2"
 
@@ -25842,14 +25832,10 @@ msgid "Total people"
 msgstr "Kişi toplamı"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:29
-#, fuzzy
-#| msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgstr "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
 msgstr "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
 
@@ -35013,9 +34999,8 @@ msgid "Clear All"
 msgstr "Tümünü temizle"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:136
-#, fuzzy
 msgid "Switching_Navigator_modes"
-msgstr "Switching_Navigator_modes"
+msgstr "Navigatör_Modları_Arasında_Geçiş"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
 msgid "Category Sidebar"
@@ -36028,8 +36013,6 @@ msgid "Include Attributes"
 msgstr "Nitelikleri Dahil Et"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
-#, fuzzy
-#| msgid "Include addresses"
 msgid "Include Addresses"
 msgstr "Adresleri dahil et"
 
@@ -39855,8 +39838,6 @@ msgstr "Aileye yeni çocuk ekle"
 
 #: ../gramps/plugins/view/relview.py:1172
 #: ../gramps/plugins/view/relview.py:1704
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person as a child of the family"
 msgstr "Var olan bir kişiyi aileye çocuk olarak ekle"
 
@@ -40539,8 +40520,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
-"Bu bölüm tüm insanlar için {tag} ({selected_filter}) etiketli etkinliklerin "
-"haritasını içerir."
+"Bu bölüm, şu etikete sahip tüm kişiler, etkinlikler için haritayı içerir: "
+"{tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -40787,7 +40768,7 @@ msgstr "Web dosyaları için kullanılacak telif hakkı"
 #: ../gramps/plugins/webreport/narrativeweb.py:2189
 #: ../gramps/plugins/webreport/webcal.py:1880
 msgid "StyleSheet"
-msgstr "StyleSheet"
+msgstr "Stil Sayfası"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2195
 msgid "The default stylesheet to be used for the pages"
