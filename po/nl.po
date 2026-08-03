@@ -21,8 +21,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-07-12 14:01+0000\n"
-"Last-Translator: Hinse ter Schuur <haterschuur@gmail.com>\n"
+"PO-Revision-Date: 2026-08-03 05:01+0000\n"
+"Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1323,7 +1323,7 @@ msgstr "Opruimen."
 
 #: ../gramps/cli/arghandler.py:532
 msgid "Created empty Family Tree successfully"
-msgstr "Lege stamboom succesvol aangemaakt"
+msgstr "Lege stamboom met succes aangemaakt"
 
 #: ../gramps/cli/arghandler.py:535 ../gramps/cli/arghandler.py:562
 msgid "Error opening the file."
@@ -1340,7 +1340,7 @@ msgstr "Importeren: bestand %(filename)s, indeling %(format)s."
 
 #: ../gramps/cli/arghandler.py:560
 msgid "Opened successfully!"
-msgstr "Succesvol geopend!"
+msgstr "Met succes geopend!"
 
 #: ../gramps/cli/arghandler.py:575
 #, python-format
@@ -21997,7 +21997,7 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"De kopie van uw gegevens is succesvol opgeslagen. U kunt nu op de knop "
+"De kopie van uw gegevens is met succes opgeslagen. U kunt nu op de knop "
 "Sluiten drukken om door te gaan.\n"
 "\n"
 "Let op: de database die momenteel is geopend in uw Gramps-venster is NIET "
@@ -37836,7 +37836,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:407
 msgid "Operation successfully finished"
-msgstr "Bewerking succesvol afgerond"
+msgstr "Bewerking met succes afgerond"
 
 #: ../gramps/plugins/tool/mediamanager.py:409
 msgid ""
