@@ -32,13 +32,14 @@
 # Stern <slava0@yandex.ru>, 2026.
 # Артур <atter192837@gmail.com>, 2026.
 # Vadim Barsukov <vadbars@gmail.com>, 2026.
+# Dubrovsky <techxplorer@atomicmail.io>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-07-31 06:02+0000\n"
-"Last-Translator: vanapro1 <law820314@gmail.com>\n"
+"PO-Revision-Date: 2026-08-01 09:01+0000\n"
+"Last-Translator: Dubrovsky <techxplorer@atomicmail.io>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -16792,10 +16793,8 @@ msgid "Fetch and import FamilySearch notes."
 msgstr "Загрузить и импортировать примечания из FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:700
-#, fuzzy
-#| msgid "Looking for broken parent relationships"
 msgid "Link imported parent/child relationships"
-msgstr "Поиск нарушенных отношений родителей/детей"
+msgstr "Связать отношения импортированных родителей/детей"
 
 #: ../gramps/gui/fs/actions.py:703
 msgid ""
@@ -16805,44 +16804,36 @@ msgstr ""
 "родительские и дочерние элементы были связаны между собой."
 
 #: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "Start FamilySearch import"
-msgstr "Семейная группа"
+msgstr "Импортировать FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:758
 msgid ""
 "Choose the FamilySearch person to use as the starting point for this new "
 "Gramps tree."
 msgstr ""
+"Выберите персону из FamilySearch, который будет отправной точкой для нового "
+"дерева в Gramps."
 
 #: ../gramps/gui/fs/actions.py:775
-#, fuzzy
-#| msgid "Web Family Tree export options"
 msgid "FamilySearch ID or person URL"
-msgstr "Настройки экспорта в «Web Family Tree»"
+msgstr "Идентификатор FamilySearch или URL-адрес персоны"
 
 #: ../gramps/gui/fs/actions.py:776
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID or URL"
-msgstr "ID семьи"
+msgstr "Идентификатор FamilySearch или URL"
 
 #: ../gramps/gui/fs/actions.py:781
-#, fuzzy
-#| msgid "_Delete Family"
 msgid "Name, date, place, or FamilySearch ID"
-msgstr "_Удалить семью"
+msgstr "Имя, дата, место или идентификатор FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:782
-#, fuzzy
-#| msgid "Web Search"
 msgid "Search"
-msgstr "Статья в интернете"
+msgstr "Поиск"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
-msgstr ""
+msgstr "Жизнь"
 
 #: ../gramps/gui/fs/actions.py:856
 msgid "FamilySearch ID ready."
@@ -16850,30 +16841,25 @@ msgstr "ID семьи на сайте FamilySearch готово."
 
 #: ../gramps/gui/fs/actions.py:860
 msgid "Enter a name, date, place, ID, or URL to search."
-msgstr ""
+msgstr "Введите имя, дату, место, идентификатор или URL-адрес для поиска."
 
 #: ../gramps/gui/fs/actions.py:865
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Searching FamilySearch..."
-msgstr "Дубликат семьи"
+msgstr "Поиск в FamilySearch..."
 
 #: ../gramps/gui/fs/actions.py:880
-#, fuzzy, python-format
-#| msgid "Searching family names"
+#, python-format
 msgid "Search failed: %(error)s"
-msgstr "Поиск фамилий"
+msgstr "Ошибка при поиске: %(error)s"
 
 #: ../gramps/gui/fs/actions.py:890
 #, python-format
 msgid "Search results: %(count)d"
-msgstr ""
+msgstr "Результаты поиска: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:893
-#, fuzzy
-#| msgid "Family Citations"
 msgid "No FamilySearch people found."
-msgstr "Цитаты для семьи"
+msgstr "Не найдено ни одной персоны в FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:917
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1138
