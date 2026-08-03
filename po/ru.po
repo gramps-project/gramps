@@ -25,7 +25,7 @@
 # Yurt Page <yurtpage@gmail.com>, 2025.
 # Pavel <panyapacan@gmail.com>, 2025.
 # Maksim_220 Кабанов <law820314@gmail.com>, 2025.
-# vanapro1 <law820314@gmail.com>, 2025.
+# vanapro1 <law820314@gmail.com>, 2025, 2026.
 # Timofei Sablin <tsablin@gmail.com>, 2025.
 # korn3r <korn3r@gmail.com>, 2025.
 # Petr Fedorov <petr.e.fedorov@yandex.ru>, 2026.
@@ -37,8 +37,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-07-20 15:01+0000\n"
-"Last-Translator: Stanislav <bsv999@mail.ru>\n"
+"PO-Revision-Date: 2026-07-31 06:02+0000\n"
+"Last-Translator: vanapro1 <law820314@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -768,14 +768,6 @@ msgstr ""
 "фильтр, поставив галочку «Показать всех»."
 
 #: ../data/tips.xml:65
-#, fuzzy
-#| msgid ""
-#| "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "
-#| "to Gramps. Requesting an enhancement can be done either through the "
-#| "gramps-users or gramps-devel mailing lists, or by going to http://"
-#| "bugs.gramps-project.org and creating a Feature Request. Filing a Feature "
-#| "Request is preferred but it can be good to discuss your ideas on the "
-#| "email lists."
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -783,12 +775,12 @@ msgid ""
 "a Feature Request. Filing a Feature Request is preferred but it can be good "
 "to discuss your ideas on the email lists."
 msgstr ""
-"<b>Улучшение Gramps</b><br/>Пользователи заинтересованные в "
-"усовершенствовании Gramps могут оставить пожелания через других "
-"пользователей Gramps или через список рассылки gramps-devel, а также через "
-"http://bugs.gramps-project.org, где можно оставить запрос на введение какого "
-"либо усовершенствования. Добавление запроса на усовершенствование "
-"предпочтительней, т.к. можно обсудить Вашу идею."
+"<b>Улучшение Gramps</b><br/>Пользователям рекомендуется предлагать идеи по "
+"улучшению Gramps. Свои предложения можно отправлять либо через списки "
+"рассылки gramps-users или gramps-devel, либо перейдя по ссылке &bugs_url; и "
+"создав запрос на добавление новой функции. Предпочтительным способом "
+"является подача запроса на добавление новой функции, однако обсуждение ваших "
+"идей в списках рассылки также может быть полезным."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -1008,28 +1000,19 @@ msgstr ""
 "сети."
 
 #: ../data/tips.xml:99
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at http://bugs.gramps-"
-#| "project.org"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
-"<b>Как сообщить об ошибках в Gramps</b><br/> Лучший способ послать сообщение "
-"об ошибке Gramps -- это система отслеживания ошибок GRAMPS: http://"
-"bugs.gramps-project.org"
+"<b>Сообщение об ошибках в Gramps</b><br/>Лучший способ сообщить об ошибке в "
+"Gramps — воспользоваться системой отслеживания ошибок Gramps по адресу "
+"&bugs_url;."
 
 #: ../data/tips.xml:101
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
-#| "project.org/."
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
 msgstr ""
 "<b>Домашняя страница Gramps</b><br/>Домашняя страница Gramps находится по "
-"адресу https://gramps-project.org/."
+"адресу &gramps_url;."
 
 #: ../data/tips.xml:103
 msgid ""
@@ -1205,22 +1188,17 @@ msgstr ""
 "Initiative, чтобы узнать подробности."
 
 #: ../data/tips.xml:131
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see https://www.gnu.org/licenses/licenses.html#GPL to "
-#| "read about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see &gpl_url; to read about the rights and restrictions of this "
 "license."
 msgstr ""
-"<b>Лицензия ПО Gramps</b><br/>Вы можете свободно использовать Gramps и "
-"делиться им с другими. Gramps распространяется свободно по лицензии GPL, "
-"смотрите https://www.gnu.org/licenses/licenses.html#GPL про права и "
-"ограничения, вытекающими из этой лицензии."
+"<b>Лицензия на программное обеспечение Gramps</b><br/>Вы можете свободно "
+"использовать Gramps и делиться им с другими. Gramps распространяется на "
+"условиях Общей публичной лицензии GNU (GNU General Public License); "
+"ознакомьтесь с &gpl_url;, чтобы узнать о правах и ограничениях данной "
+"лицензии."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -3727,16 +3705,13 @@ msgid "Wrong format of date-time"
 msgstr "Неверный формат даты/времени"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, fuzzy, python-format
-#| msgid ""
-#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#| "part is optional, are accepted. %s does not satisfy."
+#, python-format
 msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Допускаются только дата/время в формате вида ГГГГ-ММ-ДД ЧЧ:ММ:СС или только "
-"ГГГГ-ММ-ДД. «%s» не допускается."
+"Допускаются только даты и время в формате ISO «гггг-мм-дд чч:мм:сс», причем "
+"указание времени не является обязательным. %s не соответствует требованиям."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
 #: ../gramps/gen/fs/fs_import/sources.py:645
@@ -3907,16 +3882,12 @@ msgid "Tag:"
 msgstr "Метка:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "Объекты с заметками указанного типа"
+msgstr "Объекты с заметками, помеченными указанным тегом."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
-#| msgid "Matches a note with a specified Gramps ID"
 msgid "Matches notes with a specified tag"
-msgstr "Выбирает заметки с указанным Gramps ID"
+msgstr "Соответствует заметкам с указанным тегом"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -3956,10 +3927,8 @@ msgstr "ID источника:"
 
 #: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:33
 #: ../gramps/gui/editors/filtereditor.py:577
-#, fuzzy
-#| msgid "Citation Filter"
 msgid "Citation filter name:"
-msgstr "Фильтр цитат"
+msgstr "Название фильтра цитирования:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:66
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:147
@@ -4145,18 +4114,14 @@ msgstr ""
 "выражению"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with the <tag>"
-msgstr "Цитаты с заметками типа <type>"
+msgstr "Цитаты с примечанием, содержащим тег <tag>"
 
 # возможно нужно исправить на
 # "Matches citations with a source with a specified Gramps ID"
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches citations with a note of the specified type"
 msgid "Matches citations with a note with a specified tag"
-msgstr "Выбирает цитату с заметкой указанного типа"
+msgstr "Находит цитаты, к которым прикреплена заметка с указанным тегом"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4517,16 +4482,12 @@ msgstr ""
 "регулярному выражению"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with the <tag>"
-msgstr "События с заметками типа <type>"
+msgstr "События с пометкой <tag>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches events with a note of the specified type"
 msgid "Matches events with a note with a specified tag"
-msgstr "Выбирает события с заметками указанного типа"
+msgstr "Находит события, к которым прикреплена заметка с указанным тегом"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4817,16 +4778,12 @@ msgstr ""
 "выражению"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note with the <tag>"
-msgstr "Семьи с отцом с <именем>"
+msgstr "Семьи, у которых есть записка с тегом <tag>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches families with a note with a specified tag"
-msgstr "Выбирает семьи, с примечаниями указанного типа"
+msgstr "Находит семьи, к которым прикреплена заметка с указанным тегом"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -5127,28 +5084,20 @@ msgstr ""
 "регулярному выражению"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with the <tag>"
-msgstr "Цитаты с заметками типа <type>"
+msgstr "Медиафайлы с меткой <tag>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "Выбирает семьи, с примечаниями указанного типа"
+msgstr "Находит медиафайлы, к которым прикреплена заметка с указанным тегом"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "События с заметками типа <type>"
+msgstr "Носитель с записью типа <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "Выбирает семьи, с примечаниями указанного типа"
+msgstr "Сопоставляет медиафайлы с заметкой указанного типа"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
@@ -5670,16 +5619,12 @@ msgstr ""
 "выражению"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with the <tag>"
-msgstr "Лица с пометкой типа <тип>"
+msgstr "Люди, у которых есть заметка с тегом <tag>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "Выбирает людей с заметкой указанного типа"
+msgstr "Находит пользователей, у которых в заметке есть указанный тег"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -6343,16 +6288,12 @@ msgstr ""
 "регулярному·выражению"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with the <tag>"
-msgstr "Места с пометкой типа <тип>"
+msgstr "Места, где есть примечание с тегом <tag>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "Выбирает места с заметкой указанного типа"
+msgstr "Находит места, к которым прикреплена заметка с указанным тегом"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6610,28 +6551,20 @@ msgstr ""
 "регулярному выражению"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with the <tag>"
-msgstr "Хранилища с <меткой>"
+msgstr "Репозитории с пометкой <tag>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Сопоставляет источники с заметкой указанного типа"
+msgstr "Находит репозитории, в описании которых есть заметка с указанным тегом"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "Источники с заметкой типа <type>"
+msgstr "Репозитории с примечанием типа <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "Сопоставляет источники с заметкой указанного типа"
+msgstr "Находит репозитории, содержащие примечание указанного типа"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6784,16 +6717,12 @@ msgstr ""
 "регулярному·выражению"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with the <tag>"
-msgstr "Источники с заметкой типа <type>"
+msgstr "Источники, содержащие примечание с тегом <tag>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "Сопоставляет источники с заметкой указанного типа"
+msgstr "Находит источники, содержащие примечание с указанным тегом"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6916,10 +6845,8 @@ msgstr "Выбирает источники, помеченные как лич�
 #: ../gramps/gui/fs/sync_directions.py:955 ../gramps/gui/viewmanager.py:413
 #: ../gramps/gui/viewmanager.py:624 ../gramps/gui/viewmanager.py:637
 #: ../gramps/gui/viewmanager.py:645
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch"
-msgstr "Источники для семьи"
+msgstr "FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:160
 #: ../gramps/gui/fs/compare/window.py:224
@@ -6931,17 +6858,13 @@ msgstr "Не подключено к FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:623
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "инициалы"
+msgstr "Основное"
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:627
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "Название элемента"
+msgstr "Другие названия"
 
 #: ../gramps/gen/fs/compare/aggregate.py:211
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:632
@@ -7168,40 +7091,29 @@ msgid "LifeSketch"
 msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
-#, fuzzy
-#| msgid "the citation"
 msgid "Birth Registration"
-msgstr "цитата"
+msgstr "Регистрация рождения"
 
 #: ../gramps/gen/fs/constants.py:83 ../gramps/gen/fs/constants.py:84
-#, fuzzy
-#| msgid "the citation"
 msgid "Death Registration"
-msgstr "цитата"
+msgstr "Регистрация смерти"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "И=февраль|Р=февраля|Т=февралём|П=феврале"
+msgstr "Некролог"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "Отношение"
+msgstr "Гражданство"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
-#, fuzzy
-#| msgid "Building display"
 msgid "Building FSID list for places"
-msgstr "Обновление экрана"
+msgstr "Создание списка FSID для объектов"
 
 #: ../gramps/gen/fs/fs_import/sources.py:406
 #, python-format
 msgid "Loading FamilySearch source %(current)d/%(total)d"
-msgstr ""
+msgstr "Загрузка источника FamilySearch %(current)d/%(total)d"
 
 #: ../gramps/gen/fs/fs_import/sources.py:611
 #: ../gramps/gen/fs/fs_import/sources.py:614
@@ -7274,36 +7186,28 @@ msgid "Internet Address"
 msgstr "Интернет-адрес"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:434
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(header)s (%(current)d/%(total)d)"
-msgstr "%(current)d из %(total)d"
+msgstr "%(header)s (%(current)d/%(total)d)"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:443
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Loading FamilySearch person sources"
-msgstr "Импорт семейного древа"
+msgstr "Загрузка источников информации о лицах из FamilySearch"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:451
-#, fuzzy
-#| msgid "Family relationships"
 msgid "Loading FamilySearch relationship sources"
-msgstr "Семейные отношения"
+msgstr "Загрузка источников информации о родственных связях из FamilySearch"
 
 #: ../gramps/gen/fs/sync_directions.py:493
-#, fuzzy, python-brace-format
-#| msgid "In-Memory"
+#, python-brace-format
 msgid "Memory: {t}"
-msgstr "В памяти"
+msgstr "Память: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:600
 #: ../gramps/gui/fs/sync_directions.py:778
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "Отсутствуют даты"
+msgstr "(отсутствует)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:321
@@ -7354,10 +7258,8 @@ msgstr "Обновление от Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1680
-#, fuzzy
-#| msgid "Created for %(author)s"
 msgid "Created from Gramps"
-msgstr "Отчёт создан для %(author)s"
+msgstr "Создано с помощью Gramps"
 
 #: ../gramps/gen/fs/tags.py:322
 #, python-format
@@ -7380,26 +7282,19 @@ msgid "Sources ? row %(row)d not green (%(color)s)"
 msgstr "Источник ? строка %(row)d не зеленая (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:363
-#, fuzzy
-#| msgid ""
-#| "FamilySearch status tag colors can be customized in Gramps via Edit Tags. "
-#| "This add-on only sets default colors when the tags are first created and "
-#| "will not override your custom choices."
 msgid ""
 "FamilySearch status tag colors can be customized in Gramps via Edit > Tag > "
 "Organize Tags. This integration only sets default colors when the tags are "
 "first created and will not override your custom choices."
 msgstr ""
-"Цвета тегов статуса FamilySearch можно настроить в Gramps через "
-"«Редактировать теги». Это дополнение устанавливает только цвета по умолчанию "
-"при первом создании тегов и не будет заменять ваши пользовательские "
-"настройки."
+"Цвета меток статуса FamilySearch можно настроить в Gramps через меню «Правка"
+"» > «Метки» > «Упорядочить метки». Эта интеграция устанавливает цвета по "
+"умолчанию только при первом создании меток и не переопределяет ваши "
+"пользовательские настройки."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch tags"
-msgstr "Источники для семьи"
+msgstr "Теги FamilySearch"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:749 ../gramps/gui/editors/editaddress.py:199
@@ -8949,27 +8844,21 @@ msgid "Civil Union"
 msgstr "Гражданский союз"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch sync"
-msgstr "Источники для семьи"
+msgstr "Синхронизация с FamilySearch"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76 ../gramps/gui/fs/actions.py:801
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "ID семьи"
+msgstr "FamilySearch ID"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
 msgstr "Это корень"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Timestamp"
 msgid "Status timestamp"
-msgstr "Время"
+msgstr "Метка времени статуса"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
@@ -8988,10 +8877,8 @@ msgid "Essential conflict"
 msgstr "Основной конфликт"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "Конфигурация"
+msgstr "Конфликт"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -10394,17 +10281,14 @@ msgid "Font family"
 msgstr "Гарнитура шрифта"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:182
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Choose the font family. If international characters don't show, use "
-#| "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+#, python-brace-format
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
-"Выберите семейство шрифта. Если нелатинские символы не видны, используйте "
-"шрифт FreeSans. Загрузить FreeSans можно здесь: http://www.nongnu.org/"
-"freefont/"
+"Выберите семейство шрифтов. Если не отображаются символы других языков, "
+"используйте шрифт FreeSans. Шрифт FreeSans можно скачать по адресу: "
+"{freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:189
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -12732,21 +12616,17 @@ msgid "Media Object"
 msgstr "Документ"
 
 #: ../gramps/gui/configure.py:897
-#, fuzzy, no-python-format
-#| msgid ""
-#| "Default Gramps ID formats containing a letter prefix followed by a "
-#| "numerical string. \"I%04d\" creates IDs from I0000 to I9999. Large "
-#| "databases may need larger IDs. \"I%06d\" creates IDs from I000000 to "
-#| "I999999.\n"
+#, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
 "string. \"I%05d\" creates IDs from I00000 to I99999. Large databases may "
 "need larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
-"Форматы Gramps ID по умолчанию содержат буквенный префикс, за которым "
-"следует числовая строка. \"I%04d\" создает идентификаторы от I0000 до I9999. "
-"Большим базам данных могут потребоваться более крупные идентификаторы. "
-"\"I%06d\" создает идентификаторы от I000000 до I999999.\n"
+"Стандартные форматы идентификаторов в Gramps содержат буквенный префикс, за "
+"которым следует числовая строка. Формат «I%05d» создаёт идентификаторы в "
+"диапазоне от I00000 до I99999. Для больших баз данных может потребоваться "
+"более широкий диапазон идентификаторов. Формат «I%06d» создаёт "
+"идентификаторы в диапазоне от I000000 до I999999.\n"
 
 #: ../gramps/gui/configure.py:919
 msgid "Colors used for boxes in the graphical views"
@@ -12901,16 +12781,12 @@ msgid "Foundation middleware"
 msgstr "Базовое промежуточное ПО"
 
 #: ../gramps/gui/configure.py:1132
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "Дубликат семьи"
+msgstr "Прямой доступ к FamilySearch"
 
 #: ../gramps/gui/configure.py:1147
-#, fuzzy
-#| msgid "Author"
 msgid "Auth provider"
-msgstr "Автор"
+msgstr "Поставщик аутентификации"
 
 #: ../gramps/gui/configure.py:1156
 msgid "App key (direct mode only)"
@@ -12929,16 +12805,12 @@ msgid "Middleware access code (issued secret)"
 msgstr "Код доступа к промежуточному ПО (выданный секрет)"
 
 #: ../gramps/gui/configure.py:1204
-#, fuzzy
-#| msgid "Family Sources"
 msgid "Enable FamilySearch integration"
-msgstr "Источники для семьи"
+msgstr "Включить интеграцию с FamilySearch"
 
 #: ../gramps/gui/configure.py:1212
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "Поколения"
+msgstr "Интеграции"
 
 #: ../gramps/gui/configure.py:1279 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -13201,10 +13073,8 @@ msgid "Maximum age probably alive"
 msgstr "Максимальное количество лет жизни"
 
 #: ../gramps/gui/configure.py:2095
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "Максимальное число поколений для определения родства"
+msgstr "Максимальное количество поколений для оценки возраста"
 
 #: ../gramps/gui/configure.py:2100
 msgid ""
@@ -13417,10 +13287,8 @@ msgstr ""
 "отображаются в рамке. Данная настройка устанавливает размер этой рамки."
 
 #: ../gramps/gui/configure.py:2379
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "Предпросмотр заметок"
+msgstr "Обратите внимание на длину пред. просмотра"
 
 #: ../gramps/gui/configure.py:2438
 msgid "Database Setting"
@@ -14545,10 +14413,8 @@ msgid "Remove"
 msgstr "Удалить"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select Existing"
-msgstr "Выбрать существующую заметку"
+msgstr "Выбрать существующий"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 msgid "Jump To"
@@ -14584,10 +14450,8 @@ msgid "Edit the selected citation"
 msgstr "Редактировать выделенную цитату"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
-#, fuzzy
-#| msgid "Add an existing citation or source"
 msgid "Select an existing citation or source"
-msgstr "Добавить существующий источник или цитату"
+msgstr "Выберите существующую ссылку или источник"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Move the selected citation upwards"
@@ -14659,10 +14523,8 @@ msgstr "Редактировать выделенное семейное соб�
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select an existing event"
-msgstr "Выбрать существующую заметку"
+msgstr "Выберите существующее событие"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
@@ -14719,40 +14581,28 @@ msgid "%(groupname)s - %(groupnumber)d"
 msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:89
-#, fuzzy
-#| msgid "Add a new media object"
 msgid "Add a new Media record"
-msgstr "Добавить новый документ"
+msgstr "Добавить новую запись Медиа"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:90
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Remove the selected Media record"
-msgstr "Удалить выбранный проект"
+msgstr "Удалить выбранную запись о медиафайле"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:91
-#, fuzzy
-#| msgid "Edit the selected media object"
 msgid "Edit the selected Media record"
-msgstr "Редактировать выделенный документ"
+msgstr "Редактировать выбранную запись мультимедиа"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:92
-#, fuzzy
-#| msgid "Select an existing media object"
 msgid "Select an existing Media record"
-msgstr "Выбрать существующий документ"
+msgstr "Выберите существующую запись мультимедиа"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:93
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record Left"
-msgstr "Удалить выбранный проект"
+msgstr "Сдвинуть выбранную запись влево"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:94
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record right"
-msgstr "Удалить выбранный проект"
+msgstr "Сдвинуть выбранную запись вправо"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:104
 msgid "_Gallery"
@@ -15045,10 +14895,8 @@ msgid "Edit the selected repository"
 msgstr "Редактировать выделенное хранилище"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
-#, fuzzy
-#| msgid "Add an existing repository"
 msgid "Select an existing repository"
-msgstr "Добавить существующее хранилище"
+msgstr "Выберите существующий репозиторий"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Move the selected repository upwards"
@@ -15410,10 +15258,10 @@ msgid "Edit the child reference"
 msgstr "Редактировать родство ребёнка"
 
 #: ../gramps/gui/editors/editfamily.py:130
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person to add as child of the family"
-msgstr "Добавить существующее лицо ребёнком в семью"
+msgstr ""
+"Выберите существующего человека, чтобы добавить его в качестве ребенка в эту "
+"семью"
 
 #: ../gramps/gui/editors/editfamily.py:131
 msgid "Move the child up in the children list"
@@ -15489,10 +15337,8 @@ msgid "Edit child"
 msgstr "Редактировать ребёнка"
 
 #: ../gramps/gui/editors/editfamily.py:224
-#, fuzzy
-#| msgid "Select an existing person"
 msgid "Select an existing person to add as child"
-msgstr "Выбрать существующего человека"
+msgstr "Выберите существующего человека, чтобы добавить его в качестве ребенка"
 
 #: ../gramps/gui/editors/editfamily.py:227
 msgid "Edit relationship"
@@ -16254,12 +16100,10 @@ msgid "Internet Address Editor"
 msgstr "Редактор интернет-адресов"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
-msgstr "Интернет-адрес, например, http://gramps-project.org"
+msgstr ""
+"Интернет-адрес, необходимый для перехода на страницу, например {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
@@ -16834,10 +16678,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:246
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:194
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import selected"
-msgstr "Импорт не удался"
+msgstr "Импорт выбранных"
 
 #: ../gramps/gui/fs/actions.py:270
 #, python-brace-format
@@ -16866,10 +16708,9 @@ msgid "Tip: uncheck anything you don't want to import."
 msgstr "Совет: отключите все, что не хотите импортировать."
 
 #: ../gramps/gui/fs/actions.py:471
-#, fuzzy, python-format
-#| msgid " (%(birth_date)s - %(death_date)s)"
+#, python-format
 msgid "%(birth)s - %(death)s"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "%(birth)s - %(death)s"
 
 #: ../gramps/gui/fs/actions.py:524
 #, python-format
@@ -16878,19 +16719,15 @@ msgstr "Поиск на сайте FamilySearch не удался (HTTP %(status
 
 #: ../gramps/gui/fs/actions.py:531
 msgid "FamilySearch search returned invalid data."
-msgstr ""
+msgstr "Поиск в FamilySearch вернул недопустимые данные."
 
 #: ../gramps/gui/fs/actions.py:584
-#, fuzzy
-#| msgid "Select Person"
 msgid "selected person"
-msgstr "Выбрать лицо"
+msgstr "выбранное лицо"
 
 #: ../gramps/gui/fs/actions.py:630 ../gramps/gui/fs/actions.py:632
-#, fuzzy
-#| msgid "Import failed"
 msgid "Bulk import relatives"
-msgstr "Импорт не удался"
+msgstr "Массовый импорт родственников"
 
 #: ../gramps/gui/fs/actions.py:646
 #, python-format
@@ -16922,16 +16759,17 @@ msgstr "Включить супругов"
 #: ../gramps/gui/fs/actions.py:685
 msgid "When off, import only the direct parent/child bloodline."
 msgstr ""
+"Если эта опция отключена, импортируйте только прямую линию родства родитель/"
+"ребёнок."
 
 #: ../gramps/gui/fs/actions.py:688
-#, fuzzy
-#| msgid "Non existing person"
 msgid "Do not re-import existing people"
-msgstr "Несуществующее лицо"
+msgstr "Не импортируйте повторно уже имеющихся людей"
 
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
 msgstr ""
+"При импорте не изменяйте существующие связанные записи о людях в Gramps."
 
 #: ../gramps/gui/fs/actions.py:694 ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -16940,10 +16778,8 @@ msgid "Include sources"
 msgstr "Включать источники"
 
 #: ../gramps/gui/fs/actions.py:695
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Fetch and import FamilySearch sources."
-msgstr "Импорт семейного древа"
+msgstr "Загрузить и импортировать источники FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:697 ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -16952,10 +16788,8 @@ msgid "Include notes"
 msgstr "Включать заметки"
 
 #: ../gramps/gui/fs/actions.py:698
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Fetch and import FamilySearch notes."
-msgstr "Импорт семейного древа"
+msgstr "Загрузить и импортировать примечания из FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:700
 #, fuzzy
@@ -16967,6 +16801,8 @@ msgstr "Поиск нарушенных отношений родителей/д
 msgid ""
 "Create or reuse families so imported parents and children are connected."
 msgstr ""
+"Создавайте или повторно используйте семейства, чтобы импортированные "
+"родительские и дочерние элементы были связаны между собой."
 
 #: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
 #, fuzzy
