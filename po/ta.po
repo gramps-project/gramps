@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-03-15 17:52+0000\n"
+"PO-Revision-Date: 2026-08-03 05:02+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ta/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 "X-Launchpad-Export-Date: 2014-07-26 03:32+0000\n"
 
 #: ../data/holidays.xml:3
@@ -734,14 +734,6 @@ msgstr ""
 "மேலெழுதலாம்."
 
 #: ../data/tips.xml:65
-#, fuzzy
-#| msgid ""
-#| "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "
-#| "to Gramps. Requesting an enhancement can be done either through the "
-#| "gramps-users or gramps-devel mailing lists, or by going to https://gramps-"
-#| "project.org/bugs/ and creating a Feature Request. Filing a Feature "
-#| "Request is preferred but it can be good to discuss your ideas on the "
-#| "email lists."
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -749,11 +741,11 @@ msgid ""
 "a Feature Request. Filing a Feature Request is preferred but it can be good "
 "to discuss your ideas on the email lists."
 msgstr ""
-"<b> கிராம்ப்களை மேம்படுத்துதல் </b> <br/> பயனர்கள் கிராம்ப்களுக்கு மேம்பாடுகளைக் கோர "
-"ஊக்குவிக்கப்படுகிறார்கள். மேம்பாட்டைக் கோருவது கிராம்ப்ச்-பயனர்கள் அல்லது கிராம்ப்ச்-டெவெல் "
-"அஞ்சல் பட்டியல்கள் மூலமாகவோ அல்லது https://gramps-project.org/bugs/ க்குச் சென்று "
-"அம்சக் கோரிக்கையை உருவாக்குவதன் மூலமாகவோ செய்யலாம். அம்சக் கோரிக்கையைத் தாக்கல் செய்வது "
-"விரும்பப்படுகிறது, ஆனால் உங்கள் யோசனைகளை மின்னஞ்சல் பட்டியல்களில் விவாதிப்பது நல்லது."
+"<b>கிராம்ப்களை மேம்படுத்துதல்</b><br/>கிராம்ப்களுக்கு மேம்படுத்தல்களைக் கோர பயனர்கள் "
+"ஊக்குவிக்கப்படுகிறார்கள். மேம்பாட்டைக் கோருவது gramps-users அல்லது gramps-devel அஞ்சல் "
+"பட்டியல்கள் மூலமாகவோ அல்லது &bugs_url; மற்றும் அம்சக் கோரிக்கையை உருவாக்குதல். அம்சக் "
+"கோரிக்கையைத் தாக்கல் செய்வது விரும்பத்தக்கது ஆனால் மின்னஞ்சல் பட்டியல்களில் உங்கள் யோசனைகளைப் "
+"பற்றி விவாதிப்பது நல்லது."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -967,28 +959,17 @@ msgstr ""
 "நபர்களைத் தேர்ந்தெடுக்கவும்."
 
 #: ../data/tips.xml:99
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at https://gramps-"
-#| "project.org/bugs/."
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
-"<b> கிராம்ப்சில் பிழைகள் புகாரளித்தல் </b> <br/> கிராம்ப்சில் ஒரு பிழையைப் "
-"புகாரளிப்பதற்கான சிறந்த வழி, கிராம்ப்ச் பிழை கண்காணிப்பு முறையைப் பயன்படுத்துவது "
-"https://gramps-project.org/bugs/."
+"<b>Gramps இல் பிழைகளைப் புகாரளித்தல்</b><br/>Gramps இல் பிழையைப் புகாரளிப்பதற்கான சிறந்த "
+"வழி &bugs_url; இல் கிராம்ப் பிழை கண்காணிப்பு அமைப்பைப் பயன்படுத்துவதாகும்."
 
 #: ../data/tips.xml:101
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
-#| "project.org/."
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
 msgstr ""
-"<b> கிராம்ப்ச் முகப்புப்பக்கம் </b> <br/> கிராம்ப்ச் முகப்புப்பக்கம் https://gramps-"
-"project.org/ இல் உள்ளது."
+"<b>கிராம்ப்ச் முகப்புப்பக்கம்</b><br/>கிராம்ப்ச் முகப்புப்பக்கம் &gramps_url; இல் உள்ளது."
 
 #: ../data/tips.xml:103
 msgid ""
@@ -1160,22 +1141,16 @@ msgstr ""
 "மற்றும் திறந்த மூல முன்முயற்சி."
 
 #: ../data/tips.xml:131
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see https://www.gnu.org/licenses/licenses.html#GPL to "
-#| "read about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see &gpl_url; to read about the rights and restrictions of this "
 "license."
 msgstr ""
-"<b> கிராம்ப்ச் மென்பொருள் உரிமம் </b> <br/> நீங்கள் மற்றவர்களுடன் கிராம்ப்களைப் பயன்படுத்தவும் "
-"பகிர்ந்து கொள்ளவும் இலவசம். இந்த உரிமத்தின் உரிமைகள் மற்றும் கட்டுப்பாடுகள்குறித்து படிக்க "
-"https://www.gnu.org/licenses/licenses.html#gpl ஐப் பார்க்கவும் கிராம்ப்ச் குனு பொது "
-"பொதுமக்கள் உரிமத்தின் கீழ் சுதந்திரமாக விநியோகிக்கப்படுகிறது."
+"<b>கிராம்ப்ச் மென்பொருள் உரிமம்</b><br/>கிராம்ப்சைப் பயன்படுத்தவும் மற்றவர்களுடன் பகிர்ந்து "
+"கொள்ளவும் நீங்கள் சுதந்திரமாக இருக்கிறீர்கள். GNU பொது பொது உரிமத்தின் கீழ் Gramps இலவசமாக "
+"விநியோகிக்கப்படுகிறது, பார்க்க &gpl_url; இந்த உரிமத்தின் உரிமைகள் மற்றும் கட்டுப்பாடுகள் "
+"பற்றி படிக்க."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -1713,7 +1688,7 @@ msgstr "குடும்ப மரம் \"%s\":"
 #: ../gramps/plugins/webreport/basepage.py:3115
 #, python-format
 msgid "%(str1)s: %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "%(str1): %(str2)s"
 
 #: ../gramps/cli/clidbman.py:314
 #, python-format
@@ -3671,16 +3646,13 @@ msgid "Wrong format of date-time"
 msgstr "தேதி நேரத்தின் தவறான வடிவம்"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, fuzzy, python-format
-#| msgid ""
-#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#| "part is optional, are accepted. %s does not satisfy."
+#, python-format
 msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"YYYYY-MM-DD HH: MM: SS இன் ஐ.எச்.ஓ வடிவத்தில் தேதி நேரங்கள் மட்டுமே "
-"ஏற்றுக்கொள்ளப்படுகின்றன. %s நிறைவு அடையாது."
+"yyyy-mm-dd hh:mm:ss இன் ISO வடிவத்தில் தேதி-நேரங்கள் மட்டுமே ஏற்றுக்கொள்ளப்படும், அங்கு "
+"நேரப் பகுதி விருப்பமானது. %s திருப்திகரமாக இல்லை."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
 #: ../gramps/gen/fs/fs_import/sources.py:645
@@ -3851,16 +3823,12 @@ msgid "Tag:"
 msgstr "குறிச்சொல்:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "குறிப்பிட்ட வகையுடன் குறிப்புகளைக் கொண்ட பொருள்கள்"
+msgstr "குறிப்பிட்ட குறிச்சொல்லுடன் குறிப்புகள் கொண்ட பொருள்கள்."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
-#| msgid "Matches a note with a specified Gramps ID"
 msgid "Matches notes with a specified tag"
-msgstr "ஒரு குறிப்பிட்ட கிராம்ப்ச் ஐடியுடன் ஒரு குறிப்புடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட குறிச்சொல்லுடன் குறிப்புகளைப் பொருத்துகிறது"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -3900,10 +3868,8 @@ msgstr "மூல அடையாள எண்:"
 
 #: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:33
 #: ../gramps/gui/editors/filtereditor.py:577
-#, fuzzy
-#| msgid "Citation Filter"
 msgid "Citation filter name:"
-msgstr "மேற்கோள் வடிகட்டி"
+msgstr "மேற்கோள் வடிப்பான் பெயர்:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:66
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:147
@@ -4089,16 +4055,12 @@ msgstr ""
 "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட மேற்கோள்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with the <tag>"
-msgstr "வகை <வகை> குறிப்புடன் மேற்கோள்கள்"
+msgstr "<tag> உடன் குறிப்புடன் மேற்கோள்கள்"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches citations with a note of the specified type"
 msgid "Matches citations with a note with a specified tag"
-msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் மேற்கோள்களுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட குறிச்சொல்லுடன் குறிப்புடன் மேற்கோள்களைப் பொருத்துகிறது"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4453,16 +4415,12 @@ msgstr ""
 "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட நிகழ்வுகளுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with the <tag>"
-msgstr "வகை <வகை> குறிப்புடன் நிகழ்வுகள்"
+msgstr "<tag> உடன் குறிப்புடன் நிகழ்வுகள்"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches events with a note of the specified type"
 msgid "Matches events with a note with a specified tag"
-msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் நிகழ்வுகளுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட குறிச்சொல்லுடன் கூடிய குறிப்புடன் நிகழ்வுகளை பொருத்துகிறது"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4757,16 +4715,13 @@ msgstr ""
 "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட குடும்பங்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note with the <tag>"
-msgstr "<பெயர்> உடன் தந்தையுடன் குடும்பங்கள்"
+msgstr "<tag> உடன் குறிப்பு உள்ள குடும்பங்கள்"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches families with a note with a specified tag"
-msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் குடும்பங்களுடன் பொருந்துகிறது"
+msgstr ""
+"குறிப்பிட்ட குறிச்சொல்லுடன் கூடிய குறிப்புடன் குடும்பங்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -5071,28 +5026,20 @@ msgstr ""
 "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட மீடியா பொருள்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with the <tag>"
-msgstr "வகை <வகை> குறிப்புடன் மேற்கோள்கள்"
+msgstr "<tag> உடன் குறிப்புடன் கூடிய மீடியா"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் குடும்பங்களுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட குறிச்சொல்லுடன் கூடிய குறிப்புடன் மீடியாவுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "வகை <வகை> குறிப்புடன் நிகழ்வுகள்"
+msgstr "வகை <type> என்ற குறிப்பைக் கொண்ட மீடியா"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் குடும்பங்களுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் மீடியாவுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
@@ -5613,16 +5560,12 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட நபர்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with the <tag>"
-msgstr "வகை <வகை> குறிப்பு கொண்டவர்கள்"
+msgstr "<tag> உடன் குறிப்பு உள்ளவர்கள்"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் மக்களுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட குறிச்சொல்லுடன் கூடிய குறிப்புடன் நபர்களைப் பொருத்துகிறது"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -6280,16 +6223,12 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்ட இடங்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with the <tag>"
-msgstr "வகை <Type> இன் குறிப்பு கொண்ட இடங்கள்"
+msgstr "<tag> உடன் குறிப்பு உள்ள இடங்கள்"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் இடங்களுடன் பொருந்துகிறது"
+msgstr "குறிப்பிட்ட குறிச்சொல்லுடன் குறிப்புடன் இடங்களைப் பொருத்துகிறது"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6550,28 +6489,20 @@ msgstr ""
 "பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with the <tag>"
-msgstr "<ack> உடன் களஞ்சியங்கள்"
+msgstr "<tag> உடன் குறிப்புடன் கூடிய களஞ்சியங்கள்"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் ஆதாரங்களை பொருத்துகிறது"
+msgstr "குறிப்பிட்ட குறிச்சொல்லுடன் குறிப்புடன் களஞ்சியங்களைப் பொருத்துகிறது"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "வகை <வகை> குறிப்புடன் ஆதாரங்கள்"
+msgstr "<type> வகை குறிப்பு கொண்ட களஞ்சியங்கள்"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் ஆதாரங்களை பொருத்துகிறது"
+msgstr "ஒரு குறிப்பிட்ட வகையின் குறிப்புடன் களஞ்சியங்களைப் பொருத்துகிறது"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6720,16 +6651,12 @@ msgstr ""
 "வழக்கமான வெளிப்பாட்டுடன் பொருந்தக்கூடிய உரைகளைக் கொண்டிருக்கும் ஆதாரங்களுடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with the <tag>"
-msgstr "வகை <வகை> குறிப்புடன் ஆதாரங்கள்"
+msgstr "<tag> உடன் குறிப்புடன் கூடிய ஆதாரங்கள்"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "குறிப்பிட்ட வகையின் குறிப்புடன் ஆதாரங்களை பொருத்துகிறது"
+msgstr "குறிப்பிட்ட குறிச்சொல்லுடன் கூடிய குறிப்புடன் ஆதாரங்களைப் பொருத்துகிறது"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6849,10 +6776,8 @@ msgstr "தனிப்பட்டதாக சுட்டிக்காட�
 #: ../gramps/gui/fs/sync_directions.py:955 ../gramps/gui/viewmanager.py:413
 #: ../gramps/gui/viewmanager.py:624 ../gramps/gui/viewmanager.py:637
 #: ../gramps/gui/viewmanager.py:645
-#, fuzzy
-#| msgid "Family"
 msgid "FamilySearch"
-msgstr "குடும்பம்"
+msgstr "குடும்பத் தேடல்"
 
 #: ../gramps/gen/fs/compare/aggregate.py:160
 #: ../gramps/gui/fs/compare/window.py:224
@@ -6860,21 +6785,17 @@ msgstr "குடும்பம்"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2084
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2288
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "FamilySearch உடன் இணைக்கப்படவில்லை"
 
 #: ../gramps/gen/fs/compare/aggregate.py:199
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:623
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "முதலெழுத்துகள்"
+msgstr "அத்தியாவசியமானவை"
 
 #: ../gramps/gen/fs/compare/aggregate.py:204
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:627
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "உருப்படி பெயர்"
+msgstr "மற்ற பெயர்கள்"
 
 #: ../gramps/gen/fs/compare/aggregate.py:211
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:632
@@ -6917,7 +6838,7 @@ msgstr "குடும்பங்கள்"
 #: ../gramps/gen/fs/compare/aggregate.py:225
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:640
 msgid "Facts"
-msgstr ""
+msgstr "உண்மைகள்"
 
 #: ../gramps/gen/fs/compare/comparators.py:334
 #: ../gramps/gen/fs/compare/comparators.py:341 ../gramps/gen/utils/string.py:49
@@ -7098,43 +7019,32 @@ msgstr "சேய்"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "லைஃப்ச்கெட்ச்"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
-#, fuzzy
-#| msgid "the citation"
 msgid "Birth Registration"
-msgstr "மேற்கோள்"
+msgstr "பிறப்பு பதிவு"
 
 #: ../gramps/gen/fs/constants.py:83 ../gramps/gen/fs/constants.py:84
-#, fuzzy
-#| msgid "the citation"
 msgid "Death Registration"
-msgstr "மேற்கோள்"
+msgstr "இறப்பு பதிவு"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "பிப்ரவரி"
+msgstr "இரங்கல்"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "உறவு"
+msgstr "குடியுரிமை"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
-#, fuzzy
-#| msgid "Building display"
 msgid "Building FSID list for places"
-msgstr "கட்டிட காட்சி"
+msgstr "இடங்களுக்கான FSID பட்டியலை உருவாக்குதல்"
 
 #: ../gramps/gen/fs/fs_import/sources.py:406
 #, python-format
 msgid "Loading FamilySearch source %(current)d/%(total)d"
-msgstr ""
+msgstr "குடும்பத் தேடல் மூலத்தை ஏற்றுகிறது %(current)d/%(total)d"
 
 #: ../gramps/gen/fs/fs_import/sources.py:611
 #: ../gramps/gen/fs/fs_import/sources.py:614
@@ -7207,35 +7117,28 @@ msgid "Internet Address"
 msgstr "இணைய முகவரி"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:434
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(header)s (%(current)d/%(total)d)"
-msgstr "%(current)d %(total)d"
+msgstr "%(header)s (%(current)d/%(total)d)"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:443
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Loading FamilySearch person sources"
-msgstr "குடும்ப மரத்தை இறக்குமதி செய்யுங்கள்"
+msgstr "FamilySearch நபர் ஆதாரங்களை ஏற்றுகிறது"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:451
-#, fuzzy
-#| msgid "Family relationships"
 msgid "Loading FamilySearch relationship sources"
-msgstr "குடும்ப உறவுகள்"
+msgstr "FamilySearch உறவு ஆதாரங்களை ஏற்றுகிறது"
 
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
 msgid "Memory: {t}"
-msgstr ""
+msgstr "நினைவகம்: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:600
 #: ../gramps/gui/fs/sync_directions.py:778
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "தேதி (கள்) காணவில்லை"
+msgstr "(காணவில்லை)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:321
@@ -7282,32 +7185,32 @@ msgstr "குறிப்பு"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:871
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Gramps இலிருந்து புதுப்பிக்கப்பட்டது"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1680
 msgid "Created from Gramps"
-msgstr ""
+msgstr "Gramps இலிருந்து உருவாக்கப்பட்டது"
 
 #: ../gramps/gen/fs/tags.py:322
 #, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "குழு %(num)d"
 
 #: ../gramps/gen/fs/tags.py:333
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "கண்ணோட்டம் ? %(title)s ? வரிசை %(row)d பச்சை இல்லை (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:343
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "குறிப்புகள் ? வரிசை %(row)d பச்சை இல்லை (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:353
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "ஆதாரங்கள்? வரிசை %(row)d பச்சை இல்லை (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:363
 msgid ""
@@ -7315,12 +7218,13 @@ msgid ""
 "Organize Tags. This integration only sets default colors when the tags are "
 "first created and will not override your custom choices."
 msgstr ""
+"FamilySearch நிலை குறிச்சொல் வண்ணங்களை Gramps இல் திருத்து > குறிச்சொல் > ஒழுங்கமைத்தல் "
+"குறிச்சொற்கள் மூலம் தனிப்பயனாக்கலாம். இந்த ஒருங்கிணைப்பு குறிச்சொற்கள் முதலில் உருவாக்கப்படும் "
+"போது மட்டுமே இயல்புநிலை வண்ணங்களை அமைக்கும் மற்றும் உங்கள் விருப்பத்தேர்வுகளை மீறாது."
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch tags"
-msgstr "குடும்பம் மாறிவிட்டது"
+msgstr "குடும்பத் தேடல் குறிச்சொற்கள்"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:749 ../gramps/gui/editors/editaddress.py:199
@@ -7908,8 +7812,8 @@ msgstr "குறிச்சொற்கள்"
 #, python-brace-format
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
-msgstr[0] "{number_of}ஆண்டு பெரியது"
-msgstr[1] "{number_of} ஆண்டுகள் பெரியது"
+msgstr[0] "{number_of} ஆண்டுக்கு மேல்"
+msgstr[1] "{number_of} ஆண்டுகளுக்கு மேல்"
 
 #: ../gramps/gen/lib/date.py:312 ../gramps/gen/lib/date.py:343
 #: ../gramps/gen/lib/date.py:345 ../gramps/gen/lib/date.py:351
@@ -8578,14 +8482,14 @@ msgstr "மகப்பேறு"
 #: ../gramps/plugins/drawreport/descendtree.py:71
 msgctxt "birth abbreviation"
 msgid "b."
-msgstr "b."
+msgstr "பி."
 
 #: ../gramps/gen/lib/eventtype.py:248
 #: ../gramps/plugins/drawreport/ancestortree.py:74
 #: ../gramps/plugins/drawreport/descendtree.py:72
 msgctxt "death abbreviation"
 msgid "d."
-msgstr "d."
+msgstr "ஈ."
 
 #: ../gramps/gen/lib/eventtype.py:249
 #: ../gramps/plugins/drawreport/ancestortree.py:75
@@ -8642,7 +8546,7 @@ msgstr "பர்."
 #: ../gramps/gen/lib/eventtype.py:259
 msgctxt "Cause Of Death abbreviation"
 msgid "d.cau."
-msgstr "d.cau."
+msgstr "d.cau"
 
 #: ../gramps/gen/lib/eventtype.py:260
 msgctxt "Census abbreviation"
@@ -8692,7 +8596,7 @@ msgstr "f.com."
 #: ../gramps/gen/lib/eventtype.py:269
 msgctxt "Immigration abbreviation"
 msgid "im."
-msgstr "im."
+msgstr "நான்."
 
 #: ../gramps/gen/lib/eventtype.py:270
 msgctxt "Graduation abbreviation"
@@ -8787,7 +8691,7 @@ msgstr "M.BAN."
 #: ../gramps/gen/lib/eventtype.py:288
 msgctxt "Alternate Marriage abbreviation"
 msgid "alt.mar."
-msgstr "alt.mar."
+msgstr "alt. mar."
 
 #: ../gramps/gen/lib/eventtype.py:289
 msgctxt "Engagement abbreviation"
@@ -8865,46 +8769,40 @@ msgstr "குடிமை தொழிற்சங்கம்"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
 msgid "FamilySearch sync"
-msgstr ""
+msgstr "குடும்பத் தேடல் ஒத்திசைவு"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76 ../gramps/gui/fs/actions.py:801
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "குடும்ப அடையாள எண்"
+msgstr "குடும்பத் தேடல் அடையாளம்"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "ரூட் ஆகும்"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Status bar"
 msgid "Status timestamp"
-msgstr "நிலை பட்டி"
+msgstr "நிலை நேர முத்திரை"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
-msgstr ""
+msgstr "உறுதிப்படுத்தப்பட்ட நேரமுத்திரை"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
-msgstr ""
+msgstr "Gramps மாற்றியமைக்கப்பட்ட நேர முத்திரை"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:92
 msgid "FamilySearch modified timestamp"
-msgstr ""
+msgstr "குடும்பத் தேடல் மாற்றியமைக்கப்பட்ட நேர முத்திரை"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "அத்தியாவசிய மோதல்"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "கட்டமைப்பு"
+msgstr "மோதல்"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -9219,11 +9117,9 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:79
-#, fuzzy
-#| msgid "Unknown"
 msgctxt "Surname"
 msgid "Unknown"
-msgstr "தெரியாத"
+msgstr "தெரியவில்லை"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
 msgctxt "Surname"
@@ -10292,17 +10188,13 @@ msgid "Font family"
 msgstr "எழுத்துரு குடும்பம்"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:182
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Choose the font family. If international characters don't show, use "
-#| "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+#, python-brace-format
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
-"எழுத்துரு குடும்பத்தைத் தேர்வுசெய்க. பன்னாட்டு எழுத்துக்கள் காட்டவில்லை என்றால், ஃப்ரீசான்ச் "
-"எழுத்துருவைப் பயன்படுத்துங்கள். ஃப்ரீசான்ச் இதிலிருந்து கிடைக்கிறது: http://"
-"www.nongnu.org/freefont/"
+"எழுத்துரு குடும்பத்தைத் தேர்ந்தெடுக்கவும். பன்னாட்டு எழுத்துக்கள் காட்டப்படாவிட்டால், FreeSans "
+"எழுத்துருவைப் பயன்படுத்தவும். FreeSans இதிலிருந்து கிடைக்கிறது: {freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:189
 #: ../gramps/gui/widgets/styledtexteditor.py:83
@@ -11990,7 +11882,7 @@ msgstr "அராபிக்"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
-msgstr ""
+msgstr "பச்கிர்"
 
 #: ../gramps/gen/utils/win32locale.py:47
 msgid "Bulgarian"
@@ -12615,20 +12507,16 @@ msgid "Media Object"
 msgstr "ஊடகப் பொருள்"
 
 #: ../gramps/gui/configure.py:897
-#, fuzzy, no-python-format
-#| msgid ""
-#| "Default Gramps ID formats containing a letter prefix followed by a "
-#| "numerical string. \"I%04d\" creates IDs from I0000 to I9999. Large "
-#| "databases may need larger IDs. \"I%06d\" creates IDs from I000000 to "
-#| "I999999.\n"
+#, no-python-format
 msgid ""
 "Default Gramps ID formats containing a letter prefix followed by a numerical "
 "string. \"I%05d\" creates IDs from I00000 to I99999. Large databases may "
 "need larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
-"இயல்புநிலை கிராம்ப்ச் ஐடி வடிவங்கள் ஒரு கடிதம் முன்னொட்டு கொண்ட ஒரு எண் சரம். \"I%04d\" "
-"I0000 முதல் I9999 வரை ஐடிகளை உருவாக்குகிறது. பெரிய தரவுத்தளங்களுக்குப் பெரிய ஐடிகள் "
-"தேவைப்படலாம். \"I%06d\" I000000 முதல் I999999 வரை ஐடிகளை உருவாக்குகிறது.\n"
+"இயல்புநிலை கிராம்ப்ச் அடையாளம் வடிவங்கள், எழுத்து முன்னொட்டைத் தொடர்ந்து எண்ணியல் சரம் "
+"இருக்கும். \"I%05d\" I00000 முதல் I99999 வரையிலான ஐடிகளை உருவாக்குகிறது. பெரிய "
+"தரவுத்தளங்களுக்கு பெரிய ஐடிகள் தேவைப்படலாம். \"I%06d\" I000000 இலிருந்து I999999 "
+"வரையிலான ஐடிகளை உருவாக்குகிறது.\n"
 
 #: ../gramps/gui/configure.py:919
 msgid "Colors used for boxes in the graphical views"
@@ -12770,55 +12658,47 @@ msgstr "எச்சரிக்கைகள்"
 
 #: ../gramps/gui/configure.py:1113
 msgid "Live"
-msgstr ""
+msgstr "வாழ்க"
 
 #: ../gramps/gui/configure.py:1121
 msgid "Server"
-msgstr ""
+msgstr "சேவையகம்"
 
 #: ../gramps/gui/configure.py:1130
 msgid "Foundation middleware"
-msgstr ""
+msgstr "அறக்கட்டளை மிடில்வேர்"
 
 #: ../gramps/gui/configure.py:1132
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "நகல் குடும்பம்"
+msgstr "நேரடி குடும்பத் தேடல்"
 
 #: ../gramps/gui/configure.py:1147
-#, fuzzy
-#| msgid "Author"
 msgid "Auth provider"
-msgstr "எழுத்தாளர்"
+msgstr "ஏற்பு வழங்குபவர்"
 
 #: ../gramps/gui/configure.py:1156
 msgid "App key (direct mode only)"
-msgstr ""
+msgstr "பயன்பாட்டு விசை (நேரடி பயன்முறை மட்டும்)"
 
 #: ../gramps/gui/configure.py:1177
 msgid "Redirect URL (direct mode only)"
-msgstr ""
+msgstr "வழிமாற்று முகவரி (நேரடி பயன்முறை மட்டும்)"
 
 #: ../gramps/gui/configure.py:1186
 msgid "Middleware base URL"
-msgstr ""
+msgstr "மிடில்வேர் அடிப்படை முகவரி"
 
 #: ../gramps/gui/configure.py:1195
 msgid "Middleware access code (issued secret)"
-msgstr ""
+msgstr "மிடில்வேர் அணுகல் குறியீடு (வெளியிடப்பட்ட ரகசியம்)"
 
 #: ../gramps/gui/configure.py:1204
-#, fuzzy
-#| msgid "Family has changed"
 msgid "Enable FamilySearch integration"
-msgstr "குடும்பம் மாறிவிட்டது"
+msgstr "FamilySearch ஒருங்கிணைப்பை இயக்கு"
 
 #: ../gramps/gui/configure.py:1212
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "தலைமுறைகள்"
+msgstr "ஒருங்கிணைப்புகள்"
 
 #: ../gramps/gui/configure.py:1279 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -13081,16 +12961,16 @@ msgid "Maximum age probably alive"
 msgstr "அதிகபட்ச அகவை உயிருடன் இருக்கலாம்"
 
 #: ../gramps/gui/configure.py:2095
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "உறவுகளுக்கு அதிகபட்ச தலைமுறை"
+msgstr "வயதைக் கணக்கிட அதிகபட்ச தலைமுறைகள்"
 
 #: ../gramps/gui/configure.py:2100
 msgid ""
 "Limits ancestor/descendant estimation depth. Increase if estimates are "
 "missing when dates are only in distant generations."
 msgstr ""
+"மூதாதையர்/சந்ததியின் மதிப்பீட்டின் ஆழத்தை வரம்பிடுகிறது. தேதிகள் தொலைதூர தலைமுறைகளில் "
+"மட்டுமே இருக்கும் போது மதிப்பீடுகள் விடுபட்டால் அதிகரிக்கவும்."
 
 #: ../gramps/gui/configure.py:2107
 msgid "Maximum sibling age difference"
@@ -13291,10 +13171,8 @@ msgstr ""
 "பெட்டியில் காண்பிக்கப்படும். இந்த அமைப்பு இந்த பெட்டியின் அளவை அமைக்கிறது."
 
 #: ../gramps/gui/configure.py:2379
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "குறிப்புகள் முன்னோட்டம்"
+msgstr "முன்னோட்ட நீளத்தைக் கவனியுங்கள்"
 
 #: ../gramps/gui/configure.py:2438
 msgid "Database Setting"
@@ -14409,10 +14287,8 @@ msgid "Remove"
 msgstr "அகற்று"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select Existing"
-msgstr "ஏற்கனவே உள்ள குறிப்பைத் தேர்ந்தெடுக்கவும்"
+msgstr "இருப்பதைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 msgid "Jump To"
@@ -14448,10 +14324,8 @@ msgid "Edit the selected citation"
 msgstr "தேர்ந்தெடுக்கப்பட்ட மேற்கோளைத் திருத்தவும்"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
-#, fuzzy
-#| msgid "Add an existing citation or source"
 msgid "Select an existing citation or source"
-msgstr "ஏற்கனவே உள்ள மேற்கோள் அல்லது மூலத்தைச் சேர்க்கவும்"
+msgstr "ஏற்கனவே உள்ள மேற்கோள் அல்லது மூலத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Move the selected citation upwards"
@@ -14522,10 +14396,8 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட குடு�
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select an existing event"
-msgstr "ஏற்கனவே உள்ள குறிப்பைத் தேர்ந்தெடுக்கவும்"
+msgstr "ஏற்கனவே உள்ள நிகழ்வைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
@@ -14583,40 +14455,28 @@ msgid "%(groupname)s - %(groupnumber)d"
 msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:89
-#, fuzzy
-#| msgid "Add a new media object"
 msgid "Add a new Media record"
-msgstr "புதிய ஊடக பொருளைச் சேர்க்கவும்"
+msgstr "புதிய மீடியா பதிவைச் சேர்க்கவும்"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:90
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Remove the selected Media record"
-msgstr "தேர்ந்தெடுக்கப்பட்ட திட்டத்தை அகற்று"
+msgstr "தேர்ந்தெடுக்கப்பட்ட மீடியா பதிவை அகற்றவும்"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:91
-#, fuzzy
-#| msgid "Edit the selected media object"
 msgid "Edit the selected Media record"
-msgstr "தேர்ந்தெடுக்கப்பட்ட மீடியா பொருளைத் திருத்தவும்"
+msgstr "தேர்ந்தெடுக்கப்பட்ட மீடியா பதிவை திருத்தவும்"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:92
-#, fuzzy
-#| msgid "Select an existing media object"
 msgid "Select an existing Media record"
-msgstr "ஏற்கனவே உள்ள மீடியா பொருளைத் தேர்ந்தெடுக்கவும்"
+msgstr "ஏற்கனவே உள்ள மீடியா பதிவைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:93
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record Left"
-msgstr "தேர்ந்தெடுக்கப்பட்ட திட்டத்தை அகற்று"
+msgstr "தேர்ந்தெடுக்கப்பட்ட பதிவை இடதுபுறமாக நகர்த்தவும்"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:94
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record right"
-msgstr "தேர்ந்தெடுக்கப்பட்ட திட்டத்தை அகற்று"
+msgstr "தேர்ந்தெடுக்கப்பட்ட பதிவை வலதுபுறமாக நகர்த்தவும்"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:104
 msgid "_Gallery"
@@ -14910,10 +14770,8 @@ msgid "Edit the selected repository"
 msgstr "தேர்ந்தெடுக்கப்பட்ட களஞ்சியத்தைத் திருத்தவும்"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
-#, fuzzy
-#| msgid "Add an existing repository"
 msgid "Select an existing repository"
-msgstr "ஏற்கனவே உள்ள களஞ்சியத்தைச் சேர்க்கவும்"
+msgstr "ஏற்கனவே உள்ள களஞ்சியத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Move the selected repository upwards"
@@ -14962,8 +14820,6 @@ msgid "Move the selected surname downwards"
 msgstr "தேர்ந்தெடுக்கப்பட்ட குடும்பப்பெயரை கீழ்நோக்கி நகர்த்தவும்"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
-#| msgid "Surname"
 msgctxt "Multiple surnames"
 msgid "Surname"
 msgstr "குடும்பப்பெயர்"
@@ -15278,10 +15134,9 @@ msgid "Edit the child reference"
 msgstr "குழந்தை குறிப்பைத் திருத்தவும்"
 
 #: ../gramps/gui/editors/editfamily.py:130
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person to add as child of the family"
-msgstr "ஏற்கனவே உள்ள ஒரு நபரை குடும்பத்தின் குழந்தையாக சேர்க்கவும்"
+msgstr ""
+"குடும்பத்தின் குழந்தையாகச் சேர்க்க, ஏற்கனவே இருக்கும் நபரைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/editors/editfamily.py:131
 msgid "Move the child up in the children list"
@@ -15357,10 +15212,8 @@ msgid "Edit child"
 msgstr "குழந்தையைத் திருத்தவும்"
 
 #: ../gramps/gui/editors/editfamily.py:224
-#, fuzzy
-#| msgid "Select an existing person"
 msgid "Select an existing person to add as child"
-msgstr "ஏற்கனவே உள்ள ஒரு நபரைத் தேர்ந்தெடுக்கவும்"
+msgstr "குழந்தையாகச் சேர்க்க ஏற்கனவே இருக்கும் நபரைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/editors/editfamily.py:227
 msgid "Edit relationship"
@@ -16124,12 +15977,9 @@ msgid "Internet Address Editor"
 msgstr "இணைய முகவரி திருத்தி"
 
 #: ../gramps/gui/editors/editurl.py:100
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The internet address as needed to navigate to it, eg. http://gramps-"
-#| "project.org"
+#, python-brace-format
 msgid "The internet address as needed to navigate to it, eg. {gramps_url}"
-msgstr "அதற்கு செல்ல தேவையான இணைய முகவரி, எ.கா. http://gramps-project.org"
+msgstr "அதற்கு செல்ல தேவையான இணைய முகவரி, எ.கா. {gramps_url}"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgctxt "manual"
@@ -16683,13 +16533,12 @@ msgstr "{today} இல் வடிகட்டி கிராம்ப் ம�
 #: ../gramps/gui/fs/actions.py:154
 msgid "Please save/commit this person to the database first, then try again."
 msgstr ""
+"இந்த நபரை முதலில் தரவுத்தளத்தில் சேமித்து/கமிட் செய்து, பிறகு மீண்டும் முயற்சிக்கவும்."
 
 #: ../gramps/gui/fs/actions.py:170 ../gramps/gui/fs/actions.py:171
 #: ../gramps/gui/fs/tools_window.py:356 ../gramps/gui/fs/tools_window.py:817
-#, fuzzy
-#| msgid "Family ID"
 msgid "Link FamilySearch ID"
-msgstr "குடும்ப அடையாள எண்"
+msgstr "FamilySearch ஐடியை இணைக்கவும்"
 
 #: ../gramps/gui/fs/actions.py:173 ../gramps/gui/plug/_windows.py:1555
 #: ../gramps/gui/widgets/grampletbar.py:599
@@ -16698,109 +16547,93 @@ msgstr "சரி"
 
 #: ../gramps/gui/fs/actions.py:179
 msgid "Enter FamilySearch Person ID (e.g. GSVF-SGV):"
-msgstr ""
+msgstr "FamilySearch நபர் ஐடியை உள்ளிடவும் (எ.கா. GSVF-SGV):"
 
 #: ../gramps/gui/fs/actions.py:210
 msgid ""
 "No FamilySearch ID linked.\n"
 "Click 'Link FamilySearch ID' first."
 msgstr ""
+"குடும்பத் தேடல் அடையாளம் இணைக்கப்படவில்லை. \n"
+"முதலில் 'Link FamilySearch ID' என்பதைக் சொடுக்கு செய்யவும்."
 
 #: ../gramps/gui/fs/actions.py:246
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:194
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import selected"
-msgstr "இறக்குமதி தோல்வியடைந்தது"
+msgstr "இறக்குமதி தேர்ந்தெடுக்கப்பட்டது"
 
 #: ../gramps/gui/fs/actions.py:270
 #, python-brace-format
 msgid "{total} found - {new} new - {existing} already in tree"
 msgstr ""
+"{total} கண்டறியப்பட்டது - {new} புதியது - {existing} ஏற்கனவே மரத்தில் உள்ளது"
 
 #: ../gramps/gui/fs/actions.py:277 ../gramps/gui/fs/sync_directions.py:875
 #: ../gramps/gui/fs/sync_directions.py:1592
-#, fuzzy
-#| msgid "Select _None"
 msgid "Select none"
-msgstr "_ இல்லை என்பதைத் தேர்ந்தெடுக்கவும்"
+msgstr "எதையும் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/fs/actions.py:278
-#, fuzzy
-#| msgid "Select a file"
 msgid "Select all new"
-msgstr "ஒரு கோப்பைத் தேர்ந்தெடுக்கவும்"
+msgstr "புதிய அனைத்தையும் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/fs/actions.py:325
-#, fuzzy
-#| msgid "Already dead"
 msgid "Already in tree"
-msgstr "ஏற்கனவே இறந்துவிட்டார்"
+msgstr "ஏற்கனவே மரத்தில்"
 
 #: ../gramps/gui/fs/actions.py:325
 msgid "New (will import)"
-msgstr ""
+msgstr "புதியது (இறக்குமதி செய்யப்படும்)"
 
 #: ../gramps/gui/fs/actions.py:326
 msgid "Tip: uncheck anything you don't want to import."
 msgstr ""
+"உதவிக்குறிப்பு: நீங்கள் இறக்குமதி செய்ய விரும்பாத எதையும் தேர்வுநீக்கவும்."
 
 #: ../gramps/gui/fs/actions.py:471
-#, fuzzy, python-format
-#| msgid "%(abbr)s %(date)s"
+#, python-format
 msgid "%(birth)s - %(death)s"
-msgstr "%(abbr)s %(date)s"
+msgstr "%(birth)s - %(death)s"
 
 #: ../gramps/gui/fs/actions.py:524
 #, python-format
 msgid "FamilySearch search failed (HTTP %(status)s)."
-msgstr ""
+msgstr "குடும்ப தேடல் தேடல் தோல்வியடைந்தது (HTTP %(status)s)."
 
 #: ../gramps/gui/fs/actions.py:531
 msgid "FamilySearch search returned invalid data."
-msgstr ""
+msgstr "FamilySearch தேடல் தவறான தரவை வழங்கியது."
 
 #: ../gramps/gui/fs/actions.py:584
-#, fuzzy
-#| msgid "Select Person"
 msgid "selected person"
-msgstr "நபரைத் தேர்ந்தெடு"
+msgstr "தேர்ந்தெடுக்கப்பட்ட நபர்"
 
 #: ../gramps/gui/fs/actions.py:630 ../gramps/gui/fs/actions.py:632
-#, fuzzy
-#| msgid "Import failed"
 msgid "Bulk import relatives"
-msgstr "இறக்குமதி தோல்வியடைந்தது"
+msgstr "மொத்த இறக்குமதி உறவினர்கள்"
 
 #: ../gramps/gui/fs/actions.py:646
-#, fuzzy, python-format
-#| msgid "%(persons)s and %(name)s (%(id)s)"
+#, python-format
 msgid "Starting person: %(name)s [%(fsid)s]"
-msgstr "%(persons)s மற்றும் %(name)s ( %(id)s)"
+msgstr "தொடக்க நபர்: %(name)s [%(fsid)s]"
 
 #: ../gramps/gui/fs/actions.py:668 ../gramps/gui/fs/fs_import/options.py:42
-#, fuzzy
-#| msgid "Max ancestor generations"
 msgid "Ancestor generations"
-msgstr "அதிகபட்ச மூதாதையர் தலைமுறைகள்"
+msgstr "மூதாதையர் தலைமுறைகள்"
 
 #: ../gramps/gui/fs/actions.py:670
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to import upward from the starting person."
-msgstr "தலைமுறைகளின் எண்ணிக்கை:"
+msgstr ""
+"தொடக்க நபரிடமிருந்து மேல்நோக்கி இறக்குமதி செய்ய வேண்டிய தலைமுறைகளின் எண்ணிக்கை."
 
 #: ../gramps/gui/fs/actions.py:675 ../gramps/gui/fs/fs_import/options.py:46
-#, fuzzy
-#| msgid "Max descendant generations"
 msgid "Descendant generations"
-msgstr "அதிகபட்ச சந்ததியினர் தலைமுறைகள்"
+msgstr "வழித்தோன்றல் தலைமுறைகள்"
 
 #: ../gramps/gui/fs/actions.py:677
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to import downward from the starting person."
-msgstr "தலைமுறைகளின் எண்ணிக்கை:"
+msgstr ""
+"தொடக்க நபரிடமிருந்து கீழ்நோக்கி இறக்குமதி செய்ய வேண்டிய தலைமுறைகளின் எண்ணிக்கை."
 
 #: ../gramps/gui/fs/actions.py:683 ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -16811,16 +16644,17 @@ msgstr "வாழ்க்கைத் துணையை சேர்க்க�
 #: ../gramps/gui/fs/actions.py:685
 msgid "When off, import only the direct parent/child bloodline."
 msgstr ""
+"முடக்கப்பட்டிருக்கும் போது, நேரடி பெற்றோர்/குழந்தை இரத்தக் கோடுகளை மட்டும் இறக்குமதி "
+"செய்யவும்."
 
 #: ../gramps/gui/fs/actions.py:688
-#, fuzzy
-#| msgid "Non existing person"
 msgid "Do not re-import existing people"
-msgstr "தற்போது இல்லாத நபர்"
+msgstr "ஏற்கனவே உள்ளவர்களை மீண்டும் இறக்குமதி செய்யாதீர்கள்"
 
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
 msgstr ""
+"இறக்குமதியின் போது ஏற்கனவே உள்ள இணைக்கப்பட்ட கிராம்ப் நபர்களை மாற்றாமல் வைத்திருங்கள்."
 
 #: ../gramps/gui/fs/actions.py:694 ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -16829,10 +16663,8 @@ msgid "Include sources"
 msgstr "ஆதாரங்களை சேர்க்கவும்"
 
 #: ../gramps/gui/fs/actions.py:695
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Fetch and import FamilySearch sources."
-msgstr "குடும்ப மரத்தை இறக்குமதி செய்யுங்கள்"
+msgstr "FamilySearch ஆதாரங்களைப் பெற்று இறக்குமதி செய்யவும்."
 
 #: ../gramps/gui/fs/actions.py:697 ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -16841,258 +16673,227 @@ msgid "Include notes"
 msgstr "குறிப்புகளைச் சேர்க்கவும்"
 
 #: ../gramps/gui/fs/actions.py:698
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Fetch and import FamilySearch notes."
-msgstr "குடும்ப மரத்தை இறக்குமதி செய்யுங்கள்"
+msgstr "FamilySearch குறிப்புகளைப் பெற்று இறக்குமதி செய்யவும்."
 
 #: ../gramps/gui/fs/actions.py:700
-#, fuzzy
-#| msgid "Looking for broken parent relationships"
 msgid "Link imported parent/child relationships"
-msgstr "உடைந்த பெற்றோர் உறவுகளைத் தேடுகிறது"
+msgstr "இறக்குமதி செய்யப்பட்ட பெற்றோர்/குழந்தை உறவுகளை இணைக்கவும்"
 
 #: ../gramps/gui/fs/actions.py:703
 msgid ""
 "Create or reuse families so imported parents and children are connected."
 msgstr ""
+"இறக்குமதி செய்யப்பட்ட பெற்றோரும் குழந்தைகளும் இணைக்கப்பட்ட குடும்பங்களை உருவாக்கவும் அல்லது "
+"மீண்டும் பயன்படுத்தவும்."
 
 #: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "Start FamilySearch import"
-msgstr "குடும்ப குழு அறிக்கை"
+msgstr "FamilySearch இறக்குமதியைத் தொடங்கவும்"
 
 #: ../gramps/gui/fs/actions.py:758
 msgid ""
 "Choose the FamilySearch person to use as the starting point for this new "
 "Gramps tree."
 msgstr ""
+"இந்த புதிய Gramps மரத்திற்கான தொடக்கப் புள்ளியாகப் பயன்படுத்த FamilySearch நபரைத் தேர்வு "
+"செய்யவும்."
 
 #: ../gramps/gui/fs/actions.py:775
-#, fuzzy
-#| msgid "Web Family Tree export options"
 msgid "FamilySearch ID or person URL"
-msgstr "வலை குடும்ப மரம் ஏற்றுமதி விருப்பங்கள்"
+msgstr "குடும்பத் தேடல் அடையாளம் அல்லது நபர் முகவரி"
 
 #: ../gramps/gui/fs/actions.py:776
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID or URL"
-msgstr "குடும்ப அடையாள எண்"
+msgstr "குடும்பத் தேடல் அடையாளம் அல்லது முகவரி"
 
 #: ../gramps/gui/fs/actions.py:781
-#, fuzzy
 msgid "Name, date, place, or FamilySearch ID"
-msgstr "(_D)இடத்தை நீக்கு"
+msgstr "பெயர், தேதி, இடம் அல்லது குடும்பத் தேடல் அடையாளம்"
 
 #: ../gramps/gui/fs/actions.py:782
-#, fuzzy
-#| msgid "Web Search"
 msgid "Search"
-msgstr "வலை தேடல்"
+msgstr "தேடல்"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
-msgstr ""
+msgstr "வாழ்க்கை"
 
 #: ../gramps/gui/fs/actions.py:856
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID ready."
-msgstr "குடும்ப அடையாள எண்"
+msgstr "FamilySearch அடையாளம் ஆயத்தம்."
 
 #: ../gramps/gui/fs/actions.py:860
 msgid "Enter a name, date, place, ID, or URL to search."
-msgstr ""
+msgstr "தேடுவதற்கு பெயர், தேதி, இடம், அடையாளம் அல்லது முகவரி ஐ உள்ளிடவும்."
 
 #: ../gramps/gui/fs/actions.py:865
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Searching FamilySearch..."
-msgstr "நகல் குடும்பம்"
+msgstr "குடும்பத் தேடலைத் தேடுகிறது..."
 
 #: ../gramps/gui/fs/actions.py:880
-#, fuzzy, python-format
-#| msgid "Searching family names"
+#, python-format
 msgid "Search failed: %(error)s"
-msgstr "குடும்பப் பெயர்களைத் தேடுகிறது"
+msgstr "தேடல் தோல்வியடைந்தது: %(error)s"
 
 #: ../gramps/gui/fs/actions.py:890
 #, python-format
 msgid "Search results: %(count)d"
-msgstr ""
+msgstr "தேடல் முடிவுகள்: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:893
-#, fuzzy
-#| msgid "Family Citations"
 msgid "No FamilySearch people found."
-msgstr "குடும்ப மேற்கோள்கள்"
+msgstr "குடும்பத் தேடல் நபர்கள் இல்லை."
 
 #: ../gramps/gui/fs/actions.py:917
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1138
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "FamilySearch person"
-msgstr "குடும்ப குழு அறிக்கை"
+msgstr "குடும்பத் தேடல் நபர்"
 
 #: ../gramps/gui/fs/actions.py:964
 msgid ""
 "No FamilySearch person was imported. Check the selected person ID and try "
 "again."
 msgstr ""
+"FamilySearch நபர் யாரும் இறக்குமதி செய்யப்படவில்லை. தேர்ந்தெடுக்கப்பட்ட நபர் ஐடியைச் "
+"சரிபார்த்து, மீண்டும் முயற்சிக்கவும்."
 
 #: ../gramps/gui/fs/actions.py:993
 msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
 msgstr ""
+"உங்கள் மரம் காலியாக உள்ளது! FamilySearch இலிருந்து மொத்தமாக இறக்குமதி செய்ய "
+"விரும்புகிறீர்களா?"
 
 #: ../gramps/gui/fs/actions.py:994
-#, fuzzy
-#| msgid "Choose Spouse/Partner"
 msgid "Choose Starting Person"
-msgstr "வாழ்கைத் துனையை தேர்ந்தெடு"
+msgstr "தொடக்க நபரைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/fs/actions.py:995
-#, fuzzy
-#| msgid "Not shown"
 msgid "Not now"
-msgstr "காட்டப்படவில்லை"
+msgstr "இப்போது இல்லை"
 
 #: ../gramps/gui/fs/actions.py:1012 ../gramps/gui/fs/actions.py:1073
-#, fuzzy
-#| msgid "family not complete"
 msgid "Bulk import complete."
-msgstr "குடும்பம் முழுமையடையவில்லை"
+msgstr "மொத்த இறக்குமதி முடிந்தது."
 
 #: ../gramps/gui/fs/actions.py:1051 ../gramps/gui/fs/actions.py:1089
 #: ../gramps/gui/fs/actions.py:1217 ../gramps/gui/fs/actions.py:1384
 #: ../gramps/gui/fs/actions.py:1698 ../gramps/gui/fs/actions.py:1899
 msgid "No FamilySearch ID linked. Click 'Link FamilySearch ID' first."
 msgstr ""
+"குடும்பத் தேடல் அடையாளம் இணைக்கப்படவில்லை. முதலில் 'Link FamilySearch ID' என்பதைக் "
+"சொடுக்கு செய்யவும்."
 
 #: ../gramps/gui/fs/actions.py:1104
-#, fuzzy, python-brace-format
-#| msgid "Sealed to Parents"
+#, python-brace-format
 msgid "Failed to fetch parents: {e}"
-msgstr "பெற்றோருக்கு சீல்"
+msgstr "Failed பெறுநர் fetch parents: {e}"
 
 #: ../gramps/gui/fs/actions.py:1126
 msgid "No parents found on FamilySearch for this person."
-msgstr ""
+msgstr "குடும்பத் தேடலில் இவரைப் பற்றிய எந்தப் பெற்றோரும் இல்லை."
 
 #: ../gramps/gui/fs/actions.py:1135 ../gramps/gui/fs/actions.py:1271
 #: ../gramps/gui/fs/actions.py:1439
-#, fuzzy
-#| msgid "Place title is already in use"
 msgid "  - already in tree"
-msgstr "இடத்தின் தலைப்பு ஏற்கனவே பயன்பாட்டில் உள்ளது"
+msgstr "  - ஏற்கனவே மரத்தில்"
 
 #: ../gramps/gui/fs/actions.py:1138
-#, fuzzy
-#| msgid "Import Text"
 msgid "Import parents"
-msgstr "உரை இறக்குமதி"
+msgstr "பெற்றோரை இறக்குமதி வெற்றி"
 
 #: ../gramps/gui/fs/actions.py:1153
 msgid "Parents imported but could not be located in the local database."
 msgstr ""
+"பெற்றோர் இறக்குமதி செய்யப்பட்டனர் ஆனால் உள்ளக தரவுத்தளத்தில் கண்டறிய முடியவில்லை."
 
 #: ../gramps/gui/fs/actions.py:1157
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link parents"
-msgstr "குடும்ப இணைப்புகள்"
+msgstr "குடும்பத் தேடல்: பெற்றோரை இணைக்கவும்"
 
 #: ../gramps/gui/fs/actions.py:1206
 msgid "Parent(s) imported and linked."
-msgstr ""
+msgstr "பெற்றோர்(கள்) இறக்குமதி செய்யப்பட்டு இணைக்கப்பட்டவை."
 
 #: ../gramps/gui/fs/actions.py:1232
 #, python-brace-format
 msgid "Failed to fetch children: {e}"
-msgstr ""
+msgstr "குழந்தைகளை அழைத்து வர முடியவில்லை: {e}"
 
 #: ../gramps/gui/fs/actions.py:1256
 msgid "No children found on FamilySearch for this person."
-msgstr ""
+msgstr "இந்த நபருக்கான FamilySearch இல் குழந்தைகள் இல்லை."
 
 #: ../gramps/gui/fs/actions.py:1268
 #, python-brace-format
 msgid " (other parent: {name})"
-msgstr ""
+msgstr " (பிற பெற்றோர்: {name})"
 
 #: ../gramps/gui/fs/actions.py:1275
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import children"
-msgstr "இறக்குமதி தோல்வியடைந்தது"
+msgstr "குழந்தைகளை இறக்குமதி வெற்றி"
 
 #: ../gramps/gui/fs/actions.py:1295
 msgid "Children imported but could not be located in the local database."
 msgstr ""
+"குழந்தைகள் இறக்குமதி செய்யப்பட்டனர் ஆனால் உள்ளக தரவுத்தளத்தில் கண்டறிய முடியவில்லை."
 
 #: ../gramps/gui/fs/actions.py:1299
-#, fuzzy
-#| msgid "Family Children"
 msgid "FamilySearch: Link children"
-msgstr "குடும்ப குழந்தைகள்"
+msgstr "குடும்பத் தேடல்: குழந்தைகளை இணைக்கவும்"
 
 #: ../gramps/gui/fs/actions.py:1367
 msgid "Child(ren) imported and linked."
-msgstr ""
+msgstr "குழந்தைகள் (குழந்தைகள்) இறக்குமதி செய்யப்பட்டு இணைக்கப்பட்டது."
 
 #: ../gramps/gui/fs/actions.py:1399
 #, python-brace-format
 msgid "Failed to fetch spouses: {e}"
-msgstr ""
+msgstr "வாழ்க்கைத் துணையை அழைத்து வருவதில் தோல்வி: {e}"
 
 #: ../gramps/gui/fs/actions.py:1430
 msgid "No spouses found on FamilySearch for this person."
-msgstr ""
+msgstr "இந்த நபருக்கான குடும்பத் தேடலில் துணைவர்கள் இல்லை."
 
 #: ../gramps/gui/fs/actions.py:1442
-#, fuzzy
-#| msgid "Remove Spouse (%s)"
 msgid "Import spouse(s)"
-msgstr "வாழ்கைத் துனை (%s)ஐ நீக்கு"
+msgstr "மனைவி(களை) இறக்குமதி வெற்றி"
 
 #: ../gramps/gui/fs/actions.py:1457
 msgid "Spouses imported but could not be located in the local database."
 msgstr ""
+"மனைவிகள் இறக்குமதி செய்யப்பட்டனர் ஆனால் உள்ளக தரவுத்தளத்தில் கண்டறிய முடியவில்லை."
 
 #: ../gramps/gui/fs/actions.py:1461
-#, fuzzy
-#| msgid "Family Links"
 msgid "FamilySearch: Link spouses"
-msgstr "குடும்ப இணைப்புகள்"
+msgstr "குடும்பத் தேடல்: வாழ்க்கைத் துணைகளை இணைக்கவும்"
 
 #: ../gramps/gui/fs/actions.py:1511
 msgid "Spouse(s) imported and linked."
-msgstr ""
+msgstr "மனைவி(கள்) இறக்குமதி செய்யப்பட்டு இணைக்கப்பட்டது."
 
 #: ../gramps/gui/fs/actions.py:1601
 #, python-brace-format
 msgid "Cleared GEDCOMX in-memory indices: {n}"
-msgstr ""
+msgstr "அழிக்கப்பட்ட GEDCOMX இன்-மெமரி குறியீடுகள்: {n}"
 
 #: ../gramps/gui/fs/actions.py:1602
 msgid "Reset shared FS Tree cache: yes"
-msgstr ""
+msgstr "பகிரப்பட்ட FS Tree தற்காலிக சேமிப்பை மீட்டமை: ஆம்"
 
 #: ../gramps/gui/fs/actions.py:1604
 #, python-brace-format
 msgid "Cleared on-disk cache: yes ({path})"
-msgstr ""
+msgstr "டிச்க் கேச் அழிக்கப்பட்டது: ஆம் ({path})"
 
 #: ../gramps/gui/fs/actions.py:1607
 msgid "Cleared on-disk cache: (not available / not supported by cache helper)"
 msgstr ""
+"டிச்க் கேச் அழிக்கப்பட்டது: (கேச் உதவியாளரால் கிடைக்கவில்லை / ஆதரிக்கப்படவில்லை)"
 
 #: ../gramps/gui/fs/actions.py:1616 ../gramps/gui/fs/actions.py:1617
-#, fuzzy
-#| msgid "Family has changed"
 msgid "FamilySearch Tags"
-msgstr "குடும்பம் மாறிவிட்டது"
+msgstr "குடும்ப தேடல் குறிச்சொற்கள்"
 
 #: ../gramps/gui/fs/actions.py:1618
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1768
@@ -17105,13 +16906,16 @@ msgstr "மூடு"
 
 #: ../gramps/gui/fs/actions.py:1619
 msgid "Retag all (Linked/NotLinked)"
-msgstr ""
+msgstr "அனைத்தையும் மீண்டும் குறியிடவும் (இணைக்கப்பட்டது/இணைக்கப்படவில்லை)"
 
 #: ../gramps/gui/fs/actions.py:1631
 msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
+"இது உங்கள் முழு மரத்தையும் வருடு செய்து FS_Linked / FS_NotLinked குறிச்சொற்களைப் "
+"பயன்படுத்தும். \n"
+"இது எந்த நபரின் தரவையும் மாற்றாது."
 
 #: ../gramps/gui/fs/actions.py:1651
 #, python-brace-format
@@ -17123,77 +16927,78 @@ msgid ""
 "Not linked: {not_linked}\n"
 "Changed: {changed}"
 msgstr ""
+"ரீடேக் முடிந்தது. \n"
+"\n"
+"மொத்த நபர்கள்: {total} \n"
+"இணைக்கப்பட்டது: {linked} \n"
+"இணைக்கப்படவில்லை: {not_linked} \n"
+"மாற்றப்பட்டது: {changed}"
 
 #: ../gramps/gui/fs/actions.py:1661
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "மறுபெயரிடப்பட்டது தோல்வியுற்றது"
+msgstr "ரீடேக் தோல்வி: {e}"
 
 #: ../gramps/gui/fs/actions.py:1712
 msgid "FamilySearch: Update FSID after redirect"
-msgstr ""
+msgstr "குடும்பத் தேடல்: திருப்பிவிடப்பட்ட பிறகு FSIDஐப் புதுப்பிக்கவும்"
 
 #: ../gramps/gui/fs/actions.py:1756
 msgid ""
 "Could not load this person from FamilySearch (no GEDCOMX person object)."
 msgstr ""
+"FamilySearch இலிருந்து இவரை ஏற்ற முடியவில்லை (GEDCOMX நபர் பொருள் இல்லை)."
 
 #: ../gramps/gui/fs/actions.py:1765
 #, python-brace-format
 msgid "Failed to download from FamilySearch: {e}"
-msgstr ""
+msgstr "FamilySearch இலிருந்து பதிவிறக்க முடியவில்லை: {e}"
 
 #: ../gramps/gui/fs/actions.py:1770
-#, fuzzy
-#| msgid "Bookmark this person"
 msgid "FamilySearch: Sync this person"
-msgstr "இந்த நபரை புக்மார்க்குங்கள்"
+msgstr "குடும்பத் தேடல்: இந்த நபரை ஒத்திசைக்கவும்"
 
 #: ../gramps/gui/fs/actions.py:1830
-#, fuzzy, python-brace-format
-#| msgid "Saving failed"
+#, python-brace-format
 msgid "Sync failed: {e}"
-msgstr "சேமித்தல் தோல்வியுற்றது"
+msgstr "ஒத்திசைவு தோல்வி: {e}"
 
 #: ../gramps/gui/fs/actions.py:1838
 msgid ""
 "Sync complete: facts/events, dates/places, and notes updated for this person."
 msgstr ""
+"ஒத்திசைவு முடிந்தது: உண்மைகள்/நிகழ்வுகள், தேதிகள்/இடங்கள் மற்றும் இவருக்காகப் "
+"புதுப்பிக்கப்பட்ட குறிப்புகள்."
 
 #: ../gramps/gui/fs/actions.py:1883
 #, python-brace-format
 msgid "Export to FamilySearch failed: {e}"
-msgstr ""
+msgstr "FamilySearch க்கு ஏற்றுமதி தோல்வியடைந்தது: {e}"
 
 #: ../gramps/gui/fs/actions.py:1915
 #, python-brace-format
 msgid "Sync to FamilySearch failed: {e}"
-msgstr ""
+msgstr "FamilySearch உடன் ஒத்திசைக்க முடியவில்லை: {e}"
 
 #: ../gramps/gui/fs/compare/options.py:46
-#, fuzzy
-#| msgid "Family Citations"
 msgid "FamilySearch Compare Options"
-msgstr "குடும்ப மேற்கோள்கள்"
+msgstr "குடும்பத் தேடல் ஒப்பீட்டு விருப்பங்கள்"
 
 #: ../gramps/gui/fs/compare/options.py:49
 msgid "Days between comparisons"
-msgstr ""
+msgstr "ஒப்பீடுகளுக்கு இடையிலான நாட்கள்"
 
 #: ../gramps/gui/fs/compare/options.py:50
 msgid "Number of days between two comparisons."
-msgstr ""
+msgstr "இரண்டு ஒப்பீடுகளுக்கு இடையிலான நாட்களின் எண்ணிக்கை."
 
 #: ../gramps/gui/fs/compare/options.py:54
-#, fuzzy
-#| msgid "Source Information"
 msgid "Force comparison"
-msgstr "மூல செய்தி"
+msgstr "கட்டாய ஒப்பீடு"
 
 #: ../gramps/gui/fs/compare/options.py:56
 msgid "Compare regardless of the number of days since the last run."
-msgstr ""
+msgstr "கடைசி ஓட்டத்திலிருந்து எத்தனை நாட்களைப் பொருட்படுத்தாமல் ஒப்பிடுங்கள்."
 
 #: ../gramps/gui/fs/compare/options.py:62
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1221
@@ -17202,22 +17007,21 @@ msgstr "நபர் வடிகட்டி"
 
 #: ../gramps/gui/fs/compare/window.py:91 ../gramps/gui/viewmanager.py:625
 msgid "FamilySearch is not configured (no session)."
-msgstr ""
+msgstr "FamilySearch உள்ளமைக்கப்படவில்லை (அமர்வு இல்லை)."
 
 #: ../gramps/gui/fs/compare/window.py:204
-#, fuzzy, python-brace-format
-#| msgid "Could not copy file"
+#, python-brace-format
 msgid ""
 "Could not open compare window:\n"
 "{e}"
-msgstr "கோப்பை படியெடுக்க முடியவில்லை"
+msgstr ""
+"ஒப்பீட்டு சாளரத்தை திறக்க முடியவில்லை: \n"
+"{e}"
 
 #: ../gramps/gui/fs/compare/window.py:214
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1967
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch Compare"
-msgstr "குடும்ப வண்ணங்கள்"
+msgstr "குடும்பத் தேடல் ஒப்பிடு"
 
 #: ../gramps/gui/fs/compare/window.py:217 ../gramps/gui/glade/rule.glade:509
 #: ../gramps/gui/glade/styleeditor.glade:416
@@ -17229,7 +17033,7 @@ msgstr "விருப்பங்கள்"
 
 #: ../gramps/gui/fs/compare/window.py:228
 msgid "FamilySearch: Compare"
-msgstr ""
+msgstr "குடும்பத் தேடல்: ஒப்பிடு"
 
 #: ../gramps/gui/fs/compare/window.py:229
 #: ../gramps/gui/fs/fs_import/importer.py:59
@@ -17242,331 +17046,270 @@ msgstr "தொடங்குகிறது"
 
 #: ../gramps/gui/fs/compare/window.py:253
 msgid "Building ordered list (1/2)"
-msgstr ""
+msgstr "கட்டிட ஆர்டர் பட்டியல் (1/2)"
 
 #: ../gramps/gui/fs/compare/window.py:283
 msgid "Processing list (2/2)"
-msgstr ""
+msgstr "செயலாக்க பட்டியல் (2/2)"
 
 #: ../gramps/gui/fs/compare/window.py:320
-#, fuzzy, python-format
-#| msgid "not found"
+#, python-format
 msgid "FS ID %s not found"
-msgstr "கண்டுபிடிக்கப்படவில்லை"
+msgstr "FS அடையாளம் %s கிடைக்கவில்லை"
 
 #: ../gramps/gui/fs/fs_import/importer.py:59
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "FamilySearch Import"
-msgstr "குடும்ப குழு அறிக்கை"
+msgstr "குடும்பத் தேடல் இறக்குமதி"
 
 #: ../gramps/gui/fs/fs_import/importer.py:90
 msgid "Downloading persons… (3/11)"
-msgstr ""
+msgstr "ஆளுமையைப் பதிவிறக்கு... (3/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:92
-#, fuzzy
-#| msgid "Youngest living person"
 msgid "Downloading person…"
-msgstr "இளைய உயிருள்ள நபர்"
+msgstr "நபரைப் பதிவிறக்குகிறது…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:104
 msgid "Downloading ancestors… (4/11)"
-msgstr ""
+msgstr "முன்னோர்களைப் பதிவிறக்குகிறது... (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:112
-#, fuzzy, python-format
-#| msgid "Submission: Generations of ancestors"
+#, python-format
 msgid "Downloading %d generations of ancestors…"
-msgstr "சமர்ப்பிப்பு: மூதாதையர்களின் தலைமுறைகள்"
+msgstr "முன்னோர்களின் %d தலைமுறைகளைப் பதிவிறக்குகிறது…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:115
 msgid "Downloading descendants… (5/11)"
-msgstr ""
+msgstr "சந்ததிகளைப் பதிவிறக்குகிறது... (5/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:123
-#, fuzzy, python-format
-#| msgid "Submission: Generations of descendants"
+#, python-format
 msgid "Downloading %d generations of descendants…"
-msgstr "சமர்ப்பிப்பு: சந்ததியினரின் தலைமுறைகள்"
+msgstr "%d தலைமுறை சந்ததிகளைப் பதிவிறக்குகிறது…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:128
 msgid "Downloading spouses… (6/11)"
-msgstr ""
+msgstr "வாழ்க்கைத் துணைகளைப் பதிவிறக்குகிறது… (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:130
 msgid "Downloading spouses…"
-msgstr ""
+msgstr "வாழ்க்கைத் துணைகளைப் பதிவிறக்குகிறது…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:136
 msgid "Downloading notes… (7/11)"
-msgstr ""
+msgstr "குறிப்புகளைப் பதிவிறக்குகிறது... (7/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:139
 msgid "Downloading notes and sources…"
-msgstr ""
+msgstr "குறிப்புகள் மற்றும் ஆதாரங்களைப் பதிவிறக்குகிறது…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:182
-#, fuzzy
-#| msgid "Import"
 msgid "Importing…"
-msgstr "இறக்குமதி"
+msgstr "இறக்குமதி செய்கிறது…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:194
 msgid "Importing places… (8/11)"
-msgstr ""
+msgstr "இடங்களை இறக்குமதி செய்கிறது… (8/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing places…"
-msgstr "நபர்களை இறக்குமதி செய்கிறது."
+msgstr "இடங்களை இறக்குமதி செய்கிறது…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons… (9/11)"
-msgstr "நபர்களை இறக்குமதி செய்கிறது."
+msgstr "நபர்களை இறக்குமதி செய்கிறது… (9/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:201
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons…"
-msgstr "நபர்களை இறக்குமதி செய்கிறது."
+msgstr "நபர்களை இறக்குமதி செய்கிறது…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:207
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families… (10/11)"
-msgstr "குடும்பங்களை இறக்குமதி செய்கிறது."
+msgstr "குடும்பங்களை இறக்குமதி செய்கிறது... (10/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:209
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families…"
-msgstr "குடும்பங்களை இறக்குமதி செய்கிறது."
+msgstr "குடும்பங்களை இறக்குமதி செய்கிறது…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:217
 #: ../gramps/gui/fs/fs_import/importer.py:229
 msgid "Importing children… (11/11)"
-msgstr ""
+msgstr "குழந்தைகளை இறக்குமதி செய்கிறது... (11/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:220
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Importing children…"
-msgstr "காப்பகத்தை இறக்குமதி செய்தல் ..."
+msgstr "குழந்தைகளை இறக்குமதி செய்கிறது…"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
-#, fuzzy
-#| msgid "Web Family Tree export options"
 msgid "FamilySearch Import Options"
-msgstr "வலை குடும்ப மரம் ஏற்றுமதி விருப்பங்கள்"
+msgstr "FamilySearch இறக்குமதி விருப்பங்கள்"
 
 #: ../gramps/gui/fs/fs_import/options.py:39
 msgid "identifier to be copied from the FamilySearch website"
-msgstr ""
+msgstr "அடையாளங்காட்டியை FamilySearch இணையதளத்தில் இருந்து நகலெடுக்க வேண்டும்"
 
 #: ../gramps/gui/fs/fs_import/options.py:43
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch upwards"
-msgstr "தலைமுறைகளின் எண்ணிக்கை:"
+msgstr "மேல்நோக்கிப் பெற வேண்டிய தலைமுறைகளின் எண்ணிக்கை"
 
 #: ../gramps/gui/fs/fs_import/options.py:47
-#, fuzzy
-#| msgid "Number of generations:"
 msgid "Number of generations to fetch downwards"
-msgstr "தலைமுறைகளின் எண்ணிக்கை:"
+msgstr "கீழ்நோக்கிப் பெற வேண்டிய தலைமுறைகளின் எண்ணிக்கை"
 
 #: ../gramps/gui/fs/fs_import/options.py:51
-#, fuzzy
-#| msgid "Non existing person"
 msgid "Do not re-import existing persons"
-msgstr "தற்போது இல்லாத நபர்"
+msgstr "இருக்கும் நபர்களை மீண்டும் இறக்குமதி செய்ய வேண்டாம்"
 
 #: ../gramps/gui/fs/fs_import/options.py:53
 msgid "Only import persons not already present"
-msgstr ""
+msgstr "ஏற்கனவே இல்லாத இறக்குமதி நபர்கள் மட்டுமே"
 
 #: ../gramps/gui/fs/fs_import/options.py:57
-#, fuzzy
-#| msgid "Include Source Information"
 msgid "Include spouse information"
-msgstr "மூல தகவல்களைச் சேர்க்கவும்"
+msgstr "மனைவியின் தகவலைச் சேர்க்கவும்"
 
 #: ../gramps/gui/fs/fs_import/options.py:61
-#, fuzzy
-#| msgid "Birth source"
 msgid "Import sources"
-msgstr "பிறப்பு மூல"
+msgstr "இறக்குமதி ஆதாரங்கள்"
 
 #: ../gramps/gui/fs/fs_import/options.py:65
-#, fuzzy
-#| msgid "Importer"
 msgid "Import notes"
-msgstr "இறக்குமதியாளர்"
+msgstr "குறிப்புகளை இறக்குமதி செய்யவும்"
 
 #: ../gramps/gui/fs/fs_import/options.py:68
-#, fuzzy
-#| msgid "Repository"
 msgid "Verbosity"
-msgstr "களஞ்சியம்"
+msgstr "வாய்மொழி"
 
 #: ../gramps/gui/fs/fs_import/options.py:70
 msgid "Verbosity level from 0 (min) to 3 (very verbose)"
-msgstr ""
+msgstr "0 (நிமிடம்) முதல் 3 வரை (மிகவும் வாய்மொழி)"
 
 #: ../gramps/gui/fs/fs_import/tool.py:39
 msgid "FamilySearch Import Tool"
-msgstr ""
+msgstr "குடும்பத் தேடல் இறக்குமதி கருவி"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:517
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:860
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:647
 msgid "Match"
-msgstr ""
+msgstr "போட்டி"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:518
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:864
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:648
 #: ../gramps/gui/fs/sync_directions.py:887
-#, fuzzy
-#| msgid "Different database"
 msgid "Different"
-msgstr "வெவ்வேறு தரவுத்தளம்"
+msgstr "வித்தியாசமானது"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:519
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:866
 #: ../gramps/gui/fs/sync_directions.py:889
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in Gramps"
-msgstr "பாய்ச்சல் ஆண்டுகளில் மட்டுமே"
+msgstr "கிராமங்களில் மட்டுமே"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:520
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:868
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:649
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Only in FamilySearch"
-msgstr "பாய்ச்சல் ஆண்டுகளில் மட்டுமே"
+msgstr "குடும்பத் தேடலில் மட்டும்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:521
 msgid "Critical mismatch"
-msgstr ""
+msgstr "முக்கியமான பொருத்தமின்மை"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:525
 msgid ""
 "Tip: resize columns by dragging headers | scroll inside tabs | refresh to re-"
 "check FamilySearch"
 msgstr ""
+"உதவிக்குறிப்பு: தலைப்புகளை இழுப்பதன் மூலம் நெடுவரிசைகளின் அளவை மாற்றவும் | தாவல்களுக்குள் "
+"உருட்டவும் | FamilySearch ஐ மீண்டும் சரிபார்க்க புதுப்பிக்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:678
 msgid "Use FS"
-msgstr ""
+msgstr "FS ஐப் பயன்படுத்தவும்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:685
 #: ../gramps/gui/fs/sync_directions.py:954
 msgid "Field"
-msgstr ""
+msgstr "புலம்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:686
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:831
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1205
-#, fuzzy
-#| msgid "Current Name"
 msgid "Current Gramps"
-msgstr "தற்போதைய பெயர்"
+msgstr "தற்போதைய கிராம்கள்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:688
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:833
 msgid "Final Gramps result"
-msgstr ""
+msgstr "இறுதி கிராம்ப் முடிவு"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Kept in Gramps"
-msgstr "பாய்ச்சல் ஆண்டுகளில் மட்டுமே"
+msgstr "கிராமங்களில் வைக்கப்பட்டுள்ளது"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:771
-#, fuzzy
-#| msgid "Remove child from family"
 msgid "Will copy from FamilySearch"
-msgstr "குடும்பத்திலிருந்து குழந்தையை அகற்றவும்"
+msgstr "குடும்பத் தேடலில் இருந்து நகலெடுக்கப்படும்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:774
-#, fuzzy
-#| msgid "Run selected tool"
 msgid "Review and select to copy"
-msgstr "தேர்ந்தெடுக்கப்பட்ட கருவியை ஓட்டு"
+msgstr "மதிப்பாய்வு செய்து நகலெடுக்க தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:776
 msgid "Not mergeable in this row"
-msgstr ""
+msgstr "இந்த வரிசையில் ஒன்றிணைக்க முடியாது"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:862
 msgid "Critical"
-msgstr ""
+msgstr "விமர்சனம்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:869
-#, fuzzy
-#| msgid "_Select All"
 msgid "Selectable"
-msgstr "அனைத்தையும் தேர்ந்தெடுக்கவும்"
+msgstr "தேர்ந்தெடுக்கக்கூடியது"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:930
-#, fuzzy
-#| msgid "Family Gallery"
 msgid "Copy this FamilySearch value into Gramps"
-msgstr "குடும்ப கேலரி"
+msgstr "இந்த FamilySearch மதிப்பை Gramps இல் நகலெடுக்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:932
 msgid "This row cannot be merged directly"
-msgstr ""
+msgstr "இந்த வரிசையை நேரடியாக இணைக்க முடியாது"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:976
 msgid "Inconsistencies"
-msgstr ""
+msgstr "முரண்பாடுகள்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:980
 msgid "The dates are different."
-msgstr ""
+msgstr "தேதிகள் வேறு."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:982
-#, fuzzy
-#| msgid "Select a different person"
 msgid "The values are different."
-msgstr "வேறு நபரைத் தேர்ந்தெடுக்கவும்"
+msgstr "மதிப்புகள் வேறுபட்டவை."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:984
 msgid "Review this difference before merging."
-msgstr ""
+msgstr "ஒன்றிணைக்கும் முன் இந்த வேறுபாட்டை மதிப்பாய்வு செய்யவும்."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1120
-#, fuzzy
-#| msgid "Gramps package"
 msgid "Gramps person"
-msgstr "கிராம்ப்ச் தொகுப்பு"
+msgstr "கிராம்ப்ச் நபர்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1237
-#, fuzzy
-#| msgid "Only on leap years"
 msgid "Result in Gramps"
-msgstr "பாய்ச்சல் ஆண்டுகளில் மட்டுமே"
+msgstr "கிராம்சில் முடிவு"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1603
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve the selected person."
-msgstr "நபரை நீக்குவது தரவுத்தளத்திலிருந்து நபரை அகற்றும்."
+msgstr "தேர்ந்தெடுக்கப்பட்ட நபரைத் தீர்க்க முடியவில்லை."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1612
 msgid "Select at least one FamilySearch row to merge."
-msgstr ""
+msgstr "ஒன்றிணைக்க குறைந்தபட்சம் ஒரு FamilySearch வரிசையைத் தேர்ந்தெடுக்கவும்."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1617
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1673
@@ -17574,94 +17317,83 @@ msgstr ""
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1687
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1733
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1741
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch Compare/Merge"
-msgstr "குடும்ப வண்ணங்கள்"
+msgstr "குடும்பத் தேடல் ஒப்பீடு/ஒன்றிணைத்தல்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1620
 #, python-brace-format
 msgid "Copy {count} selected FamilySearch item(s) into the Gramps person?"
 msgstr ""
+"{count} தேர்ந்தெடுக்கப்பட்ட FamilySearch உருப்படியை(களை) Gramps நபருக்கு நகலெடுக்கவா?"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1623
-#, fuzzy
-#| msgid "_Merge..."
 msgid "_Merge"
-msgstr "_மர் ..."
+msgstr "_இணைக்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1634
-#, fuzzy
-#| msgid "Tag selected rows"
 msgid "FamilySearch: Merge selected rows"
-msgstr "குறிச்சொல் தேர்ந்தெடுக்கப்பட்ட வரிசைகள்"
+msgstr "குடும்பத் தேடல்: தேர்ந்தெடுக்கப்பட்ட வரிசைகளை ஒன்றிணைக்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1674
 #, python-brace-format
 msgid "{count} item(s) copied into Gramps."
-msgstr ""
+msgstr "{count} உருப்படிகள்) கிராம்சில் நகலெடுக்கப்பட்டது."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1681
 #, python-brace-format
 msgid ""
 "{count} item(s) copied into Gramps; {failed} row(s) could not be applied."
 msgstr ""
+"{count} உருப்படிகள்) கிராம்சில் நகலெடுக்கப்பட்டது; {failed} வரிசைகள்) பயன்படுத்த "
+"முடியவில்லை."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1688
 msgid "No selected rows could be copied into Gramps."
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட வரிசைகள் எதையும் Gramps இல் நகலெடுக்க முடியாது."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1696
-#, fuzzy
-#| msgid "Select a person for the report"
 msgid "Select a person first."
-msgstr "அறிக்கைக்கு ஒரு நபரைத் தேர்ந்தெடுக்கவும்"
+msgstr "முதலில் ஒரு நபரைத் தேர்ந்தெடுக்கவும்."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1700
 msgid "You must login first."
-msgstr ""
+msgstr "நீங்கள் முதலில் உள்நுழைய வேண்டும்."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1716
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve the selected person in the database."
-msgstr "நபரை நீக்குவது தரவுத்தளத்திலிருந்து நபரை அகற்றும்."
+msgstr "தரவுத்தளத்தில் தேர்ந்தெடுக்கப்பட்ட நபரைத் தீர்க்க முடியவில்லை."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1723
 msgid ""
 "This Gramps person is not linked to FamilySearch yet. Use 'Link person'."
 msgstr ""
+"இந்த Gramps நபர் இதுவரை FamilySearch உடன் இணைக்கப்படவில்லை. 'நபரை இணைக்கவும்' என்பதைப் "
+"பயன்படுத்தவும்."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1752
-#, fuzzy
-#| msgid "Remove child from family"
 msgid "Refresh from FamilySearch"
-msgstr "குடும்பத்திலிருந்து குழந்தையை அகற்றவும்"
+msgstr "FamilySearch இலிருந்து புதுப்பிக்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1759
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1840
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Import sources..."
-msgstr "காப்பகத்தை இறக்குமதி செய்தல் ..."
+msgstr "ஆதாரங்களை இறக்குமதி செய்..."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1781
 msgid ""
 "Review FamilySearch differences, choose the rows to copy, then merge them "
 "into Gramps. The direction is FamilySearch to Gramps only."
 msgstr ""
+"FamilySearch வேறுபாடுகளை மதிப்பாய்வு செய்து, நகலெடுக்க வரிசைகளைத் தேர்வுசெய்து, அவற்றை "
+"Gramps இல் இணைக்கவும். திசையானது குடும்பத் தேடல் முதல் கிராம்ப் வரை மட்டுமே."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1800
-#, fuzzy
-#| msgid "_Merge..."
 msgid "Merge"
-msgstr "_மர் ..."
+msgstr "ஒன்றிணைக்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1809
-#, fuzzy
-#| msgid "Details"
 msgid "Audit Details"
-msgstr "விவரங்கள்"
+msgstr "தணிக்கை விவரங்கள்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1829
 #: ../gramps/plugins/importer/importxml.py:351
@@ -17686,10 +17418,8 @@ msgid "Sources"
 msgstr "மூலங்கள்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1838
-#, fuzzy
-#| msgid "Merge the selected notes"
 msgid "Merge selected"
-msgstr "தேர்ந்தெடுக்கப்பட்ட குறிப்புகளை ஒன்றிணைக்கவும்"
+msgstr "ஒன்றிணைத்தல் தேர்ந்தெடுக்கப்பட்டது"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1839
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
@@ -17697,168 +17427,136 @@ msgid "Refresh"
 msgstr "புதுப்பிப்பு"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1968
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Preparing FamilySearch sources"
-msgstr "குடும்ப மரத்தை இறக்குமதி செய்யுங்கள்"
+msgstr "குடும்பத் தேடல் ஆதாரங்களைத் தயாரித்தல்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1974
 msgid "Loading source links (1/2)"
-msgstr ""
+msgstr "ஆதார இணைப்புகளை ஏற்றுகிறது (1/2)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1996
 msgid "Parsing source details (2/2)"
-msgstr ""
+msgstr "மூல விவரங்களைப் பாகுபடுத்துதல் (2/2)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2017
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2051
 #: ../gramps/gui/fs/sync_directions.py:454
-#, fuzzy
-#| msgid "Gramps database"
 msgid "Gramps date"
-msgstr "கிராம்ப்ச் தரவுத்தளம்"
+msgstr "கிராம்ப் தேதி"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2018
 #: ../gramps/gui/fs/sync_directions.py:455
-#, fuzzy
-#| msgid "Gramplet"
 msgid "Gramps value"
-msgstr "கிராம்பெட்"
+msgstr "கிராம்ப் மதிப்பு"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2019
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2054
 #: ../gramps/gui/fs/sync_directions.py:456
-#, fuzzy
-#| msgid "date"
 msgid "FS date"
-msgstr "திகதி"
+msgstr "FS தேதி"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2020
 #: ../gramps/gui/fs/sync_directions.py:457
-#, fuzzy
-#| msgid "Family Gallery"
 msgid "FamilySearch value"
-msgstr "குடும்ப கேலரி"
+msgstr "குடும்பத் தேடல் மதிப்பு"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2023
 #: ../gramps/gui/fs/sync_directions.py:460
-#, fuzzy
-#| msgid "Type"
 msgid "xType"
-msgstr "வகை"
+msgstr "ஃச் வகை"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2024
 #: ../gramps/gui/fs/sync_directions.py:461
 msgid "xGr"
-msgstr ""
+msgstr "xGr"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2025
 #: ../gramps/gui/fs/sync_directions.py:462
 msgid "xFs"
-msgstr ""
+msgstr "xFs"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2026
 #: ../gramps/gui/fs/sync_directions.py:463
 msgid "xGr2"
-msgstr ""
+msgstr "xGr2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2027
 #: ../gramps/gui/fs/sync_directions.py:464
 msgid "xFs2"
-msgstr ""
+msgstr "xFs2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2037
 msgid "Scope"
-msgstr ""
+msgstr "நோக்கம்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2040
-#, fuzzy
-#| msgid "Title"
 msgid "FS Title"
-msgstr "தலைப்பு"
+msgstr "FS தலைப்பு"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2050
 msgid "Kind"
-msgstr ""
+msgstr "வகையான"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2052
-#, fuzzy
-#| msgid "Gramps item:"
 msgid "Gramps title"
-msgstr "கிராம்ப்ச் உருப்படி:"
+msgstr "கிராம்ச் தலைப்பு"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2053
-#, fuzzy
-#| msgid "Gramps"
 msgid "Gramps URL"
-msgstr "கிராம்ப்ச்"
+msgstr "Gramps முகவரி"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2055
-#, fuzzy
-#| msgid "title"
 msgid "FS title"
-msgstr "தலைப்பு"
+msgstr "FS தலைப்பு"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2056
-#, fuzzy
-#| msgid "Search URL"
 msgid "FS URL"
-msgstr "முகவரி ஐத் தேடுங்கள்"
+msgstr "FS முகவரி"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2058
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:313
-#, fuzzy
-#| msgid "Contributions by"
 msgid "Contributor"
-msgstr "வழங்கிய பங்களிப்புகள்"
+msgstr "பங்களிப்பாளர்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2059
-#, fuzzy
-#| msgid "Modifier"
 msgid "Modified"
-msgstr "மாற்றியமைப்பாளர்"
+msgstr "மாற்றியமைக்கப்பட்ட"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2060
 msgid "FS ID"
-msgstr ""
+msgstr "FS அடையாளம்"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2074
-#, fuzzy, python-brace-format
-#| msgid "Import failed"
+#, python-brace-format
 msgid "Compare failed: {e}"
-msgstr "இறக்குமதி தோல்வியடைந்தது"
+msgstr "ஒப்பிட முடியவில்லை: {e}"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2166
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2257
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2272
-#, fuzzy
-#| msgid "Missing Given Name"
 msgid "(missing in Gramps)"
-msgstr "கொடுக்கப்பட்ட பெயரைக் காணவில்லை"
+msgstr "(கிராம்சில் காணவில்லை)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2436
-#, fuzzy
-#| msgid "No mention"
 msgid "Mention"
-msgstr "குறிப்பிடப்படவில்லை"
+msgstr "குறிப்பிடவும்"
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:69
 msgid "FamilySearch is not configured (missing app key / redirect)."
 msgstr ""
+"FamilySearch உள்ளமைக்கப்படவில்லை (காணவில்லை பயன்பாட்டு விசை / திசைதிருப்பல்)."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:82
 msgid "Already logged in to FamilySearch."
-msgstr ""
+msgstr "ஏற்கனவே FamilySearch இல் உள்நுழைந்துள்ளீர்கள்."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:86
 msgid "Logged in to FamilySearch."
-msgstr ""
+msgstr "FamilySearch இல் உள்நுழைந்துள்ளார்."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:90
-#, fuzzy
-#| msgid "Saving failed"
 msgid "Login failed."
-msgstr "சேமித்தல் தோல்வியுற்றது"
+msgstr "உள்நுழைவு தோல்வியடைந்தது."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:93
 #, python-brace-format
@@ -17866,44 +17564,39 @@ msgid ""
 "Login failed:\n"
 "{err}"
 msgstr ""
+"உள்நுழைவு தோல்வி: \n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:338
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:186
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:191
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Import FamilySearch sources"
-msgstr "குடும்ப மரத்தை இறக்குமதி செய்யுங்கள்"
+msgstr "FamilySearch ஆதாரங்களை இறக்குமதி செய்யவும்"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:468
-#, fuzzy, python-brace-format
-#| msgid "%s could not be imported"
+#, python-brace-format
 msgid ""
 "Some sources could not be imported:\n"
 "{errs}"
-msgstr "%s இறக்குமதி செய்ய முடியவில்லை"
+msgstr ""
+"சில ஆதாரங்களை இறக்குமதி செய்ய முடியவில்லை: \n"
+"{errs}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:119
 msgid "No FamilySearch sources found to import."
-msgstr ""
+msgstr "இறக்குமதி செய்ய FamilySearch ஆதாரங்கள் எதுவும் இல்லை."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:266
-#, fuzzy
-#| msgid "Selected"
 msgid "Detected"
-msgstr "தேர்ந்தெடுக்கப்பட்டது"
+msgstr "கண்டறியப்பட்டது"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:284
-#, fuzzy
-#| msgid "Import"
 msgid "Import as"
-msgstr "இறக்குமதி"
+msgstr "என இறக்குமதி செய்யவும்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:295
-#, fuzzy
-#| msgid "Date"
 msgid "FS Date"
-msgstr "தேதி"
+msgstr "FS தேதி"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:314
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:520
@@ -17912,72 +17605,53 @@ msgid "Images"
 msgstr "படங்கள்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:322
-#, fuzzy
-#| msgid "Person Gallery"
 msgid "To Person gallery"
-msgstr "நபர் கேலரி"
+msgstr "நபர் கேலரிக்கு"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:339
-#, fuzzy
-#| msgid "Action"
 msgid "Actions"
-msgstr "செயல்"
+msgstr "செயல்கள்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:342
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage Images…"
-msgstr "தரவுத்தளங்களை நிர்வகிக்கவும்"
+msgstr "படங்களை நிர்வகி…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:382
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:384
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage images"
-msgstr "தரவுத்தளங்களை நிர்வகிக்கவும்"
+msgstr "படங்களை நிர்வகிக்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:390
-#, fuzzy
-#| msgid "Add a new source"
 msgid "Add from source…"
-msgstr "புதிய மூலத்தைச் சேர்க்கவும்"
+msgstr "மூலத்திலிருந்து சேர்…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:391
 msgid "Open the source page and download images"
-msgstr ""
+msgstr "மூலப் பக்கத்தைத் திறந்து படங்களைப் பதிவிறக்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:393
-#, fuzzy
 msgid "Choose file…"
-msgstr "பெற்றோர்களை தேர்ந்தெடு"
+msgstr "கோப்பைத் தேர்ந்தெடு…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:394
 msgid "Pick existing files from disk"
-msgstr ""
+msgstr "வட்டில் இருந்து ஏற்கனவே உள்ள கோப்புகளைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:396
-#, fuzzy
-#| msgid "Rename failed"
 msgid "Rename files"
-msgstr "மறுபெயரிடப்பட்டது தோல்வியுற்றது"
+msgstr "கோப்புகளை மறுபெயரிடவும்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:397
-#, fuzzy
-#| msgid "Remove the selected family event"
 msgid "Rename selected files on disk"
-msgstr "தேர்ந்தெடுக்கப்பட்ட குடும்ப நிகழ்வை அகற்றவும்"
+msgstr "வட்டில் தேர்ந்தெடுக்கப்பட்ட கோப்புகளை மறுபெயரிடவும்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:436
-#, fuzzy
-#| msgid "File extension"
 msgid "Filename (without extension)"
-msgstr "கோப்பு நீட்டிப்பு"
+msgstr "கோப்பு பெயர் (நீட்டிப்பு இல்லாமல்)"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:440
-#, fuzzy
-#| msgid "File extension"
 msgid "Extension"
-msgstr "கோப்பு நீட்டிப்பு"
+msgstr "நீட்டிப்பு"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:453
 msgid ""
@@ -17986,32 +17660,31 @@ msgid ""
 "• Extensions are preserved.\n"
 "• If a file with the new name exists, a numeric suffix will be added."
 msgstr ""
+"குறிப்புகள்: \n"
+"• திருத்த பெயரை இருமுறை சொடுக்கு செய்யவும். \n"
+"• நீட்டிப்புகள் பாதுகாக்கப்படுகின்றன. \n"
+"• புதிய பெயரில் ஒரு கோப்பு இருந்தால், ஒரு எண் பின்னொட்டு சேர்க்கப்படும்."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:474
-#, fuzzy
-#| msgid "No map service is available."
 msgid "Image picker module is not available."
-msgstr "வரைபட பணி எதுவும் கிடைக்கவில்லை."
+msgstr "படத் தேர்வி தொகுதி கிடைக்கவில்லை."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:481
-#, fuzzy
-#| msgid "Add Source (%s)"
 msgid "Add Source Image"
-msgstr "மூலத்தைச் சேர்க்கவும் (%s)"
+msgstr "மூலப் படத்தைச் சேர்க்கவும்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:485
-#, fuzzy, python-brace-format
-#| msgid "Could not open file: %s"
+#, python-brace-format
 msgid ""
 "Could not open image picker:\n"
 "{e}"
-msgstr "%s கோப்பை திறக்க முடியவில்லை"
+msgstr ""
+"படத் தேர்வியைத் திறக்க முடியவில்லை: \n"
+"{e}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:503
-#, fuzzy
-#| msgid "Close file first"
 msgid "Choose image file(s)"
-msgstr "முதலில் கோப்பை மூடு"
+msgstr "படக் கோப்பை(களை) தேர்வு செய்யவும்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:509
 #: ../gramps/gui/glade/mergedata.glade:170
@@ -18022,178 +17695,157 @@ msgid "Select"
 msgstr "தேர்ந்தெடு"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:598
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid ""
 "Rename failed for:\n"
 "{p}\n"
 "\n"
 "{err}"
-msgstr "மறுபெயரிடப்பட்டது தோல்வியுற்றது"
+msgstr ""
+"மறுபெயரிட முடியவில்லை: \n"
+"{p} \n"
+"\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:631
 #: ../gramps/gui/fs/sync_directions.py:874
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select all"
-msgstr "அனைத்தையும் தேர்ந்தெடுக்கவும்"
+msgstr "அனைத்தையும் தெரிவுசெய்"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:652
 msgid ""
 "Tip: click “Manage Images…” to add/choose/rename files before importing."
 msgstr ""
+"உதவிக்குறிப்பு: இறக்குமதி செய்வதற்கு முன் கோப்புகளைச் சேர்க்க/தேர்ந்தெடுக்க/மறுபெயரிட "
+"\"படங்களை நிர்வகி...\" என்பதைக் சொடுக்கு செய்யவும்."
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:694
 #, python-brace-format
 msgid "{n} source(s) imported."
-msgstr ""
+msgstr "{n} மூல(கள்) இறக்குமதி செய்யப்பட்டது."
 
 #: ../gramps/gui/fs/sync_directions.py:208
-#, fuzzy
-#| msgid "Produced with Gramps"
 msgid "Overwrite with Gramps"
-msgstr "கிராம்ப்களுடன் தயாரிக்கப்படுகிறது"
+msgstr "Gramps மூலம் மேலெழுதவும்"
 
 #: ../gramps/gui/fs/sync_directions.py:210
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Add from Gramps"
-msgstr "ஒரு கிராம்ப் சேர்க்கவும்"
+msgstr "Gramps இலிருந்து சேர்க்கவும்"
 
 #: ../gramps/gui/fs/sync_directions.py:211
 msgid "Apply from Gramps"
-msgstr ""
+msgstr "Gramps இருந்து விண்ணப்பிக்கவும்"
 
 #: ../gramps/gui/fs/sync_directions.py:516
-#, fuzzy
-#| msgid "Primary"
 msgid "Primary Name"
-msgstr "முதன்மை"
+msgstr "முதன்மை பெயர்"
 
 #: ../gramps/gui/fs/sync_directions.py:596
 #: ../gramps/gui/fs/sync_directions.py:622
-#, fuzzy, python-brace-format
-#| msgid "Note Filter"
+#, python-brace-format
 msgid "Note: {title}"
-msgstr "குறிப்பு வடிகட்டி"
+msgstr "குறிப்பு: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:597
 #: ../gramps/gui/fs/sync_directions.py:623
-#, fuzzy
-#| msgid "title"
 msgid "(untitled)"
-msgstr "தலைப்பு"
+msgstr "(பெயரிடப்படாத)"
 
 #: ../gramps/gui/fs/sync_directions.py:601
 #: ../gramps/gui/fs/sync_directions.py:626
 #: ../gramps/gui/fs/sync_directions.py:627
 #: ../gramps/gui/fs/sync_directions.py:969
 msgid "(empty)"
-msgstr ""
+msgstr "(காலி)"
 
 #: ../gramps/gui/fs/sync_directions.py:761
 #: ../gramps/gui/fs/sync_directions.py:1289
-#, fuzzy
-#| msgid "Source filter name:"
 msgid "Source from Gramps"
-msgstr "மூல வடிகட்டி பெயர்:"
+msgstr "Gramps இன் சான்று"
 
 #: ../gramps/gui/fs/sync_directions.py:772
-#, fuzzy
 msgid "(deleted on FamilySearch)"
-msgstr "(_D)இடத்தை நீக்கு"
+msgstr "(FamilySearch இல் நீக்கப்பட்டது)"
 
 #: ../gramps/gui/fs/sync_directions.py:774
-#, fuzzy
-#| msgid "Submission: Family file"
 msgid "(missing on FamilySearch)"
-msgstr "சமர்ப்பிப்பு: குடும்ப கோப்பு"
+msgstr "(FamilySearch இல் காணவில்லை)"
 
 #: ../gramps/gui/fs/sync_directions.py:776
 msgid "(not attached to this person on FamilySearch)"
-msgstr ""
+msgstr "(FamilySearch இல் இவருடன் இணைக்கப்படவில்லை)"
 
 #: ../gramps/gui/fs/sync_directions.py:783
-#, fuzzy, python-brace-format
-#| msgid "Source: Title"
+#, python-brace-format
 msgid "Source: {title}"
-msgstr "ஆதாரம்: தலைப்பு"
+msgstr "ஆதாரம்: {title}"
 
 #: ../gramps/gui/fs/sync_directions.py:806
 #: ../gramps/gui/fs/sync_directions.py:814
-#, fuzzy
-#| msgid "Select Family"
 msgid "Sync to FamilySearch"
-msgstr "குடும்பத்தைத் தேர்ந்தெடுக்கவும்"
+msgstr "FamilySearch உடன் ஒத்திசைக்கவும்"
 
 #: ../gramps/gui/fs/sync_directions.py:815
-#, fuzzy
-#| msgid "Select Family"
 msgid "Gramps to FamilySearch"
-msgstr "குடும்பத்தைத் தேர்ந்தெடுக்கவும்"
+msgstr "குடும்பத் தேடலுக்கான கிராம்ப்ச்"
 
 #: ../gramps/gui/fs/sync_directions.py:821
-#, fuzzy
-#| msgid "Selected"
 msgid "Apply Selected"
-msgstr "தேர்ந்தெடுக்கப்பட்டது"
+msgstr "தேர்ந்தெடுக்கப்பட்டவை விண்ணப்பிக்கவும்"
 
 #: ../gramps/gui/fs/sync_directions.py:839
-#, fuzzy
-#| msgid "Family has changed"
 msgid "Choose FamilySearch updates"
-msgstr "குடும்பம் மாறிவிட்டது"
+msgstr "FamilySearch புதுப்பிப்புகளைத் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/fs/sync_directions.py:846
 msgid ""
 "Review each Gramps value before pushing it to FamilySearch. The default "
 "action keeps FamilySearch unchanged and no deletions are performed."
 msgstr ""
+"குடும்பத் தேடலுக்குத் தள்ளும் முன் ஒவ்வொரு கிராம்ப் மதிப்பையும் மதிப்பாய்வு செய்யவும். "
+"இயல்புநிலை செயல் FamilySearch ஐ மாற்றாமல் வைத்திருக்கும் மற்றும் எந்த நீக்குதலும் "
+"செய்யப்படவில்லை."
 
 #: ../gramps/gui/fs/sync_directions.py:865
-#, fuzzy
-#| msgid "Change Name"
 msgid "Change message:"
-msgstr "பெயரை மாற்றவும்"
+msgstr "செய்தியை மாற்று:"
 
 #: ../gramps/gui/fs/sync_directions.py:891
-#, fuzzy
-#| msgid "No mention"
 msgid "Needs attention"
-msgstr "குறிப்பிடப்படவில்லை"
+msgstr "கவனம் தேவை"
 
 #: ../gramps/gui/fs/sync_directions.py:893
 msgid "Use the Action column to choose what FamilySearch receives."
 msgstr ""
+"FamilySearch எதைப் பெறுகிறது என்பதைத் தேர்வுசெய்ய, செயல் நெடுவரிசையைப் பயன்படுத்தவும்."
 
 #: ../gramps/gui/fs/sync_directions.py:957 ../gramps/gui/undohistory.py:115
 msgid "Action"
 msgstr "செயல்"
 
 #: ../gramps/gui/fs/sync_directions.py:995
-#, fuzzy
-#| msgid "Merge Family"
 msgid "Keep FamilySearch"
-msgstr "குடும்பத்தை ஒன்றிணைக்கவும்"
+msgstr "குடும்பத் தேடலை வைத்திருங்கள்"
 
 #: ../gramps/gui/fs/sync_directions.py:999
 msgid "Choose whether to keep FamilySearch or push this Gramps value."
 msgstr ""
+"FamilySearch ஐ வைத்திருக்க வேண்டுமா அல்லது இந்த Gramps மதிப்பைத் தள்ள வேண்டுமா என்பதைத் "
+"தேர்வுசெய்யவும்."
 
 #: ../gramps/gui/fs/sync_directions.py:1021
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(selected)d of %(total)d selected"
-msgstr "%(current)d %(total)d"
+msgstr "%(selected)d இல் %(total)d தேர்ந்தெடுக்கப்பட்டது"
 
 #: ../gramps/gui/fs/sync_directions.py:1076
 #: ../gramps/gui/fs/sync_directions.py:1651
 msgid "Not connected to FamilySearch."
-msgstr ""
+msgstr "FamilySearch உடன் இணைக்கப்படவில்லை."
 
 #: ../gramps/gui/fs/sync_directions.py:1092
 msgid "No FamilySearch Person ID is set for this person."
-msgstr ""
+msgstr "இந்த நபருக்கு FamilySearch நபர் அடையாளம் எதுவும் அமைக்கப்படவில்லை."
 
 #: ../gramps/gui/fs/sync_directions.py:1101
 msgid ""
@@ -18202,6 +17854,10 @@ msgid ""
 "Clear or replace the saved FSID before exporting again, or restore that "
 "FamilySearch person first."
 msgstr ""
+"இந்த இணைக்கப்பட்ட FamilySearch நபர் நீக்கப்பட்டுள்ளார்/செயல்படவில்லை. \n"
+"\n"
+"மீண்டும் ஏற்றுமதி செய்வதற்கு முன் சேமித்த FSID ஐ அழிக்கவும் அல்லது மாற்றவும் அல்லது முதலில் "
+"அந்த FamilySearch நபரை மீட்டெடுக்கவும்."
 
 #: ../gramps/gui/fs/sync_directions.py:1112
 msgid ""
@@ -18209,22 +17865,26 @@ msgid ""
 "\n"
 "Clear or replace the saved FSID before exporting again."
 msgstr ""
+"இந்த இணைக்கப்பட்ட FamilySearch நபரைக் கண்டுபிடிக்க முடியவில்லை. \n"
+"\n"
+"மீண்டும் ஏற்றுமதி செய்வதற்கு முன் சேமிக்கப்பட்ட FSID ஐ அழிக்கவும் அல்லது மாற்றவும்."
 
 #: ../gramps/gui/fs/sync_directions.py:1128
 msgid "FamilySearch: Refresh merged ID"
-msgstr ""
+msgstr "குடும்பத் தேடல்: இணைக்கப்பட்ட ஐடியைப் புதுப்பிக்கவும்"
 
 #: ../gramps/gui/fs/sync_directions.py:1143
 msgid ""
 "FamilySearch person could not be loaded fresh from the API.\n"
 "Try 'Sync from FamilySearch' or clear the cache, then try again."
 msgstr ""
+"FamilySearch நபரை பநிஇ இலிருந்து புதிதாக ஏற்ற முடியவில்லை. \n"
+"'FamilySearch இலிருந்து ஒத்திசை' முயற்சிக்கவும் அல்லது தற்காலிக சேமிப்பை அழிக்கவும், "
+"பிறகு மீண்டும் முயற்சிக்கவும்."
 
 #: ../gramps/gui/fs/sync_directions.py:1171
-#, fuzzy
-#| msgid "No parents found"
 msgid "No pushable differences found."
-msgstr "பெற்றோர் காணப்படவில்லை"
+msgstr "தள்ளக்கூடிய வேறுபாடுகள் எதுவும் இல்லை."
 
 #: ../gramps/gui/fs/sync_directions.py:1206
 msgid ""
@@ -18232,27 +17892,29 @@ msgid ""
 "FamilySearch payload. This usually means the fact type could not be "
 "determined."
 msgstr ""
+"வேறுபாடுகள் கண்டறியப்பட்டன, ஆனால் எதையும் சரியான FamilySearch பேலோடாக மாற்ற முடியவில்லை. "
+"இது பொதுவாக உண்மை வகையைத் தீர்மானிக்க முடியாது என்பதாகும்."
 
 #: ../gramps/gui/fs/sync_directions.py:1247
 msgid "FamilySearch update failed (names/facts)."
-msgstr ""
+msgstr "FamilySearch புதுப்பிப்பு தோல்வியடைந்தது (பெயர்கள்/உண்மைகள்)."
 
 #: ../gramps/gui/fs/sync_directions.py:1270
 msgid "FamilySearch update failed (notes)."
-msgstr ""
+msgstr "FamilySearch புதுப்பிப்பு தோல்வியடைந்தது (குறிப்புகள்)."
 
 #: ../gramps/gui/fs/sync_directions.py:1305
 #, python-brace-format
 msgid "FamilySearch source creation failed for: {t}"
-msgstr ""
+msgstr "FamilySearch மூல உருவாக்கம் தோல்வியடைந்தது: {t}"
 
 #: ../gramps/gui/fs/sync_directions.py:1363
 msgid "FamilySearch update failed (sources)."
-msgstr ""
+msgstr "FamilySearch புதுப்பிப்பு தோல்வியடைந்தது (ஆதாரங்கள்)."
 
 #: ../gramps/gui/fs/sync_directions.py:1406
 msgid "FamilySearch: Link uploaded memories"
-msgstr ""
+msgstr "FamilySearch: இணைப்பு பதிவேற்றிய நினைவுகள்"
 
 #: ../gramps/gui/fs/sync_directions.py:1468
 #, python-format
@@ -18261,25 +17923,26 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"சில நினைவுகளைப் பதிவேற்ற முடியவில்லை: \n"
+"\n"
+"%s"
 
 #: ../gramps/gui/fs/sync_directions.py:1474
 msgid "FamilySearch updated successfully."
-msgstr ""
+msgstr "FamilySearch வெற்றிகரமாக புதுப்பிக்கப்பட்டது."
 
 #: ../gramps/gui/fs/sync_directions.py:1478
 #, python-brace-format
 msgid "FamilySearch sync failed: {e}"
-msgstr ""
+msgstr "FamilySearch ஒத்திசைவு தோல்வியடைந்தது: {e}"
 
 #: ../gramps/gui/fs/sync_directions.py:1490
 msgid "Export to FamilySearch (basic)"
-msgstr ""
+msgstr "FamilySearch க்கு ஏற்றுமதி வெற்றி (அடிப்படை)"
 
 #: ../gramps/gui/fs/sync_directions.py:1495
-#, fuzzy
-#| msgid "Exporter"
 msgid "Export"
-msgstr "ஏற்றுமதியாளர்"
+msgstr "ஏற்றுமதி"
 
 #: ../gramps/gui/fs/sync_directions.py:1507
 msgid ""
@@ -18287,18 +17950,17 @@ msgid ""
 "Basic export only: name + birth/death facts.\n"
 "<i>No deletions. Existing active linked people are not overwritten here.</i>"
 msgstr ""
+"<b>FamilySearch மற்றும் இணைப்பு உறவுகளில் விடுபட்டவர்களை உருவாக்கவும்.</b> \n"
+"அடிப்படை ஏற்றுமதி மட்டும்: பெயர் + பிறப்பு/இறப்பு உண்மைகள். \n"
+"<i>நீக்கங்கள் இல்லை. தற்போதுள்ள செயலில் இணைக்கப்பட்ட நபர்கள் இங்கு மேலெழுதப்படவில்லை.</i>"
 
 #: ../gramps/gui/fs/sync_directions.py:1514
-#, fuzzy
-#| msgid "Include places"
 msgid "Include parents"
-msgstr "இடங்களைச் சேர்க்கவும்"
+msgstr "பெற்றோரையும் சேர்த்துக்கொள்ளுங்கள்"
 
 #: ../gramps/gui/fs/sync_directions.py:1515
-#, fuzzy
-#| msgid "Include spouses"
 msgid "Include spouse(s)"
-msgstr "வாழ்க்கைத் துணையை சேர்க்கவும்"
+msgstr "வாழ்க்கைத் துணையைச் சேர்"
 
 #: ../gramps/gui/fs/sync_directions.py:1516
 #: ../gramps/plugins/export/exportcsv.py:148
@@ -18308,113 +17970,90 @@ msgid "Include children"
 msgstr "குழந்தைகளைச் சேர்க்கவும்"
 
 #: ../gramps/gui/fs/sync_directions.py:1538
-#, fuzzy
-#| msgid "person"
 msgid "(person)"
-msgstr "ஆள்"
+msgstr "(நபர்)"
 
 #: ../gramps/gui/fs/sync_directions.py:1557
-#, fuzzy
-#| msgid "the person"
 msgid "This person: "
-msgstr "நபர்"
+msgstr "இந்த நபர்: "
 
 #: ../gramps/gui/fs/sync_directions.py:1585
 msgid "Create"
-msgstr ""
+msgstr "உருவாக்கு"
 
 #: ../gramps/gui/fs/sync_directions.py:1591
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select all missing"
-msgstr "ஏற்கனவே உள்ள குறிப்பைத் தேர்ந்தெடுக்கவும்"
+msgstr "விடுபட்ட அனைத்தையும் தேர்ந்தெடுக்கவும்"
 
 #: ../gramps/gui/fs/sync_directions.py:1658
 msgid "Please save this person first."
-msgstr ""
+msgstr "முதலில் இவரைக் காப்பாற்றுங்கள்."
 
 #: ../gramps/gui/fs/sync_directions.py:1664
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve this person from the database."
-msgstr "நபரை நீக்குவது தரவுத்தளத்திலிருந்து நபரை அகற்றும்."
+msgstr "தரவுத்தளத்திலிருந்து இவரைத் தீர்க்க முடியவில்லை."
 
 #: ../gramps/gui/fs/sync_directions.py:1705
 msgid "FamilySearch: Export basic people"
-msgstr ""
+msgstr "குடும்பத் தேடல்: அடிப்படை நபர்களை ஏற்றுமதி செய்யவும்"
 
 #: ../gramps/gui/fs/sync_directions.py:1744
 msgid "FamilySearch create failed for a person. Check name and connection."
 msgstr ""
+"ஒரு நபருக்காக FamilySearch உருவாக்க முடியவில்லை. பெயர் மற்றும் இணைப்பைச் சரிபார்க்கவும்."
 
 #: ../gramps/gui/fs/sync_directions.py:1866
 msgid ""
 "Export complete: created people and linked relationships on FamilySearch."
 msgstr ""
+"ஏற்றுமதி முடிந்தது: FamilySearch இல் உருவாக்கப்பட்ட நபர்கள் மற்றும் இணைக்கப்பட்ட உறவுகள்."
 
 #: ../gramps/gui/fs/sync_directions.py:1873
 msgid ""
 "Export complete: no new people were created; relationships were attempted."
 msgstr ""
+"ஏற்றுமதி முடிந்தது: புதிய நபர்கள் உருவாக்கப்படவில்லை; உறவுகள் முயற்சி செய்யப்பட்டன."
 
 #: ../gramps/gui/fs/sync_directions.py:1878
-#, fuzzy
-#| msgid "No matching addons found."
 msgid "Nothing was exported."
-msgstr "பொருந்தக்கூடிய துணை நிரல்கள் எதுவும் கிடைக்கவில்லை."
+msgstr "எதுவும் ஏற்றுமதி செய்யப்படவில்லை."
 
 #: ../gramps/gui/fs/sync_directions.py:1882
 #, python-brace-format
 msgid "FamilySearch export failed: {e}"
-msgstr ""
+msgstr "FamilySearch ஏற்றுமதி தோல்வி: {e}"
 
 #: ../gramps/gui/fs/tools_window.py:331
-#, fuzzy
-#| msgid "Family To Do"
 msgid "FamilySearch Tools"
-msgstr "செய்ய வேண்டிய குடும்பம்"
+msgstr "குடும்ப தேடல் கருவிகள்"
 
 #: ../gramps/gui/fs/tools_window.py:350 ../gramps/gui/fs/tools_window.py:770
-#, fuzzy
-#| msgid "Edit Person (%s)"
 msgid "Editor person: (none)"
-msgstr "(%s) என்ற நபரை திருத்து"
+msgstr "ஆசிரியர்: (இல்லை)"
 
 #: ../gramps/gui/fs/tools_window.py:378
-#, fuzzy
-#| msgid "Person Citations"
 msgid "Single Person Actions"
-msgstr "நபர் மேற்கோள்கள்"
+msgstr "ஒற்றை நபர் செயல்கள்"
 
 #: ../gramps/gui/fs/tools_window.py:382
-#, fuzzy
-#| msgid "Action"
 msgid "Bulk Actions"
-msgstr "செயல்"
+msgstr "மொத்த செயல்கள்"
 
 #: ../gramps/gui/fs/tools_window.py:388
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import relatives"
-msgstr "இறக்குமதி தோல்வியடைந்தது"
+msgstr "உறவினர்களை இறக்குமதி வெற்றி"
 
 #: ../gramps/gui/fs/tools_window.py:392
-#, fuzzy
-#| msgid "Import Pro-Gen"
 msgid "Import Parents"
-msgstr "புரோ-சென் இறக்குமதி"
+msgstr "பெற்றோரை இறக்குமதி வெற்றி"
 
 #: ../gramps/gui/fs/tools_window.py:393
-#, fuzzy
-#| msgid "Indent Spouses"
 msgid "Import Spouse"
-msgstr "துணைத் துணைவர்கள்"
+msgstr "மனைவியை இறக்குமதி வெற்றி"
 
 #: ../gramps/gui/fs/tools_window.py:394
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import Children"
-msgstr "இறக்குமதி தோல்வியடைந்தது"
+msgstr "குழந்தைகளை இறக்குமதி வெற்றி"
 
 #: ../gramps/gui/fs/tools_window.py:399 ../gramps/gui/fs/tools_window.py:419
 #: ../gramps/gui/plug/tool.py:71
@@ -18422,128 +18061,104 @@ msgid "Utilities"
 msgstr "பயன்பாடுகள்"
 
 #: ../gramps/gui/fs/tools_window.py:402
-#, fuzzy
-#| msgid "Cleared"
 msgid "Clear Cache"
-msgstr "துடைக்கப்பட்டது"
+msgstr "தற்காலிக சேமிப்பை அழிக்கவும்"
 
 #: ../gramps/gui/fs/tools_window.py:408
-#, fuzzy
-#| msgid "All generations"
 msgid "Import multiple generations"
-msgstr "அனைத்து தலைமுறையினரும்"
+msgstr "பல தலைமுறைகளை இறக்குமதி செய்யுங்கள்"
 
 #: ../gramps/gui/fs/tools_window.py:412
-#, fuzzy
-#| msgid "Import failed"
 msgid "Bulk Import Relatives"
-msgstr "இறக்குமதி தோல்வியடைந்தது"
+msgstr "மொத்த இறக்குமதி உறவினர்கள்"
 
 #: ../gramps/gui/fs/tools_window.py:414
-#, fuzzy
-#| msgid "Matches all descendants for the specified person"
 msgid "Import ancestors and descendants from the selected FamilySearch person."
-msgstr "குறிப்பிட்ட நபரின் அனைத்து சந்ததிகளுக்கும் பொருந்துகிறது"
+msgstr ""
+"தேர்ந்தெடுக்கப்பட்ட FamilySearch நபரிடமிருந்து முன்னோர்கள் மற்றும் வழித்தோன்றல்களை "
+"இறக்குமதி செய்யவும்."
 
 #: ../gramps/gui/fs/tools_window.py:422
-#, fuzzy
-#| msgid "Tags"
 msgid "Tags..."
-msgstr "குறிச்சொற்கள்"
+msgstr "குறிச்சொற்கள்..."
 
 #: ../gramps/gui/fs/tools_window.py:534
-#, fuzzy
-#| msgid "Person Citations"
 msgid "Person actions"
-msgstr "நபர் மேற்கோள்கள்"
+msgstr "நபர் நடவடிக்கைகள்"
 
 #: ../gramps/gui/fs/tools_window.py:544
-#, fuzzy
-#| msgid "Co_mpare"
 msgid "Compare"
-msgstr "ஒப்பிடுக"
+msgstr "ஒப்பிடு"
 
 #: ../gramps/gui/fs/tools_window.py:549
 msgid "Sync from FamilySearch"
-msgstr ""
+msgstr "FamilySearch இலிருந்து ஒத்திசைக்கவும்"
 
 #: ../gramps/gui/fs/tools_window.py:550
 msgid "Sync to FamilySearch..."
-msgstr ""
+msgstr "FamilySearch உடன் ஒத்திசை..."
 
 #: ../gramps/gui/fs/tools_window.py:552
 msgid "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
 msgstr ""
+"தேர்ந்தெடுக்கப்பட்ட FamilySearch புலங்களை Gramps மதிப்புகளுடன் மேலெழுதவும் (நீக்கங்கள் "
+"இல்லை)."
 
 #: ../gramps/gui/fs/tools_window.py:559
-#, fuzzy
-#| msgid "Select Family"
 msgid "Export to FamilySearch"
-msgstr "குடும்பத்தைத் தேர்ந்தெடுக்கவும்"
+msgstr "FamilySearch க்கு ஏற்றுமதி செய்யவும்"
 
 #: ../gramps/gui/fs/tools_window.py:562
 msgid ""
 "Create missing people on FamilySearch and link relationships (name + birth/"
 "death)."
 msgstr ""
+"குடும்பத் தேடலில் விடுபட்டவர்களை உருவாக்கி, உறவுகளை இணைக்கவும் (பெயர் + பிறப்பு/இறப்பு)."
 
 #: ../gramps/gui/fs/tools_window.py:783
-#, fuzzy, python-format
-#| msgid "%(persons)s and %(name)s (%(id)s)"
+#, python-format
 msgid "Editor person: %(name)s  [%(gid)s]"
-msgstr "%(persons)s மற்றும் %(name)s ( %(id)s)"
+msgstr "எடிட்டர் நபர்: %(name)s [%(gid)s]"
 
 #: ../gramps/gui/fs/tools_window.py:791
-#, fuzzy, python-format
-#| msgid "Person: %(name)s"
+#, python-format
 msgid "Editor person: %(name)s"
-msgstr "நபர்: %(name)s"
+msgstr "ஆசிரியர் நபர்: %(name)s"
 
 #: ../gramps/gui/fs/tools_window.py:809
-#, fuzzy
-#| msgid "Family ID"
 msgid "Add FamilySearch ID"
-msgstr "குடும்ப அடையாள எண்"
+msgstr "குடும்பத் தேடல் ஐடியைச் சேர்க்கவும்"
 
 #: ../gramps/gui/fs/tools_window.py:815
-#, fuzzy
-#| msgid "Family ID"
 msgid "Edit FamilySearch ID"
-msgstr "குடும்ப அடையாள எண்"
+msgstr "குடும்பத் தேடல் ஐடியைத் திருத்தவும்"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
 msgid "Build FSID list (1/%(total)d)"
-msgstr ""
+msgstr "FSID பட்டியலை உருவாக்கவும் (1/%(total)d)"
 
 #: ../gramps/gui/fs/utils/index.py:57 ../gramps/gui/fs/utils/index.py:61
-#, fuzzy, python-format
-#| msgid "Family places for %s"
+#, python-format
 msgid "FamilySearch duplicate ID: %s "
-msgstr "%s குடும்ப இடங்கள்"
+msgstr "குடும்பத் தேடல் நகல் ஐடி: %s "
 
 #: ../gramps/gui/fs/utils/index.py:60
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Duplicate FSFTID"
-msgstr "நகல் குடும்பம்"
+msgstr "நகல் FSFTID"
 
 #: ../gramps/gui/fs/utils/index.py:62
-#, fuzzy
-#| msgid "Continue"
 msgid "_Continue warning"
-msgstr "தொடரவும்"
+msgstr "_எச்சரிக்கையைத் தொடரவும்"
 
 #: ../gramps/gui/fs/utils/index.py:63
-#, fuzzy
-#| msgid "Undo history warning"
 msgid "_Stop warning"
-msgstr "வரலாற்று எச்சரிக்கையை செயல்தவிர்க்கவும்"
+msgstr "_எச்சரிக்கை நிறுத்து"
 
 #: ../gramps/gui/fs/utils/index.py:73
 #, python-format
 msgid "Build FSID list for places (2/%(total)d)"
-msgstr ""
+msgstr "இடங்களுக்கான FSID பட்டியலை உருவாக்கவும் (2/%(total)d)"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
@@ -19559,11 +19174,9 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:189
 #: ../gramps/gui/glade/editperson.glade:132
-#, fuzzy
-#| msgid "_Given:"
 msgctxt "Given names"
 msgid "_Given:"
-msgstr "_சிவன்:"
+msgstr "_ கொடுக்கப்பட்டது:"
 
 #: ../gramps/gui/glade/editname.glade:204
 #: ../gramps/gui/glade/editperson.glade:195
@@ -20953,10 +20566,8 @@ msgid "_Family Trees"
 msgstr "_ குடும்ப மரங்கள்"
 
 #: ../gramps/gui/grampsgui.py:57
-#, fuzzy
-#| msgid "Searching..."
 msgid "_FamilySearch Sign in..."
-msgstr "தேடுகிறது..."
+msgstr "குடும்பத் தேடல் உள்நுழைவு..."
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Go"
@@ -21087,6 +20698,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"பைதான் லோகேல் தொகுதியில் உரைபெறு உதவி இல்லாமல் தொகுக்கப்பட்டது. \n"
+"\n"
+"கிராம்ப்ச் இப்போது முடிவடையும்."
 
 #: ../gramps/gui/grampsgui.py:507
 msgid "Gramps detected an incomplete GTK installation"
@@ -21677,6 +21291,12 @@ msgid ""
 "Addon Manager → Projects) targets a different Gramps version. Check that the "
 "project URL matches Gramps %(major_version)s."
 msgstr ""
+"addon '%(addon_id)s' ஐ பதிவு செய்ய முடியவில்லை மற்றும் உங்கள் தற்போதைய உள்ளமைவில் அது "
+"கிடைக்காது. \n"
+"\n"
+"addon இன் திட்டம் (திருத்து → விருப்பத்தேர்வுகள் → Addon Manager → திட்டங்கள் என்பதன் கீழ்) "
+"வேறுபட்ட Gramps பதிப்பை குறிவைக்கும் போது இது பொதுவாக நடக்கும். திட்ட முகவரி ஆனது "
+"Gramps %(major_version)s உடன் பொருந்துகிறதா என சரிபார்க்கவும்."
 
 #: ../gramps/gui/plug/_windows.py:612
 msgid "No matching addons found."
@@ -22919,10 +22539,8 @@ msgid "Cannot open new citation editor"
 msgstr "புதிய மேற்கோள் எடிட்டரைத் திறக்க முடியாது"
 
 #: ../gramps/gui/viewmanager.py:348
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch tools"
-msgstr "குடும்ப வண்ணங்கள்"
+msgstr "குடும்ப தேடல் கருவிகள்"
 
 #: ../gramps/gui/viewmanager.py:392 ../gramps/gui/viewmanager.py:1403
 msgid "No Family Tree"
@@ -22931,22 +22549,19 @@ msgstr "குடும்ப மரம் இல்லை"
 #: ../gramps/gui/viewmanager.py:415
 msgid "You are not logged in to FamilySearch. Would you like to sign in now?"
 msgstr ""
+"நீங்கள் FamilySearch இல் உள்நுழையவில்லை. இப்போது உள்நுழைய விரும்புகிறீர்களா?"
 
 #: ../gramps/gui/viewmanager.py:418
 msgid "Sign in"
-msgstr ""
+msgstr "விடுபதிகை"
 
 #: ../gramps/gui/viewmanager.py:638
-#, fuzzy
-#| msgid "Use complete sentences"
 msgid "User consent declined"
-msgstr "முழுமையான வாக்கியங்களைப் பயன்படுத்தவும்"
+msgstr "பயனர் ஒப்புதல் நிராகரிக்கப்பட்டது"
 
 #: ../gramps/gui/viewmanager.py:646
-#, fuzzy
-#| msgid "Configuration error:"
 msgid "Authorization error"
-msgstr "உள்ளமைவு பிழை:"
+msgstr "அங்கீகார பிழை"
 
 #: ../gramps/gui/viewmanager.py:838
 msgid "Registering plugins..."
@@ -26194,16 +25809,12 @@ msgid "Total people"
 msgstr "மொத்த மக்கள்"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:29
-#, fuzzy
-#| msgid "Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List"
 msgid "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
-msgstr "Gramps_6.0_wiki_manual _ -_ கிராம்பிள்கள்#கிராம்ப்_லிச்ட்"
+msgstr "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
-#, fuzzy
-#| msgid "Gramps_6.0_Wiki_Manual_-_Tools#Debug"
 msgid "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_6.0_wiki_manual _ -_ கருவிகள்#பிழைத்திருத்தம்"
+msgstr "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:50
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:58
@@ -26230,55 +25841,39 @@ msgstr "வரலாற்றில் குறிப்பிட்ட தே�
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:98
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:105
-#, fuzzy
-#| msgid "Web Calendar"
 msgid "Person's birth Calendar"
-msgstr "வலை காலண்டர்"
+msgstr "நபரின் பிறப்பு நாட்காட்டி"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:99
-#, fuzzy
-#| msgid "Gramplet showing the notes for a person"
 msgid "Gramplet showing the birth for a person on the calendar"
-msgstr "ஒரு நபருக்கான குறிப்புகளைக் காட்டும் கிராம்பட்"
+msgstr "நாட்காட்டியில் ஒரு நபரின் பிறப்பைக் காட்டும் கிராம்பு"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:113
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:120
-#, fuzzy
-#| msgid "person's death"
 msgid "Person's death Calendar"
-msgstr "நபரின் இறப்பு"
+msgstr "நபரின் இறப்பு நாட்காட்டி"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:114
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the death for a person on the calendar"
-msgstr "ஒரு நபருக்கான நிகழ்வுகளைக் காட்டும் கிராம்பட்"
+msgstr "Gramplet showing the death க்கு a ஆள் on the நாள்காட்டி"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:128
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
-#, fuzzy
-#| msgid "My Family Calendar"
 msgid "Family Calendar"
-msgstr "எனது குடும்ப நாட்காட்டி"
+msgstr "குடும்ப நாட்காட்டி"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:129
-#, fuzzy
-#| msgid "Gramplet showing the notes for a family"
 msgid "Gramplet showing the marriage for a family on the calendar"
-msgstr "ஒரு குடும்பத்திற்கான குறிப்புகளைக் காட்டும் கிராம்பட்"
+msgstr "நாட்காட்டியில் ஒரு குடும்பத்திற்கான திருமணத்தைக் காட்டும் கிராம்பு"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:143
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:150
-#, fuzzy
-#| msgid "vCalendar"
 msgid "Event Calendar"
-msgstr "vcalendar"
+msgstr "நிகழ்வு நாட்காட்டி"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:144
-#, fuzzy
-#| msgid "Gramplet showing the notes for an event"
 msgid "Gramplet showing the date for an event on the calendar"
-msgstr "ஒரு நிகழ்விற்கான குறிப்புகளைக் காட்டும் கிராம்பட்"
+msgstr "நாட்காட்டியில் நிகழ்வுக்கான தேதியைக் காட்டும் கிராம்பு"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:158
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:165
@@ -28324,16 +27919,12 @@ msgid "Whether to include dates and/or places"
 msgstr "தேதிகள் மற்றும்/அல்லது இடங்களைச் சேர்க்க வேண்டுமா"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1006
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only valid dates"
-msgstr "தவறான தேதியை அடையாளம் காணவும்"
+msgstr "சரியான தேதிகள் மட்டுமே"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1007
-#, fuzzy
-#| msgid "_Identify invalid dates"
 msgid "Only show valid dates."
-msgstr "தவறான தேதியை அடையாளம் காணவும்"
+msgstr "சரியான தேதிகளை மட்டும் காட்டு."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1010
 msgid "Show all family nodes"
@@ -29814,6 +29405,9 @@ msgid ""
 "%(year)d-%(month)02d-%(day)02d. If your source uses DD/MM/YYYY (e.g. "
 "ancestry.com exports), verify and correct after import."
 msgstr ""
+"தெளிவற்ற எண் தேதி '%(orig)s' MM/DD/YYYY (US வடிவம்) = %(year)d-%(month)02d-%"
+"(day)02d. உங்கள் சான்று DD/MM/YYYY (எ.கா. ancestry.com ஏற்றுமதிகள்) பயன்படுத்தினால், "
+"இறக்குமதி செய்த பிறகு சரிபார்த்து சரிசெய்யவும்."
 
 #: ../gramps/plugins/lib/libgedcom.py:3619
 msgid "Records not imported into "
@@ -34264,11 +33858,19 @@ msgid ""
 "https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"தனிப்பயன் ஓடு வழங்குநரைப் பயன்படுத்த, அதன் டைல் முகவரி ஐ கீழே ஒட்டவும். \n"
+"சூம், ஃச் மற்றும் ஒய் க்கு #Z, #X, #Y ஆகியவற்றை ஒதுக்கிடங்களாகப் பயன்படுத்தவும். \n"
+"அதாவது: \n"
+"https://api.maptiler.com/tiles/uk-osgb1888/#Z/#X/#Y.png?key=YOUR-API-KEY \n"
+"https://api.maptiler.com/tiles/uk-osgb63k1885/#Z/#X/#Y.png?key=YOUR-API-KEY "
+"\n"
+"https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY "
+"\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
-#, fuzzy
 msgid "Personal map: "
-msgstr "நபர்"
+msgstr "தனிப்பட்ட வரைபடம்: "
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
 msgid "The map"
@@ -35268,10 +34870,8 @@ msgstr "பார்வையைத் தேர்ந்தெடுக்க �
 #: ../gramps/plugins/sidebar/favoritessidebar.py:79
 #: ../gramps/plugins/sidebar/favoritessidebar.py:81
 #: ../gramps/plugins/sidebar/favoritessidebar.py:219
-#, fuzzy
-#| msgid "Choose your dialect"
 msgid "Choose your favorite views"
-msgstr "உங்கள் பேச்சுவழக்கைத் தேர்வுசெய்க"
+msgstr "உங்களுக்குப் பிடித்த காட்சிகளைத் தேர்ந்தெடுங்கள்"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:85
 #: ../gramps/plugins/tool/mediamanager.py:94
@@ -35280,20 +34880,16 @@ msgid "Help"
 msgstr "உதவி"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:86
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select All"
-msgstr "அனைத்தையும் தேர்ந்தெடுக்கவும்"
+msgstr "அனைத்தையும் தெரிவுசெய்"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:87
-#, fuzzy
-#| msgid "Clear _All"
 msgid "Clear All"
-msgstr "அனைத்தையும் துடை (_A)"
+msgstr "அனைத்தையும் அழி"
 
 #: ../gramps/plugins/sidebar/favoritessidebar.py:136
 msgid "Switching_Navigator_modes"
-msgstr ""
+msgstr "நேவிகேட்டர்_மோட்களை மாற்றுதல்"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
 msgid "Category Sidebar"
@@ -35332,20 +34928,16 @@ msgid "Expander"
 msgstr "விரிவாக்க"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:82
-#, fuzzy
-#| msgid "Category Sidebar"
 msgid "Favorites Sidebar"
-msgstr "வகை பக்கப்பட்டி"
+msgstr "பிடித்தவை பக்கப்பட்டி"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:83
-#, fuzzy
-#| msgid "Selection of views from lists with expanders"
 msgid "Selection of views from a views selector"
-msgstr "விரிவாக்கிகளுடன் பட்டியல்களிலிருந்து பார்வைகளைத் தேர்ந்தெடுப்பது"
+msgstr "பார்வைத் தேர்வாளரிடமிருந்து பார்வைகளைத் தேர்ந்தெடுப்பது"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:91
 msgid "Favorites"
-msgstr ""
+msgstr "பிடித்தவை"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:73
 #: ../gramps/plugins/textreport/textplugins.gpr.py:412
@@ -36314,8 +35906,6 @@ msgid "Include Attributes"
 msgstr "பண்புகளைச் சேர்க்கவும்"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
-#, fuzzy
-#| msgid "Include addresses"
 msgid "Include Addresses"
 msgstr "முகவரிகளைச் சேர்க்கவும்"
 
@@ -37188,11 +36778,12 @@ msgstr "குறிப்புகளில் மோசமான இணைப�
 
 #: ../gramps/plugins/tool/check.py:2593
 msgid "Coalescing duplicate roles in events referenced by people"
-msgstr ""
+msgstr "மக்கள் குறிப்பிடும் நிகழ்வுகளில் நகல் பாத்திரங்களை ஒன்றிணைத்தல்"
 
 #: ../gramps/plugins/tool/check.py:2614
 msgid "Coalescing duplicate roles in events referenced by families"
 msgstr ""
+"குடும்பங்களால் குறிப்பிடப்படும் நிகழ்வுகளில் நகல் பாத்திரங்களை ஒன்றிணைத்தல்"
 
 #: ../gramps/plugins/tool/check.py:2787
 msgid "No errors were found"
@@ -37444,6 +37035,8 @@ msgstr "%d மோசமான குறிப்பு இணைப்புக�
 msgid ""
 "%(names)d duplicate event role names coalesced. %(refs)d references updated\n"
 msgstr ""
+"%(names)d நகல் நிகழ்வின் பங்கு பெயர்கள் ஒன்றிணைக்கப்பட்டது. %(refs)d குறிப்புகள் "
+"புதுப்பிக்கப்பட்டன\n"
 
 #: ../gramps/plugins/tool/check.py:3203
 msgid "Integrity Check Results"
@@ -40168,10 +39761,8 @@ msgstr "குடும்பத்தில் புதிய குழந்�
 
 #: ../gramps/plugins/view/relview.py:1172
 #: ../gramps/plugins/view/relview.py:1704
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person as a child of the family"
-msgstr "ஏற்கனவே உள்ள ஒரு நபரை குடும்பத்தின் குழந்தையாக சேர்க்கவும்"
+msgstr "குடும்பத்தின் குழந்தையாக இருக்கும் நபரைத் தேர்ந்தெடுங்கள்"
 
 #: ../gramps/plugins/view/relview.py:1467
 #, python-format
@@ -40922,40 +40513,37 @@ msgstr "கோப்பு வகை"
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for people: %(people)s"
-msgstr ""
+msgstr "%(idx)s - நபர்களுக்கு: %(people)s"
 
 #: ../gramps/plugins/webreport/media.py:736
-#, fuzzy, python-format
-#| msgid "%(person)s was restored to the family of %(family)s\n"
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for family: %(family)s"
-msgstr "%(person)s %(family)sுடும்பத்திற்கு மீட்டெடுக்கப்பட்டது\n"
+msgstr "%(idx)s - குடும்பத்திற்கு: %(family)s"
 
 #: ../gramps/plugins/webreport/media.py:760
-#, fuzzy, python-format
-#| msgid "%(eventtype)s : %(name)s"
+#, python-format
 msgctxt "name"
 msgid "%(idx)s - for event: %(event)s: %(name)s"
-msgstr "%(eventtype)s :- %(name)s"
+msgstr "%(idx)s - நிகழ்வுக்கு: %(event)s: %(name)s"
 
 #: ../gramps/plugins/webreport/media.py:775
-#, fuzzy, python-format
-#| msgid "%(date)s - %(place)s."
+#, python-format
 msgctxt "idx"
 msgid "%(idx)s - for place: %(place)s"
-msgstr "%(date)s - %(place)s."
+msgstr "%(idx)s - இடத்திற்கு: %(place)s"
 
 #: ../gramps/plugins/webreport/media.py:790
 #, python-format
 msgctxt "idx"
 msgid "%(idx)s - for source: %(source)s"
-msgstr ""
+msgstr "%(idx)s - மூலத்திற்கு: %(source)s"
 
 #: ../gramps/plugins/webreport/media.py:808
 #, python-format
 msgctxt "source"
 msgid "%(idx)s - for citation: %(citation)s from %(source)s"
-msgstr ""
+msgstr "%(idx)s - மேற்கோளுக்கு: %(citation)s இலிருந்து %(source)s"
 
 #: ../gramps/plugins/webreport/media.py:919
 msgid "Missing media object:"
@@ -41190,14 +40778,13 @@ msgid "The maximum number of rows to include in an index page"
 msgstr "ஒரு குறியீட்டு பக்கத்தில் சேர்க்க அதிகபட்ச வரிசைகள்"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2259
-#, fuzzy
-#| msgid "Allow editing database owner information."
 msgid "Allow internet indexation."
-msgstr "தரவுத்தள உரிமையாளர் தகவல்களைத் திருத்த அனுமதிக்கவும்."
+msgstr "இணைய அட்டவணையை அனுமதிக்கவும்."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "Allow search engines (Google, Bing, etc.) to index your website."
 msgstr ""
+"உங்கள் இணையதளத்தை அட்டவணைப்படுத்த தேடுபொறிகளை (Google, Bing, முதலியன) அனுமதிக்கவும்."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2272
 msgid "Extra Pages"
@@ -41772,13 +41359,7 @@ msgid "openlayers version to use"
 msgstr "பயன்படுத்த OpenLayers பதிப்பு"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2800
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "You should use this option only if you can't see the maps in your website "
-#| "for OpenStreetMap or Stamen maps\n"
-#| "You can change the value in the specified file. The option name to modify "
-#| "is openlayers_version.\n"
-#| "See OLDER VERSIONS in https://openlayers.org/"
+#, python-brace-format
 msgid ""
 "You should use this option only if you can't see the maps in your website "
 "for OpenStreetMap or Stamen maps\n"
@@ -41786,11 +41367,11 @@ msgid ""
 "openlayers_version.\n"
 "See OLDER VERSIONS in {openlayers_url}"
 msgstr ""
-"OpenStreetMap அல்லது STAMEN MAPS க்காக உங்கள் வலைத்தளத்தின் வரைபடங்களை பார்க்க "
-"முடியாவிட்டால் மட்டுமே இந்த விருப்பத்தைப் பயன்படுத்த வேண்டும்\n"
-" குறிப்பிட்ட கோப்பில் உள்ள மதிப்பை நீங்கள் மாற்றலாம். மாற்றுவதற்கான விருப்பத்தின் பெயர் "
-"OpenLayers_version.\n"
-" பழைய பதிப்புகளை https://openlayers.org/ இல் காண்க"
+"OpenStreetMap அல்லது Stamen வரைபடங்களுக்கான வரைபடங்களை உங்கள் இணையதளத்தில் பார்க்க "
+"முடியாவிட்டால் மட்டுமே இந்த விருப்பத்தை நீங்கள் பயன்படுத்த வேண்டும். \n"
+"குறிப்பிட்ட கோப்பில் உள்ள மதிப்பை மாற்றலாம். மாற்றுவதற்கான விருப்பத்தின் பெயர் "
+"openlayers_version. \n"
+"{openlayers_url} இல் பழைய பதிப்புகளைப் பார்க்கவும்"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2817
 msgid "Other inclusion (CMS, web calendar, PHP)"
