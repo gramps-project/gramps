@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-24 14:01+0000\n"
+"PO-Revision-Date: 2026-08-01 21:19+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -586,7 +586,7 @@ msgid ""
 "People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>הקמת אילן־יוחסין חדש<br/></b> דרך טובה להקמת אילן־יוחסין חדש היא על־ידי "
+"<b>יצירת אילן־יוחסין חדש</b><br/> דרך טובה להקמת אילן־יוחסין חדש היא על־ידי "
 "הזנת כל בני המשפחה למאגר הנתונים ‏(מתפריט 'עריכה > הוספה...' או הקשה על "
 "'הוספת אדם חדש' ממצג אנשים). לאחר מכן, מעבר למצג קשרי־הקרבה ליצירת קשרים בין "
 "אנשים."
@@ -607,7 +607,7 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>תאריך לא ודאי?<br/></b> אם תאריך האירוע אינו ודאי או מוחלט, ניתן להזין "
+"<b>תאריך לא ודאי?</b><br/> אם תאריך האירוע אינו ודאי או מוחלט, ניתן להזין "
 "מגוון רחב של תסדירי תאריך שמבוססים על, ניחוש או הערכה. כך לדוגמה, הביטוי "
 "'בסביבות 1908' הוא ערך תקין לציון תאריך לידה בגרמפס. הקריאה לעורך התאריך, "
 "נעשית בקשה על‏ לחצן 'קריאה לעורך תאריך' שבסמוך לשדה התאריך. למידע נוסף ניתן "
@@ -3910,7 +3910,7 @@ msgstr "איתור מובאות שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 msgid "Citation attribute:"
-msgstr "תכונות מובאה:"
+msgstr "מאפייני מובאה:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
@@ -5292,7 +5292,7 @@ msgstr "איתור אנשים עם אירוע אישי עם ערך מסוים"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:54
 msgid "People with the family <attribute>"
-msgstr "אנשים עם תכונות משפחה <תכונה>"
+msgstr "אנשים עם מאפיין משפחה <תכונה>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:55
 msgid "Matches people with the family attribute of a particular value"
@@ -6459,7 +6459,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
 msgid "Source attribute:"
-msgstr "תכונות מקור:"
+msgstr "מאפיין מקור:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 msgid "Sources with the attribute <attribute>"
@@ -7620,7 +7620,7 @@ msgstr "מדיה"
 #: ../gramps/gen/lib/citation.py:141 ../gramps/gen/lib/src.py:131
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:789
 msgid "Source Attributes"
-msgstr "תכונות מקור"
+msgstr "מאפיין מקור"
 
 #: ../gramps/gen/lib/citation.py:143 ../gramps/gen/lib/event.py:212
 #: ../gramps/gen/lib/family.py:211 ../gramps/gen/lib/media.py:170
@@ -7982,7 +7982,7 @@ msgstr "מקום"
 #: ../gramps/plugins/webreport/basepage.py:1634
 #: ../gramps/plugins/webreport/basepage.py:1643
 msgid "Attributes"
-msgstr "תכונות"
+msgstr "מאפיינים"
 
 #: ../gramps/gen/lib/eventref.py:121
 msgid "Event reference"
@@ -8103,7 +8103,7 @@ msgstr "נסיעה"
 
 #: ../gramps/gen/lib/eventtype.py:188
 msgid "Legal"
-msgstr "חוקי"
+msgstr "משפטי"
 
 #: ../gramps/gen/lib/eventtype.py:189 ../gramps/gen/lib/eventtype.py:230
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:589
@@ -8925,7 +8925,7 @@ msgstr "תואר"
 
 #: ../gramps/gen/lib/name.py:189 ../gramps/plugins/webreport/person.py:421
 msgid "Group as"
-msgstr "קיבוץ כ"
+msgstr "לקבץ לפי"
 
 #: ../gramps/gen/lib/name.py:190
 msgid "Sort as"
@@ -14012,7 +14012,7 @@ msgstr "העברת התכונה שנבחרה מטה"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:80
 msgid "_Attributes"
-msgstr "_תכונות"
+msgstr "_מאפיינים"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:60
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:87
@@ -14391,7 +14391,7 @@ msgstr "העברת השם שנבחר מטה"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
 #: ../gramps/gui/views/treemodels/peoplemodel.py:635
 msgid "Group As"
-msgstr "קיבוץ כ"
+msgstr "לקבץ לפי"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:79
 msgid "Notes Preview"
@@ -14701,12 +14701,12 @@ msgstr "עורך כתובות"
 #: ../gramps/gui/editors/editattribute.py:62
 msgctxt "manual"
 msgid "Attribute_Editor_dialog"
-msgstr "דו־שיח_עורך_תכונות"
+msgstr "דו־שיח_עורך_מאפיינים"
 
 #: ../gramps/gui/editors/editattribute.py:94
 #: ../gramps/gui/editors/editattribute.py:140
 msgid "Attribute Editor"
-msgstr "עורך תכונות"
+msgstr "עורך מאפיינים"
 
 #: ../gramps/gui/editors/editattribute.py:134
 #: ../gramps/gui/editors/editattribute.py:138
@@ -15351,8 +15351,8 @@ msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
 msgstr ""
-"קיימת אפשרות לקיבוץ כל האנשים בשם %(surname)s עם השם %(group_name)s, או רק "
-"למפות שם מסוים זה."
+"ניתן לקבוץ את כל האנשים לפי שם %(surname)s בשם %(group_name)s, או רק למפות "
+"שם מסוים זה."
 
 #: ../gramps/gui/editors/editname.py:452
 msgid "Group all"
@@ -15360,7 +15360,7 @@ msgstr "לקבץ הכול"
 
 #: ../gramps/gui/editors/editname.py:453
 msgid "Group this name only"
-msgstr "קיבוץ שם זה בלבד"
+msgstr "לקבץ שם זה בלבד"
 
 #: ../gramps/gui/editors/editnote.py:73
 msgctxt "manual"
@@ -16481,10 +16481,8 @@ msgid "Name, date, place, or FamilySearch ID"
 msgstr "שם, תאריך, מקום, או מזהה FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:782
-#, fuzzy
-#| msgid "Web Search"
 msgid "Search"
-msgstr "חיפוש ברשת"
+msgstr "חיפוש"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
@@ -16499,10 +16497,8 @@ msgid "Enter a name, date, place, ID, or URL to search."
 msgstr "כדי לחפש, נא להזין: שם, תאריך, מקום, מזהה, או URL."
 
 #: ../gramps/gui/fs/actions.py:865
-#, fuzzy
-#| msgid "Sync to FamilySearch..."
 msgid "Searching FamilySearch..."
-msgstr "סנכרון ל־FamilySearch..."
+msgstr "חיפוש FamilySearch..."
 
 #: ../gramps/gui/fs/actions.py:880
 #, python-format
@@ -16515,17 +16511,13 @@ msgid "Search results: %(count)d"
 msgstr "תוצאות חיפוש: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:893
-#, fuzzy
-#| msgid "No FamilySearch sources found to import."
 msgid "No FamilySearch people found."
-msgstr "לא נמצא מקור FamilySearch לייבוא."
+msgstr "לא נמצא אדם FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:917
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1138
-#, fuzzy
-#| msgid "FamilySearch sync"
 msgid "FamilySearch person"
-msgstr "סנכרון FamilySearch"
+msgstr "אדם FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:964
 msgid ""
@@ -16538,16 +16530,12 @@ msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
 msgstr "אילן־היוחסין ריק! האם לייבא כמות גדולה מ־FamilySearch?"
 
 #: ../gramps/gui/fs/actions.py:994
-#, fuzzy
-#| msgid "Center Person"
 msgid "Choose Starting Person"
-msgstr "אדם מרכזי"
+msgstr "בחירצ אדם להתחיל ממנו"
 
 #: ../gramps/gui/fs/actions.py:995
-#, fuzzy
-#| msgid "Not shown"
 msgid "Not now"
-msgstr "לא מוצג"
+msgstr "לא כעת"
 
 #: ../gramps/gui/fs/actions.py:1012 ../gramps/gui/fs/actions.py:1073
 msgid "Bulk import complete."
@@ -17006,23 +16994,17 @@ msgstr "שדה"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:686
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:831
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1205
-#, fuzzy
-#| msgid "Current Name"
 msgid "Current Gramps"
-msgstr "שם נוכחי"
+msgstr "גרמפס נוכחי"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:688
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:833
-#, fuzzy
-#| msgid "General Gramps settings"
 msgid "Final Gramps result"
-msgstr "הגדרות גרמפס כלליות"
+msgstr "תוצאות גרמפס סופיות"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
-#, fuzzy
-#| msgid "Only in Gramps"
 msgid "Kept in Gramps"
-msgstr "רק בגרמפס"
+msgstr "נשאר בגרמפס"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:771
@@ -17792,16 +17774,12 @@ msgid "Editor person: (none)"
 msgstr "האדם העורך: (ללא)"
 
 #: ../gramps/gui/fs/tools_window.py:378
-#, fuzzy
-#| msgid "Person actions"
 msgid "Single Person Actions"
-msgstr "פעולות אדם"
+msgstr "פעולות אדם יחיד"
 
 #: ../gramps/gui/fs/tools_window.py:382
-#, fuzzy
-#| msgid "Actions"
 msgid "Bulk Actions"
-msgstr "פעולות"
+msgstr "פעולות צובר"
 
 #: ../gramps/gui/fs/tools_window.py:388
 msgid "Import relatives"
@@ -17829,16 +17807,12 @@ msgid "Clear Cache"
 msgstr "נוקוי מטמון"
 
 #: ../gramps/gui/fs/tools_window.py:408
-#, fuzzy
-#| msgid "All generations"
 msgid "Import multiple generations"
-msgstr "כל הדורות"
+msgstr "ייבוא דורות מרובים"
 
 #: ../gramps/gui/fs/tools_window.py:412
-#, fuzzy
-#| msgid "Import relatives"
 msgid "Bulk Import Relatives"
-msgstr "ייבוא קרובי משפחה"
+msgstr "ייבוא צובר קרובי משפחה"
 
 #: ../gramps/gui/fs/tools_window.py:414
 msgid "Import ancestors and descendants from the selected FamilySearch person."
@@ -17869,10 +17843,8 @@ msgid "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
 msgstr "כתיבה מעל שדות FamilySearch שנבחרו בערכי גרמפס (ללא מחיקה)."
 
 #: ../gramps/gui/fs/tools_window.py:559
-#, fuzzy
-#| msgid "Export to FamilySearch (basic)"
 msgid "Export to FamilySearch"
-msgstr "יצוא ל־FamilySearch (בסיסי)"
+msgstr "יצוא ל־FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:562
 msgid ""
@@ -17891,16 +17863,12 @@ msgid "Editor person: %(name)s"
 msgstr "האדם העורך: %(name)s"
 
 #: ../gramps/gui/fs/tools_window.py:809
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Add FamilySearch ID"
-msgstr "מזהה FamilySearch"
+msgstr "הוספת מזהה FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:815
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Edit FamilySearch ID"
-msgstr "מזהה FamilySearch"
+msgstr "עריכת מזהה FamilySearch"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
@@ -18350,7 +18318,7 @@ msgstr "קריאה לעורך תאריך"
 
 #: ../gramps/gui/glade/editaddress.glade:347
 msgid "Date at which the address is valid."
-msgstr "התאריך שבו הכתובת חוקית."
+msgstr "התאריך שבו הכתובת תקפה."
 
 #: ../gramps/gui/glade/editaddress.glade:362
 #: ../gramps/gui/glade/editlocation.glade:312
@@ -18385,12 +18353,12 @@ msgid ""
 "Note: several predefined attributes refer to values present in the GEDCOM "
 "standard."
 msgstr ""
-"שם התכונה בה יעשה שימוש. לדוגמה: גובה (לאנשים), מזג אוויר ביום מסוים "
+"שם המאפיין בו יעשה שימוש. לדוגמה: גובה (לאנשים), מזג אוויר ביום מסוים "
 "(לאירועים),... \n"
 "ניתן להשתמש באפשרות זו לאחסון גזירי מידע שנאספו וקישורם למקורות באופן תקין. "
 "ניתן להשתמש ב'תכונות' עבור, אנשים, משפחות, אירועים ומדיה.\n"
 " \n"
-"הערה: מספר תכונות מודגרות מראש, מתייחסות לשדות ערכים קיימים בתקן GEDCOM."
+"הערה: מספר מאפיינים שמוגדרים מראש מתייחסים לשדות ערכים שקיימים בתקן GEDCOM."
 
 #: ../gramps/gui/glade/editchildref.glade:95
 msgid "Relationship to _Mother:"
@@ -19217,7 +19185,7 @@ msgid ""
 "via a map service in the place view."
 msgstr ""
 "קו רוחב (מיקום מעל קו המשווה) של המקום בערכים עשרוניים או מעלות.\n"
-"לדוגמה, ערכים חוקיים יהיו 12.0154, 50 ° 52 ′ 21.92 \"N, N50 ° 52 ′ 21.92\" "
+"לדוגמה, ערכים תקינים יהיו 12.0154, 50 ° 52 ′ 21.92 \"N, N50 ° 52 ′ 21.92\" "
 "או 50:52:21.92\n"
 "ניתן להגדיר ערכים אלה ממצג 'גאוגרפיה' על־ידי חיפוש מקום, או באמצעות שרות מפה "
 "ממצג 'מקום'."
@@ -19234,7 +19202,7 @@ msgid ""
 msgstr ""
 "קו אורך (מיקום יחסי למרידיאן הראשי, או גריניץ' ) של המקום בסימון עשרוני או "
 "במעלות.\n"
-"לדוגמה, ערכים חוקיים יהיו: 124.3647-, E124 ° 52 ′ 21.92, ‏124°52′21.92″E, או "
+"לדוגמה, ערכים תקינים יהיו: 124.3647-, E124 ° 52 ′ 21.92, ‏124°52′21.92″E, או "
 "124:52:21.92\n"
 "ניתן להגדיר ערכים אלה ממצג 'גאוגרפיה' על־ידי חיפוש מקום, או באמצעות שרות מפה "
 "ממצג 'מקום'."
@@ -19307,7 +19275,7 @@ msgstr "מספר רחוב"
 #: ../gramps/gui/glade/editplacename.glade:157
 #: ../gramps/plugins/webreport/basepage.py:3460
 msgid "Date range in which the name is valid."
-msgstr "טווח התאריך שבו השם חוקי."
+msgstr "טווח התאריך שבו השם תקף."
 
 #: ../gramps/gui/glade/editplacename.glade:170
 msgid "The name of the place."
@@ -19562,7 +19530,7 @@ msgstr "אירוע 2"
 #: ../gramps/gui/glade/mergeevent.glade:498
 msgid ""
 "Attributes, notes, sources and media objects of both events will be combined."
-msgstr "תכונות, הערות, מקורות ועצמי מדיה של שני האירועים ישולבו."
+msgstr "מאפיינים, הערות, מקורות ועצמי מדיה של שני האירועים ישולבו."
 
 #: ../gramps/gui/glade/mergefamily.glade:95
 msgid ""
@@ -19600,7 +19568,7 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"אירועים, lds_ord, עצמי מדיה, תכונות, הערות, מקורות ותגים של שתי המשפחות "
+"אירועים, lds_ord, עצמי מדיה, מאפיינים, הערות, מקורות ותגים של שתי המשפחות "
 "ישולבו."
 
 #: ../gramps/gui/glade/mergemedia.glade:94
@@ -19673,7 +19641,7 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"אירועים, עצמי מדיה, כתובות, תכונות, מעני url, הערות, מקורות ותגים של שני "
+"אירועים, עצמי מדיה, כתובות, מאפיינים, מעני url, הערות, מקורות ותגים של שני "
 "האנשים ישולבו."
 
 #: ../gramps/gui/glade/mergeperson.glade:490
@@ -20498,8 +20466,8 @@ msgid ""
 "so that you can paste it into the form on the bug tracking website and "
 "review exactly what information you want to include."
 msgstr ""
-"זהו הסייען לדיווח תקלים. תפקידו לסייע בדיווח תקלים, באופן מפורט ככל הניתן, "
-"לצוות פיתוח גרמפס .\n"
+"זהו סייען דיווח התקלים. תפקידו לסייע בדיווח לצוות פיתוח גרמפס, על תקלים "
+"באופן מפורט ככל הניתן.\n"
 "\n"
 "הסייען ישאל מספר שאלות ויאסוף מידע על השגיאה שהתרחשה וסביבת העבודה. עם סיום "
 "פעולת הסייען, ניתן יהיה להגיש דוח תקלים במערכת מעקב התקלים של גרמפס. הסייען "
@@ -21322,7 +21290,7 @@ msgstr "לא הותקנו תוספים."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:125
 msgid "Export Assistant"
-msgstr "סייען הייצוא"
+msgstr "סייען ייצוא"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:187
 msgid "Saving your data"
@@ -25102,7 +25070,7 @@ msgid ""
 "You can then sort by the age column, and double-click the row to view or "
 "edit."
 msgstr ""
-"נא להזין תאריך חוקי (כגון YYYY-MM-DD) בתיבת המלל ולהקיש על 'הרצה'. מהלך זה "
+"נא להזין תאריך תקין (כגון YYYY-MM-DD) בתיבת המלל ולהקיש על 'הרצה'. מהלך זה "
 "יחשב את הגילאים לכל אדם באילן־היוחסין לתאריך שהוזן. לאחר מכן ניתן יהיה למיין "
 "לפי עמודת הגיל, הקשה כפולה על השורה תאפשר הצגה או עריכה."
 
@@ -25845,11 +25813,11 @@ msgstr "גרמפלט להצגת עצמי מדיה למובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:725
 msgid "Person Attributes"
-msgstr "תכונות אדם"
+msgstr "מאפייני אדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:726
 msgid "Gramplet showing the attributes of a person"
-msgstr "גרמפלט להצגת תכונות לאדם"
+msgstr "גרמפלט להצגת מאפיינים לאדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:741
 msgid "Event Attributes"
@@ -25857,35 +25825,35 @@ msgstr "תכונת אירוע"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:742
 msgid "Gramplet showing the attributes of an event"
-msgstr "גרמפלט להצגת תכונות לאירוע"
+msgstr "גרמפלט להצגת מאפיינים לאירוע"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:757
 msgid "Family Attributes"
-msgstr "תכונות משפחה"
+msgstr "מאפייני משפחה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:758
 msgid "Gramplet showing the attributes of a family"
-msgstr "גרמפלט להצגת תכונות למשפחה"
+msgstr "גרמפלט להצגת מאפיינים למשפחה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:773
 msgid "Media Attributes"
-msgstr "תכונות מדיה"
+msgstr "מאפייני מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:774
 msgid "Gramplet showing the attributes of a media object"
-msgstr "גרמפלט להצגת תכונות לעצם מדיה"
+msgstr "גרמפלט להצגת מאפיינים לעצם מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:790
 msgid "Gramplet showing the attributes of a source object"
-msgstr "גרמפלט להצגת תכונות לעצם מקור"
+msgstr "גרמפלט להצגת מאפיינים לעצם מקור"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:805
 msgid "Citation Attributes"
-msgstr "תכונות מובאה"
+msgstr "מאפייני מובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:806
 msgid "Gramplet showing the attributes of a citation object"
-msgstr "גרמפלט להצגת תכונות לעצם מובאה"
+msgstr "גרמפלט להצגת מאפיינים לעצם מובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:821
 msgid "Person Notes"
@@ -28332,7 +28300,7 @@ msgid ""
 "Source attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
-"תכונות מלל מקור\n"
+"מאפייני מלל מקור\n"
 "(מלל, ייבוא שם קובץ ותאריך (מערכת))."
 
 #: ../gramps/plugins/importer/importprogen.glade:241
@@ -28361,7 +28329,7 @@ msgid ""
 "Citation attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
-"מלל תכונות מובאה\n"
+"מלל מאפייני מובאה\n"
 "(מלל, ייבוא שם קובץ ותאריך (מערכת))."
 
 #: ../gramps/plugins/importer/importprogen.glade:397
@@ -28735,7 +28703,7 @@ msgstr "קובץ הגרמפס Xml שבנסיון טעינה שגוי."
 
 #: ../gramps/plugins/importer/importxml.py:907
 msgid "Attributes that link the data together are missing."
-msgstr "חסרות תכונות שמקשרות את הנתונים יחד."
+msgstr "חסרים מאפיינים שמקשרים את הנתונים יחד."
 
 #: ../gramps/plugins/importer/importxml.py:1052
 msgid "Gramps XML import"
@@ -28855,8 +28823,8 @@ msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"שם קבוצות אילנות־היוחסין '%(key)s' יחד עם '%(parent)s', לא שינה קיבוץ זה "
-"ל־'%(value)s'."
+"שם קבוצת אילנות־היוחסין '%(key)s' יחד עם '%(parent)s', לא שינה קיבוץ זה ל־'%"
+"(value)s'."
 
 #: ../gramps/plugins/importer/importxml.py:1932
 msgid "Gramps ignored a name grouping"
@@ -28982,7 +28950,7 @@ msgstr "המערכת תתעלם מהשורה "
 #: ../gramps/plugins/lib/libgedcom.py:1886
 #, python-format
 msgid "Illegal character%s"
-msgstr "תו לא חוקי %s"
+msgstr "תו לא תקין %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:2174
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -35032,14 +35000,14 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:978
 #: ../gramps/plugins/textreport/detdescendantreport.py:1188
 msgid "Include attributes"
-msgstr "לכלול תכונות"
+msgstr "לכלול מאפיינים"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:979
 #: ../gramps/plugins/textreport/detdescendantreport.py:1189
 #: ../gramps/plugins/textreport/familygroup.py:779
 #: ../gramps/plugins/textreport/indivcomplete.py:1187
 msgid "Whether to include attributes."
-msgstr "האם לכלול תכונות."
+msgstr "האם לכלול מאפיינים."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:982
 #: ../gramps/plugins/textreport/detdescendantreport.py:1192
@@ -35293,7 +35261,7 @@ msgstr "האם לכלול את ההערות להורים."
 
 #: ../gramps/plugins/textreport/familygroup.py:778
 msgid "Parent Attributes"
-msgstr "תכונות הורה"
+msgstr "מאפייני הורה"
 
 #: ../gramps/plugins/textreport/familygroup.py:782
 msgid "Alternate Parent Names"
@@ -35417,7 +35385,7 @@ msgstr "האם לכלול תגים."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1186
 msgid "Include Attributes"
-msgstr "לכלול תכונות"
+msgstr "לכלול מאפיינים"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1190
 msgid "Include Addresses"
@@ -37307,7 +37275,7 @@ msgstr "שם חלופי"
 
 #: ../gramps/plugins/tool/removespaces.py:156
 msgid "group as"
-msgstr "קיבוץ כ"
+msgstr "לקבץ לפי"
 
 #: ../gramps/plugins/tool/removespaces.py:202
 msgid "tooltip"
@@ -39234,10 +39202,8 @@ msgstr "הוספת צאצא חדש למשפחה"
 
 #: ../gramps/plugins/view/relview.py:1172
 #: ../gramps/plugins/view/relview.py:1704
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person as a child of the family"
-msgstr "הוספת אדם קיים כצאצא של המשפחה"
+msgstr "בחירת אדם קיים כצאצא של המשפחה"
 
 #: ../gramps/plugins/view/relview.py:1467
 #, python-format
@@ -40022,7 +39988,7 @@ msgstr "לא ניתן ליצור את המחיצה: %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:410
 msgid "Invalid file name"
-msgstr "שם קובץ לא חוקי"
+msgstr "שם קובץ לא תקין"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:411
 msgid "The archive file must be a file, not a directory"
@@ -40315,8 +40281,8 @@ msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
-"לכלול הערות מלל מיד לאחר שם, מגדר וגיל בפטירה (בירית מחדל) או להכליל אותם "
-"לפני תכונות."
+"לכלול הערות מלל מיד לאחר שם, מגדר וגיל בפטירה (בירית מחדל) או לכלול אותם "
+"לפני מאפיינים."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2365
 msgid "Page Generation"
