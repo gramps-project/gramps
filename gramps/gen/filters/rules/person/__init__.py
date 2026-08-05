@@ -32,6 +32,7 @@ from ._hasaddresstext import HasAddressText
 from ._hasalternatename import HasAlternateName
 from ._hasassociation import HasAssociation
 from ._hasattribute import HasAttribute
+from ._hasnotattribute import HasNotAttribute
 from ._hasbirth import HasBirth
 from ._hascitation import HasCitation
 from ._hascommonancestorwith import HasCommonAncestorWith
@@ -142,6 +143,7 @@ editor_rule_list = [
     HasEvent,
     HasFamilyEvent,
     HasAttribute,
+    HasNotAttribute,
     HasFamilyAttribute,
     HasTag,
     HasSourceCount,

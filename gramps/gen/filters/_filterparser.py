@@ -243,6 +243,7 @@ old_names_2_class = {
     "Has the personal event": rules.person.HasEvent,
     "Has the family event": rules.person.HasFamilyEvent,
     "Has the personal attribute": rules.person.HasAttribute,
+    "Has not the personal attribute": rules.person.HasNotAttribute,
     "Has the family attribute": rules.person.HasFamilyAttribute,
     "Has source of": rules.person.HasSourceOf,
     "Matches the filter named": rules.person.HasSourceOf,

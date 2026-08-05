@@ -37,6 +37,7 @@ _HasSourceBase               Source with a particular value (HasSource)
 Match on sub-objects
 _ChangedSinceBase            Object changed since date
 _HasAttributeBase            Object has particular attribute value
+_HasNotAttributeBase
 _HasGrampsId                 Object has a specific Gramps Id
 _HasNoteRegexBase            Object has notes matching regular expression
 _HasNoteSubstrBase           Object has note containing substring
