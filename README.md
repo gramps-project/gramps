@@ -116,7 +116,7 @@ Python bindings for Oracle Berkeley database. Only needed to upgrade older Gramp
  to a place name. This is used if you already have osmgpsmap installed.
  If installed, when you add or link a place from the map, you have a red line
  at the end of the table for selection.
- The package name is usually gir1.2-geocodeglib-1.0 or geocode-glib.
+ The package name is usually gir1.2-geocodeglib-2.0 or geocode-glib.
 
 * [**fontconfig**](https://www.freedesktop.org/wiki/Software/fontconfig/)
 

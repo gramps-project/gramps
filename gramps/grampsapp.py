@@ -453,7 +453,7 @@ def show_settings():
         rcs_ver = _("not found")
 
     try:
-        gi.require_version("GeocodeGlib", "1.0")
+        gi.require_version("GeocodeGlib", "2.0")
         from gi.repository import GeocodeGlib
 
         geocodeglib_ver = str(GeocodeGlib._version)

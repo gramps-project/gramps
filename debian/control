@@ -41,7 +41,7 @@ Recommends:
  gir1.2-gexiv2-0.10,
  gir1.2-osmgpsmap-1.0,
  python3-icu,
- gir1.2-geocodeglib-1.0,
+ gir1.2-geocodeglib-2.0,
  python3-fontconfig
 Suggests:
  fonts-freefont-ttf,
