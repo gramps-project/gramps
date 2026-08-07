@@ -44,3 +44,4 @@ class HasNoteTag(HasNoteTagBase):
     name = _("Repositories with a note with the <tag>")
     description = _("Matches repositories with a note with a specified tag")
     category = _("Note filters")
+    namespace = "Repository"

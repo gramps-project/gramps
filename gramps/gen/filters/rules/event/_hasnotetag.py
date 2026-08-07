@@ -44,3 +44,4 @@ class HasNoteTag(HasNoteTagBase):
     name = _("Events with a note with the <tag>")
     description = _("Matches events with a note with a specified tag")
     category = _("Note filters")
+    namespace = "Event"

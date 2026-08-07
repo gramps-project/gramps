@@ -477,7 +477,7 @@ class FamilyView(ListView):
                 [
                     link[1]
                     for link in self.dbstate.db.find_backlink_handles(
-                        tag_handle, include_classes="Family"
+                        tag_handle, include_classes=["Family"]
                     )
                 ]
             )

@@ -44,3 +44,4 @@ class HasNoteTag(HasNoteTagBase):
     name = _("People with a note with the <tag>")
     description = _("Matches people with a note with a specified tag")
     category = _("Note filters")
+    namespace = "Person"

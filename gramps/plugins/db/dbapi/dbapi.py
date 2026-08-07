@@ -271,6 +271,10 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("CREATE INDEX place_gramps_id ON place(gramps_id)")
         self.dbapi.execute("CREATE INDEX tag_name ON tag(name)")
         self.dbapi.execute("CREATE INDEX reference_ref_handle ON reference(ref_handle)")
+        self.dbapi.execute(
+            "CREATE INDEX reference_ref_handle_obj_class "
+            "ON reference(ref_handle, obj_class)"
+        )
         self.dbapi.execute("CREATE INDEX family_gramps_id ON family(gramps_id)")
         self.dbapi.execute("CREATE INDEX event_gramps_id ON event(gramps_id)")
         self.dbapi.execute("CREATE INDEX repository_gramps_id ON repository(gramps_id)")
@@ -877,7 +881,7 @@ class DBAPI(DbGeneric):
         """
         Find all objects that hold a reference to the object handle.
 
-        Returns an interator over a list of (class_name, handle) tuples.
+        Returns an iterator over a list of (class_name, handle) tuples.
 
         :param handle: handle of the object to search for.
         :type handle: database handle
@@ -890,14 +894,19 @@ class DBAPI(DbGeneric):
 
             result_list = list(find_backlink_handles(handle))
         """
-        self.dbapi.execute(
-            "SELECT obj_class, obj_handle FROM reference WHERE ref_handle = ?",
-            [handle],
-        )
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            if (include_classes is None) or (row[0] in include_classes):
-                yield (row[0], row[1])
+        if include_classes is None:
+            self.dbapi.execute(
+                "SELECT obj_class, obj_handle FROM reference WHERE ref_handle = ?",
+                [handle],
+            )
+        else:
+            placeholders = ",".join("?" * len(include_classes))
+            self.dbapi.execute(
+                "SELECT obj_class, obj_handle FROM reference "
+                f"WHERE ref_handle = ? AND obj_class IN ({placeholders})",
+                [handle, *include_classes],
+            )
+        yield from ((row[0], row[1]) for row in self.dbapi.fetchall())
 
     def find_initial_person(self):
         """
