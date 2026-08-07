@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013 Artem Glebov <artem.glebov@gmail.com>
+# Copyright (C) 2026 ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -213,6 +214,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         self.regions = []
         self.translation = None
         self.pixbuf = None
+        self.orientation = None
         self.scaled_pixbuf = None
         self.scale = 1.0
         self.old_viewport_size = None
@@ -308,6 +310,8 @@ class SelectionWidget(Gtk.ScrolledWindow):
 
         try:
             self.pixbuf = GdkPixbuf.Pixbuf.new_from_file(image_path)
+            self.orientation = self.pixbuf.get_option("orientation")
+            self.pixbuf = self.pixbuf.apply_embedded_orientation()
             self.original_image_size = (
                 self.pixbuf.get_width(),
                 self.pixbuf.get_height(),

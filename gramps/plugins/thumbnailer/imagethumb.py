@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2022       Nick Hall
+# Copyright (C) 2026       ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,6 +43,7 @@ from gi.repository import GdkPixbuf
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import THUMBSCALE, THUMBSCALE_LARGE, SIZE_LARGE
+from gramps.gen.lib.mediaref import apply_orientation_to_rect_coords
 from gramps.gen.plug import Thumbnailer
 
 # -------------------------------------------------------------------------
@@ -64,10 +66,13 @@ class ImageThumb(Thumbnailer):
         # routines.
         try:
             pixbuf = GdkPixbuf.Pixbuf.new_from_file(src_file)
+            orientation = pixbuf.get_option("orientation")
+            pixbuf = pixbuf.apply_embedded_orientation()
             width = pixbuf.get_width()
             height = pixbuf.get_height()
 
             if rectangle is not None:
+                rectangle = apply_orientation_to_rect_coords(rectangle, orientation)
                 upper_x = min(rectangle[0], rectangle[2]) / 100.0
                 lower_x = max(rectangle[0], rectangle[2]) / 100.0
                 upper_y = min(rectangle[1], rectangle[3]) / 100.0
