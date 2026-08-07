@@ -150,8 +150,42 @@ class DateStrings:
             _("Persian", "calendar"),
             _("Islamic", "calendar"),
             _("Swedish", "calendar"),
+            _("Chinese Lunar", "calendar"),
+            _("Korean Lunar", "calendar"),
         )
         _ = locale.translation.lexgettext
+
+        self.chinese_lunar = (
+            "",
+            _("Zhengyue", "Chinese Lunar month lexeme"),
+            _("Eryue", "Chinese Lunar month lexeme"),
+            _("Sanyue", "Chinese Lunar month lexeme"),
+            _("Siyue", "Chinese Lunar month lexeme"),
+            _("Wuyue", "Chinese Lunar month lexeme"),
+            _("Liuyue", "Chinese Lunar month lexeme"),
+            _("Qiyue", "Chinese Lunar month lexeme"),
+            _("Bayue", "Chinese Lunar month lexeme"),
+            _("Jiuyue", "Chinese Lunar month lexeme"),
+            _("Shiyue", "Chinese Lunar month lexeme"),
+            _("Shiyiyue", "Chinese Lunar month lexeme"),
+            _("Shier'yue", "Chinese Lunar month lexeme"),
+        )
+
+        self.korean_lunar = (
+            "",
+            _("Jeongwol", "Korean Lunar month lexeme"),
+            _("Iwol", "Korean Lunar month lexeme"),
+            _("Samwol", "Korean Lunar month lexeme"),
+            _("Sawol", "Korean Lunar month lexeme"),
+            _("Owol", "Korean Lunar month lexeme"),
+            _("Yuwol", "Korean Lunar month lexeme"),
+            _("Chirwol", "Korean Lunar month lexeme"),
+            _("Palwol", "Korean Lunar month lexeme"),
+            _("Guwol", "Korean Lunar month lexeme"),
+            _("Siwol", "Korean Lunar month lexeme"),
+            _("Sibirwol", "Korean Lunar month lexeme"),
+            _("Sibiwol", "Korean Lunar month lexeme"),
+        )
 
         self.hebrew = (
             "",
