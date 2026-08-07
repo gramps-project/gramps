@@ -457,8 +457,10 @@ gramps/gui/plug/test/windows_test.py
 #
 gramps/gui/selectors/__init__.py
 gramps/gui/selectors/baseselector.py
+gramps/gui/selectors/quickplaceparser.py
 gramps/gui/selectors/selectorexceptions.py
 gramps/gui/selectors/selectorfactory.py
+gramps/gui/selectors/test/quickplaceparser_test.py
 #
 # gui.test package
 #
