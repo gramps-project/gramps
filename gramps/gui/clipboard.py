@@ -79,7 +79,13 @@ clipdb = None  # current db to avoid different transient dbs during db change
 # -------------------------------------------------------------------------
 
 theme = Gtk.IconTheme.get_default()
-LINK_PIC = theme.load_icon("stock_link", 16, 0)
+# Gtk.IconTheme.get_default() returns None when no default screen is
+# available (headless containers, plugin-registration smoke tests run
+# without a display, etc.). Fall back to a None LINK_PIC and an empty
+# ICONS dict in that case so this module imports cleanly. Any actual
+# UI rendering still requires a display, but that is gated by GTK
+# elsewhere — module import on its own should not raise.
+LINK_PIC = theme.load_icon("stock_link", 16, 0) if theme is not None else None
 OBJ2ICON = {
     "media": "gramps-media",
     "note": "gramps-notes",
@@ -105,8 +111,16 @@ def obj2icon(target):
 
 
 ICONS = {}
-for name, icon in OBJ2ICON.items():
-    ICONS[name] = theme.load_icon(icon, 16, 0)
+if theme is not None:
+    for name, icon in OBJ2ICON.items():
+        ICONS[name] = theme.load_icon(icon, 16, 0)
+else:
+    # Headless fallback: populate every expected key with None so
+    # the class-body lookups below (``ICON = ICONS["address"]`` etc.)
+    # don't KeyError. Real icon rendering is gated by GTK at the
+    # widget level, which itself requires a display.
+    for name in OBJ2ICON:
+        ICONS[name] = None
 
 
 # -------------------------------------------------------------------------
