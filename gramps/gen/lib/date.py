@@ -42,6 +42,12 @@ from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 from ..errors import DateError
 from .gcalendar import (
+    chinese_lunar_sdn,
+    chinese_lunar_ymd,
+    japanese_imperial_sdn,
+    japanese_imperial_ymd,
+    korean_lunar_sdn,
+    korean_lunar_ymd,
     french_sdn,
     french_ymd,
     gregorian_sdn,
@@ -603,7 +609,10 @@ class Date(BaseObject):
     CAL_PERSIAN = 4
     CAL_ISLAMIC = 5
     CAL_SWEDISH = 6
-    CALENDARS = range(7)
+    CAL_CHINESE_LUNAR = 7
+    CAL_KOREAN_LUNAR = 8
+    CAL_JAPANESE_IMPERIAL = 9
+    CALENDARS = range(10)
 
     NEWYEAR_JAN1 = 0  # CODE
     NEWYEAR_MAR1 = 1
@@ -630,6 +639,9 @@ class Date(BaseObject):
         persian_sdn,
         islamic_sdn,
         swedish_sdn,
+        chinese_lunar_sdn,
+        korean_lunar_sdn,
+        japanese_imperial_sdn,
     ]
 
     _calendar_change = [
@@ -640,6 +652,9 @@ class Date(BaseObject):
         persian_ymd,
         islamic_ymd,
         swedish_ymd,
+        chinese_lunar_ymd,
+        korean_lunar_ymd,
+        japanese_imperial_ymd,
     ]
 
     calendar_names = [
@@ -650,6 +665,9 @@ class Date(BaseObject):
         "Persian",
         "Islamic",
         "Swedish",
+        "Chinese Lunar",
+        "Korean Lunar",
+        "Japanese Imperial",
     ]
 
     ui_calendar_names = [
@@ -660,6 +678,9 @@ class Date(BaseObject):
         _("Persian", "calendar"),
         _("Islamic", "calendar"),
         _("Swedish", "calendar"),
+        _("Chinese Lunar", "calendar"),
+        _("Korean Lunar", "calendar"),
+        _("Japanese Imperial", "calendar"),
     ]
 
     def __init__(self, *source):
