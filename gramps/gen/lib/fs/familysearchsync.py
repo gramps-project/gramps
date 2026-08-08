@@ -22,7 +22,10 @@
 FamilySearch sync secondary object for Gramps.
 """
 
+import functools
+
 from ...const import GRAMPS_LOCALE as glocale
+from ..schemautils import freeze_schema
 from ..secondaryobj import SecondaryObject
 
 _ = glocale.translation.gettext
@@ -64,40 +67,46 @@ class FamilySearchSync(SecondaryObject):
         }
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON schema for this class.
         """
-        return {
-            "type": "object",
-            "title": _("FamilySearch sync"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "fsid": {"type": ["string", "null"], "title": _("FamilySearch ID")},
-                "is_root": {"type": "boolean", "title": _("Is root")},
-                "status_ts": {
-                    "type": ["integer", "null"],
-                    "title": _("Status timestamp"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("FamilySearch sync"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "fsid": {
+                        "type": ["string", "null"],
+                        "title": _("FamilySearch ID"),
+                    },
+                    "is_root": {"type": "boolean", "title": _("Is root")},
+                    "status_ts": {
+                        "type": ["integer", "null"],
+                        "title": _("Status timestamp"),
+                    },
+                    "confirmed_ts": {
+                        "type": ["integer", "null"],
+                        "title": _("Confirmed timestamp"),
+                    },
+                    "gramps_modified_ts": {
+                        "type": ["integer", "null"],
+                        "title": _("Gramps modified timestamp"),
+                    },
+                    "fs_modified_ts": {
+                        "type": ["integer", "null"],
+                        "title": _("FamilySearch modified timestamp"),
+                    },
+                    "essential_conflict": {
+                        "type": "boolean",
+                        "title": _("Essential conflict"),
+                    },
+                    "conflict": {"type": "boolean", "title": _("Conflict")},
                 },
-                "confirmed_ts": {
-                    "type": ["integer", "null"],
-                    "title": _("Confirmed timestamp"),
-                },
-                "gramps_modified_ts": {
-                    "type": ["integer", "null"],
-                    "title": _("Gramps modified timestamp"),
-                },
-                "fs_modified_ts": {
-                    "type": ["integer", "null"],
-                    "title": _("FamilySearch modified timestamp"),
-                },
-                "essential_conflict": {
-                    "type": "boolean",
-                    "title": _("Essential conflict"),
-                },
-                "conflict": {"type": "boolean", "title": _("Conflict")},
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

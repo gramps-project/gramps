@@ -29,6 +29,7 @@ Citation object for Gramps.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import functools
 import logging
 
 # -------------------------------------------------------------------------
@@ -36,6 +37,7 @@ import logging
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .attrbase import SrcAttributeBase
 from .citationbase import IndirectCitationBase
@@ -89,6 +91,7 @@ class Citation(
         SrcAttributeBase.__init__(self)  #  8
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -101,54 +104,56 @@ class Citation(
         from .mediaref import MediaRef
         from .srcattribute import SrcAttribute
 
-        return {
-            "type": "object",
-            "title": _("Citation"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Citation"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "handle": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "title": _("Handle"),
+                    },
+                    "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                    "date": Date.get_schema(),
+                    "page": {"type": "string", "title": _("Page")},
+                    "confidence": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 4,
+                        "title": _("Confidence"),
+                    },
+                    "source_handle": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "title": _("Source"),
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Notes"),
+                    },
+                    "media_list": {
+                        "type": "array",
+                        "items": MediaRef.get_schema(),
+                        "title": _("Media"),
+                    },
+                    "attribute_list": {
+                        "type": "array",
+                        "items": SrcAttribute.get_schema(),
+                        "title": _("Source Attributes"),
+                    },
+                    "change": {"type": "integer", "title": _("Last changed")},
+                    "tag_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Tags"),
+                    },
+                    "private": {"type": "boolean", "title": _("Private")},
                 },
-                "gramps_id": {"type": "string", "title": _("Gramps ID")},
-                "date": Date.get_schema(),
-                "page": {"type": "string", "title": _("Page")},
-                "confidence": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 4,
-                    "title": _("Confidence"),
-                },
-                "source_handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Source"),
-                },
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Notes"),
-                },
-                "media_list": {
-                    "type": "array",
-                    "items": MediaRef.get_schema(),
-                    "title": _("Media"),
-                },
-                "attribute_list": {
-                    "type": "array",
-                    "items": SrcAttribute.get_schema(),
-                    "title": _("Source Attributes"),
-                },
-                "change": {"type": "integer", "title": _("Last changed")},
-                "tag_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Tags"),
-                },
-                "private": {"type": "boolean", "title": _("Private")},
-            },
-        }
+            }
+        )
 
     def serialize(self, no_text_date=False):
         """

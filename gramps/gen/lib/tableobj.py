@@ -27,14 +27,16 @@ Table Object class for Gramps.
 # Python modules
 #
 # -------------------------------------------------------------------------
-import time
 from abc import abstractmethod
+import functools
+import time
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .baseobj import BaseObject
 
@@ -142,13 +144,15 @@ class TableObject(BaseObject):
         return self.handle
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Return schema.
         """
-        return {}
+        return freeze_schema({})
 
     @classmethod
+    @functools.cache
     def get_secondary_fields(cls):
         """
         Return all secondary fields and their types
@@ -157,8 +161,9 @@ class TableObject(BaseObject):
         for key, value in cls.get_schema()["properties"].items():
             schema_type = value.get("type")
             if isinstance(schema_type, list):
-                schema_type.remove("null")
-                schema_type = schema_type[0]
+                # schema_type is part of the frozen, shared schema: build a
+                # new value instead of mutating it in place.
+                schema_type = [item for item in schema_type if item != "null"][0]
             elif isinstance(schema_type, dict):
                 schema_type = None
             if schema_type in ("string", "integer", "number", "boolean"):

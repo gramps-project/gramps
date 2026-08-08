@@ -32,11 +32,14 @@ Place object for Gramps.
 # -------------------------------------------------------------------------
 from __future__ import annotations
 
+import functools
+
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .citationbase import CitationBase
 from .location import Location
@@ -137,6 +140,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         )
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -148,67 +152,69 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         from .mediaref import MediaRef
         from .url import Url
 
-        return {
-            "type": "object",
-            "title": _("Place"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Place"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "handle": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "title": _("Handle"),
+                    },
+                    "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                    "title": {"type": "string", "title": _("Title")},
+                    "long": {"type": "string", "title": _("Longitude")},
+                    "lat": {"type": "string", "title": _("Latitude")},
+                    "placeref_list": {
+                        "type": "array",
+                        "items": PlaceRef.get_schema(),
+                        "title": _("Places"),
+                    },
+                    "name": PlaceName.get_schema(),
+                    "alt_names": {
+                        "type": "array",
+                        "items": PlaceName.get_schema(),
+                        "title": _("Alternate Names"),
+                    },
+                    "place_type": PlaceType.get_schema(),
+                    "code": {"type": "string", "title": _("Code")},
+                    "alt_loc": {
+                        "type": "array",
+                        "items": Location.get_schema(),
+                        "title": _("Alternate Locations"),
+                    },
+                    "urls": {
+                        "type": "array",
+                        "items": Url.get_schema(),
+                        "title": _("URLs"),
+                    },
+                    "media_list": {
+                        "type": "array",
+                        "items": MediaRef.get_schema(),
+                        "title": _("Media"),
+                    },
+                    "citation_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Citations"),
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Notes"),
+                    },
+                    "change": {"type": "integer", "title": _("Last changed")},
+                    "tag_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Tags"),
+                    },
+                    "private": {"type": "boolean", "title": _("Private")},
                 },
-                "gramps_id": {"type": "string", "title": _("Gramps ID")},
-                "title": {"type": "string", "title": _("Title")},
-                "long": {"type": "string", "title": _("Longitude")},
-                "lat": {"type": "string", "title": _("Latitude")},
-                "placeref_list": {
-                    "type": "array",
-                    "items": PlaceRef.get_schema(),
-                    "title": _("Places"),
-                },
-                "name": PlaceName.get_schema(),
-                "alt_names": {
-                    "type": "array",
-                    "items": PlaceName.get_schema(),
-                    "title": _("Alternate Names"),
-                },
-                "place_type": PlaceType.get_schema(),
-                "code": {"type": "string", "title": _("Code")},
-                "alt_loc": {
-                    "type": "array",
-                    "items": Location.get_schema(),
-                    "title": _("Alternate Locations"),
-                },
-                "urls": {
-                    "type": "array",
-                    "items": Url.get_schema(),
-                    "title": _("URLs"),
-                },
-                "media_list": {
-                    "type": "array",
-                    "items": MediaRef.get_schema(),
-                    "title": _("Media"),
-                },
-                "citation_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Citations"),
-                },
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Notes"),
-                },
-                "change": {"type": "integer", "title": _("Last changed")},
-                "tag_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Tags"),
-                },
-                "private": {"type": "boolean", "title": _("Private")},
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

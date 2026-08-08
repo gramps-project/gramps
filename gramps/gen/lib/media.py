@@ -29,6 +29,7 @@ Media object for Gramps.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import functools
 import logging
 import os
 from urllib.parse import urlparse
@@ -38,6 +39,7 @@ from urllib.parse import urlparse
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .attrbase import AttributeBase
 from .citationbase import CitationBase
@@ -126,6 +128,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase, PrimaryObject):
         )
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -137,46 +140,48 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase, PrimaryObject):
         from .attribute import Attribute
         from .date import Date
 
-        return {
-            "type": "object",
-            "title": _("Media"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Media"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "handle": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "title": _("Handle"),
+                    },
+                    "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                    "path": {"type": "string", "title": _("Path")},
+                    "mime": {"type": "string", "title": _("MIME")},
+                    "desc": {"type": "string", "title": _("Description")},
+                    "checksum": {"type": "string", "title": _("Checksum")},
+                    "attribute_list": {
+                        "type": "array",
+                        "items": Attribute.get_schema(),
+                        "title": _("Attributes"),
+                    },
+                    "citation_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Citations"),
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "title": _("Notes"),
+                    },
+                    "change": {"type": "integer", "title": _("Last changed")},
+                    "date": Date.get_schema(),
+                    "tag_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Tags"),
+                    },
+                    "private": {"type": "boolean", "title": _("Private")},
                 },
-                "gramps_id": {"type": "string", "title": _("Gramps ID")},
-                "path": {"type": "string", "title": _("Path")},
-                "mime": {"type": "string", "title": _("MIME")},
-                "desc": {"type": "string", "title": _("Description")},
-                "checksum": {"type": "string", "title": _("Checksum")},
-                "attribute_list": {
-                    "type": "array",
-                    "items": Attribute.get_schema(),
-                    "title": _("Attributes"),
-                },
-                "citation_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Citations"),
-                },
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string"},
-                    "title": _("Notes"),
-                },
-                "change": {"type": "integer", "title": _("Last changed")},
-                "date": Date.get_schema(),
-                "tag_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Tags"),
-                },
-                "private": {"type": "boolean", "title": _("Private")},
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

@@ -23,9 +23,17 @@
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .baseobj import BaseObject
 from .styledtexttagtype import StyledTextTagType
@@ -102,6 +110,7 @@ class StyledTextTag(BaseObject):
         return self
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -109,25 +118,27 @@ class StyledTextTag(BaseObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Tag"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "name": StyledTextTagType.get_schema(),
-                "value": {
-                    "type": ["null", "string", "integer"],
-                    "title": _("Value"),
-                },
-                "ranges": {
-                    "type": "array",
-                    "items": {
-                        "type": "array",
-                        "items": {"type": "integer"},
-                        "minItems": 2,
-                        "maxItems": 2,
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Tag"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "name": StyledTextTagType.get_schema(),
+                    "value": {
+                        "type": ["null", "string", "integer"],
+                        "title": _("Value"),
                     },
-                    "title": _("Ranges"),
+                    "ranges": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {"type": "integer"},
+                            "minItems": 2,
+                            "maxItems": 2,
+                        },
+                        "title": _("Ranges"),
+                    },
                 },
-            },
-        }
+            }
+        )

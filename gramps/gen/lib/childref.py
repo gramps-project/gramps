@@ -27,9 +27,17 @@ Child Reference class for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .childreftype import ChildRefType
 from .citationbase import CitationBase
@@ -93,6 +101,7 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         return self
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -100,31 +109,33 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Child Reference"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean", "title": _("Private")},
-                "citation_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Citations"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Child Reference"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "private": {"type": "boolean", "title": _("Private")},
+                    "citation_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Citations"),
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Notes"),
+                    },
+                    "ref": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "title": _("Handle"),
+                    },
+                    "frel": ChildRefType.get_schema(),
+                    "mrel": ChildRefType.get_schema(),
                 },
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Notes"),
-                },
-                "ref": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
-                },
-                "frel": ChildRefType.get_schema(),
-                "mrel": ChildRefType.get_schema(),
-            },
-        }
+            }
+        )
 
     def get_text_data_list(self):
         """
