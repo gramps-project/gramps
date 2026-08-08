@@ -27,9 +27,17 @@ Event Reference class for Gramps
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .attrbase import AttributeBase
 from .citationbase import CitationBase
@@ -106,6 +114,7 @@ class EventRef(
         super().set_object_state(attr_dict)
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -116,31 +125,33 @@ class EventRef(
         # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
 
-        return {
-            "type": "object",
-            "title": _("Event reference"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean", "title": _("Private")},
-                "citation_list": {
-                    "type": "array",
-                    "title": _("Citations"),
-                    "items": {"type": "string", "maxLength": 50},
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Event reference"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "private": {"type": "boolean", "title": _("Private")},
+                    "citation_list": {
+                        "type": "array",
+                        "title": _("Citations"),
+                        "items": {"type": "string", "maxLength": 50},
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Notes"),
+                    },
+                    "attribute_list": {
+                        "type": "array",
+                        "items": Attribute.get_schema(),
+                        "title": _("Attributes"),
+                    },
+                    "ref": {"type": "string", "maxLength": 50, "title": _("Event")},
+                    "role": EventRoleType.get_schema(),
                 },
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Notes"),
-                },
-                "attribute_list": {
-                    "type": "array",
-                    "items": Attribute.get_schema(),
-                    "title": _("Attributes"),
-                },
-                "ref": {"type": "string", "maxLength": 50, "title": _("Event")},
-                "role": EventRoleType.get_schema(),
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

@@ -30,6 +30,7 @@ LDS Ordinance class for Gramps.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import functools
 from warnings import warn
 
 # -------------------------------------------------------------------------
@@ -37,6 +38,7 @@ from warnings import warn
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .citationbase import CitationBase
 from .const import DIFFERENT, EQUAL, IDENTICAL
@@ -172,6 +174,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
         return self
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -182,30 +185,32 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase, DateBase, PlaceBase, Priva
         # pylint: disable=import-outside-toplevel
         from .date import Date
 
-        return {
-            "type": "object",
-            "title": _("LDS Ordinance"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "citation_list": {
-                    "type": "array",
-                    "title": _("Citations"),
-                    "items": {"type": "string", "maxLength": 50},
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("LDS Ordinance"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "citation_list": {
+                        "type": "array",
+                        "title": _("Citations"),
+                        "items": {"type": "string", "maxLength": 50},
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "title": _("Notes"),
+                        "items": {"type": "string", "maxLength": 50},
+                    },
+                    "date": Date.get_schema(),
+                    "type": {"type": "integer", "title": _("Type")},
+                    "place": {"type": "string", "title": _("Place")},
+                    "famc": {"type": ["null", "string"], "title": _("Family")},
+                    "temple": {"type": "string", "title": _("Temple")},
+                    "status": {"type": "integer", "title": _("Status")},
+                    "private": {"type": "boolean", "title": _("Private")},
                 },
-                "note_list": {
-                    "type": "array",
-                    "title": _("Notes"),
-                    "items": {"type": "string", "maxLength": 50},
-                },
-                "date": Date.get_schema(),
-                "type": {"type": "integer", "title": _("Type")},
-                "place": {"type": "string", "title": _("Place")},
-                "famc": {"type": ["null", "string"], "title": _("Family")},
-                "temple": {"type": "string", "title": _("Temple")},
-                "status": {"type": "integer", "title": _("Status")},
-                "private": {"type": "boolean", "title": _("Private")},
-            },
-        }
+            }
+        )
 
     def get_text_data_list(self):
         """

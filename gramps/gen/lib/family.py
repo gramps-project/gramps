@@ -29,6 +29,7 @@ Family object for Gramps.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import functools
 import logging
 
 # -------------------------------------------------------------------------
@@ -36,6 +37,7 @@ import logging
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .attrbase import AttributeBase
 from .childref import ChildRef
@@ -143,6 +145,7 @@ class Family(
         )
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -155,68 +158,70 @@ class Family(
         from .ldsord import LdsOrd
         from .mediaref import MediaRef
 
-        return {
-            "type": "object",
-            "title": _("Family"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
-                "gramps_id": {"type": "string", "title": _("Gramps ID")},
-                "father_handle": {
-                    "type": ["string", "null"],
-                    "maxLength": 50,
-                    "title": _("Father"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Family"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                    "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                    "father_handle": {
+                        "type": ["string", "null"],
+                        "maxLength": 50,
+                        "title": _("Father"),
+                    },
+                    "mother_handle": {
+                        "type": ["string", "null"],
+                        "maxLength": 50,
+                        "title": _("Mother"),
+                    },
+                    "child_ref_list": {
+                        "type": "array",
+                        "items": ChildRef.get_schema(),
+                        "title": _("Children"),
+                    },
+                    "type": FamilyRelType.get_schema(),
+                    "event_ref_list": {
+                        "type": "array",
+                        "items": EventRef.get_schema(),
+                        "title": _("Events"),
+                    },
+                    "media_list": {
+                        "type": "array",
+                        "items": MediaRef.get_schema(),
+                        "title": _("Media"),
+                    },
+                    "attribute_list": {
+                        "type": "array",
+                        "items": Attribute.get_schema(),
+                        "title": _("Attributes"),
+                    },
+                    "lds_ord_list": {
+                        "type": "array",
+                        "items": LdsOrd.get_schema(),
+                        "title": _("LDS ordinances"),
+                    },
+                    "citation_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Citations"),
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Notes"),
+                    },
+                    "change": {"type": "integer", "title": _("Last changed")},
+                    "tag_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Tags"),
+                    },
+                    "private": {"type": "boolean", "title": _("Private")},
                 },
-                "mother_handle": {
-                    "type": ["string", "null"],
-                    "maxLength": 50,
-                    "title": _("Mother"),
-                },
-                "child_ref_list": {
-                    "type": "array",
-                    "items": ChildRef.get_schema(),
-                    "title": _("Children"),
-                },
-                "type": FamilyRelType.get_schema(),
-                "event_ref_list": {
-                    "type": "array",
-                    "items": EventRef.get_schema(),
-                    "title": _("Events"),
-                },
-                "media_list": {
-                    "type": "array",
-                    "items": MediaRef.get_schema(),
-                    "title": _("Media"),
-                },
-                "attribute_list": {
-                    "type": "array",
-                    "items": Attribute.get_schema(),
-                    "title": _("Attributes"),
-                },
-                "lds_ord_list": {
-                    "type": "array",
-                    "items": LdsOrd.get_schema(),
-                    "title": _("LDS ordinances"),
-                },
-                "citation_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Citations"),
-                },
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Notes"),
-                },
-                "change": {"type": "integer", "title": _("Last changed")},
-                "tag_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Tags"),
-                },
-                "private": {"type": "boolean", "title": _("Private")},
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

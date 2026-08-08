@@ -26,9 +26,17 @@ Note class for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .notetype import NoteType
 from .primaryobj import BasicPrimaryObject
@@ -93,6 +101,7 @@ class Note(BasicPrimaryObject):
         )
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -100,29 +109,31 @@ class Note(BasicPrimaryObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Note"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Note"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "handle": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "title": _("Handle"),
+                    },
+                    "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                    "text": StyledText.get_schema(),
+                    "format": {"type": "integer", "title": _("Format")},
+                    "type": NoteType.get_schema(),
+                    "change": {"type": "integer", "title": _("Last changed")},
+                    "tag_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Tags"),
+                    },
+                    "private": {"type": "boolean", "title": _("Private")},
                 },
-                "gramps_id": {"type": "string", "title": _("Gramps ID")},
-                "text": StyledText.get_schema(),
-                "format": {"type": "integer", "title": _("Format")},
-                "type": NoteType.get_schema(),
-                "change": {"type": "integer", "title": _("Last changed")},
-                "tag_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Tags"),
-                },
-                "private": {"type": "boolean", "title": _("Private")},
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.

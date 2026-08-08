@@ -27,9 +27,17 @@ Person Reference class for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .citationbase import CitationBase
 from .const import DIFFERENT, EQUAL, IDENTICAL
@@ -89,6 +97,7 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         return self
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -96,30 +105,32 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Person ref"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean", "title": _("Private")},
-                "citation_list": {
-                    "type": "array",
-                    "title": _("Citations"),
-                    "items": {"type": "string", "maxLength": 50},
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Person ref"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "private": {"type": "boolean", "title": _("Private")},
+                    "citation_list": {
+                        "type": "array",
+                        "title": _("Citations"),
+                        "items": {"type": "string", "maxLength": 50},
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "title": _("Notes"),
+                        "items": {"type": "string", "maxLength": 50},
+                    },
+                    "ref": {
+                        "type": "string",
+                        "title": _("Handle"),
+                        "maxLength": 50,
+                    },
+                    "rel": {"type": "string", "title": _("Association")},
                 },
-                "note_list": {
-                    "type": "array",
-                    "title": _("Notes"),
-                    "items": {"type": "string", "maxLength": 50},
-                },
-                "ref": {
-                    "type": "string",
-                    "title": _("Handle"),
-                    "maxLength": 50,
-                },
-                "rel": {"type": "string", "title": _("Association")},
-            },
-        }
+            }
+        )
 
     def get_text_data_list(self):
         """

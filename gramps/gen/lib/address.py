@@ -27,9 +27,17 @@ Address class for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .citationbase import CitationBase
 from .const import DIFFERENT, EQUAL, IDENTICAL
@@ -90,6 +98,7 @@ class Address(
         return self
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -100,33 +109,35 @@ class Address(
         # pylint: disable=import-outside-toplevel
         from .date import Date
 
-        return {
-            "type": "object",
-            "title": _("Address"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean", "title": _("Private")},
-                "citation_list": {
-                    "type": "array",
-                    "title": _("Citations"),
-                    "items": {"type": "string", "maxLength": 50},
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Address"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "private": {"type": "boolean", "title": _("Private")},
+                    "citation_list": {
+                        "type": "array",
+                        "title": _("Citations"),
+                        "items": {"type": "string", "maxLength": 50},
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "title": _("Notes"),
+                        "items": {"type": "string", "maxLength": 50},
+                    },
+                    "date": Date.get_schema(),
+                    "street": {"type": "string", "title": _("Street")},
+                    "locality": {"type": "string", "title": _("Locality")},
+                    "city": {"type": "string", "title": _("City")},
+                    "county": {"type": "string", "title": _("County")},
+                    "state": {"type": "string", "title": _("State")},
+                    "country": {"type": "string", "title": _("Country")},
+                    "postal": {"type": "string", "title": _("Postal Code")},
+                    "phone": {"type": "string", "title": _("Phone")},
                 },
-                "note_list": {
-                    "type": "array",
-                    "title": _("Notes"),
-                    "items": {"type": "string", "maxLength": 50},
-                },
-                "date": Date.get_schema(),
-                "street": {"type": "string", "title": _("Street")},
-                "locality": {"type": "string", "title": _("Locality")},
-                "city": {"type": "string", "title": _("City")},
-                "county": {"type": "string", "title": _("County")},
-                "state": {"type": "string", "title": _("State")},
-                "country": {"type": "string", "title": _("Country")},
-                "postal": {"type": "string", "title": _("Postal Code")},
-                "phone": {"type": "string", "title": _("Phone")},
-            },
-        }
+            }
+        )
 
     def get_text_data_list(self):
         """

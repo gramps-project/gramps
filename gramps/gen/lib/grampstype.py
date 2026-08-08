@@ -29,6 +29,7 @@ Base type for all gramps types.
 #
 # -------------------------------------------------------------------------
 from __future__ import annotations
+import functools
 from functools import singledispatchmethod
 from typing import Any
 
@@ -37,6 +38,7 @@ from typing import Any
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -255,6 +257,7 @@ class GrampsType(metaclass=GrampsTypeMeta):
         return cls.__get_str(data.value, data.string)
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -262,15 +265,17 @@ class GrampsType(metaclass=GrampsTypeMeta):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Type"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "string": {"type": "string", "title": _("Custom type")},
-                "value": {"type": "integer", "title": _("Type code")},
-            },
-        }
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Type"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "string": {"type": "string", "title": _("Custom type")},
+                    "value": {"type": "integer", "title": _("Type code")},
+                },
+            }
+        )
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object."""

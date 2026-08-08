@@ -24,9 +24,17 @@ Place Reference class for Gramps
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from .datebase import DateBase
@@ -72,6 +80,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         return self
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -82,19 +91,21 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         # pylint: disable=import-outside-toplevel
         from .date import Date
 
-        return {
-            "type": "object",
-            "title": _("Place ref"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "ref": {
-                    "type": "string",
-                    "title": _("Handle"),
-                    "maxLength": 50,
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Place ref"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "ref": {
+                        "type": "string",
+                        "title": _("Handle"),
+                        "maxLength": 50,
+                    },
+                    "date": Date.get_schema(),
                 },
-                "date": Date.get_schema(),
-            },
-        }
+            }
+        )
 
     def get_text_data_list(self):
         """
