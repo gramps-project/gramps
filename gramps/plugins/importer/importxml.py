@@ -874,27 +874,34 @@ class GrampsParser(UpdateCallback):
                 while has_handle_func(handle):
                     handle = create_id()
             self.import_handles[orig_handle] = {target: [handle, False]}
-        # method is called by a reference
-        if isinstance(prim_obj, abc.Callable):
+        # method is called by a reference: a placeholder must be committed
+        # now so a later forward reference can fetch its raw (empty) data.
+        # When called for the object's own definition, the corresponding
+        # stop_<target> handler commits the fully populated object once
+        # parsing of it completes, so committing an empty shell here would
+        # only be overwritten immediately and is skipped.
+        is_reference = isinstance(prim_obj, abc.Callable)
+        if is_reference:
             prim_obj = prim_obj()
         else:
             self.import_handles[orig_handle][target][INSTANTIATED] = True
         prim_obj.set_handle(handle)
-        if target == "tag":
-            self.db.add_tag(prim_obj, self.trans)
-        else:
-            add_func = {
-                "person": self.db.add_person,
-                "family": self.db.add_family,
-                "event": self.db.add_event,
-                "place": self.db.add_place,
-                "source": self.db.add_source,
-                "citation": self.db.add_citation,
-                "repository": self.db.add_repository,
-                "media": self.db.add_media,
-                "note": self.db.add_note,
-            }[target]
-            add_func(prim_obj, self.trans, set_gid=False)
+        if is_reference:
+            if target == "tag":
+                self.db.add_tag(prim_obj, self.trans)
+            else:
+                add_func = {
+                    "person": self.db.add_person,
+                    "family": self.db.add_family,
+                    "event": self.db.add_event,
+                    "place": self.db.add_place,
+                    "source": self.db.add_source,
+                    "citation": self.db.add_citation,
+                    "repository": self.db.add_repository,
+                    "media": self.db.add_media,
+                    "note": self.db.add_note,
+                }[target]
+                add_func(prim_obj, self.trans, set_gid=False)
         return handle
 
     def inaugurate_id(self, id_, key, prim_obj):
