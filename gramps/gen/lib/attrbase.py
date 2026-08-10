@@ -29,6 +29,7 @@ AttributeRootBase class for Gramps.
 # -------------------------------------------------------------------------
 from .attribute import Attribute, AttributeRoot
 from .const import EQUAL, IDENTICAL
+from .dnaattr import DNAAttribute
 from .srcattribute import SrcAttribute
 
 
@@ -171,3 +172,16 @@ class SrcAttributeBase(AttributeRootBase):
     """
 
     _CLASS = SrcAttribute
+
+
+# -------------------------------------------------------------------------
+#
+# DNAAttributeBase
+#
+# -------------------------------------------------------------------------
+class DNAAttributeBase(AttributeRootBase):
+    """
+    Base class for a DNAAttribute list.
+    """
+
+    _CLASS = DNAAttribute

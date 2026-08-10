@@ -64,6 +64,9 @@ from ..display import display_help
 from gramps.gen.errors import WindowActiveError, FilterError
 from gramps.gen.lib import (
     AttributeType,
+    DNAAttributeType,
+    DNAProviderType,
+    DNATestType,
     EventType,
     FamilyRelType,
     NameOriginType,
@@ -104,6 +107,8 @@ _TITLES = {
     "Repository": _("Repository Filters"),
     "Note": _("Note Filters"),
     "Citation": _("Citation Filters"),
+    "DNATest": _("DNA Test Filters"),
+    "DNAMatch": _("DNA Match Filters"),
 }
 
 _name2typeclass = {
@@ -119,6 +124,10 @@ _name2typeclass = {
     _("Name type:"): NameType,
     _("Surname origin type:"): NameOriginType,
     _("Place type:"): PlaceType,
+    _("DNA test attribute:"): DNAAttributeType,
+    _("DNA match attribute:"): DNAAttributeType,
+    _("Provider:"): DNAProviderType,
+    _("Test type:"): DNATestType,
 }
 
 
@@ -314,6 +323,8 @@ class MyID(Gtk.Box):
         "Repository": _("Repository"),
         "Note": _("Note"),
         "Citation": _("Citation"),
+        "DNATest": _("DNA Test"),
+        "DNAMatch": _("DNA Match"),
     }
 
     def __init__(self, dbstate, uistate, track, namespace="Person"):
@@ -382,6 +393,12 @@ class MyID(Gtk.Box):
         elif self.namespace == "Note":
             note = self.db.get_note_from_gramps_id(gramps_id)
             name = note.get()
+        elif self.namespace == "DNATest":
+            dnatest = self.db.get_dnatest_from_gramps_id(gramps_id)
+            name = dnatest.account_name
+        elif self.namespace == "DNAMatch":
+            dnamatch = self.db.get_dnamatch_from_gramps_id(gramps_id)
+            name = dnamatch.gramps_id
         return name
 
     def set_text(self, val):
@@ -408,6 +425,32 @@ class MySource(MyID):
 
     def __init__(self, dbstate, uistate, track):
         MyID.__init__(self, dbstate, uistate, track, namespace="Source")
+        self.entry.set_tooltip_text(self._empty_id_txt)
+
+
+# -------------------------------------------------------------------------
+#
+# MyPerson - select ID of people with a standard interface
+#
+# -------------------------------------------------------------------------
+class MyPerson(MyID):
+    _empty_id_txt = _("Give or select a person ID.")
+
+    def __init__(self, dbstate, uistate, track):
+        MyID.__init__(self, dbstate, uistate, track, namespace="Person")
+        self.entry.set_tooltip_text(self._empty_id_txt)
+
+
+# -------------------------------------------------------------------------
+#
+# MyDNAMatch - select ID of DNA matches with a standard interface
+#
+# -------------------------------------------------------------------------
+class MyDNAMatch(MyID):
+    _empty_id_txt = _("Give or select a DNA match ID.")
+
+    def __init__(self, dbstate, uistate, track):
+        MyID.__init__(self, dbstate, uistate, track, namespace="DNAMatch")
         self.entry.set_tooltip_text(self._empty_id_txt)
 
 
@@ -523,6 +566,12 @@ class EditRule(ManagedWindow):
             class_list = rules.repository.editor_rule_list
         elif self.namespace == "Note":
             class_list = rules.note.editor_rule_list
+        elif self.namespace == "DNATest":
+            class_list = rules.dnatest.editor_rule_list
+        elif self.namespace == "DNAMatch":
+            class_list = rules.dnamatch.editor_rule_list
+        else:
+            class_list = []
 
         for class_obj in class_list:
             arglist = class_obj.labels
@@ -555,8 +604,12 @@ class EditRule(ManagedWindow):
                     t = MyInteger(1, 32)
                 elif v == _("ID:"):
                     t = MyID(self.dbstate, self.uistate, self.track, self.namespace)
+                elif v == _("Person ID:"):
+                    t = MyPerson(self.dbstate, self.uistate, self.track)
                 elif v == _("Source ID:"):
                     t = MySource(self.dbstate, self.uistate, self.track)
+                elif v == _("DNA match ID:"):
+                    t = MyDNAMatch(self.dbstate, self.uistate, self.track)
                 elif v == _("Filter name:"):
                     t = MyFilters(
                         self.filterdb.get_filters(self.namespace), self.filter_name
@@ -576,6 +629,8 @@ class EditRule(ManagedWindow):
                     t = MyFilters(self.filterdb.get_filters("Place"))
                 elif v == _("Citation filter name:"):
                     t = MyFilters(self.filterdb.get_filters("Citation"))
+                elif v == _("DNA test filter name:"):
+                    t = MyFilters(self.filterdb.get_filters("DNATest"))
                 elif v in _name2typeclass:
                     additional = None
                     if v in (
@@ -592,6 +647,10 @@ class EditRule(ManagedWindow):
                         additional = self.db.get_event_attribute_types()
                     elif v == _("Media attribute:"):
                         additional = self.db.get_media_attribute_types()
+                    elif v == _("DNA test attribute:"):
+                        additional = self.db.get_dnatest_attribute_types()
+                    elif v == _("DNA match attribute:"):
+                        additional = self.db.get_dnamatch_attribute_types()
                     elif v == _("Relationship type:"):
                         additional = self.db.get_family_relation_types()
                     elif v == _("Note type:"):
@@ -625,6 +684,39 @@ class EditRule(ManagedWindow):
                     t = MyList(
                         list(map(str, list(range(5)))),
                         [_(conf_strings[i]) for i in range(5)],
+                    )
+                elif v == _("Chromosome:"):
+                    chromosomes = [str(i) for i in range(1, 23)] + ["X", "Y", "MT"]
+                    t = MyList(
+                        [""] + chromosomes,
+                        [_("Any")] + chromosomes,
+                    )
+                elif v == _("Phase:"):
+                    t = MyList(
+                        ["", "0", "1", "2", "3"],
+                        [
+                            _("Any"),
+                            _("Unassigned"),
+                            _("Unknown"),
+                            _("Maternal"),
+                            _("Paternal"),
+                        ],
+                    )
+                elif v == _("IBD state:"):
+                    t = MyList(
+                        ["", "0", "1", "2"],
+                        [_("Any"), _("Unknown"), _("HIR"), _("FIR")],
+                    )
+                elif v == _("Ancestor confidence:"):
+                    t = MyList(
+                        ["", "0", "1", "2", "3"],
+                        [
+                            _("Any"),
+                            _("Possible"),
+                            _("Probable"),
+                            _("Confirmed"),
+                            _("Rejected"),
+                        ],
                     )
                 elif v == _("Date:"):
                     t = DateEntry(self.uistate, self.track)
@@ -1143,6 +1235,14 @@ class ShowResults(ManagedWindow):
             note = self.db.get_note_from_handle(handle)
             name = note.get_preview()
             gid = note.get_gramps_id()
+        elif self.namespace == "DNATest":
+            dnatest = self.db.get_dnatest_from_handle(handle)
+            name = dnatest.account_name
+            gid = dnatest.get_gramps_id()
+        elif self.namespace == "DNAMatch":
+            dnamatch = self.db.get_dnamatch_from_handle(handle)
+            name = dnamatch.get_gramps_id()
+            gid = dnamatch.get_gramps_id()
         return (name, gid)
 
     def sort_val_from_handle(self, handle):
@@ -1167,6 +1267,10 @@ class ShowResults(ManagedWindow):
         elif self.namespace == "Note":
             gid = self.db.get_note_from_handle(handle).get_gramps_id()
             sortname = gid
+        elif self.namespace == "DNATest":
+            sortname = self.db.get_dnatest_from_handle(handle).account_name
+        elif self.namespace == "DNAMatch":
+            sortname = self.db.get_dnamatch_from_handle(handle).get_gramps_id()
         return (sortname, handle)
 
 
