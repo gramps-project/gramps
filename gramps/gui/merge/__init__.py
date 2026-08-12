@@ -29,3 +29,5 @@ from .mergecitation import *
 from .mergerepository import *
 from .mergemedia import *
 from .mergenote import *
+from .mergednatest import *
+from .mergednamatch import *
