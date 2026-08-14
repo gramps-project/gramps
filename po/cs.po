@@ -7,6 +7,7 @@
 # Milan <mobrcian@hotmail.com>, 2021, 2022, 2023, 2024, 2025, 2026.
 # ikanakova <ikanakova@users.noreply.hosted.weblate.org>, 2025.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
+# Michal Várady <miko.vaji@gmail.com>, 2026.
 #
 # Common terms and translations:
 # ancestor        předek
@@ -42,8 +43,8 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-07-04 06:01+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2026-08-05 12:01+0000\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
 "Language: cs\n"
@@ -51,7 +52,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.8.1.dev0\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -3318,7 +3319,7 @@ msgstr "Počet míst"
 #: ../gramps/plugins/webreport/statistics.py:214
 #: ../gramps/plugins/webreport/statistics.py:295
 msgid "Number of repositories"
-msgstr "Počet archívů"
+msgstr "Počet archivů"
 
 #: ../gramps/gen/db/generic.py:2712
 msgid "Number of notes"
@@ -3369,8 +3370,7 @@ msgstr ""
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
-"%(n1)6d  Archivů      aktualizováno %(n2)6d citací  během %(n3)6d sec\n"
+msgstr "%(n1)6d  Archivů      aktualizováno %(n2)6d citací  během %(n3)6d sec\n"
 
 #: ../gramps/gen/db/upgrade.py:743
 #, python-format
@@ -5562,10 +5562,8 @@ msgid "Matches people whose notes contain text matching a regular expression"
 msgstr "Vyhovují osoby jejichž poznámky obsahují text vyhovující reg. výrazu"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with the <tag>"
-msgstr "Osoby s poznámkou typu <type>"
+msgstr "Osoby s poznámkou se štítkem <tag>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
 msgid "Matches people with a note with a specified tag"
@@ -6220,10 +6218,8 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Vyhovují místa jejichž poznámky obsahují text odpovídající reg. výrazu"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with the <tag>"
-msgstr "Místa s poznámkou typu <type>"
+msgstr "Místa s poznámkou se štítkem <tag>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
 msgid "Matches places with a note with a specified tag"
@@ -6481,20 +6477,16 @@ msgid ""
 msgstr "Vyhovují archivy jejichž záznamy obsahují text vyhovující podřetězci"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with the <tag>"
-msgstr "Archivy se <štítkem>"
+msgstr "Archivy s poznámkou se štítkem <tag>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
 msgid "Matches repositories with a note with a specified tag"
 msgstr "Vyhovují repozitáře s poznámkou se specifikovaným štítkem"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "Prameny s poznámkou typu <type>"
+msgstr "Archivy s poznámkou typu <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
 msgid "Matches repositories with a note of a specified type"
@@ -6502,7 +6494,7 @@ msgstr "Vyhovují repozitáře s poznámkou specifikovaného typu"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
-msgstr "Archivy s počtem odkazů rovným <počet>"
+msgstr "Archivy s počtem odkazů o počtu <count>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Matches repositories with a certain reference count"
@@ -36222,7 +36214,7 @@ msgstr "Informace o archivu"
 #: ../gramps/plugins/textreport/summary.py:307
 #, python-format
 msgid "Number of repositories: %d"
-msgstr "Počet archívů: %d"
+msgstr "Počet archivů: %d"
 
 #: ../gramps/plugins/textreport/summary.py:341
 #, python-format
