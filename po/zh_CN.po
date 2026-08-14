@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-07-22 05:01+0000\n"
+"PO-Revision-Date: 2026-08-14 08:51+0000\n"
 "Last-Translator: reducedradius "
 "<137701630+flytothehighest@users.noreply.github.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -11116,16 +11116,12 @@ msgid "from death date"
 msgstr "去世日期"
 
 #: ../gramps/gen/utils/alive.py:367
-#, fuzzy
-#| msgid "Mother's Age"
 msgid "mother's death"
-msgstr "母亲的年龄"
+msgstr "母亲的去世"
 
 #: ../gramps/gen/utils/alive.py:372
-#, fuzzy
-#| msgid "Father's Age"
 msgid "father's death"
-msgstr "父亲的年龄"
+msgstr "父亲的去世"
 
 #: ../gramps/gen/utils/alive.py:376
 msgid "person's death"
@@ -12529,12 +12525,12 @@ msgstr ""
 #, fuzzy
 #| msgid "Duplicate Family"
 msgid "Direct FamilySearch"
-msgstr "复制家庭"
+msgstr "直接进行家庭搜索"
 
 #: ../gramps/gui/configure.py:1147
 #, fuzzy
 msgid "Auth provider"
-msgstr "预览"
+msgstr "Auth 提供商"
 
 #: ../gramps/gui/configure.py:1156
 msgid "App key (direct mode only)"
