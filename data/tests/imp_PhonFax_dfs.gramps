@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.2//EN"
+"http://gramps-project.org/xml/1.7.2/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.2/">
   <header>
-    <created date="1999-12-25" version="5.2.0"/>
+    <created date="1999-12-25" version="6.1.0"/>
     <researcher>
       <resname>The Subm /Tester/</resname>
       <resaddr>123 Main St.</resaddr>
@@ -204,21 +204,21 @@
     <note handle="_0000000400000004" change="1" id="N0000" type="GEDCOM import">
       <text>Records not imported into HEAD (header):
 
-Only one phone number supported                                     Line     9: 3 PHON (800) 705-7000
-Line ignored as not understood                                      Line    15: 2 DATE 1111-01-01
-GEDCOM FORM should be in uppercase                                  Line    26: 2 FORM Lineage-Linked
+Only one phone number supported                                                                       Line     9: 3 PHON (800) 705-7000
+Line ignored as not understood                                                                        Line    15: 2 DATE 1111-01-01
+GEDCOM FORM should be in uppercase                                                                    Line    26: 2 FORM Lineage-Linked
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="344"/>
+        <range start="0" end="446"/>
       </style>
     </note>
     <note handle="_0000000600000006" change="1" id="N0001" type="GEDCOM import">
       <text>Records not imported into SUBM (Submitter): (@SUBM@) The Subm /Tester/:
 
-Only one phone number supported                                     Line    35: 1 PHON 800-871-3401
+Only one phone number supported                                                                       Line    35: 1 PHON 800-871-3401
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="173"/>
+        <range start="0" end="207"/>
       </style>
     </note>
     <note handle="_0000000c0000000c" change="1" id="N0002" type="Person Note">
@@ -236,10 +236,10 @@ Only one phone number supported                                     Line    35: 
     <note handle="_0000001700000017" change="1" id="N0005" type="GEDCOM import">
       <text>Records not imported into REPO (repository) Gramps ID R0002:
 
-Only one phone number supported                                     Line    93: 1 PHON 800-765-4321
+Only one phone number supported                                                                       Line    93: 1 PHON 800-765-4321
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="162"/>
+        <range start="0" end="196"/>
       </style>
     </note>
   </notes>
