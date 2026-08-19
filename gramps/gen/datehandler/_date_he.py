@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -16,7 +17,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License along
-# with this program; if not, see <https://www.gnu.org/licenses/>.
+# with this program; if not, see <https://www.gnu.org/licenses/\>.
 #
 
 """
@@ -36,7 +37,13 @@ import re
 #
 # -------------------------------------------------------------------------
 from ..lib.date import Date
-from ._dateparser import DateParser
+from ._dateparser import (
+    DateParser,
+    gregorian_valid,
+    julian_valid,
+    swedish_valid,
+    french_valid,
+)
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
@@ -114,28 +121,55 @@ class DateParserHE(DateParser):
     def init_strings(self):
         DateParser.init_strings(self)
         self._modifier = re.compile(r"%s\s*(.*)" % self._mod_str, re.IGNORECASE)
+
+        # גרש אופציונלי (עברי ׳ או ASCII ') מיד אחרי קיצור חודש,
+        # לדוגמה "יונ'" או "יונ׳" עבור יוני.
+        self._text = re.compile(
+            r"%s['׳]?\.?(\s+\d+)?\s*,?\s+((\d+)(/\d+)?)?\s*$" % self._mon_str,
+            re.IGNORECASE,
+        )
         self._text2 = re.compile(
-            r"(\d+)?\s+?ב?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._mon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\.?\s*((\d+)(/\d+)?)?\s*$" % self._mon_str,
+            re.IGNORECASE,
         )
         self._jtext2 = re.compile(
-            r"(\d+)?\s+?ב?%s\s*((\d+)(/\d+)?)?\s*$" % self._jmon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\s*((\d+)(/\d+)?)?\s*$" % self._jmon_str,
+            re.IGNORECASE,
         )
         self._ftext2 = re.compile(
-            r"(\d+)?\s+?ב?%s\s*((\d+)(/\d+)?)?\s*$" % self._fmon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\s*((\d+)(/\d+)?)?\s*$" % self._fmon_str,
+            re.IGNORECASE,
         )
         self._ptext2 = re.compile(
-            r"(\d+)?\s+?ב?%s\s*((\d+)(/\d+)?)?\s*$" % self._pmon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\s*((\d+)(/\d+)?)?\s*$" % self._pmon_str,
+            re.IGNORECASE,
         )
         self._itext2 = re.compile(
-            r"(\d+)?\s+?ב?%s\s*((\d+)(/\d+)?)?\s*$" % self._imon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\s*((\d+)(/\d+)?)?\s*$" % self._imon_str,
+            re.IGNORECASE,
         )
         self._stext2 = re.compile(
-            r"(\d+)?\s+?ב?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._smon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\.?\s*((\d+)(/\d+)?)?\s*$" % self._smon_str,
+            re.IGNORECASE,
         )
-        _span_1 = ["מ־", "מ"]
+
+        # תאריך מספרי גמיש בן 3 שדות, עם כל מפריד מבין . - /
+        # (משמש ב-_parse_subdate למטה כדי לתמוך גם ב-yyyy-dd-mm וגם
+        # ב-mm-dd-yyyy, לצד dd-mm-yyyy/yyyy-mm-dd הרגילים)
+        self._numeric_flexible = re.compile(
+            r"^\s*(\d+)\s*[./\-]\s*(\d+)\s*[./\-]\s*(\d+)\s*$"
+        )
+
+        # שתי שנים בעלמא כתקופה, למשל "1893-1894" או "1893–1894" (מקף
+        # ארוך), בלי צורך במילים "מ...עד" (משמש ב-match_span למטה)
+        self._bare_year_span = re.compile(r"^\s*(\d{3,4})\s*[-–]\s*(\d{3,4})\s*$")
+
+        # "מ" ו-"ל" נתמכים גם עם מקף רגיל (מ-1893) וגם עם מקף עילי
+        # (מ־1893), לא רק בלי מקף בכלל
+        _span_1 = ["מ־", "מ-", "מ"]
         _span_2 = ["עד"]
         _range_1 = ["בין"]
-        _range_2 = ["ל־", "ל"]
+        _range_2 = ["ל־", "ל-", "ל"]
         self._span = re.compile(
             r"(%s)\s*(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
             % ("|".join(_span_1), "|".join(_span_2)),
@@ -146,6 +180,88 @@ class DateParserHE(DateParser):
             % ("|".join(_range_1), "|".join(_range_2)),
             re.IGNORECASE,
         )
+
+    def _parse_subdate(self, text, subparser=None, cal=None):
+        """
+        כמו DateParser._parse_subdate, בתוספת תמיכה בתאריך מספרי בן 3
+        שדות עם כל מפריד (./-), כולל yyyy-dd-mm ו-mm-dd-yyyy: הכרעת
+        יום מול חודש נעשית לפי גודל הערך (מעל 12 = יום); רק כששני
+        השדות דו-משמעיים (שניהם 12 ומטה) המערכת נופלת לברירת המחדל
+        הקיימת (יום-חודש לתבנית עם שנה בסוף, חודש-יום לתבנית עם שנה
+        בהתחלה, בהתאמה ל-ISO). כל שאר ההתנהגות (שנת-לוכסן, תאריך
+        חלקי, RFC-2822, "$T"/"היום") נשארת בדיוק כמו ב-DateParser
+        המקורי.
+        """
+        if subparser is None:
+            subparser = self._parse_gregorian
+        check = {
+            self._parse_gregorian: gregorian_valid,
+            self._parse_julian: julian_valid,
+            self._parse_swedish: swedish_valid,
+            self._parse_french: french_valid,
+        }.get(subparser)
+
+        # 1) צורות עם שם חודש (עברי/גרגוריאני/צרפתי/...)
+        value = subparser(text)
+        if value != Date.EMPTY:
+            return value
+
+        # 2) תאריך מספרי גמיש
+        match = self._numeric_flexible.match(text)
+        if match:
+            a, b, c = (int(g) for g in match.groups())
+            long_idx = [i for i, g in enumerate((a, b, c)) if len(str(g)) >= 3]
+            if len(long_idx) == 1:
+                idx = long_idx[0]
+                year = x = z = month_first = None
+                if idx == 0:
+                    year, x, z, month_first = a, b, c, True  # yyyy-X-Z
+                elif idx == 2:
+                    year, x, z, month_first = c, a, b, False  # X-Z-yyyy
+
+                if year is not None:
+                    day = month = None
+                    if x > 12 and z <= 12:
+                        day, month = x, z
+                    elif z > 12 and x <= 12:
+                        day, month = z, x
+                    elif x <= 12 and z <= 12:  # דו-משמעי: ברירת מחדל קיימת
+                        if month_first:
+                            month, day = x, z
+                        else:
+                            day, month = x, z
+
+                    if day is not None:
+                        value = (day, month, year, False)
+                        if check is None or check((day, month, year)):
+                            return value
+                        return Date.EMPTY
+
+        # 3) שאר ההתנהגות המקורית ללא שינוי: ISO רגיל, שנת-לוכסן,
+        #    חותמת-DB, RFC-2822, "$T"/"היום"
+        return DateParser._parse_subdate(self, text, subparser, cal)
+
+    def match_span(self, text, cal, ny, qual, date):
+        """
+        כמו DateParser.match_span, בתוספת תמיכה בתקופה בת שתי שנים
+        בלי המילים "מ...עד", למשל "1893-1894" או "1893–1894" (מקף
+        ארוך) — מתפרש בדיוק כמו "מ־1893 עד 1894".
+        """
+        bare = self._bare_year_span.match(text)
+        if bare:
+            year1, year2 = int(bare.group(1)), int(bare.group(2))
+            if year2 >= year1:
+                date.set(
+                    qual,
+                    Date.MOD_SPAN,
+                    cal,
+                    (0, 0, year1, False, 0, 0, year2, False),
+                    newyear=ny,
+                )
+                return 1
+            # שנה גדולה לפני שנה קטנה (למשל "1894-1893") - לא מנחשים,
+            # נופלים חזרה להתנהגות הרגילה (תיכשל, בדיוק כמו היום)
+        return DateParser.match_span(self, text, cal, ny, qual, date)
 
 
 # -------------------------------------------------------------------------
