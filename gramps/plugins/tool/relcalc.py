@@ -67,12 +67,28 @@ from gramps.gui.glade import Glade
 # אות חיבור/יחס עברית בת-תו-אחד (ו,ב,ל,כ,מ,ש) שצמודה ישירות (בלי רווח)
 # לטקסט לא-עברי, למשל "ו" + שם לועזי. פועל על המשפט המוגמר, לא תלוי
 # באיזה משתנה בתבנית "אשם" - עמיד לשינויי סדר/מבנה בתרגום ב-Weblate.
-_HEB_PREFIX_RE = re.compile(r"(?:^|(?<=\s))([ובלכמש])(?=[A-Za-z0-9])")
+_HEB_PREFIX_RE = re.compile(r"(?:^|(?<=\s))([ובלכמש])(?=\u2066?[A-Za-z0-9])")
 
 # תו כיווניות בלתי-נראה (Right-to-Left Mark) - קובע שהפסקה RTL גם
 # כשהתו הראשון בפועל הוא אות לועזית/ספרה (שם שמתחיל בלועזית). בלי
 # זה, Pango קובע כיוון פסקה לפי התו החזק הראשון, ומיישר לשמאל.
 _RLM = "\u200f"
+
+# תווי בידוד כיווניות (Unicode Bidi Isolates, מאז 2012) - עוטפים שם
+# לועזי כיחידה כיוונית עצמאית וברורה בתוך טקסט RTL, כדי ש-Pango יידע
+# בבירור איפה השם מתחיל ונגמר, בלי "לדלוף" כיווניות לטקסט שמסביב.
+_LRI = "\u2066"  # LEFT-TO-RIGHT ISOLATE
+_PDI = "\u2069"  # POP DIRECTIONAL ISOLATE
+_LATIN_RE = re.compile(r"[A-Za-z]")
+
+
+def _isolate_name(name):
+    """עוטף שם ב-LRI/PDI אם הוא מכיל אותיות לועזיות, רק כשהלוקאל עברית."""
+    if glocale.locale_code()[:2] != "he":
+        return name
+    if _LATIN_RE.search(name):
+        return _LRI + name + _PDI
+    return name
 
 
 def _fix_hebrew_connectors(text):
@@ -223,8 +239,8 @@ class RelCalc(tool.Tool, ManagedWindow):
             self.db, self.person, other_person
         )
 
-        p1 = name_displayer.display(self.person)
-        p2 = name_displayer.display(other_person)
+        p1 = _isolate_name(name_displayer.display(self.person))
+        p2 = _isolate_name(name_displayer.display(other_person))
 
         text = []
         if other_person is None:
@@ -234,14 +250,12 @@ class RelCalc(tool.Tool, ManagedWindow):
                 "person": p1,
                 "active_person": p2,
             }
-            rstr = _fix_hebrew_connectors(rstr)
             text.append((rstr, ""))
         elif len(rel_strings) == 0:
             rstr = _("%(person)s and %(active_person)s are not related.") % {
                 "person": p2,
                 "active_person": p1,
             }
-            rstr = _fix_hebrew_connectors(rstr)
             text.append((rstr, ""))
 
         for rel_string, common in zip(rel_strings, common_an):
@@ -261,12 +275,11 @@ class RelCalc(tool.Tool, ManagedWindow):
             elif length == 2:
                 p1c = self.db.get_person_from_handle(common[0])
                 p2c = self.db.get_person_from_handle(common[1])
-                p1str = name_displayer.display(p1c)
-                p2str = name_displayer.display(p2c)
-                commontext = " " + _fix_hebrew_connectors(
-                    _("Their common ancestors are %(ancestor1)s and %(ancestor2)s.")
-                    % {"ancestor1": p1str, "ancestor2": p2str}
-                )
+                p1str = _isolate_name(name_displayer.display(p1c))
+                p2str = _isolate_name(name_displayer.display(p2c))
+                commontext = " " + _(
+                    "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
+                ) % {"ancestor1": p1str, "ancestor2": p2str}
             elif length > 2:
                 index = 0
                 commontext = " " + _("Their common ancestors are: ")
@@ -275,7 +288,7 @@ class RelCalc(tool.Tool, ManagedWindow):
                     if index:
                         # TODO for Arabic, should the next comma be translated?
                         commontext += ", "
-                    commontext += name_displayer.display(person)
+                    commontext += _isolate_name(name_displayer.display(person))
                     index += 1
                 commontext += "."
             else:
@@ -287,7 +300,10 @@ class RelCalc(tool.Tool, ManagedWindow):
         for val in text:
             line = "%s %s\n" % (val[0], val[1])
             if is_hebrew:
-                line = _RLM + line
+                # מקף עילי ליד "ו/ב/ל/כ/מ/ש" צמוד לשם לועזי, ותו כיווניות
+                # RTL - חלים על השורה השלמה, לא משנה מאיזו מחרוזת/ניסוח
+                # תרגום היא הגיעה. עמיד לשינויי ניסוח עתידיים ב-Weblate.
+                line = _RLM + _fix_hebrew_connectors(line)
             textval += line
         self.textbuffer.set_text(textval)
 
