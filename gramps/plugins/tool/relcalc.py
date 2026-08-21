@@ -69,6 +69,11 @@ from gramps.gui.glade import Glade
 # באיזה משתנה בתבנית "אשם" - עמיד לשינויי סדר/מבנה בתרגום ב-Weblate.
 _HEB_PREFIX_RE = re.compile(r"(?:^|(?<=\s))([ובלכמש])(?=[A-Za-z0-9])")
 
+# תו כיווניות בלתי-נראה (Right-to-Left Mark) - קובע שהפסקה RTL גם
+# כשהתו הראשון בפועל הוא אות לועזית/ספרה (שם שמתחיל בלועזית). בלי
+# זה, Pango קובע כיוון פסקה לפי התו החזק הראשון, ומיישר לשמאל.
+_RLM = "\u200f"
+
 
 def _fix_hebrew_connectors(text):
     """מוסיף מקף עילי (־) במקומות הדרושים, רק כשהלוקאל הוא עברית.
@@ -278,8 +283,12 @@ class RelCalc(tool.Tool, ManagedWindow):
             text.append((rstr, commontext))
 
         textval = ""
+        is_hebrew = glocale.locale_code()[:2] == "he"
         for val in text:
-            textval += "%s %s\n" % (val[0], val[1])
+            line = "%s %s\n" % (val[0], val[1])
+            if is_hebrew:
+                line = _RLM + line
+            textval += line
         self.textbuffer.set_text(textval)
 
     def _key_press(self, obj, event):
