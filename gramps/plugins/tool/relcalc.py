@@ -41,6 +41,8 @@ from gi.repository import Gtk
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+import re
+
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -61,6 +63,24 @@ from gramps.gui.glade import Glade
 # Constants
 #
 # -------------------------------------------------------------------------
+
+# אות חיבור/יחס עברית בת-תו-אחד (ו,ב,ל,כ,מ,ש) שצמודה ישירות (בלי רווח)
+# לטקסט לא-עברי, למשל "ו" + שם לועזי. פועל על המשפט המוגמר, לא תלוי
+# באיזה משתנה בתבנית "אשם" - עמיד לשינויי סדר/מבנה בתרגום ב-Weblate.
+_HEB_PREFIX_RE = re.compile(r"(?:^|(?<=\s))([ובלכמש])(?=[A-Za-z0-9])")
+
+
+def _fix_hebrew_connectors(text):
+    """מוסיף מקף עילי (־) במקומות הדרושים, רק כשהלוקאל הוא עברית.
+
+    locale_code() מחזיר את קוד השפה המלא של המערכת, בדרך כלל עם קוד
+    מדינה (למשל "he_IL"), ולא רק "he" - לכן משווים רק את שני התווים
+    הראשונים, לא את המחרוזת המלאה.
+    """
+    if glocale.locale_code()[:2] != "he":
+        return text
+    return _HEB_PREFIX_RE.sub(r"\1־", text)
+
 
 column_names = [column[0] for column in BasePersonView.COLUMNS]
 WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Tools"
@@ -209,12 +229,14 @@ class RelCalc(tool.Tool, ManagedWindow):
                 "person": p1,
                 "active_person": p2,
             }
+            rstr = _fix_hebrew_connectors(rstr)
             text.append((rstr, ""))
         elif len(rel_strings) == 0:
             rstr = _("%(person)s and %(active_person)s are not related.") % {
                 "person": p2,
                 "active_person": p1,
             }
+            rstr = _fix_hebrew_connectors(rstr)
             text.append((rstr, ""))
 
         for rel_string, common in zip(rel_strings, common_an):
@@ -236,9 +258,10 @@ class RelCalc(tool.Tool, ManagedWindow):
                 p2c = self.db.get_person_from_handle(common[1])
                 p1str = name_displayer.display(p1c)
                 p2str = name_displayer.display(p2c)
-                commontext = " " + _(
-                    "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
-                ) % {"ancestor1": p1str, "ancestor2": p2str}
+                commontext = " " + _fix_hebrew_connectors(
+                    _("Their common ancestors are %(ancestor1)s and %(ancestor2)s.")
+                    % {"ancestor1": p1str, "ancestor2": p2str}
+                )
             elif length > 2:
                 index = 0
                 commontext = " " + _("Their common ancestors are: ")
