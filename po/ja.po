@@ -21,7 +21,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=0;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -7714,7 +7714,6 @@ msgstr "タグ"
 msgid "greater than {number_of} year"
 msgid_plural "greater than {number_of} years"
 msgstr[0] "{number_of} 年より大きい"
-msgstr[1] ""
 
 #: ../gramps/gen/lib/date.py:312 ../gramps/gen/lib/date.py:343
 #: ../gramps/gen/lib/date.py:345 ../gramps/gen/lib/date.py:351
@@ -7761,21 +7760,18 @@ msgstr "より大きい(約)"
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
 msgstr[0] "{number_of} 年"
-msgstr[1] ""
 
 #: ../gramps/gen/lib/date.py:482
 #, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
 msgstr[0] "{number_of} か月"
-msgstr[1] ""
 
 #: ../gramps/gen/lib/date.py:493
 #, python-brace-format
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
 msgstr[0] "{number_of} 日"
-msgstr[1] ""
 
 #: ../gramps/gen/lib/date.py:499
 msgid "0 days"
@@ -11225,14 +11221,12 @@ msgstr "配偶者とのイベント"
 msgid "descendant birth: {number_of} generation "
 msgid_plural "descendant birth: {number_of} generations "
 msgstr[0] "子孫の出生: {number_of} 世代 "
-msgstr[1] ""
 
 #: ../gramps/gen/utils/alive.py:797
 #, python-brace-format
 msgid "descendant death: {number_of} generation "
 msgid_plural "descendant death: {number_of} generations "
 msgstr[0] "子孫の死亡: {number_of} 世代 "
-msgstr[1] ""
 
 #: ../gramps/gen/utils/alive.py:812
 #, python-format
@@ -21403,7 +21397,6 @@ msgstr "アドオンのダウンロードとインストールが完了しまし
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} 個のアドオンがインストールされました。"
-msgstr[1] ""
 
 #: ../gramps/gui/plug/_windows.py:2293
 msgid "If you have installed a 'View', you will need to restart Gramps."
@@ -21586,7 +21579,6 @@ msgstr "フィルターなし家系図:"
 msgid "{number_of} Person"
 msgid_plural "{number_of} People"
 msgstr[0] "{number_of} 人の人物"
-msgstr[1] ""
 
 #: ../gramps/gui/plug/export/_exportoptions.py:184
 msgid "Click to see preview of unfiltered data"
@@ -23955,7 +23947,6 @@ msgstr "%(person)s、出生"
 msgid "{person}, {age}"
 msgid_plural "{person}, {age}"
 msgstr[0] "{person}、{age}"
-msgstr[1] ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:518
 #, python-format
@@ -23977,7 +23968,6 @@ msgid_plural ""
 msgstr[0] ""
 "{wife} と\n"
 " {person}、{nyears}"
-msgstr[1] ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:601
 #: ../gramps/plugins/webreport/webcal.py:1849
@@ -26539,7 +26529,6 @@ msgid ""
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] " {max_count_person}人中{count_person}人 ({percent} 完了)\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:304
 msgid "All generations"
@@ -26554,7 +26543,6 @@ msgstr "ダブルクリックで全世代を表示"
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
 msgstr[0] " {number_of} 人の個人がいる\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/gramplet/persondetails.py:273
 #, python-format
@@ -27512,7 +27500,6 @@ msgstr "対象人物の初期リスト:"
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
 msgstr[0] "{number_of} 人の子"
-msgstr[1] ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:1158
 #, python-format
@@ -28184,7 +28171,6 @@ msgstr "CSV インポート"
 msgid "Import Complete: {number_of} second"
 msgid_plural "Import Complete: {number_of} seconds"
 msgstr[0] "インポート完了: {number_of} 秒"
-msgstr[1] ""
 
 #: ../gramps/plugins/importer/importcsv.py:572
 msgid "The following IDs were referenced but not found:\n"
@@ -33506,7 +33492,6 @@ msgstr "場所タイプなどを追加するために、各場所を手動で編
 msgid "You have {places_nb} place to edit."
 msgid_plural "You have {places_nb} places to edit."
 msgstr[0] "編集する場所が {places_nb} 件あります。"
-msgstr[1] ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1157
 msgid "You have more than 5 places in this kml file."
@@ -34139,7 +34124,6 @@ msgstr "サイズ (バイト)"
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
 msgstr[0] "フィルターが {number_of} 件のレコードに一致しました。"
-msgstr[1] ""
 
 #: ../gramps/plugins/quickview/lineage.py:52
 #, python-format
@@ -34443,7 +34427,6 @@ msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
 msgstr[0] "一致する名前または別名を持つ人物が {number_of} 人います。\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/quickview/samesurnames.py:176
 #, python-format
@@ -34729,7 +34712,6 @@ msgstr "* %(person)s、出生 %(relation)s"
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
 msgstr[0] "* {year}{person}{dead}、{age}{relation}"
-msgstr[1] ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:461
 #, python-format
@@ -34751,7 +34733,6 @@ msgid_plural ""
 msgstr[0] ""
 "⚭ {year}{spouse}{deadtxt2} と\n"
 " {person}{deadtxt1}、{nyears}"
-msgstr[1] ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:521
 #, python-brace-format
@@ -34763,7 +34744,6 @@ msgstr "✝ {person}、死亡 {relation}"
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
 msgstr[0] "✝ {year}{person}、{age}{relation}"
-msgstr[1] ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:561
 #: ../gramps/plugins/textreport/familygroup.py:722
@@ -35738,7 +35718,6 @@ msgstr "%s の祖先の数"
 msgid "Generation {number} has {count} individual. {percent}"
 msgid_plural "Generation {number} has {count} individuals. {percent}"
 msgstr[0] "世代 {number} には {count} 人の個人がいます。{percent}"
-msgstr[1] ""
 
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:176
 #, python-format
@@ -36288,7 +36267,6 @@ msgstr "変更されたイベントレコードはありませんでした。"
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
 msgstr[0] "{number_of} 件のイベントレコードが変更されました。"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:138 ../gramps/plugins/tool/check.py:320
 msgid "Checking Database"
@@ -36514,7 +36492,6 @@ msgstr "エラーは見つかりませんでした: データベースは内部�
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "{quantity} 個の壊れた子供/家族リンクが修正されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2813
 msgid "Non existing child"
@@ -36530,7 +36507,6 @@ msgstr "%(person)s は %(family)s の家族から削除されました\n"
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "{quantity} 個の壊れた配偶者/家族リンクが修正されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2841 ../gramps/plugins/tool/check.py:2869
 msgid "Non existing person"
@@ -36546,7 +36522,6 @@ msgstr "%(person)s は %(family)s の家族に復元されました\n"
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "{quantity} 個の重複する配偶者/家族リンクが見つかりました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2888
 #, python-brace-format
@@ -36554,49 +36529,42 @@ msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
 msgstr[0] "親または子供がいない家族が {quantity} 個見つかり、削除されました。\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2902
 #, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] "{quantity} 個の破損した家族関係が修正されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2912
 #, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
 msgstr[0] "{quantity} 個の場所の代替名が修正されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2922
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] "{quantity} 人の人物が参照されていましたが見つかりませんでした\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2932
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "{quantity} 個の家族が参照されていましたが見つかりませんでした\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2942
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] "{quantity} 個の日付が修正されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2952
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] "{quantity} 個のリポジトリが参照されていましたが見つかりませんでした\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2962 ../gramps/plugins/tool/check.py:3062
 #, python-brace-format
@@ -36605,105 +36573,90 @@ msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] ""
 "{quantity} 個のメディアオブジェクトが参照されていましたが見つかりませんでし"
 "た\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2972
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "{quantity} 個の欠落メディアオブジェクトへの参照が保持されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2982
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] "{quantity} 個の欠落メディアオブジェクトが置き換えられました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2992
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] "{quantity} 個の欠落メディアオブジェクトが削除されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3002
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] "{quantity} 個のイベントが参照されていましたが見つかりませんでした\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3012
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] "{quantity} 個の無効な出生イベント名が修正されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3022
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] "{quantity} 個の無効な死亡イベント名が修正されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3032
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
 msgstr[0] "{quantity} 個の場所が参照されていましたが見つかりませんでした\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3042
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
 msgstr[0] "{quantity} 個の引用が参照されていましたが見つかりませんでした\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3052
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] "{quantity} 個のソースが参照されていましたが見つかりませんでした\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3072
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
 msgstr[0] "{quantity} 個のノートオブジェクトが参照されていましたが見つかりませんでした\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3082 ../gramps/plugins/tool/check.py:3092
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] "{quantity} 個のタグオブジェクトが参照されていましたが見つかりませんでした\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3102
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
 msgstr[0] "{quantity} 個の無効な名前フォーマット参照が削除されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3112
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "{quantity} 個の無効なソース引用が修正されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3122
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
 msgstr[0] "{quantity} 個の重複するGramps IDが修正されました\n"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:3131
 #, python-format
@@ -36893,7 +36846,6 @@ msgstr "イベント説明を抽出"
 msgid "{quantity} event description has been added"
 msgid_plural "{quantity} event descriptions have been added"
 msgstr[0] "{quantity} 件のイベント説明が追加されました"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/eventnames.py:124
 msgid "Modifications made"
@@ -37236,7 +37188,6 @@ msgstr "実行された統合数"
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
 msgstr[0] "{number_of} 件の引用が統合されました"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/notrelated.glade:159
 msgid "_Tag"
@@ -37266,28 +37217,24 @@ msgstr "データベース内の全員が %s に関連しています"
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
 msgstr[0] "{number_of} 人にタグを設定中"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/notrelated.py:302
 #, python-brace-format
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
 msgstr[0] "{number_of} 人の間の関係を検索中"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/notrelated.py:393
 #, python-brace-format
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
 msgstr[0] "{number_of} 人を検索中"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/notrelated.py:420
 #, python-brace-format
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
 msgstr[0] "{number_of} 人の名前を検索中"
-msgstr[1] ""
 
 #: ../gramps/plugins/tool/ownereditor.glade:127
 msgid "_Street:"
@@ -39420,7 +39367,6 @@ msgstr "この家族の親から人物を削除"
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
 msgstr[0] " (兄弟姉妹 {number_of} 人)"
-msgstr[1] ""
 
 #: ../gramps/plugins/view/relview.py:1084
 #: ../gramps/plugins/view/relview.py:1147
@@ -39497,7 +39443,6 @@ msgstr "データベースのチェックと修復ツールを実行してくだ
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
 msgstr[0] " (子供 {number_of} 人)"
-msgstr[1] ""
 
 #: ../gramps/plugins/view/relview.py:1638
 #: ../gramps/plugins/view/relview.py:1685
@@ -39968,7 +39913,6 @@ msgstr "まで"
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
 msgstr[0] "{couple}、{years}年記念"
-msgstr[1] ""
 
 #: ../gramps/plugins/webreport/download.py:102
 msgid ""
@@ -42896,17 +42840,14 @@ msgstr "スタイルシートなし"
 #~ msgid "%d year"
 #~ msgid_plural "%d years"
 #~ msgstr[0] "%d 年"
-#~ msgstr[1] "%d 年"
 
 #~ msgid "%d month"
 #~ msgid_plural "%d months"
 #~ msgstr[0] "%d 月"
-#~ msgstr[1] "%d 月"
 
 #~ msgid "%d day"
 #~ msgid_plural "%d days"
 #~ msgstr[0] "%d 日"
-#~ msgstr[1] "%d 日"
 
 #~ msgid "Unknown father"
 #~ msgstr "未知の父親"
@@ -43084,7 +43025,6 @@ msgstr "スタイルシートなし"
 #~ msgid "%d Person"
 #~ msgid_plural "%d People"
 #~ msgstr[0] "%d 人物"
-#~ msgstr[1] "%d 人々"
 
 #, fuzzy
 #~ msgid "Spelling checker could not be attached to TextView"
@@ -43163,7 +43103,6 @@ msgstr "スタイルシートなし"
 #~ msgid " (%d child)"
 #~ msgid_plural " (%d children)"
 #~ msgstr[0] "子ウィジェット"
-#~ msgstr[1] ""
 
 #, fuzzy
 #~ msgid "Data Map"
