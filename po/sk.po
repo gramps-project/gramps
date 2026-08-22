@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-07-05 08:01+0000\n"
+"PO-Revision-Date: 2026-08-17 08:51+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -635,9 +635,9 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Duplicitné záznamy</b><br/>\"Nástroje > Spracovanie rodinného stromu > "
-"Vyhľadať možné duplicity ľudí...\" umožňuje nájsť (a zlúčiť) záznamy "
-"rovnakej osoby, ktoré boli vložené do databázy opakovane."
+"<b>Duplicitné záznamy</b><br/>Pomocou nástroja \"Nástroje > Spracovanie "
+"rodinného stromu > Vyhľadať možné duplicity ľudí...\" môžete nájsť (a "
+"zlúčiť) záznamy rovnakej osoby, ktoré boli v databáze zadané viac ako raz."
 
 #: ../data/tips.xml:49
 msgid ""
@@ -1070,10 +1070,10 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>'Ako a prečo' Vašej genealógie</b><br/>Genealógia nie sú len dátumy a "
-"mená. Je o ľuďoch. Popisujte. Doplňte dôvod prečo sa veci stali, ako sa asi "
-"formovali potomkovia udalosťami, ktorými prešli. Rozprávaním prejdete dlhú "
-"cestu pri oživení histórie Vašej rodiny."
+"<b>'Ako a prečo' Vašej genealógie</b><br/>Genealógia nie je len o dátumoch a "
+"menách. Je o ľuďoch. Buďte opisní. Doplňte dôvod prečo sa veci stali, ako sa "
+"asi formovali potomkovia udalosťami, ktorými prešli. Rozprávaním prejdete "
+"dlhú cestu pri oživení histórie Vašej rodiny."
 
 #: ../data/tips.xml:119
 msgid ""
@@ -1151,10 +1151,10 @@ msgid ""
 "License, see &gpl_url; to read about the rights and restrictions of this "
 "license."
 msgstr ""
-"<<b>Licencia softvéru Gramps</b><br/>Môžete Gramps voľne používať a zdieľať "
-"s ostatnými. Gramps je voľne distribuovateľný pod licenciou GNU General "
-"Public License, pozrite si &gpl_url; kde sa dozviete o právach a "
-"obmedzeniach tejto licencie."
+"<b>Licencia softvéru Gramps</b><br/>Môžete Gramps voľne používať a zdieľať s "
+"ostatnými. Gramps je voľne distribuovateľný pod licenciou GNU General Public "
+"License, pozrite si &gpl_url; kde sa dozviete o právach a obmedzeniach tejto "
+"licencie."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -16161,15 +16161,15 @@ msgid ""
 "$\tA dollar sign will match the end of a line."
 msgstr ""
 "Obsah reťazcových polí interpretujte ako regulárne výrazy:\n"
-".    Desatinná bodka bude zodpovedať akémukoľvek znaku.\n"
-"?    Otáznik bude zodpovedať nulovému alebo jednému výskytu predchádzajúceho "
+".\tDesatinná bodka bude zodpovedať akémukoľvek znaku.\n"
+"?\tOtáznik bude zodpovedať nulovému alebo jednému výskytu predchádzajúceho "
 "znaku alebo skupiny.\n"
-"*    Hviezdička bude zodpovedať nulovému alebo viacerým výskytom.\n"
-"+    Znamienko plus bude zodpovedať jednému alebo viacerým výskytom.\n"
-"()    Zátvorky použite na zoskupenie výrazov.\n"
-"|    Alternatívy špecifikujte pomocou zvislej čiary.\n"
-"^    Znak karet bude zodpovedať začiatku riadka.\n"
-"$    Znak dolára bude zodpovedať koncu riadka."
+"*\tHviezdička bude zodpovedať nulovému alebo viacerým výskytom.\n"
+"+\tZnamienko plus bude zodpovedať jednému alebo viacerým výskytom.\n"
+"()\tZátvorky použite na zoskupenie výrazov.\n"
+"|\tAlternatívy špecifikujte pomocou zvislej čiary.\n"
+"^\tZnak karet bude zodpovedať začiatku riadka.\n"
+"$\tZnak dolára bude zodpovedať koncu riadka."
 
 #: ../gramps/gui/editors/filtereditor.py:669
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:85
@@ -28725,7 +28725,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:44
 msgid "_Ok"
-msgstr "_OK"
+msgstr "_Ok"
 
 #: ../gramps/plugins/importer/importprogen.glade:113
 #: ../gramps/plugins/importer/importprogen.glade:132
@@ -29012,12 +29012,12 @@ msgstr "Import vCard"
 
 #: ../gramps/plugins/importer/importvcard.py:273
 msgid "vCard import report: No errors detected"
-msgstr "Správa o importe vCARD: Neboli zistené žiadne chyby"
+msgstr "Správa o importe vCard: Neboli zistené žiadne chyby"
 
 #: ../gramps/plugins/importer/importvcard.py:276
 #, python-format
 msgid "vCard import report: %s errors detected\n"
-msgstr "Správa o importe vCARD: %s zistených chýb\n"
+msgstr "Správa o importe vCard: %s zistených chýb\n"
 
 #: ../gramps/plugins/importer/importvcard.py:341
 #, python-format
@@ -41031,7 +41031,7 @@ msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
-"Poznámka, ktorá sa má použiť na spustenie relácie PHP.\n"
+"Poznámka, ktorá sa má použiť na spustenie relácie php.\n"
 "Táto možnosť bude k dispozícii iba v prípade, že je vybratá .php prípona "
 "súboru."
 
