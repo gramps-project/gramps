@@ -44,6 +44,7 @@ import math
 #
 # ------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.plugins.lib.libnarrate import fix_hebrew_connectors
 
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
@@ -634,8 +635,11 @@ class DetAncestorReport(Report):
 
         self.doc.start_paragraph("DAR-ChildTitle")
         self.doc.write_text(
-            self._("Children of %(mother_name)s and %(father_name)s")
-            % {"father_name": father_name, "mother_name": mother_name}
+            fix_hebrew_connectors(
+                self._("Children of %(mother_name)s and %(father_name)s")
+                % {"father_name": father_name, "mother_name": mother_name},
+                glocale,
+            )
         )
         self.doc.end_paragraph()
 
@@ -721,8 +725,11 @@ class DetAncestorReport(Report):
             if first:
                 self.doc.start_paragraph("DAR-MoreHeader")
                 self.doc.write_text(
-                    self._("More about %(mother_name)s and %(father_name)s:")
-                    % {"mother_name": mother_name, "father_name": father_name}
+                    fix_hebrew_connectors(
+                        self._("More about %(mother_name)s and %(father_name)s:")
+                        % {"mother_name": mother_name, "father_name": father_name},
+                        glocale,
+                    )
                 )
                 self.doc.end_paragraph()
                 first = False
