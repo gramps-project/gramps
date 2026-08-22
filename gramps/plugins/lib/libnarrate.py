@@ -27,6 +27,8 @@
 Narrator class for use by plugins.
 """
 
+import re
+
 # ------------------------------------------------------------------------
 #
 # Gramps modules
@@ -88,6 +90,49 @@ def convert_prefix(word):
         # Prefix a maqaf for non-Hebrew words and numbers
         word = "־" + word
     return word
+
+
+def fix_date_for_narrative(date_str, locale_obj):
+    """
+    מסיר "ב" כפולה כשהתאריך כבר מתחיל ב"ב" משלו (למשל תאריך שנה-בלבד
+    או תאריך עם משנה-תואר כמו "בסביבות") - כפילות שנוצרת כי משפטי
+    הנרטיב מוסיפים "ב" עיוור משלהם ("נולד ב%(birth_date)s"). לאחר
+    ההסרה מחילים convert_prefix מחדש, כך שגם תאריך מדויק (שלא היה
+    לו "ב" משלו) יקבל מקף נכון כשצריך.
+
+    רלוונטי כרגע רק לתאריכי שנה-בלבד ו"בסביבות"/"בערך"/משוער -
+    שאומתו בפועל. תאריכי "לפני"/"אחרי" (MOD_BEFORE/MOD_AFTER) אינם
+    מתחילים ב"ב" בכלל ועדיין עלולים ליצור "בלפני"/"באחרי" - זו
+    שאלה נפרדת שטרם נבדקה.
+    """
+    if locale_obj.locale_code()[:2] != "he":
+        return date_str
+    if date_str.startswith("ב"):
+        rest = date_str[1:]
+        if rest.startswith("־"):
+            rest = rest[1:]
+        date_str = rest
+    return convert_prefix(date_str)
+
+
+def fix_hebrew_connectors(text, locale_obj):
+    """
+    מוסיף מקף עילי (־) אחרי אות חיבור/יחס עברית בת-תו-אחד (ו,ב,ל,כ,מ,ש)
+    כשהיא צמודה ישירות (בלי רווח) לטקסט לא-עברי, בכל מקום שהיא מופיעה
+    במשפט המוגמר. פועל על המשפט השלם ולא על משתנה בודד, ולכן עמיד
+    לשינויי סדר/ניסוח עתידיים בתרגום ("נישא ל%(spouse)s",
+    "צאצא של %(mother)s ו%(father)s" וכו').
+
+    בנוסף, מסיר "ב" מיותרת שנוצרת כשמשפט הנרטיב מוסיף "ב" משלו לפני
+    תאריך שכבר מתחיל במילת-יחס עצמאית ושלמה בפני עצמה (לפני/אחרי) -
+    למשל "פטירה בלפני 1900" -> "פטירה לפני 1900". תאריכי "בסביבות"/
+    שנה-בלבד מטופלים בנפרד ב-fix_date_for_narrative.
+    """
+    if locale_obj.locale_code()[:2] != "he":
+        return text
+    text = re.sub(r"(?:^|(?<=\s))([ובלכמש])(?=[A-Za-z0-9])", r"\1־", text)
+    text = re.sub(r"ב(לפני|אחרי)(?=\s)", r"\1", text)
+    return text
 
 
 # avoid normal translation!
@@ -1798,8 +1843,8 @@ class Narrator:
                 bdate_full = bdate_obj and bdate_obj.get_day_valid()
                 bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
 
-        if self._locale.locale_code() == "he":
-            bdate = convert_prefix(bdate)
+        if self._locale.locale_code()[:2] == "he":
+            bdate = fix_date_for_narrative(bdate, self._locale)
             bplace = convert_prefix(bplace)
 
         value_map = {
@@ -1853,6 +1898,7 @@ class Narrator:
 
         if text:
             text = self.__translate_text(text) % value_map
+            text = fix_hebrew_connectors(text, self._locale)
 
             if birth_event:
                 text = text.rstrip(". ")
@@ -1918,8 +1964,8 @@ class Narrator:
             age = 0
             age_index = _AGE_INDEX_NO_AGE
 
-        if self._locale.locale_code() == "he":
-            ddate = convert_prefix(ddate)
+        if self._locale.locale_code()[:2] == "he":
+            ddate = fix_date_for_narrative(ddate, self._locale)
             dplace = convert_prefix(dplace)
 
         value_map = {
@@ -1974,6 +2020,7 @@ class Narrator:
 
         if text:
             text = self.__translate_text(text) % value_map
+            text = fix_hebrew_connectors(text, self._locale)
 
             if death_event:
                 text = text.rstrip(". ")
@@ -2039,8 +2086,8 @@ class Narrator:
         else:
             return text
 
-        if self._locale.locale_code() == "he":
-            bdate = convert_prefix(bdate)
+        if self._locale.locale_code()[:2] == "he":
+            bdate = fix_date_for_narrative(bdate, self._locale)
             bplace = convert_prefix(bplace)
 
         value_map = {
@@ -2096,6 +2143,7 @@ class Narrator:
 
         if text:
             text = self.__translate_text(text) % value_map
+            text = fix_hebrew_connectors(text, self._locale)
             text = text + " "
 
         return text
@@ -2156,8 +2204,8 @@ class Narrator:
         else:
             return text
 
-        if self._locale.locale_code() == "he":
-            bdate = convert_prefix(bdate)
+        if self._locale.locale_code()[:2] == "he":
+            bdate = fix_date_for_narrative(bdate, self._locale)
             bplace = convert_prefix(bplace)
 
         value_map = {
@@ -2213,6 +2261,7 @@ class Narrator:
 
         if text:
             text = self.__translate_text(text) % value_map
+            text = fix_hebrew_connectors(text, self._locale)
             text = text + " "
 
         return text
@@ -2275,8 +2324,8 @@ class Narrator:
         else:
             return text
 
-        if self._locale.locale_code() == "he":
-            cdate = convert_prefix(cdate)
+        if self._locale.locale_code()[:2] == "he":
+            cdate = fix_date_for_narrative(cdate, self._locale)
             cplace = convert_prefix(cplace)
 
         value_map = {
@@ -2332,6 +2381,7 @@ class Narrator:
 
         if text:
             text = self.__translate_text(text) % value_map
+            text = fix_hebrew_connectors(text, self._locale)
             text = text + " "
 
         return text
@@ -2387,8 +2437,8 @@ class Narrator:
                 place = _pd.display_event(self.__db, event, fmt=self._place_format)
         relationship = family.get_relationship()
 
-        if self._locale.locale_code() == "he":
-            date = convert_prefix(date)
+        if self._locale.locale_code()[:2] == "he":
+            date = fix_date_for_narrative(date, self._locale)
             place = convert_prefix(place)
 
         value_map = {
@@ -2542,6 +2592,7 @@ class Narrator:
 
         if text:
             text = self.__translate_text(text) % value_map
+            text = fix_hebrew_connectors(text, self._locale)
             text = text + " "
         return text
 
@@ -2597,6 +2648,7 @@ class Narrator:
 
         if text:
             text = self.__translate_text(text) % value_map
+            text = fix_hebrew_connectors(text, self._locale)
             text = text + " "
 
         return text
