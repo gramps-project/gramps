@@ -57,8 +57,18 @@ def boldst(text):
 
 def linkst(text, url):
     """Return text as link styled text"""
+    # The "  • " bullet prefix is entirely bidi-neutral (spaces + bullet
+    # character), so per-paragraph direction auto-detection (which looks
+    # for the first "strong" - i.e. directional - character) fails to
+    # find one at the very start of the paragraph and defaults to LTR,
+    # even though the actual link text that follows is Hebrew. An RLM
+    # (Right-to-Left Mark, U+200F) right before the link text supplies
+    # that missing strong-RTL signal without being visible itself.
+    prefix = "  • "
+    if glocale.locale_code()[:2] == "he":
+        prefix += "‏"
     tags = [StyledTextTag(StyledTextTagType.LINK, url, [(0, len(text))])]
-    return StyledText("  • ") + StyledText(text, tags)
+    return StyledText(prefix) + StyledText(text, tags)
 
 
 def wiki(page, manual=False):
