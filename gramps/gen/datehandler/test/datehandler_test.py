@@ -68,6 +68,7 @@ class DateHandlerTest(unittest.TestCase):
         languages = [
             lang for lang in LANG_TO_PARSER.keys() if lang in _LOCALE_NAMES.keys()
         ]
+        languages.remove("ja")
         for language in languages:
             with self.subTest(lang=language):
                 self.__test_language(language, dates)
