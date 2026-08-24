@@ -26,6 +26,7 @@ Tests for the Mac localization helpers in :mod:`gramps.gen.utils.maclocale`.
 # Python modules
 # ------------------------
 import io
+import locale
 import os
 import subprocess
 import unittest
@@ -101,6 +102,12 @@ class MacLocaleDefaultsTest(unittest.TestCase):
     ``OSError`` before ``Popen`` returns. To exercise it everywhere we
     replace ``subprocess.Popen`` with a stub that records the ``stderr``
     argument it is handed, then drive the public entry point.
+
+    ``maclocale`` also assumes the POSIX ``locale.LC_MESSAGES`` constant
+    is defined, which is true on the real macOS Pythons it runs on but
+    not on CPython for Windows. Since this test drives it on any host,
+    ``LC_MESSAGES`` is stood in for here too so the stubbed run behaves
+    like it would on macOS.
     """
 
     def _run_with_stub(self):
@@ -120,9 +127,12 @@ class MacLocaleDefaultsTest(unittest.TestCase):
         for var in ("COLLATION", "LANGUAGE", "LANG"):
             environ.pop(var, None)
 
-        with patch.object(maclocale.subprocess, "Popen", fake_popen):
-            with patch.dict(os.environ, environ, clear=True):
-                maclocale.mac_setup_localization(_FakeGLocale())
+        lc_messages = getattr(locale, "LC_MESSAGES", locale.LC_CTYPE)
+
+        with patch.object(maclocale.locale, "LC_MESSAGES", lc_messages, create=True):
+            with patch.object(maclocale.subprocess, "Popen", fake_popen):
+                with patch.dict(os.environ, environ, clear=True):
+                    maclocale.mac_setup_localization(_FakeGLocale())
 
         return captured
 
