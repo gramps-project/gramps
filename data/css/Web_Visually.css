@@ -267,6 +267,22 @@ div#footer p#copyright img {
     float:right;
     margin-right: 10px;
 }
+div#footer p#createdate.rtl {
+    float:right;
+    text-align:right;
+    margin-left:0;
+    margin-right:10px;
+}
+div#footer p#copyright.rtl {
+    float:left;
+    text-align:left;
+    margin: 10px 0px 0px 10px;
+}
+div#footer p#copyright.rtl img {
+    float:left;
+    margin-right: 0;
+    margin-left: 10px;
+}
 #user_footer {
     width:70%;
     float:left;

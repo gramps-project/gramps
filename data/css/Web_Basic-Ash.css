@@ -977,6 +977,18 @@ a.family_map {
     text-align: right;
     padding-right: 15px;
 }
+#footer p#createdate.rtl {
+    float: right;
+    text-align: right;
+    padding-left: 0;
+    padding-right: 15px;
+}
+#footer p#copyright.rtl {
+    float: left;
+    text-align: left;
+    padding-right: 0;
+    padding-left: 15px;
+}
 
 /* Updates
 ----------------------------------------------------- */
