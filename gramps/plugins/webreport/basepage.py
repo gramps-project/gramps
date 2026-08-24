@@ -1749,7 +1749,7 @@ class BasePage:
                     }
 
             # creation author
-            footer += Html("p", msg, id="createdate")
+            footer += Html("p", msg, id="createdate", class_=self.dir)
 
             # get copyright license for all pages
             copy_nr = self.report.copyright
@@ -1775,7 +1775,7 @@ class BasePage:
                     fname = "/".join(["images", "somerights20.gif"])
                 url = self.report.build_url_fname(fname, None, self.uplink, image=True)
                 text = _CC[copy_nr] % {"gif_fname": url}
-            footer += Html("p", text, id="copyright")
+            footer += Html("p", text, id="copyright", class_=self.dir)
 
         # return footer to its callers
         return footer

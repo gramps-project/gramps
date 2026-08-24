@@ -99,8 +99,8 @@ class UpdatesPage(BasePage):
                 "This page contains the last updated objects "
                 "in the database in the last %(days)d days and"
                 " for a maximum of %(nb)d objects per object "
-                "type." % {"days": self.days, "nb": self.nbr}
-            )
+                "type."
+            ) % {"days": self.days, "nb": self.nbr}
             section += Html("p", description)
 
             header = self._("People")

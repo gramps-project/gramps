@@ -1585,6 +1585,22 @@ div#pedigree {
 #footer p#copyright img {
     margin-right: 10px;
 }
+#footer p#createdate.rtl {
+    float: right;
+    text-align: right;
+    margin-left: 0;
+    margin-right: 10px;
+}
+#footer p#copyright.rtl {
+    float: left;
+    text-align: left;
+    margin-right: 0;
+    margin-left: 10px;
+}
+#footer p#copyright.rtl img {
+    margin-right: 0;
+    margin-left: 10px;
+}
 #user_footer {
     width: 70%;
     float: left;
