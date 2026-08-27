@@ -120,9 +120,17 @@ class MacLocaleDefaultsTest(unittest.TestCase):
         for var in ("COLLATION", "LANGUAGE", "LANG"):
             environ.pop(var, None)
 
-        with patch.object(maclocale.subprocess, "Popen", fake_popen):
-            with patch.dict(os.environ, environ, clear=True):
-                maclocale.mac_setup_localization(_FakeGLocale())
+        # Windows does not define LC_MESSAGES, but this test intentionally
+        # exercises the macOS setup path on every platform.
+        message_category = getattr(
+            maclocale.locale, "LC_MESSAGES", maclocale.locale.LC_CTYPE
+        )
+        with patch.object(
+            maclocale.locale, "LC_MESSAGES", message_category, create=True
+        ):
+            with patch.object(maclocale.subprocess, "Popen", fake_popen):
+                with patch.dict(os.environ, environ, clear=True):
+                    maclocale.mac_setup_localization(_FakeGLocale())
 
         return captured
 
