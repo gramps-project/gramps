@@ -97,6 +97,17 @@ class TopSurnamesTest(unittest.TestCase):
         self.assertEqual(surnames["Webb"], 1)
         self.assertEqual(surnames["Allen"], 1)
 
+    def test_counts_surnames_with_plain_dict(self):
+        """
+        The helper should work even when called with a plain dictionary.
+        """
+        person = make_person("P1", "Smith")
+        surnames: dict[str, int] = {}
+        representative_handle: dict[str, PersonHandle] = {}
+        record_surnames(person, surnames, representative_handle)
+        self.assertEqual(surnames["Smith"], 1)
+        self.assertEqual(representative_handle["Smith"], "P1")
+
     def test_representative_has_matching_primary_surname(self):
         """
         Bug #11101: the representative for a surname must be a person whose

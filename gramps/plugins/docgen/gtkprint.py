@@ -38,6 +38,7 @@ import cairo
 try:  # the Gramps-Connect server has no DISPLAY
     from gi.repository import GObject
     from gi.repository import Gtk
+    from gi.repository import GLib
 except:
     pass
 
@@ -46,6 +47,7 @@ except:
 # Gramps modules
 #
 # ------------------------------------------------------------------------
+from gramps.gen.errors import ReportError
 from gramps.gen.plug.docgen import PAPER_PORTRAIT
 import gramps.plugins.lib.libcairodoc as libcairodoc
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -516,9 +518,13 @@ class GtkPrint(libcairodoc.CairoDoc):
         # run print dialog
         while True:
             self.preview = None
-            res = operation.run(
-                Gtk.PrintOperationAction.PRINT_DIALOG, self.uistate.window
-            )
+            try:
+                res = operation.run(
+                    Gtk.PrintOperationAction.PRINT_DIALOG, self.uistate.window
+                )
+            except GLib.GError as err:
+                LOG.error("Print operation failed", exc_info=True)
+                raise ReportError(_("Printing failed."), str(err)) from err
             if self.preview is None:  # cancel or print
                 break
             # set up printing again; can't reuse PrintOperation?

@@ -39,3 +39,16 @@ ehthumbs.db
 
 # Visual Studio Code
 .vscode/*
+
+# local changes for kevin
+build.sh
+gramps.ico
+grampsaio64.nsi
+grampsaioc.py
+grampsaiocd.py
+grampsaiow.py
+grampsc.ico
+grampsd.ico
+launch_gramps.bat
+run_as_gramps.sh
+setup.py

@@ -29,6 +29,7 @@
 # ------------------------------------------------------------------------
 
 from __future__ import annotations
+import re
 from typing import Any
 
 # ------------------------------------------------------------------------
@@ -72,7 +73,10 @@ PT2CM = utils.pt2cm
 # ------------------------------------------------------------------------
 _BORN = (_("b.", "birth abbreviation"),)
 _DIED = (_("d.", "death abbreviation"),)
+_AGE = (_("age", "short for age"),)
 _MARR = (_("m.", "marriage abbreviation"),)
+_DIV = (_("v.", "divorce abbreviation"),)
+_DUR = (_("yrs", "short for years"),)
 
 LVL_GEN, LVL_INDX, LVL_Y = range(3)
 
@@ -177,6 +181,7 @@ class CalcItems:
     def __init__(self, dbase):
         _gui = GUIConnect()
         self._gui = _gui
+        self.__dbase = dbase
 
         # calculate the printed lines for each box
         # str = ""
@@ -202,6 +207,189 @@ class CalcItems:
         self.disp_marr = [_gui.get_val("marr_disp")]
         self.__blank_marriage = self.__calc_l.calc_lines(None, None, self.disp_marr)
 
+    def _extract_year(self, text: str) -> int | None:
+        """Extract the first 4-digit year from rendered text."""
+        years = re.findall(r"\b(1\d{3}|20\d{2})\b", text)
+        return int(years[0]) if years else None
+
+    def _clean_tuple_artifacts(self, lines: list[str]) -> None:
+        """Replace tuple repr artifacts (e.g. ``('d.',)``) with their
+        string values.  This handles saved configurations that were
+        created with older code that used the tuple constants directly
+        instead of indexing ``[0]``.
+        """
+        replacements = {
+            f"('{_BORN[0]}',)": _BORN[0],
+            f"('{_DIED[0]}',)": _DIED[0],
+            f"('{_AGE[0]}',)": _AGE[0],
+            f"('{_MARR[0]}',)": _MARR[0],
+            f"('{_DIV[0]}',)": _DIV[0],
+            f"('{_DUR[0]}',)": _DUR[0],
+        }
+        for i, line in enumerate(lines):
+            for old, new in replacements.items():
+                if old in line:
+                    line = line.replace(old, new)
+            lines[i] = line
+
+    def _add_age_at_death(
+        self, lines: list[str], indi_handle: str | None, fams_handle: str | None
+    ) -> None:
+        """Calculate age at death and append it to the death line."""
+        if not lines or indi_handle is None:
+            return
+
+        # Check if age display is enabled
+        _gui = GUIConnect()
+        show_age = _gui.get_val("show_age")
+
+        # Remove the "(age )" placeholder if age display is disabled
+        if not show_age:
+            age_label = _AGE[0]
+            death_marker = _DIED[0]
+            for i, line in enumerate(lines):
+                if death_marker in line and age_label in line:
+                    lines[i] = re.sub(
+                        r"\s*\(" + re.escape(age_label) + r"[^)]*\)",
+                        "",
+                        line,
+                    )
+            return
+
+        b_str = "".join(self.__calc_l.calc_lines(indi_handle, fams_handle, ["$b"]))
+        d_str = "".join(self.__calc_l.calc_lines(indi_handle, fams_handle, ["$d"]))
+
+        b_year = self._extract_year(b_str)
+        d_year = self._extract_year(d_str)
+
+        age = None
+        if b_year and d_year and d_year > b_year:
+            candidate = d_year - b_year
+            if 0 <= candidate <= 120:
+                age = candidate
+
+        age_label = _AGE[0]
+
+        if age is None:
+            # No age could be calculated.  Remove the "(age )" placeholder
+            # that the display format left in the death line so we don't
+            # show a trailing "(age )" string.
+            death_marker = _DIED[0]
+            for i, line in enumerate(lines):
+                if death_marker in line and age_label in line:
+                    lines[i] = re.sub(
+                        r"\s*\(" + re.escape(age_label) + r"[^)]*\)",
+                        "",
+                        line,
+                    )
+                    return
+            return
+
+        age_str = f"({age_label} {age})"
+
+        # Find the death line: look for _DIED[0] marker or the death
+        # year from the rendered $d text.
+        death_marker = _DIED[0]
+        for i, line in enumerate(lines):
+            if death_marker in line:
+                if age_label in line:
+                    lines[i] = re.sub(
+                        r"\(" + re.escape(age_label) + r"[^)]*\)",
+                        age_str,
+                        line,
+                    )
+                else:
+                    lines[i] = f"{line} {age_str}"
+                return
+
+        # Fallback: if no death marker found, try matching by death year.
+        if d_year:
+            for i, line in enumerate(lines):
+                if str(d_year) in line and age_label not in line:
+                    lines[i] = f"{line} {age_str}"
+                    return
+
+    def _add_marriage_span(
+        self, lines: list[str], indi_handle: str | None, fams_handle: str | None
+    ) -> None:
+        """Calculate marriage duration and append it to the marriage line."""
+        if not lines:
+            return
+
+        # Check if age display is enabled
+        _gui = GUIConnect()
+        if not _gui.get_val("show_age"):
+            return
+
+        # Determine the correct marriage family handle.  In person boxes,
+        # fams_handle is the parents' family, not the person's own marriage
+        # family.  SubstKeywords falls back to the first family, so we do
+        # the same to find the right family for spouse death lookups.
+        marriage_fam_handle = fams_handle
+        if indi_handle is not None:
+            person = self.__dbase.get_person_from_handle(indi_handle)
+            if person is None:
+                return
+            fam_hand_list = person.get_family_handle_list()
+            if not fam_hand_list:
+                return
+            if fams_handle not in fam_hand_list:
+                marriage_fam_handle = fam_hand_list[0]
+        elif fams_handle is None:
+            return
+
+        m_str = "".join(self.__calc_l.calc_lines(indi_handle, fams_handle, ["$m"]))
+        v_str = "".join(self.__calc_l.calc_lines(indi_handle, fams_handle, ["$v"]))
+
+        m_year = self._extract_year(m_str)
+        v_year = self._extract_year(v_str)
+
+        if not m_year:
+            return
+
+        end_year = None
+        if v_year and v_year >= m_year:
+            end_year = v_year
+        else:
+            family = self.__dbase.get_family_from_handle(marriage_fam_handle)
+            if family:
+                for spouse_handle in [
+                    family.get_father_handle(),
+                    family.get_mother_handle(),
+                ]:
+                    if spouse_handle:
+                        d_str = "".join(
+                            self.__calc_l.calc_lines(spouse_handle, None, ["$d"])
+                        )
+                        d_year = self._extract_year(d_str)
+                        if d_year and d_year >= m_year:
+                            if end_year is None or d_year < end_year:
+                                end_year = d_year
+
+        if not end_year:
+            return
+
+        span = end_year - m_year
+        if span < 0 or span > 100:
+            return
+
+        dur_label = _DUR[0]
+        span_str = f"({span} {dur_label})"
+
+        # Find the marriage line by looking for _MARR[0] marker.
+        marr_marker = _MARR[0]
+        for i, line in enumerate(lines):
+            if marr_marker in line:
+                lines[i] = f"{line} {span_str}"
+                return
+
+        # Fallback: if no marriage marker found, try matching by marriage year.
+        if m_year:
+            for i, line in enumerate(lines):
+                if str(m_year) in line and dur_label not in line:
+                    lines[i] = f"{line} {span_str}"
+                    return
+
     def calc_person(self, index, indi_handle, fams_handle):
         working_lines = ""
         if index[1] % 2 == 0 or (index[1] == 1 and self.center_use == 0):
@@ -222,13 +410,24 @@ class CalcItems:
         if indi_handle == fams_handle is None:
             return working_lines
         else:
-            return self.__calc_l.calc_lines(indi_handle, fams_handle, working_lines)
+            final_lines = self.__calc_l.calc_lines(
+                indi_handle, fams_handle, working_lines
+            )
+            self._clean_tuple_artifacts(final_lines)
+            self._add_age_at_death(final_lines, indi_handle, fams_handle)
+            self._add_marriage_span(final_lines, indi_handle, fams_handle)
+            return final_lines
 
     def calc_marriage(self, indi_handle, fams_handle):
         if indi_handle == fams_handle is None:
             return self.__blank_marriage
         else:
-            return self.__calc_l.calc_lines(indi_handle, fams_handle, self.disp_marr)
+            final_lines = self.__calc_l.calc_lines(
+                indi_handle, fams_handle, self.disp_marr
+            )
+            self._clean_tuple_artifacts(final_lines)
+            self._add_marriage_span(final_lines, indi_handle, fams_handle)
+            return final_lines
 
 
 class MakeAncestorTree(AscendPerson):
@@ -873,6 +1072,13 @@ class AncestorTreeOptions(MenuReportOptions):
         )
         menu.add_option(category_name, "compress_tree", compress)
 
+        self.show_age = BooleanOption(_("Display age/years"), True)
+        self.show_age.set_help(
+            _("Whether to display age at death and marriage duration")
+        )
+        menu.add_option(category_name, "show_age", self.show_age)
+        self.show_age.connect("value-changed", self._show_age_changed)
+
         self.show_idx = BooleanOption(_("Show Index"), False)
         self.show_idx.set_help(_("Display index of each person"))
         menu.add_option(category_name, "show_idx", self.show_idx)
@@ -971,11 +1177,12 @@ class AncestorTreeOptions(MenuReportOptions):
         ##################
         category_name = _("Display")
 
-        disp = TextOption(
-            _("Father\nDisplay Format"), ["$n", "%s $b" % _BORN, "-{%s $d}" % _DIED]
+        self.father_disp = TextOption(
+            _("Father\nDisplay Format"),
+            ["$n", "%s $b" % _BORN[0], "-{%s $d (%s )}" % (_DIED[0], _AGE[0])],
         )
-        disp.set_help(_("Display format for the fathers box."))
-        menu.add_option(category_name, "father_disp", disp)
+        self.father_disp.set_help(_("Display format for the fathers box."))
+        menu.add_option(category_name, "father_disp", self.father_disp)
 
         # Will add when libsubstkeyword supports it.
         # missing = EnumeratedListOption(_("Replace missing\nplaces\\dates \
@@ -985,12 +1192,17 @@ class AncestorTreeOptions(MenuReportOptions):
         # missing.set_help(_("What will print when information is not known"))
         # menu.add_option(category_name, "miss_val", missing)
 
-        disp_mom = TextOption(
+        self.mother_disp = TextOption(
             _("Mother\nDisplay Format"),
-            ["$n", "%s $b" % _BORN, "%s $m" % _MARR, "-{%s $d}" % _DIED],
+            [
+                "$n",
+                "%s $b" % _BORN[0],
+                "%s $m" % _MARR[0],
+                "-{%s $d (%s )}" % (_DIED[0], _AGE[0]),
+            ],
         )
-        disp_mom.set_help(_("Display format for the mothers box."))
-        menu.add_option(category_name, "mother_disp", disp_mom)
+        self.mother_disp.set_help(_("Display format for the mothers box."))
+        menu.add_option(category_name, "mother_disp", self.mother_disp)
 
         center_disp = EnumeratedListOption(_("Center person uses\n" "which format"), 0)
         center_disp.add_item(0, _("Use Fathers Display format"))
@@ -1005,7 +1217,9 @@ class AncestorTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "inc_marr", self.incmarr)
         self.incmarr.connect("value-changed", self._incmarr_changed)
 
-        self.marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR)
+        self.marrdisp = StringOption(
+            _("Marriage\nDisplay Format"), "%s $m {/ %s $v}" % (_MARR[0], _DIV[0])
+        )
         self.marrdisp.set_help(_("Display format for the marital box."))
         menu.add_option(category_name, "marr_disp", self.marrdisp)
         self._incmarr_changed()
@@ -1105,6 +1319,44 @@ class AncestorTreeOptions(MenuReportOptions):
         self.fillout.set_items(item_list)
         if old_val + 2 > len(item_list):
             self.fillout.set_value(len(item_list) - 2)
+
+    def _show_age_changed(self):
+        """Update display formats when show_age option changes."""
+        age_placeholder = " (%s )" % _AGE[0]
+        if self.show_age.get_value():
+            # Add age placeholder to display formats
+            father_format = self.father_disp.get_value()
+            if father_format and age_placeholder not in father_format:
+                father_format = father_format.replace(
+                    "-{%s $d}" % _DIED[0],
+                    "-{%s $d (%s )}" % (_DIED[0], _AGE[0]),
+                )
+                self.father_disp.set_value(father_format)
+
+            mother_format = self.mother_disp.get_value()
+            if mother_format and age_placeholder not in mother_format:
+                mother_format = mother_format.replace(
+                    "-{%s $d}" % _DIED[0],
+                    "-{%s $d (%s )}" % (_DIED[0], _AGE[0]),
+                )
+                self.mother_disp.set_value(mother_format)
+        else:
+            # Remove age placeholder from display formats
+            father_format = self.father_disp.get_value()
+            if father_format and age_placeholder in father_format:
+                father_format = father_format.replace(
+                    "-{%s $d (%s )}" % (_DIED[0], _AGE[0]),
+                    "-{%s $d}" % _DIED[0],
+                )
+                self.father_disp.set_value(father_format)
+
+            mother_format = self.mother_disp.get_value()
+            if mother_format and age_placeholder in mother_format:
+                mother_format = mother_format.replace(
+                    "-{%s $d (%s )}" % (_DIED[0], _AGE[0]),
+                    "-{%s $d}" % _DIED[0],
+                )
+                self.mother_disp.set_value(mother_format)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Ancestor Tree."""
