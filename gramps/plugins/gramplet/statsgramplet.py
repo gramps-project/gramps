@@ -21,6 +21,7 @@
 #
 # ------------------------------------------------------------------------
 import os
+from collections import defaultdict
 
 # ------------------------------------------------------------------------
 #
@@ -32,6 +33,7 @@ from gramps.gen.utils.file import media_path_full
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import Person
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
+from gramps.plugins.lib.libsurnames import record_surnames
 
 _ = glocale.translation.sgettext
 
@@ -84,6 +86,11 @@ class StatsGramplet(Gramplet):
         unknowns = 0
         bytes_cnt = 0
         notfound = []
+        # Unique-surname tally, accumulated in the single people pass below so the
+        # figure shares the Top Surnames / Surname Cloud rule (libsurnames) without
+        # a second, non-yielding scan of the database (bug #6793).
+        surnames = defaultdict(int)
+        representative_handle = {}
 
         mobjects = database.get_number_of_media()
         mbytes = "0"
@@ -100,6 +107,7 @@ class StatsGramplet(Gramplet):
                 notfound.append(media.get_path())
 
         for cnt, person in enumerate(personList):
+            record_surnames(person, surnames, representative_handle)
             length = len(person.get_media_list())
             if length > 0:
                 with_media += 1
@@ -188,7 +196,7 @@ class StatsGramplet(Gramplet):
         self.append_text("\n")
         if hasattr(database, "surname_list"):
             self.link(_("%s:") % _("Unique surnames"), "Filter", "unique surnames")
-            self.append_text(" %s" % len(set(database.surname_list)))
+            self.append_text(" %s" % len(surnames))
             self.append_text("\n")
         self.append_text("\n%s\n" % _("Media Objects"))
         self.append_text("----------------------------\n")

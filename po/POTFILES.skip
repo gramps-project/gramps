@@ -580,6 +580,7 @@ gramps/plugins/gramplet/metadataviewer.py
 # plugins/gramplet/test directory
 #
 gramps/plugins/gramplet/test/__init__.py
+gramps/plugins/gramplet/test/surnamecount_test.py
 gramps/plugins/gramplet/test/topsurnamesgramplet_test.py
 #
 # plugins/graph directory
@@ -611,6 +612,7 @@ gramps/plugins/lib/libmixin.py
 gramps/plugins/lib/libodfbackend.py
 gramps/plugins/lib/libplaceimport.py
 gramps/plugins/lib/librecurse.py
+gramps/plugins/lib/libsurnames.py
 #
 # plugins/lib/maps directory
 #
