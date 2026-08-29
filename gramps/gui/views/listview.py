@@ -332,7 +332,7 @@ class ListView(NavigationView):
             self.list.save_column_info(self.list)
         if self.active:
             cput0 = perf_counter()
-            if not self.search_bar.is_visible():
+            if self.generic_filter is not None or not self.search_bar.is_visible():
                 filter_info = (True, self.generic_filter, False)
             else:
                 filter_info = self.search_bar.get_value()
@@ -783,7 +783,7 @@ class ListView(NavigationView):
         self.sort_order = order
         handle = self.first_selected()
 
-        if not self.search_bar.is_visible():
+        if self.generic_filter is not None or not self.search_bar.is_visible():
             filter_info = (True, self.generic_filter, False)
         else:
             filter_info = self.search_bar.get_value()
