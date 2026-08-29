@@ -151,6 +151,7 @@ class StandardCustomSelector:
         else:
             self.store = self.create_list()
             completion_store = self.store
+        self.completion_store = completion_store
 
         self.selector.set_model(self.store)
         self.selector.set_entry_text_column(1)
@@ -178,6 +179,15 @@ class StandardCustomSelector:
         menu.
         """
         store = Gtk.TreeStore(int, str, bool)
+        self._fill_menu(store)
+        return store
+
+    def _fill_menu(self, store):
+        """
+        Fill (or refill) the given tree store with the menu, clearing it first
+        so it can be reused when the custom values change (bug 13716).
+        """
+        store.clear()
         for heading, items in self.menu:
             if self.active_key in items:
                 parent = None
@@ -192,13 +202,21 @@ class StandardCustomSelector:
                 key, value = self.get_key_and_value(event_type)
                 store.append(parent, row=[key, value, True])
 
-        return store
-
     def create_list(self):
         """
         Create a model and fill it with a sorted flat list.
         """
         store = Gtk.ListStore(int, str)
+        self._fill_list(store)
+        return store
+
+    def _fill_list(self, store):
+        """
+        Fill (or refill) the given list store with a sorted flat list, clearing
+        it first so it can be reused when the custom values change (bug 13716).
+        """
+        store.clear()
+        self.active_index = 0
         keys = sorted(self.mapping, key=self.by_value)
         index = 0
         for key in keys:
@@ -216,7 +234,21 @@ class StandardCustomSelector:
                     self.active_index = index
                 index += 1
 
-        return store
+    def rebuild(self, additional):
+        """
+        Refill the selector's models with a new set of custom (additional)
+        values, in place so an open drop-down updates live.
+
+        This keeps a database-derived type selector consistent with the
+        database's current custom types without recreating the widget
+        (bug 13716).
+        """
+        self.additional = additional
+        if self.menu:
+            self._fill_menu(self.store)
+            self._fill_list(self.completion_store)
+        else:
+            self._fill_list(self.store)
 
     def by_value(self, val):
         """

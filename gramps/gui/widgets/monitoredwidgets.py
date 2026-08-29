@@ -490,6 +490,18 @@ class MonitoredDataType:
         self.get_val = get_val
         self.update()
 
+    def rebuild(self, custom_values):
+        """
+        Rebuild the selector's offered options with a fresh set of custom
+        values, preserving the current selection.
+
+        Used to keep a database-derived type selector consistent with the
+        database's current custom types after they change (bug 13716).
+        """
+        current = self.sel.get_values()
+        self.sel.rebuild(custom_values)
+        self.sel.set_values(current)
+
     def fix_value(self, value):
         if value[0] == self.get_val().get_custom():
             return value
