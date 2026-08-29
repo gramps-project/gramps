@@ -32,6 +32,7 @@ from gramps.gen.utils.file import media_path_full
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import Person
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
+from gramps.plugins.gramplet.surnamecounter import get_counting_surname
 
 _ = glocale.translation.sgettext
 
@@ -84,6 +85,7 @@ class StatsGramplet(Gramplet):
         unknowns = 0
         bytes_cnt = 0
         notfound = []
+        unique_surnames = set()
 
         mobjects = database.get_number_of_media()
         mbytes = "0"
@@ -104,6 +106,13 @@ class StatsGramplet(Gramplet):
             if length > 0:
                 with_media += 1
                 total_media += length
+
+            # Identify the family surname under which this person is counted,
+            # collapsing non-primary patronymic/matronymic components so a
+            # shared family surname counts once (bug #6988).
+            primary_surname = get_counting_surname(person.get_primary_name()).strip()
+            if primary_surname:
+                unique_surnames.add(primary_surname)
 
             for name in [person.get_primary_name()] + person.get_alternate_names():
                 if name.get_first_name().strip() == "":
@@ -188,7 +197,7 @@ class StatsGramplet(Gramplet):
         self.append_text("\n")
         if hasattr(database, "surname_list"):
             self.link(_("%s:") % _("Unique surnames"), "Filter", "unique surnames")
-            self.append_text(" %s" % len(set(database.surname_list)))
+            self.append_text(" %s" % len(unique_surnames))
             self.append_text("\n")
         self.append_text("\n%s\n" % _("Media Objects"))
         self.append_text("----------------------------\n")

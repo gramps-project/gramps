@@ -30,6 +30,7 @@ from collections import defaultdict
 from gramps.gen.plug import Gramplet
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.plugins.gramplet.surnamecounter import get_counting_surname
 
 _ = glocale.translation.sgettext
 
@@ -108,13 +109,13 @@ class SurnameCloudGramplet(Gramplet):
             cnt += 1
             if not cnt % _YIELD_INTERVAL:
                 yield True
-            # Count unique surnames
+            # Count unique surnames, collapsing non-primary patronymic/
+            # matronymic components so a shared family surname counts once
+            # (bug #6988).
             for name in [person.get_primary_name()] + person.get_alternate_names():
-                if (
-                    not name.get_surname().strip() in namelist
-                    and not name.get_surname().strip() == ""
-                ):
-                    namelist.append(name.get_surname().strip())
+                surname = get_counting_surname(name).strip()
+                if surname and surname not in namelist:
+                    namelist.append(surname)
 
         total_people = cnt
         surname_sort = []
