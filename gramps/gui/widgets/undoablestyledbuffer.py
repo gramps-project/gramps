@@ -147,27 +147,29 @@ class UndoableStyledBuffer(StyledTextBuffer):
         start = self.get_iter_at_offset(undo_action.offset)
         stop = self.get_iter_at_offset(undo_action.offset + undo_action.length)
         self.delete(start, stop)
-        # the text is correct again, now we create correct styled text
+        # the text is correct again, now we restore the styled tags in place
+        # (a full set_text() rebuild would reset the view to the top, bug 13268)
         s_text = StyledText(
             Gtk.TextBuffer.get_text(
                 self, self.get_start_iter(), self.get_end_iter(), True
             ),
             undo_action.tags,
         )
-        self.set_text(s_text)
+        self.apply_styled_tags(s_text)
         self.place_cursor(self.get_iter_at_offset(undo_action.offset))
 
     def _undo_delete(self, undo_action):
         start = self.get_iter_at_offset(undo_action.start)
         self.insert(start, undo_action.text)
-        # the text is correct again, now we create correct styled text
+        # the text is correct again, now we restore the styled tags in place
+        # (a full set_text() rebuild would reset the view to the top, bug 13268)
         s_text = StyledText(
             Gtk.TextBuffer.get_text(
                 self, self.get_start_iter(), self.get_end_iter(), True
             ),
             undo_action.tags,
         )
-        self.set_text(s_text)
+        self.apply_styled_tags(s_text)
         if undo_action.delete_key_used:
             self.place_cursor(self.get_iter_at_offset(undo_action.start))
         else:
@@ -180,7 +182,9 @@ class UndoableStyledBuffer(StyledTextBuffer):
             ),
             redo_action.tags,
         )
-        self.set_text(s_text)
+        # restore styling in place rather than rebuilding the whole buffer,
+        # which would reset the view to the top (bug 13268)
+        self.apply_styled_tags(s_text)
         start = self.get_iter_at_offset(redo_action.offset)
         self.insert(start, redo_action.text)
         new_cursor_pos = self.get_iter_at_offset(
@@ -206,7 +210,9 @@ class UndoableStyledBuffer(StyledTextBuffer):
             ),
             undo_action.tags,
         )
-        self.set_text(s_text)
+        # only the styling changed, so reapply it in place rather than
+        # rebuilding the whole buffer (which resets the view, bug 13268)
+        self.apply_styled_tags(s_text)
         self.place_cursor(self.get_iter_at_offset(undo_action.offset))
 
     def _handle_redo(self, redo_action):
@@ -217,5 +223,7 @@ class UndoableStyledBuffer(StyledTextBuffer):
             ),
             redo_action.tags_after,
         )
-        self.set_text(s_text)
+        # only the styling changed, so reapply it in place rather than
+        # rebuilding the whole buffer (which resets the view, bug 13268)
+        self.apply_styled_tags(s_text)
         self.place_cursor(self.get_iter_at_offset(redo_action.offset_after))
