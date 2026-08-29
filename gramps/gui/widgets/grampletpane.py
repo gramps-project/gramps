@@ -57,6 +57,7 @@ from ..plug.quick import run_quick_report_by_name
 from ..display import display_help, display_url
 from ..glade import Glade
 from ..pluginmanager import GuiPluginManager
+from ..grampletlayout import column_index_for_x
 from .undoablebuffer import UndoableBuffer
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -1349,11 +1350,22 @@ class GrampletPane(Gtk.ScrolledWindow):
         if source.get_direction() == Gtk.TextDirection.RTL:
             x = sx - x
         # first, find column:
-        col = 0
-        for i, column in enumerate(self.columns):
-            if x < (sx / len(self.columns) * (i + 1)):
-                col = i
-                break
+        #
+        # Map the drop x against each column's own allocation (content /
+        # event-box coordinates, the same space as x) instead of dividing the
+        # *viewport* width (sx) evenly.  With a high column count the content is
+        # wider than the viewport, so the old sx-based division scaled x up and
+        # sent the drop to a far-right column scrolled off screen (bug #13865).
+        # When the content fits the viewport (no horizontal scroll) the per
+        # column allocations equal sx / len(self.columns), so behaviour is
+        # unchanged for the common case.
+        col = column_index_for_x(
+            x,
+            [
+                (column.get_allocation().x, column.get_allocation().width)
+                for column in self.columns
+            ],
+        )
         if button:
             fromcol = mainframe.get_parent()
             if fromcol:
