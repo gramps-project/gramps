@@ -57,6 +57,7 @@ from gramps.gui.filters.sidebar import FamilySidebarFilter
 from gramps.gui.merge import MergeFamily
 from gramps.gen.plug import CATEGORY_QR_FAMILY
 from gramps.gui.ddtargets import DdTargets
+from gramps.plugins.view.familyview_selection import resolve_active_after_filter
 
 
 # -------------------------------------------------------------------------
@@ -143,6 +144,42 @@ class FamilyView(ListView):
 
     def get_config_name(self):
         return __name__
+
+    def build_tree(self, force_sidebar=False, preserve_col=True):
+        """
+        Rebuild the family list, then keep the active family on a visible row.
+
+        After a filter/Find narrows the list (Mantis 12539) the previously
+        active family can drop out of the filtered model.
+        ``ListView.build_tree`` leaves it active (it is no longer selectable),
+        so the bottombar "Children" tab keeps showing the now-hidden family
+        until the user re-clicks a row. Re-point the active family at the first
+        visible row so the ``active-changed`` signal fires and the detail tabs,
+        including the Children gramplet, are rebuilt for the now-current
+        selection.
+        """
+        ListView.build_tree(self, force_sidebar, preserve_col)
+        # Only resync when this view is the displayed page and a model exists;
+        # an inactive view is rebuilt lazily and carries no usable selection.
+        if not self.active or not self.model:
+            return
+        active_handle = self.get_active()
+        target = resolve_active_after_filter(active_handle, self._visible_handles())
+        if target and target != active_handle:
+            self.change_active(target)
+
+    def _visible_handles(self):
+        """
+        Return the family handles currently shown in the list, in display order.
+        """
+        handles = []
+        model = self.model
+        if model is not None:
+            for row in model:
+                handle = model.get_handle_from_iter(row.iter)
+                if handle is not None:
+                    handles.append(handle)
+        return handles
 
     def navigation_type(self):
         return "Family"

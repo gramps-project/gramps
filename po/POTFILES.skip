@@ -692,6 +692,9 @@ gramps/plugins/tool/__init__.py
 # plugins/view directory
 #
 gramps/plugins/view/__init__.py
+gramps/plugins/view/familyview_selection.py
+gramps/plugins/view/test/__init__.py
+gramps/plugins/view/test/familyview_selection_test.py
 #
 # plugins/webreport directory
 #
