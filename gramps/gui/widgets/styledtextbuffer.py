@@ -474,13 +474,13 @@ class StyledTextBuffer(UndoableBuffer):
             else:
                 self.remove_tag_by_name(str(style), start, end)
         elif StyledTextTagType.STYLE_TYPE[style] == str:
-            tag = self._find_tag_by_name(style, value)
             self._remove_style_from_selection(style)
-            self._apply_tag_to_selection(tag)
+            if value != StyledTextTagType.STYLE_DEFAULT[style]:
+                self._apply_tag_to_selection(self._find_tag_by_name(style, value))
         elif StyledTextTagType.STYLE_TYPE[style] == int:
-            tag = self._find_tag_by_name(style, value)
             self._remove_style_from_selection(style)
-            self._apply_tag_to_selection(tag)
+            if value != StyledTextTagType.STYLE_DEFAULT[style]:
+                self._apply_tag_to_selection(self._find_tag_by_name(style, value))
         else:
             # we should never get until here
             return
