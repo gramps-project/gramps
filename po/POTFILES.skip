@@ -198,6 +198,7 @@ gramps/gen/lib/test/date_test.py
 gramps/gen/lib/test/grampstype_test.py
 gramps/gen/lib/test/handleref_test.py
 gramps/gen/lib/test/merge_test.py
+gramps/gen/lib/test/note_test.py
 gramps/gen/lib/test/schema_test.py
 gramps/gen/lib/test/serialize_test.py
 gramps/gen/lib/test/styledtext_test.py
