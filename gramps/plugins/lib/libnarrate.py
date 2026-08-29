@@ -37,6 +37,7 @@ from gramps.gen.lib.person import Person
 from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.lib.eventtype import EventType
 from gramps.gen.lib.familyreltype import FamilyRelType
+from gramps.gen.lib.nametype import NameType
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.alive import probably_alive
@@ -88,6 +89,44 @@ def convert_prefix(word):
         # Prefix a maqaf for non-Hebrew words and numbers
         word = "־" + word
     return word
+
+
+def _get_birth_name(person):
+    """
+    Return the person's Birth Name (a :class:`~.name.Name`), or None if the
+    person has no name of type ``NameType.BIRTH``.
+
+    The primary name is checked first so that, when the preferred name *is* a
+    birth name, it is the one returned.
+    """
+    for name in [person.get_primary_name()] + person.get_alternate_names():
+        if name and name.get_type() == NameType.BIRTH:
+            return name
+    return None
+
+
+def _get_spouse_name(spouse, name_display=None):
+    """
+    Return the name string used to refer to a spouse in a marriage /
+    relationship sentence of a narrative report (bug 4862).
+
+    The sentence describes a *past* event, so the spouse must be named by a
+    name that stays stable if the spouse later acquires a different preferred
+    name (e.g. after a divorce and remarriage). The spouse's Birth Name is
+    used when one exists; only when the spouse has no Birth Name do we fall
+    back to the currently-preferred primary name (the historical behaviour).
+
+    :param spouse: the spouse to be named.
+    :type spouse: :class:`~gen.lib.person.Person`
+    :param name_display: an object to be used for displaying names; when None
+        the global name displayer is used.
+    :type name_display: :class:`~gen.display.name.NameDisplay`
+    """
+    displayer = name_display if name_display is not None else _nd
+    name = _get_birth_name(spouse)
+    if name is None:
+        return displayer.display(spouse)
+    return displayer.display_name(name)
 
 
 # avoid normal translation!
@@ -2366,10 +2405,7 @@ class Narrator:
         if spouse_handle:
             spouse = self.__db.get_person_from_handle(spouse_handle)
             if spouse:
-                if not name_display:
-                    spouse_name = _nd.display(spouse)
-                else:
-                    spouse_name = name_display.display(spouse)
+                spouse_name = _get_spouse_name(spouse, name_display)
         if not spouse_name:
             spouse_name = self.__translate_text("Unknown")  # not: _("Unknown")
 
