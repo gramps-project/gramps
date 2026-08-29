@@ -549,7 +549,25 @@ class GtkDocParagraph(GtkDocBaseElement):
                 self._text, -1, "\000"
             )
 
-    def divide(self, layout, width, height, dpi_x, dpi_y):
+    def divide(
+        self,
+        layout,
+        width,
+        height,
+        dpi_x,
+        dpi_y,
+        force_split=False,
+        allow_overflow=False,
+    ):
+        # bug 6324: 'force_split' (set when moving this paragraph whole to the
+        # next page would make no progress -- a wrapping cell on the last line of
+        # a page, or the paginator's no-progress guard) overrides the "keep a
+        # short cell paragraph together" rule below, so at least its first lines
+        # render here instead of the cell being dropped.  'allow_overflow' is the
+        # stronger signal the paginator's no-progress guard adds when even a
+        # fresh empty page cannot hold the content: only then may a line that
+        # does not fit be placed here (accepting overflow) rather than moved --
+        # otherwise pagination would loop forever.
         self.__parse_text()
 
         l_margin = self._style.get_left_margin() * dpi_x / 2.54
@@ -615,9 +633,22 @@ class GtkDocParagraph(GtkDocBaseElement):
 
         # we need to cut paragraph:
 
+        # bug 6324: place this paragraph as-is on the current page, accepting
+        # overflow.  Used only when the paginator's no-progress guard has
+        # established the page is already as large as it will get (a single line
+        # taller than a whole page); the alternative is dropping the line or
+        # looping forever.
+        def _place_whole():
+            para_h = layout_height + spacing + t_margin + (2 * v_padding)
+            if height - para_h > b_margin:
+                para_h += b_margin
+            return (self, None), para_h
+
         # 1. if paragraph part of a cell, we do not divide if only small part,
-        # of paragraph can be shown, instead move to next page
-        if line_count < 4 and self._parent._type == "CELL":
+        # of paragraph can be shown, instead move to next page -- UNLESS the
+        # caller forced a split (bug 6324: the row/page is already as large as it
+        # gets, so moving whole would drop the cell or loop).
+        if not force_split and line_count < 4 and self._parent._type == "CELL":
             return (None, self), 0
 
         lineiter = layout.get_iter()
@@ -627,7 +658,13 @@ class GtkDocParagraph(GtkDocBaseElement):
         # 2. if nothing fits, move to next page without split
         #  there is a spacing above and under the text
         if linerange[1] - linerange[0] + 2.0 * spacing > text_height * Pango.SCALE:
-            return (None, self), 0
+            if not force_split:
+                return (None, self), 0
+            # bug 6324: forced, but not even the first line fits here.  If it is
+            # the only line and moving makes no progress (allow_overflow), place
+            # it here (overflow); otherwise move it to the next page.
+            if lineiter.at_last_line():
+                return _place_whole() if allow_overflow else ((None, self), 0)
 
         # 3. split the paragraph
         startheight = linerange[0]
@@ -635,6 +672,8 @@ class GtkDocParagraph(GtkDocBaseElement):
         splitline = -1
         if lineiter.at_last_line():
             # only one line of text that does not fit
+            if force_split and allow_overflow:
+                return _place_whole()
             return (None, self), 0
 
         while not lineiter.at_last_line():
@@ -647,6 +686,8 @@ class GtkDocParagraph(GtkDocBaseElement):
                 break
             endheight = linerange[1]
         if splitline == -1:
+            if force_split and allow_overflow:
+                return _place_whole()
             print("CairoDoc STRANGE ")
             return (None, self), 0
         # we split at splitline
@@ -843,7 +884,16 @@ class GtkDocTable(GtkDocBaseElement):
     _type = "TABLE"
     _allowed_children = ["ROW"]
 
-    def divide(self, layout, width, height, dpi_x, dpi_y):
+    def divide(
+        self,
+        layout,
+        width,
+        height,
+        dpi_x,
+        dpi_y,
+        force_split=False,
+        allow_overflow=False,
+    ):
         # calculate real table width
         table_width = width * self._style.get_width() / 100
 
@@ -852,7 +902,33 @@ class GtkDocTable(GtkDocBaseElement):
         row_index = 0
         while row_index < len(self._children):
             row = self._children[row_index]
-            (r1, r2), row_height = row.divide(layout, table_width, height, dpi_x, dpi_y)
+            # bug 6324: only the FIRST row can legitimately be forced (it is the
+            # one sitting at the top of an already-full/empty page); later rows
+            # have committed rows above them and may still be kept together.
+            (r1, r2), row_height = row.divide(
+                layout,
+                table_width,
+                height,
+                dpi_x,
+                dpi_y,
+                force_split and row_index == 0,
+                allow_overflow and row_index == 0,
+            )
+            if r1 is None:
+                # bug 6324: the row could place none of its content here and asks
+                # to move whole to the next page (keep-together).  Hand it and
+                # every following row to a continuation table so the row is not
+                # duplicated across the break.  If rows above it already fit that
+                # is real progress; if NOTHING fits, return the continuation only
+                # (first half None) so the paginator moves it to a fresh page --
+                # where, if it still does not fit, allow_overflow guarantees it is
+                # placed rather than looping.
+                new_table = GtkDocTable(self._style)
+                list(map(new_table.add_child, self._children[row_index:]))
+                del self._children[row_index:]
+                if not self._children:
+                    return (None, new_table), 0
+                return (self, new_table), table_height
             if r2 is not None:
                 # break the table in two parts
                 break
@@ -900,10 +976,20 @@ class GtkDocTableRow(GtkDocBaseElement):
     _type = "ROW"
     _allowed_children = ["CELL"]
 
-    def divide(self, layout, width, height, dpi_x, dpi_y):
+    def divide(
+        self,
+        layout,
+        width,
+        height,
+        dpi_x,
+        dpi_y,
+        force_split=False,
+        allow_overflow=False,
+    ):
         # the highest cell gives the height of the row
         cell_heights = []
         dividedrow = False
+        cell_split = False
         cell_width_iter = self._style.__iter__()
         new_row = GtkDocTableRow(self._style)
         for cell in self._children:
@@ -914,12 +1000,41 @@ class GtkDocTableRow(GtkDocBaseElement):
             (c1, c2), cell_height = cell.divide(
                 layout, cell_width, height, dpi_x, dpi_y
             )
+            if c1 is None and not force_split and not cell_split:
+                # bug 6324: this cell can place none of its content in the space
+                # left, no earlier cell in the row has committed content yet, and
+                # we are allowed to move the whole row to the next page (where it
+                # gets a full page of room).  Keep the row together and move it
+                # whole rather than tearing this cell -- leaving it blank here
+                # while its text lands on a later page (the reported defect).
+                return (None, self), 0
+            if c1 is None:
+                # bug 6324: either an earlier cell already split across the page
+                # boundary (cell_split -- so the row spans the break and cannot
+                # move whole), or the paginator forced the split (force_split --
+                # the page is already as large as it will get).  Force this cell
+                # to split too so its first lines render here beside its rowmates
+                # instead of a blank cell.  Overflow of an UNSPLITTABLE cell (an
+                # image taller than the room left) is permitted only under
+                # allow_overflow -- the paginator's genuine no-progress signal --
+                # so a merely-torn row lets such a cell move to the next page
+                # intact rather than clipping it here.
+                (c1, c2), cell_height = cell.divide(
+                    layout,
+                    cell_width,
+                    height,
+                    dpi_x,
+                    dpi_y,
+                    force_split=True,
+                    allow_overflow=allow_overflow,
+                )
             cell_heights.append(cell_height)
             if c2 is None:
                 emptycell = GtkDocTableCell(c1._style, c1.get_span())
                 new_row.add_child(emptycell)
             else:
                 dividedrow = True
+                cell_split = True
                 new_row.add_child(c2)
 
         # save height [inch] of the row to be able to draw exact cell border
@@ -976,7 +1091,16 @@ class GtkDocTableCell(GtkDocBaseElement):
     def get_span(self):
         return self._span
 
-    def divide(self, layout, width, height, dpi_x, dpi_y):
+    def divide(
+        self,
+        layout,
+        width,
+        height,
+        dpi_x,
+        dpi_y,
+        force_split=False,
+        allow_overflow=False,
+    ):
         h_padding = self._style.get_padding() * dpi_x / 2.54
         v_padding = self._style.get_padding() * dpi_y / 2.54
 
@@ -993,8 +1117,28 @@ class GtkDocTableCell(GtkDocBaseElement):
         for child in self._children:
             if new_cell is None:
                 (e1, e2), child_height = child.divide(
-                    layout, width, available_height, dpi_x, dpi_y
+                    layout,
+                    width,
+                    available_height,
+                    dpi_x,
+                    dpi_y,
+                    force_split,
+                    allow_overflow,
                 )
+                # bug 6324: the cell's first child could place none of its
+                # content in the room left (a short paragraph hitting the
+                # keep-together rule).  When we were NOT forced, report that by
+                # returning the cell INTACT (None, self) so the caller
+                # (GtkDocTableRow.divide) can move the whole row or force a
+                # split -- do not fall through to the truncation below, which
+                # empties the cell and leaves it blank while its content is
+                # carried away.  When we WERE forced, fall through: a splittable
+                # child has split (e1 set) and an unsplittable one that still
+                # will not fit (e1 None, e2 the child) is carried to a
+                # continuation cell here -- blank on this page, intact on the
+                # next -- rather than dropped.
+                if e1 is None and e2 is not None and childnr == 0 and not force_split:
+                    return (None, self), 0
                 cell_height += child_height
                 available_height -= child_height
                 if e2 is not None:
@@ -1084,7 +1228,16 @@ class GtkDocPicture(GtkDocBaseElement):
         self._height = height
         self._crop = crop
 
-    def divide(self, layout, width, height, dpi_x, dpi_y):
+    def divide(
+        self,
+        layout,
+        width,
+        height,
+        dpi_x,
+        dpi_y,
+        force_split=False,
+        allow_overflow=False,
+    ):
         img_width = self._width * dpi_x / 2.54
         img_height = self._height * dpi_y / 2.54
 
@@ -1092,8 +1245,15 @@ class GtkDocPicture(GtkDocBaseElement):
         # if it can't fit on the current one
         if img_height <= height:
             return (self, None), img_height
-        else:
-            return (None, self), 0
+        # bug 6324: an image can never be split.  Under allow_overflow the
+        # paginator has established the page is already as large as it will get
+        # (an image taller than a whole page -- moving again would loop forever),
+        # so place it here accepting overflow.  A merely-forced split (force_split
+        # without allow_overflow, e.g. a torn row whose sibling cell split) must
+        # NOT clip a fitting image here -- it moves to the next page intact.
+        if allow_overflow:
+            return (self, None), img_height
+        return (None, self), 0
 
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         from gi.repository import Gtk, Gdk
@@ -1150,7 +1310,16 @@ class GtkDocFrame(GtkDocBaseElement):
     _type = "FRAME"
     _allowed_children = ["LINE", "POLYGON", "BOX", "TEXT"]
 
-    def divide(self, layout, width, height, dpi_x, dpi_y):
+    def divide(
+        self,
+        layout,
+        width,
+        height,
+        dpi_x,
+        dpi_y,
+        force_split=False,
+        allow_overflow=False,
+    ):
         frame_width = round(self._style.width * dpi_x / 2.54)
         frame_height = round(self._style.height * dpi_y / 2.54)
         t_margin = self._style.spacing[2] * dpi_y / 2.54
@@ -1161,6 +1330,12 @@ class GtkDocFrame(GtkDocBaseElement):
         if frame_height + t_margin + b_margin <= height:
             return (self, None), frame_height + t_margin + b_margin
         elif frame_height + t_margin <= height:
+            return (self, None), height
+        # bug 6324: a frame taller than a whole page cannot be split.  Under
+        # allow_overflow the paginator has established the page is already as
+        # large as it will get, so place it here (overflow) rather than loop
+        # forever; a merely-forced split moves it to the next page intact.
+        elif allow_overflow:
             return (self, None), height
         else:
             return (None, self), 0
@@ -1796,9 +1971,33 @@ links (like ODF) and write PDF from that format.
             # this is a self._doc where nothing has been added. Empty page.
             return True
         elem = self._elements_to_paginate.pop(0)
+        # bug 6324: is the current page still empty? (an empty page always has
+        # the full page_height available). Captured BEFORE dividing so the
+        # no-progress guard below can tell "nothing fit on a fresh page" (a loop)
+        # from "nothing fit in the room left below other content" (normal).
+        page_is_empty = len(self._pages[len(self._pages) - 1].get_children()) == 0
         (e1, e2), e1_h = elem.divide(
             layout, page_width, self._available_height, dpi_x, dpi_y
         )
+
+        # bug 6324: the element placed nothing (e1 is None) yet asked to be
+        # carried to the next page (e2) -- and the current page is ALREADY empty.
+        # Moving it to yet another empty page makes no progress, so
+        # paginate_document's `while not paginate()` loop would spin forever.
+        # Re-divide the CONTINUATION (e2, which holds the content -- a table hands
+        # back its rows there and empties itself when nothing fits) forcing the
+        # split AND allowing overflow of anything unsplittable, so pagination
+        # places what it can here and always advances.
+        if e1 is None and e2 is not None and page_is_empty:
+            (e1, e2), e1_h = e2.divide(
+                layout,
+                page_width,
+                self._available_height,
+                dpi_x,
+                dpi_y,
+                force_split=True,
+                allow_overflow=True,
+            )
 
         # if (part of) it fits on current page add it
         if e1 is not None:
