@@ -390,6 +390,9 @@ class NameDisplay:
 
         # Translators: needed for Arabic, ignore otherwise
         COMMAGLYPH = xlocale.translation.gettext(",")
+        # keep the comma glyph so views can split a format at the
+        # surname/given boundary (e.g. the fan chart's two-line names)
+        self.COMMAGLYPH = COMMAGLYPH
 
         self.STANDARD_FORMATS = [
             (Name.DEF, _("Default format (defined by Gramps preferences)"), "", _ACT),
@@ -1038,6 +1041,51 @@ class NameDisplay:
         """
         name = person.get_primary_name()
         return self.name_formats[num][_F_FN](name)
+
+    def get_two_line_format(self, num=None):
+        """
+        Return a name format split into two format strings at the comma
+        that separates the surname from the given names.
+
+        Used by views that render names on two lines (the fan charts) but
+        must still honour the user's selected name format. A format with no
+        such comma yields the whole format on the first line and an empty
+        second line.
+
+        :param num: index of the format to split; the active default format
+                    is used when None.
+        :type num: int
+        :returns: a (line1_format, line2_format) tuple
+        :rtype: tuple
+        """
+        if num is None:
+            num = self.default_format
+        num = self._is_format_valid(num)
+        fmt_str = self.name_formats[num][_F_FMT]
+        if self.COMMAGLYPH in fmt_str:
+            line1, line2 = fmt_str.split(self.COMMAGLYPH, 1)
+        else:
+            line1, line2 = fmt_str, ""
+        return (line1.strip(), line2.strip())
+
+    def display_two_lines(self, person):
+        """
+        Return a :class:`~.person.Person`'s primary name as a two-line
+        (line1, line2) tuple, derived from the *active* name format split at
+        the surname/given comma.
+
+        This lets two-line renderers (the fan chart views) honour the user's
+        selected name format instead of a fixed layout.
+
+        :param person: :class:`~.person.Person` instance whose primary name
+                       is to be displayed.
+        :type person: :class:`~.person.Person`
+        :returns: a (line1, line2) tuple of formatted name strings
+        :rtype: tuple
+        """
+        name = person.get_primary_name()
+        line1_fmt, line2_fmt = self.get_two_line_format()
+        return (self.format_str(name, line1_fmt), self.format_str(name, line2_fmt))
 
     def display_formal(self, person):
         """
