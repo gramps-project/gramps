@@ -610,21 +610,14 @@ class CairoPrintSave:
         operation.connect("preview", self.on_preview)
         operation.connect("paginate", self.on_paginate)
         operation.set_n_pages(1)
-        # paper_size = Gtk.PaperSize.new(name="iso_a4")
-        ## WHY no Gtk.Unit.PIXEL ?? Is there a better way to convert
-        ## Pixels to MM ??
-        paper_size = Gtk.PaperSize.new_custom(
-            "custom",
-            "Custom Size",
-            round(self.widthpx * 0.2646),
-            round(self.heightpx * 0.2646),
-            Gtk.Unit.MM,
-        )
-        page_setup = Gtk.PageSetup()
-        page_setup.set_paper_size(paper_size)
-        # page_setup.set_orientation(Gtk.PageOrientation.PORTRAIT)
-        operation.set_default_page_setup(page_setup)
-        # operation.set_use_full_page(True)
+        # Mantis 10768: do NOT force a custom paper size matching the
+        # chart's natural rendered millimetre dimensions.  Doing so
+        # locked the print dialog's paper-size combo at "Custom" and,
+        # on Mac, made the printer try to reproduce a 1330x1330mm
+        # page literally — printing 1/4 of the chart on real Letter
+        # paper.  Use the system default paper instead and rely on
+        # on_draw_page's existing scale-to-fit
+        # (``scale = min(pxwidth/widthpx, pxheight/heightpx)``).
 
         if PRINT_SETTINGS is not None:
             operation.set_print_settings(PRINT_SETTINGS)
@@ -637,7 +630,6 @@ class CairoPrintSave:
                 break
             # set up printing again; can't reuse PrintOperation?
             operation = Gtk.PrintOperation()
-            operation.set_default_page_setup(page_setup)
             operation.connect("draw_page", self.on_draw_page)
             operation.connect("preview", self.on_preview)
             operation.connect("paginate", self.on_paginate)
