@@ -1758,6 +1758,60 @@ class EmptyDateTest(BaseDateTest):
         d.set(value=(1, 1, 1900, False, 1, 1, 1910, False), modifier=Date.MOD_SPAN)
         self.assertFalse(d.is_empty())
 
+    def test_set_as_text_empty_is_regular_empty(self):
+        """An empty text date is a regular empty date, not text-only.
+
+        bug 13744: a text-only date with empty text used to keep
+        ``MOD_TEXTONLY``, whose serialized form the Gramps-XML writer emits
+        as ``<datestr val=""/>`` (distinct from a missing element) and which
+        validation must not flag.
+        """
+        d = Date()
+        d.set_as_text("")
+        self.assertTrue(d.is_empty())
+        self.assertEqual(d.get_modifier(), Date.MOD_NONE)
+        self.assertTrue(d.get_valid())
+
+    def test_empty_text_date_serializes_canonically(self):
+        """An empty date has the canonical empty serialized form.
+
+        Equating its serialized tuple with a default (canonical) empty Date
+        is what makes a missing and an empty ``<datestr>`` equivalent: the
+        XML writer omits the element for this form (it is not
+        ``MOD_TEXTONLY``), so export/re-import round-trips to an empty date.
+        """
+        d = Date()
+        d.set_as_text("")
+        self.assertEqual(d.serialize(), Date().serialize())
+        self.assertNotEqual(d.get_modifier(), Date.MOD_TEXTONLY)
+
+    def test_empty_date_serialize_roundtrip_stable(self):
+        """serialize -> unserialize -> serialize is a stable empty date."""
+        d = Date()
+        d.set_as_text("")
+        once = d.serialize()
+        roundtrip = Date().unserialize(once)
+        self.assertTrue(roundtrip.is_empty())
+        self.assertNotEqual(roundtrip.get_modifier(), Date.MOD_TEXTONLY)
+        self.assertTrue(roundtrip.get_valid())
+        self.assertEqual(roundtrip.serialize(), once)
+
+    def test_set_text_only_with_empty_text_normalizes(self):
+        """set(MOD_TEXTONLY, text="") yields a regular empty date."""
+        d = Date()
+        d.set(modifier=Date.MOD_TEXTONLY, value=Date.EMPTY, text="")
+        self.assertTrue(d.is_empty())
+        self.assertEqual(d.get_modifier(), Date.MOD_NONE)
+        self.assertEqual(d.serialize(), Date().serialize())
+
+    def test_text_only_with_text_is_preserved(self):
+        """A genuine text-only date keeps MOD_TEXTONLY and its text."""
+        d = Date()
+        d.set_as_text("Christmas 1900")
+        self.assertEqual(d.get_modifier(), Date.MOD_TEXTONLY)
+        self.assertEqual(d.get_text(), "Christmas 1900")
+        self.assertFalse(d.is_empty())
+
 
 # -------------------------------------------------------------------------
 #
