@@ -73,7 +73,7 @@ from ...user import User
 from .. import make_gui_option
 
 # Import from specific modules in ReportBase
-from gramps.gen.plug.report import BookList, Book, BookItem, append_styles
+from gramps.gen.plug.report import BookList, Book, BookItem, add_book_item_styles
 from gramps.gen.plug.report import CATEGORY_BOOK, book_categories
 from gramps.gen.plug.report._options import ReportOptions
 from ._reportdialog import ReportDialog
@@ -1030,15 +1030,19 @@ class BookDialog(DocReportDialog):
         pstyle = self.paper_frame.get_paper_style()
         self.doc = self.format(None, pstyle, uistate=self.uistate)
 
-        for item in self.book.get_item_list():
-            item.option_class.set_document(self.doc)
+        for item_number, item in enumerate(self.book.get_item_list()):
+            # Collate this item's styles into the book's shared stylesheet under
+            # a per-item namespace and route the item's report through a proxy
+            # that rewrites its style references to that namespace, so same-named
+            # styles from different items keep their own values (issue 6128).
+            # Must run before the report is built (it grabs its document here).
+            add_book_item_styles(selected_style, item, self.doc, item_number)
             report_class = item.get_write_item()
             obj = (
                 write_book_item(self.database, report_class, item.option_class, user),
                 item.get_translated_name(),
             )
             self.rptlist.append(obj)
-            append_styles(selected_style, item)
 
         self.doc.set_style_sheet(selected_style)
         self.doc.open(self.target_path)
