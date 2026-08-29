@@ -556,6 +556,7 @@ gramps/plugins/docgen/__init__.py
 #
 gramps/plugins/docgen/test/__init__.py
 gramps/plugins/docgen/test/latexdoc_test.py
+gramps/plugins/docgen/test/odfdoc_test.py
 #
 # plugins/drawreport directory
 #
