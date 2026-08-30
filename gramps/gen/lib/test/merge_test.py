@@ -66,9 +66,14 @@ from ..attrbase import AttributeBase
 from ..citationbase import CitationBase
 from ..const import DIFFERENT, EQUAL, IDENTICAL
 from ..ldsordbase import LdsOrdBase
+from .. import DNAAttribute, DNAAttributeType
+from ..dnamatch import DNAMatch
+from ..dnasegment import DNASegment
 from ..mediabase import MediaBase
 from ..notebase import NoteBase
+from ..predictedrelationship import PredictedRelationship
 from ..privacybase import PrivacyBase
+from ..sharedancestor import SharedAncestor
 from ..surnamebase import SurnameBase
 from ..tagbase import TagBase
 from ..urlbase import UrlBase
@@ -2055,6 +2060,109 @@ class TagBaseCheck(unittest.TestCase):
         self.ref_list.add_tag(tag_handle)
         self.phoenix._merge_tag_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+
+class DNAMatchCheck(
+    unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest, MediaBaseTest
+):
+    def setUp(self):
+        self.phoenix = DNAMatch()
+        self.phoenix.set_subject_test_handle("aaa")
+        self.phoenix.set_match_test_handle("bbb")
+        self.titanic = DNAMatch()
+        self.titanic.set_subject_test_handle("aaa")
+        self.titanic.set_match_test_handle("bbb")
+        self.ref_obj = DNAMatch()
+        self.ref_obj.set_subject_test_handle("aaa")
+        self.ref_obj.set_match_test_handle("bbb")
+
+    def test_merge_shared_ancestor_identical(self):
+        sa = SharedAncestor()
+        sa.set_person_handle("ppp")
+        self.phoenix.add_shared_ancestor(sa)
+        self.titanic.add_shared_ancestor(SharedAncestor(sa))
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(len(self.phoenix.get_shared_ancestor_list()), 1)
+
+    def test_merge_shared_ancestor_different(self):
+        sa1 = SharedAncestor()
+        sa1.set_person_handle("ppp")
+        sa2 = SharedAncestor()
+        sa2.set_person_handle("qqq")
+        self.phoenix.add_shared_ancestor(sa1)
+        self.titanic.add_shared_ancestor(sa2)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(len(self.phoenix.get_shared_ancestor_list()), 2)
+
+    def test_merge_predicted_relationship_identical(self):
+        rel = PredictedRelationship()
+        rel.set_description("Second cousins")
+        self.phoenix.add_predicted_relationship(rel)
+        self.titanic.add_predicted_relationship(PredictedRelationship(rel))
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(len(self.phoenix.get_predicted_relationship_list()), 1)
+
+    def test_merge_predicted_relationship_different(self):
+        rel1 = PredictedRelationship()
+        rel1.set_description("Second cousins")
+        rel2 = PredictedRelationship()
+        rel2.set_description("Third cousins")
+        self.phoenix.add_predicted_relationship(rel1)
+        self.titanic.add_predicted_relationship(rel2)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(len(self.phoenix.get_predicted_relationship_list()), 2)
+
+    def test_merge_segment_identical(self):
+        seg = DNASegment()
+        seg.set_chromosome("7")
+        self.phoenix.add_segment(seg)
+        self.titanic.add_segment(DNASegment(seg))
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(len(self.phoenix.get_segment_list()), 1)
+
+    def test_merge_segment_different(self):
+        seg1 = DNASegment()
+        seg1.set_chromosome("7")
+        seg2 = DNASegment()
+        seg2.set_chromosome("12")
+        self.phoenix.add_segment(seg1)
+        self.titanic.add_segment(seg2)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(len(self.phoenix.get_segment_list()), 2)
+
+    def test_has_handle_reference_person(self):
+        sa = SharedAncestor()
+        sa.set_person_handle("ppp")
+        self.phoenix.add_shared_ancestor(sa)
+        self.assertTrue(self.phoenix._has_handle_reference("Person", "ppp"))
+        self.assertFalse(self.phoenix._has_handle_reference("Person", "qqq"))
+
+    def test_remove_handle_references_person(self):
+        sa = SharedAncestor()
+        sa.set_person_handle("ppp")
+        self.phoenix.add_shared_ancestor(sa)
+        self.phoenix._remove_handle_references("Person", ["ppp"])
+        self.assertIsNone(
+            self.phoenix.get_shared_ancestor_list()[0].get_person_handle()
+        )
+
+    def test_replace_handle_reference_person(self):
+        sa = SharedAncestor()
+        sa.set_person_handle("ppp")
+        self.phoenix.add_shared_ancestor(sa)
+        self.phoenix._replace_handle_reference("Person", "ppp", "qqq")
+        self.assertEqual(
+            self.phoenix.get_shared_ancestor_list()[0].get_person_handle(), "qqq"
+        )
+
+    def test_merge_attribute(self):
+        attr = DNAAttribute()
+        attr.set_type(DNAAttributeType())
+        attr.set_value("13")
+        self.titanic.add_attribute(attr)
+        self.ref_obj.add_attribute(attr)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
 
 if __name__ == "__main__":

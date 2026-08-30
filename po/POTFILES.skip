@@ -327,6 +327,7 @@ gramps/gen/utils/docgen/tabbeddoc.py
 #
 gramps/gen/utils/test/alive_test.py
 gramps/gen/utils/test/callback_test.py
+gramps/gen/utils/test/db_test.py
 gramps/gen/utils/test/file_test.py
 gramps/gen/utils/test/grampslocale_test.py
 gramps/gen/utils/test/keyword_test.py
@@ -391,6 +392,7 @@ gramps/gui/editors/displaytabs/webmodel.py
 # gui/editors/displaytabs/test
 #
 gramps/gui/editors/displaytabs/test/__init__.py
+gramps/gui/editors/displaytabs/test/dnasegmentembedlist_test.py
 gramps/gui/editors/displaytabs/test/gallerytab_test.py
 #
 # gui.editors.test package
@@ -483,6 +485,7 @@ gramps/gui/views/treemodels/sourcemodel.py
 #
 # gui.views.treemodels.test package
 #
+gramps/gui/views/treemodels/test/dnamatchmodel_test.py
 gramps/gui/views/treemodels/test/node_test.py
 gramps/gui/views/treemodels/test/treebasemodel_test.py
 #
@@ -673,6 +676,7 @@ gramps/plugins/sidebar/expandersidebar.py
 # plugins/test directory
 #
 gramps/plugins/test/db_undo_and_signals_test.py
+gramps/plugins/test/dna_xml_test.py
 gramps/plugins/test/exports_test.py
 gramps/plugins/test/imports_test.py
 gramps/plugins/test/reports_test.py
