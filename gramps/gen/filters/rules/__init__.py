@@ -93,3 +93,5 @@ from . import place
 from . import media
 from . import repository
 from . import note
+from . import dnatest
+from . import dnamatch
