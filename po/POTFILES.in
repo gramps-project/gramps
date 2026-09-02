@@ -1,4 +1,4 @@
-# List of source files which contain translatable strings.
+n# List of source files which contain translatable strings.
 #
 gramps/cli/arghandler.py
 gramps/cli/argparser.py
@@ -812,6 +812,7 @@ gramps/plugins/tool/verify.py
 gramps/plugins/view/citationlistview.py
 gramps/plugins/view/citationtreeview.py
 gramps/plugins/view/dashboardview.py
+gramps/plugins/view/descendantview.py
 gramps/plugins/view/eventview.py
 gramps/plugins/view/familyview.py
 gramps/plugins/view/fanchart2wayview.py

@@ -147,6 +147,22 @@ register(
 
 register(
     VIEW,
+    id="descendantview",
+    name=_("Descendant"),
+    description=_("The view showing the descendants of the selected person"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="descendantview.py",
+    authors=["The Gramps project"],
+    authors_email=["https://gramps-project.org"],
+    category=("Ancestry", _("Charts")),
+    viewclass="DescendantView",
+    stock_icon="gramps-pedigree",
+)
+
+register(
+    VIEW,
     id="fanchartview",
     name=_("Fan Chart"),
     category=("Ancestry", _("Charts")),
