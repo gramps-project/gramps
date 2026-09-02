@@ -1144,11 +1144,70 @@ class GtkDocPicture(GtkDocBaseElement):
         return img_height
 
 
+class GtkDocImage(GtkDocBaseElement):
+    """Implement an image at an absolute position."""
+
+    _type = "IMAGE"
+    _allowed_children: list[str] = []
+
+    def __init__(self, filename, x, y, width, height, crop=None):
+        GtkDocBaseElement.__init__(self)
+        self._filename = filename
+        self._x = x
+        self._y = y
+        self._width = width
+        self._height = height
+        self._crop = crop
+
+    def divide(self, layout, width, height, dpi_x, dpi_y):
+        img_width = self._width * dpi_x / 2.54
+        img_height = self._height * dpi_y / 2.54
+
+        # image can't be divided, a new page must begin
+        # if it can't fit on the current one
+        if img_height <= height:
+            return (self, None), img_height
+        else:
+            return (None, self), 0
+
+    def draw(self, cr, layout, width, dpi_x, dpi_y):
+        from gi.repository import Gtk, Gdk
+
+        img_x = self._x * dpi_x / 2.54
+        img_y = self._y * dpi_y / 2.54
+        img_width = self._width * dpi_x / 2.54
+        img_height = self._height * dpi_y / 2.54
+
+        # load the image and get its extents
+        pixbuf = resize_to_buffer(self._filename, [img_width, img_height], self._crop)
+        pixbuf_width = pixbuf.get_width()
+        pixbuf_height = pixbuf.get_height()
+
+        # calculate the scale to fit image into the set extents
+        scale = min(img_width / pixbuf_width, img_height / pixbuf_height)
+
+        # draw the image
+        cr.save()
+        cr.translate(img_x, img_y)
+        cr.scale(scale, scale)
+        Gdk.cairo_set_source_pixbuf(
+            cr,
+            pixbuf,
+            (img_width / scale - pixbuf_width) / 2,
+            (img_height / scale - pixbuf_height) / 2,
+        )
+        cr.rectangle(0, 0, img_width / scale, img_height / scale)
+        cr.fill()
+        cr.restore()
+
+        return img_height
+
+
 class GtkDocFrame(GtkDocBaseElement):
     """Implement a frame."""
 
     _type = "FRAME"
-    _allowed_children = ["LINE", "POLYGON", "BOX", "TEXT"]
+    _allowed_children = ["LINE", "POLYGON", "BOX", "TEXT", "IMAGE"]
 
     def divide(self, layout, width, height, dpi_x, dpi_y):
         frame_width = round(self._style.width * dpi_x / 2.54)
@@ -1722,6 +1781,19 @@ links (like ODF) and write PDF from that format.
                 mark=mark,
             )
             self._active_element.add_child(new_text)
+
+    def draw_image(self, name, x, y, w, h):
+        """
+        Draw an image at the specified location and size.
+
+        :param name: filename of the image to draw
+        :param x: x coordinate of the image in centimeters
+        :param y: y coordinate of the image in centimeters
+        :param w: width of the image in centimeters
+        :param h: height of the image in centimeters
+        """
+        new_image = GtkDocImage(name, x, y, w, h)
+        self._active_element.add_child(new_image)
 
     def draw_text(self, style_name, text, x, y, mark=None):
         """@param mark:  IndexMark to use for indexing"""

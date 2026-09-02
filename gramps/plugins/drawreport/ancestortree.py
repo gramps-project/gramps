@@ -30,6 +30,7 @@
 
 from __future__ import annotations
 from typing import Any
+import os
 
 # ------------------------------------------------------------------------
 #
@@ -48,6 +49,7 @@ from gramps.gen.plug.menu import (
     EnumeratedListOption,
     StringOption,
     PersonOption,
+    DestinationOption,
 )
 from gramps.gen.plug.report import Report, MenuReportOptions, stdoptions
 from gramps.gen.plug.docgen import (
@@ -61,6 +63,8 @@ from gramps.plugins.lib.libtreebase import *
 from gramps.plugins.lib.librecurse import AscendPerson
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.utils.file import media_path_full
+from gramps.gen.utils.thumbnails import get_thumbnail_path
 
 PT2CM = utils.pt2cm
 # cm2pt = utils.cm2pt
@@ -258,6 +262,12 @@ class MakeAncestorTree(AscendPerson):
 
         self.calc_items = CalcItems(self.database)
 
+        ## Thumbnail options
+        self.inc_thumb = _gui.get_val("inc_thumb")
+        self.thumb_width = _gui.get_val("thumb_width")
+        self.thumb_height = _gui.get_val("thumb_height")
+        self.mask_path = _gui.get_val("mask_path")
+
     def add_person(self, index, indi_handle, fams_handle):
         """Makes a person box and add that person into the Canvas."""
 
@@ -282,6 +292,10 @@ class MakeAncestorTree(AscendPerson):
                 self.database, self.database.get_person_from_handle(indi_handle)
             )
 
+            # Set the thumbnail for this person
+            if self.inc_thumb:
+                self._set_thumbnail(myself, indi_handle)
+
         self.canvas.add_box(myself)
 
         # make the lines
@@ -297,6 +311,42 @@ class MakeAncestorTree(AscendPerson):
             line.add_to(myself)
 
         return myself
+
+    def _set_thumbnail(self, box, person_handle):
+        """
+        Find and set the thumbnail image for a person box.
+
+        The thumbnail path option (thumb_path) specifies a directory
+        containing images named by Gramps ID (e.g. I0001.jpg).  Falls back
+        to the first image in the person's media list if no thumbnail file
+        is found.  The mask path option (mask_path) specifies the mask image
+        file to draw over each thumbnail.
+        """
+        person = self.database.get_person_from_handle(person_handle)
+        if person is None:
+            return
+
+        thumb_path = None
+
+        media_list = person.get_media_list()
+        if media_list:
+            media = self.database.get_media_from_handle(
+                media_list[0].get_reference_handle()
+            )
+            if media and media.get_mime_type()[0:5] == "image":
+                thumb_path = get_thumbnail_path(
+                    media_path_full(self.database, media.get_path()),
+                    rectangle=media_list[0].get_rectangle(),
+                )
+
+        if thumb_path and os.path.isfile(thumb_path):
+            box.thumbnail = thumb_path
+            box.thumb_width = self.thumb_width
+            box.thumb_height = self.thumb_height
+
+        # The mask image file to draw over each thumbnail
+        if self.mask_path and os.path.isfile(self.mask_path):
+            box.mask = self.mask_path
 
     def add_person_again(self, index, indi_handle, fams_handle):
         self.add_person(index, indi_handle, fams_handle)
@@ -1019,13 +1069,32 @@ class AncestorTreeOptions(MenuReportOptions):
         repldisp.set_help(_("i.e.\nUnited States of America/U.S.A."))
         menu.add_option(category_name, "replace_list", repldisp)
 
-        # TODO this code is never used and so I conclude it is for future use
-        # self.__include_images = BooleanOption(
-        #                       _('Include thumbnail images of people'), False)
-        # self.__include_images.set_help(
-        #                       _("Whether to include thumbnails of people."))
-        # menu.add_option(category_name, "includeImages",
-        #                 self.__include_images)
+        self.incthumb = BooleanOption(_("Include thumbnail images of people"), False)
+        self.incthumb.set_help(
+            _("Whether to include a small picture of each person in the report.")
+        )
+        menu.add_option(category_name, "inc_thumb", self.incthumb)
+        self.incthumb.connect("value-changed", self._thumbs_changed)
+
+        self.thumbwidth = NumberOption(_("Thumbnail width (cm)"), 1.5, 0.5, 5.0, 0.1)
+        self.thumbwidth.set_help(_("The width of the thumbnail image in centimeters."))
+        menu.add_option(category_name, "thumb_width", self.thumbwidth)
+
+        self.thumbheight = NumberOption(_("Thumbnail height (cm)"), 2.0, 0.5, 5.0, 0.1)
+        self.thumbheight.set_help(
+            _("The height of the thumbnail image in centimeters.")
+        )
+        menu.add_option(category_name, "thumb_height", self.thumbheight)
+
+        self.maskpath = DestinationOption(
+            _("Thumbnail mask file\n" "(image file to overlay on each thumbnail)"),
+            "",
+        )
+        self.maskpath.set_help(
+            _("The mask image file to draw over each " "thumbnail image in the report.")
+        )
+        menu.add_option(category_name, "mask_path", self.maskpath)
+        self._thumbs_changed()
 
         self.usenote = BooleanOption(_("Include a note"), False)
         self.usenote.set_help(_("Whether to include a note on the report."))
@@ -1055,6 +1124,13 @@ class AncestorTreeOptions(MenuReportOptions):
         )  # down to 0
         self.box_shadow_sf.set_help(_("Make the box shadow bigger or smaller"))
         menu.add_option(category_name, "shadowscale", self.box_shadow_sf)
+
+    def _thumbs_changed(self):
+        """If thumbnails are not enabled, disable the related options."""
+        value = self.incthumb.get_value()
+        self.thumbwidth.set_available(value)
+        self.thumbheight.set_available(value)
+        self.maskpath.set_available(value)
 
     def _incmarr_changed(self):
         """

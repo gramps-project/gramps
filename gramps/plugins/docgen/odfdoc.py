@@ -1937,6 +1937,45 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             )
         self.cntnt.write("</draw:rect>\n")
 
+    def draw_image(self, name, x, y, w, h):
+        """
+        Draw an image at the specified location and size.
+
+        :param name: filename of the image to draw
+        :param x: x coordinate of the image in centimeters
+        :param y: y coordinate of the image in centimeters
+        :param w: width of the image in centimeters
+        :param h: height of the image in centimeters
+        """
+        # try to open the image. If the open fails, it probably wasn't
+        # a valid image (could be a PDF, or a non-image)
+        img_x, img_y = image_size(name)
+        if (img_x, img_y) == (0, 0):
+            return
+
+        not_extension, extension = os.path.splitext(name)
+        name_hash = name.encode("utf-8")
+        odf_name = md5(name_hash).hexdigest() + extension
+
+        media_list_item = (name, odf_name)
+        if media_list_item not in self.media_list:
+            self.media_list.append(media_list_item)
+
+        self.cntnt.write(
+            '<draw:frame draw:style-name="Left" '
+            + 'draw:name="thumb_%s" ' % md5(name_hash).hexdigest()
+            + 'text:anchor-type="paragraph" '
+            + 'svg:width="%.2fcm" ' % w
+            + 'svg:height="%.2fcm" ' % h
+            + 'svg:x="%.2fcm" ' % float(x)
+            + 'svg:y="%.2fcm" ' % float(y)
+            + 'draw:z-index="1" >'
+            + '<draw:image xlink:href="Pictures/%s" ' % odf_name
+            + 'xlink:type="simple" xlink:show="embed" '
+            + 'xlink:actuate="onLoad"/>\n'
+            + "</draw:frame>\n"
+        )
+
     def center_text(self, style, text, x, y, mark=None):
         """
         Center a text in a cell, a row, a line, ...

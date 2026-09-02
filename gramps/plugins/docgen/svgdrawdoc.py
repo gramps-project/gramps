@@ -279,6 +279,27 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                     self.buffer.write(" font-family:serif;")
                 self.buffer.write('">' + escape(line) + "</text>\n")
 
+    def draw_image(self, name, x, y, w, h):
+        """
+        Draw an image at the specified location and size.
+
+        :param name: filename of the image to draw
+        :param x: x coordinate of the image in centimeters
+        :param y: y coordinate of the image in centimeters
+        :param w: width of the image in centimeters
+        :param h: height of the image in centimeters
+        """
+        x += self.paper.get_left_margin()
+        y += self.paper.get_top_margin()
+        self.file.write(
+            "<image "
+            + 'x="%4.2fcm" ' % x
+            + 'y="%4.2fcm" ' % y
+            + 'width="%4.2fcm" ' % w
+            + 'height="%4.2fcm" ' % h
+            + 'xlink:href="%s"/>\n' % name
+        )
+
     def draw_text(self, style, text, x, y, mark=None):
         """@param mark:  IndexMark to use for indexing (not supported)"""
         x += self.paper.get_left_margin()

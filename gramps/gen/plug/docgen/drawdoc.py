@@ -134,3 +134,15 @@ class DrawDoc(metaclass=ABCMeta):
         """
         Draw a line.
         """
+
+    @abstractmethod
+    def draw_image(self, name, x, y, w, h):
+        """
+        Draw an image at the specified location and size.
+
+        :param name: filename of the image to draw
+        :param x: x coordinate of the image in centimeters
+        :param y: y coordinate of the image in centimeters
+        :param w: width of the image in centimeters
+        :param h: height of the image in centimeters
+        """
