@@ -14,13 +14,14 @@
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
 # Apostol Penkov <apostol.penkov@gmail.com>, 2025.
 # Iskren Petkov <auto-weblate@quietlyemailme.us>, 2026.
+# Stefan Kachaunov <kachaunov.stef@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-01-30 20:53+0000\n"
-"Last-Translator: Iskren Petkov <auto-weblate@quietlyemailme.us>\n"
+"PO-Revision-Date: 2026-08-27 22:51+0000\n"
+"Last-Translator: Stefan Kachaunov <kachaunov.stef@gmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/bg/>\n"
 "Language: bg\n"
@@ -28,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-Language: Bulgarian\n"
 "X-Poedit-Country: BULGARIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -235,7 +236,7 @@ msgstr "Украйна"
 
 #: ../data/holidays.xml:563
 msgid "United States of America"
-msgstr "Съединени американски щати"
+msgstr "Съединени Aмерикански Щати"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:2
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
@@ -1369,14 +1370,14 @@ msgid "\"%s\""
 msgstr "„%s“"
 
 #: ../gramps/cli/arghandler.py:477
-#, fuzzy, python-format
+#, python-format
 msgid "Performing action: %s."
-msgstr "Изпълнява избраното действие"
+msgstr "Изпълнява се: %s."
 
 #: ../gramps/cli/arghandler.py:479 ../gramps/gen/plug/report/stdoptions.py:337
 #, python-format
 msgid "Using options string: %s"
-msgstr "Използване на опции: %s"
+msgstr "Използват са опции: %s"
 
 #: ../gramps/cli/arghandler.py:484
 #, python-format
@@ -1404,7 +1405,7 @@ msgstr "Избиране..."
 #: ../gramps/cli/arghandler.py:540
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Импортирам: файл %(filename)s, формат %(format)s."
 
 #: ../gramps/cli/arghandler.py:560
 msgid "Opened successfully!"
@@ -1431,17 +1432,18 @@ msgstr "Базата от данни е заключена, не може да �
 #: ../gramps/cli/arghandler.py:634 ../gramps/cli/arghandler.py:691
 #: ../gramps/cli/arghandler.py:739
 msgid "Ignoring invalid options string."
-msgstr ""
+msgstr "Игнорира се неправилен конфигурационен параметър."
 
 #: ../gramps/cli/arghandler.py:663
-#, fuzzy
 msgid "Unknown report name."
-msgstr "Неизвестен пол"
+msgstr "Неизвестно име на доклада."
 
 #: ../gramps/cli/arghandler.py:666
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
+"Не е зададено име на отчета. Моля, използвайте едно от %(donottranslate)"
+"s=reportname"
 
 #: ../gramps/cli/arghandler.py:670 ../gramps/cli/arghandler.py:722
 #: ../gramps/cli/arghandler.py:759
@@ -1460,6 +1462,8 @@ msgstr "Неизвестен пол"
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
+"Не е зададено име на иснтрумента. Моля използвайте едно от%(donottranslate)"
+"s=toolname."
 
 #: ../gramps/cli/arghandler.py:752
 #, fuzzy
@@ -1470,6 +1474,8 @@ msgstr "Неизвестен пол"
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
+"Не е зададено името на книгата. Моля, използвайте едно от %(donottranslate)"
+"s=bookname."
 
 #: ../gramps/cli/arghandler.py:764
 #, fuzzy, python-format
@@ -1609,7 +1615,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:276
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr ""
+msgstr "Опит за отваряне:%s ..."
 
 #: ../gramps/cli/argparser.py:321
 #, python-format
@@ -1617,6 +1623,8 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"ВНИМАНИЕ: %(strerr)s (errno=%(errno)s):\n"
+"ВНИМАНИЕ: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:331
 #, fuzzy, python-format
@@ -1639,7 +1647,7 @@ msgstr ""
 
 #: ../gramps/cli/argparser.py:378
 msgid "DEFAULT"
-msgstr ""
+msgstr "ПО ПОДРАЗБИРАНЕ"
 
 #: ../gramps/cli/argparser.py:387
 #, python-format
@@ -2031,9 +2039,9 @@ msgid "%(id)s:\t%(father)s, %(mother)s"
 msgstr "Дете на %(father)s и %(mother)s."
 
 #: ../gramps/cli/plug/__init__.py:494
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown option: %s"
-msgstr "Неизвестна майка"
+msgstr "Неизвестна настройка: %s"
 
 #: ../gramps/cli/plug/__init__.py:496 ../gramps/cli/plug/__init__.py:601
 msgid "   Valid options are:"
@@ -2088,12 +2096,11 @@ msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:678
 msgid "   Available options:"
-msgstr "   Достъпни книги"
+msgstr "   Достъпни опции:"
 
 #: ../gramps/cli/plug/__init__.py:686
-#, fuzzy
 msgid "(no help available)"
-msgstr "липсва"
+msgstr "(липсва помощ)"
 
 #: ../gramps/cli/plug/__init__.py:698
 msgid "   Available values are:"
@@ -12178,9 +12185,8 @@ msgid "RT90"
 msgstr ""
 
 #: ../gramps/gen/utils/place.py:99
-#, fuzzy
 msgid "Degree, minutes, seconds notation"
-msgstr "Изтриване на избраното семейство"
+msgstr "Нотация в градуси, минути и секунди"
 
 #: ../gramps/gen/utils/place.py:100
 msgid "Degree, minutes, seconds notation with :"
@@ -12188,11 +12194,11 @@ msgstr ""
 
 #: ../gramps/gen/utils/place.py:101
 msgid "Degree notation, 4 decimals"
-msgstr ""
+msgstr "Градуси, 4 десетични знака"
 
 #: ../gramps/gen/utils/place.py:102
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
-msgstr ""
+msgstr "Градуси, 8 десетични знака (точност по ISO-DMS)"
 
 #: ../gramps/gen/utils/place.py:103
 msgid "Output format for the Swedish coordinate system RT90"
@@ -16782,9 +16788,8 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
-#, fuzzy
 msgid "degrees"
-msgstr "Научна степен"
+msgstr "градуси"
 
 #: ../gramps/gui/editors/filtereditor.py:636
 #: ../gramps/gui/widgets/placewithin.py:75
@@ -30543,9 +30548,8 @@ msgid "Destination"
 msgstr "Местоположение"
 
 #: ../gramps/plugins/lib/libgedcom.py:742
-#, fuzzy
 msgid "DNA"
-msgstr "Не предоставяй"
+msgstr "ДНК"
 
 #: ../gramps/plugins/lib/libgedcom.py:743
 #, fuzzy
@@ -30591,9 +30595,8 @@ msgid "Ordinance"
 msgstr "Обред:"
 
 #: ../gramps/plugins/lib/libgedcom.py:755
-#, fuzzy
 msgid "Separation"
-msgstr "Пенсиониране"
+msgstr "Раздяла"
 
 #: ../gramps/plugins/lib/libgedcom.py:756
 #, fuzzy
