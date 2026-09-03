@@ -43,8 +43,8 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-08-05 12:01+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
+"PO-Revision-Date: 2026-08-26 05:51+0000\n"
+"Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
 "Language: cs\n"
@@ -52,7 +52,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.8.1.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -1865,7 +1865,7 @@ msgstr "Neznámý"
 #: ../gramps/cli/grampscli.py:85
 #, python-format
 msgid "WARNING: %s"
-msgstr "VAROVÁNÍ: %s"
+msgstr "UPOZORNĚNÍ: %s"
 
 #: ../gramps/cli/grampscli.py:92 ../gramps/cli/grampscli.py:246
 #, python-format
@@ -12626,7 +12626,7 @@ msgstr "Barvy"
 
 #: ../gramps/gui/configure.py:1045
 msgid "Warnings and Error dialogs"
-msgstr "Varování a chybové dialogy"
+msgstr "Upozornění a chybové dialogy"
 
 #: ../gramps/gui/configure.py:1057
 msgid "Suppress warning when adding parents to a child"
@@ -12638,11 +12638,11 @@ msgstr "Potlačit upozornění při odvolání se změněnými daty"
 
 #: ../gramps/gui/configure.py:1073
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
-msgstr "Potlačit hlášení o chybějícím badateli při exportu do GEDCOM"
+msgstr "Potlačit upozornění o chybějícím badateli při exportu do GEDCOM"
 
 #: ../gramps/gui/configure.py:1081
 msgid "Suppress tooltip warnings about data being saved immediately"
-msgstr "Potlačení varování s nápovědou o okamžitém uložení dat"
+msgstr "Potlačení upozornění s nápovědou o okamžitém uložení dat"
 
 #: ../gramps/gui/configure.py:1089
 msgid "Show plugin status dialog on plugin load error"
@@ -12650,7 +12650,7 @@ msgstr "Při chybě v nahrávání zásuvného modulu zobrazit stavový dialog"
 
 #: ../gramps/gui/configure.py:1095
 msgid "Warnings"
-msgstr "Varování"
+msgstr "Upozornění"
 
 #: ../gramps/gui/configure.py:1113
 msgid "Live"
@@ -18124,16 +18124,12 @@ msgid "Duplicate FSFTID"
 msgstr "Duplicitní FSFTID"
 
 #: ../gramps/gui/fs/utils/index.py:62
-#, fuzzy
-#| msgid "Continue"
 msgid "_Continue warning"
-msgstr "Pokračovat"
+msgstr "Upozornění _Pokračovat"
 
 #: ../gramps/gui/fs/utils/index.py:63
-#, fuzzy
-#| msgid "Undo history warning"
 msgid "_Stop warning"
-msgstr "Vymazat historii změn"
+msgstr "Upozornění _Zastavit"
 
 #: ../gramps/gui/fs/utils/index.py:73
 #, python-format
@@ -18431,7 +18427,7 @@ msgstr "Příště se již neptat"
 
 #: ../gramps/gui/glade/displaystate.glade:7
 msgid "Gramps Warnings"
-msgstr "Varování Gramps"
+msgstr "Upozornění Gramps"
 
 #: ../gramps/gui/glade/editaddress.glade:44
 #: ../gramps/gui/glade/editchildref.glade:45
@@ -21020,7 +21016,7 @@ msgstr "Nebyli nalezeni žádní partneři nebo potomci"
 
 #: ../gramps/gui/merge/mergeperson.py:371 ../gramps/plugins/tool/verify.py:802
 msgid "Warning"
-msgstr "Varování"
+msgstr "Upozornění"
 
 #: ../gramps/gui/merge/mergeperson.py:373
 msgid ""

@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-08-17 08:51+0000\n"
+"PO-Revision-Date: 2026-08-26 05:51+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -1204,8 +1204,8 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
-"VAROVANIE: Výstupný súbor už existuje!\n"
-"VAROVANIE: Bude prepísaný:\n"
+"UPOZORNENIE: Výstupný súbor už existuje!\n"
+"UPOZORNENIE: Bude prepísaný:\n"
 "   %s"
 
 #: ../gramps/cli/arghandler.py:312
@@ -1591,8 +1591,8 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
-"VAROVANIE: %(strerr)s (errno=%(errno)s):\n"
-"VAROVANIE: %(name)s\n"
+"UPOZORNENIE: %(strerr)s (errno=%(errno)s):\n"
+"UPOZORNENIE: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:331
 #, python-format
@@ -1843,7 +1843,7 @@ msgstr "Neznáme"
 #: ../gramps/cli/grampscli.py:85
 #, python-format
 msgid "WARNING: %s"
-msgstr "VAROVANIE: %s"
+msgstr "UPOZORNENIE: %s"
 
 #: ../gramps/cli/grampscli.py:92 ../gramps/cli/grampscli.py:246
 #, python-format
@@ -3550,7 +3550,7 @@ msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
-"VAROVANIE: Príliš veľa argumentov vo filtri '%s'!\n"
+"UPOZORNENIE: Príliš veľa argumentov vo filtri '%s'!\n"
 "Pokus o načítanie s podmnožinou argumentov."
 
 #: ../gramps/gen/filters/_filterparser.py:143
@@ -3559,7 +3559,7 @@ msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
-"VAROVANIE: Príliš málo argumentov vo filtri '%s'!\n"
+"UPOZORNENIE: Príliš málo argumentov vo filtri '%s'!\n"
 "         Pokus o načítanie v nádeji, že filter bude aktualizovaný."
 
 #: ../gramps/gen/filters/_filterparser.py:155
@@ -10012,7 +10012,7 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"VAROVANIE: Zásuvný modul %(plugin_name)s nie je preložený v žiadnom z "
+"UPOZORNENIE: Zásuvný modul %(plugin_name)s nie je preložený v žiadnom z "
 "jazykov, ktoré máte nastavené, namiesto nich sa použije US angličtina"
 
 #: ../gramps/gen/plug/_pluginreg.py:1466
@@ -11422,7 +11422,7 @@ msgid ""
 "%(file)s\n"
 "because %(error)s -- recreating it\n"
 msgstr ""
-"VAROVANIE: nepodarilo sa analyzovať súbor:\n"
+"UPOZORNENIE: nepodarilo sa analyzovať súbor:\n"
 "%(file)s\n"
 "pretože %(error)s -- znovu ho vytvára\n"
 
@@ -11485,8 +11485,8 @@ msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
 msgstr ""
-"VAROVANIE: Modul PIL nie je načítaný.  Orezávanie obrázkov v súboroch zostáv "
-"bude narušené."
+"UPOZORNENIE: Modul PIL nie je načítaný.  Orezávanie obrázkov v súboroch "
+"zostáv bude narušené."
 
 #: ../gramps/gen/utils/keyword.py:55
 msgctxt "Person"
@@ -12665,19 +12665,19 @@ msgstr "Farby"
 
 #: ../gramps/gui/configure.py:1045
 msgid "Warnings and Error dialogs"
-msgstr "Varovania a chybové dialógy"
+msgstr "Upozornenia a chybové dialógy"
 
 #: ../gramps/gui/configure.py:1057
 msgid "Suppress warning when adding parents to a child"
-msgstr "Potlačiť varovanie pri pridávaní rodičov k dieťaťu"
+msgstr "Potlačiť upozornenie pri pridávaní rodičov k dieťaťu"
 
 #: ../gramps/gui/configure.py:1065
 msgid "Suppress warning when canceling with changed data"
-msgstr "Potlačiť varovanie pri rušení so zmenenými údajmi"
+msgstr "Potlačiť upozornenie pri rušení so zmenenými údajmi"
 
 #: ../gramps/gui/configure.py:1073
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
-msgstr "Potlačiť varovanie o chýbajúcom bádateľovi pri exporte do GEDCOM"
+msgstr "Potlačiť upozornenie o chýbajúcom bádateľovi pri exporte do GEDCOM"
 
 #: ../gramps/gui/configure.py:1081
 msgid "Suppress tooltip warnings about data being saved immediately"
@@ -12689,7 +12689,7 @@ msgstr "Zobraziť dialóg stavu zásuvného modulu pri chybe jeho načítania"
 
 #: ../gramps/gui/configure.py:1095
 msgid "Warnings"
-msgstr "Varovania"
+msgstr "Upozornenia"
 
 #: ../gramps/gui/configure.py:1113
 msgid "Live"
@@ -13511,7 +13511,7 @@ msgstr "Oddeľovač:"
 
 #: ../gramps/gui/dbloader.py:115 ../gramps/gui/plug/tool.py:123
 msgid "Undo history warning"
-msgstr "Varovanie pred odvolaním histórie"
+msgstr "Upozornenie pred odvolaním histórie"
 
 #: ../gramps/gui/dbloader.py:117
 msgid ""
@@ -18172,11 +18172,11 @@ msgstr "Duplicitné FSFTID"
 
 #: ../gramps/gui/fs/utils/index.py:62
 msgid "_Continue warning"
-msgstr "_Pokračovať v upozornení"
+msgstr "Upozornenie _Pokračovať"
 
 #: ../gramps/gui/fs/utils/index.py:63
 msgid "_Stop warning"
-msgstr "_Zastaviť upozornenie"
+msgstr "Upozornenie _Zastaviť"
 
 #: ../gramps/gui/fs/utils/index.py:73
 #, python-format
@@ -18474,7 +18474,7 @@ msgstr "Nepýtať sa znovu"
 
 #: ../gramps/gui/glade/displaystate.glade:7
 msgid "Gramps Warnings"
-msgstr "Varovania Gramps"
+msgstr "Upozornenia Gramps"
 
 #: ../gramps/gui/glade/editaddress.glade:44
 #: ../gramps/gui/glade/editchildref.glade:45
@@ -21079,7 +21079,7 @@ msgstr "Manžel/-ka ani deti nezistené"
 
 #: ../gramps/gui/merge/mergeperson.py:371 ../gramps/plugins/tool/verify.py:802
 msgid "Warning"
-msgstr "Varovanie"
+msgstr "Upozornenie"
 
 #: ../gramps/gui/merge/mergeperson.py:373
 msgid ""
