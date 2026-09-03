@@ -6,13 +6,14 @@
 # Shahin “Shahin Ozone” Arab <shahino3ozone@gmail.com>, 2025.
 # Seyed Amir MirMohammadi <s.a.mirmohammadi@gmail.com>, 2026.
 # he tav haf <l2ryun8if@mozmail.com>, 2026.
+# mohammad montajebii <mohammad.montajebii@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-05-27 10:11+0000\n"
-"Last-Translator: Seyed Amir MirMohammadi <s.a.mirmohammadi@gmail.com>\n"
+"PO-Revision-Date: 2026-09-03 10:51+0000\n"
+"Last-Translator: mohammad montajebii <mohammad.montajebii@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fa/>\n"
 "Language: fa\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
+"X-Generator: Weblate 2026.9\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -627,6 +628,9 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
+"<b>ورودی‌های تکراری</b><br/>ابزار «ابزارها > پردازش شجره‌نامه > یافتن افراد "
+"تکراری احتمالی...» به شما امکان می‌دهد ورودی‌های یک شخص را که بیش از یک بار در "
+"پایگاه داده وارد شده است، پیدا کنید (و ادغام کنید)."
 
 #: ../data/tips.xml:49
 msgid ""
@@ -31913,10 +31917,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
-#, fuzzy
-#| msgid "Person"
 msgid "Personal map: "
-msgstr "شخص"
+msgstr "نقشه شخصی "
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
 msgid "The map"
