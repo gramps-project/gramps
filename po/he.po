@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-08-22 20:19+0000\n"
+"PO-Revision-Date: 2026-08-29 06:51+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -3576,7 +3576,7 @@ msgstr "שגיאה: המסנן %s לא הצליח להיטען כראוי. נא 
 #: ../gramps/plugins/quickview/samesurnames.py:74
 #: ../gramps/plugins/quickview/samesurnames.py:101
 msgid "General filters"
-msgstr "מסננים כללים"
+msgstr "מסננים כלליים"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:94
 msgid "Wrong format of date-time"
@@ -4504,7 +4504,7 @@ msgstr "איתור משפחות בהן לצאצא שם (חלקי) שצוין"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:43
 msgid "Families marked private"
-msgstr "משפחות המסומנות כפרטי"
+msgstr "משפחות שמסומנות 'פרטי'"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:44
 msgid "Matches families that are indicated as private"
@@ -4638,7 +4638,7 @@ msgstr "איתור משפחות עם הערה עם תג שצויין"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
-msgstr "משפחות עםסוג הערה <סוג>"
+msgstr "משפחות עם סוג הערה <סוג>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:48
 msgid "Matches families with a note of the specified type"
@@ -5087,7 +5087,7 @@ msgstr "איתור הערות שההערות שלהן מכילות מלל שתו
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:43
 msgid "Notes marked private"
-msgstr "הערות המסומנות כפרטי"
+msgstr "הערות שמסומנות 'פרטי'"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:44
 msgid "Matches notes that are indicated as private"
@@ -5326,7 +5326,7 @@ msgstr "איתור אדם עם מזהה גרמפס שצוין"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "People with <count> LDS events"
-msgstr "אנשים עם <מונה> אירועים מורמוניים"
+msgstr "אנשים עם <מונה> אירועים LDS"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:50
 msgid "Matches people with a certain number of LDS events"
@@ -8933,7 +8933,7 @@ msgstr "מיון כ־"
 
 #: ../gramps/gen/lib/name.py:191
 msgid "Display as"
-msgstr "הצגה כ"
+msgstr "להציג בתור"
 
 #: ../gramps/gen/lib/name.py:192 ../gramps/plugins/importer/importcsv.py:210
 msgid "Call name"
@@ -9078,7 +9078,7 @@ msgstr "ניתוח"
 
 #: ../gramps/gen/lib/notetype.py:88
 msgid "Transcript"
-msgstr "תמליל"
+msgstr "תמלול"
 
 #: ../gramps/gen/lib/notetype.py:89
 msgid "Source text"
@@ -9105,72 +9105,72 @@ msgstr "קישור"
 
 #: ../gramps/gen/lib/notetype.py:98
 msgid "Person Note"
-msgstr "הערת אנשים"
+msgstr "אנשים"
 
 #: ../gramps/gen/lib/notetype.py:99
 msgid "Name Note"
-msgstr "הערת שם"
+msgstr "שם"
 
 #: ../gramps/gen/lib/notetype.py:100
 msgid "Attribute Note"
-msgstr "הערת תכונה"
+msgstr "תכונה"
 
 #: ../gramps/gen/lib/notetype.py:101
 msgid "Address Note"
-msgstr "הערת כתובת"
+msgstr "כתובת"
 
 #: ../gramps/gen/lib/notetype.py:102
 msgid "Association Note"
-msgstr "הערת תסמיך"
+msgstr "תסמיך"
 
 #: ../gramps/gen/lib/notetype.py:103
 msgid "LDS Note"
-msgstr "הערת מורמונים"
+msgstr "LDS"
 
 #: ../gramps/gen/lib/notetype.py:104
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:138
 msgid "Family Note"
-msgstr "הערת משפחה"
+msgstr "משפחה"
 
 #: ../gramps/gen/lib/notetype.py:105
 msgid "Event Note"
-msgstr "הערת אירוע"
+msgstr "אירוע"
 
 #: ../gramps/gen/lib/notetype.py:106
 msgid "Event Reference Note"
-msgstr "הערת אזכור אירועים"
+msgstr "אזכור אירועים"
 
 #: ../gramps/gen/lib/notetype.py:107
 msgid "Source Note"
-msgstr "הערת מקור"
+msgstr "מקור"
 
 #: ../gramps/gen/lib/notetype.py:108
 msgid "Source Reference Note"
-msgstr "הערת אזכור מקורות"
+msgstr "אזכור מקורות"
 
 #: ../gramps/gen/lib/notetype.py:109
 msgid "Place Note"
-msgstr "הערת מקום"
+msgstr "מקום"
 
 #: ../gramps/gen/lib/notetype.py:110
 msgid "Repository Note"
-msgstr "הערת מאגר"
+msgstr "מאגר"
 
 #: ../gramps/gen/lib/notetype.py:111
 msgid "Repository Reference Note"
-msgstr "הערת אזכור מאגרים"
+msgstr "אזכור מאגרים"
 
 #: ../gramps/gen/lib/notetype.py:112
 msgid "Media Note"
-msgstr "הערת מדיה"
+msgstr "מדיה"
 
 #: ../gramps/gen/lib/notetype.py:113
 msgid "Media Reference Note"
-msgstr "הערת אזכור מדיה"
+msgstr "אזכור מדיה"
 
 #: ../gramps/gen/lib/notetype.py:114
 msgid "Child Reference Note"
-msgstr "הערת אזכור צאצאים"
+msgstr "צאצאים"
 
 #: ../gramps/gen/lib/person.py:201 ../gramps/gui/editors/editfamily.py:140
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:161
@@ -15853,7 +15853,7 @@ msgstr "הזנת או בחירת מזהה מקור, להשאיר ריק למצי
 
 #: ../gramps/gui/editors/filtereditor.py:567
 msgid "Family filter name:"
-msgstr "שם מסנן משפחה:"
+msgstr "שם מסנן משפחות:"
 
 #: ../gramps/gui/editors/filtereditor.py:609
 msgid "Include selected Gramps ID"
@@ -23080,7 +23080,7 @@ msgstr "חילול מסמכים בתסדיר LaTeX."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:118
 msgid "OpenDocument Text"
-msgstr "תמלילן אופן-דוקומנט"
+msgstr "מלל OpenDocument"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:119
 msgid "Generates documents in OpenDocument Text format (.odt)."
@@ -25858,7 +25858,7 @@ msgstr "גרמפלט להצגת מאפיינים לעצם מובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:821
 msgid "Person Notes"
-msgstr "הערת אדם"
+msgstr "אדם"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:822
 msgid "Gramplet showing the notes for a person"
@@ -25899,7 +25899,7 @@ msgstr "גרמפלט להצגת הערות למקור"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:901
 msgid "Citation Notes"
-msgstr "הערת מובאה"
+msgstr "מובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:902
 msgid "Gramplet showing the notes for a citation"
@@ -25907,7 +25907,7 @@ msgstr "גרמפלט להצגת הערות למובאה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:917
 msgid "Repository Notes"
-msgstr "הערת מאגר"
+msgstr "מאגר"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:918
 msgid "Gramplet showing the notes for a repository"
@@ -26076,7 +26076,7 @@ msgstr "גרמפלט לסינון אנשים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1237
 msgid "Family Filter"
-msgstr "מסנן משפחה"
+msgstr "מסנן משפחות"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1238
 msgid "Gramplet providing a family filter"
@@ -35462,7 +35462,7 @@ msgstr "האם לכלול דודים/דודות/אחיינים/אחייניות"
 #: ../gramps/plugins/textreport/notelinkreport.py:74
 #: ../gramps/plugins/textreport/notelinkreport.py:110
 msgid "Note Link Check Report"
-msgstr "הערת דוח בדיקת קישור"
+msgstr "דוח בדיקת קישור הערות"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:84
 msgid "Note ID"
@@ -38233,7 +38233,7 @@ msgstr "מיזוג המשפחות שנבחרו"
 
 #: ../gramps/plugins/view/familyview.py:208
 msgid "Family Filter Editor"
-msgstr "עורך מסנן משפחה"
+msgstr "עורך מסנן משפחות"
 
 #: ../gramps/plugins/view/familyview.py:299
 msgid "Make Father Active Person"
@@ -39479,7 +39479,7 @@ msgstr "שינויים אחרונים ב־%(date)s"
 #: ../gramps/plugins/webreport/basepage.py:1714
 #, python-format
 msgid " on %(date)s"
-msgstr " %(date)s ב"
+msgstr " בתאריך %(date)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1741
 #: ../gramps/plugins/webreport/basepage.py:1746
@@ -40294,7 +40294,7 @@ msgstr "תמונה לשימוש בעמוד הבית"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2376
 msgid "Introduction note"
-msgstr "הערת פתיחה"
+msgstr "הערת מבוא"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2377
 msgid "A note to be used as the introduction"
@@ -40310,7 +40310,7 @@ msgstr "תמונה שתשמש כפתיח"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2384
 msgid "Publisher contact note"
-msgstr "הערת המוציא לאור"
+msgstr "הערת קשר מוציא לאור"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2387
 msgid ""
@@ -41185,7 +41185,7 @@ msgstr "WebCal"
 #: ../gramps/plugins/webreport/webcal.py:1676
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
-msgstr "חולל על־ידי %(gramps_home_html_start)sגרמפס%(html_end)s ב־%(date)s"
+msgstr "חולל על־ידי %(gramps_home_html_start)sגרמפס%(html_end)s בתאריך %(date)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1843
 msgid "Calendar Title"
