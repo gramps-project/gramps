@@ -35,6 +35,7 @@ from unittest.mock import patch
 # Gramps modules
 # ------------------------
 from .. import maclocale
+from ...constfunc import mac
 
 
 # ------------------------------------------------------------
@@ -92,6 +93,7 @@ class _FakeGLocale:
 # MacLocaleDefaultsTest
 #
 # ------------------------------------------------------------
+@unittest.skipUnless(mac(), "Mac only test")
 class MacLocaleDefaultsTest(unittest.TestCase):
     """
     Regression coverage for the ``defaults`` subprocess call.
