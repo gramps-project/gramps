@@ -314,6 +314,7 @@ gramps/gen/utils/location.py
 gramps/gen/utils/lru.py
 gramps/gen/utils/maclocale.py
 gramps/gen/utils/resourcepath.py
+gramps/gen/utils/safearchive.py
 gramps/gen/utils/thumbnails.py
 gramps/gen/utils/unittest.py
 #
@@ -335,6 +336,7 @@ gramps/gen/utils/test/place_test.py
 gramps/gen/utils/test/pypi_e2e_test.py
 gramps/gen/utils/test/pypi_test.py
 gramps/gen/utils/test/requirements_test.py
+gramps/gen/utils/test/safearchive_test.py
 #
 # gui - GUI code
 #
@@ -599,6 +601,7 @@ gramps/plugins/importer/__init__.py
 #
 gramps/plugins/importer/test/importgedcom_ambiguous_date_test.py
 gramps/plugins/importer/test/importgeneweb_test.py
+gramps/plugins/importer/test/importgpkg_test.py
 gramps/plugins/importer/test/importvcard_test.py
 #
 # plugins/lib directory
