@@ -1265,6 +1265,11 @@ class CSVParser:
         if place_name.startswith("[") and place_name.endswith("]"):
             place = self.lookup("place", place_name)
             return (0, place)
+        # Try as a local CSV place ID for consistency with enclosed_by handling
+        # in _parse_place, which also accepts bare numeric IDs via lookup().
+        place = self.lookup("place", place_name)
+        if place is not None:
+            return (0, place)
         LOG.debug("get_or_create_place: looking for: %s", place_name)
         for place_handle in self.db.iter_place_handles():
             place = self.db.get_place_from_handle(place_handle)
