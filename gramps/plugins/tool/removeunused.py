@@ -63,9 +63,18 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
     OBJ_TYPE_COL = 3
     OBJ_HANDLE_COL = 4
 
-    BUSY_CURSOR = Gdk.Cursor.new_for_display(
-        Gdk.Display.get_default(), Gdk.CursorType.WATCH
-    )
+    _busy_cursor: "Gdk.Cursor | None" = None
+
+    @classmethod
+    def _get_busy_cursor(cls) -> "Gdk.Cursor | None":
+        """Return the busy cursor, creating it lazily on first use."""
+        if cls._busy_cursor is None:
+            display = Gdk.Display.get_default()
+            if display is not None:
+                cls._busy_cursor = Gdk.Cursor.new_for_display(
+                    display, Gdk.CursorType.WATCH
+                )
+        return cls._busy_cursor
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
@@ -270,7 +279,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
         self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
-        self.window.get_window().set_cursor(self.BUSY_CURSOR)
+        self.window.get_window().set_cursor(self._get_busy_cursor())
 
         self.real_model.clear()
         self.collect_unused()
