@@ -274,6 +274,8 @@ class EditDate(ManagedWindow):
     def show_on_calendar(self, calendar, date):
         if self.calendar_box.get_active() != Date.CAL_GREGORIAN:
             return
+        if date.is_empty():
+            return
         date = date.to_calendar("gregorian")
         year = date.get_year()
         if year < 0:  # Gtk.Calendar only works for positive years
