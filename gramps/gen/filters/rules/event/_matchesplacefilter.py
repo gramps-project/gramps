@@ -65,11 +65,25 @@ class MatchesPlaceFilter(MatchesFilterBase):
     # we want to have this filter show place filters
     namespace = "Place"
 
+    def prepare(self, db: Database, user):
+        super().prepare(db, user)
+        # Many events share the same place, and place filters (e.g. an
+        # enclosure check) can be expensive, so cache results per place
+        # handle rather than recomputing for every event.
+        self._cache: dict[str, bool] = {}
+
+    def reset(self):
+        super().reset()
+        self._cache = {}
+
     def apply_to_one(self, db: Database, event: Event) -> bool:
         filt = self.find_filter()
         if filt:
             if event and event.place:
+                if event.place in self._cache:
+                    return self._cache[event.place]
                 place = db.get_place_from_handle(event.place)
-                if filt.apply_to_one(db, place):
-                    return True
+                result = filt.apply_to_one(db, place)
+                self._cache[event.place] = result
+                return result
         return False
