@@ -25,10 +25,13 @@ import unittest
 import os
 
 from ....db.utils import import_as_dict
-from ....filters import GenericFilterFactory
+from ....filters import GenericFilterFactory, reload_custom_filters
+import gramps.gen.filters as gfilters
 from ....const import DATA_DIR
 from ....user import User
 from ....utils.unittest import localize_date
+
+from ..place import IsEnclosedBy
 
 from ..event import (
     AllEvents,
@@ -48,7 +51,10 @@ from ..event import (
     ChangedSince,
     HasTag,
     HasDayOfWeek,
+    MatchesPlaceFilter,
 )
+
+reload_custom_filters()
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
@@ -222,6 +228,48 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasDayOfWeek(["2"])
         self.assertEqual(len(self.filter_with_rule(rule)), 185)
+
+    def test_matchesplacefilter(self):
+        """
+        Test MatchesPlaceFilter rule.
+        """
+        GenericPlaceFilter = GenericFilterFactory("Place")
+        place_filter = GenericPlaceFilter()
+        place_filter.add_rule(IsEnclosedBy(["P0001", "1"]))
+        place_filter.set_name("EnclosedByP0001")
+        gfilters.CustomFilters.get_filters_dict("Place")[
+            "EnclosedByP0001"
+        ] = place_filter
+
+        rule = MatchesPlaceFilter(["EnclosedByP0001"])
+        self.assertEqual(
+            self.filter_with_rule(rule),
+            {
+                "a5af0eb7aab088f694a",
+                "a5af0eb80fa6c647999",
+                "a5af0ebb31a1ae5e613",
+                "a5af0ebb3e55806c0f5",
+                "a5af0ebb48d310f93ef",
+                "a5af0ebbb3759560dad",
+                "a5af0ec1cc55d3a7ea5",
+                "a5af0ec723153b8b4de",
+                "a5af0ec7ec844213b55",
+                "a5af0ec7ed61c743fc8",
+                "a5af0ec804f4baac0eb",
+                "a5af0ec80631c36b29f",
+                "a5af0ece74c617ca5b3",
+                "a5af0ece75e48aaf9f8",
+                "a5af0eceaf259eccc24",
+                "a5af0eceb0510fed355",
+                "a5af0ed65816f063d68",
+                "a5af0ed69af77f7dd9a",
+                "a5af0edafdc2d9ad967",
+                "a5af0edc9c4299e7cc7",
+            },
+        )
+        # Applying the same rule instance a second time must produce the
+        # same result (the per-place cache is reset between applications).
+        self.assertEqual(len(self.filter_with_rule(rule)), 20)
 
 
 if __name__ == "__main__":
