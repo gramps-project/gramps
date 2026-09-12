@@ -21,13 +21,14 @@
 # Patryk <patryk230206@gmail.com>, 2026.
 # Artur <wy66m6xm@anonaddy.me>, 2026.
 # Maciej Stefańczyk <maciek.slon@gmail.com>, 2026.
+# Kazimierz Koziarz <rsakakr@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-05-13 11:46+0000\n"
-"Last-Translator: Maciej Stefańczyk <maciek.slon@gmail.com>\n"
+"PO-Revision-Date: 2026-09-08 17:51+0000\n"
+"Last-Translator: Kazimierz Koziarz <rsakakr@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -36,7 +37,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.5.dev0\n"
+"X-Generator: Weblate 2026.9.1\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -8856,7 +8857,7 @@ msgstr "zam."
 #: ../gramps/gen/lib/eventtype.py:282
 msgctxt "Retirement abbreviation"
 msgid "ret."
-msgstr "ret."
+msgstr "emer."
 
 #: ../gramps/gen/lib/eventtype.py:283
 msgctxt "Will abbreviation"
@@ -36307,12 +36308,12 @@ msgstr "Związek: %s"
 #: ../gramps/plugins/textreport/familygroup.py:515
 msgctxt "acronym for male"
 msgid "M"
-msgstr "K"
+msgstr "M"
 
 #: ../gramps/plugins/textreport/familygroup.py:517
 msgctxt "acronym for female"
 msgid "F"
-msgstr "M"
+msgstr "K"
 
 #: ../gramps/plugins/textreport/familygroup.py:519
 msgctxt "acronym for other"
@@ -39070,7 +39071,7 @@ msgstr "Chrzest przed urodzeniem"
 
 #: ../gramps/plugins/tool/verify.py:1393
 msgid "Death before baptism"
-msgstr "Śmierć prze ochrzczeniem"
+msgstr "Śmierć przed ochrzczeniem"
 
 #: ../gramps/plugins/tool/verify.py:1412
 msgid "Burial before birth"
