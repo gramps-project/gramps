@@ -373,8 +373,11 @@ class PlacePages(BasePage):
                             place = self.r_db.get_place_from_handle(place_handle[0])
                         else:
                             place = self.r_db.get_place_from_handle(place_handle)
-                        main_location = get_main_location(self.r_db, place)
-                        sname = main_location.get(PlaceType.STATE, "")
+                        pldate = val[-1].date if val[-1] else None
+                        main_location = get_main_location(self.r_db, place, date=pldate)
+                        sname = main_location.get(
+                            PlaceType.STATE, ""
+                        ) or main_location.get(PlaceType.PROVINCE, "")
                         cname = main_location.get(PlaceType.COUNTRY, "")
                     elif nbelem == 3:
                         cname = val[3]
