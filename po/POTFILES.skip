@@ -590,6 +590,7 @@ gramps/plugins/graph/__init__.py
 #
 gramps/plugins/graph/test/__init__.py
 gramps/plugins/graph/test/year_only_date_test.py
+gramps/plugins/graph/test/gvfamilylines_test.py
 #
 # plugins/importer directory
 #
