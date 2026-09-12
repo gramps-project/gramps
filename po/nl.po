@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-08-03 05:01+0000\n"
+"PO-Revision-Date: 2026-09-12 14:51+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1003,7 +1003,7 @@ msgstr ""
 #: ../data/tips.xml:101
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
 msgstr ""
-"&gramps_url;<b>De Gramps-homepage</b><br/>De Gramps-homepage bevindt zich op "
+"<b>De Gramps-homepage</b><br/>De Gramps-homepage bevindt zich op "
 "&gramps_url;."
 
 #: ../data/tips.xml:103
@@ -9969,7 +9969,7 @@ msgstr "E-mail"
 
 #: ../gramps/gen/lib/urltype.py:59
 msgid "Web Home"
-msgstr "Website"
+msgstr "Website startpagina"
 
 #: ../gramps/gen/lib/urltype.py:60
 msgid "Web Search"
@@ -16766,7 +16766,7 @@ msgstr ""
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:120
 msgid "Reset"
-msgstr "Herstellen"
+msgstr "Terugzetten"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:167
 #, python-format
@@ -27399,7 +27399,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:124
 msgid "Home Page"
-msgstr "Gramps website"
+msgstr "Startpagina"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
 msgid "Who makes Gramps?"
@@ -33572,7 +33572,7 @@ msgstr "_Bladwijzer toevoegen"
 #: ../gramps/plugins/view/pedigreeview.py:1771
 #: ../gramps/plugins/view/relview.py:389 ../gramps/plugins/view/relview.py:453
 msgid "_Home"
-msgstr "_Begin"
+msgstr "_Start"
 
 #: ../gramps/plugins/lib/libpersonview.py:252
 #: ../gramps/plugins/lib/libpersonview.py:329
@@ -33685,7 +33685,7 @@ msgstr "_Centrale persoon instellen"
 #: ../gramps/plugins/view/pedigreeview.py:731
 #: ../gramps/plugins/view/relview.py:453
 msgid "Go to the home person"
-msgstr "Ga naar de Centrale persoon"
+msgstr "Naar de Centrale persoon"
 
 #: ../gramps/plugins/lib/libpersonview.py:286
 #: ../gramps/plugins/lib/libplaceview.py:360
@@ -40344,7 +40344,7 @@ msgstr "Toon broers/zussen"
 
 #: ../gramps/plugins/view/repoview.py:88
 msgid "Home URL"
-msgstr "Home URL"
+msgstr "Start URL"
 
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Search URL"
@@ -40589,7 +40589,7 @@ msgstr "Ga naar boven"
 #: ../gramps/plugins/webreport/basepage.py:2300
 msgctxt "Html"
 msgid "Home"
-msgstr "Begin"
+msgstr "Startpagina"
 
 #: ../gramps/plugins/webreport/basepage.py:2065
 #: ../gramps/plugins/webreport/heatmap.py:195
@@ -40717,7 +40717,7 @@ msgstr "Een volledig jaar in één oogopslag"
 #: ../gramps/plugins/webreport/webcal.py:216
 #: ../gramps/plugins/webreport/webcal.py:704
 msgid "NarrativeWeb Home"
-msgstr "NarrativeWeb Home"
+msgstr "NarrativeWeb startpagina"
 
 #: ../gramps/plugins/webreport/calendar.py:685
 #: ../gramps/plugins/webreport/webcal.py:1105
@@ -40959,7 +40959,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
-msgstr "Start"
+msgstr "Startpagina"
 
 #: ../gramps/plugins/webreport/media.py:122
 msgid "Creating media pages"
@@ -41388,7 +41388,7 @@ msgstr "Pagina generatie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2368
 msgid "Home page note"
-msgstr "Startpaginanotitie"
+msgstr "Notitie voor startpagina"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2369
 msgid "A note to be used on the home page"
@@ -41396,7 +41396,7 @@ msgstr "Een notitie voor op de startpagina"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2372
 msgid "Home page image"
-msgstr "Startpagina afbeelding"
+msgstr "Afbeelding voor startpagina"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2373
 msgid "An image to be used on the home page"
