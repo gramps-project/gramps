@@ -43,7 +43,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-08-26 05:51+0000\n"
+"PO-Revision-Date: 2026-09-12 14:51+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -52,7 +52,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -6344,11 +6344,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:58
 msgid "Places enclosed by another place"
-msgstr "Místa ohraničená jiným místem"
+msgstr "Místa patřící pod jiné místo"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:59
 msgid "Matches a place enclosed by a particular place"
-msgstr "Vyhovují místa ohraničená konkrétním místem"
+msgstr "Vyhovují místa podřazena pod konkrétní místo"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:59
 msgid "Places of events matching the <event filter>"
@@ -14736,7 +14736,7 @@ msgstr "Alternativní názvy"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1564
 #: ../gramps/plugins/webreport/basepage.py:3532
 msgid "Enclosed By"
-msgstr "Ohraničeno"
+msgstr "Patří pod"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:214
 msgid "Place cycle detected"
@@ -14744,7 +14744,7 @@ msgstr "Zjštěno zacyklení místa"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:215
 msgid "The place you are adding is already enclosed by this place"
-msgstr "Místo, které přidáváte je již ohraničeno tímto místem"
+msgstr "Místo, které přidáváte, již patří pod toto místo"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
@@ -19558,8 +19558,8 @@ msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be "
 "reflected in the place itself, for places that it encloses."
 msgstr ""
-"<b>Poznámka:</b> Jakákoli změna informací ohraničujícího místa se projeví u "
-"místa samotného a také u všech míst, která ohraničuje."
+"<b>Poznámka:</b> Jakákoli změna informací nadřazeného místa se projeví u "
+"místa samotného a také u všech míst, která jsou podřazená."
 
 #: ../gramps/gui/glade/editreporef.glade:126
 msgid "_Media Type:"
@@ -25244,7 +25244,7 @@ msgstr "Přeložit záhlaví"
 
 #: ../gramps/plugins/export/exportcsv.py:313
 msgid "Enclosed_by"
-msgstr "Ohraničeno"
+msgstr "Patří_pod"
 
 #: ../gramps/plugins/export/exportcsv.py:392
 #, python-brace-format
@@ -26549,24 +26549,24 @@ msgstr "Gramplet pro generování kódů SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1556
 msgid "Place Enclosed By"
-msgstr "Misto ohraničeno"
+msgstr "Misto patří pod"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1557
 msgid "Gramplet showing the places enclosed by the active place"
-msgstr "Gramplet zobrazující místa ohraničená aktivním místem"
+msgstr "Gramplet zobrazující místa, která patří pod aktivní místo"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1572
 #: ../gramps/plugins/webreport/basepage.py:3570
 msgid "Place Encloses"
-msgstr "Místo ohraničuje"
+msgstr "Místo zahrnuje"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1573
 msgid "Gramplet showing the places that the active place encloses"
-msgstr "Gramplet zobrazující místa, která ohraničuje aktivní místo"
+msgstr "Gramplet zobrazující místa, která zahrnuje aktivní místo"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1580
 msgid "Encloses"
-msgstr "Ohraničuje"
+msgstr "Zahrnuje"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1588
 msgid "Geography coordinates for Person Events"
@@ -28352,11 +28352,11 @@ msgstr "kód"
 
 #: ../gramps/plugins/importer/importcsv.py:392
 msgid "enclosed by"
-msgstr "ohraničeno"
+msgstr "patří pod"
 
 #: ../gramps/plugins/importer/importcsv.py:394
 msgid "enclosed_by"
-msgstr "ohraničeno_"
+msgstr "patří_pod"
 
 #: ../gramps/plugins/importer/importcsv.py:435
 #, python-format
