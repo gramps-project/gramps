@@ -120,10 +120,24 @@ class DateParserHE(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._modifier = re.compile(r"%s\s*(.*)" % self._mod_str, re.IGNORECASE)
 
-        # גרש אופציונלי (עברי ׳ או ASCII ') מיד אחרי קיצור חודש,
-        # לדוגמה "יונ'" או "יונ׳" עבור יוני.
+        # Negative lookahead (?![א-ת]) prevents the single-letter
+        # modifiers "מ"/"ב" (no maqaf) from matching as a false prefix
+        # inside ordinary Hebrew words that happen to start with the
+        # same letter -- most notably the Gregorian month names "מאי"
+        # (May) and "מרץ" (March). Without this guard, "מאי 1944" was
+        # wrongly split into modifier "מ" + leftover text "אי 1944",
+        # which is not a valid date and so parsing failed entirely.
+        # Genuine modifier usage ("מ 1893", "מ-1893", "מ־1893", "מיום
+        # 1944", etc.) is unaffected, since in all of those the letter
+        # is followed by a non-Hebrew-letter character (space, digit,
+        # or maqaf), not by another Hebrew letter.
+        self._modifier = re.compile(
+            r"%s(?![א-ת])\s*(.*)" % self._mod_str, re.IGNORECASE
+        )
+
+        # Optional geresh (Hebrew ׳ or ASCII ') right after an
+        # abbreviated month name, e.g. "יונ'" or "יונ׳" for June.
         self._text = re.compile(
             r"%s['׳]?\.?(\s+\d+)?\s*,?\s+((\d+)(/\d+)?)?\s*$" % self._mon_str,
             re.IGNORECASE,
@@ -153,19 +167,22 @@ class DateParserHE(DateParser):
             re.IGNORECASE,
         )
 
-        # תאריך מספרי גמיש בן 3 שדות, עם כל מפריד מבין . - /
-        # (משמש ב-_parse_subdate למטה כדי לתמוך גם ב-yyyy-dd-mm וגם
-        # ב-mm-dd-yyyy, לצד dd-mm-yyyy/yyyy-mm-dd הרגילים)
+        # Flexible 3-field numeric date, with any separator among
+        # . - / (used in _parse_subdate below to support both
+        # yyyy-dd-mm and mm-dd-yyyy, alongside the regular
+        # dd-mm-yyyy / yyyy-mm-dd forms).
         self._numeric_flexible = re.compile(
             r"^\s*(\d+)\s*[./\-]\s*(\d+)\s*[./\-]\s*(\d+)\s*$"
         )
 
-        # שתי שנים בעלמא כתקופה, למשל "1893-1894" או "1893–1894" (מקף
-        # ארוך), בלי צורך במילים "מ...עד" (משמש ב-match_span למטה)
+        # A bare two-year span, e.g. "1893-1894" or "1893–1894" (en
+        # dash), without needing the words "from...to" (used in
+        # match_span below).
         self._bare_year_span = re.compile(r"^\s*(\d{3,4})\s*[-–]\s*(\d{3,4})\s*$")
 
-        # "מ" ו-"ל" נתמכים גם עם מקף רגיל (מ-1893) וגם עם מקף עילי
-        # (מ־1893), לא רק בלי מקף בכלל
+        # "מ" (from) and "ל" (to) are also supported with a regular
+        # hyphen (מ-1893) and with the Hebrew maqaf (מ־1893), not only
+        # with no separator at all.
         _span_1 = ["מ־", "מ-", "מ"]
         _span_2 = ["עד"]
         _range_1 = ["בין"]
@@ -183,14 +200,15 @@ class DateParserHE(DateParser):
 
     def _parse_subdate(self, text, subparser=None, cal=None):
         """
-        כמו DateParser._parse_subdate, בתוספת תמיכה בתאריך מספרי בן 3
-        שדות עם כל מפריד (./-), כולל yyyy-dd-mm ו-mm-dd-yyyy: הכרעת
-        יום מול חודש נעשית לפי גודל הערך (מעל 12 = יום); רק כששני
-        השדות דו-משמעיים (שניהם 12 ומטה) המערכת נופלת לברירת המחדל
-        הקיימת (יום-חודש לתבנית עם שנה בסוף, חודש-יום לתבנית עם שנה
-        בהתחלה, בהתאמה ל-ISO). כל שאר ההתנהגות (שנת-לוכסן, תאריך
-        חלקי, RFC-2822, "$T"/"היום") נשארת בדיוק כמו ב-DateParser
-        המקורי.
+        Same as DateParser._parse_subdate, plus support for a flexible
+        3-field numeric date with any separator (./-), including
+        yyyy-dd-mm and mm-dd-yyyy: day vs. month is decided by
+        magnitude (over 12 = day); only when both fields are
+        ambiguous (both <= 12) does it fall back to the existing
+        default (day-month for the year-last form, month-day for the
+        year-first/ISO form). All other behaviour (slash-year, partial
+        date, RFC-2822, "$T"/"today") is unchanged from the original
+        DateParser.
         """
         if subparser is None:
             subparser = self._parse_gregorian
@@ -201,12 +219,12 @@ class DateParserHE(DateParser):
             self._parse_french: french_valid,
         }.get(subparser)
 
-        # 1) צורות עם שם חודש (עברי/גרגוריאני/צרפתי/...)
+        # 1) Forms with a month name (Hebrew/Gregorian/French/...)
         value = subparser(text)
         if value != Date.EMPTY:
             return value
 
-        # 2) תאריך מספרי גמיש
+        # 2) Flexible numeric date
         match = self._numeric_flexible.match(text)
         if match:
             a, b, c = (int(g) for g in match.groups())
@@ -225,7 +243,7 @@ class DateParserHE(DateParser):
                         day, month = x, z
                     elif z > 12 and x <= 12:
                         day, month = z, x
-                    elif x <= 12 and z <= 12:  # דו-משמעי: ברירת מחדל קיימת
+                    elif x <= 12 and z <= 12:  # ambiguous: existing default
                         if month_first:
                             month, day = x, z
                         else:
@@ -237,15 +255,16 @@ class DateParserHE(DateParser):
                             return value
                         return Date.EMPTY
 
-        # 3) שאר ההתנהגות המקורית ללא שינוי: ISO רגיל, שנת-לוכסן,
-        #    חותמת-DB, RFC-2822, "$T"/"היום"
+        # 3) Everything else unchanged: regular ISO, slash-year,
+        #    DB stamp, RFC-2822, "$T"/"today"
         return DateParser._parse_subdate(self, text, subparser, cal)
 
     def match_span(self, text, cal, ny, qual, date):
         """
-        כמו DateParser.match_span, בתוספת תמיכה בתקופה בת שתי שנים
-        בלי המילים "מ...עד", למשל "1893-1894" או "1893–1894" (מקף
-        ארוך) — מתפרש בדיוק כמו "מ־1893 עד 1894".
+        Same as DateParser.match_span, plus support for a bare
+        two-year span without the words "from...to", e.g. "1893-1894"
+        or "1893–1894" (en dash) -- parsed exactly like "מ־1893 עד
+        1894".
         """
         bare = self._bare_year_span.match(text)
         if bare:
@@ -259,8 +278,9 @@ class DateParserHE(DateParser):
                     newyear=ny,
                 )
                 return 1
-            # שנה גדולה לפני שנה קטנה (למשל "1894-1893") - לא מנחשים,
-            # נופלים חזרה להתנהגות הרגילה (תיכשל, בדיוק כמו היום)
+            # Larger year before smaller year (e.g. "1894-1893") -- not
+            # guessed at, falls back to normal behaviour (will fail,
+            # exactly as today)
         return DateParser.match_span(self, text, cal, ny, qual, date)
 
 
