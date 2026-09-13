@@ -1,3 +1,109 @@
+2026-09-13
+Version 6.1.0-beta2
+* Update translations: ar, az, ba, bg, br, ca, cs, cy, da, de, de_AT, el, en_GB,
+  eo, es, fa, fi, fr, ga, gl, he, hr, hu, id, is, it, ja, ka, ko, ln, lt, lv, mk,
+  mn, nb, ne, nl, nn, oc, pl, pt_BR, pt_PT, ro, ru, sk, sl, sq, sr, sv, ta, tr,
+  uk, vi, zh_CN, zh_HK, zh_TW.
+* Add date modifiers for zh_TW.
+* Add from/to date modifiers to DTD/RNG schema.
+* Set CFBundleSupportedPlatforms So that System Report doesn't report Gramps
+  is an iOS app.
+* Update osm-gps-map to latest release.
+* Fix date modifiers for zh_TW.
+* Skip Mac specific unit tests when not running macOS.
+* FamilySearch integration fixes:
+  * Persist FamilySearch ID links independent of editor.
+  * Avoid committing live editor edits.
+  * Use ngettext for count-dependent strings in FamilySearch import log.
+  * Parallelize Last-Modified backfill during comparison-status refresh.
+  * Report per-person progress during ancestor/descendant/spouse download.
+  * Keep GUI responsive during FamilySearch comparison-status refresh.
+  * Keep GUI responsive during FamilySearch bulk import downloads.
+  * Parallelize notes/sources download during bulk import.
+  * Fix bulk import hanging indefinitely during notes/sources download.
+  * Fix Open Person in FamilySearch button enable/disable state.
+  * Fix live-person Compare bug.
+* Temporarily remove "ja" from date handler unit tests.
+* Fix Japanese plural forms.
+* Add bsddb files back into AIO build.
+* Live filter UI updates, responsiveness, and O(n²) fix.
+* Include FS CSS in Windows build.
+* Add pure-Python PyPI wheel installer, replacing pip invocation.
+* Add `snapcraft.yaml` file.
+* Restore include of Gnome modulesets.
+* Fix underscores and escaping in menu labels.
+* Fix memory leak caused by stale link tags in GuiGramplet.
+* Fix LaTeX report crash when a table has two or more multicolumns.
+  Fixes #13418.
+* Fix ResourceWarning from unclosed /dev/null in Mac defaults lookup.
+  Fixes #14243.
+* Add Visual Studio Code config to gitignore.
+* Fix Top Surnames gramplet opening report for the wrong surname. Fixes #11101.
+* Fix QuickView->Relation stepbrother-in-law relationship Fixes #14142.
+* Make the Share/Select existing records labels consistent.
+* Improve "Addon Registration Failed" dialog to surface the likely cause.
+* Guard set_coords against None selection on click-after-resize.
+  Fixes #13059, #12659.
+* Requirements.info: omit empty (label, table) pairs.
+* Skip GalleryTab tests when no Gtk display is available.
+* Add regression guard so GalleryTab clean_up stays warning-free.
+* Fix AttributeError on iconlist when GalleryTab parent dialog closes.
+  Fixes #13326.
+* Silence noisy traceback in FamilySearch tree test.
+* Add regression test for RelationshipPathBetween filter rule. Issue #13830.
+* GEDCOM import: warn on bare-numeric DATE values. Fixes #9298.
+* Hourglass Graph: link spouse in descendant traversal. Fixes #9628.
+* Fall back to uninflected date format on an unknown inflection. Fixes #14100.
+* Document LANGUAGE environment variable. Fixes #10443.
+* Graph reports: raise ReportError when dot/gs write fails. Fixes #6556.
+* Graph plugins: preserve date modifier in years-only mode. Fixes #4658.
+* Fix list view crash on column-sort click after closing the database.
+  Fixes #13214.
+* Fix fan chart crash at startup with age-gradient background. Fixes #13395.
+* FamilySearch integration: Improvements and bug fixes from feedback.
+  * Bulk import.
+  * Merge window.
+  * Sign-in from status bar icon.
+  * Enable/disable integration.
+  * Progress feedback.
+  * CSS segregation.
+  * Bug fixes.
+* Re-enable personal map tile provider in geography view.
+* Ensure date columns are sorted consistently. Fixes #7761.
+* Use `filter.apply()` rather than `apply_to_one()`.
+* Check for new files not listed in `POTFILES.in` or `POTFILES.skip`.
+* Suppress xgettext python brace format warnings.
+* Add fallback for Finnish date lexemes when translation not installed.
+  Fixes #12283.
+* Don't use slots on GObject-derived classes. Fixes #14153.
+* Guard against null parent handle in Make Father/Mother Active actions.
+* Fix localAlphabeticIndex name error if icu isn't available.
+* Remove checks for PyICU identifier, replaced and deprecated in 2015 and removed
+  in 2022.
+* Add test to validate example .gramps files against the RelaxNG schema
+* Fix editor title showing "New X" when editing an existing object.
+* Fix calls to get_relationship_calculator.
+* Ensure family order is unaffected by family edits. Fixes #13819.
+* Follow symlinks when scanning plugin directories. Fixes #10436.
+* Exit Windows AIO build with non-zero code on error.
+* Avoid using features unavailable on Windows.
+* Fix missing repo for new chardet module.
+* Add chardet module, a dependency of requests. Corrects the second error in
+  #14216.
+* Add citation filter name support. Fixes #13534.
+* Add tests for referential integrity of deletes and fix 3 bugs. Issue #9895.
+* Add kml examples to example.gramps. Fixes #14209.
+* Attempt to load berkeleydb with bsddb3 as a fallback. Fixes #14218.
+* Fix bug in check and repair.
+* Remove pyexiv, not used for anything.
+* [macos] Replace APPDATA environment variable with defs for XDG_*_HOME.
+  Fixes #14204
+* Add Goocanvas2 module, dropped from gtk-osx, required for GraphView addon.
+* Fix Windows AIO workflow.
+* Allow newer versions of GExiv2.
+* Package Gramps-6.1.0-beta1 for macOS.
+* Update dependencies for 6.1 series.
+
 2026-04-21
 Version 6.1.0-beta1
 * Update translations: da, es, fr, hr, nl, pl, pt_PT, sk, sv, zh_CN.
