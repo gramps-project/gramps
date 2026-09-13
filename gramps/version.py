@@ -17,7 +17,7 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-DEV_VERSION = False
+DEV_VERSION = True
 VERSION_TUPLE = (6, 1, 0)
 VERSION_QUALIFIER = "-beta2"
 VERSION = ".".join(map(str, VERSION_TUPLE)) + VERSION_QUALIFIER
