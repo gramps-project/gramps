@@ -68,6 +68,11 @@ _DETAIL = [
     {"name": _("Short"), "value": "short"},
 ]
 
+_IMAGES = [
+    {"name": _("Thumbnails (smaller PDF)"), "value": "thumbnail"},
+    {"name": _("Original images (full resolution)"), "value": "original"},
+]
+
 _NAME_FORMAT = [
     {"name": _("Given Nickname Surname"), "value": "1"},
     {"name": _("Surname Given Nickname"), "value": "2"},
@@ -167,6 +172,7 @@ class TreeOptions:
     def __init__(self):
         # Node Options
         self.detail = None
+        self.images = None
         self.marriage = None
         self.nodesize = None
         self.levelsize = None
@@ -200,6 +206,19 @@ class TreeOptions:
         detail.set_help(_("Detail of information to be shown in a node."))
         menu.add_option(category, "detail", detail)
         self.detail = detail
+
+        images = EnumeratedListOption(_("Images"), "thumbnail")
+        for item in _IMAGES:
+            images.add_item(item["value"], item["name"])
+        images.set_help(
+            _(
+                "Whether to embed the cached thumbnail (smaller PDF) or the "
+                "original full-resolution image (larger, but standalone and "
+                "print quality). The original is the pre-Gramps 5.1 behaviour."
+            )
+        )
+        menu.add_option(category, "images", images)
+        self.images = images
 
         name_format = EnumeratedListOption(_("Name Format"), "1")
         for item in _NAME_FORMAT:
@@ -377,6 +396,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
         get_option = options.menu.get_option_by_name
 
         self.detail = get_option("detail").get_value()
+        self.images = get_option("images").get_value()
         self.name_format = get_option("name_format").get_value()
         self.preferred_name = get_option("preferred_name").get_value()
         self.marriage = get_option("marriage").get_value()
@@ -593,13 +613,22 @@ class TreeDocBase(BaseDoc, TreeDoc):
         for mediaref in person.get_media_list():
             media = db.get_media_from_handle(mediaref.ref)
             if media.get_mime_type().startswith("image"):
-                path = get_thumbnail_path(
-                    media_path_full(db, media.get_path()),
-                    rectangle=mediaref.get_rectangle(),
-                )
+                original = media_path_full(db, media.get_path())
+                if self.images == "original":
+                    # Pre-PR-1620 behaviour: embed the full-resolution image.
+                    path = original
+                else:
+                    path = get_thumbnail_path(
+                        original,
+                        rectangle=mediaref.get_rectangle(),
+                    )
                 if os.path.isfile(path):
                     if win():
                         path = path.replace("\\", "/")
+                    if self.images != "original":
+                        # Record the source file so the cached thumbnail's
+                        # hash filename stays identifiable in the .tex.
+                        self.write(level + 1, "%% original image: %s\n" % original)
                     self.write(level + 1, "image = {%s},\n" % path)
                     break  # first image only
         self.write(level, "}\n")
