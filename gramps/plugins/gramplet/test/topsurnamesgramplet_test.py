@@ -151,6 +151,40 @@ class TopSurnamesTest(unittest.TestCase):
         self.assertIn(representative_handle["Webb"], ("W1", "W2"))
         self.assertEqual(surnames["Webb"], 3)
 
+    def test_reported_repro_6826_clicked_surname_resolves_to_primary_carrier(self):
+        """
+        Bug #6826 (reported repro): a person P1 with primary surname "A" and
+        alternate surname "B", plus a person P2 whose primary surname is "B".
+
+        The Same Surnames quick view re-derives the clicked surname from the
+        representative's *primary* name, so the representative for "B" must be
+        P2 (whose primary name is "B") and never P1 (whose primary name is "A").
+        Otherwise double-clicking "B" opens "People sharing the surname 'A'".
+
+        Pre-fix the representative was overwritten unconditionally, so whichever
+        of the two was iterated last won "B" -- making the result depend on
+        database order.  Assert the primary-name carrier wins for *both* orders.
+        """
+        for order in (("P2", "P1"), ("P1", "P2")):
+            people_by_handle = {
+                "P1": make_person("P1", "A", alternates=("B",)),
+                "P2": make_person("P2", "B"),
+            }
+            people = [people_by_handle[handle] for handle in order]
+            surnames, representative_handle = tally(people)
+            # Clicking "B" must open the report for surname B (P2's primary).
+            self.assertEqual(
+                representative_handle["B"],
+                "P2",
+                msg=f"iteration order {order}: 'B' must resolve to the "
+                "primary-B carrier P2, not the alternate-name carrier P1",
+            )
+            # "A" is held by P1 as a primary name.
+            self.assertEqual(representative_handle["A"], "P1")
+            # "B" is counted for both: P1's alternate and P2's primary.
+            self.assertEqual(surnames["B"], 2)
+            self.assertEqual(surnames["A"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
