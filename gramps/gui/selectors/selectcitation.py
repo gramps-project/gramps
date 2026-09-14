@@ -37,7 +37,7 @@ SelectCitation class for Gramps.
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
-from ..views.treemodels import CitationTreeModel
+from ..views.treemodels import CitationTreeSelectorModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT2
 
@@ -64,7 +64,11 @@ class SelectCitation(BaseSelector):
         return _("Select Source or Citation")
 
     def get_model_class(self):
-        return CitationTreeModel
+        # Use the selector-specific model so a text search keeps a matched
+        # source's existing citations reachable, instead of forcing a new one
+        # (issue 8622).  The standalone Citation Tree View keeps the plain
+        # CitationTreeModel and its independent secondary search.
+        return CitationTreeSelectorModel
 
     def get_column_titles(self):
         return [
