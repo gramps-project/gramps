@@ -60,7 +60,7 @@ from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from ...const import USER_DATA
 from ...utils.cast import get_type_converter_by_name, type_name
-from ..docgen import StyleSheet, StyleSheetList
+from ..docgen import StyleSheet, StyleSheetList, GraphicsStyle
 from .. import BasePluginManager
 from . import book_categories
 
@@ -723,9 +723,9 @@ class BookParser(handler.ContentHandler):
 # Functions
 #
 # -------------------------------------------------------------------------
-def append_styles(selected_style, item):
+def get_item_style_sheet(item):
     """
-    Append the styles for a book item to the stylesheet.
+    Return the (own, un-namespaced) :class:`.StyleSheet` a book item selected.
     """
     ihandler = item.option_class.handler
 
@@ -741,24 +741,180 @@ def append_styles(selected_style, item):
 
     # Get the selected stylesheet
     style_name = ihandler.get_default_stylesheet_name()
-    style_sheet = style_list.get_style_sheet(style_name)
+    return style_list.get_style_sheet(style_name)
 
-    for this_style_name in style_sheet.get_paragraph_style_names():
+
+def _add_namespaced_styles(selected_style, style_sheet, prefix):
+    """
+    Copy every style in ``style_sheet`` into ``selected_style``, each stored
+    under ``prefix`` + its original name.
+
+    A draw (graphics) style embeds the *name* of the paragraph style it renders
+    text with (``GraphicsStyle.get_paragraph_style()``); the document backend
+    resolves that name against the same shared stylesheet (e.g.
+    ``svgdrawdoc``/``libcairodoc``: ``get_draw_style(...).get_paragraph_style()``
+    then ``get_paragraph_style(name)``). So the embedded reference must be
+    namespaced too, or the draw style would resolve its paragraph by the bare
+    (colliding) name. With ``prefix == ""`` this is the historical behaviour.
+    """
+    for name in style_sheet.get_paragraph_style_names():
         selected_style.add_paragraph_style(
-            this_style_name, style_sheet.get_paragraph_style(this_style_name)
+            prefix + name, style_sheet.get_paragraph_style(name)
         )
 
-    for this_style_name in style_sheet.get_draw_style_names():
-        selected_style.add_draw_style(
-            this_style_name, style_sheet.get_draw_style(this_style_name)
+    for name in style_sheet.get_draw_style_names():
+        draw_style = GraphicsStyle(style_sheet.get_draw_style(name))
+        para_name = draw_style.get_paragraph_style()
+        if para_name:
+            draw_style.set_paragraph_style(prefix + para_name)
+        selected_style.add_draw_style(prefix + name, draw_style)
+
+    for name in style_sheet.get_table_style_names():
+        selected_style.add_table_style(prefix + name, style_sheet.get_table_style(name))
+
+    for name in style_sheet.get_cell_style_names():
+        selected_style.add_cell_style(prefix + name, style_sheet.get_cell_style(name))
+
+
+def append_styles(selected_style, item, prefix=""):
+    """
+    Append the styles for a book item to the book's shared stylesheet.
+
+    Each style is stored under ``prefix`` + its name. A book renders several
+    items into one shared document carrying a single shared stylesheet (a hard
+    requirement of backends such as ODF, which emit the whole stylesheet once at
+    ``open()``). Two items of the same report type define styles under identical
+    names (e.g. two Descendant Reports both define "DR-Title"). Without a
+    per-item ``prefix`` the second item's style overwrites the first's in the
+    flat shared sheet, so both items resolve that name to the last-written values
+    (issue 6128). Namespacing by ``prefix`` keeps every item's styles distinct;
+    :class:`BookItemStyleProxy` rewrites each item's report's style references to
+    the matching prefixed name.
+
+    Returns the item's own (un-namespaced) :class:`.StyleSheet`, so the caller
+    can build the item's :class:`BookItemStyleProxy`.
+    """
+    style_sheet = get_item_style_sheet(item)
+    _add_namespaced_styles(selected_style, style_sheet, prefix)
+    return style_sheet
+
+
+def book_item_style_prefix(item_number):
+    """
+    A per-item style-name namespace, unique across the items of one book.
+
+    ``item_number`` is the item's position in the book's item list. The prefix
+    uses the same character set (upper-case letters, digits, hyphen) as the
+    report-defined style names it is prepended to, so it survives every document
+    backend's style-name handling exactly as the existing distinct style names
+    from different report types already do.
+    """
+    return "BI%03d-" % item_number
+
+
+class BookItemStyleProxy:
+    """
+    A thin wrapper around the book's shared document that namespaces a single
+    book item's style-name references (issue 6128).
+
+    :func:`append_styles` stores each book item's styles under a per-item
+    ``prefix`` in the shared stylesheet so same-named styles from different items
+    do not collide. A report's style-name references are baked into the report
+    code (e.g. ``self.doc.start_paragraph("DR-Title")``); routing the item's
+    report through this proxy rewrites every such reference to the matching
+    prefixed name, so the shared document resolves it to that item's own values.
+
+    The proxy overrides every style-name-bearing method of the abstract
+    ``TextDoc`` and ``DrawDoc`` interfaces (the only document API a report uses
+    to reference styles by name): ``start_paragraph``, ``start_table``,
+    ``start_cell``, ``write_styled_note``, ``add_media`` (text) and
+    ``draw_path``, ``draw_box``, ``draw_text``, ``center_text``, ``rotate_text``,
+    ``draw_line`` (draw). It also keeps the item's stylesheet view in step:
+    ``get_style_sheet`` returns the item's own un-prefixed sheet, and
+    ``set_style_sheet`` (used by reports that compute styles at run time, e.g.
+    AncestorTree/DescendTree/FanChart) re-namespaces the item's changes back into
+    the shared document instead of replacing it wholesale. Every other
+    attribute/method is delegated unchanged to the shared document.
+    """
+
+    def __init__(self, doc, item_style_sheet, prefix):
+        self._doc = doc
+        self._item_style_sheet = item_style_sheet
+        self._prefix = prefix
+
+    # -- the item's stylesheet view (read/modify/write at run time) -----------
+    def get_style_sheet(self):
+        return StyleSheet(self._item_style_sheet)
+
+    def set_style_sheet(self, style_sheet):
+        # Keep the item's own view, and mirror the change into the shared
+        # document under this item's prefix (never replace the shared sheet,
+        # which holds every other item's namespaced styles).
+        self._item_style_sheet = StyleSheet(style_sheet)
+        shared = self._doc.get_style_sheet()
+        _add_namespaced_styles(shared, style_sheet, self._prefix)
+        self._doc.set_style_sheet(shared)
+
+    # -- TextDoc methods that take a style name -------------------------------
+    def start_paragraph(self, style_name, leader=None):
+        self._doc.start_paragraph(self._prefix + style_name, leader)
+
+    def start_table(self, name, style_name):
+        self._doc.start_table(name, self._prefix + style_name)
+
+    def start_cell(self, style_name, span=1):
+        self._doc.start_cell(self._prefix + style_name, span)
+
+    def write_styled_note(
+        self, styledtext, format, style_name, contains_html=False, links=False
+    ):
+        self._doc.write_styled_note(
+            styledtext, format, self._prefix + style_name, contains_html, links
         )
 
-    for this_style_name in style_sheet.get_table_style_names():
-        selected_style.add_table_style(
-            this_style_name, style_sheet.get_table_style(this_style_name)
-        )
+    def add_media(self, name, align, w_cm, h_cm, alt="", style_name=None, crop=None):
+        if style_name is not None:
+            style_name = self._prefix + style_name
+        self._doc.add_media(name, align, w_cm, h_cm, alt, style_name, crop)
 
-    for this_style_name in style_sheet.get_cell_style_names():
-        selected_style.add_cell_style(
-            this_style_name, style_sheet.get_cell_style(this_style_name)
-        )
+    # -- DrawDoc methods that take a (graphics) style name --------------------
+    def draw_path(self, style, path):
+        self._doc.draw_path(self._prefix + style, path)
+
+    def draw_box(self, style, text, x, y, w, h, mark=None):
+        self._doc.draw_box(self._prefix + style, text, x, y, w, h, mark)
+
+    def draw_text(self, style, text, x1, y1, mark=None):
+        self._doc.draw_text(self._prefix + style, text, x1, y1, mark)
+
+    def center_text(self, style, text, x1, y1, mark=None):
+        self._doc.center_text(self._prefix + style, text, x1, y1, mark)
+
+    def rotate_text(self, style, text, x, y, angle, mark=None):
+        self._doc.rotate_text(self._prefix + style, text, x, y, angle, mark)
+
+    def draw_line(self, style, x1, y1, x2, y2):
+        self._doc.draw_line(self._prefix + style, x1, y1, x2, y2)
+
+    # -- everything else is the shared document -------------------------------
+    def __getattr__(self, name):
+        return getattr(self._doc, name)
+
+
+def add_book_item_styles(selected_style, item, doc, item_number):
+    """
+    Collate one book item's styles into the book's shared ``selected_style`` and
+    route the item's report through a style-namespacing document proxy, so a book
+    with several same-type items renders each with its OWN style values (the
+    issue-6128 invariant).
+
+    Must be called BEFORE the item's report object is created: the report grabs
+    its document from ``item.option_class.get_document()`` at construction
+    (``_reportbase.ReportBase.__init__``), so the proxy is installed via
+    ``set_document`` here. Returns the proxy.
+    """
+    prefix = book_item_style_prefix(item_number)
+    item_style_sheet = append_styles(selected_style, item, prefix)
+    proxy = BookItemStyleProxy(doc, item_style_sheet, prefix)
+    item.option_class.set_document(proxy)
+    return proxy
