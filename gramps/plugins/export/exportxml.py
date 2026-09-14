@@ -1392,7 +1392,7 @@ class GrampsXmlWriter(UpdateCallback):
             '%s<file src="%s" mime="%s"%s%s/>\n'
             % (
                 "  " * (index + 1),
-                self.fix(path),
+                libgrampsxml.fix_media_path(path),
                 self.fix(mime_type),
                 checksum_text,
                 desc_text,
