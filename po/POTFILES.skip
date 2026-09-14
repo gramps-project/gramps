@@ -509,6 +509,8 @@ gramps/gui/widgets/undoablebuffer.py
 gramps/gui/widgets/undoableentry.py
 gramps/gui/widgets/undoablestyledbuffer.py
 gramps/gui/widgets/validatedcomboentry.py
+gramps/gui/widgets/test/__init__.py
+gramps/gui/widgets/test/undoablestyledbuffer_test.py
 #
 # gramps/gui/widgets/test directory
 #

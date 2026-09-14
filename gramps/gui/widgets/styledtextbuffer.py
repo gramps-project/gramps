@@ -599,7 +599,23 @@ class StyledTextBuffer(UndoableBuffer):
                   Gtk.*.
         """
         super(StyledTextBuffer, self).set_text(str(s_text))
-        # self.remove_all_tags(self.get_start_iter(), self.get_end_iter())
+        self.apply_styled_tags(s_text)
+
+    def apply_styled_tags(self, s_text):
+        """
+        (Re)apply the markup tags of *s_text* to the buffer's *existing* text.
+
+        Unlike :meth:`set_text`, this does **not** replace the buffer content,
+        so callers that only need to restore styling (the undo/redo handlers in
+        :class:`.UndoableStyledBuffer`) must not rebuild the whole buffer.  A
+        full rebuild collapses every Gtk.TextMark to offset 0, which resets a
+        bound GtkTextView's scroll position to the top of the note (bug 13268).
+        The caller is responsible for having restored the plain text first.
+
+        .. note:: ``s_`` prefix means StyledText*, while ``g_`` prefix means
+                  Gtk.*.
+        """
+        self.remove_all_tags(self.get_start_iter(), self.get_end_iter())
 
         s_tags = s_text.get_tags()
         for s_tag in s_tags:
