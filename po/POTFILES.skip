@@ -395,6 +395,7 @@ gramps/gui/editors/displaytabs/test/gallerytab_test.py
 #
 # gui.editors.test package
 #
+gramps/gui/editors/test/editlink_test.py
 gramps/gui/editors/test/editreference_test.py
 #
 # gui.filters package
