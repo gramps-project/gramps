@@ -31,6 +31,7 @@ import unittest
 # -------------------------------------------------------------------------
 from gramps.gen.db import DbTxn
 from gramps.gen.db.utils import make_database
+from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.lib import (
     Person,
     Family,
@@ -911,6 +912,51 @@ class DbPersonTest(unittest.TestCase):
         saved = self.db.get_gender_stats()
         self.assertEqual(saved["John"], (3, 1, 1))
         self.assertEqual(saved["Mary"], (1, 3, 1))
+
+    def test_gender_stats_column_semantics(self):
+        """
+        Bug 11314: each named gender_stats column must hold the count its name
+        denotes. The in-memory GenderStats tuple is (male, female, unknown);
+        use an asymmetric, controlled value so a male/female swap is detectable.
+        Assert the raw on-disk columns directly (not via get_gender_stats, which
+        would round-trip any swap back out), and that the round-trip preserves
+        the (male, female, unknown) ordering.
+        """
+        stats = GenderStats({"Probe": (5, 2, 1)})  # 5 male, 2 female, 1 unknown
+        self.db.save_gender_stats(stats)
+        self.db.dbapi.execute(
+            "SELECT male, female, unknown FROM gender_stats WHERE given_name = ?",
+            ["Probe"],
+        )
+        self.assertEqual(self.db.dbapi.fetchone(), (5, 2, 1))
+        # in-memory round-trip preserves (male, female, unknown)
+        self.assertEqual(self.db.get_gender_stats()["Probe"], (5, 2, 1))
+
+    def test_gender_stats_legacy_not_inverted(self):
+        """
+        Bug 11314: a tree saved before the fix stored the male/female columns
+        swapped and carries no corrected-order marker. Reading such a table back
+        must still yield the correct in-memory (male, female, unknown) tuple --
+        i.e. the legacy data must not be silently inverted on read.
+        """
+        self.db._txn_begin()
+        self.db.dbapi.execute("DELETE FROM gender_stats")
+        self.db.dbapi.execute(
+            "DELETE FROM metadata WHERE setting = ?", ["gender_stats_fixed"]
+        )
+        # Reproduce exactly what the pre-fix save_gender_stats wrote: it unpacked
+        # the (male, female, unknown) tuple as "female, male, unknown" and stored
+        # those into the like-named columns, so the female column held the male
+        # count and vice versa. Probe = 5 male / 2 female / 1 unknown on disk:
+        self.db.dbapi.execute(
+            "INSERT INTO gender_stats (given_name, female, male, unknown) "
+            "VALUES (?, ?, ?, ?)",
+            ["Probe", 5, 2, 1],
+        )
+        self.db._txn_commit()
+        saved = self.db.get_gender_stats()
+        # in-memory order is (male, female, unknown): male=5, female=2, unknown=1
+        self.assertEqual(saved["Probe"], (5, 2, 1))
 
 
 if __name__ == "__main__":
