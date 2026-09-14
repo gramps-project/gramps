@@ -183,6 +183,19 @@ class EditName(EditSecondary):
             _("Call name must be the given name that " "is normally used.")
         )
 
+    def _revalidate_call(self, obj):
+        """Re-run the call-name validation when the given name changes.
+
+        Bug 12110: the call name is valid only when it is part of the given
+        name, so the Call field's red/black indicator is a function of *both*
+        fields.  ``_validate_call`` is wired to the Call field alone, so editing
+        the Given name used to leave the indicator stale.  Re-firing the Call
+        field's validation here keeps it in sync.  Guarded with ``hasattr``
+        because ``given_field`` is built before ``call_field``.
+        """
+        if hasattr(self, "call_field"):
+            self.call_field.obj.validate(force=True)
+
     def _setup_fields(self):
         self.group_as = MonitoredEntry(
             self.top.get_object("group_as"),
@@ -225,6 +238,7 @@ class EditName(EditSecondary):
             self.obj.set_first_name,
             self.obj.get_first_name,
             self.db.readonly,
+            changed=self._revalidate_call,
         )
 
         self.call_field = MonitoredEntry(
