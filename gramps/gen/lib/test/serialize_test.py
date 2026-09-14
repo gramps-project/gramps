@@ -37,7 +37,8 @@ from .. import (
     Source,
     Tag,
 )
-from ..json_utils import object_to_data, data_to_object
+from ..json_utils import object_to_data, data_to_object, string_to_dict
+from ..serialize import JSONSerializer
 
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
@@ -110,6 +111,46 @@ class TagCheck(unittest.TestCase, BaseCheck):
     def setUp(self):
         self.cls = Tag
         self.object = self.cls()
+
+
+# ------------------------------------------------------------
+#
+# MetadataSerializeCheck
+#
+# ------------------------------------------------------------
+class MetadataSerializeCheck(unittest.TestCase):
+    """
+    Metadata-set serialization must be order-stable (bug 13747).
+
+    Custom-type metadata (name types, event names, ...) is stored as a
+    Python set. Serializing a set via ``list(value)`` produces a
+    hash-dependent order that changes between processes, so closing an
+    unmodified database rewrote the on-disk file. The serializer now
+    sorts sets before storing them.
+    """
+
+    def test_set_is_serialized_in_sorted_order(self):
+        names = {"Zeta", "Alpha", "Mike", "Bravo", "Yankee", "Charlie", "Delta"}
+        doc = string_to_dict(JSONSerializer.object_to_metadata(names))
+        self.assertEqual(doc["type"], "set")
+        self.assertEqual(doc["value"], sorted(names))
+
+    def test_set_round_trips_to_set(self):
+        original = {"Test", "Test2"}
+        restored = JSONSerializer.metadata_to_object(
+            JSONSerializer.object_to_metadata(original)
+        )
+        self.assertIsInstance(restored, set)
+        self.assertEqual(restored, original)
+
+    def test_tuple_order_is_preserved(self):
+        # Tuples are ordered; the sort must not leak onto them.
+        original = ("zulu", "alpha", "mike")
+        restored = JSONSerializer.metadata_to_object(
+            JSONSerializer.object_to_metadata(original)
+        )
+        self.assertIsInstance(restored, tuple)
+        self.assertEqual(restored, original)
 
 
 class DatabaseCheck(unittest.TestCase):
