@@ -29,6 +29,7 @@ from gramps.gui.plug.quick import QuickTable
 from gramps.gen.utils.file import media_path_full
 from gramps.gui.plug.quick import run_quick_report_by_name_direct
 from gramps.gen.lib import Person
+from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 
 import os
@@ -463,7 +464,12 @@ def run(database, document, filter_name, *args, **kwargs):
         namelist = defaultdict(int)
         for person in database.iter_people():
             names = [person.get_primary_name()] + person.get_alternate_names()
-            surnames = list(set([name.get_group_name() for name in names]))
+            # Tally by the grouping name (per-name "group as" override AND the
+            # database-wide name-group mapping), matching the Same Surnames
+            # quick view the double-click below opens (bug #6825).
+            surnames = list(
+                set(name_displayer.name_grouping_name(database, name) for name in names)
+            )
             for surname in surnames:
                 namelist[surname] += 1
         stab.columns(_("Surname"), _("Count"))

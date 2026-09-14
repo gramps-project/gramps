@@ -31,6 +31,7 @@ ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.lib import Person
+from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.filters.rules import Rule
 from gramps.gen.filters import GenericFilterFactory
 
@@ -60,7 +61,12 @@ class SameSurname(Rule):
     def apply_to_one(self, db, person):
         src = self.list[0].upper()
         for name in [person.get_primary_name()] + person.get_alternate_names():
-            if name.get_surname() and name.get_surname().upper() == src.upper():
+            # Match on the grouping name (honouring the per-name "group as"
+            # override AND the database-wide name-group mapping) rather than the
+            # raw surname, so a name the user grouped under another surname is
+            # gathered with it (bug #6825).
+            group = name_displayer.name_grouping_name(db, name)
+            if group and group.upper() == src:
                 return True
         return False
 
@@ -107,6 +113,33 @@ class IncompleteGiven(Rule):
         return False
 
 
+def _same_surname_handles(database, person):
+    """
+    Return the handles of everyone sharing ``person``'s surname group.
+
+    The grouping is resolved with
+    :meth:`~.display.name.NameDisplay.name_grouping_name`, which honours both
+    the per-name "group as" override and the database-wide name-group mapping,
+    so the people gathered here are grouped the same way the surname gramplets
+    group them (bug #6825).  ``person`` may be a
+    :class:`~.lib.person.Person` or a plain group-name string (as passed by
+    the surname links).
+    """
+    if isinstance(person, Person):
+        rsurname = name_displayer.name_grouping_name(
+            database, person.get_primary_name()
+        )
+    else:
+        rsurname = person
+    surname_filter = GenericFilterFactory("Person")()
+    if rsurname != "":
+        rule = SameSurname([rsurname])
+    else:
+        rule = IncompleteSurname([])
+    surname_filter.add_rule(rule)
+    return surname_filter.apply(database, database.iter_person_handles())
+
+
 def run(database, document, person):
     """
     Loops through the families that the person is a child in, and displays
@@ -118,21 +151,13 @@ def run(database, document, person):
     stab = QuickTable(sdb)
     if isinstance(person, Person):
         surname = sdb.surname(person)
-        rsurname = person.get_primary_name().get_group_name()
     else:
         surname = person
-        rsurname = person
     # display the title
     sdoc.title(_("People sharing the surname '%s'") % surname)
     sdoc.paragraph("")
     stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-    filter = GenericFilterFactory("Person")()
-    if rsurname != "":
-        rule = SameSurname([rsurname])
-    else:
-        rule = IncompleteSurname([])
-    filter.add_rule(rule)
-    people = filter.apply(database, database.iter_person_handles())
+    people = _same_surname_handles(database, person)
 
     matches = 0
     for person_handle in people:
