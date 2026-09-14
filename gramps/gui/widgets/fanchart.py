@@ -99,11 +99,6 @@ from gramps.gen.utils.symbols import Symbols
 
 _ = glocale.translation.gettext
 
-# following are used in name_displayer format def
-# (must not conflict with standard defs)
-TWO_LINE_FORMAT_1 = 100
-TWO_LINE_FORMAT_2 = 101
-
 # -------------------------------------------------------------------------
 #
 # FanChartBaseWidget
@@ -148,15 +143,6 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self.last_x, self.last_y = None, None
         self.fontdescr = "Sans"
         self.fontsize = 8
-        # add parts of a two line name format to the displayer.  We add them
-        # as standard names, but set them inactive so they don't show up in
-        # name editor or selector.
-        name_displayer.set_name_format(
-            [
-                (TWO_LINE_FORMAT_1, "fanchart_name_line1", "%l", False),
-                (TWO_LINE_FORMAT_2, "fanchart_name_line2", "%f %s", False),
-            ]
-        )
         self.connect("button_release_event", self.on_mouse_up)
         self.connect("motion_notify_event", self.on_mouse_move)
         self.connect("button-press-event", self.on_mouse_down)
@@ -740,8 +726,10 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 text_line1 = "(" + person.gramps_id + ") "
             else:
                 text_line1 = ""
-            text_line1 += name_displayer.display_format(person, TWO_LINE_FORMAT_1)
-            text_line2 = name_displayer.display_format(person, TWO_LINE_FORMAT_2)
+            # split the *active* name format over two lines so the chart
+            # honours the user's "Name format" preference (bug 13532)
+            name_line1, text_line2 = name_displayer.display_two_lines(person)
+            text_line1 += name_line1
             if draw_radial:
                 split_frac_line1 = 0.5
                 flipped = can_flip and (
