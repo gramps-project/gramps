@@ -846,7 +846,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                         "".join(
                             (
                                 "\\setlength{\\grpictsize}{",
-                                self.pict_width,
+                                repr(self.pict_width),
                                 "\\grbaseindent}%\n",
                             )
                         )
