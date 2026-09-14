@@ -70,7 +70,7 @@ class RepoSidebarFilter(SidebarFilter):
         self.repo.set_type((RepositoryType.CUSTOM, ""))
         self.rtype = Gtk.ComboBox(has_entry=True)
         if dbstate.is_open():
-            self.custom_types = dbstate.db.get_event_types()
+            self.custom_types = dbstate.db.get_repository_types()
         else:
             self.custom_types = []
 
@@ -91,6 +91,9 @@ class RepoSidebarFilter(SidebarFilter):
         self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Repository")
+
+    def _register_type_filters(self):
+        self.add_type_filter(self.event_menu, "get_repository_types")
 
     def create_widget(self):
         cell = Gtk.CellRendererText()
