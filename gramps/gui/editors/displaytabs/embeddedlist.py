@@ -121,6 +121,12 @@ class EmbeddedList(ButtonTab):
         self.col_icons = {}
         self.columns = []
         self.build_columns()
+        # restore_column_size() is called here rather than at the end of
+        # build_columns() because some subclasses (e.g. SurnameTab) append
+        # additional columns of their own after calling the base
+        # build_columns(); restoring saved widths must wait until all
+        # columns exist, or the extra columns never get their sizes back.
+        self.tree.restore_column_size()
 
         if self._DND_TYPE:
             self._set_dnd()
@@ -562,7 +568,6 @@ class EmbeddedList(ButtonTab):
             self.columns.append(column)
             self.tree.append_column(column)
         self.track_ref_for_deletion("columns")
-        self.tree.restore_column_size()
 
     def get_config_name(self):
         """used to associate the selector config name to the PersistentTreeView"""
