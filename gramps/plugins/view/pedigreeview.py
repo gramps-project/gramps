@@ -555,9 +555,18 @@ class PedigreeView(NavigationView):
         ("interface.pedview-show-unknown-people", True),
     )
 
-    FLEUR_CURSOR = Gdk.Cursor.new_for_display(
-        Gdk.Display.get_default(), Gdk.CursorType.FLEUR
-    )
+    _fleur_cursor: "Gdk.Cursor | None" = None
+
+    @classmethod
+    def _get_fleur_cursor(cls) -> "Gdk.Cursor | None":
+        """Return the fleur (drag) cursor, creating it lazily on first use."""
+        if cls._fleur_cursor is None:
+            display = Gdk.Display.get_default()
+            if display is not None:
+                cls._fleur_cursor = Gdk.Cursor.new_for_display(
+                    display, Gdk.CursorType.FLEUR
+                )
+        return cls._fleur_cursor
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         NavigationView.__init__(
@@ -1556,7 +1565,7 @@ class PedigreeView(NavigationView):
         or call option menu.
         """
         if event.button == 1 and event.type == Gdk.EventType.BUTTON_PRESS:
-            widget.get_window().set_cursor(self.FLEUR_CURSOR)
+            widget.get_window().set_cursor(self._get_fleur_cursor())
             self._last_x = event.x
             self._last_y = event.y
             self._in_move = True
