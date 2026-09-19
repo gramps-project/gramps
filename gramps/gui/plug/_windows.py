@@ -292,13 +292,22 @@ class AddonRow(Gtk.ListBoxRow):
         vbox.pack_start(bb, False, False, 0)
         vbox.show_all()
 
-    def _install_python_deps(self, button: Gtk.Button, addon: dict) -> bool:
+    def _install_python_deps(
+        self, button: Gtk.Button, addon: dict, upgrade: bool = False
+    ) -> bool:
         """Install Python module dependencies declared by *addon*.
+
+        When *upgrade* is False (the default, used on Install) only modules
+        that are not yet importable are installed.  When *upgrade* is True
+        (used on Update) every declared module is checked against the newest
+        version on PyPI and reinstalled if the installed copy is older;
+        modules already at the latest version are left alone.
 
         Returns True on success.  On failure, disables *button*, shows an
         error dialog, and returns False.
         """
-        for package in self.req.install(addon):
+        packages = addon.get("rm", []) if upgrade else self.req.install(addon)
+        for package in packages:
             # Translate import names (e.g. "PIL") to PyPI names ("Pillow").
             pypi_name = resolve_pypi_name(package)
             try:
@@ -306,21 +315,24 @@ class AddonRow(Gtk.ListBoxRow):
                     # Frozen bundles (cx_Freeze/AIO, macOS .app) and pip-less
                     # environments (Flatpak, stripped Docker): use the stdlib
                     # wheel installer, which now supports manylinux/musllinux.
-                    install_package(pypi_name, LIB_PATH)
+                    install_package(pypi_name, LIB_PATH, upgrade=upgrade)
                 else:
-                    # Source / snap installs where pip is available.
-                    subprocess.check_output(
-                        [
-                            sys.executable,
-                            "-m",
-                            "pip",
-                            "install",
-                            "--target",
-                            LIB_PATH,
-                            pypi_name,
-                        ],
-                        stderr=subprocess.STDOUT,
-                    )
+                    # Source / snap installs where pip is available.  Note
+                    # that pip's own "--target --upgrade" combination is
+                    # known to leave files from the old version behind
+                    # (pypa/pip#8799); it still fetches the newer release.
+                    cmd = [
+                        sys.executable,
+                        "-m",
+                        "pip",
+                        "install",
+                        "--target",
+                        LIB_PATH,
+                    ]
+                    if upgrade:
+                        cmd.append("--upgrade")
+                    cmd.append(pypi_name)
+                    subprocess.check_output(cmd, stderr=subprocess.STDOUT)
             except (PyPIInstallError, subprocess.CalledProcessError) as err:
                 button.set_sensitive(False)
                 InfoDialog(
@@ -392,8 +404,12 @@ class AddonRow(Gtk.ListBoxRow):
 
     def __on_update_clicked(self, button, addon):
         """
-        Update the addon.
+        Update the addon and its Python module dependencies.
         """
+        if not self._install_python_deps(button, addon, upgrade=True):
+            return
+        importlib.invalidate_caches()
+
         path = addon["_u"] + "/download/" + addon["z"]
         load_addon_file(path)
         self.manager.update_addon(addon["i"])
