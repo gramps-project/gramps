@@ -15,13 +15,14 @@
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2025.
 # Hugo Vidal <hugo@lovi.casa>, 2025.
 # Hugo Vidal <69076992+hugoovf@users.noreply.github.com>, 2025.
+# marc-marcos <marcmarcosmadruga@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2025-08-31 06:05+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2026-08-24 18:30+0000\n"
+"Last-Translator: marc-marcos <marcmarcosmadruga@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
 "Language: ca\n"
@@ -29,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.1-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -752,14 +753,6 @@ msgstr ""
 "elecció, pot saltar-se aquest filtre marcant el botó de Mostrar Tothom."
 
 #: ../data/tips.xml:65
-#, fuzzy
-#| msgid ""
-#| "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "
-#| "to Gramps. Requesting an enhancement can be done either through the "
-#| "gramps-users or gramps-devel mailing lists, or by going to http://"
-#| "bugs.gramps-project.org and creating a Feature Request. Filing a Feature "
-#| "Request is preferred but it can be good to discuss your ideas on the "
-#| "email lists."
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -769,10 +762,9 @@ msgid ""
 msgstr ""
 "<b>Millorar Gramps</b><br/>Animem als usuaris que sol·licitin millores a "
 "Gramps. Es pot demanar una millora mitjançant les llistes de correu gramps-"
-"users o gramps-devel, o bé anant a http://bugs.gramps-project.org i creant "
-"una Sol·licitud de Funció. És preferible omplir una Sol·licitud de Funció "
-"(Feature Request), però també pot ser bo de comentar les seves idees a les "
-"llistes de correu."
+"users o gramps-devel, o bé anant a &bugs_url; i creant una Sol·licitud de "
+"Funció. És preferible omplir una Sol·licitud de Funció (Feature Request), "
+"però també pot ser bo de comentar les seves idees a les llistes de correu."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -992,28 +984,19 @@ msgstr ""
 "de pujar a un servidor web."
 
 #: ../data/tips.xml:99
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at http://bugs.gramps-"
-#| "project.org"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
 "<b>Informar d'Errors a Gramps</b><br/>La millor manera d'informar d'un error "
 "de programa a Gramps és fer servir el seu sistema de seguiment d'errors a "
-"http://bugs.gramps-project.org"
+"&bugs_url;."
 
 #: ../data/tips.xml:101
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
-#| "project.org/."
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
 msgstr ""
 "<b>La Pàgina Principal de Gramps</b><br/>La pàgina principal de Gramps és a "
-"https://gramps-project.org/."
+"&gramps_url;."
 
 #: ../data/tips.xml:103
 msgid ""
@@ -1191,12 +1174,6 @@ msgstr ""
 "Software Foundation i la Open Source Initiative."
 
 #: ../data/tips.xml:131
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see https://www.gnu.org/licenses/licenses.html#GPL to "
-#| "read about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1205,10 +1182,9 @@ msgid ""
 msgstr ""
 "<b>La Llicència de Programari de Gramps</b><br/>Té la llibertat d'utilitzar "
 "i compartir Gramps amb els altres. Gramps es pot distribuir lliurement sota "
-"la Llicència Pública General de GNU, veure https://www.gnu.org/licenses/"
-"licenses.html#GPL per llegir sobre els drets i les restriccions d'aquesta "
-"llicència. Una traducció no oficial al català és a http://ca.dodds.net/gnu/"
-"gpl.ca.html."
+"la Llicència Pública General de GNU, veure &gpl_url; per llegir sobre els "
+"drets i les restriccions d'aquesta llicència. Una traducció no oficial al "
+"català és a http://ca.dodds.net/gnu/gpl.ca.html."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -3730,15 +3706,12 @@ msgid "Wrong format of date-time"
 msgstr "Format de data-hora incorrecte"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, fuzzy, python-format
-#| msgid ""
-#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#| "part is optional, are accepted. %s does not satisfy."
+#, python-format
 msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Només s'accepten data-hora en el format iso de aaaa-mm-dd hh:mm:ss, on la "
+"Només s'accepten data-hora en el format ISO de aaaa-mm-dd hh:mm:ss, on la "
 "part de l'hora és opcional. %s no ho compleix."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
@@ -3910,10 +3883,8 @@ msgid "Tag:"
 msgstr "Etiqueta:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "Objectes amb notes d'un tipus en particular"
+msgstr "Objectes amb notes amb una etiqueta especificada."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
 #, fuzzy
@@ -7083,7 +7054,7 @@ msgstr "Famílies"
 #: ../gramps/gen/fs/compare/aggregate.py:225
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:640
 msgid "Facts"
-msgstr ""
+msgstr "Fets"
 
 #: ../gramps/gen/fs/compare/comparators.py:334
 #: ../gramps/gen/fs/compare/comparators.py:341 ../gramps/gen/utils/string.py:49
@@ -9067,7 +9038,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "Conflicte essencial"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
 #, fuzzy
@@ -12967,7 +12938,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1121
 msgid "Server"
-msgstr ""
+msgstr "Servidor"
 
 #: ../gramps/gui/configure.py:1130
 msgid "Foundation middleware"

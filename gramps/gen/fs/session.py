@@ -480,6 +480,10 @@ class Session(requests.Session):
         self.access_token: str | None = None
         self.refresh_token: str | None = None
         self.id_token: str | None = None
+        # Serializes token refreshes so concurrent 401s (e.g. from the
+        # importer's worker threads) don't each kick off their own
+        # refresh request against the same login.
+        self._token_refresh_lock = threading.Lock()
         self.foundation_base_url: str = _normalize_base_url(
             os.environ.get("GRAMPS_FS_FOUNDATION_BASE_URL", "").strip()
             or str(_cfg_get("familysearch.middleware.base-url", "") or "").strip()
@@ -508,6 +512,9 @@ class Session(requests.Session):
         )
         self.listen_timeout: int = int(
             os.environ.get("GRAMPS_FS_LISTENER_TIMEOUT", "300") or "300"
+        )
+        self.api_timeout_s: int = int(
+            os.environ.get("GRAMPS_FS_API_TIMEOUT", "30") or "30"
         )
         self.auth_provider: str = _normalize_auth_provider(
             os.environ.get("GRAMPS_FS_AUTH_PROVIDER", "").strip()
@@ -919,9 +926,15 @@ class Session(requests.Session):
             return False
 
     def refresh_access_token(self) -> bool:
-        if self._using_foundation_middleware():
-            return self._refresh_foundation_access_token()
-        return self._refresh_direct_access_token()
+        token_before = self.access_token
+        with self._token_refresh_lock:
+            if self.access_token != token_before:
+                # Another thread already refreshed the token while we
+                # were waiting for the lock; no need to do it again.
+                return True
+            if self._using_foundation_middleware():
+                return self._refresh_foundation_access_token()
+            return self._refresh_direct_access_token()
 
     def _request_with_api_retry(self, method_name: str, url: str, **kwargs):
         method = getattr(super(), method_name)
@@ -940,6 +953,7 @@ class Session(requests.Session):
         return method(url, **retry_kwargs)
 
     def _route_api_request(self, method_name: str, url: str, **kwargs):
+        kwargs.setdefault("timeout", self.api_timeout_s)
         text_url = str(url)
         if self._using_foundation_middleware() and text_url.startswith(
             ("http://", "https://")

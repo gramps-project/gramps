@@ -283,6 +283,7 @@
     </event>
     <event handle="_a701e8fe3ee581802d8" change="1198197326" id="E0044">
       <type>Occupation</type>
+      <dateval val="1966" type="from"/>
       <description>Retail Manager</description>
     </event>
     <event handle="_a701e8fe40453c7a8c6" change="1198197326" id="E0045">
@@ -352,6 +353,7 @@
     </event>
     <event handle="_a701e8fe7334aab749d" change="1198197326" id="E0056">
       <type>Occupation</type>
+      <dateval val="1990" type="to"/>
       <description>Software Engineer</description>
       <noteref hlink="_aef30789ea73e9b5b10"/>
     </event>

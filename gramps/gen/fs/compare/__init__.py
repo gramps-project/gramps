@@ -29,7 +29,7 @@ from .comparators import (
     compare_spouses,
     compare_other_facts,
 )
-from .aggregate import compare_fs_to_gramps
+from .aggregate import compare_fs_to_gramps, backfill_last_modified
 
 __all__ = [
     "person_dates_str",
@@ -42,4 +42,5 @@ __all__ = [
     "compare_spouses",
     "compare_other_facts",
     "compare_fs_to_gramps",
+    "backfill_last_modified",
 ]

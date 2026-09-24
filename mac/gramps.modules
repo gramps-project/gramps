@@ -126,8 +126,10 @@
   <autotools id="osmgpsmap" skip-autogen="never"
 	     autogenargs="--disable-gtk-doc-html"
 	     supports-non-srcdir-builds="no">
-    <branch version="1.2.0" repo="github-tarball"
-            module="nzjrs/osm-gps-map/releases/download/1.2.0/osm-gps-map-1.2.0.tar.gz"/>
+    <branch module="nzjrs/osm-gps-map/releases/download/1.2.1/osm-gps-map-1.2.1.tar.gz"
+            version="1.2.1"
+            hash="sha256:277d6835220a6a2954e09eb304a8cd6ff49b72542c97c4fc36e53e905f2a747c"
+            repo="github-tarball" />
     <dependencies>
       <dep package="libsoup"/>
       <dep package="gtk+-3.0"/>

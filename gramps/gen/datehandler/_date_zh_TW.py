@@ -56,10 +56,12 @@ class DateParserZH_TW(DateParser):
     # modifiers before the date
     modifier_to_int = {
         "以前": Date.MOD_BEFORE,
+        "早於": Date.MOD_BEFORE,
         "以後": Date.MOD_AFTER,
+        "晚於": Date.MOD_AFTER,
         "大約": Date.MOD_ABOUT,
-        "from": Date.MOD_FROM,
-        "to": Date.MOD_TO,
+        "自": Date.MOD_FROM,
+        "至": Date.MOD_TO,
     }
 
     month_to_int = DateParser.month_to_int

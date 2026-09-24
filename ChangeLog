@@ -1,261 +1,1273 @@
-2026-04-21  Francisco Serrador <fserrador@gmail.com>
+2026-09-13  Nick Hall <nick-h@gramps-project.org>
 
-	* po/es.po: Translated using Weblate (Spanish) Currently translated at 97.5% (7366 of 7554 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/es/
+	* po/gramps.pot: Update translation template for new release
 
-2026-04-21  Kaj Arne Mikkelsen <kmi@vgdata.dk>
+2026-09-13  Nick Hall <nick-h@gramps-project.org>
 
-	* po/da.po: Translated using Weblate (Danish) Currently translated at 96.0% (7258 of 7554 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/da/ Translated using Weblate (Danish) Currently translated at 95.5% (7218 of 7554 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/da/
+	* po/ta.po: Translated using Weblate (Tamil) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ta/
 
-2026-04-21  Pär Ekholm <github1@m.pekholm.org>
+2026-09-13  Nick Hall <nick-h@gramps-project.org>
 
-	* po/sv.po: Translated using Weblate (Swedish) Currently translated at 97.2% (7343 of 7554 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sv/
+	* gramps/gen/datehandler/_date_zh_TW.py: Add date modifiers for
+	zh_TW
 
-2026-04-21  Milo Ivir <mail@milotype.de>
+2026-09-12  Milan <mobrcian@hotmail.com>
 
-	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/ Translated using Weblate (Croatian) Currently translated at 95.4% (7207 of 7554 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
+	* po/cs.po: Translated using Weblate (Czech) Currently translated at 99.8% (7636 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/
 
-2026-04-21  Pedro Albuquerque <pmra@protonmail.com>
+2026-09-12  Kazimierz Koziarz <rsakakr@gmail.com>
 
-	* po/pt_PT.po: Translated using Weblate (Portuguese (Portugal)) Currently translated at 98.6% (7455 of 7554 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/
-
-2026-04-21  Tian Shixiong <tiansworld@fedoraproject.org>
-
-	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
-	script)) Currently translated at 94.0% (7101 of 7554 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
-
-2026-04-21  Stephan Paternotte <stephan@paternottes.net>
-
-	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 97.6% (7375 of 7554 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/ Translated using Weblate (Dutch) Currently translated at 97.1% (7341 of 7554 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
-
-2026-04-20  Hosted Weblate <hosted@weblate.org>
-
-	* po/ar.po, po/az.po, po/ba.po, po/bg.po, po/br.po, po/ca.po,
-	po/cs.po, po/da.po, po/de.po, po/de_AT.po, po/el.po, po/en_GB.po,
-	po/eo.po, po/es.po, po/fa.po, po/fi.po, po/fr.po, po/ga.po,
-	po/gl.po, po/he.po, po/hr.po, po/hu.po, po/id.po, po/is.po,
-	po/it.po, po/ja.po, po/ka.po, po/ko.po, po/ln.po, po/lt.po,
-	po/lv.po, po/mk.po, po/mn.po, po/nb.po, po/ne.po, po/nl.po,
-	po/nn.po, po/oc.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po,
-	po/ru.po, po/sk.po, po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po,
-	po/sv.po, po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po,
-	po/zh_HK.po, po/zh_TW.po: Update translation files Updated by "Update PO files to match POT (msgmerge)" hook in
-	Weblate.  Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/
-
-2026-04-20  Jean-Marc <m.balthazar@posteo.net>
-
-	* po/fr.po: Translated using Weblate (French) Currently translated at 95.9% (7251 of 7557 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
-
-2026-04-20  Pedro Albuquerque <pmra@protonmail.com>
-
-	* po/pt_PT.po: Translated using Weblate (Portuguese (Portugal)) Currently translated at 97.3% (7360 of 7557 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/
-
-2026-04-20  Stephan Paternotte <stephan@paternottes.net>
-
-	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 96.3% (7282 of 7557 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
-
-2026-04-20  Jozef Gaal <preklady@mayday.sk>
-
-	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 95.4% (7210 of 7557 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
-
-2026-04-20  Francisco Serrador <fserrador@gmail.com>
-
-	* po/es.po: Translated using Weblate (Spanish) Currently translated at 95.4% (7215 of 7557 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/es/
-
-2026-04-20  Pär Ekholm <github1@m.pekholm.org>
-
-	* po/sv.po: Translated using Weblate (Swedish) Currently translated at 96.2% (7270 of 7557 strings) Translation: Gramps/Program Translate-URL:
-	https://hosted.weblate.org/projects/gramps-project/gramps/sv/
-
-2026-04-20  Artur <wy66m6xm@anonaddy.me>
-
-	* po/pl.po: Translated using Weblate (Polish) Currently translated at 95.3% (7202 of 7557 strings) Translation: Gramps/Program Translate-URL:
+	* po/pl.po: Translated using Weblate (Polish) Currently translated at 94.0% (7190 of 7644 strings) Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/pl/
 
-2026-04-19  Steve Youngs <steve@youngs.cc>
+2026-09-12  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* aio/README.md: Improve AIO README.md
+	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
 
-2026-04-19  Steve Youngs <steve@youngs.cc>
+2026-09-12  Lee Vincent <vincentlee986@gmail.com>
 
-	* gramps/plugins/test/imports_test.py: Skip bsddb tests on Windows bsddb is no longer supported by MSYS2 UCRT64 builds
+	* po/zh_TW.po: Translated using Weblate (Chinese (Traditional Han
+	script)) Currently translated at 99.7% (7623 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hant/
 
-2026-03-29  Steve Youngs <steve@youngs.cc>
+2026-09-12  Pär Ekholm <github1@m.pekholm.org>
 
-	* .github/workflows/windows-aio.yml: Run unit test suite in AIO
-	pipeline
+	* po/sv.po: Translated using Weblate (Swedish) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sv/
 
-2026-03-29  Steve Youngs <steve@youngs.cc>
+2026-09-12  Stephan Paternotte <stephan@paternottes.net>
 
-	* gramps/gen/db/generic.py: Call self.close() for ":memory:" DBs to
-	avoid warnings On Windows, warnings such as <sys>:0: ResourceWarning: unclosed
-	database in <sqlite3.Connection object at 0x000002b2d36131f0> are
-	generated
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/ Translated using Weblate (Dutch) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
 
-2026-04-02  Steve Youngs <steve@youngs.cc>
+2026-07-30  Jakub Holotik <Jakub Holotik@eleon-aio>
 
-	* gramps/plugins/db/dbapi/test/db_test.py: Close database in
-	tearDownClass method
+	* data/grampsxml.dtd, data/grampsxml.rng,
+	example/gramps/data.gramps: Add from/to date modifiers to DTD/RNG
+	schema
 
-2026-03-29  Steve Youngs <steve@youngs.cc>
+2026-07-10  John Ralls <jralls@ceridwen.us>
 
-	* gramps/gui/editors/test/editreference_test.py: Avoid hard-coded
-	paths and close the db at the end of the test
+	* mac/Info.plist: Set CFBundleSupportedPlatforms So that System Report doesn't report Gramps is an iOS app.
 
-2026-03-28  Steve Youngs <steve@youngs.cc>
+2026-08-24  John Ralls <jralls@ceridwen.us>
 
-	* gramps/gen/utils/test/file_test.py: Refactor media path tests to
-	ensure environment restoration and database closure On Windows, if the db is not closed, an exception is generated when
-	trying to remove the temporary directory "PermissionError: [WinError
-	32] The process cannot access the file because it is being used by
-	another process"
+	* mac/gramps.modules: Update osm-gps-map to latest release.
 
-2026-03-27  Steve Youngs <steve@youngs.cc>
+2026-09-05  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/plugins/test/imports_test.py,
-	gramps/plugins/test/tools_test.py: Skip tests which are locale
-	dependent when the correct locale is not selected
+	* gramps/gen/datehandler/_date_zh_TW.py: Fix date modifiers for
+	zh_TW
 
-2026-03-27  Steve Youngs <steve@youngs.cc>
+2026-09-03  Temuri Doghonadze <temuri.doghonadze@gmail.com>
 
-	* gramps/gen/config.py: When running unittests make the environment
-	invariant of the current users configuration.  Previously the user config settings were used to set db prefixes
-	which could cause tests to fail. For example an iprefix of "I%05d"
-	would cause the imported gramps_id to be I00044 rather than the
-	default of I0044
+	* po/ka.po: Translated using Weblate (Georgian) Currently translated at 11.5% (883 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ka/
 
-2026-04-20  Nick Hall <nick-h@gramps-project.org>
+2026-09-03  mohammad montajebii <mohammad.montajebii@gmail.com>
 
-	* po/gramps.pot: Update gramps.pot
+	* po/fa.po: Translated using Weblate (Persian) Currently translated at 1.2% (95 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fa/
 
-2026-04-20  Nick Hall <nick-h@gramps-project.org>
+2026-09-03  Lee Vincent <vincentlee986@gmail.com>
 
-	* gramps/gen/filters/rules/_changedsincebase.py,
-	gramps/gen/filters/rules/citation/_hasnotetag.py,
-	gramps/gen/filters/rules/event/_hasnotetag.py,
-	gramps/gen/filters/rules/family/_hasnotetag.py,
-	gramps/gen/filters/rules/media/_hasnotetag.py,
-	gramps/gen/filters/rules/person/_hasnotetag.py,
-	gramps/gen/filters/rules/place/_hasnotetag.py,
-	gramps/gen/filters/rules/repository/_hasnotetag.py,
-	gramps/gen/filters/rules/source/_hasnotetag.py,
-	gramps/gen/lib/person.py, gramps/gui/fs/compare/options.py: Fix some
-	translated strings These issues were identified in comments by our Weblate translators.
+	* po/zh_TW.po: Translated using Weblate (Chinese (Traditional Han
+	script)) Currently translated at 99.7% (7623 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hant/
 
-2026-04-19  Steve Youngs <steve@youngs.cc>
+2026-09-03  Stefan Kachaunov <kachaunov.stef@gmail.com>
 
-	* .gitignore: Remove mingw64 entry from gitignore Now that we have switched to ucrt64 this is no longer required.
+	* po/bg.po: Translated using Weblate (Bulgarian) Currently translated at 49.2% (3767 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/bg/ Translated using Weblate (Bulgarian) Currently translated at 49.2% (3762 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/bg/
 
-2026-04-19  Hosted Weblate <hosted@weblate.org>
+2026-09-03  Milan <mobrcian@hotmail.com>
+
+	* po/cs.po, po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 99.8% (7636 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/
+
+2026-09-03  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-09-03  marc-marcos <marcmarcosmadruga@gmail.com>
+
+	* po/ca.po: Translated using Weblate (Catalan) Currently translated at 94.1% (7196 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ca/
+
+2026-09-05  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/utils/test/maclocale_test.py: Skip Mac specific unit
+	tests when not running macOS
+
+2026-07-30  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gen/fs/utils/__init__.py, gramps/gen/fs/utils/linking.py,
+	gramps/gui/fs/actions.py, gramps/gui/fs/compare/window.py: Persist
+	FamilySearch ID links independent of editor Save/Cancel Linking a FamilySearch ID (via the Link dialog or as a side effect
+	of Compare) only ever updated the live in-memory Person from an open
+	editor; nothing was committed unless the user later clicked OK. If
+	they clicked Cancel instead, the link was silently lost even though
+	the user had explicitly made it, leaving inconsistent FamilySearch
+	links.  Add link_gramps_fs_id_by_handle(), which attaches/updates the
+	_FSFTID attribute on the database's own copy of the person and
+	commits it right away, independent of whatever else is unsaved in a
+	live editor for the same person. Both the Link dialog and
+	CompareWindow now use it, so a link, once made, is always saved,
+	while every other in-progress edit still waits for the editor's own
+	OK/Cancel as before.
+
+2026-07-30  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gen/fs/session.py, gramps/gui/fs/compare/window.py: Avoid
+	committing live editor edits; lock FS token refresh CompareWindow linked the FamilySearch ID onto whatever Person object
+	it was given, which could be the live, in-progress object from an
+	open Edit Person dialog. Committing that object as a side effect of
+	opening the compare window could silently persist unsaved editor
+	changes before the user clicked OK. CompareWindow now loads a fresh
+	copy of the person from the database and commits that instead.  Session.refresh_access_token() also had no locking, so concurrent
+	worker threads (e.g. the notes/sources ThreadPoolExecutor added
+	earlier in this branch) that each hit a 401 around the same time
+	could all fire their own refresh request for the same login. A lock
+	now serializes refreshes, with a double-check so a thread that loses
+	the race reuses the token a sibling thread already fetched instead
+	of requesting a second one.
+
+2026-07-18  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gui/fs/fs_import/__init__.py,
+	gramps/gui/fs/fs_import/importer.py: Use ngettext for
+	count-dependent strings in FamilySearch import log Nick-Hall flagged several progress/debug messages introduced in this
+	branch that interpolate a person count into "... people" without
+	using ngettext, so translations can't produce a grammatically
+	correct singular form when the count is 1 (e.g. "1 people"). Fixed
+	the three flagged occurrences (ancestor/descendant generation
+	downloads, and the comparison-status refresh count) plus two more of
+	the same pattern found while auditing the rest of the file (spouse
+	download, and the Last-Modified timestamp resolution count/summary).  Export ngettext from gramps.gui.fs.fs_import, alongside the existing
+	_ alias, since it's now used across multiple modules in the package.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 5 <noreply@anthropic.com>
+
+2026-07-18  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gen/fs/compare/__init__.py,
+	gramps/gen/fs/compare/aggregate.py,
+	gramps/gen/fs/compare/test/aggregate_test.py,
+	gramps/gui/fs/fs_import/importer.py: Parallelize Last-Modified
+	backfill during comparison-status refresh compare_fs_to_gramps() issues a synchronous FamilySearch HEAD
+	request per person, one at a time, whenever a person's Last-Modified
+	wasn't already captured during download -- confirmed via the debug
+	output added previously: for a real 1849-person import, many
+	individual people were taking 1-2.5s each in this comparison-refresh
+	pass, serially, with no way to overlap them.  Add backfill_last_modified() to gramps/gen/fs/compare/aggregate.py,
+	which resolves Last-Modified/Etag (following FSID redirects) for a
+	batch of (fs_person, gr_person) pairs concurrently via a thread
+	pool, matching the pattern already used for notes/sources downloads
+	and Tree.add_persons. Network I/O runs in worker threads; the
+	resulting FSID relinks and database writes still happen on the
+	calling thread.  The GUI importer now runs this backfill once, concurrently, right
+	before the comparison loop, reusing the same (fs_person, gr_person)
+	pairs for both passes instead of re-deriving them per person.
+	compare_fs_to_gramps() is unchanged: it still resolves Last-Modified
+	itself when called standalone (e.g. the single-person Compare
+	button), but during bulk import it now finds the value already
+	cached and skips its own per-person network call entirely.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 5 <noreply@anthropic.com>
+
+2026-07-18  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gui/fs/fs_import/importer.py: Report per-person progress
+	during ancestor/descendant/spouse download Each ancestor/descendant/spouse download phase advanced the progress
+	bar by a single tick per generation, regardless of how many people
+	that generation actually involved. A deep pull's later generations
+	can contain hundreds or thousands of people, so the bar (and cursor)
+	sat visibly frozen for the entire time it took to fetch a
+	generation, even though the console kept printing one line per
+	generation and the download was proceeding normally underneath.  Switch these three passes to activity mode and pass progress.step
+	itself as Tree.add_parents/add_children/add_spouses'
+	progress_callback, so the bar pulses (and GTK events get pumped)
+	once per person actually fetched rather than once per generation.
+	Also print each generation's frontier size before fetching it, and
+	update the progress dialog's header text per generation, so both the
+	console and the GUI show concrete, moving feedback throughout a
+	large pull.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 5 <noreply@anthropic.com>
+
+2026-07-18  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gui/fs/fs_import/importer.py: Keep GUI responsive during
+	FamilySearch comparison-status refresh The post-import "refresh comparison status" pass closed the progress
+	dialog and cursor before running, then looped over every downloaded
+	person with no progress reporting and no GTK event pumping -- the
+	same class of freeze already fixed for the download phases. This
+	pass can be slow: compare_fs_to_gramps() may issue a synchronous
+	FamilySearch HEAD request per person when Last-Modified wasn't
+	already captured during download, and the whole loop was wrapped in
+	a single bare except that silently aborted every remaining
+	comparison on the first error, with no log output at all.  Keep the progress dialog open through this pass so progress.step()
+	pumps GTK events as before, move the per-person exception handling
+	inside the loop so one failure doesn't abort the rest, and log
+	failures instead of swallowing them. Also add debug print
+	statements: periodic done/total progress, a warning when a single
+	person's comparison takes over a second (to surface slow/stalled
+	FamilySearch requests), and a final summary of elapsed time plus
+	compared/failed counts.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 5 <noreply@anthropic.com>
+
+2026-07-18  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gen/fs/test/tree_test.py, gramps/gen/fs/tree.py,
+	gramps/gui/fs/fs_import/importer.py: Keep GUI responsive during
+	FamilySearch bulk import downloads Every download phase of a bulk import (persons, ancestors,
+	descendants, spouses, and notes/sources) fetches concurrently via a
+	ThreadPoolExecutor, but the main GTK thread just blocked on
+	as_completed() until the whole batch finished, without returning
+	control to the event loop. For a large import this could block long
+	enough that the window manager decided the app had hung and offered
+	to force-quit it, even though the download was proceeding normally.  Add an optional progress_callback to Tree.add_persons() (and
+	add_parents/add_children/add_spouses, which delegate to it), invoked
+	once per completed fetch. The GUI layer passes in a callback that
+	pumps pending GTK events, and the notes/sources fetch loop does the
+	same directly, so the interface stays responsive throughout the
+	download.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 5 <noreply@anthropic.com>
+
+2026-07-18  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gui/fs/fs_import/importer.py: Parallelize notes/sources
+	download during bulk import The notes/sources phase of a bulk import fetched notes, sources, and
+	memories for every downloaded person and couple relationship one
+	HTTP request at a time -- 3 requests per person plus 2 per couple,
+	fully serial. For a large import this was by far the slowest phase,
+	since every other phase (persons, ancestors, descendants, spouses)
+	already fetches each generation's batch concurrently via a thread
+	pool in Tree.add_persons.  Apply the same pattern here: fetch all the raw JSON payloads
+	concurrently with up to 8 worker threads, then deserialize them
+	sequentially in the main thread, since deserializing mutates shared
+	tree state that isn't safe to touch from multiple threads at once.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 5 <noreply@anthropic.com>
+
+2026-07-18  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gen/fs/compare/aggregate.py,
+	gramps/gui/fs/fs_import/importer.py: Fix bulk import hanging
+	indefinitely during notes/sources download The post-import comparison-status refresh in FSToGrampsImporter
+	called compare_fs_to_gramps() once per imported person, and that
+	function opened its own database transaction on every call. For a
+	large bulk import this meant thousands of separate commits, each one
+	firing a live GUI update signal and adding a new entry to the undo
+	history, instead of a single batched update. This produced a very
+	long freeze after "import done." was printed, and could exhaust
+	memory on large imports as the undo history grew without bound.  Add an optional txn parameter to compare_fs_to_gramps() (and thread
+	it through to FSStatusDB.commit(), which already accepted one) so
+	callers can share a single transaction across many people. The bulk
+	importer now wraps the whole refresh loop in one transaction with
+	signals suppressed, and only rebuilds the GUI once at the end.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 5 <noreply@anthropic.com>
+
+2026-07-18  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gen/fs/session.py, gramps/gui/fs/fs_import/importer.py: Fix
+	bulk import hanging indefinitely during notes/sources download The FamilySearch Session class never set a request timeout, so a
+	single stalled connection during the notes/sources download phase of
+	a bulk import could hang forever with no way to recover short of
+	killing the app. Add a default 30 second timeout (overridable via
+	GRAMPS_FS_API_TIMEOUT) applied centrally in _route_api_request, the
+	common path for all API calls. Timeouts are already handled
+	gracefully by get_jsonurl, which logs and returns None.  Also print progress periodically while downloading notes and
+	sources, since that phase can involve thousands of sequential
+	requests for a deep bulk import and previously printed nothing until
+	it finished, making it look stuck even when working normally.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 5 <noreply@anthropic.com>
+
+2026-07-18  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gui/fs/tools_window.py: Fix Open Person in FamilySearch
+	button enable/disable state The button was gated the same as Link/Edit FamilySearch ID, so it
+	stayed enabled even when no FamilySearch ID was linked yet, when it
+	should only be enabled once a FamilySearch ID attribute is present.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 5 <noreply@anthropic.com>
+
+2026-07-18  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gui/fs/actions.py, gramps/gui/fs/tools_window.py: 
+	FamilySearch: fix live-person Compare bug, add Open Person link Fix Compare/Sync/Import/Link actions fetching a stale,
+	already-committed copy of the person from the database instead of
+	the one currently open in the person editor. This caused a "person
+	does not contain the attribute" error immediately after adding a
+	FamilySearch ID attribute, even though the Compare button had
+	already become enabled by reading the live edited person. Both the
+	enable/disable check and the button click handlers now read the same
+	live, in-progress Person object.  Add an "Open Person in FamilySearch" button next to the Link/Edit
+	FamilySearch ID button that opens the linked person's page on
+	familysearch.org in a web browser. It shares the same
+	enabled/disabled state as the Link/Edit button.  Make the FamilySearch logo banner clickable, with a pointer cursor
+	and tooltip, to open familysearch.org in a web browser.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 5 <noreply@anthropic.com>
+
+2026-08-23  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/datehandler/test/datehandler_test.py: Temporarily
+	remove "ja" from date handler unit tests We should reinstate these tests after we discuss the date quality
+	and modifier translations with the Japanese translators and resolve
+	the issue.
+
+2026-08-22  Nick Hall <nick-h@gramps-project.org>
+
+	* po/ja.po: Fix Japanese plural forms
+
+2026-08-22  Tian Shixiong <tiansworld@fedoraproject.org>
+
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
+	script)) Currently translated at 97.2% (7430 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+
+2026-08-22  coolvitto <coolzdaddy55@gmail.com>
+
+	* po/ja.po: Translated using Weblate (Japanese) Currently translated at 99.7% (7627 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ja/
+
+2026-08-22  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-08-22  Paolo Zamponi <feus73@gmail.com>
+
+	* po/it.po: Translated using Weblate (Italian) Currently translated at 98.5% (7531 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+
+2026-08-22  Milan <mobrcian@hotmail.com>
+
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-08-14  Frode Jemtland <frode.jemtland@gmail.com>
+
+	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7643 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 98.8% (7555 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
+
+2026-08-14  islam allam <islamallam25@gmail.com>
+
+	* po/ar.po: Translated using Weblate (Arabic) Currently translated at 46.2% (3536 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ar/
+
+2026-08-14  reducedradius <137701630+flytothehighest@users.noreply.github.com>
+
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
+	script)) Currently translated at 97.2% (7430 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/ Translated using Weblate (Chinese (Simplified Han script)) Currently translated at 97.1% (7428 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+
+2026-08-14  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-08-14  Michal Várady <miko.vaji@gmail.com>
+
+	* po/cs.po: Translated using Weblate (Czech) Currently translated at 99.8% (7634 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/
+
+2026-08-03  தமிழ்நேரம் <tamilneram247@gmail.com>
+
+	* po/ta.po: Translated using Weblate (Tamil) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ta/
+
+2026-08-03  Stephan Paternotte <stephan@paternottes.net>
+
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+
+2026-08-03  Dubrovsky <techxplorer@atomicmail.io>
+
+	* po/ru.po: Translated using Weblate (Russian) Currently translated at 96.1% (7349 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
+
+2026-08-03  vanapro1 <law820314@gmail.com>
+
+	* po/ru.po: Translated using Weblate (Russian) Currently translated at 95.9% (7336 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
+
+2026-08-03  Juha Mäkeläinen <juha.makelainen@iki.fi>
+
+	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 94.3% (7214 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
+
+2026-08-03  Temuri Doghonadze <temuri.doghonadze@gmail.com>
+
+	* po/ka.po: Translated using Weblate (Georgian) Currently translated at 10.6% (813 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ka/
+
+2026-08-03  Stanislav <bsv999@mail.ru>
+
+	* po/ru.po: Translated using Weblate (Russian) Currently translated at 94.9% (7255 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
+
+2026-08-03  Ilsur Irnazarov <temyas@yandex.ru>
+
+	* po/ba.po: Translated using Weblate (Bashkir) Currently translated at 97.2% (7436 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ba/
+
+2026-08-03  reducedradius <137701630+flytothehighest@users.noreply.github.com>
+
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
+	script)) Currently translated at 97.1% (7428 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/ Translated using Weblate (Chinese (Simplified Han script)) Currently translated at 97.1% (7426 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+
+2026-08-03  Andi Chandler <andi@gowling.com>
+
+	* po/en_GB.po: Translated using Weblate (English (United Kingdom)) Currently translated at 94.7% (7246 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/
+
+2026-08-03  Hinse ter Schuur <haterschuur@gmail.com>
+
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+
+2026-08-03  Christoph Eder <christoph.eder@phsalzburg.at>
+
+	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/ Translated using Weblate (German (Austria)) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
+
+2026-08-03  Kaj Arne Mikkelsen <kmi@vgdata.dk>
+
+	* po/da.po: Translated using Weblate (Danish) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/da/ Translated using Weblate (Danish) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/da/ Translated using Weblate (Danish) Currently translated at 99.6% (7615 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/da/ Translated using Weblate (Danish) Currently translated at 98.9% (7565 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/da/
+
+2026-08-03  Osman Öz <osmanoz05@hotmail.com>
+
+	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
+
+2026-08-03  AR <info@rmlrnd.com>
+
+	* po/fr.po: Translated using Weblate (French) Currently translated at 99.8% (7630 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
+
+2026-08-03  Arnie97 <arnie97@gmail.com>
+
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
+	script)) Currently translated at 97.0% (7420 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+
+2026-08-03  Pierfrancesco Passerini <p.passerini@gmail.com>
+
+	* po/it.po: Translated using Weblate (Italian) Currently translated at 97.5% (7453 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/ Translated using Weblate (Italian) Currently translated at 97.4% (7452 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+
+2026-08-03  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 99.9% (7643 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-08-03  FarmYard Gaming <farmyardgaming@gmail.com>
+
+	* po/en_GB.po: Translated using Weblate (English (United Kingdom)) Currently translated at 94.7% (7242 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/
+
+2026-08-03  Tian Shixiong <tiansworld@fedoraproject.org>
+
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
+	script)) Currently translated at 97.0% (7419 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+
+2026-08-03  batuhan Okmen <batuhanokmen@gmail.com>
+
+	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 99.8% (7633 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
+
+2026-08-03  David D. <dadu042@users.noreply.hosted.weblate.org>
+
+	* po/fr.po: Translated using Weblate (French) Currently translated at 99.8% (7629 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
+
+2026-08-03  Milan <mobrcian@hotmail.com>
+
+	* po/cs.po, po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 99.8% (7630 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 99.7% (7622 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 99.2% (7585 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/
+
+2026-08-03  Osman Öz <osmanoz05@hotmail.com>
+
+	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 99.0% (7574 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
+
+2026-07-31  prculley <paulr2787@gmail.com>
+
+	* aio/build.sh: Add bsddb files back into AIO build
+
+2026-06-29  Nick Hall <nick-h@gramps-project.org>
+
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
+	script)) Currently translated at 96.9% (7411 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+
+2026-06-29  Stephan Paternotte <stephan@paternottes.net>
+
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+
+2026-06-29  Milan <mobrcian@hotmail.com>
+
+	* po/cs.po: Translated using Weblate (Czech) Currently translated at 97.2% (7432 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/
+
+2026-06-28  Tian Shixiong <tiansworld@fedoraproject.org>
+
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
+	script)) Currently translated at 96.9% (7411 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+
+2026-06-28  Osman Öz <osmanoz05@hotmail.com>
+
+	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 98.7% (7552 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
+
+2026-06-28  Hinse ter Schuur <haterschuur@gmail.com>
+
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+
+2026-06-28  Andre Magri <andremagri@gmail.com>
+
+	* po/pt_BR.po: Translated using Weblate (Portuguese (Brazil)) Currently translated at 85.7% (6553 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/pt_BR/
+
+2026-06-28  reducedradius <137701630+flytothehighest@users.noreply.github.com>
+
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
+	script)) Currently translated at 95.6% (7309 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+
+2026-06-28  Denis <drift2000@gmail.com>
+
+	* po/uk.po: Translated using Weblate (Ukrainian) Currently translated at 94.1% (7194 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/uk/
+
+2026-06-28  Libre <6n0n1m0s@proton.me>
+
+	* po/es.po: Translated using Weblate (Spanish) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/es/ Translated using Weblate (Spanish) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/es/
+
+2026-06-28  Luigi Toscano <luigi.toscano@tiscali.it>
+
+	* po/it.po: Translated using Weblate (Italian) Currently translated at 97.3% (7438 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+
+2026-06-28  Juan Saavedra <jcsaaver@gmail.com>
+
+	* po/es.po: Translated using Weblate (Spanish) Currently translated at 98.8% (7557 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/es/
+
+2026-06-28  Fabrizio Carrai <fabrizio.carrai@gmail.com>
+
+	* po/it.po: Translated using Weblate (Italian) Currently translated at 97.3% (7440 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+
+2026-06-28  Aindriú Mac Giolla Eoin <aindriu80@gmail.com>
+
+	* po/ga.po: Translated using Weblate (Irish) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ga/
+
+2026-06-28  Andi Chandler <andi@gowling.com>
+
+	* po/en_GB.po: Translated using Weblate (English (United Kingdom)) Currently translated at 94.3% (7214 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/
+
+2026-06-28  David Straub <straub@protonmail.com>
+
+	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+
+2026-06-28  Stephan Paternotte <stephan@paternottes.net>
+
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+
+2026-06-28  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/ Translated using Weblate (German) Currently translated at 98.7% (7546 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+
+2026-06-28  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 99.7% (7627 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 99.1% (7581 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 98.8% (7558 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 98.8% (7555 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-06-28  たりこも <tarikomo289@gmail.com>
+
+	* po/ja.po: Translated using Weblate (Japanese) Currently translated at 74.0% (5659 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ja/ Translated using Weblate (Japanese) Currently translated at 74.0% (5657 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ja/
+
+2026-06-28  Pedro Albuquerque <pmra@protonmail.com>
+
+	* po/pt_PT.po: Translated using Weblate (Portuguese (Portugal)) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/ Translated using Weblate (Portuguese (Portugal)) Currently translated at 99.6% (7616 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/ Translated using Weblate (Portuguese (Portugal)) Currently translated at 99.2% (7585 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/
+
+2026-06-28  Milan <mobrcian@hotmail.com>
+
+	* po/cs.po, po/sk.po: Translated using Weblate (Czech) Currently translated at 97.2% (7431 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 97.0% (7418 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 94.5% (7229 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-03-03  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/cli/user.py, gramps/gen/filters/_genericfilter.py,
+	gramps/gen/user.py, gramps/gui/filters/sidebar/_sidebarfilter.py,
+	gramps/gui/user.py, gramps/gui/views/treemodels/flatbasemodel.py: 
+	Live filter UI updates, responsiveness, and O(n²) fix * Live sidebar timing display: The filter sidebar now shows Prepare
+	time:, Apply time:, and Elapsed time: as they happen, in a
+	consistent order, rather than only after the filter completes.
+	Gdk.flush() ensures each update is committed to the display
+	immediately.  * UI responsiveness on flat views: step_progress() in gui/user.py
+	now pumps the GTK main loop at most 10×/second when no ProgressMeter
+	is active. This prevents the OS "not responding" freeze on flat
+	views (People, Citations, etc.) which previously had no event
+	pumping during filter execution.  * Pulsing status-bar progress indicator:
+	flatbasemodel._rebuild_filter() now shows and pulses
+	uistate.progress during search.apply(), giving the same visual
+	feedback that tree views already had via ProgressMonitor.  * O(n²) → O(n) result ordering fix: The post-filter result
+	reordering in _genericfilter.apply() used list.index() as a sort key
+	— O(n) per item, O(n²) overall.  Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+2026-06-25  SourceAirbender <grios019@gmail.com>
+
+	* scripts/build_hook.py: Include FS CSS in Windows build
+
+2026-05-14  Doug Blank <doug.blank@gmail.com>
+
+	* .github/workflows/gramps-ci.yml, gramps/gen/utils/pypi.py,
+	gramps/gen/utils/requirements.py,
+	gramps/gen/utils/test/pypi_e2e_test.py,
+	gramps/gen/utils/test/pypi_test.py, gramps/gui/plug/_windows.py,
+	po/POTFILES.in, po/POTFILES.skip: Add pure-Python PyPI wheel
+	installer, replacing pip invocation Replace the subprocess-based pip call in the addon installer with a
+	minimal stdlib-only wheel downloader (gramps/gen/utils/pypi.py).
+	install_package() fetches wheels from the PyPI JSON API, verifies
+	SHA-256, extracts them with zipfile, and recursively installs
+	unconditional direct dependencies.  SSL uses ssl.create_default_context() (system trust store) instead
+	of certifi, eliminating the missing cacert.pem failure seen in Mac
+	bundles.  No external binary (pip, python) is required, so the code
+	works correctly in cx_Freeze (Windows AIO) and .app (Mac) bundles
+	where sys.executable is not a usable Python interpreter.  Only pure-Python wheels (py3-none-any) are supported; compiled
+	extensions are rejected with a clear error message.  Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+2026-06-22  Nick Hall <nick-h@gramps-project.org>
+
+	* snap/snapcraft.yaml: Add snapcraft.yaml file
+
+2026-06-17  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.modules: Restore include of Gnome modulesets.
+
+2026-06-07  ztlxltl <192432144+ztlxltl@users.noreply.github.com>
+
+	* gramps/gui/displaystate.py, gramps/gui/viewmanager.py,
+	gramps/gui/views/bookmarks.py, gramps/gui/views/tags.py: Fix
+	underscores and escaping in menu labels
+
+2026-06-07  ztlxltl <192432144+ztlxltl@users.noreply.github.com>
+
+	* gramps/gui/widgets/grampletpane.py,
+	gramps/plugins/gramplet/pedigreegramplet.py: Fix memory leak caused
+	by stale link tags in GuiGramplet
+
+2026-05-29  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/plugins/docgen/latexdoc.py,
+	gramps/plugins/docgen/test/__init__.py,
+	gramps/plugins/docgen/test/latexdoc_test.py, po/POTFILES.skip: Fix
+	LaTeX report crash when a table has two or more multicolumns The str_incr generator in latexdoc.py produces the column
+	identifiers used for spanning cells in LaTeX tables. Its increment
+	loop iterated the character list's elements instead of its indices,
+	so indexing the list with a string raised TypeError: list indices
+	must be integers or slices, not str. The first value is yielded
+	before the loop runs, so the crash appeared on the second
+	multicolumn id, which a styled note containing subscript and
+	strikeout produces.  Iterate the indices instead of the elements, preserving the existing
+	carry behaviour. A headless unit test exercises str_incr.  Fixes #13418.
+
+2026-05-29  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/gen/utils/maclocale.py,
+	gramps/gen/utils/test/maclocale_test.py, po/POTFILES.skip: Fix
+	ResourceWarning from unclosed /dev/null in Mac defaults lookup The Mac localization helper passed open("/dev/null") as the stderr
+	argument to subprocess.Popen. Popen's context manager closes only
+	the pipes it creates itself, not a file object supplied by the
+	caller, so that handle leaked and raised a ResourceWarning on every
+	unittest run on macOS. Using subprocess.DEVNULL leaves no Python
+	file object to leak.  Fixes #14243.
+
+2026-06-18  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 98.6% (7544 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-06-18  Pär Ekholm <github1@m.pekholm.org>
+
+	* po/sv.po: Translated using Weblate (Swedish) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sv/
+
+2026-06-18  Julien Lepiller <roptat@lepiller.eu>
+
+	* po/fr.po: Translated using Weblate (French) Currently translated at 99.7% (7627 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
+
+2026-06-18  たりこも <tarikomo289@gmail.com>
+
+	* po/ja.po: Translated using Weblate (Japanese) Currently translated at 73.9% (5652 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ja/
+
+2026-06-18  Milan <mobrcian@hotmail.com>
+
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7644 of 7644 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-06-18  Hosted Weblate <hosted@weblate.org>
 
 	* po/ar.po, po/az.po, po/ba.po, po/bg.po, po/br.po, po/ca.po,
-	po/cs.po, po/da.po, po/de.po, po/de_AT.po, po/el.po, po/en_GB.po,
-	po/eo.po, po/es.po, po/fa.po, po/fi.po, po/fr.po, po/ga.po,
-	po/gl.po, po/he.po, po/hr.po, po/hu.po, po/id.po, po/is.po,
-	po/it.po, po/ja.po, po/ka.po, po/ko.po, po/ln.po, po/lt.po,
-	po/lv.po, po/mk.po, po/mn.po, po/nb.po, po/ne.po, po/nl.po,
-	po/nn.po, po/oc.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po,
-	po/ru.po, po/sk.po, po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po,
-	po/sv.po, po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po,
-	po/zh_HK.po, po/zh_TW.po: Update translation files Updated by "Update PO files to match POT (msgmerge)" hook in
+	po/cs.po, po/cy.po, po/da.po, po/de.po, po/de_AT.po, po/el.po,
+	po/en_GB.po, po/eo.po, po/es.po, po/fa.po, po/fi.po, po/fr.po,
+	po/ga.po, po/gl.po, po/he.po, po/hr.po, po/hu.po, po/id.po,
+	po/is.po, po/it.po, po/ja.po, po/ka.po, po/ko.po, po/ln.po,
+	po/lt.po, po/lv.po, po/mk.po, po/mn.po, po/nb.po, po/ne.po,
+	po/nl.po, po/nn.po, po/oc.po, po/pl.po, po/pt_BR.po, po/pt_PT.po,
+	po/ro.po, po/ru.po, po/sk.po, po/sl.po, po/sq.po, po/sr.po,
+	po/sr_Latn.po, po/sv.po, po/ta.po, po/tr.po, po/uk.po, po/vi.po,
+	po/zh_CN.po, po/zh_HK.po, po/zh_TW.po: Update translation files Updated by "Update PO files to match POT (msgmerge)" hook in
 	Weblate.  Translation: Gramps/Program Translate-URL:
 	https://hosted.weblate.org/projects/gramps-project/gramps/
 
-2026-04-19  Nick Hall <nick-h@gramps-project.org>
+2026-06-18  Mārtiņš B(...) <user-154873@users.noreply.hosted.weblate.org>
+
+	* po/lv.po: Translated using Weblate (Latvian) Currently translated at 0.4% (34 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/lv/
+
+2026-06-17  Nick Hall <nick-h@gramps-project.org>
 
 	* po/gramps.pot: Update gramps.pot
 
-2026-03-26  Steve Youngs <steve@youngs.cc>
+2026-06-11  Himanshu Gohel <1551217+hgohel@users.noreply.github.com>
 
-	* aio/build.sh, aio/grampsaio64.nsi.template: Fix local Windows AIO
-	build Escape appversion and appbuild before passing to sed as replacement
-	text.  Sanitize OutFile, replacing any illegal characters with '_'.
+	* .gitignore: Add Visual Studio Code config to gitignore Add Visual Studio Code's configuration folder to gitignore, allowing
+	developers to have local files which don't get added to commits.  For now the entire folder is ignored, but it would make sense to
+	provide a list of recommended extensions, launch configurations,
+	etc.  and exclude those files from gitignore.
 
-2026-03-24  Himanshu Gohel <1551217+hgohel@users.noreply.github.com>
+2026-06-01  Brian Caudill <brian.m.caudill@gmail.com>
 
-	* .github/workflows/windows-aio.yml, .gitignore, aio/README.md,
-	aio/build.sh, aio/grampsaio64.nsi.template, aio/setup.py,
-	gramps/grampsapp.py: Migrate Windows AIO to MSYS2 UCRT64 environment MSYS2 is deprecating the MINGW64 build environment, so we are moving
-	to UCRT64 for the Windows AIO build.  This commit includes changes already made in the aio-6.0.7 branch
-	with regards to pinning certain package versions, as well as
-	switching to UCRT64.  db and bsddb3 packages have been removed for now. Decision pending
-	on whether to remove this from future builds, or to find a way to
-	build older versions of db-6.0.30 pygraphviz is failing in the build and the error needs to be
-	resolved.  gspell and enchant have been rolled back in order for spell check to
-	work.  Need to investigate why it doesn't work with the latest
-	version of those packages.  Bump minimum OS required to Windows 10.  Fixes #14149.
+	* gramps/plugins/gramplet/test/__init__.py,
+	gramps/plugins/gramplet/test/topsurnamesgramplet_test.py,
+	gramps/plugins/gramplet/topsurnamesgramplet.py, po/POTFILES.skip: 
+	Fix Top Surnames gramplet opening report for the wrong surname The Top Surnames gramplet counted each person under every group name
+	from their primary and alternate names, and stored that person as
+	the representative for each surname.  The representative could
+	therefore be a person whose primary surname differed, when they
+	matched only through an alternate name.  The Same Surnames quick
+	view re-derives the surname from the representative's primary name,
+	so double-clicking such a surname opened a report for the wrong
+	surname.  This most often affected the top surname, which is the
+	most likely to appear as an alternate name on people whose primary
+	surname differs.  Prefer a representative whose primary surname matches the group
+	name.  The per-person tally is moved to a module-level
+	record_surnames() helper, leaving the gramplet's incremental
+	yielding unchanged, so the selection logic can be tested without GTK
+	or a database.  A regression test covers surname counting,
+	representative selection regardless of iteration order, and the
+	fallback for surnames that appear only as alternate names.  Fixes #11101.
 
-2026-04-18  Nick Hall <nick-h@gramps-project.org>
+2026-06-01  Petr Fedorov <petr.e.fedorov@yandex.ru>
 
-	* .github/workflows/gramps-ci.yml, docs/conf.py,
-	gramps/plugins/cite/cite.gpr.py,
-	gramps/plugins/db/bsddb/bsddb.gpr.py,
-	gramps/plugins/db/dbapi/sqlite.gpr.py,
-	gramps/plugins/docgen/docgen.gpr.py,
-	gramps/plugins/drawreport/drawplugins.gpr.py,
-	gramps/plugins/export/export.gpr.py,
-	gramps/plugins/gramplet/gramplet.gpr.py,
-	gramps/plugins/graph/graphplugins.gpr.py,
-	gramps/plugins/importer/import.gpr.py,
-	gramps/plugins/lib/libplugins.gpr.py,
-	gramps/plugins/mapservices/mapservice.gpr.py,
-	gramps/plugins/quickview/quickview.gpr.py,
-	gramps/plugins/rel/relplugins.gpr.py,
-	gramps/plugins/sidebar/sidebar.gpr.py,
-	gramps/plugins/textreport/textplugins.gpr.py,
-	gramps/plugins/thumbnailer/thumb.gpr.py,
-	gramps/plugins/tool/tools.gpr.py,
-	gramps/plugins/tool/toolsdebug.gpr.py,
-	gramps/plugins/view/geography.gpr.py,
-	gramps/plugins/view/view.gpr.py,
-	gramps/plugins/webreport/webplugins.gpr.py,
-	gramps/plugins/webstuff/webstuff.gpr.py, gramps/version.py: Update
-	version to 6.1
+	* data/tests/all_relations.csv,
+	gramps/plugins/quickview/all_relations.py,
+	gramps/plugins/quickview/test/all_relations_test.py,
+	po/POTFILES.skip: Fix QuickView->Relation stepbrother-in-law
+	relationship Fixes #14142.
 
-2026-03-14  Doug Blank <doug.blank@gmail.com>
+2026-05-28  DaveSch-gramps <dave.scheipers@gmail.com>
 
-	* gramps/gen/utils/grampslocale.py,
-	gramps/gen/utils/test/grampslocale_test.py: Replace hexlify with
-	getSortKey() bytes, drop binascii import Bug #10077 (2017) added hexlify() to work around a TypeError thrown
-	by Python's sort routine, which was implicitly converting bytearray
-	values to str when caching intermediate keys during a sort, causing
-	mixed-type comparisons to fail.  That workaround is no longer needed:   - Gramps now requires Python >= 3.10 (pyproject.toml), where the     implicit bytearray→str conversion during sorting does not occur.    - PyICU's Collator.getSortKey() returns bytes (immutable), not     bytearray (mutable), so the original trigger for the conversion     no longer applies.    - Python's bytes comparison is purely lexicographic and is correct     for ICU sort keys, which are specifically designed for
-	    byte-by-byte comparison.  Replace getCollationKey(s).getByteArray() + hexlify().decode() with
-	the direct Collator.getSortKey(s) call, which returns bytes in one
-	step. This also removes the now-unused binascii.hexlify import.  Benchmarked on a 101,518-person database:   Before: glocale.sort_key() over 101k names — 64ms   After:                                       50ms  (~22% faster) This speeds up every sorted view in Gramps (people, families,
-	places, sources, etc.) and every report that sorts names.  No tests existed for sort_key().  Add SortKeyTest and StrcollTest.  Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+	* gramps/gui/editors/displaytabs/buttontab.py,
+	gramps/gui/editors/displaytabs/citationembedlist.py,
+	gramps/gui/editors/displaytabs/eventembedlist.py,
+	gramps/gui/editors/displaytabs/gallerytab.py,
+	gramps/gui/editors/displaytabs/notetab.py,
+	gramps/gui/editors/displaytabs/personeventembedlist.py,
+	gramps/gui/editors/displaytabs/repoembedlist.py,
+	gramps/gui/editors/editfamily.py, gramps/plugins/view/relview.py: 
+	Make the Share/Select existing records labels consistent from the Discourse discussion
+	https://gramps.discourse.group/t/alignment-of-help-text-for-icon/9551
 
-2026-01-01  Doug Blank <doug.blank@gmail.com>
+2026-05-27  Eduard Ralph <eduard@ralphovi.net>
 
-	* gramps/gen/config.py, gramps/plugins/importer/importxml.py: Add
-	config to allow ignore XML media flag
+	* gramps/gui/plug/_windows.py, gramps/gui/plug/test/__init__.py,
+	gramps/gui/plug/test/windows_test.py, po/POTFILES.skip: Improve
+	"Addon Registration Failed" dialog to surface the likely cause The dialog shown when ``AddonManager.install_addon`` cannot register
+	a plugin said only "The addon will be unavailable in your current
+	configuration" -- it named neither the failing addon nor any of the
+	common causes. The Mantis 13736 reporter and the linked Discourse
+	threads describe the canonical scenario: a 5.x ``gramps.ini``
+	carried "addons-projects" entries into a 6.x install, those projects
+	index addons-XX.json catalogues whose ``gramps_target_version`` no
+	longer matches, ``valid_plugin_version`` rejects them at
+	registration time, and the user is left with no path from
+	"unavailable" to "fix the project URL". bamaustin's note on 13736
+	traces the dialog to ``gramps/gui/plug/_windows.py``.  Improve the dialog text to: - Name the ``addon_id`` that failed to register, so users with   multiple projects know which install attempt produced the error.  - Surface the most common cause (target-version mismatch via a stale   project URL) and point at the exact GUI path that fixes it (Edit
+	  -> Preferences -> Addon Manager -> Projects).  - Quote the running Gramps ``major_version`` so users can compare it   against the project URL directly without having to open About.  Pure message-text change. No behaviour change to plugin registration
+	itself; ``valid_plugin_version`` still does the underlying check.  Regression test ``gramps/gui/plug/test/windows_test.py`` (new;
+	headless ``unittest``, ``__new__``-bypass on ``AddonManager``,
+	``OkDialog`` patched out so the dialog text is captured rather than
+	rendered). Two cases: - ``test_failure_dialog_names_the_addon_and_points_at_projects``   forces ``get_plugin`` to return ``None`` and asserts the dialog's   message contains the addon id, the running ``major_version``, and   the "Projects" panel pointer.  - ``test_failure_dialog_not_shown_on_success`` sanity-checks the   happy path: when ``get_plugin`` returns pdata, the dialog is not   raised and ``load_plugin`` + the ``plugins-reloaded`` emit fire.  Fixes #13736.  Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>
 
-2026-04-17  SourceAirbender <grios019@gmail.com>
+2026-05-26  Eduard Ralph <eduard@ralphovi.net>
 
-	* .github/workflows/gramps-ci.yml, .gitignore, data/gramps.css,
-	gramps/gen/config.py, gramps/gen/db/base.py,
-	gramps/gen/db/generic.py, gramps/gen/db/upgrade.py,
-	gramps/gen/fs/__init__.py, gramps/gen/fs/actions.py,
-	gramps/gen/fs/compare/__init__.py,
-	gramps/gen/fs/compare/aggregate.py,
-	gramps/gen/fs/compare/comparators.py,
-	gramps/gen/fs/compare/formatters.py, gramps/gen/fs/constants.py,
-	gramps/gen/fs/db_familysearch.py,
+	* gramps/gui/widgets/selectionwidget.py,
+	gramps/gui/widgets/test/selectionwidget_test.py, po/POTFILES.skip: 
+	Guard set_coords against None selection on click-after-resize SelectionWidget._button_release_event's "update current selection"
+	else branch (the path that fires when self.current is set and
+	self.grabber == INSIDE) called
+	self.current.set_coords(*self.selection) unconditionally.  Under the
+	Mantis 13059 / 12659 reproducer -- resize a box edge, release, then
+	single-click (no drag) inside the same box -- that branch lands with
+	self.selection is None, because the prior resize-release left
+	self.grabber == INSIDE and the no-motion click never rebuilt
+	selection.  *None is not iterable, raising TypeError before
+	set_coords is even invoked.  Guard both set_coords(*self.selection) call sites in the release
+	handler with "if self.selection is not None:". The safe no-op for a
+	no-motion click is to leave the region's stored coordinates alone --
+	the user clicked without moving, the region shouldn't move.
+	Conservative guard mirroring the defensive-guard pattern from the
+	13966 / 13326 teardown-family fixes; no restructuring of the widget.  Both call sites guarded for defense in depth: - line 770, grabber-edge branch -- _modify_selection always
+	  populates self.selection today, so this is a future-regression
+	  guard, not a known bug path.  - line 779, INSIDE-click branch -- the actual 13059 path.  Regression test ships with the fix at
+	gramps/gui/widgets/test/selectionwidget_test.py (headless unittest,
+	__new__-bypass to avoid needing a live GTK display). Three cases: - test_click_after_resize_with_none_selection_does_not_raise -- the   13059 path (grabber == INSIDE, selection == None). Pre-fix raises   TypeError; post-fix does not, and the region's coords are
+	  unchanged.  - test_grabber_edge_release_with_none_selection_does_not_raise --   same shape on the grabber-edge branch.  - test_click_with_valid_selection_still_updates_region -- sanity
+	  that a valid selection still updates the region's coords and emits   region-modified.  This also addresses 12659 (the 2022 "could not reproduce" duplicate
+	of this issue) -- the reproducer on 13059 fires through 12659's path
+	too.  Fixes #13059, #12659.
+
+2026-05-24  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/gen/utils/requirements.py,
+	gramps/gen/utils/test/requirements_test.py, po/POTFILES.skip: 
+	Requirements.info: omit empty (label, table) pairs.  The previous contract appended a label whenever an addon dict
+	carried a "rm" / "rg" / "re" key, regardless of whether the value
+	was a non- empty list. Present-but-empty keys - e.g. an addon
+	listing with `"re": []` because its .gpr.py declares
+	`requires_exe=[]` - produced a labelled section paired with an empty
+	table. Two consequences for existing consumers: * gramps core's AddonManager Requirements dialog   (`EnhancedAddonStatus.__on_requires_clicked` in   `gramps/gui/plug/_windows.py`) renders the empty table as a   labelled section with no rows. The PostgreSQL Enhanced listing   surfaces this today: clicking Requires shows an empty   "Executables" section after the real Python-modules section.  * The Plugin Manager Enhanced addon's row-click handler indexes   `req_lst[0]` on the table and crashed with IndexError on the   same shape (Mantis 13979, fixed addon-side in addons-source   PR 916). This change tightens the producer side so any other   future consumer is shielded too.  Build the table first and append the label + table only if the table
+	has entries. Behaviour for non-empty keys is preserved exactly (same
+	labels, same table contents, same rm / rg / re order).  Verified on `maintenance/gramps61`: | input addon dict                                | before
+	| after                              |
+
+	|-------------------------------------------------|-----------------------------------------------------------------------|------------------------------------|| `{}`                                            | `[]`
+	| `[]`                               | | `{"re": []}`
+	| `["Executables", []]`
+	| `[]`                               | | `{"rm": []}`
+	| `["Python modules", []]`
+	| `[]`                               | | `{"rg": []}`
+	| `["GObject introspection modules", []]`
+	| `[]`                               | | `{"rm": ["psycopg"], "re":
+	[]}`                 | `["Python modules", [["psycopg", "X"]],
+	"Executables", []]`           | `["Python modules", [["psycopg",
+	"X"]]]` | | `{"rm": [], "rg": [], "re": []}`                | three
+	empty pairs                                                     |
+	`[]`                               | Known consumers of `Requirements.info` in gramps core: one call site
+	in `gramps/gui/plug/_windows.py:349` (the Requirements InfoDialog).
+	The addons-source Plugin Manager Enhanced addon
+	(`PluginManager/PluginManager.py`) has the only out-of-tree consumer
+	in the addons-source repo. Both are improved by the change; the
+	addon already guards empty tables defensively, so this is belt-and-
+	suspenders for it.  Ships `gramps/gen/utils/test/requirements_test.py` (8 cases): the
+	six pre-change shapes (none now emit empty pairs) plus two positive
+	cases asserting populated-section behaviour is unchanged (label,
+	table contents, rm/rg/re ordering).  Context for Issue #13979 - that crash is resolved by addons-source
+	PR 916; this change is the complementary core-side hardening, not a
+	substitute. No tracker action is taken on 13979 here.
+
+2026-05-24  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/gui/editors/displaytabs/test/gallerytab_test.py: Skip
+	GalleryTab tests when no Gtk display is available.  gramps-ci.yml runs the unit-test suite without Xvfb and exports
+	GDK_BACKEND=-. Constructing a Gtk.IconView against a NULL screen
+	"succeeds" but segfaults when those orphan widgets are garbage
+	collected at process exit, taking the whole suite down with exit
+	code 139.  Detect the no-display case via DISPLAY / GDK_BACKEND /
+	Gtk.init_check at module import and skip the entire TestCase class
+	cleanly. The two regression tests still run under xvfb-run or on a
+	real desktop.  Issue #13326.
+
+2026-05-24  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/gui/editors/displaytabs/test/gallerytab_test.py: Add
+	regression guard so GalleryTab clean_up stays warning-free.  The disconnect restored for bug 13326 is gated by
+	GObject.signal_handler_is_connected so that the case commit
+	37395da262 was working around (iconlist already disposed by GTK
+	before clean_up) stays silent. Add a second test case that destroys
+	the iconlist widget before clean_up and asserts no Python warning of
+	the shape "instance '...' has no handler with id '...'" is recorded.
+	Pre-fix the unguarded disconnect emits exactly that warning;
+	post-fix the test passes.  Issue #13326.
+
+2026-05-24  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/gui/editors/displaytabs/gallerytab.py,
+	gramps/gui/editors/displaytabs/test/__init__.py,
+	gramps/gui/editors/displaytabs/test/gallerytab_test.py,
+	po/POTFILES.skip: Fix AttributeError on iconlist when GalleryTab
+	parent dialog closes.  GalleryTab.clean_up() did not disconnect the iconlist
+	'selection-changed' signal handler before super().clean_up() deleted
+	the iconlist attribute via track_ref_for_deletion. A late
+	selection-changed emission - which fires when the parent dialog
+	tears down on Cancel, e.g. when the Forms addon hosts a GalleryTab -
+	then re-entered _selection_changed -> get_selected() ->
+	self.iconlist.get_selected_items() and crashed with AttributeError:
+	'GalleryTab' object has no attribute 'iconlist'.  The original 2012 disconnect (r20849) was removed in 2023 to silence
+	a GTK warning when the iconlist had already been disposed. Restore
+	the disconnect, guarded by GObject.signal_handler_is_connected so it
+	stays silent in the dispose-first case.  Fixes #13326.
+
+2026-06-15  Doug Blank <doug.blank@gmail.com>
+
+	* gramps/gen/fs/test/tree_test.py: Silence noisy traceback in
+	FamilySearch tree test The test_add_persons_one_fetch_raises_other_still_imported test
+	intentionally raises a RuntimeError to simulate a network failure,
+	but did not patch LOG, causing the LOG.warning(..., exc_info=True)
+	call in add_persons to emit a full traceback to stderr on every test
+	run. Patch LOG in that test, matching the pattern already used by
+	the companion test_add_persons_fetch_exception_is_logged_not_raised
+	test.  Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+2026-05-23  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/gen/filters/rules/test/person_rules_test.py: Add regression
+	test for RelationshipPathBetween filter rule Commit 48a6cbfb0541d429a3e3fba778c611f6e1843a6a fixed a regression
+	in the RelationshipPathBetween filter rule's init_list method that
+	landed in 1280aa45a5f47581badfb655021ce1d430f8a581, where `for
+	person_handle in firstList and secondList` evaluates as `secondList`
+	via Python's short-circuit `and`, causing `firstMap[person_handle]`
+	to raise KeyError on handles reachable from the second root but not
+	the first. The fix shipped without a direct test for the rule (only
+	the RelationshipPathBetweenBookmarks wrapper was tested), so the
+	regression could reappear unnoticed.  This test exercises the rule with two example.gramps persons that
+	share no ancestor (I0044, the home person, and I2127, a member of
+	the unrelated Δεληπέτρου family). On the pre-fix code it failed with
+	KeyError at _relationshippathbetween.py:130, matching the line and
+	exception class in Mantis 13830's traceback. With the fix in place
+	it passes, returning the two endpoints unchanged.  Issue #13830.  Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+
+2026-05-23  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/plugins/importer/test/importgedcom_ambiguous_date_test.py,
+	gramps/plugins/lib/libgedcom.py, po/POTFILES.skip: GEDCOM import:
+	warn on bare-numeric DATE values GEDCOM 5.5.1 requires three-letter month abbreviations (``7 NOV
+	1959``), but tools such as ancestry.com export bare numeric
+	``D/M/YYYY`` dates the spec does not define.
+	``libgedcom.GedcomDateParser`` hardcodes ``dhformat = "%m/%d/%y"``
+	(en_US locale, ``libgedcom.py:925``), so a bare numeric date is
+	unconditionally read MM/DD/YYYY.  When the source actually uses
+	DD/MM/YYYY and the day is ≤ 12 (both readings syntactically valid),
+	the importer silently swaps day and month and emits no warning —
+	``GEDCOM import report: No errors detected`` despite a wrong date
+	being written to the database.  Day > 12 already falls back to
+	text-only storage (visually flagged in the Events view as bold), so
+	only the day ≤ 12 case is silently dangerous.  This was reported in 2016 and re-confirmed in 2022/2023 across
+	multiple discourse threads; multiple developers have discussed
+	narrower-scope fixes (warn-only, source-detect ancestry, switch in
+	import dialog) but none have shipped.  No code-side parse-direction
+	change is possible without breaking US users who currently rely on
+	the existing MM/DD/YYYY default for legitimately-shaped numeric
+	input.  The smallest defensible change: emit an advisory warning per
+	ambiguous bare-numeric date during import, no parse-direction
+	change.  US users see no behaviour change; European users importing
+	ancestry.com-shaped GEDCOMs get a per-event audit list with both the
+	original GEDCOM text and the chosen interpretation.  - ``BARE_NUMERIC_DATE`` regex added next to the other module-level   GEDCOM patterns (``libgedcom.py:894``).  - ``GedcomParser.__add_warn`` (new) wraps ``__add_msg`` with the   ``number_of_errors -= 1`` pattern already used at the end of   ``__finish_import`` for the unknown-references note; the summary   line stays "No errors detected" when the warnings are advisory.  - ``GedcomParser.__warn_if_ambiguous_numeric_date`` (new) is called   from ``__event_date`` after the date object is attached to the   event.  Suppresses on ``MOD_TEXTONLY`` (already visually flagged)   and on non-numeric inputs.  ``line`` is intentionally not passed   through ``__add_warn`` because ``__add_msg`` truncates the problem   string to 66 columns when a line is supplied, which drops the   actionable half of the message — and the warning text already   contains the original GEDCOM date string verbatim.  Scope is limited to ``__event_date`` (the only date sink the bug
+	report cites).  ``__name_date`` / ``__lds_ord_date`` /
+	``__addr_date`` / ``__citation_date`` / ``__media_date`` could call
+	the same helper in a follow-up if a maintainer asks; left out here
+	to keep the diff focused on the cited symptom.  - ``gramps/plugins/lib/libgedcom.py:925`` — the hardcoded   ``dhformat = "%m/%d/%y"`` that drives the silent swap.  - ``gramps/plugins/lib/libgedcom.py:3797`` — existing precedent for   the ``__add_msg`` then ``number_of_errors -= 1`` pattern used to   attach an advisory note without polluting the error count.  - ``gramps/gen/lib/date.py:590`` — ``Date.MOD_TEXTONLY = 6`` (the   fallback used when the parser can't make sense of the input,   recognised in the helper to suppress the warning).  ``gramps/plugins/importer/test/importgedcom_ambiguous_date_test.py``
+	imports an Ancestry-shaped GEDCOM fixture via ``import_as_dict``
+	with a ``CapturingUser`` that intercepts the summary dialog text.
+	Four assertions: 1. ``7/11/1959`` (day ≤ 12, the silent-swap case) triggers an    "Ambiguous numeric date" warning naming the original text and    the chosen interpretation.  2. ``5 MAR 1899`` (spec-compliant) stays silent.  3. ``25/3/1934`` (day > 12, text-only fallback) stays silent.  4. The summary still reads "GEDCOM import report: No errors
+	detected".  Pre-fix, test 1 fails ("'Ambiguous numeric date' not found in
+	'GEDCOM import report: No errors detected'"); the other three pass.
+	Post-fix all four pass.  Fixes #9298.  Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>
+
+2026-05-23  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/plugins/graph/gvhourglass.py,
+	gramps/plugins/test/reports_test.py: Hourglass Graph: link spouse in
+	descendant traversal (Mantis bug 9628) `HourGlassReport.traverse_down` linked focal → family → children but
+	never added the family's *other* parent. `traverse_up` already
+	handles both — its father-section and mother-section each add the
+	parent node and an edge to the family. Descending was asymmetric and
+	every descendant generation's spouse was invisible: e.g. starting
+	from example.gramps' Lewis Anderson Garner (I00044) with
+	maxdescend=2 the graph rendered Lewis → F00017 → eight children but
+	never named Luella Jacques Martel (I00045) nor any of the children's
+	spouses.  In `traverse_down`, after adding the family node and the
+	focal-to-family edge, derive the other parent's handle (the one that
+	isn't `person`), add that person to the graph, and link them to the
+	family with the same arrow style as the focal-to-family edge.
+	Mirrors the per-parent shape of `traverse_up`, with `__used_people`
+	keeping the spouse from being re-added if cousin-marriage paths
+	bring them through later.  - `gramps/plugins/graph/gvhourglass.py:163` — `traverse_down` body
+	  (now includes the spouse-add block at lines 178-202) - `gramps/plugins/graph/gvhourglass.py:193` — `traverse_up`
+	  (existing symmetric pattern this matches) `gramps/plugins/test/reports_test.py` adds
+	`test_hourglass_graph_includes_spouse_mantis_9628`. It invokes the
+	report on data.gramps with center=I0027 (Smith Ingeman),
+	maxdescend=1, maxascend=0; the expected spouse is Ericsdotter Marta
+	(I0025).    * Pre-fix: fails with `'Ericsdotter' not found in '<DOT>'` — DOT     contains only Ingeman, the family node, and the child Martin.    * Post-fix: `ok` — Marta appears in the DOT as a person node
+	    linked to F0001.  Fixes #9628.  Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>
+
+2026-05-21  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/gen/datehandler/_datedisplay.py,
+	gramps/gen/datehandler/test/datedisplay_test.py: Fall back to
+	uninflected date format on an unknown inflection format_long_month_year, format_short_month_year, format_long_month
+	and format_short_month looked up the inflect key in
+	FORMATS_long_month_year / FORMATS_short_month_year with a bare
+	subscript, so an inflection key absent from those dicts raised
+	KeyError instead of degrading.  display_formatted() builds the inflect key from a translatable
+	string (e.g. _("", "about-date")), which the surrounding comments
+	ask translators to leave untranslated or render as the English
+	keyword the dicts are keyed by ("about"). The Finnish fi.po instead
+	translates "about-date" to the native word "noin", so an "about
+	<Month> <Year>" date shown under a long-month format crashed with
+	KeyError: 'noin' -- in the Detailed Ancestral Report, the
+	Relationship View and elsewhere.  Look the key up with dict.get(), falling back to the uninflected
+	("") format, so a mistranslated locale degrades to a readable date
+	instead of aborting.  Fixes #14100.  Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+
+2026-05-19  Eduard Ralph <eduard@ralphovi.net>
+
+	* data/man/en.rst: docs(man): document LANGUAGE environment variable Bug 10443: the man page's ENVIRONMENT VARIABLES section listed LANG
+	only. Users who set LANG=xx_YY.UTF-8 to switch languages and hit a
+	system where that alone isn't enough -- a common gettext fallback
+	chain hazard -- had no way to learn from the documentation that they
+	also needed to set LANGUAGE. The reporter found this empirically
+	after digging through "gramps -v" output, and asked that the docs be
+	updated to save other users the same time.  LANGUAGE has been a fully-supported, documented-in-source override
+	for years (gramps/gen/utils/grampslocale.py:250-256: colon-separated
+	list of language codes, splits on ":", overrides LANG and
+	LC_MESSAGES, logs "Overiding locale setting ... with LANGUAGE
+	setting ..."). The CLI help text in gramps/cli/argparser.py:140
+	already shows the LANGUAGE=de_DE; LANG=de_DE.UTF-8 idiom in its
+	report-generation example. Only the man page (and the wiki, which is
+	outside the source tree) hadn't caught up.  Add a LANGUAGE entry to data/man/en.rst's ENVIRONMENT VARIABLES
+	section, immediately after LANG, explaining the semantics and the
+	canonical "set both" idiom the reporter found works:     LANG=ru_RU.UTF-8 LANGUAGE=ru gramps Backtick style matches the surrounding file (double for variable
+	names referenced inline, single for value literals).  Out of scope:   * Regenerating data/man/gramps.1.in via sphinx-build. That file     is generated from en.rst and is regenerated in batches by     maintainers (last regen: 8159aca9b4 "Generate gramps.1.in     file", Feb 2022; en.rst has seen 4 unpaired commits since).      Following the existing rst-only edit pattern -- maintainer can     re-run sphinx-build -b man at the next batch regeneration.    * Localized man pages under data/man/{cs,fr,nl,pl,pt_BR,sv}/.      Those follow the Weblate translation workflow once en.rst is     updated; translator-side change, not a same-PR concern.    * The wiki pages the reporter and Sam888 actually flagged     (Howto:Change_the_language_of_reports#How_to_install_a_locale     and the two Gramps_5.0_Wiki_Manual_-_Command_Line /     _-_Settings pages). Those are wiki edits outside the source     tree; a separate community task.  Test: this is documentation, no functional code path changes. No
+	unit test applies. Manual verification: the prose accurately
+	describes the behavior implemented at grampslocale.py:250-256 (the
+	authoritative source) and gives the exact form the reporter
+	empirically found works.  Fixes #10443.
+
+2026-05-19  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/gen/plug/docgen/graphdoc.py,
+	gramps/gen/plug/docgen/test/__init__.py,
+	gramps/gen/plug/docgen/test/graphdoc_test.py, po/POTFILES.skip: 
+	Graph reports: raise ReportError when dot/gs write fails Bug 6556: graphviz-based reports (Family Lines Graph, Relationship
+	Graph, etc.) failed silently when the chosen output file could not
+	be written -- typically because another process (a viewer on
+	Windows) held a lock on it, but also under permission denied / disk
+	full / missing binary. The user saw no error and no file, and had no
+	way to learn the report had not been generated. Text and graphical
+	reports already surfaced this via "Could not create %s" ReportError;
+	only the graphviz path was silent.  Root cause: graphdoc.py shells out to ``dot`` (and to ``gs`` for the
+	multi-page PDF path) via ``os.system(...)`` at 11 sites, and
+	discards the return code. Any failure to write the output is
+	invisible to the rest of the function.  Fix: route every ``os.system`` invocation through a new
+	``_check_rc(rc, target)`` helper that raises ``ReportError(_("Could
+	not create %s") % target)`` on a non-zero return code. The wording
+	matches the message uniformly used by the other docgen backends
+	(rtfdoc, svgdrawdoc, odfdoc), so downstream error-handling code
+	paths and the user-visible dialog see the same text regardless of
+	which output format the user picked.  The 11 call sites span 8 graphdoc classes:   GVPsDoc, GVSvgDoc, GVSvgzDoc, GVPngDoc, GVJpegDoc, GVGifDoc,   GVPdfGvDoc, and GVPdfGsDoc (which has 4 sequential os.system   calls: dot -> tmp ps, then gs in single-page / per-piece /   merge variants).  Each call site keeps its existing cleanup-then-check ordering so
+	temp files generated before the failure point still get removed
+	where they were already being removed. The minimum-delta approach
+	preserves the file's existing cleanup semantics (which were already
+	inconsistent in the single-page PdfGs path -- that pre-existing
+	weakness is intentionally out of scope here).  Out of scope: the reporter's additional ask in note ~0038649 for a
+	pre-flight "try open output for write" check before report
+	generation begins. That is a feature ask; this commit fixes the
+	bug-class part of the report (silent failure -> visible error).  Test: new gramps/gen/plug/docgen/test/graphdoc_test.py with two
+	groups:   - CheckRcTest: four cases asserting the helper is silent on rc=0,     raises ReportError on non-zero, names the target in the     message, and treats *any* non-zero (incl. POSIX-encoded     high-byte exits like 256 and signal-encoded negatives) as     failure.    - GraphdocStaticAssertions: two source-grep guards -- no bare     ``os.system(...)`` callsites remain in graphdoc.py, and every     ``rc = os.system(...)`` assignment is paired with a     ``_check_rc(rc, ...)`` call. This catches a regression that     would silently reopen bug 6556 if a future edit added an     os.system call without the check.  Verified end-to-end:   _check_rc(0,   "/tmp/ok.svg")     -> silent       (success path)   _check_rc(256, "/tmp/locked.svg") -> ReportError: "Could not
+	  create /tmp/locked.svg" Fixes #6556.
+
+2026-05-19  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/plugins/graph/gvfamilylines.py,
+	gramps/plugins/graph/gvrelgraph.py,
+	gramps/plugins/graph/test/__init__.py,
+	gramps/plugins/graph/test/year_only_date_test.py, po/POTFILES.skip: 
+	Graph plugins: preserve date modifier in years-only mode Bug 4658: when the "Limit dates to years only" report option is on,
+	Family Lines Graph rendered "before 1923" as "1923" -- the modifier
+	(before / after / about), quality (estimated / calculated), and the
+	second stop of compound dates (range / span) were all dropped. The
+	sister Relationship Graph plugin shares the same defect via the
+	ported code path that gburto01 flagged in the bug's 2011-02-27 note.  Root cause: ``Date(date.get_year())`` invokes the Date constructor's
+	int-source branch, which builds a fresh date with MOD_NONE /
+	QUAL_NONE and a single year, discarding the modifier and any
+	compound second stop.  Fix: introduce a private ``_year_only_date`` helper in each plugin
+	that copies the original date (preserving modifier and quality) and
+	truncates month and day to 0, with the second stop of compound dates
+	truncated to year-only on its own. Replace all four ``Date(year)``
+	call sites (gvfamilylines.py x 3, gvrelgraph.py x 1). The helper is
+	intentionally duplicated rather than placed in a new shared module,
+	to keep the change localised; a ``test_helpers_agree`` test guards
+	against the copies drifting.  Regression test added at
+	gramps/plugins/graph/test/year_only_date_test.py covers modifier
+	preservation (BEFORE/AFTER/ABOUT), quality preservation
+	(ESTIMATED/CALCULATED), month/day truncation, compound range/span
+	second-stop preservation, and parity between the two plugin helpers.  End-to-end check with the GrampsLocale displayer confirms the
+	reporter's case:   before 1923            -> before 1923            (was: 1923)   between 1923 and 1925  -> between 1923 and 1925  (was: 1923)   estimated about 1923   -> estimated about 1923   (was: 1923) Fixes #4658.
+
+2026-05-19  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/gui/views/treemodels/test/treebasemodel_test.py,
+	gramps/gui/views/treemodels/treebasemodel.py, po/POTFILES.skip: Fix
+	list view crash on column-sort click after closing the database When the database is closed the framework switches the active model
+	to an empty state by clearing self.tree, so the root entry
+	self.tree[None] no longer exists.  TreeBaseModel.reverse_order
+	looked it up unconditionally, so the next column-header click in the
+	People view (or any other list view backed by a TreeBaseModel)
+	raised:     KeyError: None at treebasemodel.py:reverse_order, surfacing to the user as an
+	unhandled exception.  Short-circuit reverse_order when the tree has no root entry: there
+	is nothing to reverse in a cleared state, and the user's expected
+	behaviour is "no action because no tree is open".  Adds a regression
+	test under gramps/gui/views/treemodels/test/.  Fixes #13214.
+
+2026-05-19  Eduard Ralph <eduard@ralphovi.net>
+
+	* gramps/gui/widgets/fanchart.py,
+	gramps/gui/widgets/fanchart2way.py,
+	gramps/gui/widgets/test/__init__.py,
+	gramps/gui/widgets/test/fanchart_test.py, po/POTFILES.skip: Fix fan
+	chart crash at startup with age-gradient background FanChartWidget.set_generations and
+	FanChart2WayWidget.set_generations initialised self.data[i] with a
+	shared (None,) * 4 tuple per slot, leaving the userdata element as
+	None. When _fill_data_structures short-circuited (no rootpersonh on
+	startup, after rename, etc.) the slots were never replaced, so
+	prepare_background_box's BACKGROUND_GRAD_AGE and
+	BACKGROUND_GRAD_PERIOD paths called userdata.append(...) on None and
+	crashed with:     AttributeError: 'NoneType' object has no attribute 'append' Give each slot its own empty userdata list at init time so the
+	invariant holds regardless of _fill_data_structures' execution.
+	Adds a regression test under gramps/gui/widgets/test/ that drives
+	set_generations via __new__-bypass so it runs headless.  Fixes #13395.
+
+2026-06-15  Ștefan Zaharia <sz475@users.noreply.hosted.weblate.org>
+
+	* po/ro.po: Translated using Weblate (Romanian) Currently translated at 4.1% (311 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ro/
+
+2026-06-15  Milan <mobrcian@hotmail.com>
+
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-06-15  Koo Tin Lok <matthewkostin@gmail.com>
+
+	* po/zh_HK.po: Translated using Weblate (Chinese (Traditional Han
+	script, Hong Kong)) Currently translated at 61.5% (4651 of 7555 strings) Translation: Gramps/Program Translate-URL:
+
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hant_HK/
+
+2026-06-15  Vadim Barsukov <vadbars@gmail.com>
+
+	* po/ru.po: Translated using Weblate (Russian) Currently translated at 96.0% (7260 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
+
+2026-06-15  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-06-15  Kaj Arne Mikkelsen <kmi@vgdata.dk>
+
+	* po/da.po: Translated using Weblate (Danish) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/da/
+
+2026-06-15  Tian Shixiong <tiansworld@fedoraproject.org>
+
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
+	script)) Currently translated at 96.8% (7319 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+
+2026-06-15  Ilsur Irnazarov <temyas@yandex.ru>
+
+	* po/ba.po: Translated using Weblate (Bashkir) Currently translated at 98.2% (7426 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ba/
+
+2026-06-15  Paolo Zamponi <feus73@gmail.com>
+
+	* po/it.po: Translated using Weblate (Italian) Currently translated at 98.6% (7455 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/ Translated using Weblate (Italian) Currently translated at 98.6% (7454 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/ Translated using Weblate (Italian) Currently translated at 98.6% (7454 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/ Translated using Weblate (Italian) Currently translated at 95.0% (7183 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/
+
+2026-06-15  Артур <atter192837@gmail.com>
+
+	* po/ru.po: Translated using Weblate (Russian) Currently translated at 96.0% (7260 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
+
+2026-05-08  SourceAirbender <grios019@gmail.com>
+
+	* data/familysearch.css, data/gramps.css, gramps/gen/config.py,
+	gramps/gen/fs/actions.py, gramps/gen/fs/compare/comparators.py,
+	gramps/gen/fs/compare/test/__init__.py,
+	gramps/gen/fs/compare/test/comparators_test.py,
+	gramps/gen/fs/compare/test/datmod_attr_test.py,
+	gramps/gen/fs/constants.py, gramps/gen/fs/db_familysearch.py,
 	gramps/gen/fs/fs_import/__init__.py,
 	gramps/gen/fs/fs_import/deserializer.py,
 	gramps/gen/fs/fs_import/events.py,
@@ -263,510 +1275,772 @@
 	gramps/gen/fs/fs_import/names.py, gramps/gen/fs/fs_import/notes.py,
 	gramps/gen/fs/fs_import/places.py,
 	gramps/gen/fs/fs_import/sources.py,
-	gramps/gen/fs/person/__init__.py,
-	gramps/gen/fs/person/mixins/__init__.py,
+	gramps/gen/fs/fs_import/test/__init__.py,
+	gramps/gen/fs/fs_import/test/importer_test.py,
 	gramps/gen/fs/person/mixins/cache.py,
-	gramps/gen/fs/person/mixins/helpers.py, gramps/gen/fs/session.py,
-	gramps/gen/fs/sync_directions.py, gramps/gen/fs/tags.py,
-	gramps/gen/fs/tree.py, gramps/gen/fs/utils/__init__.py,
-	gramps/gen/fs/utils/attributes.py, gramps/gen/fs/utils/dates.py,
-	gramps/gen/fs/utils/events.py, gramps/gen/fs/utils/index.py,
-	gramps/gen/fs/utils/linking.py, gramps/gen/lib/__init__.py,
-	gramps/gen/lib/fs/__init__.py,
-	gramps/gen/lib/fs/familysearchsync.py,
-	gramps/gen/lib/fs/familysearchsyncbase.py,
-	gramps/gen/lib/person.py,
-	gramps/gen/lib/test/person_familysearchsync_test.py,
+	gramps/gen/fs/person/mixins/helpers.py,
+	gramps/gen/fs/person/mixins/test/__init__.py,
+	gramps/gen/fs/person/mixins/test/cache_test.py,
+	gramps/gen/fs/session.py, gramps/gen/fs/sync_directions.py,
+	gramps/gen/fs/tags.py, gramps/gen/fs/test/__init__.py,
+	gramps/gen/fs/test/tags_test.py, gramps/gen/fs/test/tree_test.py,
+	gramps/gen/fs/tree.py, gramps/gen/lib/family.py,
+	gramps/gen/lib/test/family_referenced_handles_test.py,
 	gramps/gui/configure.py, gramps/gui/fs/__init__.py,
-	gramps/gui/fs/actions.py, gramps/gui/fs/compare/__init__.py,
-	gramps/gui/fs/compare/options.py, gramps/gui/fs/compare/window.py,
-	gramps/gui/fs/constants.py, gramps/gui/fs/db_familysearch.py,
+	gramps/gui/fs/actions.py, gramps/gui/fs/compare/window.py,
 	gramps/gui/fs/fs_import/__init__.py,
 	gramps/gui/fs/fs_import/importer.py,
 	gramps/gui/fs/fs_import/options.py,
-	gramps/gui/fs/fs_import/tool.py, gramps/gui/fs/fs_source_image.py,
-	gramps/gui/fs/manager.py, gramps/gui/fs/person/__init__.py,
-	gramps/gui/fs/person/fsg_sync.py,
-	gramps/gui/fs/person/mixins/__init__.py,
+	gramps/gui/fs/fs_import/tool.py, gramps/gui/fs/manager.py,
 	gramps/gui/fs/person/mixins/compare_gtk.py,
 	gramps/gui/fs/person/mixins/helpers.py,
 	gramps/gui/fs/person/mixins/source_import.py,
 	gramps/gui/fs/person/mixins/sources_dialog.py,
-	gramps/gui/fs/session.py, gramps/gui/fs/sync_directions.py,
-	gramps/gui/fs/tags.py, gramps/gui/fs/tools_window.py,
-	gramps/gui/fs/ui.py, gramps/gui/fs/utils/__init__.py,
-	gramps/gui/fs/utils/index.py, gramps/gui/grampsgui.py,
-	gramps/gui/viewmanager.py, gramps/gui/widgets/statusbar.py,
-	gramps/plugins/db/dbapi/dbapi.py,
-	gramps/plugins/db/dbapi/test/familysearch_status_test.py,
-	gramps/plugins/db/dbapi/test/upgrade_test.py, mypy.ini,
-	po/POTFILES.in, po/POTFILES.skip, pyproject.toml,
-	test/test_familysearch_sync_schema.py: Implement FamilySearch-Gramps
-	Integration
+	gramps/gui/fs/person/mixins/test/__init__.py,
+	gramps/gui/fs/sync_directions.py,
+	gramps/gui/fs/test/compare_gtk_test.py,
+	gramps/gui/fs/test/manager_test.py, gramps/gui/fs/tools_window.py,
+	gramps/gui/fs/ui.py, gramps/gui/glade.py, gramps/gui/grampsgui.py,
+	gramps/gui/test/viewmanager_fs_test.py, gramps/gui/viewmanager.py,
+	gramps/gui/views/pageview.py, gramps/gui/widgets/statusbar.py,
+	po/POTFILES.in, po/POTFILES.skip: FamilySearch integration:
+	Improvements and bug fixes from feedback * Bulk import.  * Merge window.  * Sign-in from status bar icon.  * Enable/disable integration.  * Progress fedback.  * CSS segregation.  * Bug fixes.  Co-Authored-By: Doug Blank <doug.blank@gmail.com> Co-Authored-By:
+	Claude Sonnet 4.6 <noreply@anthropic.com>
 
-2025-05-19  Steve Youngs <steve@youngs.cc>
+2026-04-27  Ian Davis <18375+iand@users.noreply.github.com>
 
-	* gramps/gui/editors/displaytabs/notetab.py,
-	gramps/gui/editors/editnote.py, gramps/plugins/gramplet/todo.py: 
-	Pass an object rather than a handle to the note editor callback This gives consistency with other Edit classes.  Adjust other code
-	accordingly.  Fixes #13702, #13884.
+	* gramps/plugins/lib/maps/constants.py,
+	gramps/plugins/lib/maps/geography.py,
+	gramps/plugins/lib/maps/osmgps.py: Re-enable personal map tile
+	provider in geography view Restores support for a user-supplied tile URL in the embedded
+	geography view. The custom URL is entered in Geography preferences
+	using #Z/#X/#Y as coordinate placeholders. Example providers include
+	MapTiler NLS historical Ordnance Survey maps (uk-osgb1888,
+	uk-osgb63k1885, etc.).  OsmGpsMap requires a non-null map-source enum value to honour a
+	custom repo_uri; using map_source=0 (NULL) causes it to render gray
+	tiles and ignore the URL entirely. Fix this by passing
+	OPENSTREETMAP_RENDERER, whose built-in URI is NULL (service
+	defunct), so OsmGpsMap keeps the supplied repo_uri and fetches tiles
+	from it.  Also fixes the image-format lookup for custom URLs, debounces the
+	url entry field so it only fires on Enter or focus-out rather than
+	on every keystroke, and widens the URL input field to span the full
+	grid width.
 
-2025-03-31  Steve Youngs <steve@youngs.cc>
+2026-04-25  Ian Davis <18375+iand@users.noreply.github.com>
 
-	* gramps/gen/filters/rules/_hasnotetagbase.py,
-	gramps/gen/filters/rules/citation/__init__.py,
-	gramps/gen/filters/rules/citation/_hasnotetag.py,
-	gramps/gen/filters/rules/event/__init__.py,
-	gramps/gen/filters/rules/event/_hasnotetag.py,
-	gramps/gen/filters/rules/family/__init__.py,
-	gramps/gen/filters/rules/family/_hasnotetag.py,
-	gramps/gen/filters/rules/media/__init__.py,
-	gramps/gen/filters/rules/media/_hasnotetag.py,
-	gramps/gen/filters/rules/person/__init__.py,
-	gramps/gen/filters/rules/person/_hasnotetag.py,
-	gramps/gen/filters/rules/place/__init__.py,
-	gramps/gen/filters/rules/place/_hasnotetag.py,
-	gramps/gen/filters/rules/repository/__init__.py,
-	gramps/gen/filters/rules/repository/_hasnotetag.py,
-	gramps/gen/filters/rules/source/__init__.py,
-	gramps/gen/filters/rules/source/_hasnotetag.py,
-	gramps/gen/filters/rules/test/person_rules_test.py, po/POTFILES.in: 
-	Add a HasNoteTag filter rule Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+	* gramps/gen/lib/date.py, gramps/gen/lib/test/date_test.py,
+	gramps/gui/views/treemodels/citationbasemodel.py,
+	gramps/gui/views/treemodels/eventmodel.py,
+	gramps/gui/views/treemodels/familymodel.py,
+	gramps/gui/views/treemodels/mediamodel.py,
+	gramps/gui/views/treemodels/peoplemodel.py: Ensure date columns are
+	sorted consistently The original report noted that date columns sort without grouping
+	dates with qualifiers like about, after, before so they appear in an
+	arbitrary order.  This happens because get_sort_value() returns only the Julian Day
+	Number with no modifier or quality information.  This change adds Date.get_sort_key() which creates a sort key based
+	on the JDN adjusted with scores for modifiers and quality It also updates date sort columns in the list view treemodels (peoplemodel, familymodel, eventmodel, mediamodel,
+	citationbasemodel) to call get_sort_key() instead of
+	get_sort_value().  The key is 'JDN * 12 + modifier_score * 3 + quality_score' Modifier scores:   0 - MOD_BEFORE   1 - MOD_NONE, MOD_FROM, MOD_TO, MOD_SPAN, MOD_RANGE   2 - MOD_ABOUT   3 - MOD_AFTER Quality scores:   0 - QUAL_NONE   1 - QUAL_ESTIMATED   2 - QUAL_CALCULATED For year-only after-dates the position advances to the first JDN of
+	the following year, which is correct for all supported calendars.
+	This ensures 'after 1823' sorts after '1823-12-31'.  The max sort key for 31 Dec 9999 is 64481819 (JDN 5373484 * 12)
+	which fits in the format string "%09d" used by treemodels.  get_sort_value() is unchanged and continues to be used for date
+	arithmetic, calendar conversion and span calculations throughout the
+	rest of the codebase.  Fixes #7761.
 
-2025-03-31  Steve Youngs <steve@youngs.cc>
+2025-12-17  Doug Blank <doug.blank@gmail.com>
 
-	* gramps/gen/filters/rules/media/__init__.py,
-	gramps/gen/filters/rules/media/_hasnotetype.py,
-	gramps/gen/filters/rules/repository/__init__.py,
-	gramps/gen/filters/rules/repository/_hasnotetype.py, po/POTFILES.in: 
-	Add HasNoteType filters for Media and Repository objects
+	* gramps/gen/filters/rules/person/_deeprelationshippathbetween.py,
+	gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.p
+	y, gramps/gen/filters/rules/person/_isancestoroffiltermatch.py,
+	gramps/gen/filters/rules/person/_ischildoffiltermatch.py,
+	gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py
+	, gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py,
+	gramps/gen/filters/rules/person/_isparentoffiltermatch.py,
+	gramps/gen/filters/rules/person/_issiblingoffiltermatch.py,
+	gramps/gen/filters/rules/test/person_rules_test.py: Use
+	filter.apply() rather than apply_to_one() Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 
-2025-03-02  Steve Youngs <steve@youngs.cc>
+2026-06-06  Osman Öz <osmanoz05@hotmail.com>
 
-	* gramps/gui/editors/displaytabs/__init__.py,
-	gramps/gui/editors/displaytabs/familybackreflist.py,
-	gramps/gui/editors/editfamily.py, po/POTFILES.skip: Add a
-	"References" tab to the family editor dialog Fixes #13673.
+	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 99.8% (7544 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
 
-2025-10-13  Julien Lepiller <julien@lepiller.eu>
+2026-06-06  Fabrizio Carrai <fabrizio.carrai@gmail.com>
 
-	* gramps/gui/editors/displaytabs/citationembedlist.py: Avoid opening
-	a Citation when dragging or selecting an existing one
+	* po/it.po: Translated using Weblate (Italian) Currently translated at 94.4% (7135 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/it/
 
-2025-09-30  francois <francois@rcdevs.com>
+2026-06-06  Christoph Eder <christoph.eder@phsalzburg.at>
 
-	* gramps/gen/config.py, gramps/gen/utils/alive.py,
-	gramps/gui/configure.py: Improve birth/death estimation Limit alive calculation from children to 4 generations by default.
+	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
 
-2026-03-07  Clément Pinard <clement.pinard@telecom-paris.fr>
+2026-06-06  Juan Saavedra <jcsaaver@gmail.com>
 
-	* INSTALL: Update the INSTALL file The project uses a pyproject.toml based build system to build and
-	install.
+	* po/es.po: Translated using Weblate (Spanish) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/es/
 
-2025-12-13  Himanshu Gohel <1551217+hgohel@users.noreply.github.com>
+2026-06-06  Julien Lepiller <roptat@lepiller.eu>
 
-	* gramps/gui/editors/test/editreference_test.py: Add tearDownClass
-	method to cleaup after unit test test_editreference created a database in /tmp but did not clean up
-	after the test was done. This causes a test failure when the
-	database schema changes and a newer version of Gramps runs the
-	tests. The test will fail with an upgrade required message.  Now the test closes the database after it is done, and a
-	tearDownClass method is added which removes the database folder.
+	* po/fr.po: Translated using Weblate (French) Currently translated at 99.8% (7540 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/ Translated using Weblate (French) Currently translated at 99.3% (7503 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/ Translated using Weblate (French) Currently translated at 98.0% (7410 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
 
-2026-03-24  Doug Blank <doug.blank@gmail.com>
+2026-06-06  Pär Ekholm <github1@m.pekholm.org>
 
-	* gramps/gen/utils/alive.py, gramps/gen/utils/test/alive_test.py,
-	po/POTFILES.skip: Fix ProbablyAlive ignoring fallback when birth
-	event has no year When a birth event had a date with only month/day set (year=0),
-	is_valid() incorrectly returned True because _calc_sort_value()
-	converts year=0 to year=1 via _zero_adjust_ymd(), giving a non-zero
-	sortval. This caused birth_date to be set to the useless partial
-	date in get_person_bd(), so the fallback loop for
-	Baptism/Christening/Stillbirth events was never entered.  Fix: replace is_valid() with get_year_valid() for both the birth
-	event check and the birth-fallback loop in get_person_bd().
-	get_year_valid() explicitly checks that the year value is non-zero,
-	so month/day-only dates are correctly treated as having no valid
-	birth year and fallback events are tried instead.  Add tests in gramps/gen/utils/test/alive_test.py covering: - Normal birth with valid year (regression) - No birth event falls back to baptism (regression) - Birth event with month/day only falls back to baptism (the bug) - Birth event with empty date falls back to baptism - Birth event with valid year takes precedence over baptism Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+	* po/sv.po: Translated using Weblate (Swedish) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sv/
 
-2025-08-07  SNoiraud <Serge.Noiraud@free.fr>
+2026-06-06  Matti Niemelä <matti.u.niemela@gmail.com>
 
-	* data/css/Web_Basic-Ash.css, data/css/Web_Basic-Blue.css,
-	data/css/Web_Basic-Cypress.css, data/css/Web_Basic-Lilac.css,
-	data/css/Web_Basic-Peach.css, data/css/Web_Basic-Spruce.css,
-	data/css/Web_Mainz.css, data/css/Web_Nebraska.css,
-	gramps/plugins/webreport/media.py: NarrativeWeb: Add non-sharable
-	notes to media Fixes #13922.
+	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 95.6% (7228 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
 
-2025-07-14  SNoiraud <Serge.Noiraud@free.fr>
+2026-06-06  Harald Herreros <h.herreros@proton.me>
 
-	* gramps/gui/navigator.py,
-	gramps/plugins/sidebar/favoritessidebar.py,
-	gramps/plugins/sidebar/sidebar.gpr.py, po/POTFILES.in: Add a
-	favorites sidebar and all persistent sidebar
+	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
 
-2025-06-28  SNoiraud <Serge.Noiraud@free.fr>
+2026-06-06  Pedro Albuquerque <pmra@protonmail.com>
 
-	* gramps/plugins/webreport/basepage.py,
-	gramps/plugins/webreport/narrativeweb.py: Narrative web: Add an
-	option to allow internet indexing
+	* po/pt_PT.po: Translated using Weblate (Portuguese (Portugal)) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/
 
-2025-02-28  SNoiraud <Serge.Noiraud@free.fr>
+2026-06-06  Milan <mobrcian@hotmail.com>
 
-	* gramps/plugins/graph/gvrelgraph.py: Allow invalid dates in the
-	relationship graph Fixes #13672.
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
 
-2025-03-01  SNoiraud <Serge.Noiraud@free.fr>
+2026-06-06  Aindriú Mac Giolla Eoin <aindriu80@gmail.com>
 
-	* gramps/gui/editors/editdate.py,
-	gramps/plugins/gramplet/calendargramplet.py,
-	gramps/plugins/gramplet/gramplet.gpr.py,
-	gramps/plugins/lib/libpersonview.py,
-	gramps/plugins/view/eventview.py, gramps/plugins/view/familyview.py: 
-	Calendar enhancements Add the Calendar to Person, Family and Event For the active person, if you use the "Person Calendar" gramplet,
-	the birth and death date will be shown on the calendar.  For the active family, if you use the "Family Calendar" gramplet,
-	the marriage date will be shown on the calendar.  For the active event, if you use the "Event Calendar" gramplet, the
-	event date will be shown on the calendar.  You can always us the calendar in the dashboard.  The double click
-	will do the same things as before.  Fixes #13754.
+	* po/ga.po: Translated using Weblate (Irish) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ga/
 
-2026-04-02  DaveSch-gramps <dave.scheipers@gmail.com>
+2026-06-06  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* gramps/plugins/textreport/indivcomplete.py: Add an Address option
-	to the Individual Complete Report Adds the option to include or exclude Addresses from the Complete
-	Individual Report.  Implements #14170.
+	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
 
-2026-04-06  Nick Hall <nick-h@gramps-project.org>
+2026-06-06  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* gramps/gui/configure.py: Remove duplicated name formats Co-authored-by: stevenyoungs <steve@youngs.cc>
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 99.5% (7523 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 99.3% (7504 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 99.1% (7491 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 98.9% (7476 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2026-04-11  Steve Youngs <steve@youngs.cc>
+2026-06-06  Stephan Paternotte <stephan@paternottes.net>
 
-	* gramps/gen/db/base.py, gramps/gen/db/generic.py,
-	gramps/gen/lib/genderstats.py, gramps/gen/lib/serialize.py,
-	gramps/gen/lib/tableobj.py,
-	gramps/gen/merge/test/merge_ref_test.py,
-	gramps/gen/utils/test/callback_test.py, gramps/gui/configure.py,
-	gramps/gui/editors/displaytabs/surnametab.py,
-	gramps/gui/views/treemodels/flatbasemodel.py,
-	gramps/gui/widgets/fanchart.py, gramps/gui/widgets/fanchart2way.py,
-	gramps/gui/widgets/fanchartdesc.py,
-	gramps/gui/widgets/grampletpane.py,
-	gramps/gui/widgets/validatedmaskedentry.py,
-	gramps/plugins/db/dbapi/dbapi.py,
-	gramps/plugins/importer/importgeneweb.py,
-	gramps/plugins/lib/libgedcom.py, gramps/plugins/tool/eventcmp.py,
-	gramps/plugins/tool/reorderids.py,
-	gramps/plugins/tool/testcasegenerator.py,
-	gramps/plugins/webreport/buchheim.py: Small one-line fixes mainly to
-	comments and log messages
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
 
-2026-04-16  Steve Youngs <steve@youngs.cc>
+2026-05-30  Milan <mobrcian@hotmail.com>
 
-	* example/gramps/example.gramps, gramps/gen/config.py,
-	gramps/gen/db/base.py, gramps/gen/db/dummydb.py,
-	gramps/gen/db/generic.py, gramps/gen/db/utils.py,
-	gramps/gen/filters/rules/test/event_rules_test.py,
-	gramps/gen/filters/rules/test/family_rules_test.py,
-	gramps/gen/filters/rules/test/media_rules_test.py,
-	gramps/gen/filters/rules/test/note_rules_test.py,
-	gramps/gen/filters/rules/test/person_rules_test.py,
-	gramps/gen/filters/rules/test/place_rules_test.py,
-	gramps/gen/filters/rules/test/repository_rules_test.py,
-	gramps/gen/filters/test/filter_optimizer_test.py,
-	gramps/gen/lib/test/schema_test.py,
-	gramps/gen/lib/test/serialize_test.py,
-	gramps/gen/merge/test/merge_ref_test.py,
-	gramps/gen/proxy/test/proxies_test.py, gramps/gui/configure.py,
-	gramps/plugins/importer/test/importvcard_test.py,
-	gramps/plugins/lib/libprogen.py,
-	gramps/plugins/test/imports_test.py,
-	gramps/plugins/test/reports_test.py,
-	gramps/plugins/tool/populatesources.py,
-	gramps/plugins/tool/reorderids.py: Change the default gramps IDs to
-	%05d The previous default of %04d is insufficient for larger trees
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7555 of 7555 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
 
-2026-04-17  Steve Youngs <steve@youngs.cc>
+2026-05-30  Hosted Weblate <hosted@weblate.org>
 
-	* gramps/plugins/gramplet/placedetails.py: Tidy up the add_row
-	method in the PlaceDetails gramplet - add type hints - use different names for local variables and parameters
+	* po/ar.po, po/az.po, po/ba.po, po/bg.po, po/br.po, po/ca.po,
+	po/cs.po, po/cy.po, po/da.po, po/de.po, po/de_AT.po, po/el.po,
+	po/en_GB.po, po/eo.po, po/es.po, po/fa.po, po/fi.po, po/fr.po,
+	po/ga.po, po/gl.po, po/he.po, po/hr.po, po/hu.po, po/id.po,
+	po/is.po, po/it.po, po/ja.po, po/ka.po, po/ko.po, po/ln.po,
+	po/lt.po, po/lv.po, po/mk.po, po/mn.po, po/nb.po, po/ne.po,
+	po/nl.po, po/nn.po, po/oc.po, po/pl.po, po/pt_BR.po, po/pt_PT.po,
+	po/ro.po, po/ru.po, po/sk.po, po/sl.po, po/sq.po, po/sr.po,
+	po/sr_Latn.po, po/sv.po, po/ta.po, po/tr.po, po/uk.po, po/vi.po,
+	po/zh_CN.po, po/zh_HK.po, po/zh_TW.po: Update translation files Updated by "Update PO files to match POT (msgmerge)" hook in
+	Weblate.  Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/
 
-2026-04-17  Nick Hall <nick-h@gramps-project.org>
+2026-05-30  Nick Hall <nick-h@gramps-project.org>
 
-	* data/tips.xml, gramps/gen/plug/docgen/graphdoc.py,
-	gramps/gui/editors/editurl.py, gramps/gui/glade/editurl.glade,
-	gramps/plugins/webreport/narrativeweb.py: Move embedded URLs out of
-	translated strings
+	* .github/workflows/gramps-ci.yml: Check for new files not listed in
+	POTFILES.in or POTFILES.skip
 
-2026-03-25  Doug Blank <doug.blank@gmail.com>
+2026-05-30  Nick Hall <nick-h@gramps-project.org>
 
-	* AGENTS.md: Add AGENTS.md with contributor and agent guidelines Documents coding conventions for agents and contributors: docstrings
-	with Sphinx format, Python 3.10+ type hints, Black formatting,
-	import grouping, license headers, unittest conventions, logging,
-	i18n, mypy, and error handling guidelines.  Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
-	Co-authored-by: stevenyoungs <steve@youngs.cc> Co-authored-by: Nick
-	Hall <nick-h@gramps-project.org>
+	* gramps/gen/datehandler/_datedisplay.py, po/gramps.pot: Suppress
+	xgettext python brace format warnings We use a non-standard format for date inflections.  The fatal errors
+	produced by `msgfmt -c` and the corresponding Weblate messages are
+	not helpful in this case.
 
-2026-04-02  Steve Youngs <steve@youngs.cc>
+2026-05-30  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* README.md, gramps/grampsapp.py: Update minimum python version Python 3.9 reached EOL in October 2025
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 98.7% (7461 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2026-03-29  Steve Youngs <steve@youngs.cc>
+2026-05-30  Osman Öz <osmanoz05@hotmail.com>
 
-	* gramps/gen/constfunc.py: Remove out of date comments
+	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 99.8% (7544 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
 
-2026-03-29  Steve Youngs <steve@youngs.cc>
+2026-05-20  Eduard Ralph <eduard@ralphovi.net>
 
-	* gramps/gen/const.py, gramps/gen/constfunc.py: Maintain
-	compatibility with the directories used by Gramps 6.0 Where possible share code paths for all platforms.
+	* gramps/gen/datehandler/_date_fi.py,
+	gramps/gen/datehandler/test/date_fi_test.py: Add fallback for
+	Finnish date lexemes when translation not installed Bug 12283: when the Finnish translation message catalog is not
+	installed (typical on Windows AIO when the user picked only English
+	during install), Gramps still loads the Finnish date handler, but
+	the localised DateStrings hand it back a list of plain ``str``
+	(English fallback) instead of a list of ``Lexeme``. The day-zero /
+	no-inflect branch of ``DateDisplayFI.dd_dformat04`` then tried to
+	format ``"{long_month.forms[IN]}"``, which raises ``AttributeError:
+	'str' object has no attribute 'forms'`` (or ``'f'`` on 5.1.x where
+	the Lexeme attribute was named ``f``).  Reporter's reproduction: open a person whose birth date has only
+	month + year (no day), in the Relationships view. The crash brings
+	down ``relview.write_family`` for that person. Confirmed by
+	daleathan 2021-04-06: re-running the AIO installer and selecting
+	Finnish makes the crash go away, but "the Finnish handler needs to
+	be fixed to handle this situation." Every other branch of the same function -- the ``if inflect:``
+	sub-branch (which routes through ``format_long_month_year``) and the
+	``date_val[0] != 0`` outer branch -- already has the canonical
+	``hasattr(long_months[...], "forms")`` guard with the same no-Lexeme
+	fallback. The only unguarded path was the no-inflect / day-zero
+	branch the reporter triggered.  Fix: add the same guard there. On the no-Lexeme path, fall back to a
+	plain ``"{long_month} {year}".format(...)`` rendering (matching what
+	``format_long_month_year`` does on its own no-Lexeme path).  Test: gramps/gen/datehandler/test/date_fi_test.py -- four cases
+	exercising ``dd_dformat04`` directly with a plain-``str``
+	``long_months`` list (the bug scenario). Covers the reporter's case (month-only, no inflect, all 12 months) plus regression guards for
+	year-only and full-date paths so the new guard doesn't disturb them.  Fixes #12283.
 
-2026-03-26  Steve Youngs <steve@youngs.cc>
+2026-05-17  John Ralls <jralls@ceridwen.us>
 
-	* gramps/gen/constfunc.py: Fix home directory location on Windows The HOME environment variable is not likely to exist on Windows so
-	use USERPROFILE instead.
+	* gramps/gui/glade.py: Don't use slots on GObject-derived classes.  It conflicts with the PyGobject memory management, causing crashes.  Fixes #14153
 
-2025-02-18  Steve Youngs <steve@youngs.cc>
+2026-05-11  Ian Davis <18375+iand@users.noreply.github.com>
 
-	* gramps/gen/const.py, gramps/plugins/export/exportxml.py: When
-	writing a gramps XML file use the NS URI not the homepage URL
+	* gramps/plugins/view/familyview.py: Guard against null parent
+	handle in Make Father/Mother Active actions
 
-2025-02-16  Steve Youngs <steve@youngs.cc>
+2026-05-14  John Ralls <jralls@ceridwen.us>
 
-	* data/man/cs/gramps.1.in, data/man/nl/gramps.1.in,
-	data/man/pl/gramps.1.in, data/man/pt_BR/gramps.1.in,
-	data/man/pt_BR/pt_BR.rst, data/man/sv/gramps.1.in: Update
-	http://developers.gramps-project.org to
+	* gramps/plugins/webreport/common.py, mac/Info.plist,
+	mac/gramps.bundle: Fix localAlphabeticIndex name error if icu isn't
+	available.
 
-	https://www.gramps-project.org/wiki/index.php?title=Portal:Developers
+2026-04-26  John Ralls <jralls@ceridwen.us>
 
-2025-02-16  Steve Youngs <steve@youngs.cc>
-
-	* FAQ, NEWS, README.md, RELEASE_NOTES, TODO,
-	data/css/Web_Basic-Ash.css, data/css/Web_Basic-Cypress.css,
-	data/css/Web_Basic-Lilac.css, data/css/Web_Basic-Peach.css,
-	data/css/Web_Basic-Spruce.css, data/css/Web_Mainz.css,
-	data/css/Web_Nebraska.css, data/css/Web_Print-Default.css,
-	data/man/cs/cs.rst, data/man/cs/gramps.1.in, data/man/fr/fr.rst,
-	data/man/fr/gramps.1.in, data/man/nl/gramps.1.in,
-	data/man/nl/nl.rst, data/man/pl/gramps.1.in, data/man/pl/pl.rst,
-	data/man/pt_BR/gramps.1.in, data/man/pt_BR/pt_BR.rst,
-	data/man/sv/gramps.1.in, data/man/sv/sv.rst, docs/Makefile,
-	docs/README.txt, docs/_templates/layout.html, docs/make.bat,
-	example/gedcom/sample.ged, example/gramps/example.gramps,
-	gramps/gen/const.py, gramps/gen/constfunc.py,
-	gramps/gen/datehandler/_datestrings.py,
-	gramps/gen/datehandler/_grampslocale.py, gramps/gen/db/__init__.py,
-	gramps/gen/db/dummydb.py, gramps/gen/lib/date.py,
-	gramps/gen/lib/note.py, gramps/gen/plug/docgen/graphdoc.py,
-	gramps/gen/relationship.py, gramps/gen/utils/symbols.py,
-	gramps/gui/clipboard.py, gramps/gui/dialog.py,
-	gramps/gui/glade/editurl.glade, gramps/gui/views/bookmarks.py,
-	gramps/gui/widgets/fanchart.py, gramps/gui/widgets/fanchart2way.py,
-	gramps/gui/widgets/fanchartdesc.py,
-	gramps/gui/widgets/styledtexteditor.py,
-	gramps/gui/widgets/validatedmaskedentry.py,
-	gramps/plugins/cite/cite.gpr.py, gramps/plugins/docgen/cairodoc.py,
-	gramps/plugins/docgen/odfdoc.py,
-	gramps/plugins/export/exportgedcom.py,
-	gramps/plugins/gramplet/fanchartgramplet.py,
-	gramps/plugins/gramplet/faqgramplet.py,
-	gramps/plugins/importer/importgeneweb.py,
-	gramps/plugins/lib/libcairodoc.py, gramps/plugins/lib/libgedcom.py,
-	gramps/plugins/lib/libhtml.py,
-	gramps/plugins/lib/libplugins.gpr.py,
-	gramps/plugins/lib/maps/osmgps.py,
-	gramps/plugins/mapservices/eniroswedenmap.py,
-	gramps/plugins/mapservices/googlemap.py,
-	gramps/plugins/mapservices/openstreetmap.py,
-	gramps/plugins/rel/rel_de.py, gramps/plugins/rel/rel_de_AT.py,
-	gramps/plugins/rel/rel_he.py, gramps/plugins/rel/rel_nl.py,
-	gramps/plugins/rel/rel_pt.py, gramps/plugins/rel/rel_sl.py,
-	gramps/plugins/rel/rel_sv.py,
-	gramps/plugins/textreport/kinshipreport.py,
-	gramps/plugins/thumbnailer/thumb.gpr.py,
-	gramps/plugins/tool/testcasegenerator.py,
-	gramps/plugins/view/citationtreeview.py,
-	gramps/plugins/view/fanchart2wayview.py,
-	gramps/plugins/view/fanchartdescview.py,
-	gramps/plugins/view/fanchartview.py,
-	gramps/plugins/view/view.gpr.py,
+	* gramps/gen/utils/grampslocale.py,
+	gramps/gen/utils/test/grampslocale_test.py, gramps/grampsapp.py,
 	gramps/plugins/webreport/alphabeticindex.py,
-	gramps/plugins/webstuff/index.html, help/README-DOCS,
-	images/gramps.svg, images/hicolor/16x16/source/gramps-geo.svg,
-	images/hicolor/16x16/source/gramps-tree-group.svg,
-	images/hicolor/16x16/source/gramps-tree-list.svg,
-	images/hicolor/16x16/source/gramps-tree-select.svg,
-	images/hicolor/scalable/actions/add-parent-existing-family.svg,
-	images/hicolor/scalable/actions/geo-fixed-zoom.svg,
-	images/hicolor/scalable/actions/geo-free-zoom.svg,
-	images/hicolor/scalable/actions/geo-place-add.svg,
-	images/hicolor/scalable/actions/geo-place-link.svg,
-	images/hicolor/scalable/actions/geo-show-event.svg,
-	images/hicolor/scalable/actions/geo-show-family-down.svg,
-	images/hicolor/scalable/actions/geo-show-family-up.svg,
-	images/hicolor/scalable/actions/geo-show-family.svg,
-	images/hicolor/scalable/actions/geo-show-person.svg,
-	images/hicolor/scalable/actions/geo-show-place.svg,
-	images/hicolor/scalable/actions/gramps-address.svg,
-	images/hicolor/scalable/actions/gramps-attribute.svg,
-	images/hicolor/scalable/actions/gramps-bookmark-delete.svg,
-	images/hicolor/scalable/actions/gramps-bookmark-edit.svg,
-	images/hicolor/scalable/actions/gramps-bookmark-new.svg,
-	images/hicolor/scalable/actions/gramps-bookmark.svg,
-	images/hicolor/scalable/actions/gramps-citation.svg,
-	images/hicolor/scalable/actions/gramps-config.svg,
-	images/hicolor/scalable/actions/gramps-date-edit.svg,
-	images/hicolor/scalable/actions/gramps-date.svg,
-	images/hicolor/scalable/actions/gramps-event.svg,
-	images/hicolor/scalable/actions/gramps-family.svg,
-	images/hicolor/scalable/actions/gramps-fanchart.svg,
-	images/hicolor/scalable/actions/gramps-fanchart2way.svg,
-	images/hicolor/scalable/actions/gramps-fanchartdesc.svg,
-	images/hicolor/scalable/actions/gramps-font-bgcolor.svg,
-	images/hicolor/scalable/actions/gramps-font-color.svg,
-	images/hicolor/scalable/actions/gramps-font.svg,
-	images/hicolor/scalable/actions/gramps-geo-altmap.svg,
-	images/hicolor/scalable/actions/gramps-geo-birth.svg,
-	images/hicolor/scalable/actions/gramps-geo-death.svg,
-	images/hicolor/scalable/actions/gramps-geo-mainmap.svg,
-	images/hicolor/scalable/actions/gramps-geo-marriage.svg,
-	images/hicolor/scalable/actions/gramps-geo.svg,
-	images/hicolor/scalable/actions/gramps-gramplet.svg,
-	images/hicolor/scalable/actions/gramps-lock.svg,
-	images/hicolor/scalable/actions/gramps-media.svg,
-	images/hicolor/scalable/actions/gramps-notes.svg,
-	images/hicolor/scalable/actions/gramps-parents-add.svg,
-	images/hicolor/scalable/actions/gramps-parents-open.svg,
-	images/hicolor/scalable/actions/gramps-parents.svg,
-	images/hicolor/scalable/actions/gramps-pedigree.svg,
-	images/hicolor/scalable/actions/gramps-person.svg,
-	images/hicolor/scalable/actions/gramps-place.svg,
-	images/hicolor/scalable/actions/gramps-preferences.svg,
-	images/hicolor/scalable/actions/gramps-relation.svg,
-	images/hicolor/scalable/actions/gramps-reports.svg,
-	images/hicolor/scalable/actions/gramps-repository.svg,
-	images/hicolor/scalable/actions/gramps-source.svg,
-	images/hicolor/scalable/actions/gramps-spouse.svg,
-	images/hicolor/scalable/actions/gramps-tag-new.svg,
-	images/hicolor/scalable/actions/gramps-tag.svg,
-	images/hicolor/scalable/actions/gramps-tree-group.svg,
-	images/hicolor/scalable/actions/gramps-tree-list.svg,
-	images/hicolor/scalable/actions/gramps-tree-select.svg,
-	images/hicolor/scalable/actions/gramps-unlock.svg,
-	images/hicolor/scalable/actions/gramps-view.svg,
-	images/hicolor/scalable/actions/gramps-viewmedia.svg,
-	images/hicolor/scalable/actions/gramps-zoom-best-fit.svg,
-	images/hicolor/scalable/actions/gramps-zoom-fit-width.svg,
-	images/hicolor/scalable/actions/gramps-zoom-in.svg,
-	images/hicolor/scalable/actions/gramps-zoom-out.svg,
-	images/hicolor/scalable/apps/org.gramps_project.Gramps.svg,
-	images/hicolor/scalable/mimetypes/application-x-gedcom.svg,
-	images/hicolor/scalable/mimetypes/application-x-geneweb.svg,
-	images/hicolor/scalable/mimetypes/application-x-gramps-package.svg,
-	images/hicolor/scalable/mimetypes/application-x-gramps-xml.svg,
-	images/hicolor/scalable/mimetypes/application-x-gramps.svg,
-	mac/gramps.modules: Use https instead of http
+	gramps/plugins/webreport/common.py, mypy.ini: Remove checks for
+	PyICU identifier, replaced and deprecated in 2015 and removed in 2022.
 
-2026-03-27  Steve Youngs <steve@youngs.cc>
+2026-05-08  Ian Davis <18375+iand@users.noreply.github.com>
 
-	* gramps/cli/clidbman.py: Fix spelling mistake in comment
+	* example/gramps/data.gramps,
+	gramps/plugins/test/schema_validation_test.py, po/POTFILES.skip: Add
+	test to validate example .gramps files against the RelaxNG schema
 
-2026-03-20  Nick Hall <nick-h@gramps-project.org>
+2026-04-28  Doug Blank <doug.blank@gmail.com>
 
-	* gramps/gen/const.py: Fix code formatting
+	* gramps/gui/editors/editcitation.py,
+	gramps/gui/editors/editsource.py: Fix editor title showing "New X"
+	when editing an existing object.  EditCitation and EditSource used a content field (get_page() and
+	get_title() respectively) to decide whether to display "New
+	Citation" or "New Source" in the window title. An existing object
+	whose title field is blank would therefore show "New Citation"/"New
+	Source" even when being edited, not created. Fix both editors to use
+	get_handle() instead, matching the pattern already used correctly by
+	EditNote, EditRepository, EditMedia, EditPerson, EditEvent,
+	EditFamily, and EditPlace.  Also fixes a formatting bug in the EditCitation "New Citation with
+	caller context" branch, which incorrectly included the empty page
+	string as the %(id)s substitution value.  Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 
-2025-11-23  Steve Youngs <steve@youngs.cc>
+2026-04-26  Steve Youngs <steve@youngs.cc>
 
-	* aio/build.sh: Convert Windows AIO to use the new build process Originally introduced for other platforms in commit 6233d44.
+	* gramps/plugins/quickview/all_relations.py,
+	gramps/plugins/quickview/siblings.py,
+	gramps/plugins/tool/relcalc.py: Fix calls to
+	get_relationship_calculator Avoid passing glocale as the reinit argument
 
-2025-04-14  Nick Hall <nick-h@gramps-project.org>
+2026-04-26  Ian Davis <18375+iand@users.noreply.github.com>
 
-	* gramps/gen/utils/grampslocale.py, gramps/gui/grampsgui.py: Provide
-	a fallback for locale module without gettext support
+	* gramps/gui/editors/editfamily.py: Ensure family order is
+	unaffected by family edits The original report stated that making edits to a family such as
+	adding a child would arbitrarily re-order family order in the
+	relationship view. This is problematic because family order is
+	significant in many reports.  In the transaction to save the family edits the comparison between
+	the original and new family lists was using identity comparison
+	which resulted in all the families being removed and then re-added,
+	losing any ordering.  This change fixes the problem by using handles to compare the two
+	lists. In the case of the reported issue this results in no
+	remove/add cycle being made since the family handles are unchanged.  Fixes #13819.
 
-2025-09-27  Nick Hall <nick-h@gramps-project.org>
+2026-04-18  Eduard Ralph <eduard@ralphovi.net>
 
-	* gramps/gen/const.py, gramps/gen/constfunc.py,
-	gramps/gen/utils/requirements.py: Decouple the core library code
-	from GObject introspection
+	* gramps/gen/plug/_manager.py, gramps/gen/plug/test/__init__.py,
+	gramps/gen/plug/test/_manager_symlinks_test.py, po/POTFILES.skip: 
+	Follow symlinks when scanning plugin directories Plugin scanning used os.walk() with the default followlinks=False,
+	so directories reached via a symlink were skipped.  Users who wanted
+	to organize their plugin library by symlinking entries into the
+	Gramps plugin path had to work around this with a separate loader
+	addon.  Pass followlinks=True and track visited realpaths within the walk to
+	guard against infinite recursion on symlink loops.  Fixes #10436.  Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>
 
-2025-09-25  Chris Mayo <aklhfex@gmail.com>
+2026-05-28  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* pyproject.toml: Fix license issues in the `pyproject.toml` file * the license file is COPYING * license classifiers are deprecated
-	https://packaging.python.org/en/latest/specifications/core-metadata/#license
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 98.1% (7416 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/ Translated using Weblate (Hebrew) Currently translated at 96.2% (7269 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2025-08-24  Doug Blank <doug.blank@gmail.com>
+2026-05-28  Osman Öz <osmanoz05@hotmail.com>
 
-	* gramps/gen/filters/test/filter_optimizer_test.py: Fix test path
+	* po/tr.po: Translated using Weblate (Turkish) Currently translated at 99.8% (7543 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/tr/
 
-2025-05-12  Himanshu Gohel <1551217+hgohel@users.noreply.github.com>
+2026-05-28  Seyed Amir MirMohammadi <s.a.mirmohammadi@gmail.com>
 
-	* gramps/gen/const.py, gramps/gen/git_revision.py: Dev version
-	correctly reports the SHA of the local HEAD commit Local builds report the Gramps version in the form of
-	Major.Minor.Patch-SHA.  However, the commit SHA reported did not
-	correspond to the repo root, but that of the gramps/gramps folder
-	which was unexpected. This change fixes that by removing the path
-	argument to get_git_revision so the git log command does not limit
-	commits, and the dev version is reported as expected.  A brief history: the path argument was a carry-over from SVN, and
-	wasn't initially used (see commit 57daf4f), but a subsequent change
-	attempted to use it (commit 6836dbd), and finally the path argument
-	was appended to the git log command in commit f92ee32.
+	* po/fa.po: Translated using Weblate (Persian) Currently translated at 1.2% (93 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fa/
 
-2025-04-27  Steve Youngs <steve@youngs.cc>
+2026-04-24  Steve Youngs <steve@youngs.cc>
 
-	* gramps/gen/filters/rules/_rule.py: Rename apply to apply_to_one to
-	reflect global change in v6.0
+	* aio/build.sh: Exit Windows AIO build with non-zero code on error Add a trap and exit the script if any command returns a non-zero
+	exit code.
 
-2025-06-10  Elliott Sales de Andrade <quantum.analyst@gmail.com>
+2026-04-20  Steve Youngs <steve@youngs.cc>
 
-	* scripts/build_hook.py, scripts/version_hook.py: Code improvements
+	* gramps/gen/datehandler/_grampslocale.py, gramps/grampsapp.py: 
+	Avoid using features unavailable on Windows Fixes mypy's `attr-defined` error for: * locale.nl_langinfo * signal.SIGCHLD
 
-2025-04-25  Nick Hall <nick-h@gramps-project.org>
+2026-05-25  Matti Niemelä <matti.u.niemela@gmail.com>
 
-	* gramps/gui/editors/displaytabs/eventembedlist.py,
-	gramps/gui/editors/displaytabs/personeventembedlist.py,
-	gramps/plugins/test/exports_test.py: Unrelated formatting fixes
+	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 95.5% (7215 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
 
-2025-04-24  Nick Hall <nick-h@gramps-project.org>
+2026-05-25  Juan Song <lenin199@gmail.com>
 
-	* gramps/gen/const.py,
-	gramps/gen/filters/rules/test/event_rules_test.py,
-	gramps/gen/filters/rules/test/family_rules_test.py,
-	gramps/gen/filters/rules/test/media_rules_test.py,
-	gramps/gen/filters/rules/test/note_rules_test.py,
-	gramps/gen/filters/rules/test/person_rules_test.py,
-	gramps/gen/filters/rules/test/place_rules_test.py,
-	gramps/gen/filters/rules/test/repository_rules_test.py,
-	gramps/gen/lib/test/schema_test.py,
-	gramps/gen/lib/test/serialize_test.py,
-	gramps/gen/proxy/test/proxies_test.py,
-	gramps/plugins/test/exports_test.py,
-	gramps/plugins/test/imports_test.py,
-	gramps/plugins/test/reports_test.py,
-	gramps/plugins/test/tools_test.py: Fix test directory location in
-	unit tests
+	* po/ko.po: Translated using Weblate (Korean) Currently translated at 5.9% (450 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ko/
 
-2025-04-19  Nick Hall <nick-h@gramps-project.org>
+2026-05-25  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* .github/workflows/gramps-ci.yml,
-	gramps/gen/utils/resourcepath.py, gramps/grampsapp.py,
-	pyproject.toml, scripts/build_hook.py, scripts/version_hook.py,
-	setup.py: Convert to using a `pyproject.toml` based build system
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 96.1% (7260 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
 
-2025-04-11  SNoiraud <Serge.Noiraud@free.fr>
+2026-05-25  Jean-Marc <m.balthazar@posteo.net>
 
-	* gramps/gen/config.py, gramps/gen/lib/note.py,
-	gramps/gui/clipboard.py, gramps/gui/configure.py,
-	gramps/gui/editors/displaytabs/backrefmodel.py,
-	gramps/gui/editors/displaytabs/namemodel.py,
-	gramps/gui/editors/displaytabs/notemodel.py,
-	gramps/gui/editors/filtereditor.py,
-	gramps/gui/views/treemodels/notemodel.py,
-	gramps/plugins/tool/removeunused.py: Add a configuration option for
-	the length of note previews This allows more than 80 charachters to be displayed.
+	* po/fr.po: Translated using Weblate (French) Currently translated at 98.0% (7408 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
 
-2025-03-14  Bart Feenstra <bart@mynameisbart.com>
+2026-05-25  Lucas “BlakeIsHere” Ashton-Milne <blakeishere458@gmail.com>
 
-	* .github/workflows/gramps-ci.yml, mypy.ini: Add mypy configuration
+	* po/cy.po: Translated using Weblate (Welsh) Currently translated at 0.1% (5 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cy/
 
-2025-03-14  Bart Feenstra <bart@mynameisbart.com>
+2026-05-25  Nick Hall <nick-h@gramps-project.org>
 
-	* Add py.typed to indicate the code base is (becoming) typed
+	* po/cy.po: Added translation using Weblate (Welsh)
+
+2026-05-25  Milan <mobrcian@hotmail.com>
+
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-05-25  Harald Herreros <h.herreros@proton.me>
+
+	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
+
+2026-05-25  Batsaihan P. <batsaihan.p@gmail.com>
+
+	* po/mn.po: Translated using Weblate (Mongolian) Currently translated at 19.2% (1454 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/mn/
+
+2026-05-25  Omer I.S. <omeritzicschwartz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 95.9% (7251 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-05-25  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 95.9% (7248 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-05-25  Ilsur Irnazarov <temyas@yandex.ru>
+
+	* po/ba.po: Translated using Weblate (Bashkir) Currently translated at 98.2% (7419 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ba/ Translated using Weblate (Bashkir) Currently translated at 98.0% (7404 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ba/ Translated using Weblate (Bashkir) Currently translated at 59.0% (4459 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ba/
+
+2026-05-25  David D. <dadu042@users.noreply.hosted.weblate.org>
+
+	* po/fr.po: Translated using Weblate (French) Currently translated at 98.0% (7407 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/ Translated using Weblate (French) Currently translated at 97.9% (7397 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/ Translated using Weblate (French) Currently translated at 97.8% (7392 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
+
+2026-05-25  Maciej Stefańczyk <maciek.slon@gmail.com>
+
+	* po/pl.po: Translated using Weblate (Polish) Currently translated at 95.3% (7200 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/pl/
+
+2026-05-25  Harald Herreros <haraldh@users.noreply.hosted.weblate.org>
+
+	* po/nb.po: Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 99.9% (7553 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 95.5% (7219 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 95.4% (7211 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 95.3% (7204 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/ Translated using Weblate (Norwegian Bokmål) Currently translated at 95.2% (7192 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nb_NO/
+
+2026-05-25  Dmitriy Q <krotesk@mail.ru>
+
+	* po/ru.po: Translated using Weblate (Russian) Currently translated at 96.0% (7254 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
+
+2026-05-17  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.modules: Fix missing repo for new chardet module.
+
+2026-05-12  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.modules: Add chardet module, a dependency of requests.  Corrects the second error in #14216
+
+2026-05-05  Ian Davis <18375+iand@users.noreply.github.com>
+
+	* gramps/gen/filters/rules/__init__.py,
+	gramps/gen/filters/rules/_matchescitationfilterbase.py,
+	gramps/gui/editors/filtereditor.py, po/POTFILES.in: Add citation
+	filter name support The filter editor dispatch in filtereditor.py was missing a branch
+	for "Citation filter name:", causing rules that reference a citation
+	filter to render a plain text box instead of a filter dropdown.  Adds the missing elif branch and a new MatchesCitationFilterBase
+	class (parallel to MatchesSourceFilterBase) for rules that match
+	objects by their associated citations.  Fixes #13534.
+
+2026-05-02  Ian Davis <18375+iand@users.noreply.github.com>
+
+	* gramps/gen/lib/baseobj.py, gramps/gen/lib/family.py,
+	gramps/gen/lib/place.py, gramps/gen/lib/test/handleref_test.py,
+	gramps/plugins/test/tools_test.py, po/POTFILES.skip: Add tests for
+	referential integrity of deletes and fix 3 bugs This is based on issue #9895 which reported that not all references
+	are removed when some objects are deleted. This issue is nine years
+	old so probably some of these situations have been fixed in the
+	meantime.  dsblank suggested writing some tests to uncover any remaining bugs
+	and that's what this change does. It adds a range of tests for
+	get_referenced_handles_recursively() and remove_handle_references()
+	and in the process found three bugs which I have tried to fix: Bug 1: Family.get_referenced_handles_recursively() double-counts
+	child person handles.  Family.get_referenced_handles() explicitly included ("Person",
+	ref.ref) for each entry in child_ref_list. But child_ref_list is
+	also returned by Family.get_handle_referents(), and each
+	ChildRef.get_referenced_handles() independently returns ("Person",
+	self.ref). The recursive traversal therefore sees each child person
+	handle twice. Fixed by removing [ref.ref for ref in
+	self.child_ref_list] from Family.get_referenced_handles().  Bug 2: Place.remove_handle_references("Place", ...) silently did
+	nothing.  _remove_handle_references was never implemented on Place so calles
+	fall through to the base class no-op, leaving stale PlaceRef entries
+	behind when a place is deleted. Fixed by implementing
+	remove_handle_references Bug 3: get_referenced_handles_recursively() returns duplicate
+	handles when the same handle is referenced at multiple levels The accumulation in BaseObject.get_referenced_handles_recursively()
+	is a plain list append with no deduplication. If the same handle
+	appeared at both the top-level object (e.g. person.note_list) and in
+	a child secondary object (e.g. EventRef.note_list), or in two
+	sibling secondary objects, it was emitted once per occurrence. The
+	database backend wraps the result in set() so it was unaffected, but
+	the function's contract implies uniqueness.  Fixed by replacing the list accumulation in
+	BaseObject.get_referenced_handles_recursively() with a seen set that
+	filters duplicates as they are collected, preserving insertion
+	order.
+
+2026-04-29  SNoiraud <Serge.Noiraud@free.fr>
+
+	* example/gramps/Route_to_lexington.kml,
+	example/gramps/andrews-county-tx-zip-codes.kml,
+	example/gramps/andrews-county-tx.kml,
+	example/gramps/example.gramps,
+	example/gramps/jefferson-county-tx.kml,
+	example/gramps/nebraska.kml, example/gramps/new-york.kml,
+	example/gramps/texas.kml, example/gramps/zip-code-14213.kml,
+	example/gramps/zip-code-68850.kml: Add kml examples to
+	example.gramps Added kml files related to birth death... to Boucher, Michael.  Fixes #14209.
+
+2026-05-12  Avi Markovitz <avi.markovitz@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 95.6% (7225 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-05-12  David D. <dadu042@users.noreply.hosted.weblate.org>
+
+	* po/fr.po: Translated using Weblate (French) Currently translated at 97.8% (7391 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/ Translated using Weblate (French) Currently translated at 97.8% (7390 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fr/
+
+2026-05-12  Dmitriy Q <krotesk@mail.ru>
+
+	* po/ru.po: Translated using Weblate (Russian) Currently translated at 95.6% (7223 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
+
+2026-05-12  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+
+2026-05-12  Christoph Eder <christoph.eder@phsalzburg.at>
+
+	* po/de_AT.po: Translated using Weblate (German (Austria)) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de_AT/
+
+2026-05-12  Stephan Paternotte <stephan@paternottes.net>
+
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/ Translated using Weblate (Dutch) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/ Translated using Weblate (Dutch) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+
+2026-05-12  Stern <slava0@yandex.ru>
+
+	* po/ru.po: Translated using Weblate (Russian) Currently translated at 95.3% (7202 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ru/
+
+2026-05-12  satellithic <eitan.abc@gmail.com>
+
+	* po/he.po: Translated using Weblate (Hebrew) Currently translated at 95.4% (7207 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/he/
+
+2026-05-12  Kristijan \"Fremen\" Velkovski <me@krisfremen.com>
+
+	* po/mk.po: Translated using Weblate (Macedonian) Currently translated at 27.9% (2109 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/mk/ Translated using Weblate (Macedonian) Currently translated at 27.9% (2108 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/mk/ Translated using Weblate (Macedonian) Currently translated at 27.8% (2102 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/mk/
+
+2026-05-12  Milo Ivir <mail@milotype.de>
+
+	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
+
+2026-05-12  Milan <mobrcian@hotmail.com>
+
+	* po/cs.po, po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 95.8% (7238 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 95.5% (7221 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 95.5% (7221 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Czech) Currently translated at 95.3% (7205 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/cs/ Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-05-12  Tian Shixiong <tiansworld@fedoraproject.org>
+
+	* po/zh_CN.po: Translated using Weblate (Chinese (Simplified Han
+	script)) Currently translated at 96.8% (7315 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/ Translated using Weblate (Chinese (Simplified Han script)) Currently translated at 96.7% (7311 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/ Translated using Weblate (Chinese (Simplified Han script)) Currently translated at 96.1% (7265 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/ Translated using Weblate (Chinese (Simplified Han script)) Currently translated at 96.0% (7258 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/ Translated using Weblate (Chinese (Simplified Han script)) Currently translated at 95.8% (7239 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/zh_Hans/
+
+2026-05-12  Jozef Gaal <preklady@mayday.sk>
+
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-05-12  Milan <mobrcian@hotmail.com>
+
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-05-12  Francisco Serrador <fserrador@gmail.com>
+
+	* po/es.po: Translated using Weblate (Spanish) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/es/
+
+2026-05-12  Sveinn í Felli <sv1@fellsnet.is>
+
+	* po/is.po: Translated using Weblate (Icelandic) Currently translated at 86.5% (6541 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/is/
+
+2026-05-12  Kaj Arne Mikkelsen <kmi@vgdata.dk>
+
+	* po/da.po: Translated using Weblate (Danish) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/da/
+
+2026-05-12  John Ralls <jralls@ceridwen.us>
+
+	* gramps/grampsapp.py, gramps/gui/aboutdialog.py,
+	gramps/gui/logger/_errorreportassistant.py,
+	gramps/plugins/db/bsddb/bsddb.py, gramps/plugins/gramplet/leak.py: 
+	Attempt to load berkeleydb with bsddb3 as a fallback.  Reversing the priority in most files, and permitting berkeleydb in
+	gramps/plugins/db/bsddb/bsddb.py.  bsddb3 has been deprecated since Python 3.6 and does not support
+	Python 3.10 and later.  Gramps 6.1 requires Python 3.10 so when this commit is merged up the
+	merge commit should remove the bsddb3 blocks.  Fixes #14218
+
+2026-05-04  David Straub <straub@protonmail.com>
+
+	* gramps/plugins/tool/check.py: Fix bug in check and repair
+
+2026-05-09  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.modules: Remove pyexiv, not used for anything.
+
+2026-05-01  John Ralls <jralls@ceridwen.us>
+
+	* mac/Info.plist, mac/gramps_launcher.py: [macos] Replace APPDATA
+	environment variable with defs for XDG_*_HOME Fixes #14204
+
+2026-05-01  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.bundle, mac/gramps.modules: Add Goocanvas2 module,
+	dropped from gtk-osx, required for GraphView addon.
+
+2026-04-23  Steve Youngs <steve@youngs.cc>
+
+	* .github/workflows/windows-aio.yml, aio/build.sh: Fix Windows AIO
+	workflow * Pin orjson to 3.11.7 * Fix unit test execution
+
+2026-04-28  Batsaihan P. <batsaihan.p@gmail.com>
+
+	* po/mn.po: Translated using Weblate (Mongolian) Currently translated at 8.2% (621 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/mn/
+
+2026-04-28  Jozef Gaal <preklady@mayday.sk>
+
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-04-28  Matti Niemelä <matti.u.niemela@gmail.com>
+
+	* po/fi.po: Translated using Weblate (Finnish) Currently translated at 95.4% (7208 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/fi/
+
+2026-04-28  Kaj Arne Mikkelsen <kmi@vgdata.dk>
+
+	* po/da.po: Translated using Weblate (Danish) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/da/ Translated using Weblate (Danish) Currently translated at 98.7% (7462 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/da/ Translated using Weblate (Danish) Currently translated at 97.7% (7387 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/da/
+
+2026-04-28  David Straub <straub@protonmail.com>
+
+	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+
+2026-04-28  Francisco Serrador <fserrador@gmail.com>
+
+	* po/es.po: Translated using Weblate (Spanish) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/es/ Translated using Weblate (Spanish) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/es/ Translated using Weblate (Spanish) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/es/
+
+2026-04-28  Milan <mobrcian@hotmail.com>
+
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 99.9% (7551 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 98.2% (7420 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-04-28  Andi Chandler <andi@gowling.com>
+
+	* po/en_GB.po: Translated using Weblate (English (United Kingdom)) Currently translated at 95.4% (7209 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/
+
+2026-04-28  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: Translated using Weblate (German) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/ Translated using Weblate (German) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+
+2026-04-28  Milo Ivir <mail@milotype.de>
+
+	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
+
+2026-04-28  Stephan Paternotte <stephan@paternottes.net>
+
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+
+2026-04-25  John Ralls <jralls@ceridwen.us>
+
+	* gramps/grampsapp.py, gramps/plugins/gramplet/gramplet.gpr.py,
+	gramps/plugins/lib/libmetadata.py: Allow newer versions of GExiv2.  The latest release of GExiv2 is 0.16 and most major distributions
+	are include at least 0.14. gi.require_version with a literal version
+	string doesn't permit those newer versions to be imported.
+
+2026-04-18  John Ralls <jralls@ceridwen.us>
+
+	* mac/Info.plist: Package Gramps-6.1.0-beta1 for macOS.
+
+2026-04-18  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.bundle, mac/gramps.modules,
+	mac/patches/orjson-3.11.8-illegal-features.patch: Update
+	dependencies for 6.1 series.
+
+2026-04-24  Francisco Serrador <fserrador@gmail.com>
+
+	* po/es.po: Translated using Weblate (Spanish) Currently translated at 98.5% (7441 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/es/
+
+2026-04-24  Kaj Arne Mikkelsen <kmi@vgdata.dk>
+
+	* po/da.po: Translated using Weblate (Danish) Currently translated at 96.3% (7278 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/da/
+
+2026-04-24  Aindriú Mac Giolla Eoin <aindriu80@gmail.com>
+
+	* po/ga.po: Translated using Weblate (Irish) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/ga/
+
+2026-04-24  Milan <mobrcian@hotmail.com>
+
+	* po/sk.po: Translated using Weblate (Slovak) Currently translated at 96.9% (7323 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/ Translated using Weblate (Slovak) Currently translated at 96.1% (7263 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sk/
+
+2026-04-24  Milo Ivir <mail@milotype.de>
+
+	* po/hr.po: Translated using Weblate (Croatian) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/hr/ Translated using Weblate (Croatian) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/hr/
+
+2026-04-24  Stephan Paternotte <stephan@paternottes.net>
+
+	* po/nl.po: Translated using Weblate (Dutch) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/nl/
+
+2026-04-24  Pär Ekholm <github1@m.pekholm.org>
+
+	* po/sv.po: Translated using Weblate (Swedish) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/sv/
+
+2026-04-24  Pedro Albuquerque <pmra@protonmail.com>
+
+	* po/pt_PT.po: Translated using Weblate (Portuguese (Portugal)) Currently translated at 100.0% (7554 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/pt_PT/
+
+2026-04-24  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: Translated using Weblate (German) Currently translated at 98.0% (7409 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/ Translated using Weblate (German) Currently translated at 97.1% (7338 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/ Translated using Weblate (German) Currently translated at 95.9% (7251 of 7554 strings) Translation: Gramps/Program Translate-URL:
+	https://hosted.weblate.org/projects/gramps-project/gramps/de/
+
+2026-04-21  Nick Hall <nick-h@gramps-project.org>
+
+	* Set to development version
 

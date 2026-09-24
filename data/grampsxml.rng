@@ -310,6 +310,8 @@
                 <value>before</value>
                 <value>after</value>
                 <value>about</value>
+                <value>from</value>
+                <value>to</value>
             </choice></attribute></optional>
             <optional><attribute name="quality"><choice>
                 <value>estimated</value>

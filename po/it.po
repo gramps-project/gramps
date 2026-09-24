@@ -66,13 +66,14 @@
 # Marco Ciampa <ciampix@posteo.net>, 2025.
 # Fabrizio Carrai <fabrizio.carrai@gmail.com>, 2026.
 # Paolo Zamponi <feus73@gmail.com>, 2026.
+# Pierfrancesco Passerini <p.passerini@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-17 00:52+0100\n"
-"PO-Revision-Date: 2026-06-24 14:01+0000\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"PO-Revision-Date: 2026-08-19 14:51+0000\n"
+"Last-Translator: Paolo Zamponi <feus73@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -80,7 +81,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2332,7 +2333,7 @@ msgstr "{long_month} {year}"
 #, no-python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2560,7 +2561,7 @@ msgstr "{date_quality}tra {date_start} e {date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:509
 msgctxt "before-date"
 msgid ""
-msgstr ""
+msgstr " "
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -7230,10 +7231,9 @@ msgid "Building FSID list for places"
 msgstr "Creazione elenco FSID per i luoghi"
 
 #: ../gramps/gen/fs/fs_import/sources.py:406
-#, fuzzy, python-format
-#| msgid "No FamilySearch sources found to import."
+#, python-format
 msgid "Loading FamilySearch source %(current)d/%(total)d"
-msgstr "Nessuna fonte di FamilySearch trovata per l'importazione."
+msgstr "Caricamento da FamilySearch %(current)d/%(total)d"
 
 #: ../gramps/gen/fs/fs_import/sources.py:611
 #: ../gramps/gen/fs/fs_import/sources.py:614
@@ -7306,22 +7306,17 @@ msgid "Internet Address"
 msgstr "Indirizzo Internet"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:434
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(header)s (%(current)d/%(total)d)"
-msgstr "%(current)d di %(total)d"
+msgstr "%(header)s (%(current)d/%(total)d)"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:443
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Loading FamilySearch person sources"
-msgstr "Importa le fonti di FamilySearch"
+msgstr "Caricamento delle fonti sulle persone su FamilySearch"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:451
-#, fuzzy
-#| msgid "Family relationships"
 msgid "Loading FamilySearch relationship sources"
-msgstr "Relazioni famiglia"
+msgstr "Caricamento delle fonti sulle relazioni su FamilySearch"
 
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
@@ -12939,10 +12934,8 @@ msgid "Middleware access code (issued secret)"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1204
-#, fuzzy
-#| msgid "FamilySearch tags"
 msgid "Enable FamilySearch integration"
-msgstr "Tag FamilySearch"
+msgstr "Abilita integrazione con FamilySearch"
 
 #: ../gramps/gui/configure.py:1212
 msgid "Integrations"
@@ -14570,10 +14563,8 @@ msgid "Remove"
 msgstr "Rimuovi"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select Existing"
-msgstr "Seleziona una nota esistente"
+msgstr "Seleziona esistente"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 msgid "Jump To"
@@ -14609,10 +14600,8 @@ msgid "Edit the selected citation"
 msgstr "Modifica la citazione selezionata"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
-#, fuzzy
-#| msgid "Add an existing citation or source"
 msgid "Select an existing citation or source"
-msgstr "Aggiunge una citazione o fonte esistente"
+msgstr "Seleziona una citazione o una fonte esistente"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Move the selected citation upwards"
@@ -14682,10 +14671,8 @@ msgstr "Modifica l'evento familiare selezionato o la persona"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select an existing event"
-msgstr "Seleziona una nota esistente"
+msgstr "Seleziona un evento esistente"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
@@ -14768,16 +14755,12 @@ msgid "Select an existing Media record"
 msgstr "Seleziona un oggetto multimediale esistente"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:93
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record Left"
-msgstr "Rimuove il progetto selezionato"
+msgstr "Sposta il record selezionato a sinistra"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:94
-#, fuzzy
-#| msgid "Remove the selected project"
 msgid "Move the selected record right"
-msgstr "Rimuove il progetto selezionato"
+msgstr "Sposta il record selezionato a destra"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:104
 msgid "_Gallery"
@@ -15074,10 +15057,8 @@ msgid "Edit the selected repository"
 msgstr "Modifica il deposito selezionato"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
-#, fuzzy
-#| msgid "Add an existing repository"
 msgid "Select an existing repository"
-msgstr "Aggiunge un deposito esistente"
+msgstr "Seleziona un deposito esistente"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Move the selected repository upwards"
@@ -15443,10 +15424,9 @@ msgid "Edit the child reference"
 msgstr "Modifica il riferimento al figlio"
 
 #: ../gramps/gui/editors/editfamily.py:130
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person to add as child of the family"
-msgstr "Aggiunge una persona esistente come figlio per la famiglia corrente"
+msgstr ""
+"Seleziona una persona esistente da aggiungere come figlio della famiglia"
 
 #: ../gramps/gui/editors/editfamily.py:131
 msgid "Move the child up in the children list"
@@ -15522,10 +15502,8 @@ msgid "Edit child"
 msgstr "Modifica figlio"
 
 #: ../gramps/gui/editors/editfamily.py:224
-#, fuzzy
-#| msgid "Select an existing person"
 msgid "Select an existing person to add as child"
-msgstr "Seleziona una persona esistente"
+msgstr "Seleziona una persona esistente da aggiungere come figlio"
 
 #: ../gramps/gui/editors/editfamily.py:227
 msgid "Edit relationship"
@@ -16903,60 +16881,47 @@ msgid "Tip: uncheck anything you don't want to import."
 msgstr "Suggerimento: deselezionare qualsiasi cosa non si desidera importare."
 
 #: ../gramps/gui/fs/actions.py:471
-#, fuzzy, python-format
-#| msgid " (%(birth_date)s - %(death_date)s)"
+#, python-format
 msgid "%(birth)s - %(death)s"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "%(birth)s - %(death)s"
 
 #: ../gramps/gui/fs/actions.py:524
-#, fuzzy, python-format
-#| msgid "FamilySearch update failed (sources)."
+#, python-format
 msgid "FamilySearch search failed (HTTP %(status)s)."
-msgstr "Aggiornamento da FamilySearch non riuscito (fonti)."
+msgstr "Errore durante la ricerca su FamilySearch (HTTP %(status)s)."
 
 #: ../gramps/gui/fs/actions.py:531
-#, fuzzy
-#| msgid "FamilySearch source creation failed for: {t}"
 msgid "FamilySearch search returned invalid data."
-msgstr "Creazione della fonte FamilySearch non riuscita per: {t}"
+msgstr "I dati restituiti dalla ricerca su FamilySearch non sono validi."
 
 #: ../gramps/gui/fs/actions.py:584
-#, fuzzy
-#| msgid "Select Person"
 msgid "selected person"
-msgstr "Seleziona persona"
+msgstr "persona selezionata"
 
 #: ../gramps/gui/fs/actions.py:630 ../gramps/gui/fs/actions.py:632
-#, fuzzy
-#| msgid "Import relatives"
 msgid "Bulk import relatives"
-msgstr "Importa i parenti"
+msgstr "Importazione in massa dei parenti"
 
 #: ../gramps/gui/fs/actions.py:646
-#, fuzzy, python-format
-#| msgid "Editor person: %(name)s  [%(gid)s]"
+#, python-format
 msgid "Starting person: %(name)s [%(fsid)s]"
-msgstr "Editor persona: %(name)s  [%(gid)s]"
+msgstr "Persona di partenza: %(name)s [%(fsid)s]"
 
 #: ../gramps/gui/fs/actions.py:668 ../gramps/gui/fs/fs_import/options.py:42
 msgid "Ancestor generations"
 msgstr "Generazioni di antenati"
 
 #: ../gramps/gui/fs/actions.py:670
-#, fuzzy
-#| msgid "Number of generations to fetch upwards"
 msgid "Number of generations to import upward from the starting person."
-msgstr "Numero di generazioni da recuperare verso l'alto"
+msgstr "Numero di generazioni da importare a monte dalla persona di partenza."
 
 #: ../gramps/gui/fs/actions.py:675 ../gramps/gui/fs/fs_import/options.py:46
 msgid "Descendant generations"
 msgstr "Generazioni di discendenti"
 
 #: ../gramps/gui/fs/actions.py:677
-#, fuzzy
-#| msgid "Number of generations to fetch downwards"
 msgid "Number of generations to import downward from the starting person."
-msgstr "Numero di generazioni da importare verso il basso"
+msgstr "Numero di generazioni da importare a valle dalla persona di partenza."
 
 #: ../gramps/gui/fs/actions.py:683 ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -16967,16 +16932,18 @@ msgstr "Includere i coniugi"
 #: ../gramps/gui/fs/actions.py:685
 msgid "When off, import only the direct parent/child bloodline."
 msgstr ""
+"Quando è disattivata, vengono importate solo le linee di sangue dirette "
+"genitore-figlio."
 
 #: ../gramps/gui/fs/actions.py:688
-#, fuzzy
-#| msgid "Do not re-import existing persons"
 msgid "Do not re-import existing people"
 msgstr "Non reimportare le persone esistenti"
 
 #: ../gramps/gui/fs/actions.py:691
 msgid "Keep existing linked Gramps people unchanged during the import."
 msgstr ""
+"Durante l'importazione, mantieni invariate le persone di Gramps già "
+"collegate."
 
 #: ../gramps/gui/fs/actions.py:694 ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
@@ -16985,10 +16952,8 @@ msgid "Include sources"
 msgstr "Includere le fonti"
 
 #: ../gramps/gui/fs/actions.py:695
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Fetch and import FamilySearch sources."
-msgstr "Importa le fonti di FamilySearch"
+msgstr "Recupera e importa le fonti di FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:697 ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
@@ -16997,132 +16962,107 @@ msgid "Include notes"
 msgstr "Includere le note"
 
 #: ../gramps/gui/fs/actions.py:698
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Fetch and import FamilySearch notes."
-msgstr "Importa le fonti di FamilySearch"
+msgstr "Recupera e importa le note di FamilySearch."
 
 #: ../gramps/gui/fs/actions.py:700
-#, fuzzy
-#| msgid "Looking for broken parent relationships"
 msgid "Link imported parent/child relationships"
-msgstr "Ricerca di relazioni danneggiate di tipo genitore"
+msgstr "Collega le relazioni padre-figlio importate"
 
 #: ../gramps/gui/fs/actions.py:703
 msgid ""
 "Create or reuse families so imported parents and children are connected."
 msgstr ""
+"Crea o riutilizza le famiglie, in modo che i genitori e i figli importati "
+"siano collegati."
 
 #: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
-#, fuzzy
-#| msgid "FamilySearch Import"
 msgid "Start FamilySearch import"
-msgstr "Importazione da FamilySearch"
+msgstr "Inizia importazione da FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:758
-#, fuzzy
-#| msgid "No FamilySearch Person ID is set for this person."
 msgid ""
 "Choose the FamilySearch person to use as the starting point for this new "
 "Gramps tree."
 msgstr ""
-"Per questa persona non è stato impostato nessun ID di persona FamilySearch."
+"Scegli la persona di FamilySearch da utilizzare come punto di partenza per "
+"questo nuovo albero di Gramps."
 
 #: ../gramps/gui/fs/actions.py:775
-#, fuzzy
-#| msgid "FamilySearch Import Options"
 msgid "FamilySearch ID or person URL"
-msgstr "Opzioni di importazione da FamilySearch"
+msgstr "ID FamilySearch o URL di persona"
 
 #: ../gramps/gui/fs/actions.py:776
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "FamilySearch ID or URL"
-msgstr "ID FamilySearch"
+msgstr "ID FamilySearch o URL"
 
 #: ../gramps/gui/fs/actions.py:781
-#, fuzzy
-#| msgid "(deleted on FamilySearch)"
 msgid "Name, date, place, or FamilySearch ID"
-msgstr "(eliminato su FamilySearch)"
+msgstr "Nome, data, luogo o iD FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:782
-#, fuzzy
-#| msgid "Web Search"
 msgid "Search"
-msgstr "Ricerca web"
+msgstr "Cerca"
 
 #: ../gramps/gui/fs/actions.py:800
 msgid "Life"
-msgstr ""
+msgstr "Vita"
 
 #: ../gramps/gui/fs/actions.py:856
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "FamilySearch ID ready."
-msgstr "ID FamilySearch"
+msgstr "ID FamilySearch pronto."
 
 #: ../gramps/gui/fs/actions.py:860
 msgid "Enter a name, date, place, ID, or URL to search."
-msgstr ""
+msgstr "Inserisci un nome, una data, un luogo, o un URL da cercare."
 
 #: ../gramps/gui/fs/actions.py:865
-#, fuzzy
-#| msgid "Sync to FamilySearch..."
 msgid "Searching FamilySearch..."
-msgstr "Sincronizza in FamilySearch..."
+msgstr "Ricerca in FamilySearch..."
 
 #: ../gramps/gui/fs/actions.py:880
-#, fuzzy, python-format
-#| msgid "Searching family names"
+#, python-format
 msgid "Search failed: %(error)s"
-msgstr "Ricerca nomi famiglie"
+msgstr "Impossibile completare la ricerca: %(error)s"
 
 #: ../gramps/gui/fs/actions.py:890
 #, python-format
 msgid "Search results: %(count)d"
-msgstr ""
+msgstr "Risultati della ricerca: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:893
-#, fuzzy
-#| msgid "No FamilySearch sources found to import."
 msgid "No FamilySearch people found."
-msgstr "Nessuna fonte di FamilySearch trovata per l'importazione."
+msgstr "Nessuna persona di FamilySearch trovata."
 
 #: ../gramps/gui/fs/actions.py:917
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1138
-#, fuzzy
-#| msgid "FamilySearch sync"
 msgid "FamilySearch person"
-msgstr "Sincronizzazione con FamilySearch"
+msgstr "Persona di FamilySearch"
 
 #: ../gramps/gui/fs/actions.py:964
 msgid ""
 "No FamilySearch person was imported. Check the selected person ID and try "
 "again."
 msgstr ""
+"Non è stata importata nessuna persona da FamilySearch. Controlla l'ID della "
+"persona selezionata e riprova."
 
 #: ../gramps/gui/fs/actions.py:993
 msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
 msgstr ""
+"L'albero è vuoto! Vorresti eseguire un'importazione in massa da FamilySearch?"
 
 #: ../gramps/gui/fs/actions.py:994
-#, fuzzy
-#| msgid "Center Person"
 msgid "Choose Starting Person"
-msgstr "Persona centrale"
+msgstr "Scegli la persona di partenza"
 
 #: ../gramps/gui/fs/actions.py:995
-#, fuzzy
-#| msgid "Not shown"
 msgid "Not now"
-msgstr "Non mostrato"
+msgstr "Non adesso"
 
 #: ../gramps/gui/fs/actions.py:1012 ../gramps/gui/fs/actions.py:1073
-#, fuzzy
-#| msgid "family not complete"
 msgid "Bulk import complete."
-msgstr "famiglia non completa"
+msgstr "Importazione in massa completata."
 
 #: ../gramps/gui/fs/actions.py:1051 ../gramps/gui/fs/actions.py:1089
 #: ../gramps/gui/fs/actions.py:1217 ../gramps/gui/fs/actions.py:1384
@@ -17280,7 +17220,7 @@ msgstr ""
 #, fuzzy, python-brace-format
 #| msgid "Rename failed"
 msgid "Retag failed: {e}"
-msgstr "Rinominazione non riuscita"
+msgstr "Modifica etichetta fallita: {e}"
 
 #: ../gramps/gui/fs/actions.py:1712
 msgid "FamilySearch: Update FSID after redirect"
@@ -17500,7 +17440,7 @@ msgstr "Numero di generazioni da recuperare verso l'alto"
 
 #: ../gramps/gui/fs/fs_import/options.py:47
 msgid "Number of generations to fetch downwards"
-msgstr "Numero di generazioni da importare verso il basso"
+msgstr "Numero di generazioni da recuperare a partire da quella più recente"
 
 #: ../gramps/gui/fs/fs_import/options.py:51
 msgid "Do not re-import existing persons"
@@ -17596,89 +17536,69 @@ msgid "Final Gramps result"
 msgstr "Impostazione generali di Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
-#, fuzzy
-#| msgid "Only in Gramps"
 msgid "Kept in Gramps"
-msgstr "Solo in Gramps"
+msgstr "Mantenuto in Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:712
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:771
-#, fuzzy
-#| msgid "Sync from FamilySearch"
 msgid "Will copy from FamilySearch"
-msgstr "Sincronizza da FamilySearch"
+msgstr "Copierà da FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:774
-#, fuzzy
-#| msgid "Run selected tool"
 msgid "Review and select to copy"
-msgstr "Esegui lo strumento selezionato"
+msgstr "Controlla e seleziona per copiare"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:776
 msgid "Not mergeable in this row"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:862
-#, fuzzy
-#| msgid "Critical mismatch"
 msgid "Critical"
-msgstr "Incompatibilità critica"
+msgstr "Critico"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:869
-#, fuzzy
-#| msgid "Select all"
 msgid "Selectable"
-msgstr "Seleziona tutto"
+msgstr "Selezionabile"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:930
-#, fuzzy
-#| msgid "FamilySearch value"
 msgid "Copy this FamilySearch value into Gramps"
-msgstr "Valore di FamilySearch"
+msgstr "Copia questo valore di FamilySearch in Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:932
 msgid "This row cannot be merged directly"
-msgstr ""
+msgstr "Questa riga non può essere fusa direttamente"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:976
 msgid "Inconsistencies"
-msgstr ""
+msgstr "Incoerenze"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:980
 msgid "The dates are different."
-msgstr ""
+msgstr "Le date sono diverse."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:982
-#, fuzzy
-#| msgid "Select a different person"
 msgid "The values are different."
-msgstr "Seleziona una persona differente"
+msgstr "I valori sono diversi."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:984
 msgid "Review this difference before merging."
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1120
-#, fuzzy
-#| msgid "Gramps package"
 msgid "Gramps person"
-msgstr "Pacchetto Gramps"
+msgstr "Persona di Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1237
-#, fuzzy
-#| msgid "Only in Gramps"
 msgid "Result in Gramps"
-msgstr "Solo in Gramps"
+msgstr "Risultati in Gramps"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1603
-#, fuzzy
-#| msgid "Could not resolve the selected person in the database."
 msgid "Could not resolve the selected person."
-msgstr "Impossibile risolvere la persona selezionata nel database."
+msgstr "Impossibile risolvere la persona selezionata."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1612
 msgid "Select at least one FamilySearch row to merge."
-msgstr ""
+msgstr "Seleziona almeno una riga di FamilySearch da fondere."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1617
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1673
@@ -17692,40 +17612,36 @@ msgid "FamilySearch Compare/Merge"
 msgstr "Confronto con FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1620
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
+#, python-brace-format
 msgid "Copy {count} selected FamilySearch item(s) into the Gramps person?"
 msgstr ""
-"Sovrascrivi i campi selezionati di FamilySearch con i valori di Gramps "
-"(nessuna eliminazione)."
+"Copiare i {count} elementi di FamilySearch selezionati nella persona di "
+"Gramps?"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1623
-#, fuzzy
-#| msgid "Merge"
 msgid "_Merge"
-msgstr "Fondi"
+msgstr "_Fondi"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1634
-#, fuzzy
-#| msgid "FamilySearch: Refresh merged ID"
 msgid "FamilySearch: Merge selected rows"
-msgstr "FamilySearch: aggiorna l'ID unificato"
+msgstr "FamilySearch: fondi le righe selezionate"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1674
 #, python-brace-format
 msgid "{count} item(s) copied into Gramps."
-msgstr ""
+msgstr "{count} elementi copiati in Gramps."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1681
 #, python-brace-format
 msgid ""
 "{count} item(s) copied into Gramps; {failed} row(s) could not be applied."
 msgstr ""
+"{count} elementi copiati in Gramps: {failed} righe non possono essere "
+"applicate."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1688
 msgid "No selected rows could be copied into Gramps."
-msgstr ""
+msgstr "Nessuna riga selezionata può essere copiata in Gramps."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1696
 msgid "Select a person first."
@@ -17760,6 +17676,9 @@ msgid ""
 "Review FamilySearch differences, choose the rows to copy, then merge them "
 "into Gramps. The direction is FamilySearch to Gramps only."
 msgstr ""
+"Esamina le differenze rispetto a FamilySearch, seleziona le righe da "
+"copiare, quindi fondile in Gramps. La direzione è esclusivamente da "
+"FamilySearch a Gramps."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1800
 msgid "Merge"
@@ -17794,10 +17713,8 @@ msgid "Sources"
 msgstr "Fonti"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1838
-#, fuzzy
-#| msgid "Merge the selected notes"
 msgid "Merge selected"
-msgstr "Fondi le note selezionate"
+msgstr "Fondi i selezionati"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1839
 #: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
@@ -17805,22 +17722,16 @@ msgid "Refresh"
 msgstr "Aggiorna"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1968
-#, fuzzy
-#| msgid "Import FamilySearch sources"
 msgid "Preparing FamilySearch sources"
-msgstr "Importa le fonti di FamilySearch"
+msgstr "Preparazione delle fonti di FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1974
-#, fuzzy
-#| msgid "Building ordered list (1/2)"
 msgid "Loading source links (1/2)"
-msgstr "Costruzione dell'elenco ordinato (1/2)"
+msgstr "Caricamento dei collegamenti alle fonti (1/2)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1996
-#, fuzzy
-#| msgid "Processing list (2/2)"
 msgid "Parsing source details (2/2)"
-msgstr "Elaborazione elenco (2/2)"
+msgstr "Elaborazione dei dettagli delle fonti (2/2)"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2017
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2051
@@ -18096,7 +18007,6 @@ msgid ""
 "{err}"
 msgstr ""
 "Rinomina non riuscita per:\n"
-"\n"
 "{p}\n"
 "\n"
 "{err}"
@@ -18190,38 +18100,30 @@ msgid "Apply Selected"
 msgstr "Applica selezionato"
 
 #: ../gramps/gui/fs/sync_directions.py:839
-#, fuzzy
-#| msgid "FamilySearch tags"
 msgid "Choose FamilySearch updates"
-msgstr "Tag FamilySearch"
+msgstr "Scegli aggiornamenti di FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:846
-#, fuzzy
-#| msgid ""
-#| "<b>Choose what to change on FamilySearch</b>\n"
-#| "Default is to keep FamilySearch.\n"
-#| "<i>No deletions are performed.</i>"
 msgid ""
 "Review each Gramps value before pushing it to FamilySearch. The default "
 "action keeps FamilySearch unchanged and no deletions are performed."
 msgstr ""
-"<b>Scegli cosa modificare su FamilySearch</b>\n"
-"Il comportamento predefinito è mantenere FamilySearch.\n"
-"<i>Non vengono eseguite eliminazioni.</i>"
+"Controlla i singoli valori di Gramps prima di caricarli su FamilySearch. Per "
+"impostazione predefinita, i dati di FamilySearch non verranno modificati né "
+"eliminati."
 
 #: ../gramps/gui/fs/sync_directions.py:865
 msgid "Change message:"
 msgstr "Modifica messaggio:"
 
 #: ../gramps/gui/fs/sync_directions.py:891
-#, fuzzy
-#| msgid "No mention"
 msgid "Needs attention"
-msgstr "Nessun riferimento"
+msgstr "Richiede attenzione"
 
 #: ../gramps/gui/fs/sync_directions.py:893
 msgid "Use the Action column to choose what FamilySearch receives."
 msgstr ""
+"Utilizza la colonna Azione per scegliere quali dati inviare a FamilySearch."
 
 #: ../gramps/gui/fs/sync_directions.py:957 ../gramps/gui/undohistory.py:115
 msgid "Action"
@@ -18236,10 +18138,9 @@ msgid "Choose whether to keep FamilySearch or push this Gramps value."
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1021
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(selected)d of %(total)d selected"
-msgstr "%(current)d di %(total)d"
+msgstr "%(selected)d di %(total)d selezionati"
 
 #: ../gramps/gui/fs/sync_directions.py:1076
 #: ../gramps/gui/fs/sync_directions.py:1651
@@ -18447,10 +18348,8 @@ msgid "Single Person Actions"
 msgstr "Azioni persona"
 
 #: ../gramps/gui/fs/tools_window.py:382
-#, fuzzy
-#| msgid "Actions"
 msgid "Bulk Actions"
-msgstr "Azioni"
+msgstr "Azioni in massa"
 
 #: ../gramps/gui/fs/tools_window.py:388
 msgid "Import relatives"
@@ -18478,22 +18377,17 @@ msgid "Clear Cache"
 msgstr "Pulisci cache"
 
 #: ../gramps/gui/fs/tools_window.py:408
-#, fuzzy
-#| msgid "All generations"
 msgid "Import multiple generations"
-msgstr "Tutte le generazioni"
+msgstr "Importa più generazioni"
 
 #: ../gramps/gui/fs/tools_window.py:412
-#, fuzzy
-#| msgid "Import relatives"
 msgid "Bulk Import Relatives"
-msgstr "Importa i parenti"
+msgstr "Importa in massa dei parenti"
 
 #: ../gramps/gui/fs/tools_window.py:414
-#, fuzzy
-#| msgid "Matches all descendants for the specified person"
 msgid "Import ancestors and descendants from the selected FamilySearch person."
-msgstr "Estrae tutti i discendenti della persona specificata"
+msgstr ""
+"Importa antenati e discendenti dalla persona selezionata in FamilySearch."
 
 #: ../gramps/gui/fs/tools_window.py:422
 #, fuzzy
@@ -18524,10 +18418,8 @@ msgstr ""
 "(nessuna eliminazione)."
 
 #: ../gramps/gui/fs/tools_window.py:559
-#, fuzzy
-#| msgid "Export to FamilySearch (basic)"
 msgid "Export to FamilySearch"
-msgstr "Esportazione in FamilySearch (di base)"
+msgstr "Esportazione in FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:562
 msgid ""
@@ -18548,16 +18440,12 @@ msgid "Editor person: %(name)s"
 msgstr "Editor persona: %(name)s"
 
 #: ../gramps/gui/fs/tools_window.py:809
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Add FamilySearch ID"
-msgstr "ID FamilySearch"
+msgstr "Aggiungi ID FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:815
-#, fuzzy
-#| msgid "FamilySearch ID"
 msgid "Edit FamilySearch ID"
-msgstr "ID FamilySearch"
+msgstr "Modifica ID FamilySearch"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
@@ -20408,8 +20296,6 @@ msgstr "Persona 2"
 
 #: ../gramps/gui/glade/mergeperson.glade:218
 #: ../gramps/gui/glade/mergeperson.glade:233
-#, fuzzy
-#| msgid "Name:"
 msgctxt "person"
 msgid "Name:"
 msgstr "Nome:"
@@ -21799,6 +21685,13 @@ msgid ""
 "Addon Manager → Projects) targets a different Gramps version. Check that the "
 "project URL matches Gramps %(major_version)s."
 msgstr ""
+"Impossibile registrare il componente aggiuntivo ‘%(addon_id)s’, che non sarà "
+"disponibile nella configurazione attuale.\n"
+"\n"
+"Questo problema si verifica spesso quando il progetto del componente "
+"aggiuntivo (in Modifica → Preferenze → Gestione dei componenti aggiuntivi → "
+"Progetti) è destinato a una versione diversa di Gramps. Verifica che l'URL "
+"del progetto corrisponda a Gramps %(major_version)s."
 
 #: ../gramps/gui/plug/_windows.py:612
 msgid "No matching addons found."
@@ -23072,11 +22965,11 @@ msgstr "Nessun albero genealogico"
 
 #: ../gramps/gui/viewmanager.py:415
 msgid "You are not logged in to FamilySearch. Would you like to sign in now?"
-msgstr ""
+msgstr "Non hai effettuato l'accesso a FamilySearch. Vuoi effettuarlo adesso?"
 
 #: ../gramps/gui/viewmanager.py:418
 msgid "Sign in"
-msgstr ""
+msgstr "Accedi"
 
 #: ../gramps/gui/viewmanager.py:638
 msgid "User consent declined"
@@ -30003,6 +29896,10 @@ msgid ""
 "%(year)d-%(month)02d-%(day)02d. If your source uses DD/MM/YYYY (e.g. "
 "ancestry.com exports), verify and correct after import."
 msgstr ""
+"La data numerica ambigua ‘%(orig)s’ viene interpretata come MM/GG/AAAA "
+"(formato USA) = %(year)d-%(month)02d-%(day)02d. Se la fonte utilizza il "
+"formato GG/MM/AAAA (ad esempio, le esportazioni da ancestry.com), verificare "
+"e correggere dopo l'importazione."
 
 #: ../gramps/plugins/lib/libgedcom.py:3619
 msgid "Records not imported into "
@@ -34611,10 +34508,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
-#, fuzzy
-#| msgid "Personal map"
 msgid "Personal map: "
-msgstr "Mappa personale"
+msgstr "Mappa personale "
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
 msgid "The map"
@@ -40572,10 +40467,8 @@ msgstr "Aggiunge nuovo figlio alla famiglia"
 
 #: ../gramps/plugins/view/relview.py:1172
 #: ../gramps/plugins/view/relview.py:1704
-#, fuzzy
-#| msgid "Add an existing person as a child of the family"
 msgid "Select an existing person as a child of the family"
-msgstr "Aggiunge una persona esistente come figlio per la famiglia corrente"
+msgstr "Seleziona una persona esistente come figlio della famiglia"
 
 #: ../gramps/plugins/view/relview.py:1467
 #, python-format
