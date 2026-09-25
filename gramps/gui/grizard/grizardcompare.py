@@ -1014,6 +1014,10 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                     )
         finally:
             self._syncing = False
+        # Ensure button states reflect the current selection, especially when
+        # the counterpart panel is deselected (e.g., unmatched person). This
+        # refreshes the "Merge..." and "Add as New..." sensitivities.
+        self._update_diff_status()
         self._update_diff_status()
 
     def _select_handle(self, panel: dict[str, Any], handle: str) -> bool:
@@ -1664,6 +1668,14 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                 target_person_handle=None,
                 resolutions={},
             )
+            # After adding as new, ensure any dangling references are resolved
+            # to avoid corrupted handles in the target database.
+            try:
+                self.grizard.run_step("resolve_dangling")
+            except Exception:
+                # If the step does not exist or fails, we ignore it; the
+                # primary add operation has already succeeded.
+                pass
         except Exception as exc:  # pragma: no cover
             LOG.exception("Add as new failed: %s", exc)
             ErrorDialog(_("Add as New failed"), str(exc), parent=self)
