@@ -27,7 +27,9 @@ Base class and interfaces for the Grizard import framework.
 # -------------------------------------------------------------------------
 from __future__ import annotations
 import abc
+import difflib
 import logging
+import re
 from typing import Any, NamedTuple
 
 # -------------------------------------------------------------------------
@@ -208,6 +210,63 @@ class GrizardBase(abc.ABC):
 
 # ------------------------------------------------------------
 #
+# Given-name matching helpers
+#
+# ------------------------------------------------------------
+_QUOTED_NICK_RE = re.compile(r'"[^"]*"|\([^)]*\)|\'[^\']*\'')
+
+
+def _strip_embedded_nickname(given: str) -> str:
+    """
+    Remove embedded nicknames in quotes or parentheses.
+    """
+    return _QUOTED_NICK_RE.sub(" ", given)
+
+
+def _given_tokens(given: str) -> list[str]:
+    """
+    Split a given-name string into lowercase tokens.
+    """
+    cleaned = _strip_embedded_nickname(given)
+    cleaned = cleaned.replace("-", " ")
+    return [tok.lower() for tok in cleaned.split() if tok]
+
+
+def score_given_names(source_given: str, target_given: str) -> float:
+    """
+    Score two given-name strings from 0.0 to 1.0.
+    """
+    s_raw = (source_given or "").strip()
+    t_raw = (target_given or "").strip()
+    if not s_raw or not t_raw:
+        return 0.0
+    if s_raw.lower() == t_raw.lower():
+        return 1.0
+    s_tokens = _given_tokens(s_raw)
+    t_tokens = _given_tokens(t_raw)
+    if not s_tokens or not t_tokens:
+        return 0.0
+    if s_tokens == t_tokens:
+        return 1.0
+    # Reversed / reordered tokens: same set regardless of order
+    if sorted(s_tokens) == sorted(t_tokens):
+        return 0.9
+    # Partial token overlap (e.g. shared middle name only)
+    if set(s_tokens) & set(t_tokens):
+        return 0.5
+    # Fuzzy similarity on the cleaned full strings
+    ratio = difflib.SequenceMatcher(
+        None, " ".join(s_tokens), " ".join(t_tokens)
+    ).ratio()
+    if ratio >= 0.8:
+        return 0.6
+    if s_tokens[0][0] == t_tokens[0][0]:
+        return 0.25
+    return 0.0
+
+
+# ------------------------------------------------------------
+#
 # CandidateMatcher
 #
 # ------------------------------------------------------------
@@ -272,28 +331,35 @@ class CandidateMatcher:
         s_surnames = self.get_surnames(s_name).strip()
         t_surnames = self.get_surnames(t_name).strip()
 
-        if s_surnames and t_surnames:
-            if s_surnames.lower() == t_surnames.lower():
-                score += 1.0
-            else:
-                try:
-                    if soundex(s_surnames) == soundex(t_surnames):
-                        score += 0.75
-                except Exception:
-                    pass
-
         s_lookup_db = source_db if source_db is not None else self.db
-        # Given name match
+        # Given name match (token-aware: reorderings, quoted nicknames,
+        # fuzzy similarity, same-initial fallback)
         s_given = s_name.first_name.strip()
         t_given = t_name.first_name.strip()
 
+        given_score = 0.0
         if s_given and t_given:
-            if s_given.lower() == t_given.lower():
-                score += 1.0
-            elif s_given[0].lower() == t_given[0].lower():
-                score += 0.25
+            given_score = score_given_names(s_given, t_given)
+            score += given_score
 
-        # Birth date match helper
+        # Avoid pairing newcomers on surname alone: when both given
+        # names are present but totally dissimilar, cap the surname
+        # credit so a shared surname cannot auto-match by itself.
+        surname_score = 0.0
+        if s_surnames and t_surnames:
+            if s_surnames.lower() == t_surnames.lower():
+                surname_score = 1.0
+            else:
+                try:
+                    if soundex(s_surnames) == soundex(t_surnames):
+                        surname_score = 0.75
+                except Exception:
+                    pass
+            if given_score == 0.0 and s_given and t_given:
+                surname_score = min(surname_score, 0.25)
+            score += surname_score
+
+        # Birth date match helper (partial-date aware)
         s_birth_ref = source.get_birth_ref()
         t_birth_ref = target.get_birth_ref()
 
@@ -303,14 +369,31 @@ class CandidateMatcher:
                 t_birth = self.db.get_event_from_handle(t_birth_ref.ref)
                 s_date = s_birth.get_date_object()
                 t_date = t_birth.get_date_object()
-                if s_date.get_year() > 0 and t_date.get_year() > 0:
-                    diff = abs(s_date.get_year() - t_date.get_year())
-                    if diff == 0:
-                        score += 1.0
-                    elif diff <= 2:
-                        score += 0.5
-                    elif diff <= 5:
-                        score += 0.25
+                s_year = s_date.get_year()
+                t_year = t_date.get_year()
+                if s_year > 0 and t_year > 0:
+                    diff = abs(s_year - t_year)
+                    if diff != 0:
+                        if diff <= 2:
+                            score += 0.5
+                        elif diff <= 5:
+                            score += 0.25
+                    else:
+                        s_mon = s_date.get_month()
+                        t_mon = t_date.get_month()
+                        s_day = s_date.get_day()
+                        t_day = t_date.get_day()
+                        if s_mon <= 0 or t_mon <= 0:
+                            # One side is year-only: same year, partial info
+                            score += 0.75
+                        elif s_mon != t_mon:
+                            score += 0.5
+                        elif s_day <= 0 or t_day <= 0:
+                            score += 0.85
+                        elif s_day != t_day:
+                            score += 0.75
+                        else:
+                            score += 1.0
             except Exception:
                 pass
 

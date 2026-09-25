@@ -85,7 +85,7 @@ from gramps.gen.types import PersonHandle
 # Local imports
 #
 # -------------------------------------------------------------------------
-from ..grizard import GrizardCompareRow, CandidateMatcher
+from ..grizard import GrizardCompareRow, CandidateMatcher, score_given_names
 from ..gedcom import GedGrizard
 
 
@@ -191,6 +191,78 @@ class GrizardTest(unittest.TestCase):
         source_person.set_gender(Person.FEMALE)
         score = matcher.score_match(source_person, self.target_person)
         self.assertEqual(score, -1.0)
+
+    def test_score_given_names_reordered_tokens(self) -> None:
+        """
+        Verify reordered given names score as near-exact.
+        """
+        self.assertEqual(score_given_names("Edna Dorothy", "Dorothy Edna"), 0.9)
+
+    def test_score_given_names_embedded_nickname(self) -> None:
+        """
+        Verify an embedded quoted nickname is ignored.
+        """
+        self.assertEqual(score_given_names('Mary "Lizzie"', "Mary"), 1.0)
+
+    def test_score_given_names_partial_overlap(self) -> None:
+        """
+        Verify a shared token scores partial credit.
+        """
+        self.assertEqual(score_given_names("Mary Elizabeth", "Mary Ann"), 0.5)
+
+    def test_score_match_newcomer_stays_unmatched(self) -> None:
+        """
+        Verify a newcomer sharing only a surname does not auto-match.
+        """
+        matcher = CandidateMatcher(self.db)
+        newcomer = Person()
+        newcomer.set_gender(Person.MALE)
+        name = Name()
+        name.first_name = "Zachary"
+        surname = Surname()
+        surname.set_surname("Doe")
+        name.add_surname(surname)
+        newcomer.set_primary_name(name)
+        score = matcher.score_match(newcomer, self.target_person)
+        self.assertLess(score, 0.5)
+        matches = matcher.find_matches(newcomer, threshold=0.5)
+        self.assertEqual(matches, [])
+
+    def test_score_match_year_only_birth_partial_credit(self) -> None:
+        """
+        Verify a year-only birth vs a full birth date gets partial credit.
+        """
+        source_db = make_database("sqlite")
+        source_db.load(":memory:")
+        try:
+            with DbTxn("Add source person", source_db) as trans:
+                source_person = Person()
+                source_person.set_gender(Person.MALE)
+                name = Name()
+                name.first_name = "John"
+                surname = Surname()
+                surname.set_surname("Doe")
+                name.add_surname(surname)
+                source_person.set_primary_name(name)
+                source_db.add_person(source_person, trans)
+                birth = Event()
+                birth.set_type(EventType.BIRTH)
+                year_only = Date()
+                year_only.set_year(1980)
+                birth.set_date_object(year_only)
+                source_db.add_event(birth, trans)
+                eref = EventRef()
+                eref.ref = birth.handle
+                source_person.set_birth_ref(eref)
+                source_db.commit_person(source_person, trans)
+            matcher = CandidateMatcher(self.db)
+            # Target birth is 15 JUN 1980; same year but partial info.
+            partial_score = matcher.score_match(
+                source_person, self.target_person, source_db=source_db
+            )
+            self.assertAlmostEqual(partial_score, 2.75)
+        finally:
+            source_db.close()
 
     def test_ged_grizard_flow(self) -> None:
         """
