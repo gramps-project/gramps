@@ -188,6 +188,33 @@ register(
 
 # ------------------------------------------------------------------------
 #
+# Grizard Data Merge
+#
+# ------------------------------------------------------------------------
+
+register(
+    TOOL,
+    id="grizardmerge",
+    name=_("Grizard Data Merge"),
+    description=_(
+        "Loads a GEDCOM file and finds people that may "
+        "represent the same person for merging."
+    ),
+    version="0.1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=UNSTABLE,
+    fname="grizardmerge.py",
+    authors=["Brian Caudill"],
+    authors_email=["brian@bocaudill.com"],
+    category=TOOL_DBPROC,
+    toolclass="GrizardMergeTool",
+    optionclass="GrizardMergeToolOptions",
+    tool_modes=[TOOL_MODE_GUI],
+    help_url=TOOLS_HELP,
+)
+
+# ------------------------------------------------------------------------
+#
 # Media Manager
 #
 # ------------------------------------------------------------------------

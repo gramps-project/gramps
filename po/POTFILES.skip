@@ -80,6 +80,13 @@ gramps/gen/datehandler/test/datestrings_test.py
 gramps/gen/fs/fs_import/test/__init__.py
 gramps/gen/fs/fs_import/test/source_dates_test.py
 #
+# gen.grizard package
+#
+#
+gramps/gen/grizard/__init__.py
+gramps/gen/grizard/test/__init__.py
+gramps/gen/grizard/test/grizard_test.py
+#
 # gen db API
 #
 gramps/gen/db/__init__.py
@@ -339,11 +346,13 @@ gramps/gen/utils/test/requirements_test.py
 # gui - GUI code
 #
 gramps/gui/__init__.py
+gramps/gui/grizard/__init__.py
 gramps/gui/basesidebar.py
 gramps/gui/dbguielement.py
 gramps/gui/ddtargets.py
 gramps/gui/display.py
 gramps/gui/glade.py
+gramps/gui/htmlbridge.py
 gramps/gui/listmodel.py
 gramps/gui/managedwindow.py
 gramps/gui/navigator.py
@@ -463,6 +472,8 @@ gramps/gui/selectors/selectorfactory.py
 # gui.test package
 #
 gramps/gui/test/display_test.py
+gramps/gui/test/html_to_pango_test.py
+gramps/gui/test/htmlview_order_test.py
 gramps/gui/test/user_test.py
 #
 # gui/views - the GUI views package

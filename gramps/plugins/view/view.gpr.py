@@ -325,3 +325,22 @@ register(
     viewclass="CitationTreeView",
     stock_icon="gramps-tree-select",
 )
+
+import os
+
+if os.environ.get("GRAMPS_HTML"):
+    register(
+        VIEW,
+        id="htmlview",
+        name=_("HTML"),
+        description=_("HTML view for capturing debug input"),
+        version="1.0",
+        gramps_target_version=MODULE_VERSION,
+        status=STABLE,
+        fname="htmlview.py",
+        authors=["The Gramps project"],
+        authors_email=["https://gramps-project.org"],
+        category=("HTML", _("HTML")),
+        viewclass="HTMLView",
+        order=END,
+    )

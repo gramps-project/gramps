@@ -1,0 +1,35 @@
+# Grizard GEDCOM Compare/Merge To-Do List
+
+This document lists the tasks and enhancements required to bring the Grizard GEDCOM import and merge functionality to a robust, production-grade, and error-free level.
+
+---
+
+## [HIGH PRIORITY] 1. Shared Primary Object Copying (Dangling Reference Fixes)
+- [x] **Recursive Reference Resolution**: When adding a new person or copying an event, detect and copy referenced secondary/shared objects to avoid broken handle pointers:
+  - [x] **Notes**: Import and add `Note` records referenced in `note_ref_list`.
+  - [x] **Media**: Import and add `Media` records referenced in `media_ref_list`.
+  - [x] **Citations**: Import and add `Citation` records referenced in `citation_ref_list`.
+  - [x] **Sources**: When importing citations, resolve and import the parent `Source` records.
+  - [x] **Repositories**: When importing sources, resolve and import the linked `Repository` records.
+
+---
+
+## [MEDIUM PRIORITY] 2. Missing GEDCOM Hierarchy Elements
+- [ ] **Family-Level Events**:
+  - [ ] Add comparison rows for family events: Marriage (`MARR`), Divorce (`DIV`), etc.
+  - [ ] Copy and merge family-level events when linking spouses or joining families.
+- [ ] **Alternate Names**:
+  - [ ] Compare alternate names between source and target persons.
+  - [ ] Add a resolution/arrow to copy alternate names to the target person's name list.
+- [ ] **Personal Attributes**:
+  - [ ] Compare personal attributes (e.g. Occupation, Residence, Education, Religion) stored in `attribute_list`.
+  - [ ] Add resolutions to copy these attributes during merges.
+- [ ] **Place Deduplication**:
+  - [ ] Enhance `get_or_create_place` to compare coordinates (latitude/longitude) and hierarchy instead of just matching by title.
+
+---
+
+## [LOW PRIORITY] 3. UI/UX Enhancements & Optimization
+- [ ] **Optimized Linear Matching**: Maintain and scale the soundex + initial indexing structure for rapid match lookups on extremely large GEDCOM databases.
+- [ ] **Deduplication Warnings**: Provide user alerts if a relative being added (father/mother/spouse/child) already has a relationship slot filled in the target tree.
+- [ ] **Help & Tooltips**: Add contextual help documentation specifically explaining how the selective merge resolutions affect the target database.

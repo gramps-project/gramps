@@ -1,0 +1,88 @@
+# Grizard GEDCOM Compare/Merge Functionality Explained
+
+This document describes the GEDCOM data hierarchy, how the Grizard import/merge framework compares and merges these elements, and what gaps must be addressed to ensure robust, production-grade operation in Gramps.
+
+---
+
+## 1. The GEDCOM Hierarchy
+
+GEDCOM (Genealogical Data Communication) is structured hierarchically. Lines begin with an integer level number (0, 1, 2, ...), followed by a cross-reference identifier (e.g., `@I1@`, `@F1@`) or a tag (e.g., `INDI`, `FAM`, `BIRT`), and finally any value or pointer reference.
+
+### 0-Level Records (Primary Objects in Gramps)
+- **Individual (`0 @I1@ INDI`)**: The core person record.
+  - Sub-records (Level 1+):
+    - `NAME`: Name structure (`GIVN` Given Name, `SURN` Surname, `_MARN` Married Name, etc.). Can have multiple `NAME` records for alternate names.
+    - `SEX`: Gender (`M`, `F`, `U`).
+    - `BIRT`, `DEAT`, `CHR`, `BAPM`: Individual-level events containing `DATE` and `PLAC` (Place).
+    - `OCCU`, `RESI`, `EDUC`: Personal attributes / facts.
+    - `FAMS`: Pointer to a Family record where the person is a spouse/parent.
+    - `FAMC`: Pointer to a Family record where the person is a child.
+    - `_FSFTID`: FamilySearch ID attribute.
+    - `NOTE @N1@`: Pointer to a Note record.
+    - `OBJE @M1@`: Pointer to a Media Object record.
+    - `SOUR @S1@`: Pointer to a Source record (linked via a Citation).
+- **Family (`0 @F1@ FAM`)**: Represents marriages, cohabitation, and family unions.
+  - Sub-records (Level 1+):
+    - `HUSB @I1@`: Pointer to the husband.
+    - `WIFE @I2@`: Pointer to the wife.
+    - `CHIL @I3@`: Pointer to a child.
+    - `MARR`, `DIV`: Family-level events containing `DATE` and `PLAC`.
+- **Source (`0 @S1@ SOUR`)** & **Citation**: Source citations.
+- **Media Object (`0 @M1@ OBJE`)**: References to external media files.
+- **Note (`0 @N1@ NOTE`)**: Text block records.
+- **Repository (`0 @R1@ REPO`)**: Source repository.
+
+---
+
+## 2. How Grizard Compare/Merge Works
+
+### Comparative Logic (`_compare` in `gedcom.py`)
+Grizard uses a two-stage parsing approach. First, it imports the entire external GEDCOM file into an isolated in-memory dictionary database (`source_db`).
+When a user selects a source person and a potential target person, `GedGrizard._compare` produces side-by-side rows representing differences:
+1. **Given Name**: Compares `first_name` on primary name.
+2. **Surname**: Compares surnames on primary name.
+3. **Gender**: Compares the gender code.
+4. **Vitals (Birth/Death Events)**: Compares date strings and place titles of birth and death events.
+5. **FamilySearch ID**: Compares the `_FSFTID` attribute value.
+6. **Relations**: Iterates through relatives (Father, Mother, Spouse, Children) and lists their details.
+7. **Events & Other Records**: Groups non-birth/death events by type and compares them.
+
+### Merging Logic (`_apply` in `gedcom.py`)
+When resolutions are applied:
+* **Add as New Person (`target_person_handle is None`)**:
+  - The source person is deep-copied (`copy.deepcopy(s_person)`).
+  - Its birth/death events and associated places are duplicated into the target database.
+  - The person is committed to the target database.
+* **Merge into Existing Person**:
+  - Direct field resolutions (`given_name`, `surname`, `gender`) are copied from the source person into the target person.
+  - Vitals events (`birth_event`, `death_event`) are copied using the `copy_event` helper.
+  - FamilySearch IDs are linked as a custom attribute (`_FSFTID`).
+  - Other events are duplicated and added as custom event references on the target person.
+  - Relatives (`father`, `mother`, `spouse`, `child`) are mapped using `best_target_person` (which scans the target database for similar records).
+  - The active database's Family records (`Family`) are updated or created to link these related handles.
+
+---
+
+## 3. Critical Gaps & Missing Functionality
+
+The following gaps must be resolved to prevent database corruption, broken links, or loss of information:
+
+### A. Dangling References / Shared Primary Objects (Highest Priority)
+- **Problem**: When a person or event is deep-copied (via `copy.deepcopy`), its note references (`note_ref_list`), media references (`media_ref_list`), and citations (`citation_ref_list`) are copied verbatim. However, the corresponding `Note`, `Media`, `Source`, and `Citation` records exist *only* in `source_db`. This leaves the target database with broken/dangling pointers (non-existent handles) which will trigger `HandleError` crashes in the GUI.
+- **Needed**: A recursive reference resolver in `_apply` that detects when an entity contains references to `Note`, `Media`, `Citation`, or `Source` records. It must copy those records from `source_db` to the target database and update the handles on the merged person or event accordingly.
+
+### B. Family-Level Events
+- **Problem**: Grizard handles the structural connections of a family (Husband, Wife, Children) but completely ignores family-level events like Marriage (`MARR`), Divorce (`DIV`), and Engagement (`ENGA`).
+- **Needed**: Side-by-side comparison and resolutions for family-level events, transferring these event records to the matched or newly created target `Family` record.
+
+### C. Alternate Names
+- **Problem**: In Gramps, individuals can have multiple names. Currently, `Grizard` only compares and merges the primary name. Any alternate names on the source record are lost during a merge (though they are preserved during a complete "add new" operation).
+- **Needed**: Logic to compare alternate names and merge new alternate name records into the target person's name list.
+
+### D. Personal Attributes (Facts)
+- **Problem**: Personal attributes (Occupation, Religion, Residence) are kept in the `attribute_list` of `Person`. These are not shown in `_compare` or handled during a merge.
+- **Needed**: Grouping, comparing, and merging of person attributes.
+
+### E. Place Merging and Deduplication
+- **Problem**: The `get_or_create_place` helper only checks for matches by exact title. It does not perform a deeper match of latitude, longitude, and place structure, leading to duplicate places.
+- **Needed**: Enhanced place matcher or integration with Gramps' standard place matching tools.

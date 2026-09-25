@@ -1209,7 +1209,7 @@ class GrampsPreferences(ConfigureDialog):
         )
         row += 1
 
-        return _("Integrations"), grid
+        return _("Integrations"), scroll_window
 
     def _server_changed(self, obj):
         config.set("familysearch.server", obj.get_active())
