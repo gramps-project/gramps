@@ -144,6 +144,7 @@ class GrizardMergeDialog(Gtk.Dialog):
         self.target_person = self.target_db.get_person_from_handle(target_handle)
 
         self._resolutions: dict[str, str] = {}
+        self._mergeable_count: int = 0
 
         box = self.get_content_area()
         self._people_row = self._build_people_row()
@@ -155,10 +156,11 @@ class GrizardMergeDialog(Gtk.Dialog):
         btn_cancel = Gtk.Button(label=_("Cancel"))
         btn_cancel.connect("clicked", self.cb_cancel)
         bar.pack_start(btn_cancel, False, False, 0)
-        btn_apply = Gtk.Button(label=_("Apply"))
-        btn_apply.get_style_context().add_class("suggested-action")
-        btn_apply.connect("clicked", self.cb_apply)
-        bar.pack_start(btn_apply, False, False, 0)
+        self._btn_apply = Gtk.Button(label=_("Apply"))
+        self._btn_apply.get_style_context().add_class("suggested-action")
+        self._btn_apply.connect("clicked", self.cb_apply)
+        self._btn_apply.set_sensitive(self._mergeable_count > 0)
+        bar.pack_start(self._btn_apply, False, False, 0)
 
         self.show_all()
 
@@ -364,8 +366,10 @@ class GrizardMergeDialog(Gtk.Dialog):
                 if is_nullable_identity:
                     if ls and not rs:
                         btn = self._make_arrow(key, label)
+                        self._mergeable_count += 1
                 elif not same and ls:
                     btn = self._make_arrow(key, label)
+                    self._mergeable_count += 1
             gap = btn if btn is not None else Gtk.Label(label="")
             grid.attach(left_cell, 0, self._row_index, 1, 1)
             grid.attach(gap, 1, self._row_index, 1, 1)
