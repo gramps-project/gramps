@@ -17,8 +17,8 @@
 #
 
 """
-Large top-level comparison window showing the existing Gramps tree side by
-side with the incoming GEDCOM tree.
+Large top-level comparison window showing the incoming GEDCOM tree side by
+side with the existing Gramps tree (destination on the right).
 """
 
 # -------------------------------------------------------------------------
@@ -122,10 +122,10 @@ CATEGORIES = [
 # ------------------------------------------------------------
 class GrizardCompareWindow(ManagedWindow, Gtk.Window):
     """
-    Side-by-side comparison of the current Gramps tree (left) against a
-    loaded GEDCOM tree (right), with Previous/Next navigation between
-    records that contain differences and a Merge button that opens the
-    existing "Compare Differences" merge wizard.
+    Side-by-side comparison of a loaded GEDCOM tree (left) against the
+    current Gramps tree (destination, right), with Previous/Next
+    navigation between records that contain differences and a Merge
+    button that opens the existing "Compare Differences" merge wizard.
     """
 
     def __init__(
@@ -154,8 +154,8 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         self.current_category = "person"
         self.diff_list: list[dict[str, Any]] = []
         self.diff_index = -1
-        self.left_index: dict[str, str] = {}
-        self.right_index: dict[str, str] = {}
+        self.source_index: dict[str, str] = {}
+        self.target_index: dict[str, str] = {}
         self._syncing = False
 
         self.set_title(_("Grizard Compare"))
@@ -175,8 +175,8 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         self.paned = Gtk.HPaned()
         main_box.pack_start(self.paned, True, True, 0)
 
-        self.left_panel = self._build_panel(_("Current Family Tree"))
-        self.right_panel = self._build_panel(_("Incoming GEDCOM Tree"))
+        self.left_panel = self._build_panel(_("Incoming GEDCOM Tree"))
+        self.right_panel = self._build_panel(_("Current Family Tree"))
         self.paned.pack1(self.left_panel["frame"], True, False)
         self.paned.pack2(self.right_panel["frame"], True, False)
         # Split the two panels exactly in half once the window has been
@@ -349,16 +349,16 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             if not person:
                 continue
             name_str = name_displayer.display(person)
-            self._add_person_row(right_store, source_db, person, name_str)
-            self.right_index[handle] = name_str
+            self._add_person_row(left_store, source_db, person, name_str)
+            self.source_index[handle] = name_str
 
         for handle in target_db.iter_person_handles():
             person = target_db.get_person_from_handle(handle)
             if not person:
                 continue
             name_str = name_displayer.display(person)
-            self._add_person_row(left_store, target_db, person, name_str)
-            self.left_index.setdefault(handle, name_str)
+            self._add_person_row(right_store, target_db, person, name_str)
+            self.target_index.setdefault(handle, name_str)
 
         for store, tree in (
             (left_store, self.left_panel["tree"]),
@@ -410,8 +410,8 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         # rows left at 'o' have not been identified as different.
         for entry in self.diff_list:
             if entry["target_handle"]:
-                self._mark_row(left_store, entry["target_handle"])
-            self._mark_row(right_store, entry["source_handle"])
+                self._mark_row(right_store, entry["target_handle"])
+            self._mark_row(left_store, entry["source_handle"])
 
     @staticmethod
     def _mark_row(store: Gtk.TreeStore, handle: str, value: str = "*") -> None:
@@ -541,8 +541,8 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         iter_methods = dict((key, method) for key, _t, method in CATEGORIES)
         method = iter_methods[category]
         for db, store in (
-            (self.dbstate.db, left_store),
-            (self.source_db, right_store),
+            (self.source_db, left_store),
+            (self.dbstate.db, right_store),
         ):
             for handle in getattr(db, method)():
                 obj = self._get_object(db, category, handle)
@@ -922,15 +922,15 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         """
         if self.current_category != "person":
             self.select_category("person")
-        found = self._select_handle(self.right_panel, source_handle)
+        found = self._select_handle(self.left_panel, source_handle)
         try:
             if target_handle:
-                self._select_handle(self.left_panel, target_handle)
+                self._select_handle(self.right_panel, target_handle)
             else:
                 person = self.source_db.get_person_from_handle(source_handle)
                 if person is not None:
                     self._select_person_or_position(
-                        self.left_panel,
+                        self.right_panel,
                         None,
                         group=self._person_group_name(self.source_db, person),
                         name_str=name_displayer.display(person),
@@ -951,7 +951,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
     def _highlight_diff(self) -> None:
         """
         Select the rows in both panels corresponding to the current diff.
-        The left panel shows the matched person, or the alphabetical
+        The right panel shows the matched person, or the alphabetical
         insertion point when the person is missing from the tree.
         """
         if not (0 <= self.diff_index < len(self.diff_list)):
@@ -959,14 +959,14 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         entry = self.diff_list[self.diff_index]
         self._syncing = True
         try:
-            self._select_handle(self.right_panel, entry["source_handle"])
+            self._select_handle(self.left_panel, entry["source_handle"])
             if entry["target_handle"]:
-                self._select_handle(self.left_panel, entry["target_handle"])
+                self._select_handle(self.right_panel, entry["target_handle"])
             else:
                 person = self.source_db.get_person_from_handle(entry["source_handle"])
                 if person:
                     self._select_person_or_position(
-                        self.left_panel,
+                        self.right_panel,
                         None,
                         group=self._person_group_name(self.source_db, person),
                         name_str=name_displayer.display(person),
@@ -1004,16 +1004,16 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         or None if nothing valid is selected. Group header rows carry an
         empty handle and are treated as no selection.
         """
-        model, tree_iter = self.right_panel["tree"].get_selection().get_selected()
+        model, tree_iter = self.left_panel["tree"].get_selection().get_selected()
         if not tree_iter:
             return None
         source_handle = model.get_value(tree_iter, 0)
         if not source_handle:
             return None
         target_handle = None
-        lmodel, ltree_iter = self.left_panel["tree"].get_selection().get_selected()
-        if ltree_iter:
-            target_handle = lmodel.get_value(ltree_iter, 0) or None
+        rmodel, rtree_iter = self.right_panel["tree"].get_selection().get_selected()
+        if rtree_iter:
+            target_handle = rmodel.get_value(rtree_iter, 0) or None
         return source_handle, target_handle
 
     # ------------------------------------------------------------------
@@ -1048,11 +1048,11 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             return
         self._syncing = True
         try:
-            db = self.dbstate.db if is_left else self.source_db
+            db = self.source_db if is_left else self.dbstate.db
             person = db.get_person_from_handle(handle)
             if not person:
                 return
-            other_db = self.source_db if is_left else self.dbstate.db
+            other_db = self.dbstate.db if is_left else self.source_db
             counterpart = self._get_counterpart(handle)
             mirrored = False
             if counterpart:
@@ -1083,7 +1083,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         Uses the full pairing map (matched pairs regardless of whether
         they differ), falling back to the difference list for robustness.
         """
-        if handle in self.right_index:
+        if handle in self.source_index:
             pair_map = getattr(self, "_pair_map", {})
             if handle in pair_map:
                 return pair_map[handle]
@@ -1107,7 +1107,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         """
         individual_text = family_text = children_text = events_text = ""
         if self.current_category == "person":
-            db = self.source_db if handle in self.right_index else self.dbstate.db
+            db = self.source_db if handle in self.source_index else self.dbstate.db
             person = db.get_person_from_handle(handle)
             if person:
                 other_handle = self._get_counterpart(handle)
@@ -1116,7 +1116,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                 if other_handle:
                     other_db = (
                         self.dbstate.db
-                        if other_handle not in self.right_index
+                        if other_handle not in self.source_index
                         else self.source_db
                     )
                     other_person = other_db.get_person_from_handle(other_handle)
@@ -1685,8 +1685,8 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
 
         # Determine which database the source handle belongs to
         is_source_left = source_panel is self.left_panel
-        source_db = self.dbstate.db if is_source_left else self.source_db
-        target_db = self.source_db if is_source_left else self.dbstate.db
+        source_db = self.source_db if is_source_left else self.dbstate.db
+        target_db = self.dbstate.db if is_source_left else self.source_db
 
         person = source_db.get_person_from_handle(handle)
         if not person:
@@ -1792,8 +1792,8 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
 
             # Determine which database the source handle belongs to
             is_source_left = source_panel is self.left_panel
-            source_db = self.dbstate.db if is_source_left else self.source_db
-            target_db = self.source_db if is_source_left else self.dbstate.db
+            source_db = self.source_db if is_source_left else self.dbstate.db
+            target_db = self.dbstate.db if is_source_left else self.source_db
 
             person = source_db.get_person_from_handle(handle)
             if not person:

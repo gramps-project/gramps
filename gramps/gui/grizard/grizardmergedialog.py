@@ -20,10 +20,10 @@
 """
 Modal merge dialog for Grizard.
 
-Shows the current family tree on the left and the incoming GEDCOM tree on
-the right, with a per-field arrow button (<=) between them for any
-data that does not match exactly. Clicking Apply runs the gen-side
-GedGrizard._apply for the collected field resolutions.
+Shows the incoming GEDCOM tree on the left and the current family tree
+(destination) on the right, with a per-field arrow button (=>) between
+them for any data that does not match exactly. Clicking Apply runs the
+gen-side GedGrizard._apply for the collected field resolutions.
 """
 
 # -------------------------------------------------------------------------
@@ -259,14 +259,15 @@ class GrizardMergeDialog(Gtk.Dialog):
     def _build_people_row(self) -> Gtk.Widget:
         """
         Build the top bar with the two person names and a single
-        right-pointing arrow (data always flows GEDCOM -> Gramps).
+        right-pointing arrow (data always flows GEDCOM -> Gramps, so the
+        source is on the left and the destination on the right).
         """
         row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-        left = Gtk.Label(label=name_displayer.display(self.target_person))
+        left = Gtk.Label(label=name_displayer.display(self.source_person))
         left.set_xalign(0.0)
         dash = Gtk.Label(label=_("\u2192"))
         dash.set_xalign(0.5)
-        right = Gtk.Label(label=name_displayer.display(self.source_person))
+        right = Gtk.Label(label=name_displayer.display(self.target_person))
         right.set_xalign(1.0)
         row.pack_start(left, True, True, 0)
         row.pack_start(dash, False, False, 0)
@@ -291,11 +292,12 @@ class GrizardMergeDialog(Gtk.Dialog):
         """
         Fill the grid with the four sections used by the GrizardCompare
         details panel (Individual Details, Family Relations, Children,
-        Events & Other Records), each row showing the target value on the
-        left and the source value on the right with an arrow between.
+        Events & Other Records), each row showing the source value on the
+        left and the target (destination) value on the right with an
+        arrow between.
         """
-        left = self.target_person
-        right = self.source_person
+        left = self.source_person
+        right = self.target_person
         td = self.target_db
         sd = self.source_db
         grid = self._grid
@@ -307,9 +309,9 @@ class GrizardMergeDialog(Gtk.Dialog):
             return lab
 
         # Column headers at the top (match the compare window panel titles).
-        grid.attach(header(_("Current Family Tree")), 0, 0, 1, 1)
+        grid.attach(header(_("Incoming GEDCOM Tree")), 0, 0, 1, 1)
         grid.attach(Gtk.Label(label=""), 1, 0, 1, 1)
-        grid.attach(header(_("Incoming GEDCOM Tree")), 2, 0, 1, 1)
+        grid.attach(header(_("Current Family Tree")), 2, 0, 1, 1)
         self._row_index = 1
 
         def section(title: str) -> None:
@@ -360,9 +362,9 @@ class GrizardMergeDialog(Gtk.Dialog):
             btn = None
             if key is not None:
                 if is_nullable_identity:
-                    if rs and not ls:
+                    if ls and not rs:
                         btn = self._make_arrow(key, label)
-                elif not same and rs:
+                elif not same and ls:
                     btn = self._make_arrow(key, label)
             gap = btn if btn is not None else Gtk.Label(label="")
             grid.attach(left_cell, 0, self._row_index, 1, 1)
@@ -430,16 +432,16 @@ class GrizardMergeDialog(Gtk.Dialog):
             genders.get(left.get_gender(), _("Unknown")),
             genders.get(right.get_gender(), _("Unknown")),
         )
-        l_b = self._event_for(td, left, "birth")
-        r_b = self._event_for(sd, right, "birth")
+        l_b = self._event_for(sd, left, "birth")
+        r_b = self._event_for(td, right, "birth")
         add_row(
             "birth_event",
             _("Birth"),
             self._event_display_from(l_b),
             self._event_display_from(r_b),
         )
-        l_d = self._event_for(td, left, "death")
-        r_d = self._event_for(sd, right, "death")
+        l_d = self._event_for(sd, left, "death")
+        r_d = self._event_for(td, right, "death")
         add_row(
             "death_event",
             _("Death"),
@@ -461,8 +463,8 @@ class GrizardMergeDialog(Gtk.Dialog):
             ("mother", _("Mother")),
             ("spouse", _("Spouse")),
         ):
-            t_items = rel_items(td, left, role)
-            s_items = rel_items(sd, right, role)
+            t_items = rel_items(td, right, role)
+            s_items = rel_items(sd, left, role)
             count = max(len(t_items), len(s_items))
             for i in range(count):
                 t_rel = t_items[i] if i < len(t_items) else None
@@ -470,12 +472,12 @@ class GrizardMergeDialog(Gtk.Dialog):
                 t_text = self._related_text(t_rel, td) if t_rel else ""
                 s_text = self._related_text(s_rel, sd) if s_rel else ""
                 key = (role + ":" + s_rel.handle) if s_rel else None
-                add_row(key, title, t_text, s_text)
+                add_row(key, title, s_text, t_text)
 
         # ---------- Children ----------
         section(_("Children"))
-        t_items = rel_items(td, left, "child")
-        s_items = rel_items(sd, right, "child")
+        t_items = rel_items(td, right, "child")
+        s_items = rel_items(sd, left, "child")
         count = max(len(t_items), len(s_items))
         for i in range(count):
             t_rel = t_items[i] if i < len(t_items) else None
@@ -483,21 +485,21 @@ class GrizardMergeDialog(Gtk.Dialog):
             t_text = self._related_text(t_rel, td) if t_rel else ""
             s_text = self._related_text(s_rel, sd) if s_rel else ""
             key = ("child:" + s_rel.handle) if s_rel else None
-            add_row(key, "", t_text, s_text, show_label=False)
+            add_row(key, "", s_text, t_text, show_label=False)
 
         # ---------- Events & Other Records ----------
         section(_("Events & Other Records"))
-        left_groups = event_groups(td, left)
-        right_groups = event_groups(sd, right)
-        for etype in dict.fromkeys(list(left_groups) + list(right_groups)):
-            t_items = left_groups.get(etype, [])
-            s_items = right_groups.get(etype, [])
-            count = max(len(t_items), len(s_items))
+        source_groups = event_groups(sd, left)
+        target_groups = event_groups(td, right)
+        for etype in dict.fromkeys(list(source_groups) + list(target_groups)):
+            s_items = source_groups.get(etype, [])
+            t_items = target_groups.get(etype, [])
+            count = max(len(s_items), len(t_items))
             for i in range(count):
-                t_handle, t_line = t_items[i] if i < len(t_items) else (None, "")
                 s_handle, s_line = s_items[i] if i < len(s_items) else (None, "")
+                t_handle, t_line = t_items[i] if i < len(t_items) else (None, "")
                 key = ("event:" + s_handle) if s_handle else None
-                add_row(key, etype, t_line, s_line)
+                add_row(key, etype, s_line, t_line)
 
     # ------------------------------------------------------------------
     # Data helpers
@@ -653,10 +655,11 @@ class GrizardMergeDialog(Gtk.Dialog):
     # ------------------------------------------------------------------
     def _make_arrow(self, key: str, label: str) -> Gtk.Button:
         """
-        Build a left-pointing arrow button that moves the source value for
-        this field into the current family tree when clicked.
+        Build a right-pointing arrow button that moves the source value
+        (left) for this field into the current family tree (right) when
+        clicked.
         """
-        btn = Gtk.Button(label=_("<="))
+        btn = Gtk.Button(label=_("=>"))
         btn.set_tooltip_text(_("Move %s to current family tree") % label)
         btn.connect("clicked", self.cb_field_clicked, key)
         return btn
