@@ -949,9 +949,18 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         if not event_ref:
             return ""
         try:
-            event = safe_get_event(db, event_ref.ref)
+            # Normal case: EventRef points to an Event object.
+            event = safe_get_event(db, getattr(event_ref, "ref", None))
             if event:
                 return str(event.get_date_object().get_year() or "")
+        except Exception:
+            pass
+        # Fallback: some EventRef-like objects may expose a direct date via
+        # ``get_date`` (legacy API). Attempt to use it if present.
+        try:
+            if hasattr(event_ref, "get_date"):
+                date_obj = event_ref.get_date()
+                return str(date_obj.get_year() or "")
         except Exception:
             pass
         return ""
