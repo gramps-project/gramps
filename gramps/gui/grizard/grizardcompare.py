@@ -860,7 +860,10 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         Return the birth summary (``b.<year> <place>``) for the person.
         """
         parts = []
-        birth_year = GrizardCompareWindow._get_event_year(person.get_birth_ref(), db)
+        try:
+            birth_year = GrizardCompareWindow._get_event_year(person.get_birth_ref(), db)
+        except Exception:
+            birth_year = ""
         if birth_year:
             parts.append("b. " + birth_year)
         birth_place = GrizardCompareWindow._get_event_place(person.get_birth_ref(), db)
@@ -873,7 +876,10 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         """
         Return the death summary (``d.<year>``) for the person.
         """
-        death_year = GrizardCompareWindow._get_event_year(person.get_death_ref(), db)
+        try:
+            death_year = GrizardCompareWindow._get_event_year(person.get_death_ref(), db)
+        except Exception:
+            death_year = ""
         return "d. " + death_year if death_year else ""
 
     @staticmethod
@@ -1601,8 +1607,14 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         Return the compact vital summary (``b.<year> d.<year>``) of a
         related person, or ''.
         """
-        birth_year = GrizardCompareWindow._get_event_year(related.get_birth_ref(), db)
-        death_year = GrizardCompareWindow._get_event_year(related.get_death_ref(), db)
+        try:
+            birth_year = GrizardCompareWindow._get_event_year(related.get_birth_ref(), db)
+        except Exception:
+            birth_year = ""
+        try:
+            death_year = GrizardCompareWindow._get_event_year(related.get_death_ref(), db)
+        except Exception:
+            death_year = ""
         return " ".join(
             part
             for part in (
