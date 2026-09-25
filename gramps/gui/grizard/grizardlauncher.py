@@ -169,6 +169,7 @@ def run_grizard_merge_flow(uistate: Any, dbstate: Any, parent: Any = None) -> bo
     Shared by the Family Trees menu entry and the Tools plugin.
     """
     from gramps.gui.dialog import ErrorDialog
+    from gramps.gui.utils import ProgressMeter
 
     if parent is None:
         try:
@@ -178,10 +179,26 @@ def run_grizard_merge_flow(uistate: Any, dbstate: Any, parent: Any = None) -> bo
     path = ask_source_file(parent)
     if not path:
         return False
+    meter = ProgressMeter(
+        str(_("Loading Data Merge")),
+        str(_("Reading the selected file...")),
+        parent=parent,
+    )
+    meter.set_pass(
+        str(_("Reading the selected file...")),
+        mode=ProgressMeter.MODE_ACTIVITY,
+    )
+    meter.step()
     try:
         grizard = load_source_grizard(dbstate.db, path)
     except (ValueError, RuntimeError) as error:
+        meter.close()
         ErrorDialog(_("Load Failed"), str(error), parent=parent)
         return False
-    open_compare_window(uistate, dbstate, grizard, parent=parent)
+    meter.set_header(str(_("Building the comparison window...")))
+    meter.step()
+    try:
+        open_compare_window(uistate, dbstate, grizard, parent=parent)
+    finally:
+        meter.close()
     return True
