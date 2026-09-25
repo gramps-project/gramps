@@ -878,9 +878,7 @@ class GrizardMergeDialog(Gtk.Dialog):
         except Exception as e:  # pragma: no cover
             LOG.exception("Apply failed: %s", e)
         self.response(Gtk.ResponseType.OK)
-        self.destroy()
 
     def cb_cancel(self, _button: Gtk.Button) -> None:
         """Close the dialog without applying anything."""
         self.response(Gtk.ResponseType.CANCEL)
-        self.destroy()

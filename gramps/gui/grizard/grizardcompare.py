@@ -1612,9 +1612,16 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             self.grizard,
             source_handle,
             target_handle,
-            parent=self.get_transient_for(),
+            parent=self,
         )
-        dialog.run()
+        try:
+            dialog.run()
+        finally:
+            dialog.destroy()
+        # Re-activate the compare window: it is the transient parent of
+        # the merge dialog, so presenting it restores focus without
+        # requiring a click.
+        self.present()
         # Rebuild both panels so any merged data and the diff list
         # reflect the new state.
         self.select_category("person")
