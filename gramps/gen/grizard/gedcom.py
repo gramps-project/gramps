@@ -63,7 +63,18 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 # Local imports
 #
 # -------------------------------------------------------------------------
-from .grizard import GrizardBase, GrizardCompareRow, CandidateMatcher
+from .grizard import (
+    GrizardBase,
+    GrizardCompareRow,
+    CandidateMatcher,
+    surname_prefix_text,
+    surname_text,
+    safe_get_event,
+    safe_get_family,
+    safe_get_person,
+    safe_get_place,
+    safe_get_source,
+)
 
 # -------------------------------------------------------------------------
 #
@@ -214,7 +225,7 @@ class GedGrizard(GrizardBase):
 
         people: list[Person] = []
         for handle in source_db.iter_person_handles():
-            person = source_db.get_person_from_handle(handle)
+            person = safe_get_person(source_db, handle)
             if person:
                 people.append(person)
 
@@ -243,7 +254,7 @@ class GedGrizard(GrizardBase):
         if not source_db:
             raise ValueError("Source database is not loaded.")
 
-        source_person = source_db.get_person_from_handle(source_person_handle)
+        source_person = safe_get_person(source_db, source_person_handle)
         if not source_person:
             raise ValueError(
                 f"Source person not found for handle: {source_person_handle}"
@@ -257,7 +268,7 @@ class GedGrizard(GrizardBase):
         candidates: list[dict[str, Any]] = []
         for target_handle, score in matches:
             try:
-                target_person = self.db.get_person_from_handle(target_handle)
+                target_person = safe_get_person(self.db, target_handle)
                 if target_person:
                     name_str = glocale.translation.gettext(
                         target_person.get_primary_name().get_name()
@@ -266,7 +277,7 @@ class GedGrizard(GrizardBase):
                     birth_ref = target_person.get_birth_ref()
                     birth_yr = ""
                     if birth_ref:
-                        birth_evt = self.db.get_event_from_handle(birth_ref.ref)
+                        birth_evt = safe_get_event(self.db, birth_ref.ref)
                         if birth_evt:
                             birth_yr = str(birth_evt.get_date_object().get_year() or "")
 
@@ -306,8 +317,8 @@ class GedGrizard(GrizardBase):
         if not source_db:
             raise ValueError("Source database is not loaded.")
 
-        s_person = source_db.get_person_from_handle(source_person_handle)
-        t_person = self.db.get_person_from_handle(target_person_handle)
+        s_person = safe_get_person(source_db, source_person_handle)
+        t_person = safe_get_person(self.db, target_person_handle)
 
         if not s_person or not t_person:
             raise ValueError("Source or target person record not found.")
@@ -340,9 +351,8 @@ class GedGrizard(GrizardBase):
         )
 
         # 2. Compare Surnames
-        matcher = CandidateMatcher(self.db)
-        s_surname = matcher.get_surnames(s_person.get_primary_name())
-        t_surname = matcher.get_surnames(t_person.get_primary_name())
+        s_surname = surname_text(s_person.get_primary_name())
+        t_surname = surname_text(t_person.get_primary_name())
         rows.append(
             GrizardCompareRow(
                 status=get_status(s_surname, t_surname),
@@ -350,6 +360,19 @@ class GedGrizard(GrizardBase):
                 source_val=s_surname,
                 target_val=t_surname,
                 field_type="surname",
+            )
+        )
+
+        # 2b. Compare Surname Prefixes (GEDCOM SPFX, e.g. "Vrow")
+        s_prefix = surname_prefix_text(s_person.get_primary_name())
+        t_prefix = surname_prefix_text(t_person.get_primary_name())
+        rows.append(
+            GrizardCompareRow(
+                status=get_status(s_prefix, t_prefix),
+                field=_("Surname Prefix"),
+                source_val=s_prefix,
+                target_val=t_prefix,
+                field_type="surname_prefix",
             )
         )
 
@@ -381,13 +404,13 @@ class GedGrizard(GrizardBase):
         ) -> tuple[str, str, str]:
             for ref in person.get_event_ref_list():
                 try:
-                    event = db.get_event_from_handle(ref.ref)
+                    event = safe_get_event(db, ref.ref)
                     if event and event.get_type() == event_type_val:
                         dt_str = glocale.date_displayer.display(event.get_date_object())
                         pl_handle = event.get_place_handle()
                         pl_title = ""
                         if pl_handle:
-                            place = db.get_place_from_handle(pl_handle)
+                            place = safe_get_place(db, pl_handle)
                             if place:
                                 pl_title = place.get_title()
                         return dt_str, pl_title, event.handle
@@ -469,7 +492,7 @@ class GedGrizard(GrizardBase):
         if not source_db:
             raise ValueError("Source database is not loaded.")
 
-        s_person = source_db.get_person_from_handle(source_person_handle)
+        s_person = safe_get_person(source_db, source_person_handle)
         if not s_person:
             raise ValueError("Source person not found.")
 
@@ -478,14 +501,14 @@ class GedGrizard(GrizardBase):
             if not s_pl_handle:
                 return None
             try:
-                s_place = source_db.get_place_from_handle(s_pl_handle)
+                s_place = safe_get_place(source_db, s_pl_handle)
                 if not s_place:
                     return None
 
                 # Check if place with same title already exists in target
                 title = s_place.get_title()
                 for h in self.db.iter_place_handles():
-                    t_pl = self.db.get_place_from_handle(h)
+                    t_pl = safe_get_place(self.db, h)
                     if t_pl and t_pl.get_title() == title:
                         return h
 
@@ -575,12 +598,12 @@ class GedGrizard(GrizardBase):
             if not s_source_handle:
                 return None
             try:
-                if self.db.get_source_from_handle(s_source_handle):
+                if safe_get_source(self.db, s_source_handle):
                     return s_source_handle
             except Exception:
                 pass
             try:
-                s_source = source_db.get_source_from_handle(s_source_handle)
+                s_source = safe_get_source(source_db, s_source_handle)
                 if not s_source:
                     return None
                 new_source = copy.deepcopy(s_source)
@@ -690,7 +713,7 @@ class GedGrizard(GrizardBase):
             if not s_evt_handle:
                 return None
             try:
-                s_event = source_db.get_event_from_handle(s_evt_handle)
+                s_event = safe_get_event(source_db, s_evt_handle)
                 if not s_event:
                     return None
 
@@ -735,7 +758,7 @@ class GedGrizard(GrizardBase):
                 LOG.info("Added new person: %s", new_person.handle)
             else:
                 # Merge into existing target person
-                t_person = self.db.get_person_from_handle(target_person_handle)
+                t_person = safe_get_person(self.db, target_person_handle)
                 if not t_person:
                     return False
 
@@ -753,6 +776,20 @@ class GedGrizard(GrizardBase):
                         s_person.get_primary_name().surname_list
                     )
 
+                # 2b. Surname Prefix (a GEDCOM SPFX value lives on the
+                # Surname itself, so only the prefixes of the surnames
+                # present on both sides are copied; the whole list is
+                # already copied when the surname row was chosen)
+                if (
+                    resolutions.get("surname_prefix") == "source"
+                    and resolutions.get("surname") != "source"
+                ):
+                    s_list = s_person.get_primary_name().surname_list
+                    t_list = t_person.get_primary_name().surname_list
+                    for idx, t_surn in enumerate(t_list):
+                        if idx < len(s_list):
+                            t_surn.set_prefix(s_list[idx].get_prefix())
+
                 # 3. Gender
                 if resolutions.get("gender") == "source":
                     t_person.set_gender(s_person.get_gender())
@@ -763,7 +800,7 @@ class GedGrizard(GrizardBase):
                 ) -> str | None:
                     for ref in person.get_event_ref_list():
                         try:
-                            event = source_db.get_event_from_handle(ref.ref)
+                            event = safe_get_event(source_db, ref.ref)
                             if event and event.get_type() == event_type_val:
                                 return event.handle
                         except Exception:
@@ -796,7 +833,7 @@ class GedGrizard(GrizardBase):
                     Find the target person that best matches the source
                     person with the given handle.
                     """
-                    rel = source_db.get_person_from_handle(s_handle)
+                    rel = safe_get_person(source_db, s_handle)
                     if not rel:
                         return None
                     matches = CandidateMatcher(self.db).find_matches(
@@ -814,7 +851,7 @@ class GedGrizard(GrizardBase):
                     needed.
                     """
                     for fh in t_person.get_parent_family_handle_list():
-                        fam = self.db.get_family_from_handle(fh)
+                        fam = safe_get_family(self.db, fh)
                         if fam:
                             return fam
                     fam = Family()
@@ -839,7 +876,7 @@ class GedGrizard(GrizardBase):
                             continue
                     for ref in s_person.get_event_ref_list():
                         try:
-                            event = source_db.get_event_from_handle(ref.ref)
+                            event = safe_get_event(source_db, ref.ref)
                             if event and str(event.get_type()) == "_FSLINK":
                                 desc = event.get_description() or ""
                                 tail = desc.rstrip("/").split("/")[-1]
@@ -903,16 +940,14 @@ class GedGrizard(GrizardBase):
                     if key.startswith("spouse:"):
                         s_handle = key.split(":", 1)[1]
                         t_rel_h = best_target_person(s_handle)
-                        t_rel = (
-                            self.db.get_person_from_handle(t_rel_h) if t_rel_h else None
-                        )
+                        t_rel = safe_get_person(self.db, t_rel_h) if t_rel_h else None
                         if not t_rel:
                             LOG.warning("No target match for spouse; skipped")
                             continue
-                        fam = None
+                        spouse_fam: Family | None = None
                         occupied = False
                         for fh in t_person.get_family_handle_list():
-                            candidate = self.db.get_family_from_handle(fh)
+                            candidate = safe_get_family(self.db, fh)
                             if not candidate:
                                 continue
                             father_h = candidate.get_father_handle()
@@ -923,27 +958,27 @@ class GedGrizard(GrizardBase):
                             if t_person.handle in (father_h, mother_h) and (
                                 father_h is None or mother_h is None
                             ):
-                                fam = candidate
+                                spouse_fam = candidate
                                 break
                         if occupied:
                             continue
-                        if fam is None:
+                        if spouse_fam is None:
                             if t_person.get_gender() == Person.FEMALE:
-                                fam = Family()
-                                fam.set_mother_handle(t_person.handle)
-                                fam.set_father_handle(t_rel_h)
+                                spouse_fam = Family()
+                                spouse_fam.set_mother_handle(t_person.handle)
+                                spouse_fam.set_father_handle(t_rel_h)
                             else:
-                                fam = Family()
-                                fam.set_father_handle(t_person.handle)
-                                fam.set_mother_handle(t_rel_h)
-                            self.db.add_family(fam, trans)
-                            t_person.add_family_handle(fam.handle)
-                        elif fam.get_father_handle() is None:
-                            fam.set_father_handle(t_rel_h)
+                                spouse_fam = Family()
+                                spouse_fam.set_father_handle(t_person.handle)
+                                spouse_fam.set_mother_handle(t_rel_h)
+                            self.db.add_family(spouse_fam, trans)
+                            t_person.add_family_handle(spouse_fam.handle)
+                        elif spouse_fam.get_father_handle() is None:
+                            spouse_fam.set_father_handle(t_rel_h)
                         else:
-                            fam.set_mother_handle(t_rel_h)
-                        self.db.commit_family(fam, trans)
-                        t_rel.add_family_handle(fam.handle)
+                            spouse_fam.set_mother_handle(t_rel_h)
+                        self.db.commit_family(spouse_fam, trans)
+                        t_rel.add_family_handle(spouse_fam.handle)
                         self.db.commit_person(t_rel, trans)
                         continue
 
@@ -954,30 +989,30 @@ class GedGrizard(GrizardBase):
                         if not t_rel_h:
                             LOG.warning("No target match for child; skipped")
                             continue
-                        fam = None
+                        child_fam: Family | None = None
                         for fh in t_person.get_family_handle_list():
-                            candidate = self.db.get_family_from_handle(fh)
+                            candidate = safe_get_family(self.db, fh)
                             if candidate and t_person.handle in (
                                 candidate.get_father_handle(),
                                 candidate.get_mother_handle(),
                             ):
-                                fam = candidate
+                                child_fam = candidate
                                 break
-                        if fam is None:
-                            fam = Family()
+                        if child_fam is None:
+                            child_fam = Family()
                             if t_person.get_gender() == Person.FEMALE:
-                                fam.set_mother_handle(t_person.handle)
+                                child_fam.set_mother_handle(t_person.handle)
                             else:
-                                fam.set_father_handle(t_person.handle)
-                            self.db.add_family(fam, trans)
-                            t_person.add_family_handle(fam.handle)
+                                child_fam.set_father_handle(t_person.handle)
+                            self.db.add_family(child_fam, trans)
+                            t_person.add_family_handle(child_fam.handle)
                         child_ref = ChildRef()
                         child_ref.ref = t_rel_h
-                        fam.add_child_ref(child_ref)
-                        self.db.commit_family(fam, trans)
-                        t_rel = self.db.get_person_from_handle(t_rel_h)
+                        child_fam.add_child_ref(child_ref)
+                        self.db.commit_family(child_fam, trans)
+                        t_rel = safe_get_person(self.db, t_rel_h)
                         if t_rel:
-                            t_rel.add_parent_family_handle(fam.handle)
+                            t_rel.add_parent_family_handle(child_fam.handle)
                             self.db.commit_person(t_rel, trans)
                         continue
 

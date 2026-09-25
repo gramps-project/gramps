@@ -22,7 +22,39 @@
 Unit tests for the Grizard compare styling functions.
 """
 
+# -------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import os
+import sys
 import unittest
+
+
+def _has_gtk_display() -> bool:
+    """
+    Return True only if a real Gtk display is available.
+
+    Building a widget without one crashes, so those tests must be skipped.
+    An X11 backend needs DISPLAY set and cannot run with the CI value of
+    GDK_BACKEND; the Windows and macOS backends need neither.
+    """
+    if sys.platform not in ("win32", "darwin"):
+        if not os.environ.get("DISPLAY") or os.environ.get("GDK_BACKEND") == "-":
+            return False
+    try:
+        import gi
+
+        gi.require_version("Gtk", "3.0")
+        from gi.repository import Gtk
+
+        return bool(Gtk.init_check([])[0])
+    except Exception:
+        return False
+
+
+_HAS_GTK_DISPLAY = _has_gtk_display()
 
 
 class TestGrizardStyling(unittest.TestCase):
@@ -125,6 +157,72 @@ class TestGrizardStyling(unittest.TestCase):
 
         bold_content = re.findall(r"<b>(.*?)</b>", result)
         self.assertNotIn(",", bold_content)
+
+
+class TestGrizardDiffHighlight(unittest.TestCase):
+    """Test cases for the diff-line row highlight used by the merge dialog."""
+
+    def test_diff_line_rule_defines_background(self) -> None:
+        """The dialog stylesheet must style .diff-line with a background."""
+        from gramps.gui.grizard.grizardmergedialog import (
+            DIFF_CSS_DATA,
+            DIFF_STYLE_CLASS,
+        )
+
+        css_text = DIFF_CSS_DATA.decode("utf-8")
+        self.assertIn(".%s" % DIFF_STYLE_CLASS, css_text)
+        rule_start = css_text.index(".%s" % DIFF_STYLE_CLASS)
+        rule = css_text[rule_start:]
+        self.assertIn("background-color", rule[: rule.find("}")])
+
+    def test_diff_css_parses(self) -> None:
+        """The dialog stylesheet data must parse without GLib error."""
+        from gi.repository import Gtk
+
+        from gramps.gui.grizard.grizardmergedialog import DIFF_CSS_DATA
+
+        provider = Gtk.CssProvider()
+        provider.load_from_data(DIFF_CSS_DATA)
+
+    def test_ensure_diff_styles_installed_without_screen(self) -> None:
+        """Installing the stylesheet must be safe in a headless run."""
+        from gi.repository import Gdk
+
+        from gramps.gui.grizard import grizardmergedialog
+
+        saved = grizardmergedialog._DIFF_CSS_INSTALLED
+        try:
+            grizardmergedialog._DIFF_CSS_INSTALLED = False
+            result = grizardmergedialog.ensure_diff_styles_installed()
+        finally:
+            grizardmergedialog._DIFF_CSS_INSTALLED = saved
+
+        self.assertIsInstance(result, bool)
+        if Gdk.Screen.get_default() is None:
+            self.assertFalse(result)
+
+    @unittest.skipUnless(
+        _HAS_GTK_DISPLAY,
+        "needs a real Gtk display; building a widget without one crashes",
+    )
+    def test_diff_highlight_class_applied_to_differing_cells(self) -> None:
+        """Only the cells of a differing row may carry the diff-line class."""
+        from gramps.gui.grizard.grizardmergedialog import (
+            DIFF_STYLE_CLASS,
+            create_diff_cell,
+            field_values_differ,
+        )
+
+        differs = field_values_differ("Hansdotter", "Hansdotter Smith")
+        marked = create_diff_cell("<i>Surname: </i>Hansdotter", differs, 0.0)
+        self.assertTrue(marked.get_style_context().has_class(DIFF_STYLE_CLASS))
+        self.assertEqual(marked.get_text(), "Surname: Hansdotter")
+        self.assertEqual(marked.get_xalign(), 0.0)
+
+        matches = field_values_differ("Anna", "Anna")
+        plain = create_diff_cell("<i>Given Name: </i>Anna", matches, 1.0)
+        self.assertFalse(plain.get_style_context().has_class(DIFF_STYLE_CLASS))
+        self.assertEqual(plain.get_xalign(), 1.0)
 
 
 if __name__ == "__main__":

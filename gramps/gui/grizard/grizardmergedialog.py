@@ -33,6 +33,7 @@ gen-side GedGrizard._apply for the collected field resolutions.
 # -------------------------------------------------------------------------
 from __future__ import annotations
 import logging
+import os
 from typing import Any
 
 # -------------------------------------------------------------------------
@@ -40,6 +41,7 @@ from typing import Any
 # GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
+from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GLib
 from gi.repository import Pango
@@ -52,7 +54,17 @@ from gi.repository import Pango
 from gramps.gen.lib import Person
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.errors import HandleError
 from gramps.gen.grizard.gedcom import GedGrizard
+from gramps.gen.grizard.grizard import (
+    safe_get_event,
+    safe_get_family,
+    safe_get_person,
+    safe_get_place,
+    safe_get_source,
+    surname_prefix_text,
+    surname_text,
+)
 
 try:
     from gramps.gen.fs.utils.attributes import get_fsftid
@@ -104,6 +116,101 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
+# Module level helpers
+#
+# -------------------------------------------------------------------------
+_DIFF_CSS_INSTALLED = False
+
+# CSS class applied to both cells of a row whose values differ.
+DIFF_STYLE_CLASS = "diff-line"
+
+# Semi-transparent orange tint so differing values stand out on light and
+# dark themes without requiring changes to core Gramps stylesheets.
+DIFF_CSS_DATA = b"""
+.diff-line {
+  background-color: alpha(#ffa726, 0.30);
+  border-radius: 3px;
+}
+"""
+
+
+def ensure_diff_styles_installed() -> bool:
+    """
+    Install the custom CSS provider so the ``diff-line`` row tint applies.
+
+    Rows whose values differ are tagged with the ``diff-line`` CSS class.
+    Loading this directly via a Gtk.CssProvider keeps the dialog self-contained
+    and independent of core Gramps stylesheets.
+
+    :returns: True when the ``diff-line`` style was successfully installed
+        for the default screen, False when there is no screen.
+    :rtype: bool
+    """
+    global _DIFF_CSS_INSTALLED
+    if _DIFF_CSS_INSTALLED:
+        return True
+
+    screen = Gdk.Screen.get_default()
+    if screen is None:
+        return False
+
+    try:
+        provider = Gtk.CssProvider()
+        provider.load_from_data(DIFF_CSS_DATA)
+        Gtk.StyleContext.add_provider_for_screen(
+            screen, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+    except Exception:  # pragma: no cover - depends on the GTK install
+        LOG.warning("Unable to install diff styles", exc_info=True)
+        return False
+
+    _DIFF_CSS_INSTALLED = True
+    return True
+
+
+def create_diff_cell(markup: str, differs: bool, xalign: float) -> Gtk.Label:
+    """
+    Build one value cell of a merge dialog row.
+
+    The ``diff-line`` CSS class is added when the two sides of the row
+    differ, so the cell is tinted by the rule in ``data/gramps.css`` even
+    when no push arrow applies (a value present on only one side).
+
+    :param markup: Pango markup holding the cell text.
+    :param differs: True when the two sides of the row differ.
+    :param xalign: Horizontal alignment, 0.0 for the incoming side and
+        1.0 for the current tree side.
+    :returns: The configured cell label.
+    :rtype: Gtk.Label
+    """
+    cell = Gtk.Label()
+    cell.set_markup(markup)
+    cell.set_xalign(xalign)
+    cell.set_line_wrap(True)
+    if differs:
+        cell.get_style_context().add_class(DIFF_STYLE_CLASS)
+    return cell
+
+
+def field_values_differ(left_val: Any, right_val: Any) -> bool:
+    """
+    Return True when the two sides of a merge dialog row differ.
+
+    ``None`` is treated as an empty string so that a value present on only
+    one side is still reported as a difference.
+
+    :param left_val: Value from the incoming GEDCOM (source) side.
+    :param right_val: Value from the current family tree (target) side.
+    :returns: True if the two values are considered different.
+    :rtype: bool
+    """
+    left_str = "" if left_val is None else str(left_val)
+    right_str = "" if right_val is None else str(right_val)
+    return left_str != right_str
+
+
+# -------------------------------------------------------------------------
+#
 # GrizardMergeDialog
 #
 # -------------------------------------------------------------------------
@@ -118,7 +225,7 @@ class GrizardMergeDialog(Gtk.Dialog):
         dbstate: Any,
         grizard: GedGrizard,
         source_handle: str,
-        target_handle: str,
+        target_handle: str | None,
         parent: Gtk.Window | None = None,
     ) -> None:
         """
@@ -127,21 +234,35 @@ class GrizardMergeDialog(Gtk.Dialog):
         :param dbstate: Active Gramps DB state manager (target tree).
         :param grizard: A GedGrizard whose connect/load steps already ran.
         :param source_handle: Handle of the person in the GEDCOM (source) DB.
-        :param target_handle: Handle of the person in the target DB.
+        :param target_handle: Handle of the person in the target DB, or None
+            to add the source person as a new one.
         :param parent: Parent window (translates to a modal dialog).
         """
         Gtk.Dialog.__init__(self, transient_for=parent, modal=True)
         self.set_title(_("Grizard Merge"))
         self.set_default_size(620, 850)
         self.set_border_width(6)
+        ensure_diff_styles_installed()
 
         self.grizard = grizard
-        self.source_db = grizard.context.get("source_db")
+        source_db = grizard.context.get("source_db")
+        if source_db is None:
+            raise HandleError(_("No source database available for merge"))
+        self.source_db = source_db
         self.target_db = dbstate.db
         self.source_handle = source_handle
         self.target_handle = target_handle
-        self.source_person = self.source_db.get_person_from_handle(source_handle)
-        self.target_person = self.target_db.get_person_from_handle(target_handle)
+        source_person = safe_get_person(self.source_db, source_handle)
+        if source_person is None:
+            # The caller may hold a handle that no longer resolves (the
+            # comparison window keeps pairing data across merges).
+            raise HandleError(_("Source person no longer exists: %s") % source_handle)
+        self.source_person: Person = source_person
+        self.target_person: Person | None = safe_get_person(
+            self.target_db, target_handle
+        )
+        if target_handle and self.target_person is None:
+            raise HandleError(_("Target person no longer exists: %s") % target_handle)
 
         self._resolutions: dict[str, str] = {}
         self._mergeable_count: int = 0
@@ -269,7 +390,13 @@ class GrizardMergeDialog(Gtk.Dialog):
         left.set_xalign(0.0)
         dash = Gtk.Label(label=_("\u2192"))
         dash.set_xalign(0.5)
-        right = Gtk.Label(label=name_displayer.display(self.target_person))
+        right = Gtk.Label(
+            label=(
+                name_displayer.display(self.target_person)
+                if self.target_person is not None
+                else _("New person")
+            )
+        )
         right.set_xalign(1.0)
         row.pack_start(left, True, True, 0)
         row.pack_start(dash, False, False, 0)
@@ -299,7 +426,9 @@ class GrizardMergeDialog(Gtk.Dialog):
         arrow between.
         """
         left = self.source_person
-        right = self.target_person
+        # The dialog also opens in "add as new" mode, where there is no
+        # target person yet; the right column then shows placeholders.
+        right = self.target_person if self.target_person is not None else Person()
         td = self.target_db
         sd = self.source_db
         grid = self._grid
@@ -339,7 +468,7 @@ class GrizardMergeDialog(Gtk.Dialog):
         ) -> None:
             ls = "" if left_val is None else str(left_val)
             rs = "" if right_val is None else str(right_val)
-            same = ls == rs
+            same = not field_values_differ(ls, rs)
             if is_nullable_identity:
                 same = bool(ls) == bool(rs)
 
@@ -349,18 +478,8 @@ class GrizardMergeDialog(Gtk.Dialog):
                 label, rs, ls, show_label, is_left=False
             )
 
-            left_cell = Gtk.Label()
-            left_cell.set_markup(left_text)
-            left_cell.set_xalign(0.0)
-            left_cell.set_line_wrap(True)
-            if not same:
-                left_cell.get_style_context().add_class("diff-line")
-            right_cell = Gtk.Label()
-            right_cell.set_markup(right_text)
-            right_cell.set_xalign(1.0)
-            right_cell.set_line_wrap(True)
-            if not same:
-                right_cell.get_style_context().add_class("diff-line")
+            left_cell = create_diff_cell(left_text, not same, 0.0)
+            right_cell = create_diff_cell(right_text, not same, 1.0)
             btn = None
             if key is not None:
                 if is_nullable_identity:
@@ -384,7 +503,7 @@ class GrizardMergeDialog(Gtk.Dialog):
             groups: dict[str, list[tuple[str, str]]] = {}
             for ref in person.get_event_ref_list():
                 try:
-                    event = db.get_event_from_handle(ref.ref)
+                    event = safe_get_event(db, ref.ref)
                     if not event:
                         continue
                     etype = str(event.get_type())
@@ -419,17 +538,12 @@ class GrizardMergeDialog(Gtk.Dialog):
             left.get_primary_name().first_name,
             right.get_primary_name().first_name,
         )
-        left_surname = (
-            left.get_primary_name().surname_list[0].surname
-            if left.get_primary_name().surname_list
-            else ""
-        )
-        right_surname = (
-            right.get_primary_name().surname_list[0].surname
-            if right.get_primary_name().surname_list
-            else ""
-        )
+        left_surname = surname_text(left.get_primary_name())
+        right_surname = surname_text(right.get_primary_name())
         add_row("surname", _("Surname"), left_surname, right_surname)
+        left_prefix = surname_prefix_text(left.get_primary_name())
+        right_prefix = surname_prefix_text(right.get_primary_name())
+        add_row("surname_prefix", _("Surname Prefix"), left_prefix, right_prefix)
         add_row(
             "gender",
             _("Gender"),
@@ -517,7 +631,7 @@ class GrizardMergeDialog(Gtk.Dialog):
             _date, _place, handle = self._event_for(db, person, kind)
             if not handle:
                 return ""
-            event = db.get_event_from_handle(handle)
+            event = safe_get_event(db, handle)
             if event:
                 return str(event.get_date_object().get_year() or "")
         except Exception:
@@ -539,14 +653,14 @@ class GrizardMergeDialog(Gtk.Dialog):
         if not ref:
             return "", None, None
         try:
-            event = db.get_event_from_handle(ref.ref)
+            event = safe_get_event(db, ref.ref)
             if not event:
                 return "", None, None
             date_str = glocale.date_displayer.display(event.get_date_object())
             place = ""
             ph = event.get_place_handle()
             if ph:
-                place_obj = db.get_place_from_handle(ph)
+                place_obj = safe_get_place(db, ph)
                 if place_obj:
                     place = place_obj.get_name().get_value()
             return date_str, place or None, event.handle
@@ -565,7 +679,7 @@ class GrizardMergeDialog(Gtk.Dialog):
         ph = event.get_place_handle()
         if ph:
             try:
-                place_obj = db.get_place_from_handle(ph)
+                place_obj = safe_get_place(db, ph)
                 if place_obj:
                     place = place_obj.get_name().get_value() or ""
             except Exception:
@@ -607,7 +721,7 @@ class GrizardMergeDialog(Gtk.Dialog):
         out = []
         seen = set()
         for fh in person.get_parent_family_handle_list():
-            fam = db.get_family_from_handle(fh)
+            fam = safe_get_family(db, fh)
             if not fam:
                 continue
             handle = (
@@ -615,7 +729,7 @@ class GrizardMergeDialog(Gtk.Dialog):
             )
             if handle and handle not in seen:
                 seen.add(handle)
-                person_obj = db.get_person_from_handle(handle)
+                person_obj = safe_get_person(db, handle)
                 if person_obj:
                     out.append(person_obj)
         return out
@@ -624,7 +738,7 @@ class GrizardMergeDialog(Gtk.Dialog):
         out = []
         seen = set()
         for fh in person.get_family_handle_list():
-            fam = db.get_family_from_handle(fh)
+            fam = safe_get_family(db, fh)
             if not fam:
                 continue
             fh_ = fam.get_father_handle()
@@ -632,7 +746,7 @@ class GrizardMergeDialog(Gtk.Dialog):
             handle = mh if fh_ == person.handle else fh_
             if handle and handle not in seen:
                 seen.add(handle)
-                person_obj = db.get_person_from_handle(handle)
+                person_obj = safe_get_person(db, handle)
                 if person_obj:
                     out.append(person_obj)
         return out
@@ -641,7 +755,7 @@ class GrizardMergeDialog(Gtk.Dialog):
         out = []
         seen = set()
         for fh in person.get_family_handle_list():
-            fam = db.get_family_from_handle(fh)
+            fam = safe_get_family(db, fh)
             if not fam:
                 continue
             for child_ref in fam.get_child_ref_list():
@@ -649,7 +763,7 @@ class GrizardMergeDialog(Gtk.Dialog):
                 if handle in seen:
                     continue
                 seen.add(handle)
-                child = db.get_person_from_handle(handle)
+                child = safe_get_person(db, handle)
                 if child:
                     out.append(child)
         return out
@@ -741,7 +855,7 @@ class GrizardMergeDialog(Gtk.Dialog):
 
         def target_has_source(h):
             try:
-                return bool(self.target_db.get_source_from_handle(h))
+                return bool(safe_get_source(self.target_db, h))
             except Exception:
                 return False
 
@@ -785,7 +899,7 @@ class GrizardMergeDialog(Gtk.Dialog):
             if sh and not target_has_source(sh):
                 missing["source"].add(sh)
                 try:
-                    s_src = self.source_db.get_source_from_handle(sh)
+                    s_src = safe_get_source(self.source_db, sh)
                     if s_src:
                         scan_notes(s_src.get_note_list())
                         scan_media(s_src.media_list)
@@ -814,7 +928,7 @@ class GrizardMergeDialog(Gtk.Dialog):
 
         for eh in events_to_scan:
             try:
-                s_evt = self.source_db.get_event_from_handle(eh)
+                s_evt = safe_get_event(self.source_db, eh)
                 if s_evt:
                     scan_notes(s_evt.get_note_list())
                     scan_media(s_evt.media_list)

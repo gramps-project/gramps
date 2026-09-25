@@ -38,6 +38,7 @@ from typing import Any, NamedTuple
 #
 # -------------------------------------------------------------------------
 from gramps.gen.db.base import DbWriteBase
+from gramps.gen.errors import HandleError
 from gramps.gen.types import PersonHandle
 from gramps.gen.lib import Person, Event, Name
 from gramps.gen.soundex import soundex
@@ -210,6 +211,62 @@ class GrizardBase(abc.ABC):
 
 # ------------------------------------------------------------
 #
+# Safe handle lookups
+#
+# ------------------------------------------------------------
+def safe_get(db: Any, handle: str | None, getter_name: str, what: str) -> Any | None:
+    """
+    Fetch a primary object by handle, returning None instead of raising.
+
+    ``DbReadBase.get_*_from_handle`` raises :class:`HandleError` for an
+    unknown handle rather than returning None, which makes naive
+    ``if not obj: continue`` guards ineffective. Handles held by the
+    comparison UI can go stale (a merge may delete or replace the
+    counterpart person), so every dereference of a UI-held handle must
+    tolerate a dangling reference.
+
+    :param db: The database to look the handle up in.
+    :param handle: The handle to resolve, possibly None or empty.
+    :param getter_name: Name of the ``get_*_from_handle`` method to call.
+    :param what: Human-readable object kind, used for the debug log.
+    :returns: The object, or None when the handle is empty or dangling.
+    """
+    if not handle:
+        return None
+    try:
+        return getattr(db, getter_name)(handle)
+    except HandleError:
+        LOG.debug("Stale %s handle ignored: %s", what, handle)
+        return None
+
+
+def safe_get_person(db: Any, handle: str | None) -> Person | None:
+    """Return the person for handle, or None when it is empty or dangling."""
+    return safe_get(db, handle, "get_person_from_handle", "person")
+
+
+def safe_get_family(db: Any, handle: str | None) -> Any | None:
+    """Return the family for handle, or None when it is empty or dangling."""
+    return safe_get(db, handle, "get_family_from_handle", "family")
+
+
+def safe_get_event(db: Any, handle: str | None) -> Event | None:
+    """Return the event for handle, or None when it is empty or dangling."""
+    return safe_get(db, handle, "get_event_from_handle", "event")
+
+
+def safe_get_place(db: Any, handle: str | None) -> Any | None:
+    """Return the place for handle, or None when it is empty or dangling."""
+    return safe_get(db, handle, "get_place_from_handle", "place")
+
+
+def safe_get_source(db: Any, handle: str | None) -> Any | None:
+    """Return the source for handle, or None when it is empty or dangling."""
+    return safe_get(db, handle, "get_source_from_handle", "source")
+
+
+# ------------------------------------------------------------
+#
 # Given-name matching helpers
 #
 # ------------------------------------------------------------
@@ -267,6 +324,45 @@ def score_given_names(source_given: str, target_given: str) -> float:
 
 # ------------------------------------------------------------
 #
+# Name part helpers
+#
+# ------------------------------------------------------------
+def surname_text(name: Name) -> str:
+    """
+    Return every surname of a name object as one space separated string.
+
+    A name may carry more than one surname (a GEDCOM ``SURN`` with comma
+    separated values such as "Hansdotter, Smith"). Joining them keeps the
+    multi-surname case visible when two records are compared.
+
+    :param name: The name object to read.
+    :returns: Space-separated surnames, e.g. ``"Hansdotter Smith"``.
+    :rtype: str
+    """
+    return " ".join(
+        [surn.get_surname() for surn in name.get_surname_list() if surn.get_surname()]
+    )
+
+
+def surname_prefix_text(name: Name) -> str:
+    """
+    Return every surname prefix of a name object, space separated.
+
+    Prefixes come from the GEDCOM ``SPFX`` tag (for example ``2 SPFX Vrow``)
+    and are stored per surname - never inside the surname string itself - so
+    comparing surnames alone silently hides them.
+
+    :param name: The name object to read.
+    :returns: Space-separated prefixes, e.g. ``"Vrow"`` or ``""``.
+    :rtype: str
+    """
+    return " ".join(
+        [surn.get_prefix() for surn in name.get_surname_list() if surn.get_prefix()]
+    )
+
+
+# ------------------------------------------------------------
+#
 # CandidateMatcher
 #
 # ------------------------------------------------------------
@@ -291,9 +387,17 @@ class CandidateMatcher:
         :returns: Space-separated surnames.
         :rtype: str
         """
-        return " ".join(
-            [s.get_surname() for s in name.get_surname_list() if s.get_surname()]
-        )
+        return surname_text(name)
+
+    def get_prefixes(self, name: Name) -> str:
+        """
+        Helper to extract all surname prefixes from a name object.
+
+        :param name: The name object.
+        :returns: Space-separated surname prefixes (empty parts skipped).
+        :rtype: str
+        """
+        return surname_prefix_text(name)
 
     def score_match(
         self,
@@ -365,35 +469,36 @@ class CandidateMatcher:
 
         if s_birth_ref and t_birth_ref:
             try:
-                s_birth = s_lookup_db.get_event_from_handle(s_birth_ref.ref)
-                t_birth = self.db.get_event_from_handle(t_birth_ref.ref)
-                s_date = s_birth.get_date_object()
-                t_date = t_birth.get_date_object()
-                s_year = s_date.get_year()
-                t_year = t_date.get_year()
-                if s_year > 0 and t_year > 0:
-                    diff = abs(s_year - t_year)
-                    if diff != 0:
-                        if diff <= 2:
-                            score += 0.5
-                        elif diff <= 5:
-                            score += 0.25
-                    else:
-                        s_mon = s_date.get_month()
-                        t_mon = t_date.get_month()
-                        s_day = s_date.get_day()
-                        t_day = t_date.get_day()
-                        if s_mon <= 0 or t_mon <= 0:
-                            # One side is year-only: same year, partial info
-                            score += 0.75
-                        elif s_mon != t_mon:
-                            score += 0.5
-                        elif s_day <= 0 or t_day <= 0:
-                            score += 0.85
-                        elif s_day != t_day:
-                            score += 0.75
+                s_birth = safe_get_event(s_lookup_db, s_birth_ref.ref)
+                t_birth = safe_get_event(self.db, t_birth_ref.ref)
+                if s_birth is not None and t_birth is not None:
+                    s_date = s_birth.get_date_object()
+                    t_date = t_birth.get_date_object()
+                    s_year = s_date.get_year()
+                    t_year = t_date.get_year()
+                    if s_year > 0 and t_year > 0:
+                        diff = abs(s_year - t_year)
+                        if diff != 0:
+                            if diff <= 2:
+                                score += 0.5
+                            elif diff <= 5:
+                                score += 0.25
                         else:
-                            score += 1.0
+                            s_mon = s_date.get_month()
+                            t_mon = t_date.get_month()
+                            s_day = s_date.get_day()
+                            t_day = t_date.get_day()
+                            if s_mon <= 0 or t_mon <= 0:
+                                # One side is year-only: same year, partial info
+                                score += 0.75
+                            elif s_mon != t_mon:
+                                score += 0.5
+                            elif s_day <= 0 or t_day <= 0:
+                                score += 0.85
+                            elif s_day != t_day:
+                                score += 0.75
+                            else:
+                                score += 1.0
             except Exception:
                 pass
 
@@ -418,7 +523,9 @@ class CandidateMatcher:
 
         for handle in self.db.iter_person_handles():
             try:
-                target = self.db.get_person_from_handle(handle)
+                target = safe_get_person(self.db, handle)
+                if target is None:
+                    continue
                 score = self.score_match(source, target, source_db=source_db)
                 if score >= threshold:
                     results.append((PersonHandle(handle), score))

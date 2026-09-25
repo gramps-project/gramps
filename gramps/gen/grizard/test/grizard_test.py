@@ -28,6 +28,7 @@ Unit tests for the Grizard import framework and GEDCOM implementation.
 from __future__ import annotations
 import os
 import shutil
+import sys
 import tempfile
 import unittest
 
@@ -68,6 +69,7 @@ os.environ["HOME"] = os.environ.get("HOME") or tempfile.mkdtemp(prefix="gramps-h
 from gramps.gen.db.base import DbWriteBase
 from gramps.gen.db.txn import DbTxn
 from gramps.gen.db.utils import make_database
+from gramps.gen.errors import HandleError
 from gramps.gen.lib import (
     Person,
     Event,
@@ -85,18 +87,33 @@ from gramps.gen.types import PersonHandle
 # Local imports
 #
 # -------------------------------------------------------------------------
-from ..grizard import GrizardCompareRow, CandidateMatcher, score_given_names
+from ..grizard import (
+    GrizardCompareRow,
+    CandidateMatcher,
+    safe_get,
+    safe_get_event,
+    safe_get_family,
+    safe_get_person,
+    safe_get_place,
+    safe_get_source,
+    score_given_names,
+    surname_prefix_text,
+    surname_text,
+)
 from ..gedcom import GedGrizard
 
 
 def _has_gtk_display() -> bool:
     """
     Return True only if a real Gtk display is available.
+
+    Building a widget without one crashes, so those tests must be skipped.
+    An X11 backend needs DISPLAY set and cannot run with the CI value of
+    GDK_BACKEND; the Windows and macOS backends need neither.
     """
-    if not os.environ.get("DISPLAY"):
-        return False
-    if os.environ.get("GDK_BACKEND") == "-":
-        return False
+    if sys.platform not in ("win32", "darwin"):
+        if not os.environ.get("DISPLAY") or os.environ.get("GDK_BACKEND") == "-":
+            return False
     try:
         import gi
 
@@ -227,6 +244,142 @@ class GrizardTest(unittest.TestCase):
         self.assertLess(score, 0.5)
         matches = matcher.find_matches(newcomer, threshold=0.5)
         self.assertEqual(matches, [])
+
+    def test_surname_text_joins_all_surnames(self) -> None:
+        """
+        Verify surname_text joins every surname, and skips empty ones.
+        """
+        name = Name()
+        name.first_name = "Anna"
+        first = Surname()
+        first.set_surname("Hansdotter")
+        second = Surname()
+        second.set_surname("Smith")
+        empty = Surname()
+        name.add_surname(first)
+        name.add_surname(second)
+        name.add_surname(empty)
+        self.assertEqual(surname_text(name), "Hansdotter Smith")
+
+    def test_surname_prefix_text_reads_spfx(self) -> None:
+        """
+        Verify surname_prefix_text exposes the SPFX value, or "" when absent.
+        """
+        name = Name()
+        name.first_name = "Anna"
+        prefixed = Surname()
+        prefixed.set_surname("Hansdotter")
+        prefixed.set_prefix("Vrow")
+        name.add_surname(prefixed)
+        self.assertEqual(surname_prefix_text(name), "Vrow")
+
+        plain = Name()
+        plain.first_name = "Anna"
+        plain_surn = Surname()
+        plain_surn.set_surname("Hansdotter")
+        plain.add_surname(plain_surn)
+        self.assertEqual(surname_prefix_text(plain), "")
+
+    def test_compare_surname_prefix_difference(self) -> None:
+        """
+        Verify a missing SPFX prefix produces a differing prefix row.
+        """
+        source_db = make_database("sqlite")
+        source_db.load(":memory:")
+        target_db = make_database("sqlite")
+        target_db.load(":memory:")
+        try:
+            s_handle = None
+            t_handle = None
+            with DbTxn("Add source person", source_db) as trans:
+                s_person = Person()
+                s_name = Name()
+                s_name.first_name = "Anna"
+                s_surn = Surname()
+                s_surn.set_surname("Hansdotter")
+                s_name.add_surname(s_surn)
+                s_person.set_primary_name(s_name)
+                source_db.add_person(s_person, trans)
+                s_handle = s_person.handle
+            with DbTxn("Add target person", target_db) as trans:
+                t_person = Person()
+                t_name = Name()
+                t_name.first_name = "Anna"
+                t_surn = Surname()
+                t_surn.set_surname("Hansdotter")
+                t_surn.set_prefix("Vrow")
+                t_name.add_surname(t_surn)
+                t_person.set_primary_name(t_name)
+                target_db.add_person(t_person, trans)
+                t_handle = t_person.handle
+            grizard = GedGrizard(target_db)
+            grizard.context["source_db"] = source_db
+            rows = grizard.run_step(
+                "compare",
+                source_person_handle=s_handle,
+                target_person_handle=t_handle,
+            )
+            prefix_rows = [r for r in rows if r.field_type == "surname_prefix"]
+            self.assertEqual(len(prefix_rows), 1)
+            self.assertEqual(prefix_rows[0].status, "target_only")
+            self.assertEqual(prefix_rows[0].source_val, "")
+            self.assertEqual(prefix_rows[0].target_val, "Vrow")
+        finally:
+            source_db.close()
+            target_db.close()
+
+    def test_apply_surname_prefix_only(self) -> None:
+        """
+        Verify applying only the prefix row updates the target prefix.
+        """
+        source_db = make_database("sqlite")
+        source_db.load(":memory:")
+        target_db = make_database("sqlite")
+        target_db.load(":memory:")
+        try:
+            s_handle = None
+            t_handle = None
+            with DbTxn("Add source person", source_db) as trans:
+                s_person = Person()
+                s_name = Name()
+                s_name.first_name = "John"
+                s_surn = Surname()
+                s_surn.set_surname("Doe")
+                s_surn.set_prefix("von")
+                s_name.add_surname(s_surn)
+                s_person.set_primary_name(s_name)
+                source_db.add_person(s_person, trans)
+                s_handle = s_person.handle
+            with DbTxn("Add target person", target_db) as trans:
+                t_person = Person()
+                t_name = Name()
+                t_name.first_name = "John"
+                t_surn = Surname()
+                t_surn.set_surname("Doe")
+                t_name.add_surname(t_surn)
+                t_person.set_primary_name(t_name)
+                target_db.add_person(t_person, trans)
+                t_handle = t_person.handle
+            grizard = GedGrizard(target_db)
+            grizard.context["source_db"] = source_db
+            grizard.run_step(
+                "apply",
+                source_person_handle=s_handle,
+                target_person_handle=t_handle,
+                resolutions={"surname_prefix": "source"},
+            )
+            updated = target_db.get_person_from_handle(t_handle)
+            self.assertEqual(
+                updated.get_primary_name().get_surname_list()[0].get_prefix(),
+                "von",
+            )
+            self.assertEqual(
+                updated.get_primary_name().get_surname_list()[0].get_surname(),
+                "Doe",
+            )
+        finally:
+            source_db.close()
+            target_db.close()
 
     def test_score_match_year_only_birth_partial_credit(self) -> None:
         """
@@ -656,3 +809,177 @@ class GrizardTest(unittest.TestCase):
         finally:
             if os.path.exists(temp_path):
                 os.remove(temp_path)
+
+    @unittest.skipUnless(
+        _HAS_GTK_DISPLAY,
+        "needs a real Gtk display (run under xvfb-run); "
+        "gramps CI sets GDK_BACKEND=- so Gtk.Dialog cannot init.",
+    )
+    def test_dialog_rejects_dangling_source_handle(self) -> None:
+        """
+        Opening the merge dialog with a handle that no longer resolves
+        must raise HandleError instead of failing later with an
+        AttributeError on a None person.
+        """
+        from gramps.gui.grizard.grizardmergedialog import GrizardMergeDialog
+
+        class MockDbState:
+            def __init__(self, db):
+                self.db = db
+
+        gedcom_data = """0 HEAD
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Solo /Person/
+2 GIVN Solo
+2 SURN Person
+0 TRLR
+"""
+        with tempfile.NamedTemporaryFile(suffix=".ged", mode="w", delete=False) as f:
+            f.write(gedcom_data)
+            temp_path = f.name
+
+        try:
+            grizard = GedGrizard(self.db)
+            grizard.run_step("connect", gedcom_path=temp_path)
+
+            with self.assertRaises(HandleError):
+                GrizardMergeDialog(
+                    dbstate=MockDbState(self.db),
+                    grizard=grizard,
+                    source_handle="0000006e0000006e",
+                    target_handle=None,
+                )
+        finally:
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+
+    @unittest.skipUnless(
+        _HAS_GTK_DISPLAY,
+        "needs a real Gtk display (run under xvfb-run); "
+        "gramps CI sets GDK_BACKEND=- so Gtk.Dialog cannot init.",
+    )
+    def test_dialog_opens_in_add_as_new_mode(self) -> None:
+        """
+        With no target handle the dialog must still build, since the
+        compare window opens it that way for unmatched people.
+        """
+        from gramps.gui.grizard.grizardmergedialog import GrizardMergeDialog
+
+        gedcom_data = """0 HEAD
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Solo /Person/
+2 GIVN Solo
+2 SURN Person
+0 TRLR
+"""
+        with tempfile.NamedTemporaryFile(suffix=".ged", mode="w", delete=False) as f:
+            f.write(gedcom_data)
+            temp_path = f.name
+
+        try:
+            grizard = GedGrizard(self.db)
+            grizard.run_step("connect", gedcom_path=temp_path)
+            people = grizard.run_step("load")
+            source_person = people[0]
+
+            class MockDbState:
+                def __init__(self, db):
+                    self.db = db
+
+            dialog = GrizardMergeDialog(
+                dbstate=MockDbState(self.db),
+                grizard=grizard,
+                source_handle=source_person.handle,
+                target_handle=None,
+            )
+            # The rows are populated, and every one must carry a key.
+            self.assertTrue(dialog._row_index > 0)
+            dialog.destroy()
+        finally:
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+
+
+# ------------------------------------------------------------
+#
+# GrizardSafeLookupTest
+#
+# ------------------------------------------------------------
+class GrizardSafeLookupTest(unittest.TestCase):
+    """
+    Test the safe handle lookup helpers.
+
+    ``DbReadBase.get_*_from_handle`` raises ``HandleError`` for an unknown
+    handle rather than returning None, so a bare ``if not obj`` guard does
+    not protect a dereference. The comparison UI holds handles that a
+    merge can invalidate, so every one of these must return None instead
+    of propagating the exception.
+    """
+
+    class _RaisingDb:
+        """Stand-in database that always reports a dangling handle."""
+
+        def get_person_from_handle(self, handle):
+            raise HandleError("Handle %s not found" % handle)
+
+        def get_family_from_handle(self, handle):
+            raise HandleError("Handle %s not found" % handle)
+
+        def get_event_from_handle(self, handle):
+            raise HandleError("Handle %s not found" % handle)
+
+        def get_place_from_handle(self, handle):
+            raise HandleError("Handle %s not found" % handle)
+
+        def get_source_from_handle(self, handle):
+            raise HandleError("Handle %s not found" % handle)
+
+    def test_safe_get_returns_none_for_dangling_handle(self):
+        """A dangling handle yields None instead of raising HandleError."""
+        db = GrizardSafeLookupTest._RaisingDb()
+        self.assertIsNone(safe_get_person(db, "0000006e0000006e"))
+        self.assertIsNone(safe_get_family(db, "0000006e0000006e"))
+        self.assertIsNone(safe_get_event(db, "0000006e0000006e"))
+        self.assertIsNone(safe_get_place(db, "0000006e0000006e"))
+        self.assertIsNone(safe_get_source(db, "0000006e0000006e"))
+
+    def test_safe_get_short_circuits_empty_handle(self):
+        """An empty or None handle never reaches the database."""
+        db = GrizardSafeLookupTest._RaisingDb()
+        for handle in (None, ""):
+            self.assertIsNone(safe_get_person(db, handle))
+        # No exception means the getter was never invoked.
+
+    def test_safe_get_returns_object_when_present(self):
+        """A live handle still resolves to the object."""
+        person = Person()
+        person.set_handle("handle1")
+
+        class _Db:
+            def get_person_from_handle(self, handle):
+                return person
+
+        self.assertIs(safe_get_person(_Db(), "handle1"), person)
+
+    def test_safe_get_dispatches_by_getter_name(self):
+        """The generic helper forwards to the named getter method."""
+        sentinel = object()
+        db = GrizardSafeLookupTest._RaisingDb()
+        db.get_note_from_handle = lambda handle: sentinel
+        self.assertIs(safe_get(db, "h", "get_note_from_handle", "note"), sentinel)
+        # An unknown getter still surfaces its own error rather than
+        # being silently swallowed.
+        with self.assertRaises(AttributeError):
+            safe_get(db, "h", "get_nonsense_from_handle", "nonsense")
+
+    def test_safe_get_propagates_non_handle_errors(self):
+        """Real database errors are not masked as a missing object."""
+
+        class _Broken:
+            def get_person_from_handle(self, handle):
+                raise RuntimeError("database is locked")
+
+        with self.assertRaises(RuntimeError):
+            safe_get_person(_Broken(), "handle1")

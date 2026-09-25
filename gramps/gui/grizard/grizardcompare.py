@@ -45,8 +45,16 @@ from gi.repository import GLib
 #
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Person
+from gramps.gen.errors import HandleError
 from gramps.gen.grizard.gedcom import GedGrizard
-from gramps.gen.grizard.grizard import CandidateMatcher
+from gramps.gen.grizard.grizard import (
+    CandidateMatcher,
+    safe_get_event,
+    safe_get_family,
+    safe_get_person,
+    safe_get_place,
+    safe_get_source,
+)
 from gramps.gen.soundex import soundex
 from gramps.gen.types import PersonHandle
 from gramps.gen.display.name import displayer as name_displayer
@@ -150,7 +158,10 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
 
         self.dbstate = dbstate
         self.grizard = grizard
-        self.source_db = grizard.context.get("source_db")
+        source_db = grizard.context.get("source_db")
+        if source_db is None:
+            raise HandleError(_("No source database available for comparison"))
+        self.source_db: Any = source_db
         self.current_category = "person"
         self.diff_list: list[dict[str, Any]] = []
         self.diff_index = -1
@@ -292,6 +303,35 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         group = store.get_value(parent, 1) or ""
         return (group, name)
 
+    def _scroll_to_position(
+        self,
+        panel: dict[str, Any],
+        group: str = "",
+        name_str: str = "",
+    ) -> None:
+        """
+        Scroll to the alphabetical insertion point without selecting it.
+
+        Leaves the panel's selection cleared so an unmatched person can
+        be added as new instead of looking like a matched pair.
+        """
+        store = panel["store"]
+        best_path: Gtk.TreePath | None = None
+        last_path: Gtk.TreePath | None = None
+        target = (group.lower(), name_str.lower())
+        for row in store:
+            last_path = row.path
+            key = self._row_sort_key(store, store.get_iter(row.path))
+            probe = (key[0].lower(), key[1].lower())
+            if not best_path and probe >= target:
+                best_path = row.path
+        if best_path is None:
+            best_path = last_path
+        selection = panel["tree"].get_selection()
+        selection.unselect_all()
+        if best_path is not None:
+            panel["tree"].scroll_to_cell(best_path, None, False, 0, 0)
+
     def _select_person_or_position(
         self,
         panel: dict[str, Any],
@@ -345,7 +385,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         matcher = CandidateMatcher(target_db)
 
         for handle in source_db.iter_person_handles():
-            person = source_db.get_person_from_handle(handle)
+            person = safe_get_person(source_db, handle)
             if not person:
                 continue
             name_str = name_displayer.display(person)
@@ -353,7 +393,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             self.source_index[handle] = name_str
 
         for handle in target_db.iter_person_handles():
-            person = target_db.get_person_from_handle(handle)
+            person = safe_get_person(target_db, handle)
             if not person:
                 continue
             name_str = name_displayer.display(person)
@@ -378,7 +418,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         self._pair_map: dict[str, PersonHandle | None] = {}
         self._pair_map_rev: dict[PersonHandle, str] = {}
         for handle in source_db.iter_person_handles():
-            person = source_db.get_person_from_handle(handle)
+            person = safe_get_person(source_db, handle)
             if not person:
                 continue
             target_handle = self._best_match(matcher, person)
@@ -439,7 +479,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         """
         self._target_index: dict[tuple[str, str], list[PersonHandle]] = {}
         for handle in self.dbstate.db.iter_person_handles():
-            person = self.dbstate.db.get_person_from_handle(handle)
+            person = safe_get_person(self.dbstate.db, handle)
             if not person:
                 continue
             key = self._match_key(person)
@@ -476,7 +516,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         best_handle: PersonHandle | None = None
         best_score = 0.5
         for handle in candidate_handles:
-            target = self.dbstate.db.get_person_from_handle(handle)
+            target = safe_get_person(self.dbstate.db, handle)
             if not target:
                 continue
             score = matcher.score_match(source, target, source_db=self.source_db)
@@ -597,6 +637,13 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         )
         self.btn_merge_dialog.connect("clicked", self.cb_merge_dialog)
         bar.pack_end(self.btn_merge_dialog, False, False, 0)
+
+        self.btn_add_new = Gtk.Button(label=_("Add as New..."))
+        self.btn_add_new.set_tooltip_text(
+            _("Add the selected incoming person as a new person")
+        )
+        self.btn_add_new.connect("clicked", self.cb_add_new)
+        bar.pack_end(self.btn_add_new, False, False, 0)
 
         self.btn_next = Gtk.Button(label=_("Next"))
         self.btn_next.connect("clicked", self.cb_next)
@@ -803,7 +850,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         names = []
         try:
             for family_handle in person.get_parent_family_handle_list():
-                family = db.get_family_from_handle(family_handle)
+                family = safe_get_family(db, family_handle)
                 if not family:
                     continue
                 if family_role == "father":
@@ -818,7 +865,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                 for handle in handles:
                     if not handle:
                         continue
-                    parent = db.get_person_from_handle(handle)
+                    parent = safe_get_person(db, handle)
                     if parent:
                         name = name_displayer.display(parent)
                         if name not in names:
@@ -835,7 +882,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         names = []
         try:
             for family_handle in person.get_family_handle_list():
-                family = db.get_family_from_handle(family_handle)
+                family = safe_get_family(db, family_handle)
                 if not family:
                     continue
                 father_handle = family.get_father_handle()
@@ -847,7 +894,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                 elif mother_handle and mother_handle != person_handle:
                     spouse_handle = mother_handle
                 if spouse_handle:
-                    spouse = db.get_person_from_handle(spouse_handle)
+                    spouse = safe_get_person(db, spouse_handle)
                     if spouse:
                         names.append(name_displayer.display(spouse))
         except Exception:
@@ -862,7 +909,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         if not event_ref:
             return ""
         try:
-            event = db.get_event_from_handle(event_ref.ref)
+            event = safe_get_event(db, event_ref.ref)
             if event:
                 return str(event.get_date_object().get_year() or "")
         except Exception:
@@ -877,11 +924,11 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         if not event_ref:
             return ""
         try:
-            event = db.get_event_from_handle(event_ref.ref)
+            event = safe_get_event(db, event_ref.ref)
             if event:
                 place_handle = event.get_place_handle()
                 if place_handle:
-                    place = db.get_place_from_handle(place_handle)
+                    place = safe_get_place(db, place_handle)
                     if place:
                         return place.get_name().get_value() or ""
         except Exception:
@@ -894,16 +941,11 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         """
         is_people = self.current_category == "person"
         has_diffs = is_people and bool(self.diff_list)
+        pair = self._get_selected_pair() if is_people else None
         self.btn_prev.set_sensitive(has_diffs)
         self.btn_next.set_sensitive(has_diffs)
-        self.btn_merge_dialog.set_sensitive(
-            is_people and self._get_selected_pair() is not None
-        )
-        self.btn_merge_dialog.set_sensitive(
-            is_people
-            and self._get_selected_pair() is not None
-            and self._get_selected_pair()[1] is not None
-        )
+        self.btn_merge_dialog.set_sensitive(pair is not None and pair[1] is not None)
+        self.btn_add_new.set_sensitive(pair is not None and pair[1] is None)
         if is_people:
             total = len(self.diff_list)
             pos = (self.diff_index + 1) if has_diffs else 0
@@ -927,11 +969,10 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             if target_handle:
                 self._select_handle(self.right_panel, target_handle)
             else:
-                person = self.source_db.get_person_from_handle(source_handle)
+                person = safe_get_person(self.source_db, source_handle)
                 if person is not None:
-                    self._select_person_or_position(
+                    self._scroll_to_position(
                         self.right_panel,
-                        None,
                         group=self._person_group_name(self.source_db, person),
                         name_str=name_displayer.display(person),
                     )
@@ -951,8 +992,9 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
     def _highlight_diff(self) -> None:
         """
         Select the rows in both panels corresponding to the current diff.
-        The right panel shows the matched person, or the alphabetical
-        insertion point when the person is missing from the tree.
+        The right panel shows the matched person, or scrolls to the
+        alphabetical insertion point (left unselected) when the person is
+        missing from the tree.
         """
         if not (0 <= self.diff_index < len(self.diff_list)):
             return
@@ -963,11 +1005,10 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             if entry["target_handle"]:
                 self._select_handle(self.right_panel, entry["target_handle"])
             else:
-                person = self.source_db.get_person_from_handle(entry["source_handle"])
+                person = safe_get_person(self.source_db, entry["source_handle"])
                 if person:
-                    self._select_person_or_position(
+                    self._scroll_to_position(
                         self.right_panel,
-                        None,
                         group=self._person_group_name(self.source_db, person),
                         name_str=name_displayer.display(person),
                     )
@@ -1049,14 +1090,14 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         self._syncing = True
         try:
             db = self.source_db if is_left else self.dbstate.db
-            person = db.get_person_from_handle(handle)
+            person = safe_get_person(db, handle)
             if not person:
                 return
             other_db = self.dbstate.db if is_left else self.source_db
             counterpart = self._get_counterpart(handle)
             mirrored = False
             if counterpart:
-                other_person = other_db.get_person_from_handle(counterpart)
+                other_person = safe_get_person(other_db, counterpart)
                 if other_person:
                     self._select_person_or_position(
                         other,
@@ -1066,9 +1107,8 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                     )
                     mirrored = True
             if not mirrored:
-                self._select_person_or_position(
+                self._scroll_to_position(
                     other,
-                    None,
                     group=self._person_group_name(db, person),
                     name_str=name_displayer.display(person),
                 )
@@ -1108,7 +1148,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         individual_text = family_text = children_text = events_text = ""
         if self.current_category == "person":
             db = self.source_db if handle in self.source_index else self.dbstate.db
-            person = db.get_person_from_handle(handle)
+            person = safe_get_person(db, handle)
             if person:
                 other_handle = self._get_counterpart(handle)
                 other_person = None
@@ -1119,7 +1159,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                         if other_handle not in self.source_index
                         else self.source_db
                     )
-                    other_person = other_db.get_person_from_handle(other_handle)
+                    other_person = safe_get_person(other_db, other_handle)
                 # The ID line always differs between the source and the
                 # target database, so it is excluded from highlighting.
                 skip = (_("ID:"),)
@@ -1359,7 +1399,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         lines = []
         for ref in person.get_event_ref_list():
             try:
-                event = db.get_event_from_handle(ref.ref)
+                event = safe_get_event(db, ref.ref)
                 if not event:
                     continue
                 type_name = str(event.get_type())
@@ -1383,7 +1423,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             return fs_id
         try:
             for ref in person.get_event_ref_list():
-                event = db.get_event_from_handle(ref.ref)
+                event = safe_get_event(db, ref.ref)
                 if not event:
                     continue
                 if str(event.get_type()) != "_FSLINK":
@@ -1412,7 +1452,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         place_handle = event.get_place_handle()
         if place_handle:
             try:
-                place_obj = db.get_place_from_handle(place_handle)
+                place_obj = safe_get_place(db, place_handle)
                 if place_obj:
                     place = clean(place_obj.get_name().get_value() or "")
             except Exception:
@@ -1423,23 +1463,6 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         if description:
             line += " (%s)" % description
         return line
-
-    def _family_lines(self, person: Person, db: Any) -> list[str]:
-        """
-        Build the Family Relations section lines: father and mother on
-        separate lines, then spouse(s).
-        """
-        lines = []
-        for label, names in (
-            (_("Father"), self._get_parent_persons(person, db, family_role="father")),
-            (_("Mother"), self._get_parent_persons(person, db, family_role="mother")),
-        ):
-            for name in names:
-                lines.append(_("%s: %s") % (label, name))
-        spouses = self._get_spouse_persons(person, db)
-        if spouses:
-            lines.append(_("Spouse: %s") % ", ".join(spouses))
-        return lines
 
     def _family_lines(self, person: Person, db: Any) -> list[str]:
         """
@@ -1478,7 +1501,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         persons = []
         try:
             for family_handle in person.get_parent_family_handle_list():
-                family = db.get_family_from_handle(family_handle)
+                family = safe_get_family(db, family_handle)
                 if not family:
                     continue
                 if family_role == "father":
@@ -1493,7 +1516,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                 for handle in handles:
                     if not handle:
                         continue
-                    parent = db.get_person_from_handle(handle)
+                    parent = safe_get_person(db, handle)
                     if parent and parent not in persons:
                         persons.append(parent)
         except Exception:
@@ -1507,7 +1530,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         persons = []
         try:
             for family_handle in person.get_family_handle_list():
-                family = db.get_family_from_handle(family_handle)
+                family = safe_get_family(db, family_handle)
                 if not family:
                     continue
                 father_handle = family.get_father_handle()
@@ -1519,7 +1542,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                 elif mother_handle and mother_handle != person_handle:
                     spouse_handle = mother_handle
                 if spouse_handle:
-                    spouse = db.get_person_from_handle(spouse_handle)
+                    spouse = safe_get_person(db, spouse_handle)
                     if spouse and spouse not in persons:
                         persons.append(spouse)
         except Exception:
@@ -1550,11 +1573,11 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         lines = []
         try:
             for family_handle in person.get_family_handle_list():
-                family = db.get_family_from_handle(family_handle)
+                family = safe_get_family(db, family_handle)
                 if not family:
                     continue
                 for child_ref in family.get_child_ref_list():
-                    child = db.get_person_from_handle(child_ref.ref)
+                    child = safe_get_person(db, child_ref.ref)
                     if child:
                         lines.append(self._related_name_with_vitals(child, db))
         except Exception as e:
@@ -1626,6 +1649,28 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         # reflect the new state.
         self.select_category("person")
 
+    def cb_add_new(self, _button: Gtk.Button) -> None:
+        """
+        Add the selected incoming person as a new person in the tree.
+        """
+        pair = self._get_selected_pair()
+        if pair is None or pair[1] is not None:
+            return
+        source_handle = pair[0]
+        try:
+            self.grizard.run_step(
+                "apply",
+                source_person_handle=source_handle,
+                target_person_handle=None,
+                resolutions={},
+            )
+        except Exception as exc:  # pragma: no cover
+            LOG.exception("Add as new failed: %s", exc)
+            ErrorDialog(_("Add as New failed"), str(exc), parent=self)
+            return
+        self.present()
+        self.select_category("person")
+
     def cb_close(self, _button: Gtk.Button) -> None:
         """
         Handle window close button.
@@ -1695,7 +1740,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         source_db = self.source_db if is_source_left else self.dbstate.db
         target_db = self.dbstate.db if is_source_left else self.source_db
 
-        person = source_db.get_person_from_handle(handle)
+        person = safe_get_person(source_db, handle)
         if not person:
             return
 
@@ -1706,24 +1751,28 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         counterpart = self._get_counterpart(handle)
 
         if counterpart:
-            # Counterpart exists; select and scroll to it
+            # Counterpart exists; select and scroll to it. The pairing map
+            # can hold a handle that a merge has since deleted, in which
+            # case there is no counterpart to select.
+            counterpart_person = safe_get_person(target_db, counterpart)
+            if counterpart_person is None:
+                self._scroll_to_position(
+                    target_panel,
+                    group=group,
+                    name_str=name_str,
+                )
+                return
             self._select_person_or_position(
                 target_panel,
                 counterpart,
-                group=(
-                    self._person_group_name(
-                        target_db, target_db.get_person_from_handle(counterpart)
-                    )
-                    if target_db.get_person_from_handle(counterpart)
-                    else group
-                ),
+                group=self._person_group_name(target_db, counterpart_person),
                 name_str=name_str,
             )
         else:
-            # No counterpart; scroll to alphabetical insertion point
-            self._select_person_or_position(
+            # No counterpart; scroll to alphabetical insertion point but
+            # leave it unselected so the row can be added as new.
+            self._scroll_to_position(
                 target_panel,
-                None,
                 group=group,
                 name_str=name_str,
             )
@@ -1802,7 +1851,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             source_db = self.source_db if is_source_left else self.dbstate.db
             target_db = self.dbstate.db if is_source_left else self.source_db
 
-            person = source_db.get_person_from_handle(handle)
+            person = safe_get_person(source_db, handle)
             if not person:
                 return
 
@@ -1814,24 +1863,22 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
 
             if counterpart:
                 # Counterpart exists; select and scroll to it
+                counterpart_person = safe_get_person(target_db, counterpart)
                 self._select_person_or_position(
                     target_panel,
                     counterpart,
                     group=(
-                        self._person_group_name(
-                            target_db,
-                            target_db.get_person_from_handle(counterpart),
-                        )
-                        if target_db.get_person_from_handle(counterpart)
+                        self._person_group_name(target_db, counterpart_person)
+                        if counterpart_person
                         else group
                     ),
                     name_str=name_str,
                 )
             else:
-                # No counterpart; scroll to alphabetical insertion point
-                self._select_person_or_position(
+                # No counterpart; scroll to alphabetical insertion point but
+                # leave it unselected so the row can be added as new.
+                self._scroll_to_position(
                     target_panel,
-                    None,
                     group=group,
                     name_str=name_str,
                 )
