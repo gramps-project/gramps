@@ -38,7 +38,9 @@ from typing import Any
 # -------------------------------------------------------------------------
 from gramps.gen.db.base import DbWriteBase
 from gramps.gen.db.txn import DbTxn
-from gramps.gen.db.utils import import_as_dict
+from gramps.gen.db.utils import import_as_dict, make_database
+from gramps.gen.config import config
+from gramps.gen.plug import BasePluginManager
 from gramps.gen.types import PersonHandle
 from gramps.gen.user import User
 from gramps.gen.lib import (
@@ -80,8 +82,15 @@ _ = glocale.translation.gettext
 # ------------------------------------------------------------
 class GedGrizard(GrizardBase):
     """
-    Concrete Grizard implementation for importing data from GEDCOM (.ged) files.
+    Concrete Grizard implementation for importing data from GEDCOM (.ged)
+    and Gramps XML (.gramps, .xml) files.
     """
+
+    # File extensions (without dot) treated as Gramps XML even though no
+    # ``xml`` importer is registered. ``import_as_dict`` dispatches purely
+    # on extension, so a bare ``.xml`` holding Gramps XML would otherwise
+    # fail to load.
+    GRAMPS_XML_EXTENSIONS = frozenset({"gramps", "xml"})
 
     def __init__(self, db: DbWriteBase) -> None:
         """
@@ -90,6 +99,72 @@ class GedGrizard(GrizardBase):
         :param db: The target database to merge data into.
         """
         super().__init__(db)
+
+    def _is_gramps_xml_file(self, path: str) -> bool:
+        """
+        Return True if the file looks like Gramps XML.
+
+        Files with a ``.gramps`` extension are trusted by extension (the
+        registered ``gramps`` importer only reads Gramps XML). Anything
+        else is sniffed: the first bytes must contain a ``<database``
+        element in the Gramps XML namespace.
+        """
+        extension = os.path.splitext(os.path.basename(path))[1][1:].lower()
+        if extension == "gramps":
+            return True
+        try:
+            with open(path, "rb") as handle:
+                head = handle.read(4096)
+        except OSError:
+            return False
+        if b"<database" not in head:
+            return False
+        return b"gramps-project.org/xml" in head
+
+    def _load_gramps_xml(self, path: str, user: User) -> DbWriteBase | None:
+        """
+        Load Gramps XML from any extension into an in-memory database.
+
+        Routes the registered ``gramps`` importer plugin at the file in
+        place (no temp copy); only falls back to ``import_as_dict`` when
+        the plugin manager has no importers registered (e.g. bare
+        ``gen``-level unit contexts).
+        """
+        db = make_database("sqlite")
+        db.load(":memory:")
+        db.set_feature("skip-import-additions", True)
+        db.set_prefixes(
+            config.get("preferences.iprefix"),
+            config.get("preferences.oprefix"),
+            config.get("preferences.fprefix"),
+            config.get("preferences.sprefix"),
+            config.get("preferences.cprefix"),
+            config.get("preferences.pprefix"),
+            config.get("preferences.eprefix"),
+            config.get("preferences.rprefix"),
+            config.get("preferences.nprefix"),
+        )
+        pmgr = BasePluginManager.get_instance()
+        for pdata in pmgr.get_reg_importers():
+            if pdata.extension == "gramps":
+                mod = pmgr.load_plugin(pdata)
+                if not mod:
+                    break
+                import_function = getattr(mod, pdata.import_function)
+                try:
+                    results = import_function(db, path, user)
+                except Exception:
+                    LOG.exception("Failed to import Gramps XML file: %s", path)
+                    db.close()
+                    return None
+                if results is None:
+                    db.close()
+                    return None
+                return db
+        # No importers registered: fall back to the standard dispatcher,
+        # which returns None for unknown extensions.
+        db.close()
+        return import_as_dict(path, user)
 
     def _connect(self, **kwargs: Any) -> bool:
         """
@@ -110,7 +185,11 @@ class GedGrizard(GrizardBase):
 
     def _load(self, **kwargs: Any) -> list[Person]:
         """
-        Load GEDCOM data into an in-memory dictionary database for analysis.
+        Load source data into an in-memory dictionary database for analysis.
+
+        Supports GEDCOM (``.ged``) and Gramps XML (``.gramps``, plus a
+        bare ``.xml`` holding Gramps XML, routed to the ``gramps``
+        importer without any temp copy).
 
         :returns: A list of Person objects loaded from the file.
         :rtype: list[Person]
@@ -120,7 +199,14 @@ class GedGrizard(GrizardBase):
             raise ValueError("No GEDCOM path configured. Call connect step first.")
 
         user = User()
-        source_db = import_as_dict(gedcom_path, user)
+        source_db: DbWriteBase | None = None
+        extension = os.path.splitext(os.path.basename(gedcom_path))[1][1:].lower()
+        if extension in self.GRAMPS_XML_EXTENSIONS or self._is_gramps_xml_file(
+            gedcom_path
+        ):
+            source_db = self._load_gramps_xml(gedcom_path, user)
+        else:
+            source_db = import_as_dict(gedcom_path, user)
         if not source_db:
             raise RuntimeError("Failed to import GEDCOM file.")
 

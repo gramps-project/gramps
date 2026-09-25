@@ -342,6 +342,61 @@ class GrizardTest(unittest.TestCase):
             if os.path.exists(temp_path):
                 os.remove(temp_path)
 
+    def test_load_bare_xml_gramps_content(self) -> None:
+        """
+        Verify bare ``.xml`` files holding Gramps XML load in place.
+
+        Copies the ``imp_sample``/``exp_sample`` Gramps XML pair to
+        ``.xml`` temp names and asserts the person counts match the
+        ``.gramps`` originals (42 and 52).
+        """
+        cases = (
+            ("imp_sample.gramps", 42),
+            ("exp_sample.gramps", 52),
+        )
+        from gramps.gen.const import TEST_DIR
+
+        for source_name, expected_count in cases:
+            temp_path = os.path.join(
+                tempfile.gettempdir(),
+                os.path.splitext(source_name)[0] + "_grizard_test.xml",
+            )
+            try:
+                shutil.copyfile(
+                    os.path.join(TEST_DIR, source_name),
+                    temp_path,
+                )
+                grizard = GedGrizard(self.db)
+                self.assertTrue(grizard.run_step("connect", gedcom_path=temp_path))
+                self.assertTrue(grizard._is_gramps_xml_file(temp_path))
+                people = grizard.run_step("load")
+                self.assertEqual(len(people), expected_count)
+            finally:
+                if os.path.exists(temp_path):
+                    os.remove(temp_path)
+
+    def test_is_gramps_xml_file_rejects_gedcom(self) -> None:
+        """
+        Verify GEDCOM content is not sniffed as Gramps XML.
+        """
+        gedcom_data = """0 HEAD
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME John /Doe/
+0 TRLR
+"""
+        with tempfile.NamedTemporaryFile(
+            suffix=".xml", mode="w", delete=False
+        ) as handle:
+            handle.write(gedcom_data)
+            temp_path = handle.name
+        try:
+            grizard = GedGrizard(self.db)
+            self.assertFalse(grizard._is_gramps_xml_file(temp_path))
+        finally:
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+
     def test_format_diff_line(self) -> None:
         """
         Test the GrizardMergeDialog's static method for rendering
