@@ -955,14 +955,8 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                 return str(event.get_date_object().get_year() or "")
         except Exception:
             pass
-        # Fallback: some EventRef-like objects may expose a direct date via
-        # ``get_date`` (legacy API). Attempt to use it if present.
-        try:
-            if hasattr(event_ref, "get_date"):
-                date_obj = event_ref.get_date()
-                return str(date_obj.get_year() or "")
-        except Exception:
-            pass
+        # If the reference cannot be resolved to an Event, simply return an
+        # empty string – the calling code treats a missing year as unknown.
         return ""
 
     @staticmethod
