@@ -1007,8 +1007,19 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         pair = self._get_selected_pair() if is_people else None
         self.btn_prev.set_sensitive(has_diffs)
         self.btn_next.set_sensitive(has_diffs)
+        # Enable merge when there is a target person.
         self.btn_merge_dialog.set_sensitive(pair is not None and pair[1] is not None)
-        self.btn_add_new.set_sensitive(pair is not None and pair[1] is None)
+        # Enable "Add as New" when there is no target (standard case) **or**
+        # when a target exists but the name fields are a poor match.  A poor
+        # match is indicated by a diff status other than "match" for either the
+        # given name or surname fields.
+        name_poor_match = False
+        if pair is not None and pair[1] is not None:
+            for row in self.diff_list:
+                if row.field in (_("Given Name"), _("Surname")) and row.status != "match":
+                    name_poor_match = True
+                    break
+        self.btn_add_new.set_sensitive(pair is not None and (pair[1] is None or name_poor_match))
         if is_people:
             total = len(self.diff_list)
             pos = (self.diff_index + 1) if has_diffs else 0
