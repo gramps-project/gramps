@@ -555,12 +555,12 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                 if ev:
                     # ``_get_event_year`` returns an empty string when the
                     # event or its date is missing, so we treat that as None.
-                # Choose the correct database for the person whose birth year
-                # we are extracting. ``source`` lives in ``self.source_db``
-                # while ``target`` lives in the destination database
-                # ``self.dbstate.db``.
-                db_for_person = self.source_db if person is source else self.dbstate.db
-                year = GrizardCompareWindow._get_event_year(ev, db_for_person)
+                    # Choose the correct database for the person whose birth year
+                    # we are extracting. ``source`` lives in ``self.source_db``
+                    # while ``target`` lives in the destination database
+                    # ``self.dbstate.db``.
+                    db_for_person = self.source_db if person is source else self.dbstate.db
+                    year = GrizardCompareWindow._get_event_year(ev, db_for_person)
                     if year:
                         return year
                 return None
