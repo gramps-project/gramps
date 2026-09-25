@@ -954,9 +954,9 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             if event:
                 return str(event.get_date_object().get_year() or "")
         except Exception:
+            # Any unexpected attribute access (e.g., missing ``ref`` or legacy
+            # ``get_date``) falls back to an empty string.
             pass
-        # If the reference cannot be resolved to an Event, simply return an
-        # empty string – the calling code treats a missing year as unknown.
         return ""
 
     @staticmethod
