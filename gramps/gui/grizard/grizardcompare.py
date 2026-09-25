@@ -135,6 +135,11 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
     navigation between records that contain differences and a Merge
     button that opens the existing "Compare Differences" merge wizard.
     """
+    # Default match threshold – can be overridden by a configuration file or
+    # command‑line option in the future. Raising it from the historic 0.5 to
+    # 0.7 reduces false‑positive matches that rely solely on Soundex surname
+    # similarity.
+    match_threshold: float = 0.7
 
     def __init__(
         self,
@@ -514,10 +519,45 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         if not candidate_handles:
             candidate_handles = self._target_index.get(("", key[1]), [])
         best_handle: PersonHandle | None = None
-        best_score = 0.5
+        # Default match threshold – can be tuned later via a class attribute
+        # or configuration. Raising it from 0.5 to 0.7 makes spurious
+        # Soundex‑only matches less likely to be accepted.
+        best_score = getattr(self, "match_threshold", 0.7)
         for handle in candidate_handles:
             target = safe_get_person(self.dbstate.db, handle)
             if not target:
+                continue
+            # Basic guard: require at least one strong similarity signal before
+            # considering the numeric score. This prevents a pair that only
+            # shares a Soundex surname and first‑initial from being accepted.
+            # Signals:
+            #   * Exact surname match (case‑insensitive)
+            #   * Exact first name match (case‑insensitive)
+            #   * Birth year match when both have a birth date
+            source_name = source.get_primary_name()
+            target_name = target.get_primary_name()
+            source_surname = (source_name.surname_list[0].surname if source_name.surname_list else "").lower()
+            target_surname = (target_name.surname_list[0].surname if target_name.surname_list else "").lower()
+            source_first = (source_name.first_name or "").strip().lower()
+            target_first = (target_name.first_name or "").strip().lower()
+            surname_match = source_surname and source_surname == target_surname
+            first_match = source_first and source_first == target_first
+            # Birth year comparison
+            def _birth_year(person: Person) -> str | None:
+                ev = person.get_birth_ref()
+                if ev:
+                    date = ev.get_date()
+                    if date and date.get_year() is not None:
+                        return str(date.get_year())
+                return None
+            birth_match = False
+            src_year = _birth_year(source)
+            tgt_year = _birth_year(target)
+            if src_year and tgt_year and src_year == tgt_year:
+                birth_match = True
+            if not (surname_match or first_match or birth_match):
+                # Skip this candidate – not enough evidence despite a high
+                # numeric score.
                 continue
             score = matcher.score_match(source, target, source_db=self.source_db)
             if score > best_score:
