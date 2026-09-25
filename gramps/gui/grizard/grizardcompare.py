@@ -544,11 +544,20 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             first_match = source_first and source_first == target_first
             # Birth year comparison
             def _birth_year(person: Person) -> str | None:
+                """Return the birth year of *person* as a string.
+
+                The original implementation accessed ``ev.get_date()`` on an
+                ``EventRef`` object, which no longer exists.  We now use the
+                safe helper ``_get_event_year`` that retrieves the referenced
+                ``Event`` and extracts the year via ``get_date_object()``.
+                """
                 ev = person.get_birth_ref()
                 if ev:
-                    date = ev.get_date()
-                    if date and date.get_year() is not None:
-                        return str(date.get_year())
+                    # ``_get_event_year`` returns an empty string when the
+                    # event or its date is missing, so we treat that as None.
+                    year = GrizardCompareWindow._get_event_year(ev, db)
+                    if year:
+                        return year
                 return None
             birth_match = False
             src_year = _birth_year(source)
