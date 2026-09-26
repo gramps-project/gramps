@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2026  Brian Caudill
+# Copyright (C) 2026  Kevin White
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -79,8 +79,8 @@ register(
     gramps_target_version="{target}",
     status=STABLE,
     fname="grizardmerge.py",
-    authors=["Brian Caudill"],
-    authors_email=["brian@bocaudill.com"],
+    authors=["Kevin White"],
+    authors_email=["gocaveman@gmail.com"],
     category=TOOL_DBPROC,
     toolclass="GrizardMergeTool",
     optionclass="GrizardMergeToolOptions",
