@@ -53,40 +53,50 @@ PACKAGE = "GrizardDataMerge"
 GPR_FILENAME = "GrizardDataMerge.gpr.py"
 
 # Standalone addon registration file, written into the bundle as
-# ``GrizardDataMerge/GrizardDataMerge.gpr.py``. Mirrors the ``grizardmerge``
-# entry in ``gramps/plugins/tool/tools.gpr.py`` but uses hardcoded values
-# instead of the shared ``MODULE_VERSION`` / ``TOOLS_HELP`` constants, which
-# are not available to a standalone addon directory. ``{target}`` is filled
-# in from ``--gramps-target`` at build time. Status is STABLE (not UNSTABLE)
-# so release/frozen Gramps installs keep the plugin: release builds run with
-# ``stable_only=True`` and silently drop UNSTABLE plugins at scan time.
+# ``GrizardDataMerge/GrizardDataMerge.gpr.py``. Mirrors the template in
+# ``GrizardDataMerge.gpr.py`` at the repo root: version-gated with
+# ``VERSION_TUPLE``, ``EXPERIMENTAL`` status and ``EXPERT`` audience, dynamic
+# ``gramps_target_version``, forum ``help_url``, and the full side-by-side
+# description. No formatting placeholders: the template is emitted verbatim
+# so the root file stays the single source of truth for registration content.
 GPR_TEMPLATE = """\
-# Grizard Data Merge addon registration.
-from gramps.gen.plug._pluginreg import TOOL, TOOL_DBPROC, TOOL_MODE_GUI, STABLE
-from gramps.gen.const import URL_MANUAL_PAGE, GRAMPS_LOCALE as glocale
+# Gramps registration file for the Grizard Data Merge tool.
+
+from gramps.gen.plug._pluginreg import (
+    TOOL,
+    TOOL_DBPROC,
+    TOOL_MODE_GUI,
+    EXPERIMENTAL,
+    EXPERT,
+)
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.version import major_version, VERSION_TUPLE
 
 _ = glocale.translation.gettext
 
-register(
-    TOOL,
-    id="grizardmerge",
-    name=_("Grizard Data Merge"),
-    description=_(
-        "Loads a GEDCOM file and finds people that may "
-        "represent the same person for merging."
-    ),
-    version="0.1.0",
-    gramps_target_version="{target}",
-    status=STABLE,
-    fname="grizardmerge.py",
-    authors=["Kevin White"],
-    authors_email=["gocaveman@gmail.com"],
-    category=TOOL_DBPROC,
-    toolclass="GrizardMergeTool",
-    optionclass="GrizardMergeToolOptions",
-    tool_modes=[TOOL_MODE_GUI],
-    help_url=URL_MANUAL_PAGE + "_-_Navigation#Tools",
-)
+if (5, 2, 0) <= VERSION_TUPLE <= (6, 2, 0):
+    register(
+        TOOL,
+        id="grizardmerge",
+        name=_("Grizard Data Merge"),
+        description=_(
+            "Family Tree Processing Tool to compare another genealogy file "
+            "(GEDCOM, Gramps XML, ...) side-by-side with the open Family Tree "
+            "and merge selected differences person by person."
+        ),
+        version="0.1.1",
+        gramps_target_version=major_version,
+        status=EXPERIMENTAL,
+        audience=EXPERT,
+        fname="grizardmerge.py",
+        authors=["Brian Caudill"],
+        authors_email=["brian@bocaudill.com"],
+        category=TOOL_DBPROC,
+        toolclass="GrizardMergeTool",
+        optionclass="GrizardMergeToolOptions",
+        tool_modes=[TOOL_MODE_GUI],
+        help_url=("https://gramps.discourse.group/t/10027")
+    )
 """
 
 DEFAULT_GRAMPS_TARGET = "6.0"
@@ -164,12 +174,12 @@ def rewrite_imports_bytes(data: bytes) -> bytes:
     return ("\n".join(rewritten) + "\n").encode("utf-8")
 
 
-def build_gpr(gramps_target: str) -> bytes:
+def build_gpr() -> bytes:
     """Render the standalone addon registration file."""
-    return GPR_TEMPLATE.format(target=gramps_target).encode("utf-8")
+    return GPR_TEMPLATE.encode("utf-8")
 
 
-def build_zip(repo_root: Path, output: Path, gramps_target: str) -> Path:
+def build_zip(repo_root: Path, output: Path) -> Path:
     """Build the ``GrizardMerge.zip`` bundle next to this script."""
     members: dict[str, bytes] = {}
     for member, source in SOURCES.items():
@@ -183,7 +193,7 @@ def build_zip(repo_root: Path, output: Path, gramps_target: str) -> Path:
     with zipfile.ZipFile(output, "w", zipfile.ZIP_DEFLATED) as archive:
         archive.writestr(PACKAGE + "/", b"")
         archive.writestr(PACKAGE + "/__init__.py", b"")
-        archive.writestr(f"{PACKAGE}/{GPR_FILENAME}", build_gpr(gramps_target))
+        archive.writestr(f"{PACKAGE}/{GPR_FILENAME}", build_gpr())
         for member in sorted(members):
             archive.writestr(f"{PACKAGE}/{member}", members[member])
     LOG.info("Wrote %s (%d bytes)", output, output.stat().st_size)
@@ -206,9 +216,9 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--gramps-target",
         default=DEFAULT_GRAMPS_TARGET,
         help=(
-            "Gramps target version written into gramps_target_version "
-            f"(default: {DEFAULT_GRAMPS_TARGET}). Must match the major.minor "
-            "of the Gramps install or scan_dir() drops the plugin."
+            "Accepted for compatibility; the bundled registration file now "
+            "uses Gramps' dynamic major_version with a VERSION_TUPLE gate, "
+            f"so this value (default: {DEFAULT_GRAMPS_TARGET}) is ignored."
         ),
     )
     return parser.parse_args(argv)
@@ -223,7 +233,7 @@ def main(argv: list[str] | None = None) -> int:
     if not output.is_absolute():
         output = repo_root / output
     try:
-        built = build_zip(repo_root, output, args.gramps_target)
+        built = build_zip(repo_root, output)
     except FileNotFoundError as error:
         LOG.error("%s", error)
         return 1
