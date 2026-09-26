@@ -29,6 +29,15 @@ relying on the bundled example.gramps, since each test needs a specific
 structural shape (a sibling-marries-sibling collapse chain, a person with
 more than one recorded parent family, a genuine cycle) that a general
 demo dataset doesn't reliably exercise.
+
+`RelationshipEdgeCaseTest`, `RelationshipAllRelationshipsCollapseTest`, and
+`RelationshipPrivacyProxyTest` below port coverage from the independent
+SQL-based reimplementation this fix's own PR description names
+(gramps-sql-extensions, https://github.com/dsblank/gramps-sql-extensions)
+onto `RelationshipCalculator` directly -- structural edge cases (a
+pedigree-collapse tie-break, same-couple remarriage ordering, half-sibling
+wording) and privacy-proxy interaction that weren't otherwise exercised
+here.
 """
 
 import types
@@ -36,10 +45,12 @@ import unittest
 
 from ..db import DbTxn
 from ..db.utils import make_database
-from ..lib import ChildRefType, Family, Person
+from ..lib import ChildRefType, Family, FamilyRelType, Person
+from ..proxy import PrivateProxyDb
 from ..relationship import get_relationship_calculator
 
 BIRTH = ChildRefType.BIRTH
+STEPCHILD = ChildRefType.STEPCHILD
 
 
 def _make_db():
@@ -56,8 +67,10 @@ def _add_person(db, gender=Person.MALE):
     return person
 
 
-def _add_family(db, father=None, mother=None):
+def _add_family(db, father=None, mother=None, rel_type=None):
     family = Family()
+    if rel_type is not None:
+        family.set_relationship(rel_type)
     if father is not None:
         family.set_father_handle(father.handle)
     if mother is not None:
@@ -65,6 +78,18 @@ def _add_family(db, father=None, mother=None):
     with DbTxn("add family", db) as trans:
         db.add_family(family, trans)
     return family
+
+
+def _link_spouse_to_family(db, person, family):
+    """`add_family()` alone doesn't update the referenced person's own
+    `family_list` -- that reciprocal update is application-layer behavior,
+    not something the raw `add_family`/`commit_family` calls above do.
+    Needed whenever a test relies on `family_list` order, e.g. which of
+    several marriage records between the same couple is used."""
+    with DbTxn("link spouse to family", db) as trans:
+        person = db.get_person_from_handle(person.handle)
+        person.add_family_handle(family.handle)
+        db.commit_person(person, trans)
 
 
 def _add_child(db, family, child, frel=BIRTH, mrel=BIRTH):
@@ -427,6 +452,276 @@ class RelationshipMultiFamilyPedigreeCollapseTest(unittest.TestCase):
         # hard against a real regression back to exponential.
         self.assertLess(counts[5], counts[3] * 16)
         self.assertLess(counts[7], counts[5] * 16)
+
+
+class RelationshipEdgeCaseTest(unittest.TestCase):
+    """Structural edge cases ported from gramps-sql-extensions'
+    tests/test_edge_cases.py -- each one a real bug that independent
+    reimplementation shipped with at one point, kept here as a permanent
+    regression guard against RelationshipCalculator itself, not just that
+    other project's replica of it.
+    """
+
+    def setUp(self):
+        self.db = _make_db()
+        self.calc = get_relationship_calculator(reinit=True)
+
+    def tearDown(self):
+        self.db.close()
+
+    def test_pedigree_collapse_tie_break_prefers_birth_line(self):
+        """Two candidate common ancestors tied at the same generation
+        distance, one reached by an all-birth path, the other through a
+        step link -- gramps-core's own priority order prefers the
+        birth-line one, so the result should be "first cousin", never
+        "first stepcousin", even though the tie-break has no reason to
+        prefer one over the other by generation distance alone."""
+        MALE, FEMALE = Person.MALE, Person.FEMALE
+        h1, h2 = _add_person(self.db, MALE), _add_person(self.db, FEMALE)
+        f1, m1 = _add_person(self.db, MALE), _add_person(self.db, FEMALE)
+        f2, m2 = _add_person(self.db, MALE), _add_person(self.db, FEMALE)
+        # reached by an all-birth path on both sides
+        ancestor_birth = _add_person(self.db, MALE)
+        # reached via a step link on h1's side
+        ancestor_step = _add_person(self.db, FEMALE)
+
+        fam_birth = _add_family(self.db, ancestor_birth, None)
+        _add_child(self.db, fam_birth, f1, frel=BIRTH, mrel=BIRTH)
+        _add_child(self.db, fam_birth, f2, frel=BIRTH, mrel=BIRTH)
+        fam_step = _add_family(self.db, None, ancestor_step)
+        _add_child(self.db, fam_step, m1, frel=STEPCHILD, mrel=STEPCHILD)
+        _add_child(self.db, fam_step, m2, frel=BIRTH, mrel=BIRTH)
+        fam1 = _add_family(self.db, f1, m1)
+        _add_child(self.db, fam1, h1)
+        fam2 = _add_family(self.db, f2, m2)
+        _add_child(self.db, fam2, h2)
+
+        p1 = self.db.get_person_from_handle(h1.handle)
+        p2 = self.db.get_person_from_handle(h2.handle)
+        rel_str, dist1, dist2 = self.calc.get_one_relationship(
+            self.db, p1, p2, extra_info=True
+        )
+        self.assertEqual(rel_str, "first cousin")
+        self.assertEqual((dist1, dist2), (2, 2))
+
+    def test_remarriage_uses_last_family_in_family_list_order(self):
+        """The same couple recorded in two family records (e.g. an
+        unmarried-partner record later formalized by marriage) --
+        gramps-core's own spouse-type lookup takes the LAST match in the
+        person's own family_list order, not an arbitrary one, so the
+        wording must reflect the second (married) record, not the first
+        (unmarried) one."""
+        MALE, FEMALE = Person.MALE, Person.FEMALE
+        husband, wife = _add_person(self.db, MALE), _add_person(self.db, FEMALE)
+
+        fam1 = _add_family(self.db, husband, wife, rel_type=FamilyRelType.UNMARRIED)
+        _link_spouse_to_family(self.db, husband, fam1)
+        fam2 = _add_family(self.db, husband, wife, rel_type=FamilyRelType.MARRIED)
+        _link_spouse_to_family(self.db, husband, fam2)
+
+        p1 = self.db.get_person_from_handle(husband.handle)
+        p2 = self.db.get_person_from_handle(wife.handle)
+        rel_str, dist1, dist2 = self.calc.get_one_relationship(
+            self.db, p1, p2, extra_info=True
+        )
+        # not "partner" (fam1's wording) -- fam2 is last in family_list
+        self.assertEqual(rel_str, "wife")
+        self.assertEqual((dist1, dist2), (-1, -1))
+
+    def test_half_sibling_wording(self):
+        MALE, FEMALE = Person.MALE, Person.FEMALE
+        father = _add_person(self.db, MALE)
+        mother1, mother2 = _add_person(self.db, FEMALE), _add_person(self.db, FEMALE)
+        full1, full2 = _add_person(self.db, MALE), _add_person(self.db, FEMALE)
+        half = _add_person(self.db, MALE)
+
+        fam1 = _add_family(self.db, father, mother1)
+        _add_child(self.db, fam1, full1)
+        _add_child(self.db, fam1, full2)
+        fam2 = _add_family(self.db, father, mother2)
+        _add_child(self.db, fam2, half)
+
+        p_full1 = self.db.get_person_from_handle(full1.handle)
+        p_full2 = self.db.get_person_from_handle(full2.handle)
+        p_half = self.db.get_person_from_handle(half.handle)
+        rel_full, _, _ = self.calc.get_one_relationship(
+            self.db, p_full1, p_full2, extra_info=True
+        )
+        rel_half, _, _ = self.calc.get_one_relationship(
+            self.db, p_full1, p_half, extra_info=True
+        )
+        self.assertEqual(rel_full, "sister")
+        self.assertEqual(rel_half, "half-brother")
+
+
+class RelationshipAllRelationshipsCollapseTest(unittest.TestCase):
+    """gramps-sql-extensions' test_all_relationships_no_overreporting
+    guards a common ancestor sitting *behind* a nearer one from being
+    reported as if it were a separate, more distant relationship --
+    RelationshipCalculator.__apply_filter never even visits it (a branch
+    stops at the first common ancestor it crosses), so a first-cousin
+    pair descended from a grandparent couple who are themselves the
+    children of a shared great-grandparent couple must still report
+    exactly one relationship, "first cousin", not a phantom second/third
+    cousin entry for that deeper, unvisited couple.
+    """
+
+    def test_get_all_relationships_reports_exactly_one_relationship(self):
+        db = _make_db()
+        try:
+            MALE, FEMALE = Person.MALE, Person.FEMALE
+            great_grandfather = _add_person(db, MALE)
+            great_grandmother = _add_person(db, FEMALE)
+            great_grandparent_family = _add_family(
+                db, great_grandfather, great_grandmother
+            )
+
+            grandfather = _add_person(db, MALE)
+            grandfathers_sibling = _add_person(db, FEMALE)
+            _add_child(db, great_grandparent_family, grandfather)
+            _add_child(db, great_grandparent_family, grandfathers_sibling)
+
+            grandmother = _add_person(db, FEMALE)
+            grandparent_family = _add_family(db, grandfather, grandmother)
+
+            parent_a = _add_person(db, MALE)
+            parent_b = _add_person(db, FEMALE)
+            _add_child(db, grandparent_family, parent_a)
+            _add_child(db, grandparent_family, parent_b)
+
+            spouse_a = _add_person(db, FEMALE)
+            spouse_b = _add_person(db, MALE)
+            family_a = _add_family(db, parent_a, spouse_a)
+            family_b = _add_family(db, spouse_b, parent_b)
+
+            cousin1 = _add_person(db, MALE)
+            cousin2 = _add_person(db, FEMALE)
+            _add_child(db, family_a, cousin1)
+            _add_child(db, family_b, cousin2)
+
+            calc = get_relationship_calculator(reinit=True)
+            p1 = db.get_person_from_handle(cousin1.handle)
+            p2 = db.get_person_from_handle(cousin2.handle)
+            relstrings, commons = calc.get_all_relationships(db, p1, p2)
+            self.assertEqual(relstrings, ["first cousin"])
+            self.assertEqual(len(commons), 1)
+        finally:
+            db.close()
+
+
+class RelationshipPrivacyProxyTest(unittest.TestCase):
+    """Ported from gramps-sql-extensions' tests/test_privacy.py, adapted
+    from that library's own `restricted` parameter to gramps-core's real
+    mechanism for the same thing: wrapping the database in
+    `PrivateProxyDb` before handing it to `RelationshipCalculator`.
+    `PrivateProxyDb` has three independent privacy rules -- a private
+    Person, a private Family, or a private ChildRef are each individually
+    invisible to a restricted viewer -- and this confirms
+    RelationshipCalculator respects all three when searching through the
+    proxy instead of the raw database, and that a non-private relative in
+    the same family stays visible either way.
+    """
+
+    def test_private_person_is_hidden_and_other_parent_stays_visible(self):
+        db = _make_db()
+        try:
+            MALE, FEMALE = Person.MALE, Person.FEMALE
+            father = _add_person(db, MALE)
+            mother = _add_person(db, FEMALE)
+            with DbTxn("make mother private", db) as trans:
+                mother.set_privacy(True)
+                db.commit_person(mother, trans)
+            child = _add_person(db, MALE)
+            family = _add_family(db, father, mother)
+            _add_child(db, family, child)
+
+            proxy = PrivateProxyDb(db)
+            calc = get_relationship_calculator(reinit=True)
+
+            # the private parent is invisible to a restricted viewer --
+            # PrivateProxyDb.get_person_from_handle returns None for her
+            self.assertIsNone(proxy.get_person_from_handle(mother.handle))
+
+            # the other, non-private parent is unaffected
+            child_p = proxy.get_person_from_handle(child.handle)
+            father_p = proxy.get_person_from_handle(father.handle)
+            rel_str, _, _ = calc.get_one_relationship(
+                proxy, child_p, father_p, extra_info=True
+            )
+            self.assertEqual(rel_str, "father")
+        finally:
+            db.close()
+
+    def test_private_family_hidden_when_restricted(self):
+        db = _make_db()
+        try:
+            MALE, FEMALE = Person.MALE, Person.FEMALE
+            father = _add_person(db, MALE)
+            mother = _add_person(db, FEMALE)
+            child = _add_person(db, MALE)
+            family = Family()
+            family.set_privacy(True)
+            family.set_father_handle(father.handle)
+            family.set_mother_handle(mother.handle)
+            with DbTxn("add private family", db) as trans:
+                db.add_family(family, trans)
+            _add_child(db, family, child)
+
+            calc = get_relationship_calculator(reinit=True)
+            unrestricted, _, _ = calc.get_one_relationship(
+                db,
+                db.get_person_from_handle(child.handle),
+                db.get_person_from_handle(father.handle),
+                extra_info=True,
+            )
+            self.assertEqual(unrestricted, "father")
+
+            proxy = PrivateProxyDb(db)
+            restricted, _, _ = calc.get_one_relationship(
+                proxy,
+                proxy.get_person_from_handle(child.handle),
+                proxy.get_person_from_handle(father.handle),
+                extra_info=True,
+            )
+            self.assertEqual(restricted, "")
+        finally:
+            db.close()
+
+    def test_private_childref_hidden_when_restricted(self):
+        db = _make_db()
+        try:
+            MALE, FEMALE = Person.MALE, Person.FEMALE
+            father = _add_person(db, MALE)
+            mother = _add_person(db, FEMALE)
+            child = _add_person(db, MALE)
+            family = _add_family(db, father, mother)
+            _add_child(db, family, child)
+            family = db.get_family_from_handle(family.handle)
+            for ref in family.get_child_ref_list():
+                if ref.ref == child.handle:
+                    ref.set_privacy(True)
+            with DbTxn("make childref private", db) as trans:
+                db.commit_family(family, trans)
+
+            calc = get_relationship_calculator(reinit=True)
+            unrestricted, _, _ = calc.get_one_relationship(
+                db,
+                db.get_person_from_handle(child.handle),
+                db.get_person_from_handle(father.handle),
+                extra_info=True,
+            )
+            self.assertEqual(unrestricted, "father")
+
+            proxy = PrivateProxyDb(db)
+            restricted, _, _ = calc.get_one_relationship(
+                proxy,
+                proxy.get_person_from_handle(child.handle),
+                proxy.get_person_from_handle(father.handle),
+                extra_info=True,
+            )
+            self.assertEqual(restricted, "")
+        finally:
+            db.close()
 
 
 class RelationshipLoopDetectionTest(unittest.TestCase):
