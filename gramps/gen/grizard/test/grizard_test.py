@@ -495,6 +495,64 @@ class GrizardTest(unittest.TestCase):
             if os.path.exists(temp_path):
                 os.remove(temp_path)
 
+    def test_ged_grizard_add_new_clears_source_database_handles(self) -> None:
+        """Add as New must not retain links into the temporary source DB."""
+        gedcom_data = """0 HEAD
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Alice /Example/
+1 BIRT
+2 DATE 1 JAN 1980
+1 EVEN
+2 TYPE Graduation
+2 DATE 1 JUN 2000
+1 FAMS @F1@
+0 @I2@ INDI
+1 NAME Partner /Example/
+1 FAMS @F1@
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+0 TRLR
+"""
+        with tempfile.NamedTemporaryFile(suffix=".ged", mode="w", delete=False) as f:
+            f.write(gedcom_data)
+            temp_path = f.name
+
+        try:
+            grizard = GedGrizard(self.db)
+            grizard.run_step("connect", gedcom_path=temp_path)
+            people = grizard.run_step("load")
+            source_person = next(
+                person
+                for person in people
+                if person.get_primary_name().first_name == "Alice"
+            )
+            self.assertTrue(source_person.get_family_handle_list())
+            self.assertGreaterEqual(len(source_person.get_event_ref_list()), 2)
+
+            existing_handles = set(self.db.iter_person_handles())
+            self.assertTrue(
+                grizard.run_step(
+                    "apply",
+                    source_person_handle=source_person.handle,
+                    target_person_handle=None,
+                    resolutions={},
+                )
+            )
+
+            added_handles = set(self.db.iter_person_handles()) - existing_handles
+            self.assertEqual(len(added_handles), 1)
+            added_person = self.db.get_person_from_handle(added_handles.pop())
+            self.assertEqual(added_person.get_family_handle_list(), [])
+            self.assertEqual(added_person.get_parent_family_handle_list(), [])
+            self.assertEqual(added_person.get_person_ref_list(), [])
+            for event_ref in added_person.get_event_ref_list():
+                self.assertIsNotNone(safe_get_event(self.db, event_ref.ref))
+        finally:
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+
     def test_load_bare_xml_gramps_content(self) -> None:
         """
         Verify bare ``.xml`` files holding Gramps XML load in place.

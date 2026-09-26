@@ -1748,14 +1748,6 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                 target_person_handle=None,
                 resolutions={},
             )
-            # After adding as new, ensure any dangling references are resolved
-            # to avoid corrupted handles in the target database.
-            try:
-                self.grizard.run_step("resolve_dangling")
-            except Exception:
-                # If the step does not exist or fails, we ignore it; the
-                # primary add operation has already succeeded.
-                pass
         except Exception as exc:  # pragma: no cover
             LOG.exception("Add as new failed: %s", exc)
             ErrorDialog(_("Add as New failed"), str(exc), parent=self)

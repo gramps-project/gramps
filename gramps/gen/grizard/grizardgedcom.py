@@ -731,28 +731,73 @@ class GedGrizard(GrizardBase):
             if target_person_handle is None:
                 # Add as entirely new person
                 new_person = copy.deepcopy(s_person)
+                if new_person.handle and self.db.has_person_handle(new_person.handle):
+                    new_person.set_handle(None)
+                if new_person.gramps_id and self.db.has_person_gramps_id(
+                    new_person.gramps_id
+                ):
+                    new_person.set_gramps_id("")
                 resolve_references_for_person(new_person, trans)
-                # Copy birth event if exists
-                s_birth_ref = s_person.get_birth_ref()
-                if s_birth_ref:
-                    t_birth_h = copy_event(s_birth_ref.ref, trans)
-                    if t_birth_h:
-                        new_birth_ref = EventRef()
-                        new_birth_ref.ref = t_birth_h
-                        new_birth_ref.set_role(EventRoleType.PRIMARY)
-                        # We must clear the existing event ref list and set the correct birth ref
-                        # In Gramps, birth/death references reside in event_ref_list.
-                        # set_birth_ref internally manages the ref.
-                        new_person.set_birth_ref(new_birth_ref)
 
-                s_death_ref = s_person.get_death_ref()
-                if s_death_ref:
-                    t_death_h = copy_event(s_death_ref.ref, trans)
-                    if t_death_h:
-                        new_death_ref = EventRef()
-                        new_death_ref.ref = t_death_h
-                        new_death_ref.set_role(EventRoleType.PRIMARY)
-                        new_person.set_death_ref(new_death_ref)
+                def remap_citations_notes(obj: Any) -> None:
+                    if hasattr(obj, "get_citation_list"):
+                        obj.set_citation_list(
+                            [
+                                handle
+                                for handle in (
+                                    copy_citation(citation, trans)
+                                    for citation in obj.get_citation_list()
+                                )
+                                if handle
+                            ]
+                        )
+                    if hasattr(obj, "get_note_list"):
+                        obj.set_note_list(
+                            [
+                                handle
+                                for handle in (
+                                    copy_note(note, trans)
+                                    for note in obj.get_note_list()
+                                )
+                                if handle
+                            ]
+                        )
+
+                birth_idx = new_person.birth_ref_index
+                death_idx = new_person.death_ref_index
+                new_event_refs = []
+                new_birth_idx = new_death_idx = -1
+                for idx, event_ref in enumerate(new_person.get_event_ref_list()):
+                    target_event_handle = copy_event(event_ref.ref, trans)
+                    if not target_event_handle:
+                        continue
+                    event_ref.ref = target_event_handle
+                    remap_citations_notes(event_ref)
+                    for attribute in event_ref.get_attribute_list():
+                        remap_citations_notes(attribute)
+                    if idx == birth_idx:
+                        new_birth_idx = len(new_event_refs)
+                    if idx == death_idx:
+                        new_death_idx = len(new_event_refs)
+                    new_event_refs.append(event_ref)
+                new_person.set_event_ref_list(new_event_refs)
+                new_person.birth_ref_index = new_birth_idx
+                new_person.death_ref_index = new_death_idx
+
+                for name in [
+                    new_person.get_primary_name()
+                ] + new_person.get_alternate_names():
+                    remap_citations_notes(name)
+                for attribute in new_person.get_attribute_list():
+                    remap_citations_notes(attribute)
+                for address in new_person.get_address_list():
+                    remap_citations_notes(address)
+
+                new_person.set_family_handle_list([])
+                new_person.set_parent_family_handle_list([])
+                new_person.set_person_ref_list([])
+                new_person.set_lds_ord_list([])
+                new_person.set_tag_list([])
 
                 self.db.add_person(new_person, trans)
                 LOG.info("Added new person: %s", new_person.handle)
