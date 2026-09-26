@@ -135,6 +135,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
     navigation between records that contain differences and a Merge
     button that opens the existing "Compare Differences" merge wizard.
     """
+
     # Default match threshold – can be overridden by a configuration file or
     # command‑line option in the future. Raising it from the historic 0.5 to
     # 0.7 reduces false‑positive matches that rely solely on Soundex surname
@@ -546,12 +547,17 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
             #   * Birth year match when both have a birth date
             source_name = source.get_primary_name()
             target_name = target.get_primary_name()
-            source_surname = (source_name.surname_list[0].surname if source_name.surname_list else "").lower()
-            target_surname = (target_name.surname_list[0].surname if target_name.surname_list else "").lower()
+            source_surname = (
+                source_name.surname_list[0].surname if source_name.surname_list else ""
+            ).lower()
+            target_surname = (
+                target_name.surname_list[0].surname if target_name.surname_list else ""
+            ).lower()
             source_first = (source_name.first_name or "").strip().lower()
             target_first = (target_name.first_name or "").strip().lower()
             surname_match = source_surname and source_surname == target_surname
             first_match = source_first and source_first == target_first
+
             # Birth year comparison
             def _birth_year(person: Person) -> str | None:
                 """Return the birth year of *person* as a string.
@@ -569,11 +575,14 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
                     # we are extracting. ``source`` lives in ``self.source_db``
                     # while ``target`` lives in the destination database
                     # ``self.dbstate.db``.
-                    db_for_person = self.source_db if person is source else self.dbstate.db
+                    db_for_person = (
+                        self.source_db if person is source else self.dbstate.db
+                    )
                     year = GrizardCompareWindow._get_event_year(ev, db_for_person)
                     if year:
                         return year
                 return None
+
             birth_match = False
             src_year = _birth_year(source)
             tgt_year = _birth_year(target)
@@ -885,7 +894,9 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         """
         parts = []
         try:
-            birth_year = GrizardCompareWindow._get_event_year(person.get_birth_ref(), db)
+            birth_year = GrizardCompareWindow._get_event_year(
+                person.get_birth_ref(), db
+            )
         except Exception:
             birth_year = ""
         if birth_year:
@@ -901,7 +912,9 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         Return the death summary (``d.<year>``) for the person.
         """
         try:
-            death_year = GrizardCompareWindow._get_event_year(person.get_death_ref(), db)
+            death_year = GrizardCompareWindow._get_event_year(
+                person.get_death_ref(), db
+            )
         except Exception:
             death_year = ""
         return "d. " + death_year if death_year else ""
@@ -1645,11 +1658,15 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         related person, or ''.
         """
         try:
-            birth_year = GrizardCompareWindow._get_event_year(related.get_birth_ref(), db)
+            birth_year = GrizardCompareWindow._get_event_year(
+                related.get_birth_ref(), db
+            )
         except Exception:
             birth_year = ""
         try:
-            death_year = GrizardCompareWindow._get_event_year(related.get_death_ref(), db)
+            death_year = GrizardCompareWindow._get_event_year(
+                related.get_death_ref(), db
+            )
         except Exception:
             death_year = ""
         return " ".join(
