@@ -173,6 +173,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         self.source_index: dict[str, str] = {}
         self.target_index: dict[str, str] = {}
         self._syncing = False
+        self._rejected: dict[str, set[str]] = {}
 
         self.set_title(_("Grizard Compare"))
         self.set_default_size(1600, 900)
@@ -514,10 +515,19 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         Return the handle of the best matching target person, or None.
         """
         key = self._match_key(source)
-        candidate_handles = self._target_index.get(key, [])
+        rejected = self._rejected.get(source.handle, set())
+        candidate_handles = [
+            handle
+            for handle in self._target_index.get(key, [])
+            if handle not in rejected
+        ]
         # Also consider a soundex-less fallback bucket keyed on initial only
         if not candidate_handles:
-            candidate_handles = self._target_index.get(("", key[1]), [])
+            candidate_handles = [
+                handle
+                for handle in self._target_index.get(("", key[1]), [])
+                if handle not in rejected
+            ]
         best_handle: PersonHandle | None = None
         # Default match threshold – can be tuned later via a class attribute
         # or configuration. Raising it from 0.5 to 0.7 makes spurious
@@ -1007,19 +1017,22 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         pair = self._get_selected_pair() if is_people else None
         self.btn_prev.set_sensitive(has_diffs)
         self.btn_next.set_sensitive(has_diffs)
-        # Enable merge when there is a target person.
-        self.btn_merge_dialog.set_sensitive(pair is not None and pair[1] is not None)
-        # Enable "Add as New" when there is no target (standard case) **or**
-        # when a target exists but the name fields are a poor match.  A poor
-        # match is indicated by a diff status other than "match" for either the
-        # given name or surname fields.
-        name_poor_match = False
-        if pair is not None and pair[1] is not None:
-            for row in self.diff_list:
-                if row.field in (_("Given Name"), _("Surname")) and row.status != "match":
-                    name_poor_match = True
-                    break
-        self.btn_add_new.set_sensitive(pair is not None and (pair[1] is None or name_poor_match))
+        matched = pair is not None and pair[1] is not None
+        self.btn_merge_dialog.set_sensitive(matched)
+        if matched:
+            self.btn_add_new.set_label(_("Not a Match"))
+            self.btn_add_new.set_tooltip_text(
+                _(
+                    "These are different people: unpair them so the incoming "
+                    "person can be added as new"
+                )
+            )
+        else:
+            self.btn_add_new.set_label(_("Add as New..."))
+            self.btn_add_new.set_tooltip_text(
+                _("Add the selected incoming person as a new person")
+            )
+        self.btn_add_new.set_sensitive(pair is not None)
         if is_people:
             total = len(self.diff_list)
             pos = (self.diff_index + 1) if has_diffs else 0
@@ -1732,12 +1745,52 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         # reflect the new state.
         self.select_category("person")
 
+    def _reject_pair(self, source_handle: str, target_handle: str) -> None:
+        """Unpair two people and remember the rejection for this session."""
+        self._rejected.setdefault(source_handle, set()).add(target_handle)
+        if self._pair_map.get(source_handle) == target_handle:
+            self._pair_map[source_handle] = None
+        if self._pair_map_rev.get(target_handle) == source_handle:
+            del self._pair_map_rev[target_handle]
+
+        for index, entry in enumerate(self.diff_list):
+            if entry["source_handle"] == source_handle:
+                entry["target_handle"] = None
+                self.diff_index = index
+                break
+        else:
+            self.diff_list.append(
+                {"source_handle": source_handle, "target_handle": None}
+            )
+            self.diff_index = len(self.diff_list) - 1
+
+        self._mark_row(self.left_panel["store"], source_handle)
+        if target_handle not in self._pair_map_rev:
+            self._mark_row(self.right_panel["store"], target_handle, "o")
+
+        person = safe_get_person(self.source_db, source_handle)
+        self._syncing = True
+        try:
+            self.right_panel["tree"].get_selection().unselect_all()
+            if person is not None:
+                self._scroll_to_position(
+                    self.right_panel,
+                    group=self._person_group_name(self.source_db, person),
+                    name_str=name_displayer.display(person),
+                )
+        finally:
+            self._syncing = False
+        self._update_diff_status()
+
     def cb_add_new(self, _button: Gtk.Button) -> None:
         """
         Add the selected incoming person as a new person in the tree.
         """
         pair = self._get_selected_pair()
-        if pair is None or pair[1] is not None:
+        if pair is None:
+            return
+        if pair[1] is not None:
+            self._reject_pair(pair[0], pair[1])
             return
         source_handle = pair[0]
         try:

@@ -30,6 +30,7 @@ Unit tests for the Grizard compare styling functions.
 import os
 import sys
 import unittest
+from unittest.mock import Mock
 
 
 def _has_gtk_display() -> bool:
@@ -157,6 +158,91 @@ class TestGrizardStyling(unittest.TestCase):
 
         bold_content = re.findall(r"<b>(.*?)</b>", result)
         self.assertNotIn(",", bold_content)
+
+
+class TestGrizardCompareDiffStatus(unittest.TestCase):
+    """Test matched-pair and Add as New button behavior."""
+
+    def test_dict_diff_entry_does_not_break_matched_pair_buttons(self) -> None:
+        from types import SimpleNamespace
+
+        from gramps.gui.grizard.grizardcompare import GrizardCompareWindow
+
+        window = SimpleNamespace(
+            current_category="person",
+            diff_list=[{"source_handle": "source", "target_handle": "target"}],
+            diff_index=0,
+            _get_selected_pair=lambda: ("source", "target"),
+            btn_prev=Mock(),
+            btn_next=Mock(),
+            btn_merge_dialog=Mock(),
+            btn_add_new=Mock(),
+            diff_label=Mock(),
+        )
+
+        GrizardCompareWindow._update_diff_status(window)
+
+        window.btn_merge_dialog.set_sensitive.assert_called_once_with(True)
+        window.btn_add_new.set_label.assert_called_once_with("Not a Match")
+        window.btn_add_new.set_sensitive.assert_called_once_with(True)
+
+    def test_unmatched_pair_shows_add_as_new(self) -> None:
+        from types import SimpleNamespace
+
+        from gramps.gui.grizard.grizardcompare import GrizardCompareWindow
+
+        window = SimpleNamespace(
+            current_category="person",
+            diff_list=[{"source_handle": "source", "target_handle": None}],
+            diff_index=0,
+            _get_selected_pair=lambda: ("source", None),
+            btn_prev=Mock(),
+            btn_next=Mock(),
+            btn_merge_dialog=Mock(),
+            btn_add_new=Mock(),
+            diff_label=Mock(),
+        )
+
+        GrizardCompareWindow._update_diff_status(window)
+
+        window.btn_merge_dialog.set_sensitive.assert_called_once_with(False)
+        window.btn_add_new.set_label.assert_called_once_with("Add as New...")
+        window.btn_add_new.set_sensitive.assert_called_once_with(True)
+
+    def test_reject_pair_updates_maps_and_keeps_diff_dict(self) -> None:
+        from types import SimpleNamespace
+
+        from gramps.gui.grizard.grizardcompare import GrizardCompareWindow
+
+        window = SimpleNamespace(
+            _rejected={},
+            _pair_map={"source": "target"},
+            _pair_map_rev={"target": "source"},
+            diff_list=[{"source_handle": "source", "target_handle": "target"}],
+            diff_index=0,
+            source_db=SimpleNamespace(get_person_from_handle=Mock(return_value=None)),
+            left_panel={"store": Mock()},
+            right_panel={"store": Mock(), "tree": Mock()},
+            _syncing=False,
+            _mark_row=Mock(),
+            _update_diff_status=Mock(),
+        )
+
+        GrizardCompareWindow._reject_pair(window, "source", "target")
+
+        self.assertEqual(window._rejected, {"source": {"target"}})
+        self.assertIsNone(window._pair_map["source"])
+        self.assertNotIn("target", window._pair_map_rev)
+        self.assertIsNone(window.diff_list[0]["target_handle"])
+        window._update_diff_status.assert_called_once_with()
+
+        window._match_key = lambda _person: ("surname", "i")
+        window._target_index = {("surname", "i"): ["target"]}
+        self.assertIsNone(
+            GrizardCompareWindow._best_match(
+                window, Mock(), SimpleNamespace(handle="source")
+            )
+        )
 
 
 class TestGrizardDiffHighlight(unittest.TestCase):
