@@ -2,6 +2,8 @@
 #
 #   Python files
 #
+# Grizard addon packaging helper (translated separately, not in core)
+package_grizard_merge.py
 Gramps.py
 setup.py
 #
@@ -80,10 +82,11 @@ gramps/gen/datehandler/test/datestrings_test.py
 gramps/gen/fs/fs_import/test/__init__.py
 gramps/gen/fs/fs_import/test/source_dates_test.py
 #
-# gen.grizard package
-#
+# gen.grizard package (Grizard addon; translated separately, not in core)
 #
 gramps/gen/grizard/__init__.py
+gramps/gen/grizard/grizard.py
+gramps/gen/grizard/grizardgedcom.py
 gramps/gen/grizard/test/__init__.py
 gramps/gen/grizard/test/grizard_test.py
 #
@@ -347,6 +350,12 @@ gramps/gen/utils/test/requirements_test.py
 #
 gramps/gui/__init__.py
 gramps/gui/grizard/__init__.py
+gramps/gui/grizard/grizardcompare.py
+gramps/gui/grizard/grizardlauncher.py
+gramps/gui/grizard/grizardmergedialog.py
+gramps/gui/grizard/test/__init__.py
+gramps/gui/grizard/test/grizard_merge_fields_test.py
+gramps/gui/grizard/test/grizard_styling_test.py
 gramps/gui/basesidebar.py
 gramps/gui/dbguielement.py
 gramps/gui/ddtargets.py
@@ -699,6 +708,8 @@ gramps/plugins/thumbnailer/imagethumb.py
 # Development tools
 #
 gramps/plugins/tool/__init__.py
+gramps/plugins/tool/grizardmerge.py
+gramps/plugins/tool/test/grizardmerge_test.py
 #
 # plugins/view directory
 #

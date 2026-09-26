@@ -319,8 +319,6 @@ gramps/gen/fs/sync_directions.py
 gramps/gen/fs/tags.py
 gramps/gen/fs/utils/attributes.py
 gramps/gen/fs/utils/linking.py
-gramps/gen/grizard/gedcom.py
-gramps/gen/grizard/grizard.py
 gramps/gen/lib/address.py
 gramps/gen/lib/attribute.py
 gramps/gen/lib/attrtype.py
@@ -561,9 +559,6 @@ gramps/gui/glade/styleeditor.glade
 gramps/gui/glade/tipofday.glade
 gramps/gui/glade/updateaddons.glade
 gramps/gui/grampsgui.py
-gramps/gui/grizard/grizardcompare.py
-gramps/gui/grizard/grizardlauncher.py
-gramps/gui/grizard/grizardmergedialog.py
 gramps/gui/logger/_errorreportassistant.py
 gramps/gui/logger/_errorview.py
 gramps/gui/makefilter.py
@@ -787,7 +782,6 @@ gramps/plugins/tool/eventnames.py
 gramps/plugins/tool/finddupes.glade
 gramps/plugins/tool/finddupes.py
 gramps/plugins/tool/findloop.py
-gramps/plugins/tool/grizardmerge.py
 gramps/plugins/tool/mediamanager.py
 gramps/plugins/tool/mergecitations.glade
 gramps/plugins/tool/mergecitations.py
