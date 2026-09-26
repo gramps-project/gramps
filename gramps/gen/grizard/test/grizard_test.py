@@ -100,7 +100,7 @@ from ..grizard import (
     surname_prefix_text,
     surname_text,
 )
-from ..gedcom import GedGrizard
+from ..grizardgedcom import GedGrizard
 
 
 def _has_gtk_display() -> bool:

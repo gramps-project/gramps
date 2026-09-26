@@ -68,7 +68,7 @@ class HtmlBridge:
         try:
             # Check if Grizard package/modules are installed/importable
             from gramps.gui.grizard.grizardcompare import GrizardCompareWindow
-            from gramps.gen.grizard.gedcom import GedGrizard
+            from gramps.gen.grizard.grizardgedcom import GedGrizard
             from gi.repository import Gtk
             from gramps.gen.const import GRAMPS_LOCALE as glocale
             import gc

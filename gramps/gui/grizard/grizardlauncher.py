@@ -134,7 +134,7 @@ def load_source_grizard(db: Any, path: str) -> Any:
     """
     import os
 
-    from gramps.gen.grizard.gedcom import GedGrizard
+    from gramps.gen.grizard.grizardgedcom import GedGrizard
 
     if not path or not os.path.isfile(path):
         raise ValueError(str(_("The selected file is missing.")))

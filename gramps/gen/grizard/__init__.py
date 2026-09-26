@@ -23,7 +23,7 @@ Grizard framework: generic wizard workflow for importing and exporting data.
 from __future__ import annotations
 
 from .grizard import GrizardBase, GrizardCompareRow
-from .gedcom import GedGrizard
+from .grizardgedcom import GedGrizard
 
 __all__ = [
     "GrizardBase",

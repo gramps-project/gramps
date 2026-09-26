@@ -46,7 +46,7 @@ from gi.repository import GLib
 # -------------------------------------------------------------------------
 from gramps.gen.lib import Person
 from gramps.gen.errors import HandleError
-from gramps.gen.grizard.gedcom import GedGrizard
+from gramps.gen.grizard.grizardgedcom import GedGrizard
 from gramps.gen.grizard.grizard import (
     CandidateMatcher,
     safe_get_event,
