@@ -1092,7 +1092,6 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         # the counterpart panel is deselected (e.g., unmatched person). This
         # refreshes the "Merge..." and "Add as New..." sensitivities.
         self._update_diff_status()
-        self._update_diff_status()
 
     def _select_handle(self, panel: dict[str, Any], handle: str) -> bool:
         """
