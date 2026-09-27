@@ -215,7 +215,8 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         # Scroll-based sync (debounced): sync after scrolling stops briefly
         # to avoid freezing on large databases.
         self._syncing_scroll = False
-        self._scroll_debounce_id = None
+        self._scroll_debounce_id: int | None = None
+        self.connect("delete-event", self.cb_delete_event)
         left_vadj = self.left_panel["scrolled"].get_vadjustment()
         right_vadj = self.right_panel["scrolled"].get_vadjustment()
         left_hadj = self.left_panel["scrolled"].get_hadjustment()
@@ -679,6 +680,7 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         """
         Show the window and all of its child widgets.
         """
+        self.opened = True
         self.show_all()
         # show_all() reveals even previously hidden widgets, so re-apply
         # the visibility of empty detail sections afterwards.
@@ -1828,7 +1830,33 @@ class GrizardCompareWindow(ManagedWindow, Gtk.Window):
         """
         Handle window close button.
         """
+        self._cancel_pending_scroll_sync()
         self.close()
+
+    def cb_delete_event(self, *args: Any) -> bool:
+        """
+        Handle title-bar close so it cleans up like the Close button.
+
+        Without this, the window is destroyed while staying registered
+        with the window manager, so the next run raises WindowActiveError.
+        Returning True stops GTK's default destroy so close() runs first
+        (close() itself destroys the window via close_track).
+        """
+        self._cancel_pending_scroll_sync()
+        self.close()
+        return True
+
+    def _cancel_pending_scroll_sync(self) -> None:
+        """
+        Cancel any pending debounced scroll-sync timer.
+        """
+        pending = getattr(self, "_scroll_debounce_id", None)
+        if pending is not None:
+            try:
+                GLib.source_remove(pending)
+            except Exception:  # pragma: no cover - already fired/removed
+                pass
+            self._scroll_debounce_id = None
 
     def cb_left_selection_changed(self, selection: Gtk.TreeSelection) -> None:
         """
