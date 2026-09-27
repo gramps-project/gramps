@@ -676,11 +676,22 @@ def run():
         startgramps(error, argpars)
     else:
         # CLI use of Gramps
+        term_requested = False
+
+        def request_termination(signum, frame):
+            nonlocal term_requested
+            # Finish the current operation before closing its database. Raising
+            # here could interrupt a write or import in an inconsistent state.
+            term_requested = True
+
+        if not win():
+            signal.signal(signal.SIGTERM, request_termination)
         argpars.print_help()
         argpars.print_usage()
         from .cli.grampscli import startcli
 
         startcli(error, argpars)
+        sys.exit(143 if term_requested else 0)
 
 
 def main():

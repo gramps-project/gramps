@@ -29,6 +29,7 @@
 import sys
 import os
 import logging
+import signal
 
 LOG = logging.getLogger(".grampsgui")
 
@@ -39,7 +40,7 @@ LOG = logging.getLogger(".grampsgui")
 # -------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.const import DATA_DIR, IMAGE_DIR, GTK_GETTEXT_DOMAIN
-from gramps.gen.constfunc import has_display, lin
+from gramps.gen.constfunc import has_display, lin, win
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -711,11 +712,15 @@ class GrampsApplication(Gtk.Application):
     def __init__(self, errors, argparser):
         super().__init__(application_id="org.gramps_project.Gramps")
         self.window = None
+        self._gramps = None
+        self._term_pending = False
         self.errors = errors
         self.argparser = argparser
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
+        if not win():
+            GLib.unix_signal_add(GLib.PRIORITY_DEFAULT, signal.SIGTERM, self._on_sigterm)
         self.uimanager = UIManager(self, UIDEFAULT)
         if not is_quartz():
             self.uimanager.show_groups = ["OSX"]
@@ -784,7 +789,22 @@ class GrampsApplication(Gtk.Application):
         if not self.window:
             # Windows are associated with the application
             # when the last one is closed the application shuts down
-            Gramps(self.argparser, self)
+            self._gramps = Gramps(self.argparser, self)
         else:
             print("Gramps is already running.")
         self.window.present()
+
+    def _on_sigterm(self):
+        """Request the normal GUI shutdown from the GLib main loop."""
+        if not self._term_pending:
+            self._term_pending = True
+            GLib.timeout_add(100, self._finish_sigterm)
+        return True
+
+    def _finish_sigterm(self):
+        # Progress updates can run nested GTK iterations. Do not close the
+        # database while a backup or another marked operation is in progress.
+        if self._gramps is None or self._gramps._vm.uistate.busy:
+            return True
+        self._gramps._vm.quit()
+        return False
