@@ -747,7 +747,7 @@ class GrampsApplication(Gtk.Application):
         else:
             GLib.unix_signal_add(
               GLib.PRIORITY_DEFAULT, signal.SIGTERM, self._on_sigterm
-          )
+            )
 
         self.uimanager = UIManager(self, UIDEFAULT)
         if not is_quartz():
