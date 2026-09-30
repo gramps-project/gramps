@@ -62,8 +62,8 @@ def load_application() -> type:
         "cb_query_end_session",
         "cb_end_session",
         "cb_session_quit",
-        "_on_sigterm",
-        "_finish_sigterm",
+        "cb_on_sigterm",
+        "cb_finish_sigterm",
         "do_shutdown",
     }
     klass = ast.parse("class Application: pass").body[0]
@@ -103,7 +103,7 @@ class SessionShutdownTest(unittest.TestCase):
     def setUp(self) -> None:
         """Provide an idle application and an unregistered native receiver."""
         self.app = load_application()()
-        self.state = self.app._on_sigterm.__globals__["ShutdownState"]
+        self.state = self.app.cb_on_sigterm.__globals__["ShutdownState"]
         self.app._shutdown_state = self.state.RUNNING
         self.app._gramps = Mock()
         self.app._gramps._vm.uistate.busy = False
@@ -128,7 +128,7 @@ class SessionShutdownTest(unittest.TestCase):
         for _ in range(2):
             self.receiver.cb_window_message(1, WM_ENDSESSION, 1, 0)
         self.app._gramps._vm.quit.assert_called_once_with(make_backup=False)
-        self.assertFalse(self.app._finish_sigterm())
+        self.assertFalse(self.app.cb_finish_sigterm())
 
     def test_busy_operation_refuses_shutdown(self) -> None:
         """A nested GTK loop must not close a database during an operation."""
@@ -136,7 +136,7 @@ class SessionShutdownTest(unittest.TestCase):
         self.assertEqual(
             self.receiver.cb_window_message(1, WM_QUERYENDSESSION, 0, 0), 0
         )
-        self.assertTrue(self.app._finish_sigterm())
+        self.assertTrue(self.app.cb_finish_sigterm())
         self.app._gramps._vm.quit.assert_not_called()
 
     def test_busy_after_query_does_not_close_database(self) -> None:
@@ -162,10 +162,10 @@ class SessionShutdownTest(unittest.TestCase):
         self.app.cb_session_quit(None, None)
         self.app.cb_session_quit(None, None)
         self.assertIs(self.app._shutdown_state, self.state.PENDING)
-        self.assertTrue(self.app._finish_sigterm())
+        self.assertTrue(self.app.cb_finish_sigterm())
         self.app._gramps._vm.uistate.busy = False
-        self.assertFalse(self.app._finish_sigterm())
-        self.assertFalse(self.app._finish_sigterm())
+        self.assertFalse(self.app.cb_finish_sigterm())
+        self.assertFalse(self.app.cb_finish_sigterm())
         self.app._gramps._vm.quit.assert_called_once_with()
 
     def test_callback_exception_is_contained(self) -> None:
@@ -199,24 +199,24 @@ class SessionShutdownTest(unittest.TestCase):
     def test_pending_requests_schedule_one_timer(self) -> None:
         """Repeated requests keep one pending timer until work completes."""
         self.app._gramps._vm.uistate.busy = True
-        self.app._on_sigterm()
-        self.app._on_sigterm()
-        glib = self.app._on_sigterm.__globals__["GLib"]
-        glib.timeout_add.assert_called_once_with(100, self.app._finish_sigterm)
+        self.app.cb_on_sigterm()
+        self.app.cb_on_sigterm()
+        glib = self.app.cb_on_sigterm.__globals__["GLib"]
+        glib.timeout_add.assert_called_once_with(100, self.app.cb_finish_sigterm)
         self.assertIs(self.app._shutdown_state, self.state.PENDING)
-        self.assertTrue(self.app._finish_sigterm())
+        self.assertTrue(self.app.cb_finish_sigterm())
         self.assertIs(self.app._shutdown_state, self.state.PENDING)
         self.app._gramps._vm.uistate.busy = False
-        self.assertFalse(self.app._finish_sigterm())
+        self.assertFalse(self.app.cb_finish_sigterm())
         self.assertIs(self.app._shutdown_state, self.state.CLOSING)
 
     def test_closing_ignores_new_requests(self) -> None:
         """Once cleanup starts, new requests cannot schedule another timer."""
         self.app.cb_end_session()
         self.assertIs(self.app._shutdown_state, self.state.CLOSING)
-        self.app._on_sigterm()
-        self.app._on_sigterm.__globals__["GLib"].timeout_add.assert_not_called()
-        self.assertFalse(self.app._finish_sigterm())
+        self.app.cb_on_sigterm()
+        self.app.cb_on_sigterm.__globals__["GLib"].timeout_add.assert_not_called()
+        self.assertFalse(self.app.cb_finish_sigterm())
         self.assertFalse(self.app.cb_query_end_session())
         self.app._gramps._vm.quit.assert_called_once_with(make_backup=False)
 
