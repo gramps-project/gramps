@@ -746,7 +746,7 @@ class GrampsApplication(Gtk.Application):
                 )
         else:
             GLib.unix_signal_add(
-                GLib.PRIORITY_DEFAULT, signal.SIGTERM, self._on_sigterm
+                GLib.PRIORITY_DEFAULT, signal.SIGTERM, self.cb_on_sigterm
             )
 
         self.uimanager = UIManager(self, UIDEFAULT)
@@ -852,7 +852,7 @@ class GrampsApplication(Gtk.Application):
 
     def cb_session_quit(self, *args: object) -> None:
         """Defer macOS native Quit until any marked database operation finishes."""
-        self._on_sigterm()
+        self.cb_on_sigterm()
 
     def do_shutdown(self) -> None:
         """Release the native notification window when the application exits."""
@@ -860,14 +860,18 @@ class GrampsApplication(Gtk.Application):
             self._windows_shutdown.close()
         Gtk.Application.do_shutdown(self)
 
-    def _on_sigterm(self) -> bool:
+    def cb_on_sigterm(self) -> bool:
         """Request the normal GUI shutdown from the GLib main loop."""
         if self._shutdown_state is ShutdownState.RUNNING:
             self._shutdown_state = ShutdownState.PENDING
-            GLib.timeout_add(100, self._finish_sigterm)
+            GLib.timeout_add(100, self.cb_finish_sigterm)
         return True
 
-    def _finish_sigterm(self) -> bool:
+    def cb_finish_sigterm(self) -> bool:
+        """Defer GUI shutdown while busy, then invoke the normal quit procedure.
+
+        :returns: True to retry later, or False to remove the timeout.
+        """
         # Progress updates can run nested GTK iterations. Do not close the
         # database while a backup or another marked operation is in progress.
         if self._shutdown_state is ShutdownState.CLOSING:

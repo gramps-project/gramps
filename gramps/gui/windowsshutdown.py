@@ -30,6 +30,7 @@ also dispatches messages for this window, so no worker thread is needed.
 import ctypes
 from ctypes import wintypes
 import logging
+import sys
 from collections.abc import Callable
 
 LOG = logging.getLogger(__name__)
@@ -55,94 +56,107 @@ class WindowsShutdown:  # pylint: disable=too-many-instance-attributes
         self._can_close = can_close
         self._end_session = end_session
         self._ended = False
-        self._hwnd = None
-        self._user32 = ctypes.WinDLL("user32", use_last_error=True)
-        kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
-        # LRESULT, WPARAM and LPARAM must be pointer-sized on both Win32/Win64.
-        wndproc = ctypes.WINFUNCTYPE(
-            ctypes.c_ssize_t,
-            wintypes.HWND,
-            wintypes.UINT,
-            ctypes.c_size_t,
-            ctypes.c_ssize_t,
-        )
-
-        class WNDCLASS(ctypes.Structure):  # pylint: disable=too-few-public-methods
-            """Native WNDCLASSW layout, including pointer-sized handles."""
-
-            _fields_ = [
-                ("style", wintypes.UINT),
-                ("lpfnWndProc", wndproc),
-                ("cbClsExtra", ctypes.c_int),
-                ("cbWndExtra", ctypes.c_int),
-                ("hInstance", wintypes.HINSTANCE),
-                ("hIcon", wintypes.HANDLE),
-                ("hCursor", wintypes.HANDLE),
-                ("hbrBackground", wintypes.HANDLE),
-                ("lpszMenuName", wintypes.LPCWSTR),
-                ("lpszClassName", wintypes.LPCWSTR),
-            ]
-
-        kernel32.GetModuleHandleW.argtypes = [wintypes.LPCWSTR]
-        kernel32.GetModuleHandleW.restype = wintypes.HMODULE
-        self._instance = kernel32.GetModuleHandleW(None)
+        self._hwnd: int | None = None
+        self._user32: ctypes.CDLL
+        self._instance: int | None = None
         self._class_name = f"GrampsShutdown_{id(self)}"
-        self._user32.RegisterClassW.argtypes = [ctypes.POINTER(WNDCLASS)]
-        self._user32.RegisterClassW.restype = wintypes.ATOM
-        self._user32.UnregisterClassW.argtypes = [wintypes.LPCWSTR, wintypes.HINSTANCE]
-        self._user32.UnregisterClassW.restype = wintypes.BOOL
-        self._user32.CreateWindowExW.argtypes = [
-            wintypes.DWORD,
-            wintypes.LPCWSTR,
-            wintypes.LPCWSTR,
-            wintypes.DWORD,
-            ctypes.c_int,
-            ctypes.c_int,
-            ctypes.c_int,
-            ctypes.c_int,
-            wintypes.HWND,
-            wintypes.HMENU,
-            wintypes.HINSTANCE,
-            wintypes.LPVOID,
-        ]
-        self._user32.CreateWindowExW.restype = wintypes.HWND
-        self._user32.DestroyWindow.argtypes = [wintypes.HWND]
-        self._user32.DestroyWindow.restype = wintypes.BOOL
-        self._user32.DefWindowProcW.argtypes = [
-            wintypes.HWND,
-            wintypes.UINT,
-            ctypes.c_size_t,
-            ctypes.c_ssize_t,
-        ]
-        self._user32.DefWindowProcW.restype = ctypes.c_ssize_t
-        # Keep the callback alive until after DestroyWindow has returned.
-        self._wndproc = wndproc(self.cb_window_message)
-        window_class = WNDCLASS()
-        # Native field names must match the Windows ABI.
-        # pylint: disable=invalid-name
-        window_class.lpfnWndProc = self._wndproc
-        window_class.hInstance = self._instance
-        window_class.lpszClassName = self._class_name
-        if not self._user32.RegisterClassW(ctypes.byref(window_class)):
-            raise ctypes.WinError(ctypes.get_last_error())
-        self._hwnd = self._user32.CreateWindowExW(
-            0,
-            self._class_name,
-            "Gramps",
-            0,
-            0,
-            0,
-            0,
-            0,
-            None,
-            None,
-            self._instance,
-            None,
-        )
-        if not self._hwnd:
-            error = ctypes.get_last_error()
-            self._user32.UnregisterClassW(self._class_name, self._instance)
-            raise ctypes.WinError(error)
+        if sys.platform == "win32":
+            self._user32 = ctypes.WinDLL("user32", use_last_error=True)
+            kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+            # LRESULT, WPARAM and LPARAM must be pointer-sized on both Win32/Win64.
+            wndproc = ctypes.WINFUNCTYPE(
+                ctypes.c_ssize_t,
+                wintypes.HWND,
+                wintypes.UINT,
+                ctypes.c_size_t,
+                ctypes.c_ssize_t,
+            )
+
+            # ------------------------------------------------------------
+            #
+            # WNDCLASS
+            #
+            # ------------------------------------------------------------
+            class WNDCLASS(ctypes.Structure):  # pylint: disable=too-few-public-methods
+                """Native WNDCLASSW layout, including pointer-sized handles."""
+
+                _fields_ = [
+                    ("style", wintypes.UINT),
+                    ("lpfnWndProc", wndproc),
+                    ("cbClsExtra", ctypes.c_int),
+                    ("cbWndExtra", ctypes.c_int),
+                    ("hInstance", wintypes.HINSTANCE),
+                    ("hIcon", wintypes.HANDLE),
+                    ("hCursor", wintypes.HANDLE),
+                    ("hbrBackground", wintypes.HANDLE),
+                    ("lpszMenuName", wintypes.LPCWSTR),
+                    ("lpszClassName", wintypes.LPCWSTR),
+                ]
+
+            kernel32.GetModuleHandleW.argtypes = [wintypes.LPCWSTR]
+            kernel32.GetModuleHandleW.restype = wintypes.HMODULE
+            self._instance = kernel32.GetModuleHandleW(None)
+            self._user32.RegisterClassW.argtypes = [ctypes.POINTER(WNDCLASS)]
+            self._user32.RegisterClassW.restype = wintypes.ATOM
+            self._user32.UnregisterClassW.argtypes = [
+                wintypes.LPCWSTR,
+                wintypes.HINSTANCE,
+            ]
+            self._user32.UnregisterClassW.restype = wintypes.BOOL
+            self._user32.CreateWindowExW.argtypes = [
+                wintypes.DWORD,
+                wintypes.LPCWSTR,
+                wintypes.LPCWSTR,
+                wintypes.DWORD,
+                ctypes.c_int,
+                ctypes.c_int,
+                ctypes.c_int,
+                ctypes.c_int,
+                wintypes.HWND,
+                wintypes.HMENU,
+                wintypes.HINSTANCE,
+                wintypes.LPVOID,
+            ]
+            self._user32.CreateWindowExW.restype = wintypes.HWND
+            self._user32.DestroyWindow.argtypes = [wintypes.HWND]
+            self._user32.DestroyWindow.restype = wintypes.BOOL
+            self._user32.DefWindowProcW.argtypes = [
+                wintypes.HWND,
+                wintypes.UINT,
+                ctypes.c_size_t,
+                ctypes.c_ssize_t,
+            ]
+            self._user32.DefWindowProcW.restype = ctypes.c_ssize_t
+            # Keep the callback alive until after DestroyWindow has returned.
+            self._wndproc = wndproc(self.cb_window_message)
+            window_class = WNDCLASS()
+            # Native field names must match the Windows ABI.
+            # pylint: disable=invalid-name
+            window_class.lpfnWndProc = self._wndproc
+            window_class.hInstance = self._instance
+            window_class.lpszClassName = self._class_name
+            if not self._user32.RegisterClassW(ctypes.byref(window_class)):
+                raise ctypes.WinError(ctypes.get_last_error())
+            self._hwnd = self._user32.CreateWindowExW(
+                0,
+                self._class_name,
+                "Gramps",
+                0,
+                0,
+                0,
+                0,
+                0,
+                None,
+                None,
+                self._instance,
+                None,
+            )
+            if not self._hwnd:
+                error = ctypes.get_last_error()
+                self._user32.UnregisterClassW(self._class_name, self._instance)
+                raise ctypes.WinError(error)
+        else:
+            raise OSError("Windows shutdown notifications require Windows")
 
     def cb_window_message(
         self, hwnd: int, message: int, wparam: int, lparam: int
