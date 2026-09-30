@@ -732,7 +732,7 @@ class GrampsApplication(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
- 
+
         if win():
             from .windowsshutdown import WindowsShutdown
 
@@ -748,7 +748,7 @@ class GrampsApplication(Gtk.Application):
             GLib.unix_signal_add(
               GLib.PRIORITY_DEFAULT, signal.SIGTERM, self._on_sigterm
           )
-                        
+
         self.uimanager = UIManager(self, UIDEFAULT)
         if not is_quartz():
             self.uimanager.show_groups = ["OSX"]
