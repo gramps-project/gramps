@@ -30,6 +30,7 @@ import sys
 import os
 import logging
 import signal
+from enum import Enum, auto
 
 LOG = logging.getLogger(".grampsgui")
 
@@ -708,21 +709,46 @@ from .uimanager import UIManager
 from gramps.gen.constfunc import is_quartz
 
 
+# ------------------------------------------------------------
+# ShutdownState
+# ------------------------------------------------------------
+class ShutdownState(Enum):
+    """Track whether shutdown is unrequested, waiting, or closing the database."""
+
+    RUNNING = auto()
+    PENDING = auto()
+    CLOSING = auto()
+
+
 class GrampsApplication(Gtk.Application):
     def __init__(self, errors, argparser):
         super().__init__(application_id="org.gramps_project.Gramps")
         self.window = None
         self._gramps = None
-        self._term_pending = False
+        self._shutdown_state = ShutdownState.RUNNING
+        self._windows_shutdown = None
         self.errors = errors
         self.argparser = argparser
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
-        if not win():
+ 
+        if win():
+            from .windowsshutdown import WindowsShutdown
+
+            try:
+                self._windows_shutdown = WindowsShutdown(
+                    self.cb_query_end_session, self.cb_end_session
+                )
+            except OSError:
+                LOG.warning(
+                    "Could not register Windows shutdown notifications", exc_info=True
+                )
+        else:
             GLib.unix_signal_add(
-                GLib.PRIORITY_DEFAULT, signal.SIGTERM, self._on_sigterm
-            )
+              GLib.PRIORITY_DEFAULT, signal.SIGTERM, self._on_sigterm
+          )
+                        
         self.uimanager = UIManager(self, UIDEFAULT)
         if not is_quartz():
             self.uimanager.show_groups = ["OSX"]
@@ -796,17 +822,58 @@ class GrampsApplication(Gtk.Application):
             print("Gramps is already running.")
         self.window.present()
 
-    def _on_sigterm(self):
+    def cb_query_end_session(self) -> bool:
+        """Return whether the database can be closed without interrupting work.
+
+        :returns: Whether Windows may proceed with session termination.
+        """
+        return self._shutdown_state is not ShutdownState.CLOSING and (
+            self._gramps is None or not self._gramps._vm.uistate.busy
+        )
+
+    def cb_end_session(self) -> None:
+        """Close synchronously before returning to Windows during shutdown.
+
+        Windows may terminate the process as soon as WM_ENDSESSION returns;
+        scheduling an idle callback here would leave the database locked.
+        Skip the optional exit backup to minimize shutdown latency.
+        """
+        if self._shutdown_state is ShutdownState.CLOSING:
+            return
+        if self._gramps is None:
+            self._shutdown_state = ShutdownState.CLOSING
+            self.quit()
+            return
+        if self._gramps._vm.uistate.busy:
+            LOG.warning("Cannot close the database during an active operation")
+            return
+        self._shutdown_state = ShutdownState.CLOSING
+        self._gramps._vm.quit(make_backup=False)
+
+    def cb_session_quit(self, *args: object) -> None:
+        """Defer macOS native Quit until any marked database operation finishes."""
+        self._on_sigterm()
+
+    def do_shutdown(self) -> None:
+        """Release the native notification window when the application exits."""
+        if self._windows_shutdown is not None:
+            self._windows_shutdown.close()
+        Gtk.Application.do_shutdown(self)
+
+    def _on_sigterm(self) -> bool:
         """Request the normal GUI shutdown from the GLib main loop."""
-        if not self._term_pending:
-            self._term_pending = True
+        if self._shutdown_state is ShutdownState.RUNNING:
+            self._shutdown_state = ShutdownState.PENDING
             GLib.timeout_add(100, self._finish_sigterm)
         return True
 
-    def _finish_sigterm(self):
+    def _finish_sigterm(self) -> bool:
         # Progress updates can run nested GTK iterations. Do not close the
         # database while a backup or another marked operation is in progress.
+        if self._shutdown_state is ShutdownState.CLOSING:
+            return False
         if self._gramps is None or self._gramps._vm.uistate.busy:
             return True
+        self._shutdown_state = ShutdownState.CLOSING
         self._gramps._vm.quit()
         return False
