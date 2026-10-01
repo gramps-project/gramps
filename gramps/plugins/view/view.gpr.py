@@ -158,7 +158,7 @@ register(
     authors_email=["https://gramps-project.org"],
     category=("Ancestry", _("Charts")),
     viewclass="DescendantView",
-    stock_icon="gramps-pedigree",
+    stock_icon="gramps-descendant",
 )
 
 register(

@@ -510,11 +510,11 @@ class DescendantView(NavigationView):
 
     def get_stock(self) -> str:
         """Return the category stock icon."""
-        return "gramps-pedigree"
+        return "gramps-descendant"
 
     def get_viewtype_stock(self) -> str:
         """Return the view type stock icon."""
-        return "gramps-pedigree"
+        return "gramps-descendant"
 
     def navigation_type(self) -> str:
         """Return the navigation type."""

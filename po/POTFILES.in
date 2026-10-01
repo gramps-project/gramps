@@ -1,4 +1,4 @@
-n# List of source files which contain translatable strings.
+# List of source files which contain translatable strings.
 #
 gramps/cli/arghandler.py
 gramps/cli/argparser.py
