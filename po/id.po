@@ -16,13 +16,14 @@
 # feri andy <feri.andy.nurdhin@gmail.com>, 2025.
 # "Aslam A.F." <winux-dev@users.noreply.hosted.weblate.org>, 2026.
 # Anthony <anthony@roussel.dev>, 2026.
+# Dot Max <ahmadfadil.original@outlook.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-16 14:51+0000\n"
-"Last-Translator: Anthony <anthony@roussel.dev>\n"
+"PO-Revision-Date: 2026-09-23 06:00+0000\n"
+"Last-Translator: Dot Max <ahmadfadil.original@outlook.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/id/>\n"
 "Language: id\n"
@@ -1407,7 +1408,6 @@ msgid "Unknown action: %s."
 msgstr "Tindakan tidak diketahui: %s."
 
 #: ../gramps/cli/argparser.py:65
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1487,13 +1487,13 @@ msgstr ""
 "GUI)\n"
 "-v, --version \t\t\t\tMenampilkan versi\n"
 "-S, --safe \t\t\t\tMemulai Gramps dalam 'Mode Aman'\n"
-"\t\t\t\t\t(sementara menggunakan pengaturan default)\n"
-"-D, --default=[APXFE] \t\t\tMengatur ulang pengaturan ke default; A - Add-on "
+"\t\t\t\t\t(sementara menggunakan pengaturan bawaan)\n"
+"-D, --default=[APXFE] \t\t\tMengatur ulang pengaturan ke bawaan; A - Add-on "
 "dihapus\n"
 "\t\tP - Preferensi ke default\n"
-"\t\tX - Buku dihapus, laporan dan pengaturan alat ke default\n"
+"\t\tX - Buku dihapus, laporan dan pengaturan alat ke bawaan\n"
 "\t\tF - Filter dihapus\n"
-"\t\tE - Semuanya diatur ke default atau dihapus\n"
+"\t\tE - Semuanya diatur ke bawaan atau dihapus\n"
 
 #: ../gramps/cli/argparser.py:104
 #, fuzzy
