@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-06 20:51+0000\n"
+"PO-Revision-Date: 2026-09-27 07:51+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.9.1.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -104,7 +104,7 @@ msgstr "Pesach"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr "2 i Pesach"
+msgstr "Andra i Pesach"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
@@ -11690,6 +11690,16 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"På macOS är det möjligt att Python inte har åtkomst till systemets SSL-"
+"certifikat.  Prova något av följande:\n"
+"  1. Installationsprogram från python.org: kör ”Install Certificates.command"
+"” i mappen där Python är installerat (t.ex. /Applications/Python 3.x/). \n"
+"  2. pyenv / Homebrew / Python som inte är en del av systemet: ange "
+"miljövariabeln SSL_CERT_FILE innan du startar Gramps:\n"
+"       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
+"  3. Installera paketet certifi:   pip install certifi"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -11705,37 +11715,48 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"Verifieringen av SSL-certifikatet misslyckades.  Detta är vanligt "
+"förekommande vid Python-installationer som inte är systeminstallerade (t.ex. "
+"pyenv, conda), där den medföljande OpenSSL-versionen inte vet var systemets "
+"certifikat finns lagrade.  Prova något av följande:\n"
+"  1. Installera paketet certifi:  pip install certifi\n"
+"  2. Ange SSL_CERT_FILE till systemets CA-paket innan du startar Gramps, "
+"t.ex.:\n"
+"       export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt  (Debian/"
+"Ubuntu)\n"
+"       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "Det går inte att nå PyPI för paketet ”%s”: %s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
-msgstr ""
+msgstr "Ingen kompatibel wheel hittades för '%s==%s' på denna plattform."
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "Ingen kompatibel wheel hittades för '%s' på denna plattform."
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "SHA-256-felmatchning för '%s': förväntade %s, fick %s"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
 msgid "No version of '%s' satisfies all constraints: %s"
-msgstr ""
+msgstr "Ingen version av '%s' uppfyller alla villkor: %s"
 
 #: ../gramps/gen/utils/pypi.py:1285
-#, fuzzy, python-format
-#| msgid "No file to download"
+#, python-format
 msgid "Failed to download '%s': %s"
-msgstr "Ingen fil att ladda ner"
+msgstr "Kunde inte hämta '%s': %s"
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
@@ -17124,25 +17145,17 @@ msgid "Downloading ancestors… (4/11)"
 msgstr "Laddar ner förfäder... (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:152
-#, fuzzy, python-format
-#| msgid ""
-#| "Total ancestors in generations %(second_generation)d to "
-#| "%(last_generation)d is %(count)d. %(percent)s"
+#, python-format
 msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-"Totalt antal förfäder i generationerna %(second_generation)d till "
-"%(last_generation)d är %(count)d. %(percent)s"
-msgstr[1] ""
-"Totalt antal förfäder i generationerna %(second_generation)d till "
-"%(last_generation)d är %(count)d. %(percent)s"
+msgstr[0] "Hämtar förfädersgeneration %(gen)d/%(total)d… (%(count)d person)"
+msgstr[1] "Hämtar förfädersgeneration %(gen)d/%(total)d… (%(count)d personer)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:159
-#, fuzzy, python-format
-#| msgid "Downloading ancestors… (4/11)"
+#, python-format
 msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
-msgstr "Laddar ner förfäder... (4/11)"
+msgstr "Laddar ner förfäder... (4/11) – generation %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
@@ -17153,26 +17166,24 @@ msgstr "Laddar ner ättlingar... (5/11)"
 msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Laddar ner ättlingageneration %(gen)d/%(total)d… (%(count)d person)"
+msgstr[1] "Laddar ner ättlingageneration %(gen)d/%(total)d… (%(count)d personer)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
-#, fuzzy, python-format
-#| msgid "Downloading descendants… (5/11)"
+#, python-format
 msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
-msgstr "Laddar ner ättlingar... (5/11)"
+msgstr "Laddar ner ättlingar... (5/11) — generation %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr "Laddar ner makar... (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy, python-format
-#| msgid "Downloading spouses…"
+#, python-format
 msgid "Downloading spouses for %d person…"
 msgid_plural "Downloading spouses for %d people…"
-msgstr[0] "Laddar ner makar…"
-msgstr[1] "Laddar ner makar…"
+msgstr[0] "Laddar ner makar för personen %d…"
+msgstr[1] "Laddar ner makar för personerna %d…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
@@ -17185,7 +17196,7 @@ msgstr "Laddar ner notiser och källor…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …anteckningar/källor: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 msgid "Importing…"
@@ -17225,48 +17236,43 @@ msgid "Importing children…"
 msgstr "Importerar barn…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
-#, fuzzy
-#| msgid "FamilySearch modified timestamp"
 msgid "Resolving FamilySearch timestamps…"
-msgstr "Tidsstämpel modifierad av FamilySearch"
+msgstr "Fastställer FamilySearch-tidsstämplar…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
-#, fuzzy, python-format
-#| msgid "No FamilySearch Person ID is set for this person."
+#, python-format
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
-msgstr[0] "Inget FamilySearch Person-ID är inställt för den här personen."
-msgstr[1] "Inget FamilySearch Person-ID är inställt för den här personen."
+msgstr[0] "Fastställer FamilySearch-tidsstämplar för personen %d…"
+msgstr[1] "Fastställer FamilySearch-tidsstämplar för personerna %d…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
 msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
 msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Matchade %(count)d FamilySearch-tidsstämpel på %(elapsed).1fs"
+msgstr[1] "Matchade %(count)d FamilySearch-tidsstämplar på %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
-#, fuzzy
-#| msgid "Refreshing Addon List"
 msgid "Refreshing comparison status…"
-msgstr "Läser om tilläggslistan"
+msgstr "Läser om jämförelsestatus…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:410
 #, python-format
 msgid "Refreshing comparison status for %d person…"
 msgid_plural "Refreshing comparison status for %d people…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uppdaterar jämförelsestatus för %d person…"
+msgstr[1] "Uppdaterar jämförelsestatus för %d personer…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:448
 #, python-format
 msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
-msgstr ""
+msgstr "  …jämförelse för %(fsid)s tog %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:453
 #, python-format
 msgid "  …comparison status: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …jämförelsestatus: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:463
 #, python-format
@@ -17274,6 +17280,8 @@ msgid ""
 "Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
 "%(failed)d failed)"
 msgstr ""
+"Uppdatering av jämförelsestatus slutförd på %(elapsed).1fs (%(compared)d "
+"jämförda, %(failed)d misslyckade)"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
@@ -18163,10 +18171,8 @@ msgid "Editor person: (none)"
 msgstr "Redaktör: (ingen)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Only in FamilySearch"
 msgid "Open Person in FamilySearch"
-msgstr "Endast i FamilySearch"
+msgstr "Öppna person i FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:381
 msgid "Single Person Actions"
@@ -18251,10 +18257,8 @@ msgstr ""
 "död)."
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Keep FamilySearch"
 msgid "Open FamilySearch.org"
-msgstr "Behåll FamilySearch"
+msgstr "Öppna FamilySearch.org"
 
 #: ../gramps/gui/fs/tools_window.py:774
 #, python-format
@@ -20103,7 +20107,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/mergeperson.glade:490
 msgid "Context Information"
-msgstr "Sammanhang"
+msgstr "Sammanhangsinformation"
 
 #: ../gramps/gui/glade/mergeplace.glade:94
 msgid ""
@@ -21376,16 +21380,13 @@ msgid "Gramps was unable to install the required modules"
 msgstr "Gramps kunde inte installera de nödvändiga modulerna"
 
 #: ../gramps/gui/plug/_windows.py:370
-#, fuzzy
-#| msgid "Module installation failed"
 msgid "Addon installation failed"
-msgstr "Modulinstallationen misslyckades"
+msgstr "Installation av tillägg misslyckades"
 
 #: ../gramps/gui/plug/_windows.py:371
-#, fuzzy, python-format
-#| msgid "Gramps was unable to install the required modules"
+#, python-format
 msgid "Gramps was unable to install '%s'."
-msgstr "Gramps kunde inte installera de nödvändiga modulerna"
+msgstr "Gramps kunde inte installera '%s'."
 
 #: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
