@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-07-19 14:01+0000\n"
+"PO-Revision-Date: 2026-09-28 14:40+0000\n"
 "Last-Translator: Ilsur Irnazarov <temyas@yandex.ru>\n"
 "Language-Team: Bashkir <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ba/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -11741,6 +11741,17 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"macOS-та Python система SSL сертификаттарына инеү мөмкинлегенә эйә булмауы "
+"ихтимал. Түбәндәге ысулдарҙың береһен ҡулланып ҡарағыҙ:\n"
+"  1. python.org урынлаштырыусыһы: Python урынлаштырылған папкалағы `Install "
+"Certificates.command` файлын эшләтегеҙ (мәҫәлән, `/Applications/Python 3.x/`)"
+".\n"
+"  2. pyenv / Homebrew / системаға ҡарамаған Python: Gramps-ты эшләтер "
+"алдынан `SSL_CERT_FILE` мөхит үҙгәреүсәнен билдәләгеҙ:\n"
+"      `export SSL_CERT_FILE=/etc/ssl/cert.pem`\n"
+"  3. certifi пакетын урынлаштырығыҙ:  `pip install certifi`"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -11756,31 +11767,44 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"SSL сертификатын тикшереү уңышһыҙ тамамланды. Был системаға ҡарамаған Python "
+"(`pyenv`, `conda`) урынлаштырылған осраҡта йыш осрай: уның составындағы "
+"OpenSSL система сертификаттарының ҡайҙа һаҡланғанын белмәй. Түбәндәге "
+"ысулдарҙың береһен ҡулланып ҡарағыҙ:\n"
+"  1. `certifi` пакетын урынлаштырығыҙ:  `pip install certifi`\n"
+"  2. Gramps-ты эшләтер алдынан `SSL_CERT_FILE` өсөн система CA "
+"сертификаттары тупланмаһына юлды билдәләгеҙ, мәҫәлән:\n"
+"       `export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt`   (Debian/"
+"Ubuntu)\n"
+"       `export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt`     (RHEL/"
+"Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "'%s' пакеты өсөн PyPI менән бәйләнеш булдырып булмай: %s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
-msgstr ""
+msgstr "Был платформа өсөн '%s==%s' менән ярашлы wheel табылманы."
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "Был платформа өсөн '%s' менән ярашлы wheel табылманы."
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "'%s' өсөн SHA-256 тап килмәй: көтөлгәне — %s, алынғаны — %s"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
 msgid "No version of '%s' satisfies all constraints: %s"
-msgstr ""
+msgstr "'%s' пакетының бер версияһы ла бөтә сикләүҙәргә тап килмәй: %s"
 
 #: ../gramps/gen/utils/pypi.py:1285
 #, fuzzy, python-format
@@ -17298,7 +17322,9 @@ msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
 msgstr[0] ""
+"Нәҫел дауамсыларының %(gen)d/%(total)d быуыны күсереп алына… (%(count)d кеше)"
 msgstr[1] ""
+"Нәҫел дауамсыларының %(gen)d/%(total)d быуыны күсереп алына… (%(count)d кеше)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
 #, fuzzy, python-format
@@ -17329,7 +17355,7 @@ msgstr "Иҫкәрмәләр һәм сығанаҡтар йөкләнә…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …иҫкәрмәләр/сығанаҡтар: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 #, fuzzy
@@ -17394,8 +17420,8 @@ msgstr[1] "Был кеше өсөн FamilySearch Person ID ҡуйылмаған.
 #, python-format
 msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
 msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)d FamilySearch ваҡыт билдәһе %(elapsed).1f с эсендә асыҡланды"
+msgstr[1] "%(count)d FamilySearch ваҡыт билдәһе %(elapsed).1f с эсендә асыҡланды"
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
 #, fuzzy
@@ -17407,18 +17433,18 @@ msgstr "Өҫтәмәләр исемлеге яңыртыла"
 #, python-format
 msgid "Refreshing comparison status for %d person…"
 msgid_plural "Refreshing comparison status for %d people…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d кеше өсөн сағыштырыу статусы яңыртыла…"
+msgstr[1] "%d кеше өсөн сағыштырыу статусы яңыртыла…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:448
 #, python-format
 msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
-msgstr ""
+msgstr "  …%(fsid)s өсөн сағыштырыу %(elapsed).1f с ваҡыт алды"
 
 #: ../gramps/gui/fs/fs_import/importer.py:453
 #, python-format
 msgid "  …comparison status: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …сағыштырыу статусы: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:463
 #, python-format
@@ -17426,6 +17452,8 @@ msgid ""
 "Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
 "%(failed)d failed)"
 msgstr ""
+"Сағыштырыу статусын яңыртыу %(elapsed).1f с эсендә тамамланды (%(compared)d "
+"сағыштырылды, %(failed)d уңышһыҙ)"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
