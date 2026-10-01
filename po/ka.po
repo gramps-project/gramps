@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-03 10:51+0000\n"
+"PO-Revision-Date: 2026-09-20 05:51+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ka/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.9\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -17114,10 +17114,8 @@ msgid "Editor person: (none)"
 msgstr ""
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Searching FamilySearch..."
 msgid "Open Person in FamilySearch"
-msgstr "FamilySearch-ით ძებნა..."
+msgstr "პიროვნების გახსნა FamilySearch-ში"
 
 #: ../gramps/gui/fs/tools_window.py:381
 msgid "Single Person Actions"
@@ -17199,10 +17197,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "FamilySearch"
 msgid "Open FamilySearch.org"
-msgstr "FamilySearch"
+msgstr "FamilySearch.org-ის გახსნა"
 
 #: ../gramps/gui/fs/tools_window.py:774
 #, python-format
