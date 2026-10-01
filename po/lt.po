@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-17 00:52+0100\n"
+"POT-Creation-Date: 2026-09-13 00:06+0100\n"
 "PO-Revision-Date: 2026-01-11 10:01+0000\n"
 "Last-Translator: openSUSE Lietuviškai <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/gramps-"
@@ -231,7 +231,7 @@ msgstr "Jungtinės Amerikos Valstijos"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:2
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:4
-#: ../gramps/gen/fs/compare/aggregate.py:159
+#: ../gramps/gen/fs/compare/aggregate.py:286
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2039
 #: ../gramps/gui/fs/sync_directions.py:956
 msgid "Gramps"
@@ -319,7 +319,7 @@ msgstr "Ryšiai"
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:46
 #: ../gramps/gen/lib/person.py:192 ../gramps/gui/clipboard.py:722
 #: ../gramps/gui/configure.py:815 ../gramps/gui/editors/editlink.py:99
-#: ../gramps/gui/editors/filtereditor.py:308 ../gramps/gui/fs/actions.py:306
+#: ../gramps/gui/editors/filtereditor.py:308 ../gramps/gui/fs/actions.py:350
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2150
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2165
 #: ../gramps/gui/fs/sync_directions.py:1588
@@ -1749,7 +1749,7 @@ msgstr "Klaida apdorojant parametrus"
 
 #: ../gramps/cli/clidbman.py:72 ../gramps/cli/clidbman.py:171
 #: ../gramps/cli/clidbman.py:173 ../gramps/gui/clipboard.py:207
-#: ../gramps/gui/clipboard.py:208 ../gramps/gui/plug/_windows.py:1521
+#: ../gramps/gui/clipboard.py:208 ../gramps/gui/plug/_windows.py:1572
 msgid "Unavailable"
 msgstr "Nepasiekiamas"
 
@@ -1795,8 +1795,8 @@ msgstr "Giminės medis pavadinimu „%s“:"
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:221 ../gramps/gen/plug/report/utils.py:186
 #: ../gramps/gui/editors/editattribute.py:139
-#: ../gramps/gui/editors/editname.py:340 ../gramps/gui/plug/_windows.py:1726
-#: ../gramps/gui/plug/_windows.py:2170
+#: ../gramps/gui/editors/editname.py:340 ../gramps/gui/plug/_windows.py:1777
+#: ../gramps/gui/plug/_windows.py:2221
 #: ../gramps/plugins/gramplet/whatsnext.py:494
 #: ../gramps/plugins/textreport/birthdayreport.py:212
 #: ../gramps/plugins/textreport/birthdayreport.py:217
@@ -1868,7 +1868,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:584 ../gramps/gui/configure.py:2521
-#: ../gramps/gui/plug/_windows.py:796
+#: ../gramps/gui/plug/_windows.py:847
 msgid "Never"
 msgstr "Niekada"
 
@@ -1966,12 +1966,12 @@ msgstr "ĮSPĖJIMAS: %s"
 msgid "ERROR: %s"
 msgstr "KLAIDA: %s"
 
-#: ../gramps/cli/grampscli.py:106 ../gramps/cli/user.py:218
+#: ../gramps/cli/grampscli.py:106 ../gramps/cli/user.py:219
 #: ../gramps/gui/dialog.py:316
 msgid "Low level database corruption detected"
 msgstr "Aptiktas duombazės sugadinimas žemame lygyje"
 
-#: ../gramps/cli/grampscli.py:109 ../gramps/cli/user.py:220
+#: ../gramps/cli/grampscli.py:109 ../gramps/cli/user.py:221
 #: ../gramps/gui/dialog.py:318
 #, fuzzy
 msgid ""
@@ -2208,11 +2208,11 @@ msgstr "Nepavyko įrašyti ataskaitos. "
 msgid "Failed to make '%s' report."
 msgstr "Nepavyko pagrengti ataskaitos '%s'."
 
-#: ../gramps/cli/user.py:240 ../gramps/gui/dialog.py:297
+#: ../gramps/cli/user.py:241 ../gramps/gui/dialog.py:297
 msgid "Error detected in database"
 msgstr "Duombazėje rasta klaida"
 
-#: ../gramps/cli/user.py:242 ../gramps/gui/dialog.py:299
+#: ../gramps/cli/user.py:243 ../gramps/gui/dialog.py:299
 #, python-format
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved "
@@ -5153,7 +5153,7 @@ msgstr "Rūšis:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:57
 #: ../gramps/gui/glade/mergemedia.glade:239
-#: ../gramps/gui/glade/mergemedia.glade:254 ../gramps/gui/viewmanager.py:2041
+#: ../gramps/gui/glade/mergemedia.glade:254 ../gramps/gui/viewmanager.py:2044
 msgid "Path:"
 msgstr "Kelias:"
 
@@ -6942,60 +6942,60 @@ msgstr "Šaltiniai, pažymėti privačiais"
 msgid "Matches sources that are indicated as private"
 msgstr "Tai šaltiniai, kurie yra pažymėti privačiais"
 
-#: ../gramps/gen/fs/compare/aggregate.py:160 ../gramps/gui/configure.py:1107
-#: ../gramps/gui/fs/actions.py:153 ../gramps/gui/fs/actions.py:209
-#: ../gramps/gui/fs/actions.py:962 ../gramps/gui/fs/actions.py:992
-#: ../gramps/gui/fs/actions.py:1012 ../gramps/gui/fs/actions.py:1050
-#: ../gramps/gui/fs/actions.py:1073 ../gramps/gui/fs/actions.py:1088
-#: ../gramps/gui/fs/actions.py:1103 ../gramps/gui/fs/actions.py:1125
-#: ../gramps/gui/fs/actions.py:1152 ../gramps/gui/fs/actions.py:1206
-#: ../gramps/gui/fs/actions.py:1216 ../gramps/gui/fs/actions.py:1231
-#: ../gramps/gui/fs/actions.py:1255 ../gramps/gui/fs/actions.py:1294
-#: ../gramps/gui/fs/actions.py:1367 ../gramps/gui/fs/actions.py:1383
-#: ../gramps/gui/fs/actions.py:1398 ../gramps/gui/fs/actions.py:1429
-#: ../gramps/gui/fs/actions.py:1456 ../gramps/gui/fs/actions.py:1511
-#: ../gramps/gui/fs/actions.py:1610 ../gramps/gui/fs/actions.py:1649
-#: ../gramps/gui/fs/actions.py:1661 ../gramps/gui/fs/actions.py:1697
-#: ../gramps/gui/fs/actions.py:1754 ../gramps/gui/fs/actions.py:1764
-#: ../gramps/gui/fs/actions.py:1830 ../gramps/gui/fs/actions.py:1836
-#: ../gramps/gui/fs/actions.py:1882 ../gramps/gui/fs/actions.py:1898
-#: ../gramps/gui/fs/actions.py:1914
+#: ../gramps/gen/fs/compare/aggregate.py:287 ../gramps/gui/configure.py:1107
+#: ../gramps/gui/fs/actions.py:155 ../gramps/gui/fs/actions.py:224
+#: ../gramps/gui/fs/actions.py:265 ../gramps/gui/fs/actions.py:1006
+#: ../gramps/gui/fs/actions.py:1036 ../gramps/gui/fs/actions.py:1056
+#: ../gramps/gui/fs/actions.py:1094 ../gramps/gui/fs/actions.py:1117
+#: ../gramps/gui/fs/actions.py:1132 ../gramps/gui/fs/actions.py:1147
+#: ../gramps/gui/fs/actions.py:1169 ../gramps/gui/fs/actions.py:1196
+#: ../gramps/gui/fs/actions.py:1250 ../gramps/gui/fs/actions.py:1260
+#: ../gramps/gui/fs/actions.py:1275 ../gramps/gui/fs/actions.py:1299
+#: ../gramps/gui/fs/actions.py:1338 ../gramps/gui/fs/actions.py:1411
+#: ../gramps/gui/fs/actions.py:1427 ../gramps/gui/fs/actions.py:1442
+#: ../gramps/gui/fs/actions.py:1473 ../gramps/gui/fs/actions.py:1500
+#: ../gramps/gui/fs/actions.py:1555 ../gramps/gui/fs/actions.py:1654
+#: ../gramps/gui/fs/actions.py:1693 ../gramps/gui/fs/actions.py:1705
+#: ../gramps/gui/fs/actions.py:1741 ../gramps/gui/fs/actions.py:1798
+#: ../gramps/gui/fs/actions.py:1808 ../gramps/gui/fs/actions.py:1874
+#: ../gramps/gui/fs/actions.py:1880 ../gramps/gui/fs/actions.py:1926
+#: ../gramps/gui/fs/actions.py:1942 ../gramps/gui/fs/actions.py:1958
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:687
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:832
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1218
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2041
 #: ../gramps/gui/fs/person/mixins/helpers.py:68
-#: ../gramps/gui/fs/sync_directions.py:955 ../gramps/gui/viewmanager.py:413
-#: ../gramps/gui/viewmanager.py:624 ../gramps/gui/viewmanager.py:637
-#: ../gramps/gui/viewmanager.py:645
+#: ../gramps/gui/fs/sync_directions.py:955 ../gramps/gui/viewmanager.py:414
+#: ../gramps/gui/viewmanager.py:625 ../gramps/gui/viewmanager.py:638
+#: ../gramps/gui/viewmanager.py:646
 #, fuzzy
 #| msgid "Family"
 msgid "FamilySearch"
 msgstr "Šeima"
 
-#: ../gramps/gen/fs/compare/aggregate.py:160
-#: ../gramps/gui/fs/compare/window.py:224
-#: ../gramps/gui/fs/fs_import/importer.py:69
+#: ../gramps/gen/fs/compare/aggregate.py:287
+#: ../gramps/gui/fs/compare/window.py:232
+#: ../gramps/gui/fs/fs_import/importer.py:97
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2084
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2288
 msgid "Not connected to FamilySearch"
 msgstr ""
 
-#: ../gramps/gen/fs/compare/aggregate.py:199
+#: ../gramps/gen/fs/compare/aggregate.py:326
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:623
 #, fuzzy
 #| msgid "initials"
 msgid "Essentials"
 msgstr "inicialai"
 
-#: ../gramps/gen/fs/compare/aggregate.py:204
+#: ../gramps/gen/fs/compare/aggregate.py:331
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:627
 #, fuzzy
 #| msgid "Item name"
 msgid "Other names"
 msgstr "Elemento pavadinimas"
 
-#: ../gramps/gen/fs/compare/aggregate.py:211
+#: ../gramps/gen/fs/compare/aggregate.py:338
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:632
 #: ../gramps/gui/merge/mergeperson.py:241
 #: ../gramps/gui/widgets/fanchart.py:2231
@@ -7010,7 +7010,7 @@ msgstr "Elemento pavadinimas"
 msgid "Parents"
 msgstr "Tėvai"
 
-#: ../gramps/gen/fs/compare/aggregate.py:218 ../gramps/gen/lib/person.py:225
+#: ../gramps/gen/fs/compare/aggregate.py:345 ../gramps/gen/lib/person.py:225
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:636
 #: ../gramps/plugins/graph/gvfamilylines.py:381
 #: ../gramps/plugins/graph/gvhourglass.py:544
@@ -7033,7 +7033,7 @@ msgstr "Tėvai"
 msgid "Families"
 msgstr "Šeimos"
 
-#: ../gramps/gen/fs/compare/aggregate.py:225
+#: ../gramps/gen/fs/compare/aggregate.py:352
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:640
 msgid "Facts"
 msgstr ""
@@ -7099,12 +7099,12 @@ msgstr "Lytis:"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:159
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:116
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:112
-#: ../gramps/gui/fs/actions.py:799 ../gramps/gui/plug/_guioptions.py:1189
-#: ../gramps/gui/plug/_windows.py:1088 ../gramps/gui/plug/_windows.py:2156
+#: ../gramps/gui/fs/actions.py:843 ../gramps/gui/plug/_guioptions.py:1189
+#: ../gramps/gui/plug/_windows.py:1139 ../gramps/gui/plug/_windows.py:2207
 #: ../gramps/gui/plug/report/_bookdialog.py:396
 #: ../gramps/gui/selectors/selectperson.py:105
 #: ../gramps/gui/selectors/selectplace.py:67
-#: ../gramps/gui/views/bookmarks.py:298 ../gramps/gui/views/tags.py:480
+#: ../gramps/gui/views/bookmarks.py:301 ../gramps/gui/views/tags.py:481
 #: ../gramps/gui/views/treemodels/peoplemodel.py:635
 #: ../gramps/plugins/export/exportcsv.py:308
 #: ../gramps/plugins/gramplet/ancestor.py:67
@@ -7707,8 +7707,8 @@ msgstr "Luomas"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:112
 #: ../gramps/gui/glade/rule.glade:914 ../gramps/gui/glade/styleeditor.glade:276
-#: ../gramps/gui/plug/_windows.py:1092 ../gramps/gui/plug/_windows.py:1207
-#: ../gramps/gui/plug/_windows.py:1664 ../gramps/gui/plug/_windows.py:2157
+#: ../gramps/gui/plug/_windows.py:1143 ../gramps/gui/plug/_windows.py:1258
+#: ../gramps/gui/plug/_windows.py:1715 ../gramps/gui/plug/_windows.py:2208
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/plugins/gramplet/coordinates.py:99
 #: ../gramps/plugins/gramplet/events.py:102
@@ -9012,7 +9012,7 @@ msgstr "Civilinis surašymas"
 msgid "FamilySearch sync"
 msgstr ""
 
-#: ../gramps/gen/lib/fs/familysearchsync.py:76 ../gramps/gui/fs/actions.py:801
+#: ../gramps/gen/lib/fs/familysearchsync.py:76 ../gramps/gui/fs/actions.py:845
 #: ../gramps/gui/fs/fs_import/options.py:38
 #, fuzzy
 #| msgid "Family ID"
@@ -9069,9 +9069,9 @@ msgstr "Nustatymai"
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:104
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:113
-#: ../gramps/gui/merge/mergeperson.py:272 ../gramps/gui/plug/_windows.py:238
-#: ../gramps/gui/plug/_windows.py:1081 ../gramps/gui/plug/_windows.py:1204
-#: ../gramps/gui/plug/_windows.py:2155
+#: ../gramps/gui/merge/mergeperson.py:272 ../gramps/gui/plug/_windows.py:245
+#: ../gramps/gui/plug/_windows.py:1132 ../gramps/gui/plug/_windows.py:1255
+#: ../gramps/gui/plug/_windows.py:2206
 #: ../gramps/gui/plug/report/_bookdialog.py:396
 #: ../gramps/gui/plug/report/_bookdialog.py:400
 #: ../gramps/gui/selectors/selectevent.py:66
@@ -9218,8 +9218,8 @@ msgstr "Šventykla"
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:689
-#: ../gramps/gui/plug/_windows.py:242 ../gramps/gui/plug/_windows.py:1085
-#: ../gramps/gui/plug/_windows.py:1147
+#: ../gramps/gui/plug/_windows.py:249 ../gramps/gui/plug/_windows.py:1136
+#: ../gramps/gui/plug/_windows.py:1198
 #: ../gramps/plugins/quickview/ageondate.py:53
 #: ../gramps/plugins/textreport/indivcomplete.py:533
 #: ../gramps/plugins/textreport/indivcomplete.py:738
@@ -9229,7 +9229,7 @@ msgid "Status"
 msgstr "Būsena"
 
 #: ../gramps/gen/lib/location.py:88 ../gramps/gui/clipboard.py:337
-#: ../gramps/gui/plug/_windows.py:1669
+#: ../gramps/gui/plug/_windows.py:1720
 msgid "Location"
 msgstr "Vieta"
 
@@ -9302,7 +9302,7 @@ msgstr "Priesaga"
 #: ../gramps/gui/selectors/selectplace.py:70
 #: ../gramps/gui/selectors/selectrepository.py:66
 #: ../gramps/gui/selectors/selectsource.py:66
-#: ../gramps/gui/widgets/grampletpane.py:1676
+#: ../gramps/gui/widgets/grampletpane.py:1677
 #: ../gramps/plugins/export/exportcsv.py:307
 #: ../gramps/plugins/gramplet/persondetails.py:171
 #: ../gramps/plugins/importer/importprogen.glade:195
@@ -9463,7 +9463,7 @@ msgstr "Formatas"
 #: ../gramps/gui/glade/editplaceref.glade:178
 #: ../gramps/gui/glade/editplaceref.glade:690
 #: ../gramps/gui/glade/editreporef.glade:232
-#: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:757
+#: ../gramps/gui/glade/editreporef.glade:464 ../gramps/gui/plug/_windows.py:808
 #: ../gramps/plugins/tool/verify.glade:426
 msgid "General"
 msgstr "Bendras"
@@ -9917,7 +9917,7 @@ msgstr "Stilizuoto teksto gairės"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:122
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:99
-#: ../gramps/gui/views/tags.py:63 ../gramps/gui/views/tags.py:73
+#: ../gramps/gui/views/tags.py:64 ../gramps/gui/views/tags.py:74
 #: ../gramps/plugins/importer/importcsv.py:229
 #: ../gramps/plugins/textreport/tagreport.py:919
 #: ../gramps/plugins/textreport/tagreport.py:923
@@ -10024,7 +10024,7 @@ msgstr "%(first)s %(second)s"
 #: ../gramps/gen/lib/tag.py:158 ../gramps/gen/plug/docgen/treedoc.py:252
 #: ../gramps/gui/glade/styleeditor.glade:397
 #: ../gramps/gui/glade/styleeditor.glade:1482
-#: ../gramps/gui/plug/_guioptions.py:1525 ../gramps/gui/views/tags.py:481
+#: ../gramps/gui/plug/_guioptions.py:1525 ../gramps/gui/views/tags.py:482
 msgid "Color"
 msgstr "Spalva"
 
@@ -10057,6 +10057,7 @@ msgid "Family Tree Differences"
 msgstr "Šeima medžio skirtumai"
 
 #: ../gramps/gen/merge/diff.py:109
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:171
 msgid "Searching..."
 msgstr "Ieškoma..."
 
@@ -10216,8 +10217,8 @@ msgstr "Ryšių skaičiuotuvas"
 #: ../gramps/gen/plug/_pluginreg.py:128 ../gramps/gen/plug/_pluginreg.py:516
 #: ../gramps/gui/glade/grampletpane.glade:153
 #: ../gramps/gui/widgets/grampletbar.py:700
-#: ../gramps/gui/widgets/grampletpane.py:245
-#: ../gramps/gui/widgets/grampletpane.py:1004
+#: ../gramps/gui/widgets/grampletpane.py:246
+#: ../gramps/gui/widgets/grampletpane.py:1005
 msgid "Gramplet"
 msgstr "Grampletas"
 
@@ -10773,7 +10774,7 @@ msgstr "Nerasta"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:94 ../gramps/gui/configure.py:106
 #: ../gramps/gui/configure.py:188 ../gramps/gui/configure.py:2831
-#: ../gramps/gui/displaystate.py:429 ../gramps/gui/views/pageview.py:649
+#: ../gramps/gui/displaystate.py:432 ../gramps/gui/views/pageview.py:649
 msgid "Preferences"
 msgstr "Nustatymai"
 
@@ -10999,7 +11000,7 @@ msgid "Valid values: "
 msgstr "Galimos reikšmės: "
 
 #: ../gramps/gen/plug/report/_book.py:72 ../gramps/gui/plug/_dialogs.py:60
-#: ../gramps/gui/plug/report/_bookdialog.py:87 ../gramps/gui/viewmanager.py:146
+#: ../gramps/gui/plug/report/_bookdialog.py:87 ../gramps/gui/viewmanager.py:147
 msgid "Unsupported"
 msgstr "Nepalaikoma"
 
@@ -11188,7 +11189,7 @@ msgstr "Neįtraukti"
 
 #: ../gramps/gen/plug/report/stdoptions.py:370
 #: ../gramps/gen/plug/report/stdoptions.py:400
-#: ../gramps/gui/viewmanager.py:2103
+#: ../gramps/gui/viewmanager.py:2106
 #: ../gramps/plugins/graph/gvfamilylines.py:289
 #: ../gramps/plugins/graph/gvrelgraph.py:977
 #: ../gramps/plugins/textreport/detancestralreport.py:927
@@ -11977,15 +11978,75 @@ msgstr "Laipsnių žymėjimas, 8 dešimtainiai skaičiai (tikslumas kaip ISO-DMS
 msgid "Output format for the Swedish coordinate system RT90"
 msgstr "Švedijos koordinačių sistemos RT90 išvesties formatas"
 
-#: ../gramps/gen/utils/requirements.py:162
+#: ../gramps/gen/utils/pypi.py:226
+msgid ""
+"\n"
+"\n"
+"On macOS, Python may not have access to the system SSL certificates.  Try "
+"one of the following:\n"
+"  1. python.org installer: run 'Install Certificates.command' in your Python "
+"installation folder (e.g. /Applications/Python 3.x/).\n"
+"  2. pyenv / Homebrew / non-system Python: set the SSL_CERT_FILE environment "
+"variable before starting Gramps:\n"
+"       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
+"  3. Install the certifi package:  pip install certifi"
+msgstr ""
+
+#: ../gramps/gen/utils/pypi.py:237
+msgid ""
+"\n"
+"\n"
+"SSL certificate verification failed.  This is common with non-system Python "
+"installations (pyenv, conda) whose bundled OpenSSL does not know where "
+"system certificates are stored.  Try one of the following:\n"
+"  1. Install the certifi package:  pip install certifi\n"
+"  2. Set SSL_CERT_FILE to your system CA bundle before starting Gramps, "
+"e.g.:\n"
+"       export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt  (Debian/"
+"Ubuntu)\n"
+"       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
+msgstr ""
+
+#: ../gramps/gen/utils/pypi.py:470
+#, python-format
+msgid "Cannot reach PyPI for package '%s': %s"
+msgstr ""
+
+#: ../gramps/gen/utils/pypi.py:561
+#, python-format
+msgid "No compatible wheel found for '%s==%s' on this platform."
+msgstr ""
+
+#: ../gramps/gen/utils/pypi.py:591
+#, python-format
+msgid "No compatible wheel found for '%s' on this platform."
+msgstr ""
+
+#: ../gramps/gen/utils/pypi.py:613
+#, python-format
+msgid "SHA-256 mismatch for '%s': expected %s, got %s"
+msgstr ""
+
+#: ../gramps/gen/utils/pypi.py:1214
+#, python-format
+msgid "No version of '%s' satisfies all constraints: %s"
+msgstr ""
+
+#: ../gramps/gen/utils/pypi.py:1285
+#, fuzzy, python-format
+#| msgid "No file to download"
+msgid "Failed to download '%s': %s"
+msgstr "Nėra rinkmenų atsisiuntimui"
+
+#: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
 msgstr "Python moduliai"
 
-#: ../gramps/gen/utils/requirements.py:170
+#: ../gramps/gen/utils/requirements.py:180
 msgid "GObject introspection modules"
 msgstr "GObject savistabos moduliai"
 
-#: ../gramps/gen/utils/requirements.py:178
+#: ../gramps/gen/utils/requirements.py:188
 msgid "Executables"
 msgstr "Vykdomosios rinkmenos"
 
@@ -12556,7 +12617,7 @@ msgid "Clipboard"
 msgstr "Iškarpinė"
 
 #: ../gramps/gui/clipboard.py:1379 ../gramps/gui/configure.py:220
-#: ../gramps/gui/editors/filtereditor.py:1232 ../gramps/gui/views/tags.py:397
+#: ../gramps/gui/editors/filtereditor.py:1232 ../gramps/gui/views/tags.py:398
 msgid "Any changes are saved immediately"
 msgstr "Bet kokie pakeitimai išsaugomi nedelsiant"
 
@@ -12589,7 +12650,7 @@ msgstr "Eiliškumui pakeisti paimkite ir neškite stulpelius"
 
 #: ../gramps/gui/columnorder.py:115 ../gramps/gui/configure.py:2717
 #: ../gramps/gui/configure.py:2745 ../gramps/gui/configure.py:2774
-#: ../gramps/gui/plug/_dialogs.py:145 ../gramps/gui/viewmanager.py:2183
+#: ../gramps/gui/plug/_dialogs.py:145 ../gramps/gui/viewmanager.py:2186
 #: ../gramps/plugins/lib/maps/geography.py:1115
 #: ../gramps/plugins/lib/maps/geography.py:1540
 #: ../gramps/plugins/tool/eventcmp.glade:189
@@ -12634,12 +12695,12 @@ msgstr "Vardų redaktorius"
 #: ../gramps/gui/glade/plugins.glade:37 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1006 ../gramps/gui/glade/tipofday.glade:128
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/grampsgui.py:57
-#: ../gramps/gui/plug/_windows.py:395 ../gramps/gui/plug/_windows.py:1058
-#: ../gramps/gui/plug/_windows.py:1732 ../gramps/gui/plug/_windows.py:1792
+#: ../gramps/gui/plug/_windows.py:436 ../gramps/gui/plug/_windows.py:1109
+#: ../gramps/gui/plug/_windows.py:1783 ../gramps/gui/plug/_windows.py:1843
 #: ../gramps/gui/plug/quick/_textbufdoc.py:70 ../gramps/gui/undohistory.py:87
-#: ../gramps/gui/viewmanager.py:2037 ../gramps/gui/views/bookmarks.py:315
-#: ../gramps/gui/views/tags.py:503 ../gramps/gui/widgets/grampletbar.py:708
-#: ../gramps/gui/widgets/grampletpane.py:257
+#: ../gramps/gui/viewmanager.py:2040 ../gramps/gui/views/bookmarks.py:318
+#: ../gramps/gui/views/tags.py:504 ../gramps/gui/widgets/grampletbar.py:708
+#: ../gramps/gui/widgets/grampletpane.py:258
 #: ../gramps/plugins/lib/maps/placeselection.py:121
 #: ../gramps/plugins/sidebar/favoritessidebar.py:88
 #: ../gramps/plugins/tool/dumpgenderstats.py:85
@@ -12741,9 +12802,9 @@ msgstr "Blogas arba nepilnas formato aprašymas."
 #: ../gramps/gui/configure.py:1828 ../gramps/gui/configure.py:1833
 #: ../gramps/gui/configure.py:1854 ../gramps/gui/configure.py:1870
 #: ../gramps/gui/configure.py:2315 ../gramps/gui/configure.py:2443
-#: ../gramps/gui/configure.py:2532 ../gramps/gui/fs/actions.py:611
-#: ../gramps/gui/plug/_windows.py:806 ../gramps/gui/plug/_windows.py:826
-#: ../gramps/gui/plug/_windows.py:862 ../gramps/gui/plug/_windows.py:870
+#: ../gramps/gui/configure.py:2532 ../gramps/gui/fs/actions.py:655
+#: ../gramps/gui/plug/_windows.py:857 ../gramps/gui/plug/_windows.py:877
+#: ../gramps/gui/plug/_windows.py:913 ../gramps/gui/plug/_windows.py:921
 #: ../gramps/gui/views/navigationview.py:350
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:110
 #, python-format
@@ -12792,12 +12853,12 @@ msgstr "%s: "
 #: ../gramps/gui/glade/rule.glade:342 ../gramps/gui/glade/rule.glade:766
 #: ../gramps/gui/glade/styleeditor.glade:119
 #: ../gramps/gui/glade/styleeditor.glade:1803 ../gramps/gui/grampsgui.py:57
-#: ../gramps/gui/logger/_errorview.py:189 ../gramps/gui/plug/_windows.py:396
+#: ../gramps/gui/logger/_errorview.py:189 ../gramps/gui/plug/_windows.py:437
 #: ../gramps/gui/plug/report/_reportdialog.py:166
-#: ../gramps/gui/undohistory.py:83 ../gramps/gui/views/bookmarks.py:316
-#: ../gramps/gui/views/tags.py:504 ../gramps/gui/views/tags.py:725
+#: ../gramps/gui/undohistory.py:83 ../gramps/gui/views/bookmarks.py:319
+#: ../gramps/gui/views/tags.py:505 ../gramps/gui/views/tags.py:726
 #: ../gramps/gui/widgets/grampletbar.py:712
-#: ../gramps/gui/widgets/grampletpane.py:263
+#: ../gramps/gui/widgets/grampletpane.py:264
 #: ../gramps/plugins/importer/importprogen.glade:61
 #: ../gramps/plugins/tool/changenames.glade:72
 #: ../gramps/plugins/tool/eventcmp.glade:53
@@ -12829,7 +12890,7 @@ msgstr "Apskritis / savivaldybė"
 msgid "ZIP/Postal Code"
 msgstr "Pašto kodas"
 
-#: ../gramps/gui/configure.py:779 ../gramps/gui/plug/_windows.py:1667
+#: ../gramps/gui/configure.py:779 ../gramps/gui/plug/_windows.py:1718
 #: ../gramps/plugins/view/repoview.py:95
 msgid "Email"
 msgstr "El. paštas"
@@ -13091,7 +13152,7 @@ msgstr "Pavyzdys"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:136
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:126
 #: ../gramps/gui/editors/editfamily.py:221 ../gramps/gui/grampsgui.py:57
-#: ../gramps/gui/plug/report/_bookdialog.py:676 ../gramps/gui/views/tags.py:495
+#: ../gramps/gui/plug/report/_bookdialog.py:676 ../gramps/gui/views/tags.py:496
 #: ../gramps/gui/widgets/fanchart.py:2265
 #: ../gramps/gui/widgets/fanchart.py:2307
 #: ../gramps/plugins/view/pedigreeview.py:1839
@@ -13107,7 +13168,7 @@ msgstr "_Pridėti"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:137
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:127
 #: ../gramps/gui/glade/editlink.glade:218 ../gramps/gui/grampsgui.py:57
-#: ../gramps/gui/plug/report/_bookdialog.py:650 ../gramps/gui/views/tags.py:496
+#: ../gramps/gui/plug/report/_bookdialog.py:650 ../gramps/gui/views/tags.py:497
 #: ../gramps/gui/widgets/fanchart.py:2053
 #: ../gramps/plugins/gramplet/backlinks.py:229
 #: ../gramps/plugins/view/pedigreeview.py:1873
@@ -13123,7 +13184,7 @@ msgstr "_Taisa"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:128
 #: ../gramps/gui/editors/editfamily.py:228
 #: ../gramps/gui/plug/report/_bookdialog.py:645
-#: ../gramps/gui/views/bookmarks.py:311 ../gramps/gui/views/tags.py:497
+#: ../gramps/gui/views/bookmarks.py:314 ../gramps/gui/views/tags.py:498
 msgid "_Remove"
 msgstr "_Pašalinti"
 
@@ -13140,7 +13201,7 @@ msgstr "Rodyti kaip"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:511 ../gramps/gui/glade/rule.glade:452
 #: ../gramps/gui/glade/styleeditor.glade:1932
-#: ../gramps/gui/plug/_windows.py:1111 ../gramps/gui/plug/_windows.py:1170
+#: ../gramps/gui/plug/_windows.py:1162 ../gramps/gui/plug/_windows.py:1221
 #: ../gramps/plugins/gramplet/ancestor.py:121
 #: ../gramps/plugins/gramplet/descendant.py:118
 msgid "Edit"
@@ -13677,7 +13738,7 @@ msgid "Add default source on GEDCOM import"
 msgstr "Įkeliant GEDCOM rinkmeną, pridėti numatytą šaltinį"
 
 #: ../gramps/gui/configure.py:2642 ../gramps/gui/dbloader.py:399
-#: ../gramps/gui/fs/actions.py:302 ../gramps/gui/fs/actions.py:635
+#: ../gramps/gui/fs/actions.py:346 ../gramps/gui/fs/actions.py:679
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:243
 msgid "Import"
 msgstr "Įkelti"
@@ -13732,12 +13793,12 @@ msgstr "Pasirinkite vaizdo/garso aplanką"
 #: ../gramps/gui/glade/rule.glade:734 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1770
 #: ../gramps/gui/logger/_errorview.py:187 ../gramps/gui/plug/_guioptions.py:83
-#: ../gramps/gui/plug/_guioptions.py:1761 ../gramps/gui/plug/_windows.py:880
-#: ../gramps/gui/plug/_windows.py:1443
+#: ../gramps/gui/plug/_guioptions.py:1761 ../gramps/gui/plug/_windows.py:931
+#: ../gramps/gui/plug/_windows.py:1494
 #: ../gramps/gui/plug/report/_fileentry.py:67
 #: ../gramps/gui/plug/report/_reportdialog.py:169 ../gramps/gui/utils.py:266
-#: ../gramps/gui/viewmanager.py:2183 ../gramps/gui/views/listview.py:1260
-#: ../gramps/gui/views/navigationview.py:356 ../gramps/gui/views/tags.py:726
+#: ../gramps/gui/viewmanager.py:2186 ../gramps/gui/views/listview.py:1260
+#: ../gramps/gui/views/navigationview.py:356 ../gramps/gui/views/tags.py:727
 #: ../gramps/gui/widgets/progressdialog.py:440
 #: ../gramps/plugins/importer/importprogen.glade:28
 #: ../gramps/plugins/lib/maps/geography.py:1115
@@ -13759,7 +13820,7 @@ msgstr "_Atšaukti"
 msgid "Select database directory"
 msgstr "Pasirinkite duombazės aplanką"
 
-#: ../gramps/gui/configure.py:2768 ../gramps/gui/viewmanager.py:2178
+#: ../gramps/gui/configure.py:2768 ../gramps/gui/viewmanager.py:2181
 msgid "Select backup directory"
 msgstr "Pasirinkite atsarginės kopijos aplanką"
 
@@ -13891,9 +13952,9 @@ msgstr ""
 "Aš sukūriau atsarginę kopiją,\n"
 "prašau atnaujinti mano šeimos medį"
 
-#: ../gramps/gui/dbloader.py:225 ../gramps/gui/fs/actions.py:172
-#: ../gramps/gui/fs/actions.py:245 ../gramps/gui/fs/actions.py:634
-#: ../gramps/gui/fs/actions.py:743
+#: ../gramps/gui/dbloader.py:225 ../gramps/gui/fs/actions.py:174
+#: ../gramps/gui/fs/actions.py:289 ../gramps/gui/fs/actions.py:678
+#: ../gramps/gui/fs/actions.py:787
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:193
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:507
 #: ../gramps/gui/fs/sync_directions.py:820
@@ -13901,7 +13962,7 @@ msgstr ""
 #: ../gramps/gui/glade/dialog.glade:763
 #: ../gramps/gui/plug/report/_bookdialog.py:257
 #: ../gramps/gui/plug/report/_bookdialog.py:770
-#: ../gramps/gui/viewmanager.py:419 ../gramps/gui/viewmanager.py:905
+#: ../gramps/gui/viewmanager.py:420 ../gramps/gui/viewmanager.py:906
 msgid "Cancel"
 msgstr "Atšaukti"
 
@@ -14047,9 +14108,9 @@ msgstr "Duombazės informacija"
 #: ../gramps/gui/glade/reorder.glade:36 ../gramps/gui/glade/rule.glade:325
 #: ../gramps/gui/glade/rule.glade:750 ../gramps/gui/glade/styleeditor.glade:102
 #: ../gramps/gui/glade/styleeditor.glade:1786
-#: ../gramps/gui/plug/_guioptions.py:83 ../gramps/gui/plug/_windows.py:880
+#: ../gramps/gui/plug/_guioptions.py:83 ../gramps/gui/plug/_windows.py:931
 #: ../gramps/gui/plug/report/_reportdialog.py:172 ../gramps/gui/utils.py:280
-#: ../gramps/gui/viewmanager.py:2038 ../gramps/gui/views/tags.py:727
+#: ../gramps/gui/viewmanager.py:2041 ../gramps/gui/views/tags.py:728
 #: ../gramps/plugins/importer/importgedcom.glade:46
 #: ../gramps/plugins/tool/changetypes.glade:38
 #: ../gramps/plugins/tool/check.py:835
@@ -14355,98 +14416,98 @@ msgstr ""
 "Prašome priverstinai neuždaryti šio svarbaus dialogo.\n"
 "Vietoj to išsirinkite vieną iš galimų variantų"
 
-#: ../gramps/gui/displaystate.py:286
+#: ../gramps/gui/displaystate.py:287
 #, fuzzy
 msgid "Cannot load database"
 msgstr "Nepavyksta atverti duombazės"
 
-#: ../gramps/gui/displaystate.py:409
+#: ../gramps/gui/displaystate.py:412
 msgid "Open the Clipboard dialog"
 msgstr "Atverti iškarpinės langą"
 
-#: ../gramps/gui/displaystate.py:410 ../gramps/gui/grampsgui.py:57
+#: ../gramps/gui/displaystate.py:413 ../gramps/gui/grampsgui.py:57
 msgid "Clip_board"
 msgstr "_Iškarpinė"
 
-#: ../gramps/gui/displaystate.py:415
+#: ../gramps/gui/displaystate.py:418
 msgid "Open the reports dialog"
 msgstr "Atverti ataskaitų langą"
 
-#: ../gramps/gui/displaystate.py:416
+#: ../gramps/gui/displaystate.py:419
 msgid "Reports"
 msgstr "Ataskaitos"
 
-#: ../gramps/gui/displaystate.py:418
+#: ../gramps/gui/displaystate.py:421
 msgid "Open the tools dialog"
 msgstr "Atverti įrankių langą"
 
-#: ../gramps/gui/displaystate.py:418
+#: ../gramps/gui/displaystate.py:421
 msgid "Tools"
 msgstr "Įrankiai"
 
-#: ../gramps/gui/displaystate.py:422
+#: ../gramps/gui/displaystate.py:425
 msgid "Open Addon Manager"
 msgstr "Atverti papildinių tvarkytuvę"
 
-#: ../gramps/gui/displaystate.py:423 ../gramps/gui/plug/_windows.py:480
+#: ../gramps/gui/displaystate.py:426 ../gramps/gui/plug/_windows.py:521
 msgid "Addons"
 msgstr "Papildiniai"
 
-#: ../gramps/gui/displaystate.py:428
+#: ../gramps/gui/displaystate.py:431
 msgid "Open Preferences"
 msgstr "Atverti nustatymus"
 
-#: ../gramps/gui/displaystate.py:449
+#: ../gramps/gui/displaystate.py:452
 #: ../gramps/plugins/gramplet/persondetails.py:180
 msgid "No active person"
 msgstr "Nėra aktyvaus asmens"
 
-#: ../gramps/gui/displaystate.py:450
+#: ../gramps/gui/displaystate.py:453
 msgid "No active family"
 msgstr "Nėra aktyvios šeimos"
 
-#: ../gramps/gui/displaystate.py:451
+#: ../gramps/gui/displaystate.py:454
 msgid "No active event"
 msgstr "Nėra aktyvus įvykio"
 
-#: ../gramps/gui/displaystate.py:452
+#: ../gramps/gui/displaystate.py:455
 msgid "No active place"
 msgstr "Nėra aktyvios vietovės"
 
-#: ../gramps/gui/displaystate.py:453
+#: ../gramps/gui/displaystate.py:456
 msgid "No active source"
 msgstr "Nėra aktyvus šaltinio"
 
-#: ../gramps/gui/displaystate.py:454
+#: ../gramps/gui/displaystate.py:457
 msgid "No active citation"
 msgstr "Nėra aktyvios citatos"
 
-#: ../gramps/gui/displaystate.py:455
+#: ../gramps/gui/displaystate.py:458
 msgid "No active repository"
 msgstr "Nėra aktyvios saugyklos"
 
-#: ../gramps/gui/displaystate.py:456
+#: ../gramps/gui/displaystate.py:459
 msgid "No active media"
 msgstr "Nėra aktyvus garsas/vaizdas"
 
-#: ../gramps/gui/displaystate.py:457
+#: ../gramps/gui/displaystate.py:460
 msgid "No active note"
 msgstr "Nėra aktyvios pastabos"
 
-#: ../gramps/gui/displaystate.py:737 ../gramps/plugins/gramplet/todo.py:205
+#: ../gramps/gui/displaystate.py:740 ../gramps/plugins/gramplet/todo.py:205
 msgid "No active object"
 msgstr "Nėra aktyvios objektų"
 
-#: ../gramps/gui/displaystate.py:773
+#: ../gramps/gui/displaystate.py:776
 msgid "Danger: This is unstable code!"
 msgstr "Pavojus: Tai nėra stabili programos versija!"
 
-#: ../gramps/gui/displaystate.py:774
+#: ../gramps/gui/displaystate.py:777
 #, python-format
 msgid "This Gramps ('%s') is a development release.\n"
 msgstr "Šis Gramps ('%s') yra kūrimo statdijoje.\n"
 
-#: ../gramps/gui/displaystate.py:776
+#: ../gramps/gui/displaystate.py:779
 #, python-format
 msgid ""
 "This version is not meant for normal usage. Use at your own risk.\n"
@@ -14613,7 +14674,7 @@ msgstr "_Požymiai"
 #: ../gramps/gui/selectors/selectplace.py:68
 #: ../gramps/gui/selectors/selectrepository.py:67
 #: ../gramps/gui/selectors/selectsource.py:69
-#: ../gramps/gui/views/bookmarks.py:298
+#: ../gramps/gui/views/bookmarks.py:301
 #: ../gramps/gui/views/navigationview.py:350
 #: ../gramps/plugins/gramplet/locations.py:91
 #: ../gramps/plugins/lib/libpersonview.py:100
@@ -15002,15 +15063,15 @@ msgid "Set as Preferred name"
 msgstr "Pageidaujamas vardas"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:57
-#: ../gramps/gui/plug/_guioptions.py:1272 ../gramps/gui/plug/_windows.py:962
-#: ../gramps/gui/viewmanager.py:1367 ../gramps/gui/views/tags.py:570
+#: ../gramps/gui/plug/_guioptions.py:1272 ../gramps/gui/plug/_windows.py:1013
+#: ../gramps/gui/viewmanager.py:1368 ../gramps/gui/views/tags.py:571
 #: ../gramps/plugins/quickview/all_relations.py:377
 msgid "Yes"
 msgstr "Taip"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1270 ../gramps/gui/plug/_windows.py:963
-#: ../gramps/gui/viewmanager.py:1368 ../gramps/gui/views/tags.py:571
+#: ../gramps/gui/plug/_guioptions.py:1270 ../gramps/gui/plug/_windows.py:1014
+#: ../gramps/gui/viewmanager.py:1369 ../gramps/gui/views/tags.py:572
 #: ../gramps/plugins/quickview/all_relations.py:383
 msgid "No"
 msgstr "Ne"
@@ -15948,7 +16009,7 @@ msgstr ""
 "Visi asmenys su pavarde %(surname)s daugiau nebėra grupuojami naudojant "
 "grupės vardą %(group_name)s."
 
-#: ../gramps/gui/editors/editname.py:417 ../gramps/gui/fs/actions.py:744
+#: ../gramps/gui/editors/editname.py:417 ../gramps/gui/fs/actions.py:788
 msgid "Continue"
 msgstr "Tęsti saugojimą"
 
@@ -16910,7 +16971,7 @@ msgstr "Nuotolis"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:115
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:303
-#: ../gramps/gui/plug/_windows.py:870
+#: ../gramps/gui/plug/_windows.py:921
 msgid "URL"
 msgstr "URL"
 
@@ -16937,435 +16998,435 @@ msgstr ""
 msgid "Reset"
 msgstr "Atstatyti pradines reikšmes"
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:167
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:170
 #, python-format
 msgid "Elapsed time: %.2fs"
 msgstr "Praėjęs laikas: %.2fs"
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:378
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:400
 msgid "You should select a place when using the 'Within' rule"
 msgstr "Reikia pasirinkti vietovę, kai naudojate „IKI“ funkciją"
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:388
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:410
 msgid "Supply at least one value"
 msgstr "Pateikite bent vieną reikšmę"
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:403
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:425
 #, python-brace-format
 msgid "Created by Filter gramplet on {today}"
 msgstr "Sukūrė „Filtrų grampletas“ {today}"
 
-#: ../gramps/gui/fs/actions.py:154
+#: ../gramps/gui/fs/actions.py:156
 msgid "Please save/commit this person to the database first, then try again."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:170 ../gramps/gui/fs/actions.py:171
-#: ../gramps/gui/fs/tools_window.py:356 ../gramps/gui/fs/tools_window.py:817
+#: ../gramps/gui/fs/actions.py:172 ../gramps/gui/fs/actions.py:173
+#: ../gramps/gui/fs/tools_window.py:357 ../gramps/gui/fs/tools_window.py:809
 #, fuzzy
 #| msgid "Family ID"
 msgid "Link FamilySearch ID"
 msgstr "Šeimos ID"
 
-#: ../gramps/gui/fs/actions.py:173 ../gramps/gui/plug/_windows.py:1555
+#: ../gramps/gui/fs/actions.py:175 ../gramps/gui/plug/_windows.py:1606
 #: ../gramps/gui/widgets/grampletbar.py:599
 msgid "OK"
 msgstr "Gerai"
 
-#: ../gramps/gui/fs/actions.py:179
+#: ../gramps/gui/fs/actions.py:181
 msgid "Enter FamilySearch Person ID (e.g. GSVF-SGV):"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:210
+#: ../gramps/gui/fs/actions.py:225 ../gramps/gui/fs/actions.py:266
 msgid ""
 "No FamilySearch ID linked.\n"
 "Click 'Link FamilySearch ID' first."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:246
+#: ../gramps/gui/fs/actions.py:290
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:194
 #, fuzzy
 #| msgid "Import failed"
 msgid "Import selected"
 msgstr "Įkeltis nepavyko"
 
-#: ../gramps/gui/fs/actions.py:270
+#: ../gramps/gui/fs/actions.py:314
 #, python-brace-format
 msgid "{total} found - {new} new - {existing} already in tree"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:277 ../gramps/gui/fs/sync_directions.py:875
+#: ../gramps/gui/fs/actions.py:321 ../gramps/gui/fs/sync_directions.py:875
 #: ../gramps/gui/fs/sync_directions.py:1592
 #, fuzzy
 #| msgid "Select _None"
 msgid "Select none"
 msgstr "_Nieko nesirinkti"
 
-#: ../gramps/gui/fs/actions.py:278
+#: ../gramps/gui/fs/actions.py:322
 #, fuzzy
 #| msgid "Select a file"
 msgid "Select all new"
 msgstr "Pasirinkti rinkmeną"
 
-#: ../gramps/gui/fs/actions.py:325
+#: ../gramps/gui/fs/actions.py:369
 #, fuzzy
 #| msgid "Already dead"
 msgid "Already in tree"
 msgstr "Jau miręs"
 
-#: ../gramps/gui/fs/actions.py:325
+#: ../gramps/gui/fs/actions.py:369
 msgid "New (will import)"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:326
+#: ../gramps/gui/fs/actions.py:370
 msgid "Tip: uncheck anything you don't want to import."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:471
+#: ../gramps/gui/fs/actions.py:515
 #, fuzzy, python-format
 #| msgid " (%(birth_date)s - %(death_date)s)"
 msgid "%(birth)s - %(death)s"
 msgstr "( %(birth_date)s - %(death_date)s)"
 
-#: ../gramps/gui/fs/actions.py:524
+#: ../gramps/gui/fs/actions.py:568
 #, python-format
 msgid "FamilySearch search failed (HTTP %(status)s)."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:531
+#: ../gramps/gui/fs/actions.py:575
 msgid "FamilySearch search returned invalid data."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:584
+#: ../gramps/gui/fs/actions.py:628
 #, fuzzy
 #| msgid "Select Person"
 msgid "selected person"
 msgstr "Pasirinkite asmenį"
 
-#: ../gramps/gui/fs/actions.py:630 ../gramps/gui/fs/actions.py:632
+#: ../gramps/gui/fs/actions.py:674 ../gramps/gui/fs/actions.py:676
 #, fuzzy
 #| msgid "Import failed"
 msgid "Bulk import relatives"
 msgstr "Įkeltis nepavyko"
 
-#: ../gramps/gui/fs/actions.py:646
+#: ../gramps/gui/fs/actions.py:690
 #, fuzzy, python-format
 #| msgid "%(name)s [%(gid)s]"
 msgid "Starting person: %(name)s [%(fsid)s]"
 msgstr "%(name)s [%(gid)s]"
 
-#: ../gramps/gui/fs/actions.py:668 ../gramps/gui/fs/fs_import/options.py:42
+#: ../gramps/gui/fs/actions.py:712 ../gramps/gui/fs/fs_import/options.py:42
 #, fuzzy
 #| msgid "Max ancestor generations"
 msgid "Ancestor generations"
 msgstr "Max protėvių kartų"
 
-#: ../gramps/gui/fs/actions.py:670
+#: ../gramps/gui/fs/actions.py:714
 #, fuzzy
 #| msgid "Number of generations:"
 msgid "Number of generations to import upward from the starting person."
 msgstr "Kartų skaičius:"
 
-#: ../gramps/gui/fs/actions.py:675 ../gramps/gui/fs/fs_import/options.py:46
+#: ../gramps/gui/fs/actions.py:719 ../gramps/gui/fs/fs_import/options.py:46
 #, fuzzy
 #| msgid "Max descendant generations"
 msgid "Descendant generations"
 msgstr "Max palikuonių kartų"
 
-#: ../gramps/gui/fs/actions.py:677
+#: ../gramps/gui/fs/actions.py:721
 #, fuzzy
 #| msgid "Number of generations:"
 msgid "Number of generations to import downward from the starting person."
 msgstr "Kartų skaičius:"
 
-#: ../gramps/gui/fs/actions.py:683 ../gramps/gui/fs/fs_import/options.py:56
+#: ../gramps/gui/fs/actions.py:727 ../gramps/gui/fs/fs_import/options.py:56
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
 #: ../gramps/plugins/textreport/kinshipreport.py:388
 msgid "Include spouses"
 msgstr "Įtraukti sutuoktinius"
 
-#: ../gramps/gui/fs/actions.py:685
+#: ../gramps/gui/fs/actions.py:729
 msgid "When off, import only the direct parent/child bloodline."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:688
+#: ../gramps/gui/fs/actions.py:732
 #, fuzzy
 #| msgid "Non existing person"
 msgid "Do not re-import existing people"
 msgstr "Neegzistuojantis asmuo"
 
-#: ../gramps/gui/fs/actions.py:691
+#: ../gramps/gui/fs/actions.py:735
 msgid "Keep existing linked Gramps people unchanged during the import."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:694 ../gramps/gui/fs/fs_import/options.py:60
+#: ../gramps/gui/fs/actions.py:738 ../gramps/gui/fs/fs_import/options.py:60
 #: ../gramps/plugins/textreport/detancestralreport.py:965
 #: ../gramps/plugins/textreport/detdescendantreport.py:1175
 msgid "Include sources"
 msgstr "Įtraukti šaltinius"
 
-#: ../gramps/gui/fs/actions.py:695
+#: ../gramps/gui/fs/actions.py:739
 #, fuzzy
 #| msgid "Import Family Tree"
 msgid "Fetch and import FamilySearch sources."
 msgstr "Įkelti giminės medį"
 
-#: ../gramps/gui/fs/actions.py:697 ../gramps/gui/fs/fs_import/options.py:64
+#: ../gramps/gui/fs/actions.py:741 ../gramps/gui/fs/fs_import/options.py:64
 #: ../gramps/plugins/textreport/detancestralreport.py:961
 #: ../gramps/plugins/textreport/detdescendantreport.py:1171
 msgid "Include notes"
 msgstr "Įtraukti pastabas"
 
-#: ../gramps/gui/fs/actions.py:698
+#: ../gramps/gui/fs/actions.py:742
 #, fuzzy
 #| msgid "Import Family Tree"
 msgid "Fetch and import FamilySearch notes."
 msgstr "Įkelti giminės medį"
 
-#: ../gramps/gui/fs/actions.py:700
+#: ../gramps/gui/fs/actions.py:744
 #, fuzzy
 #| msgid "Looking for broken parent relationships"
 msgid "Link imported parent/child relationships"
 msgstr "Ieškoma nutrauktų ryšių tarp tėvų"
 
-#: ../gramps/gui/fs/actions.py:703
+#: ../gramps/gui/fs/actions.py:747
 msgid ""
 "Create or reuse families so imported parents and children are connected."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:739 ../gramps/gui/fs/actions.py:741
+#: ../gramps/gui/fs/actions.py:783 ../gramps/gui/fs/actions.py:785
 #, fuzzy
 #| msgid "Family Group Report"
 msgid "Start FamilySearch import"
 msgstr "Šeimos grupės ataskaita"
 
-#: ../gramps/gui/fs/actions.py:758
+#: ../gramps/gui/fs/actions.py:802
 msgid ""
 "Choose the FamilySearch person to use as the starting point for this new "
 "Gramps tree."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:775
+#: ../gramps/gui/fs/actions.py:819
 #, fuzzy
 #| msgid "Web Family Tree export options"
 msgid "FamilySearch ID or person URL"
 msgstr "Internetinio giminės medžio iškėlimo parinktys"
 
-#: ../gramps/gui/fs/actions.py:776
+#: ../gramps/gui/fs/actions.py:820
 #, fuzzy
 #| msgid "Family ID"
 msgid "FamilySearch ID or URL"
 msgstr "Šeimos ID"
 
-#: ../gramps/gui/fs/actions.py:781
+#: ../gramps/gui/fs/actions.py:825
 #, fuzzy
 #| msgid "_Delete Family"
 msgid "Name, date, place, or FamilySearch ID"
 msgstr "_Ištrinti šeimą"
 
-#: ../gramps/gui/fs/actions.py:782
+#: ../gramps/gui/fs/actions.py:826
 #, fuzzy
 #| msgid "Web Search"
 msgid "Search"
 msgstr "Paieška internete"
 
-#: ../gramps/gui/fs/actions.py:800
+#: ../gramps/gui/fs/actions.py:844
 msgid "Life"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:856
+#: ../gramps/gui/fs/actions.py:900
 #, fuzzy
 #| msgid "Family ID"
 msgid "FamilySearch ID ready."
 msgstr "Šeimos ID"
 
-#: ../gramps/gui/fs/actions.py:860
+#: ../gramps/gui/fs/actions.py:904
 msgid "Enter a name, date, place, ID, or URL to search."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:865
+#: ../gramps/gui/fs/actions.py:909
 #, fuzzy
 #| msgid "Duplicate Family"
 msgid "Searching FamilySearch..."
 msgstr "Pasikartojanti šeima"
 
-#: ../gramps/gui/fs/actions.py:880
+#: ../gramps/gui/fs/actions.py:924
 #, fuzzy, python-format
 #| msgid "Searching family names"
 msgid "Search failed: %(error)s"
 msgstr "Ieškomi šeimos vardai"
 
-#: ../gramps/gui/fs/actions.py:890
+#: ../gramps/gui/fs/actions.py:934
 #, python-format
 msgid "Search results: %(count)d"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:893
+#: ../gramps/gui/fs/actions.py:937
 #, fuzzy
 #| msgid "Family Citations"
 msgid "No FamilySearch people found."
 msgstr "Šeimos citatos"
 
-#: ../gramps/gui/fs/actions.py:917
+#: ../gramps/gui/fs/actions.py:961
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1138
 #, fuzzy
 #| msgid "Family Group Report"
 msgid "FamilySearch person"
 msgstr "Šeimos grupės ataskaita"
 
-#: ../gramps/gui/fs/actions.py:964
+#: ../gramps/gui/fs/actions.py:1008
 msgid ""
 "No FamilySearch person was imported. Check the selected person ID and try "
 "again."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:993
+#: ../gramps/gui/fs/actions.py:1037
 msgid "Your tree is empty! Would you like to bulk import from FamilySearch?"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:994
+#: ../gramps/gui/fs/actions.py:1038
 #, fuzzy
 #| msgid "Center Person"
 msgid "Choose Starting Person"
 msgstr "Centrinis asmuo"
 
-#: ../gramps/gui/fs/actions.py:995
+#: ../gramps/gui/fs/actions.py:1039
 #, fuzzy
 msgid "Not now"
 msgstr "Nerasta"
 
-#: ../gramps/gui/fs/actions.py:1012 ../gramps/gui/fs/actions.py:1073
+#: ../gramps/gui/fs/actions.py:1056 ../gramps/gui/fs/actions.py:1117
 #, fuzzy
 #| msgid "family not complete"
 msgid "Bulk import complete."
 msgstr "šeimos informacija nepilna"
 
-#: ../gramps/gui/fs/actions.py:1051 ../gramps/gui/fs/actions.py:1089
-#: ../gramps/gui/fs/actions.py:1217 ../gramps/gui/fs/actions.py:1384
-#: ../gramps/gui/fs/actions.py:1698 ../gramps/gui/fs/actions.py:1899
+#: ../gramps/gui/fs/actions.py:1095 ../gramps/gui/fs/actions.py:1133
+#: ../gramps/gui/fs/actions.py:1261 ../gramps/gui/fs/actions.py:1428
+#: ../gramps/gui/fs/actions.py:1742 ../gramps/gui/fs/actions.py:1943
 msgid "No FamilySearch ID linked. Click 'Link FamilySearch ID' first."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1104
+#: ../gramps/gui/fs/actions.py:1148
 #, fuzzy, python-brace-format
 #| msgid "Sealed to Parents"
 msgid "Failed to fetch parents: {e}"
 msgstr "Patvirtinti tėvai"
 
-#: ../gramps/gui/fs/actions.py:1126
+#: ../gramps/gui/fs/actions.py:1170
 msgid "No parents found on FamilySearch for this person."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1135 ../gramps/gui/fs/actions.py:1271
-#: ../gramps/gui/fs/actions.py:1439
+#: ../gramps/gui/fs/actions.py:1179 ../gramps/gui/fs/actions.py:1315
+#: ../gramps/gui/fs/actions.py:1483
 msgid "  - already in tree"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1138
+#: ../gramps/gui/fs/actions.py:1182
 #, fuzzy
 msgid "Import parents"
 msgstr "Importuotojas"
 
-#: ../gramps/gui/fs/actions.py:1153
+#: ../gramps/gui/fs/actions.py:1197
 msgid "Parents imported but could not be located in the local database."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1157
+#: ../gramps/gui/fs/actions.py:1201
 #, fuzzy
 #| msgid "Family Links"
 msgid "FamilySearch: Link parents"
 msgstr "Šeimos nuorodos"
 
-#: ../gramps/gui/fs/actions.py:1206
+#: ../gramps/gui/fs/actions.py:1250
 msgid "Parent(s) imported and linked."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1232
+#: ../gramps/gui/fs/actions.py:1276
 #, python-brace-format
 msgid "Failed to fetch children: {e}"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1256
+#: ../gramps/gui/fs/actions.py:1300
 msgid "No children found on FamilySearch for this person."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1268
+#: ../gramps/gui/fs/actions.py:1312
 #, python-brace-format
 msgid " (other parent: {name})"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1275
+#: ../gramps/gui/fs/actions.py:1319
 #, fuzzy
 #| msgid "List children"
 msgid "Import children"
 msgstr "Išvardinti vaikus"
 
-#: ../gramps/gui/fs/actions.py:1295
+#: ../gramps/gui/fs/actions.py:1339
 msgid "Children imported but could not be located in the local database."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1299
+#: ../gramps/gui/fs/actions.py:1343
 #, fuzzy
 #| msgid "Family Children"
 msgid "FamilySearch: Link children"
 msgstr "Šeimos vaikai"
 
-#: ../gramps/gui/fs/actions.py:1367
+#: ../gramps/gui/fs/actions.py:1411
 msgid "Child(ren) imported and linked."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1399
+#: ../gramps/gui/fs/actions.py:1443
 #, python-brace-format
 msgid "Failed to fetch spouses: {e}"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1430
+#: ../gramps/gui/fs/actions.py:1474
 msgid "No spouses found on FamilySearch for this person."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1442
+#: ../gramps/gui/fs/actions.py:1486
 #, fuzzy
 msgid "Import spouse(s)"
 msgstr "_Pašalinti objektą"
 
-#: ../gramps/gui/fs/actions.py:1457
+#: ../gramps/gui/fs/actions.py:1501
 msgid "Spouses imported but could not be located in the local database."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1461
+#: ../gramps/gui/fs/actions.py:1505
 #, fuzzy
 #| msgid "Family Links"
 msgid "FamilySearch: Link spouses"
 msgstr "Šeimos nuorodos"
 
-#: ../gramps/gui/fs/actions.py:1511
+#: ../gramps/gui/fs/actions.py:1555
 msgid "Spouse(s) imported and linked."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1601
+#: ../gramps/gui/fs/actions.py:1645
 #, python-brace-format
 msgid "Cleared GEDCOMX in-memory indices: {n}"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1602
+#: ../gramps/gui/fs/actions.py:1646
 msgid "Reset shared FS Tree cache: yes"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1604
+#: ../gramps/gui/fs/actions.py:1648
 #, python-brace-format
 msgid "Cleared on-disk cache: yes ({path})"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1607
+#: ../gramps/gui/fs/actions.py:1651
 msgid "Cleared on-disk cache: (not available / not supported by cache helper)"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1616 ../gramps/gui/fs/actions.py:1617
+#: ../gramps/gui/fs/actions.py:1660 ../gramps/gui/fs/actions.py:1661
 #, fuzzy
 #| msgid "Family has changed"
 msgid "FamilySearch Tags"
 msgstr "Šeima pasikeitė"
 
-#: ../gramps/gui/fs/actions.py:1618
+#: ../gramps/gui/fs/actions.py:1662
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1768
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1841
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:385
@@ -17374,17 +17435,17 @@ msgstr "Šeima pasikeitė"
 msgid "Close"
 msgstr "Užverti"
 
-#: ../gramps/gui/fs/actions.py:1619
+#: ../gramps/gui/fs/actions.py:1663
 msgid "Retag all (Linked/NotLinked)"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1631
+#: ../gramps/gui/fs/actions.py:1675
 msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1651
+#: ../gramps/gui/fs/actions.py:1695
 #, python-brace-format
 msgid ""
 "Retag complete.\n"
@@ -17395,49 +17456,49 @@ msgid ""
 "Changed: {changed}"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1661
+#: ../gramps/gui/fs/actions.py:1705
 #, fuzzy, python-brace-format
 #| msgid "Rename failed"
 msgid "Retag failed: {e}"
 msgstr "Pervadinimas nepavyko"
 
-#: ../gramps/gui/fs/actions.py:1712
+#: ../gramps/gui/fs/actions.py:1756
 msgid "FamilySearch: Update FSID after redirect"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1756
+#: ../gramps/gui/fs/actions.py:1800
 msgid ""
 "Could not load this person from FamilySearch (no GEDCOMX person object)."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1765
+#: ../gramps/gui/fs/actions.py:1809
 #, python-brace-format
 msgid "Failed to download from FamilySearch: {e}"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1770
+#: ../gramps/gui/fs/actions.py:1814
 #, fuzzy
 #| msgid "Bookmark this person"
 msgid "FamilySearch: Sync this person"
 msgstr "Pasižymėti šį asmenį"
 
-#: ../gramps/gui/fs/actions.py:1830
+#: ../gramps/gui/fs/actions.py:1874
 #, fuzzy, python-brace-format
 #| msgid "Saving failed"
 msgid "Sync failed: {e}"
 msgstr "Išsaugoti nepavyko"
 
-#: ../gramps/gui/fs/actions.py:1838
+#: ../gramps/gui/fs/actions.py:1882
 msgid ""
 "Sync complete: facts/events, dates/places, and notes updated for this person."
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1883
+#: ../gramps/gui/fs/actions.py:1927
 #, python-brace-format
 msgid "Export to FamilySearch failed: {e}"
 msgstr ""
 
-#: ../gramps/gui/fs/actions.py:1915
+#: ../gramps/gui/fs/actions.py:1959
 #, python-brace-format
 msgid "Sync to FamilySearch failed: {e}"
 msgstr ""
@@ -17471,25 +17532,25 @@ msgstr ""
 msgid "Person Filter"
 msgstr "Asmenų filtras"
 
-#: ../gramps/gui/fs/compare/window.py:91 ../gramps/gui/viewmanager.py:625
+#: ../gramps/gui/fs/compare/window.py:91 ../gramps/gui/viewmanager.py:626
 msgid "FamilySearch is not configured (no session)."
 msgstr ""
 
-#: ../gramps/gui/fs/compare/window.py:204
+#: ../gramps/gui/fs/compare/window.py:212
 #, python-brace-format
 msgid ""
 "Could not open compare window:\n"
 "{e}"
 msgstr ""
 
-#: ../gramps/gui/fs/compare/window.py:214
+#: ../gramps/gui/fs/compare/window.py:222
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1967
 #, fuzzy
 #| msgid "Family Colors"
 msgid "FamilySearch Compare"
 msgstr "Šeimos spalvos"
 
-#: ../gramps/gui/fs/compare/window.py:217 ../gramps/gui/glade/rule.glade:509
+#: ../gramps/gui/fs/compare/window.py:225 ../gramps/gui/glade/rule.glade:509
 #: ../gramps/gui/glade/styleeditor.glade:416
 #: ../gramps/plugins/tool/finddupes.glade:130
 #: ../gramps/plugins/tool/mergecitations.glade:130
@@ -17497,12 +17558,12 @@ msgstr "Šeimos spalvos"
 msgid "Options"
 msgstr "Parinktys"
 
-#: ../gramps/gui/fs/compare/window.py:228
+#: ../gramps/gui/fs/compare/window.py:236
 msgid "FamilySearch: Compare"
 msgstr ""
 
-#: ../gramps/gui/fs/compare/window.py:229
-#: ../gramps/gui/fs/fs_import/importer.py:59
+#: ../gramps/gui/fs/compare/window.py:237
+#: ../gramps/gui/fs/fs_import/importer.py:87
 #: ../gramps/plugins/tool/findloop.py:96
 #: ../gramps/plugins/tool/notrelated.py:114
 #: ../gramps/plugins/tool/notrelated.py:254
@@ -17510,119 +17571,207 @@ msgstr ""
 msgid "Starting"
 msgstr "Pradžia"
 
-#: ../gramps/gui/fs/compare/window.py:253
+#: ../gramps/gui/fs/compare/window.py:261
 msgid "Building ordered list (1/2)"
 msgstr ""
 
-#: ../gramps/gui/fs/compare/window.py:283
+#: ../gramps/gui/fs/compare/window.py:291
 #, fuzzy
 #| msgid "Processing File"
 msgid "Processing list (2/2)"
 msgstr "Apdorojama rinkmena"
 
-#: ../gramps/gui/fs/compare/window.py:320
+#: ../gramps/gui/fs/compare/window.py:328
 #, fuzzy, python-format
 #| msgid "Not found"
 msgid "FS ID %s not found"
 msgstr "Nerasta"
 
-#: ../gramps/gui/fs/fs_import/importer.py:59
+#: ../gramps/gui/fs/fs_import/importer.py:87
 #, fuzzy
 #| msgid "Family Group Report"
 msgid "FamilySearch Import"
 msgstr "Šeimos grupės ataskaita"
 
-#: ../gramps/gui/fs/fs_import/importer.py:90
+#: ../gramps/gui/fs/fs_import/importer.py:118
 msgid "Downloading persons… (3/11)"
 msgstr ""
 
-#: ../gramps/gui/fs/fs_import/importer.py:92
+#: ../gramps/gui/fs/fs_import/importer.py:120
 #, fuzzy
 #| msgid "Youngest living person"
 msgid "Downloading person…"
 msgstr "Jauniausias gyvenantis asmuo"
 
-#: ../gramps/gui/fs/fs_import/importer.py:104
+#: ../gramps/gui/fs/fs_import/importer.py:142
 msgid "Downloading ancestors… (4/11)"
 msgstr ""
 
-#: ../gramps/gui/fs/fs_import/importer.py:112
+#: ../gramps/gui/fs/fs_import/importer.py:152
 #, fuzzy, python-format
-#| msgid "Submission: Generations of ancestors"
-msgid "Downloading %d generations of ancestors…"
-msgstr "Pateikimas: protėvių kartos"
+#| msgid ""
+#| "Total ancestors in generations %(second_generation)d to "
+#| "%(last_generation)d is %(count)d. %(percent)s"
+msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
+msgid_plural ""
+"Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
+msgstr[0] ""
+"Kartose nuo%(second_generation)d iki %(last_generation)d bendras palikuonių "
+"skaičius yra %(count)d. %(percent)s"
+msgstr[1] ""
+"Kartose nuo%(second_generation)d iki %(last_generation)d bendras palikuonių "
+"skaičius yra %(count)d. %(percent)s"
+msgstr[2] ""
+"Kartose nuo%(second_generation)d iki %(last_generation)d bendras palikuonių "
+"skaičius yra %(count)d. %(percent)s"
 
-#: ../gramps/gui/fs/fs_import/importer.py:115
+#: ../gramps/gui/fs/fs_import/importer.py:159
+#, python-format
+msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
+msgstr ""
+
+#: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
 msgstr ""
 
-#: ../gramps/gui/fs/fs_import/importer.py:123
-#, fuzzy, python-format
-#| msgid "Submission: Generations of descendants"
-msgid "Downloading %d generations of descendants…"
-msgstr "Pateikimas: palikuonių kartos"
+#: ../gramps/gui/fs/fs_import/importer.py:178
+#, python-format
+msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)"
+msgid_plural ""
+"Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
-#: ../gramps/gui/fs/fs_import/importer.py:128
+#: ../gramps/gui/fs/fs_import/importer.py:185
+#, python-format
+msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
+msgstr ""
+
+#: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr ""
 
-#: ../gramps/gui/fs/fs_import/importer.py:130
-msgid "Downloading spouses…"
-msgstr ""
+#: ../gramps/gui/fs/fs_import/importer.py:200
+#, fuzzy, python-format
+#| msgid "Youngest living person"
+msgid "Downloading spouses for %d person…"
+msgid_plural "Downloading spouses for %d people…"
+msgstr[0] "Jauniausias gyvenantis asmuo"
+msgstr[1] "Jauniausias gyvenantis asmuo"
+msgstr[2] "Jauniausias gyvenantis asmuo"
 
-#: ../gramps/gui/fs/fs_import/importer.py:136
+#: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
 msgstr ""
 
-#: ../gramps/gui/fs/fs_import/importer.py:139
+#: ../gramps/gui/fs/fs_import/importer.py:213
 msgid "Downloading notes and sources…"
 msgstr ""
 
-#: ../gramps/gui/fs/fs_import/importer.py:182
+#: ../gramps/gui/fs/fs_import/importer.py:285
+#, python-format
+msgid "  …notes/sources: %(done)d/%(total)d"
+msgstr ""
+
+#: ../gramps/gui/fs/fs_import/importer.py:296
 #, fuzzy
 #| msgid "Import"
 msgid "Importing…"
 msgstr "Įkelti"
 
-#: ../gramps/gui/fs/fs_import/importer.py:194
+#: ../gramps/gui/fs/fs_import/importer.py:308
 msgid "Importing places… (8/11)"
 msgstr ""
 
-#: ../gramps/gui/fs/fs_import/importer.py:195
+#: ../gramps/gui/fs/fs_import/importer.py:309
 #, fuzzy
 msgid "Importing places…"
 msgstr "Rūšiuojami asmeniniai įvykiai..."
 
-#: ../gramps/gui/fs/fs_import/importer.py:200
+#: ../gramps/gui/fs/fs_import/importer.py:314
 #, fuzzy
 msgid "Importing persons… (9/11)"
 msgstr "Rūšiuojami asmeniniai įvykiai..."
 
-#: ../gramps/gui/fs/fs_import/importer.py:201
+#: ../gramps/gui/fs/fs_import/importer.py:315
 #, fuzzy
 msgid "Importing persons…"
 msgstr "Rūšiuojami asmeniniai įvykiai..."
 
-#: ../gramps/gui/fs/fs_import/importer.py:207
+#: ../gramps/gui/fs/fs_import/importer.py:321
 #, fuzzy
 msgid "Importing families… (10/11)"
 msgstr "Įkeliamos šeimos"
 
-#: ../gramps/gui/fs/fs_import/importer.py:209
+#: ../gramps/gui/fs/fs_import/importer.py:323
 #, fuzzy
 msgid "Importing families…"
 msgstr "Įkeliamos šeimos"
 
-#: ../gramps/gui/fs/fs_import/importer.py:217
-#: ../gramps/gui/fs/fs_import/importer.py:229
+#: ../gramps/gui/fs/fs_import/importer.py:331
+#: ../gramps/gui/fs/fs_import/importer.py:343
 msgid "Importing children… (11/11)"
 msgstr ""
 
-#: ../gramps/gui/fs/fs_import/importer.py:220
+#: ../gramps/gui/fs/fs_import/importer.py:334
 #, fuzzy
 #| msgid "Importing archive..."
 msgid "Importing children…"
 msgstr "Įkeliamas archyvas..."
+
+#: ../gramps/gui/fs/fs_import/importer.py:381
+#, fuzzy
+#| msgid "Import Family Tree"
+msgid "Resolving FamilySearch timestamps…"
+msgstr "Įkelti giminės medį"
+
+#: ../gramps/gui/fs/fs_import/importer.py:385
+#, python-format
+msgid "Resolving FamilySearch timestamps for %d person…"
+msgid_plural "Resolving FamilySearch timestamps for %d people…"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../gramps/gui/fs/fs_import/importer.py:397
+#, python-format
+msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
+msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../gramps/gui/fs/fs_import/importer.py:405
+#, fuzzy
+#| msgid "Refreshing Addon List"
+msgid "Refreshing comparison status…"
+msgstr "Atnaujinamas priedų sąrašas"
+
+#: ../gramps/gui/fs/fs_import/importer.py:410
+#, python-format
+msgid "Refreshing comparison status for %d person…"
+msgid_plural "Refreshing comparison status for %d people…"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../gramps/gui/fs/fs_import/importer.py:448
+#, python-format
+msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
+msgstr ""
+
+#: ../gramps/gui/fs/fs_import/importer.py:453
+#, python-format
+msgid "  …comparison status: %(done)d/%(total)d"
+msgstr ""
+
+#: ../gramps/gui/fs/fs_import/importer.py:463
+#, python-format
+msgid ""
+"Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
+"%(failed)d failed)"
+msgstr ""
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
@@ -17957,7 +18106,7 @@ msgid "Merge selected"
 msgstr "Apjungti pasirinktas pastabas"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1839
-#: ../gramps/gui/plug/_windows.py:394 ../gramps/plugins/gramplet/leak.py:114
+#: ../gramps/gui/plug/_windows.py:435 ../gramps/plugins/gramplet/leak.py:114
 msgid "Refresh"
 msgstr "Atšviežinti"
 
@@ -18283,7 +18432,7 @@ msgstr "Pirma uždarykite šitą"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:509
 #: ../gramps/gui/glade/mergedata.glade:170
-#: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2149
+#: ../gramps/gui/glade/mergedata.glade:185 ../gramps/gui/plug/_windows.py:2200
 #: ../gramps/plugins/tool/changenames.py:225
 #: ../gramps/plugins/tool/patchnames.py:453
 msgid "Select"
@@ -18637,143 +18786,155 @@ msgstr "Atitikmenų nerasta"
 msgid "FamilySearch export failed: {e}"
 msgstr ""
 
-#: ../gramps/gui/fs/tools_window.py:331
+#: ../gramps/gui/fs/tools_window.py:332
 #, fuzzy
 #| msgid "Family To Do"
 msgid "FamilySearch Tools"
 msgstr "Šeimos užduotis"
 
-#: ../gramps/gui/fs/tools_window.py:350 ../gramps/gui/fs/tools_window.py:770
+#: ../gramps/gui/fs/tools_window.py:351 ../gramps/gui/fs/tools_window.py:761
 #, fuzzy
 #| msgid "Edit Person (%s)"
 msgid "Editor person: (none)"
 msgstr "Taisyti asmenį (%s)"
 
-#: ../gramps/gui/fs/tools_window.py:378
+#: ../gramps/gui/fs/tools_window.py:358
+#, fuzzy
+#| msgid "Only on leap years"
+msgid "Open Person in FamilySearch"
+msgstr "Tik keliamaisiais metais"
+
+#: ../gramps/gui/fs/tools_window.py:381
 #, fuzzy
 #| msgid "Person Citations"
 msgid "Single Person Actions"
 msgstr "Asmens citatos"
 
-#: ../gramps/gui/fs/tools_window.py:382
+#: ../gramps/gui/fs/tools_window.py:385
 #, fuzzy
 #| msgid "Action"
 msgid "Bulk Actions"
 msgstr "Veiksmas"
 
-#: ../gramps/gui/fs/tools_window.py:388
+#: ../gramps/gui/fs/tools_window.py:391
 #, fuzzy
 #| msgid "Import failed"
 msgid "Import relatives"
 msgstr "Įkeltis nepavyko"
 
-#: ../gramps/gui/fs/tools_window.py:392
+#: ../gramps/gui/fs/tools_window.py:395
 #, fuzzy
 msgid "Import Parents"
 msgstr "Įkelti iš Pro-Gen (%s)"
 
-#: ../gramps/gui/fs/tools_window.py:393
+#: ../gramps/gui/fs/tools_window.py:396
 #, fuzzy
 #| msgid "Indent Spouses"
 msgid "Import Spouse"
 msgstr "Įtraukti sutuoktiniai"
 
-#: ../gramps/gui/fs/tools_window.py:394
+#: ../gramps/gui/fs/tools_window.py:397
 #, fuzzy
 #| msgid "Import failed"
 msgid "Import Children"
 msgstr "Įkeltis nepavyko"
 
-#: ../gramps/gui/fs/tools_window.py:399 ../gramps/gui/fs/tools_window.py:419
+#: ../gramps/gui/fs/tools_window.py:402 ../gramps/gui/fs/tools_window.py:422
 #: ../gramps/gui/plug/tool.py:71
 msgid "Utilities"
 msgstr "Pagalbinės programos"
 
-#: ../gramps/gui/fs/tools_window.py:402
+#: ../gramps/gui/fs/tools_window.py:405
 #, fuzzy
 #| msgid "Cleared"
 msgid "Clear Cache"
 msgstr "Išvalyta"
 
-#: ../gramps/gui/fs/tools_window.py:408
+#: ../gramps/gui/fs/tools_window.py:411
 #, fuzzy
 #| msgid "All generations"
 msgid "Import multiple generations"
 msgstr "Visos kartos"
 
-#: ../gramps/gui/fs/tools_window.py:412
+#: ../gramps/gui/fs/tools_window.py:415
 #, fuzzy
 #| msgid "Import failed"
 msgid "Bulk Import Relatives"
 msgstr "Įkeltis nepavyko"
 
-#: ../gramps/gui/fs/tools_window.py:414
+#: ../gramps/gui/fs/tools_window.py:417
 #, fuzzy
 #| msgid "Matches all descendants for the specified person"
 msgid "Import ancestors and descendants from the selected FamilySearch person."
 msgstr "Visi pasirinkto asmens palikuonys"
 
-#: ../gramps/gui/fs/tools_window.py:422
+#: ../gramps/gui/fs/tools_window.py:425
 #, fuzzy
 #| msgid "Tags"
 msgid "Tags..."
 msgstr "Gairės"
 
-#: ../gramps/gui/fs/tools_window.py:534
+#: ../gramps/gui/fs/tools_window.py:538
 #, fuzzy
 #| msgid "Person Citations"
 msgid "Person actions"
 msgstr "Asmens citatos"
 
-#: ../gramps/gui/fs/tools_window.py:544
+#: ../gramps/gui/fs/tools_window.py:548
 #, fuzzy
 #| msgid "Co_mpare"
 msgid "Compare"
 msgstr "_Palyginti"
 
-#: ../gramps/gui/fs/tools_window.py:549
+#: ../gramps/gui/fs/tools_window.py:553
 msgid "Sync from FamilySearch"
 msgstr ""
 
-#: ../gramps/gui/fs/tools_window.py:550
+#: ../gramps/gui/fs/tools_window.py:554
 msgid "Sync to FamilySearch..."
 msgstr ""
 
-#: ../gramps/gui/fs/tools_window.py:552
+#: ../gramps/gui/fs/tools_window.py:556
 msgid "Overwrite selected FamilySearch fields with Gramps values (no deletes)."
 msgstr ""
 
-#: ../gramps/gui/fs/tools_window.py:559
+#: ../gramps/gui/fs/tools_window.py:563
 #, fuzzy
 #| msgid "Select Family"
 msgid "Export to FamilySearch"
 msgstr "Pasirinkite šeimą"
 
-#: ../gramps/gui/fs/tools_window.py:562
+#: ../gramps/gui/fs/tools_window.py:566
 msgid ""
 "Create missing people on FamilySearch and link relationships (name + birth/"
 "death)."
 msgstr ""
 
-#: ../gramps/gui/fs/tools_window.py:783
+#: ../gramps/gui/fs/tools_window.py:635
+#, fuzzy
+#| msgid "Merge Family"
+msgid "Open FamilySearch.org"
+msgstr "Apjungti šeimą"
+
+#: ../gramps/gui/fs/tools_window.py:774
 #, fuzzy, python-format
 #| msgid "%(name)s [%(gid)s]"
 msgid "Editor person: %(name)s  [%(gid)s]"
 msgstr "%(name)s [%(gid)s]"
 
-#: ../gramps/gui/fs/tools_window.py:791
+#: ../gramps/gui/fs/tools_window.py:782
 #, fuzzy, python-format
 #| msgid "Person: %(name)s"
 msgid "Editor person: %(name)s"
 msgstr "Asmuo: %(name)s"
 
-#: ../gramps/gui/fs/tools_window.py:809
+#: ../gramps/gui/fs/tools_window.py:801
 #, fuzzy
 #| msgid "Family ID"
 msgid "Add FamilySearch ID"
 msgstr "Šeimos ID"
 
-#: ../gramps/gui/fs/tools_window.py:815
+#: ../gramps/gui/fs/tools_window.py:807
 #, fuzzy
 #| msgid "Family ID"
 msgid "Edit FamilySearch ID"
@@ -19093,7 +19254,7 @@ msgstr "Išeiti _neišsaugojus pakeitimų"
 #: ../gramps/gui/glade/dialog.glade:935
 #: ../gramps/gui/plug/report/_bookdialog.py:648
 #: ../gramps/gui/views/listview.py:1260
-#: ../gramps/gui/widgets/grampletpane.py:613
+#: ../gramps/gui/widgets/grampletpane.py:614
 #: ../gramps/plugins/tool/eventcmp.py:409
 msgid "_Save"
 msgstr "_Išsaugoti"
@@ -21141,7 +21302,7 @@ msgid "Install Selected _Addons"
 msgstr "Įdiegti pasi_rinktus papildinius"
 
 #: ../gramps/gui/glade/updateaddons.glade:70
-#: ../gramps/gui/plug/_windows.py:2126
+#: ../gramps/gui/plug/_windows.py:2177
 msgid "Available Gramps Updates for Addons"
 msgstr "Prieinami Gramps atnaujinimai ir papildiniai"
 
@@ -21870,7 +22031,7 @@ msgstr "Pasirinkite %s šrifto spalvą"
 msgid "Save As"
 msgstr "Išsaugoti kaip"
 
-#: ../gramps/gui/plug/_guioptions.py:1761 ../gramps/gui/plug/_windows.py:1443
+#: ../gramps/gui/plug/_guioptions.py:1761 ../gramps/gui/plug/_windows.py:1494
 #: ../gramps/gui/plug/report/_bookdialog.py:649
 #: ../gramps/gui/plug/report/_fileentry.py:67
 msgid "_Open"
@@ -21881,126 +22042,138 @@ msgstr "_Atverti"
 msgid "Style Editor"
 msgstr "Stilių redaktorius"
 
-#: ../gramps/gui/plug/_windows.py:236
+#: ../gramps/gui/plug/_windows.py:243
 msgid "Project"
 msgstr "Projektas"
 
-#: ../gramps/gui/plug/_windows.py:240
+#: ../gramps/gui/plug/_windows.py:247
 msgid "Audience"
 msgstr "Auditorija"
 
-#: ../gramps/gui/plug/_windows.py:244 ../gramps/gui/plug/_windows.py:1665
+#: ../gramps/gui/plug/_windows.py:251 ../gramps/gui/plug/_windows.py:1716
 msgid "Version"
 msgstr "Versija"
 
-#: ../gramps/gui/plug/_windows.py:247
+#: ../gramps/gui/plug/_windows.py:254
 #, fuzzy
 #| msgid "Data version"
 msgid "Installed version"
 msgstr "Duomenų versija"
 
-#: ../gramps/gui/plug/_windows.py:265 ../gramps/gui/plug/_windows.py:266
+#: ../gramps/gui/plug/_windows.py:272 ../gramps/gui/plug/_windows.py:273
 #, fuzzy
 #| msgid "Unstable"
 msgid "Install"
 msgstr "Nestabilus"
 
-#: ../gramps/gui/plug/_windows.py:271
+#: ../gramps/gui/plug/_windows.py:278
 msgid "Wiki"
 msgstr "Vikipedija"
 
-#: ../gramps/gui/plug/_windows.py:276
+#: ../gramps/gui/plug/_windows.py:283
 msgid "Requires"
 msgstr "Reikalauja"
 
-#: ../gramps/gui/plug/_windows.py:281
+#: ../gramps/gui/plug/_windows.py:288
 msgid "Update"
 msgstr "Atnaujinti"
 
-#: ../gramps/gui/plug/_windows.py:308 ../gramps/gui/plug/_windows.py:319
+#: ../gramps/gui/plug/_windows.py:327 ../gramps/gui/plug/_windows.py:346
 msgid "Module installation failed"
 msgstr "Modulio diegimas nepavyko"
 
-#: ../gramps/gui/plug/_windows.py:320
+#: ../gramps/gui/plug/_windows.py:347
 msgid "Gramps was unable to install the required modules"
 msgstr "Gramps negalėjo įdiegti reikiamų modulių"
 
-#: ../gramps/gui/plug/_windows.py:350
+#: ../gramps/gui/plug/_windows.py:370
+#, fuzzy
+#| msgid "Module installation failed"
+msgid "Addon installation failed"
+msgstr "Modulio diegimas nepavyko"
+
+#: ../gramps/gui/plug/_windows.py:371
+#, fuzzy, python-format
+#| msgid "Gramps was unable to install the required modules"
+msgid "Gramps was unable to install '%s'."
+msgstr "Gramps negalėjo įdiegti reikiamų modulių"
+
+#: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
 msgstr "Reikalavimai"
 
-#: ../gramps/gui/plug/_windows.py:386
+#: ../gramps/gui/plug/_windows.py:427
 msgid "Addon Manager"
 msgstr "Papildinių tvarkytuvė"
 
-#: ../gramps/gui/plug/_windows.py:425
+#: ../gramps/gui/plug/_windows.py:466
 msgid "Filters"
 msgstr "Filtrai"
 
-#: ../gramps/gui/plug/_windows.py:431
+#: ../gramps/gui/plug/_windows.py:472
 msgid "All addons"
 msgstr "Visi įskiepiai"
 
-#: ../gramps/gui/plug/_windows.py:432 ../gramps/gui/plug/_windows.py:655
+#: ../gramps/gui/plug/_windows.py:473 ../gramps/gui/plug/_windows.py:706
 msgid "Not installed"
 msgstr "Neįdiegtas"
 
-#: ../gramps/gui/plug/_windows.py:433 ../gramps/gui/plug/_windows.py:658
+#: ../gramps/gui/plug/_windows.py:474 ../gramps/gui/plug/_windows.py:709
 msgid "Installed"
 msgstr "Įdiegtas"
 
-#: ../gramps/gui/plug/_windows.py:434 ../gramps/gui/plug/_windows.py:661
+#: ../gramps/gui/plug/_windows.py:475 ../gramps/gui/plug/_windows.py:712
 #: ../gramps/plugins/webreport/basepage.py:2083
 #: ../gramps/plugins/webreport/basepage.py:2151
 msgid "Updates"
 msgstr "Atnaujinimai"
 
-#: ../gramps/gui/plug/_windows.py:446
+#: ../gramps/gui/plug/_windows.py:487
 msgid "All types"
 msgstr "Visos rūšys"
 
-#: ../gramps/gui/plug/_windows.py:454
+#: ../gramps/gui/plug/_windows.py:495
 msgid "All audiences"
 msgstr "Visos auditorijos"
 
-#: ../gramps/gui/plug/_windows.py:461
+#: ../gramps/gui/plug/_windows.py:502
 msgid "All statuses"
 msgstr "Visos būsenos"
 
-#: ../gramps/gui/plug/_windows.py:469
+#: ../gramps/gui/plug/_windows.py:510
 #, fuzzy
 msgid "Reset addon filters to defaults"
 msgstr "Atstatyti numatytuosius grampletus?"
 
-#: ../gramps/gui/plug/_windows.py:483
+#: ../gramps/gui/plug/_windows.py:524
 #, fuzzy
 #| msgid "Setting"
 msgid "Settings"
 msgstr "Nustatymai"
 
-#: ../gramps/gui/plug/_windows.py:486
+#: ../gramps/gui/plug/_windows.py:527
 #, fuzzy
 #| msgid "Every object"
 msgid "Projects"
 msgstr "Visi objektai"
 
-#: ../gramps/gui/plug/_windows.py:532 ../gramps/gui/plug/_windows.py:666
+#: ../gramps/gui/plug/_windows.py:573 ../gramps/gui/plug/_windows.py:717
 #, fuzzy
 #| msgid "Every object"
 msgid "All projects"
 msgstr "Visi objektai"
 
-#: ../gramps/gui/plug/_windows.py:544
+#: ../gramps/gui/plug/_windows.py:585
 msgid "Loading..."
 msgstr "Įkeliama..."
 
-#: ../gramps/gui/plug/_windows.py:578
+#: ../gramps/gui/plug/_windows.py:619
 #, fuzzy
 #| msgid "Operation failed"
 msgid "Addon Registration Failed"
 msgstr "Veiksmas neįvykdytas"
 
-#: ../gramps/gui/plug/_windows.py:580
+#: ../gramps/gui/plug/_windows.py:621
 #, python-format
 msgid ""
 "The addon '%(addon_id)s' could not be registered and will be unavailable in "
@@ -22011,313 +22184,313 @@ msgid ""
 "project URL matches Gramps %(major_version)s."
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:612
+#: ../gramps/gui/plug/_windows.py:654
 #, fuzzy
 #| msgid "No matches found"
 msgid "No matching addons found."
 msgstr "Atitikmenų nerasta"
 
-#: ../gramps/gui/plug/_windows.py:726
+#: ../gramps/gui/plug/_windows.py:777
 msgid "Insert a project"
 msgstr "Įterpti projektą"
 
-#: ../gramps/gui/plug/_windows.py:728
+#: ../gramps/gui/plug/_windows.py:779
 #, fuzzy
 #| msgid "Remove the selected person"
 msgid "Remove the selected project"
 msgstr "Pašalinti pasirinktą asmenį"
 
-#: ../gramps/gui/plug/_windows.py:730
+#: ../gramps/gui/plug/_windows.py:781
 #, fuzzy
 #| msgid "Move the child up in the children list"
 msgid "Move project upwards in the list"
 msgstr "Vaikų sąraše perkelti vaiką į viršų"
 
-#: ../gramps/gui/plug/_windows.py:732
+#: ../gramps/gui/plug/_windows.py:783
 #, fuzzy
 #| msgid "Move the child down in the children list"
 msgid "Move project downwards in the list"
 msgstr "Vaikų sąraše perkelti vaiką į apačią"
 
-#: ../gramps/gui/plug/_windows.py:734
+#: ../gramps/gui/plug/_windows.py:785
 #, fuzzy
 msgid "Revert to the project defaults"
 msgstr "Atstatyti numatytuosius grampletus?"
 
-#: ../gramps/gui/plug/_windows.py:771
+#: ../gramps/gui/plug/_windows.py:822
 msgid "Allow Gramps to install required Python modules"
 msgstr "Leisti Gramps įdiegti reikiamus Python modulius"
 
-#: ../gramps/gui/plug/_windows.py:773
+#: ../gramps/gui/plug/_windows.py:824
 msgid "Where possible, try to install any missing prerequisite Python modules"
 msgstr ""
 "Jei įmanoma, bandyti įdiegti visus trūkstamus būtinuosius Python modulius"
 
-#: ../gramps/gui/plug/_windows.py:781
+#: ../gramps/gui/plug/_windows.py:832
 msgid "Scheduled update checks"
 msgstr "Suplanuoti atnaujinimų patikrinimai"
 
-#: ../gramps/gui/plug/_windows.py:797
+#: ../gramps/gui/plug/_windows.py:848
 msgid "Once a month"
 msgstr "Kas mėnesį"
 
-#: ../gramps/gui/plug/_windows.py:798
+#: ../gramps/gui/plug/_windows.py:849
 msgid "Once a week"
 msgstr "Kas savaitę"
 
-#: ../gramps/gui/plug/_windows.py:799
+#: ../gramps/gui/plug/_windows.py:850
 msgid "Once a day"
 msgstr "Kasdien"
 
-#: ../gramps/gui/plug/_windows.py:800
+#: ../gramps/gui/plug/_windows.py:851
 msgid "Always"
 msgstr "Visada"
 
-#: ../gramps/gui/plug/_windows.py:806
+#: ../gramps/gui/plug/_windows.py:857
 msgid "Check for addon updates"
 msgstr "Ieškoti priedų atnaujinimų"
 
-#: ../gramps/gui/plug/_windows.py:813
+#: ../gramps/gui/plug/_windows.py:864
 msgid "Updated addons only"
 msgstr "Tik atnaujinti papildiniai"
 
-#: ../gramps/gui/plug/_windows.py:814
+#: ../gramps/gui/plug/_windows.py:865
 msgid "New addons only"
 msgstr "TIk nauji papildiniai"
 
-#: ../gramps/gui/plug/_windows.py:815
+#: ../gramps/gui/plug/_windows.py:866
 msgid "New and updated addons"
 msgstr "Nauji ir atnaujinti papildiniai"
 
-#: ../gramps/gui/plug/_windows.py:826
+#: ../gramps/gui/plug/_windows.py:877
 msgid "What to check"
 msgstr "Ką tikrinti"
 
-#: ../gramps/gui/plug/_windows.py:832
+#: ../gramps/gui/plug/_windows.py:883
 msgid "Do not ask about previously notified addons"
 msgstr "Neklausti apie anksčiau siūlytus papildinius"
 
-#: ../gramps/gui/plug/_windows.py:839
+#: ../gramps/gui/plug/_windows.py:890
 msgid "Check for updated addons now"
 msgstr "Ieškoti atnaujintų papildinių"
 
-#: ../gramps/gui/plug/_windows.py:852
+#: ../gramps/gui/plug/_windows.py:903
 #, fuzzy
 #| msgid "New Person"
 msgid "New Project"
 msgstr "Naujas asmuo"
 
-#: ../gramps/gui/plug/_windows.py:854
+#: ../gramps/gui/plug/_windows.py:905
 #, fuzzy
 #| msgid "Edit Person"
 msgid "Edit Project"
 msgstr "Taisyti asmenį"
 
-#: ../gramps/gui/plug/_windows.py:862
+#: ../gramps/gui/plug/_windows.py:913
 #, fuzzy
 #| msgid "Preferred name"
 msgid "Project name"
 msgstr "Pageidaujamas vardas"
 
-#: ../gramps/gui/plug/_windows.py:960
+#: ../gramps/gui/plug/_windows.py:1011
 #, fuzzy
 msgid "Restore project defaults"
 msgstr "Atstatyti numatytuosius grampletus?"
 
-#: ../gramps/gui/plug/_windows.py:961
+#: ../gramps/gui/plug/_windows.py:1012
 msgid "Are you sure?"
 msgstr "Ar esate užtikrinti?"
 
-#: ../gramps/gui/plug/_windows.py:985
+#: ../gramps/gui/plug/_windows.py:1036
 msgid "Checking Addons Failed"
 msgstr "Papildinių nepavyko patikrinti"
 
-#: ../gramps/gui/plug/_windows.py:987
+#: ../gramps/gui/plug/_windows.py:1038
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "Panašu, kad papildinių saugykla neprieinama. Bandykite vėliau."
 
-#: ../gramps/gui/plug/_windows.py:1002
+#: ../gramps/gui/plug/_windows.py:1053
 msgid "There are no available addons of this type"
 msgstr "Šio rūšies priedai neprieinami"
 
-#: ../gramps/gui/plug/_windows.py:1003
+#: ../gramps/gui/plug/_windows.py:1054
 msgid "' and '"
 msgstr "' ir '"
 
-#: ../gramps/gui/plug/_windows.py:1003
+#: ../gramps/gui/plug/_windows.py:1054
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Tikrinta: %s"
 
-#: ../gramps/gui/plug/_windows.py:1009
+#: ../gramps/gui/plug/_windows.py:1060
 msgid "new"
 msgstr "naujas"
 
-#: ../gramps/gui/plug/_windows.py:1009
+#: ../gramps/gui/plug/_windows.py:1060
 msgid "update"
 msgstr "atnaujinti"
 
-#: ../gramps/gui/plug/_windows.py:1044
+#: ../gramps/gui/plug/_windows.py:1095
 msgid "Hidden"
 msgstr "Paslėptas"
 
-#: ../gramps/gui/plug/_windows.py:1045
+#: ../gramps/gui/plug/_windows.py:1096
 msgid "Visible"
 msgstr "Matomas"
 
-#: ../gramps/gui/plug/_windows.py:1050
+#: ../gramps/gui/plug/_windows.py:1101
 msgid "Plugin Manager"
 msgstr "Įskiepių tvarkymas"
 
-#: ../gramps/gui/plug/_windows.py:1102 ../gramps/gui/plug/_windows.py:1160
+#: ../gramps/gui/plug/_windows.py:1153 ../gramps/gui/plug/_windows.py:1211
 msgid "Info"
 msgstr "Informacija"
 
-#: ../gramps/gui/plug/_windows.py:1105 ../gramps/gui/plug/_windows.py:1163
+#: ../gramps/gui/plug/_windows.py:1156 ../gramps/gui/plug/_windows.py:1214
 msgid "Hide/Unhide"
 msgstr "Slėpti/Rodyti"
 
-#: ../gramps/gui/plug/_windows.py:1114 ../gramps/gui/plug/_windows.py:1173
+#: ../gramps/gui/plug/_windows.py:1165 ../gramps/gui/plug/_windows.py:1224
 msgid "Load"
 msgstr "Įkelti"
 
-#: ../gramps/gui/plug/_windows.py:1120
+#: ../gramps/gui/plug/_windows.py:1171
 msgid "Registered Plugins"
 msgstr "Registruoti įskiepiai"
 
-#: ../gramps/gui/plug/_windows.py:1139
+#: ../gramps/gui/plug/_windows.py:1190
 msgid "Loaded"
 msgstr "Įkeltas"
 
-#: ../gramps/gui/plug/_windows.py:1143
+#: ../gramps/gui/plug/_windows.py:1194
 #: ../gramps/plugins/importer/importprogen.glade:466
 #: ../gramps/plugins/importer/importprogen.glade:1068
 msgid "File"
 msgstr "Rinkmena"
 
-#: ../gramps/gui/plug/_windows.py:1150
+#: ../gramps/gui/plug/_windows.py:1201
 msgid "Message"
 msgstr "Pranešimas"
 
-#: ../gramps/gui/plug/_windows.py:1179
+#: ../gramps/gui/plug/_windows.py:1230
 msgid "Loaded Plugins"
 msgstr "Įkelti įskiepiai"
 
-#: ../gramps/gui/plug/_windows.py:1201
+#: ../gramps/gui/plug/_windows.py:1252
 msgid "Addon Name"
 msgstr "Papildinio pavadinimas"
 
-#: ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/plug/_windows.py:1264
 msgid "Path to Addon:"
 msgstr "Kelias iki priedo:"
 
-#: ../gramps/gui/plug/_windows.py:1233
+#: ../gramps/gui/plug/_windows.py:1284
 msgid "Install Addon"
 msgstr "Įdiegti priedą"
 
-#: ../gramps/gui/plug/_windows.py:1236
+#: ../gramps/gui/plug/_windows.py:1287
 msgid "Install All Addons"
 msgstr "Įdiegti visus priedus"
 
-#: ../gramps/gui/plug/_windows.py:1239
+#: ../gramps/gui/plug/_windows.py:1290
 msgid "Refresh Addon List"
 msgstr "Atnaujinti priedų sąrašą"
 
-#: ../gramps/gui/plug/_windows.py:1252
+#: ../gramps/gui/plug/_windows.py:1303
 msgid "Reload"
 msgstr "Įkelti iš naujo"
 
-#: ../gramps/gui/plug/_windows.py:1280
+#: ../gramps/gui/plug/_windows.py:1331
 msgid "Refreshing Addon List"
 msgstr "Atnaujinamas priedų sąrašas"
 
-#: ../gramps/gui/plug/_windows.py:1281 ../gramps/gui/plug/_windows.py:1286
-#: ../gramps/gui/plug/_windows.py:1419
+#: ../gramps/gui/plug/_windows.py:1332 ../gramps/gui/plug/_windows.py:1337
+#: ../gramps/gui/plug/_windows.py:1470
 msgid "Reading gramps-project.org..."
 msgstr "Skaitomas gramps-project.org..."
 
-#: ../gramps/gui/plug/_windows.py:1304
+#: ../gramps/gui/plug/_windows.py:1355
 msgid "Checking addon..."
 msgstr "Tikrinamas priedas..."
 
-#: ../gramps/gui/plug/_windows.py:1312
+#: ../gramps/gui/plug/_windows.py:1363
 msgid "Unknown Help URL"
 msgstr "Nežinomas pagalbos URL"
 
-#: ../gramps/gui/plug/_windows.py:1323
+#: ../gramps/gui/plug/_windows.py:1374
 msgid "Unknown URL"
 msgstr "Nežinomas URL"
 
-#: ../gramps/gui/plug/_windows.py:1383
+#: ../gramps/gui/plug/_windows.py:1434
 msgid "Install all Addons"
 msgstr "Įdiegti visus Priedus"
 
-#: ../gramps/gui/plug/_windows.py:1384
+#: ../gramps/gui/plug/_windows.py:1435
 msgid "Installing..."
 msgstr "Diegiama..."
 
-#: ../gramps/gui/plug/_windows.py:1417
+#: ../gramps/gui/plug/_windows.py:1468
 msgid "Installing Addon"
 msgstr "Diegiamas priedas"
 
-#: ../gramps/gui/plug/_windows.py:1440
+#: ../gramps/gui/plug/_windows.py:1491
 msgid "Load Addon"
 msgstr "Įkelti priedą"
 
-#: ../gramps/gui/plug/_windows.py:1532
+#: ../gramps/gui/plug/_windows.py:1583
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:260
 msgid "Fail"
 msgstr "Nepasisekė"
 
-#: ../gramps/gui/plug/_windows.py:1663
+#: ../gramps/gui/plug/_windows.py:1714
 msgid "Plugin name"
 msgstr "Papildinio pavadinimas"
 
-#: ../gramps/gui/plug/_windows.py:1666
+#: ../gramps/gui/plug/_windows.py:1717
 msgid "Authors"
 msgstr "Autorius"
 
-#: ../gramps/gui/plug/_windows.py:1668
+#: ../gramps/gui/plug/_windows.py:1719
 #: ../gramps/gui/plug/report/_reportdialog.py:480
 msgid "Filename"
 msgstr "Rinkmenos pavadinimas"
 
-#: ../gramps/gui/plug/_windows.py:1671
+#: ../gramps/gui/plug/_windows.py:1722
 msgid "Detailed Info"
 msgstr "Išsami informacija"
 
-#: ../gramps/gui/plug/_windows.py:1726
+#: ../gramps/gui/plug/_windows.py:1777
 msgid "Plugin Error"
 msgstr "Įskiepio klaida"
 
-#: ../gramps/gui/plug/_windows.py:1795
+#: ../gramps/gui/plug/_windows.py:1846
 msgid "_Execute"
 msgstr "_Vykdyti"
 
-#: ../gramps/gui/plug/_windows.py:2093
+#: ../gramps/gui/plug/_windows.py:2144
 #: ../gramps/plugins/importer/importprogen.py:480
 #: ../gramps/plugins/tool/ownereditor.py:156
 #: ../gramps/plugins/tool/reorderids.py:248
 msgid "Main window"
 msgstr "Pagrindinis puslapis"
 
-#: ../gramps/gui/plug/_windows.py:2231
+#: ../gramps/gui/plug/_windows.py:2282
 msgid "Downloading and installing selected addons..."
 msgstr "Atsiunčiami ir diegiami pasirinkti priedai..."
 
-#: ../gramps/gui/plug/_windows.py:2274
+#: ../gramps/gui/plug/_windows.py:2325
 msgid "Installation Errors"
 msgstr "Diegimo klaidos"
 
-#: ../gramps/gui/plug/_windows.py:2275
+#: ../gramps/gui/plug/_windows.py:2326
 msgid "The following addons had errors: "
 msgstr "Šie priedai turi klaidų: "
 
-#: ../gramps/gui/plug/_windows.py:2283 ../gramps/gui/plug/_windows.py:2300
+#: ../gramps/gui/plug/_windows.py:2334 ../gramps/gui/plug/_windows.py:2351
 msgid "Done downloading and installing addons"
 msgstr "Priedai atsiųsti ir įdiegti"
 
-#: ../gramps/gui/plug/_windows.py:2288
+#: ../gramps/gui/plug/_windows.py:2339
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
@@ -22325,14 +22498,14 @@ msgstr[0] "įdiegtas {number_of} priedas."
 msgstr[1] "įdiegti {number_of} priedai."
 msgstr[2] "įdiegta {number_of} priedų."
 
-#: ../gramps/gui/plug/_windows.py:2293
+#: ../gramps/gui/plug/_windows.py:2344
 #, fuzzy
 #| msgid ""
 #| "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgid "If you have installed a 'View', you will need to restart Gramps."
 msgstr "Jei įdiegėte 'Gramps View', įkelkite Gramps iš naujo."
 
-#: ../gramps/gui/plug/_windows.py:2301
+#: ../gramps/gui/plug/_windows.py:2352
 msgid "No addons were installed."
 msgstr "Priedai nebuvo įdiegti."
 
@@ -22765,12 +22938,12 @@ msgid "Please select a book item to configure."
 msgstr "Pasirinkite konfigūruotiną knygos elementą."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:642
-#: ../gramps/gui/views/bookmarks.py:309 ../gramps/gui/views/tags.py:493
+#: ../gramps/gui/views/bookmarks.py:312 ../gramps/gui/views/tags.py:494
 msgid "_Up"
 msgstr "_Aukštyn"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:643
-#: ../gramps/gui/views/bookmarks.py:310 ../gramps/gui/views/tags.py:494
+#: ../gramps/gui/views/bookmarks.py:313 ../gramps/gui/views/tags.py:495
 msgid "_Down"
 msgstr "_Žemyn"
 
@@ -23228,11 +23401,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1427
+#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1428
 msgid "_Undo"
 msgstr "Atša_ukti"
 
-#: ../gramps/gui/undohistory.py:85 ../gramps/gui/viewmanager.py:1447
+#: ../gramps/gui/undohistory.py:85 ../gramps/gui/viewmanager.py:1448
 msgid "_Redo"
 msgstr "_Grąžinti"
 
@@ -23304,49 +23477,49 @@ msgstr ""
 msgid "Cannot open new citation editor"
 msgstr "Neįmanoma atverti citatos redaktoriaus"
 
-#: ../gramps/gui/viewmanager.py:348
+#: ../gramps/gui/viewmanager.py:349
 #, fuzzy
 #| msgid "Family Colors"
 msgid "FamilySearch tools"
 msgstr "Šeimos spalvos"
 
-#: ../gramps/gui/viewmanager.py:392 ../gramps/gui/viewmanager.py:1403
+#: ../gramps/gui/viewmanager.py:393 ../gramps/gui/viewmanager.py:1404
 msgid "No Family Tree"
 msgstr "Nėra giminės medžio"
 
-#: ../gramps/gui/viewmanager.py:415
+#: ../gramps/gui/viewmanager.py:416
 msgid "You are not logged in to FamilySearch. Would you like to sign in now?"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:418
+#: ../gramps/gui/viewmanager.py:419
 msgid "Sign in"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:638
+#: ../gramps/gui/viewmanager.py:639
 #, fuzzy
 #| msgid "Use complete sentences"
 msgid "User consent declined"
 msgstr "Naudoti pilnus sakinius"
 
-#: ../gramps/gui/viewmanager.py:646
+#: ../gramps/gui/viewmanager.py:647
 #, fuzzy
 #| msgid "Configuration error:"
 msgid "Authorization error"
 msgstr "Surinkimo klaida:"
 
-#: ../gramps/gui/viewmanager.py:838
+#: ../gramps/gui/viewmanager.py:839
 msgid "Registering plugins..."
 msgstr "Įkeliami įskiepiai..."
 
-#: ../gramps/gui/viewmanager.py:845
+#: ../gramps/gui/viewmanager.py:846
 msgid "Ready"
 msgstr "Pasiruošęs"
 
-#: ../gramps/gui/viewmanager.py:899
+#: ../gramps/gui/viewmanager.py:900
 msgid "Abort changes?"
 msgstr "Atšaukti pakeitimus?"
 
-#: ../gramps/gui/viewmanager.py:901
+#: ../gramps/gui/viewmanager.py:902
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -23354,15 +23527,15 @@ msgstr ""
 "Pakeitimų atšaukimas gražins duombazę į būseną, kuri buvo prieš pradedant šį "
 "taisymą."
 
-#: ../gramps/gui/viewmanager.py:904
+#: ../gramps/gui/viewmanager.py:905
 msgid "Abort changes"
 msgstr "Atšaukti pakeitimus"
 
-#: ../gramps/gui/viewmanager.py:916
+#: ../gramps/gui/viewmanager.py:917
 msgid "Cannot abandon session's changes"
 msgstr "Negalima atsisakyti sesijos pakeitimų"
 
-#: ../gramps/gui/viewmanager.py:918
+#: ../gramps/gui/viewmanager.py:919
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -23370,45 +23543,45 @@ msgstr ""
 "Negalima visiškai atsisakyti pakeitimų, kadangi pataisymų skaičius šioje "
 "sesijoje viršijo limitą."
 
-#: ../gramps/gui/viewmanager.py:1125
+#: ../gramps/gui/viewmanager.py:1126
 msgid "View failed to load. Check error output."
 msgstr "Rodinio įkelti nepavyko. Žiūrėkite klaidos išvestį."
 
-#: ../gramps/gui/viewmanager.py:1283
+#: ../gramps/gui/viewmanager.py:1284
 #: ../gramps/plugins/importer/importprogen.py:216
 msgid "Import Statistics"
 msgstr "Įkėlimo statistika"
 
-#: ../gramps/gui/viewmanager.py:1359
+#: ../gramps/gui/viewmanager.py:1360
 msgid "Read Only"
 msgstr "Tik skaitymui"
 
-#: ../gramps/gui/viewmanager.py:1365
+#: ../gramps/gui/viewmanager.py:1366
 msgid "Gramps had a problem the last time it was run."
 msgstr "Paskutinį kartą paleidus Gramps, kilo problemų."
 
-#: ../gramps/gui/viewmanager.py:1366
+#: ../gramps/gui/viewmanager.py:1367
 #, fuzzy
 msgid "Would you like to run the Check and Repair tool?"
 msgstr "Paleiskite \"Tikrinti ir Taisyti duombazę\" įrankį"
 
-#: ../gramps/gui/viewmanager.py:1522 ../gramps/gui/viewmanager.py:2140
+#: ../gramps/gui/viewmanager.py:1523 ../gramps/gui/viewmanager.py:2143
 msgid "Please wait for backup to complete."
 msgstr "Palaukite, kol bus baigtas atsarginės kopijos kūrimas."
 
-#: ../gramps/gui/viewmanager.py:1524 ../gramps/gui/viewmanager.py:1528
+#: ../gramps/gui/viewmanager.py:1525 ../gramps/gui/viewmanager.py:1529
 msgid "Autobackup..."
 msgstr "Automatinis kopijos darymas..."
 
-#: ../gramps/gui/viewmanager.py:1532
+#: ../gramps/gui/viewmanager.py:1533
 msgid "Error saving backup data"
 msgstr "Klaida išsaugant atsarginę kopiją"
 
-#: ../gramps/gui/viewmanager.py:1826
+#: ../gramps/gui/viewmanager.py:1829
 msgid "Failed Loading View"
 msgstr "Vaizdo įkėlimas nepavyko"
 
-#: ../gramps/gui/viewmanager.py:1828
+#: ../gramps/gui/viewmanager.py:1831
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -23433,11 +23606,11 @@ msgstr ""
 "Jei nenorite, kad Gramps vėl bandytų įkelti šią peržiūrą, galite paslėpti ją "
 "naudojantis įskiepių tvarkyklę, kurią rasite meniu skiltyje Pagalba."
 
-#: ../gramps/gui/viewmanager.py:1937
+#: ../gramps/gui/viewmanager.py:1940
 msgid "Failed Loading Plugin"
 msgstr "Nepavyko įkelti įskiepio"
 
-#: ../gramps/gui/viewmanager.py:1939
+#: ../gramps/gui/viewmanager.py:1942
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -23462,66 +23635,66 @@ msgstr ""
 "Jei nenorite, kad Gramps vėl bandytų įkelti šį įskiepį, galite paslėpti jį "
 "naudodami Įskiepių tvarkyklę meniu skiltyje Pagalba."
 
-#: ../gramps/gui/viewmanager.py:2035
+#: ../gramps/gui/viewmanager.py:2038
 msgid "Gramps XML Backup"
 msgstr "Gramps XML atsarginė kopija"
 
-#: ../gramps/gui/viewmanager.py:2062
+#: ../gramps/gui/viewmanager.py:2065
 msgid "File:"
 msgstr "Rinkmena:"
 
-#: ../gramps/gui/viewmanager.py:2097
+#: ../gramps/gui/viewmanager.py:2100
 msgid "Media:"
 msgstr "Garsas/vaizdas:"
 
-#: ../gramps/gui/viewmanager.py:2103
+#: ../gramps/gui/viewmanager.py:2106
 #: ../gramps/plugins/gramplet/statsgramplet.py:218
 #: ../gramps/plugins/webreport/statistics.py:174
 msgctxt "Megabyte"
 msgid "MB"
 msgstr "MB"
 
-#: ../gramps/gui/viewmanager.py:2105
+#: ../gramps/gui/viewmanager.py:2108
 msgid "Exclude"
 msgstr "Neįtraukti"
 
-#: ../gramps/gui/viewmanager.py:2124
+#: ../gramps/gui/viewmanager.py:2127
 msgid "Backup file already exists! Overwrite?"
 msgstr "Atsarginės kopijos rinkmena jau yra! Perrašyti?"
 
-#: ../gramps/gui/viewmanager.py:2125
+#: ../gramps/gui/viewmanager.py:2128
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Rinkmena „%s“ jau yra."
 
-#: ../gramps/gui/viewmanager.py:2126
+#: ../gramps/gui/viewmanager.py:2129
 msgid "Proceed and overwrite"
 msgstr "Tęsti perrašant"
 
-#: ../gramps/gui/viewmanager.py:2127
+#: ../gramps/gui/viewmanager.py:2130
 msgid "Cancel the backup"
 msgstr "Nekurti atsarginės kopijos"
 
-#: ../gramps/gui/viewmanager.py:2142 ../gramps/gui/viewmanager.py:2147
+#: ../gramps/gui/viewmanager.py:2145 ../gramps/gui/viewmanager.py:2150
 msgid "Making backup..."
 msgstr "Kuriama atsarginė kopija..."
 
-#: ../gramps/gui/viewmanager.py:2164
+#: ../gramps/gui/viewmanager.py:2167
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Atsarginė kopija įrašyta į „%s“"
 
-#: ../gramps/gui/viewmanager.py:2168
+#: ../gramps/gui/viewmanager.py:2171
 msgid "Backup aborted"
 msgstr "Atsarginės kopijos kūrimas nutrauktas"
 
-#: ../gramps/gui/views/bookmarks.py:70
+#: ../gramps/gui/views/bookmarks.py:71
 msgctxt "manual"
 msgid "Bookmarks"
 msgstr "Žymelės"
 
-#: ../gramps/gui/views/bookmarks.py:276 ../gramps/gui/views/bookmarks.py:291
-#: ../gramps/gui/views/bookmarks.py:389
+#: ../gramps/gui/views/bookmarks.py:279 ../gramps/gui/views/bookmarks.py:294
+#: ../gramps/gui/views/bookmarks.py:392
 #: ../gramps/plugins/lib/libpersonview.py:231
 #: ../gramps/plugins/lib/libplaceview.py:316
 #: ../gramps/plugins/view/citationlistview.py:203
@@ -23544,7 +23717,7 @@ msgstr "Žymelės"
 msgid "Organize Bookmarks"
 msgstr "Tvarkyti žymes"
 
-#: ../gramps/gui/views/bookmarks.py:512
+#: ../gramps/gui/views/bookmarks.py:515
 msgid "Cannot bookmark this reference"
 msgstr "Šios nuorodos negalima pažymėti"
 
@@ -23690,66 +23863,66 @@ msgstr "Nustatyti %s Vaizdą"
 msgid "View %(name)s: %(msg)s"
 msgstr "%(name)s: %(msg)s"
 
-#: ../gramps/gui/views/tags.py:73
+#: ../gramps/gui/views/tags.py:74
 msgid "Tag selected rows"
 msgstr "Pasirinktoms eilutėms priskirti gairę"
 
-#: ../gramps/gui/views/tags.py:96
+#: ../gramps/gui/views/tags.py:97
 msgid "New Tag..."
 msgstr "Nauja gairė..."
 
-#: ../gramps/gui/views/tags.py:96
+#: ../gramps/gui/views/tags.py:97
 msgid "Organize Tags..."
 msgstr "Tvarkyti gaires"
 
-#: ../gramps/gui/views/tags.py:115
+#: ../gramps/gui/views/tags.py:116
 msgctxt "manual"
 msgid "Organize_Tags_Window"
 msgstr "Tvarkomų gairių langas"
 
-#: ../gramps/gui/views/tags.py:116
+#: ../gramps/gui/views/tags.py:117
 msgctxt "manual"
 msgid "New_Tag_dialog"
 msgstr "Naujas gairių langas"
 
-#: ../gramps/gui/views/tags.py:257
+#: ../gramps/gui/views/tags.py:258
 #, fuzzy, python-format
 msgid "Add tag '%s'"
 msgstr "Pridėti gairę (%s)"
 
-#: ../gramps/gui/views/tags.py:265
+#: ../gramps/gui/views/tags.py:266
 #, fuzzy, python-format
 msgid "Remove tag '%s'"
 msgstr "Pašalinti '%s' gairę?"
 
-#: ../gramps/gui/views/tags.py:328
+#: ../gramps/gui/views/tags.py:329
 msgid "Adding Tags"
 msgstr "Gairių pridėjimas"
 
-#: ../gramps/gui/views/tags.py:334 ../gramps/gui/views/tags.py:361
+#: ../gramps/gui/views/tags.py:335 ../gramps/gui/views/tags.py:362
 #, python-format
 msgid "Tag Selection (%s)"
 msgstr "Gairių pasirinkimas (%s)"
 
-#: ../gramps/gui/views/tags.py:355 ../gramps/gui/views/tags.py:600
+#: ../gramps/gui/views/tags.py:356 ../gramps/gui/views/tags.py:601
 msgid "Removing Tags"
 msgstr "Šalinamos gairės"
 
-#: ../gramps/gui/views/tags.py:394 ../gramps/gui/views/tags.py:404
-#: ../gramps/gui/views/tags.py:470
+#: ../gramps/gui/views/tags.py:395 ../gramps/gui/views/tags.py:405
+#: ../gramps/gui/views/tags.py:471
 msgid "Organize Tags"
 msgstr "Tvarkyti gaires"
 
-#: ../gramps/gui/views/tags.py:422
+#: ../gramps/gui/views/tags.py:423
 msgid "Change Tag Priority"
 msgstr "Keisti gairių pirmenybę"
 
-#: ../gramps/gui/views/tags.py:565
+#: ../gramps/gui/views/tags.py:566
 #, python-format
 msgid "Remove tag '%s'?"
 msgstr "Pašalinti '%s' gairę?"
 
-#: ../gramps/gui/views/tags.py:567
+#: ../gramps/gui/views/tags.py:568
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
@@ -23757,48 +23930,48 @@ msgstr ""
 "Bus pašalintas gairės aprašas. Ši gairė bus pašalinta visuose duombazės "
 "objektuose."
 
-#: ../gramps/gui/views/tags.py:606
+#: ../gramps/gui/views/tags.py:607
 #, python-format
 msgid "Delete Tag (%s)"
 msgstr "Pašalinti gairę (%s)"
 
-#: ../gramps/gui/views/tags.py:633
+#: ../gramps/gui/views/tags.py:634
 #, python-format
 msgid "Tag: %s"
 msgstr "Gairė: %s"
 
-#: ../gramps/gui/views/tags.py:635
+#: ../gramps/gui/views/tags.py:636
 msgid "New Tag"
 msgstr "Nauja gairė"
 
-#: ../gramps/gui/views/tags.py:684
+#: ../gramps/gui/views/tags.py:685
 msgid "Cannot save tag"
 msgstr "Nepavyko išsaugoti gairės"
 
-#: ../gramps/gui/views/tags.py:685
+#: ../gramps/gui/views/tags.py:686
 msgid "The tag name cannot be empty"
 msgstr "Gairės pavadinimas negali būti tuščias"
 
-#: ../gramps/gui/views/tags.py:691
+#: ../gramps/gui/views/tags.py:692
 #, python-format
 msgid "Add Tag (%s)"
 msgstr "Pridėti gairę (%s)"
 
-#: ../gramps/gui/views/tags.py:697
+#: ../gramps/gui/views/tags.py:698
 #, python-format
 msgid "Edit Tag (%s)"
 msgstr "Taisyti gairę (%s)"
 
-#: ../gramps/gui/views/tags.py:712
+#: ../gramps/gui/views/tags.py:713
 msgid "Tag Name:"
 msgstr "Gairės pavadinimas:"
 
-#: ../gramps/gui/views/tags.py:719
+#: ../gramps/gui/views/tags.py:720
 #, python-format
 msgid "%(title)s - Gramps"
 msgstr "%(title)s - Gramps"
 
-#: ../gramps/gui/views/tags.py:719
+#: ../gramps/gui/views/tags.py:720
 msgid "Pick a Color"
 msgstr "Pasirinkite spalvą"
 
@@ -23871,7 +24044,7 @@ msgid "Gramplet Bar Menu"
 msgstr "Grampletų juostos meniu"
 
 #: ../gramps/gui/widgets/grampletbar.py:235
-#: ../gramps/gui/widgets/grampletpane.py:1221
+#: ../gramps/gui/widgets/grampletpane.py:1222
 msgid "Unnamed Gramplet"
 msgstr "Neaprašytas Grampletas"
 
@@ -23888,7 +24061,7 @@ msgstr ""
 "pašalinti ar atkurti numatytuosius."
 
 #: ../gramps/gui/widgets/grampletbar.py:543
-#: ../gramps/gui/widgets/grampletpane.py:1495
+#: ../gramps/gui/widgets/grampletpane.py:1496
 msgid "Add a gramplet"
 msgstr "Pridėti grampletą"
 
@@ -23921,37 +24094,37 @@ msgstr ""
 "Bus atkurta numatytoji grampletų juosta su numatytaisiais grampletais. Šio "
 "veiksmo negalėsite atšaukti."
 
-#: ../gramps/gui/widgets/grampletpane.py:836
+#: ../gramps/gui/widgets/grampletpane.py:837
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
 "Perneškite Nustatymu Mygtuką, jei norite pajudinti, išsirinkite nustatymams "
 "pakeisti"
 
-#: ../gramps/gui/widgets/grampletpane.py:1036
+#: ../gramps/gui/widgets/grampletpane.py:1037
 msgid "Right click to add gramplets"
 msgstr "Grampletams pridėti du kartus paspauskite pelės dešinįjį klavišą"
 
-#: ../gramps/gui/widgets/grampletpane.py:1081
+#: ../gramps/gui/widgets/grampletpane.py:1082
 msgid "Untitled Gramplet"
 msgstr "Bevardis grampletas"
 
-#: ../gramps/gui/widgets/grampletpane.py:1495
+#: ../gramps/gui/widgets/grampletpane.py:1496
 msgid "Restore a gramplet"
 msgstr "Atstatyti grampletą"
 
-#: ../gramps/gui/widgets/grampletpane.py:1636
+#: ../gramps/gui/widgets/grampletpane.py:1637
 msgid "Number of Columns"
 msgstr "Stulpelių skaičius"
 
-#: ../gramps/gui/widgets/grampletpane.py:1642
+#: ../gramps/gui/widgets/grampletpane.py:1643
 msgid "Gramplet Layout"
 msgstr "Grampleto išdėstymas"
 
-#: ../gramps/gui/widgets/grampletpane.py:1685
+#: ../gramps/gui/widgets/grampletpane.py:1686
 msgid "Use maximum height available"
 msgstr "Naudoti maksimalų galimą aukštį"
 
-#: ../gramps/gui/widgets/grampletpane.py:1693
+#: ../gramps/gui/widgets/grampletpane.py:1694
 msgid "Height if not maximized"
 msgstr "Aukštis neišdidintas"
 
@@ -26615,7 +26788,7 @@ msgid "Double-click given name for details"
 msgstr "Dvigubu pelės paspaudimu ant vardo sužinokite detales"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:57
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:50
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:51
 #: ../gramps/plugins/gramplet/recordsgramplet.py:43
 #: ../gramps/plugins/gramplet/relativegramplet.py:42
 #: ../gramps/plugins/gramplet/statsgramplet.py:59
@@ -27513,54 +27686,54 @@ msgstr "Norėdami taisyti pasirinktą vietovę, eilutę spragtelėkite du kartus
 msgid "%(current)d of %(total)d"
 msgstr "%(current)d iš %(total)d"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:51
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:52
 msgid "Move mouse over links for options"
 msgstr "Pasirinkimams peržiūrėkite pele per nuorodas"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:59
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:68
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:79
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:60
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:69
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:80
 #: ../gramps/plugins/view/fanchartdescview.py:287
 #: ../gramps/plugins/view/fanchartview.py:379
 msgid "Max generations"
 msgstr "Daugiausia kartų"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:61
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:69
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:80
-msgid "Show dates"
-msgstr "Rodyti datas"
-
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:62
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:70
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:81
+msgid "Show dates"
+msgstr "Rodyti datas"
+
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:63
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:71
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:82
 msgid "Line type"
 msgstr "Ryšio tipas"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:166
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:167
 msgid "Click to make active\n"
 msgstr "Norėdami aktyvuoti spragtelėkite\n"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:166
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:167
 msgid "Right-click to edit"
 msgstr "Norėdami taisyti, paspauskite pelės dešinįjį klavišą"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:226
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:227
 #, python-format
 msgid "(b. %(birthdate)s, d. %(deathdate)s)"
 msgstr "(g. %(birthdate)s. m. %(deathdate)s)"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:231
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:232
 #, python-format
 msgid "(b. %s)"
 msgstr "(g. %s)"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:233
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:234
 #, python-format
 msgid "(d. %s)"
 msgstr "(m. %s)"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:257
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:258
 msgid ""
 "\n"
 "Breakdown by generation:\n"
@@ -27568,27 +27741,27 @@ msgstr ""
 "\n"
 "Kitas puslapis nuo kartos:\n"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:259
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:260
 msgctxt "percent sign or text string"
 msgid "%"
 msgstr "%"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:267
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:268
 msgid "Generation 1"
 msgstr "1 Karta"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:270
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:271
 msgid "Double-click to see people in generation"
 msgstr ""
 "Norėdami pamatyti šios kartos asmenis du kartus paspauskite kairį pelės "
 "klavišą"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:274
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:275
 #, python-format
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
 msgstr "turi 1 iš 1 asmens ( baigta (%(percent)s)\n"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:280
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:281
 #: ../gramps/plugins/textreport/ancestorreport.py:231
 #: ../gramps/plugins/textreport/detancestralreport.py:243
 #: ../gramps/plugins/textreport/detdescendantreport.py:377
@@ -27597,13 +27770,13 @@ msgstr "turi 1 iš 1 asmens ( baigta (%(percent)s)\n"
 msgid "Generation %d"
 msgstr "%d Karta"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:283
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:284
 #, python-format
 msgid "Double-click to see people in generation %d"
 msgstr ""
 "Norėdami pamatyti %d kartos asmenis du kartus paspauskite kairį pelės klavišą"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:292
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:293
 #, python-brace-format
 msgid ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
@@ -27616,16 +27789,16 @@ msgstr[1] ""
 msgstr[2] ""
 "turi {count_person} iš {max_count_person} asmenų ({percent} baigta)\n"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:304
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:305
 msgid "All generations"
 msgstr "Visos kartos"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:307
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:308
 msgid "Double-click to see all generations"
 msgstr ""
 "Norėdami pamatyti visas kartas du kartus paspauskite kairį pelės klavišą"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:312
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:313
 #, python-brace-format
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
@@ -43258,6 +43431,16 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:229
 msgid "No style sheet"
 msgstr "Jokio stiliaus"
+
+#, fuzzy, python-format
+#~| msgid "Submission: Generations of ancestors"
+#~ msgid "Downloading %d generations of ancestors…"
+#~ msgstr "Pateikimas: protėvių kartos"
+
+#, fuzzy, python-format
+#~| msgid "Submission: Generations of descendants"
+#~ msgid "Downloading %d generations of descendants…"
+#~ msgstr "Pateikimas: palikuonių kartos"
 
 #~ msgid "Retrieving all sub-filter matches"
 #~ msgstr "Gaunami duomenys, atitinkantys pagalbinį filtrą"
