@@ -6,7 +6,7 @@
 # Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019, 2021, 2022, 2023, 2024, 2025, 2026.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2025.
 # PeterJPower <pekka.valta@kolumbus.fi>, 2021, 2025.
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2022, 2025.
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2022, 2025, 2026.
 # Jyri-Petteri Paloposki <jyri-petteri.paloposki@iki.fi>, 2022.
 # Oskari Lavinto <olavinto@protonmail.com>, 2023.
 # A <ogloppi@mailbox.org>, 2023.
@@ -21,8 +21,8 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-07-27 16:01+0000\n"
-"Last-Translator: Juha Mäkeläinen <juha.makelainen@iki.fi>\n"
+"PO-Revision-Date: 2026-09-25 19:51+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -6933,10 +6933,8 @@ msgstr "nimikirjaimet"
 
 #: ../gramps/gen/fs/compare/aggregate.py:331
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:627
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "Kohteen nimi"
+msgstr "Muut nimet"
 
 #: ../gramps/gen/fs/compare/aggregate.py:338
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:632
@@ -7185,10 +7183,8 @@ msgstr ""
 "E=helmikuusta"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "Suhde"
+msgstr "Kansalaisuus"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
 #, fuzzy
@@ -7199,7 +7195,7 @@ msgstr "Päivitetään näyttö"
 #: ../gramps/gen/fs/fs_import/sources.py:406
 #, python-format
 msgid "Loading FamilySearch source %(current)d/%(total)d"
-msgstr ""
+msgstr "Ladataan FamilySearch-lähdettä %(current)d/%(total)d"
 
 #: ../gramps/gen/fs/fs_import/sources.py:611
 #: ../gramps/gen/fs/fs_import/sources.py:614
@@ -7272,10 +7268,9 @@ msgid "Internet Address"
 msgstr "Internetosoite"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:434
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(header)s (%(current)d/%(total)d)"
-msgstr "Sivu%(current)d, yht. %(total)d"
+msgstr "%(header)s (%(current)d/%(total)d)"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:443
 #, fuzzy
@@ -12930,7 +12925,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1121
 msgid "Server"
-msgstr ""
+msgstr "Palvelin"
 
 #: ../gramps/gui/configure.py:1130
 msgid "Foundation middleware"
@@ -12965,16 +12960,12 @@ msgid "Middleware access code (issued secret)"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1204
-#, fuzzy
-#| msgid "Family has changed"
 msgid "Enable FamilySearch integration"
-msgstr "Perhettä on muutettu"
+msgstr "Ota käyttöön FamilySearch-integraatio"
 
 #: ../gramps/gui/configure.py:1212
-#, fuzzy
-#| msgid "Generations"
 msgid "Integrations"
-msgstr "Sukupolvet"
+msgstr "Integraatiot"
 
 #: ../gramps/gui/configure.py:1279 ../gramps/plugins/export/exportcsv.py:421
 #: ../gramps/plugins/importer/importcsv.py:214
@@ -14570,10 +14561,8 @@ msgid "Remove"
 msgstr "Poista"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select Existing"
-msgstr "Valitse jo olemassa oleva lisätieto"
+msgstr "Valitse olemassa oleva"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 msgid "Jump To"
@@ -14609,8 +14598,6 @@ msgid "Edit the selected citation"
 msgstr "Muokkaa valittua lainausta"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
-#, fuzzy
-#| msgid "Add an existing citation or source"
 msgid "Select an existing citation or source"
 msgstr "Lisää olemassa oleva lainaus tai lähde"
 
@@ -16907,15 +16894,14 @@ msgid "Tip: uncheck anything you don't want to import."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:515
-#, fuzzy, python-format
-#| msgid "%(abbr)s %(date)s"
+#, python-format
 msgid "%(birth)s - %(death)s"
-msgstr "%(abbr)s %(date)s"
+msgstr "%(birth)s - %(death)s"
 
 #: ../gramps/gui/fs/actions.py:568
 #, python-format
 msgid "FamilySearch search failed (HTTP %(status)s)."
-msgstr ""
+msgstr "FamilySearch-haku epäonnistui (HTTP %(status)s)."
 
 #: ../gramps/gui/fs/actions.py:575
 msgid "FamilySearch search returned invalid data."
@@ -17069,21 +17055,18 @@ msgid "Enter a name, date, place, ID, or URL to search."
 msgstr ""
 
 #: ../gramps/gui/fs/actions.py:909
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Searching FamilySearch..."
-msgstr "Olemassa oleva perhe"
+msgstr "Haetaan FamilySearchista..."
 
 #: ../gramps/gui/fs/actions.py:924
-#, fuzzy, python-format
-#| msgid "Searching family names"
+#, python-format
 msgid "Search failed: %(error)s"
-msgstr "Haetaan sukunimet"
+msgstr "Haku epäonnistui: %(error)s"
 
 #: ../gramps/gui/fs/actions.py:934
 #, python-format
 msgid "Search results: %(count)d"
-msgstr ""
+msgstr "Hakutuloksia: %(count)d"
 
 #: ../gramps/gui/fs/actions.py:937
 #, fuzzy
@@ -17115,10 +17098,8 @@ msgid "Choose Starting Person"
 msgstr "Keskushenkilö"
 
 #: ../gramps/gui/fs/actions.py:1039
-#, fuzzy
-#| msgid "Not shown"
 msgid "Not now"
-msgstr "Ei näytetä"
+msgstr "Ei nyt"
 
 #: ../gramps/gui/fs/actions.py:1056 ../gramps/gui/fs/actions.py:1117
 #, fuzzy
@@ -17311,10 +17292,9 @@ msgid "FamilySearch: Sync this person"
 msgstr "Kirjanmerkkaa tämä henkilö"
 
 #: ../gramps/gui/fs/actions.py:1874
-#, fuzzy, python-brace-format
-#| msgid "Saving failed"
+#, python-brace-format
 msgid "Sync failed: {e}"
-msgstr "Tallennus epäonnistui"
+msgstr "Synkronointi epäonnistui: {e}"
 
 #: ../gramps/gui/fs/actions.py:1882
 msgid ""
@@ -17373,10 +17353,8 @@ msgstr ""
 
 #: ../gramps/gui/fs/compare/window.py:222
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1967
-#, fuzzy
-#| msgid "Family Colors"
 msgid "FamilySearch Compare"
-msgstr "Perhevärit"
+msgstr "FamilySearch-vertailu"
 
 #: ../gramps/gui/fs/compare/window.py:225 ../gramps/gui/glade/rule.glade:509
 #: ../gramps/gui/glade/styleeditor.glade:416
@@ -17424,10 +17402,8 @@ msgid "Downloading persons… (3/11)"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:120
-#, fuzzy
-#| msgid "Youngest living person"
 msgid "Downloading person…"
-msgstr "Nuorin elossa oleva henkilö"
+msgstr "Ladataan henkilöä…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:142
 msgid "Downloading ancestors… (4/11)"
@@ -17496,10 +17472,8 @@ msgid "  …notes/sources: %(done)d/%(total)d"
 msgstr ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
-#, fuzzy
-#| msgid "Import"
 msgid "Importing…"
-msgstr "Tuonti"
+msgstr "Tuodaan…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:308
 msgid "Importing places… (8/11)"
@@ -17518,33 +17492,25 @@ msgid "Importing persons… (9/11)"
 msgstr "Henkilöiden tuonti."
 
 #: ../gramps/gui/fs/fs_import/importer.py:315
-#, fuzzy
-#| msgid "Importing persons."
 msgid "Importing persons…"
-msgstr "Henkilöiden tuonti."
+msgstr "Tuodaan henkilöitä…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:321
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families… (10/11)"
-msgstr "Perheiden tuonti."
+msgstr "Tuodaan perheitä… (10/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:323
-#, fuzzy
-#| msgid "Importing families."
 msgid "Importing families…"
-msgstr "Perheiden tuonti."
+msgstr "Tuodaan perheitä…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:331
 #: ../gramps/gui/fs/fs_import/importer.py:343
 msgid "Importing children… (11/11)"
-msgstr ""
+msgstr "Tuodaan lapsia… (11/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:334
-#, fuzzy
-#| msgid "Importing archive..."
 msgid "Importing children…"
-msgstr "Tuodaan arkistoa..."
+msgstr "Tuodaan lapsia…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
 #, fuzzy
@@ -17853,14 +17819,12 @@ msgid "No selected rows could be copied into Gramps."
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1696
-#, fuzzy
-#| msgid "Select a person for the report"
 msgid "Select a person first."
-msgstr "Valitse henkilö raporttia varten"
+msgstr "Valitse henkilö ensin."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1700
 msgid "You must login first."
-msgstr ""
+msgstr "Kirjaudu sisään ensin."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1716
 #, fuzzy
@@ -18096,10 +18060,8 @@ msgid "Logged in to FamilySearch."
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:90
-#, fuzzy
-#| msgid "Saving failed"
 msgid "Login failed."
-msgstr "Tallennus epäonnistui"
+msgstr "Sisäänkirjautuminen epäonnistui."
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:93
 #, python-brace-format
@@ -18107,6 +18069,8 @@ msgid ""
 "Login failed:\n"
 "{err}"
 msgstr ""
+"Sisäänkirjautuminen epäonnistui:\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:338
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:186
@@ -18188,10 +18152,8 @@ msgid "Open the source page and download images"
 msgstr ""
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:393
-#, fuzzy
-#| msgid "Choose font"
 msgid "Choose file…"
-msgstr "Valitse kirjasintyyppi"
+msgstr "Valitse tiedosto…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:394
 msgid "Pick existing files from disk"
@@ -18275,8 +18237,6 @@ msgstr "Uudelleennimeäminen epäonnistui"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:631
 #: ../gramps/gui/fs/sync_directions.py:874
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select all"
 msgstr "Valitse kaikki"
 
@@ -18400,10 +18360,8 @@ msgid "Change message:"
 msgstr "Vaihda nimi"
 
 #: ../gramps/gui/fs/sync_directions.py:891
-#, fuzzy
-#| msgid "No mention"
 msgid "Needs attention"
-msgstr "Ei mainintaa"
+msgstr "Vaatii huomiota"
 
 #: ../gramps/gui/fs/sync_directions.py:893
 msgid "Use the Action column to choose what FamilySearch receives."
@@ -18424,15 +18382,14 @@ msgid "Choose whether to keep FamilySearch or push this Gramps value."
 msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1021
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(selected)d of %(total)d selected"
-msgstr "Sivu%(current)d, yht. %(total)d"
+msgstr "%(selected)d/%(total)d valittu"
 
 #: ../gramps/gui/fs/sync_directions.py:1076
 #: ../gramps/gui/fs/sync_directions.py:1651
 msgid "Not connected to FamilySearch."
-msgstr ""
+msgstr "Ei yhdistettynä FamilySearchiin."
 
 #: ../gramps/gui/fs/sync_directions.py:1092
 msgid "No FamilySearch Person ID is set for this person."
@@ -18507,7 +18464,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/sync_directions.py:1474
 msgid "FamilySearch updated successfully."
-msgstr ""
+msgstr "FamilySearch päivitetty onnistuneesti."
 
 #: ../gramps/gui/fs/sync_directions.py:1478
 #, python-brace-format
@@ -18551,10 +18508,8 @@ msgid "Include children"
 msgstr "Lapset mukaan"
 
 #: ../gramps/gui/fs/sync_directions.py:1538
-#, fuzzy
-#| msgid "person"
 msgid "(person)"
-msgstr "henkilö"
+msgstr "(henkilö)"
 
 #: ../gramps/gui/fs/sync_directions.py:1557
 #, fuzzy
@@ -18564,7 +18519,7 @@ msgstr "henkilö"
 
 #: ../gramps/gui/fs/sync_directions.py:1585
 msgid "Create"
-msgstr ""
+msgstr "Luo"
 
 #: ../gramps/gui/fs/sync_directions.py:1591
 #, fuzzy
@@ -18609,13 +18564,11 @@ msgstr "Vastaavia laajennuksia ei löytynyt."
 #: ../gramps/gui/fs/sync_directions.py:1882
 #, python-brace-format
 msgid "FamilySearch export failed: {e}"
-msgstr ""
+msgstr "FamilySearch-vienti epäonnistui: {e}"
 
 #: ../gramps/gui/fs/tools_window.py:332
-#, fuzzy
-#| msgid "Family To Do"
 msgid "FamilySearch Tools"
-msgstr "Perhetehtävä"
+msgstr "FamilySearch-työkalut"
 
 #: ../gramps/gui/fs/tools_window.py:351 ../gramps/gui/fs/tools_window.py:761
 #, fuzzy
