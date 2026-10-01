@@ -351,6 +351,7 @@ gramps/gui/pluginmanager.py
 gramps/gui/uimanager.py
 gramps/gui/user.py
 gramps/gui/utilscairo.py
+gramps/gui/windowsshutdown.py
 #
 # gui/editors - the GUI editors package
 #
@@ -464,6 +465,7 @@ gramps/gui/selectors/selectorfactory.py
 #
 gramps/gui/test/display_test.py
 gramps/gui/test/user_test.py
+gramps/gui/test/shutdown_test.py
 #
 # gui/views - the GUI views package
 #
