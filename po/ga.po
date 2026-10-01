@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-06-21 21:01+0000\n"
+"PO-Revision-Date: 2026-09-14 07:51+0000\n"
 "Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
@@ -20,9 +20,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :"
-"(n>6 && n<11) ? 3 : 4;\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :(n>"
+"6 && n<11) ? 3 : 4;\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -11782,6 +11782,16 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"Ar macOS, b’fhéidir nach mbeadh rochtain ag Python ar dheimhnithe SSL an "
+"chórais. Bain triail as ceann de na nithe seo a leanas:\n"
+"1. Suiteálaí python.org: rith 'Install Certificates.command' i bhfillteán "
+"suiteála Python (m.sh. /Applications/Python 3.x/). \n"
+"2. pyenv / Homebrew / Python nach cuid den chóras é: socraigh an athróg "
+"timpeallachta SSL_CERT_FILE sula seolann tú Gramps:\n"
+"export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
+"3. Suiteáil an pacáiste certifi: pip install certifi"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -11797,37 +11807,47 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"Theip ar fhíorú an teastais SSL. Is rud coitianta é seo i gcás suiteálacha "
+"Python nach cuid den chóras iad (m.sh. pyenv, conda), ós rud é nach n-"
+"aithníonn an leagan de OpenSSL a thagann leo cá bhfuil teastais an chórais "
+"stóráilte. Bain triail as ceann amháin de na nithe seo a leanas:\n"
+"1. Suiteáil an pacáiste *certifi*:  pip install certifi\n"
+"2. Socraigh SSL_CERT_FILE chun tagairt a dhéanamh do bhabhta teastas CA do "
+"chórais sula seolann tú Gramps, m.sh.:\n"
+"export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt  (Debian/Ubuntu)\n"
+"export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "Ní féidir teagmháil a dhéanamh le PyPI don phacáiste '%s': %s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
-msgstr ""
+msgstr "Níor aimsíodh aon 'wheel' comhoiriúnach do '%s==%s' ar an ardán seo."
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "Níor aimsíodh aon 'wheel' comhoiriúnach do '%s' ar an ardán seo."
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "Neamhréir SHA-256 do '%s': bhíothas ag súil le %s, fuarthas %s"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
 msgid "No version of '%s' satisfies all constraints: %s"
-msgstr ""
+msgstr "Ní shásaíonn aon leagan de '%s' na srianta go léir: %s"
 
 #: ../gramps/gen/utils/pypi.py:1285
-#, fuzzy, python-format
-#| msgid "No file to download"
+#, python-format
 msgid "Failed to download '%s': %s"
-msgstr "Gan aon chomhad le híoslódáil"
+msgstr "Theip ar íoslódáil '%s': %s"
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
@@ -17276,34 +17296,20 @@ msgid "Downloading ancestors… (4/11)"
 msgstr "Ag íoslódáil sinsear… (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:152
-#, fuzzy, python-format
-#| msgid ""
-#| "Total ancestors in generations %(second_generation)d to "
-#| "%(last_generation)d is %(count)d. %(percent)s"
+#, python-format
 msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-"Is é iomlán na sinsear sna glúnta %(second_generation)d go "
-"%(last_generation)d ná %(count)d. %(percent)s"
-msgstr[1] ""
-"Is é iomlán na sinsear sna glúnta %(second_generation)d go "
-"%(last_generation)d ná %(count)d. %(percent)s"
-msgstr[2] ""
-"Is é iomlán na sinsear sna glúnta %(second_generation)d go "
-"%(last_generation)d ná %(count)d. %(percent)s"
-msgstr[3] ""
-"Is é iomlán na sinsear sna glúnta %(second_generation)d go "
-"%(last_generation)d ná %(count)d. %(percent)s"
-msgstr[4] ""
-"Is é iomlán na sinsear sna glúnta %(second_generation)d go "
-"%(last_generation)d ná %(count)d. %(percent)s"
+msgstr[0] "Ag íoslódáil glúin na sinsear %(gen)d/%(total)d… (%(count)d duine)"
+msgstr[1] "Ag íoslódáil glúin na sinsear %(gen)d/%(total)d… (%(count)d duine)"
+msgstr[2] "Ag íoslódáil glúin na sinsear %(gen)d/%(total)d… (%(count)d duine)"
+msgstr[3] "Ag íoslódáil glúin na sinsear %(gen)d/%(total)d… (%(count)d duine)"
+msgstr[4] "Ag íoslódáil glúin na sinsear %(gen)d/%(total)d… (%(count)d duine)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:159
-#, fuzzy, python-format
-#| msgid "Downloading ancestors… (4/11)"
+#, python-format
 msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
-msgstr "Ag íoslódáil sinsear… (4/11)"
+msgstr "Ag íoslódáil sinsear… (4/11) — glúin %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
@@ -17314,32 +17320,30 @@ msgstr "Ag íoslódáil sliocht… (5/11)"
 msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "Ag íoslódáil glúin na sliochta %(gen)d/%(total)d… (%(count)d duine)"
+msgstr[1] "Ag íoslódáil na nglún sliochta %(gen)d/%(total)d… (%(count)d duine)"
+msgstr[2] "Ag íoslódáil na nglún sliochta %(gen)d/%(total)d… (%(count)d duine)"
+msgstr[3] "Ag íoslódáil na nglún sliochta %(gen)d/%(total)d… (%(count)d duine)"
+msgstr[4] "Ag íoslódáil na nglún sliochta %(gen)d/%(total)d… (%(count)d duine)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
-#, fuzzy, python-format
-#| msgid "Downloading descendants… (5/11)"
+#, python-format
 msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
-msgstr "Ag íoslódáil sliocht… (5/11)"
+msgstr "Ag íoslódáil sliocht… (5/11) — glúin %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr "Ag íoslódáil céilí… (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy, python-format
-#| msgid "Downloading spouses…"
+#, python-format
 msgid "Downloading spouses for %d person…"
 msgid_plural "Downloading spouses for %d people…"
-msgstr[0] "Ag íoslódáil céilí…"
-msgstr[1] "Ag íoslódáil céilí…"
-msgstr[2] "Ag íoslódáil céilí…"
-msgstr[3] "Ag íoslódáil céilí…"
-msgstr[4] "Ag íoslódáil céilí…"
+msgstr[0] "Ag íoslódáil céilí do %d duine…"
+msgstr[1] "Ag íoslódáil céilí do %d duine…"
+msgstr[2] "Ag íoslódáil céilí do %d duine…"
+msgstr[3] "Ag íoslódáil céilí do %d duine…"
+msgstr[4] "Ag íoslódáil céilí do %d duine…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
@@ -17352,7 +17356,7 @@ msgstr "Nótaí agus foinsí á n-íoslódáil…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …nótaí/foinsí: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 msgid "Importing…"
@@ -17392,57 +17396,52 @@ msgid "Importing children…"
 msgstr "Ag allmhairiú leanaí…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
-#, fuzzy
-#| msgid "FamilySearch modified timestamp"
 msgid "Resolving FamilySearch timestamps…"
-msgstr "Stampa ama modhnaithe FamilySearch"
+msgstr "Ag réiteach stampaí ama FamilySearch…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
-#, fuzzy, python-format
-#| msgid "No FamilySearch Person ID is set for this person."
+#, python-format
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
-msgstr[0] "Níl aon ID Pearsanta FamilySearch socraithe don duine seo."
-msgstr[1] "Níl aon ID Pearsanta FamilySearch socraithe don duine seo."
-msgstr[2] "Níl aon ID Pearsanta FamilySearch socraithe don duine seo."
-msgstr[3] "Níl aon ID Pearsanta FamilySearch socraithe don duine seo."
-msgstr[4] "Níl aon ID Pearsanta FamilySearch socraithe don duine seo."
+msgstr[0] "Ag réiteach stampaí ama FamilySearch do %d duine…"
+msgstr[1] "Ag réiteach stampaí ama FamilySearch do %d duine…"
+msgstr[2] "Ag réiteach stampaí ama FamilySearch do %d duine…"
+msgstr[3] "Ag réiteach stampaí ama FamilySearch do %d duine…"
+msgstr[4] "Ag réiteach stampaí ama FamilySearch do %d duine…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
 msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
 msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "Réitíodh stampa ama FamilySearch %(count)d i %(elapsed).1fs"
+msgstr[1] "Réitíodh %(count)d stampa ama FamilySearch i %(elapsed).1fs"
+msgstr[2] "Réitíodh %(count)d stampa ama FamilySearch i %(elapsed).1fs"
+msgstr[3] "Réitíodh %(count)d stampa ama FamilySearch i %(elapsed).1fs"
+msgstr[4] "Réitíodh %(count)d stampa ama FamilySearch i %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
-#, fuzzy
-#| msgid "Refreshing Addon List"
 msgid "Refreshing comparison status…"
-msgstr "Liosta Breiseáin Athnuachana"
+msgstr "Ag athnuachan stádas na comparáide…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:410
 #, python-format
 msgid "Refreshing comparison status for %d person…"
 msgid_plural "Refreshing comparison status for %d people…"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "Ag athnuachan stádas comparáide do %d duine…"
+msgstr[1] "Ag athnuachan stádas comparáide do %d duine…"
+msgstr[2] "Ag athnuachan stádas comparáide do %d duine…"
+msgstr[3] "Ag athnuachan stádas comparáide do %d duine…"
+msgstr[4] "Ag athnuachan stádas comparáide do %d duine…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:448
 #, python-format
 msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
-msgstr ""
+msgstr "  …thóg an comparáid le haghaidh %(fsid)s %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:453
 #, python-format
 msgid "  …comparison status: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …stádas comparáide: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:463
 #, python-format
@@ -17450,6 +17449,8 @@ msgid ""
 "Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
 "%(failed)d failed)"
 msgstr ""
+"Athnuachan ar stádas an chomparáid críochnaithe i %(elapsed).1fs (%(compared)"
+"d curtha i gcomparáid, %(failed)d teipthe)"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
@@ -17800,7 +17801,7 @@ msgstr "xFs2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2037
 msgid "Scope"
-msgstr "Raon feidhme"
+msgstr "Scóip"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2040
 msgid "FS Title"
@@ -18348,10 +18349,8 @@ msgid "Editor person: (none)"
 msgstr "Eagarthóir: (níl aon duine)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Only in FamilySearch"
 msgid "Open Person in FamilySearch"
-msgstr "I FamilySearch amháin"
+msgstr "Oscail an duine i FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:381
 msgid "Single Person Actions"
@@ -18436,10 +18435,8 @@ msgstr ""
 "+ breith/bás)."
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Keep FamilySearch"
 msgid "Open FamilySearch.org"
-msgstr "Coinnigh FamilySearch"
+msgstr "Oscail FamilySearch.org"
 
 #: ../gramps/gui/fs/tools_window.py:774
 #, python-format
@@ -21577,16 +21574,13 @@ msgid "Gramps was unable to install the required modules"
 msgstr "Ní raibh Gramps in ann na modúil riachtanacha a shuiteáil"
 
 #: ../gramps/gui/plug/_windows.py:370
-#, fuzzy
-#| msgid "Module installation failed"
 msgid "Addon installation failed"
-msgstr "Theip ar shuiteáil modúl"
+msgstr "Theip ar shuiteáil an bhreiseáin"
 
 #: ../gramps/gui/plug/_windows.py:371
-#, fuzzy, python-format
-#| msgid "Gramps was unable to install the required modules"
+#, python-format
 msgid "Gramps was unable to install '%s'."
-msgstr "Ní raibh Gramps in ann na modúil riachtanacha a shuiteáil"
+msgstr "Ní raibh Gramps in ann '%s' a shuiteáil."
 
 #: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
