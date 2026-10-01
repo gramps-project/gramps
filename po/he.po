@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-08-29 06:51+0000\n"
+"PO-Revision-Date: 2026-10-01 09:39+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -11522,6 +11522,16 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"ייתכן של־Python לא תהיה גישה לתעודות ה־SSL במערכת ב־macOS. ניתן לנסות את אחת "
+"מהאפשרויות הבאות:\n"
+"1. שימוש במתקין מאתר python.org: הרצת הקובץ 'Install Certificates.command' "
+"בתיקייה בה נמצאת התקנת Python (לדוגמה: /Applications/Python 3.x/). \n"
+"2. pyenv / Homebrew / non-system Python: הגדרת משתנה הסביבה SSL_CERT_FILE "
+"לפני הפעלת גרמפס:\n"
+"export SSL_CERT_FILE=/etc/ssl/cert.pem       \n"
+"3. התקנת החבילה certifi:  pip install certifi"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -11537,37 +11547,46 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"אימות אישור SSL כשל. זה נפוץ עם התקנות Python שאינן מערכתיות (כגון pyenv, "
+"conda) שה־OpenSSL הצרור בהן לא יודע היכן מאוחסנים אישורי מערכת. נא לנסות את "
+"אחת מהאפשרויות הבאות: \n"
+"  1. התקנת חבילת ה־certi: pip install certifi \n"
+"  2. הגדרת SSL_CERT_FILE לחבילת CA של המערכת לפני הפעלת גרמפס, לדוגמה: \n"
+"       ייצוא SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt (Debian/"
+"Ubuntu) \n"
+"       ייצוא SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt (RHEL/Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "לא ניתן ליצור קשר עם PyPI עבור החבילה '%s': %s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
-msgstr ""
+msgstr "לא נמצא קובץ Wheel תואם עבור '%s==%s' בפלטפורמה זו."
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "לא נמצא קובץ Wheel תואם עבור'%s' בפלטפורמה זו."
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "אי התאמות SHA-256 עבור '%s': נצפו %s, נתקבלו %s"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
 msgid "No version of '%s' satisfies all constraints: %s"
-msgstr ""
+msgstr "אין גרסת '%s' שעומדת בכל האילוצים: %s"
 
 #: ../gramps/gen/utils/pypi.py:1285
-#, fuzzy, python-format
-#| msgid "No file to download"
+#, python-format
 msgid "Failed to download '%s': %s"
-msgstr "לא נמצא קובץ להורדה"
+msgstr "הורדת' %s' כשלה: %s"
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
@@ -16891,25 +16910,17 @@ msgid "Downloading ancestors… (4/11)"
 msgstr "הורדת אבות־קדמונים... (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:152
-#, fuzzy, python-format
-#| msgid ""
-#| "Total ancestors in generations %(second_generation)d to "
-#| "%(last_generation)d is %(count)d. %(percent)s"
+#, python-format
 msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-"סך־כל מספר אבות קדמונים מדור %(second_generation)d עד %(last_generation)d "
-"הוא %(count)d. %(percent)s"
-msgstr[1] ""
-"סך־כל מספר אבות קדמונים מדור %(second_generation)d עד %(last_generation)d "
-"הוא %(count)d. %(percent)s"
+msgstr[0] "הורדת דורות אבות־קדמונים %(gen)d/%(total)d… (%(count)d אדם)"
+msgstr[1] "הורדת דורות אבות־קדמונים %(gen)d/%(total)d… (%(count)d אנשים)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:159
-#, fuzzy, python-format
-#| msgid "Downloading ancestors… (4/11)"
+#, python-format
 msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
-msgstr "הורדת אבות־קדמונים... (4/11)"
+msgstr "הורדת אבות־קדמונים... (4/11) — דור %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
@@ -16952,7 +16963,7 @@ msgstr "הורדת הערות מקורות…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  ...הערות/מקורות: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 msgid "Importing…"
@@ -17013,27 +17024,25 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
-#, fuzzy
-#| msgid "Refreshing Addon List"
 msgid "Refreshing comparison status…"
-msgstr "רשימת תוספים מתרעננת"
+msgstr "מתבצע רענון מצב השוואה…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:410
 #, python-format
 msgid "Refreshing comparison status for %d person…"
 msgid_plural "Refreshing comparison status for %d people…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "רענון מצב השוואה לאדם %d…"
+msgstr[1] "רענון מצב השוואה ל־%d אנשים…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:448
 #, python-format
 msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
-msgstr ""
+msgstr "  ...השוואת %(fsid)s ארך %(elapsed).1f"
 
 #: ../gramps/gui/fs/fs_import/importer.py:453
 #, python-format
 msgid "  …comparison status: %(done)d/%(total)d"
-msgstr ""
+msgstr "  ...מצב השוואה: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:463
 #, python-format
