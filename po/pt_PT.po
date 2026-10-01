@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-06-20 17:01+0000\n"
+"PO-Revision-Date: 2026-09-14 07:51+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -11750,6 +11750,17 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"No macOS, o Python pode não ter acesso aos certificados SSL do sistema. "
+"Experimente uma das seguintes opções:\n"
+"  1. Instalador do python.org: execute o ficheiro «Install "
+"Certificates.command» na pasta de instalação do Python (e.g. /Applications/"
+"Python 3.x/).\n"
+"  2. pyenv / Homebrew / Python não-do-sistema: Defina a variável de ambiente "
+"SSL_CERT_FILE antes de iniciar o Gramps:\n"
+"       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
+"  3. Instale o pacote certifi:  pip install certifi"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -11765,37 +11776,49 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"A verificação do certificado SSL falhou. Isto é comum em instalações de "
+"Python que não são do sistema (pyenv, conda), cujo OpenSSL incluído não sabe "
+"onde os certificados do sistema estão armazenados. Experimente uma das "
+"seguintes opções:\n"
+"  1. Instale o pacote certifi:  pip install certifi\n"
+"  2. Defina SSL_CERT_FILE ao conjunto de certificados de autoridade de "
+"certificação do seu sistema antes de iniciar o Gramps, e.g.:\n"
+"       export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt  (Debian/"
+"Ubuntu)\n"
+"       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "Não é possível aceder ao PyPI para o pacote \"%s\": %s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
 msgstr ""
+"Não foi encontrada nenhuma roda compatível para «%s==%s» nesta plataforma."
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "Não foi encontrada nenhuma roda compatível com \"%s\" nesta plataforma."
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "SHA-256 trocado para \"%s\": esperado %s, obtido %s"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
 msgid "No version of '%s' satisfies all constraints: %s"
-msgstr ""
+msgstr "Nenhuma versão de \"%s\" satisfaz todas as restrições: %s"
 
 #: ../gramps/gen/utils/pypi.py:1285
-#, fuzzy, python-format
-#| msgid "No file to download"
+#, python-format
 msgid "Failed to download '%s': %s"
-msgstr "Nenhum ficheiro a transferir"
+msgstr "Falha ao transferir \"%s\": %s"
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
@@ -17209,25 +17232,21 @@ msgid "Downloading ancestors… (4/11)"
 msgstr "A transferir ascendentes...(4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:152
-#, fuzzy, python-format
-#| msgid ""
-#| "Total ancestors in generations %(second_generation)d to "
-#| "%(last_generation)d is %(count)d. %(percent)s"
+#, python-format
 msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
 msgstr[0] ""
-"O total de ascendentes das gerações %(second_generation)d até "
-"%(last_generation)d é %(count)d (%(percent)s)"
+"Transferência da geração de antepassados %(gen)d/%(total)d… (%(count)d "
+"person)"
 msgstr[1] ""
-"O total de ascendentes das gerações %(second_generation)d até "
-"%(last_generation)d é %(count)d (%(percent)s)"
+"Transferência das gerações de antepassados %(gen)d/%(total)d… (%(count)d "
+"people)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:159
-#, fuzzy, python-format
-#| msgid "Downloading ancestors… (4/11)"
+#, python-format
 msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
-msgstr "A transferir ascendentes...(4/11)"
+msgstr "A transferir ascendentes...(4/11) — geração %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
@@ -17239,25 +17258,25 @@ msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
 msgstr[0] ""
+"Transferência da geração descendente %(gen)d/%(total)d… (%(count)d person)"
 msgstr[1] ""
+"Transferência das gerações descendentes %(gen)d/%(total)d… (%(count)d people)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
-#, fuzzy, python-format
-#| msgid "Downloading descendants… (5/11)"
+#, python-format
 msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
-msgstr "A transferir descendentes...(5/11)"
+msgstr "A transferir descendentes...(5/11) — geração %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr "A transferir cônjuges...(6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy, python-format
-#| msgid "Downloading spouses…"
+#, python-format
 msgid "Downloading spouses for %d person…"
 msgid_plural "Downloading spouses for %d people…"
-msgstr[0] "A transferir cônjuges…"
-msgstr[1] "A transferir cônjuges…"
+msgstr[0] "A transferir cônjuges do indivíduo %d)…"
+msgstr[1] "A transferir cônjuges dos indivíduos %d)…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
@@ -17270,7 +17289,7 @@ msgstr "A transferir notas e fontes…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …notas/fontes: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 msgid "Importing…"
@@ -17310,48 +17329,43 @@ msgid "Importing children…"
 msgstr "A importar filhos…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
-#, fuzzy
-#| msgid "FamilySearch modified timestamp"
 msgid "Resolving FamilySearch timestamps…"
-msgstr "Carimbo modificado pelo FamilySearch"
+msgstr "A resolver carimbos FamilySearch…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
-#, fuzzy, python-format
-#| msgid "No FamilySearch Person ID is set for this person."
+#, python-format
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
-msgstr[0] "Não háID do FamilySearch definida para este indivíduo."
-msgstr[1] "Não háID do FamilySearch definida para este indivíduo."
+msgstr[0] "A resolver carimbos FamilySearch para %d indivíduo…"
+msgstr[1] "A resolver carimbos FamilySearch para %d indivíduos…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
 msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
 msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Resolvido %(count)d carimbo do FamilySearch em %(elapsed).1fs"
+msgstr[1] "Resolvidos %(count)d carimbos do FamilySearch em %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
-#, fuzzy
-#| msgid "Refreshing Addon List"
 msgid "Refreshing comparison status…"
-msgstr "A actualizar lista de extensões"
+msgstr "A actualizar estado da comparação…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:410
 #, python-format
 msgid "Refreshing comparison status for %d person…"
 msgid_plural "Refreshing comparison status for %d people…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "A actualizar estado da comparação para %d indivíduo…"
+msgstr[1] "A actualizar estado da comparação para %d indivíduos…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:448
 #, python-format
 msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
-msgstr ""
+msgstr "  …comparação para %(fsid)s levou %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:453
 #, python-format
 msgid "  …comparison status: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …estado da comparação: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:463
 #, python-format
@@ -17359,6 +17373,8 @@ msgid ""
 "Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
 "%(failed)d failed)"
 msgstr ""
+"Actualização do estado da comparação concluída em %(elapsed).1fs (%(compared)"
+"d comparados, %(failed)d falharam)"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
@@ -18257,10 +18273,8 @@ msgid "Editor person: (none)"
 msgstr "Editar indivíduo (nenhum)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Only in FamilySearch"
 msgid "Open Person in FamilySearch"
-msgstr "Só no FamilySearch"
+msgstr "Abrir indivíduo no FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:381
 msgid "Single Person Actions"
@@ -18348,10 +18362,8 @@ msgstr ""
 "(nome + nascimento/óbito)."
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Keep FamilySearch"
 msgid "Open FamilySearch.org"
-msgstr "Manter FamilySearch"
+msgstr "Abrir o FamilySearch.org"
 
 #: ../gramps/gui/fs/tools_window.py:774
 #, python-format
@@ -21484,16 +21496,13 @@ msgid "Gramps was unable to install the required modules"
 msgstr "O Gramps falhou a instalação dos módulos requeridos"
 
 #: ../gramps/gui/plug/_windows.py:370
-#, fuzzy
-#| msgid "Module installation failed"
 msgid "Addon installation failed"
-msgstr "Falha ao instalar o módulo"
+msgstr "Falha ao instalar a extensão"
 
 #: ../gramps/gui/plug/_windows.py:371
-#, fuzzy, python-format
-#| msgid "Gramps was unable to install the required modules"
+#, python-format
 msgid "Gramps was unable to install '%s'."
-msgstr "O Gramps falhou a instalação dos módulos requeridos"
+msgstr "O Gramps falhou a instalação de \"%s\"."
 
 #: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
