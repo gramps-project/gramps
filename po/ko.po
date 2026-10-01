@@ -5,13 +5,14 @@
 # Alexander Son <soneus72@snu.ac.kr>, 2024, 2025.
 # clearstripe <sakurasan000510@gmail.com>, 2026.
 # Juan Song <lenin199@gmail.com>, 2026.
+# Anthony <anthony@roussel.dev>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-05-25 06:11+0000\n"
-"Last-Translator: Juan Song <lenin199@gmail.com>\n"
+"PO-Revision-Date: 2026-09-16 14:51+0000\n"
+"Last-Translator: Anthony <anthony@roussel.dev>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ko/>\n"
 "Language: ko\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -24160,7 +24161,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:333
 msgid "All"
-msgstr ""
+msgstr "전체"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 #: ../gramps/plugins/drawreport/statisticschart.py:501
