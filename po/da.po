@@ -49,7 +49,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-07-31 06:01+0000\n"
+"PO-Revision-Date: 2026-09-28 14:40+0000\n"
 "Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -58,7 +58,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -11753,6 +11753,16 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"På macOS har Python muligvis ikke adgang til systemets SSL certificater.  "
+"Prøv en af de følgende:\n"
+"  1. python.org installer: kør 'Install Certificates.command' i din python "
+"installationsmappe (f.eks. /Applications/Python 3.x/).\n"
+"  2 pyenv / Homebrew / non-system Python: set SSL_CERT_FILE environment "
+"variablen før du starter Gramps:\n"
+"       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
+"  3. Installer certifi pakken:  pip install certifi"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -11768,37 +11778,46 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"kontrol af SSL cerftificat fejlede.  Dette er almindeligt for ikke-system "
+"Python installationer (pyenv, conda) hvis medfølgende OpenSSL ikke ved hvor "
+"system certificater er lagrede.  Prøv en af de følgende:\n"
+"  1. Installer certifi pakken: pip install certifi\n"
+"  2. Sæt SSL_CERT_FILE til dit system CA bundt før du starter Gramps, dvs:\n"
+"       export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt  (Debian/"
+"Ubuntu)\n"
+"       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "Kan ikke nå PyPI for pakken '%s:%s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
-msgstr ""
+msgstr "Intet kompatibelt wheel blev fundet for  '%s==%s' på denne platform."
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "Intet kompatibelt wheel blev fundet for '%s' på denne platform."
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "SHA-256 fejl for '%s': forventede %s, fik %s"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
 msgid "No version of '%s' satisfies all constraints: %s"
-msgstr ""
+msgstr "Ingen version af '%s' lever op til alle krav: %s"
 
 #: ../gramps/gen/utils/pypi.py:1285
-#, fuzzy, python-format
-#| msgid "No file to download"
+#, python-format
 msgid "Failed to download '%s': %s"
-msgstr "Ingen fil til at hente"
+msgstr "Kunne ikke hente '%s':%s"
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
@@ -17196,25 +17215,17 @@ msgid "Downloading ancestors… (4/11)"
 msgstr "Henter aner... (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:152
-#, fuzzy, python-format
-#| msgid ""
-#| "Total ancestors in generations %(second_generation)d to "
-#| "%(last_generation)d is %(count)d. %(percent)s"
+#, python-format
 msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-"Samlet antal aner i generationerne %(second_generation)d til "
-"%(last_generation)d er %(count)d. %(percent)s"
-msgstr[1] ""
-"Samlet antal aner i generationerne %(second_generation)d til "
-"%(last_generation)d er %(count)d. %(percent)s"
+msgstr[0] "Henter ane generation %(gen)d%(total)d...(%(count)d person)"
+msgstr[1] "Henter ane generationer %(gen)d%(total)d...(%(count)d personer)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:159
-#, fuzzy, python-format
-#| msgid "Downloading ancestors… (4/11)"
+#, python-format
 msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
-msgstr "Henter aner... (4/11)"
+msgstr "Henter aner... (4/11) — generation %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
@@ -17225,26 +17236,24 @@ msgstr "Henter efterkommere... (5/11)"
 msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Henter efterkommer generation %(gen)d/%(total)d...(%(count)d person)"
+msgstr[1] "Henter efterkommer generation %(gen)d/%(total)d...(%(count)d personer)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
-#, fuzzy, python-format
-#| msgid "Downloading descendants… (5/11)"
+#, python-format
 msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
-msgstr "Henter efterkommere... (5/11)"
+msgstr "Henter efterkommere... (5/11) — generation %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr "Henter partnere... (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy, python-format
-#| msgid "Downloading spouses…"
+#, python-format
 msgid "Downloading spouses for %d person…"
 msgid_plural "Downloading spouses for %d people…"
-msgstr[0] "Henter partnere…"
-msgstr[1] "Henter partnere…"
+msgstr[0] "Henter partnere til %d person…"
+msgstr[1] "Henter partnere til %d personer…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
@@ -17257,7 +17266,7 @@ msgstr "Henter noter og kilder…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  ...noter/kilder: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 msgid "Importing…"
@@ -17297,18 +17306,15 @@ msgid "Importing children…"
 msgstr "Importerer børn…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
-#, fuzzy
-#| msgid "FamilySearch modified timestamp"
 msgid "Resolving FamilySearch timestamps…"
-msgstr "Tidsstempel ændret af FamilySearch"
+msgstr "Løser FamilySearch tidsstempler…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
-#, fuzzy, python-format
-#| msgid "No FamilySearch Person ID is set for this person."
+#, python-format
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
-msgstr[0] "Ingen FamilySearch person ID er angivet for denne person."
-msgstr[1] "Ingen FamilySearch person ID er angivet for denne person."
+msgstr[0] "Løser FamilySearch tidsstempel for %d person…"
+msgstr[1] "Løser FamilySearch tidsstempel for %d person…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
@@ -17318,10 +17324,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
-#, fuzzy
-#| msgid "Refreshing Addon List"
 msgid "Refreshing comparison status…"
-msgstr "Genopfrisker liste over tilføjelsesprogrammer"
+msgstr "Genopfrisker sammenlignings status…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:410
 #, python-format
@@ -21463,10 +21467,9 @@ msgid "Addon installation failed"
 msgstr "Installation af modul mislykkedes"
 
 #: ../gramps/gui/plug/_windows.py:371
-#, fuzzy, python-format
-#| msgid "Gramps was unable to install the required modules"
+#, python-format
 msgid "Gramps was unable to install '%s'."
-msgstr "Gramps kunne ikke installere de krævede moduler"
+msgstr "Gramps kunne ikke installere '%s'."
 
 #: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
