@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-08-22 05:53+0000\n"
+"PO-Revision-Date: 2026-09-30 14:51+0000\n"
 "Last-Translator: coolvitto <coolzdaddy55@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ja/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../data/holidays.xml:3
@@ -2996,15 +2996,14 @@ msgstr "頃 "
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgctxt "date modifier"
 msgid "from "
-msgstr "フォーム "
+msgstr "から "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:257
-#, fuzzy
 msgctxt "date modifier"
 msgid "to "
-msgstr "to "
+msgstr "まで "
 
 #: ../gramps/gen/datehandler/_datestrings.py:262
 msgctxt "date quality"
@@ -3284,57 +3283,60 @@ msgid "Schema version"
 msgstr "スキーマバージョン"
 
 #: ../gramps/gen/db/upgrade.py:719
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d 人 の人が %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされました\n"
+"%(n1)6d   人 の人が        %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされ"
+"ました\n"
 
 #: ../gramps/gen/db/upgrade.py:723
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d ファミリが %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされました\n"
+"%(n1)6d  ファミリが      %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされま"
+"した\n"
 
 #: ../gramps/gen/db/upgrade.py:727
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d 件のイベントが %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされまし"
-"た\n"
+"%(n1)6d  件のイベントが        %(n2)6d 件の引用で %(n3)6d 秒でアップグレード"
+"されました\n"
 
 #: ../gramps/gen/db/upgrade.py:731
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d 個のメディア オブジェクトが %(n2)6d 個の引用とともに %(n3)6d 秒でアッ"
-"プグレードされました\n"
+"%(n1)6d  個のメディア オブジェクトが %(n2)6d 個の引用とともに %(n3)6d 秒で"
+"アップグレードされました\n"
 
 #: ../gramps/gen/db/upgrade.py:735
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d か所が %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされました\n"
+"%(n1)6d  か所が        %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされまし"
+"た\n"
 
 #: ../gramps/gen/db/upgrade.py:739
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d 個のリポジトリが %(n2)6d 個の引用で %(n3)6d 秒でアップグレードされま"
-"した\n"
+"%(n1)6d  個のリポジトリが  %(n2)6d 個の引用で %(n3)6d 秒でアップグレードされ"
+"ました\n"
 
 #: ../gramps/gen/db/upgrade.py:743
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d 件のソースが %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされまし"
-"た\n"
+"%(n1)6d  件のソースが       %(n2)6d 件の引用で %(n3)6d 秒でアップグレードされ"
+"ました\n"
 
 #: ../gramps/gen/db/upgrade.py:1308
 msgid "Number of new objects upgraded:\n"
@@ -11578,6 +11580,16 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"macOSでは、PythonがシステムのSSL証明書にアクセスできない場合があります。  次"
+"のいずれかを試してください:\n"
+"  1. python.orgのインストーラー: Pythonのインストールフォルダー(例: /"
+"Applications/Python 3.x/)にある'Install Certificates.command'を実行します。\n"
+"  2. pyenv / Homebrew / システム標準以外のPython: Grampsを起動する前に環境変"
+"数SSL_CERT_FILEを設定します:\n"
+"       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
+"  3. certifiパッケージをインストールします:  pip install certifi"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -11593,37 +11605,47 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"SSL証明書の検証に失敗しました。  これは、同梱のOpenSSLがシステム証明書の保存"
+"場所を認識できない、システム標準以外のPython(pyenv、condaなど)でよく起こりま"
+"す。  次のいずれかを試してください:\n"
+"  1. certifiパッケージをインストールします:  pip install certifi\n"
+"  2. Grampsを起動する前に、SSL_CERT_FILEをシステムのCAバンドルに設定します"
+"(例):\n"
+"       export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt  (Debian/"
+"Ubuntu)\n"
+"       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "パッケージ'%s'についてPyPIに接続できません: %s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
-msgstr ""
+msgstr "このプラットフォームには'%s==%s'に対応するwheelが見つかりません。"
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "このプラットフォームには'%s'に対応するwheelが見つかりません。"
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "'%s'のSHA-256が一致しません: 期待値 %s、実際の値 %s"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
 msgid "No version of '%s' satisfies all constraints: %s"
-msgstr ""
+msgstr "'%s'のバージョンで、すべての制約を満たすものがありません: %s"
 
 #: ../gramps/gen/utils/pypi.py:1285
-#, fuzzy, python-format
-#| msgid "No file to download"
+#, python-format
 msgid "Failed to download '%s': %s"
-msgstr "ダウンロードするファイルはありません"
+msgstr "'%s'のダウンロードに失敗しました: %s"
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
@@ -17000,22 +17022,16 @@ msgid "Downloading ancestors… (4/11)"
 msgstr "祖先をダウンロード中… (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:152
-#, fuzzy, python-format
-#| msgid ""
-#| "Total ancestors in generations %(second_generation)d to "
-#| "%(last_generation)d is %(count)d. %(percent)s"
+#, python-format
 msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-"世代 %(second_generation)d から %(last_generation)d までの祖先の合計は "
-"%(count)d 人です。%(percent)s"
+msgstr[0] "祖先の世代をダウンロード中 %(gen)d/%(total)d… (%(count)d人)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:159
-#, fuzzy, python-format
-#| msgid "Downloading ancestors… (4/11)"
+#, python-format
 msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
-msgstr "祖先をダウンロード中… (4/11)"
+msgstr "祖先をダウンロード中… (4/11) — 世代 %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
@@ -17026,24 +17042,22 @@ msgstr "子孫をダウンロード中… (5/11)"
 msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
+msgstr[0] "子孫の世代をダウンロード中 %(gen)d/%(total)d… (%(count)d人)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
-#, fuzzy, python-format
-#| msgid "Downloading descendants… (5/11)"
+#, python-format
 msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
-msgstr "子孫をダウンロード中… (5/11)"
+msgstr "子孫をダウンロード中… (5/11) — 世代 %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr "配偶者をダウンロード中… (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy, python-format
-#| msgid "Downloading spouses…"
+#, python-format
 msgid "Downloading spouses for %d person…"
 msgid_plural "Downloading spouses for %d people…"
-msgstr[0] "配偶者をダウンロード中…"
+msgstr[0] "%d人分の配偶者をダウンロード中…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
@@ -17056,7 +17070,7 @@ msgstr "ノートとソースをダウンロード中…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …メモ/情報源: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 msgid "Importing…"
@@ -17096,45 +17110,40 @@ msgid "Importing children…"
 msgstr "子をインポート中…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
-#, fuzzy
-#| msgid "FamilySearch modified timestamp"
 msgid "Resolving FamilySearch timestamps…"
-msgstr "FamilySearch 変更タイムスタンプ"
+msgstr "FamilySearchのタイムスタンプを解決中…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
-#, fuzzy, python-format
-#| msgid "No FamilySearch Person ID is set for this person."
+#, python-format
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
-msgstr[0] "この人物に FamilySearch 人物 ID が設定されていません。"
+msgstr[0] "%d人のFamilySearchタイムスタンプを解決中…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
 msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
 msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
-msgstr[0] ""
+msgstr[0] "FamilySearchのタイムスタンプ%(count)d件を%(elapsed).1f秒で解決しました"
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
-#, fuzzy
-#| msgid "Refreshing Addon List"
 msgid "Refreshing comparison status…"
-msgstr "アドオンリストを更新中"
+msgstr "比較状況を更新中…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:410
 #, python-format
 msgid "Refreshing comparison status for %d person…"
 msgid_plural "Refreshing comparison status for %d people…"
-msgstr[0] ""
+msgstr[0] "%d人の比較状況を更新中…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:448
 #, python-format
 msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
-msgstr ""
+msgstr "  …%(fsid)sの比較に%(elapsed).1f秒かかりました"
 
 #: ../gramps/gui/fs/fs_import/importer.py:453
 #, python-format
 msgid "  …comparison status: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …比較状況: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:463
 #, python-format
@@ -17142,6 +17151,8 @@ msgid ""
 "Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
 "%(failed)d failed)"
 msgstr ""
+"比較状況の更新が%(elapsed).1f秒で完了しました (比較済み %(compared)d件、失敗 "
+"%(failed)d件)"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
@@ -18033,10 +18044,8 @@ msgid "Editor person: (none)"
 msgstr "エディタ人物: (なし)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Only in FamilySearch"
 msgid "Open Person in FamilySearch"
-msgstr "FamilySearch のみ"
+msgstr "FamilySearchで人物を開く"
 
 #: ../gramps/gui/fs/tools_window.py:381
 msgid "Single Person Actions"
@@ -18122,10 +18131,8 @@ msgstr ""
 "亡)。"
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Keep FamilySearch"
 msgid "Open FamilySearch.org"
-msgstr "FamilySearch を保持"
+msgstr "FamilySearch.orgを開く"
 
 #: ../gramps/gui/fs/tools_window.py:774
 #, python-format
@@ -21192,16 +21199,13 @@ msgid "Gramps was unable to install the required modules"
 msgstr "Gramps は必要なモジュールをインストールできませんでした"
 
 #: ../gramps/gui/plug/_windows.py:370
-#, fuzzy
-#| msgid "Module installation failed"
 msgid "Addon installation failed"
-msgstr "モジュールのインストールに失敗しました"
+msgstr "アドオンのインストールに失敗しました"
 
 #: ../gramps/gui/plug/_windows.py:371
-#, fuzzy, python-format
-#| msgid "Gramps was unable to install the required modules"
+#, python-format
 msgid "Gramps was unable to install '%s'."
-msgstr "Gramps は必要なモジュールをインストールできませんでした"
+msgstr "Grampsは'%s'をインストールできませんでした。"
 
 #: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
@@ -38182,7 +38186,7 @@ msgstr "イベントを並べ替え"
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Verify the Data"
-msgstr "データを検証"
+msgstr "データの検証"
 
 #: ../gramps/plugins/tool/tools.gpr.py:467
 msgid "Verifies the data against user-defined tests"
