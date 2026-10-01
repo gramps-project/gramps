@@ -15,14 +15,14 @@
 # Ismail Amirkulal <amirkhalilzain@gmail.com>, 2025.
 # feri andy <feri.andy.nurdhin@gmail.com>, 2025.
 # "Aslam A.F." <winux-dev@users.noreply.hosted.weblate.org>, 2026.
+# Anthony <anthony@roussel.dev>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
 "PO-Revision-Date: 2026-09-16 14:51+0000\n"
-"Last-Translator: \"Aslam A.F.\" <winux-dev@users.noreply.hosted.weblate.org>"
-"\n"
+"Last-Translator: Anthony <anthony@roussel.dev>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/id/>\n"
 "Language: id\n"
@@ -24101,7 +24101,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:333
 msgid "All"
-msgstr ""
+msgstr "Semua"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 #: ../gramps/plugins/drawreport/statisticschart.py:501
