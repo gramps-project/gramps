@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-14 07:51+0000\n"
-"Last-Translator: Michał Stojek <stojex@gmail.com>\n"
+"PO-Revision-Date: 2026-09-15 08:51+0000\n"
+"Last-Translator: Artur <wy66m6xm@anonaddy.me>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -6883,10 +6883,8 @@ msgstr "Brak połączenia z FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:326
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:623
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "inicjały"
+msgstr "Podstawowe informacje"
 
 #: ../gramps/gen/fs/compare/aggregate.py:331
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:627
@@ -7118,29 +7116,20 @@ msgid "LifeSketch"
 msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
-#, fuzzy
-#| msgid "the citation"
 msgid "Birth Registration"
-msgstr "cytat"
+msgstr "Rejestracja urodzenia"
 
 #: ../gramps/gen/fs/constants.py:83 ../gramps/gen/fs/constants.py:84
-#, fuzzy
-#| msgid "the citation"
 msgid "Death Registration"
-msgstr "cytat"
+msgstr "Rejestracja zgonu"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "Luty"
+msgstr "Nekrolog"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "Związek"
+msgstr "Obywatelstwo"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
 msgid "Building FSID list for places"
@@ -7242,10 +7231,8 @@ msgstr "Wspomnienie: {t}"
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:600
 #: ../gramps/gui/fs/sync_directions.py:778
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "Brakująca/e data/y"
+msgstr "Brakująca/e"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:321
@@ -7312,12 +7299,12 @@ msgstr ""
 #: ../gramps/gen/fs/tags.py:343
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Notatki ? rząd/wersz %(row)d nie jest zielony (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:353
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Źródło ? rząd/wersz %(row)d nie jest zielony (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:363
 msgid ""
@@ -7327,10 +7314,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/fs/utils/linking.py:48
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch tags"
-msgstr "Źródła rodziny"
+msgstr "Tagi z FamilySearch.org"
 
 #: ../gramps/gen/lib/address.py:105 ../gramps/gui/clipboard.py:316
 #: ../gramps/gui/configure.py:749 ../gramps/gui/editors/editaddress.py:199
@@ -8878,49 +8863,41 @@ msgid "Civil Union"
 msgstr "Związek cywilny"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:73
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch sync"
-msgstr "Źródła rodziny"
+msgstr "Synchronizacja FamilySearch.org"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:76 ../gramps/gui/fs/actions.py:845
 #: ../gramps/gui/fs/fs_import/options.py:38
-#, fuzzy
-#| msgid "Family ID"
 msgid "FamilySearch ID"
-msgstr "Identyfikator rodziny"
+msgstr "Identyfikator rodziny FamilySearch.org"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:77
 msgid "Is root"
-msgstr ""
+msgstr "Czy to uprawnienia administratora? (linux `ls root`)"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:80
-#, fuzzy
-#| msgid "Statistics Gramplet"
 msgid "Status timestamp"
-msgstr "Gramplet Statystyki"
+msgstr "Sygnatura czasowa statusu"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:84
 msgid "Confirmed timestamp"
-msgstr ""
+msgstr "Potwierdzony znacznik czasu"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:88
 msgid "Gramps modified timestamp"
-msgstr ""
+msgstr "Zmodyfikowany znacznik czasu w programie Gramps"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:92
 msgid "FamilySearch modified timestamp"
-msgstr ""
+msgstr "Zmodyfikowany znacznik czasu serwisu FamilySearch.org"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "Podstawowy konflikt"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
-#, fuzzy
-#| msgid "Config"
 msgid "Conflict"
-msgstr "Konfiguracja"
+msgstr "Konflikt"
 
 #: ../gramps/gen/lib/grampstype.py:267 ../gramps/gen/lib/ldsord.py:201
 #: ../gramps/gui/clipboard.py:910
@@ -11830,7 +11807,7 @@ msgstr ""
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "Nie można połączyć się z serwerem PyPI w celu pobrania pakietu '%s': %s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
@@ -18707,55 +18684,42 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Merge Family"
 msgid "Open FamilySearch.org"
-msgstr "Połącz rodziny"
+msgstr "Otwórz FamilySearch.org"
 
 #: ../gramps/gui/fs/tools_window.py:774
-#, fuzzy, python-format
-#| msgid "%(name)s [%(gid)s]"
+#, python-format
 msgid "Editor person: %(name)s  [%(gid)s]"
-msgstr "%(name)s [%(gid)s]"
+msgstr "Osoba edytująca: %(name)s [%(gid)s]"
 
 #: ../gramps/gui/fs/tools_window.py:782
-#, fuzzy, python-format
-#| msgid "Person: %(name)s"
+#, python-format
 msgid "Editor person: %(name)s"
-msgstr "Osoba: %(name)s"
+msgstr "Osoba edytująca: %(name)s"
 
 #: ../gramps/gui/fs/tools_window.py:801
-#, fuzzy
-#| msgid "Family ID"
 msgid "Add FamilySearch ID"
-msgstr "Identyfikator rodziny"
+msgstr "Dodaj identyfikator rodziny FamilySearch.org"
 
 #: ../gramps/gui/fs/tools_window.py:807
-#, fuzzy
-#| msgid "Family ID"
 msgid "Edit FamilySearch ID"
-msgstr "Identyfikator rodziny"
+msgstr "Edytuj identyfikator rodziny FamilySearch.org"
 
 #: ../gramps/gui/fs/utils/index.py:47
 #, python-format
 msgid "Build FSID list (1/%(total)d)"
-msgstr ""
+msgstr "Buduj listę FSID (identifikator FamilySearch.org) (1/%(total)d)"
 
 #: ../gramps/gui/fs/utils/index.py:57 ../gramps/gui/fs/utils/index.py:61
-#, fuzzy, python-format
-#| msgid "Family places for %s"
+#, python-format
 msgid "FamilySearch duplicate ID: %s "
-msgstr "Miejsca rodzinne dla %s"
+msgstr "Duplikaty identifikator FamilySearch.org: %s "
 
 #: ../gramps/gui/fs/utils/index.py:60
-#, fuzzy
-#| msgid "Duplicate Family"
 msgid "Duplicate FSFTID"
-msgstr "Zduplikowana rodzina"
+msgstr "Zduplikowana FSFTID (FamilySearch.org indetifikator rodziny)"
 
 #: ../gramps/gui/fs/utils/index.py:62
-#, fuzzy
-#| msgid "_Continue anyway"
 msgid "_Continue warning"
 msgstr "_Kontynuuj mimo wszystko"
 
@@ -18769,6 +18733,7 @@ msgstr "Ostrzeżenie dotyczące historii operacji"
 #, python-format
 msgid "Build FSID list for places (2/%(total)d)"
 msgstr ""
+"Buduje listę identifikatora rodzin miejsc z FamilySearch.org (2/%(total)d)"
 
 #: ../gramps/gui/glade/addmedia.glade:125
 #: ../gramps/gui/glade/editperson.glade:290
