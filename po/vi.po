@@ -4,13 +4,14 @@
 # FIRST AUTHOR <trande@gmail.com>, 2012.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021, 2022.
+# Anthony <anthony@roussel.dev>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VIETNAMESE 4.2.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2022-03-01 00:39+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2026-09-16 14:51+0000\n"
+"Last-Translator: Anthony <anthony@roussel.dev>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/vi/>\n"
 "Language: vi\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 "X-Poedit-KeywordsList: July 13, 2018: Gramps Version 4.2.8 based on "
 "Vietnamese Translation Feb 29, 2012. 14:02 VN time, VIETNAMESE TRANSLATION "
 "OF GRAMPS, V. 3\n"
@@ -25777,11 +25778,8 @@ msgid "Item count"
 msgstr "Đếm các mục "
 
 #: ../gramps/plugins/drawreport/statisticschart.py:333
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
 msgid "All"
-msgstr "tất cả"
+msgstr "Tất cả"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 #: ../gramps/plugins/drawreport/statisticschart.py:501

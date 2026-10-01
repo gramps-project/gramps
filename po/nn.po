@@ -5,13 +5,14 @@
 # Sigmund Lorentsen <siglorent@gmail.com>, 2008, 2009, 2010, 2011, 2012, 2014, 2018.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # Tor Eirik Tranda <teitrand@hotmail.com>, 2022.
+# Anthony <anthony@roussel.dev>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2022-11-26 08:05+0000\n"
-"Last-Translator: Tor Eirik Tranda <teitrand@hotmail.com>\n"
+"PO-Revision-Date: 2026-09-16 14:51+0000\n"
+"Last-Translator: Anthony <anthony@roussel.dev>\n"
 "Language-Team: Norwegian Nynorsk <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/nn/>\n"
 "Language: nn\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -26093,11 +26094,8 @@ msgid "Item count"
 msgstr "Elementteljar"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:333
-#, fuzzy
-#| msgctxt "Filtering_on"
-#| msgid "all"
 msgid "All"
-msgstr "alle"
+msgstr "Alle"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 #: ../gramps/plugins/drawreport/statisticschart.py:501
