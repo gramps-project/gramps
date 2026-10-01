@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-12 14:51+0000\n"
+"PO-Revision-Date: 2026-09-14 07:51+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -11888,6 +11888,16 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"Op macOS kan Python mogelijk geen toegang krijgen tot de systeem-SSL-"
+"certificaten. Probeer een van de volgende opties:\n"
+"1. python.org installer: voer 'Install Certificates.command' uit in de "
+"Python-installatiemap (bijv. /Applications/Python 3.x/).\n"
+"2. pyenv / Homebrew / non-system Python: stel de SSL_CERT_FILE "
+"omgevingsvariabele in voordat je Gramps start: export SSL_CERT_FILE=/etc/ssl/"
+"cert.pem\n"
+"3. Installeer het certifi-pakket: pip install certifi"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -11903,37 +11913,47 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"SSL-certificaatverificatie is mislukt. Dit komt vaak voor bij non-system "
+"Python-installaties (pyenv, conda) waarvan de meegeleverde OpenSSL niet weet "
+"waar de systeemcertificaten zijn opgeslagen. Probeer een van de volgende "
+"opties:\n"
+"1. Installeer het certifi-pakket: pip install certifi\n"
+"2. Stel SSL_CERT_FILE in op je systeem-CA-bundel voordat je Gramps start, "
+"bijvoorbeeld: \n"
+"    export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt (Debian/Ubuntu)\n"
+"    export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt (RHEL/Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "Kan PyPI niet bereiken voor pakket '%s': %s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
-msgstr ""
+msgstr "Geen compatibel stuurelement gevonden voor '%s==%s' op dit platform."
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "Geen compatibel stuurelement gevonden voor '%s' op dit platform."
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "Afwijkende SHA-256 voor '%s': %s verwacht, %s gekregen"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
 msgid "No version of '%s' satisfies all constraints: %s"
-msgstr ""
+msgstr "Heb versie van '%s' voldoet aan alle voorwaarden: %s"
 
 #: ../gramps/gen/utils/pypi.py:1285
-#, fuzzy, python-format
-#| msgid "No file to download"
+#, python-format
 msgid "Failed to download '%s': %s"
-msgstr "Geen bestand om te downloaden"
+msgstr "Download van '%s' is mislukt: %s"
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
@@ -17384,25 +17404,17 @@ msgid "Downloading ancestors… (4/11)"
 msgstr "Voorouders downloaden…(4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:152
-#, fuzzy, python-format
-#| msgid ""
-#| "Total ancestors in generations %(second_generation)d to "
-#| "%(last_generation)d is %(count)d. %(percent)s"
+#, python-format
 msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-"Totaal voorouders in generaties %(second_generation)d tot "
-"%(last_generation)d is %(count)d. %(percent)s"
-msgstr[1] ""
-"Totaal voorouders in generaties %(second_generation)d tot "
-"%(last_generation)d is %(count)d. %(percent)s"
+msgstr[0] "Vooroudergeneratie %(gen)d/%(total)d downloaden… (%(count)d persoon)"
+msgstr[1] "Vooroudergeneratie %(gen)d/%(total)d downloaden… (%(count)d personen)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:159
-#, fuzzy, python-format
-#| msgid "Downloading ancestors… (4/11)"
+#, python-format
 msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
-msgstr "Voorouders downloaden…(4/11)"
+msgstr "Voorouders downloaden…(4/11) — generatie %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
@@ -17413,26 +17425,24 @@ msgstr "Afstammelingen downloaden… (5/11)"
 msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Afstammingsgeneratie %(gen)d/%(total)d downloaden… (%(count)d persoon)"
+msgstr[1] "Afstammingsgeneratie %(gen)d/%(total)d downloaden… (%(count)d personen)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
-#, fuzzy, python-format
-#| msgid "Downloading descendants… (5/11)"
+#, python-format
 msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
-msgstr "Afstammelingen downloaden… (5/11)"
+msgstr "Afstammelingen downloaden… (5/11) — generatie %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr "Partners downloaden… (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy, python-format
-#| msgid "Downloading spouses…"
+#, python-format
 msgid "Downloading spouses for %d person…"
 msgid_plural "Downloading spouses for %d people…"
-msgstr[0] "Partners downloaden…"
-msgstr[1] "Partners downloaden…"
+msgstr[0] "Partners downloaden voor %d persoon…"
+msgstr[1] "Partners downloaden voor %d personen…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
@@ -17445,7 +17455,7 @@ msgstr "Notities en bronnen downloaden…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …notities/bronnen: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 msgid "Importing…"
@@ -17485,48 +17495,43 @@ msgid "Importing children…"
 msgstr "Kinderen importeren…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
-#, fuzzy
-#| msgid "FamilySearch modified timestamp"
 msgid "Resolving FamilySearch timestamps…"
-msgstr "FamilySearch gewijzigde tijdstempel"
+msgstr "FamilySearch tijdstempels oplossen…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
-#, fuzzy, python-format
-#| msgid "No FamilySearch Person ID is set for this person."
+#, python-format
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
-msgstr[0] "Er is geen FamilySearch Persoons-ID ingesteld voor deze persoon."
-msgstr[1] "Er is geen FamilySearch Persoons-ID ingesteld voor deze persoon."
+msgstr[0] "FamilySearch tijdstempels oplossen voor %d persoon…"
+msgstr[1] "FamilySearch tijdstempels oplossen voor %d personen…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
 msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
 msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)d FamilySearch-tijdstempel opgelost in %(elapsed).1fs"
+msgstr[1] "%(count)d FamilySearch-tijdstempels opgelost in %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
-#, fuzzy
-#| msgid "Refreshing Addon List"
 msgid "Refreshing comparison status…"
-msgstr "Lijst met uitbreidingen vernieuwen"
+msgstr "Vergelijkingsstatus vernieuwen…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:410
 #, python-format
 msgid "Refreshing comparison status for %d person…"
 msgid_plural "Refreshing comparison status for %d people…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vergelijkingsstatus vernieuwen voor %d persoon…"
+msgstr[1] "Vergelijkingsstatus vernieuwen voor %d personen…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:448
 #, python-format
 msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
-msgstr ""
+msgstr "  …vergelijking voor %(fsid)s duurde %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:453
 #, python-format
 msgid "  …comparison status: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …vergelijkingsstatus: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:463
 #, python-format
@@ -17534,6 +17539,8 @@ msgid ""
 "Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
 "%(failed)d failed)"
 msgstr ""
+"Vergelijkingsstatus vernieuwd in %(elapsed).1fs (%(compared)d vergeleken, %"
+"(failed)d mislukt)"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
@@ -18429,10 +18436,8 @@ msgid "Editor person: (none)"
 msgstr "Persoon bewerkt door: (niemand)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Only in FamilySearch"
 msgid "Open Person in FamilySearch"
-msgstr "Alleen in FamilySearch"
+msgstr "Persoon openen in FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:381
 msgid "Single Person Actions"
@@ -18520,10 +18525,8 @@ msgstr ""
 "geboorte/overlijden)."
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Keep FamilySearch"
 msgid "Open FamilySearch.org"
-msgstr "FamilySearch behouden"
+msgstr "FamilySearch.org openen"
 
 #: ../gramps/gui/fs/tools_window.py:774
 #, python-format
@@ -21672,16 +21675,13 @@ msgid "Gramps was unable to install the required modules"
 msgstr "Gramps heeft de vereiste modules niet kunnen installeren"
 
 #: ../gramps/gui/plug/_windows.py:370
-#, fuzzy
-#| msgid "Module installation failed"
 msgid "Addon installation failed"
-msgstr "Module-installatie is mislukt"
+msgstr "Installatie van uitbreiding is mislukt"
 
 #: ../gramps/gui/plug/_windows.py:371
-#, fuzzy, python-format
-#| msgid "Gramps was unable to install the required modules"
+#, python-format
 msgid "Gramps was unable to install '%s'."
-msgstr "Gramps heeft de vereiste modules niet kunnen installeren"
+msgstr "Gramps heeft '%s' niet kunnen installeren."
 
 #: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
