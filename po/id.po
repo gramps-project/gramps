@@ -14,13 +14,15 @@
 # Arshad Aulia <auliarshad@gmail.com>, 2025.
 # Ismail Amirkulal <amirkhalilzain@gmail.com>, 2025.
 # feri andy <feri.andy.nurdhin@gmail.com>, 2025.
+# "Aslam A.F." <winux-dev@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2025-10-30 15:02+0000\n"
-"Last-Translator: feri andy <feri.andy.nurdhin@gmail.com>\n"
+"PO-Revision-Date: 2026-09-16 14:51+0000\n"
+"Last-Translator: \"Aslam A.F.\" <winux-dev@users.noreply.hosted.weblate.org>"
+"\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/id/>\n"
 "Language: id\n"
@@ -28,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -752,14 +754,6 @@ msgstr ""
 "tombol centang Tampilkan Semua."
 
 #: ../data/tips.xml:65
-#, fuzzy
-#| msgid ""
-#| "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "
-#| "to Gramps. Requesting an enhancement can be done either through the "
-#| "gramps-users or gramps-devel mailing lists, or by going to https://gramps-"
-#| "project.org/bugs/ and creating a Feature Request. Filing a Feature "
-#| "Request is preferred but it can be good to discuss your ideas on the "
-#| "email lists."
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -769,10 +763,9 @@ msgid ""
 msgstr ""
 "<b>Meningkatkan Gramps</b><br/>Pengguna didorong untuk mengajukan permintaan "
 "peningkatan fitur Gramps. Permintaan peningkatan dapat dilakukan melalui "
-"milis gramps-users atau gramps-devel, atau dengan mengunjungi https://gramps-"
-"project.org/bugs/ dan membuat Permintaan Fitur. Mengajukan Permintaan Fitur "
-"lebih disarankan, tetapi mendiskusikan ide Anda melalui milis juga sangat "
-"membantu."
+"milis gramps-users atau gramps-devel, atau dengan mengunjungi &bugs_url; dan "
+"membuat Permintaan Fitur. Mengajukan Permintaan Fitur lebih disarankan, "
+"tetapi mendiskusikan ide Anda melalui milis juga sangat membantu."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -995,24 +988,17 @@ msgstr ""
 "diunggah ke World Wide Web."
 
 #: ../data/tips.xml:99
-#, fuzzy
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
 "<b>Melaporkan bug di Gramps</b><br/>Cara terbaik untuk melaporkan bug pada "
-"Gramps adalah menggunakan sistem bug tracking dengan mengakses https://"
-"gramps-project.org/bugs/."
+"Gramps adalah menggunakan sistem pelacak bug dengan mengakses &bugs_url;."
 
 #: ../data/tips.xml:101
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
-#| "project.org/."
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
 msgstr ""
-"<b>Beranda Gramps</b><br/>Beranda Gramps bisa di akses melalui https://"
-"gramps-project.org/."
+"<b>Beranda Gramps</b><br/>Beranda Gramps bisa diakses melalui &gramps_url;."
 
 #: ../data/tips.xml:103
 msgid ""
@@ -1189,12 +1175,6 @@ msgstr ""
 "Software Foundation dan Open Source Initiative."
 
 #: ../data/tips.xml:131
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see https://www.gnu.org/licenses/licenses.html#GPL to "
-#| "read about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
@@ -1203,8 +1183,8 @@ msgid ""
 msgstr ""
 "<b>Lisensi Perangkat Lunak Gramps</b><br/>Anda bebas menggunakan dan berbagi "
 "Gramps dengan orang lain. Gramps dapat didistribusikan secara bebas di bawah "
-"Lisensi Publik Umum GNU. Kunjungi https://www.gnu.org/licenses/"
-"licenses.html#GPL untuk membaca tentang hak dan batasan lisensi ini."
+"Lisensi Publik Umum GNU. Kunjungi &gpl_url; untuk membaca tentang hak dan "
+"batasan lisensi ini."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -1758,9 +1738,8 @@ msgid "Import finished..."
 msgstr "Import selesai..."
 
 #: ../gramps/cli/clidbman.py:405 ../gramps/plugins/importer/importcsv.py:536
-#, fuzzy
 msgid "Importing data..."
-msgstr "Importing data..."
+msgstr "Mengimpor data..."
 
 #: ../gramps/cli/clidbman.py:465
 msgid "Remove family tree warning"
@@ -2220,9 +2199,9 @@ msgid ":"
 msgstr ":"
 
 #: ../gramps/gen/datehandler/__init__.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Date parser for '%s' not available, using default"
-msgstr "Parser tanggal untuk '%s' tidak tersedia, menggunakan default"
+msgstr "Parser tanggal untuk '%s' tidak tersedia, menggunakan bawaan"
 
 #: ../gramps/gen/datehandler/__init__.py:111
 #, python-format
@@ -3315,7 +3294,7 @@ msgstr ""
 
 #: ../gramps/gen/db/generic.py:2714
 msgid "Schema version"
-msgstr ""
+msgstr "Versi skema"
 
 #: ../gramps/gen/db/upgrade.py:719
 #, python-format
@@ -3642,6 +3621,8 @@ msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
+"Hanya menerima tanggal dan waktu dalam format ISO yyyy-mm-dd hh:mm:ss, di "
+"mana bagian waktunya bersifat opsional. %s tidak memenuhi syarat."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
 #: ../gramps/gen/fs/fs_import/sources.py:645
@@ -3737,7 +3718,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:55
 #: ../gramps/gui/editors/filtereditor.py:552
 msgid "Number must be:"
-msgstr ""
+msgstr "Jumlah harus:"
 
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:54
 #: ../gramps/gen/filters/rules/_hasldsbase.py:57
