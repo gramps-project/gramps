@@ -1937,27 +1937,43 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             )
         self.cntnt.write("</draw:rect>\n")
 
-    def draw_image(self, filename, x, y, w, h):
+    def draw_image(self, filename, x, y, w, h, crop=None):
         """
         Draw an image at the specified location and size.
+
+        The image keeps its aspect ratio and is centred within the given box.
+        ODF frames do not preserve the ratio on their own, so the frame is
+        sized to the ratio-preserving fit of the image inside the box.
 
         :param filename: filename of the image to draw
         :param x: x coordinate of the image in centimeters
         :param y: y coordinate of the image in centimeters
         :param w: width of the image in centimeters
         :param h: height of the image in centimeters
+        :param crop: cropping coordinates as percentages, or ``None``
         """
         # try to open the image. If the open fails, it probably wasn't
         # a valid image (could be a PDF, or a non-image)
-        img_x, img_y = image_size(name)
+        img_x, img_y = image_size(filename)
         if (img_x, img_y) == (0, 0):
             return
 
-        not_extension, extension = os.path.splitext(name)
-        name_hash = name.encode("utf-8")
+        # ODF stretches the image to the frame, so compute the ratio
+        # preserving size ourselves and centre it within the requested box.
+        if crop:
+            start_x, start_y, end_x, end_y = crop
+            img_x = img_x * (end_x - start_x) / 100.0
+            img_y = img_y * (end_y - start_y) / 100.0
+        fit_w, fit_h = image_actual_size(w, h, img_x, img_y)
+        x += (w - fit_w) / 2.0
+        y += (h - fit_h) / 2.0
+        w, h = fit_w, fit_h
+
+        not_extension, extension = os.path.splitext(filename)
+        name_hash = filename.encode("utf-8")
         odf_name = md5(name_hash).hexdigest() + extension
 
-        media_list_item = (name, odf_name)
+        media_list_item = (filename, odf_name)
         if media_list_item not in self.media_list:
             self.media_list.append(media_list_item)
 

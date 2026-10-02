@@ -31,8 +31,14 @@ _ = glocale.translation.sgettext
 from gramps.gen.plug.report import utils
 from gramps.plugins.lib.libsubstkeyword import SubstKeywords
 from gramps.gen.plug.docgen import IndexMark, INDEX_TYPE_TOC
+from gramps.gen.utils.image import image_actual_size, image_crop_to_ratio, image_size
 
 PT2CM = utils.pt2cm
+
+# Ways of fitting a thumbnail into the thumbnail box.
+FIT_SHRINK = 0  # whole image visible, aspect ratio kept
+FIT_CROP = 1  # box filled, aspect ratio kept, overflow cropped
+FIT_STRETCH = 2  # box filled, aspect ratio not kept
 
 
 # ------------------------------------------------------------------------
@@ -607,6 +613,8 @@ class BoxBase:
         self.thumbnail = None
         self.thumb_width = 0.0
         self.thumb_height = 0.0
+        # how the thumbnail is fitted into the thumb_width x thumb_height box
+        self.thumb_fit = FIT_SHRINK
         # mask image to draw over the thumbnail
         self.mask = None
 
@@ -618,6 +626,35 @@ class BoxBase:
         self.height *= scale_amount
         self.thumb_width *= scale_amount
         self.thumb_height *= scale_amount
+
+    def _thumbnail_fit(self):
+        """
+        Work out the size to draw the thumbnail at, and any cropping needed.
+
+        :returns: the width, the height and the crop to pass to ``draw_image``
+        :rtype: tuple(float, float, list | None)
+        """
+        width, height = self.thumb_width, self.thumb_height
+
+        if self.thumb_fit == FIT_STRETCH:
+            # Fill the box, ignoring the aspect ratio.
+            return (width, height, None)
+
+        img_width, img_height = image_size(self.thumbnail)
+        if (img_width, img_height) == (0, 0):
+            # Not an image Gdk can read; let draw_image skip it.
+            return (width, height, None)
+
+        if self.thumb_fit == FIT_CROP:
+            # Fill the box, keeping the aspect ratio by cropping the overflow.
+            return (
+                width,
+                height,
+                image_crop_to_ratio(img_width, img_height, width, height),
+            )
+
+        # FIT_SHRINK: show the whole image, keeping the aspect ratio.
+        return image_actual_size(width, height, img_width, img_height) + (None,)
 
     def add_mark(self, database, person):
         self.__mark = utils.get_person_mark(database, person)
@@ -653,20 +690,13 @@ class BoxBase:
 
         if self.thumbnail:
             img_x = xbegin + (self.width - self.thumb_width) / 2
-            # Draw thumbnail INSIDE the box, starting at text_y (the box top)
-            img_y = text_y
-            doc.draw_image(
-                self.thumbnail,
-                img_x,
-                ybegin + 0.05,
-                self.thumb_width,
-                self.thumb_height,
-            )
-            # Draw the mask image over the thumbnail
+            img_y = ybegin + 0.05
+            draw_w, draw_h, crop = self._thumbnail_fit()
+            doc.draw_image(self.thumbnail, img_x, img_y, draw_w, draw_h, crop=crop)
+            # Draw the mask over the same area the image was drawn in, so
+            # that the two stay aligned whatever the fit mode is.
             if self.mask:
-                doc.draw_image(
-                    self.mask, img_x, ybegin + 0.05, self.thumb_width, self.thumb_height
-                )
+                doc.draw_image(self.mask, img_x, img_y, draw_w, draw_h)
 
         # I am responsible for my own lines. Do them here.
         if self.line_to:

@@ -42,6 +42,7 @@ from gramps.gen.errors import ReportError
 from gramps.gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
 from gramps.gen.plug.menu import EnumeratedListOption
 from gramps.gen.plug.report import DocOptions
+from gramps.gen.utils.image import image_size
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -279,25 +280,38 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                     self.buffer.write(" font-family:serif;")
                 self.buffer.write('">' + escape(line) + "</text>\n")
 
-    def draw_image(self, filename, x, y, w, h):
+    def draw_image(self, filename, x, y, w, h, crop=None):
         """
         Draw an image at the specified location and size.
+
+        The image keeps its aspect ratio and is centred within the given box.
+        Since SVG's default ``preserveAspectRatio`` is ``xMidYMid meet``,
+        setting the width and height of the element is enough to obtain the
+        same result as the other backends.
 
         :param filename: filename of the image to draw
         :param x: x coordinate of the image in centimeters
         :param y: y coordinate of the image in centimeters
         :param w: width of the image in centimeters
         :param h: height of the image in centimeters
+        :param crop: cropping coordinates as percentages, or ``None``
         """
+        # try to open the image. If the open fails, it probably wasn't
+        # a valid image (could be a PDF, or a non-image)
+        img_x, img_y = image_size(filename)
+        if (img_x, img_y) == (0, 0):
+            return
+
         x += self.paper.get_left_margin()
         y += self.paper.get_top_margin()
-        self.file.write(
+        self.buffer.write(
             "<image "
             + 'x="%4.2fcm" ' % x
             + 'y="%4.2fcm" ' % y
             + 'width="%4.2fcm" ' % w
             + 'height="%4.2fcm" ' % h
-            + 'xlink:href="%s"/>\n' % name
+            + 'preserveAspectRatio="xMidYMid meet" '
+            + 'xlink:href="%s"/>\n' % filename
         )
 
     def draw_text(self, style, text, x, y, mark=None):

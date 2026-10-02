@@ -136,13 +136,20 @@ class DrawDoc(metaclass=ABCMeta):
         """
 
     @abstractmethod
-    def draw_image(self, filename, x, y, w, h):
+    def draw_image(self, filename, x, y, w, h, crop=None):
         """
         Draw an image at the specified location and size.
+
+        The image is scaled to fit inside the given box, preserving its
+        aspect ratio, and is centred within the box.  Implementations are
+        responsible for preserving the ratio; callers that need the image to
+        fill the box exactly must supply a suitable ``crop``.
 
         :param filename: filename of the image to draw
         :param x: x coordinate of the image in centimeters
         :param y: y coordinate of the image in centimeters
         :param w: width of the image in centimeters
         :param h: height of the image in centimeters
+        :param crop: cropping coordinates as percentages
+            ([start_x, start_y, end_x, end_y]), or ``None`` for no cropping
         """

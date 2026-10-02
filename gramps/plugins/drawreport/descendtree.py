@@ -446,6 +446,7 @@ class RecurseDown:
         self.thumb_width = gui.get_val("thumb_width")
         self.thumb_height = gui.get_val("thumb_height")
         self.mask_path = gui.get_val("mask_path")
+        self.thumb_fit = gui.get_val("thumb_fit")
         gui = None
 
     def add_to_col(self, box):
@@ -570,6 +571,7 @@ class RecurseDown:
             box.thumbnail = thumb_path
             box.thumb_width = self.thumb_width
             box.thumb_height = self.thumb_height
+            box.thumb_fit = self.thumb_fit
 
         # The mask image file to draw over each thumbnail
         if self.mask_path and os.path.isfile(self.mask_path):
@@ -1815,6 +1817,21 @@ class DescendTreeOptions(MenuReportOptions):
             _("The mask image file to draw over each " "thumbnail image in the report.")
         )
         menu.add_option(category_name, "mask_path", self.maskpath)
+
+        self.thumbfit = EnumeratedListOption(_("Thumbnail image fit"), FIT_SHRINK)
+        for num, text in [
+            (FIT_SHRINK, _("Shrink to fit (keep all of the image)")),
+            (FIT_CROP, _("Crop to fill the box")),
+            (FIT_STRETCH, _("Stretch to fill the box")),
+        ]:
+            self.thumbfit.add_item(num, text)
+        self.thumbfit.set_help(
+            _(
+                "How to fit a thumbnail into the thumbnail box when the "
+                "image and the box have different proportions."
+            )
+        )
+        menu.add_option(category_name, "thumb_fit", self.thumbfit)
         self._thumbs_changed()
 
         repldisp = TextOption(
@@ -1858,6 +1875,7 @@ class DescendTreeOptions(MenuReportOptions):
         self.thumbwidth.set_available(value)
         self.thumbheight.set_available(value)
         self.maskpath.set_available(value)
+        self.thumbfit.set_available(value)
 
     def _incmarr_changed(self):
         """

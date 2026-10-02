@@ -60,7 +60,7 @@ from gramps.gen.plug.docgen import (
 from gramps.gen.plug.report import utils
 from gramps.gen.errors import PluginError
 from gramps.gen.plug.docbackend import CairoBackend
-from gramps.gen.utils.image import resize_to_buffer
+from gramps.gen.utils.image import image_size, resize_to_buffer
 from gramps.gui.utils import SystemFonts
 
 # ------------------------------------------------------------------------
@@ -1782,17 +1782,28 @@ links (like ODF) and write PDF from that format.
             )
             self._active_element.add_child(new_text)
 
-    def draw_image(self, filename, x, y, w, h):
+    def draw_image(self, filename, x, y, w, h, crop=None):
         """
         Draw an image at the specified location and size.
+
+        The image keeps its aspect ratio and is centred within the given box.
 
         :param filename: filename of the image to draw
         :param x: x coordinate of the image in centimeters
         :param y: y coordinate of the image in centimeters
         :param w: width of the image in centimeters
         :param h: height of the image in centimeters
+        :param crop: cropping coordinates as percentages, or ``None``
         """
-        new_image = GtkDocImage(name, x, y, w, h)
+        # Skip anything Gdk cannot decode (a PDF, or a non-image) rather than
+        # letting the GError abort the whole report.
+        if image_size(filename) == (0, 0):
+            log.warning(
+                "Skipping image in report, it is not a supported image: %s", filename
+            )
+            return
+
+        new_image = GtkDocImage(filename, x, y, w, h, crop=crop)
         self._active_element.add_child(new_image)
 
     def draw_text(self, style_name, text, x, y, mark=None):
