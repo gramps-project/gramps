@@ -1323,40 +1323,22 @@ class AncestorTreeOptions(MenuReportOptions):
     def _show_age_changed(self):
         """Update display formats when show_age option changes."""
         age_placeholder = " (%s )" % _AGE[0]
-        if self.show_age.get_value():
-            # Add age placeholder to display formats
-            father_format = self.father_disp.get_value()
-            if father_format and age_placeholder not in father_format:
-                father_format = father_format.replace(
-                    "-{%s $d}" % _DIED[0],
-                    "-{%s $d (%s )}" % (_DIED[0], _AGE[0]),
-                )
-                self.father_disp.set_value(father_format)
-
-            mother_format = self.mother_disp.get_value()
-            if mother_format and age_placeholder not in mother_format:
-                mother_format = mother_format.replace(
-                    "-{%s $d}" % _DIED[0],
-                    "-{%s $d (%s )}" % (_DIED[0], _AGE[0]),
-                )
-                self.mother_disp.set_value(mother_format)
-        else:
-            # Remove age placeholder from display formats
-            father_format = self.father_disp.get_value()
-            if father_format and age_placeholder in father_format:
-                father_format = father_format.replace(
-                    "-{%s $d (%s )}" % (_DIED[0], _AGE[0]),
-                    "-{%s $d}" % _DIED[0],
-                )
-                self.father_disp.set_value(father_format)
-
-            mother_format = self.mother_disp.get_value()
-            if mother_format and age_placeholder in mother_format:
-                mother_format = mother_format.replace(
-                    "-{%s $d (%s )}" % (_DIED[0], _AGE[0]),
-                    "-{%s $d}" % _DIED[0],
-                )
-                self.mother_disp.set_value(mother_format)
+        old = "-{%s $d}" % _DIED[0]
+        new = "-{%s $d (%s )}" % (_DIED[0], _AGE[0])
+        # TextOption values are lists of lines, so map over each line.
+        for option in (self.father_disp, self.mother_disp):
+            lines = option.get_value()
+            if not lines:
+                continue
+            updated = []
+            for line in lines:
+                if self.show_age.get_value():
+                    if age_placeholder not in line:
+                        line = line.replace(old, new)
+                else:
+                    line = line.replace(new, old)
+                updated.append(line)
+            option.set_value(updated)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Ancestor Tree."""
