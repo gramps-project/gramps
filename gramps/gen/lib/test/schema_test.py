@@ -46,10 +46,19 @@ EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 
 class BaseTest(unittest.TestCase):
+    @classmethod
+    def _get_validator(cls):
+        """Return a validator for the class schema, built on first use."""
+        if "validator" not in cls.__dict__:
+            validator_class = jsonschema.validators.validator_for(cls.schema)
+            validator_class.check_schema(cls.schema)
+            cls.validator = validator_class(cls.schema)
+        return cls.validator
+
     def _schema_test(self, obj):
         instance = object_to_dict(obj)
         try:
-            jsonschema.validate(instance, self.schema)
+            self._get_validator().validate(instance)
         except jsonschema.exceptions.ValidationError:
             self.fail("JSON Schema validation error")
 
