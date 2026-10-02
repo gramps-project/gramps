@@ -17,7 +17,7 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-"""Tests for the DNATest references updated by a person merge."""
+"""Tests for the DNA references updated by a person merge."""
 
 import shutil
 import tempfile
@@ -25,7 +25,7 @@ import unittest
 
 from gramps.gen.db import DbTxn
 from gramps.gen.db.utils import make_database
-from gramps.gen.lib import DNATest, Person
+from gramps.gen.lib import DNAMatch, DNATest, Person, SharedAncestor
 from gramps.gen.merge import MergePersonQuery
 
 
@@ -35,7 +35,7 @@ from gramps.gen.merge import MergePersonQuery
 #
 # -------------------------------------------------------------------------
 class MergePersonDNATestTest(unittest.TestCase):
-    """A person merge moves the removed person's DNA tests to the kept person."""
+    """A person merge moves the removed person's DNA references to the kept person."""
 
     def setUp(self):
         self.tmpdir = tempfile.mkdtemp()
@@ -47,6 +47,11 @@ class MergePersonDNATestTest(unittest.TestCase):
             test = DNATest()
             test.set_person_handle(self.titanic_handle)
             self.test_handle = self.db.add_dnatest(test, trans)
+            ancestor = SharedAncestor()
+            ancestor.set_person_handle(self.titanic_handle)
+            match = DNAMatch()
+            match.add_shared_ancestor(ancestor)
+            self.match_handle = self.db.add_dnamatch(match, trans)
 
     def tearDown(self):
         self.db.close()
@@ -63,6 +68,22 @@ class MergePersonDNATestTest(unittest.TestCase):
         self.assertEqual(
             list(self.db.find_backlink_handles(self.phoenix_handle, ["DNATest"])),
             [("DNATest", self.test_handle)],
+        )
+
+    def test_shared_ancestor_moves_to_phoenix(self):
+        """A shared ancestor naming the removed person refers to the kept person."""
+        phoenix = self.db.get_person_from_handle(self.phoenix_handle)
+        titanic = self.db.get_person_from_handle(self.titanic_handle)
+        MergePersonQuery(self.db, phoenix, titanic).execute()
+
+        match = self.db.get_dnamatch_from_handle(self.match_handle)
+        self.assertEqual(
+            [sa.get_person_handle() for sa in match.get_shared_ancestor_list()],
+            [self.phoenix_handle],
+        )
+        self.assertEqual(
+            list(self.db.find_backlink_handles(self.phoenix_handle, ["DNAMatch"])),
+            [("DNAMatch", self.match_handle)],
         )
 
 
