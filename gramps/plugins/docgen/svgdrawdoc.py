@@ -279,11 +279,11 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                     self.buffer.write(" font-family:serif;")
                 self.buffer.write('">' + escape(line) + "</text>\n")
 
-    def draw_image(self, name, x, y, w, h):
+    def draw_image(self, filename, x, y, w, h):
         """
         Draw an image at the specified location and size.
 
-        :param name: filename of the image to draw
+        :param filename: filename of the image to draw
         :param x: x coordinate of the image in centimeters
         :param y: y coordinate of the image in centimeters
         :param w: width of the image in centimeters
