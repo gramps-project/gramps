@@ -125,7 +125,9 @@ def build_tree() -> tuple[object, dict[str, PersonHandle]]:
         event.set_date_object(date)
         return event
 
-    def add_person(spec: tuple) -> PersonHandle:
+    def add_person(
+        spec: tuple[str, str, str, int, int | None, int | None],
+    ) -> PersonHandle:
         """
         Add one person described by a (gid, first, surname, gender, b, d) tuple.
         """
@@ -140,10 +142,10 @@ def build_tree() -> tuple[object, dict[str, PersonHandle]]:
         name.add_surname(surname_obj)
         person.set_primary_name(name)
         with DbTxn("test", db) as trans:
-            refs = {}
+            refs: dict[str, EventRef] = {}
             for event_type, year in (
-                (EventType.BIRTH, birth),
-                (EventType.DEATH, death),
+                (EventType(EventType.BIRTH), birth),
+                (EventType(EventType.DEATH), death),
             ):
                 if year is None:
                     continue
@@ -151,11 +153,11 @@ def build_tree() -> tuple[object, dict[str, PersonHandle]]:
                 ref.set_reference_handle(
                     db.add_event(make_event(event_type, year), trans)
                 )
-                refs[event_type] = ref
-            if EventType.BIRTH in refs:
-                person.set_birth_ref(refs[EventType.BIRTH])
-            if EventType.DEATH in refs:
-                person.set_death_ref(refs[EventType.DEATH])
+                refs[event_type.value] = ref
+            if EventType(EventType.BIRTH).value in refs:
+                person.set_birth_ref(refs[EventType(EventType.BIRTH).value])
+            if EventType(EventType.DEATH).value in refs:
+                person.set_death_ref(refs[EventType(EventType.DEATH).value])
             handles[gid] = db.add_person(person, trans)
         return handles[gid]
 
@@ -169,15 +171,15 @@ def build_tree() -> tuple[object, dict[str, PersonHandle]]:
         family.set_mother_handle(handles[mother])
         with DbTxn("test", db) as trans:
             for event_type, year in events:
-                ref = EventRef()
-                ref.set_reference_handle(
+                event_ref = EventRef()
+                event_ref.set_reference_handle(
                     db.add_event(make_event(event_type, year), trans)
                 )
-                family.add_event_ref(ref)
+                family.add_event_ref(event_ref)
             for child in children:
-                ref = ChildRef()
-                ref.set_reference_handle(handles[child])
-                family.add_child_ref(ref)
+                child_ref = ChildRef()
+                child_ref.set_reference_handle(handles[child])
+                family.add_child_ref(child_ref)
             handles[gid] = db.add_family(family, trans)
         # The partners and the children must point back at their family,
         # otherwise the reports cannot find the marriage information.
