@@ -205,6 +205,7 @@ gramps/gen/lib/test/styledtext_test.py
 # gen.merge package
 #
 gramps/gen/merge/__init__.py
+gramps/gen/merge/test/mergeperson_dna_test.py
 #
 # gen mime API
 #

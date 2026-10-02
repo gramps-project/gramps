@@ -150,7 +150,7 @@ class MergePersonQuery:
         self.database.commit_person(self.phoenix, trans)
 
         for ref_obj, handle in self.database.find_backlink_handles(
-            old_handle, ["Person", "Note"]
+            old_handle, ["Person", "Note", "DNATest"]
         ):
             obj = self.database.method("get_%s_from_handle", ref_obj)(handle)
             assert obj.has_handle_reference("Person", old_handle)
