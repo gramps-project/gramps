@@ -61,8 +61,8 @@
 1 HUSB @I0@
 1 WIFE @I1@
 1 CHIL @I2@
-2 _FREL Natural
-2 _MREL Natural
+2 _FREL Unknown
+2 _MREL Related
 1 MARR
 2 DATE 1970
 2 PLAC St Rafaels Church, Bay Village, Cuyahoga, Ohio, USA
