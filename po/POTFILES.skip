@@ -329,6 +329,7 @@ gramps/gen/utils/test/alive_test.py
 gramps/gen/utils/test/callback_test.py
 gramps/gen/utils/test/file_test.py
 gramps/gen/utils/test/grampslocale_test.py
+gramps/gen/utils/test/image_test.py
 gramps/gen/utils/test/keyword_test.py
 gramps/gen/utils/test/maclocale_test.py
 gramps/gen/utils/test/place_test.py
@@ -677,6 +678,7 @@ gramps/plugins/test/exports_test.py
 gramps/plugins/test/imports_test.py
 gramps/plugins/test/reports_test.py
 gramps/plugins/test/schema_validation_test.py
+gramps/plugins/test/thumbnail_test.py
 gramps/plugins/test/tools_test.py
 #
 # Thumbnailers
