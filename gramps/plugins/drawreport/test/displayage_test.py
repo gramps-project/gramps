@@ -33,8 +33,6 @@ a graphical backend.
 # -------------------------------------------------------------------------
 import os
 import re
-import shutil
-import tempfile
 import unittest
 
 # -------------------------------------------------------------------------
@@ -569,10 +567,13 @@ class RenderedReportTest(unittest.TestCase):
 
     def setUp(self):
         """
-        Create a directory to hold the generated reports.
+        Create the directory to hold the generated reports.
         """
-        self.directory = tempfile.mkdtemp(prefix="gramps_tree_report")
-        self.addCleanup(shutil.rmtree, self.directory, True)
+        root = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), *([os.pardir] * 4))
+        )
+        self.directory = os.path.join(root, "test", "data", "tree_report_age_output")
+        os.makedirs(self.directory, exist_ok=True)
 
     def test_descendant_report_is_written_to_disk(self):
         """
