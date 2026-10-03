@@ -38,7 +38,15 @@ import logging
 # ------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
 from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
-from gramps.gen.lib import EventType, FamilySearchSync, NameOriginType, Tag, MarkerType
+from gramps.gen.lib import (
+    DNAMatch,
+    DNATest,
+    EventType,
+    FamilySearchSync,
+    MarkerType,
+    NameOriginType,
+    Tag,
+)
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
 from gramps.gui.dialog import InfoDialog
@@ -81,6 +89,53 @@ def _upgrade_person_json_22(person_data):
     return True
 
 
+def gramps_upgrade_23(self):
+    """
+    Upgrade database from version 22 to 23.
+
+    Add dnatest and dnamatch tables.
+    """
+    col_data = "json_data TEXT" if self.use_json_data() else "blob_data BLOB"
+    self._txn_begin()
+    try:
+        self.dbapi.execute(
+            "CREATE TABLE IF NOT EXISTS dnatest "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        self.dbapi.execute(
+            "CREATE TABLE IF NOT EXISTS dnamatch "
+            "("
+            "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
+            f"{col_data}"
+            ")"
+        )
+        for cls in (DNATest, DNAMatch):
+            table_name = cls.__name__.lower()
+            for field, schema_type, max_length in cls.get_secondary_fields():
+                if field != "handle":
+                    # bsddb conversion calls _create_schema() before setting the
+                    # old schema version, so secondary columns may already exist.
+                    if not self.dbapi.column_exists(table_name, field):
+                        sql_type = self._sql_type(schema_type, max_length)
+                        self.dbapi.execute(
+                            f"ALTER TABLE {table_name} ADD COLUMN {field} {sql_type}"
+                        )
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS dnatest_gramps_id ON dnatest(gramps_id)"
+        )
+        self.dbapi.execute(
+            "CREATE INDEX IF NOT EXISTS dnamatch_gramps_id ON dnamatch(gramps_id)"
+        )
+        self._set_metadata("version", 23, use_txn=False)
+        self._txn_commit()
+    except Exception:
+        self._txn_abort()
+        raise
+
+
 def gramps_upgrade_22(self):
     """
     Upgrade database from version 21 to 22.
@@ -116,6 +171,10 @@ def gramps_upgrade_21(self):
 
     length = 0
     for key in self._get_table_func():
+        # Tables added in later schema versions (e.g. dnatest/dnamatch) do not
+        # exist yet when upgrading from versions before they were introduced.
+        if not self.dbapi.table_exists(key.lower()):
+            continue
         count_func = self._get_table_func(key, "count_func")
         length += count_func()
 
@@ -149,6 +208,9 @@ def gramps_upgrade_21(self):
             self._set_metadata(key, value, use_txn=False)
 
     for table_name in self._get_table_func():
+        # Skip tables that don't exist yet - see count loop above.
+        if not self.dbapi.table_exists(table_name.lower()):
+            continue
         # For each table, alter the database in an appropriate way:
         self.upgrade_table_for_json_data(table_name.lower())
 
