@@ -1114,24 +1114,30 @@ class GtkDocPicture(GtkDocBaseElement):
         pixbuf_height = pixbuf.get_height()
 
         # calculate the scale to fit image into the set extents
-        scale = min(img_width / pixbuf_width, img_height / pixbuf_height)
+        scale_x = img_width / pixbuf_width
+        scale_y = img_height / pixbuf_height
+        # Same aspect ratio (the caller already fitted or cropped the image
+        # to the box): scale uniformly and centre it.  Different aspect
+        # ratio (stretch fit): fill the whole box.
+        uniform = abs(scale_x - scale_y) <= 0.01 * scale_y
 
         # draw the image
         cr.save()
         cr.translate(l_margin, 0)
-        cr.scale(scale, scale)
-        Gdk.cairo_set_source_pixbuf(
-            cr,
-            pixbuf,
-            (img_width / scale - pixbuf_width) / 2,
-            (img_height / scale - pixbuf_height) / 2,
-        )
-        cr.rectangle(0, 0, img_width / scale, img_height / scale)
-        ##gcr.set_source_pixbuf(pixbuf,
-        ##(img_width - pixbuf_width) / 2,
-        ##(img_height - pixbuf_height) / 2)
-        ##cr.rectangle(0 , 0, img_width, img_height)
-        ##cr.scale(scale, scale)
+        if uniform:
+            scale = min(scale_x, scale_y)
+            cr.scale(scale, scale)
+            Gdk.cairo_set_source_pixbuf(
+                cr,
+                pixbuf,
+                (img_width / scale - pixbuf_width) / 2,
+                (img_height / scale - pixbuf_height) / 2,
+            )
+            cr.rectangle(0, 0, img_width / scale, img_height / scale)
+        else:
+            cr.scale(scale_x, scale_y)
+            Gdk.cairo_set_source_pixbuf(cr, pixbuf, 0, 0)
+            cr.rectangle(0, 0, pixbuf_width, pixbuf_height)
         cr.fill()
         cr.restore()
 
@@ -1184,19 +1190,30 @@ class GtkDocImage(GtkDocBaseElement):
         pixbuf_height = pixbuf.get_height()
 
         # calculate the scale to fit image into the set extents
-        scale = min(img_width / pixbuf_width, img_height / pixbuf_height)
+        scale_x = img_width / pixbuf_width
+        scale_y = img_height / pixbuf_height
+        # Same aspect ratio (the caller already fitted or cropped the image
+        # to the box): scale uniformly and centre it.  Different aspect
+        # ratio (stretch fit): fill the whole box.
+        uniform = abs(scale_x - scale_y) <= 0.01 * scale_y
 
         # draw the image
         cr.save()
         cr.translate(img_x, img_y)
-        cr.scale(scale, scale)
-        Gdk.cairo_set_source_pixbuf(
-            cr,
-            pixbuf,
-            (img_width / scale - pixbuf_width) / 2,
-            (img_height / scale - pixbuf_height) / 2,
-        )
-        cr.rectangle(0, 0, img_width / scale, img_height / scale)
+        if uniform:
+            scale = min(scale_x, scale_y)
+            cr.scale(scale, scale)
+            Gdk.cairo_set_source_pixbuf(
+                cr,
+                pixbuf,
+                (img_width / scale - pixbuf_width) / 2,
+                (img_height / scale - pixbuf_height) / 2,
+            )
+            cr.rectangle(0, 0, img_width / scale, img_height / scale)
+        else:
+            cr.scale(scale_x, scale_y)
+            Gdk.cairo_set_source_pixbuf(cr, pixbuf, 0, 0)
+            cr.rectangle(0, 0, pixbuf_width, pixbuf_height)
         cr.fill()
         cr.restore()
 

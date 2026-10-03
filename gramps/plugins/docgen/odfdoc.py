@@ -1945,6 +1945,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         ODF frames do not preserve the ratio on their own, so the frame is
         sized to the ratio-preserving fit of the image inside the box.
 
+        When ``crop`` is given the source is clipped with a graphic style,
+        the same way :meth:`add_media` crops photos: the frame covers the
+        cropped region and ``fo:clip`` trims the overflow.
+
         :param filename: filename of the image to draw
         :param x: x coordinate of the image in centimeters
         :param y: y coordinate of the image in centimeters
@@ -1958,13 +1962,37 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         if (img_x, img_y) == (0, 0):
             return
 
-        # ODF stretches the image to the frame, so compute the ratio
-        # preserving size ourselves and centre it within the requested box.
+        style_name = "Left"
         if crop:
-            start_x, start_y, end_x, end_y = crop
-            img_x = img_x * (end_x - start_x) / 100.0
-            img_y = img_y * (end_y - start_y) / 100.0
-        fit_w, fit_h = image_actual_size(w, h, img_x, img_y)
+            start_x, start_y, end_x, end_y = crop_percentage_to_subpixel(
+                img_x, img_y, crop
+            )
+
+            if end_x - start_x > 0 and end_y - start_y > 0:
+                # ODF stretches the image to the frame, so size the frame
+                # to the fitted cropped region and clip the source instead.
+                fit_w, fit_h = image_actual_size(
+                    w, h, int(end_x - start_x), int(end_y - start_y)
+                )
+
+                dpi = image_dpi(filename)
+
+                # ODF wants crop measurements in inch, as margins from each side
+                clip = (
+                    start_y / dpi[1],
+                    (img_x - end_x) / dpi[0],
+                    (img_y - end_y) / dpi[1],
+                    start_x / dpi[0],
+                )
+                if ["Left", clip] not in self.stylelist_photos:
+                    self.stylelist_photos.append(["Left", clip])
+                style_name = "Left_" + str(clip)
+            else:
+                fit_w, fit_h = image_actual_size(w, h, img_x, img_y)
+        else:
+            # No cropping: fit the whole image into the box and centre it.
+            fit_w, fit_h = image_actual_size(w, h, img_x, img_y)
+
         x += (w - fit_w) / 2.0
         y += (h - fit_h) / 2.0
         w, h = fit_w, fit_h
@@ -1978,7 +2006,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.media_list.append(media_list_item)
 
         self.cntnt.write(
-            '<draw:frame draw:style-name="Left" '
+            '<draw:frame draw:style-name="%s" ' % style_name
             + 'draw:name="thumb_%s" ' % md5(name_hash).hexdigest()
             + 'text:anchor-type="paragraph" '
             + 'svg:width="%.2fcm" ' % w

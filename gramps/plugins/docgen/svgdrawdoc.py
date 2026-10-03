@@ -29,6 +29,7 @@ SVG document generator.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import base64
 from io import StringIO
 from xml.sax.saxutils import escape
 
@@ -39,6 +40,7 @@ from xml.sax.saxutils import escape
 # -------------------------------------------------------------------------
 from gramps.gen.const import DOCGEN_OPTIONS
 from gramps.gen.errors import ReportError
+from gramps.gen.mime import get_type
 from gramps.gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
 from gramps.gen.plug.menu import EnumeratedListOption
 from gramps.gen.plug.report import DocOptions
@@ -102,7 +104,8 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" '
             '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n'
             '<svg width="%4.2fcm" height="%4.2fcm" '
-            'xmlns="http://www.w3.org/2000/svg">\n'
+            'xmlns="http://www.w3.org/2000/svg" '
+            'xmlns:xlink="http://www.w3.org/1999/xlink">\n'
             '<rect width="%4.2fcm" height="%4.2fcm" '
             'style="fill: %s;"/>\n' % (width, height, width, height, self._bg)
         )
@@ -284,10 +287,14 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         """
         Draw an image at the specified location and size.
 
-        The image keeps its aspect ratio and is centred within the given box.
-        Since SVG's default ``preserveAspectRatio`` is ``xMidYMid meet``,
-        setting the width and height of the element is enough to obtain the
-        same result as the other backends.
+        The fit mirrors the other backends:
+
+        - ``crop`` given: fill the box, trimming the overflow from the
+          sides (``preserveAspectRatio="xMidYMid slice"``).
+        - no ``crop`` and a box already matching the image ratio: fit
+          inside the box (``"xMidYMid meet"``).
+        - no ``crop`` and a box of a different ratio: stretch to fill
+          (``"none"``).
 
         :param filename: filename of the image to draw
         :param x: x coordinate of the image in centimeters
@@ -302,6 +309,19 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         if (img_x, img_y) == (0, 0):
             return
 
+        if crop:
+            # Fill the box, cropping the overflow from the sides.  The
+            # crop computed by image_crop_to_ratio is centred, which is
+            # what "xMidYMid slice" does too.
+            aspect = "xMidYMid slice"
+        elif h and img_x and img_y and not self._ratios_match(w, h, img_x, img_y):
+            # The caller gave a box that does not match the image, so
+            # the image is being asked to stretch and fill it.
+            aspect = "none"
+        else:
+            # The caller already sized the box to the image (shrink fit).
+            aspect = "xMidYMid meet"
+
         x += self.paper.get_left_margin()
         y += self.paper.get_top_margin()
         self.buffer.write(
@@ -310,9 +330,43 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             + 'y="%4.2fcm" ' % y
             + 'width="%4.2fcm" ' % w
             + 'height="%4.2fcm" ' % h
-            + 'preserveAspectRatio="xMidYMid meet" '
-            + 'xlink:href="%s"/>\n' % filename
+            + 'preserveAspectRatio="%s" ' % aspect
+            + 'xlink:href="%s"/>\n' % self._image_href(filename)
         )
+
+    @staticmethod
+    def _image_href(filename):
+        """
+        Return an ``xlink:href`` value that renders on its own.
+
+        The image data is embedded as a data URI so the report keeps
+        showing its pictures when it is moved or emailed, and because
+        raw filesystem paths (especially Windows paths such as
+        ``C:\\...``) do not resolve when the SVG is opened in a
+        browser.  Falls back to a forward-slash path reference if the
+        file cannot be read.
+        """
+        try:
+            with open(filename, "rb") as image_file:
+                blob = image_file.read()
+        except OSError:
+            return escape(filename.replace("\\", "/"), {'"': "&quot;", "'": "&apos;"})
+        mime = get_type(filename) or "image/png"
+        return "data:%s;base64,%s" % (mime, base64.b64encode(blob).decode("ascii"))
+
+    @staticmethod
+    def _ratios_match(box_w, box_h, img_w, img_h):
+        """
+        Return whether a box and an image have the same aspect ratio.
+
+        The comparison is tolerant because callers round the fitted
+        box size before handing it to :meth:`draw_image`.
+        """
+        if not box_h or not img_h:
+            return False
+        box_ratio = float(box_w) / float(box_h)
+        img_ratio = float(img_w) / float(img_h)
+        return abs(box_ratio - img_ratio) <= 0.01 * img_ratio
 
     def draw_text(self, style, text, x, y, mark=None):
         """@param mark:  IndexMark to use for indexing (not supported)"""

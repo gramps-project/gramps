@@ -166,7 +166,7 @@ def image_dpi(source):
 # image_size
 #
 # -------------------------------------------------------------------------
-def image_size(source):
+def image_size(source: str) -> tuple[int, int]:
     """
     Return the width and size of the specified image.
 
@@ -175,9 +175,6 @@ def image_size(source):
     :rtype: tuple(int, int)
     :returns: a tuple consisting of the width and height
     """
-    from gi.repository import GdkPixbuf
-    from gi.repository import GLib
-
     try:
         # For performance reasons, we'll try to get image size from imagesize.
         import imagesize
@@ -186,15 +183,32 @@ def image_size(source):
     except (ImportError, FileNotFoundError, ValueError):
         # python-imagesize is not installed, the file does not exist, or
         # the size cannot be determined by imagesize.
-        # So Trying to get image size with Gdk.
+        pass
+    try:
+        # PIL is available on every supported platform and does not need
+        # GTK, so prefer it over GdkPixbuf for headless/CLI use.
+        from PIL import Image
+
+        with Image.open(source) as img:
+            return img.size
+    except Exception:
+        # Not a readable image (missing file, PDF, non-image media).
+        pass
+    try:
+        # Fall back to Gdk for formats PIL cannot read but gtk can.
+        from gi.repository import GdkPixbuf
+        from gi.repository import GLib
+
         try:
             img = GdkPixbuf.Pixbuf.new_from_file(source)
             width = img.get_width()
             height = img.get_height()
-        except GLib.GError:
+        except (GLib.GError, Exception):
             width = 0
             height = 0
         return (width, height)
+    except ImportError:
+        return (0, 0)
 
 
 # -------------------------------------------------------------------------
