@@ -139,18 +139,6 @@ def find_family(db, father, mother):
     raise RuntimeError("Could not find fixture family for the selected parents")
 
 
-def set_tree_default_person(tree_path, person_handle):
-    """Set a deterministic default person for CLI option fallback."""
-    from gramps.gen.db.utils import make_database
-
-    db = make_database("sqlite")
-    try:
-        db.load(tree_path)
-        db.set_default_person_handle(person_handle)
-    finally:
-        db.close()
-
-
 def move_portrait_reference(db, media_filename, source, target):
     """Move a media reference from one person to another."""
     media = next(
@@ -263,8 +251,6 @@ class TestRealPortraitReports(unittest.TestCase):
             )
             cls.ancestor_person_id = mason.gramps_id
             cls.descendant_family_id = family.gramps_id
-            cls.ancestor_person_handle = mason.handle
-            cls.descendant_person_handle = gustaf.handle
         finally:
             db.close()
 
@@ -274,16 +260,18 @@ class TestRealPortraitReports(unittest.TestCase):
 
     def test_portrait_reports_generate(self):
         """Generate SVG, ODT, and available PDF reports with real portraits."""
+        from gramps.cli.plug import run_report
+        from gramps.gen.db.utils import make_database
+
+        db = make_database("sqlite")
+        db.load(self.tree_path)
+        db.db_name = TREE
+        db.set_mediapath(os.path.abspath(MEDIA_DIR))
+        self.addCleanup(db.close)
         for report, out_format, name, subject_type, fit in JOBS:
             if out_format == "pdf" and not HAVE_CAIRO:
                 continue
             with self.subTest(report=report, format=out_format, file=name):
-                default_person_handle = (
-                    self.ancestor_person_handle
-                    if subject_type == "ancestor"
-                    else self.descendant_person_handle
-                )
-                set_tree_default_person(self.tree_path, default_person_handle)
                 subject = (
                     "pid=%s" % self.ancestor_person_id
                     if subject_type == "ancestor"
@@ -304,17 +292,13 @@ class TestRealPortraitReports(unittest.TestCase):
                 options += ",mask_path=%s" % mask_path
                 if fit is not None:
                     options += ",thumb_fit=%d" % fit
-                out, err = self.gramps.run(
-                    "--force",
-                    "-O",
-                    TREE,
-                    "--action",
-                    "report",
-                    "--options",
-                    options,
+                options_dict = dict(item.split("=", 1) for item in options.split(","))
+                options_dict.pop("name")
+                report_result = run_report(db, report, **options_dict)
+                self.assertIsNotNone(report_result)
+                self.assertTrue(
+                    os.path.isfile(target), "Report was not created: %s" % target
                 )
-                self.assertNotIn("Failed to write report.", err, out + err)
-                self.assertTrue(os.path.isfile(target), out + err)
                 self.assertGreater(os.path.getsize(target), 0)
                 if out_format == "svg":
                     xml.etree.ElementTree.parse(target)
