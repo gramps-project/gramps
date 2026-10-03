@@ -30,6 +30,7 @@ import io
 import os
 import re
 import unittest
+import uuid
 import zipfile
 import xml.etree.ElementTree
 
@@ -53,13 +54,13 @@ try:
 except (ImportError, ValueError):
     HAVE_CAIRO = False
 
-TREE = "Test_realportraittest"
+TREE = "Test_realportraittest_%s" % uuid.uuid4().hex
 PORTRAIT_DIR = os.path.join(os.path.dirname(__file__), "portrait_images")
 MASK_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "..", "..", "images", "masks")
 )
 MEDIA_DIR = os.path.join("temp", "real_portrait_media")
-OUT_DIR = "tree_report_output"
+OUT_DIR = os.path.join("test", "data", "tree_report_thumbnails_output")
 REPORT_MASKS = {
     "ancestor_chart": "rectangular_frame_antique_silver.png",
     "descend_chart": "oval_frame_empty.png",
