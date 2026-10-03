@@ -139,6 +139,18 @@ def find_family(db, father, mother):
     raise RuntimeError("Could not find fixture family for the selected parents")
 
 
+def set_tree_default_person(tree_path, person_handle):
+    """Set a deterministic default person for CLI option fallback."""
+    from gramps.gen.db.utils import make_database
+
+    db = make_database("sqlite")
+    try:
+        db.load(tree_path)
+        db.set_default_person_handle(person_handle)
+    finally:
+        db.close()
+
+
 def move_portrait_reference(db, media_filename, source, target):
     """Move a media reference from one person to another."""
     media = next(
@@ -228,6 +240,7 @@ class TestRealPortraitReports(unittest.TestCase):
         try:
             db.load(trees[TREE])
             db.set_mediapath(os.path.abspath(MEDIA_DIR))
+            cls.tree_path = trees[TREE]
             mason = find_person(db, "Mason Michael", "Smith")
             gustaf = find_person(db, "Gustaf", "Smith", "Sr.")
             edwin = find_person(db, "Edwin Michael", "Smith")
@@ -250,6 +263,8 @@ class TestRealPortraitReports(unittest.TestCase):
             )
             cls.ancestor_person_id = mason.gramps_id
             cls.descendant_family_id = family.gramps_id
+            cls.ancestor_person_handle = mason.handle
+            cls.descendant_person_handle = gustaf.handle
         finally:
             db.close()
 
@@ -263,6 +278,12 @@ class TestRealPortraitReports(unittest.TestCase):
             if out_format == "pdf" and not HAVE_CAIRO:
                 continue
             with self.subTest(report=report, format=out_format, file=name):
+                default_person_handle = (
+                    self.ancestor_person_handle
+                    if subject_type == "ancestor"
+                    else self.descendant_person_handle
+                )
+                set_tree_default_person(self.tree_path, default_person_handle)
                 subject = (
                     "pid=%s" % self.ancestor_person_id
                     if subject_type == "ancestor"
