@@ -45,6 +45,8 @@ from gramps.gui.filters.sidebar import (
     MediaSidebarFilter,
     RepoSidebarFilter,
     NoteSidebarFilter,
+    DNATestSidebarFilter,
+    DNAMatchSidebarFilter,
 )
 
 
@@ -192,3 +194,29 @@ class NoteFilter(Filter):
     """
 
     FILTER_CLASS = NoteSidebarFilter
+
+
+# -------------------------------------------------------------------------
+#
+# DNATestFilter class
+#
+# -------------------------------------------------------------------------
+class DNATestFilter(Filter):
+    """
+    A gramplet providing a DNA Test Filter.
+    """
+
+    FILTER_CLASS = DNATestSidebarFilter
+
+
+# -------------------------------------------------------------------------
+#
+# DNAMatchFilter class
+#
+# -------------------------------------------------------------------------
+class DNAMatchFilter(Filter):
+    """
+    A gramplet providing a DNA Match Filter.
+    """
+
+    FILTER_CLASS = DNAMatchSidebarFilter

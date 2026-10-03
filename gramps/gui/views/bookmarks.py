@@ -608,6 +608,44 @@ class NoteBookmarks(ListBookmarks):
         return __name__
 
 
+class DNATestBookmarks(ListBookmarks):
+    "Handle the bookmarks interface for DNA tests."
+
+    def __init__(self, dbstate, uistate, change_active):
+        ListBookmarks.__init__(self, dbstate, uistate, change_active)
+
+    def make_label(self, handle):
+        return navigation_label(self.dbstate.db, "DNATest", handle)
+
+    def connect_signals(self):
+        self.dbstate.db.connect("dnatest-delete", self.remove_handles)
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_dnatest_bookmarks()
+
+    def get_config_name(self):
+        return __name__
+
+
+class DNAMatchBookmarks(ListBookmarks):
+    "Handle the bookmarks interface for DNA matches."
+
+    def __init__(self, dbstate, uistate, change_active):
+        ListBookmarks.__init__(self, dbstate, uistate, change_active)
+
+    def make_label(self, handle):
+        return navigation_label(self.dbstate.db, "DNAMatch", handle)
+
+    def connect_signals(self):
+        self.dbstate.db.connect("dnamatch-delete", self.remove_handles)
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_dnamatch_bookmarks()
+
+    def get_config_name(self):
+        return __name__
+
+
 def make_callback(handle, function):
     """
     Build a unique call to the function with the associated handle.
