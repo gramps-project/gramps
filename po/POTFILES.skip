@@ -205,6 +205,7 @@ gramps/gen/lib/test/styledtext_test.py
 # gen.merge package
 #
 gramps/gen/merge/__init__.py
+gramps/gen/merge/test/mergeperson_dna_test.py
 #
 # gen mime API
 #
@@ -327,6 +328,7 @@ gramps/gen/utils/docgen/tabbeddoc.py
 #
 gramps/gen/utils/test/alive_test.py
 gramps/gen/utils/test/callback_test.py
+gramps/gen/utils/test/db_test.py
 gramps/gen/utils/test/file_test.py
 gramps/gen/utils/test/grampslocale_test.py
 gramps/gen/utils/test/keyword_test.py
@@ -335,6 +337,7 @@ gramps/gen/utils/test/place_test.py
 gramps/gen/utils/test/pypi_e2e_test.py
 gramps/gen/utils/test/pypi_test.py
 gramps/gen/utils/test/requirements_test.py
+gramps/gen/utils/test/unknown_test.py
 #
 # gui - GUI code
 #
@@ -391,6 +394,7 @@ gramps/gui/editors/displaytabs/webmodel.py
 # gui/editors/displaytabs/test
 #
 gramps/gui/editors/displaytabs/test/__init__.py
+gramps/gui/editors/displaytabs/test/dnasegmentembedlist_test.py
 gramps/gui/editors/displaytabs/test/gallerytab_test.py
 #
 # gui.editors.test package
@@ -483,6 +487,7 @@ gramps/gui/views/treemodels/sourcemodel.py
 #
 # gui.views.treemodels.test package
 #
+gramps/gui/views/treemodels/test/dnamatchmodel_test.py
 gramps/gui/views/treemodels/test/node_test.py
 gramps/gui/views/treemodels/test/treebasemodel_test.py
 #
@@ -673,6 +678,8 @@ gramps/plugins/sidebar/expandersidebar.py
 # plugins/test directory
 #
 gramps/plugins/test/db_undo_and_signals_test.py
+gramps/plugins/test/dna_xml_export_test.py
+gramps/plugins/test/dna_xml_test.py
 gramps/plugins/test/exports_test.py
 gramps/plugins/test/imports_test.py
 gramps/plugins/test/reports_test.py
@@ -688,6 +695,11 @@ gramps/plugins/thumbnailer/imagethumb.py
 # Development tools
 #
 gramps/plugins/tool/__init__.py
+#
+# plugins/tool/test directory
+#
+gramps/plugins/tool/test/__init__.py
+gramps/plugins/tool/test/check_test.py
 #
 # plugins/view directory
 #
