@@ -55,8 +55,15 @@ except (ImportError, ValueError):
 
 TREE = "Test_realportraittest"
 PORTRAIT_DIR = os.path.join(os.path.dirname(__file__), "portrait_images")
+MASK_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..", "..", "images", "masks")
+)
 MEDIA_DIR = os.path.join("temp", "real_portrait_media")
 OUT_DIR = "tree_report_output"
+REPORT_MASKS = {
+    "ancestor_chart": "rectangular_frame_antique_silver.png",
+    "descend_chart": "oval_frame_empty.png",
+}
 
 # (report, format, output file, subject option, thumb_fit or None)
 JOBS = [
@@ -214,6 +221,10 @@ class TestRealPortraitReports(unittest.TestCase):
                     target,
                     subject,
                 )
+                mask_path = os.path.join(MASK_DIR, REPORT_MASKS[report]).replace(
+                    "\\", "/"
+                )
+                options += ",mask_path=%s" % mask_path
                 if fit is not None:
                     options += ",thumb_fit=%d" % fit
                 out, err = self.gramps.run(
