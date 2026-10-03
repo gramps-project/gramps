@@ -67,14 +67,14 @@ REPORT_MASKS = {
 
 # (report, format, output file, subject option, thumb_fit or None)
 JOBS = [
-    ("ancestor_chart", "svg", "thumbnail_ancestor_shrink.svg", "pid=I0005", None),
-    ("ancestor_chart", "svg", "thumbnail_ancestor_crop.svg", "pid=I0005", 1),
-    ("ancestor_chart", "svg", "thumbnail_ancestor_stretch.svg", "pid=I0005", 2),
-    ("ancestor_chart", "odt", "thumbnail_ancestor.odt", "pid=I0005", None),
-    ("ancestor_chart", "pdf", "thumbnail_ancestor.pdf", "pid=I0005", None),
-    ("descend_chart", "svg", "thumbnail_descendant.svg", "pid=F0003", None),
-    ("descend_chart", "odt", "thumbnail_descendant.odt", "pid=F0003", None),
-    ("descend_chart", "pdf", "thumbnail_descendant.pdf", "pid=F0003", None),
+    ("ancestor_chart", "svg", "thumbnail_ancestor_shrink.svg", "ancestor", None),
+    ("ancestor_chart", "svg", "thumbnail_ancestor_crop.svg", "ancestor", 1),
+    ("ancestor_chart", "svg", "thumbnail_ancestor_stretch.svg", "ancestor", 2),
+    ("ancestor_chart", "odt", "thumbnail_ancestor.odt", "ancestor", None),
+    ("ancestor_chart", "pdf", "thumbnail_ancestor.pdf", "ancestor", None),
+    ("descend_chart", "svg", "thumbnail_descendant.svg", "descendant", None),
+    ("descend_chart", "odt", "thumbnail_descendant.odt", "descendant", None),
+    ("descend_chart", "pdf", "thumbnail_descendant.pdf", "descendant", None),
 ]
 
 PORTRAIT_MEDIA = {
@@ -100,16 +100,56 @@ def make_portrait_media(directory):
             image.convert("RGB").save(target, "JPEG")
 
 
-def move_portrait_reference(db, media_id, source_id, target_id):
-    """Move a media reference from one person to another."""
-    source = db.get_person_from_gramps_id(source_id)
-    target = db.get_person_from_gramps_id(target_id)
-    media = db.get_media_from_gramps_id(media_id)
-    if source is None or target is None or media is None:
+def find_person(db, first_name, surname, suffix="", birth_year=None):
+    """Find a fixture person by name and optional birth year."""
+    matches = []
+    for person in db.iter_people():
+        name = person.get_primary_name()
+        primary_surname = name.get_primary_surname()
+        if (
+            name.first_name != first_name
+            or primary_surname is None
+            or primary_surname.surname != surname
+            or name.suffix != suffix
+        ):
+            continue
+        if birth_year is not None:
+            birth_ref = person.get_birth_ref()
+            event = db.get_event_from_handle(birth_ref.ref) if birth_ref else None
+            if event is None or event.get_date_object().get_year() != birth_year:
+                continue
+        matches.append(person)
+    if len(matches) != 1:
         raise RuntimeError(
-            "Could not find person/media records: %s, %s, %s"
-            % (source_id, target_id, media_id)
+            "Expected one fixture person for %s %s, got %d"
+            % (first_name, surname, len(matches))
         )
+    return matches[0]
+
+
+def find_family(db, father, mother):
+    """Find a family by its parent records."""
+    for family in db.iter_families():
+        if (
+            family.get_father_handle() == father.handle
+            and family.get_mother_handle() == mother.handle
+        ):
+            return family
+    raise RuntimeError("Could not find fixture family for the selected parents")
+
+
+def move_portrait_reference(db, media_filename, source, target):
+    """Move a media reference from one person to another."""
+    media = next(
+        (
+            item
+            for item in db.iter_media()
+            if os.path.basename(item.get_path()) == media_filename
+        ),
+        None,
+    )
+    if media is None:
+        raise RuntimeError("Could not find fixture media: %s" % media_filename)
 
     source.remove_media_references([media.handle])
     media_ref = MediaRef()
@@ -120,12 +160,8 @@ def move_portrait_reference(db, media_id, source_id, target_id):
         db.commit_person(target, trans)
 
 
-def attach_portrait_to_person(db, media_path, person_id, description):
+def attach_portrait_to_person(db, media_path, person, description):
     """Create a media record and attach it to a person."""
-    person = db.get_person_from_gramps_id(person_id)
-    if person is None:
-        raise RuntimeError("Could not find person record: %s" % person_id)
-
     with DbTxn("Attach portrait to person", db) as trans:
         media = Media()
         media.set_path(media_path)
@@ -191,14 +227,28 @@ class TestRealPortraitReports(unittest.TestCase):
         try:
             db.load(trees[TREE])
             db.set_mediapath(os.path.abspath(MEDIA_DIR))
-            move_portrait_reference(db, "O0003", "I0037", "I0000")
-            move_portrait_reference(db, "O0000", "I0001", "I0057")
-            move_portrait_reference(db, "O0005", "I0005", "I0015")
-            move_portrait_reference(db, "O0001", "I0024", "I0008")
-            move_portrait_reference(db, "O0004", "I0040", "I0010")
+            mason = find_person(db, "Mason Michael", "Smith")
+            gustaf = find_person(db, "Gustaf", "Smith", "Sr.")
+            edwin = find_person(db, "Edwin Michael", "Smith")
+            anna = find_person(db, "Anna", "Hansdotter")
+            keith = find_person(db, "Keith Lloyd", "Smith")
+            anna_louise = find_person(db, "Anna Louise", "Smith")
+            gus = find_person(db, "Gus", "Smith")
+            hjalmar = find_person(db, "Hjalmar", "Smith", birth_year=1895)
+            marjorie = find_person(db, "Marjorie Alice", "Smith")
+            hans_peter = find_person(db, "Hans Peter", "Smith")
+            family = find_family(db, gustaf, anna)
+
+            move_portrait_reference(db, "O3.jpg", edwin, anna)
+            move_portrait_reference(db, "O0.jpg", keith, anna_louise)
+            move_portrait_reference(db, "O5.jpg", mason, gus)
+            move_portrait_reference(db, "O1.jpg", gustaf, hjalmar)
+            move_portrait_reference(db, "O4.jpg", marjorie, hans_peter)
             attach_portrait_to_person(
-                db, "O6.jpg", "I0037", "Portrait of a ten-year-old boy"
+                db, "O6.jpg", edwin, "Portrait of a ten-year-old boy"
             )
+            cls.ancestor_person_id = mason.gramps_id
+            cls.descendant_family_id = family.gramps_id
         finally:
             db.close()
 
@@ -208,10 +258,15 @@ class TestRealPortraitReports(unittest.TestCase):
 
     def test_portrait_reports_generate(self):
         """Generate SVG, ODT, and available PDF reports with real portraits."""
-        for report, out_format, name, subject, fit in JOBS:
+        for report, out_format, name, subject_type, fit in JOBS:
             if out_format == "pdf" and not HAVE_CAIRO:
                 continue
             with self.subTest(report=report, format=out_format, file=name):
+                subject = (
+                    "pid=%s" % self.ancestor_person_id
+                    if subject_type == "ancestor"
+                    else "pid=%s" % self.descendant_family_id
+                )
                 target = os.path.abspath(os.path.join(OUT_DIR, name)).replace("\\", "/")
                 if os.path.exists(target):
                     os.unlink(target)
@@ -245,13 +300,19 @@ class TestRealPortraitReports(unittest.TestCase):
                         content = fp.read()
                     self.assertIn("data:image/", content)
                     self.assertIn("Smith, Edwin Michael", content)
+                    expected_subject = (
+                        "Smith, Mason Michael"
+                        if subject_type == "ancestor"
+                        else "Smith, Gustaf Sr."
+                    )
+                    self.assertIn(expected_subject, content)
                     self.assertTrue(
                         svg_embeds_portrait(
                             target, os.path.join(PORTRAIT_DIR, "P7.png")
                         ),
                         "P7.png is not embedded in %s" % name,
                     )
-                    if subject == "pid=F0003":
+                    if subject_type == "descendant":
                         self.assertNotIn(">P7<", content)
                 elif out_format == "odt":
                     with zipfile.ZipFile(target) as archive:
