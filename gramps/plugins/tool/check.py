@@ -63,6 +63,8 @@ _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.lib import (
     Citation,
+    DNAMatch,
+    DNATest,
     Event,
     EventRoleType,
     EventType,
@@ -245,6 +247,8 @@ class Check(tool.BatchTool):
             checker.check_citation_references()
             checker.check_media_references()
             checker.check_repo_references()
+            checker.check_dnatest_references()
+            checker.check_dnamatch_references()
             checker.check_note_references()
             checker.check_tag_references()
             checker.check_checksum()
@@ -304,6 +308,9 @@ class CheckIntegrity:
         self.invalid_media_references = set()
         self.invalid_note_references = set()
         self.invalid_tag_references = set()
+        self.invalid_dnatest_person_references = set()
+        self.invalid_dnatest_references = set()
+        self.invalid_sharedancestor_references = set()
         self.invalid_dates = []
         self.removed_name_format = []
         self.empty_objects = defaultdict(list)
@@ -414,6 +421,7 @@ class CheckIntegrity:
                 for value in splist:
                     if value not in new_list:
                         new_list.append(value)
+                    elif (handle, value) not in self.duplicate_links:
                         self.duplicate_links.append((handle, value))
                 pers.set_family_handle_list(new_list)
                 self.db.commit_person(pers, self.trans)
@@ -708,7 +716,7 @@ class CheckIntegrity:
                     )
                     person.remove_parent_family_handle(par_family_handle)
                     self.db.commit_person(person, self.trans)
-                    self.broken_links.append((person_handle, family_handle))
+                    self.broken_links.append((person_handle, par_family_handle))
             for family_handle in person.get_family_handle_list():
                 try:
                     family = self.db.get_family_from_handle(family_handle)
@@ -796,6 +804,18 @@ class CheckIntegrity:
                 if place.has_media_reference(objectid):
                     place.remove_media_references([objectid])
                     self.db.commit_place(place, self.trans)
+
+            for handle in self.db.get_dnatest_handles():
+                test = self.db.get_dnatest_from_handle(handle)
+                if test.has_media_reference(objectid):
+                    test.remove_media_references([objectid])
+                    self.db.commit_dnatest(test, self.trans)
+
+            for handle in self.db.get_dnamatch_handles():
+                dnamatch = self.db.get_dnamatch_from_handle(handle)
+                if dnamatch.has_media_reference(objectid):
+                    dnamatch.remove_media_references([objectid])
+                    self.db.commit_dnamatch(dnamatch, self.trans)
 
             self.removed_photo.append(objectid)
             self.db.remove_media(objectid, self.trans)
@@ -924,6 +944,8 @@ class CheckIntegrity:
         empty_media_data = object_to_dict(Media())
         empty_repos_data = object_to_dict(Repository())
         empty_note_data = object_to_dict(Note())
+        empty_dnatest_data = object_to_dict(DNATest())
+        empty_dnamatch_data = object_to_dict(DNAMatch())
 
         _db = self.db
 
@@ -934,6 +956,12 @@ class CheckIntegrity:
                 return self._check_empty(value, empty)
 
             return _fx
+
+        def _empty_dnatest(value):
+            """Return True for an empty DNA test that no DNA match uses."""
+            if not self._check_empty(value, empty_dnatest_data):
+                return False
+            return not any(_db.find_backlink_handles(value["handle"], ["DNAMatch"]))
 
         table = (
             # Dispatch table for cleaning up empty objects. Each entry is
@@ -1025,6 +1053,24 @@ class CheckIntegrity:
                 _("Looking for empty note records"),
                 _empty(empty_note_data),
                 _db.remove_note,
+            ),
+            (
+                "dnatests",
+                _db.get_dnatest_from_handle,
+                _db.get_dnatest_cursor,
+                _db.get_number_of_dnatests,
+                _("Looking for empty DNA test records"),
+                _empty_dnatest,
+                _db.remove_dnatest,
+            ),
+            (
+                "dnamatches",
+                _db.get_dnamatch_from_handle,
+                _db.get_dnamatch_cursor,
+                _db.get_number_of_dnamatches,
+                _("Looking for empty DNA match records"),
+                _empty(empty_dnamatch_data),
+                _db.remove_dnamatch,
             ),
         )
 
@@ -1562,6 +1608,69 @@ class CheckIntegrity:
         if len(self.invalid_repo_references) == 0:
             logging.info("    OK: no repository reference problems found")
 
+    def check_dnatest_references(self):
+        """Looking for DNA test reference problems"""
+        tlist = self.db.get_dnatest_handles()
+
+        self.progress.set_pass(_("Looking for DNA test reference problems"), len(tlist))
+        logging.info("Looking for DNA test reference problems")
+
+        for key in tlist:
+            self.progress.step()
+            test = self.db.get_dnatest_from_handle(key)
+            person_handle = test.get_person_handle()
+            if person_handle and not self.db.has_person_handle(person_handle):
+                # The test is left without a person.
+                test.set_person_handle(None)
+                self.db.commit_dnatest(test, self.trans)
+                self.invalid_dnatest_person_references.add(key)
+
+        if len(self.invalid_dnatest_person_references) == 0:
+            logging.info("    OK: no DNA test reference problems found")
+
+    def check_dnamatch_references(self):
+        """Looking for DNA match reference problems"""
+        mlist = self.db.get_dnamatch_handles()
+
+        self.progress.set_pass(
+            _("Looking for DNA match reference problems"), len(mlist)
+        )
+        logging.info("Looking for DNA match reference problems")
+
+        for key in mlist:
+            self.progress.step()
+            dnamatch = self.db.get_dnamatch_from_handle(key)
+            for test_handle in (
+                dnamatch.get_subject_test_handle(),
+                dnamatch.get_match_test_handle(),
+            ):
+                if test_handle and not self.db.has_dnatest_handle(test_handle):
+                    # The referenced DNA test does not exist in the database
+                    make_unknown(
+                        test_handle,
+                        self.explanation.handle,
+                        self.class_dnatest,
+                        self.commit_dnatest,
+                        self.trans,
+                    )
+                    self.invalid_dnatest_references.add(test_handle)
+            changed = False
+            for ancestor in dnamatch.get_shared_ancestor_list():
+                person_handle = ancestor.get_person_handle()
+                if person_handle and not self.db.has_person_handle(person_handle):
+                    # The hypothesis keeps its description without a person.
+                    ancestor.set_person_handle(None)
+                    changed = True
+            if changed:
+                self.db.commit_dnamatch(dnamatch, self.trans)
+                self.invalid_sharedancestor_references.add(key)
+
+        if (
+            len(self.invalid_dnatest_references) == 0
+            and len(self.invalid_sharedancestor_references) == 0
+        ):
+            logging.info("    OK: no DNA match reference problems found")
+
     def check_place_references(self):
         """Looking for place reference problems"""
         plist = self.db.get_person_handles()
@@ -1699,6 +1808,8 @@ class CheckIntegrity:
             + self.db.get_number_of_sources()
             + self.db.get_number_of_media()
             + self.db.get_number_of_repositories()
+            + self.db.get_number_of_dnatests()
+            + self.db.get_number_of_dnamatches()
         )
 
         self.progress.set_pass(_("Looking for citation reference problems"), total)
@@ -1760,6 +1871,20 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
+        for handle in self.db.get_source_handles():
+            self.progress.step()
+            source = self.db.get_source_from_handle(handle)
+            handle_list = source.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == "Citation":
+                    if not item[1]:
+                        new_handle = create_id()
+                        source.replace_citation_references(None, new_handle)
+                        self.db.commit_source(source, self.trans)
+                        self.invalid_citation_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_citation_references.add(item[1])
+
         for handle in self.db.get_repository_handles():
             self.progress.step()
             repository = self.db.get_repository_from_handle(handle)
@@ -1798,6 +1923,34 @@ class CheckIntegrity:
                         new_handle = create_id()
                         event.replace_citation_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
+                        self.invalid_citation_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_citation_references.add(item[1])
+
+        for handle in self.db.get_dnatest_handles():
+            self.progress.step()
+            test = self.db.get_dnatest_from_handle(handle)
+            handle_list = test.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == "Citation":
+                    if not item[1]:
+                        new_handle = create_id()
+                        test.replace_citation_references(None, new_handle)
+                        self.db.commit_dnatest(test, self.trans)
+                        self.invalid_citation_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_citation_references.add(item[1])
+
+        for handle in self.db.get_dnamatch_handles():
+            self.progress.step()
+            dnamatch = self.db.get_dnamatch_from_handle(handle)
+            handle_list = dnamatch.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == "Citation":
+                    if not item[1]:
+                        new_handle = create_id()
+                        dnamatch.replace_citation_references(None, new_handle)
+                        self.db.commit_dnamatch(dnamatch, self.trans)
                         self.invalid_citation_references.add(new_handle)
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
@@ -1865,6 +2018,8 @@ class CheckIntegrity:
             + self.db.get_number_of_places()
             + self.db.get_number_of_citations()
             + self.db.get_number_of_sources()
+            + self.db.get_number_of_dnatests()
+            + self.db.get_number_of_dnamatches()
         )
 
         self.progress.set_pass(
@@ -1956,6 +2111,34 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
+        for handle in self.db.get_dnatest_handles():
+            self.progress.step()
+            test = self.db.get_dnatest_from_handle(handle)
+            handle_list = test.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == "Media":
+                    if not item[1]:
+                        new_handle = create_id()
+                        test.replace_media_references(None, new_handle)
+                        self.db.commit_dnatest(test, self.trans)
+                        self.invalid_media_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_media_references.add(item[1])
+
+        for handle in self.db.get_dnamatch_handles():
+            self.progress.step()
+            dnamatch = self.db.get_dnamatch_from_handle(handle)
+            handle_list = dnamatch.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == "Media":
+                    if not item[1]:
+                        new_handle = create_id()
+                        dnamatch.replace_media_references(None, new_handle)
+                        self.db.commit_dnamatch(dnamatch, self.trans)
+                        self.invalid_media_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_media_references.add(item[1])
+
         for bad_handle in self.invalid_media_references:
             make_unknown(
                 bad_handle,
@@ -1982,6 +2165,7 @@ class CheckIntegrity:
             + len(self.invalid_source_references)
             + len(self.invalid_repo_references)
             + len(self.invalid_media_references)
+            + len(self.invalid_dnatest_references)
         )
         if missing_references:
             self.db.add_note(self.explanation, self.trans, set_gid=True)
@@ -1997,6 +2181,8 @@ class CheckIntegrity:
             + self.db.get_number_of_citations()
             + self.db.get_number_of_sources()
             + self.db.get_number_of_repositories()
+            + self.db.get_number_of_dnatests()
+            + self.db.get_number_of_dnamatches()
         )
 
         self.progress.set_pass(_("Looking for note reference problems"), total)
@@ -2114,6 +2300,34 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
+        for handle in self.db.get_dnatest_handles():
+            self.progress.step()
+            test = self.db.get_dnatest_from_handle(handle)
+            handle_list = test.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == "Note":
+                    if not item[1]:
+                        new_handle = create_id()
+                        test.replace_note_references(None, new_handle)
+                        self.db.commit_dnatest(test, self.trans)
+                        self.invalid_note_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_note_references.add(item[1])
+
+        for handle in self.db.get_dnamatch_handles():
+            self.progress.step()
+            dnamatch = self.db.get_dnamatch_from_handle(handle)
+            handle_list = dnamatch.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == "Note":
+                    if not item[1]:
+                        new_handle = create_id()
+                        dnamatch.replace_note_references(None, new_handle)
+                        self.db.commit_dnamatch(dnamatch, self.trans)
+                        self.invalid_note_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_note_references.add(item[1])
+
         for bad_handle in self.invalid_note_references:
             make_unknown(
                 bad_handle,
@@ -2158,6 +2372,8 @@ class CheckIntegrity:
             + self.db.get_number_of_sources()
             + self.db.get_number_of_places()
             + self.db.get_number_of_repositories()
+            + self.db.get_number_of_dnatests()
+            + self.db.get_number_of_dnamatches()
         )
 
         self.progress.set_pass(_("Looking for tag reference problems"), total)
@@ -2289,6 +2505,34 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
+        for handle in self.db.get_dnatest_handles():
+            self.progress.step()
+            test = self.db.get_dnatest_from_handle(handle)
+            handle_list = test.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == "Tag":
+                    if not item[1]:
+                        new_handle = create_id()
+                        test.replace_tag_references(None, new_handle)
+                        self.db.commit_dnatest(test, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
+
+        for handle in self.db.get_dnamatch_handles():
+            self.progress.step()
+            dnamatch = self.db.get_dnamatch_from_handle(handle)
+            handle_list = dnamatch.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == "Tag":
+                    if not item[1]:
+                        new_handle = create_id()
+                        dnamatch.replace_tag_references(None, new_handle)
+                        self.db.commit_dnamatch(dnamatch, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
+
         for bad_handle in self.invalid_tag_references:
             make_unknown(bad_handle, None, self.class_tag, self.commit_tag, self.trans)
 
@@ -2372,6 +2616,8 @@ class CheckIntegrity:
             + self.db.get_number_of_places()
             + self.db.get_number_of_repositories()
             + self.db.get_number_of_sources()
+            + self.db.get_number_of_dnatests()
+            + self.db.get_number_of_dnamatches()
         )
 
         self.progress.set_pass(_("Looking for Duplicated Gramps ID " "problems"), total)
@@ -2512,6 +2758,38 @@ class CheckIntegrity:
                 gid = self.db.find_next_source_gramps_id()
                 source.set_gramps_id(gid)
                 self.db.commit_source(source, self.trans)
+                logging.warning(
+                    "    FAIL: Duplicated Gramps ID found, "
+                    'Original: "%s" changed to: "%s"',
+                    ogid,
+                    gid,
+                )
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+        gid_list = []
+        for test in self.db.iter_dnatests():
+            self.progress.step()
+            ogid = gid = test.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_dnatest_gramps_id()
+                test.set_gramps_id(gid)
+                self.db.commit_dnatest(test, self.trans)
+                logging.warning(
+                    "    FAIL: Duplicated Gramps ID found, "
+                    'Original: "%s" changed to: "%s"',
+                    ogid,
+                    gid,
+                )
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+        gid_list = []
+        for dnamatch in self.db.iter_dnamatches():
+            self.progress.step()
+            ogid = gid = dnamatch.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_dnamatch_gramps_id()
+                dnamatch.set_gramps_id(gid)
+                self.db.commit_dnamatch(dnamatch, self.trans)
                 logging.warning(
                     "    FAIL: Duplicated Gramps ID found, "
                     'Original: "%s" changed to: "%s"',
@@ -2722,6 +3000,14 @@ class CheckIntegrity:
     def commit_tag(self, tag, trans, dummy):
         self.db.add_tag(tag, trans)
 
+    def class_dnatest(self, handle):
+        test = DNATest()
+        test.set_handle(handle)
+        return test
+
+    def commit_dnatest(self, test, trans, dummy):
+        self.db.add_dnatest(test, trans, set_gid=True)
+
     def build_report(self, uistate=None):
         """build the report from various counters"""
         self.progress.close()
@@ -2748,6 +3034,9 @@ class CheckIntegrity:
         media_references = len(self.invalid_media_references)
         note_references = len(self.invalid_note_references)
         tag_references = len(self.invalid_tag_references)
+        dnatest_person_references = len(self.invalid_dnatest_person_references)
+        dnatest_references = len(self.invalid_dnatest_references)
+        sharedancestor_references = len(self.invalid_sharedancestor_references)
         name_format = len(self.removed_name_format)
         replaced_sourcerefs = len(self.replaced_sourceref)
         dup_gramps_ids = self.duplicated_gramps_ids
@@ -2771,6 +3060,9 @@ class CheckIntegrity:
             + media_references
             + note_references
             + tag_references
+            + dnatest_person_references
+            + dnatest_references
+            + sharedancestor_references
             + name_format
             + empty_objs
             + invalid_dates
@@ -2857,12 +3149,12 @@ class CheckIntegrity:
             self.text.write(
                 # Translators: leave all/any {...} untranslated
                 ngettext(
-                    "{quantity} duplicate " "spouse/family link was found\n",
-                    "{quantity} duplicate " "spouse/family links were found\n",
+                    "{quantity} duplicate spouse/family link was removed\n",
+                    "{quantity} duplicate spouse/family links were removed\n",
                     slink,
                 ).format(quantity=slink)
             )
-            for person_handle, family_handle in self.broken_parent_links:
+            for person_handle, family_handle in self.duplicate_links:
                 try:
                     person = self.db.get_person_from_handle(person_handle)
                 except HandleError:
@@ -2872,12 +3164,12 @@ class CheckIntegrity:
                 try:
                     family = self.db.get_family_from_handle(family_handle)
                 except HandleError:
-                    pname = _("None")
+                    pname = _("Unknown")
                 else:
                     pname = family_name(family, self.db)
                 self.text.write("\t")
                 self.text.write(
-                    _("%(person)s was restored to the family of %(family)s\n")
+                    _("%(person)s listed the family of %(family)s more than once\n")
                     % {"person": cname, "family": pname}
                 )
 
@@ -3085,14 +3377,38 @@ class CheckIntegrity:
                 ).format(quantity=tag_references)
             )
 
-        if tag_references:
+        if dnatest_person_references:
             self.text.write(
                 # Translators: leave all/any {...} untranslated
                 ngettext(
-                    "{quantity} tag object was " "referenced but not found\n",
-                    "{quantity} tag objects were " "referenced, but not found\n",
-                    tag_references,
-                ).format(quantity=tag_references)
+                    "{quantity} DNA test referred to a missing person, "
+                    "the reference was removed\n",
+                    "{quantity} DNA tests referred to missing persons, "
+                    "the references were removed\n",
+                    dnatest_person_references,
+                ).format(quantity=dnatest_person_references)
+            )
+
+        if dnatest_references:
+            self.text.write(
+                # Translators: leave all/any {...} untranslated
+                ngettext(
+                    "{quantity} DNA test was referenced but not found\n",
+                    "{quantity} DNA tests were referenced, but not found\n",
+                    dnatest_references,
+                ).format(quantity=dnatest_references)
+            )
+
+        if sharedancestor_references:
+            self.text.write(
+                # Translators: leave all/any {...} untranslated
+                ngettext(
+                    "{quantity} DNA match had a shared ancestor referring to "
+                    "a missing person, the reference was removed\n",
+                    "{quantity} DNA matches had shared ancestors referring to "
+                    "missing persons, the references were removed\n",
+                    sharedancestor_references,
+                ).format(quantity=sharedancestor_references)
             )
 
         if name_format:
@@ -3148,6 +3464,20 @@ class CheckIntegrity:
                     "place": len(self.empty_objects["places"]),
                     "repo": len(self.empty_objects["repos"]),
                     "note": len(self.empty_objects["notes"]),
+                }
+            )
+            self.text.write(
+                # Translators: these lines continue the list of empty
+                # objects removed above.
+                _(
+                    "   %(citation)d citation objects\n"
+                    "   %(dnatest)d DNA test objects\n"
+                    "   %(dnamatch)d DNA match objects\n"
+                )
+                % {
+                    "citation": len(self.empty_objects["citations"]),
+                    "dnatest": len(self.empty_objects["dnatests"]),
+                    "dnamatch": len(self.empty_objects["dnamatches"]),
                 }
             )
 
