@@ -35,7 +35,7 @@ LOG.propagate = True
 # when a new translation is added.  Note the dummy _(): That's just to
 # get xgettext to include the string in gramps.pot; actual translation
 # is done in _get_language_string() below.
-# (The gramps officially-supported language list is ALL_LINGUAS in setup.py)
+# (The gramps officially-supported language list is in po/LINGUAS)
 def _(msgid):
     return msgid
 
