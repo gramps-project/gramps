@@ -71,7 +71,6 @@ pacman -S --needed --noconfirm \
     mingw-w64-ucrt-x86_64-python-lief \
     mingw-w64-ucrt-x86_64-python-lxml \
     mingw-w64-ucrt-x86_64-python-networkx \
-    mingw-w64-ucrt-x86_64-python-nose \
     mingw-w64-ucrt-x86_64-python-packaging \
     mingw-w64-ucrt-x86_64-python-pillow \
     mingw-w64-ucrt-x86_64-python-pip \
