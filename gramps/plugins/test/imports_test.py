@@ -63,6 +63,7 @@ from gramps.gen.db.exceptions import (
     DbSupportedError,
     DbConnectionError,
 )
+from gramps.plugins.importer.importgedcom import importData
 
 # logger = logging.getLogger(__name__)
 
@@ -88,6 +89,22 @@ def mock_localtime(*args):
     Mock up a dummy to replace the varying 'time string results'
     """
     return strptime("25 Dec 1999", "%d %b %Y")
+
+
+class CaptureUser(User):
+    """
+    A User subclass that records the GEDCOM import report text instead of
+    displaying it, so tests can inspect the warnings without the GUI.
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.report_title = ""
+        self.infotext = ""
+
+    def info(self, msg1, infotext, parent=None, monospaced=False):
+        self.report_title = msg1
+        self.infotext = infotext
 
 
 class TestImports(unittest.TestCase):
@@ -159,6 +176,64 @@ class TestImports(unittest.TestCase):
         else:
             msg += _report_details(path, struct1, struct2)
         return msg
+
+    def test_imp_notetest_lds_in_out_in_dfs_warnings(self):
+        """
+        Verify that importing imp_notetest_lds_in-out-in_dfs.ged produces the
+        expected GEDCOM import warning report, without requiring the GUI.
+        """
+        fn1 = os.path.join(TEST_DIR, "imp_notetest_lds_in-out-in_dfs.ged")
+        config.set("preferences.default-source", True)
+        config.set("preferences.tag-on-import-format", "Imported")
+        config.set("preferences.tag-on-import", True)
+        db = make_database("sqlite")
+        db.load(":memory:")
+        db.set_feature("skip-import-additions", False)
+        user = CaptureUser()
+        importData(db, fn1, user)
+        self.assertEqual(user.report_title, "GEDCOM import report: 41 errors detected")
+        self.assertIn("ADDR element ignored '123 main'", user.infotext)
+        self.assertIn("Tag recognized but not supported", user.infotext)
+        self.assertIn("Unknown tag", user.infotext)
+        self.assertIn("Skipped subordinate line", user.infotext)
+        self.assertIn("Could not import photo.jpg", user.infotext)
+
+    def test_imp_notetest_dfs_warnings(self):
+        """
+        Verify that importing imp_notetest_dfs.ged produces the expected
+        GEDCOM import warning report, without requiring the GUI.
+        """
+        fn1 = os.path.join(TEST_DIR, "imp_notetest_dfs.ged")
+        config.set("preferences.default-source", True)
+        config.set("preferences.tag-on-import-format", "Imported")
+        config.set("preferences.tag-on-import", True)
+        db = make_database("sqlite")
+        db.load(":memory:")
+        db.set_feature("skip-import-additions", False)
+        user = CaptureUser()
+        importData(db, fn1, user)
+        self.assertEqual(user.report_title, "GEDCOM import report: 66 errors detected")
+        self.assertIn("Line ignored as not understood", user.infotext)
+        self.assertIn("Empty note ignored", user.infotext)
+        self.assertIn("Tag recognized but not supported", user.infotext)
+        self.assertIn("Skipped subordinate line", user.infotext)
+        self.assertIn("Could not import photo.jpg", user.infotext)
+
+    def test_imp_notetest_lds_warnings(self):
+        """
+        Verify that importing imp_notetest_lds_dfs.ged produces the expected
+        number of GEDCOM import warnings, without requiring the GUI.
+        """
+        fn1 = os.path.join(TEST_DIR, "imp_notetest_lds_dfs.ged")
+        config.set("preferences.default-source", True)
+        config.set("preferences.tag-on-import-format", "Imported")
+        config.set("preferences.tag-on-import", True)
+        db = make_database("sqlite")
+        db.load(":memory:")
+        db.set_feature("skip-import-additions", False)
+        user = CaptureUser()
+        importData(db, fn1, user)
+        self.assertEqual(user.report_title, "GEDCOM import report: 202 errors detected")
 
 
 def _report_details(path, diff1, diff2):
@@ -290,7 +365,14 @@ def make_tst_function(tstfile, file_name):
         (glocale.lang == "en_US")
         or (win() and (glocale.lang == "en"))
         or not (
-            tstfile in ["imp_MediaTest.ged", "imp_notetest_dfs.ged", "imp_sample.ged"]
+            tstfile
+            in [
+                "imp_MediaTest.ged",
+                "imp_notetest_dfs.ged",
+                "imp_notetest_lds_dfs.ged",
+                "imp_notetest_lds_in-out-in_dfs.ged",
+                "imp_sample.ged",
+            ]
         ),
         "skipping TestImports test case %s. en_US.utf-8 locale is required."
         % (tstfile),

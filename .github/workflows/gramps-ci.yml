@@ -20,9 +20,9 @@ name: Gramps CI
 
 on:
   push:
-    branches: [ maintenance/gramps61 ]
+    branches: [ master ]
   pull_request:
-    branches: [ maintenance/gramps61 ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -60,11 +60,11 @@ jobs:
         python3 -m pip install virtualenv
     - name: Install addons
       run: |
-        mkdir -p ~/.local/share/gramps/gramps60/plugins/
+        mkdir -p ~/.local/share/gramps/gramps61/plugins/
         wget https://github.com/gramps-project/addons/raw/master/gramps61/download/CliMerge.addon.tgz
-        tar -C ~/.local/share/gramps/gramps60/plugins/ -xzf CliMerge.addon.tgz
+        tar -C ~/.local/share/gramps/gramps61/plugins/ -xzf CliMerge.addon.tgz
         wget https://github.com/gramps-project/addons/raw/master/gramps61/download/ExportRaw.addon.tgz
-        tar -C ~/.local/share/gramps/gramps60/plugins/ -xzf ExportRaw.addon.tgz
+        tar -C ~/.local/share/gramps/gramps61/plugins/ -xzf ExportRaw.addon.tgz
     - name: Build
       run: |
         python3 -m build --wheel
