@@ -600,6 +600,7 @@ gramps/plugins/importer/__init__.py
 gramps/plugins/importer/test/importgedcom_ambiguous_date_test.py
 gramps/plugins/importer/test/importgeneweb_test.py
 gramps/plugins/importer/test/importvcard_test.py
+gramps/plugins/importer/test/importxml_daterange_test.py
 #
 # plugins/lib directory
 #
