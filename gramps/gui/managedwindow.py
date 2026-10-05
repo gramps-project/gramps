@@ -551,6 +551,21 @@ class ManagedWindow:
     def build_window_key(self, obj):
         return id(obj)
 
+    @classmethod
+    def get_help_topics(cls) -> list[dict]:
+        """
+        Return help topics for this window.
+
+        Each entry is a dict with a ``"title"`` key plus one of:
+        - ``"body"``: a translated prose string
+        - ``"examples"``: a list of ``(label, value)`` string pairs
+
+        Override in subclasses to provide window-specific help content.
+        This is a classmethod so topics can be indexed without instantiating
+        the window.
+        """
+        return []
+
     def define_glade(self, top_module, glade_file=None, also_load=[]):
         if glade_file is None:
             raise TypeError("ManagedWindow.define_glade: no glade file")
