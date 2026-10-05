@@ -143,6 +143,8 @@ VERSION_DIR = os.path.join(USER_CONFIG, VERSION_DIR_NAME)
 USER_DATA_VERSION = os.path.join(USER_DATA, VERSION_DIR_NAME)
 
 CUSTOM_FILTERS = os.path.join(VERSION_DIR, "custom_filters.xml")
+# Not version-specific: user translation overrides should survive upgrades.
+CUSTOM_TRANSLATIONS = os.path.join(USER_DATA, "custom_translations.json")
 REPORT_OPTIONS = os.path.join(USER_CONFIG, "report_options.xml")
 TOOL_OPTIONS = os.path.join(USER_CONFIG, "tool_options.xml")
 PLACE_FORMATS = os.path.join(USER_CONFIG, "place_formats.xml")

@@ -30,6 +30,7 @@ from gi.repository import GLib, Gio, Gtk
 
 from ..gen.const import GRAMPS_LOCALE as glocale
 from ..gen.config import config
+from ..gen.utils.xmltranslate import translate_xml_tree
 
 LOG = logging.getLogger("gui.uimanager")
 
@@ -228,6 +229,7 @@ class UIManager:
         editable = copy.deepcopy(self.et_xml)
         iterator(editable)  # clean up tree to builder specifications
         del iterator  # Needed for garbage collection
+        translate_xml_tree(editable)  # resolve translatable="yes" text
         # The following should work, but seems to have a Gtk bug
         # xml_str = ET.tostring(editable, encoding="unicode")
 

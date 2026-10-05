@@ -41,6 +41,7 @@ import time
 
 
 from .grampstranslation import GrampsTranslations, GrampsNullTranslations
+from .translationoverride import get_overrides_for_language
 
 if sys.platform == "darwin":
     from .maclocale import mac_setup_localization
@@ -498,6 +499,10 @@ class GrampsLocale:
             self.translation = GrampsNullTranslations()
             self.translation.lang = "en"
 
+        self.translation.set_overrides(
+            get_overrides_for_language(self.translation.lang)
+        )
+
         if _HDLR:
             LOG.removeHandler(_HDLR)
             _HDLR = None
@@ -688,6 +693,12 @@ class GrampsLocale:
             addon_translator = self._get_translation(domain, path, languages=languages)
         else:
             addon_translator = self._get_translation(domain, path)
+        gramps_translator.set_overrides(
+            get_overrides_for_language(gramps_translator.lang)
+        )
+        addon_translator.set_overrides(
+            get_overrides_for_language(addon_translator.lang)
+        )
         gramps_translator.add_fallback(addon_translator)
         return gramps_translator  # with a language fallback
 

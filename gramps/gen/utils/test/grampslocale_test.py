@@ -137,6 +137,62 @@ class AddonTranslatorTest(unittest.TestCase):
         self.assertEqual(self._("Untranslated string"), "Untranslated string")
 
 
+class AddonTranslatorOverrideTest(unittest.TestCase):
+    """
+    Tests that get_addon_translator() applies user-defined translation
+    overrides to both the addon-domain translator and its gramps-domain
+    fallback.
+    """
+
+    def setUp(self):
+        import json
+        import os
+        import tempfile
+
+        from ...const import GRAMPS_LOCALE as glocale
+        import gramps.gen.const as const
+
+        fd, self.filename = tempfile.mkstemp(suffix=".json")
+        os.close(fd)
+        with open(self.filename, "w", encoding="utf-8") as fp:
+            json.dump(
+                [
+                    {
+                        "language": "fr",
+                        "context": "",
+                        "msgid": "Test Message",
+                        "msgstr": "Overridden Addon Message",
+                    },
+                    {
+                        "language": "fr",
+                        "context": "",
+                        "msgid": "United States of America",
+                        "msgstr": "Overridden Gramps Message",
+                    },
+                ],
+                fp,
+            )
+        self._orig_custom_translations = const.CUSTOM_TRANSLATIONS
+        const.CUSTOM_TRANSLATIONS = self.filename
+        self._ = glocale.get_addon_translator(__file__, languages=["fr"]).gettext
+
+    def tearDown(self):
+        import os
+
+        import gramps.gen.const as const
+
+        const.CUSTOM_TRANSLATIONS = self._orig_custom_translations
+        os.remove(self.filename)
+
+    def testAddonDomainOverrideApplied(self):
+        self.assertEqual(self._("Test Message"), "Overridden Addon Message")
+
+    def testGrampsDomainFallbackOverrideApplied(self):
+        self.assertEqual(
+            self._("United States of America"), "Overridden Gramps Message"
+        )
+
+
 class SortKeyTest(unittest.TestCase):
     """
     Tests for GrampsLocale.sort_key().
