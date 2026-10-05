@@ -37,6 +37,7 @@ Module responsible for handling the command line arguments for Gramps.
 import sys
 import os
 import getopt
+import json
 import logging
 import shutil
 from glob import glob
@@ -72,6 +73,8 @@ Help options
 
 Application options
   -O, --open=FAMILY_TREE                 Open Family Tree
+  --language=LANG_CODE                   Start Gramps in LANG_CODE for this run only
+  --restore-state=STATE_FILE             Restore session state from a restart
   -U, --username=USERNAME                Database username
   -P, --password=PASSWORD                Database password
   -C, --create=FAMILY_TREE               Create on open if new Family Tree
@@ -139,7 +142,11 @@ gramps -O 'Family Tree 1' -e output.gramps -f gramps
 10. To generate a web site into an other locale (in german):
 LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p name=navwebpage,target=/../de
 
-11. Finally, to start normal interactive session type:
+11. To start Gramps in German for this run only, without changing the
+LANGUAGE preference used the next time Gramps is started:
+gramps --language=de
+
+12. Finally, to start normal interactive session type:
 gramps
 
 Note: These examples are for bash shell.
@@ -159,6 +166,8 @@ class ArgParser:
     The valid options are:
 
     -O, --open=FAMILY_TREE          Open Family Tree
+    --language=LANG_CODE            Start Gramps in LANG_CODE for this run only
+    --restore-state=STATE_FILE      Restore session state from a restart
     -U, --username=USERNAME         Database username
     -P, --password=PASSWORD         Database password
     -C, --create=FAMILY_TREE        Create on open if new Family Tree
@@ -219,6 +228,8 @@ class ArgParser:
 
         self.open_gui = None
         self.open = None
+        self.language = None
+        self.restore_state_path = None
         self.username = None
         self.password = None
         self.exports = []
@@ -287,6 +298,20 @@ class ArgParser:
         for opt_ix, (option, value) in enumerate(options):
             if option in ["-O", "--open"]:
                 self.open = value
+            elif option in ["--language"]:
+                # Already applied to the LANGUAGE environment variable by
+                # grampsapp, before GRAMPS_LOCALE was constructed -- stored
+                # here only so callers can see what was requested.
+                self.language = value
+            elif option in ["--restore-state"]:
+                self.restore_state_path = value
+                try:
+                    with open(value, encoding="utf-8") as restore_file:
+                        restore_state = json.load(restore_file)
+                except (OSError, ValueError):
+                    restore_state = {}
+                if restore_state.get("tree"):
+                    self.open = restore_state["tree"]
             elif option in ["-C", "--create"]:
                 self.create = value
             elif option in ["-U", "--username"]:

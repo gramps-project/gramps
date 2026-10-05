@@ -349,5 +349,34 @@ class StrcollTest(unittest.TestCase):
         self.assertEqual(self.glocale.strcoll("Abel", "Abel"), 0)
 
 
+class RestoreLanguageTest(unittest.TestCase):
+    """
+    GrampsLocale._init_from_environment() (grampslocale.py:245-253) reads
+    the $LANGUAGE environment variable and validates each candidate with
+    check_available_translations() before using it. This is the exact
+    primitive the restart-and-restore-state feature relies on: on restart,
+    the new process is launched with $LANGUAGE set from the saved
+    "preferences.language" value before gen.const (and therefore
+    GrampsLocale) is even imported. The already-constructed process-wide
+    GrampsLocale singleton can't be re-initialized from a unit test, so
+    this exercises the validation primitive directly instead.
+    """
+
+    def setUp(self):
+        from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+        self.glocale = glocale
+
+    def test_available_language_is_recognized(self):
+        # "fr" translations are confirmed present in this test environment
+        # by AddonTranslatorTest above.
+        self.assertTrue(self.glocale.check_available_translations("fr"))
+
+    def test_unavailable_language_is_rejected(self):
+        self.assertFalse(
+            self.glocale.check_available_translations("xx_not_a_real_locale")
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

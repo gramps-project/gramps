@@ -94,12 +94,21 @@ class Spell:
         if not HAVE_GSPELL:
             return
 
-        locale_code = glocale.locale_code()
+        # Gspell has no notion of $LANGUAGE; it only ever resolves a
+        # dictionary from a single locale-like code. Prefer glocale.language
+        # (the $LANGUAGE-driven UI language) so the spell-check dictionary
+        # follows the user's chosen Gramps language, falling back to
+        # glocale.locale_code() (the $LANG-driven system locale) if no
+        # dictionary matches.
         gspell_language = None
-        if locale_code is not None:
+        for locale_code in list(glocale.language or []) + [glocale.locale_code()]:
+            if not locale_code:
+                continue
             gspell_language = Gspell.language_lookup(locale_code[:5])
             if gspell_language is None:
                 gspell_language = Gspell.language_lookup(locale_code[:2])
+            if gspell_language is not None:
+                break
         checker = Gspell.Checker.new(gspell_language)
         buffer = Gspell.TextBuffer.get_from_gtk_text_buffer(textview.get_buffer())
         buffer.set_spell_checker(checker)
