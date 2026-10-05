@@ -464,6 +464,15 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.first_page = 1
         self.stylelist_notes = []  # styles to create for styled notes.
         self.stylelist_photos = []  # styles to create for clipped images.
+        # bug #5733: init() writes the named "F<name>" draw-text styles up
+        # front from the (then unscaled) style sheet.  A graphical report
+        # ("scale tree to fit") scales the style sheet's fonts AFTER init(),
+        # so a drawn text span must be able to override to the current
+        # (scaled) size at draw time — see _scaled_text_style().
+        self._draw_text_props = {}  # para style name -> init "F<name>" props
+        self._draw_text_style_names = set()  # every "F<name>" init() wrote
+        self._scaled_text_styles = {}  # props -> registered override name
+        self._scaled_text_defs = []  # (name, props) overrides to serialize
 
     def open(self, filename):
         """
@@ -648,40 +657,18 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 + "</style:style>\n"
             )
 
+            # bug #5733: remember the properties this "F<name>" text style is
+            # written with (from the CURRENT, still-unscaled font) so a later
+            # scaled draw can tell whether the font changed and, if so, emit an
+            # override instead of the stale named style (see _scaled_text_style).
+            self._draw_text_props[style_name] = self._draw_text_properties(style)
+            self._draw_text_style_names.add("F%s" % style_name)
             wrt(
                 '<style:style style:name="F%s" ' % style_name
                 + 'style:family="text">\n'
                 + "<style:text-properties "
-            )
-
-            align = style.get_alignment()
-            if align == PARA_ALIGN_LEFT:
-                wrt('fo:text-align="start" ')
-            elif align == PARA_ALIGN_RIGHT:
-                wrt('fo:text-align="end" ')
-            elif align == PARA_ALIGN_CENTER:
-                wrt('fo:text-align="center" ' 'style:justify-single-word="false" ')
-
-            font = style.get_font()
-            wrt(
-                'style:font-name="%s" '
-                % (
-                    "Arial"
-                    if font.get_type_face() == FONT_SANS_SERIF
-                    else "Times New Roman"
-                )
-            )
-
-            color = font.get_color()
-            wrt('fo:color="#%02x%02x%02x" ' % color)
-            if font.get_bold():
-                wrt('fo:font-weight="bold" ')
-            if font.get_italic():
-                wrt('fo:font-style="italic" ')
-
-            wrt(
-                'fo:font-size="%.2fpt" ' % font.get_size()
-                + 'style:font-size-asian="%.2fpt"/> ' % font.get_size()
+                + self._draw_text_props[style_name]
+                + "/> "
                 + "</style:style>\n"
             )
 
@@ -782,6 +769,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.add_styled_notes_fonts()
         self.add_styled_notes_styles()
         self.add_styled_photo_styles()
+        self.add_scaled_text_styles()  # bug #5733: scaled draw-text overrides
         self.cntntx.write(self.cntnt1.getvalue())
         self.cntntx.write(self.cntnt2.getvalue())
         self.cntntx.write(self.cntnt.getvalue())
@@ -1858,6 +1846,110 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             + "</draw:line>\n"
         )
 
+    def _draw_text_properties(self, style):
+        """
+        Return the body of the ``<style:text-properties …>`` element for a
+        paragraph style's draw-text ("F<name>") style, computed from the
+        style's CURRENT font.
+
+        Shared by :meth:`init` — which writes the named "F<name>" styles once,
+        up front — and :meth:`_scaled_text_style`, which runs later, after a
+        graphical report may have scaled the style sheet's fonts (bug #5733).
+        Because both paths format the font identically, an unscaled draw
+        reproduces the named style byte-for-byte, so :meth:`_scaled_text_style`
+        can reuse "F<name>" when nothing changed and register an override only
+        when the (scaled) font differs.
+        """
+        props = ""
+        align = style.get_alignment()
+        if align == PARA_ALIGN_LEFT:
+            props += 'fo:text-align="start" '
+        elif align == PARA_ALIGN_RIGHT:
+            props += 'fo:text-align="end" '
+        elif align == PARA_ALIGN_CENTER:
+            props += 'fo:text-align="center" ' 'style:justify-single-word="false" '
+        font = style.get_font()
+        props += 'style:font-name="%s" ' % (
+            "Arial" if font.get_type_face() == FONT_SANS_SERIF else "Times New Roman"
+        )
+        props += 'fo:color="#%02x%02x%02x" ' % font.get_color()
+        if font.get_bold():
+            props += 'fo:font-weight="bold" '
+        if font.get_italic():
+            props += 'fo:font-style="italic" '
+        props += 'fo:font-size="%.2fpt" ' % font.get_size()
+        props += 'style:font-size-asian="%.2fpt"' % font.get_size()
+        return props
+
+    def _scaled_text_style(self, para_name):
+        """
+        Return the name of the text style a drawn text span must reference so
+        that its font size reflects any per-report scaling applied AFTER
+        :meth:`init` wrote the fixed named "F<name>" styles (bug #5733).
+
+        "F<para_name>" is written once, up front, from the unscaled style
+        sheet.  A graphical report ("scale tree to fit") then scales the style
+        sheet's fonts, but that pre-written style keeps the original size, so
+        ODT box text would render unscaled while the cairo (PDF) backend —
+        which reads the font at draw time — scales it.  Here we read the
+        CURRENT font (post-scale): if it matches what "F<name>" already holds,
+        we reuse "F<name>" (unscaled output stays byte-identical); otherwise we
+        register an automatic text style carrying the current size and return
+        its name (flushed by :meth:`add_scaled_text_styles`).
+        """
+        if para_name not in self._draw_text_props:
+            # No named "F<name>" text style was written for this paragraph
+            # style — e.g. a GraphicsStyle with an unset paragraph style, whose
+            # name defaults to "".  Preserve the original, pre-#5733 behaviour
+            # (emit the "F<name>" reference verbatim) rather than resolving the
+            # style sheet and risking a KeyError.
+            return "F%s" % para_name
+        style = self.get_style_sheet().get_paragraph_style(para_name)
+        props = self._draw_text_properties(style)
+        if props == self._draw_text_props[para_name]:
+            return "F%s" % para_name
+        name = self._scaled_text_styles.get(props)
+        if name is None:
+            name = self._new_scaled_style_name()
+            self._scaled_text_styles[props] = name
+            self._scaled_text_defs.append((name, props))
+        return name
+
+    def _new_scaled_style_name(self):
+        """
+        Allocate a text-style name for a scaled draw-text override that cannot
+        collide with any "F<name>" style :meth:`init` wrote nor any override
+        already registered (bug #5733).  A fixed prefix alone is unsafe: a user
+        paragraph style literally named "Scaled1" yields an init style
+        "FScaled1", so we skip any candidate already reserved.
+        """
+        n = len(self._scaled_text_defs) + 1
+        while True:
+            name = "FScaled%d" % n
+            if name not in self._draw_text_style_names:
+                self._draw_text_style_names.add(name)
+                return name
+            n += 1
+
+    def add_scaled_text_styles(self):
+        """
+        Write the automatic text styles registered by
+        :meth:`_scaled_text_style` into the automatic-styles section (bug
+        #5733).  Mirrors :meth:`add_styled_notes_styles`: collected while the
+        body is generated and flushed, via ``cntnt2``, ahead of the body
+        content at :meth:`finish_cntnt_creation` time.
+        """
+        wrt2 = self.cntnt2.write
+        for name, props in self._scaled_text_defs:
+            wrt2(
+                '<style:style style:name="%s" ' % name
+                + 'style:family="text">\n'
+                + "<style:text-properties "
+                + props
+                + "/> "
+                + "</style:style>\n"
+            )
+
     def draw_text(self, style, text, x, y, mark=None):
         """
         Draw a text
@@ -1869,6 +1961,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
         sw = utils.pt2cm(string_width(font, text)) * 1.3
+        text_style = self._scaled_text_style(para_name)  # bug #5733
 
         self._write_mark(mark, text)
 
@@ -1882,7 +1975,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             + 'svg:y="%.2fcm">' % float(y)
             + "<draw:text-box> "
             + '<text:p text:style-name="F%s">' % para_name
-            + '<text:span text:style-name="F%s">' % para_name
+            + '<text:span text:style-name="%s">' % text_style
             +
             #' fo:max-height="%.2f">' % font.get_size()  +
             escape(text, ESC_MAP)
@@ -1928,9 +2021,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             + 'svg:y="%.2fcm">\n' % float(y)
         )
         if text:
+            text_style = self._scaled_text_style(para_name)  # bug #5733
             self.cntnt.write(
                 '<text:p text:style-name="%s">' % para_name
-                + '<text:span text:style-name="F%s">' % para_name
+                + '<text:span text:style-name="%s">' % text_style
                 + escape(text, ESC_MAP)
                 + "</text:span>"
                 "</text:p>\n"
@@ -1963,10 +2057,11 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         )
 
         if text:
+            text_style = self._scaled_text_style(para_name)  # bug #5733
             self.cntnt.write(
                 "<draw:text-box>"
                 + '<text:p text:style-name="X%s">' % para_name
-                + '<text:span text:style-name="F%s">' % para_name
+                + '<text:span text:style-name="%s">' % text_style
                 + escape(text, ESC_MAP)
                 + "</text:span>\n"
                 + "</text:p>\n"
