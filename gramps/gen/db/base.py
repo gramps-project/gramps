@@ -70,6 +70,14 @@ class DbReadBase:
         """
         self.basedb = self
         self.__feature = {}  # {"feature": VALUE, ...}
+        self._override_registry = {}  # {namespace: {key: override_class}}
+
+    def is_proxy(self):
+        """
+        Returns True if the database has a proxy, such as Living, or Private.
+        Otherwise, return False.
+        """
+        return self.basedb is not None and self != self.basedb
 
     def get_feature(self, feature):
         """
@@ -83,6 +91,71 @@ class DbReadBase:
         Databases can implement certain features.
         """
         self.__feature[feature] = value
+
+    def is_filter_override(self, table, filter_name):
+        """
+        Return True if the database has a native (such as SQL) implementation for the
+        named filter on the given table, False otherwise.
+
+        If any rule is registered, then the filter is considered
+        to be.
+        """
+        from ..filters import get_rule_names
+
+        for rule_name in get_rule_names(table, filter_name):
+            if (table, rule_name) in self._override_registry.get("rule", {}):
+                return True
+
+    def register_rule_override(self, key, override_class) -> None:
+        """
+        Register a database-optimised override class for a filter rule.
+
+        Parameters
+        ----------
+        key : tuple[str, str]
+            ``(category, rule_name)`` identifying the target rule, e.g.
+            ``("person", "MyRule")``.
+        override_class : type
+            A class (typically a subclass of
+            ``gramps.gen.filters.rules.RuleOverride``) with ``prepare``
+            and/or ``apply_to_one`` methods.  The class is instantiated
+            once per Rule instance when the rule is first executed.
+
+            ``prepare(self, original, db, user) -> None``
+                Called instead of the rule's ``prepare`` method.
+                *original* is the unwrapped rule method, callable as
+                ``original(self.rule, db, user)`` to delegate.
+
+            ``apply_to_one(self, original, db, obj) -> bool``
+                Called instead of the rule's ``apply_to_one`` method.
+                *original* is the unwrapped rule method, callable as
+                ``original(self.rule, db, obj)`` to delegate.
+
+            Overrides are bypassed automatically when ``db.is_proxy()``
+            returns ``True`` (e.g. Living or Privacy proxy databases).
+
+        Note
+        ----
+        This method is not thread-safe.  Overrides should be registered
+        during database initialisation, before any concurrent filter
+        evaluation begins.
+
+        Examples
+        --------
+        Register a fast SQL implementation for the person ``MyRule`` rule::
+
+            from gramps.gen.filters.rules import RuleOverride
+
+            class MyRuleOverride(RuleOverride):
+                def prepare(self, original, db, user):
+                    self.selected_handles = set(db.sql_select(...))
+
+                def apply_to_one(self, original, db, person):
+                    return person.handle in self.selected_handles
+
+            db.register_rule_override(("person", "MyRule"), MyRuleOverride)
+        """
+        self._override_registry.setdefault("rule", {})[key] = override_class
 
     def close(self):
         """
