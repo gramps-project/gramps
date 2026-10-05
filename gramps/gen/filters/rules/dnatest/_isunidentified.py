@@ -37,7 +37,7 @@ class IsUnidentified(Rule):
     description = _(
         "Matches DNA tests where no person has been identified as the kit owner"
     )
-    category = _("DNA test filters")
+    category = _("Person filters")
 
     def apply_to_one(self, db: Database, dnatest) -> bool:
         return dnatest.person_handle is None

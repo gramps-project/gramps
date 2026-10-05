@@ -62,6 +62,10 @@ def SelectorFactory(classname):
         from .selectdnatest import SelectDNATest
 
         cls = SelectDNATest
+    elif classname == "DNAMatch":
+        from .selectdnamatch import SelectDNAMatch
+
+        cls = SelectDNAMatch
     else:
         raise SelectorException(
             "Attempt to create unknown "

@@ -27,9 +27,12 @@ from ... import widgets
 from gramps.gen.lib.dnatest import DNATest
 from gramps.gen.lib.dnaprovidertype import DNAProviderType
 from gramps.gen.lib.dnatesttype import DNATestType
+from .. import build_filter_model
 from . import SidebarFilter
-from gramps.gen.filters import GenericFilterFactory
+from gramps.gen.filters import GenericFilter, GenericFilterFactory
 from gramps.gen.filters.rules.dnatest import (
+    AllDNATests,
+    MatchesFilter,
     RegExpIdOf,
     HasTag,
     HasDNATest,
@@ -85,9 +88,9 @@ class DNATestSidebarFilter(SidebarFilter):
         self.sensitive_regex = Gtk.CheckButton(label=_("Case sensitive"))
 
         self.tag = Gtk.ComboBox()
+        self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "DNATest")
-        self.vbox.remove(self.define_filter_btn.get_parent())
 
     def create_widget(self):
         cell = Gtk.CellRendererText()
@@ -95,6 +98,13 @@ class DNATestSidebarFilter(SidebarFilter):
         cell.set_property("ellipsize", self._FILTER_ELLIPSIZE)
         self.tag.pack_start(cell, True)
         self.tag.add_attribute(cell, "text", 0)
+
+        cell = Gtk.CellRendererText()
+        cell.set_property("width", self._FILTER_WIDTH)
+        cell.set_property("ellipsize", self._FILTER_ELLIPSIZE)
+        self.generic.pack_start(cell, True)
+        self.generic.add_attribute(cell, "text", 0)
+        self.on_filters_changed("DNATest")
 
         self.provider_combo.get_child().set_width_chars(5)
         self.testtype_combo.get_child().set_width_chars(5)
@@ -113,6 +123,7 @@ class DNATestSidebarFilter(SidebarFilter):
         self.vbox.pack_start(hbox, False, False, 0)
 
         self.add_entry(_("Tag"), self.tag)
+        self.add_filter_entry(_("Custom filter"), self.generic)
         self.add_regex_entry(self.filter_regex)
         self.add_regex_case(self.sensitive_regex)
 
@@ -127,6 +138,7 @@ class DNATestSidebarFilter(SidebarFilter):
         self.testtype_combo.get_child().set_text("")
         self.filter_unidentified.set_active(False)
         self.tag.set_active(0)
+        self.generic.set_active(0)
 
     def get_filter(self):
         gid = str(self.filter_id.get_text()).strip()
@@ -141,6 +153,7 @@ class DNATestSidebarFilter(SidebarFilter):
         regex = self.filter_regex.get_active()
         usecase = self.sensitive_regex.get_active()
         tag = self.tag.get_active() > 0
+        generic = self.generic.get_active() > 0
 
         empty = not (
             gid
@@ -154,6 +167,7 @@ class DNATestSidebarFilter(SidebarFilter):
             or unidentified
             or regex
             or tag
+            or generic
         )
         if empty:
             return None
@@ -191,7 +205,22 @@ class DNATestSidebarFilter(SidebarFilter):
             rule = HasTag([attr])
             generic_filter.add_rule(rule)
 
+        if generic:
+            model = self.generic.get_model()
+            node = self.generic.get_active_iter()
+            obj = str(model.get_value(node, 0))
+            rule = MatchesFilter([obj])
+            generic_filter.add_rule(rule)
+
         return generic_filter
+
+    def on_filters_changed(self, namespace):
+        if namespace == "DNATest":
+            all_filter = GenericFilter()
+            all_filter.set_name(_("None"))
+            all_filter.add_rule(AllDNATests([]))
+            self.generic.set_model(build_filter_model("DNATest", [all_filter]))
+            self.generic.set_active(0)
 
     def on_tags_changed(self, tag_list):
         model = Gtk.ListStore(str)
