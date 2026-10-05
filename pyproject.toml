@@ -43,6 +43,7 @@ dependencies = [
     "orjson",
     "requests",
     "certifi",
+    "pyparsing",
 ]
 classifiers = [
     "Development Status :: 1 - Planning",
