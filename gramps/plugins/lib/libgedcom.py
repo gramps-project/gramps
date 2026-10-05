@@ -1033,12 +1033,12 @@ class Lexer:
                     tag = line[0]
                     line_value = line[2]
             except:
-                problem = _("Line %d ignored ") % self.index
+                problem = _("Line ignored ")
                 text = original_line.rstrip("\n\r")
                 prob_width = 66
                 problem = problem.ljust(prob_width)[0 : (prob_width - 1)]
                 text = text.replace("\n", "\n".ljust(prob_width + 22))
-                message = "%s         %s" % (problem, text)
+                message = "%s              %s" % (problem, text)
                 self.__add_msg(message)
                 continue
 
