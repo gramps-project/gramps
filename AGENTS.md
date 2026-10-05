@@ -242,6 +242,22 @@ Every new `.py` file must include a GPL-2.0-or-later license header with copyrig
 - Tests must use the `unittest` framework — do not use `pytest`.
 - Test files must be named with the `_test.py` suffix (e.g., `mymodule_test.py`). CI discovers tests using `*_test.py`.
 - Place test files in a `test/` subdirectory alongside the module being tested.
+  Add an `__init__.py` to a new `test/` directory so it is importable.
+
+### Regression Tests
+
+Every bug fix must be accompanied by a regression test.
+
+- The test must fail against the unfixed code and pass against your fix. Confirm
+  both directions before submitting — a test that passes without your change
+  proves nothing.
+- Name the test and document its scenario after the bug it guards, including the
+  bug number (e.g., in the test docstring), so the case is not lost over time.
+- Keep the logic testable. When the defect lives in GUI- or database-coupled
+  code (a view, an editor, a gramplet), extract the core logic into a pure,
+  importable function and test that directly rather than driving the GUI. Build
+  inputs from `gramps.gen.lib` objects (`Person`, `Name`, `Surname`, ...) so the
+  test needs neither a display nor an open database.
 
 ### Running Tests
 
