@@ -483,6 +483,8 @@ class OrganizeTagsDialog(ManagedWindow):
         ]
         self.namelist = Gtk.TreeView()
         self.namemodel = ListModel(self.namelist, name_titles)
+        # Bind type-ahead search to the visible Name column (was inert at -1).
+        self.namelist.set_search_column(2)
 
         slist = Gtk.ScrolledWindow()
         slist.add(self.namelist)
