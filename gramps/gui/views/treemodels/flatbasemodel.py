@@ -493,6 +493,11 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
 
         self._reverse = order == Gtk.SortType.DESCENDING
 
+        # When True, the next rebuild_data must recompute the sort keys instead
+        # of reusing the cached (sortkey, handle) map, because the sort key
+        # itself changed (e.g. the display-name format). See rebuild_sort.
+        self._sort_dirty = False
+
         self.rebuild_data()
         _LOG.debug(
             self.__class__.__name__ + " __init__ " + str(perf_counter() - cput) + " sec"
@@ -543,6 +548,23 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             self.search = None
             self.rebuild_data = self._rebuild_search
 
+    def rebuild_sort(self):
+        """
+        Force the next :meth:`rebuild_data` to recompute the sort keys from the
+        database instead of reusing the cached ``(sortkey, handle)`` map.
+
+        The cached map (``node_map.full_srtkey_hndl_map``) stays valid while the
+        sort *function* is unchanged: a search or filter only restricts which
+        handles are shown, never their relative order. When the sort key itself
+        changes -- e.g. the display-name format is reconfigured so a person's
+        sort name renders differently -- the cache is stale, and a plain rebuild
+        would keep the rows in the previous order until the database is reopened.
+        Marking the sort dirty here makes :meth:`_rebuild_search` /
+        :meth:`_rebuild_filter` rebuild it from :meth:`sort_keys`. Overrides the
+        no-op :meth:`BaseModel.rebuild_sort`. (bug #9267)
+        """
+        self._sort_dirty = True
+
     def total(self):
         """
         Total number of items that maximally can be shown
@@ -589,8 +611,9 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self._in_build = True
         if (self.db is not None) and self.db.is_open():
             allkeys = self.node_map.full_srtkey_hndl_map()
-            if not allkeys:
+            if self._sort_dirty or not allkeys:
                 allkeys = self.sort_keys()
+                self._sort_dirty = False
             if self.search and self.search.text:
                 dlist = [
                     h
@@ -623,8 +646,9 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         if (self.db is not None) and self.db.is_open():
             cdb = CacheProxyDb(self.db)
             allkeys = self.node_map.full_srtkey_hndl_map()
-            if not allkeys:
+            if self._sort_dirty or not allkeys:
                 allkeys = self.sort_keys()
+                self._sort_dirty = False
             if self.search:
                 ident = False
                 self.user.begin_filter_progress()
