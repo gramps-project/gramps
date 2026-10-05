@@ -8,13 +8,13 @@
     </researcher>
   </header>
   <tags>
-    <tag handle="_0000000100000001" change="1501068556" name="Person Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000200000002" change="1501068556" name="Family Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000300000003" change="1501068556" name="Event Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000400000004" change="1501068556" name="Place Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000500000005" change="1501068556" name="Source Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000600000006" change="1501068556" name="Citation Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000700000007" change="1501068556" name="Note Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
+    <tag handle="_0000000100000001" change="1501068556" name="Person Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#3584e4" priority="0"/>
+    <tag handle="_0000000200000002" change="1501068556" name="Family Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#3584e4" priority="0"/>
+    <tag handle="_0000000300000003" change="1501068556" name="Event Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#3584e4" priority="0"/>
+    <tag handle="_0000000400000004" change="1501068556" name="Place Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#3584e4" priority="0"/>
+    <tag handle="_0000000500000005" change="1501068556" name="Source Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#3584e4" priority="0"/>
+    <tag handle="_0000000600000006" change="1501068556" name="Citation Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#3584e4" priority="0"/>
+    <tag handle="_0000000700000007" change="1501068556" name="Note Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#3584e4" priority="0"/>
   </tags>
   <events>
     <event handle="_0000000b0000000b" change="1501068556" id="E0000">

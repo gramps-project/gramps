@@ -305,7 +305,7 @@ class Tags(DbGUIElement):
         """
         Create a new tag and tag the selected objects.
         """
-        tag = Tag()
+        tag = Tag(db=self.db)
         tag.set_priority(self.db.get_number_of_tags())
         EditTag(self.db, self.uistate, [], tag)
 
@@ -529,7 +529,7 @@ class OrganizeTagsDialog(ManagedWindow):
         """
         Create a new tag.
         """
-        tag = Tag()
+        tag = Tag(db=self.db)
         tag.set_priority(self.db.get_number_of_tags())
         EditTag(self.db, self.uistate, self.track, tag)
 
