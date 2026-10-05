@@ -43,6 +43,7 @@ from ....const import GRAMPS_LOCALE as glocale
 from ....lib import Person
 from ....db import Database
 from ....types import FamilyHandle, PersonHandle
+from ....user import User
 
 _ = glocale.translation.gettext
 # -------------------------------------------------------------------------
@@ -90,7 +91,7 @@ def get_person_family_people(
 
 
 def find_deep_relations(
-    db: Database, user, person: Person | None, target_people: list[str]
+    db: Database, user: User, person: Person | None, target_people: list[str]
 ) -> set[str]:
     """This explores all possible paths between a person and one or more
     targets.  The algorithm processes paths in a breadth first wave, one
@@ -111,10 +112,11 @@ def find_deep_relations(
     done[person.handle] = None
 
     while todo:
+        if user.get_cancelled():
+            break
         handle = todo.popleft()
 
-        if user:
-            user.step_progress()
+        user.step_progress()
 
         if handle in target_people:  # if we found a target
             prev_hndl = handle
@@ -157,7 +159,7 @@ class DeepRelationshipPathBetween(Rule):
         " the shortest path."
     )
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         root_person_id = self.list[0]
         root_person = db.get_person_from_gramps_id(root_person_id)
 
@@ -168,19 +170,18 @@ class DeepRelationshipPathBetween(Rule):
         filt = self.filt.find_filter()
         target_people = filt.apply(db, user=user) if filt else []
 
-        if user:
-            user.begin_progress(
-                _("Finding relationship paths"),
-                _("Evaluating people"),
-                len(target_people),
-            )
+        user.begin_progress(
+            _("Finding relationship paths"),
+            _("Evaluating people"),
+            len(target_people),
+            can_cancel=True,
+        )
 
         self.selected_handles: set[str] = find_deep_relations(
             db, user, root_person, target_people
         )
 
-        if user:
-            user.end_progress()
+        user.end_progress()
 
     def reset(self):
         self.filt.requestreset()

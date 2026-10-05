@@ -45,6 +45,7 @@ from ....const import GRAMPS_LOCALE as glocale
 from typing import Set
 from ....lib import Family
 from ....db import Database
+from ....user import User
 
 _ = glocale.translation.gettext
 
@@ -64,11 +65,11 @@ class IsDescendantOf(Rule):
     category = _("General filters")
     description = _("Matches descendant families of the specified family")
 
-    def prepare(self, db: Database, user):
+    def prepare(self, db: Database, user: User):
         self.selected_handles: Set[str] = set()
         first = False if int(self.list[1]) else True
         root_family = db.get_family_from_gramps_id(self.list[0])
-        self.init_list(db, root_family, first)
+        self.init_list(db, root_family, first, user)
 
     def reset(self):
         self.selected_handles.clear()
@@ -76,10 +77,14 @@ class IsDescendantOf(Rule):
     def apply_to_one(self, db: Database, family: Family) -> bool:
         return family.handle in self.selected_handles
 
-    def init_list(self, db: Database, family: Family | None, first: bool) -> None:
+    def init_list(
+        self, db: Database, family: Family | None, first: bool, user: User
+    ) -> None:
         """
         Initialise family handle list.
         """
+        if user.get_cancelled():
+            return
         if not family:
             return
         if not first:
@@ -90,4 +95,4 @@ class IsDescendantOf(Rule):
             if child:
                 for family_handle in child.family_list:
                     child_family = db.get_family_from_handle(family_handle)
-                    self.init_list(db, child_family, False)
+                    self.init_list(db, child_family, False, user)
