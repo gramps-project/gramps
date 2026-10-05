@@ -33,30 +33,30 @@
       <type>_FSLINK</type>
       <description>https://familysearch.org</description>
     </event>
-    <event handle="_0000002900000029" change="1" id="E0005">
+    <event handle="_0000002800000028" change="1" id="E0005">
       <type>Birth</type>
       <dateval val="1901-06-15"/>
     </event>
-    <event handle="_0000002a0000002a" change="1" id="E0006">
+    <event handle="_0000002900000029" change="1" id="E0006">
       <type>Death</type>
       <dateval val="1975-07-05"/>
     </event>
-    <event handle="_0000003000000030" change="1" id="E0007">
+    <event handle="_0000002f0000002f" change="1" id="E0007">
       <type>Birth</type>
       <dateval val="1922-06-15"/>
     </event>
-    <event handle="_0000003100000031" change="1" id="E0008">
+    <event handle="_0000003000000030" change="1" id="E0008">
       <type>Death</type>
       <dateval val="1994-07-05"/>
     </event>
-    <event handle="_0000003d0000003d" change="1" id="E0009">
+    <event handle="_0000003c0000003c" change="1" id="E0009">
       <type>_PREF</type>
     </event>
-    <event handle="_0000003e0000003e" change="1" id="E0010">
+    <event handle="_0000003d0000003d" change="1" id="E0010">
       <type>TEST</type>
       <description>family</description>
     </event>
-    <event handle="_0000003f0000003f" change="1" id="E0011">
+    <event handle="_0000003e0000003e" change="1" id="E0011">
       <type>_PREF</type>
     </event>
   </events>
@@ -89,54 +89,54 @@
       <citationref hlink="_0000002200000022"/>
       <tagref hlink="_0000000200000002"/>
     </person>
-    <person handle="_0000002800000028" change="1" id="I0002">
+    <person handle="_0000002700000027" change="1" id="I0002">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Mrs</first>
         <surname>Tester</surname>
       </name>
+      <eventref hlink="_0000002800000028" role="Primary"/>
       <eventref hlink="_0000002900000029" role="Primary"/>
-      <eventref hlink="_0000002a0000002a" role="Primary"/>
       <parentin hlink="_0000001700000017"/>
-      <noteref hlink="_0000002b0000002b"/>
-      <noteref hlink="_0000002d0000002d"/>
-      <citationref hlink="_0000002c0000002c"/>
+      <noteref hlink="_0000002a0000002a"/>
+      <noteref hlink="_0000002c0000002c"/>
+      <citationref hlink="_0000002b0000002b"/>
       <tagref hlink="_0000000200000002"/>
     </person>
-    <person handle="_0000002e0000002e" change="1" id="I0003">
+    <person handle="_0000002d0000002d" change="1" id="I0003">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Ed</first>
         <surname>Tester</surname>
         <nick>Eddie</nick>
-        <noteref hlink="_0000002f0000002f"/>
+        <noteref hlink="_0000002e0000002e"/>
       </name>
+      <eventref hlink="_0000002f0000002f" role="Primary"/>
       <eventref hlink="_0000003000000030" role="Primary"/>
-      <eventref hlink="_0000003100000031" role="Primary"/>
       <lds_ord type="baptism">
         <dateval val="-005-05-05"/>
         <temple val="SLAKE"/>
-        <place hlink="_0000003200000032"/>
-        <noteref hlink="_0000003300000033"/>
-        <noteref hlink="_0000003600000036"/>
-        <citationref hlink="_0000003500000035"/>
+        <place hlink="_0000003100000031"/>
+        <noteref hlink="_0000003200000032"/>
+        <noteref hlink="_0000003500000035"/>
+        <citationref hlink="_0000003400000034"/>
       </lds_ord>
       <childof hlink="_0000001700000017"/>
-      <personref hlink="_0000003700000037" rel="">
-        <noteref hlink="_0000003800000038"/>
+      <personref hlink="_0000003600000036" rel="">
+        <noteref hlink="_0000003700000037"/>
       </personref>
-      <noteref hlink="_0000003a0000003a"/>
-      <citationref hlink="_0000003900000039"/>
+      <noteref hlink="_0000003900000039"/>
+      <citationref hlink="_0000003800000038"/>
       <tagref hlink="_0000000200000002"/>
     </person>
-    <person handle="_0000003700000037" change="1" id="I0004">
+    <person handle="_0000003600000036" change="1" id="I0004">
       <gender>U</gender>
       <name type="Birth Name">
         <first>George</first>
         <surname>Testee</surname>
-        <noteref hlink="_0000003b0000003b"/>
+        <noteref hlink="_0000003a0000003a"/>
       </name>
-      <citationref hlink="_0000003c0000003c"/>
+      <citationref hlink="_0000003b0000003b"/>
       <tagref hlink="_0000000200000002"/>
     </person>
   </people>
@@ -144,16 +144,16 @@
     <family handle="_0000001700000017" change="1" id="F0001">
       <rel type="Unknown"/>
       <father hlink="_0000000e0000000e"/>
-      <mother hlink="_0000002800000028"/>
+      <mother hlink="_0000002700000027"/>
+      <eventref hlink="_0000003c0000003c" role="Family"/>
       <eventref hlink="_0000003d0000003d" role="Family"/>
       <eventref hlink="_0000003e0000003e" role="Family"/>
-      <eventref hlink="_0000003f0000003f" role="Family"/>
-      <childref hlink="_0000002e0000002e"/>
+      <childref hlink="_0000002d0000002d"/>
+      <noteref hlink="_0000004100000041"/>
       <noteref hlink="_0000004200000042"/>
-      <noteref hlink="_0000004300000043"/>
-      <noteref hlink="_0000004800000048"/>
-      <citationref hlink="_0000004100000041"/>
-      <citationref hlink="_0000004700000047"/>
+      <noteref hlink="_0000004700000047"/>
+      <citationref hlink="_0000004000000040"/>
+      <citationref hlink="_0000004600000046"/>
       <tagref hlink="_0000000200000002"/>
     </family>
   </families>
@@ -162,38 +162,38 @@
       <confidence>2</confidence>
       <sourceref hlink="_0000000100000001"/>
     </citation>
-    <citation handle="_0000002600000026" change="1" id="C0001">
+    <citation handle="_0000002500000025" change="1" id="C0001">
       <confidence>2</confidence>
       <sourceref hlink="_0000000100000001"/>
     </citation>
-    <citation handle="_0000002c0000002c" change="1" id="C0002">
+    <citation handle="_0000002b0000002b" change="1" id="C0002">
       <confidence>2</confidence>
       <sourceref hlink="_0000000100000001"/>
     </citation>
-    <citation handle="_0000003500000035" change="1" id="C0003">
+    <citation handle="_0000003400000034" change="1" id="C0003">
       <confidence>2</confidence>
-      <sourceref hlink="_0000003400000034"/>
+      <sourceref hlink="_0000003300000033"/>
     </citation>
-    <citation handle="_0000003900000039" change="1" id="C0004">
-      <confidence>2</confidence>
-      <sourceref hlink="_0000000100000001"/>
-    </citation>
-    <citation handle="_0000003c0000003c" change="1" id="C0005">
+    <citation handle="_0000003800000038" change="1" id="C0004">
       <confidence>2</confidence>
       <sourceref hlink="_0000000100000001"/>
     </citation>
-    <citation handle="_0000004100000041" change="1" id="C0006">
+    <citation handle="_0000003b0000003b" change="1" id="C0005">
       <confidence>2</confidence>
-      <sourceref hlink="_0000004000000040"/>
+      <sourceref hlink="_0000000100000001"/>
     </citation>
-    <citation handle="_0000004700000047" change="1" id="C0007">
+    <citation handle="_0000004000000040" change="1" id="C0006">
+      <confidence>2</confidence>
+      <sourceref hlink="_0000003f0000003f"/>
+    </citation>
+    <citation handle="_0000004600000046" change="1" id="C0007">
       <dateval val="1900-12-31"/>
       <page>42</page>
       <confidence>0</confidence>
+      <noteref hlink="_0000004300000043"/>
       <noteref hlink="_0000004400000044"/>
       <noteref hlink="_0000004500000045"/>
-      <noteref hlink="_0000004600000046"/>
-      <sourceref hlink="_0000004000000040"/>
+      <sourceref hlink="_0000003f0000003f"/>
     </citation>
   </citations>
   <sources>
@@ -218,37 +218,34 @@
       <reporef hlink="_0000000300000003" medium="Unknown"/>
       <reporef hlink="_0000000c0000000c" medium="Unknown"/>
     </source>
-    <source handle="_0000003400000034" change="1" id="SOURCE1">
+    <source handle="_0000003300000033" change="1" id="SOURCE1">
       <stitle>@SOURCE1@</stitle>
     </source>
-    <source handle="_0000004000000040" change="1" id="S0001">
+    <source handle="_0000003f0000003f" change="1" id="S0001">
       <stitle>Note Test file Source: Tester</stitle>
+      <noteref hlink="_0000004a0000004a"/>
       <noteref hlink="_0000004b0000004b"/>
-      <noteref hlink="_0000004c0000004c"/>
-      <reporef hlink="_0000004900000049" medium="Book">
-        <noteref hlink="_0000004a0000004a"/>
+      <reporef hlink="_0000004800000048" medium="Book">
+        <noteref hlink="_0000004900000049"/>
       </reporef>
     </source>
-    <source handle="_0000004e0000004e" change="1" id="S0055">
+    <source handle="_0000004d0000004d" change="1" id="S0055">
       <stitle>1860 United States Federal Census</stitle>
       <sabbrev>1860 United States Federal Census</sabbrev>
-      <noteref hlink="_0000004f0000004f"/>
     </source>
-    <source handle="_0000005000000050" change="1" id="S0033">
+    <source handle="_0000004e0000004e" change="1" id="S0033">
       <stitle>1870 United States Federal Census</stitle>
       <sabbrev>1870 United States Federal Census</sabbrev>
-      <noteref hlink="_0000005100000051"/>
     </source>
-    <source handle="_0000005200000052" change="1" id="S0028">
+    <source handle="_0000004f0000004f" change="1" id="S0028">
       <stitle>1880 United States Federal Census</stitle>
       <sabbrev>1880 United States Federal Census</sabbrev>
     </source>
-    <source handle="_0000005300000053" change="1" id="S0071">
+    <source handle="_0000005000000050" change="1" id="S0071">
       <stitle>&quot;FamilySearch Family Tree,&quot; database, &lt;i&gt;FamilySearch&lt;/i&gt;</stitle>
       <sauthor>The Church of Jesus Christ of Latter-day Saints</sauthor>
       <spubinfo>(https://www.familysearch.org)</spubinfo>
       <sabbrev>FamilySearch Family Tree (https://www.familysearch.org)</sabbrev>
-      <noteref hlink="_0000005400000054"/>
     </source>
   </sources>
   <places>
@@ -259,7 +256,7 @@
       <noteref hlink="_0000001200000012"/>
       <noteref hlink="_0000001300000013"/>
     </placeobj>
-    <placeobj handle="_0000003200000032" change="1" id="P0001" type="Unknown">
+    <placeobj handle="_0000003100000031" change="1" id="P0001" type="Unknown">
       <ptitle>Salt Lake City</ptitle>
       <pname value="Salt Lake City"/>
     </placeobj>
@@ -270,10 +267,10 @@
       <attribute type="Media-Type" value="Film"/>
       <attribute type="RIN" value="123456"/>
       <attribute type="REFN" value="98765">
-        <noteref hlink="_0000002500000025"/>
+        <noteref hlink="_0000002400000024"/>
       </attribute>
-      <noteref hlink="_0000002700000027"/>
-      <citationref hlink="_0000002600000026"/>
+      <noteref hlink="_0000002600000026"/>
+      <citationref hlink="_0000002500000025"/>
       <tagref hlink="_0000000200000002"/>
     </object>
   </objects>
@@ -291,18 +288,17 @@
       <noteref hlink="_0000000b0000000b"/>
       <noteref hlink="_0000000d0000000d"/>
     </repository>
-    <repository handle="_0000004900000049" change="946101600" id="R0002">
+    <repository handle="_0000004800000048" change="946101600" id="R0002">
       <rname>Unknown</rname>
       <type>Unknown</type>
-      <noteref hlink="_0000005f0000005f"/>
+      <noteref hlink="_0000005200000052"/>
     </repository>
-    <repository handle="_0000005500000055" change="1" id="R0003">
+    <repository handle="_0000005100000051" change="1" id="R0003">
       <rname>The National Archives and Records Administration (NARA)</rname>
       <type>Library</type>
       <address>
         <street>The National Archives and Records Administration (NARA)</street>
       </address>
-      <noteref hlink="_0000005600000056"/>
     </repository>
   </repositories>
   <notes>
@@ -343,14 +339,10 @@ Line ignored as not understood                                                  
     <note handle="_0000000900000009" change="1" id="N0005" type="GEDCOM import">
       <text>Records not imported into NOTE Gramps ID N0003:
 
-Tag recognized but not supported: 'Submission Note RIN' on line                                       Line    32: 1 RIN Submission Note RIN
-Tag recognized but not supported: 'Submission Note REFN' on line                                      Line    33: 1 REFN Submission Note REFN
-Skipped subordinate line                                                                              Line    34: 2 TYPE Submission Note REFN TYPE
-Tag recognized but not supported: 'Submission note source' on line                                    Line    35: 1 SOUR Submission note source
 Line ignored as not understood                                                                        Line    39: 1 TEST on XREF Note
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="756"/>
+        <range start="0" end="183"/>
       </style>
     </note>
     <note handle="_0000000a0000000a" change="1" id="N0006" type="Repository Note">
@@ -441,25 +433,10 @@ Line ignored as not understood                                                  
         <range start="0" end="2815"/>
       </style>
     </note>
-    <note handle="_0000002400000024" change="1" id="N0021" type="GEDCOM import">
-      <text>Records not imported into NOTE Gramps ID N0018:
-
-Tag recognized but not supported: '123456' on line                                                    Line   107: 1 RIN 123456
-Tag recognized but not supported: '98765' on line                                                     Line   108: 1 REFN 98765
-Skipped subordinate line                                                                              Line   109: 2 TYPE Who knows REFN TYPE
-Tag recognized but not supported: 'Note on a change on a note!!!' on line                             Line   113: 2 NOTE Note on a change on a note!!!
-Skipped subordinate line                                                                              Line   114: 3 CHAN 
-Skipped subordinate line                                                                              Line   115: 4 DATE 2001-01-11
-Skipped subordinate line                                                                              Line   116: 5 TIME 16:00:06
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="979"/>
-      </style>
-    </note>
-    <note handle="_0000002500000025" change="1" id="N0022" type="REFN-TYPE">
+    <note handle="_0000002400000024" change="1" id="N0021" type="REFN-TYPE">
       <text>Who knows REFN TYPE</text>
     </note>
-    <note handle="_0000002700000027" change="1" id="N0023" type="GEDCOM import">
+    <note handle="_0000002600000026" change="1" id="N0022" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M1:
 
 Could not import photo.jpg                                                                            Line   118: 1 FILE photo.jpg
@@ -468,11 +445,11 @@ Could not import photo.jpg                                                      
         <range start="0" end="198"/>
       </style>
     </note>
-    <note handle="_0000002b0000002b" change="979246806" id="N0024" type="Person Note">
+    <note handle="_0000002a0000002a" change="979246806" id="N0023" type="Person Note">
       <text>Family Spouse reference Note</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000002d0000002d" change="1" id="N0025" type="GEDCOM import">
+    <note handle="_0000002c0000002c" change="1" id="N0024" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0002:
 
 Empty note ignored                                                                                    Line   136: 2 NOTE 
@@ -482,22 +459,22 @@ Skipped subordinate line                                                        
         <range start="0" end="316"/>
       </style>
     </note>
-    <note handle="_0000002f0000002f" change="979246806" id="N0026" type="General">
+    <note handle="_0000002e0000002e" change="979246806" id="N0025" type="General">
       <text>Name note</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000003300000033" change="1" id="N0027" type="LDS Note">
+    <note handle="_0000003200000032" change="1" id="N0026" type="LDS Note">
       <text>Place note</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000003600000036" change="1" id="N0028" type="LDS Note">
+    <note handle="_0000003500000035" change="1" id="N0027" type="LDS Note">
       <text>LDS xref note</text>
     </note>
-    <note handle="_0000003800000038" change="979246806" id="N0029" type="Association Note">
+    <note handle="_0000003700000037" change="979246806" id="N0028" type="Association Note">
       <text>Association link note</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000003a0000003a" change="1" id="N0030" type="GEDCOM import">
+    <note handle="_0000003900000039" change="1" id="N0029" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0003:
 
 Empty note ignored                                                                                    Line   145: 2 NOTE 
@@ -510,32 +487,31 @@ Skipped subordinate line                                                        
         <range start="0" end="708"/>
       </style>
     </note>
-    <note handle="_0000003b0000003b" change="979246806" id="N0031" type="General">
+    <note handle="_0000003a0000003a" change="979246806" id="N0030" type="General">
       <text>Just for association</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000004200000042" change="1" id="N0032" type="Family Note">
+    <note handle="_0000004100000041" change="1" id="N0031" type="Family Note">
       <text>Family xref note</text>
     </note>
-    <note handle="_0000004300000043" change="979246806" id="N0033" type="Family Note">
+    <note handle="_0000004200000042" change="979246806" id="N0032" type="Family Note">
       <text>Family note</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000004400000044" change="1" id="N0034" type="Citation">
+    <note handle="_0000004300000043" change="1" id="N0033" type="Citation">
       <text>Citation Data Note</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000004500000045" change="1" id="N0035" type="Source text">
+    <note handle="_0000004400000044" change="1" id="N0034" type="Source text">
       <text>A sample text from a source of this family</text>
     </note>
-    <note handle="_0000004600000046" change="979246806" id="N0036" type="Citation">
+    <note handle="_0000004500000045" change="979246806" id="N0035" type="Citation">
       <text>A note this citation is on the FAMILY record.</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000004800000048" change="1" id="N0037" type="GEDCOM import">
+    <note handle="_0000004700000047" change="1" id="N0036" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0001:
 
-Tag recognized but not supported: 'Y' on line                                                         Line   186: 2 _PREF Y
 Line ignored as not understood                                                                        Line   190: 2 TEST Family Note
 Empty note ignored                                                                                    Line   194: 1 NOTE 
 Skipped subordinate line                                                                              Line   195: 2 TEST Empty Note
@@ -544,18 +520,18 @@ Line ignored as not understood                                                  
 Line ignored as not understood                                                                        Line   203: 4 TEST Citation Data Note
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="973"/>
+        <range start="0" end="849"/>
       </style>
     </note>
-    <note handle="_0000004a0000004a" change="979246806" id="N0038" type="Repository Reference Note">
+    <note handle="_0000004900000049" change="979246806" id="N0037" type="Repository Reference Note">
       <text>A short note about the repository link.</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000004b0000004b" change="979246806" id="N0039" type="Source Note">
+    <note handle="_0000004a0000004a" change="979246806" id="N0038" type="Source Note">
       <text>note embedded in the SOURCE Record</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000004c0000004c" change="1" id="N0040" type="GEDCOM import">
+    <note handle="_0000004b0000004b" change="1" id="N0039" type="GEDCOM import">
       <text>Records not imported into SOUR (source) Gramps ID S0001:
 
 Line ignored as not understood                                                                        Line   213: 1 TEST source
@@ -568,8 +544,8 @@ Skipped subordinate line                                                        
         <range start="0" end="694"/>
       </style>
     </note>
-    <note handle="_0000004d0000004d" change="1" id="N0041" type="GEDCOM import">
-      <text>Records not imported into NOTE Gramps ID N0028:
+    <note handle="_0000004c0000004c" change="1" id="N0040" type="GEDCOM import">
+      <text>Records not imported into NOTE Gramps ID N0027:
 
 Line ignored as not understood                                                                        Line   228: 1 NOTE note embedded in the SOURCE Record
 Skipped subordinate line                                                                              Line   229: 2 CHAN 
@@ -580,236 +556,7 @@ Skipped subordinate line                                                        
         <range start="0" end="589"/>
       </style>
     </note>
-    <note handle="_0000004f0000004f" change="1" id="N0042" type="GEDCOM import">
-      <text>Records not imported into SOUR (source) Gramps ID S0055:
-
-Tag recognized but not supported: 'Y' on line                                                         Line   235: 1 _PAREN Y
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="183"/>
-      </style>
-    </note>
-    <note handle="_0000005100000051" change="1" id="N0043" type="GEDCOM import">
-      <text>Records not imported into SOUR (source) Gramps ID S0033:
-
-Tag recognized but not supported: 'Y' on line                                                         Line   239: 1 _PAREN Y
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="183"/>
-      </style>
-    </note>
-    <note handle="_0000005400000054" change="1" id="N0044" type="GEDCOM import">
-      <text>Records not imported into SOUR (source) Gramps ID S0071:
-
-Tag recognized but not supported: 'Y' on line                                                         Line   248: 1 _ITALIC Y
-Tag recognized but not supported: 'Y' on line                                                         Line   249: 1 _PAREN Y
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="309"/>
-      </style>
-    </note>
-    <note handle="_0000005600000056" change="1" id="N0045" type="GEDCOM import">
-      <text>Records not imported into REPO (repository) Gramps ID R0003:
-
-Tag recognized but not supported: 'The National Archives and Records Administration (NARA)' on line   Line   254: 2 _NAME The National Archives and Records Administration (NARA)
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="240"/>
-      </style>
-    </note>
-    <note handle="_0000005700000057" change="1" id="N0046" type="GEDCOM import">
-      <text>Records not imported into Top Level:
-
-Unknown tag                                                                                           Line   256: 0 _PLAC_DEFN 
-Skipped subordinate line                                                                              Line   257: 1 PLAC New Rochelle, New York
-Skipped subordinate line                                                                              Line   258: 2 ABBR New Rochelle, New York
-Skipped subordinate line                                                                              Line   259: 2 _RESOLVED -1
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="583"/>
-      </style>
-    </note>
-    <note handle="_0000005800000058" change="1" id="N0047" type="GEDCOM import">
-      <text>Records not imported into Top Level:
-
-Unknown tag                                                                                           Line   260: 0 _PLAC_DEFN 
-Skipped subordinate line                                                                              Line   261: 1 PLAC Austin, Texas
-Skipped subordinate line                                                                              Line   262: 2 ABBR Austin, Texas
-Skipped subordinate line                                                                              Line   263: 2 _RESOLVED -1
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="565"/>
-      </style>
-    </note>
-    <note handle="_0000005900000059" change="1" id="N0048" type="GEDCOM import">
-      <text>Records not imported into Top Level:
-
-Unknown tag                                                                                           Line   264: 0 _PLAC_DEFN 
-Skipped subordinate line                                                                              Line   265: 1 PLAC Cedar Rapids, Linn, Iowa, United States
-Skipped subordinate line                                                                              Line   266: 2 ABBR Cedar Rapids, Linn, Iowa, United States
-Skipped subordinate line                                                                              Line   267: 2 _RESOLVED -1
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="617"/>
-      </style>
-    </note>
-    <note handle="_0000005a0000005a" change="1" id="N0049" type="GEDCOM import">
-      <text>Records not imported into Top Level:
-
-Unknown tag                                                                                           Line   268: 0 _PLAC_DEFN 
-Skipped subordinate line                                                                              Line   269: 1 PLAC Philadelphia, Philadelphia, Penn.
-Skipped subordinate line                                                                              Line   270: 2 ABBR Philadelphia, Philadelphia, Penn.
-Skipped subordinate line                                                                              Line   271: 2 _RESOLVED -1
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="605"/>
-      </style>
-    </note>
-    <note handle="_0000005b0000005b" change="1" id="N0050" type="GEDCOM import">
-      <text>Records not imported into Top Level:
-
-Unknown tag                                                                                           Line   272: 0 _PLAC_DEFN 
-Skipped subordinate line                                                                              Line   273: 1 PLAC Oakland Cemetery, Philadelphia, Pennsylvania, United States
-Skipped subordinate line                                                                              Line   274: 2 ABBR Oakland Cemetery, Philadelphia, Pennsylvania, United States
-Skipped subordinate line                                                                              Line   275: 2 _RESOLVED -1
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="657"/>
-      </style>
-    </note>
-    <note handle="_0000005c0000005c" change="1" id="N0051" type="GEDCOM import">
-      <text>Records not imported into Top Level:
-
-Unknown tag                                                                                           Line   276: 0 _PLAC_DEFN 
-Skipped subordinate line                                                                              Line   277: 1 PLAC Greenmount Cemetery, Philadelphia, Pennsylvania, United States
-Skipped subordinate line                                                                              Line   278: 2 ABBR Greenmount Cemetery, Philadelphia, Pennsylvania, United States
-Skipped subordinate line                                                                              Line   279: 2 _RESOLVED -1
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="663"/>
-      </style>
-    </note>
-    <note handle="_0000005d0000005d" change="1" id="N0052" type="GEDCOM import">
-      <text>Records not imported into Top Level:
-
-Unknown tag                                                                                           Line   280: 0 _EVENT_DEFN Adoption
-Skipped subordinate line                                                                              Line   281: 1 TYPE I
-Skipped subordinate line                                                                              Line   282: 1 TITL Adoption
-Skipped subordinate line                                                                              Line   283: 1 _SEN1 [HeShe] was adopted [onDate] [inPlace] by [Desc].
-Skipped subordinate line                                                                              Line   284: 1 _SEN2 [HeShe] was adopted [onDate].
-Skipped subordinate line                                                                              Line   285: 1 _SEN3 [HeShe] was adopted [inPlace].
-Skipped subordinate line                                                                              Line   286: 1 _SEN4 [HeShe] was adopted by [Desc].
-Skipped subordinate line                                                                              Line   287: 1 _SEN5 [HeShe] was adopted [onDate] by [Desc].
-Skipped subordinate line                                                                              Line   288: 1 _SEN6 [HeShe] was adopted [inPlace] by [Desc].
-Skipped subordinate line                                                                              Line   289: 1 _SEN7 [HeShe] was adopted [onDate] [inPlace].
-Skipped subordinate line                                                                              Line   290: 1 _SEN8 [HeShe] was adopted.
-Skipped subordinate line                                                                              Line   291: 1 ROLE Witness
-Skipped subordinate line                                                                              Line   292: 2 _SEN1 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   293: 2 _SEN2 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate].
-Skipped subordinate line                                                                              Line   294: 2 _SEN3 [FirstHeShe] witnessed the adoption of [MainPerson] [inPlace].
-Skipped subordinate line                                                                              Line   295: 2 _SEN4 [FirstHeShe] witnessed the adoption of [MainPerson]: [Desc].
-Skipped subordinate line                                                                              Line   296: 2 _SEN5 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate]: [Desc].
-Skipped subordinate line                                                                              Line   297: 2 _SEN6 [FirstHeShe] witnessed the adoption of [MainPerson] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   298: 2 _SEN7 [FirstHeShe] witnessed the adoption of [MainPerson] [onDate] [inPlace].
-Skipped subordinate line                                                                              Line   299: 2 _SEN8 [FirstHeShe] witnessed the adoption of [MainPerson].
-Skipped subordinate line                                                                              Line   300: 2 _DEF Y
-Skipped subordinate line                                                                              Line   301: 1 _DATE_TYPE 1
-Skipped subordinate line                                                                              Line   302: 1 _PLACE_TYPE 1
-Skipped subordinate line                                                                              Line   303: 1 _DESC_FLAG 1
-Skipped subordinate line                                                                              Line   304: 1 _INC_NOTES 
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="3964"/>
-      </style>
-    </note>
-    <note handle="_0000005e0000005e" change="1" id="N0053" type="GEDCOM import">
-      <text>Records not imported into Top Level:
-
-Unknown tag                                                                                           Line   305: 0 _EVENT_DEFN Alt. Birth
-Skipped subordinate line                                                                              Line   306: 1 TYPE I
-Skipped subordinate line                                                                              Line   307: 1 TITL Alt. Birth
-Skipped subordinate line                                                                              Line   308: 1 _SEN1 [HeShe] has conflicting birth information of [Desc], [Date] and [Place].
-Skipped subordinate line                                                                              Line   309: 1 _SEN2 [HeShe] has conflicting birth information of [Date].
-Skipped subordinate line                                                                              Line   310: 1 _SEN3 [HeShe] has conflicting birth information of [Place].
-Skipped subordinate line                                                                              Line   311: 1 _SEN4 [HeShe] has conflicting birth information of [Desc].
-Skipped subordinate line                                                                              Line   312: 1 _SEN5 [HeShe] has conflicting birth information of [Desc] and [Date].
-Skipped subordinate line                                                                              Line   313: 1 _SEN6 [HeShe] has conflicting birth information of [Desc] and [Place].
-Skipped subordinate line                                                                              Line   314: 1 _SEN7 [HeShe] has conflicting birth information of [Date] and [Place].
-Skipped subordinate line                                                                              Line   315: 1 _SEN8 [HeShe] has conflicting birth information.
-Skipped subordinate line                                                                              Line   316: 1 ROLE Doctor
-Skipped subordinate line                                                                              Line   317: 2 _SEN1 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   318: 2 _SEN2 [FirstHeShe] delivered [MainPerson] [onDate].
-Skipped subordinate line                                                                              Line   319: 2 _SEN3 [FirstHeShe] delivered [MainPerson] [inPlace].
-Skipped subordinate line                                                                              Line   320: 2 _SEN4 [FirstHeShe] delivered [MainPerson]: [Desc].
-Skipped subordinate line                                                                              Line   321: 2 _SEN5 [FirstHeShe] delivered [MainPerson] [onDate]: [Desc].
-Skipped subordinate line                                                                              Line   322: 2 _SEN6 [FirstHeShe] delivered [MainPerson] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   323: 2 _SEN7 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace].
-Skipped subordinate line                                                                              Line   324: 2 _SEN8 [FirstHeShe] delivered [MainPerson].
-Skipped subordinate line                                                                              Line   325: 1 ROLE Father
-Skipped subordinate line                                                                              Line   326: 2 _SEN1 [FirstHeShe] is the father of [MainPerson] born [onDate] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   327: 2 _SEN2 [FirstHeShe] is the father of [MainPerson] born [onDate].
-Skipped subordinate line                                                                              Line   328: 2 _SEN3 [FirstHeShe] is the father of [MainPerson] born [inPlace].
-Skipped subordinate line                                                                              Line   329: 2 _SEN4 [FirstHeShe] is the father of [MainPerson] born: [Desc].
-Skipped subordinate line                                                                              Line   330: 2 _SEN5 [FirstHeShe] is the father of [MainPerson] born [onDate]: [Desc].
-Skipped subordinate line                                                                              Line   331: 2 _SEN6 [FirstHeShe] is the father of [MainPerson] born [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   332: 2 _SEN7 [FirstHeShe] is the father of [MainPerson] born [onDate] [inPlace].
-Skipped subordinate line                                                                              Line   333: 2 _SEN8 [FirstHeShe] is the father of [MainPerson] born.
-Skipped subordinate line                                                                              Line   334: 1 ROLE Godfather
-Skipped subordinate line                                                                              Line   335: 2 _SEN1 [FirstHeShe] is the godfather of [MainPerson] [onDate] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   336: 2 _SEN2 [FirstHeShe] is the godfather of [MainPerson] [onDate].
-Skipped subordinate line                                                                              Line   337: 2 _SEN3 [FirstHeShe] is the godfather of [MainPerson] [inPlace].
-Skipped subordinate line                                                                              Line   338: 2 _SEN4 [FirstHeShe] is the godfather of [MainPerson]: [Desc].
-Skipped subordinate line                                                                              Line   339: 2 _SEN5 [FirstHeShe] is the godfather of [MainPerson] [onDate]: [Desc].
-Skipped subordinate line                                                                              Line   340: 2 _SEN6 [FirstHeShe] is the godfather of [MainPerson] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   341: 2 _SEN7 [FirstHeShe] is the godfather of [MainPerson] [onDate] [inPlace].
-Skipped subordinate line                                                                              Line   342: 2 _SEN8 [FirstHeShe] is the godfather of [MainPerson].
-Skipped subordinate line                                                                              Line   343: 1 ROLE Godmother
-Skipped subordinate line                                                                              Line   344: 2 _SEN1 [FirstHeShe] is the godmother of [MainPerson] [onDate] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   345: 2 _SEN2 [FirstHeShe] is the godmother of [MainPerson] [onDate].
-Skipped subordinate line                                                                              Line   346: 2 _SEN3 [FirstHeShe] is the godmother of [MainPerson] [inPlace].
-Skipped subordinate line                                                                              Line   347: 2 _SEN4 [FirstHeShe] is the godmother of [MainPerson]: [Desc].
-Skipped subordinate line                                                                              Line   348: 2 _SEN5 [FirstHeShe] is the godmother of [MainPerson] [onDate]: [Desc].
-Skipped subordinate line                                                                              Line   349: 2 _SEN6 [FirstHeShe] is the godmother of [MainPerson] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   350: 2 _SEN7 [FirstHeShe] is the godmother of [MainPerson] [onDate] [inPlace].
-Skipped subordinate line                                                                              Line   351: 2 _SEN8 [FirstHeShe] is the godmother of [MainPerson].
-Skipped subordinate line                                                                              Line   352: 1 ROLE Midwife
-Skipped subordinate line                                                                              Line   353: 2 _SEN1 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   354: 2 _SEN2 [FirstHeShe] delivered [MainPerson] [onDate].
-Skipped subordinate line                                                                              Line   355: 2 _SEN3 [FirstHeShe] delivered [MainPerson] [inPlace].
-Skipped subordinate line                                                                              Line   356: 2 _SEN4 [FirstHeShe] delivered [MainPerson]: [Desc].
-Skipped subordinate line                                                                              Line   357: 2 _SEN5 [FirstHeShe] delivered [MainPerson] [onDate]: [Desc].
-Skipped subordinate line                                                                              Line   358: 2 _SEN6 [FirstHeShe] delivered [MainPerson] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   359: 2 _SEN7 [FirstHeShe] delivered [MainPerson] [onDate] [inPlace].
-Skipped subordinate line                                                                              Line   360: 2 _SEN8 [FirstHeShe] delivered [MainPerson].
-Skipped subordinate line                                                                              Line   361: 1 ROLE Mother
-Skipped subordinate line                                                                              Line   362: 2 _SEN1 [FirstHeShe] is the mother of [MainPerson] born [onDate] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   363: 2 _SEN2 [FirstHeShe] is the mother of [MainPerson] born [onDate].
-Skipped subordinate line                                                                              Line   364: 2 _SEN3 [FirstHeShe] is the mother of [MainPerson] born [inPlace].
-Skipped subordinate line                                                                              Line   365: 2 _SEN4 [FirstHeShe] is the mother of [MainPerson] born: [Desc].
-Skipped subordinate line                                                                              Line   366: 2 _SEN5 [FirstHeShe] is the mother of [MainPerson] born [onDate]: [Desc].
-Skipped subordinate line                                                                              Line   367: 2 _SEN6 [FirstHeShe] is the mother of [MainPerson] born [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   368: 2 _SEN7 [FirstHeShe] is the mother of [MainPerson] born [onDate] [inPlace].
-Skipped subordinate line                                                                              Line   369: 2 _SEN8 [FirstHeShe] is the mother of [MainPerson] born.
-Skipped subordinate line                                                                              Line   370: 1 ROLE Witness
-Skipped subordinate line                                                                              Line   371: 2 _SEN1 [FirstHeShe] witnessed the birth of [MainPerson] [onDate] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   372: 2 _SEN2 [FirstHeShe] witnessed the birth of [MainPerson] [onDate].
-Skipped subordinate line                                                                              Line   373: 2 _SEN3 [FirstHeShe] witnessed the birth of [MainPerson] [inPlace].
-Skipped subordinate line                                                                              Line   374: 2 _SEN4 [FirstHeShe] witnessed the birth of [MainPerson]: [Desc].
-Skipped subordinate line                                                                              Line   375: 2 _SEN5 [FirstHeShe] witnessed the birth of [MainPerson] [onDate]: [Desc].
-Skipped subordinate line                                                                              Line   376: 2 _SEN6 [FirstHeShe] witnessed the birth of [MainPerson] [inPlace]: [Desc].
-Skipped subordinate line                                                                              Line   377: 2 _SEN7 [FirstHeShe] witnessed the birth of [MainPerson] [onDate] [inPlace].
-Skipped subordinate line                                                                              Line   378: 2 _SEN8 [FirstHeShe] witnessed the birth of [MainPerson].
-Skipped subordinate line                                                                              Line   379: 2 _DEF Y
-Skipped subordinate line                                                                              Line   380: 1 _DATE_TYPE 1
-Skipped subordinate line                                                                              Line   381: 1 _PLACE_TYPE 1
-Skipped subordinate line                                                                              Line   382: 1 _DESC_FLAG 1
-Skipped subordinate line                                                                              Line   383: 1 _INC_NOTES 
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="13537"/>
-      </style>
-    </note>
-    <note handle="_0000005f0000005f" change="1786736033" id="N0054" type="General">
+    <note handle="_0000005200000052" change="1787816437" id="N0041" type="General">
       <text>Objects referenced by this note were missing in a file imported on 12/25/1999 12:00:00 AM.</text>
     </note>
   </notes>

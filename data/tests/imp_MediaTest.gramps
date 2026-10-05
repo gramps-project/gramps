@@ -189,32 +189,20 @@ n @XREF:OBJE@ OBJE {1:1}
     <note handle="_0000001400000014" change="1" id="N0003" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M1:
 
-Tag recognized but not supported: '
-.HM.......k.1..F.jwA.Dzzzzw............A....1.........0U.66..E.   Line    58: 1 BLOB 
-                                                                                                                         .HM.......k.1..F.jwA.Dzzzzw............A....1.........0U.66..E.8
-                                                                                                                         .......A..k.a6.A.......A..k.........../6....G.......0../..U.....
-                                                                                                                         .w1/m........HC0..../...zzzzzzzz..5zzk..AnA..U..W6U....2rRrRrRrR
-                                                                                                                         .Dw...............k.1.......1..A...5ykE/zzzx/.g//.Hxzk6/.Tzy/.k1
-                                                                                                                         /Dw/.Tvz.E5zzUE9/kHz.Tw2/DzzzEEA.kE2zk5yzk2/zzs21.U2/Dw/.Tw/.Tzy
-                                                                                                                         /.fy/.HzzkHzzzo21Ds00.E2.UE2.U62/.k./Ds0.UE0/Do0..E8/UE2.U62.U9w
-                                                                                                                         /.Tx/.20.jg2/jo2..9u/.0U.6A.zk
 Line ignored as not understood                                                                        Line    66: 1 OBJE @M2@
 Filename omitted                                                                                      Line    55: 0 M1 OBJE
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="1707"/>
+        <range start="0" end="317"/>
       </style>
     </note>
     <note handle="_0000001600000016" change="1" id="N0004" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M2:
 
-Tag recognized but not supported: '
-67890gramps doesn't do this anyway, so don't bother doing it ri   Line    77: 1 BLOB 
-                                                                                                                         67890gramps doesn't do this anyway, so don't bother doing it right.
 Filename omitted                                                                                      Line    74: 0 M2 OBJE
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="502"/>
+        <range start="0" end="191"/>
       </style>
     </note>
     <note handle="_0000001700000017" change="1" id="N0012" type="Media Note">

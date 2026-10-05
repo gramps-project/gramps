@@ -191,11 +191,15 @@ class TestImports(unittest.TestCase):
         db.set_feature("skip-import-additions", False)
         user = CaptureUser()
         importData(db, fn1, user)
-        self.assertEqual(user.report_title, "GEDCOM import report: 41 errors detected")
+        self.assertEqual(user.report_title, "GEDCOM import report: 5 errors detected")
         self.assertIn("ADDR element ignored '123 main'", user.infotext)
-        self.assertIn("Tag recognized but not supported", user.infotext)
-        self.assertIn("Unknown tag", user.infotext)
-        self.assertIn("Skipped subordinate line", user.infotext)
+        self.assertIn(
+            "The following tags were recognized but not supported:", user.infotext
+        )
+        self.assertRegex(user.infotext, r"\n  _PREF \(counted \d+\)")
+        self.assertRegex(user.infotext, r"\n  _EVENT_DEFN \(counted \d+\)")
+        self.assertRegex(user.infotext, r"\n  _PAREN \(counted \d+\)")
+        self.assertRegex(user.infotext, r"\n  _NAME \(counted \d+\)")
         self.assertIn("Could not import photo.jpg", user.infotext)
 
     def test_imp_notetest_dfs_warnings(self):
@@ -212,10 +216,12 @@ class TestImports(unittest.TestCase):
         db.set_feature("skip-import-additions", False)
         user = CaptureUser()
         importData(db, fn1, user)
-        self.assertEqual(user.report_title, "GEDCOM import report: 66 errors detected")
+        self.assertEqual(user.report_title, "GEDCOM import report: 55 errors detected")
         self.assertIn("Line ignored as not understood", user.infotext)
         self.assertIn("Empty note ignored", user.infotext)
-        self.assertIn("Tag recognized but not supported", user.infotext)
+        self.assertIn(
+            "The following tags were recognized but not supported:", user.infotext
+        )
         self.assertIn("Skipped subordinate line", user.infotext)
         self.assertIn("Could not import photo.jpg", user.infotext)
 
@@ -233,7 +239,7 @@ class TestImports(unittest.TestCase):
         db.set_feature("skip-import-additions", False)
         user = CaptureUser()
         importData(db, fn1, user)
-        self.assertEqual(user.report_title, "GEDCOM import report: 202 errors detected")
+        self.assertEqual(user.report_title, "GEDCOM import report: 57 errors detected")
 
 
 def _report_details(path, diff1, diff2):

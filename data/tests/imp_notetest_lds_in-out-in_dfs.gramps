@@ -149,7 +149,6 @@
       <eventref hlink="_0000002600000026" role="Family"/>
       <eventref hlink="_0000002700000027" role="Family"/>
       <childref hlink="_0000001800000018"/>
-      <noteref hlink="_0000002d0000002d"/>
       <citationref hlink="_0000002c0000002c"/>
       <tagref hlink="_0000000200000002"/>
     </family>
@@ -203,9 +202,8 @@
     <source handle="_0000002800000028" change="1" id="S0002">
       <stitle>Note Test file Source: Tester</stitle>
       <sabbrev>Note Test file Source: Tester</sabbrev>
-      <noteref hlink="_0000003000000030"/>
-      <noteref hlink="_0000003200000032"/>
-      <reporef hlink="_0000003100000031" medium="Book"/>
+      <noteref hlink="_0000002d0000002d"/>
+      <reporef hlink="_0000002e0000002e" medium="Book"/>
     </source>
   </sources>
   <places>
@@ -235,14 +233,13 @@
       <address>
       </address>
     </repository>
-    <repository handle="_0000003100000031" change="1" id="R0002">
+    <repository handle="_0000002e0000002e" change="1" id="R0002">
       <rname>The Testers repository</rname>
       <type>Library</type>
       <address>
         <street>The Testers repository</street>
-        <noteref hlink="_0000003300000033"/>
+        <noteref hlink="_0000002f0000002f"/>
       </address>
-      <noteref hlink="_0000003400000034"/>
     </repository>
   </repositories>
   <notes>
@@ -279,13 +276,10 @@ ADDR element ignored '123 main'                                                 
 ADDR element ignored ' Norwalk'                                                                       Line    25: 2 ADDR 123 main, Norwalk, Ohio, USA
 ADDR element ignored ' Ohio'                                                                          Line    25: 2 ADDR 123 main, Norwalk, Ohio, USA
 ADDR element ignored ' USA'                                                                           Line    25: 2 ADDR 123 main, Norwalk, Ohio, USA
-Tag recognized but not supported: 'URL' on line                                                       Line    42: 4 TYPE URL
-Tag recognized but not supported: 'PHOTO' on line                                                     Line    48: 4 TYPE PHOTO
-Tag recognized but not supported: '98765' on line                                                     Line    50: 2 REFN 98765
 Could not import photo.jpg                                                                            Line    45: 1 OBJE 
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="1163"/>
+        <range start="0" end="784"/>
       </style>
     </note>
     <note handle="_0000001d0000001d" change="1" id="N0002" type="Event Note">
@@ -312,86 +306,13 @@ Family note
 from year
 TEST: TEST family</text>
     </note>
-    <note handle="_0000002d0000002d" change="1" id="N0003" type="GEDCOM import">
-      <text>Records not imported into FAM (family) Gramps ID F0001:
-
-Tag recognized but not supported: 'Y' on line                                                         Line   146: 2 _PREF Y
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="181"/>
-      </style>
-    </note>
-    <note handle="_0000002e0000002e" change="1" id="N0004" type="GEDCOM import">
-      <text>Records not imported into Top Level:
-
-Unknown tag                                                                                           Line   156: 0 _EVENT_DEFN Who knows OBJE REFN TYPE
-Skipped subordinate line                                                                              Line   157: 1 TYPE I
-Skipped subordinate line                                                                              Line   158: 1 TITL Who knows OBJE REFN TYPE
-Skipped subordinate line                                                                              Line   159: 1 _SEN1 [EventName]: [Desc], [onDate], [inPlace].
-Skipped subordinate line                                                                              Line   160: 1 _SEN2 [EventName]: [Date].
-Skipped subordinate line                                                                              Line   161: 1 _SEN3 [EventName]: [inPlace].
-Skipped subordinate line                                                                              Line   162: 1 _SEN4 [EventName]: [Desc].
-Skipped subordinate line                                                                              Line   163: 1 _SEN5 [EventName]: [Desc], [onDate].
-Skipped subordinate line                                                                              Line   164: 1 _SEN6 [EventName]: [Desc], [inPlace].
-Skipped subordinate line                                                                              Line   165: 1 _SEN7 [EventName]: [Date], [inPlace].
-Skipped subordinate line                                                                              Line   166: 1 _SEN8 [EventName].
-Skipped subordinate line                                                                              Line   167: 1 _DATE_TYPE 1
-Skipped subordinate line                                                                              Line   168: 1 _PLACE_TYPE 1
-Skipped subordinate line                                                                              Line   169: 1 _DESC_FLAG 1
-Skipped subordinate line                                                                              Line   170: 1 _INC_NOTES 
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="2168"/>
-      </style>
-    </note>
-    <note handle="_0000002f0000002f" change="1" id="N0005" type="GEDCOM import">
-      <text>Records not imported into Top Level:
-
-Unknown tag                                                                                           Line   171: 0 _EVENT_DEFN Association
-Skipped subordinate line                                                                              Line   172: 1 TYPE I
-Skipped subordinate line                                                                              Line   173: 1 TITL Association
-Skipped subordinate line                                                                              Line   174: 1 _SEN1 [EventName]: [Desc], [onDate], [inPlace].
-Skipped subordinate line                                                                              Line   175: 1 _SEN2 [EventName]: [Date].
-Skipped subordinate line                                                                              Line   176: 1 _SEN3 [EventName]: [inPlace].
-Skipped subordinate line                                                                              Line   177: 1 _SEN4 [EventName]: [Desc].
-Skipped subordinate line                                                                              Line   178: 1 _SEN5 [EventName]: [Desc], [onDate].
-Skipped subordinate line                                                                              Line   179: 1 _SEN6 [EventName]: [Desc], [inPlace].
-Skipped subordinate line                                                                              Line   180: 1 _SEN7 [EventName]: [Date], [inPlace].
-Skipped subordinate line                                                                              Line   181: 1 _SEN8 [EventName].
-Skipped subordinate line                                                                              Line   182: 1 _DATE_TYPE 1
-Skipped subordinate line                                                                              Line   183: 1 _PLACE_TYPE 1
-Skipped subordinate line                                                                              Line   184: 1 _DESC_FLAG 1
-Skipped subordinate line                                                                              Line   185: 1 _INC_NOTES 
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="2142"/>
-      </style>
-    </note>
-    <note handle="_0000003000000030" change="1" id="N0006" type="Source Note">
+    <note handle="_0000002d0000002d" change="1" id="N0003" type="Source Note">
       <text>note embedded in the SOURCE Record</text>
       <tagref hlink="_0000000200000002"/>
     </note>
-    <note handle="_0000003200000032" change="1" id="N0007" type="GEDCOM import">
-      <text>Records not imported into SOUR (source) Gramps ID S0002:
-
-Tag recognized but not supported: 'Y' on line                                                         Line   191: 1 _PAREN Y
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="183"/>
-      </style>
-    </note>
-    <note handle="_0000003300000033" change="1" id="N0008" type="Address Note">
+    <note handle="_0000002f0000002f" change="1" id="N0004" type="Address Note">
       <text>Repository Note</text>
       <tagref hlink="_0000000200000002"/>
-    </note>
-    <note handle="_0000003400000034" change="1" id="N0009" type="GEDCOM import">
-      <text>Records not imported into REPO (repository) Gramps ID R0002:
-
-Tag recognized but not supported: 'The Testers repository' on line                                    Line   195: 2 _NAME The Testers repository
-</text>
-      <style name="fontface" value="Monospace">
-        <range start="0" end="207"/>
-      </style>
     </note>
   </notes>
 </database>
