@@ -77,6 +77,13 @@ jobs:
         export GDK_BACKEND=-
         export GRAMPS_RESOURCES=build/share
         python3 -m unittest discover -p "*_test.py"
+    - name: Upload unit test reports
+      uses: actions/upload-artifact@v4
+      if: always() # Ensures reports upload even if tests fail
+      with:
+        name: test-reports
+        path: test/data
+        retention-days: 14
     - name: POTFILES check
       run: |
         cd po
