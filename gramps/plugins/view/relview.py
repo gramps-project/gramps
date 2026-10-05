@@ -1101,9 +1101,29 @@ class RelationshipView(NavigationView):
             )
             self.row += 1  # now advance it
         else:
-            self.write_label(_("%s:") % _("Parents"), family, True, person)
-            self.write_person(_("Father"), family.get_father_handle())
-            self.write_person(_("Mother"), family.get_mother_handle())
+            if family:
+                father_gen = mother_gen = None
+                father_rel = mother_rel = ""
+                parent1 = parent2 = ""
+                child_handle = person.get_handle()
+                child_ref_list = family.get_child_ref_list()
+                for child_ref in child_ref_list:
+                    if child_ref.ref == child_handle:
+                        father_rel = str(child_ref.get_father_relation())
+                        mother_rel = str(child_ref.get_mother_relation())
+                hd21 = family.get_father_handle()
+                if hd21:
+                    father_gen = self.dbstate.db.get_person_from_handle(hd21).gender
+                    parent1 = parent_label_from_gender(father_gen, father_rel)
+
+                hd22 = family.get_mother_handle()
+                if hd22:
+                    mother_gen = self.dbstate.db.get_person_from_handle(hd22).gender
+                    parent2 = parent_label_from_gender(mother_gen, mother_rel)
+
+                self.write_label(_("%s:") % _("Parents"), family, True, person)
+                self.write_person(parent1, family.get_father_handle())
+                self.write_person(parent2, family.get_mother_handle())
 
             if self.show_siblings:
                 active = self.get_active()
@@ -1233,8 +1253,9 @@ class RelationshipView(NavigationView):
 
     def write_person(self, title, handle):
         """
-        Create and show a person cell with a "Father/Mother/Spouse" label in the GUI at the current row
-        @param title: left column label ("Father/Mother/Spouse")
+        Create and show a person cell with a "Father/Mother/Parent/Adoptive/Step/Guardian" in the case
+        of the child and "Husband/Wife/Spouse/Partner" for a spouse label in the GUI at the current row
+        @param title: left column label ("Father/Mother/Parent/Adoptive/Step/Guardian" or "Husband/Wife/Spouse/Partner")
         @param handle: person handle
         """
         if title:
@@ -1614,10 +1635,20 @@ class RelationshipView(NavigationView):
 
         father_handle = family.get_father_handle()
         mother_handle = family.get_mother_handle()
+        spouse = spouse1 = spouse2 = None
+        hd21 = family.get_father_handle()
+        if hd21:
+            spouse1 = self.dbstate.db.get_person_from_handle(hd21).gender
+        hd22 = family.get_mother_handle()
+        if hd22:
+            spouse2 = self.dbstate.db.get_person_from_handle(hd22).gender
+
         if self.get_active() == father_handle:
             handle = mother_handle
+            spouse = spouse2
         else:
             handle = father_handle
+            spouse = spouse1
 
         # collapse button
         if self.check_collapsed(person.handle, family_handle):
@@ -1647,11 +1678,14 @@ class RelationshipView(NavigationView):
         else:
             # show "V Family: ..." and the rest
             self.write_label(_("%s:") % _("Family"), family, False, person)
-            if handle or family.get_relationship() != FamilyRelType.UNKNOWN:
-                box = self.write_person(_("Spouse"), handle)
 
-                if not self.write_relationship_events(box, family):
-                    self.write_relationship(box, family)
+            fam_type = family.get_relationship()
+            spouse_label = spouse_label_from_gender(spouse, fam_type)
+
+            box = self.write_person(spouse_label, handle)
+
+            if not self.write_relationship_events(box, family):
+                self.write_relationship(box, family)
 
             hbox = Gtk.Box()
             if self.check_collapsed(family.handle, "CHILDREN"):
@@ -2021,3 +2055,100 @@ def button_activated(event, mouse_button):
         return True
     else:
         return False
+
+
+def parent_label_from_gender(gender, rel_type):
+    if rel_type == "Birth":
+        if gender == Person.MALE:
+            label = _("Father")
+        if gender == Person.FEMALE:
+            label = _("Mother")
+    elif rel_type == "Stepchild":
+        if gender == Person.MALE:
+            label = _("Stepfather")
+        elif gender == Person.FEMALE:
+            label = _("Stepmother")
+        else:
+            label = _("Step-Parent")
+    elif rel_type == "Adopted":
+        if gender == Person.MALE:
+            label = _("Adoptive Father")
+        elif gender == Person.FEMALE:
+            label = _("Adoptive Mother")
+        else:
+            label = _("Adoptive Parent")
+    elif rel_type == "Foster":
+        if gender == Person.MALE:
+            label = _("Foster Father")
+        elif gender == Person.FEMALE:
+            label = _("Foster Mother")
+        else:
+            label = _("Foster Parent")
+    elif rel_type == "Sponsored":
+        # Masculine, feminine and other gender entries needed for translations
+        if gender == Person.MALE:
+            label = _("Sponsor")
+        elif gender == Person.FEMALE:
+            label = _("Sponsor")
+        else:
+            label = _("Sponsor")
+    else:
+        # Masculine, feminine and other gender entries needed for translations
+        if gender == Person.MALE:
+            label = _("Parent")
+        elif gender == Person.FEMALE:
+            label = _("Parent")
+        else:
+            label = _("Parent")
+
+    return label
+
+
+def spouse_label_from_gender(spouse, fam_type):
+    if fam_type == FamilyRelType.MARRIED:
+        if spouse == Person.MALE:
+            label = _("Husband")
+        elif spouse == Person.FEMALE:
+            label = _("Wife")
+        else:
+            label = _("Spouse")
+    # MARRIED and CIVIL_UNION handled separately if translators need to use different labels
+    elif fam_type == FamilyRelType.CIVIL_UNION:
+        if spouse == Person.MALE:
+            label = _("Husband")
+        elif spouse == Person.FEMALE:
+            label = _("Wife")
+        else:
+            label = _("Spouse")
+    elif fam_type == FamilyRelType.ENGAGED:
+        if spouse == Person.MALE:
+            label = _("Fiancé")
+        elif spouse == Person.FEMALE:
+            label = _("Fiancée")
+        else:
+            label = _("Future Spouse")
+    elif fam_type == FamilyRelType.DIVORCED or fam_type == FamilyRelType.ANNULLED:
+        if spouse == Person.MALE:
+            label = _("Former Husband")
+        elif spouse == Person.FEMALE:
+            label = _("Former Wife")
+        else:
+            label = _("Former Spouse")
+    elif fam_type == FamilyRelType.SEPARATED:
+        if spouse == Person.MALE:
+            label = _("Husband (separated)")
+        elif spouse == Person.FEMALE:
+            label = _("Wife (separated)")
+        else:
+            label = _("Spouse (separated)")
+    elif fam_type == FamilyRelType.POLY_MARR:
+        if spouse == Person.MALE:
+            label = _("Polygamous Husband")
+        elif spouse == Person.FEMALE:
+            label = _("Polygamous Wife")
+        else:
+            label = _("Polygamous Spouse")
+    else:
+        label = _("Partner")
+
+    return label
