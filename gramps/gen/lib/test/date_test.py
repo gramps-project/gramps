@@ -1795,6 +1795,33 @@ class AnniversaryDateTest(BaseDateTest):
         self.assertEqual(d.anniversary(1910), (2, 29))
 
 
+class GregorianYmdTest(BaseDateTest):
+    """
+    Tests for Date.get_gregorian_ymd().
+    """
+
+    def test_gregorian_date_is_unchanged(self):
+        d = Date(1999, 5, 17)
+        self.assertEqual(d.get_gregorian_ymd(), d.get_ymd())
+
+    def test_persian_date_converted(self):
+        d = Date()
+        d.set(0, Date.MOD_NONE, Date.CAL_PERSIAN, (1, 1, 1400, False))
+        self.assertEqual(d.get_gregorian_ymd(), (2021, 3, 21))
+
+    def test_julian_date_converted(self):
+        d = Date(1752, 9, 2).to_calendar("julian")
+        self.assertEqual(d.get_gregorian_ymd(), (1752, 9, 2))
+
+    def test_hebrew_date_converted(self):
+        d = Date(2024, 10, 3).to_calendar("hebrew")
+        self.assertEqual(d.get_gregorian_ymd(), (2024, 10, 3))
+
+    def test_islamic_date_converted(self):
+        d = Date(2024, 6, 15).to_calendar("islamic")
+        self.assertEqual(d.get_gregorian_ymd(), (2024, 6, 15))
+
+
 class SortKeyTest(BaseDateTest):
     """Tests for Date.get_sort_key() modifier- and quality-aware sort ordering.
 
