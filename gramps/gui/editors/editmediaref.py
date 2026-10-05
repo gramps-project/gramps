@@ -7,6 +7,7 @@
 #               2011       Robert Cheramy <robert@cheramy.net>
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Nick Hall
+# Copyright (C) 2026       ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,6 +53,7 @@ from gramps.gen.mime import get_description, get_type
 from gramps.gen.utils.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
 from gramps.gen.utils.file import media_path_full, find_file, create_checksum
 from gramps.gen.lib import NoteType
+from gramps.gen.lib.mediaref import apply_orientation_to_rect_coords
 from gramps.gen.db import DbTxn
 from ..glade import Glade
 from .displaytabs import (
@@ -315,6 +317,13 @@ class EditMediaRef(EditReference):
         Initialization that must happen after the window is shown.
         """
         self.draw_preview()
+        self.rectangle = apply_orientation_to_rect_coords(
+            self.rectangle, self.selection.orientation
+        )
+        self.corner1_x_spinbutton.set_value(self.rectangle[0])
+        self.corner1_y_spinbutton.set_value(self.rectangle[1])
+        self.corner2_x_spinbutton.set_value(self.rectangle[2])
+        self.corner2_y_spinbutton.set_value(self.rectangle[3])
         self.update_region()
 
     def set_corner1_x(self, value):
@@ -606,7 +615,9 @@ class EditMediaRef(EditReference):
             (coord[0], coord[1]) * 2,
         ):
             coord = None
-
+        coord = apply_orientation_to_rect_coords(
+            coord, self.selection.orientation, invert=True
+        )
         self.source_ref.set_rectangle(coord)
 
         # call callback if given
