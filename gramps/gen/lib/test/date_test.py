@@ -1708,6 +1708,48 @@ class Test_set2(BaseDateTest):
         )
 
 
+class EstimatedCompoundRangeTest(BaseDateTest):
+    """
+    Regression for bug 13387: an *estimated* compound date (RANGE/SPAN) carries
+    explicit bounds, so get_start_stop_range() must return those bounds verbatim
+    -- the Preferences "about" window (behavior.date-about-range, default 50y)
+    must NOT widen them. A single estimated date (no explicit range) is still
+    padded by that window, as before.
+    """
+
+    def test_estimated_range_keeps_explicit_bounds(self):
+        # "estimated between 1968 and 1978"
+        d = Date()
+        d.set(
+            quality=Date.QUAL_ESTIMATED,
+            modifier=Date.MOD_RANGE,
+            value=(0, 0, 1968, False, 0, 0, 1978, False),
+        )
+        start, stop = d.get_start_stop_range()
+        self.assertEqual(start, (1968, 1, 1))
+        self.assertEqual(stop, (1978, 12, 31))
+
+    def test_estimated_span_keeps_explicit_bounds(self):
+        d = Date()
+        d.set(
+            quality=Date.QUAL_ESTIMATED,
+            modifier=Date.MOD_SPAN,
+            value=(0, 0, 1968, False, 0, 0, 1978, False),
+        )
+        start, stop = d.get_start_stop_range()
+        self.assertEqual(start, (1968, 1, 1))
+        self.assertEqual(stop, (1978, 12, 31))
+
+    def test_single_estimated_date_still_padded(self):
+        # A non-compound estimated date keeps the about-range padding.
+        fdiff = config.get("behavior.date-about-range")
+        d = Date()
+        d.set(quality=Date.QUAL_ESTIMATED, value=(0, 0, 1973, False))
+        start, stop = d.get_start_stop_range()
+        self.assertEqual(start, (1973 - fdiff, 1, 1))
+        self.assertEqual(stop, (1973 + fdiff, 12, 31))
+
+
 class Test_set_newyear(BaseDateTest):
     def test_raises_error_iff_calendar_has_fixed_newyear(self):
         for cal in Date.CALENDARS:
