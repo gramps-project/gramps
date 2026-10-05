@@ -122,7 +122,7 @@ class History(Callback):
             if initial_person:
                 self.push(initial_person.get_handle())
 
-    def push(self, handle):
+    def push(self, handle, make_active=True):
         """
         Pushes the handle on the history stack
         """
@@ -132,8 +132,9 @@ class History(Callback):
             if handle in self.mru:
                 self.mru.remove(handle)
             self.mru.append(handle)
+            if make_active:
+                self.index += 1
             self.emit("mru-changed", (self.mru,))
-            self.index += 1
         if self.history:
             newact = self.history[self.index]
             if not isinstance(newact, str):
