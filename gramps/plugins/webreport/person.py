@@ -1696,7 +1696,14 @@ class PersonPages(BasePage):
                 if birthorder:
                     children = sorted(children)
 
-                for dummy_birthdate, dummy_birth, dummy_death, handle in children:
+                for (
+                    dummy_birthdate,
+                    dummy_birth,
+                    dummy_birth_fallback,
+                    dummy_death,
+                    dummy_death_fallback,
+                    handle,
+                ) in children:
                     if handle == self.person.get_handle():
                         child_ped(ol_html)
                     elif handle:
@@ -2186,12 +2193,16 @@ class PersonPages(BasePage):
                     tcell += self.display_child_link(child_handle)
 
                 birth = death = ""
-                bd_event = get_birth_or_fallback(self.r_db, child)
-                if bd_event:
-                    birth = self.rlocale.get_date(bd_event.get_date_object())
-                dd_event = get_death_or_fallback(self.r_db, child)
-                if dd_event:
-                    death = self.rlocale.get_date(dd_event.get_date_object())
+                bd = _find_birth_date(self.r_db, child)
+                if bd:
+                    birth = self.rlocale.get_date(bd)
+                    if bd.fallback:
+                        birth = Html("em", birth, inline=True)
+                dd = _find_death_date(self.r_db, child)
+                if dd:
+                    death = self.rlocale.get_date(dd)
+                    if dd.fallback:
+                        death = Html("em", death, inline=True)
 
                 tcell2 = Html("td", birth, class_="ColumnDate", inline=True)
 
