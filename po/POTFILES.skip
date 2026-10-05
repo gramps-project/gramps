@@ -697,6 +697,11 @@ gramps/plugins/thumbnailer/imagethumb.py
 #
 gramps/plugins/tool/__init__.py
 #
+# plugins/tool/test directory
+#
+gramps/plugins/tool/test/__init__.py
+gramps/plugins/tool/test/check_test.py
+#
 # plugins/view directory
 #
 gramps/plugins/view/__init__.py
