@@ -202,7 +202,37 @@ All user-visible strings must be wrapped with `_()` for translation support:
 raise ValueError(_("Invalid handle: %s") % handle)
 ```
 The alias `_(string , context)` is preferred to `pgettext(context, message)`.
-Use `ngettext(singular, plural, n)` for plural forms.
+
+Use `ngettext(singular, plural, n)` instead of `_()` for any formatted
+string that counts a noun — even if the English singular and plural read
+the same, or `n` can never be 1 in your code path. English's binary
+singular/plural is not a reliable guide: many languages have richer plural
+rules than English (e.g. separate forms for 2-4 vs 5+, or a dual form for
+exactly 2), and gettext only applies the target language's actual rule
+when the string goes through `ngettext`:
+
+```python
+ngettext(
+    "%(count)d person",
+    "%(count)d people",
+    count,
+) % {"count": count}
+```
+
+Before finishing a change, check every `_("...%d..."` / `_("...%(name)d..."`
+string you wrote or touched against this rule. `_("Found %d people")` is
+wrong even though "people" happens to read fine in English at any count —
+a language with a 2-4 plural form has no way to produce it from a single
+hardcoded string.
+
+Ordinal or positional references with no counted noun (`"page %(cur)d/%(total)d"`,
+`"generation %(gen)d/%(total)d"`, `"row %(row)d"`) do not need `ngettext` —
+these don't quantify anything, they just label a specific position. Convert
+a string only when it is actually counting instances of something.
+
+If a package centralizes its `_` alias (e.g. `_ = glocale.translation.gettext`
+in an `__init__.py`), also export `ngettext = glocale.translation.ngettext`
+there, so submodules can import both together.
 
 ## Submodule Import Rules
 
