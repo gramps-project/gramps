@@ -112,6 +112,10 @@ class FamilySidebarFilter(SidebarFilter):
 
         SidebarFilter.__init__(self, dbstate, uistate, "Family")
 
+    def _register_type_filters(self):
+        self.add_type_filter(self.event_menu, "get_event_types")
+        self.add_type_filter(self.rel_menu, "get_family_relation_types")
+
     def create_widget(self):
         cell = Gtk.CellRendererText()
         cell.set_property("width", self._FILTER_WIDTH)
