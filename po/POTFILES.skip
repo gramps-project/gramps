@@ -70,6 +70,7 @@ gramps/gen/datehandler/_grampslocale.py
 #
 # gen.datehandler.test package
 #
+gramps/gen/datehandler/test/date_format_examples_test.py
 gramps/gen/datehandler/test/datedisplay_test.py
 gramps/gen/datehandler/test/datehandler_test.py
 gramps/gen/datehandler/test/dateparser_test.py
