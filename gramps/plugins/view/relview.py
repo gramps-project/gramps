@@ -411,7 +411,7 @@ class RelationshipView(NavigationView):
       <placeholder id='otheredit'>
         <item>
           <attribute name="action">win.Edit</attribute>
-          <attribute name="label" translatable="yes">Edit...</attribute>
+          <attribute name="label" translatable="yes">Edit</attribute>
         </item>
         <item>
           <attribute name="action">win.AddParents</attribute>
@@ -501,7 +501,7 @@ class RelationshipView(NavigationView):
         <property name="action-name">win.Edit</property>
         <property name="tooltip_text" translatable="yes">"""
         """Edit the active person</property>
-        <property name="label" translatable="yes">Edit...</property>
+        <property name="label" translatable="yes">Edit</property>
       </object>
       <packing>
         <property name="homogeneous">False</property>
