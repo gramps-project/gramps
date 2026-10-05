@@ -49,12 +49,19 @@ if sys.platform == "win32":
     from .win32locale import win32_locale_init_from_env, win32_locale_bindtextdomain
 
 from .win32locale import _LOCALE_NAMES
+from ...version import VERSION_TUPLE
 
 LOG = logging.getLogger("." + __name__)
 LOG.propagate = True
 HAVE_ICU = False
 _ICU_ERR = None
 _HDLR = None
+# Mirrors gen.const.URL_WIKISTRING, which can't be imported here: gen.const
+# is what constructs the primary GrampsLocale instance in the first place.
+_LOCALE_WIKI_URL = (
+    "https://gramps-project.org/wiki/index.php?title=Gramps_%s.%s_Wiki_Manual"
+    "_-_Setting_up_language_environment" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
+)
 # GrampsLocale initialization comes before command-line argument
 # passing, so one must set the log level directly. The default is
 # logging.WARN. Uncomment the following to change it to logging.DEBUG:
@@ -79,6 +86,30 @@ _RTL_LOCALES = ("ar", "he")
 
 # locales with less than 70% currently translated
 INCOMPLETE_TRANSLATIONS = ("ar", "ba", "bg", "ko", "sq", "zh_HK", "zh_TW")
+
+
+def _locale_is_installed(lang: str) -> bool:
+    """
+    Probe whether ``lang`` (a full locale such as "fi_FI.UTF-8") is
+    actually installed on this system, without leaving any lasting effect
+    on the process locale.
+
+    Gtk will make its own setlocale(LC_ALL, "") call against the LANG
+    we're about to write into the environment, and silently falls back to
+    the 'C' locale if the C library rejects it, degrading date, number,
+    and sort-order formatting with only a generic "Locale not supported by
+    C library" message and no indication of why. Callers use this to log
+    something actionable instead, once translations are available (they
+    aren't yet, this early in GrampsLocale's own construction).
+    """
+    previous = locale.setlocale(locale.LC_ALL)
+    try:
+        locale.setlocale(locale.LC_ALL, lang)
+    except locale.Error:
+        return False
+    else:
+        locale.setlocale(locale.LC_ALL, previous)
+        return True
 
 
 def _check_gformat():
@@ -281,6 +312,8 @@ class GrampsLocale:
         )
         LOG.addHandler(_HDLR)
 
+        self._missing_locale: str | None = None
+
         # Now that we have a logger set up we can issue the icu error if needed.
         if not HAVE_ICU:
             LOG.warning(_ICU_ERR)
@@ -347,7 +380,23 @@ class GrampsLocale:
             if len(check_lang) < 2 or check_lang[1] not in ("utf-8", "UTF-8"):
                 lang = ".".join((check_lang[0], "UTF-8"))
 
-        os.environ["LANG"] = lang
+        if (
+            check_lang[0] not in ("C", "en")
+            and sys.platform not in ("darwin", "win32")
+            and not _locale_is_installed(lang)
+        ):
+            # Don't hand Gtk a LANG it can't satisfy -- that's exactly what
+            # triggers its own opaque "Locale not supported by C library"
+            # warning when it makes its own setlocale(LC_ALL, "") call.
+            # Leave LANG as whatever the environment already provided (it
+            # hasn't been touched above) so date/number/collation
+            # formatting keeps following that instead. Translations aren't
+            # available yet this early in construction (self.translation
+            # is set later, in __init__); remember the missing locale and
+            # warn about it, in the user's chosen language, once they are.
+            self._missing_locale = lang
+        else:
+            os.environ["LANG"] = lang
         # We need to convert 'en' and 'en_US' to 'C' to avoid confusing
         # GtkBuilder when it's retrieving strings from our Glade files
         # since we have neither an en.po nor an en_US.po.
@@ -497,6 +546,22 @@ class GrampsLocale:
             )
             self.translation = GrampsNullTranslations()
             self.translation.lang = "en"
+
+        if getattr(self, "_missing_locale", None):
+            _ = self.translation.gettext
+            LOG.warning(
+                _(
+                    "Gramps could not find the system locale %(locale)s "
+                    "needed for the language %(language)s. Dates, numbers, "
+                    "and sorting may not display correctly until it is "
+                    "installed. See %(wiki_url)s for instructions."
+                )
+                % {
+                    "locale": self._missing_locale,
+                    "language": self.language[0],
+                    "wiki_url": _LOCALE_WIKI_URL,
+                }
+            )
 
         if _HDLR:
             LOG.removeHandler(_HDLR)
