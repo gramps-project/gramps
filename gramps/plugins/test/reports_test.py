@@ -25,6 +25,10 @@ import shutil
 from gramps.test.test_util import Gramps
 from gramps.gen.user import User
 from gramps.gen.const import TEST_DIR
+from gramps.gen.db import DbTxn
+from gramps.gen.db.utils import make_database
+from gramps.gen.lib import ChildRef, Family, Person
+from gramps.plugins.textreport.detdescendantreport import DetDescendantReport
 
 # ddir = os.path.dirname(__file__)
 # example = os.path.join(ddir, "..", "..", "..",
@@ -34,6 +38,118 @@ from gramps.gen.const import TEST_DIR
 example = os.path.join(TEST_DIR, "data.gramps")
 
 TREE_NAME = "Test_reporttest"
+
+
+class _HenryProbe:
+    """Minimal stand-in for ``DetDescendantReport`` exposing only the
+    attributes ``apply_henry_filter`` touches, while reusing the *real*
+    production method (assigned below) so the test exercises shipping code,
+    not a re-implementation of it."""
+
+    # Reuse the production implementation verbatim; the descriptor protocol
+    # binds it to the probe instance, and the method's recursive
+    # ``self.apply_henry_filter(...)`` calls resolve back to this same code.
+    apply_henry_filter = DetDescendantReport.apply_henry_filter
+
+    def __init__(self, db, max_generations=100):
+        self._db = db
+        self.max_generations = max_generations
+        self.dnumber = {}
+        self.map = {}
+        self.gen_keys = []
+
+
+class TestDetDescendantDuplicateNumber(unittest.TestCase):
+    """Regression for Mantis 3068 -- "Wrong reference number for 'same person
+    as' in the Detailed Descendant Report".
+
+    When a descendant is reachable through more than one descent path (e.g. the
+    child of two first cousins) the Henry-numbering filter must keep the *first
+    / smaller* reference number for that person, not the number from the last
+    path visited.  The "is the same person as [N]" line printed by
+    ``write_person`` cites ``self.dnumber[person_handle]`` verbatim, so the
+    value the filter stores is exactly what the report prints.
+    """
+
+    @staticmethod
+    def _add_person(db, trans):
+        person = Person()
+        person.set_gender(Person.MALE)
+        return db.add_person(person, trans)
+
+    @staticmethod
+    def _add_family(db, trans, father=None, mother=None, children=()):
+        family = Family()
+        if father is not None:
+            family.set_father_handle(father)
+        if mother is not None:
+            family.set_mother_handle(mother)
+        for child_handle in children:
+            child_ref = ChildRef()
+            child_ref.set_reference_handle(child_handle)
+            family.add_child_ref(child_ref)
+        family_handle = db.add_family(family, trans)
+        # Link the family back onto its parents so the filter can walk it.
+        for parent in (father, mother):
+            if parent is None:
+                continue
+            person = db.get_person_from_handle(parent)
+            person.add_family_handle(family_handle)
+            db.commit_person(person, trans)
+        return family_handle
+
+    def setUp(self):
+        self.db = make_database("sqlite")
+        self.db.load(":memory:")
+        # Build the reported structure: a child reachable through two first
+        # cousins.
+        #
+        #   a (1)
+        #   |-- b (11) ----- d (111) --+
+        #   |-- c (12) ----- e (121) --+-- f (child of d & e)
+        #
+        # f is a child of the family formed by d and e, so apply_henry_filter
+        # reaches it first through d (number "1111") and again through e
+        # (number "1211").
+        with DbTxn("build 3068 tree", self.db) as trans:
+            self.a = self._add_person(self.db, trans)
+            self.b = self._add_person(self.db, trans)
+            self.c = self._add_person(self.db, trans)
+            self.d = self._add_person(self.db, trans)
+            self.e = self._add_person(self.db, trans)
+            self.f = self._add_person(self.db, trans)
+
+            self._add_family(self.db, trans, father=self.a, children=(self.b, self.c))
+            self._add_family(self.db, trans, father=self.b, children=(self.d,))
+            self._add_family(self.db, trans, father=self.c, children=(self.e,))
+            # d and e (first cousins) have a child, f.
+            self._add_family(
+                self.db, trans, father=self.d, mother=self.e, children=(self.f,)
+            )
+
+    def tearDown(self):
+        self.db.close()
+
+    def test_duplicate_descendant_keeps_smaller_number(self):
+        probe = _HenryProbe(self.db)
+        probe.apply_henry_filter(self.a, 1, "1")
+
+        # Sanity: the unambiguous descendants get their expected Henry numbers.
+        self.assertEqual(probe.dnumber[self.a], "1")
+        self.assertEqual(probe.dnumber[self.b], "11")
+        self.assertEqual(probe.dnumber[self.c], "12")
+        self.assertEqual(probe.dnumber[self.d], "111")
+        self.assertEqual(probe.dnumber[self.e], "121")
+
+        # The duplicated descendant f is reachable as "1111" (via d, visited
+        # first) and "1211" (via e, visited last).  Before the bug 3068 fix the
+        # filter assigned unconditionally and kept the *last* number ("1211");
+        # the fix keeps the first/smaller one.
+        self.assertEqual(
+            probe.dnumber[self.f],
+            "1111",
+            "duplicate descendant must keep the first/smaller reference number",
+        )
 
 
 class ReportControl:
