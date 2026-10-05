@@ -25,6 +25,7 @@ from ._allrepos import AllRepos
 from ._hasidof import HasIdOf
 from ._regexpidof import RegExpIdOf
 from ._hasattribute import HasAttribute
+from ._hasnotattribute import HasNotAttribute
 from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
 from ._hasnotetype import HasNoteType
@@ -40,6 +41,7 @@ from ._hastag import HasTag
 editor_rule_list = [
     AllRepos,
     HasAttribute,
+    HasNotAttribute,
     HasIdOf,
     RegExpIdOf,
     HasNoteRegexp,

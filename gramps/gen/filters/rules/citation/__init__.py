@@ -28,6 +28,7 @@ from ._allcitations import AllCitations
 from ._changedsince import ChangedSince
 from ._citationprivate import CitationPrivate
 from ._hasattribute import HasAttribute
+from ._hasnotattribute import HasNotAttribute
 from ._hasgallery import HasGallery
 from ._hasidof import HasIdOf
 from ._hasnote import HasNote
@@ -55,6 +56,7 @@ editor_rule_list = [
     HasAttribute,
     HasGallery,
     HasIdOf,
+    HasNotAttribute,
     HasNote,
     HasNoteRegexp,
     HasNoteTag,

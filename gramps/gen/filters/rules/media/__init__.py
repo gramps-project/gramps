@@ -37,6 +37,7 @@ from ._matchesfilter import MatchesFilter
 from ._matchessourceconfidence import MatchesSourceConfidence
 from ._hasmedia import HasMedia
 from ._hasattribute import HasAttribute
+from ._hasnotattribute import HasNotAttribute
 from ._changedsince import ChangedSince
 from ._hastag import HasTag
 
@@ -56,6 +57,7 @@ editor_rule_list = [
     MatchesSourceConfidence,
     HasMedia,
     HasAttribute,
+    HasNotAttribute,
     ChangedSince,
     HasTag,
 ]

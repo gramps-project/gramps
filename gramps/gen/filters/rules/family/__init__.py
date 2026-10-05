@@ -47,6 +47,7 @@ from ._hasreferencecountof import HasReferenceCountOf
 from ._hascitation import HasCitation
 from ._familyprivate import FamilyPrivate
 from ._hasattribute import HasAttribute
+from ._hasnotattribute import HasNotAttribute
 from ._hasevent import HasEvent
 from ._isbookmarked import IsBookmarked
 from ._matchesfilter import MatchesFilter
@@ -81,6 +82,7 @@ editor_rule_list = [
     FamilyPrivate,
     HasEvent,
     HasAttribute,
+    HasNotAttribute,
     IsBookmarked,
     MatchesFilter,
     MatchesSourceConfidence,

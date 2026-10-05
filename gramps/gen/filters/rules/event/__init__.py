@@ -43,6 +43,7 @@ from ._matchespersonfilter import MatchesPersonFilter
 from ._matchessourceconfidence import MatchesSourceConfidence
 from ._matchessourcefilter import MatchesSourceFilter
 from ._hasattribute import HasAttribute
+from ._hasnotattribute import HasNotAttribute
 from ._hasdata import HasData
 from ._changedsince import ChangedSince
 from ._hastag import HasTag
@@ -68,6 +69,7 @@ editor_rule_list = [
     MatchesSourceConfidence,
     MatchesSourceFilter,
     HasAttribute,
+    HasNotAttribute,
     HasData,
     ChangedSince,
     HasTag,
