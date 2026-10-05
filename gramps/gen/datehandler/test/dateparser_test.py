@@ -117,6 +117,27 @@ class DateParserTest(unittest.TestCase):
         self.assertEqual(date.get_quality(), Date.QUAL_CALCULATED)
         self.assertEqual(date.get_calendar(), Date.CAL_JULIAN)
 
+    def test_quality_keyword_not_matched_inside_word(self):
+        # Regression (bug 5516): a free-text date that merely CONTAINS a quality
+        # keyword as a substring of an ordinary word must be preserved, not
+        # mangled. "Test data" was stored as "Tdata" (the "est" inside "Test"
+        # was stripped) and wrongly marked estimated.
+        date = self.parser.parse("Test data")
+        self.assertEqual(date.get_modifier(), Date.MOD_TEXTONLY)
+        self.assertEqual(date.get_text(), "Test data")
+        self.assertEqual(date.get_quality(), Date.QUAL_NONE)
+
+    def test_quality_keyword_whole_token_still_parses(self):
+        # The genuine quality-prefixed dates must keep parsing as before.
+        for text, qual in (
+            ("est 1900", Date.QUAL_ESTIMATED),
+            ("estimated 1900", Date.QUAL_ESTIMATED),
+            ("calc 1900", Date.QUAL_CALCULATED),
+        ):
+            date = self.parser.parse(text)
+            self.assertEqual(date.get_quality(), qual, msg=text)
+            self.assertEqual(date.get_year(), 1900, msg=text)
+
 
 class Test_generate_variants(unittest.TestCase):
     def setUp(self):
