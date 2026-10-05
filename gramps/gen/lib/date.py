@@ -1827,6 +1827,14 @@ class Date(BaseObject):
         if text:
             self.text = text
 
+        # A text-only date with no text holds no date information; treat it as
+        # a regular empty date so an empty date keeps a canonical serialized
+        # form (bug 13744 — see set_as_text).
+        if self.modifier == Date.MOD_TEXTONLY and not self.text:
+            self.modifier = Date.MOD_NONE
+            self.dateval = Date.EMPTY
+            self.sortval = 0
+
         if modifier != Date.MOD_TEXTONLY:
             sanity = Date(self)
             sanity.convert_calendar(self.calendar, known_valid=False)
@@ -1931,8 +1939,19 @@ class Date(BaseObject):
     def set_as_text(self, text):
         """
         Set the day to a text string, and assign the sort value to zero.
+
+        An empty text carries no date information, so it is recorded as a
+        regular empty date (``MOD_NONE``) rather than a text-only date.  This
+        keeps the serialized form of an empty date canonical (bug 13744): a
+        missing and an empty Gramps-XML ``<datestr>`` then deserialize to the
+        same empty Date, and an empty date is never emitted as ``<datestr
+        val=""/>`` nor reported as an invalid date.
         """
-        self.modifier = Date.MOD_TEXTONLY
+        if text:
+            self.modifier = Date.MOD_TEXTONLY
+        else:
+            self.modifier = Date.MOD_NONE
+            self.dateval = Date.EMPTY
         self.text = text
         self.sortval = 0
 
