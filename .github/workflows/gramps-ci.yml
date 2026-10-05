@@ -76,7 +76,14 @@ jobs:
       run: |
         export GDK_BACKEND=-
         export GRAMPS_RESOURCES=build/share
-        python3 -m unittest discover -p "*_test.py"
+        python3-coverage run -m unittest discover -p "*_test.py"
+        python3-coverage xml --ignore-errors
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v7
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage.xml
+        fail_ci_if_error: false
     - name: POTFILES check
       run: |
         cd po
