@@ -212,23 +212,84 @@ def version(string_version):
     return tuple(myint(x or "0") for x in (f"{string_version}..").split("."))
 
 
-def valid_plugin_version(plugin_version_string):
+# ------------------------------------------------------------
+#
+# PluginVersionStatus
+#
+# ------------------------------------------------------------
+class PluginVersionStatus:
     """
-    Checks to see if string is a valid version string for this version
-    of Gramps.
+    Classification of a plugin's ``gramps_target_version`` relative to the
+    currently running Gramps version.
     """
+
+    #: Plugin targets the current major.minor (and, if three-part, a patch
+    #: level no later than the running Gramps).
+    CURRENT = "current"
+    #: Plugin targets the immediately previous minor within the same major.
+    #: It is still loaded but its author should refresh the target version.
+    DEPRECATED = "deprecated"
+    #: Anything else: malformed, cross-major, future version, or a minor
+    #: more than one release behind.
+    INVALID = "invalid"
+
+
+def plugin_version_status(
+    plugin_version_string: object,
+    current_version: tuple[int, int, int] | None = None,
+) -> str:
+    """
+    Classify *plugin_version_string* against *current_version*.
+
+    :param plugin_version_string: The value a plugin sets for
+                                  ``gramps_target_version``.
+    :type plugin_version_string: object
+    :param current_version: A ``(major, minor, patch)`` tuple describing the
+                            running Gramps version. Defaults to
+                            :data:`VERSION_TUPLE`.
+    :type current_version: tuple[int, int, int] | None
+    :returns: One of the :class:`PluginVersionStatus` string constants.
+    :rtype: str
+    """
+    if current_version is None:
+        current_version = VERSION_TUPLE
     if not isinstance(plugin_version_string, str):
-        return False
+        return PluginVersionStatus.INVALID
     dots = plugin_version_string.count(".")
-    if dots == 1:
-        plugin_version = tuple(map(int, plugin_version_string.split(".", 1)))
-        return plugin_version == VERSION_TUPLE[:2]
-    if dots == 2:
-        plugin_version = tuple(map(int, plugin_version_string.split(".", 2)))
-        return (
-            plugin_version[:2] == VERSION_TUPLE[:2] and plugin_version <= VERSION_TUPLE
-        )
-    return False
+    if dots not in (1, 2):
+        return PluginVersionStatus.INVALID
+    try:
+        parsed = tuple(int(part) for part in plugin_version_string.split("."))
+    except ValueError:
+        return PluginVersionStatus.INVALID
+    current_major_minor = current_version[:2]
+    if parsed[:2] == current_major_minor:
+        if dots == 1 or parsed <= current_version:
+            return PluginVersionStatus.CURRENT
+        return PluginVersionStatus.INVALID
+    if (
+        parsed[0] == current_version[0]
+        and current_version[1] >= 1
+        and parsed[1] == current_version[1] - 1
+    ):
+        return PluginVersionStatus.DEPRECATED
+    return PluginVersionStatus.INVALID
+
+
+def valid_plugin_version(plugin_version_string: object) -> bool:
+    """
+    Check whether *plugin_version_string* is a valid target for the running
+    Gramps. Deprecated (one-minor-behind) targets are treated as valid so
+    the plugin is still loaded; callers that want to surface the
+    deprecation should use :func:`plugin_version_status` instead.
+
+    :param plugin_version_string: The value a plugin sets for
+                                  ``gramps_target_version``.
+    :type plugin_version_string: object
+    :returns: ``True`` if the plugin should be loaded, ``False`` otherwise.
+    :rtype: bool
+    """
+    return plugin_version_status(plugin_version_string) != PluginVersionStatus.INVALID
 
 
 class PluginData:
@@ -1460,7 +1521,8 @@ class PluginRegister:
                 # LOG.warning("\nPlugin scanned %s at registration", plugin.id)
                 ind += 1
                 plugin.directory = directory
-                if not valid_plugin_version(plugin.gramps_target_version):
+                version_status = plugin_version_status(plugin.gramps_target_version)
+                if version_status == PluginVersionStatus.INVALID:
                     print(
                         _(
                             "ERROR: Plugin file %(filename)s has a version of "
@@ -1475,6 +1537,16 @@ class PluginRegister:
                     )
                     rmlist.append(ind)
                     continue
+                if version_status == PluginVersionStatus.DEPRECATED:
+                    LOG.warning(
+                        "Plugin file %s targets Gramps %s, which is deprecated "
+                        "(one minor version behind the current %s); the plugin "
+                        "was loaded but its gramps_target_version should be "
+                        "updated.",
+                        os.path.join(directory, plugin.fname),
+                        plugin.gramps_target_version,
+                        GRAMPSVERSION,
+                    )
                 if not self.__req.check_plugin(plugin):
                     rmlist.append(ind)
                     continue
