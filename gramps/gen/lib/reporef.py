@@ -26,9 +26,17 @@ Repository Reference class for Gramps
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from .notebase import NoteBase
@@ -86,6 +94,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         return self
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -93,26 +102,28 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Repository ref"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "note_list": {
-                    "type": "array",
-                    "title": _("Notes"),
-                    "items": {"type": "string", "maxLength": 50},
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Repository ref"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "note_list": {
+                        "type": "array",
+                        "title": _("Notes"),
+                        "items": {"type": "string", "maxLength": 50},
+                    },
+                    "ref": {
+                        "type": "string",
+                        "title": _("Handle"),
+                        "maxLength": 50,
+                    },
+                    "call_number": {"type": "string", "title": _("Call Number")},
+                    "media_type": SourceMediaType.get_schema(),
+                    "private": {"type": "boolean", "title": _("Private")},
                 },
-                "ref": {
-                    "type": "string",
-                    "title": _("Handle"),
-                    "maxLength": 50,
-                },
-                "call_number": {"type": "string", "title": _("Call Number")},
-                "media_type": SourceMediaType.get_schema(),
-                "private": {"type": "boolean", "title": _("Private")},
-            },
-        }
+            }
+        )
 
     def get_text_data_list(self):
         """

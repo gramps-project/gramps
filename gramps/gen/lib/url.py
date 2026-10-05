@@ -28,6 +28,7 @@ Url class for Gramps.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import functools
 from urllib.parse import urlparse
 from warnings import warn
 
@@ -36,6 +37,7 @@ from warnings import warn
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from .privacybase import PrivacyBase
@@ -77,6 +79,7 @@ class Url(SecondaryObject, PrivacyBase):
         return self
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -84,17 +87,19 @@ class Url(SecondaryObject, PrivacyBase):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Url"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean", "title": _("Private")},
-                "path": {"type": "string", "title": _("Path")},
-                "desc": {"type": "string", "title": _("Description")},
-                "type": UrlType.get_schema(),
-            },
-        }
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Url"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "private": {"type": "boolean", "title": _("Private")},
+                    "path": {"type": "string", "title": _("Path")},
+                    "desc": {"type": "string", "title": _("Description")},
+                    "type": UrlType.get_schema(),
+                },
+            }
+        )
 
     def get_text_data_list(self):
         """

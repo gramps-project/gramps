@@ -27,12 +27,14 @@
 #
 # -------------------------------------------------------------------------
 from copy import copy
+import functools
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .baseobj import BaseObject
 from .styledtexttag import StyledTextTag
@@ -327,6 +329,7 @@ class StyledText(BaseObject):
         return (self._string, the_tags)
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -334,19 +337,21 @@ class StyledText(BaseObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Styled Text"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "string": {"type": "string", "title": _("Text")},
-                "tags": {
-                    "type": "array",
-                    "items": StyledTextTag.get_schema(),
-                    "title": _("Styled Text Tags"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Styled Text"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "string": {"type": "string", "title": _("Text")},
+                    "tags": {
+                        "type": "array",
+                        "items": StyledTextTag.get_schema(),
+                        "title": _("Styled Text Tags"),
+                    },
                 },
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

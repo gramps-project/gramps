@@ -27,9 +27,17 @@ Name class for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .citationbase import CitationBase
 from .const import DIFFERENT, EQUAL, IDENTICAL
@@ -150,6 +158,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
         )
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -160,40 +169,42 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase, Da
         # pylint: disable=import-outside-toplevel
         from .surname import Surname
 
-        return {
-            "type": "object",
-            "title": _("Name"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean", "title": _("Private")},
-                "citation_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Citations"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Name"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "private": {"type": "boolean", "title": _("Private")},
+                    "citation_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Citations"),
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Notes"),
+                    },
+                    "date": Date.get_schema(),
+                    "first_name": {"type": "string", "title": _("Given name")},
+                    "surname_list": {
+                        "type": "array",
+                        "items": Surname.get_schema(),
+                        "title": _("Surnames"),
+                    },
+                    "suffix": {"type": "string", "title": _("Suffix")},
+                    "title": {"type": "string", "title": _("Title")},
+                    "type": NameType.get_schema(),
+                    "group_as": {"type": "string", "title": _("Group as")},
+                    "sort_as": {"type": "integer", "title": _("Sort as")},
+                    "display_as": {"type": "integer", "title": _("Display as")},
+                    "call": {"type": "string", "title": _("Call name")},
+                    "nick": {"type": "string", "title": _("Nick name")},
+                    "famnick": {"type": "string", "title": _("Family nick name")},
                 },
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Notes"),
-                },
-                "date": Date.get_schema(),
-                "first_name": {"type": "string", "title": _("Given name")},
-                "surname_list": {
-                    "type": "array",
-                    "items": Surname.get_schema(),
-                    "title": _("Surnames"),
-                },
-                "suffix": {"type": "string", "title": _("Suffix")},
-                "title": {"type": "string", "title": _("Title")},
-                "type": NameType.get_schema(),
-                "group_as": {"type": "string", "title": _("Group as")},
-                "sort_as": {"type": "integer", "title": _("Sort as")},
-                "display_as": {"type": "integer", "title": _("Display as")},
-                "call": {"type": "string", "title": _("Call name")},
-                "nick": {"type": "string", "title": _("Nick name")},
-                "famnick": {"type": "string", "title": _("Family nick name")},
-            },
-        }
+            }
+        )
 
     def is_empty(self):
         """

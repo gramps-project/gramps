@@ -24,9 +24,17 @@ Source Attribute class for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .attribute import AttributeRoot
 from .srcattrtype import SrcAttributeType
@@ -59,6 +67,7 @@ class SrcAttribute(AttributeRoot):
             self.value = ""
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -66,13 +75,15 @@ class SrcAttribute(AttributeRoot):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Attribute"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean", "title": _("Private")},
-                "type": SrcAttributeType.get_schema(),
-                "value": {"type": "string", "title": _("Value")},
-            },
-        }
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Attribute"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "private": {"type": "boolean", "title": _("Private")},
+                    "type": SrcAttributeType.get_schema(),
+                    "value": {"type": "string", "title": _("Value")},
+                },
+            }
+        )

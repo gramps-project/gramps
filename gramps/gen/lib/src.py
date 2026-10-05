@@ -27,9 +27,17 @@ Source object for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .attrbase import SrcAttributeBase
 from .citationbase import IndirectCitationBase
@@ -88,6 +96,7 @@ class Source(
         )  # 12
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -99,50 +108,52 @@ class Source(
         from .mediaref import MediaRef
         from .srcattribute import SrcAttribute
 
-        return {
-            "type": "object",
-            "title": _("Source"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Source"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "handle": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "title": _("Handle"),
+                    },
+                    "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                    "title": {"type": "string", "title": _("Title")},
+                    "author": {"type": "string", "title": _("Author")},
+                    "pubinfo": {"type": "string", "title": _("Publication info")},
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Notes"),
+                    },
+                    "media_list": {
+                        "type": "array",
+                        "items": MediaRef.get_schema(),
+                        "title": _("Media"),
+                    },
+                    "abbrev": {"type": "string", "title": _("Abbreviation")},
+                    "change": {"type": "integer", "title": _("Last changed")},
+                    "attribute_list": {
+                        "type": "array",
+                        "items": SrcAttribute.get_schema(),
+                        "title": _("Source Attributes"),
+                    },
+                    "reporef_list": {
+                        "type": "array",
+                        "items": RepoRef.get_schema(),
+                        "title": _("Repositories"),
+                    },
+                    "tag_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Tags"),
+                    },
+                    "private": {"type": "boolean", "title": _("Private")},
                 },
-                "gramps_id": {"type": "string", "title": _("Gramps ID")},
-                "title": {"type": "string", "title": _("Title")},
-                "author": {"type": "string", "title": _("Author")},
-                "pubinfo": {"type": "string", "title": _("Publication info")},
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Notes"),
-                },
-                "media_list": {
-                    "type": "array",
-                    "items": MediaRef.get_schema(),
-                    "title": _("Media"),
-                },
-                "abbrev": {"type": "string", "title": _("Abbreviation")},
-                "change": {"type": "integer", "title": _("Last changed")},
-                "attribute_list": {
-                    "type": "array",
-                    "items": SrcAttribute.get_schema(),
-                    "title": _("Source Attributes"),
-                },
-                "reporef_list": {
-                    "type": "array",
-                    "items": RepoRef.get_schema(),
-                    "title": _("Repositories"),
-                },
-                "tag_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Tags"),
-                },
-                "private": {"type": "boolean", "title": _("Private")},
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

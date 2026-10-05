@@ -25,9 +25,17 @@ Surname class for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from .nameorigintype import NameOriginType
@@ -100,6 +108,7 @@ class Surname(SecondaryObject):
         )
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -107,18 +116,20 @@ class Surname(SecondaryObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Surname"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "surname": {"type": "string", "title": _("Surname")},
-                "prefix": {"type": "string", "title": _("Prefix")},
-                "primary": {"type": "boolean", "title": _("Primary")},
-                "origintype": NameOriginType.get_schema(),
-                "connector": {"type": "string", "title": _("Connector")},
-            },
-        }
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Surname"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "surname": {"type": "string", "title": _("Surname")},
+                    "prefix": {"type": "string", "title": _("Prefix")},
+                    "primary": {"type": "boolean", "title": _("Primary")},
+                    "origintype": NameOriginType.get_schema(),
+                    "connector": {"type": "string", "title": _("Connector")},
+                },
+            }
+        )
 
     def is_empty(self):
         """

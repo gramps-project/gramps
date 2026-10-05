@@ -27,9 +27,17 @@ Media Reference class for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .attrbase import AttributeBase
 from .citationbase import CitationBase
@@ -80,6 +88,7 @@ class MediaRef(
         )
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -90,46 +99,48 @@ class MediaRef(
         # pylint: disable=import-outside-toplevel
         from .attribute import Attribute
 
-        return {
-            "type": "object",
-            "title": _("Media ref"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean", "title": _("Private")},
-                "citation_list": {
-                    "type": "array",
-                    "title": _("Citations"),
-                    "items": {"type": "string", "maxLength": 50},
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Media ref"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "private": {"type": "boolean", "title": _("Private")},
+                    "citation_list": {
+                        "type": "array",
+                        "title": _("Citations"),
+                        "items": {"type": "string", "maxLength": 50},
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "title": _("Notes"),
+                        "items": {"type": "string", "maxLength": 50},
+                    },
+                    "attribute_list": {
+                        "type": "array",
+                        "title": _("Attributes"),
+                        "items": Attribute.get_schema(),
+                    },
+                    "ref": {
+                        "type": "string",
+                        "title": _("Handle"),
+                        "maxLength": 50,
+                    },
+                    "rect": {
+                        "oneOf": [
+                            {"type": "null"},
+                            {
+                                "type": "array",
+                                "items": {"type": "integer"},
+                                "minItems": 4,
+                                "maxItems": 4,
+                            },
+                        ],
+                        "title": _("Region"),
+                    },
                 },
-                "note_list": {
-                    "type": "array",
-                    "title": _("Notes"),
-                    "items": {"type": "string", "maxLength": 50},
-                },
-                "attribute_list": {
-                    "type": "array",
-                    "title": _("Attributes"),
-                    "items": Attribute.get_schema(),
-                },
-                "ref": {
-                    "type": "string",
-                    "title": _("Handle"),
-                    "maxLength": 50,
-                },
-                "rect": {
-                    "oneOf": [
-                        {"type": "null"},
-                        {
-                            "type": "array",
-                            "items": {"type": "integer"},
-                            "minItems": 4,
-                            "maxItems": 4,
-                        },
-                    ],
-                    "title": _("Region"),
-                },
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

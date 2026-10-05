@@ -27,9 +27,17 @@ Person object for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .addressbase import AddressBase
 from .attrbase import AttributeBase
@@ -174,6 +182,7 @@ class Person(
         )
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -187,98 +196,100 @@ class Person(
         from .mediaref import MediaRef
         from .url import Url
 
-        return {
-            "type": "object",
-            "title": _("Person"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
-                "gramps_id": {"type": "string", "title": _("Gramps ID")},
-                "gender": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 3,
-                    "title": _("Gender"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Person"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "handle": {"type": "string", "maxLength": 50, "title": _("Handle")},
+                    "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                    "gender": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 3,
+                        "title": _("Gender"),
+                    },
+                    "primary_name": Name.get_schema(),
+                    "alternate_names": {
+                        "type": "array",
+                        "items": Name.get_schema(),
+                        "title": _("Alternate names"),
+                    },
+                    "death_ref_index": {
+                        "type": "integer",
+                        "title": _("Death reference index"),
+                    },
+                    "birth_ref_index": {
+                        "type": "integer",
+                        "title": _("Birth reference index"),
+                    },
+                    "event_ref_list": {
+                        "type": "array",
+                        "items": EventRef.get_schema(),
+                        "title": _("Event references"),
+                    },
+                    "family_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Families"),
+                    },
+                    "parent_family_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Parent families"),
+                    },
+                    "media_list": {
+                        "type": "array",
+                        "items": MediaRef.get_schema(),
+                        "title": _("Media"),
+                    },
+                    "address_list": {
+                        "type": "array",
+                        "items": Address.get_schema(),
+                        "title": _("Addresses"),
+                    },
+                    "attribute_list": {
+                        "type": "array",
+                        "items": Attribute.get_schema(),
+                        "title": _("Attributes"),
+                    },
+                    "urls": {
+                        "type": "array",
+                        "items": Url.get_schema(),
+                        "title": _("URLs"),
+                    },
+                    "lds_ord_list": {
+                        "type": "array",
+                        "items": LdsOrd.get_schema(),
+                        "title": _("LDS ordinances"),
+                    },
+                    "citation_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Citations"),
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Notes"),
+                    },
+                    "change": {"type": "integer", "title": _("Last changed")},
+                    "tag_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Tags"),
+                    },
+                    "private": {"type": "boolean", "title": _("Private")},
+                    "person_ref_list": {
+                        "type": "array",
+                        "items": PersonRef.get_schema(),
+                        "title": _("Person references"),
+                    },
+                    "familysearch_sync": FamilySearchSync.get_schema(),
                 },
-                "primary_name": Name.get_schema(),
-                "alternate_names": {
-                    "type": "array",
-                    "items": Name.get_schema(),
-                    "title": _("Alternate names"),
-                },
-                "death_ref_index": {
-                    "type": "integer",
-                    "title": _("Death reference index"),
-                },
-                "birth_ref_index": {
-                    "type": "integer",
-                    "title": _("Birth reference index"),
-                },
-                "event_ref_list": {
-                    "type": "array",
-                    "items": EventRef.get_schema(),
-                    "title": _("Event references"),
-                },
-                "family_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Families"),
-                },
-                "parent_family_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Parent families"),
-                },
-                "media_list": {
-                    "type": "array",
-                    "items": MediaRef.get_schema(),
-                    "title": _("Media"),
-                },
-                "address_list": {
-                    "type": "array",
-                    "items": Address.get_schema(),
-                    "title": _("Addresses"),
-                },
-                "attribute_list": {
-                    "type": "array",
-                    "items": Attribute.get_schema(),
-                    "title": _("Attributes"),
-                },
-                "urls": {
-                    "type": "array",
-                    "items": Url.get_schema(),
-                    "title": _("URLs"),
-                },
-                "lds_ord_list": {
-                    "type": "array",
-                    "items": LdsOrd.get_schema(),
-                    "title": _("LDS ordinances"),
-                },
-                "citation_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Citations"),
-                },
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Notes"),
-                },
-                "change": {"type": "integer", "title": _("Last changed")},
-                "tag_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Tags"),
-                },
-                "private": {"type": "boolean", "title": _("Private")},
-                "person_ref_list": {
-                    "type": "array",
-                    "items": PersonRef.get_schema(),
-                    "title": _("Person references"),
-                },
-                "familysearch_sync": FamilySearchSync.get_schema(),
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

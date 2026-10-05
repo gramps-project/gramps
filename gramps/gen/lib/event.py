@@ -29,6 +29,7 @@ Event object for Gramps.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import functools
 import logging
 
 # -------------------------------------------------------------------------
@@ -36,6 +37,7 @@ import logging
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .attrbase import AttributeBase
 from .citationbase import CitationBase
@@ -158,6 +160,7 @@ class Event(
         super().set_object_state(attr_dict)
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -170,54 +173,56 @@ class Event(
         from .date import Date
         from .mediaref import MediaRef
 
-        return {
-            "type": "object",
-            "title": _("Event"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Event"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "handle": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "title": _("Handle"),
+                    },
+                    "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                    "type": EventType.get_schema(),
+                    "date": Date.get_schema(),
+                    "description": {"type": "string", "title": _("Description")},
+                    "place": {
+                        "type": ["string", "null"],
+                        "maxLength": 50,
+                        "title": _("Place"),
+                    },
+                    "citation_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Citations"),
+                    },
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Notes"),
+                    },
+                    "media_list": {
+                        "type": "array",
+                        "items": MediaRef.get_schema(),
+                        "title": _("Media"),
+                    },
+                    "attribute_list": {
+                        "type": "array",
+                        "items": Attribute.get_schema(),
+                        "title": _("Attributes"),
+                    },
+                    "change": {"type": "integer", "title": _("Last changed")},
+                    "tag_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Tags"),
+                    },
+                    "private": {"type": "boolean", "title": _("Private")},
                 },
-                "gramps_id": {"type": "string", "title": _("Gramps ID")},
-                "type": EventType.get_schema(),
-                "date": Date.get_schema(),
-                "description": {"type": "string", "title": _("Description")},
-                "place": {
-                    "type": ["string", "null"],
-                    "maxLength": 50,
-                    "title": _("Place"),
-                },
-                "citation_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Citations"),
-                },
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Notes"),
-                },
-                "media_list": {
-                    "type": "array",
-                    "items": MediaRef.get_schema(),
-                    "title": _("Media"),
-                },
-                "attribute_list": {
-                    "type": "array",
-                    "items": Attribute.get_schema(),
-                    "title": _("Attributes"),
-                },
-                "change": {"type": "integer", "title": _("Last changed")},
-                "tag_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Tags"),
-                },
-                "private": {"type": "boolean", "title": _("Private")},
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

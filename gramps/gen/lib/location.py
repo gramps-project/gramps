@@ -26,9 +26,17 @@ Location class for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .const import DIFFERENT, IDENTICAL
 from .locationbase import LocationBase
@@ -76,6 +84,7 @@ class Location(SecondaryObject, LocationBase):
         return self
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -83,22 +92,24 @@ class Location(SecondaryObject, LocationBase):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Location"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "street": {"type": "string", "title": _("Street")},
-                "locality": {"type": "string", "title": _("Locality")},
-                "city": {"type": "string", "title": _("City")},
-                "county": {"type": "string", "title": _("County")},
-                "state": {"type": "string", "title": _("State")},
-                "country": {"type": "string", "title": _("Country")},
-                "postal": {"type": "string", "title": _("Postal Code")},
-                "phone": {"type": "string", "title": _("Phone")},
-                "parish": {"type": "string", "title": _("Parish")},
-            },
-        }
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Location"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "street": {"type": "string", "title": _("Street")},
+                    "locality": {"type": "string", "title": _("Locality")},
+                    "city": {"type": "string", "title": _("City")},
+                    "county": {"type": "string", "title": _("County")},
+                    "state": {"type": "string", "title": _("State")},
+                    "country": {"type": "string", "title": _("Country")},
+                    "postal": {"type": "string", "title": _("Postal Code")},
+                    "phone": {"type": "string", "title": _("Phone")},
+                    "parish": {"type": "string", "title": _("Parish")},
+                },
+            }
+        )
 
     def get_text_data_list(self):
         """

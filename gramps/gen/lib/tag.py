@@ -24,9 +24,17 @@ Tag object for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .tableobj import TableObject
 
@@ -134,6 +142,7 @@ class Tag(TableObject):
         super().set_object_state(attr_dict)
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -141,30 +150,32 @@ class Tag(TableObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Tag"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Tag"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "handle": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "title": _("Handle"),
+                    },
+                    "name": {"type": "string", "title": _("Name")},
+                    "color": {
+                        "type": "string",
+                        "maxLength": 13,
+                        "title": _("Color"),
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "title": _("Priority"),
+                    },
+                    "change": {"type": "integer", "title": _("Last changed")},
                 },
-                "name": {"type": "string", "title": _("Name")},
-                "color": {
-                    "type": "string",
-                    "maxLength": 13,
-                    "title": _("Color"),
-                },
-                "priority": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "title": _("Priority"),
-                },
-                "change": {"type": "integer", "title": _("Last changed")},
-            },
-        }
+            }
+        )
 
     def get_text_data_list(self):
         """

@@ -26,9 +26,17 @@ Repository object for Gramps.
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .addressbase import AddressBase
 from .citationbase import IndirectCitationBase
@@ -78,6 +86,7 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryOb
         )
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -89,43 +98,45 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase, PrimaryOb
         from .address import Address
         from .url import Url
 
-        return {
-            "type": "object",
-            "title": _("Repository"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "handle": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "title": _("Handle"),
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Repository"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "handle": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "title": _("Handle"),
+                    },
+                    "gramps_id": {"type": "string", "title": _("Gramps ID")},
+                    "type": RepositoryType.get_schema(),
+                    "name": {"type": "string", "title": _("Name")},
+                    "note_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Notes"),
+                    },
+                    "address_list": {
+                        "type": "array",
+                        "items": Address.get_schema(),
+                        "title": _("Addresses"),
+                    },
+                    "urls": {
+                        "type": "array",
+                        "items": Url.get_schema(),
+                        "title": _("URLs"),
+                    },
+                    "change": {"type": "integer", "title": _("Last changed")},
+                    "tag_list": {
+                        "type": "array",
+                        "items": {"type": "string", "maxLength": 50},
+                        "title": _("Tags"),
+                    },
+                    "private": {"type": "boolean", "title": _("Private")},
                 },
-                "gramps_id": {"type": "string", "title": _("Gramps ID")},
-                "type": RepositoryType.get_schema(),
-                "name": {"type": "string", "title": _("Name")},
-                "note_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Notes"),
-                },
-                "address_list": {
-                    "type": "array",
-                    "items": Address.get_schema(),
-                    "title": _("Addresses"),
-                },
-                "urls": {
-                    "type": "array",
-                    "items": Url.get_schema(),
-                    "title": _("URLs"),
-                },
-                "change": {"type": "integer", "title": _("Last changed")},
-                "tag_list": {
-                    "type": "array",
-                    "items": {"type": "string", "maxLength": 50},
-                    "title": _("Tags"),
-                },
-                "private": {"type": "boolean", "title": _("Private")},
-            },
-        }
+            }
+        )
 
     def unserialize(self, data):
         """

@@ -29,6 +29,7 @@
 #
 # ------------------------------------------------------------------------
 import calendar
+import functools
 import logging
 import time
 
@@ -37,6 +38,7 @@ import time
 # Gramps modules
 #
 # ------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from .baseobj import BaseObject
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
@@ -773,6 +775,7 @@ class Date(BaseObject):
         super().set_object_state(attr_dict)
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -780,24 +783,26 @@ class Date(BaseObject):
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
-        return {
-            "type": "object",
-            "title": _("Date"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "calendar": {"type": "integer", "title": _("Calendar")},
-                "modifier": {"type": "integer", "title": _("Modifier")},
-                "quality": {"type": "integer", "title": _("Quality")},
-                "dateval": {
-                    "type": "array",
-                    "title": _("Values"),
-                    "items": {"type": ["integer", "boolean"]},
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Date"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "calendar": {"type": "integer", "title": _("Calendar")},
+                    "modifier": {"type": "integer", "title": _("Modifier")},
+                    "quality": {"type": "integer", "title": _("Quality")},
+                    "dateval": {
+                        "type": "array",
+                        "title": _("Values"),
+                        "items": {"type": ["integer", "boolean"]},
+                    },
+                    "text": {"type": "string", "title": _("Text")},
+                    "sortval": {"type": "integer", "title": _("Sort value")},
+                    "newyear": {"type": "integer", "title": _("New year begins")},
                 },
-                "text": {"type": "string", "title": _("Text")},
-                "sortval": {"type": "integer", "title": _("Sort value")},
-                "newyear": {"type": "integer", "title": _("New year begins")},
-            },
-        }
+            }
+        )
 
     def copy(self, source):
         """

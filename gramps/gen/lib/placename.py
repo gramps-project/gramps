@@ -24,9 +24,17 @@ Place name class for Gramps
 
 # -------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+# -------------------------------------------------------------------------
+import functools
+
+# -------------------------------------------------------------------------
+#
 # Gramps modules
 #
 # -------------------------------------------------------------------------
+from .schemautils import freeze_schema
 from ..const import GRAMPS_LOCALE as glocale
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from .datebase import DateBase
@@ -79,6 +87,7 @@ class PlaceName(SecondaryObject, DateBase):
         return self
 
     @classmethod
+    @functools.cache
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -89,16 +98,18 @@ class PlaceName(SecondaryObject, DateBase):
         # pylint: disable=import-outside-toplevel
         from .date import Date
 
-        return {
-            "type": "object",
-            "title": _("Place Name"),
-            "properties": {
-                "_class": {"enum": [cls.__name__]},
-                "value": {"type": "string", "title": _("Text")},
-                "date": Date.get_schema(),
-                "lang": {"type": "string", "title": _("Language")},
-            },
-        }
+        return freeze_schema(
+            {
+                "type": "object",
+                "title": _("Place Name"),
+                "properties": {
+                    "_class": {"enum": [cls.__name__]},
+                    "value": {"type": "string", "title": _("Text")},
+                    "date": Date.get_schema(),
+                    "lang": {"type": "string", "title": _("Language")},
+                },
+            }
+        )
 
     def get_text_data_list(self):
         """
