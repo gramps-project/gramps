@@ -177,12 +177,23 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     def share_button_clicked(self, obj):
         SelectCitation = SelectorFactory("Citation")
 
-        sel = SelectCitation(self.dbstate, self.uistate, self.track)
+        # Multiple selection disabled: unclear UX for mixed Source/Citation selections
+        # and for multiple sources. Single selection prevents confusion.
+        sel = SelectCitation(
+            self.dbstate, self.uistate, self.track, allow_multiple_selection=False
+        )
         objct = sel.run()
         LOG.debug("selected object: %s" % objct)
         # the object returned should either be a Source or a Citation
-        if objct:
-            if isinstance(objct, Source):
+        if objct is not None:
+            if not isinstance(objct, (Source, Citation)):
+                raise ValueError(
+                    _("Selection must be either a source or a citation, got %s")
+                    % type(objct)
+                )
+            if isinstance(objct, Citation):
+                self.add_callback(objct.handle)
+            else:  # objct is a Source
                 try:
                     from .. import EditCitation
 
@@ -203,10 +214,6 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                         self.__blocked_text(),
                         parent=self.uistate.window,
                     )
-            elif isinstance(objct, Citation):
-                self.add_callback(objct.handle)
-            else:
-                raise ValueError("selection must be either source or citation")
 
     def __blocked_text(self):
         """
