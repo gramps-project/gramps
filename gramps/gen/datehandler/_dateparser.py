@@ -579,6 +579,7 @@ class DateParser:
             r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._smon_str, re.IGNORECASE
         )
         self._numeric = re.compile(r"((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
+        self._compact8 = re.compile(r"^\s*(\d{2})(\d{2})(\d{4})\s*$")
         self._iso = re.compile(r"(\d+)(/(\d+))?-(\d+)(-(\d+))?\s*$")
         self._isotimestamp = re.compile(
             r"^\s*?(\d{4})([01]\d)([0123]\d)(?:(?:[012]\d[0-5]\d[0-5]\d)|"
@@ -739,6 +740,22 @@ class DateParser:
             if check is None or check((d, m, y)):
                 return (d, m, y, False)
             return Date.EMPTY
+
+        # Compact 8-digit input without separators: DDMMYYYY (dmy) or
+        # MMDDYYYY (mdy). Must be checked before _isotimestamp, which would
+        # otherwise greedily match DDMMYYYY as a bogus YYYYMMDD. For ymd
+        # locales, _isotimestamp below already handles YYYYMMDD correctly.
+        if not self.ymd:
+            match = self._compact8.match(text)
+            if match:
+                a, b, y = int(match.group(1)), int(match.group(2)), int(match.group(3))
+                if self.dmy:
+                    d, m = a, b
+                else:
+                    m, d = a, b
+                if not check or check((d, m, y)):
+                    return (d, m, y, False)
+                # invalid under locale field order — fall through to _isotimestamp
 
         # Database datetime format, used in ex. MSSQL
         # YYYYMMDD HH:MM:SS or YYYYMMDD or YYYYMMDDHHMMSS
