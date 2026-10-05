@@ -1102,7 +1102,20 @@ class DBAPI(DbGeneric):
         Returns a dictionary of
         {given_name: (male_count, female_count, unknown_count)}
         """
-        self.dbapi.execute("SELECT given_name, female, male, unknown FROM gender_stats")
+        if self._get_metadata("gender_stats_fixed", default=False):
+            # Bug 11314: tables written by a fixed Gramps store each count in
+            # the like-named column, so read them in column-name order.
+            self.dbapi.execute(
+                "SELECT given_name, male, female, unknown FROM gender_stats"
+            )
+        else:
+            # Legacy tables (written before bug 11314 was fixed) stored the
+            # male and female counts in the swapped columns. Read them in that
+            # swapped order so the in-memory (male, female, unknown) tuple is
+            # still correct and the data is not silently inverted on read.
+            self.dbapi.execute(
+                "SELECT given_name, female, male, unknown FROM gender_stats"
+            )
         gstats = {}
         for row in self.dbapi.fetchall():
             gstats[row[0]] = (row[1], row[2], row[3])
@@ -1112,13 +1125,19 @@ class DBAPI(DbGeneric):
         self._txn_begin()
         self.dbapi.execute("DELETE FROM gender_stats")
         for key in gstats.stats:
-            female, male, unknown = gstats.stats[key]
+            # Bug 11314: GenderStats stores (male, female, unknown); write each
+            # count into the like-named column so external SQL consumers see
+            # correct data.
+            male, female, unknown = gstats.stats[key]
             self.dbapi.execute(
                 "INSERT INTO gender_stats "
-                "(given_name, female, male, unknown) "
+                "(given_name, male, female, unknown) "
                 "VALUES (?, ?, ?, ?)",
-                [key, female, male, unknown],
+                [key, male, female, unknown],
             )
+        # Mark the table as using the corrected column order so get_gender_stats
+        # reads it back consistently (and legacy tables are detected as such).
+        self._set_metadata("gender_stats_fixed", True, use_txn=False)
         self._txn_commit()
 
     def undo_reference(self, data, handle):
