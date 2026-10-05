@@ -301,6 +301,7 @@ gramps/gen/simple/_simpledoc.py
 #
 gramps/gen/test/config_test.py
 gramps/gen/test/constfunc_test.py
+gramps/gen/test/relationship_test.py
 #
 # gen utils API
 #

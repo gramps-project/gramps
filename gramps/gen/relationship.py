@@ -908,9 +908,12 @@ class RelationshipCalculator:
     REL_FATHER = "f"  # going up to father
     REL_MOTHER_NOTBIRTH = "M"  # going up to mother, not birth relation
     REL_FATHER_NOTBIRTH = "F"  # going up to father, not birth relation
+    REL_MOTHER_ADOPT = "n"  # going up to mother, adopted relation
+    REL_FATHER_ADOPT = "d"  # going up to father, adopted relation
     REL_SIBLING = "s"  # going sideways to sibling (no parents)
     REL_FAM_BIRTH = "a"  # going up to family (mother and father)
     REL_FAM_NONBIRTH = "A"  # going up to family, not birth relation
+    REL_FAM_ADOPT = "D"  # going up to family, adopted relation
     REL_FAM_BIRTH_MOTH_ONLY = "b"  # going up to fam, only birth rel to mother
     REL_FAM_BIRTH_FATH_ONLY = "c"  # going up to fam, only birth rel to father
 
@@ -922,10 +925,15 @@ class RelationshipCalculator:
     HALF_SIB_FATHER = 2  # same father, mother known to be different
     STEP_SIB = 3  # birth parents known to be different
     UNKNOWN_SIB = 4  # insufficient data to draw conclusion
+    ADOPT_SIB = 5  # connected through an adoptive (not birth) parent
 
     # sibling strings
     STEP = "step"
     HALF = "half-"
+    # Adopted links are not "step": an adoptee is treated as born into the
+    # family (issue 10554). Kept as a single localizable qualifier so the
+    # exact wording stays a cheap, per-locale choice.
+    ADOPT = "adopted "
 
     INLAW = "-in-law"
 
@@ -1149,29 +1157,40 @@ class RelationshipCalculator:
                 if motherother and motherother == motherorig:
                     return self.HALF_SIB_MOTHER
                 else:
-                    return self.STEP_SIB
+                    return self._step_or_adopt_sib(db, orig, fatherother)
             if motherother and motherother in orig_nb_par:
                 # the birth parent of other is non-birth of orig
                 if fatherother and fatherother == fatherorig:
                     return self.HALF_SIB_FATHER
                 else:
-                    return self.STEP_SIB
+                    return self._step_or_adopt_sib(db, orig, motherother)
             other_nb_par = self._get_nonbirth_parent_list(db, other)
             if fatherorig and fatherorig in other_nb_par:
                 # the one birth parent of other is non-birth of orig
                 if motherorig and motherother == motherorig:
                     return self.HALF_SIB_MOTHER
                 else:
-                    return self.STEP_SIB
+                    return self._step_or_adopt_sib(db, other, fatherorig)
             if motherorig and motherorig in other_nb_par:
                 # the one birth parent of other is non-birth of orig
                 if fatherother and fatherother == fatherorig:
                     return self.HALF_SIB_FATHER
                 else:
-                    return self.STEP_SIB
+                    return self._step_or_adopt_sib(db, other, motherorig)
             # there is an unknown birth parent, it could be that this is the
             # birth parent of the other person
             return self.UNKNOWN_SIB
+
+    def _step_or_adopt_sib(self, db, person, parent_handle):
+        """
+        The two siblings are connected because ``parent_handle`` is a birth
+        parent of one of them and a non-birth parent of ``person``. If that
+        non-birth link is an *adoption*, they are adopted siblings rather than
+        stepsiblings (issue 10554); otherwise keep the "step" classification.
+        """
+        if parent_handle in self._get_adopted_parent_list(db, person):
+            return self.ADOPT_SIB
+        return self.STEP_SIB
 
     def get_birth_parents(self, db, person):
         """
@@ -1230,6 +1249,30 @@ class RelationshipCalculator:
                 nb_parents.append(family.get_father_handle())
         # make every person appear only once:
         return list(set(nb_parents))
+
+    def _get_adopted_parent_list(self, db, person):
+        """
+        Returns a list of handles of parents to which ``person`` is linked by
+        an ADOPTED child reference (issue 10554).
+        """
+        ad_parents = []
+        for fam in person.get_parent_family_handle_list():
+            family = db.get_family_from_handle(fam)
+            if not family:
+                continue
+            childrel = [
+                (ref.get_mother_relation(), ref.get_father_relation())
+                for ref in family.get_child_ref_list()
+                if ref.ref == person.handle
+            ]
+            if not childrel:
+                continue
+            if childrel[0][0] == ChildRefType.ADOPTED:
+                ad_parents.append(family.get_mother_handle())
+            if childrel[0][1] == ChildRefType.ADOPTED:
+                ad_parents.append(family.get_father_handle())
+        # make every person appear only once:
+        return list(set(ad_parents))
 
     def _get_spouse_type(self, db, orig, other, all_rel=False):
         """
@@ -1626,22 +1669,28 @@ class RelationshipCalculator:
                         self.REL_FATHER,
                         self.REL_FATHER_NOTBIRTH,
                         childrel[0][1],
+                        self.REL_FATHER_ADOPT,
                     ),
                     (
                         mhandle,
                         self.REL_MOTHER,
                         self.REL_MOTHER_NOTBIRTH,
                         childrel[0][0],
+                        self.REL_MOTHER_ADOPT,
                     ),
                 ]:
                     if data[0] and data[0] not in parentstodo:
                         persontodo = db.get_person_from_handle(data[0])
                         if data[3] == ChildRefType.BIRTH:
                             addstr = data[1]
-                        elif not self.__only_birth:
-                            addstr = data[2]
-                        else:
+                        elif self.__only_birth:
                             addstr = ""
+                        elif data[3] == ChildRefType.ADOPTED:
+                            # adopted links are distinguished from "step" so the
+                            # naming path can pick an adopted qualifier (10554)
+                            addstr = data[4]
+                        else:
+                            addstr = data[2]
                         if addstr:
                             parentstodo[data[0]] = (
                                 persontodo,
@@ -1860,6 +1909,12 @@ class RelationshipCalculator:
             persrelb == self.REL_FATHER and persrela == self.REL_MOTHER_NOTBIRTH
         ):
             return self.REL_FAM_BIRTH_FATH_ONLY
+        # both parents linked by adoption -> an adopted family relation (10554)
+        if persrela in (self.REL_MOTHER_ADOPT, self.REL_FATHER_ADOPT) and persrelb in (
+            self.REL_MOTHER_ADOPT,
+            self.REL_FATHER_ADOPT,
+        ):
+            return self.REL_FAM_ADOPT
         # catch calling with family relations already, return val
         if (
             persrela == self.REL_FAM_BIRTH
@@ -1887,9 +1942,35 @@ class RelationshipCalculator:
                 self.REL_FAM_NONBIRTH,
                 self.REL_FATHER_NOTBIRTH,
                 self.REL_MOTHER_NOTBIRTH,
+                self.REL_FAM_ADOPT,
+                self.REL_FATHER_ADOPT,
+                self.REL_MOTHER_ADOPT,
             ]:
                 return False
         return True
+
+    def only_adopt(self, path):
+        """
+        Given a path to a common ancestor, return True if it is a non-birth
+        path whose every non-birth hop is an *adopted* relation (no plain
+        "step"/non-birth hop). Used to choose an adopted qualifier instead of
+        "step" for the relationship label (issue 10554).
+        """
+        seen_adopt = False
+        for value in path:
+            if value in [
+                self.REL_FAM_NONBIRTH,
+                self.REL_FATHER_NOTBIRTH,
+                self.REL_MOTHER_NOTBIRTH,
+            ]:
+                return False
+            if value in [
+                self.REL_FAM_ADOPT,
+                self.REL_FATHER_ADOPT,
+                self.REL_MOTHER_ADOPT,
+            ]:
+                seen_adopt = True
+        return seen_adopt
 
     def get_one_relationship(
         self, db, orig_person, other_person, extra_info=False, olocale=glocale
@@ -1980,6 +2061,9 @@ class RelationshipCalculator:
                 self.REL_MOTHER,
                 self.REL_FATHER,
                 self.REL_SIBLING,
+                self.REL_FAM_ADOPT,
+                self.REL_MOTHER_ADOPT,
+                self.REL_FATHER_ADOPT,
                 self.REL_FAM_NONBIRTH,
                 self.REL_MOTHER_NOTBIRTH,
                 self.REL_FATHER_NOTBIRTH,
@@ -2273,8 +2357,11 @@ class RelationshipCalculator:
         REL_FATHER               # going up to father
         REL_MOTHER_NOTBIRTH      # going up to mother, not birth relation
         REL_FATHER_NOTBIRTH      # going up to father, not birth relation
+        REL_MOTHER_ADOPT         # going up to mother, adopted relation
+        REL_FATHER_ADOPT         # going up to father, adopted relation
         REL_FAM_BIRTH            # going up to family (mother and father)
         REL_FAM_NONBIRTH         # going up to family, not birth relation
+        REL_FAM_ADOPT            # going up to family, adopted relation
         REL_FAM_BIRTH_MOTH_ONLY  # going up to fam, only birth rel to mother
         REL_FAM_BIRTH_FATH_ONLY  # going up to fam, only birth rel to father
         =======================  ===========================================
@@ -2336,6 +2423,9 @@ class RelationshipCalculator:
         """
         if only_birth:
             step = ""
+        elif self.only_adopt(reltocommon_a + reltocommon_b):
+            # adopted link(s) only -> an adopted qualifier, not "step" (10554)
+            step = self.ADOPT
         else:
             step = self.STEP
 
@@ -2425,6 +2515,8 @@ class RelationshipCalculator:
             typestr = self.HALF
         elif sib_type == self.STEP_SIB:
             typestr = self.STEP
+        elif sib_type == self.ADOPT_SIB:
+            typestr = self.ADOPT
 
         if in_law_a or in_law_b:
             inlaw = self.INLAW
