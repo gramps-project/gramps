@@ -210,6 +210,25 @@ class ListView(NavigationView):
         self.list.restore_column_size()
         return self.vbox
 
+    @classmethod
+    def get_shortcut_specs(cls):
+        """
+        Return the (action_name, default_accel, label) triples this view
+        type always defines, independent of any live instance. Used to
+        populate the customizable keyboard shortcuts list without needing
+        to build a real view. Keep in sync with define_actions().
+        """
+        return super().get_shortcut_specs() + [
+            ("Add", "<Primary>Insert", _("Add")),
+            ("Remove", "<Primary>Delete", _("Remove")),
+            ("PRIMARY-BackSpace", "<PRIMARY>BackSpace", _("Remove (Alternate)")),
+            ("Merge", "", _("Merge")),
+            ("ExportTab", "", _("Export View")),
+            ("Edit", "<Primary>Return", _("Edit")),
+            ("PRIMARY-J", "<PRIMARY>J", _("Go to Gramps ID")),
+            ("FilterEdit", "", _("Edit Filter")),
+        ]
+
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action
@@ -220,12 +239,13 @@ class ListView(NavigationView):
 
         NavigationView.define_actions(self)
 
+        accels = {name: accel for name, accel, _label in self.get_shortcut_specs()}
         self.edit_action = ActionGroup(name=self.title + "/Edits")
         self.edit_action.add_actions(
             [
-                ("Add", self.add, "<Primary>Insert"),
-                ("Remove", self.remove, "<Primary>Delete"),
-                ("PRIMARY-BackSpace", self.remove, "<PRIMARY>BackSpace"),
+                ("Add", self.add, accels["Add"]),
+                ("Remove", self.remove, accels["Remove"]),
+                ("PRIMARY-BackSpace", self.remove, accels["PRIMARY-BackSpace"]),
                 ("Merge", self.merge),
             ]
         )
@@ -234,8 +254,8 @@ class ListView(NavigationView):
         self.action_list.extend(
             [
                 ("ExportTab", self.export),
-                ("Edit", self.edit, "<Primary>Return"),
-                ("PRIMARY-J", self.jump, "<PRIMARY>J"),
+                ("Edit", self.edit, accels["Edit"]),
+                ("PRIMARY-J", self.jump, accels["PRIMARY-J"]),
                 ("FilterEdit", self.filter_editor),
             ]
         )

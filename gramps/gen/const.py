@@ -196,6 +196,13 @@ PLUGINS_GLADE = os.path.join(GLADE_DIR, "plugins.glade")
 MERGE_GLADE = os.path.join(GLADE_DIR, "mergedata.glade")
 RULE_GLADE = os.path.join(GLADE_DIR, "rule.glade")
 
+# Bundled keyboard shortcut themes (e.g. "Default", an editable snapshot
+# of the shipped defaults -- "Reset All to Factory Defaults" in the
+# shortcuts editor is the authoritative, platform-correct reset, since it
+# reads live defaults rather than a static file); user-created themes live
+# under VERSION_DIR/keybinding_themes instead.
+KEYBINDING_THEMES_DIR = os.path.join(ROOT_DIR, "gui", "keybinding_themes")
+
 
 PLUGINS_DIR = os.path.join(ROOT_DIR, "plugins")
 

@@ -467,22 +467,36 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         by the base class. Returns a gtk container widget.
         """
 
+    @classmethod
+    def get_shortcut_specs(cls):
+        """
+        Return the (action_name, default_accel, label) triples this view
+        type always defines, independent of any live instance. Used to
+        populate the customizable keyboard shortcuts list without needing
+        to build a real view. Keep in sync with define_actions().
+        """
+        return [
+            ("Sidebar", "<shift><PRIMARY>R", _("_Sidebar")),
+            ("Bottombar", "<shift><PRIMARY>B", _("_Bottombar")),
+        ]
+
     def define_actions(self):
         """
         Defines the UIManager actions. Called by the ViewManager to set up the
         View. The user typically defines self.action_list and
         self.action_toggle_list in this function.
         """
+        accels = {name: accel for name, accel, _label in self.get_shortcut_specs()}
         self._add_toggle_action(
             "Sidebar",
             self.__sidebar_toggled,
-            "<shift><PRIMARY>R",
+            accels["Sidebar"],
             self.sidebar.get_property("visible"),
         )
         self._add_toggle_action(
             "Bottombar",
             self.__bottombar_toggled,
-            "<shift><PRIMARY>B",
+            accels["Bottombar"],
             self.bottombar.get_property("visible"),
         )
 

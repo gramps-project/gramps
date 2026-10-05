@@ -22,14 +22,23 @@ A replacement UIManager and ActionGroup.
 """
 
 import copy
+import json
+import os
 import sys
 import logging
 import xml.etree.ElementTree as ET
+from collections.abc import Iterable
 
-from gi.repository import GLib, Gio, Gtk
+import gi
+
+gi.require_version("Gdk", "3.0")
+from gi.repository import Gdk, GLib, Gio, Gtk
 
 from ..gen.const import GRAMPS_LOCALE as glocale
+from ..gen.const import KEYBINDING_THEMES_DIR, VERSION_DIR
 from ..gen.config import config
+
+_ = glocale.translation.gettext
 
 LOG = logging.getLogger("gui.uimanager")
 
@@ -38,6 +47,127 @@ ACTION_NAME = 0  # tuple index for action name
 ACTION_CB = 1  # tuple index for action callback
 ACTION_ACC = 2  # tuple index for action accelerator
 ACTION_ST = 3  # tuple index for action state
+
+# Action groups whose actions are generated per open-window instance
+# (e.g. the "Windows" switcher list) rather than representing a fixed
+# command. Their action ids are not stable across sessions -- or even
+# across the lifetime of the window they refer to -- so they are not
+# meaningful targets for a customizable keyboard shortcut and must be
+# excluded from the shortcut editor's action list.
+_DYNAMIC_GROUP_NAMES = frozenset({"WindowManager"})
+
+# Keyvals that must stay unmodified everywhere, because GTK's own focus
+# and cursor navigation depends on receiving them within any widget.
+_NAV_KEYVALS = frozenset(
+    Gdk.keyval_from_name(name)
+    for name in ("Tab", "ISO_Left_Tab", "Up", "Down", "Left", "Right")
+)
+
+# Keyvals safe to bind with no modifier at all: nothing in Gramps'
+# editors or views consumes these for text entry, cursor movement, or
+# list navigation.
+_SAFE_BARE_KEYVALS = frozenset(
+    Gdk.keyval_from_name(name) for name in [f"F{i}" for i in range(1, 13)] + ["Menu"]
+)
+
+
+def check_accel(accel: str) -> str:
+    """Return '' if accel is safe for a user to bind, otherwise a
+    user-facing reason it is reserved.
+
+    Gtk.CellRendererAccelMode.OTHER (used by the shortcut editor) lets a
+    user capture almost any key, including ones GTK itself never blocks
+    -- a bare letter, Escape, Return, Delete -- that would collide with
+    typing or in-place editing in Gramps' many text-entry fields.
+    Gtk.accelerator_valid() alone does not protect against this: it only
+    rejects Tab/arrow keys and bare modifier keys.
+
+    :param accel: a Gtk accelerator string, e.g. '<Primary>c' or 'a'
+    :type accel: str
+    """
+    if not accel:
+        return ""
+    accel = _normalize_accel(accel)
+    parseable = accel
+    if os.environ.get("GDK_BACKEND") == "-":
+        # Without a real display, Gtk.accelerator_parse() can't resolve a
+        # virtual modifier like <Primary> to a concrete one and silently
+        # drops it instead -- which would make an ordinary "<Primary>c"
+        # look like a bare, unmodified "c" below. Substitute a concrete
+        # stand-in for this validity check only (the accel returned to
+        # the caller is untouched); this only matters for headless test
+        # runs, since a live Gramps process always has a real display for
+        # Gtk to resolve it with.
+        parseable = parseable.replace("<Primary>", "<Control>").replace(
+            "<PRIMARY>", "<Control>"
+        )
+    keyval, mods = Gtk.accelerator_parse(parseable)
+    mods &= Gtk.accelerator_get_default_mod_mask()
+    if not Gtk.accelerator_valid(keyval, mods):
+        return _("Not a valid keyboard shortcut.")
+    if mods == 0 and keyval in _NAV_KEYVALS:
+        return _("This key is reserved for keyboard navigation.")
+    if mods == 0 and keyval not in _SAFE_BARE_KEYVALS:
+        return _(
+            "This key needs a modifier such as Ctrl, Alt, or Super -- "
+            "otherwise it would conflict with typing in text fields."
+        )
+    return ""
+
+
+def _normalize_accel(accel: str) -> str:
+    """Normalize an accelerator string to Gtk's own canonical spelling
+    (e.g. '<PRIMARY>b' and '<Primary>b' both become '<Primary>b'), so
+    accels from different sources (hand-written literals, a captured
+    keypress) compare equal.
+
+    Without a real display connection, Gtk.accelerator_parse() silently
+    drops virtual modifiers like <Primary> instead of raising, which
+    would corrupt the value rather than normalize it. Since that only
+    happens running headless (as this project's test suite always does,
+    per its GDK_BACKEND=- convention), leave the string untouched in that
+    case -- there's no live-captured value to reconcile against anyway.
+
+    :param accel: a Gtk accelerator string, or '' for none
+    :type accel: str
+    """
+    if not accel:
+        return ""
+    if os.environ.get("GDK_BACKEND") == "-":
+        return accel
+    key, mods = Gtk.accelerator_parse(accel)
+    return Gtk.accelerator_name(key, mods) if key else accel
+
+
+def accel_display_label(accel: str) -> str:
+    """Return a human-readable label for a Gtk accelerator string, e.g.
+    '<Primary>c' -> 'Ctrl+C', for display in tooltips and the shortcuts
+    editor.
+
+    :param accel: a Gtk accelerator string, or '' for none
+    :type accel: str
+    """
+    if not accel:
+        return ""
+    key, mods = Gtk.accelerator_parse(accel)
+    return Gtk.accelerator_get_label(key, mods) if key else accel
+
+
+def theme_dirs() -> list[str]:
+    """Directories to search for keybinding theme files, in precedence
+    order -- user-saved themes take precedence over bundled ones with
+    the same name."""
+    return [os.path.join(VERSION_DIR, "keybinding_themes"), KEYBINDING_THEMES_DIR]
+
+
+def theme_path(name: str) -> str | None:
+    """Resolve a theme name to a file, preferring a user theme over a
+    bundled one with the same name."""
+    for theme_dir in theme_dirs():
+        path = os.path.join(theme_dir, f"{name}.jsonl")
+        if os.path.exists(path):
+            return path
+    return None
 
 
 class ActionGroup:
@@ -136,6 +266,12 @@ class UIManager:
         self.action_groups = []  # current list of action groups
         self.show_groups = []  # groups to show at the moment
         self.accel_dict = {}  # used to store accel overrides from file
+        self.default_accels = {}  # hard-coded accel for each action_id
+        self.static_registry = {}  # label/category for statically-known actions
+        # label/category last seen for an action whose group is not
+        # currently live (e.g. a different view's own menu action) --
+        # see list_actions() for why this needs to persist.
+        self.label_cache = {}
 
     def update_menu(self, init=False):
         """This updates the menus and toolbar when there is a change in the
@@ -386,6 +522,11 @@ class UIManager:
             for item in group.actionlist:
                 if not Gio.action_name_is_valid(item[ACTION_NAME]):
                     LOG.warning("**Invalid action name %s", item[ACTION_NAME])
+                action_id = group.prefix + item[ACTION_NAME]
+                # record the hard-coded accelerator as the default, so a
+                # user override can later be reset back to it
+                if len(item) > 2 and item[ACTION_ACC]:
+                    self.default_accels[action_id] = _normalize_accel(item[ACTION_ACC])
                 # deal with accelerator overrides from a file
                 accel = self.accel_dict.get(group.prefix + item[ACTION_NAME])
                 if accel:
@@ -532,44 +673,349 @@ class UIManager:
                         # UIManager yet
                         action.set_enabled(group.sensitive if state else False)
 
-    def dump_all_accels(self):
-        """A function used diagnostically to see what accels are present.
-        This will only dump the current accel set, if other non-open windows
-        or views have accels, you will need to open them and run this again
-        and manually merge the result files.  The results are in a
-        'gramps.accel' file located in the current working directory."""
-        out_dict = {}
-        for group in self.action_groups:
-            for item in group.actionlist:
-                act = group.prefix + item[ACTION_NAME]
-                accels = self.app.get_accels_for_action(
-                    group.prefix + item[ACTION_NAME]
-                )
-                out_dict[act] = accels[0] if accels else ""
-        import json
+    def load_accels(self, filename: str, merge: bool = False) -> None:
+        """Load accels from a JSON Lines file such as one written by
+        save_accels: one JSON object per line, of the form
+        ``{"id": action_id, "label": ..., "category": ..., "accel": ...}``.
+        "label" and "category" are metadata for a human reader (so the
+        file is self-documenting when opened directly in a text editor)
+        and are ignored on load. Blank lines and lines starting with '#'
+        are skipped, so an exported file can be hand-trimmed or annotated.
 
-        with open(
-            "gramps.accel",
-            "w",
-        ) as hndl:
-            accels = json.dumps(out_dict, indent=0).replace('\n"', '\n# "')
-            hndl.write(accels)
+        A malformed *line* is logged and skipped rather than aborting the
+        whole load: this file is meant to be safely hand-editable, and one
+        typo should not cost every other binding in it. A caller that
+        wants the whole load to be best-effort (e.g. at startup, where a
+        bad keybinding file must never prevent Gramps from launching)
+        should additionally catch OSError around the call; a caller that
+        wants to report a genuinely unreadable file to the user (e.g. the
+        shortcuts editor's theme switcher) can let it propagate.
 
-    def load_accels(self, filename):
-        """This function loads accels from a file such as created by
-        dump_all_accels.  The file contents is basically a Python dict
-        definition.  As such it contains a line for each dict element.
-        These elements can be commented out with '#' at the beginning of the
-        line.
+        If used before any insert_action_group calls, this overrides the
+        accels defined in other Gramps code.  If used afterwards (e.g. an
+        "Import" of a user keymap while Gramps is running), the loaded
+        accels are also applied immediately to any matching, already
+        registered actions.
 
-        If used, this file overrides the accels defined in other Gramps code.
-        As such it must be loaded before any insert_action_group calls.
+        :param filename: path of the accel file to load
+        :type filename: str
+        :param merge: when True, update the existing overrides instead of
+            replacing them, so a system-level file and a user-level file
+            can be layered
+        :type merge: bool
+        :raises OSError: if filename can't be opened
         """
-        import ast
+        loaded: dict[str, str] = {}
+        with open(filename, "r", encoding="utf-8") as hndl:
+            lines = hndl.readlines()
 
-        with open(filename, "r") as hndl:
-            accels = hndl.read()
-            self.accel_dict = ast.literal_eval(accels)
+        for line_number, raw_line in enumerate(lines, start=1):
+            line = raw_line.strip()
+            if not line or line.startswith("#"):
+                continue
+            try:
+                entry = json.loads(line)
+                action_id = entry["id"]
+                if not isinstance(action_id, str):
+                    raise TypeError(f"'id' must be a string, got {action_id!r}")
+                accel = _normalize_accel(entry.get("accel", ""))
+            except (json.JSONDecodeError, KeyError, TypeError) as err:
+                LOG.warning(
+                    "load_accels: skipping malformed line %d in %s: %s",
+                    line_number,
+                    filename,
+                    err,
+                )
+                continue
+            reason = check_accel(accel)
+            if reason:
+                LOG.warning(
+                    "load_accels: skipping %r for %s in %s: %s",
+                    accel,
+                    action_id,
+                    filename,
+                    reason,
+                )
+                continue
+            loaded[action_id] = accel
+
+        if merge:
+            self.accel_dict.update(loaded)
+        else:
+            self.accel_dict = loaded
+        for action_id, accel in loaded.items():
+            self.app.set_accels_for_action(action_id, [accel] if accel else [])
+
+    def register_static_shortcuts(
+        self, specs: list[tuple[str, str, str]], category: str, prefix: str = "win"
+    ) -> None:
+        """Register a fixed list of actions a view or widget type always
+        defines, independent of whether any live instance of it currently
+        exists. This lets the customizable keyboard shortcuts editor list
+        every such action -- with its label, category and default -- even
+        before a matching view has been visited in this session.
+
+        :param specs: (action_name, default_accel, label) triples
+        :type specs: list[tuple[str, str, str]]
+        :param category: display category shown in the shortcuts editor
+        :type category: str
+        :param prefix: the action prefix, e.g. 'win' or 'ste'
+        :type prefix: str
+        """
+        for name, accel, label in specs:
+            action_id = f"{prefix}.{name}"
+            if accel:
+                self.default_accels[action_id] = _normalize_accel(accel)
+            self.static_registry[action_id] = {"label": label, "group_name": category}
+
+    def _all_known_action_ids(self) -> set[str]:
+        """Return every action_id known from static registration, a saved
+        override, a recorded default, or a currently live action group.
+
+        Excludes _DYNAMIC_GROUP_NAMES groups: their ids are generated
+        per-open-window (e.g. "win.wm-<window id>") and are not meaningful
+        targets for a customizable shortcut, conflict check, or exported
+        theme entry -- the same reason list_actions() excludes them.
+        """
+        ids = (
+            set(self.static_registry) | set(self.default_accels) | set(self.accel_dict)
+        )
+        for group in self.action_groups:
+            if group.name in _DYNAMIC_GROUP_NAMES:
+                continue
+            for item in group.actionlist:
+                ids.add(group.prefix + item[ACTION_NAME])
+        return ids
+
+    def _live_action_ids(self) -> set[str]:
+        """Return action ids backed by an actual live Gio.SimpleAction."""
+        return {
+            group.prefix + item[ACTION_NAME]
+            for group in self.action_groups
+            for item in group.actionlist
+        }
+
+    def get_action_label(self, action_id: str) -> str:
+        """Return a human-readable label for an action: from the static
+        registry if known, otherwise from its menu entry if it has one,
+        otherwise the raw action name.
+
+        :param action_id: the fully prefixed action id, e.g. 'win.Clipboard'
+        :type action_id: str
+        :rtype: str
+        """
+        static = self.static_registry.get(action_id)
+        if static:
+            return static["label"].replace("_", "", 1)
+        for item in self.et_xml.iter("item"):
+            attrs = {
+                attr.get("name"): (attr.text or "")
+                for attr in item.findall("attribute")
+            }
+            if attrs.get("action") == action_id:
+                label = attrs.get("label")
+                if label:
+                    return label.replace("_", "", 1)
+        return action_id.split(".", 1)[-1]
+
+    def menu_action_ids(self) -> set[str]:
+        """Return the action ids that appear as a clickable entry
+        somewhere in the current menu XML (main menu bar or a popup
+        context menu), as opposed to being reachable only via a toolbar
+        button or a bare keyboard shortcut.
+
+        :rtype: set[str]
+        """
+        return {
+            attr.text
+            for item in self.et_xml.iter()
+            if item.tag in ("item", "submenu")
+            for attr in item.findall("attribute")
+            if attr.get("name") == "action" and attr.text
+        }
+
+    def get_accel(self, action_id: str) -> str:
+        """Return the current accelerator string for action_id, or ''.
+
+        This is the saved override if there is one, otherwise the known
+        default -- computed independent of whether action_id's action
+        group is currently live, so it stays correct for actions
+        belonging to a view or widget not yet instantiated this session.
+
+        :param action_id: the fully prefixed action id
+        :type action_id: str
+        """
+        return self.accel_dict.get(action_id, self.default_accels.get(action_id, ""))
+
+    def list_actions(self) -> list[dict[str, str]]:
+        """Return metadata for every known action -- statically registered,
+        currently live, or previously seen live earlier this session -- for
+        use by a keyboard-shortcut editor.
+
+        A view's own menu actions (as opposed to ones registered via
+        register_static_shortcuts) are only "live" -- with a resolvable
+        label and category -- while that view is the one currently showing:
+        switching views tears down the previous view's action groups and
+        menu XML (see ViewManager.__disconnect_previous_page). Without
+        label_cache, an action like a Geography view's "Print..." command
+        would only appear labeled in the editor while that specific view
+        happened to be the one on screen, and would look blank the rest of
+        the time. label_cache remembers the label/category the first time
+        each such action is seen live, so it keeps showing correctly once
+        any view defining it has been visited at all this session.
+
+        :returns: one dict per action with keys 'action_id', 'label',
+            'group_name', 'current_accel', 'default_accel'
+        :rtype: list[dict]
+        """
+        actions = {}
+        for action_id, meta in self.static_registry.items():
+            actions[action_id] = {
+                "action_id": action_id,
+                "label": meta["label"].replace("_", "", 1),
+                "group_name": meta["group_name"],
+                "current_accel": self.get_accel(action_id),
+                "default_accel": self.default_accels.get(action_id, ""),
+            }
+        for group in self.action_groups:
+            if group.name in _DYNAMIC_GROUP_NAMES:
+                continue
+            for item in group.actionlist:
+                action_id = group.prefix + item[ACTION_NAME]
+                if action_id in actions:
+                    continue
+                label = self.get_action_label(action_id)
+                self.label_cache[action_id] = (label, group.name)
+                actions[action_id] = {
+                    "action_id": action_id,
+                    "label": label,
+                    "group_name": group.name,
+                    "current_accel": self.get_accel(action_id),
+                    "default_accel": self.default_accels.get(action_id, ""),
+                }
+        for action_id in self._all_known_action_ids():
+            if action_id in actions:
+                continue
+            label, group_name = self.label_cache.get(
+                action_id, (action_id.split(".", 1)[-1], "")
+            )
+            actions[action_id] = {
+                "action_id": action_id,
+                "label": label,
+                "group_name": group_name,
+                "current_accel": self.get_accel(action_id),
+                "default_accel": self.default_accels.get(action_id, ""),
+            }
+        return list(actions.values())
+
+    def check_accel(self, accel: str) -> str:
+        """Return '' if accel is safe for a user to bind, otherwise a
+        user-facing reason it is reserved. See the module-level
+        :py:func:`check_accel` for details.
+
+        :param accel: a Gtk accelerator string, e.g. '<Primary>c' or 'a'
+        :type accel: str
+        """
+        return check_accel(accel)
+
+    def set_accel(self, action_id: str, accel: str) -> list[str]:
+        """Bind action_id to a new accelerator, recording the override.
+
+        :param action_id: the fully prefixed action id
+        :type action_id: str
+        :param accel: the new Gtk accelerator string, e.g. '<Primary>c'
+        :type accel: str
+        :returns: any other action ids that were already bound to accel
+        :rtype: list[str]
+        """
+        accel = _normalize_accel(accel)
+        candidates: Iterable[str] = self._all_known_action_ids()
+        if action_id.startswith("glade."):
+            # Editor-dialog-local shortcuts only conflict with others in
+            # the same dialog: each .glade file gets its own implicit
+            # Gtk.AccelGroup, scoped to that dialog's own window, so the
+            # same key in an unrelated dialog is never actually ambiguous.
+            scope = action_id.rsplit(".", 1)[0] + "."
+            candidates = [c for c in candidates if c.startswith(scope)]
+        elif action_id.startswith("app.") and action_id not in self._live_action_ids():
+            # Static-only "app." entries such as "dialog-ok"/"dialog-cancel"
+            # have no live Gio.SimpleAction of their own: they are dispatched
+            # by a per-dialog Gtk.AccelGroup (see ManagedWindow.set_window)
+            # that only fires while that dialog holds keyboard focus. A
+            # background view's "win." actions can never receive that same
+            # keypress while a dialog is focused, so they can't really
+            # conflict -- only a genuinely global "app." action (dispatched
+            # regardless of window focus) or another dialog's own "glade."
+            # shortcut (live in the same focused window) can.
+            candidates = [
+                c for c in candidates if c.startswith("app.") or c.startswith("glade.")
+            ]
+        conflicts = [
+            other
+            for other in candidates
+            if other != action_id and self.get_accel(other) == accel
+        ]
+        self.app.set_accels_for_action(action_id, [accel])
+        self.accel_dict[action_id] = accel
+        return conflicts
+
+    def clear_accel(self, action_id: str) -> None:
+        """Remove any accelerator from action_id.
+
+        :param action_id: the fully prefixed action id
+        :type action_id: str
+        """
+        self.app.set_accels_for_action(action_id, [])
+        self.accel_dict[action_id] = ""
+
+    def reset_accel(self, action_id: str) -> None:
+        """Restore action_id to its hard-coded default accelerator.
+
+        :param action_id: the fully prefixed action id
+        :type action_id: str
+        """
+        default = self.default_accels.get(action_id, "")
+        self.app.set_accels_for_action(action_id, [default] if default else [])
+        self.accel_dict.pop(action_id, None)
+
+    def save_accels(self, filename: str, only_changed: bool = True) -> None:
+        """Write the current accelerator set to filename, in the same JSON
+        Lines format read by load_accels: one ``{"id", "label",
+        "category", "accel"}`` object per line. "label" and "category" are
+        included purely so the file is self-documenting to a human reader;
+        load_accels ignores them.
+
+        :param filename: path to write to
+        :type filename: str
+        :param only_changed: when True, only write accels that differ from
+            their hard-coded default (a compact, forward-compatible
+            personal override file); when False, write every currently
+            known accel (a self-contained file suitable for export/sharing)
+        :type only_changed: bool
+        """
+        if only_changed:
+            action_ids = [
+                action_id
+                for action_id, accel in self.accel_dict.items()
+                if accel != self.default_accels.get(action_id, "")
+            ]
+        else:
+            action_ids = sorted(self._all_known_action_ids())
+        meta_by_id = {action["action_id"]: action for action in self.list_actions()}
+        with open(filename, "w", encoding="utf-8") as hndl:
+            for action_id in action_ids:
+                meta = meta_by_id.get(action_id, {})
+                hndl.write(
+                    json.dumps(
+                        {
+                            "id": action_id,
+                            "label": meta.get("label", ""),
+                            "category": meta.get("group_name", ""),
+                            "accel": self.get_accel(action_id),
+                        }
+                    )
+                    + "\n"
+                )
 
 
 INVALID_CHARS = [" ", "_", "(", ")", ",", "'"]

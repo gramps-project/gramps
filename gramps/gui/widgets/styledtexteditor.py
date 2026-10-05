@@ -607,6 +607,29 @@ class StyledTextEditor(Gtk.TextView):
         self.connect("button-release-event", self.on_button_release_event)
         self.connect("populate-popup", self.on_populate_popup)
 
+    @classmethod
+    def get_shortcut_specs(cls):
+        """
+        Return the (action_name, default_accel, label) triples this widget
+        always defines, independent of any live instance. Used to populate
+        the customizable keyboard shortcuts list without needing to build a
+        real editor. Keep in sync with create_toolbar().
+        """
+        return [
+            ("ITALIC", "<PRIMARY>i", _("Italic")),
+            ("BOLD", "<PRIMARY>b", _("Bold")),
+            ("UNDERLINE", "<PRIMARY>u", _("Underline")),
+            ("STRIKETHROUGH", "<PRIMARY>s", _("Strikethrough")),
+            ("SUPERSCRIPT", "<PRIMARY>p", _("Superscript")),
+            ("SUBSCRIPT", "<PRIMARY>r", _("Subscript")),
+            ("FONTCOLOR", "", _("Font Color")),
+            ("HIGHLIGHT", "", _("Background Color")),
+            ("LINK", "", _("Link")),
+            ("CLEAR", "", _("Clear Markup")),
+            ("STUndo", "<primary>z", _("Undo")),
+            ("STRedo", "<primary><shift>z", _("Redo")),
+        ]
+
     def create_toolbar(self, uimanager, window):
         """
         Create a formatting toolbar.
@@ -621,19 +644,30 @@ class StyledTextEditor(Gtk.TextView):
         builder.add_from_string(FORMAT_TOOLBAR)
 
         # define the actions...
+        accels = {name: accel for name, accel, _label in self.get_shortcut_specs()}
         _actions = [
-            ("ITALIC", self._on_toggle_action_activate, "<PRIMARY>i", False),
-            ("BOLD", self._on_toggle_action_activate, "<PRIMARY>b", False),
-            ("UNDERLINE", self._on_toggle_action_activate, "<PRIMARY>u", False),
-            ("STRIKETHROUGH", self._on_toggle_action_activate, "<PRIMARY>s", False),
-            ("SUPERSCRIPT", self._on_toggle_action_activate, "<PRIMARY>p", False),
-            ("SUBSCRIPT", self._on_toggle_action_activate, "<PRIMARY>r", False),
+            ("ITALIC", self._on_toggle_action_activate, accels["ITALIC"], False),
+            ("BOLD", self._on_toggle_action_activate, accels["BOLD"], False),
+            ("UNDERLINE", self._on_toggle_action_activate, accels["UNDERLINE"], False),
+            (
+                "STRIKETHROUGH",
+                self._on_toggle_action_activate,
+                accels["STRIKETHROUGH"],
+                False,
+            ),
+            (
+                "SUPERSCRIPT",
+                self._on_toggle_action_activate,
+                accels["SUPERSCRIPT"],
+                False,
+            ),
+            ("SUBSCRIPT", self._on_toggle_action_activate, accels["SUBSCRIPT"], False),
             ("FONTCOLOR", self._on_action_activate),
             ("HIGHLIGHT", self._on_action_activate),
             ("LINK", self._on_link_activate),
             ("CLEAR", self._format_clear_cb),
-            ("STUndo", self.undo, "<primary>z"),
-            ("STRedo", self.redo, "<primary><shift>z"),
+            ("STUndo", self.undo, accels["STUndo"]),
+            ("STRedo", self.redo, accels["STRedo"]),
         ]
 
         # the following are done manually rather than using actions
