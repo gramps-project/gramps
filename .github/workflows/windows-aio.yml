@@ -57,7 +57,7 @@ jobs:
         python3 -m unittest discover -p "*_test.py"
     - uses: actions/upload-artifact@v6
       with:
-        name: GrampsAIO
+        name: GrampsAIO-${{ github.ref_name }}
         path: D:\a\gramps\gramps\aio\ucrt64\src\GrampsAIO-*.exe
         if-no-files-found: error
         compression-level: 0 # no compression
