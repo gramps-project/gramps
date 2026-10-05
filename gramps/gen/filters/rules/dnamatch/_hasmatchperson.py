@@ -26,18 +26,27 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# IsUnidentified
+# HasMatchPerson
 #
 # -------------------------------------------------------------------------
-class IsUnidentified(Rule):
-    """Rule that matches DNA tests with no linked person."""
+class HasMatchPerson(Rule):
+    """Rule that checks for a DNA match whose match kit belongs to a person."""
 
-    labels = []
-    name = _("DNA tests with no linked person")
+    labels = [_("Person ID:")]
+    name = _("DNA matches whose match kit belongs to <person>")
     description = _(
-        "Matches DNA tests where no person has been identified as the kit owner"
+        "Matches DNA matches whose match kit is linked to the specified person"
     )
     category = _("Person filters")
 
-    def apply_to_one(self, db: Database, dnatest) -> bool:
-        return dnatest.person_handle is None
+    def prepare(self, db: Database, user):
+        self.test_handles: set[str] = set()
+        person = db.get_person_from_gramps_id(self.list[0])
+        if not person:
+            return
+        for handle, data in db._iter_raw_dnatest_data():
+            if data.person_handle == person.handle:
+                self.test_handles.add(handle)
+
+    def apply_to_one(self, db: Database, dnamatch) -> bool:
+        return dnamatch.match_test_handle in self.test_handles

@@ -26,18 +26,29 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# IsUnidentified
+# HasYHaplogroup
 #
 # -------------------------------------------------------------------------
-class IsUnidentified(Rule):
-    """Rule that matches DNA tests with no linked person."""
+class HasYHaplogroup(Rule):
+    """Rule that checks for a person with a DNA test that has a matching
+    Y-DNA haplogroup."""
 
-    labels = []
-    name = _("DNA tests with no linked person")
+    labels = [_("Haplogroup:")]
+    name = _("People with a DNA test Y-DNA haplogroup containing <text>")
     description = _(
-        "Matches DNA tests where no person has been identified as the kit owner"
+        "Matches people linked to a DNA test whose Y-DNA haplogroup contains "
+        "the given text"
     )
-    category = _("Person filters")
+    category = _("DNA test filters")
 
-    def apply_to_one(self, db: Database, dnatest) -> bool:
-        return dnatest.person_handle is None
+    def prepare(self, db: Database, user):
+        text = self.list[0].upper()
+        self.person_handles: set[str] = set()
+        for dnatest in db.iter_dnatests():
+            if not dnatest.person_handle:
+                continue
+            if dnatest.y_haplogroup.upper().find(text) != -1:
+                self.person_handles.add(dnatest.person_handle)
+
+    def apply_to_one(self, db: Database, person) -> bool:
+        return person.handle in self.person_handles

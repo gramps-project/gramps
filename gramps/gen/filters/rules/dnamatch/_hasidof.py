@@ -1,7 +1,4 @@
-#
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright (C) 2026  Ian Davis
+# Copyright (C) 2026 Ian Davis
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,29 +12,23 @@
 #
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
-#
 
 from ....const import GRAMPS_LOCALE as glocale
-from .. import Rule
 from ....db import Database
+from .. import HasGrampsId
 
 _ = glocale.translation.gettext
 
 
-# -------------------------------------------------------------------------
-#
-# IsUnidentified
-#
-# -------------------------------------------------------------------------
-class IsUnidentified(Rule):
-    """Rule that matches DNA tests with no linked person."""
+class HasIdOf(HasGrampsId):
+    """Rule that checks for a DNA match with a specific Gramps ID"""
 
-    labels = []
-    name = _("DNA tests with no linked person")
-    description = _(
-        "Matches DNA tests where no person has been identified as the kit owner"
-    )
-    category = _("Person filters")
+    name = _("DNA match with <Id>")
+    description = _("Matches a DNA match with a specified Gramps ID")
 
-    def apply_to_one(self, db: Database, dnatest) -> bool:
-        return dnatest.person_handle is None
+    def prepare(self, db: Database, user):
+        data = db._get_raw_dnamatch_from_id_data(self.list[0])
+        if data:
+            self.selected_handles = set([data.handle])
+        else:
+            self.selected_handles = set([])

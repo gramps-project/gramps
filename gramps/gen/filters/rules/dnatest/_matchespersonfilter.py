@@ -18,7 +18,7 @@
 #
 
 from ....const import GRAMPS_LOCALE as glocale
-from .. import Rule
+from .. import MatchesFilterBase
 from ....db import Database
 
 _ = glocale.translation.gettext
@@ -26,18 +26,29 @@ _ = glocale.translation.gettext
 
 # -------------------------------------------------------------------------
 #
-# IsUnidentified
+# MatchesPersonFilter
 #
 # -------------------------------------------------------------------------
-class IsUnidentified(Rule):
-    """Rule that matches DNA tests with no linked person."""
+class MatchesPersonFilter(MatchesFilterBase):
+    """Rule that checks for a DNA test linked to a person matching a filter."""
 
-    labels = []
-    name = _("DNA tests with no linked person")
+    labels = [_("Person filter name:")]
+    name = _("DNA tests linked to people matching the <person filter>")
     description = _(
-        "Matches DNA tests where no person has been identified as the kit owner"
+        "Matches DNA tests linked to a person matched by the specified "
+        "person filter name"
     )
     category = _("Person filters")
 
+    # we want to have this filter show person filters
+    namespace = "Person"
+
     def apply_to_one(self, db: Database, dnatest) -> bool:
-        return dnatest.person_handle is None
+        if dnatest.person_handle is None:
+            return False
+        filt = self.find_filter()
+        if filt:
+            person = db.get_person_from_handle(dnatest.person_handle)
+            if person:
+                return filt.apply_to_one(db, person)
+        return False

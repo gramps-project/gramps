@@ -1,7 +1,4 @@
-#
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright (C) 2026  Ian Davis
+# Copyright (C) 2026 Ian Davis
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,29 +12,16 @@
 #
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
-#
 
 from ....const import GRAMPS_LOCALE as glocale
-from .. import Rule
-from ....db import Database
+from .._hasnotebase import HasNoteBase
 
 _ = glocale.translation.gettext
 
 
-# -------------------------------------------------------------------------
-#
-# IsUnidentified
-#
-# -------------------------------------------------------------------------
-class IsUnidentified(Rule):
-    """Rule that matches DNA tests with no linked person."""
+class HasNote(HasNoteBase):
+    """DNA matches having notes"""
 
-    labels = []
-    name = _("DNA tests with no linked person")
-    description = _(
-        "Matches DNA tests where no person has been identified as the kit owner"
-    )
-    category = _("Person filters")
-
-    def apply_to_one(self, db: Database, dnatest) -> bool:
-        return dnatest.person_handle is None
+    name = _("DNA matches having <count> notes")
+    description = _("Matches DNA matches having a certain number of notes")
+    category = _("Note filters")

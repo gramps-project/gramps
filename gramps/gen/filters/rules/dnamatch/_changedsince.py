@@ -1,7 +1,4 @@
-#
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright (C) 2026  Ian Davis
+# Copyright (C) 2026 Ian Davis
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,29 +12,20 @@
 #
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, see <https://www.gnu.org/licenses/>.
-#
 
 from ....const import GRAMPS_LOCALE as glocale
-from .. import Rule
-from ....db import Database
+from .._changedsincebase import ChangedSinceBase
 
 _ = glocale.translation.gettext
 
 
-# -------------------------------------------------------------------------
-#
-# IsUnidentified
-#
-# -------------------------------------------------------------------------
-class IsUnidentified(Rule):
-    """Rule that matches DNA tests with no linked person."""
+class ChangedSince(ChangedSinceBase):
+    """Rule that checks for DNA matches changed since a specific time."""
 
-    labels = []
-    name = _("DNA tests with no linked person")
+    labels = [_("Changed after:"), _("but before:")]
+    name = _("DNA matches changed after <date time>")
     description = _(
-        "Matches DNA tests where no person has been identified as the kit owner"
+        "Matches DNA match records changed after a specified "
+        "date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second "
+        "date-time is given."
     )
-    category = _("Person filters")
-
-    def apply_to_one(self, db: Database, dnatest) -> bool:
-        return dnatest.person_handle is None
