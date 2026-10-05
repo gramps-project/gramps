@@ -7,6 +7,7 @@
 # Contribution 2009 by     Bob Ham <rah@bash.sh>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011-2014  Paul Franklin
+# Copyright (C) 2026       Dave Khuon
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -260,29 +261,48 @@ class FamilyLinesOptions(MenuReportOptions):
             )
         )
         add_option("gidlist", person_list)
+        indent_spaces = " " * 4
 
-        self.limit_parents = BooleanOption(_("Limit the number of ancestors"), False)
-        self.limit_parents.set_help(_("Whether to " "limit the number of ancestors."))
+        # --- Ancestor Options Structure ---
+        self.limit_parents = BooleanOption(_("Limit ancestors"), False)
+        self.limit_parents.set_help(_("Whether to limit the number of ancestors."))
         add_option("limitparents", self.limit_parents)
-        self.limit_parents.connect("value-changed", self.limit_changed)
+        self.limit_parents.connect("value-changed", self.limit_parents_changed)
 
-        self.max_parents = NumberOption("", 50, 10, 9999)
-        self.max_parents.set_help(_("The maximum number " "of ancestors to include."))
+        self.parent_limit_type = EnumeratedListOption(
+            indent_spaces + _("Limitation type"), 0
+        )
+        self.parent_limit_type.add_item(0, _("Count"))
+        self.parent_limit_type.add_item(1, _("Generations"))
+        self.parent_limit_type.set_help(
+            _("Choose whether to limit ancestors by total count or generation depth.")
+        )
+        add_option("parentlimittype", self.parent_limit_type)
+
+        self.max_parents = NumberOption(indent_spaces + _("Maximum value"), 50, 0, 9999)
+        self.max_parents.set_help(_("The maximum value for ancestor limitation."))
         add_option("maxparents", self.max_parents)
 
-        self.limit_children = BooleanOption(
-            _("Limit the number " "of descendants"), False
-        )
-        self.limit_children.set_help(
-            _("Whether to " "limit the number of descendants.")
-        )
+        # --- Descendant Options Structure ---
+        self.limit_children = BooleanOption(_("Limit descendants"), False)
+        self.limit_children.set_help(_("Whether to limit the number of descendants."))
         add_option("limitchildren", self.limit_children)
-        self.limit_children.connect("value-changed", self.limit_changed)
+        self.limit_children.connect("value-changed", self.limit_children_changed)
 
-        self.max_children = NumberOption("", 50, 10, 9999)
-        self.max_children.set_help(
-            _("The maximum number " "of descendants to include.")
+        self.child_limit_type = EnumeratedListOption(
+            indent_spaces + _("Limitation type"), 0
         )
+        self.child_limit_type.add_item(0, _("Count"))
+        self.child_limit_type.add_item(1, _("Generations"))
+        self.child_limit_type.set_help(
+            _("Choose whether to limit descendants by total count or generation depth.")
+        )
+        add_option("childlimittype", self.child_limit_type)
+
+        self.max_children = NumberOption(
+            indent_spaces + _("Maximum value"), 50, 0, 9999
+        )
+        self.max_children.set_help(_("The maximum value for descendant limitation."))
         add_option("maxchildren", self.max_children)
 
         # --------------------
@@ -382,15 +402,27 @@ class FamilyLinesOptions(MenuReportOptions):
         color_family.set_help(_("The color to use to display families."))
         add_option("colorfamilies", color_family)
 
-        self.limit_changed()
+        # self.limit_changed() - replaced by the 2 lines below
+        self.limit_parents_changed()
+        self.limit_children_changed()
+
         self.images_changed()
 
-    def limit_changed(self):
-        """
-        Handle the change of limiting parents and children.
-        """
-        self.max_parents.set_available(self.limit_parents.get_value())
-        self.max_children.set_available(self.limit_children.get_value())
+    def limit_parents_changed(self):
+        """Handle the change of limiting parents."""
+        active = self.limit_parents.get_value()
+        self.parent_limit_type.set_available(active)
+        self.max_parents.set_available(active)
+        if not active:
+            self.max_parents.set_value(0)
+
+    def limit_children_changed(self):
+        """Handle the change of limiting children."""
+        active = self.limit_children.get_value()
+        self.child_limit_type.set_available(active)
+        self.max_children.set_available(active)
+        if not active:
+            self.max_children.set_value(0)
 
     def images_changed(self):
         """
@@ -463,10 +495,19 @@ class FamilyLinesReport(Report):
         self._colorother = get_value("colorother")
         self._colorunknown = get_value("colorunknown")
         self._colorfamilies = get_value("colorfamilies")
+
         self._limitparents = get_value("limitparents")
+        self._parent_limit_type = get_value(
+            "parentlimittype"
+        )  # 0 = Count, 1 = Generations
         self._maxparents = get_value("maxparents")
+
         self._limitchildren = get_value("limitchildren")
+        self._child_limit_type = get_value(
+            "childlimittype"
+        )  # 0 = Count, 1 = Generations
         self._maxchildren = get_value("maxchildren")
+
         self._incimages = get_value("incimages")
         self._imageonside = get_value("imageonside")
         self._imagesize = get_value("imagesize")
@@ -588,14 +629,15 @@ class FamilyLinesReport(Report):
         self.write_families()
 
     def find_parents(self):
-        """find the parents"""
-        # we need to start with all of our "people of interest"
+        """find the parents supporting count or generation limits"""
         ancestors_not_yet_processed = set(self._interest_set)
 
-        # now we find all the immediate ancestors of our people of interest
+        # If limiting by generation, we map handles to their current depth level from interest set
+        gen_depths = {handle: 0 for handle in self._interest_set}
 
         while ancestors_not_yet_processed:
             handle = ancestors_not_yet_processed.pop()
+            current_gen = gen_depths.get(handle, 0)
 
             # One of 2 things can happen here:
             #   1) we already know about this person and he/she is already
@@ -631,35 +673,36 @@ class FamilyLinesReport(Report):
                         ):
                             self._families.add(family_handle)
 
-                # if we have a limit on the number of people, and we've
-                # reached that limit, then don't attempt to find any
+                # if we have a limit on the number of people or generations,
+                # and we've reached that limit, then don't attempt to find any
                 # more ancestors
-                if self._limitparents and (
-                    self._maxparents
-                    < len(ancestors_not_yet_processed) + len(self._people)
-                ):
-                    # get back to the top of the while loop so we can finish
-                    # processing the people queued up in the "not yet
-                    # processed" list
-                    continue
+                # Check limits
+                if self._limitparents:
+                    if self._parent_limit_type == 0:  # Count limit
+                        if self._maxparents < len(ancestors_not_yet_processed) + len(
+                            self._people
+                        ):
+                            continue
+                    elif self._parent_limit_type == 1:  # Generation limit
+                        if current_gen >= self._maxparents:
+                            continue
 
                 # queue the parents of the person we're processing
                 for family_handle in person.get_parent_family_handle_list():
                     family = self._db.get_family_from_handle(family_handle)
+                    if not family:
+                        continue
 
-                    father_handle = family.get_father_handle()
-                    if father_handle:
-                        father = self._db.get_person_from_handle(father_handle)
-                        if father:
-                            ancestors_not_yet_processed.add(father_handle)
-                            self._families.add(family_handle)
-
-                    mother_handle = family.get_mother_handle()
-                    if mother_handle:
-                        mother = self._db.get_person_from_handle(mother_handle)
-                        if mother:
-                            ancestors_not_yet_processed.add(mother_handle)
-                            self._families.add(family_handle)
+                    for parent_handle in [
+                        family.get_father_handle(),
+                        family.get_mother_handle(),
+                    ]:
+                        if parent_handle:
+                            parent = self._db.get_person_from_handle(parent_handle)
+                            if parent:
+                                ancestors_not_yet_processed.add(parent_handle)
+                                gen_depths[parent_handle] = current_gen + 1
+                                self._families.add(family_handle)
 
     def remove_uninteresting_parents(self):
         """remove any uninteresting parents"""
@@ -822,43 +865,45 @@ class FamilyLinesReport(Report):
                     unprocessed_parents.add(child_handle)
 
     def find_children(self):
-        """find any children"""
-        # we need to start with all of our "people of interest"
+        """find any children supporting count or generation limits"""
         children_not_yet_processed = set(self._interest_set)
         children_to_include = set()
-
-        # now we find all the children of our people of interest
+        gen_depths = {handle: 0 for handle in self._interest_set}
 
         while len(children_not_yet_processed) > 0:
             handle = children_not_yet_processed.pop()
+            current_gen = gen_depths.get(handle, 0)
 
             if handle not in children_to_include:
                 person = self._db.get_person_from_handle(handle)
-
                 # remember this person!
                 children_to_include.add(handle)
 
-                # if we have a limit on the number of people, and we've
-                # reached that limit, then don't attempt to find any
-                # more children
-                if self._limitchildren and (
-                    self._maxchildren
-                    < len(children_not_yet_processed) + len(children_to_include)
-                ):
-                    # get back to the top of the while loop
-                    # so we can finish processing the people
-                    # queued up in the "not yet processed" list
-                    continue
+                # Check limits
+                if self._limitchildren:
+                    if self._child_limit_type == 0:  # Count limit
+                        if self._maxchildren < len(children_not_yet_processed) + len(
+                            children_to_include
+                        ):
+                            continue
+                    elif self._child_limit_type == 1:  # Generation limit
+                        if current_gen >= self._maxchildren:
+                            continue
 
-                # iterate through this person's families
+                # Iterate through this person's families
                 for family_handle in person.get_family_handle_list():
                     family = self._db.get_family_from_handle(family_handle)
+                    if not family:
+                        continue
 
                     # queue up any children from this person's family
                     for childref in family.get_child_ref_list():
-                        child = self._db.get_person_from_handle(childref.ref)
-                        children_not_yet_processed.add(child.get_handle())
-                        self._families.add(family_handle)
+                        child_handle = childref.ref
+                        child = self._db.get_person_from_handle(child_handle)
+                        if child:
+                            children_not_yet_processed.add(child_handle)
+                            gen_depths[child_handle] = current_gen + 1
+                            self._families.add(family_handle)
 
                     # include the spouse from this person's family
                     spouse_handle = utils.find_spouse(person, family)
