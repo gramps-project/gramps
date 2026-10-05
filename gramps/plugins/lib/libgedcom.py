@@ -1025,12 +1025,12 @@ class Lexer:
                     tag = line[0]
                     line_value = line[2]
             except:
-                problem = _("Line ignored ")
+                problem = _("Line %d ignored ") % self.index
                 text = original_line.rstrip("\n\r")
                 prob_width = 66
                 problem = problem.ljust(prob_width)[0 : (prob_width - 1)]
                 text = text.replace("\n", "\n".ljust(prob_width + 22))
-                message = "%s              %s" % (problem, text)
+                message = "%s         %s" % (problem, text)
                 self.__add_msg(message)
                 continue
 
@@ -3495,7 +3495,15 @@ class GedcomParser(UpdateCallback):
         if line.token == TOKEN_UNKNOWN:
             self.__add_msg(_("Line ignored as not understood"), line, state)
         else:
-            self.__add_msg(_("Tag recognized but not supported"), line, state)
+            self.__add_msg(
+                _(
+                    "Tag recognized but not supported: '"
+                    + str(line.data)
+                    + "' on line "
+                ),
+                line,
+                state,
+            )
         self.__skip_subordinate_levels(line.level + 1, state)
 
     def __not_recognized(self, line, state):
@@ -3549,7 +3557,7 @@ class GedcomParser(UpdateCallback):
         if problem != "":
             self.number_of_errors += 1
         if line:
-            prob_width = 66
+            prob_width = 100
             problem = problem.ljust(prob_width)[0 : (prob_width - 1)]
             text = str(line.data).replace("\n", "\n".ljust(prob_width + 22))
             message = "%s   Line %5d: %s %s %s\n" % (
@@ -3592,7 +3600,7 @@ class GedcomParser(UpdateCallback):
         if not text or not BARE_NUMERIC_DATE.match(text):
             return
         # ``line`` is intentionally not passed: ``__add_msg`` truncates
-        # the problem string to 66 columns when a line is supplied, which
+        # the problem string to 99 columns when a line is supplied, which
         # drops the actionable half of the warning.  The text below
         # contains the original GEDCOM date string verbatim, so the user
         # can still grep their .ged for it without the line number.
