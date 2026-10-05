@@ -55,9 +55,12 @@ jobs:
         export GRAMPS_RESOURCES=build/share
         source /tmp/grampspythonenv/bin/activate
         python3 -m unittest discover -p "*_test.py"
+    - name: Sanitize artifact name
+      run: |
+        echo "ARTIFACT_NAME=GrampsAIO-$(echo '${{ github.ref_name }}' | tr '/\\' '--')" >> $GITHUB_ENV
     - uses: actions/upload-artifact@v6
       with:
-        name: GrampsAIO-${{ github.ref_name }}
+        name: ${{ env.ARTIFACT_NAME }}
         path: D:\a\gramps\gramps\aio\ucrt64\src\GrampsAIO-*.exe
         if-no-files-found: error
         compression-level: 0 # no compression
