@@ -51,7 +51,7 @@ from .osmgps import OsmGps
 #
 # -------------------------------------------------------------------------
 try:
-    gi.require_version("GeocodeGlib", "1.0")
+    gi.require_version("GeocodeGlib", "2.0")
     from gi.repository import GeocodeGlib
 
     GEOCODEGLIB = True
