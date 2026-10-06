@@ -45,6 +45,9 @@ jobs:
       with:
         msystem: UCRT64
         update: true
+        # Force the installation of the working 3.12 version of NSIS
+        install: >-
+          mingw-w64-ucrt-x86_64-nsis=3.12-1
     - name: Build
       run: |
         cd aio
