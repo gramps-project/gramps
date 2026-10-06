@@ -82,7 +82,7 @@ jobs:
       if: always() # Ensures reports upload even if tests fail
       with:
         name: test-reports
-        path: test/data/tree_report_age_output
+        path: test/data
         retention-days: 14
     - name: POTFILES check
       run: |

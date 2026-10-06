@@ -45,9 +45,6 @@ jobs:
       with:
         msystem: UCRT64
         update: true
-    - name: Install NSIS
-      run: |
-        pacman -S --noconfirm mingw-w64-ucrt-x86_64-nsis
     - name: Build
       run: |
         cd aio
