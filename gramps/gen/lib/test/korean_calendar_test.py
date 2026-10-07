@@ -103,18 +103,35 @@ class TestKoreanLunarSDN(unittest.TestCase):
         """SDN below table range returns (0, 0, 0)."""
         self.assertEqual(korean_lunar_ymd(0), (0, 0, 0))
 
-    def test_identical_to_chinese(self):
-        """Korean and Chinese lunar calendars share the same dates."""
+    def test_differs_from_chinese(self):
+        """Korea's calendar is computed for Korea's meridian (KASI data)."""
         from gramps.gen.lib.gcalendar import chinese_lunar_sdn
 
-        for year in [1921, 1967, 1985, 2022, 2023, 2024, 2025]:
-            kr = korean_lunar_sdn(year, 1, 1)
-            cn = chinese_lunar_sdn(year, 1, 1)
+        # Seollal a day after Chinese New Year
+        self.assertEqual(korean_lunar_sdn(1997, 1, 1), gregorian_sdn(1997, 2, 8))
+        self.assertEqual(chinese_lunar_sdn(1997, 1, 1), gregorian_sdn(1997, 2, 7))
+        self.assertEqual(korean_lunar_sdn(2027, 1, 1), gregorian_sdn(2027, 2, 7))
+        # 2017's leap month: 5th in Korea (6th in China)
+        self.assertEqual(korean_lunar_ymd(gregorian_sdn(2017, 6, 24)), (2017, 105, 1))
+
+    def test_same_as_chinese_where_they_agree(self):
+        """Same New Year as China in most years, and at the table's ends."""
+        from gramps.gen.lib.gcalendar import chinese_lunar_sdn
+
+        for year in [999, 1000, 1921, 1985, 2024, 2025, 2200]:
             self.assertEqual(
-                kr,
-                cn,
-                f"KR and CN dates should be identical for year {year}",
+                korean_lunar_sdn(year, 1, 1), chinese_lunar_sdn(year, 1, 1)
             )
+
+    def test_continuous(self):
+        """Every day maps to exactly one Korean date, across the table's ends."""
+        for start, end in [
+            ((999, 1, 1), (1001, 12, 31)),
+            ((2198, 1, 1), (2201, 12, 31)),
+        ]:
+            for sdn in range(gregorian_sdn(*start), gregorian_sdn(*end) + 1):
+                ymd = korean_lunar_ymd(sdn)
+                self.assertEqual(korean_lunar_sdn(*ymd), sdn)
 
 
 class TestKoreanGanjiYear(unittest.TestCase):

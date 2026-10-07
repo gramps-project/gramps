@@ -26,6 +26,7 @@ Provide calendar to sdn (serial date number) conversion.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import bisect
 import math
 
 # -------------------------------------------------------------------------
@@ -35,6 +36,8 @@ import math
 # -------------------------------------------------------------------------
 from .lunartables import CHINESE_BASE_YEAR as _CHN_BASE_YEAR
 from .lunartables import CHINESE_YEAR_INFOS as _CHN_YEAR_INFOS
+from .lunartables import KOREAN_BASE_YEAR as _KOR_BASE_YEAR
+from .lunartables import KOREAN_YEAR_INFOS as _KOR_YEAR_INFOS
 
 # -------------------------------------------------------------------------
 #
@@ -782,9 +785,23 @@ def chinese_sexagenary_year(year: int) -> str:
 # Korean Lunar Calendar (음력)
 #
 # ------------------------------------------------------------
-# The Korean and Chinese lunar calendars follow the same astronomical
-# rules and produce identical dates.  The only differences are the
-# display names (Korean month names and 간지 year names).
+# Korea's calendar follows the same rules as China's, but computed for
+# Korea's own meridian (UTC+9 today), so where a new moon falls near
+# midnight a month starts a day later than in China -- e.g. Seollal
+# 1997-02-08 (Chinese New Year 1997-02-07), and whole leap months move
+# (2012, 2017).  Lunar years 1000-2199 use their own table: KASI's
+# (Korea Astronomy and Space Science Institute) data for 1000-2049, via
+# the korean_lunar_calendar package (MIT licence), and an astronomical
+# computation at UTC+9 for 2050-2199.  Both ends meet the Chinese table
+# exactly (same New Year's day), which other years use: Korea used
+# Chinese-issued calendars before then.  The table is in lunartables.py.
+_KOR_START_SDN = chinese_lunar_sdn(_KOR_BASE_YEAR, 1, 1)
+_KOR_OFFSETS: list[int] = []
+_kor_running = 0
+for _yi in _KOR_YEAR_INFOS:
+    _KOR_OFFSETS.append(_kor_running)
+    _kor_running += sum(d for _m, _lp, d in _chn_iter_months(_yi))
+_KOR_OFFSETS.append(_kor_running)
 
 # Heavenly Stems (천간, Cheon-gan) and Earthly Branches (지지, Ji-ji)
 # for the Korean sexagenary (간지) cycle.
@@ -819,23 +836,40 @@ _KOR_EARTHLY_BRANCHES = (
 def korean_lunar_sdn(year: int, month: int, day: int) -> int:
     """Convert a Korean Lunar (음력) date to an SDN number.
 
-    Delegates to the Chinese lunar calendar, which shares the same
-    astronomical rules and dates.  Months 1–12 are regular months;
-    months 101–112 represent the leap (윤) version of that month.
-    Returns 0 for dates outside the supported range.
+    Months 1–12 are regular months; months 101–112 represent the leap
+    (윤) version of that month.  Returns 0 for dates outside the supported
+    range.
     """
-    return chinese_lunar_sdn(year, month, day)
+    idx = year - _KOR_BASE_YEAR
+    if not 0 <= idx < len(_KOR_YEAR_INFOS):
+        return chinese_lunar_sdn(year, month, day)
+    is_leap = month > 100
+    target = month - 100 if is_leap else month
+    offset = _KOR_OFFSETS[idx]
+    for m, leap, days in _chn_iter_months(_KOR_YEAR_INFOS[idx]):
+        if m == target and leap == is_leap:
+            return _KOR_START_SDN + offset + day - 1
+        offset += days
+    return 0
 
 
 def korean_lunar_ymd(sdn: int) -> tuple[int, int, int]:
     """Convert an SDN number to a Korean Lunar (음력) date.
 
-    Delegates to the Chinese lunar calendar, which shares the same
-    astronomical rules and dates.  The returned month is 1–12 for a
-    regular month or 101–112 for a leap (윤) month.  Returns
-    (0, 0, 0) for SDN values outside the supported range.
+    The returned month is 1–12 for a regular month or 101–112 for a leap
+    (윤) month.  Returns (0, 0, 0) for SDN values outside the supported
+    range.
     """
-    return chinese_lunar_ymd(sdn)
+    offset = sdn - _KOR_START_SDN
+    if not 0 <= offset < _KOR_OFFSETS[-1]:
+        return chinese_lunar_ymd(sdn)
+    idx = bisect.bisect_right(_KOR_OFFSETS, offset) - 1
+    remaining = offset - _KOR_OFFSETS[idx]
+    for m, is_leap, days in _chn_iter_months(_KOR_YEAR_INFOS[idx]):
+        if remaining < days:
+            return (_KOR_BASE_YEAR + idx, m + 100 if is_leap else m, remaining + 1)
+        remaining -= days
+    return (0, 0, 0)
 
 
 def korean_ganji_year(year: int) -> str:
