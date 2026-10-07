@@ -36,6 +36,8 @@ import math
 # -------------------------------------------------------------------------
 from .lunartables import CHINESE_BASE_YEAR as _CHN_BASE_YEAR
 from .lunartables import CHINESE_YEAR_INFOS as _CHN_YEAR_INFOS
+from .lunartables import VIETNAMESE_BASE_YEAR as _VIE_BASE_YEAR
+from .lunartables import VIETNAMESE_YEAR_INFOS as _VIE_YEAR_INFOS
 from .lunartables import KOREAN_BASE_YEAR as _KOR_BASE_YEAR
 from .lunartables import KOREAN_YEAR_INFOS as _KOR_YEAR_INFOS
 
@@ -888,31 +890,62 @@ def korean_ganji_year(year: int) -> str:
 # Vietnamese Lunar Calendar (Âm Lịch)
 #
 # ------------------------------------------------------------
-# The Vietnamese and Chinese lunar calendars use the same astronomical
-# rules and produce identical dates in practice.  The only differences
-# are the display names (Vietnamese month names and Can-Chi year names).
+# Vietnam's calendar follows the same rules as China's, but since 1968 it
+# has been computed for Vietnam's meridian (UTC+7; China's is UTC+8), so
+# where a new moon falls near midnight a month starts a day earlier than in
+# China -- e.g. Tet 1968-01-29 (Chinese New Year 1968-01-30), 2007-02-17
+# (02-18) -- and leap months can move: Tet 1985 was 1985-01-21, a month
+# before Chinese New Year (1985-02-20).  Lunar years 1967-2199 use their
+# own table, computed (Ho Ngoc Duc's algorithm, the one Vietnamese calendar
+# software uses) at UTC+8 before 1968-01-01 and UTC+7 from then on.  Both
+# ends meet the Chinese table exactly (same New Year's day), which other
+# years use.  The table is in lunartables.py.
+_VIE_START_SDN = chinese_lunar_sdn(_VIE_BASE_YEAR, 1, 1)
+_VIE_OFFSETS: list[int] = []
+_vie_running = 0
+for _yi in _VIE_YEAR_INFOS:
+    _VIE_OFFSETS.append(_vie_running)
+    _vie_running += sum(d for _m, _lp, d in _chn_iter_months(_yi))
+_VIE_OFFSETS.append(_vie_running)
 
 
 def vietnamese_lunar_sdn(year: int, month: int, day: int) -> int:
     """Convert a Vietnamese Lunar (Âm Lịch) date to an SDN number.
 
-    Delegates to the Chinese lunar calendar, which shares the same
-    astronomical rules and dates.  Months 1–12 are regular months;
-    months 101–112 represent the leap (Nhuận) version of that month.
-    Returns 0 for dates outside the supported range.
+    Months 1–12 are regular months; months 101–112 represent the leap
+    (Nhuận) version of that month.  Returns 0 for dates outside the
+    supported range.
     """
-    return chinese_lunar_sdn(year, month, day)
+    idx = year - _VIE_BASE_YEAR
+    if not 0 <= idx < len(_VIE_YEAR_INFOS):
+        return chinese_lunar_sdn(year, month, day)
+    is_leap = month > 100
+    target = month - 100 if is_leap else month
+    offset = _VIE_OFFSETS[idx]
+    for m, leap, days in _chn_iter_months(_VIE_YEAR_INFOS[idx]):
+        if m == target and leap == is_leap:
+            return _VIE_START_SDN + offset + day - 1
+        offset += days
+    return 0
 
 
 def vietnamese_lunar_ymd(sdn: int) -> tuple[int, int, int]:
     """Convert an SDN number to a Vietnamese Lunar (Âm Lịch) date.
 
-    Delegates to the Chinese lunar calendar, which shares the same
-    astronomical rules and dates.  The returned month is 1–12 for a
-    regular month or 101–112 for a leap (Nhuận) month.  Returns
-    (0, 0, 0) for SDN values outside the supported range.
+    The returned month is 1–12 for a regular month or 101–112 for a leap
+    (Nhuận) month.  Returns (0, 0, 0) for SDN values outside the
+    supported range.
     """
-    return chinese_lunar_ymd(sdn)
+    offset = sdn - _VIE_START_SDN
+    if not 0 <= offset < _VIE_OFFSETS[-1]:
+        return chinese_lunar_ymd(sdn)
+    idx = bisect.bisect_right(_VIE_OFFSETS, offset) - 1
+    remaining = offset - _VIE_OFFSETS[idx]
+    for m, is_leap, days in _chn_iter_months(_VIE_YEAR_INFOS[idx]):
+        if remaining < days:
+            return (_VIE_BASE_YEAR + idx, m + 100 if is_leap else m, remaining + 1)
+        remaining -= days
+    return (0, 0, 0)
 
 
 # Heavenly Stems (Thiên Can) and Earthly Branches (Địa Chi) for the

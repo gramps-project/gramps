@@ -118,21 +118,36 @@ class TestVietnameseLunarSDN(unittest.TestCase):
         self.assertEqual(month, 12)
         self.assertEqual(day, 29)
 
-    def test_identical_to_chinese(self):
-        """Vietnamese and Chinese lunar calendars share the same dates.
-
-        The only differences are the display names.
-        """
+    def test_differs_from_chinese(self):
+        """Since 1968 Vietnam's calendar is computed for UTC+7."""
         from gramps.gen.lib.gcalendar import chinese_lunar_sdn
 
-        for year in [1921, 1967, 1985, 2022, 2023, 2024, 2025]:
-            vn = vietnamese_lunar_sdn(year, 1, 1)
-            cn = chinese_lunar_sdn(year, 1, 1)
+        # Tet a day before Chinese New Year
+        self.assertEqual(vietnamese_lunar_sdn(1968, 1, 1), gregorian_sdn(1968, 1, 29))
+        self.assertEqual(chinese_lunar_sdn(1968, 1, 1), gregorian_sdn(1968, 1, 30))
+        self.assertEqual(vietnamese_lunar_sdn(2007, 1, 1), gregorian_sdn(2007, 2, 17))
+        # Tet 1985: a month before Chinese New Year (no leap 10th month)
+        self.assertEqual(vietnamese_lunar_sdn(1985, 1, 1), gregorian_sdn(1985, 1, 21))
+        self.assertEqual(chinese_lunar_sdn(1985, 1, 1), gregorian_sdn(1985, 2, 20))
+
+    def test_same_as_chinese_where_they_agree(self):
+        """Same New Year as China in most years, and at the table's ends."""
+        from gramps.gen.lib.gcalendar import chinese_lunar_sdn
+
+        for year in [1921, 1966, 1967, 2022, 2023, 2024, 2025, 2200]:
             self.assertEqual(
-                vn,
-                cn,
-                f"VN and CN dates should be identical for year {year}",
+                vietnamese_lunar_sdn(year, 1, 1), chinese_lunar_sdn(year, 1, 1)
             )
+
+    def test_continuous(self):
+        """Every day maps to exactly one date, across the table's ends."""
+        for start, end in [
+            ((1966, 1, 1), (1969, 12, 31)),
+            ((2198, 1, 1), (2201, 12, 31)),
+        ]:
+            for sdn in range(gregorian_sdn(*start), gregorian_sdn(*end) + 1):
+                ymd = vietnamese_lunar_ymd(sdn)
+                self.assertEqual(vietnamese_lunar_sdn(*ymd), sdn)
 
 
 class TestVietnameseCanChi(unittest.TestCase):
