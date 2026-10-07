@@ -249,9 +249,12 @@ def _read_recs(table, bname, mems):
         return recs
 
 
-def _get_defname(fname):
+def _get_defname(fname: str) -> tuple[str | None, str]:
     """
     Get the name of the PG30.DEF file by looking at the user DEF file.
+
+    :param fname: Selected Pro-Gen definition pointer file.
+    :returns: Located definition filename and the referenced name.
     """
     # Return the name of the DEF file. <fname> is expected to be somewhere in
     # the PG30 tree. Contents of <fname> is always something like:
@@ -262,8 +265,9 @@ def _get_defname(fname):
     # this pathname is compared with <fname>.
 
     with open(fname, buffering=1, encoding="cp437", errors="strict") as file_:
-        lines = file_.readlines()
-    if not lines[0].startswith(r"\0") or len(lines) != 2:
+        lines = [file_.readline(), file_.readline()]
+        extra_line = file_.readline()
+    if not lines[0].startswith(r"\0") or not lines[1] or extra_line:
         return None, fname
 
     defname = lines[1]
@@ -277,8 +281,8 @@ def _get_defname(fname):
     # LOG.warning('_get_defname: fname=%(fname)s => defname=%(defname)s', vars())
 
     # Using directory of <fname>, go to parent directory until the DEF is found
-    dir_, file_ = os.path.split(os.path.abspath(fname))
-    while dir_ and dir_ != os.sep:
+    dir_ = os.path.dirname(os.path.abspath(fname))
+    while dir_:
         # LOG.warning('_get_defname: dir=%(dir_)s => defname=%(defname)s', vars())
         newdefname = os.path.join(dir_, defname)
 
@@ -289,7 +293,10 @@ def _get_defname(fname):
             return newdefname, defname
 
         # One level up
-        dir_, file_ = os.path.split(dir_)
+        parent = os.path.dirname(dir_)
+        if parent == dir_:
+            break
+        dir_ = parent
 
     return None, defname
 
@@ -413,20 +420,30 @@ class PG30DefTable(object):
 
         return flds
 
-    def get_mem_text(self, mems, i):
-        """Normalize text."""
+    def get_mem_text(self, mems: list, i: int) -> str:
+        """Read and normalise a finite chain of memo records.
+
+        :param mems: Memo records containing next-record indices and bytes.
+        :param i: One-based first record index, or zero for an empty memo.
+        :returns: Decoded memo text.
+        :raises ProgenError: If a pointer is invalid or a chain contains a cycle.
+        """
         # Notice that Pro-Gen starts the mem numbering at 1.
         if i <= 0:
             # MEM index 0, just return an empty string
             return ""
 
-        i -= 1
-        recno = mems[i][0] - 1
-        text = mems[i][1].decode("cp850")
+        recno = i - 1
+        visited: set[int] = set()
+        fragments: list[str] = []
         while recno >= 0:
-            text += mems[recno][1].decode("cp850")
+            if recno >= len(mems) or recno in visited:
+                raise ProgenError(_("Invalid or cyclic Pro-Gen memo record chain"))
+            visited.add(recno)
+            fragments.append(mems[recno][1].decode("cp850"))
             recno = mems[recno][0] - 1
 
+        text = "".join(fragments)
         text = text.replace("\033\r", "\n")  # ESC-^M is newline
         text = ESC_CTRLZ.sub("", text)  # ESC-^Z is end of string
         text = text.replace("\0", "")  # There can be nul bytes. Remove them.
@@ -603,21 +620,21 @@ class ProgenParser(UpdateCallback):
             self.set_total(2.5 * len(self.pers) + len(self.rels))
 
         self.dbase.disable_signals()
-        with DbTxn(_("Pro-Gen import"), self.dbase, batch=True) as self.trans:
-            self.create_tags()
-            if self.option["prim_person"]:
-                self.create_persons()
-            if self.option["prim_family"]:
-                self.create_families()
-            if self.option["prim_child"]:
-                self.add_children()
-            self.__display_message(_("Saving."))
-        self.dbase.enable_signals()
-        self.dbase.request_rebuild()
-
-        # close feedback about import progress (GUI)
-        if self.uistate:
-            self.progress.close()
+        try:
+            with DbTxn(_("Pro-Gen import"), self.dbase, batch=True) as self.trans:
+                self.create_tags()
+                if self.option["prim_person"]:
+                    self.create_persons()
+                if self.option["prim_family"]:
+                    self.create_families()
+                if self.option["prim_child"]:
+                    self.add_children()
+                self.__display_message(_("Saving."))
+        finally:
+            self.dbase.enable_signals()
+            self.dbase.request_rebuild()
+            if self.uistate:
+                self.progress.close()
 
         return self.info
 

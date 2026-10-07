@@ -1,3 +1,19 @@
+Unreleased
+* I can build for 64-bit Windows with corrected certificate paths and native
+  handle types, isolated build environments and reliable packaging checks.
+* I use orjson 3.12.0 and refreshed Python build dependencies; obsolete
+  PyInstaller and nose build references have been removed from the AIO path.
+* I can import native packages with confined media extraction and export
+  portable media paths, including files outside the configured media base.
+  Imported media links resolve to the recovered copies even when my tree
+  already has a media base directory.
+* I receive controlled failures for malformed vCard and Pro-Gen input, and XML
+  progress counting no longer allocates unbounded decompressed lines.
+* My database read-only state and notifications are restored after XML import
+  errors; misplaced date elements produce a parser error instead of a crash.
+* My unfiltered native packages preserve development-branch DNA records;
+  unsupported filtered DNA exports stop before replacing my existing package.
+
 2026-04-21
 Version 6.1.0-beta1
 * Update translations: da, es, fr, hr, nl, pl, pt_PT, sk, sv, zh_CN.

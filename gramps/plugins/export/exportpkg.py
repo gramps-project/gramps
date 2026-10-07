@@ -31,6 +31,7 @@
 import time
 import shutil
 import os
+import re
 import tarfile
 from io import StringIO, BytesIO
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -59,9 +60,10 @@ from gi.repository import Gtk
 #
 # -------------------------------------------------------------------------
 from gramps.gui.plug.export import WriterOptionBox
-from gramps.plugins.export.exportxml import XmlWriter
+from gramps.plugins.export.exportxml import MediaPathProxy, XmlWriter
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.constfunc import win
+from gramps.gen.types import MediaHandle
 
 
 # -------------------------------------------------------------------------
@@ -181,7 +183,9 @@ class PackageWriter:
         # ---------------------------------------------------------------
 
         try:
-            with tarfile.open(self.filename, "w:gz") as archive:
+            paths: dict[MediaHandle, str] = {}
+            proxy = MediaPathProxy(self.db, paths)
+            with tarfile.open(self.filename, "w:gz", dereference=True) as archive:
                 # Write media files first, since the database may be modified
                 # during the process (i.e. when removing object)
                 handles = self.db.get_media_handles(sort_handles=True)
@@ -189,13 +193,20 @@ class PackageWriter:
                     self.user.callback(indx * 100 / len(handles))
                     mobject = self.db.get_media_from_handle(m_id)
                     filename = media_path_full(self.db, mobject.get_path())
-                    archname = str(mobject.get_path())
+                    # Keep unavailable files linked to their original location;
+                    # included media always receive confined, portable names.
+                    paths[m_id] = filename
                     if os.path.isfile(filename) and os.access(filename, os.R_OK):
+                        suffix = os.path.splitext(filename)[1].lower()
+                        if not re.fullmatch(r"\.[a-z0-9]{1,16}", suffix):
+                            suffix = ".bin"
+                        archname = "media/%06d%s" % (indx + 1, suffix)
+                        paths[m_id] = archname
                         archive.add(filename, archname, filter=fix_mtime)
 
                 # Write XML now
                 with BytesIO() as g:
-                    gfile = XmlWriter(self.db, self.user, 2)
+                    gfile = XmlWriter(proxy, self.user, 0)
                     gfile.write_handle(g)
                     tarinfo = tarfile.TarInfo("data.gramps")
                     tarinfo.size = len(g.getvalue())

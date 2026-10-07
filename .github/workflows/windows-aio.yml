@@ -18,6 +18,9 @@
 
 name: Windows AIO
 
+permissions:
+  contents: read
+
 on:
   workflow_dispatch:
     inputs:
@@ -46,19 +49,23 @@ jobs:
         msystem: UCRT64
         update: true
     - name: Build
+      env:
+        BUILD_NUMBER: ${{ inputs.build-number }}
+        CLEANUP: ${{ inputs.cleanup }}
       run: |
         cd aio
-        ./build.sh ${{ inputs.cleanup }} ${{ inputs.build-number }}
+        ./build.sh "$CLEANUP" "$BUILD_NUMBER"
     - name: Run unit test suite
       if: ${{ ! inputs.cleanup }} # can only run unit tests if python venv was preserved
       run: |
         export GRAMPS_RESOURCES=build/share
-        source /tmp/grampspythonenv/bin/activate
+        source "$GRAMPS_AIO_VENV/bin/activate"
+        python3 -m unittest discover -s aio/test -p "*_test.py"
         python3 -m unittest discover -p "*_test.py"
     - uses: actions/upload-artifact@v6
       with:
         name: GrampsAIO
-        path: D:\a\gramps\gramps\aio\ucrt64\src\GrampsAIO-*.exe
+        path: aio/ucrt64/src/GrampsAIO-*.exe
         if-no-files-found: error
         compression-level: 0 # no compression
         retention-days: 7

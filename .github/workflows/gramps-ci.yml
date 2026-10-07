@@ -45,7 +45,6 @@ jobs:
         sudo apt-get install python3-gi-cairo
         sudo apt-get install python3-bsddb3
         sudo apt-get install python3-dev
-        sudo apt-get install python3-nose
         sudo apt-get install python3-mock
         sudo apt-get install python3-icu
         sudo apt-get install python3-coverage
@@ -95,10 +94,12 @@ jobs:
         os: [ubuntu-22.04, windows-latest, macos-latest]
     steps:
     - uses: actions/checkout@v6
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@v7
       with:
         python-version: "3.12"
     - name: Create minimal resource directory
       run: python -c "import os, shutil; os.makedirs('build/share/gramps', exist_ok=True); shutil.copy('data/authors.xml', 'build/share/gramps/authors.xml')"
     - name: Run PyPI installer tests
       run: python -m unittest gramps.gen.utils.test.pypi_test -v
+    - name: Run AIO startup and packaging checks
+      run: python -m unittest discover -s aio/test -p "*_test.py" -v
