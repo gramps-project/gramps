@@ -28,8 +28,10 @@
 #
 # -------------------------------------------------------------------------
 import os
+import ntpath
 import sys
 import time
+from typing import Any, BinaryIO
 from xml.parsers.expat import ExpatError, ParserCreate
 from xml.sax.saxutils import escape
 from gramps.gen.const import URL_WIKISTRING
@@ -99,6 +101,7 @@ from gramps.gen.lib import (
 )
 from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.db import DbTxn
+from gramps.gen.user import UserBase
 
 # from gramps.gen.db.write import CLASS_TO_KEY_MAP
 from gramps.gen.errors import GrampsImportError
@@ -170,7 +173,21 @@ INSTANTIATED = 1
 # Must takes care of renaming media files according to their new IDs.
 #
 # -------------------------------------------------------------------------
-def importData(database, filename, user):
+def importData(
+    database: Any,
+    filename: str,
+    user: UserBase,
+    *,
+    media_paths: dict[str, str] | None = None,
+) -> "ImportInfo | None":
+    """Import XML, optionally resolving media copied from a native package.
+
+    :param database: Destination family tree.
+    :param filename: XML file or standard input marker.
+    :param user: Import progress and error handler.
+    :param media_paths: Normalised archive names mapped to extracted files.
+    :returns: Import statistics, or None after a reported failure.
+    """
     filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)
     database.smap = {}
@@ -181,7 +198,7 @@ def importData(database, filename, user):
 
     with ImportOpenFileContextManager(filename, user) as xml_file:
         if xml_file is None:
-            return
+            return None
 
         if filename == "-":
             change = time.time()
@@ -201,6 +218,7 @@ def importData(database, filename, user):
                 ),
             )
 
+        parser.package_media_paths = media_paths
         if filename != "-":
             linecounter = LineParser(filename)
             line_cnt = linecounter.get_count()
@@ -213,13 +231,13 @@ def importData(database, filename, user):
             info = parser.parse(xml_file, line_cnt, person_cnt)
         except GrampsImportError as err:  # version error
             user.notify_error(*err.messages())
-            return
-        except IOError as msg:
+            return None
+        except (IOError, EOFError) as msg:
             user.notify_error(_("Error reading %s") % filename, str(msg))
             import traceback
 
             traceback.print_exc()
-            return
+            return None
         except ExpatError as msg:
             user.notify_error(
                 _("Error reading %s") % filename,
@@ -230,9 +248,10 @@ def importData(database, filename, user):
                     "valid Gramps database."
                 ),
             )
-            return
+            return None
+        finally:
+            database.readonly = read_only
 
-    database.readonly = read_only
     return info
 
 
@@ -425,8 +444,20 @@ class ImportInfo:
         return txt
 
 
+# -------------------------------------------------------------------------
+# LineParser
+# -------------------------------------------------------------------------
 class LineParser:
-    def __init__(self, filename):
+    """Estimate import progress without unbounded decompression or line reads."""
+
+    MAX_LINE_LENGTH = 64 * 1024
+    MAX_SCAN_LENGTH = 16 * 1024 * 1024
+
+    def __init__(self, filename: str) -> None:
+        """Count ordinary-sized input, abandoning estimates for larger input.
+
+        :param filename: Plain or gzip-compressed Gramps XML file.
+        """
         self.count = 0
         self.person_count = 0
 
@@ -435,48 +466,48 @@ class LineParser:
             try:
                 with gzip.open(filename, "r") as f:
                     f.read(1)
-            except IOError as msg:
+            except IOError:
                 use_gzip = 0
-            except ValueError as msg:
+            except (ValueError, EOFError):
                 use_gzip = 1
         else:
             use_gzip = 0
 
         try:
             if use_gzip:
-                import io
-
-                # Bug 6255. TextIOWrapper is required for python3 to
-                #           present file contents as text, otherwise they
-                #           are read as binary. However due to a missing
-                #           method (read1) in early python3 versions this
-                #           try block will fail.
-                #           Gramps will still import XML files using python
-                #           versions < 3.3.0 but the file progress meter
-                #           will not work properly, going immediately to
-                #           100%.
-                #           It should work correctly from version 3.3.
-                ofile = io.TextIOWrapper(
-                    gzip.open(filename, "rb"), encoding="utf8", errors="replace"
-                )
+                ofile = gzip.open(filename, "rt", encoding="utf8", errors="replace")
             else:
                 ofile = open(filename, "r", encoding="utf8", errors="replace")
 
-            for line in ofile:
-                self.count += 1
-                if PERSON_RE.match(line):
-                    self.person_count += 1
-        except:
+            with ofile:
+                scanned = 0
+                while True:
+                    line = ofile.readline(self.MAX_LINE_LENGTH + 1)
+                    if not line:
+                        break
+                    scanned += len(line)
+                    if (
+                        len(line) > self.MAX_LINE_LENGTH
+                        or scanned > self.MAX_SCAN_LENGTH
+                    ):
+                        # Counting is optional. The actual streaming XML parser
+                        # still handles valid large files, without this prepass.
+                        self.count = 0
+                        self.person_count = 0
+                        break
+                    self.count += 1
+                    if PERSON_RE.match(line):
+                        self.person_count += 1
+        except (OSError, EOFError, ValueError):
             self.count = 0
             self.person_count = 0
-        finally:
-            # Ensure the file handle is always closed
-            ofile.close()
 
-    def get_count(self):
+    def get_count(self) -> int:
+        """Return the line count, or zero when no estimate is available."""
         return self.count
 
-    def get_person_count(self):
+    def get_person_count(self) -> int:
+        """Return the estimated person count, or zero without an estimate."""
         return self.person_count
 
 
@@ -524,7 +555,7 @@ class ImportOpenFileContextManager:
                     ofile.read(1)
             except IOError as msg:
                 use_gzip = False
-            except ValueError as msg:
+            except (ValueError, EOFError):
                 use_gzip = True
         else:
             use_gzip = False
@@ -629,6 +660,7 @@ class GrampsParser(UpdateCallback):
         self.resemail = ""
 
         self.mediapath = ""
+        self.package_media_paths: dict[str, str] | None = None
 
         self.pmap = {}
         self.fmap = {}
@@ -1101,11 +1133,29 @@ class GrampsParser(UpdateCallback):
                 gramps_ids[id_] = gramps_id
         return gramps_ids[id_]
 
-    def parse(self, ifile, linecount=1, personcount=0):
+    def parse(
+        self, ifile: BinaryIO, linecount: int = 1, personcount: int = 0
+    ) -> ImportInfo:
         """
         Parse the xml file
         :param ifile: must be a file handle that is already open, with position
                       at the start of the file
+        """
+        try:
+            return self._parse(ifile, linecount, personcount)
+        finally:
+            self.db.enable_signals()
+            self.db.request_rebuild()
+
+    def _parse(
+        self, ifile: BinaryIO, linecount: int = 1, personcount: int = 0
+    ) -> ImportInfo:
+        """Parse and commit XML records inside a database transaction.
+
+        :param ifile: Open XML input stream.
+        :param linecount: Estimated input line count.
+        :param personcount: Estimated input person count.
+        :returns: Import statistics.
         """
         with DbTxn(_("Gramps XML import"), self.db, batch=True) as self.trans:
             self.set_total(linecount)
@@ -1137,7 +1187,7 @@ class GrampsParser(UpdateCallback):
 
             # Set media path
             # The paths are normalized before being compared.
-            if self.mediapath:
+            if self.mediapath and self.package_media_paths is None:
                 if not self.db.get_mediapath():
                     self.db.set_mediapath(self.mediapath)
                 elif not media_path(self.db) == expand_media_path(
@@ -1163,8 +1213,6 @@ class GrampsParser(UpdateCallback):
             del self.func_list
             del self.p
             del self.update
-        self.db.enable_signals()
-        self.db.request_rebuild()
         return self.info
 
     def start_database(self, attrs):
@@ -1884,6 +1932,20 @@ class GrampsParser(UpdateCallback):
         if "type" in attrs:
             self.family.type.set_from_xml_str(attrs["type"])
 
+    def _resolve_media_path(self, source: str) -> str:
+        """Link packaged media to its extracted copy, retaining missing links.
+
+        :param source: Media path from the XML document.
+        :returns: Extracted filename when present, otherwise the original path.
+        """
+        if self.package_media_paths is None:
+            return source
+        # Legacy packages stripped drives and leading separators from member
+        # names but retained the full source paths in their XML records.
+        relative = ntpath.splitdrive(source)[1].lstrip("/\\").replace("\\", "/")
+        key = os.path.normcase(os.path.normpath(relative))
+        return self.package_media_paths.get(key, source)
+
     def start_file(self, attrs):
         self.object.mime = attrs["mime"]
         if "description" in attrs:
@@ -1891,7 +1953,7 @@ class GrampsParser(UpdateCallback):
         else:
             self.object.desc = ""
         # keep value of path, no longer make absolute paths on import
-        src = attrs["src"]
+        src = self._resolve_media_path(attrs["src"])
         if src:
             self.object.path = src
             if self.all_abs and not os.path.isabs(src):
@@ -2612,7 +2674,7 @@ class GrampsParser(UpdateCallback):
                 self.pref.set_privacy(int(attrs[key]))
                 self.photo.set_privacy(int(attrs[key]))
             elif key == "src":
-                src = attrs["src"]
+                src = self._resolve_media_path(attrs["src"])
                 self.photo.set_path(src)
             else:
                 attr = Attribute()
@@ -2658,6 +2720,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.placeref.get_date_object()
         elif self.place_name:
             date_value = self.place_name.get_date_object()
+        else:
+            raise ExpatError(_("Date element has no parent record"))
 
         start = attrs["start"]
         stop = attrs["stop"]
@@ -2767,6 +2831,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.placeref.get_date_object()
         elif self.place_name:
             date_value = self.place_name.get_date_object()
+        else:
+            raise ExpatError(_("Date element has no parent record"))
 
         bce = 1
         val = attrs["val"]
@@ -2885,8 +2951,10 @@ class GrampsParser(UpdateCallback):
             date_value = self.event.get_date_object()
         elif self.placeref:
             date_value = self.placeref.get_date_object()
-        else:
+        elif self.place_name:
             date_value = self.place_name.get_date_object()
+        else:
+            raise ExpatError(_("Date element has no parent record"))
 
         date_value.set_as_text(attrs["val"])
 

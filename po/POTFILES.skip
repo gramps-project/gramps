@@ -4,6 +4,9 @@
 #
 Gramps.py
 setup.py
+aio/grampsaio.py
+aio/check_pip.py
+aio/test/startup_test.py
 #
 # gramps
 #
@@ -606,6 +609,7 @@ gramps/plugins/importer/__init__.py
 gramps/plugins/importer/test/importgedcom_ambiguous_date_test.py
 gramps/plugins/importer/test/importgeneweb_test.py
 gramps/plugins/importer/test/importvcard_test.py
+gramps/plugins/importer/test/import_safety_test.py
 #
 # plugins/lib directory
 #

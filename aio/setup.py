@@ -19,7 +19,7 @@ from gramps.version import VERSION_TUPLE
 
 try:
     from gramps.version import VERSION_QUALIFIER
-except:
+except ImportError:
     VERSION_QUALIFIER = ""
 
 # import logging
@@ -36,7 +36,12 @@ VQ = {
 }
 
 
-def normalize(version):
+def normalize(version: str) -> str:
+    """Convert a Gramps version qualifier to its Python package spelling.
+
+    :param version: Gramps version string.
+    :returns: Version with alpha and beta package qualifiers.
+    """
     version = version.replace("-", "")
     version = version.replace("alpha", "a")
     version = version.replace("beta", "b")
@@ -58,6 +63,7 @@ SETUP_FILES = [
     "grampsaioc.py",
     "grampsaiocd.py",
     "grampsaiow.py",
+    "grampsaio.py",
 ]
 if "32" in BASE_DIR:
     SETUP_FILES.append("".join(("grampsaio", "32", ".nsi")))
@@ -113,7 +119,8 @@ EXCLUDES = [
     "PyQt5",
     "PyQt5.QtCore",
     "PyQt5.QtGui",
-    "pyside" "PyQt5.QtWidgets",
+    "pyside",
+    "PyQt5.QtWidgets",
     "sip",
     "PIL.ImageQt",
     "pip",

@@ -1,6 +1,10 @@
 The files in this directory are used to build the Gramps Windows AIO (All In One) installer.
 
-# Build AIO for the master branch
+# Build AIO for 64-bit Windows
+
+I use the MSYS2 UCRT64 build for Windows 10 or later on x86-64. The build
+checks the shell and Python architecture before packaging. The former
+PyInstaller workflow has been removed because its build sources are absent.
 
 1. Install MSYS2
     1. Download MSYS2 from <https://www.msys2.org/>.
@@ -35,7 +39,14 @@ To capture the full output of the build, use `./build.sh >& build_log.txt`
 
 The resulting AIO installer is in the directory `gramps/aio/ucrt64/src/GrampsAIO-[appversion]-[appbuild]-[hash]_win64.exe`
 
-The python virtual environment created during build (`c:\msys64\tmp\grampspythonenv\bin\python.exe` by default) can then be configured in Visual Studio Code and used to debug etc.
+Each build creates a separate Python virtual environment and prints its path
+on completion. I can configure its `bin/python.exe` in Visual Studio Code
+for debugging. In GitHub Actions, the path is available as `GRAMPS_AIO_VENV`.
+
+The build updates pip, Requests, Certifi and the unpinned Python dependencies,
+and uses orjson 3.12.0. Enchant, Graphviz and Gspell retain their documented
+compatibility pins until their replacements pass a complete AIO build.
+Dependency conflicts or a failed bundled-pip check stop installer creation.
 
 To delete the python virtual environment at the end of the build, call ```./build.sh true```. This can be useful when testing the build script.
 
@@ -60,7 +71,7 @@ All tips assume that you have built AIO. All commands should be run from the roo
                     "-i"
                 ],
                 "env": {
-                    "MSYSTEM": "URCT64",
+                    "MSYSTEM": "UCRT64",
                     "CHERE_INVOKING": "1"
                 }
             }
@@ -72,10 +83,11 @@ All tips assume that you have built AIO. All commands should be run from the roo
     Gramps requires several python packages to run. The easiest way to ge the correct configuration is to reuse the python venv created when building AIO. To activate the python venv created during the AIO build process, run
 
     ```bash 
-    source /tmp/grampspythonenv/bin/activate
+    source /tmp/grampspythonenv.XXXXXX/bin/activate
     ```
 
-    Tip: You can usually build AIO once and use this venv repeatedly. There is no need to build every time you change the code. This does not apply if you switch between gramps versions e.g. master to gramps60 or are changing gramps dependencies.
+    I replace `grampspythonenv.XXXXXX` with the directory printed by my build.
+    I can reuse this environment until I change Gramps versions or dependencies.
 3. Run `mypy` locally
     1. Install mypy and type-requests: `python3 -m pip install mypy types-requests`
     2. Run mypy: `mypy`

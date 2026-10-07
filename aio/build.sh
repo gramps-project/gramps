@@ -23,6 +23,20 @@
 #   clean-up     : [true|false]. clean the python venv on completion
 #   build-number : the build number to use when DEV_VERSION is not True
 #
+set -Eeuo pipefail
+
+if [[ "${MSYSTEM:-}" != "UCRT64" ]]; then
+    echo "Build from the MSYS2 UCRT64 shell for 64-bit Windows." >&2
+    exit 1
+fi
+cleanup=${1:-false}
+build_number=${2:-1}
+if [[ "$cleanup" != "true" && "$cleanup" != "false" ]] ||
+    [[ ! "$build_number" =~ ^[0-9]+$ ]]; then
+    echo "Usage: build.sh [true|false] [numeric build number]" >&2
+    exit 1
+fi
+
 handle_error() {
     # Get information about the error
     local error_code=$?
@@ -69,7 +83,6 @@ pacman -S --needed --noconfirm \
     mingw-w64-ucrt-x86_64-python-lief \
     mingw-w64-ucrt-x86_64-python-lxml \
     mingw-w64-ucrt-x86_64-python-networkx \
-    mingw-w64-ucrt-x86_64-python-nose \
     mingw-w64-ucrt-x86_64-python-packaging \
     mingw-w64-ucrt-x86_64-python-pillow \
     mingw-w64-ucrt-x86_64-python-pip \
@@ -91,14 +104,18 @@ pacman -U --needed --noconfirm \
     https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-gspell-1.14.0-4-any.pkg.tar.zst
 
 ## create a python virtual environment so that we have a clean starting point
-pythonvenv=$TMP/grampspythonenv
-rm -rf $pythonvenv
-python -m venv $pythonvenv --system-site-packages
-source $pythonvenv/bin/activate
+python -c 'import struct; assert struct.calcsize("P") == 8, "64-bit Python is required"'
+pythonvenv=$(mktemp -d "${TMP:-/tmp}/grampspythonenv.XXXXXX")
+python -m venv "$pythonvenv" --system-site-packages
+source "$pythonvenv/bin/activate"
+if [[ -n "${GITHUB_ENV:-}" ]]; then
+    echo "GRAMPS_AIO_VENV=$pythonvenv" >> "$GITHUB_ENV"
+fi
 
 ## prerequisites in pip packages
 python -m pip install --upgrade pip
-pip install --upgrade orjson==3.11.7 pydot pydotplus pygraphviz requests selenium
+python -m pip install --upgrade orjson==3.12.0 pydot pydotplus pygraphviz requests certifi selenium
+python -m pip check
 
 ## download dictionaries
 mkdir -p /ucrt64/share/enchant/hunspell
@@ -182,13 +199,13 @@ cp /ucrt64/share/icons/hicolor/scalable/places/*.svg /ucrt64/share/icons/gnome/s
 # build gramps
 rm -rf dist gramps.egg-info aio/dist aio/GrampsAIO64.egg-info aio/$MSYSTEM
 python -m build --wheel
-if `grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py`; then
+if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
     # <branch_name>-<short_commit_id>
     appbuild="$(git rev-parse --abbrev-ref HEAD)-$(git rev-parse --short HEAD)"
 else
     # <VERSION_QUALIFIER>-<build-number>
     # VERSION_QUALIFIER is taken from gramps/version.py
-    appbuild="$(sed -nr "s/^VERSION_QUALIFIER = \"-(.+)\"/\1/p" gramps/version.py)-$2"
+    appbuild="$(sed -nr "s/^VERSION_QUALIFIER = \"-(.+)\"/\1/p" gramps/version.py)-$build_number"
 fi
 appversion=$(grep "^VERSION_TUPLE" gramps/version.py | sed 's/.*(//;s/, */\./g;s/).*//')
 unzip -q -d aio/dist dist/*.whl
@@ -209,24 +226,7 @@ python setup.py build_exe
 # without needing to be edited when the rest of the script is modernized.
 echo "Smoke-testing bundled pip..."
 msys_dir="${MSYSTEM,,}"
-smoke_fail=0
-for cmd in "./${msys_dir}/pip.exe --version" "./${msys_dir}/pip.exe install --dry-run --ignore-installed certifi"; do
-    echo "--- $cmd ---"
-    smoke_out=$($cmd 2>&1) || true
-    echo "$smoke_out"
-    if echo "$smoke_out" | grep -qiE "ImportError|ModuleNotFoundError|Traceback"; then
-        echo "ERROR: Frozen pip emitted an error or traceback running: $cmd"
-        smoke_fail=1
-    fi
-done
-if [ "$smoke_fail" -ne 0 ]; then
-    echo "ERROR: pip smoke test failed; aborting build before NSIS."
-    echo "  Likely cause: a stdlib submodule pip (or one of its vendored"
-    echo "  libraries) imports lazily was not picked up by cx_Freeze's"
-    echo "  static scan. Add the missing module to INCLUDES or its parent"
-    echo "  package to PACKAGES in aio/setup.py and rebuild."
-    exit 1
-fi
+python check_pip.py "./${msys_dir}/pip.exe"
 
 # build installer
 cd ucrt64/src
@@ -234,10 +234,12 @@ makensis grampsaio64.nsi
 # result is in ucrt64/src
 
 # deactivate and delete the python virtual environment
-if [ "$1" = "true" ]; then
+if [ "$cleanup" = "true" ]; then
     echo "post build cleanup"
     deactivate
-    rm -rf $pythonvenv
+    rm -rf -- "$pythonvenv"
+else
+    echo "Build environment: $pythonvenv"
 fi
 
 exit 0

@@ -156,18 +156,24 @@ class VCardParser:
     LINE_CONTINUATION = [" ", "\t"]
 
     @staticmethod
-    def name_value_split(data):
-        """Property group.name:value split is on first unquoted colon."""
-        colon_idx = data.find(":")
-        if colon_idx < 1:
-            return ()
-        quote_count = data.count('"', 0, colon_idx)
-        while quote_count % 2 == 1:
-            colon_idx = data.find(":", colon_idx + 1)
-            quote_count = data.count('"', 0, colon_idx)
-        group_name, value = data[:colon_idx], data[colon_idx + 1 :]
-        name_parts = VCardParser.GROUP_RE.match(group_name)
-        return (name_parts.group(1), value)
+    def name_value_split(data: str) -> tuple[str, str] | tuple[()]:
+        """Split a property on its first unquoted colon, if one exists.
+
+        :param data: Property line, including optional group and parameters.
+        :returns: Property name and value, or an empty tuple for malformed input.
+        """
+        quoted = False
+        for index, character in enumerate(data):
+            if character == '"':
+                quoted = not quoted
+            elif character == ":" and not quoted:
+                if index == 0:
+                    return ()
+                name_parts = VCardParser.GROUP_RE.match(data[:index])
+                if name_parts is not None:
+                    return (name_parts.group(1), data[index + 1 :])
+                return ()
+        return ()
 
     @staticmethod
     def unesc(data):
