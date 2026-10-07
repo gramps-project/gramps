@@ -574,6 +574,7 @@ gramps/plugins/export/__init__.py
 # plugins/export/test directory
 #
 gramps/plugins/export/test/exportvcard_test.py
+gramps/plugins/export/test/exportgedcom_test.py
 #
 # plugins/gramplet directory
 #

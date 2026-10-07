@@ -33,6 +33,13 @@
 # -------------------------------------------------------------------------
 import os
 import time
+import hashlib
+import json
+import re
+import shutil
+import tarfile
+import tempfile
+from typing import TextIO
 
 # -------------------------------------------------------------------------
 #
@@ -59,6 +66,10 @@ from gramps.gen.lib import (
 from gramps.version import VERSION
 import gramps.plugins.lib.libgedcom as libgedcom
 from gramps.gen.errors import DatabaseError
+from gramps.gen.db.base import DbReadBase
+from gramps.gen.types import MediaHandle
+from gramps.gen.user import UserBase
+from gramps.plugins.export.exportxml import MediaPathProxy, XmlWriter
 
 # keep the following line even though not obviously used (works on import)
 from gramps.gui.plug.export import WriterOptionBox
@@ -163,6 +174,15 @@ NOTES_PER_PERSON = 104  # fudge factor to make progress meter a bit smoother
 
 
 # -------------------------------------------------------------------------
+# GedcomOptionBox
+# -------------------------------------------------------------------------
+class GedcomOptionBox(WriterOptionBox):
+    """Use the standard selection controls and describe the completed bundle."""
+
+    export_message: str = ""
+
+
+# -------------------------------------------------------------------------
 #
 # sort_handles_by_id
 #
@@ -251,11 +271,26 @@ class GedcomWriter(UpdateCallback):
     so that it can provide visual feedback via a progress bar if needed.
     """
 
-    def __init__(self, database, user, option_box=None):
+    def __init__(
+        self,
+        database: DbReadBase,
+        user: UserBase,
+        option_box: WriterOptionBox | None = None,
+    ) -> None:
+        """Select the data to export without modifying the source database.
+
+        :param database: Source family tree.
+        :param user: Export progress and error interface.
+        :param option_box: Optional privacy and selection controls.
+        """
         UpdateCallback.__init__(self, user.callback)
         self.dbase = database
-        self.dirname = None
-        self.gedcom_file = None
+        self.user = user
+        self.option_box = option_box
+        self.media_paths: dict[MediaHandle, str] = {}
+        self.companion = ""
+        self.dirname: str | None = None
+        self.gedcom_file: TextIO | None = None
         self.progress_cnt = 0
         self.setup(option_box)
 
@@ -269,9 +304,157 @@ class GedcomWriter(UpdateCallback):
             option_box.parse_options()
             self.dbase = option_box.get_filtered_database(self.dbase, self)
 
-    def write_gedcom_file(self, filename):
+    def write_gedcom_file(self, filename: str) -> bool:
+        """Publish GEDCOM only after its media and recovery package are complete.
+
+        :param filename: Destination GEDCOM filename.
+        :returns: True after all export files have been written successfully.
         """
-        Write the actual GEDCOM file to the specified filename.
+        filename = os.path.abspath(filename)
+        parent = os.path.dirname(filename)
+        # Each export owns a new directory. Previous exports, original media and
+        # unrelated files are never overwritten or removed during preparation.
+        companion = tempfile.mkdtemp(prefix="gramps-gedcom-", dir=parent)
+        self.companion = os.path.basename(companion)
+        self.media_paths = {}
+        try:
+            paths, manifest = self._copy_media(companion, filename)
+            self._write_recovery(companion, paths)
+            with open(
+                os.path.join(companion, "manifest.json"), "w", encoding="utf-8"
+            ) as output:
+                json.dump(manifest, output, ensure_ascii=False, indent=2)
+                output.write("\n")
+            with open(
+                os.path.join(companion, "README.txt"), "w", encoding="utf-8"
+            ) as output:
+                output.write(
+                    _(
+                        "Keep this folder beside the GEDCOM file when moving or "
+                        "sharing the export. The media directory contains copies "
+                        "of the selected media files. Import restore.gpkg into "
+                        "Gramps to recover the selected native data and media, "
+                        "including details that GEDCOM cannot represent. Original "
+                        "files and the source family tree have not been changed.\n"
+                    )
+                )
+            staged = os.path.join(companion, "export.ged")
+            self._write_gedcom_file(staged, filename)
+            os.replace(staged, filename)
+        except BaseException:
+            # Only this newly created directory is ours to remove.
+            shutil.rmtree(companion)
+            raise
+        if isinstance(self.option_box, GedcomOptionBox):
+            self.option_box.export_message = (
+                _(
+                    "Media copies and a Gramps recovery package are saved in:\n%s\n\n"
+                    "Keep this folder beside the GEDCOM when moving or sharing it. "
+                    "To restore Gramps-specific data and media, import restore.gpkg "
+                    "from this folder into Gramps."
+                )
+                % companion
+            )
+        return True
+
+    def _copy_media(
+        self, companion: str, filename: str
+    ) -> tuple[dict[MediaHandle, str], list[dict[str, str | int]]]:
+        """Copy and verify every selected local media file.
+
+        :param companion: Newly created export companion directory.
+        :param filename: GEDCOM destination, protected from media overwrite.
+        :returns: Portable media paths and their checksum manifest.
+        """
+        paths: dict[MediaHandle, str] = {}
+        manifest: list[dict[str, str | int]] = []
+        handles = sort_handles_by_id(
+            self.dbase.get_media_handles(), self.dbase.get_media_from_handle
+        )
+        if handles:
+            os.mkdir(os.path.join(companion, "media"))
+        self.set_text(_("Copying media"))
+        self.set_total(max(1, len(handles)))
+        for index, (_gramps_id, handle) in enumerate(handles, 1):
+            media = self.dbase.get_media_from_handle(handle)
+            source = media_path_full(self.dbase, media.get_path())
+            if not media.get_path() or source.startswith(("http://", "https://")):
+                raise OSError(
+                    _(
+                        "Media %s has no local file. A complete export requires local media."
+                    )
+                    % media.get_gramps_id()
+                )
+            if os.path.exists(filename) and os.path.samefile(source, filename):
+                raise OSError(_("The GEDCOM destination is an original media file."))
+            before = os.stat(source)
+            suffix = os.path.splitext(source)[1].lower()
+            if not re.fullmatch(r"\.[a-z0-9]{1,16}", suffix):
+                suffix = ".bin"
+            relative = "media/%06d%s" % (index, suffix)
+            target = os.path.join(companion, *relative.split("/"))
+            shutil.copyfile(source, target)
+            source_hash = self._checksum(source)
+            after = os.stat(source)
+            if self._checksum(target) != source_hash or (
+                before.st_size,
+                before.st_mtime_ns,
+                before.st_ino,
+                before.st_dev,
+            ) != (after.st_size, after.st_mtime_ns, after.st_ino, after.st_dev):
+                raise OSError(_("Media changed while exporting: %s") % source)
+            paths[handle] = relative
+            self.media_paths[handle] = self.companion + "/" + relative
+            manifest.append(
+                {
+                    "gramps_id": media.get_gramps_id(),
+                    "path": relative,
+                    "sha256": source_hash,
+                    "size": os.path.getsize(target),
+                }
+            )
+            self.update()
+        return paths, manifest
+
+    @staticmethod
+    def _checksum(filename: str) -> str:
+        """Calculate a SHA-256 checksum without loading the whole file.
+
+        :param filename: File whose contents should be checked.
+        :returns: Hexadecimal checksum.
+        """
+        digest = hashlib.sha256()
+        with open(filename, "rb") as source:
+            for block in iter(lambda: source.read(1024 * 1024), b""):
+                digest.update(block)
+        return digest.hexdigest()
+
+    def _write_recovery(self, companion: str, paths: dict[MediaHandle, str]) -> None:
+        """Save selected native data and portable media in a Gramps package.
+
+        :param companion: Directory containing verified media copies.
+        :param paths: Relative paths within the recovery package.
+        """
+        proxy = MediaPathProxy(self.dbase, paths)
+        with tarfile.open(os.path.join(companion, "restore.gpkg"), "w:gz") as archive:
+            for relative in paths.values():
+                archive.add(
+                    os.path.join(companion, *relative.split("/")), arcname=relative
+                )
+            with tempfile.TemporaryFile() as output:
+                XmlWriter(proxy, self.user, 0).write_handle(output)
+                member = tarfile.TarInfo("data.gramps")
+                member.size = output.seek(0, os.SEEK_END)
+                output.seek(0)
+                archive.addfile(member, output)
+
+    def _write_gedcom_file(self, filename: str, header_filename: str) -> bool:
+        """
+        Write a staged GEDCOM using the final destination in its header.
+
+        :param filename: Temporary file inside the companion directory.
+        :param header_filename: Final GEDCOM destination.
+        :returns: True once the GEDCOM trailer has been written.
         """
 
         self.dirname = os.path.dirname(filename)
@@ -284,7 +467,17 @@ class GedcomWriter(UpdateCallback):
 
             total_steps = person_len + family_len + source_len + repo_len + note_len
             self.set_total(total_steps)
-            self._header(filename)
+            self._header(header_filename)
+            self._writeln(
+                1,
+                "NOTE",
+                _(
+                    "Keep the companion folder %(folder)s beside this GEDCOM. "
+                    "Import %(folder)s/restore.gpkg into Gramps to restore "
+                    "the selected native data and media."
+                )
+                % {"folder": self.companion},
+            )
             self._submitter()
             self._individuals()
             self._families()
@@ -1560,7 +1753,7 @@ class GedcomWriter(UpdateCallback):
 
         self._writeln(0, "@%s@" % gramps_id, "OBJE")
         form = os.path.splitext(media.get_path())[1][1:]
-        path = media_path_full(self.dbase, media.get_path())
+        path = self.media_paths[media.get_handle()]
         self._writeln(1, "FILE", path, limit=255)
         if form:
             self._writeln(2, "FORM", form)
@@ -1654,9 +1847,20 @@ class GedcomWriter(UpdateCallback):
 #
 #
 # -------------------------------------------------------------------------
-def export_data(database, filename, user, option_box=None):
+def export_data(
+    database: DbReadBase,
+    filename: str,
+    user: UserBase,
+    option_box: WriterOptionBox | None = None,
+) -> bool:
     """
     External interface used to register with the plugin system.
+
+    :param database: Source family tree.
+    :param filename: Destination GEDCOM filename.
+    :param user: Export progress and error interface.
+    :param option_box: Optional privacy and selection controls.
+    :returns: True only if the complete export succeeds.
     """
     ret = False
     try:

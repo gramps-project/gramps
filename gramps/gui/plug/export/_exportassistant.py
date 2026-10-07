@@ -537,6 +537,9 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
                 conclusion_text += (
                     "\n\n" + _("Filename: %s") % self.chooser.get_filename()
                 )
+                export_message = getattr(self.option_box_instance, "export_message", "")
+                if export_message:
+                    conclusion_text += "\n\n" + export_message
             else:
                 conclusion_title = _("Saving failed")
                 conclusion_text = _(

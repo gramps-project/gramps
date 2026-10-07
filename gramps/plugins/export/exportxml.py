@@ -38,6 +38,7 @@ import time
 import shutil
 import os
 import codecs
+from typing import Any
 from xml.sax.saxutils import escape
 
 # ------------------------------------------------------------------------
@@ -63,10 +64,15 @@ from gramps.gen.lib import (
     DNAGenomeBuildType,
     DNAProviderType,
     DNATestType,
+    Media,
     Person,
 )
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
+from gramps.gen.db.base import DbReadBase
+from gramps.gen.db.bookmarks import DbBookmarks
+from gramps.gen.proxy.proxybase import ProxyDbBase
+from gramps.gen.types import MediaHandle
 from gramps.version import VERSION
 from gramps.gen.constfunc import win
 from gramps.gui.plug.export import WriterOptionBox, WriterOptionBoxWithCompression
@@ -87,6 +93,90 @@ except:
 
 # table for skipping control chars from XML except 09, 0A, 0D
 strip_dict = dict.fromkeys(list(range(9)) + list(range(11, 13)) + list(range(14, 32)))
+
+
+# -------------------------------------------------------------------------
+# MediaPathProxy
+# -------------------------------------------------------------------------
+class MediaPathProxy:
+    """Change exported media paths while forwarding other native record APIs."""
+
+    def __init__(self, database: DbReadBase, paths: dict[MediaHandle, str]) -> None:
+        """Keep the selected database and validate its native export support.
+
+        :param database: Database, including any selected export filters.
+        :param paths: Media handles mapped to their exported locations.
+        """
+        self.db = database
+        self.paths = paths
+        self._check_filtered_dna()
+        if isinstance(database, ProxyDbBase):
+            self.dnatest_bookmarks = DbBookmarks()
+            self.dnamatch_bookmarks = DbBookmarks()
+        else:
+            self.dnatest_bookmarks = database.get_dnatest_bookmarks()
+            self.dnamatch_bookmarks = database.get_dnamatch_bookmarks()
+
+    def _check_filtered_dna(self) -> None:
+        """Fail closed while database proxies do not implement DNA filtering."""
+        if isinstance(self.db, ProxyDbBase):
+            try:
+                counts = (
+                    self.db.basedb.get_number_of_dnatests(),
+                    self.db.basedb.get_number_of_dnamatches(),
+                )
+            except (AttributeError, NotImplementedError) as error:
+                raise OSError(
+                    _("Cannot verify DNA filtering for this export.")
+                ) from error
+            if any(type(count) is not int or count != 0 for count in counts):
+                raise OSError(
+                    _(
+                        "Filtered native recovery is not yet supported for trees "
+                        "containing DNA tests or DNA matches."
+                    )
+                )
+
+    def __getattr__(self, name: str) -> Any:
+        """Forward unchanged native APIs to the selected database."""
+        return getattr(self.db, name)
+
+    def get_media_from_handle(self, handle: MediaHandle) -> Media | None:
+        """Return a media copy with its exported path."""
+        original = self.db.get_media_from_handle(handle)
+        if original is None:
+            return None
+        media = Media(original)
+        media.set_path(self.paths[handle])
+        return media
+
+    def get_mediapath(self) -> str:
+        """Resolve packaged media relative to the package."""
+        return ""
+
+    def get_number_of_dnatests(self) -> int:
+        """Count native DNA tests, allowing filtered export only when absent."""
+        self._check_filtered_dna()
+        return (
+            0 if isinstance(self.db, ProxyDbBase) else self.db.get_number_of_dnatests()
+        )
+
+    def get_number_of_dnamatches(self) -> int:
+        """Count native DNA matches, allowing filtered export only when absent."""
+        self._check_filtered_dna()
+        return (
+            0
+            if isinstance(self.db, ProxyDbBase)
+            else self.db.get_number_of_dnamatches()
+        )
+
+    def get_dnatest_bookmarks(self) -> DbBookmarks:
+        """Return bookmarks belonging to the supported DNA export view."""
+        return self.dnatest_bookmarks
+
+    def get_dnamatch_bookmarks(self) -> DbBookmarks:
+        """Return bookmarks belonging to the supported DNA export view."""
+        return self.dnamatch_bookmarks
 
 
 def escxml(d):
