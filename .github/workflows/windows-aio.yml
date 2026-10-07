@@ -48,6 +48,7 @@ jobs:
         # Force the installation of the working 3.12 version of NSIS
         install: >-
           mingw-w64-ucrt-x86_64-nsis
+          mingw-w64-ucrt-x86_64-nsis-plugins
     - name: Build
       run: |
         cd aio
