@@ -71,6 +71,7 @@ gramps/gen/datehandler/_grampslocale.py
 #
 # gen.datehandler.test package
 #
+gramps/gen/datehandler/test/date_ko_test.py
 gramps/gen/datehandler/test/date_zh_test.py
 gramps/gen/datehandler/test/datedisplay_test.py
 gramps/gen/datehandler/test/datehandler_test.py
@@ -195,6 +196,7 @@ gramps/gen/lib/urlbase.py
 gramps/gen/lib/test/chinese_calendar_test.py
 gramps/gen/lib/test/date_test.py
 gramps/gen/lib/test/grampstype_test.py
+gramps/gen/lib/test/korean_calendar_test.py
 gramps/gen/lib/test/merge_test.py
 gramps/gen/lib/test/schema_test.py
 gramps/gen/lib/test/serialize_test.py
