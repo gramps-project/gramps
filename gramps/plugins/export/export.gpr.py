@@ -81,7 +81,10 @@ plg.name = _("GEDCOM")
 plg.name_accell = _("GE_DCOM")
 plg.description = _(
     "GEDCOM is used to transfer data between genealogy programs. "
-    "Most genealogy software will accept a GEDCOM file as input."
+    "Most genealogy software will accept a GEDCOM file as input. "
+    "Every export includes a companion folder with media copies and a "
+    "Gramps recovery package. Keep this folder beside the GEDCOM file. "
+    "Missing or remote media must be stored locally before exporting."
 )
 plg.version = "1.0"
 plg.gramps_target_version = MODULE_VERSION
@@ -89,7 +92,7 @@ plg.status = STABLE
 plg.fname = "exportgedcom.py"
 plg.ptype = EXPORT
 plg.export_function = "export_data"
-plg.export_options = "WriterOptionBox"
+plg.export_options = "GedcomOptionBox"
 plg.export_options_title = _("GEDCOM export options")
 plg.extension = "ged"
 
