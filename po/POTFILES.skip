@@ -64,6 +64,7 @@ gramps/gen/datehandler/_date_sl.py
 gramps/gen/datehandler/_date_sr.py
 gramps/gen/datehandler/_date_sv.py
 gramps/gen/datehandler/_date_uk.py
+gramps/gen/datehandler/_date_vi.py
 gramps/gen/datehandler/_date_zh_CN.py
 gramps/gen/datehandler/_date_zh_TW.py
 gramps/gen/datehandler/_datehandler.py
@@ -72,6 +73,7 @@ gramps/gen/datehandler/_grampslocale.py
 # gen.datehandler.test package
 #
 gramps/gen/datehandler/test/date_ko_test.py
+gramps/gen/datehandler/test/date_vi_test.py
 gramps/gen/datehandler/test/date_zh_test.py
 gramps/gen/datehandler/test/datedisplay_test.py
 gramps/gen/datehandler/test/datehandler_test.py
@@ -201,6 +203,7 @@ gramps/gen/lib/test/merge_test.py
 gramps/gen/lib/test/schema_test.py
 gramps/gen/lib/test/serialize_test.py
 gramps/gen/lib/test/styledtext_test.py
+gramps/gen/lib/test/vietnamese_calendar_test.py
 #
 # gen.merge package
 #
