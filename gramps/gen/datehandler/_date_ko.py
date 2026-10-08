@@ -39,6 +39,9 @@ import re
 # -------------------------------------------------------------------------
 from ..lib.date import Date
 from ..lib.gcalendar import korean_ganji_year
+
+# A 간지 (sexagenary) year name: heavenly stem + earthly branch.
+_GANJI = "[갑을병정무기경신임계][자축인묘진사오미신유술해]"
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
@@ -198,6 +201,14 @@ class DateParserKO(DateParser):
             r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._klmon_str,
             re.IGNORECASE,
         )
+        # The displayed forms (_display_korean_lunar): "1976년 정월 4일",
+        # "2020년 윤사월" (leap month), "1976년", and with the 간지 name
+        # "1976 병진년 정월 4일".
+        self._kl_native = re.compile(
+            r"(?P<year>\d+)(?:\s*%s)?년(?:\s*(?P<month>%s)(?:\s*(?P<day>\d+)일)?)?$"
+            % (_GANJI, self._klmon_str),
+            re.IGNORECASE,
+        )
 
         # Korean span/range format: "<start>에서 <stop>까지" and "<start>에서 <stop>사이"
         self._span = re.compile(
@@ -230,6 +241,20 @@ class DateParserKO(DateParser):
         self._modifier_after = re.compile(
             r"(.*?)\s*(%s)\s*$" % self._mod_after_str, re.IGNORECASE
         )
+
+    def _parse_korean_lunar(self, text):
+        """Parse a Korean Lunar date, including the forms it's displayed in."""
+        match = self._kl_native.match(text.strip())
+        if match:
+            month = match.group("month")
+            day = match.group("day")
+            return (
+                int(day) if day else 0,
+                self.korean_lunar_to_int[month.lower()] if month else 0,
+                int(match.group("year")),
+                False,
+            )
+        return DateParser._parse_korean_lunar(self, text)
 
     def set_date(self, date, text):
         """
@@ -323,7 +348,9 @@ class DateDisplayKO(DateDisplay):
         month_str = _KOREAN_LUNAR_MONTHS[actual] if actual else ""
 
         if self.format == 2:
-            year_str = "%s년" % korean_ganji_year(year)
+            # The year number as well as its 간지 name, which recurs every
+            # 60 years: "1976 병진년" reads back.
+            year_str = "%s %s년" % (year, korean_ganji_year(year))
         else:
             year_str = "%s년" % year
 
