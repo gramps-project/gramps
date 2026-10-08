@@ -70,6 +70,7 @@ gramps/gen/datehandler/_grampslocale.py
 #
 # gen.datehandler.test package
 #
+gramps/gen/datehandler/test/date_zh_test.py
 gramps/gen/datehandler/test/datedisplay_test.py
 gramps/gen/datehandler/test/datehandler_test.py
 gramps/gen/datehandler/test/dateparser_test.py
@@ -179,6 +180,7 @@ gramps/gen/lib/genderstats.py
 gramps/gen/lib/json_utils.py
 gramps/gen/lib/ldsordbase.py
 gramps/gen/lib/locationbase.py
+gramps/gen/lib/lunartables.py
 gramps/gen/lib/mediabase.py
 gramps/gen/lib/notebase.py
 gramps/gen/lib/placebase.py
@@ -194,6 +196,7 @@ gramps/gen/lib/urlbase.py
 #
 # gen lib test API
 #
+gramps/gen/lib/test/chinese_calendar_test.py
 gramps/gen/lib/test/date_test.py
 gramps/gen/lib/test/grampstype_test.py
 gramps/gen/lib/test/handleref_test.py

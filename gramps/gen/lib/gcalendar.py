@@ -30,6 +30,14 @@ import math
 
 # -------------------------------------------------------------------------
 #
+# Gramps modules
+#
+# -------------------------------------------------------------------------
+from .lunartables import CHINESE_BASE_YEAR as _CHN_BASE_YEAR
+from .lunartables import CHINESE_YEAR_INFOS as _CHN_YEAR_INFOS
+
+# -------------------------------------------------------------------------
+#
 # Constants
 #
 # -------------------------------------------------------------------------
@@ -653,3 +661,117 @@ def swedish_ymd(sdn):
     if sdn >= 2361390:
         return gregorian_ymd(sdn)
     return julian_ymd(sdn)
+
+
+# -------------------------------------------------------------------------
+#
+# Chinese Lunar Calendar
+#
+# -------------------------------------------------------------------------
+
+
+def _chn_iter_months(year_info: int):
+    """Yield (month, is_leap, days) in calendar order for one Chinese year.
+
+    year_info is one entry of a lunartables.py year table (see its encoding).
+    """
+    leap_month = year_info & 0xF
+    months = list(range(1, 13))
+    if leap_month:
+        months.insert(leap_month, -leap_month)
+    for m in months:
+        if m < 0:
+            days = ((year_info >> 16) & 1) + 29
+            yield -m, True, days
+        else:
+            days = ((year_info >> (16 - m)) & 1) + 29
+            yield m, False, days
+
+
+# Cumulative day offsets: _CHN_OFFSETS[i] is the number of days from
+# _CHN_START_SDN to the first day of (_CHN_BASE_YEAR + i).
+_CHN_OFFSETS: list[int] = []
+_chn_running = 0
+for _yi in _CHN_YEAR_INFOS:
+    _CHN_OFFSETS.append(_chn_running)
+    _chn_running += sum(d for _m, _lp, d in _chn_iter_months(_yi))
+_CHN_OFFSETS.append(_chn_running)  # sentinel: one past the last day in the table
+
+# SDN of the first day of year _CHN_BASE_YEAR.  Derived by working backward
+# from the verified anchor Lunar 1600/1/1 = Gregorian 1600-02-14 (SDN 2305492).
+# Starting at year 400 avoids tyme4py reconstruction drift in years 1-399.
+_CHN_START_SDN = gregorian_sdn(1600, 2, 14) - _CHN_OFFSETS[1600 - _CHN_BASE_YEAR]
+
+
+def chinese_lunar_sdn(year: int, month: int, day: int) -> int:
+    """Convert a Chinese Lunar date to an SDN number.
+
+    Months 1-12 are regular months; months 101-112 represent the leap
+    version of that month (e.g. 104 = intercalary 4th month).
+    Returns 0 for dates outside the supported range (400–9999).
+    """
+    idx = year - _CHN_BASE_YEAR
+    if idx < 0 or idx >= len(_CHN_YEAR_INFOS):
+        return 0
+    is_leap = month > 100
+    target = month - 100 if is_leap else month
+    offset = _CHN_OFFSETS[idx]
+    for m, leap, days in _chn_iter_months(_CHN_YEAR_INFOS[idx]):
+        if m == target and leap == is_leap:
+            return _CHN_START_SDN + offset + day - 1
+        offset += days
+    return 0
+
+
+def chinese_lunar_ymd(sdn: int) -> tuple[int, int, int]:
+    """Convert an SDN number to a Chinese Lunar date.
+
+    The returned month is 1-12 for a regular month or 101-112 for a leap
+    month.  Returns (0, 0, 0) for SDN values outside the supported range.
+    """
+    offset = sdn - _CHN_START_SDN
+    if offset < 0 or offset >= _CHN_OFFSETS[-1]:
+        return (0, 0, 0)
+    lo, hi = 0, len(_CHN_YEAR_INFOS) - 1
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        if _CHN_OFFSETS[mid] <= offset:
+            lo = mid
+        else:
+            hi = mid - 1
+    year = _CHN_BASE_YEAR + lo
+    remaining = offset - _CHN_OFFSETS[lo]
+    for m, is_leap, days in _chn_iter_months(_CHN_YEAR_INFOS[lo]):
+        if remaining < days:
+            return (year, m + 100 if is_leap else m, remaining + 1)
+        remaining -= days
+    return (0, 0, 0)
+
+
+# Heavenly Stems (天干) and Earthly Branches (地支) for the sexagenary cycle.
+_HEAVENLY_STEMS = ("甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸")
+_EARTHLY_BRANCHES = (
+    "子",
+    "丑",
+    "寅",
+    "卯",
+    "辰",
+    "巳",
+    "午",
+    "未",
+    "申",
+    "酉",
+    "戌",
+    "亥",
+)
+
+
+def chinese_sexagenary_year(year: int) -> str:
+    """Return the sexagenary (干支) year name for a Gregorian-aligned Chinese year.
+
+    For example, 1984 → '甲子', 2024 → '甲辰'.
+    The cycle anchor is year 4 CE = 甲子 (stem 0, branch 0).
+    """
+    stem = _HEAVENLY_STEMS[(year - 4) % 10]
+    branch = _EARTHLY_BRANCHES[(year - 4) % 12]
+    return stem + branch
