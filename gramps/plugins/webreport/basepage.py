@@ -554,29 +554,40 @@ class BasePage:
                 tbody = Html("tbody")
                 table2 += tbody
 
-                childlist = [child_ref.ref for child_ref in childlist]
+                childlist = [(child_ref.ref, child_ref.citation_list, child_ref.note_list) for child_ref in childlist]
 
-                # add individual's children event places to family map...
-                if self.familymappages:
-                    for handle in childlist:
-                        child = self.r_db.get_person_from_handle(handle)
+                if birthorder:
+                    childlist = sorted(childlist)
+                for child_tab in childlist:
+                    # add individual's children event places to family map...
+                    if self.familymappages:
+                        # for handles in childlist:
+                        child = self.r_db.get_person_from_handle(child_tab[0])
                         if child:
                             self._get_event_place(child, place_lat_long)
 
-                children = add_birthdate(self.r_db, childlist, self.rlocale)
-                if birthorder:
-                    children = sorted(children)
+                    children = add_birthdate(self.r_db, child_tab[0], self.rlocale)
+                    citations = self.get_citation_links(child_tab[1])
+                    notes_list = self.dump_notes(child_tab[2])
 
-                tbody.extend(
-                    (
-                        Html("tr", inline=True)
-                        + Html("td", inline=True, close=False)
-                        + self.display_child_link(chandle)
-                        + Html("td", birth, inline=True)
-                        + Html("td", death, inline=True)
+                    tbody.extend(
+                        (
+                            Html("tr", inline=True)
+                            + Html("td", inline=True, close=False)
+                            + self.display_child_link(chandle)
+                            + Html("td", birth, inline=True)
+                            + Html("td", death, inline=True)
+                        )
+                        for birth_date, birth, death, chandle in children
                     )
-                    for birth_date, birth, death, chandle in children
-                )
+                    cit_text = Html('<i class="NoteType">%s</i>' % self._("citation:")) if citations else ""
+                    tbody.extend(
+                        (
+                            Html("tr", inline=True, colspan=3)
+                            + Html("td", inline=True, close=False)
+                            + notes_list + cit_text + citations
+                        )
+                    )
             trow += table2
 
         # family LDS ordinance list

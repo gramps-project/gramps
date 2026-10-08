@@ -923,6 +923,13 @@ class NavWebReport(Report):
         for citation_handle in family.get_citation_list():
             self._add_citation(citation_handle, Family, family_handle)
 
+        ############### Child reference ##############
+        childlist = family.get_child_ref_list()
+        if childlist:
+            for child_ref in childlist:
+                for citation in child_ref.citation_list:
+                    self._add_citation(citation, Family, family_handle)
+
     def get_family_name(self, family):
         """
         Return a string containing the name of the family (e.g. 'Family of John
