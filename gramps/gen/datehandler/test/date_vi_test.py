@@ -191,5 +191,46 @@ class TestDateDisplayVI(unittest.TestCase):
         self.assertIn("Tháng Chạp", result)
 
 
+class TestVietnameseLunarRoundTrip(unittest.TestCase):
+    """Vietnamese Lunar dates, as vi displays them, read back in every format."""
+
+    DATES = [
+        (Date.QUAL_NONE, Date.MOD_NONE, (4, 1, 1976, False)),
+        (Date.QUAL_NONE, Date.MOD_NONE, (0, 8, 1976, False)),
+        (Date.QUAL_NONE, Date.MOD_NONE, (1, 104, 2020, False)),  # leap: ISO
+        (Date.QUAL_NONE, Date.MOD_NONE, (0, 0, 1900, False)),
+        (Date.QUAL_NONE, Date.MOD_BEFORE, (5, 5, 1950, False)),
+        (Date.QUAL_ESTIMATED, Date.MOD_ABOUT, (5, 5, 1950, False)),
+        (Date.QUAL_NONE, Date.MOD_RANGE, (1, 1, 1900, False, 1, 1, 1910, False)),
+        (Date.QUAL_NONE, Date.MOD_SPAN, (0, 3, 2020, False, 0, 104, 2020, False)),
+    ]
+
+    def test_round_trip(self):
+        parser, displayer = DateParserVI(), DateDisplayVI()
+        for fmt in range(len(displayer.formats)):
+            displayer.set_format(fmt)
+            for qual, mod, value in self.DATES:
+                date = Date()
+                date.set(qual, mod, Date.CAL_VIETNAMESE_LUNAR, value)
+                text = displayer.display(date)
+                with self.subTest(format=fmt, text=text):
+                    self.assertTrue(parser.parse(text).is_equal(date))
+
+    def test_can_chi_format_keeps_the_year(self):
+        """Format 2 names the year as Năm 1976 Bính Thìn: the name alone recurs every 60 years."""
+        displayer = DateDisplayVI(format=2)
+        date = Date()
+        date.set(
+            Date.QUAL_NONE,
+            Date.MOD_NONE,
+            Date.CAL_VIETNAMESE_LUNAR,
+            (4, 1, 1976, False),
+        )
+        self.assertEqual(
+            displayer.display(date),
+            "Năm 1976 Bính Thìn Tháng Giêng Ngày 4 (Vietnamese Lunar)",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -39,6 +39,12 @@ import re
 # -------------------------------------------------------------------------
 from ..lib.date import Date
 from ..lib.gcalendar import vietnamese_can_chi_year
+
+# A Can-Chi (sexagenary) year name: heavenly stem + earthly branch.
+_CAN_CHI = (
+    "(?:Giáp|Ất|Bính|Đinh|Mậu|Kỷ|Canh|Tân|Nhâm|Quý)\\s+"
+    "(?:Tý|Sửu|Dần|Mão|Thìn|Tỵ|Ngọ|Mùi|Thân|Dậu|Tuất|Hợi)"
+)
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
@@ -184,6 +190,14 @@ class DateParserVI(DateParser):
             r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._vlmon_str,
             re.IGNORECASE,
         )
+        # The displayed forms (_display_vietnamese_lunar): "Năm 1976 Tháng
+        # Giêng Ngày 4", "Năm 1976", and with the Can-Chi name "Năm 1976 Bính
+        # Thìn Tháng Giêng Ngày 4".
+        self._vl_native = re.compile(
+            r"Năm\s+(?P<year>\d+)(?:\s+%s)?(?:\s+(?P<month>%s)(?:\s+Ngày\s+(?P<day>\d+))?)?$"
+            % (_CAN_CHI, self._vlmon_str),
+            re.IGNORECASE,
+        )
 
         _span_1 = ["từ"]
         _span_2 = ["đến"]
@@ -212,6 +226,20 @@ class DateParserVI(DateParser):
             r"((\d+)\s*năm\s*)?((\d+)\s*tháng\s*)?(\d+)?\s*ngày?\s*$",
             re.IGNORECASE,
         )
+
+    def _parse_vietnamese_lunar(self, text):
+        """Parse a Vietnamese Lunar date, including the forms it's displayed in."""
+        match = self._vl_native.match(text.strip())
+        if match:
+            month = match.group("month")
+            day = match.group("day")
+            return (
+                int(day) if day else 0,
+                self.vietnamese_lunar_to_int[month.lower()] if month else 0,
+                int(match.group("year")),
+                False,
+            )
+        return DateParser._parse_vietnamese_lunar(self, text)
 
 
 # ------------------------------------------------------------
@@ -276,7 +304,9 @@ class DateDisplayVI(DateDisplay):
         month_str = _VIETNAMESE_LUNAR_MONTHS[actual] if actual else ""
 
         if self.format == 2:
-            year_str = "Năm %s" % vietnamese_can_chi_year(year)
+            # The year number as well as its Can-Chi name, which recurs
+            # every 60 years: "Năm 1976 Bính Thìn" reads back.
+            year_str = "Năm %s %s" % (year, vietnamese_can_chi_year(year))
         else:
             year_str = "Năm %s" % year
 

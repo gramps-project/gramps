@@ -54,7 +54,11 @@ from ..utils.grampslocale import GrampsLocale
 from ._datestrings import DateStrings
 
 # The lunisolar calendars, whose displayed names every parser must read.
-LUNAR_CALENDARS = (Date.CAL_CHINESE_LUNAR, Date.CAL_KOREAN_LUNAR)
+LUNAR_CALENDARS = (
+    Date.CAL_CHINESE_LUNAR,
+    Date.CAL_KOREAN_LUNAR,
+    Date.CAL_VIETNAMESE_LUNAR,
+)
 
 # -------------------------------------------------------------------------
 #
