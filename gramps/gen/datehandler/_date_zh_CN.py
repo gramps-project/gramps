@@ -40,6 +40,9 @@ import re
 
 from ..lib.date import Date
 from ..lib.gcalendar import chinese_sexagenary_year
+
+# A sexagenary year name (干支): heavenly stem + earthly branch.
+_SEXAGENARY = "[甲乙丙丁戊己庚辛壬癸][子丑寅卯辰巳午未申酉戌亥]"
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
@@ -218,6 +221,14 @@ class DateParserZH_CN(DateParser):
             r"(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._clmon_str,
             re.IGNORECASE,
         )
+        # The displayed forms (_display_chinese_lunar): "1976年正月4日",
+        # "2020年闰四月", "1976年", and with the sexagenary name
+        # "1976丙辰年正月4日".
+        self._cl_native = re.compile(
+            r"(?P<year>\d+)(?:%s)?年(?:(?P<month>%s)(?:(?P<day>\d+)日)?)?$"
+            % (_SEXAGENARY, self._clmon_str),
+            re.IGNORECASE,
+        )
 
         _span_1 = ["自"]
         _span_2 = ["至"]
@@ -249,6 +260,20 @@ class DateParserZH_CN(DateParser):
         # Allow zero whitespace between a prefix modifier and the date so that
         # display strings like "大约1850年" parse without a separating space.
         self._modifier = re.compile(r"%s\s*(.*)" % self._mod_str, re.IGNORECASE)
+
+    def _parse_chinese_lunar(self, text: str):
+        """Parse a Chinese Lunar date, including the forms it's displayed in."""
+        match = self._cl_native.match(text.strip())
+        if match:
+            month = match.group("month")
+            day = match.group("day")
+            return (
+                int(day) if day else 0,
+                self.chinese_lunar_to_int[month.lower()] if month else 0,
+                int(match.group("year")),
+                False,
+            )
+        return DateParser._parse_chinese_lunar(self, text)
 
     def match_quality(self, text: str, qual: int) -> tuple[str, int]:
         """
@@ -364,7 +389,9 @@ class DateDisplayZH_CN(DateDisplay):
         month_str = self.chinese_lunar[actual] if actual else ""
 
         if self.format == 2:
-            year_str = chinese_sexagenary_year(year) + "年"
+            # The year number as well as its sexagenary name, which
+            # recurs every 60 years: "1976丙辰年" reads back.
+            year_str = "%s%s年" % (year, chinese_sexagenary_year(year))
         else:
             year_str = "%s年" % year
 

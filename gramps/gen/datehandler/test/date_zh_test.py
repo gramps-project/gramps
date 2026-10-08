@@ -689,5 +689,46 @@ class TestRoundTripZH_TW(unittest.TestCase):
         self.assertEqual(d2.get_stop_date()[:3], (0, 0, 1910))
 
 
+class TestLunarRoundTripZH(unittest.TestCase):
+    """Chinese Lunar dates, as zh displays them, read back in every format."""
+
+    DATES = [
+        (Date.QUAL_NONE, Date.MOD_NONE, (4, 1, 1976, False)),
+        (Date.QUAL_NONE, Date.MOD_NONE, (0, 8, 1976, False)),
+        (Date.QUAL_NONE, Date.MOD_NONE, (1, 104, 2020, False)),  # leap 4th month
+        (Date.QUAL_NONE, Date.MOD_NONE, (0, 104, 2020, False)),
+        (Date.QUAL_NONE, Date.MOD_NONE, (0, 0, 1900, False)),
+        (Date.QUAL_NONE, Date.MOD_BEFORE, (5, 5, 1950, False)),
+        (Date.QUAL_ESTIMATED, Date.MOD_ABOUT, (5, 5, 1950, False)),
+        (Date.QUAL_NONE, Date.MOD_RANGE, (1, 1, 1900, False, 1, 1, 1910, False)),
+        (Date.QUAL_NONE, Date.MOD_SPAN, (0, 3, 2020, False, 0, 104, 2020, False)),
+    ]
+
+    def _check(self, parser, displayer):
+        for fmt in range(len(displayer.formats)):
+            displayer.set_format(fmt)
+            for qual, mod, value in self.DATES:
+                date = Date()
+                date.set(qual, mod, Date.CAL_CHINESE_LUNAR, value)
+                text = displayer.display(date)
+                with self.subTest(format=fmt, text=text):
+                    self.assertTrue(parser.parse(text).is_equal(date))
+
+    def test_zh_cn(self):
+        self._check(DateParserZH_CN(), DateDisplayZH_CN())
+
+    def test_zh_tw(self):
+        self._check(DateParserZH_TW(), DateDisplayZH_TW())
+
+    def test_sexagenary_format_keeps_the_year(self):
+        """Format 2 names the year as 1976丙辰年: the name alone recurs every 60 years."""
+        displayer = DateDisplayZH_CN(format=2)
+        date = Date()
+        date.set(
+            Date.QUAL_NONE, Date.MOD_NONE, Date.CAL_CHINESE_LUNAR, (4, 1, 1976, False)
+        )
+        self.assertEqual(displayer.display(date), "1976丙辰年正月4日 (Chinese Lunar)")
+
+
 if __name__ == "__main__":
     unittest.main()

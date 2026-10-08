@@ -53,6 +53,9 @@ from ..const import GRAMPS_LOCALE as glocale
 from ..utils.grampslocale import GrampsLocale
 from ._datestrings import DateStrings
 
+# The lunisolar calendars, whose displayed names every parser must read.
+LUNAR_CALENDARS = (Date.CAL_CHINESE_LUNAR,)
+
 # -------------------------------------------------------------------------
 #
 # Top-level module functions
@@ -490,6 +493,13 @@ class DateParser:
         """
         _ = self._locale.translation.gettext
         self.__init_prefix_tables()
+
+        # A language parser with its own calendar_to_int (zh, ko, vi) must
+        # still read the lunisolar calendars' names as the displayer writes
+        # them -- untranslated, "(Chinese Lunar)" -- or its own lunar dates
+        # don't read back.
+        for cal in LUNAR_CALENDARS:
+            self.calendar_to_int.setdefault(self._ds.calendar[cal].lower(), cal)
 
         self._rfc_mon_str = "(" + "|".join(list(self._rfc_mons_to_int.keys())) + ")"
         self._rfc_day_str = "(" + "|".join(self._rfc_days) + ")"
