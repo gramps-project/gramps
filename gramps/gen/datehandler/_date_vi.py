@@ -222,11 +222,6 @@ class DateParserVI(DateParser):
                 re.IGNORECASE,
             )
 
-        self._numeric = re.compile(
-            r"((\d+)\s*năm\s*)?((\d+)\s*tháng\s*)?(\d+)?\s*ngày?\s*$",
-            re.IGNORECASE,
-        )
-
     def _parse_vietnamese_lunar(self, text):
         """Parse a Vietnamese Lunar date, including the forms it's displayed in."""
         match = self._vl_native.match(text.strip())

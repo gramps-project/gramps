@@ -232,5 +232,19 @@ class TestVietnameseLunarRoundTrip(unittest.TestCase):
         )
 
 
+class TestNumericRoundTrip(unittest.TestCase):
+    """The numeric format (Số, %d/%m/%Y) reads back."""
+
+    def test_round_trip(self):
+        parser, displayer = DateParserVI(), DateDisplayVI(format=1)
+        for cal in (Date.CAL_GREGORIAN, Date.CAL_JULIAN, Date.CAL_CHINESE_LUNAR):
+            for value in ((4, 1, 1976, False), (0, 8, 1976, False)):
+                date = Date()
+                date.set(Date.QUAL_NONE, Date.MOD_NONE, cal, value)
+                text = displayer.display(date)
+                with self.subTest(text=text):
+                    self.assertTrue(parser.parse(text).is_equal(date))
+
+
 if __name__ == "__main__":
     unittest.main()
