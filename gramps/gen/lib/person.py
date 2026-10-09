@@ -170,7 +170,7 @@ class Person(
             TagBase.serialize(self),  # 18
             self.private,  # 19
             [pr.serialize() for pr in self.person_ref_list],  # 20
-            self.familysearch_sync.serialize(),  # 21
+            FamilySearchSyncBase.serialize(self),  # 21
         )
 
     @classmethod
@@ -276,7 +276,10 @@ class Person(
                     "items": PersonRef.get_schema(),
                     "title": _("Person references"),
                 },
-                "familysearch_sync": FamilySearchSync.get_schema(),
+                "familysearch_sync": {
+                    "oneOf": [{"type": "null"}, FamilySearchSync.get_schema()],
+                    "title": _("FamilySearch sync"),
+                },
             },
         }
 
@@ -345,9 +348,11 @@ class Person(
         Set the current object state using information provided in the given
         dictionary.
 
-        We override this method to handle the `gender` property.
+        We override this method to handle the `gender` property, and to
+        accept data without `familysearch_sync`, which is optional.
         """
         self.__gender = attr_dict.pop("gender")
+        attr_dict.setdefault("familysearch_sync", None)
         super().set_object_state(attr_dict)
 
     def _has_handle_reference(self, classname, handle):
@@ -526,7 +531,7 @@ class Person(
             + self.event_ref_list
             + add_list
             + self.person_ref_list
-            + [self.familysearch_sync]
+            + ([self.familysearch_sync] if self.familysearch_sync is not None else [])
         )
 
     def get_citation_child_list(self):
