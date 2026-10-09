@@ -39,6 +39,7 @@ class UserBase(metaclass=ABCMeta):
         self._fileout = sys.stderr  # redirected to mocks by unit tests
         self.uistate = uistate
         self.dbstate = dbstate
+        self._print_func = lambda msg: None
 
     @abstractmethod
     def begin_progress(self, title, message, steps):
@@ -194,6 +195,20 @@ class UserBase(metaclass=ABCMeta):
         """
         Displays information to the user
         """
+
+    def notify(self, msg):
+        """Display an informational message via the current print function."""
+        self._print_func(msg)
+
+    @contextmanager
+    def notifying(self, func):
+        """Temporarily override the print function for this User instance."""
+        old = self._print_func
+        self._print_func = func
+        try:
+            yield
+        finally:
+            self._print_func = old
 
 
 class User(UserBase):

@@ -48,6 +48,8 @@ from ..lib.repo import Repository
 from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
+from ..lib.dnatest import DNATest
+from ..lib.dnamatch import DNAMatch
 from ..const import GRAMPS_LOCALE as glocale
 from .rules import Rule
 from .optimizer import Optimizer
@@ -277,10 +279,13 @@ class GenericFilter:
                 if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
-        start_time = time.time()
+        t0 = time.perf_counter()
         for rule in self.flist:
             rule.requestprepare(db, user)
-        LOG.debug("Prepare time: %s seconds", time.time() - start_time)
+        t1 = time.perf_counter()
+        LOG.debug("Prepare time: %s seconds", t1 - t0)
+        if user:
+            user.notify("Prepare time: %.3fs" % (t1 - t0))
 
         if self.logical_op == "and":
             apply_logical_op = self.and_test
@@ -290,8 +295,6 @@ class GenericFilter:
             apply_logical_op = self.one_test
         else:
             raise Exception("invalid operator: %r" % self.logical_op)
-
-        start_time = time.time()
 
         # build the starting set of possible_handles to be filtered
         possible_handles: Set[PrimaryObjectHandle]
@@ -312,20 +315,22 @@ class GenericFilter:
         else:
             possible_handles = set(self.get_all_handles(db))
 
+        t2 = time.perf_counter()
         res = self.apply_logical_op_to_all(db, possible_handles, apply_logical_op, user)
+        t3 = time.perf_counter()
+        LOG.debug("Apply time: %s seconds", t3 - t2)
+        if user:
+            user.notify("Apply time: %.3fs" % (t3 - t2))
 
         # convert the filtered set of handles to the correct result type
         if id_list is not None and tupleind is not None:
-            # convert the final_list of handles back to the corresponding final_list of tuples
-            res = sorted(
-                [handle_tuple[handle] for handle in res],
-                key=lambda x: id_list.index(x),
-            )
+            # filter id_list to only matched handles, preserving original order
+            res_set = set(res)
+            res = [item for item in id_list if item[tupleind] in res_set]
         elif tree:
             # sort final_list into the same order as traversed by get_tree_cursor
-            res = sorted(res, key=lambda x: tree_handles.index(x))
-
-        LOG.debug("Apply time: %s seconds", time.time() - start_time)
+            tree_pos = {h: i for i, h in enumerate(tree_handles)}
+            res = sorted(res, key=lambda x: tree_pos[x])
 
         for rule in self.flist:
             rule.requestreset()
@@ -526,6 +531,52 @@ class GenericNoteFilter(GenericFilter):
         return db.get_note_from_handle(handle)
 
 
+class GenericDNATestFilter(GenericFilter):
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
+
+    def get_all_handles(self, db):
+        return db.get_dnatest_handles()
+
+    def get_cursor(self, db):
+        return db.get_dnatest_cursor()
+
+    def make_obj(self):
+        return DNATest()
+
+    def find_from_handle(self, db, handle):
+        return db.get_dnatest_from_handle(handle)
+
+    def get_number(self, db):
+        return db.get_number_of_dnatests()
+
+    def get_object(self, db, handle):
+        return db.get_dnatest_from_handle(handle)
+
+
+class GenericDNAMatchFilter(GenericFilter):
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
+
+    def get_all_handles(self, db):
+        return db.get_dnamatch_handles()
+
+    def get_cursor(self, db):
+        return db.get_dnamatch_cursor()
+
+    def make_obj(self):
+        return DNAMatch()
+
+    def find_from_handle(self, db, handle):
+        return db.get_dnamatch_from_handle(handle)
+
+    def get_number(self, db):
+        return db.get_number_of_dnamatches()
+
+    def get_object(self, db, handle):
+        return db.get_dnamatch_from_handle(handle)
+
+
 def GenericFilterFactory(namespace):
     if namespace == "Person":
         return GenericFilter
@@ -545,6 +596,10 @@ def GenericFilterFactory(namespace):
         return GenericRepoFilter
     elif namespace == "Note":
         return GenericNoteFilter
+    elif namespace == "DNATest":
+        return GenericDNATestFilter
+    elif namespace == "DNAMatch":
+        return GenericDNAMatchFilter
 
 
 class DeferredFilter(GenericFilter):

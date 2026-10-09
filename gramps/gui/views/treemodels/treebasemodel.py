@@ -732,7 +732,13 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         self.clear_path_cache()
         self.__reverse = not self.__reverse
-        top_node = self.tree[None]
+        # When the database is closed the model's tree is cleared,
+        # so the root entry self.tree[None] no longer exists. A
+        # subsequent column-click would then raise KeyError; nothing
+        # to reverse here, so short-circuit. See bug 13214.
+        top_node = self.tree.get(None)
+        if top_node is None:
+            return
         self._reverse_level(top_node)
 
     def _reverse_level(self, node):

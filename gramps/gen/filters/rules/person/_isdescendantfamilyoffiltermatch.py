@@ -22,21 +22,13 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from typing import Set
-
 from ....const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
-
-# -------------------------------------------------------------------------
-#
-# Gramps modules
-#
-# -------------------------------------------------------------------------
 from ._isdescendantfamilyof import IsDescendantFamilyOf
 from ._matchesfilter import MatchesFilter
 from ....types import PersonHandle
 from ....db.generic import Database
+
+_ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
@@ -58,25 +50,16 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[PersonHandle] = set()
+        self.selected_handles: set[PersonHandle] = set()
 
         self.matchfilt = MatchesFilter(self.list[0:1])
         self.matchfilt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        # Must use db.iter_people() rather that db._iter_raw_person_data()
-        # because of proxies:
-        for person in db.iter_people():
-            if user:
-                user.step_progress()
-            if self.matchfilt.apply_to_one(db, person):
+
+        filt = self.matchfilt.find_filter()
+        if filt:
+            for handle in filt.apply(db, user=user):
+                person = db.get_raw_person_data(handle)
                 self.add_matches(person)
-        if user:
-            user.end_progress()
 
     def reset(self):
         self.matchfilt.requestreset()

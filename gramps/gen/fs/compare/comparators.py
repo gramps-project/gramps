@@ -21,7 +21,7 @@ from __future__ import annotations
 
 import logging
 from urllib.parse import unquote
-from typing import List, Optional, Tuple
+from typing import Any, Iterable, List, NamedTuple, Optional, Tuple
 
 from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gen.fs import utils as fs_utilities
@@ -38,6 +38,34 @@ from .formatters import person_dates_str, fs_person_dates_str
 logger = logging.getLogger(__name__)
 
 _ = glocale.translation.gettext
+
+
+# -------------------------------------------------------------------------
+#
+# CompareRow
+#
+# -------------------------------------------------------------------------
+class CompareRow(NamedTuple):
+    """
+    One compare row produced by a comparator function.
+
+    Positions 0-12 are consumed directly by the overview tree ListModel;
+    use keyword construction to make each site self-documenting.
+    """
+
+    status: str
+    field: str
+    gr_date: str
+    gr_value: str
+    fs_date: str
+    fs_value: str
+    unused_str: str = ""
+    unused_bool: bool = False
+    kind: str = ""
+    gr_handle: Any = None
+    fs_id: Any = None
+    gr_extra: Any = None
+    fs_extra: Any = None
 
 
 def _ensure_fs_people(person_ids: set[str]) -> None:
@@ -75,6 +103,231 @@ def _fs_person_or_blank(fsid: str):
     return _fs_person_opt(fsid) or deserialize.Person()
 
 
+def _parent_ids_from_fs_person(fs_person) -> set[str]:
+    """
+    Collect parent ids from both relationship payload styles.
+    """
+    parent_ids: set[str] = set()
+
+    for couple in getattr(fs_person, "_parents", []) or []:
+        if getattr(couple, "person1", None):
+            parent_ids.add(couple.person1.resourceId)
+        if getattr(couple, "person2", None):
+            parent_ids.add(couple.person2.resourceId)
+
+    for rel in getattr(fs_person, "_parentsCP", []) or []:
+        if getattr(rel, "parent1", None):
+            parent_ids.add(rel.parent1.resourceId)
+        if getattr(rel, "parent2", None):
+            parent_ids.add(rel.parent2.resourceId)
+
+    parent_ids.discard(getattr(fs_person, "id", ""))
+    return {pid for pid in parent_ids if pid}
+
+
+def _spouse_ids_from_children(fs_person) -> set[str]:
+    """
+    Infer spouse ids from child-and-parents relationships.
+    """
+    fsid = getattr(fs_person, "id", "")
+    spouse_ids: set[str] = set()
+
+    for rel in getattr(fs_person, "_childrenCP", []) or []:
+        other_parent_id = _other_parent_id_for_child_rel(fsid, rel)
+        if other_parent_id:
+            spouse_ids.add(other_parent_id)
+
+    spouse_ids.discard(fsid)
+    return spouse_ids
+
+
+def _other_parent_id_for_child_rel(fsid: str, rel: object) -> str | None:
+    """
+    Return the other parent id for a child relationship involving fsid.
+    """
+    parent1 = getattr(getattr(rel, "parent1", None), "resourceId", "")
+    parent2 = getattr(getattr(rel, "parent2", None), "resourceId", "")
+    if parent1 == fsid:
+        return parent2 or ""
+    if parent2 == fsid:
+        return parent1 or ""
+    return None
+
+
+def _child_id_for_rel(rel: object) -> str:
+    """
+    Return the child id for a child-and-parents relationship.
+    """
+    return str(getattr(getattr(rel, "child", None), "resourceId", "") or "")
+
+
+def _child_rel_matches_family(
+    fsid: str, rel: object, child_fsid: str, spouse_fsid: str
+) -> bool:
+    """
+    Return True when a FamilySearch child relationship matches this local family.
+    """
+    if not child_fsid or _child_id_for_rel(rel) != child_fsid:
+        return False
+    return _other_parent_id_for_child_rel(fsid, rel) == (spouse_fsid or "")
+
+
+def _child_other_parent_ids_for_family(db, family, fs_person) -> set[str]:
+    """
+    Return FamilySearch other-parent groups represented by local children.
+    """
+    fsid = getattr(fs_person, "id", "")
+    other_parent_ids: set[str] = set()
+    child_groups: dict[str, set[str]] = {}
+
+    for rel in getattr(fs_person, "_childrenCP", []) or []:
+        child_id = getattr(getattr(rel, "child", None), "resourceId", "")
+        other_parent_id = _other_parent_id_for_child_rel(fsid, rel)
+        if child_id and other_parent_id is not None:
+            child_groups.setdefault(child_id, set()).add(other_parent_id)
+
+    for child_ref in family.get_child_ref_list():
+        child = db.get_person_from_handle(child_ref.ref)
+        child_fsid = fs_utilities.get_fsftid(child)
+        other_parent_ids.update(child_groups.get(child_fsid, set()))
+
+    return other_parent_ids
+
+
+def _pop_fs_couple_for_spouse(fs_spouses, fsid: str, spouse_fsid: str):
+    """
+    Remove and return the FamilySearch couple relationship for a spouse id.
+    """
+    for couple in list(fs_spouses):
+        person1 = getattr(getattr(couple, "person1", None), "resourceId", "")
+        person2 = getattr(getattr(couple, "person2", None), "resourceId", "")
+        if (
+            (person1 == fsid and person2 == spouse_fsid)
+            or (person2 == fsid and person1 == spouse_fsid)
+            or (spouse_fsid == "" and (person1 == "" or person2 == ""))
+        ):
+            fs_spouses.remove(couple)
+            return couple
+    return None
+
+
+def _fs_fact_gramps_tag(fs_fact: Any) -> Any:
+    """
+    Return the Gramps event tag represented by a FamilySearch fact.
+    """
+    fs_type = str(getattr(fs_fact, "type", "") or "")
+    ged_tag = GEDCOMX_TO_GRAMPS_FACTS.get(unquote(fs_type))
+    if not ged_tag:
+        if fs_type[:6] == "data:,":
+            ged_tag = unquote(fs_type[6:])
+        else:
+            ged_tag = fs_type
+
+    if (
+        (ged_tag in (EventType.MARR_ALT, EventType.MARRIAGE))
+        and getattr(fs_fact, "attribution", None)
+        and getattr(fs_fact.attribution, "changeMessage", None)
+    ):
+        line = fs_fact.attribution.changeMessage.partition("\n")[0]
+        if line[:5] == "http:":
+            tag = GEDCOMX_TO_GRAMPS_FACTS.get(line)
+        elif line[:5] == "data:":
+            tag = unquote(line[6:])
+        else:
+            tag = None
+        if tag:
+            ged_tag = GEDCOMX_TO_GRAMPS_FACTS.get(line) or tag
+
+    return ged_tag
+
+
+def _event_type_value(event_type: Any) -> Any:
+    """
+    Return the comparable primitive value for a Gramps event type.
+    """
+    try:
+        return int(event_type) or event_type
+    except Exception:
+        return event_type
+
+
+def _fs_fact_date(fs_fact: Any) -> str:
+    """
+    Return the display date for a FamilySearch fact.
+    """
+    return str(getattr(fs_fact, "date", None) or "")
+
+
+def _fs_fact_place(fs_fact: Any) -> str:
+    """
+    Return the display place for a FamilySearch fact.
+    """
+    place = getattr(fs_fact, "place", None)
+    if not place:
+        return ""
+    return getattr(place, "original", "") or ""
+
+
+def _fs_fact_value(fs_fact: Any) -> str:
+    """
+    Return the display value for a FamilySearch fact.
+    """
+    return getattr(fs_fact, "value", "") or ""
+
+
+def _fs_fact_signature(fs_fact: Any) -> tuple[Any, str, str, str]:
+    """
+    Return the value signature used to collapse duplicate FS facts.
+    """
+    return (
+        _fs_fact_gramps_tag(fs_fact),
+        _fs_fact_date(fs_fact),
+        _fs_fact_place(fs_fact),
+        _fs_fact_value(fs_fact),
+    )
+
+
+def _unique_fs_facts(fs_facts: Iterable[Any]) -> list[Any]:
+    """
+    Return FS facts with duplicate-equivalent rows collapsed.
+    """
+    facts: list[Any] = []
+    seen: set[tuple[Any, str, str, str]] = set()
+    for fs_fact in fs_facts or []:
+        signature = _fs_fact_signature(fs_fact)
+        if signature in seen:
+            continue
+        seen.add(signature)
+        facts.append(fs_fact)
+    return facts
+
+
+def _find_best_fs_fact_match(
+    fs_facts: list[Any], gr_tag: Any, gr_date: str, gr_id: str
+) -> Any | None:
+    """
+    Return the best FamilySearch fact for a Gramps family event.
+    """
+    if gr_id:
+        for fs_fact in fs_facts:
+            if getattr(fs_fact, "id", None) == gr_id:
+                return fs_fact
+
+    fallback = None
+    for fs_fact in fs_facts:
+        if _fs_fact_gramps_tag(fs_fact) != gr_tag:
+            continue
+        if _fs_fact_date(fs_fact) == gr_date:
+            return fs_fact
+        # When gr_date is non-empty prefer a dated fact as fallback so that a
+        # date-bearing FS fact is not displaced by a dateless one.
+        if fallback is None or (
+            gr_date and _fs_fact_date(fs_fact) and not _fs_fact_date(fallback)
+        ):
+            fallback = fs_fact
+    return fallback
+
+
 def compare_gender(gr_person: Person, fs_person) -> Tuple:
     # Compare GRAMPS gender vs FS gender, returns a color-coded tuple
     if gr_person.get_gender() == Person.MALE:
@@ -92,18 +345,14 @@ def compare_gender(gr_person: Person, fs_person) -> Tuple:
         fs_gender = _("unknown")
 
     color = "green" if gr_gender == fs_gender else "red"
-    return (
-        color,
-        _("Gender:"),
-        "",
-        gr_gender,
-        "",
-        fs_gender,
-        "",
-        False,
-        "gender",
-        None,
-        None,
+    return CompareRow(
+        status=color,
+        field=_("Gender:"),
+        gr_date="",
+        gr_value=gr_gender,
+        fs_date="",
+        fs_value=fs_gender,
+        kind="gender",
     )
 
 
@@ -151,18 +400,16 @@ def compare_fact(
     if gr_date == "" and fs_date != "":
         color = "yellow3"
 
-    return (
-        color,
-        title,
-        gr_date,
-        gr_place,
-        fs_date,
-        fs_place,
-        "",
-        False,
-        "fact",
-        gr_handle,
-        fs_id,
+    return CompareRow(
+        status=color,
+        field=title,
+        gr_date=gr_date,
+        gr_value=gr_place,
+        fs_date=fs_date,
+        fs_value=fs_place,
+        kind="fact",
+        gr_handle=gr_handle,
+        fs_id=fs_id,
     )
 
 
@@ -178,20 +425,18 @@ def compare_names(gr_person: Person, fs_person) -> List[Tuple]:
         color = "green"
 
     res.append(
-        (
-            color,
-            _("Name"),
-            "",
-            gr_primary.get_surname() + ", " + gr_primary.first_name,
-            "",
-            fs_name.akSurname() + ", " + fs_name.akGiven(),
-            "",
-            False,
-            "primary_name",
-            str(gr_primary),
-            fs_name.id,
-            gr_primary.get_surname(),
-            gr_primary.first_name,
+        CompareRow(
+            status=color,
+            field=_("Name"),
+            gr_date="",
+            gr_value=gr_primary.get_surname() + ", " + gr_primary.first_name,
+            fs_date="",
+            fs_value=fs_name.akSurname() + ", " + fs_name.akGiven(),
+            kind="primary_name",
+            gr_handle=str(gr_primary),
+            fs_id=fs_name.id,
+            gr_extra=gr_primary.get_surname(),
+            fs_extra=gr_primary.first_name,
         )
     )
 
@@ -211,38 +456,33 @@ def compare_names(gr_person: Person, fs_person) -> List[Tuple]:
                 fs_names.remove(x)
                 break
         res.append(
-            (
-                color,
-                "  " + _("Name"),
-                "",
-                gr_alt.get_surname() + ", " + gr_alt.first_name,
-                "",
-                candidate.akSurname() + ", " + candidate.akGiven(),
-                "",
-                False,
-                "name",
-                str(gr_alt),
-                candidate.id,
-                gr_alt.get_surname(),
-                gr_alt.first_name,
+            CompareRow(
+                status=color,
+                field="  " + _("Name"),
+                gr_date="",
+                gr_value=gr_alt.get_surname() + ", " + gr_alt.first_name,
+                fs_date="",
+                fs_value=candidate.akSurname() + ", " + candidate.akGiven(),
+                kind="name",
+                gr_handle=str(gr_alt),
+                fs_id=candidate.id,
+                gr_extra=gr_alt.get_surname(),
+                fs_extra=gr_alt.first_name,
             )
         )
 
     color = "yellow3"
     for fs_n in fs_names:
         res.append(
-            (
-                color,
-                "  " + _("Name"),
-                "",
-                "",
-                "",
-                fs_n.akSurname() + ", " + fs_n.akGiven(),
-                "",
-                False,
-                "name",
-                None,
-                fs_n.id,
+            CompareRow(
+                status=color,
+                field="  " + _("Name"),
+                gr_date="",
+                gr_value="",
+                fs_date="",
+                fs_value=fs_n.akSurname() + ", " + fs_n.akGiven(),
+                kind="name",
+                fs_id=fs_n.id,
             )
         )
 
@@ -271,13 +511,8 @@ def compare_parents(db, gr_person: Person, fs_person) -> List[Tuple]:
             mother = db.get_person_from_handle(mother_handle)
             mother_name = name_displayer.display(mother)
 
-    if len(fs_person._parents) > 0:
-        parent_ids = set()
-        for couple in fs_person._parents:
-            parent_ids.add(couple.person1.resourceId)
-            parent_ids.add(couple.person2.resourceId)
-        parent_ids.remove(fs_person.id)
-
+    parent_ids = _parent_ids_from_fs_person(fs_person)
+    if parent_ids:
         _ensure_fs_people(parent_ids)
 
         fs_father_id = ""
@@ -323,18 +558,16 @@ def compare_parents(db, gr_person: Person, fs_person) -> List[Tuple]:
         color = "yellow3"
     if father or fs_father:
         res.append(
-            (
-                color,
-                _("Father"),
-                person_dates_str(db, father),
-                " " + father_name + " [" + father_fsid + "]",
-                fs_person_dates_str(db, fs_father),
-                fs_father_name + " [" + fs_father_id + "]",
-                "",
-                False,
-                "father",
-                father_handle,
-                father_fsid,
+            CompareRow(
+                status=color,
+                field=_("Father"),
+                gr_date=person_dates_str(db, father),
+                gr_value=" " + father_name + " [" + father_fsid + "]",
+                fs_date=fs_person_dates_str(db, fs_father),
+                fs_value=fs_father_name + " [" + fs_father_id + "]",
+                kind="father",
+                gr_handle=father_handle,
+                fs_id=father_fsid,
             )
         )
 
@@ -347,18 +580,16 @@ def compare_parents(db, gr_person: Person, fs_person) -> List[Tuple]:
         color = "yellow3"
     if mother or fs_mother:
         res.append(
-            (
-                color,
-                _("Mother"),
-                person_dates_str(db, mother),
-                " " + mother_name + " [" + mother_fsid + "]",
-                fs_person_dates_str(db, fs_mother),
-                fs_mother_name + " [" + fs_mother_id + "]",
-                "",
-                False,
-                "mother",
-                mother_handle,
-                mother_fsid,
+            CompareRow(
+                status=color,
+                field=_("Mother"),
+                gr_date=person_dates_str(db, mother),
+                gr_value=" " + mother_name + " [" + mother_fsid + "]",
+                fs_date=fs_person_dates_str(db, fs_mother),
+                fs_value=fs_mother_name + " [" + fs_mother_id + "]",
+                kind="mother",
+                gr_handle=mother_handle,
+                fs_id=mother_fsid,
             )
         )
 
@@ -418,30 +649,28 @@ def compare_spouse_notes(db, gr_person: Person, fs_person) -> List[Tuple]:
 
             fs_name = fs_spouse.preferred_name()
             res.append(
-                (
-                    color,
-                    _("Spouse"),
-                    person_dates_str(db, spouse),
-                    spouse_name.get_surname()
+                CompareRow(
+                    status=color,
+                    field=_("Spouse"),
+                    gr_date=person_dates_str(db, spouse),
+                    gr_value=spouse_name.get_surname()
                     + ", "
                     + spouse_name.first_name
                     + " ["
                     + spouse_fsid
                     + "]",
-                    fs_person_dates_str(db, fs_spouse),
-                    fs_name.akSurname()
+                    fs_date=fs_person_dates_str(db, fs_spouse),
+                    fs_value=fs_name.akSurname()
                     + ", "
                     + fs_name.akGiven()
                     + " ["
                     + fs_spouse_id
                     + "]",
-                    "",
-                    False,
-                    "spouse",
-                    spouse_handle,
-                    fs_spouse_id,
-                    family.handle,
-                    fs_pair_id,
+                    kind="spouse",
+                    gr_handle=spouse_handle,
+                    fs_id=fs_spouse_id,
+                    gr_extra=family.handle,
+                    fs_extra=fs_pair_id,
                 )
             )
 
@@ -450,10 +679,10 @@ def compare_spouse_notes(db, gr_person: Person, fs_person) -> List[Tuple]:
         # keep this ALWAYS str (never None) so mypy is happy
         if couple.person1 and couple.person1.resourceId == fsid:
             fs_spouse_id = couple.person2.resourceId
-        elif couple.person1:
-            fs_spouse_id = couple.person1.resourceId
+        elif couple.person2 and couple.person2.resourceId == fsid:
+            fs_spouse_id = couple.person1.resourceId if couple.person1 else ""
         else:
-            fs_spouse_id = ""
+            continue
 
         fs_spouse_opt = _fs_person_opt(fs_spouse_id)
 
@@ -464,25 +693,21 @@ def compare_spouse_notes(db, gr_person: Person, fs_person) -> List[Tuple]:
         fs_name = fs_spouse_for_name.preferred_name()
 
         res.append(
-            (
-                color,
-                _("Spouse"),
-                "",
-                "",
-                fs_person_dates_str(db, fs_spouse_opt),
-                fs_name.akSurname()
+            CompareRow(
+                status=color,
+                field=_("Spouse"),
+                gr_date="",
+                gr_value="",
+                fs_date=fs_person_dates_str(db, fs_spouse_opt),
+                fs_value=fs_name.akSurname()
                 + ", "
                 + fs_name.akGiven()
                 + " ["
                 + fs_spouse_id
                 + "]",
-                "",
-                False,
-                "spouse",
-                None,
-                fs_spouse_id,
-                None,
-                couple.id,
+                kind="spouse",
+                fs_id=fs_spouse_id,
+                fs_extra=couple.id,
             )
         )
 
@@ -494,6 +719,7 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
     res: List[Tuple] = []
     fs_spouses = fs_person._spouses.copy()
     fs_children = fs_person._childrenCP.copy()
+    fs_spouse_ids = _spouse_ids_from_children(fs_person)
     fsid = fs_person.id
 
     for family_handle in gr_person.get_family_handle_list():
@@ -512,6 +738,11 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
             fs_spouse_id = ""
             fs_pair = None
             fs_pair_id = None
+            child_other_parent_ids = _child_other_parent_ids_for_family(
+                db,
+                family,
+                fs_person,
+            )
 
             for couple in fs_spouses:
                 if (couple.person1 and couple.person1.resourceId == spouse_fsid) or (
@@ -533,49 +764,73 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
                     fs_spouses.remove(couple)
                     break
 
-            color = "yellow"
+            if not fs_spouse_id and not spouse_fsid:
+                non_blank_child_parent_ids = sorted(
+                    parent_id for parent_id in child_other_parent_ids if parent_id
+                )
+                if len(non_blank_child_parent_ids) == 1:
+                    fs_spouse_id = non_blank_child_parent_ids[0]
+                    fs_pair = _pop_fs_couple_for_spouse(
+                        fs_spouses,
+                        fsid,
+                        fs_spouse_id,
+                    )
+                    fs_pair_id = getattr(fs_pair, "id", None) if fs_pair else None
+                    fs_spouse_ids.discard(fs_spouse_id)
+
+            if not fs_spouse_id and spouse_fsid and spouse_fsid in fs_spouse_ids:
+                fs_spouse_id = spouse_fsid
+                fs_spouse_ids.remove(spouse_fsid)
+            elif spouse_fsid:
+                fs_spouse_ids.discard(spouse_fsid)
+
+            color = "orange"
             if spouse_fsid and spouse_fsid == fs_spouse_id:
                 color = "green"
-            if spouse_handle is None and fs_spouse_id == "":
+            elif spouse_handle is None and fs_spouse_id:
+                color = "yellow3"
+            elif spouse_handle is None and fs_spouse_id == "":
                 color = "green"
+                if any(parent_id for parent_id in child_other_parent_ids):
+                    color = "orange"
+            elif spouse_fsid and not fs_spouse_id:
+                color = "yellow"
 
             fs_spouse = _fs_person_or_blank(fs_spouse_id)
 
             fs_name = fs_spouse.preferred_name()
             res.append(
-                (
-                    color,
-                    _("Spouse"),
-                    person_dates_str(db, spouse),
-                    spouse_name.get_surname()
+                CompareRow(
+                    status=color,
+                    field=_("Spouse"),
+                    gr_date=person_dates_str(db, spouse),
+                    gr_value=spouse_name.get_surname()
                     + ", "
                     + spouse_name.first_name
                     + " ["
                     + spouse_fsid
                     + "]",
-                    fs_person_dates_str(db, fs_spouse),
-                    fs_name.akSurname()
+                    fs_date=fs_person_dates_str(db, fs_spouse),
+                    fs_value=fs_name.akSurname()
                     + ", "
                     + fs_name.akGiven()
                     + " ["
                     + fs_spouse_id
                     + "]",
-                    "",
-                    False,
-                    "spouse",
-                    spouse_handle,
-                    fs_spouse_id,
-                    family.handle,
-                    fs_pair_id,
+                    kind="spouse",
+                    gr_handle=spouse_handle,
+                    fs_id=fs_spouse_id,
+                    gr_extra=family.handle,
+                    fs_extra=fs_pair_id,
                 )
             )
 
             # family-level events like marriage
             if fs_pair:
-                fs_facts = fs_pair.facts.copy()
+                fs_facts = list(getattr(fs_pair, "facts", []) or [])
                 fs_pair_id_local = fs_pair.id
             else:
-                fs_facts = set()
+                fs_facts = []
                 fs_pair_id_local = None
 
             for eventref in family.get_event_ref_list():
@@ -591,9 +846,7 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
                 gr_value = (
                     gr_desc
                     if gr_place == ""
-                    else (
-                        gr_desc + " from deserialize.xml import parse_xml " + gr_place
-                    )
+                    else " @ ".join(filter(None, [gr_desc, gr_place]))
                 )
 
                 color = "yellow"
@@ -601,110 +854,84 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
                 fs_place = ""
                 fs_desc = ""
                 fs_id = None
+                gr_id = fs_utilities.get_fsftid(event)
+                gr_tag = _event_type_value(event.type)
 
-                for fs_fact in fs_facts:
-                    ged_tag = GEDCOMX_TO_GRAMPS_FACTS.get(unquote(fs_fact.type))
-                    if not ged_tag:
-                        if fs_fact.type[:6] == "data:,":
-                            ged_tag = unquote(fs_fact.type[6:])
-                        else:
-                            ged_tag = fs_fact.type
-                    gr_tag = int(event.type) or event.type
-
-                    if (
-                        (ged_tag in (EventType.MARR_ALT, EventType.MARRIAGE))
-                        and fs_fact.attribution
-                        and fs_fact.attribution.changeMessage
-                    ):
-                        line = fs_fact.attribution.changeMessage.partition("\n")[0]
-                        if line[:5] == "http:":
-                            tag = GEDCOMX_TO_GRAMPS_FACTS.get(line)
-                        elif line[:5] == "data:":
-                            tag = unquote(line[6:])
-                        else:
-                            tag = None
-                        if tag:
-                            ged_tag = GEDCOMX_TO_GRAMPS_FACTS.get(line) or tag
-
-                    if ged_tag != gr_tag:
-                        continue
-
-                    fs_date = str(fs_fact.date or "")
+                fs_fact = _find_best_fs_fact_match(fs_facts, gr_tag, gr_date, gr_id)
+                if fs_fact:
+                    fs_date = _fs_fact_date(fs_fact)
                     if fs_date == gr_date:
                         color = "green"
-                    if fs_fact.place:
-                        fs_place = fs_fact.place.original or ""
-                    fs_desc = fs_fact.value or ""
-                    fs_id = fs_fact.id
-                    fs_facts.remove(fs_fact)
-                    break
+                    fs_place = _fs_fact_place(fs_fact)
+                    fs_desc = _fs_fact_value(fs_fact)
+                    fs_id = getattr(fs_fact, "id", None)
+                    if color == "green":
+                        matched_signature = _fs_fact_signature(fs_fact)
+                        fs_facts = [
+                            fact
+                            for fact in fs_facts
+                            if _fs_fact_signature(fact) != matched_signature
+                        ]
+                    else:
+                        fs_facts.remove(fs_fact)
+                    if color == "green" and not gr_id and fs_id:
+                        logger.debug("Linking GR family event to FS fact id=%s", fs_id)
+                        fs_utilities.link_gramps_fs_id(db, event, fs_id)
 
                 fs_value = (
                     fs_desc
                     if fs_place == ""
-                    else (
-                        fs_desc + " from deserialize.xml import parse_xml " + fs_place
-                    )
+                    else " @ ".join(filter(None, [fs_desc, fs_place]))
                 )
 
                 res.append(
-                    (
-                        color,
-                        " " + title,
-                        gr_date,
-                        gr_value,
-                        fs_date,
-                        fs_value,
-                        "",
-                        False,
-                        "spouse_fact",
-                        eventref.ref,
-                        fs_id,
-                        family.handle,
-                        fs_pair_id_local,
+                    CompareRow(
+                        status=color,
+                        field=" " + title,
+                        gr_date=gr_date,
+                        gr_value=gr_value,
+                        fs_date=fs_date,
+                        fs_value=fs_value,
+                        kind="spouse_fact",
+                        gr_handle=eventref.ref,
+                        fs_id=fs_id,
+                        gr_extra=family.handle,
+                        fs_extra=fs_pair_id_local,
                     )
                 )
 
             # FS facts not in GRAMPS
             color = "yellow3"
-            for fs_fact in fs_facts:
-                evt_type = GEDCOMX_TO_GRAMPS_FACTS.get(unquote(fs_fact.type))
+            for fs_fact in _unique_fs_facts(fs_facts):
+                evt_type = _fs_fact_gramps_tag(fs_fact)
                 if evt_type:
-                    title = str(EventType(evt_type))
-                elif fs_fact.type[:6] == "data:,":
-                    title = unquote(fs_fact.type[6:])
+                    try:
+                        title = str(EventType(evt_type))
+                    except Exception:
+                        title = str(evt_type)
                 else:
-                    title = fs_fact.type
-                fs_date = str(fs_fact.date or "") if hasattr(fs_fact, "date") else ""
-                fs_place = (
-                    fs_fact.place.original or ""
-                    if getattr(fs_fact, "place", None)
-                    else ""
-                )
-                fs_desc = fs_fact.value or ""
+                    title = str(getattr(fs_fact, "type", "") or "")
+                fs_date = _fs_fact_date(fs_fact)
+                fs_place = _fs_fact_place(fs_fact)
+                fs_desc = _fs_fact_value(fs_fact)
                 fs_value = (
                     fs_desc
                     if fs_place == ""
-                    else (
-                        fs_desc + " from deserialize.xml import parse_xml " + fs_place
-                    )
+                    else " @ ".join(filter(None, [fs_desc, fs_place]))
                 )
 
                 res.append(
-                    (
-                        color,
-                        " " + title,
-                        "",
-                        "",
-                        fs_date,
-                        fs_value,
-                        "",
-                        False,
-                        "spouse_fact",
-                        None,
-                        fs_fact.id,
-                        family.handle,
-                        fs_pair.id if fs_pair else None,
+                    CompareRow(
+                        status=color,
+                        field=" " + title,
+                        gr_date="",
+                        gr_value="",
+                        fs_date=fs_date,
+                        fs_value=fs_value,
+                        kind="spouse_fact",
+                        fs_id=fs_fact.id,
+                        gr_extra=family.handle,
+                        fs_extra=fs_pair.id if fs_pair else None,
                     )
                 )
 
@@ -714,87 +941,68 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
                 child_name = child.primary_name
                 child_fsid = fs_utilities.get_fsftid(child)
                 fs_child_id = ""
-                for triple in fs_children:
-                    if (
-                        (
-                            triple.parent1
-                            and triple.parent1.resourceId == fsid
-                            and (
-                                (
-                                    triple.parent2
-                                    and triple.parent2.resourceId == fs_spouse_id
-                                )
-                                or (not triple.parent2 and fs_spouse_id == "")
-                            )
-                        )
-                        or (
-                            triple.parent2
-                            and triple.parent2.resourceId == fsid
-                            and (
-                                (
-                                    triple.parent1
-                                    and triple.parent1.resourceId == fs_spouse_id
-                                )
-                                or (not triple.parent1 and fs_spouse_id == "")
-                            )
-                        )
-                    ) and triple.child.resourceId == child_fsid:
+                fs_child_other_parent_id = None
+                for triple in list(fs_children):
+                    if _child_rel_matches_family(
+                        fsid, triple, child_fsid, fs_spouse_id
+                    ):
                         fs_child_id = child_fsid
+                        fs_child_other_parent_id = fs_spouse_id or ""
                         fs_children.remove(triple)
                         break
+
+                if not fs_child_id:
+                    for triple in list(fs_children):
+                        other_parent_id = _other_parent_id_for_child_rel(fsid, triple)
+                        if (
+                            other_parent_id is not None
+                            and _child_id_for_rel(triple) == child_fsid
+                        ):
+                            fs_child_id = child_fsid
+                            fs_child_other_parent_id = other_parent_id
+                            break
 
                 color = "yellow"
                 if fs_child_id != "" and fs_child_id == child_fsid:
                     color = "green"
+                    if fs_child_other_parent_id != fs_spouse_id:
+                        color = "orange"
 
                 fs_child = _fs_person_or_blank(fs_child_id)
 
                 fs_name = fs_child.preferred_name()
                 res.append(
-                    (
-                        color,
-                        "    " + _("Child"),
-                        person_dates_str(db, child),
-                        child_name.get_surname()
+                    CompareRow(
+                        status=color,
+                        field="    " + _("Child"),
+                        gr_date=person_dates_str(db, child),
+                        gr_value=child_name.get_surname()
                         + ", "
                         + child_name.first_name
                         + " ["
                         + child_fsid
                         + "]",
-                        fs_person_dates_str(db, fs_child),
-                        fs_name.akSurname()
+                        fs_date=fs_person_dates_str(db, fs_child),
+                        fs_value=fs_name.akSurname()
                         + ", "
                         + fs_name.akGiven()
                         + " ["
                         + fs_child_id
                         + "]",
-                        "",
-                        False,
-                        "child",
-                        child_ref.ref,
-                        fs_child_id,
-                        family.handle,
-                        fs_pair_id,
+                        kind="child",
+                        gr_handle=child_ref.ref,
+                        fs_id=fs_child_id,
+                        gr_extra=family.handle,
+                        fs_extra=fs_pair_id,
                     )
                 )
 
             to_remove = set()
             for triple in fs_children:
-                if (
-                    triple.parent1
-                    and triple.parent2
-                    and (
-                        (
-                            triple.parent1.resourceId == fsid
-                            and triple.parent2.resourceId == fs_spouse_id
-                        )
-                        or (
-                            triple.parent2.resourceId == fsid
-                            and triple.parent1.resourceId == fs_spouse_id
-                        )
-                    )
+                if fs_spouse_id and (
+                    _other_parent_id_for_child_rel(fsid, triple) == fs_spouse_id
                 ):
-                    fs_child_id = triple.child.resourceId
+                    fs_child_id = _child_id_for_rel(triple)
                     color = "yellow3"
 
                     fs_child_opt = _fs_person_opt(fs_child_id)
@@ -808,25 +1016,22 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
                     fs_name = fs_child_for_name.preferred_name()
 
                     res.append(
-                        (
-                            color,
-                            "    " + _("Child"),
-                            "",
-                            "",
-                            fs_person_dates_str(db, fs_child_opt),
-                            fs_name.akSurname()
+                        CompareRow(
+                            status=color,
+                            field="    " + _("Child"),
+                            gr_date="",
+                            gr_value="",
+                            fs_date=fs_person_dates_str(db, fs_child_opt),
+                            fs_value=fs_name.akSurname()
                             + ", "
                             + fs_name.akGiven()
                             + " ["
                             + fs_child_id
                             + "]",
-                            "",
-                            False,
-                            "child",
-                            None,
-                            fs_child_id,
-                            family.handle,
-                            fs_pair_id,
+                            kind="child",
+                            fs_id=fs_child_id,
+                            gr_extra=family.handle,
+                            fs_extra=fs_pair_id,
                         )
                     )
                     to_remove.add(triple)
@@ -839,10 +1044,11 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
         # keep ALWAYS str
         if couple.person1 and couple.person1.resourceId == fsid:
             fs_spouse_id = couple.person2.resourceId
-        elif couple.person1:
-            fs_spouse_id = couple.person1.resourceId
+        elif couple.person2 and couple.person2.resourceId == fsid:
+            fs_spouse_id = couple.person1.resourceId if couple.person1 else ""
         else:
-            fs_spouse_id = ""
+            continue
+        fs_spouse_ids.discard(fs_spouse_id)
 
         fs_spouse_opt = _fs_person_opt(fs_spouse_id)
 
@@ -853,45 +1059,30 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
         fs_name = fs_spouse_for_name.preferred_name()
 
         res.append(
-            (
-                color,
-                _("Spouse"),
-                "",
-                "",
-                fs_person_dates_str(db, fs_spouse_opt),
-                fs_name.akSurname()
+            CompareRow(
+                status=color,
+                field=_("Spouse"),
+                gr_date="",
+                gr_value="",
+                fs_date=fs_person_dates_str(db, fs_spouse_opt),
+                fs_value=fs_name.akSurname()
                 + ", "
                 + fs_name.akGiven()
                 + " ["
                 + fs_spouse_id
                 + "]",
-                "",
-                False,
-                "spouse",
-                None,
-                fs_spouse_id,
-                None,
-                couple.id,
+                kind="spouse",
+                fs_id=fs_spouse_id,
+                fs_extra=couple.id,
             )
         )
 
         to_remove = set()
         for triple in fs_children:
-            if (
-                triple.parent1
-                and triple.parent2
-                and (
-                    (
-                        triple.parent1.resourceId == fsid
-                        and triple.parent2.resourceId == fs_spouse_id
-                    )
-                    or (
-                        triple.parent2.resourceId == fsid
-                        and triple.parent1.resourceId == fs_spouse_id
-                    )
-                )
+            if fs_spouse_id and (
+                _other_parent_id_for_child_rel(fsid, triple) == fs_spouse_id
             ):
-                fs_child_id = triple.child.resourceId
+                fs_child_id = _child_id_for_rel(triple)
 
                 fs_child_opt = _fs_person_opt(fs_child_id)
 
@@ -902,25 +1093,80 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
                 fs_name = fs_child_for_name.preferred_name()
 
                 res.append(
-                    (
-                        color,
-                        "    " + _("Child"),
-                        "",
-                        "",
-                        fs_person_dates_str(db, fs_child_opt),
-                        fs_name.akSurname()
+                    CompareRow(
+                        status=color,
+                        field="    " + _("Child"),
+                        gr_date="",
+                        gr_value="",
+                        fs_date=fs_person_dates_str(db, fs_child_opt),
+                        fs_value=fs_name.akSurname()
                         + ", "
                         + fs_name.akGiven()
                         + " ["
                         + fs_child_id
                         + "]",
-                        "",
-                        False,
-                        "child",
-                        None,
-                        fs_child_id,
-                        None,
-                        couple.id,
+                        kind="child",
+                        fs_id=fs_child_id,
+                        fs_extra=couple.id,
+                    )
+                )
+                to_remove.add(triple)
+        for triple in to_remove:
+            fs_children.remove(triple)
+
+    color = "yellow3"
+    for fs_spouse_id in sorted(fs_spouse_ids):
+        fs_spouse_opt = _fs_person_opt(fs_spouse_id)
+        fs_spouse_for_name = (
+            fs_spouse_opt if fs_spouse_opt is not None else deserialize.Person()
+        )
+        fs_name = fs_spouse_for_name.preferred_name()
+
+        res.append(
+            CompareRow(
+                status=color,
+                field=_("Spouse"),
+                gr_date="",
+                gr_value="",
+                fs_date=fs_person_dates_str(db, fs_spouse_opt),
+                fs_value=fs_name.akSurname()
+                + ", "
+                + fs_name.akGiven()
+                + " ["
+                + fs_spouse_id
+                + "]",
+                kind="spouse",
+                fs_id=fs_spouse_id,
+            )
+        )
+
+        to_remove = set()
+        for triple in fs_children:
+            if fs_spouse_id and (
+                _other_parent_id_for_child_rel(fsid, triple) == fs_spouse_id
+            ):
+                fs_child_id = _child_id_for_rel(triple)
+                fs_child_opt = _fs_person_opt(fs_child_id)
+                fs_child_for_name = (
+                    fs_child_opt if fs_child_opt is not None else deserialize.Person()
+                )
+                fs_name = fs_child_for_name.preferred_name()
+
+                res.append(
+                    CompareRow(
+                        status=color,
+                        field="    " + _("Child"),
+                        gr_date="",
+                        gr_value="",
+                        fs_date=fs_person_dates_str(db, fs_child_opt),
+                        fs_value=fs_name.akSurname()
+                        + ", "
+                        + fs_name.akGiven()
+                        + " ["
+                        + fs_child_id
+                        + "]",
+                        kind="child",
+                        fs_id=fs_child_id,
                     )
                 )
                 to_remove.add(triple)
@@ -928,7 +1174,7 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
             fs_children.remove(triple)
 
     for triple in fs_children:
-        fs_child_id = triple.child.resourceId
+        fs_child_id = _child_id_for_rel(triple)
 
         fs_child_opt = _fs_person_opt(fs_child_id)
 
@@ -939,36 +1185,31 @@ def compare_spouses(db, gr_person: Person, fs_person) -> List[Tuple]:
         fs_name = fs_child_for_name.preferred_name()
 
         res.append(
-            (
-                color,
-                _("Child"),
-                "",
-                "",
-                fs_person_dates_str(db, fs_child_opt),
-                fs_name.akSurname()
+            CompareRow(
+                status=color,
+                field=_("Child"),
+                gr_date="",
+                gr_value="",
+                fs_date=fs_person_dates_str(db, fs_child_opt),
+                fs_value=fs_name.akSurname()
                 + ", "
                 + fs_name.akGiven()
                 + " ["
                 + fs_child_id
                 + "]",
-                "",
-                False,
-                "child",
-                None,
-                fs_child_id,
-                None,
-                None,
+                kind="child",
+                fs_id=fs_child_id,
             )
         )
 
     return res
 
 
-def compare_other_facts(db, person: Person, fs_person) -> List[list]:
+def compare_other_facts(db, person: Person, fs_person) -> List[Tuple]:
     # compare non-core facts
     gr_facts = person.event_ref_list
     fs_facts = fs_person.facts.copy()
-    res: List[list] = []
+    res: List[Tuple] = []
 
     for gr_ref in gr_facts:
         if int(gr_ref.get_role()) != EventRoleType.PRIMARY:
@@ -993,9 +1234,7 @@ def compare_other_facts(db, person: Person, fs_person) -> List[list]:
             gr_place = ""
 
         gr_value = (
-            gr_desc
-            if gr_place == ""
-            else (gr_desc + " from deserialize.xml import parse_xml " + gr_place)
+            gr_desc if gr_place == "" else " @ ".join(filter(None, [gr_desc, gr_place]))
         )
         color = "yellow"
         fs_id = None
@@ -1042,28 +1281,24 @@ def compare_other_facts(db, person: Person, fs_person) -> List[list]:
                 color = "orange"
 
         fs_value = (
-            fs_desc
-            if fs_place == ""
-            else (fs_desc + " from deserialize.xml import parse_xml " + fs_place)
+            fs_desc if fs_place == "" else " @ ".join(filter(None, [fs_desc, fs_place]))
         )
         if color == "green" and gr_id == "" and fs_id:
             logger.debug("Linking GR event to FS fact id=%s", fs_id)
             fs_utilities.link_gramps_fs_id(db, event, fs_id)
 
         res.append(
-            [
-                color,
-                title,
-                gr_date,
-                gr_value,
-                fs_date,
-                fs_value,
-                "",
-                False,
-                "fact",
-                gr_ref.ref,
-                fs_id,
-            ]
+            CompareRow(
+                status=color,
+                field=title,
+                gr_date=gr_date,
+                gr_value=gr_value,
+                fs_date=fs_date,
+                fs_value=fs_value,
+                kind="fact",
+                gr_handle=gr_ref.ref,
+                fs_id=fs_id,
+            )
         )
 
     color = "yellow3"
@@ -1090,25 +1325,20 @@ def compare_other_facts(db, person: Person, fs_person) -> List[list]:
         )
         fs_desc = fs_fact.value or ""
         fs_value = (
-            fs_desc
-            if fs_place == ""
-            else (fs_desc + " from deserialize.xml import parse_xml " + fs_place)
+            fs_desc if fs_place == "" else " @ ".join(filter(None, [fs_desc, fs_place]))
         )
 
         res.append(
-            [
-                color,
-                title,
-                "",
-                "",
-                fs_date,
-                fs_value,
-                "",
-                False,
-                "fact",
-                None,
-                fs_fact.id,
-            ]
+            CompareRow(
+                status=color,
+                field=title,
+                gr_date="",
+                gr_value="",
+                fs_date=fs_date,
+                fs_value=fs_value,
+                kind="fact",
+                fs_id=fs_fact.id,
+            )
         )
 
     return res

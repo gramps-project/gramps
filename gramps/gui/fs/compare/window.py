@@ -319,7 +319,7 @@ class FSCompareWindow(PluginWindows.ToolManagedWindowBatch):
             if not fs_person:
                 logger.warning(_("FS ID %s not found"), fsid_local)
                 return
-            fs_person._datemod = date_mod
+            fs_person._datmod = date_mod
             fs_person._etag = etag
 
         def _compare_pair(pair):

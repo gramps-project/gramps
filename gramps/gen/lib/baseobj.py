@@ -206,12 +206,19 @@ class BaseObject(metaclass=ABCMeta):
                   objects.
         :rtype: list
         """
-        ret = self.get_referenced_handles()
+        seen = set()
+        result = []
+        for item in self.get_referenced_handles():
+            if item not in seen:
+                seen.add(item)
+                result.append(item)
 
-        # Run through child objects
         for obj in self.get_handle_referents():
-            ret += obj.get_referenced_handles_recursively()
-        return ret
+            for item in obj.get_referenced_handles_recursively():
+                if item not in seen:
+                    seen.add(item)
+                    result.append(item)
+        return result
 
     def merge(self, acquisition):
         """

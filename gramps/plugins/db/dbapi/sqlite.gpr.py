@@ -28,7 +28,7 @@ register(
     name_accell=_("_SQLite Database"),
     description=_("SQLite Database"),
     version="1.0.0",
-    gramps_target_version="6.0",
+    gramps_target_version="6.1",
     status=STABLE,
     fname="sqlite.py",
     databaseclass="SQLite",

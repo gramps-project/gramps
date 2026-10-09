@@ -1,0 +1,29 @@
+diff -u /Users/john/Development/gramps-tarball-12.0-arm64/src/orjson-3.11.8/src/lib.rs\~ /Users/john/Development/gramps-tarball-12.0-arm64/src/orjson-3.11.8/src/lib.rs
+--- ./src/lib.rs	2006-07-23 18:21:28
++++ ./src/lib.rs	2026-04-23 09:29:39
+@@ -1,9 +1,9 @@
+ // SPDX-License-Identifier: MPL-2.0
+ // Copyright ijl (2018-2026)
+ 
+-#![cfg_attr(feature = "cold_path", feature(cold_path))]
+-#![cfg_attr(feature = "generic_simd", feature(portable_simd))]
+-#![cfg_attr(feature = "optimize", feature(optimize_attribute))]
++//#![cfg_attr(feature = "cold_path", feature(cold_path))]
++//#![cfg_attr(feature = "generic_simd", feature(portable_simd))]
++//#![cfg_attr(feature = "optimize", feature(optimize_attribute))]
+ #![allow(unused_features)] // portable_simd on universal2 cross-compile
+ #![allow(stable_features)] // MSRV 1.95, cold_path
+ #![allow(static_mut_refs)]
+@@ -40,8 +40,8 @@
+ #![warn(clippy::unnecessary_wraps)]
+ #![warn(clippy::zero_ptr)]
+ 
+-#[cfg(feature = "unwind")]
+-extern crate unwinding;
++//#[cfg(feature = "unwind")]
++//extern crate unwinding;
+ 
+ #[macro_use]
+ mod util;
+
+Diff finished.  Thu Apr 23 09:33:43 2026

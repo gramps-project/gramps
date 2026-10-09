@@ -28,8 +28,11 @@
 import os
 import pickle
 import logging
-from bsddb3.db import DB, DB_DUP, DB_HASH, DB_RDONLY
 
+try:
+    from berkeleydb.db import DB, DB_DUP, DB_HASH, DB_RDONLY
+except:
+    from bsddb3.db import DB, DB_DUP, DB_HASH, DB_RDONLY
 # -------------------------------------------------------------------------
 #
 # Gramps modules

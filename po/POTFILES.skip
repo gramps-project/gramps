@@ -80,6 +80,11 @@ gramps/gen/datehandler/test/datehandler_test.py
 gramps/gen/datehandler/test/dateparser_test.py
 gramps/gen/datehandler/test/datestrings_test.py
 #
+# gen.fs.fs_import.test package
+#
+gramps/gen/fs/fs_import/test/__init__.py
+gramps/gen/fs/fs_import/test/source_dates_test.py
+#
 # gen db API
 #
 gramps/gen/db/__init__.py
@@ -199,6 +204,7 @@ gramps/gen/lib/test/chinese_calendar_test.py
 gramps/gen/lib/test/date_test.py
 gramps/gen/lib/test/grampstype_test.py
 gramps/gen/lib/test/korean_calendar_test.py
+gramps/gen/lib/test/handleref_test.py
 gramps/gen/lib/test/merge_test.py
 gramps/gen/lib/test/schema_test.py
 gramps/gen/lib/test/serialize_test.py
@@ -208,6 +214,8 @@ gramps/gen/lib/test/vietnamese_calendar_test.py
 # gen.merge package
 #
 gramps/gen/merge/__init__.py
+gramps/gen/merge/test/mergeperson_dna_test.py
+gramps/gen/merge/test/mergereferences_dna_test.py
 #
 # gen mime API
 #
@@ -239,6 +247,11 @@ gramps/gen/plug/docgen/stylesheet.py
 gramps/gen/plug/docgen/tablestyle.py
 gramps/gen/plug/docgen/textdoc.py
 #
+# gen.plug.docgen.test
+#
+gramps/gen/plug/docgen/test/__init__.py
+gramps/gen/plug/docgen/test/graphdoc_test.py
+#
 # gen.plug.menu
 #
 gramps/gen/plug/menu/__init__.py
@@ -268,6 +281,11 @@ gramps/gen/plug/report/_bibliography.py
 gramps/gen/plug/report/_options.py
 gramps/gen/plug/report/_paper.py
 gramps/gen/plug/report/_reportbase.py
+#
+# gen.plug.test
+#
+gramps/gen/plug/test/__init__.py
+gramps/gen/plug/test/_manager_symlinks_test.py
 #
 # gen proxy API
 #
@@ -320,10 +338,16 @@ gramps/gen/utils/docgen/tabbeddoc.py
 #
 gramps/gen/utils/test/alive_test.py
 gramps/gen/utils/test/callback_test.py
+gramps/gen/utils/test/db_test.py
 gramps/gen/utils/test/file_test.py
 gramps/gen/utils/test/grampslocale_test.py
 gramps/gen/utils/test/keyword_test.py
+gramps/gen/utils/test/maclocale_test.py
 gramps/gen/utils/test/place_test.py
+gramps/gen/utils/test/pypi_e2e_test.py
+gramps/gen/utils/test/pypi_test.py
+gramps/gen/utils/test/requirements_test.py
+gramps/gen/utils/test/unknown_test.py
 #
 # gui - GUI code
 #
@@ -376,6 +400,12 @@ gramps/gui/editors/displaytabs/sourcebackreflist.py
 gramps/gui/editors/displaytabs/srcattrmodel.py
 gramps/gui/editors/displaytabs/surnamemodel.py
 gramps/gui/editors/displaytabs/webmodel.py
+#
+# gui/editors/displaytabs/test
+#
+gramps/gui/editors/displaytabs/test/__init__.py
+gramps/gui/editors/displaytabs/test/dnasegmentembedlist_test.py
+gramps/gui/editors/displaytabs/test/gallerytab_test.py
 #
 # gui.editors.test package
 #
@@ -432,6 +462,11 @@ gramps/gui/plug/report/_drawreportdialog.py
 gramps/gui/plug/report/_textreportdialog.py
 gramps/gui/plug/report/_webreportdialog.py
 #
+# gui.plug.test package
+#
+gramps/gui/plug/test/__init__.py
+gramps/gui/plug/test/windows_test.py
+#
 # gui/selectors - the GUI selectors package
 #
 gramps/gui/selectors/__init__.py
@@ -462,7 +497,9 @@ gramps/gui/views/treemodels/sourcemodel.py
 #
 # gui.views.treemodels.test package
 #
+gramps/gui/views/treemodels/test/dnamatchmodel_test.py
 gramps/gui/views/treemodels/test/node_test.py
+gramps/gui/views/treemodels/test/treebasemodel_test.py
 #
 # gui/widgets - the GUI widgets package
 #
@@ -487,6 +524,12 @@ gramps/gui/widgets/undoablebuffer.py
 gramps/gui/widgets/undoableentry.py
 gramps/gui/widgets/undoablestyledbuffer.py
 gramps/gui/widgets/validatedcomboentry.py
+#
+# gramps/gui/widgets/test directory
+#
+gramps/gui/widgets/test/__init__.py
+gramps/gui/widgets/test/fanchart_test.py
+gramps/gui/widgets/test/selectionwidget_test.py
 #
 # plugins
 #
@@ -524,6 +567,11 @@ gramps/plugins/db/dbapi/test/db_test.py
 #
 gramps/plugins/docgen/__init__.py
 #
+# plugins/docgen/test directory
+#
+gramps/plugins/docgen/test/__init__.py
+gramps/plugins/docgen/test/latexdoc_test.py
+#
 # plugins/drawreport directory
 #
 gramps/plugins/drawreport/__init__.py
@@ -544,9 +592,19 @@ gramps/plugins/gramplet/gallery.py
 gramps/plugins/gramplet/mediapreview.py
 gramps/plugins/gramplet/metadataviewer.py
 #
+# plugins/gramplet/test directory
+#
+gramps/plugins/gramplet/test/__init__.py
+gramps/plugins/gramplet/test/topsurnamesgramplet_test.py
+#
 # plugins/graph directory
 #
 gramps/plugins/graph/__init__.py
+#
+# plugins/graph/test directory
+#
+gramps/plugins/graph/test/__init__.py
+gramps/plugins/graph/test/year_only_date_test.py
 #
 # plugins/importer directory
 #
@@ -554,6 +612,7 @@ gramps/plugins/importer/__init__.py
 #
 # plugins/importer/test directory
 #
+gramps/plugins/importer/test/importgedcom_ambiguous_date_test.py
 gramps/plugins/importer/test/importgeneweb_test.py
 gramps/plugins/importer/test/importvcard_test.py
 #
@@ -592,6 +651,7 @@ gramps/plugins/mapservices/openstreetmap.py
 # plugins/quickview directory
 #
 gramps/plugins/quickview/__init__.py
+gramps/plugins/quickview/test/all_relations_test.py
 #
 # plugins/rel directory
 #
@@ -628,9 +688,12 @@ gramps/plugins/sidebar/expandersidebar.py
 # plugins/test directory
 #
 gramps/plugins/test/db_undo_and_signals_test.py
+gramps/plugins/test/dna_xml_export_test.py
+gramps/plugins/test/dna_xml_test.py
 gramps/plugins/test/exports_test.py
 gramps/plugins/test/imports_test.py
 gramps/plugins/test/reports_test.py
+gramps/plugins/test/schema_validation_test.py
 gramps/plugins/test/tools_test.py
 #
 # Thumbnailers

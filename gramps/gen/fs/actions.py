@@ -30,7 +30,6 @@ from typing import Any
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.errors import HandleError
-from gramps.gen.fs import tree as fs_tree
 from gramps.gen.fs import utils as fs_utilities
 from gramps.gen.lib import Attribute, AttributeType, ChildRef, Family, Person
 
@@ -56,7 +55,8 @@ def _dbg(msg: str) -> None:
 
 def _bind_global_session(session) -> None:
     """Mirror the active session onto `tree._fs_session` for shared FS helpers."""
-    # gen.fs uses read tree._fs_session directly
+    from gramps.gen.fs import tree as fs_tree  # deferred to break import cycle
+
     fs_tree._fs_session = session
 
 

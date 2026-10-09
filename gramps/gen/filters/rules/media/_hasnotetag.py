@@ -41,6 +41,6 @@ from .._hasnotetagbase import HasNoteTagBase
 class HasNoteTag(HasNoteTagBase):
     """Rule that checks for media with a note with a specified tag."""
 
-    name = _("Media with a note with a tag of <type>")
+    name = _("Media with a note with the <tag>")
     description = _("Matches media with a note with a specified tag")
     category = _("Note filters")
