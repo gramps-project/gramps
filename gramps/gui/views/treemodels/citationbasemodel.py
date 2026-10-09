@@ -77,7 +77,7 @@ class CitationBaseModel:
     def citation_sort_date(self, data):
         if data.date:
             citation = data_to_object(data)
-            retval = "%09d" % citation.get_date_object().get_sort_value()
+            retval = "%09d" % citation.get_date_object().get_sort_key()
             if not get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval
             else:

@@ -175,6 +175,30 @@ class HourGlassReport(Report):
                 head=self.arrowheadstyle,
                 tail=self.arrowtailstyle,
             )
+            # Add the spouse (the other parent of this family) so the
+            # descendant tree shows both parents of each generation,
+            # mirroring traverse_up's symmetric father+mother linking.
+            # Without this, only the focal-side ancestor line appears
+            # and the spouse of every descendant is invisible (Mantis
+            # 9628).
+            father_handle = family.get_father_handle()
+            mother_handle = family.get_mother_handle()
+            if father_handle == person.handle:
+                spouse_handle = mother_handle
+            elif mother_handle == person.handle:
+                spouse_handle = father_handle
+            else:
+                spouse_handle = None
+            if spouse_handle and spouse_handle not in self.__used_people:
+                self.__used_people.append(spouse_handle)
+                spouse = self.__db.get_person_from_handle(spouse_handle)
+                self.add_person(spouse, 0)
+                self.doc.add_link(
+                    spouse.get_gramps_id(),
+                    family.get_gramps_id(),
+                    head=self.arrowheadstyle,
+                    tail=self.arrowtailstyle,
+                )
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.get_reference_handle()
                 if child_handle not in self.__used_people:

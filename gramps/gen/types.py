@@ -25,6 +25,8 @@ from typing import NewType, Type, TypeVar, Union
 
 from .lib import (
     Citation,
+    DNAMatch,
+    DNATest,
     Event,
     Family,
     Media,
@@ -48,6 +50,8 @@ CitationHandle = NewType("CitationHandle", str)
 MediaHandle = NewType("MediaHandle", str)
 NoteHandle = NewType("NoteHandle", str)
 TagHandle = NewType("TagHandle", str)
+DNATestHandle = NewType("DNATestHandle", str)
+DNAMatchHandle = NewType("DNAMatchHandle", str)
 PrimaryObjectHandle = Union[
     PersonHandle,
     FamilyHandle,
@@ -58,6 +62,8 @@ PrimaryObjectHandle = Union[
     CitationHandle,
     MediaHandle,
     NoteHandle,
+    DNATestHandle,
+    DNAMatchHandle,
 ]
 AnyHandle = Union[PrimaryObjectHandle, TagHandle]
 TableObjectType = TypeVar("TableObjectType", bound=TableObject)
@@ -71,6 +77,8 @@ RepositoryGrampsID = NewType("RepositoryGrampsID", str)
 CitationGrampsID = NewType("CitationGrampsID", str)
 MediaGrampsID = NewType("MediaGrampsID", str)
 NoteGrampsID = NewType("NoteGrampsID", str)
+DNATestGrampsID = NewType("DNATestGrampsID", str)
+DNAMatchGrampsID = NewType("DNAMatchGrampsID", str)
 # No Tag IDs
 PrimaryObjectGrampsID = Union[
     PersonGrampsID,
@@ -82,5 +90,7 @@ PrimaryObjectGrampsID = Union[
     CitationGrampsID,
     MediaGrampsID,
     NoteGrampsID,
+    DNATestGrampsID,
+    DNAMatchGrampsID,
 ]
 AnyGrampsID = PrimaryObjectGrampsID  # No Tag IDs

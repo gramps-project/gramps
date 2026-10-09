@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013,2025  Nick Hall
-# Copyright (C) 2025  Gabriel Rios
+# Copyright (C) 2025-2026  Gabriel Rios
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -105,6 +105,10 @@ class Statusbar(Gtk.Box):
             self.__fs_status.set_image(self.__fs_online)
         else:
             self.__fs_status.set_image(self.__fs_offline)
+
+    def set_fs_visible(self, visible):
+        """Set the FamilySearch status button visibility."""
+        self.__fs_status.set_visible(bool(visible))
 
     def get_progress_bar(self):
         """Return the progress bar widget."""

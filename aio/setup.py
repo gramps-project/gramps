@@ -66,12 +66,23 @@ else:
 
 INCLUDE_DLL_PATH = os.path.join(sys.base_exec_prefix, "bin")
 INCLUDE_FILES = []
-INCLUDES = ["gi", "colorsys", "site"]
+# Simple (single-file) stdlib modules pip's vendored libraries import
+# lazily and therefore cx_Freeze's static scan misses.
+INCLUDES = [
+    "gi",
+    "colorsys",
+    "site",
+    "getpass",
+]
+# Bundle these stdlib packages in full. pip and its vendored libraries
+# (truststore, rich, urllib3, distlib) import submodules conditionally
+# or lazily, and cx_Freeze's static scan misses them. Listing the parent
+# package here pulls in every submodule, so addon installation no longer
+# crashes on the first un-frozen import.
 PACKAGES = [
     "gi",
     "cairo",
     "xml",
-    "bsddb3",
     "lxml",
     "PIL",
     "json",
@@ -90,6 +101,12 @@ PACKAGES = [
     "pydot",
     "orjson",
     "selenium",
+    "ctypes",
+    "encodings",
+    "email",
+    "http",
+    "urllib",
+    "importlib",
 ]
 EXCLUDES = [
     "tkinter",

@@ -98,6 +98,31 @@ _CORNERS = [
     {"name": _("Both"), "value": "fm"},
 ]
 
+
+# ------------------------------------------------------------------------
+#
+# Helper functions
+#
+# ------------------------------------------------------------------------
+def _year_only_date(date: Date) -> Date:
+    """
+    Return a copy of *date* truncated to its year, preserving the
+    modifier (before/after/about) and quality (estimated/calculated).
+
+    Unlike ``Date(date.get_year())`` -- which builds a fresh date with
+    ``MOD_NONE``/``QUAL_NONE`` and drops the second stop of compound
+    dates -- this preserves the original modifier and quality, and
+    for ranges/spans preserves the second-stop year as well. That is
+    what bug 4658 asks for: "before 1923" must stay "before 1923",
+    not collapse to "1923".
+    """
+    if date.is_compound():
+        result = date.copy_ymd(date.get_year(), 0, 0, remove_stop_date=False)
+        result.set2_yr_mon_day(date.get_stop_year(), 0, 0)
+        return result
+    return date.copy_ymd(date.get_year(), 0, 0)
+
+
 # ------------------------------------------------------------------------
 #
 # A quick overview of the classes we'll be using:
@@ -896,7 +921,7 @@ class FamilyLinesReport(Report):
             if bth_event and self._incdates:
                 date = bth_event.get_date_object()
                 if self._just_years and date.get_year_valid():
-                    birth_str = self.get_date(Date(date.get_year()))  # localized year
+                    birth_str = self.get_date(_year_only_date(date))
                 else:
                     birth_str = self.get_date(date)
 
@@ -911,7 +936,7 @@ class FamilyLinesReport(Report):
             if dth_event and self._incdates:
                 date = dth_event.get_date_object()
                 if self._just_years and date.get_year_valid():
-                    death_str = self.get_date(Date(date.get_year()))  # localized year
+                    death_str = self.get_date(_year_only_date(date))
                 else:
                     death_str = self.get_date(date)
 
@@ -1042,9 +1067,7 @@ class FamilyLinesReport(Report):
                         if self._incdates:
                             date = event.get_date_object()
                             if self._just_years and date.get_year_valid():
-                                wedding_date = self.get_date(  # localized year
-                                    Date(date.get_year())
-                                )
+                                wedding_date = self.get_date(_year_only_date(date))
                             else:
                                 wedding_date = self.get_date(date)
                         # get the wedding location

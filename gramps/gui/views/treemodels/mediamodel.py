@@ -142,7 +142,7 @@ class MediaModel(FlatBaseModel):
         obj = data_to_object(data)
         d = obj.get_date_object()
         if d:
-            return "%09d" % d.get_sort_value()
+            return "%09d" % d.get_sort_key()
         else:
             return ""
 

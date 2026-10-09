@@ -13,10 +13,13 @@ bundle_bin = join(bundle_res, "bin")
 bundle_data = join(bundle_res, "share")
 bundle_etc = join(bundle_res, "etc")
 
-environ["APPDATA"] = join(environ["HOME"], "Library", "Application Support")
+app_support_dir = join(environ["HOME"], "Library", "Application Support")
+environ["XDG_CACHE_HOME"] = app_support_dir
+environ["XDG_CONFIG_HOME"] = app_support_dir
+environ["XDG_DATA_HOME"] = app_support_dir
 environ["XDG_DATA_DIRS"] = bundle_data
 environ["DYLD_FALLBACK_LIBRARY_PATH"] = (
-    bundle_lib + ":" + join(environ["APPDATA"], "gramps", "lib")
+    bundle_lib + ":" + join(environ["XDG_CONFIG_HOME"], "gramps", "lib")
 )
 environ["LD_LIBRARY_PATH"] = bundle_lib
 environ["GTK_DATA_PREFIX"] = bundle_res

@@ -20,25 +20,61 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
+from dataclasses import dataclass
+import logging
 import os
 import re
 from typing import Any, ClassVar, Optional, TYPE_CHECKING
 
-from gi.repository import Gtk, Gdk, GLib
+LOG = logging.getLogger(__name__)
+
+from gi.repository import Gtk, Gdk, GdkPixbuf, GLib
 
 from gramps.gen.const import DATA_DIR, GRAMPS_LOCALE as glocale
-from gramps.gui.dialog import WarningDialog
+from gramps.gen.db import DbTxn
+from gramps.gen.utils.file import media_path_full
+from gramps.gui.dialog import OkDialog, QuestionDialog2, WarningDialog
 from gramps.gui.listmodel import ListModel, NOSORT, COLOR, TOGGLE
-from gramps.gen.lib import Person
+from gramps.gui.utils import ProgressMeter
+from gramps.gen.lib import EventRef, EventRoleType, EventType, Name, Person
 
 from gramps.gen.fs import tree
 from gramps.gen.fs import utils as fs_utilities
 from gramps.gen.fs.compare import compare_fs_to_gramps
+from gramps.gen.fs.compare.comparators import (
+    compare_fact,
+    compare_gender,
+    compare_names,
+    compare_other_facts,
+    compare_parents,
+    compare_spouses,
+)
+from gramps.gen.fs.compare.formatters import person_dates_str
 import gramps.gen.fs.fs_import as fs_import
 from gramps.gui.fs import tags as fs_tags
 from gramps.gen.fs.fs_import import deserializer as deserialize
 
 _ = glocale.translation.gettext
+
+
+@dataclass
+class _FSMergeRow:
+    """One selectable FamilySearch-to-Gramps merge row."""
+
+    status: str
+    section: str
+    field: str
+    gramps_date: str
+    gramps_value: str
+    fs_date: str
+    fs_value: str
+    selected: bool
+    selectable: bool
+    kind: str
+    gr_handle: str
+    fs_id: str
+    gr_extra: str
+    fs_extra: str
 
 
 class CompareGtkMixin:
@@ -62,7 +98,11 @@ class CompareGtkMixin:
 
         def _ensure_notes_cached(self, fsid: str) -> None: ...
 
-        def _ensure_sources_cached(self, fsid: str) -> None: ...
+        def _ensure_sources_cached(
+            self,
+            fsid: str,
+            progress_callback: Any | None = None,
+        ) -> None: ...
 
         def _gather_sr_meta(self, fsid: str) -> dict[str, Any]: ...
 
@@ -98,6 +138,7 @@ class CompareGtkMixin:
 
     _CSS_INSTALLED = False
     _CSS_DEFINE_CACHE: ClassVar[Optional[dict[str, str]]] = None
+    _FS_PHOTO_CACHE: ClassVar[dict[str, Any]] = {}
 
     def _ui_color(self, semantic: str) -> str:
         return self._UI.get((semantic or "").strip(), semantic or "")
@@ -139,16 +180,17 @@ class CompareGtkMixin:
         cache = cls._CSS_DEFINE_CACHE
         if cache is None:
             cache = {}
-            css_path = os.path.join(DATA_DIR, "gramps.css")
-            try:
-                with open(css_path, "r", encoding="utf-8") as handle:
-                    css_text = handle.read()
-                for name, value in re.findall(
-                    r"@define-color\s+([A-Za-z0-9_]+)\s+([^;]+);", css_text
-                ):
-                    cache[name.strip()] = value.strip()
-            except Exception:
-                cache = {}
+            for css_file in ("gramps.css", "familysearch.css"):
+                css_path = os.path.join(DATA_DIR, css_file)
+                try:
+                    with open(css_path, "r", encoding="utf-8") as handle:
+                        css_text = handle.read()
+                    for name, value in re.findall(
+                        r"@define-color\s+([A-Za-z0-9_]+)\s+([^;]+);", css_text
+                    ):
+                        cache[name.strip()] = value.strip()
+                except Exception:
+                    pass
             cls._CSS_DEFINE_CACHE = cache
 
         return cache.get(color_name, "")
@@ -186,17 +228,27 @@ class CompareGtkMixin:
         if self.__class__._CSS_INSTALLED:
             return
 
-        try:
-            provider = Gtk.CssProvider()
-            provider.load_from_path(os.path.join(DATA_DIR, "gramps.css"))
-            screen = Gdk.Screen.get_default()
-            if screen is not None:
+        screen = Gdk.Screen.get_default()
+        if screen is None:
+            return
+
+        installed = False
+        for css_file in ("gramps.css", "familysearch.css"):
+            css_path = os.path.join(DATA_DIR, css_file)
+            if not os.path.isfile(css_path):
+                continue
+            try:
+                provider = Gtk.CssProvider()
+                provider.load_from_path(css_path)
                 Gtk.StyleContext.add_provider_for_screen(
                     screen, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
                 )
-                self.__class__._CSS_INSTALLED = True
-        except Exception:
-            return
+                installed = True
+            except Exception:
+                pass
+
+        if installed:
+            self.__class__._CSS_INSTALLED = True
 
     def _wrap_scroller(self, child: Gtk.Widget, min_h: int = 420) -> Gtk.Widget:
         sw = Gtk.ScrolledWindow()
@@ -481,6 +533,1163 @@ class CompareGtkMixin:
         wrap.pack_end(hint, True, True, 0)
         return wrap
 
+    def _merge_value_text(self, date: Any, value: Any) -> str:
+        """
+        Combine a date and value into the compact merge-column display text.
+        """
+        parts = []
+        for part in (date, value):
+            text = str(part or "").strip()
+            if text and text != "_":
+                parts.append(text)
+        return "\n".join(parts)
+
+    def _merge_row_selectable(self, status: str, kind: str, fs_text: str) -> bool:
+        """
+        Return whether a compare row can be copied from FamilySearch to Gramps.
+        """
+        if not fs_text.strip():
+            return False
+        if status not in ("red", "orange", "yellow3"):
+            return False
+        return kind in {
+            "gender",
+            "primary_name",
+            "name",
+            "fact",
+            "father",
+            "mother",
+            "spouse",
+            "spouse_fact",
+            "child",
+        }
+
+    def _merge_row_from_compare(self, section: str, row: Any) -> _FSMergeRow:
+        """
+        Convert a CompareRow into a merge preview row.
+        """
+        status = str(row.status or "")
+        kind = str(row.kind or "")
+        gramps_text = self._merge_value_text(row.gr_date, row.gr_value)
+        fs_text = self._merge_value_text(row.fs_date, row.fs_value)
+        selectable = self._merge_row_selectable(status, kind, fs_text)
+        selected = selectable and status == "yellow3"
+        return _FSMergeRow(
+            status=status,
+            section=section,
+            field=str(row.field or "").strip(),
+            gramps_date=str(row.gr_date or ""),
+            gramps_value=str(row.gr_value or ""),
+            fs_date=str(row.fs_date or ""),
+            fs_value=str(row.fs_value or ""),
+            selected=selected,
+            selectable=selectable,
+            kind=kind,
+            gr_handle=str(row.gr_handle or ""),
+            fs_id=str(row.fs_id or ""),
+            gr_extra=str(row.gr_extra or ""),
+            fs_extra=str(row.fs_extra or ""),
+        )
+
+    def _collect_merge_rows(self, gr: Person, fsid: str) -> list[_FSMergeRow]:
+        """
+        Build the side-by-side FamilySearch-to-Gramps merge rows.
+        """
+        fs_person = deserialize.Person.index.get(fsid) or deserialize.Person()
+        rows: list[_FSMergeRow] = []
+
+        essentials: list[Any] = []
+        gender_row = compare_gender(gr, fs_person)
+        if gender_row:
+            essentials.append(gender_row)
+
+        name_rows = compare_names(gr, fs_person)
+        if name_rows:
+            essentials.append(name_rows[0])
+
+        for gr_event, fs_fact_tag in (
+            (EventType.BIRTH, "http://gedcomx.org/Birth"),
+            (EventType.BAPTISM, "http://gedcomx.org/Baptism"),
+            (EventType.DEATH, "http://gedcomx.org/Death"),
+            (EventType.BURIAL, "http://gedcomx.org/Burial"),
+        ):
+            fact_row = compare_fact(
+                self.dbstate.db, gr, fs_person, gr_event, fs_fact_tag
+            )
+            if fact_row:
+                essentials.append(fact_row)
+
+        rows.extend(
+            self._merge_row_from_compare(_("Essentials"), line) for line in essentials
+        )
+
+        rows.extend(
+            self._merge_row_from_compare(_("Other names"), line)
+            for line in name_rows[1:]
+        )
+
+        rows.extend(
+            self._merge_row_from_compare(_("Parents"), line)
+            for line in compare_parents(self.dbstate.db, gr, fs_person)
+        )
+        rows.extend(
+            self._merge_row_from_compare(_("Families"), line)
+            for line in compare_spouses(self.dbstate.db, gr, fs_person)
+        )
+        rows.extend(
+            self._merge_row_from_compare(_("Facts"), line)
+            for line in compare_other_facts(self.dbstate.db, gr, fs_person)
+        )
+        return rows
+
+    def _make_merge_tree(self) -> tuple[Gtk.TreeView, Gtk.TreeStore]:
+        """
+        Create the Compare/Merge tree with Gramps, FamilySearch, and result columns.
+        """
+        store = Gtk.TreeStore(
+            bool,  # 0 selected
+            bool,  # 1 selectable
+            str,  # 2 status token
+            str,  # 3 section
+            str,  # 4 field
+            str,  # 5 Gramps display
+            str,  # 6 FamilySearch display
+            str,  # 7 final display
+            str,  # 8 row kind
+            str,  # 9 Gramps handle/id
+            str,  # 10 FamilySearch id
+            str,  # 11 Gramps extra
+            str,  # 12 FamilySearch extra
+            str,  # 13 Gramps date
+            str,  # 14 FamilySearch date
+            str,  # 15 detail/status text
+        )
+        treeview = Gtk.TreeView(model=store)
+        treeview.get_style_context().add_class("fs-merge-treeview")
+        treeview.set_headers_visible(True)
+        try:
+            treeview.set_grid_lines(Gtk.TreeViewGridLines.VERTICAL)
+            treeview.set_rules_hint(True)
+        except Exception:
+            pass
+
+        toggle = Gtk.CellRendererToggle()
+        toggle.set_property("activatable", True)
+        col_select = Gtk.TreeViewColumn(_("Use FS"), toggle)
+        col_select.add_attribute(toggle, "active", 0)
+        col_select.add_attribute(toggle, "activatable", 1)
+        col_select.set_fixed_width(78)
+        treeview.append_column(col_select)
+
+        for title, column_id, width in (
+            (_("Field"), 4, 150),
+            (_("Current Gramps"), 5, 300),
+            (_("FamilySearch"), 6, 300),
+            (_("Final Gramps result"), 7, 320),
+            (_("Status"), 15, 150),
+        ):
+            renderer = Gtk.CellRendererText()
+            try:
+                renderer.set_property("wrap-mode", 2)
+                renderer.set_property("wrap-width", width)
+            except Exception:
+                pass
+            column = Gtk.TreeViewColumn(title, renderer, text=column_id)
+            column.set_resizable(True)
+            column.set_min_width(width)
+            if column_id in (5, 6, 7):
+                column.set_expand(True)
+            treeview.append_column(column)
+
+        def update_final(tree_iter: Any) -> None:
+            selected = bool(store.get_value(tree_iter, 0))
+            gramps_text = str(store.get_value(tree_iter, 5) or "")
+            fs_text = str(store.get_value(tree_iter, 6) or "")
+            store.set_value(tree_iter, 7, fs_text if selected else gramps_text)
+            store.set_value(
+                tree_iter,
+                15,
+                _("Will copy from FamilySearch") if selected else _("Kept in Gramps"),
+            )
+
+        def cb_toggled(_cell: Gtk.CellRendererToggle, path: str) -> None:
+            """Toggle a merge row and refresh its final-result preview."""
+            tree_iter = store.get_iter(path)
+            if tree_iter is None or not bool(store.get_value(tree_iter, 1)):
+                return
+            store.set_value(tree_iter, 0, not bool(store.get_value(tree_iter, 0)))
+            update_final(tree_iter)
+
+        toggle.connect("toggled", cb_toggled)
+        return treeview, store
+
+    def _install_merge_tree_row_tints(self, tv: Gtk.TreeView) -> None:
+        """
+        Paint merge rows from their explicit status-token column.
+        """
+        color_col = 2
+
+        def _func(
+            _column: Any, cell: Any, model: Any, tree_iter: Any, _data: Any
+        ) -> None:
+            token = str(model.get_value(tree_iter, color_col) or "").strip()
+            rgba = self._resolve_tint_rgba(token)
+            if rgba is not None:
+                try:
+                    cell.set_property("cell-background-rgba", rgba)
+                    cell.set_property("cell-background-set", True)
+                except Exception:
+                    pass
+            else:
+                try:
+                    cell.set_property("cell-background-set", False)
+                except Exception:
+                    pass
+
+            if isinstance(cell, Gtk.CellRendererText):
+                kind = str(model.get_value(tree_iter, 8) or "")
+                try:
+                    cell.set_property("weight", 700 if kind == "section" else 400)
+                except Exception:
+                    pass
+
+        for column in tv.get_columns() or []:
+            for cell in column.get_cells() or []:
+                if isinstance(cell, Gtk.CellRendererText):
+                    column.set_cell_data_func(cell, _func, None)
+
+    def _append_merge_row(
+        self, store: Gtk.TreeStore, parent: Any, row: _FSMergeRow
+    ) -> None:
+        """
+        Append one merge row under a section header.
+        """
+        gramps_text = self._merge_value_text(row.gramps_date, row.gramps_value)
+        fs_text = self._merge_value_text(row.fs_date, row.fs_value)
+        final_text = fs_text if row.selected else gramps_text
+        detail = (
+            _("Will copy from FamilySearch")
+            if row.selected
+            else (
+                _("Review and select to copy")
+                if row.selectable
+                else _("Not mergeable in this row")
+            )
+        )
+        store.append(
+            parent,
+            [
+                row.selected,
+                row.selectable,
+                row.status,
+                row.section,
+                row.field,
+                gramps_text,
+                fs_text,
+                final_text,
+                row.kind,
+                row.gr_handle,
+                row.fs_id,
+                row.gr_extra,
+                row.fs_extra,
+                row.gramps_date,
+                row.fs_date,
+                detail,
+            ],
+        )
+
+    def _fill_merge(self, store: Gtk.TreeStore, gr: Person, fsid: str) -> None:
+        """
+        Fill the Compare/Merge tree with grouped selectable rows.
+        """
+        store.clear()
+        section_iters: dict[str, Any] = {}
+        section_status: dict[str, str] = {}
+        rows = self._collect_merge_rows(gr, fsid)
+
+        for row in rows:
+            current = section_status.get(row.section, "green")
+            if row.status == "red" or current == "red":
+                section_status[row.section] = "red"
+            elif row.status in ("orange", "yellow3", "yellow") or current != "green":
+                section_status[row.section] = "orange"
+            else:
+                section_status[row.section] = "green"
+
+        for row in rows:
+            parent = section_iters.get(row.section)
+            if parent is None:
+                token = section_status.get(row.section, "green")
+                parent = store.append(
+                    None,
+                    [
+                        False,
+                        False,
+                        token,
+                        row.section,
+                        row.section,
+                        _("Current Gramps"),
+                        _("FamilySearch"),
+                        _("Final Gramps result"),
+                        "section",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ],
+                )
+                section_iters[row.section] = parent
+            self._append_merge_row(store, parent, row)
+
+    def _selected_merge_rows_from_list(
+        self, rows: list[_FSMergeRow]
+    ) -> list[_FSMergeRow]:
+        """
+        Return checked merge rows from the FamilySearch-style merge board.
+        """
+        return [row for row in rows if row.selected and row.selectable]
+
+    def _status_label_text(self, status: str, selectable: bool) -> str:
+        """
+        Return short status text for a merge card.
+        """
+        if status == "green":
+            return _("Match")
+        if status == "red":
+            return _("Critical")
+        if status == "orange":
+            return _("Different")
+        if status == "yellow":
+            return _("Only in Gramps")
+        if status == "yellow3":
+            return _("Only in FamilySearch")
+        return _("Selectable") if selectable else ""
+
+    def _status_badge(self, status: str, selectable: bool) -> Gtk.Widget:
+        """
+        Build a small status badge for a merge card.
+        """
+        text = self._status_label_text(status, selectable)
+        label = Gtk.Label(label=text)
+        label.get_style_context().add_class("fs-merge-badge")
+        if status:
+            label.get_style_context().add_class("fs-status-" + status)
+        return label
+
+    def _result_text_for_row(self, row: _FSMergeRow) -> str:
+        """
+        Return the current result preview text for a merge row.
+        """
+        gramps_text = self._merge_value_text(row.gramps_date, row.gramps_value)
+        fs_text = self._merge_value_text(row.fs_date, row.fs_value)
+        return fs_text if row.selected and fs_text else gramps_text
+
+    def _make_value_label(self, text: str, *, bold: bool = False) -> Gtk.Label:
+        """
+        Create a wrapping value label.
+        """
+        label = Gtk.Label()
+        label.set_xalign(0.0)
+        label.set_yalign(0.0)
+        label.set_line_wrap(True)
+        label.set_selectable(True)
+        text = text or ""
+        if bold:
+            label.set_markup("<b>%s</b>" % GLib.markup_escape_text(text))
+        else:
+            label.set_text(text)
+        return label
+
+    def _merge_cell(
+        self,
+        row: _FSMergeRow,
+        side: str,
+        result_label: Gtk.Label | None = None,
+    ) -> Gtk.Widget:
+        """
+        Build one side of a FamilySearch-style merge row.
+        """
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+        box.get_style_context().add_class("fs-merge-cell")
+        if row.status:
+            box.get_style_context().add_class("fs-status-" + row.status)
+        if side == "result":
+            box.get_style_context().add_class("fs-merge-result-cell")
+
+        header = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        header.set_valign(Gtk.Align.START)
+
+        if side == "fs":
+            check = Gtk.CheckButton()
+            check.set_active(row.selected)
+            check.set_sensitive(row.selectable)
+            check.set_tooltip_text(
+                _("Copy this FamilySearch value into Gramps")
+                if row.selectable
+                else _("This row cannot be merged directly")
+            )
+            header.pack_start(check, False, False, 0)
+
+            def cb_toggled(button: Gtk.CheckButton) -> None:
+                """Update the selected state and result preview."""
+                row.selected = bool(button.get_active())
+                if result_label is not None:
+                    result_label.set_text(self._result_text_for_row(row))
+
+            check.connect("toggled", cb_toggled)
+
+        title = self._make_value_label(row.field or row.section, bold=True)
+        header.pack_start(title, True, True, 0)
+        if side != "result":
+            header.pack_end(
+                self._status_badge(row.status, row.selectable), False, False, 0
+            )
+        box.pack_start(header, False, False, 0)
+
+        if side == "gramps":
+            text = self._merge_value_text(row.gramps_date, row.gramps_value)
+        elif side == "fs":
+            text = self._merge_value_text(row.fs_date, row.fs_value)
+        else:
+            text = self._result_text_for_row(row)
+        if not text:
+            text = "-"
+
+        if side == "result" and result_label is not None:
+            value = result_label
+            value.set_text(text)
+        else:
+            value = self._make_value_label(text)
+        value.get_style_context().add_class("fs-merge-value")
+        box.pack_start(value, True, True, 0)
+        return box
+
+    def _merge_inconsistency_box(self, row: _FSMergeRow) -> Gtk.Widget:
+        """
+        Build a FamilySearch-style inconsistency warning.
+        """
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=3)
+        box.get_style_context().add_class("fs-merge-inconsistency")
+        title = self._make_value_label(_("Inconsistencies"), bold=True)
+        box.pack_start(title, False, False, 0)
+        details = []
+        if row.gramps_date and row.fs_date and row.gramps_date != row.fs_date:
+            details.append(_("The dates are different."))
+        if row.gramps_value and row.fs_value and row.gramps_value != row.fs_value:
+            details.append(_("The values are different."))
+        if not details:
+            details.append(_("Review this difference before merging."))
+        body = self._make_value_label("- " + "\n- ".join(details))
+        box.pack_start(body, False, False, 0)
+        return box
+
+    def _section_title(self, text: str) -> Gtk.Widget:
+        """
+        Build a section title for a merge column.
+        """
+        label = self._make_value_label(text, bold=True)
+        label.get_style_context().add_class("fs-merge-section-title")
+        return label
+
+    def _person_photo_pixbuf(self, person: Person | None, size: int = 56):
+        """
+        Return a scaled local Gramps person photo if one is available.
+        """
+        if person is None:
+            return None
+        for media_ref in list(person.get_media_list() or []):
+            handle = getattr(media_ref, "ref", "") or ""
+            if not handle:
+                continue
+            try:
+                media = self.dbstate.db.get_media_from_handle(handle)
+            except Exception:
+                try:
+                    media = self.dbstate.db.get_media_object_from_handle(handle)
+                except Exception:
+                    media = None
+            if media is None:
+                continue
+            mime = str(getattr(media, "mime", "") or "").lower()
+            if mime and not mime.startswith("image/"):
+                continue
+            path = ""
+            try:
+                path = media_path_full(self.dbstate.db, media.get_path())
+            except Exception:
+                path = str(getattr(media, "path", "") or "")
+            if not path or not os.path.exists(path):
+                continue
+            try:
+                return GdkPixbuf.Pixbuf.new_from_file_at_scale(path, size, size, True)
+            except Exception:
+                continue
+        return None
+
+    def _fs_photo_pixbuf(self, fs_person: Any, size: int = 56):
+        """
+        Return a FamilySearch photo pixbuf if the cached payload exposes one.
+        """
+        fsid = str(getattr(fs_person, "id", "") or "")
+        cache_key = "%s:%s" % (fsid, size)
+        if cache_key in self.__class__._FS_PHOTO_CACHE:
+            return self.__class__._FS_PHOTO_CACHE[cache_key]
+
+        candidates = [
+            getattr(fs_person, "portraitUrl", ""),
+            getattr(fs_person, "profileImageUrl", ""),
+            getattr(getattr(fs_person, "display", None), "portraitUrl", ""),
+            getattr(getattr(fs_person, "display", None), "profileImageUrl", ""),
+        ]
+        for candidate in candidates:
+            candidate = str(candidate or "")
+            if candidate and os.path.exists(candidate):
+                try:
+                    return GdkPixbuf.Pixbuf.new_from_file_at_scale(
+                        candidate, size, size, True
+                    )
+                except Exception:
+                    continue
+
+        session = getattr(tree, "_fs_session", None)
+        get_url = getattr(session, "get_url", None)
+        if fsid and callable(get_url):
+            try:
+                response = get_url("/platform/tree/persons/%s/portrait" % fsid)
+                content = getattr(response, "content", b"") if response else b""
+                if content:
+                    loader = GdkPixbuf.PixbufLoader()
+                    loader.write(content)
+                    loader.close()
+                    pixbuf = loader.get_pixbuf()
+                    if pixbuf is not None:
+                        scaled = pixbuf.scale_simple(
+                            size,
+                            size,
+                            GdkPixbuf.InterpType.BILINEAR,
+                        )
+                        self.__class__._FS_PHOTO_CACHE[cache_key] = scaled
+                        return scaled
+            except Exception:
+                pass
+        return None
+
+    def _photo_widget(self, pixbuf: Any, gender: int | None = None) -> Gtk.Widget:
+        """
+        Build a fixed-size photo/avatar slot.
+        """
+        image = Gtk.Image()
+        image.set_size_request(58, 58)
+        image.get_style_context().add_class("fs-person-photo")
+        if pixbuf is not None:
+            image.set_from_pixbuf(pixbuf)
+            return image
+        icon_name = "avatar-default-symbolic"
+        if gender == Person.MALE:
+            icon_name = "avatar-default-symbolic"
+        elif gender == Person.FEMALE:
+            icon_name = "avatar-default-symbolic"
+        image.set_from_icon_name(icon_name, Gtk.IconSize.DIALOG)
+        return image
+
+    def _fs_gender_value(self, fs_person: Any) -> int:
+        """
+        Return a Gramps gender value for a FamilySearch person.
+        """
+        fs_type = getattr(getattr(fs_person, "gender", None), "type", "")
+        if fs_type == "http://gedcomx.org/Male":
+            return Person.MALE
+        if fs_type == "http://gedcomx.org/Female":
+            return Person.FEMALE
+        return Person.UNKNOWN
+
+    def _gr_header_text(self, gr: Person) -> tuple[str, str, str]:
+        """
+        Return name, life text, and id text for the Gramps header.
+        """
+        name = ""
+        try:
+            name = gr.get_primary_name().get_name()
+        except Exception:
+            try:
+                name = str(gr.get_primary_name())
+            except Exception:
+                name = _("Gramps person")
+        try:
+            gid = gr.get_gramps_id() or ""
+        except Exception:
+            gid = ""
+        return name, person_dates_str(self.dbstate.db, gr), gid
+
+    def _fs_header_text(self, fs_person: Any, fsid: str) -> tuple[str, str, str]:
+        """
+        Return name, life text, and id text for the FamilySearch header.
+        """
+        name = ""
+        try:
+            fs_name = fs_person.preferred_name()
+            name = (fs_name.akGiven() + " " + fs_name.akSurname()).strip()
+        except Exception:
+            name = ""
+        if not name:
+            name = _("FamilySearch person")
+        life = ""
+        try:
+            display = getattr(fs_person, "display", None)
+            life = getattr(display, "lifespan", "") or ""
+        except Exception:
+            life = ""
+        return name, life, fsid
+
+    def _merge_person_header(
+        self,
+        title: str,
+        name: str,
+        life: str,
+        ident: str,
+        photo: Gtk.Widget,
+        *,
+        result: bool = False,
+    ) -> Gtk.Widget:
+        """
+        Build one person header card for the merge board.
+        """
+        wrap = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+        wrap.get_style_context().add_class("fs-merge-person-wrap")
+        label = self._make_value_label(title, bold=True)
+        label.get_style_context().add_class("fs-merge-column-label")
+        wrap.pack_start(label, False, False, 0)
+
+        card = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        card.get_style_context().add_class("fs-merge-person-card")
+        if result:
+            card.get_style_context().add_class("fs-merge-result-card")
+        card.pack_start(photo, False, False, 0)
+
+        text_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
+        text_box.pack_start(self._make_value_label(name, bold=True), False, False, 0)
+        meta = " - ".join(part for part in (life, ident) if part)
+        text_box.pack_start(self._make_value_label(meta), False, False, 0)
+        card.pack_start(text_box, True, True, 0)
+        wrap.pack_start(card, False, False, 0)
+        return wrap
+
+    def _build_merge_board(
+        self, gr: Person, fsid: str
+    ) -> tuple[Gtk.Widget, list[_FSMergeRow]]:
+        """
+        Build a FamilySearch-style merge board and its backing rows.
+        """
+        fs_person = deserialize.Person.index.get(fsid) or deserialize.Person()
+        rows = self._collect_merge_rows(gr, fsid)
+        grid = Gtk.Grid()
+        grid.get_style_context().add_class("fs-merge-board")
+        grid.set_row_spacing(0)
+        grid.set_column_spacing(10)
+        try:
+            grid.set_column_homogeneous(False)
+        except Exception:
+            pass
+
+        gr_name, gr_life, gr_id = self._gr_header_text(gr)
+        fs_name, fs_life, fs_id = self._fs_header_text(fs_person, fsid)
+        result_name = fs_name or gr_name
+        result_life = fs_life or gr_life
+        result_id = fs_id or gr_id
+
+        grid.attach(
+            self._merge_person_header(
+                _("Current Gramps"),
+                gr_name,
+                gr_life,
+                gr_id,
+                self._photo_widget(self._person_photo_pixbuf(gr), gr.get_gender()),
+            ),
+            0,
+            0,
+            1,
+            1,
+        )
+        grid.attach(
+            self._merge_person_header(
+                _("FamilySearch"),
+                fs_name,
+                fs_life,
+                fs_id,
+                self._photo_widget(
+                    self._fs_photo_pixbuf(fs_person),
+                    self._fs_gender_value(fs_person),
+                ),
+            ),
+            1,
+            0,
+            1,
+            1,
+        )
+        arrow = Gtk.Label(label="->")
+        arrow.get_style_context().add_class("fs-merge-arrow")
+        grid.attach(arrow, 2, 0, 1, 1)
+        grid.attach(
+            self._merge_person_header(
+                _("Result in Gramps"),
+                result_name,
+                result_life,
+                result_id,
+                self._photo_widget(
+                    self._fs_photo_pixbuf(fs_person) or self._person_photo_pixbuf(gr),
+                    self._fs_gender_value(fs_person),
+                ),
+                result=True,
+            ),
+            3,
+            0,
+            1,
+            1,
+        )
+
+        row_index = 1
+        current_section = None
+        for row in rows:
+            if row.section != current_section:
+                current_section = row.section
+                grid.attach(self._section_title(row.section), 0, row_index, 1, 1)
+                grid.attach(self._section_title(row.section), 1, row_index, 1, 1)
+                grid.attach(Gtk.Label(label=""), 2, row_index, 1, 1)
+                grid.attach(self._section_title(row.section), 3, row_index, 1, 1)
+                row_index += 1
+
+            result_label = self._make_value_label("")
+            result_label.get_style_context().add_class("fs-merge-value")
+            grid.attach(self._merge_cell(row, "gramps"), 0, row_index, 1, 1)
+            grid.attach(self._merge_cell(row, "fs", result_label), 1, row_index, 1, 1)
+            grid.attach(Gtk.Label(label=""), 2, row_index, 1, 1)
+            grid.attach(
+                self._merge_cell(row, "result", result_label), 3, row_index, 1, 1
+            )
+            row_index += 1
+
+            if row.status == "red":
+                grid.attach(
+                    self._merge_inconsistency_box(row),
+                    0,
+                    row_index,
+                    2,
+                    1,
+                )
+                row_index += 1
+
+        return grid, rows
+
+    def _selected_merge_rows(self, store: Gtk.TreeStore) -> list[_FSMergeRow]:
+        """
+        Return the currently checked merge rows from a merge tree store.
+        """
+        rows: list[_FSMergeRow] = []
+
+        def walk(parent: Any | None = None) -> None:
+            tree_iter = (
+                store.get_iter_first()
+                if parent is None
+                else store.iter_children(parent)
+            )
+            while tree_iter is not None:
+                if bool(store.get_value(tree_iter, 0)) and bool(
+                    store.get_value(tree_iter, 1)
+                ):
+                    rows.append(
+                        _FSMergeRow(
+                            status=str(store.get_value(tree_iter, 2) or ""),
+                            section=str(store.get_value(tree_iter, 3) or ""),
+                            field=str(store.get_value(tree_iter, 4) or ""),
+                            gramps_date=str(store.get_value(tree_iter, 13) or ""),
+                            gramps_value=str(store.get_value(tree_iter, 5) or ""),
+                            fs_date=str(store.get_value(tree_iter, 14) or ""),
+                            fs_value=str(store.get_value(tree_iter, 6) or ""),
+                            selected=True,
+                            selectable=True,
+                            kind=str(store.get_value(tree_iter, 8) or ""),
+                            gr_handle=str(store.get_value(tree_iter, 9) or ""),
+                            fs_id=str(store.get_value(tree_iter, 10) or ""),
+                            gr_extra=str(store.get_value(tree_iter, 11) or ""),
+                            fs_extra=str(store.get_value(tree_iter, 12) or ""),
+                        )
+                    )
+                if store.iter_has_child(tree_iter):
+                    walk(tree_iter)
+                tree_iter = store.iter_next(tree_iter)
+
+        walk()
+        return rows
+
+    def _fs_name_for_row(self, fs_person: Any, row: _FSMergeRow) -> Any:
+        """
+        Find the FamilySearch name object represented by a merge row.
+        """
+        if row.fs_id:
+            for name in list(getattr(fs_person, "names", []) or []):
+                if getattr(name, "id", "") == row.fs_id:
+                    return name
+        if row.kind == "primary_name":
+            return fs_person.preferred_name()
+        return None
+
+    def _name_parts_equal(self, left: Name, right: Any) -> bool:
+        """
+        Compare a Gramps name to a FamilySearch name by given and surname.
+        """
+        try:
+            left_surname = left.get_surname()
+        except Exception:
+            left_surname = ""
+        return (left_surname or "").strip() == (right.akSurname() or "").strip() and (
+            left.first_name or ""
+        ).strip() == (right.akGiven() or "").strip()
+
+    def _person_has_fs_name(self, gr: Person, fs_name: Any) -> bool:
+        """
+        Return True when Gramps already has the FamilySearch name.
+        """
+        names = [gr.get_primary_name()] + list(gr.get_alternate_names() or [])
+        return any(name and self._name_parts_equal(name, fs_name) for name in names)
+
+    def _copy_primary_name_to_alternates(self, gr: Person, fs_name: Any) -> None:
+        """
+        Preserve the current primary Gramps name as an alternate before replacing it.
+        """
+        primary = gr.get_primary_name()
+        if (
+            primary is None
+            or primary.is_empty()
+            or self._name_parts_equal(primary, fs_name)
+        ):
+            return
+        gr.add_alternate_name(Name(source=primary))
+
+    def _merge_name_row(
+        self, db: Any, txn: Any, gr: Person, fs_person: Any, row: _FSMergeRow
+    ) -> bool:
+        """
+        Copy one selected FamilySearch name into the Gramps person.
+        """
+        fs_name = self._fs_name_for_row(fs_person, row)
+        if fs_name is None:
+            return False
+        if row.kind == "primary_name":
+            self._copy_primary_name_to_alternates(gr, fs_name)
+            fs_import.add_name(db, txn, fs_name, gr)
+            return True
+        if self._person_has_fs_name(gr, fs_name):
+            return False
+        fs_import.add_name(db, txn, fs_name, gr)
+        return True
+
+    def _merge_gender_row(self, gr: Person, fs_person: Any) -> bool:
+        """
+        Copy FamilySearch gender into the Gramps person.
+        """
+        fs_gender = getattr(fs_person, "gender", None)
+        fs_type = getattr(fs_gender, "type", "")
+        if fs_type == "http://gedcomx.org/Male":
+            new_gender = Person.MALE
+        elif fs_type == "http://gedcomx.org/Female":
+            new_gender = Person.FEMALE
+        else:
+            new_gender = Person.UNKNOWN
+        if gr.get_gender() == new_gender:
+            return False
+        gr.set_gender(new_gender)
+        return True
+
+    def _fs_fact_for_row(self, fs_person: Any, row: _FSMergeRow) -> Any:
+        """
+        Find the FamilySearch fact object represented by a merge row.
+        """
+        facts = list(getattr(fs_person, "facts", []) or [])
+        if row.fs_id:
+            for fact in facts:
+                if getattr(fact, "id", "") == row.fs_id:
+                    return fact
+        return None
+
+    def _fs_couple_for_row(self, fs_person: Any, row: _FSMergeRow) -> Any:
+        """
+        Find the FamilySearch couple relationship represented by a merge row.
+        """
+        for couple in list(getattr(fs_person, "_spouses", []) or []):
+            if row.fs_extra and getattr(couple, "id", "") == row.fs_extra:
+                return couple
+            p1 = getattr(getattr(couple, "person1", None), "resourceId", "")
+            p2 = getattr(getattr(couple, "person2", None), "resourceId", "")
+            if row.fs_id and row.fs_id in (p1, p2):
+                return couple
+        return None
+
+    def _fs_couple_fact_for_row(
+        self, fs_person: Any, row: _FSMergeRow
+    ) -> tuple[Any, Any]:
+        """
+        Find the FamilySearch couple relationship and fact for a spouse event row.
+        """
+        couple = self._fs_couple_for_row(fs_person, row)
+        if couple is None:
+            return None, None
+        for fact in list(getattr(couple, "facts", []) or []):
+            if row.fs_id and getattr(fact, "id", "") == row.fs_id:
+                return couple, fact
+        return couple, None
+
+    def _ensure_event_ref(
+        self, db: Any, txn: Any, gr: Person, event: Any, *, role: int
+    ) -> EventRef:
+        """
+        Ensure the Gramps person has a reference to an event.
+        """
+        for event_ref in list(gr.get_event_ref_list() or []):
+            if event_ref.ref == event.handle:
+                return event_ref
+        event_ref = EventRef()
+        event_ref.set_role(role)
+        event_ref.set_reference_handle(event.get_handle())
+        db.commit_event(event, txn)
+        gr.add_event_ref(event_ref)
+        return event_ref
+
+    def _merge_person_fact_row(
+        self, db: Any, txn: Any, gr: Person, fs_person: Any, row: _FSMergeRow
+    ) -> bool:
+        """
+        Copy one selected FamilySearch fact into the Gramps person.
+        """
+        fs_fact = self._fs_fact_for_row(fs_person, row)
+        if fs_fact is None:
+            return False
+
+        if row.gr_handle:
+            event = db.get_event_from_handle(row.gr_handle)
+            if event:
+                fs_import.update_event(db, txn, fs_fact, event)
+                return True
+
+        event = fs_import.add_event(db, txn, fs_fact, gr)
+        if event is None:
+            return False
+
+        event_ref = self._ensure_event_ref(
+            db, txn, gr, event, role=EventRoleType.PRIMARY
+        )
+        try:
+            event_type = (
+                int(event.type) if hasattr(event.type, "__int__") else event.type
+            )
+            if event_type == EventType.BIRTH:
+                gr.set_birth_ref(event_ref)
+            elif event_type == EventType.DEATH:
+                gr.set_death_ref(event_ref)
+        except Exception:
+            pass
+        return True
+
+    def _merge_family_fact_row(
+        self, db: Any, txn: Any, fs_person: Any, row: _FSMergeRow
+    ) -> bool:
+        """
+        Copy one selected FamilySearch couple fact into a Gramps family.
+        """
+        _couple, fs_fact = self._fs_couple_fact_for_row(fs_person, row)
+        if fs_fact is None or not row.gr_extra:
+            return False
+        family = db.get_family_from_handle(row.gr_extra)
+        if family is None:
+            return False
+
+        if row.gr_handle:
+            event = db.get_event_from_handle(row.gr_handle)
+            if event:
+                fs_import.update_event(db, txn, fs_fact, event)
+                return True
+
+        event = fs_import.add_event(db, txn, fs_fact, family)
+        if event is None:
+            return False
+        if not any(
+            event_ref.ref == event.handle
+            for event_ref in list(family.get_event_ref_list() or [])
+        ):
+            event_ref = EventRef()
+            event_ref.set_role(EventRoleType.FAMILY)
+            event_ref.set_reference_handle(event.get_handle())
+            db.commit_event(event, txn)
+            family.add_event_ref(event_ref)
+        db.commit_family(family, txn)
+        return True
+
+    def _fs_child_parent_for_row(self, fs_person: Any, row: _FSMergeRow) -> Any:
+        """
+        Find the FamilySearch child-and-parents relationship for a merge row.
+        """
+        fsid = getattr(fs_person, "id", "")
+        relationships = list(getattr(fs_person, "_parentsCP", []) or []) + list(
+            getattr(fs_person, "_childrenCP", []) or []
+        )
+        for rel in relationships:
+            child_id = getattr(getattr(rel, "child", None), "resourceId", "")
+            parent1 = getattr(getattr(rel, "parent1", None), "resourceId", "")
+            parent2 = getattr(getattr(rel, "parent2", None), "resourceId", "")
+            if row.kind in ("father", "mother"):
+                if child_id == fsid and row.fs_id in (parent1, parent2):
+                    return rel
+            elif row.kind == "child":
+                if row.fs_id == child_id and fsid in (parent1, parent2):
+                    return rel
+        return None
+
+    def _import_related_person(self, importer: Any, fsid: str) -> bool:
+        """
+        Ensure a FamilySearch relative exists as a Gramps person.
+        """
+        fsid = (fsid or "").strip()
+        if not fsid:
+            return False
+        self._ensure_person_cached(fsid, with_relatives=False)
+        fs_person = deserialize.Person.index.get(fsid)
+        if fs_person is None:
+            return False
+        importer.add_person(self.dbstate.db, importer.txn, fs_person)
+        return True
+
+    def _merge_relative_row(
+        self, importer: Any, gr: Person, fs_person: Any, row: _FSMergeRow
+    ) -> bool:
+        """
+        Import and link a selected FamilySearch relative row.
+        """
+        fs_utilities.FS_INDEX_PEOPLE[getattr(fs_person, "id", "")] = gr.handle
+        if not self._import_related_person(importer, row.fs_id):
+            return False
+
+        if row.kind in ("father", "mother", "child"):
+            rel = self._fs_child_parent_for_row(fs_person, row)
+            if rel is None:
+                return False
+            if row.kind == "child":
+                parent_ids = [
+                    getattr(getattr(rel, "parent1", None), "resourceId", ""),
+                    getattr(getattr(rel, "parent2", None), "resourceId", ""),
+                ]
+                for parent_id in parent_ids:
+                    if parent_id and parent_id != getattr(fs_person, "id", ""):
+                        self._import_related_person(importer, parent_id)
+            importer.add_child(rel)
+            return True
+
+        if row.kind == "spouse":
+            couple = self._fs_couple_for_row(fs_person, row)
+            if couple is None:
+                return False
+            importer.add_family(couple)
+            return True
+        return False
+
+    def _apply_selected_merge_rows(
+        self, row_source: Any, gr: Optional[Person], fsid: str, parent: Gtk.Window
+    ) -> int:
+        """
+        Apply selected FamilySearch rows into Gramps and return the change count.
+        """
+        if gr is None:
+            WarningDialog(_("Could not resolve the selected person."), parent=parent)
+            return 0
+
+        if isinstance(row_source, list):
+            rows = self._selected_merge_rows_from_list(row_source)
+        else:
+            rows = self._selected_merge_rows(row_source)
+        if not rows:
+            WarningDialog(
+                _("Select at least one FamilySearch row to merge."), parent=parent
+            )
+            return 0
+
+        question = QuestionDialog2(
+            _("FamilySearch Compare/Merge"),
+            GLib.markup_escape_text(
+                _(
+                    "Copy {count} selected FamilySearch item(s) into the Gramps person?"
+                ).format(count=len(rows))
+            ),
+            _("_Merge"),
+            _("_Cancel"),
+            parent=parent,
+        )
+        if not question.run():
+            return 0
+
+        fs_person = deserialize.Person.index.get(fsid) or deserialize.Person()
+        db = self.dbstate.db
+        changed = 0
+
+        with DbTxn(_("FamilySearch: Merge selected rows"), db) as txn:
+            importer = fs_import.FSToGrampsImporter()
+            importer.dbstate = self.dbstate
+            importer.txn = txn
+            importer.noreimport = True
+            importer.fs_TreeImp = self.__class__.fs_Tree
+
+            failed = 0
+            for row in rows:
+                try:
+                    if row.kind == "gender":
+                        changed += int(self._merge_gender_row(gr, fs_person))
+                    elif row.kind in ("primary_name", "name"):
+                        changed += int(
+                            self._merge_name_row(db, txn, gr, fs_person, row)
+                        )
+                    elif row.kind == "fact":
+                        changed += int(
+                            self._merge_person_fact_row(db, txn, gr, fs_person, row)
+                        )
+                    elif row.kind == "spouse_fact":
+                        changed += int(
+                            self._merge_family_fact_row(db, txn, fs_person, row)
+                        )
+                    elif row.kind in ("father", "mother", "spouse", "child"):
+                        changed += int(
+                            self._merge_relative_row(importer, gr, fs_person, row)
+                        )
+                except Exception:
+                    LOG.warning(
+                        "Failed to apply merge row kind=%r", row.kind, exc_info=True
+                    )
+                    failed += 1
+
+            if changed:
+                db.commit_person(gr, txn)
+
+        if changed and not failed:
+            OkDialog(
+                _("FamilySearch Compare/Merge"),
+                _("{count} item(s) copied into Gramps.").format(count=changed),
+                parent=parent,
+            )
+        elif changed and failed:
+            OkDialog(
+                _("FamilySearch Compare/Merge"),
+                _(
+                    "{count} item(s) copied into Gramps; {failed} row(s) could not be applied."
+                ).format(count=changed, failed=failed),
+                parent=parent,
+            )
+        else:
+            WarningDialog(
+                _("FamilySearch Compare/Merge"),
+                _("No selected rows could be copied into Gramps."),
+                parent=parent,
+            )
+        return changed
+
     def _on_compare(self, _btn: Any) -> None:
         active = self.get_active("Person")
         if not active:
@@ -521,15 +1730,15 @@ class CompareGtkMixin:
 
         # ---- Window ----
         win = Gtk.Window()
-        win.set_title(_("FamilySearch Compare"))
+        win.set_title(_("FamilySearch Compare/Merge"))
         win.set_transient_for(self.uistate.window)
-        win.set_default_size(1180, 740)
+        win.set_default_size(1420, 820)
         win.get_style_context().add_class("fs-compare-window")
 
         # headerbar
         hb = Gtk.HeaderBar()
         hb.set_show_close_button(True)
-        hb.props.title = _("FamilySearch Compare")
+        hb.props.title = _("FamilySearch Compare/Merge")
         try:
             gid = gr.get_gramps_id() or ""
         except Exception:
@@ -567,17 +1776,37 @@ class CompareGtkMixin:
         outer.get_style_context().add_class("fs-compare-wrap")
         win.add(outer)
 
+        instruction = Gtk.Label(
+            label=_(
+                "Review FamilySearch differences, choose the rows to copy, "
+                "then merge them into Gramps. The direction is FamilySearch "
+                "to Gramps only."
+            )
+        )
+        instruction.set_xalign(0.0)
+        instruction.set_line_wrap(True)
+        instruction.get_style_context().add_class("fs-merge-instruction")
+        outer.pack_start(instruction, False, False, 0)
+
         notebook = Gtk.Notebook()
         notebook.get_style_context().add_class("fs-compare-notebook")
         outer.pack_start(notebook, True, True, 0)
 
-        # overview tab
+        # merge tab
+        merge_host = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        merge_state: dict[str, Any] = {"rows": []}
+        notebook.append_page(
+            self._wrap_scroller(merge_host, min_h=560),
+            Gtk.Label(label=_("Merge")),
+        )
+
+        # audit/details tab: preserves the original overview table.
         tv_overview, model_overview = self._make_overview_tree_model()
         tv_overview.get_style_context().add_class("fs-compare-treeview")
         self._tune_treeview(tv_overview, "overview")
         self._install_treeview_row_tints(tv_overview)
         notebook.append_page(
-            self._wrap_scroller(tv_overview), Gtk.Label(label=_("Overview"))
+            self._wrap_scroller(tv_overview), Gtk.Label(label=_("Audit Details"))
         )
 
         # notes tab
@@ -606,11 +1835,14 @@ class CompareGtkMixin:
         action_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
         action_box.set_halign(Gtk.Align.END)
 
+        btn_merge_text = Gtk.Button(label=_("Merge selected"))
         btn_refresh_text = Gtk.Button(label=_("Refresh"))
         btn_import_sources_text = Gtk.Button(label=_("Import sources..."))
         btn_close_text = Gtk.Button(label=_("Close"))
 
+        btn_merge_text.get_style_context().add_class("suggested-action")
         action_box.pack_end(btn_close_text, False, False, 0)
+        action_box.pack_end(btn_merge_text, False, False, 0)
         action_box.pack_end(btn_import_sources_text, False, False, 0)
         action_box.pack_end(btn_refresh_text, False, False, 0)
 
@@ -624,6 +1856,13 @@ class CompareGtkMixin:
             if not gr_local:
                 return
 
+            for child in list(merge_host.get_children() or []):
+                merge_host.remove(child)
+            merge_board, merge_rows = self._build_merge_board(gr_local, fsid)
+            merge_state["rows"] = merge_rows
+            merge_host.pack_start(merge_board, True, True, 0)
+            merge_host.show_all()
+
             model_overview.clear()
             self._fill_overview(model_overview, gr_local, fsid)
 
@@ -631,7 +1870,7 @@ class CompareGtkMixin:
             self._fill_notes(model_notes, gr_local, fsid)
 
             model_sources.clear()
-            self._fill_sources(model_sources, gr_local, fsid)
+            self._fill_sources(model_sources, gr_local, fsid, parent=win)
 
             # auto-tag after each refresh/fill
             try:
@@ -646,13 +1885,21 @@ class CompareGtkMixin:
         def do_import_sources(_btn: Any) -> None:
             self._import_sources_dialog(_get_gr(), fsid)
             model_sources.clear()
-            self._fill_sources(model_sources, _get_gr(), fsid)
+            self._fill_sources(model_sources, _get_gr(), fsid, parent=win)
+
+        def do_merge_selected(_btn: Any) -> None:
+            changed = self._apply_selected_merge_rows(
+                merge_state.get("rows", []), _get_gr(), fsid, win
+            )
+            if changed:
+                do_fill_all(False)
 
         btn_refresh.connect("clicked", lambda *_: do_fill_all(True))
         btn_refresh_text.connect("clicked", lambda *_: do_fill_all(True))
 
         btn_import_sources.connect("clicked", do_import_sources)
         btn_import_sources_text.connect("clicked", do_import_sources)
+        btn_merge_text.connect("clicked", do_merge_selected)
 
         btn_close.connect("clicked", lambda *_: win.destroy())
         btn_close_text.connect("clicked", lambda *_: win.destroy())
@@ -674,15 +1921,92 @@ class CompareGtkMixin:
         win.show_all()
 
     def _canon_fs_web(self, url: Optional[str]) -> str:
-        if not url:
-            return ""
+        return fs_import.normalize_source_url(url)
+
+    def _step_progress_meter(self, progress: ProgressMeter, header: str) -> None:
+        """
+        Advance a progress meter while updating its header text.
+        """
+        progress.set_header(header)
+        progress.step()
+
+    def _collect_compare_source_ids(self, fs_person: Any) -> list[str]:
+        """
+        Return ordered FamilySearch source description IDs for a compare person.
+        """
+        source_ids: list[str] = []
+        seen: set[str] = set()
+
+        def add_source_refs(source_refs: Any) -> None:
+            for source_ref in source_refs or []:
+                sdid = getattr(source_ref, "descriptionId", "") or ""
+                if sdid and sdid not in seen:
+                    seen.add(sdid)
+                    source_ids.append(sdid)
+
+        add_source_refs(getattr(fs_person, "sources", []) or [])
+        for rel in getattr(fs_person, "_spouses", []) or []:
+            add_source_refs(getattr(rel, "sources", []) or [])
+        return source_ids
+
+    def _prepare_compare_sources(
+        self, fsid: str, parent: Any | None = None
+    ) -> tuple[Any, dict[str, Any], list[str]]:
+        """
+        Load and hydrate FamilySearch sources for the compare dialog.
+        """
+        parent_window = parent
         try:
-            sess = getattr(tree, "_fs_session", None)
-            if sess and hasattr(sess, "canonical_web_url"):
-                return sess.canonical_web_url(url)
+            if parent_window and not parent_window.get_visible():
+                parent_window = None
         except Exception:
-            pass
-        return url
+            parent_window = None
+        if parent_window is None:
+            parent_window = getattr(self.uistate, "window", None)
+        progress = ProgressMeter(
+            _("FamilySearch Compare"),
+            _("Preparing FamilySearch sources"),
+            parent=parent_window,
+        )
+        try:
+            fs_person = deserialize.Person.index.get(fsid) or deserialize.Person()
+            fetch_total = 1 + len(getattr(fs_person, "_spouses", []) or [])
+            progress.set_pass(_("Loading source links (1/2)"), max(fetch_total, 1))
+            self._ensure_sources_cached(
+                fsid,
+                progress_callback=lambda header: self._step_progress_meter(
+                    progress, header
+                ),
+            )
+
+            fs_person = deserialize.Person.index.get(fsid) or deserialize.Person()
+            source_ids = self._collect_compare_source_ids(fs_person)
+            for sdid in source_ids:
+                if sdid in deserialize.SourceDescription._index:
+                    continue
+                sd_new = deserialize.SourceDescription()
+                sd_new.id = sdid
+                deserialize.SourceDescription._index[sdid] = sd_new
+                try:
+                    if self.__class__.fs_Tree is not None:
+                        self.__class__.fs_Tree.sourceDescriptions.add(sd_new)
+                except Exception:
+                    pass
+            progress.set_pass(
+                _("Parsing source details (2/2)"), max(len(source_ids), 1)
+            )
+            if self.__class__.fs_Tree is not None and source_ids:
+                fs_import.fetch_source_dates(
+                    self.__class__.fs_Tree,
+                    source_ids=source_ids,
+                    progress_callback=lambda header: self._step_progress_meter(
+                        progress, header
+                    ),
+                )
+
+            return fs_person, self._gather_sr_meta(fsid), source_ids
+        finally:
+            progress.close()
 
     # ------------------ models / columns ------------------
 
@@ -953,50 +2277,19 @@ class CompareGtkMixin:
                     )
                 )
 
-    def _fill_sources(self, model: Any, gr: Person, fsid: str) -> None:
-        self._ensure_sources_cached(fsid)
-
-        fs_person = deserialize.Person.index.get(fsid) or deserialize.Person()
+    def _fill_sources(
+        self, model: Any, gr: Person, fsid: str, parent: Any | None = None
+    ) -> None:
+        fs_person, source_meta, source_ids = self._prepare_compare_sources(
+            fsid, parent=parent
+        )
         em = "_"
         fs_placeholder = (
             em if self.__class__.fs_Tree else _("Not connected to FamilySearch")
         )
 
-        source_meta = self._gather_sr_meta(fsid)
-
         # Collect FS SourceDescription IDs referenced by person + spouse relationships
-        fs_source_ids: dict[str, None] = {}
-        for sr in getattr(fs_person, "sources", []) or []:
-            sdid = getattr(sr, "descriptionId", "") or ""
-            if sdid:
-                fs_source_ids[sdid] = None
-
-        for rel in getattr(fs_person, "_spouses", []) or []:
-            for sr in getattr(rel, "sources", []) or []:
-                sdid = getattr(sr, "descriptionId", "") or ""
-                if sdid:
-                    fs_source_ids[sdid] = None
-
-        # Ensure SourceDescription objects exist in index and (if connected) add to fs_Tree
-        for sdid in list(fs_source_ids.keys()):
-            if not sdid:
-                continue
-            if sdid not in deserialize.SourceDescription._index:
-                sd_new = deserialize.SourceDescription()
-                sd_new.id = sdid
-                deserialize.SourceDescription._index[sdid] = sd_new
-                try:
-                    if self.__class__.fs_Tree is not None:
-                        self.__class__.fs_Tree.sourceDescriptions.add(sd_new)
-                except Exception:
-                    pass
-
-        # Populate FS dates if possible
-        try:
-            if self.__class__.fs_Tree is not None:
-                fs_import.fetch_source_dates(self.__class__.fs_Tree)
-        except Exception:
-            pass
+        fs_source_ids: dict[str, None] = {sdid: None for sdid in source_ids}
 
         # Collect Gramps citations across person + events + families
         citation_handles: set[str] = set(gr.get_citation_list() or [])
@@ -1042,7 +2335,9 @@ class CompareGtkMixin:
             title: str = src_gr.citation_title or ""
             note_text = (src_gr.note_text or "").strip()
             gr_url: str = self._canon_fs_web(getattr(src_gr, "url", None))
-            date: str = fs_utilities.gramps_date_to_formal(c.date)
+            date: str = fs_import.normalize_source_date(
+                fs_utilities.gramps_date_to_formal(c.date)
+            )
 
             sd_id: str = fs_utilities.get_fsftid(c) or ""
 
@@ -1066,7 +2361,7 @@ class CompareGtkMixin:
 
                 fs_title = src_fs.citation_title or ""
                 fs_text = src_fs.note_text or ""
-                fs_date = str(src_fs.date)
+                fs_date = fs_import.normalize_source_date(src_fs.date)
                 fs_url = self._canon_fs_web(getattr(src_fs, "url", None))
 
                 meta = source_meta.get(sd_id, {}) or {}
@@ -1076,11 +2371,15 @@ class CompareGtkMixin:
                 modified = str(meta.get("modified") or "")
 
                 color = "orange"
-                if (
-                    fs_date == date
-                    and fs_title == title
-                    and fs_url == gr_url
-                    and (fs_text or "").strip() == note_text
+                if fs_import.source_values_match(
+                    date,
+                    title,
+                    gr_url,
+                    note_text,
+                    fs_date,
+                    fs_title,
+                    fs_url,
+                    fs_text,
                 ):
                     color = "green"
 
@@ -1124,7 +2423,11 @@ class CompareGtkMixin:
                 except Exception:
                     pass
 
-            fs_date_val = getattr(sd_obj2, "_date", "") if sd_obj2 is not None else ""
+            fs_date_val = (
+                fs_import.normalize_source_date(getattr(sd_obj2, "_date", ""))
+                if sd_obj2 is not None
+                else ""
+            )
             fs_url2 = self._canon_fs_web(
                 getattr(sd_obj2, "about", None) if sd_obj2 is not None else None
             )
@@ -1143,7 +2446,7 @@ class CompareGtkMixin:
                         em,
                         em,
                         em,
-                        str(fs_date_val) or em,
+                        fs_date_val or em,
                         fs_title or em,
                         fs_url2 or em,
                         tags_disp,

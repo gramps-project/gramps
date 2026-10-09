@@ -47,6 +47,7 @@ from subprocess import Popen, PIPE
 from ...const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
+from ...errors import ReportError
 from ...utils.file import search_for, where_is
 from . import BaseDoc
 from ..menu import NumberOption, TextOption, EnumeratedListOption, BooleanOption
@@ -127,6 +128,22 @@ else:
 
 def esc(id_txt):
     return id_txt.replace('"', '\\"')
+
+
+def _check_rc(rc: int, target: str) -> None:
+    """
+    Raise :class:`ReportError` if *rc* (the return code from
+    ``os.system`` running a graphviz/ghostscript invocation) is
+    non-zero, so that the user sees a "Could not create <file>" error
+    instead of a silently-missing output (Mantis bug 0006556).
+
+    The non-zero exit typically means the target file was locked by
+    another process (the historical Windows symptom), but it also
+    covers permission denied, disk full, an absent ``dot``/``gs``
+    binary, or a malformed temporary DOT file.
+    """
+    if rc != 0:
+        raise ReportError(_("Could not create %s") % target)
 
 
 # ------------------------------------------------------------------------------
@@ -800,9 +817,10 @@ class GVPsDoc(GVDocBase):
             self.vpages * self.hpages
         ) > 1:
             command = command.replace(":cairo", "")
-        os.system(command)
+        rc = os.system(command)
         # Delete the temporary dot file
         os.remove(tmp_dot)
+        _check_rc(rc, self._filename)
 
 
 # ------------------------------------------------------------------------------
@@ -834,10 +852,11 @@ class GVSvgDoc(GVDocBase):
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Generate the SVG file.
-        os.system('dot -Tsvg:cairo -o"%s" "%s"' % (self._filename, tmp_dot))
+        rc = os.system('dot -Tsvg:cairo -o"%s" "%s"' % (self._filename, tmp_dot))
 
         # Delete the temporary dot file
         os.remove(tmp_dot)
+        _check_rc(rc, self._filename)
 
 
 # ------------------------------------------------------------------------------
@@ -869,10 +888,11 @@ class GVSvgzDoc(GVDocBase):
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Generate the SVGZ file.
-        os.system('dot -Tsvgz -o"%s" "%s"' % (self._filename, tmp_dot))
+        rc = os.system('dot -Tsvgz -o"%s" "%s"' % (self._filename, tmp_dot))
 
         # Delete the temporary dot file
         os.remove(tmp_dot)
+        _check_rc(rc, self._filename)
 
 
 # ------------------------------------------------------------------------------
@@ -904,10 +924,11 @@ class GVPngDoc(GVDocBase):
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Generate the PNG file.
-        os.system('dot -Tpng -o"%s" "%s"' % (self._filename, tmp_dot))
+        rc = os.system('dot -Tpng -o"%s" "%s"' % (self._filename, tmp_dot))
 
         # Delete the temporary dot file
         os.remove(tmp_dot)
+        _check_rc(rc, self._filename)
 
 
 # ------------------------------------------------------------------------------
@@ -939,10 +960,11 @@ class GVJpegDoc(GVDocBase):
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Generate the JPEG file.
-        os.system('dot -Tjpg -o"%s" "%s"' % (self._filename, tmp_dot))
+        rc = os.system('dot -Tjpg -o"%s" "%s"' % (self._filename, tmp_dot))
 
         # Delete the temporary dot file
         os.remove(tmp_dot)
+        _check_rc(rc, self._filename)
 
 
 # ------------------------------------------------------------------------------
@@ -974,10 +996,11 @@ class GVGifDoc(GVDocBase):
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Generate the GIF file.
-        os.system('dot -Tgif -o"%s" "%s"' % (self._filename, tmp_dot))
+        rc = os.system('dot -Tgif -o"%s" "%s"' % (self._filename, tmp_dot))
 
         # Delete the temporary dot file
         os.remove(tmp_dot)
+        _check_rc(rc, self._filename)
 
 
 # ------------------------------------------------------------------------------
@@ -1014,10 +1037,11 @@ class GVPdfGvDoc(GVDocBase):
         fname = self._filename
 
         # Generate the PDF file.
-        os.system('dot -Tpdf -o"%s" "%s"' % (fname, tmp_dot))
+        rc = os.system('dot -Tpdf -o"%s" "%s"' % (fname, tmp_dot))
 
         # Delete the temporary dot file
         os.remove(tmp_dot)
+        _check_rc(rc, self._filename)
 
 
 # ------------------------------------------------------------------------------
@@ -1060,7 +1084,8 @@ class GVPdfGsDoc(GVDocBase):
         # large page, so we use Ghostscript to split it up.
 
         command = 'dot -Tps:cairo -o"%s" "%s"' % (tmp_ps, tmp_dot)
-        os.system(command)
+        rc = os.system(command)
+        _check_rc(rc, self._filename)
 
         # Add .5 to remove rounding errors.
         paper_size = self._paper.get_size()
@@ -1074,8 +1099,9 @@ class GVPdfGsDoc(GVDocBase):
                 '-sOutputFile="%s" "%s" -c quit'
                 % (_GS_CMD, width_pt, height_pt, self._filename, tmp_ps)
             )
-            os.system(command)
+            rc = os.system(command)
             os.remove(tmp_ps)
+            _check_rc(rc, self._filename)
             return
         # Margins (in centimeters) to pixels 72/2.54=28.345
         margin_t = int(28.345 * self._paper.get_top_margin())
@@ -1129,20 +1155,22 @@ class GVPdfGsDoc(GVDocBase):
                 )
             )
             # Execute Ghostscript
-            os.system(command)
+            rc = os.system(command)
+            _check_rc(rc, self._filename)
         # Merge pieces to single multipage PDF ;
         command = (
             "%s -q -dBATCH -dNOPAUSE "
             '-sOUTPUTFILE="%s" -sDEVICE=pdfwrite %s '
             % (_GS_CMD, self._filename, " ".join(list_of_pieces))
         )
-        os.system(command)
+        rc = os.system(command)
 
         # Clean temporary files
         os.remove(tmp_ps)
         for tmp_pdf_piece in list_of_pieces:
             os.remove(tmp_pdf_piece)
         os.remove(tmp_dot)
+        _check_rc(rc, self._filename)
 
 
 # ------------------------------------------------------------------------------

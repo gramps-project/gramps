@@ -235,7 +235,9 @@ except ImportError:
 #
 # -------------------------------------------------------------------------
 try:
-    signal.signal(signal.SIGCHLD, signal.SIG_DFL)
+    # signal.SIGCHLD is only available on Unix
+    if sys.platform != "win32":
+        signal.signal(signal.SIGCHLD, signal.SIG_DFL)
 except:
     pass
 
@@ -356,8 +358,9 @@ def show_settings():
         import gi
 
         repository = gi.Repository.get_default()
-        if repository.enumerate_versions("GExiv2"):
-            gi.require_version("GExiv2", "0.10")
+        v_array = repository.enumerate_versions("GExiv2")
+        if v_array:
+            gi.require_version("GExiv2", v_array[-1])
             from gi.repository import GExiv2
 
             try:
@@ -369,8 +372,8 @@ def show_settings():
 
     except ImportError:
         gexiv2_str = "not found"
-    except ValueError:
-        gexiv2_str = "not new enough"
+    except ValueError as err:
+        gexiv2_str = f"Version error: {err}"
 
     try:
         vers_str = Popen(["exiv2", "-V"], stdout=PIPE).communicate(input=None)[0]
@@ -386,11 +389,11 @@ def show_settings():
         vers_str = _("not found because exiv2 is not installed")
 
     try:
-        import PyICU
+        import icu
 
         try:
-            pyicu_str = PyICU.VERSION
-            icu_str = PyICU.ICU_VERSION
+            pyicu_str = icu.VERSION
+            icu_str = icu.ICU_VERSION
         except:  # any failure to 'get' the version
             pyicu_str = "unknown version"
             icu_str = "unknown version"
@@ -398,13 +401,6 @@ def show_settings():
     except ImportError:
         pyicu_str = "not found"
         icu_str = "not found"
-
-    try:
-        import icu
-
-        icu_str = icu.PY_VERSION
-    except Exception:
-        icu_str = _("not found")
 
     try:
         import PIL
@@ -465,7 +461,7 @@ def show_settings():
         geocodeglib_ver = _("not found")
 
     try:
-        import bsddb3 as bsddb
+        import berkeleydb as bsddb
 
         bsddb_str = bsddb.__version__
         bsddb_db_str = (
@@ -474,7 +470,7 @@ def show_settings():
         bsddb_location_str = bsddb.__file__
     except:
         try:
-            import berkeleydb as bsddb
+            import bsddb3 as bsddb
 
             bsddb_str = bsddb.__version__
             bsddb_db_str = (
@@ -528,14 +524,9 @@ def show_settings():
 
     try:
         if win():
-            try:
-                gsversion_str = Popen(
-                    ["gswin32c", "--version"], stdout=PIPE
-                ).communicate(input=None)[0]
-            except:
-                gsversion_str = Popen(
-                    ["gswin64c", "--version"], stdout=PIPE
-                ).communicate(input=None)[0]
+            gsversion_str = Popen(["gswin64c", "--version"], stdout=PIPE).communicate(
+                input=None
+            )[0]
         else:
             gsversion_str = Popen(["gs", "--version"], stdout=PIPE).communicate(
                 input=None

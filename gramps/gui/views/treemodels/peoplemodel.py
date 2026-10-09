@@ -240,7 +240,7 @@ class PeopleBaseModel(BaseModel):
                 b = data_to_object(local)
                 birth = self.db.get_event_from_handle(b.ref)
                 if sort_mode:
-                    retval = "%09d" % birth.get_date_object().get_sort_value()
+                    retval = "%09d" % birth.get_date_object().get_sort_key()
                 else:
                     date_str = get_date(birth)
                     if date_str != "":
@@ -263,7 +263,7 @@ class PeopleBaseModel(BaseModel):
                 and date_str != ""
             ):
                 if sort_mode:
-                    retval = "%09d" % event.get_date_object().get_sort_value()
+                    retval = "%09d" % event.get_date_object().get_sort_key()
                 else:
                     retval = "<i>%s</i>" % escape(date_str)
                 if not get_date_valid(event):
@@ -297,7 +297,7 @@ class PeopleBaseModel(BaseModel):
                 ref = data_to_object(local)
                 event = self.db.get_event_from_handle(ref.ref)
                 if sort_mode:
-                    retval = "%09d" % event.get_date_object().get_sort_value()
+                    retval = "%09d" % event.get_date_object().get_sort_key()
                 else:
                     date_str = get_date(event)
                     if date_str != "":
@@ -320,7 +320,7 @@ class PeopleBaseModel(BaseModel):
                 and date_str
             ):
                 if sort_mode:
-                    retval = "%09d" % event.get_date_object().get_sort_value()
+                    retval = "%09d" % event.get_date_object().get_sort_key()
                 else:
                     retval = "<i>%s</i>" % escape(date_str)
                 if not get_date_valid(event):

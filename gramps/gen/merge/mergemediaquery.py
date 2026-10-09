@@ -26,7 +26,17 @@ Provide merge capabilities for media objects.
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ..lib import Person, Family, Event, Source, Citation, Place, Note
+from ..lib import (
+    Person,
+    Family,
+    Event,
+    Source,
+    Citation,
+    Place,
+    Note,
+    DNATest,
+    DNAMatch,
+)
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 
@@ -96,6 +106,16 @@ class MergeMediaQuery:
                     assert note.has_handle_reference("Media", old_handle)
                     note.replace_handle_reference("Media", old_handle, new_handle)
                     self.database.commit_note(note, trans)
+                elif class_name == DNATest.__name__:
+                    test = self.database.get_dnatest_from_handle(handle)
+                    assert test.has_media_reference(old_handle)
+                    test.replace_media_references(old_handle, new_handle)
+                    self.database.commit_dnatest(test, trans)
+                elif class_name == DNAMatch.__name__:
+                    dnamatch = self.database.get_dnamatch_from_handle(handle)
+                    assert dnamatch.has_media_reference(old_handle)
+                    dnamatch.replace_media_references(old_handle, new_handle)
+                    self.database.commit_dnamatch(dnamatch, trans)
                 else:
                     raise MergeError(
                         "Encounter an object of type % s that has "

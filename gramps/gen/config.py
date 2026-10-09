@@ -35,6 +35,7 @@ This package implements access to Gramps configuration.
 import os
 import re
 import logging
+import sys
 
 # ---------------------------------------------------------------
 #
@@ -240,6 +241,7 @@ register(
         "Repositories",
         "Media",
         "Notes",
+        "DNA",
     ],
 )
 register("interface.filter", False)
@@ -318,6 +320,7 @@ register("preferences.no-given-text", "[%s]" % _("Missing Given Name"))
 register("preferences.no-record-text", "[%s]" % _("Missing Record"))
 register("preferences.no-surname-text", "[%s]" % _("Missing Surname"))
 register("preferences.nprefix", "N%05d")
+register("preferences.mprefix", "M%05d")
 register("preferences.online-maps", False)
 register("preferences.oprefix", "O%05d")
 register("preferences.paper-metric", 0)
@@ -328,6 +331,7 @@ register("preferences.private-record-text", "[%s]" % _("Private Record"))
 register("preferences.private-surname-text", "%s" % _T_("[Living]"))
 register("preferences.rprefix", "R%05d")
 register("preferences.sprefix", "S%05d")
+register("preferences.tprefix", "T%05d")
 register("preferences.use-last-view", False)
 register("preferences.last-view", "")
 register("preferences.last-views", [])
@@ -392,6 +396,7 @@ register("utf8.cremated-symbol", "⚱")
 register("utf8.killed-symbol", "x")
 
 register("familysearch.server", 0)  # beta
+register("familysearch.enable", False)
 register("familysearch.app-key", "")
 register("familysearch.redirect", "http://127.0.0.1:57938/familysearch-auth")
 register("familysearch.auth-provider", "foundation")
@@ -458,7 +463,8 @@ if not os.path.exists(CONFIGMAN.filename):
 # Now, load the settings from the config file, if one
 #
 # ---------------------------------------------------------------
-CONFIGMAN.load()
+if not "unittest" in sys.modules.keys():
+    CONFIGMAN.load()
 
 config = CONFIGMAN
 if config.get("database.backend") == "bsddb":

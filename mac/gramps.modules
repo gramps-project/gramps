@@ -20,8 +20,8 @@
   <repository type="tarball" name="pythonware"
               href="http://effbot.org/downloads/"/>
 
-  <!--include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/-->
-  <include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
+  <include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/>
+  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
   <pip id="gramps-git" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps.git" repo="github"
@@ -32,9 +32,9 @@
     </dependencies>
   </pip>
  <pip id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v6.0.8.tar.gz"
-	    repo="github-tarball" version="6.0.8"
-            checkoutdir="gramps-gramps-6.0.8" />
+    <branch module="gramps-project/gramps/archive/v6.1.0-beta1.tar.gz"
+	    repo="github-tarball" version="6.1.0-beta1"
+            checkoutdir="gramps-gramps-6.1.0" />
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
@@ -49,32 +49,74 @@
   </pip>
 
   <meson id="json-glib" mesonargs="-Dgtk_doc=disabled -Dman=false -Dtests=false">
-    <branch module="json-glib/1.10/json-glib-1.10.6.tar.xz"
-            version="1.10.6" repo="ftp.gnome.org"
-            hash="sha256:77f4bcbf9339528f166b8073458693f0a20b77b7059dbc2db61746a1928b0293"/>
+    <branch module="json-glib/1.10/json-glib-1.10.8.tar.xz"
+            version="1.10.8" repo="ftp.gnome.org"
+            hash="sha256:55c5c141a564245b8f8fbe7698663c87a45a7333c2a2c56f06f811ab73b212dd"/>
     <dependencies>
       <dep package="gobject-introspection"/>
       <dep package="glib"/>
     </dependencies>
   </meson>
 
-  <pip id="lmxl">
-    <branch module="2b/b4/bbccb250adbee490553b6a52712c46c20ea1ba533a643f1424b27ffc6845/lxml-5.1.0.tar.gz"
-            version="5.1.0"
-            hash="sha256:3eea6ed6e6c918e468e693c41ef07f3c3acc310b70ddd9cc72d9ef84bc9564ca"
+  <pip id="lxml">
+    <branch module="28/30/9abc9e34c657c33834eaf6cd02124c61bdf5944d802aa48e69be8da3585d/lxml-6.1.0.tar.gz"
+            version="6.1.0"
+            hash="sha256:bfd57d8008c4965709a919c3e9a98f76c2c7cb319086b3d26858250620023b13"
             repo="pymodules" />
   </pip>
 
+  <pip id='certifi'>
+    <branch module="25/ee/6caf7a40c36a1220410afe15a1cc64993a1f864871f698c0f93acb72842a/certifi-2026.4.22.tar.gz"
+            version="2026.4.22"
+            hash="sha256:8d455352a37b71bf76a79caa83a3d6c25afee4a385d632127b6afb3963f1c580"
+            repo="pymodules"/>
+  </pip>
+
+  <pip id="idna">
+    <branch module="ce/cc/762dfb036166873f0059f3b7de4565e1b5bc3d6f28a414c13da27e442f99/idna-3.13.tar.gz"
+            version="3.13"
+            hash="sha256:585ea8fe5d69b9181ec1afba340451fba6ba764af97026f92a91d4eef164a242"
+            repo="pymodules"/>
+  </pip>
+
   <pip id="orjson">
-    <branch module="ae/f9/5dea21763eeff8c1590076918a446ea3d6140743e0e36f58f369928ed0f4/orjson-3.10.15.tar.gz"
-            version="3.10.15"
+    <branch module="9d/1b/2024d06792d0779f9dbc51531b61c24f76c75b9f4ce05e6f3377a1814cea/orjson-3.11.8.tar.gz"
+            hash="sha256:96163d9cdc5a202703e9ad1b9ae757d5f0ca62f4fa0cc93d1f27b0e180cc404e"
+            version="3.11.8"
+            repo="pymodules" >
+        <patch file="orjson-3.11.8-illegal-features.patch"/>
+    </branch>
+  </pip>
+
+  <pip id="chardet">
+    <branch module="19/b6/9df434a8eeba2e6628c465a1dfa31034228ef79b26f76f46278f4ef7e49d/chardet-7.4.3.tar.gz"
+            version="7.4.3"
+            hash="sha256:cc1d4eb92a4ec1c2df3b490836ffa46922e599d34ce0bb75cf41fd2bf6303d56"
+            repo="pymodules"/>
+  </pip>
+
+  <pip id="requests">
+    <branch module="5f/a4/98b9c7c6428a668bf7e42ebb7c79d576a1c3c1e3ae2d47e674b468388871/requests-2.33.1.tar.gz"
+            version="2.33.1"
+            hash="sha256:18817f8c57c6263968bc123d237e3b8b08ac046f5456bd1e307ee8f4250d3517"
+            repo="pymodules"/>
+    <dependencies>
+      <dep package="urlib3"/>
+      <dep package="chardet"/>
+    </dependencies>
+  </pip>
+
+  <pip id="urlib3">
+    <branch module="c7/24/5f1b3bdffd70275f6661c76461e25f024d5a38a46f04aaca912426a2b1d3/urllib3-2.6.3.tar.gz"
+            version="2.6.3"
+            hash="sha256:1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed"
             repo="pymodules" />
   </pip>
 
   <meson id="geocode-glib" mesonargs="-Denable-gtk-doc=false">
-    <branch module="geocode-glib/3.26/geocode-glib-3.26.2.tar.xz"
-            version="3.26.2" repo="ftp.gnome.org"
-            hash="sha256:01fe84cfa0be50c6e401147a2bc5e2f1574326e2293b55c69879be3e82030fd1"/>
+    <branch module="geocode-glib/3.26/geocode-glib-3.26.4.tar.xz"
+            version="3.26.4" repo="ftp.gnome.org"
+            hash="sha256:2d9a6826d158470449a173871221596da0f83ebdcff98b90c7049089056a37aa"/>
     <dependencies>
       <dep package="json-glib"/>
       <dep package="libsoup"/>
@@ -92,28 +134,43 @@
     </dependencies>
   </autotools>
 
-  <cmake id="exiv2" cmakeargs='-DEXIV2_ENABLE_PNG=ON -DCMAKE_MACOSX_RPATH=OFF -DCMAKE_INSTALL_NAME_DIR="${JHBUILD_PREFIX}/lib"'>
-    <branch module="Exiv2/exiv2/releases/download/v0.27.4/exiv2-0.27.4-Source.tar.gz" repo="github-tarball"
-            checkoutdir="exiv2-0.27.4-Source" version="0.27.4"
-            hash="sha256:84366dba7c162af9a7603bcd6c16f40fe0e9af294ba2fd2f66ffffb9fbec904e"/>
+ <autotools id="goocanvas2"
+             supports-non-srcdir-builds="no">
+    <branch module="goocanvas/2.0/goocanvas-2.0.4.tar.xz"
+            version="2.0.4"
+            hash="sha256:c728e2b7d4425ae81b54e1e07a3d3c8a4bd6377a63cffa43006045bceaa92e90"
+            repo="ftp.gnome.org" />
+    <after>
+      <dep package="gtk+-3.0" />
+    </after>
+  </autotools>
+
+  <cmake id="exiv2" cmakeargs='-DEXIV2_ENABLE_PNG=ON -DEXIV2_ENABLE_BROTLI=OFF -DEXIV2_ENABLE_INIH=OFF -DCMAKE_MACOSX_RPATH=OFF -DCMAKE_INSTALL_NAME_DIR="${JHBUILD_PREFIX}/lib"'>
+    <branch module="Exiv2/exiv2/archive/refs/tags/v0.28.8.tar.gz"
+            repo="github-tarball"
+            checkoutdir="exiv2-0.28.9-Source" version="0.28.8"
+
+            />
   </cmake>
 
   <meson id="gexiv2" mesonargs="-Dvapi=false">
-    <branch module="gexiv2/0.14/gexiv2-0.14.0.tar.xz"
-            repo="ftp.gnome.org" version="0.14.0"
-            hash="sha256:e58279a6ff20b6f64fa499615da5e9b57cf65ba7850b72fafdf17221a9d6d69e">
+    <branch module="gexiv2/0.16/gexiv2-0.16.0.tar.xz"
+            repo="ftp.gnome.org"
+            version="0.16.0"
+            hash="sha256:d96f895f24539f966f577b2bb2489ae84f8232970a8d0c064e4a007474a77bbb">
     </branch>
     <dependencies>
       <dep package="exiv2"/>
       <dep package="pygobject3"/>
+      <dep package="expat"/>
     </dependencies>
   </meson>
 
   <pip id="pillow">
-    <branch module="f3/af/c097e544e7bd278333db77933e535098c259609c4eb3b85381109602fb5b/pillow-11.1.0.tar.gz"
-            version="11.1.0"
+    <branch module="8c/21/c2bcdd5906101a30244eaffc1b6e6ce71a31bd0742a01eb89e660ebfac2d/pillow-12.2.0.tar.gz"
+            version="12.2.0"
 	    repo="pymodules"
-	    hash="sha256:368da70808b36d73b4b390a8ffac11069f8a5c85f29eff1f1b01bcf3ef5b2a20">
+	    hash="sha256:a830b1a40919539d07806aa58e1b114df53ddd43213d9c8b75847eee6c0182b5">
     </branch>
     <dependencies>
       <!--dep package="setuptools"/-->
@@ -121,9 +178,9 @@
   </pip>
 
  <pip id='pyicu'>
-    <branch version='2.14' repo='pymodules'
-            module='52/21/4e9b0a3ace3027fc63107fa2b5d6e66e321e104da071d787856962fbad52/PyICU-2.14.tar.gz'
-            hash="sha256:acc7eb92bd5c554ed577249c6978450a4feda0aa6f01470152b3a7b382a02132"/>
+    <branch version='2.16.2' repo='pymodules'
+            module='https://files.pythonhosted.org/packages/b7/d5/354eb1bf84dcf4ab0bfa46f0620ecf68fe313bb082c26872ceb7a5021f94/pyicu-2.16.2.tar.gz'
+            hash="sha256:006d51e24b5ec76df6ec2130f3dde269c51db8b8cfebb7d45a427dde0d10aa52"/>
 
     <dependencies>
       <dep package='icu'/>
@@ -164,8 +221,9 @@
 
   <pip id="pybsddb">
     <branch repo="pymodules" version="18.1.13"
-            module="62/2d/afd9072a414ce0accc0a831c887ac0381e2b569f09dd6f08cf62aa69f6b8/berkeleydb-18.1.13.tar.gz"
-            hash="sha256:3cfc4d6b2bd2aa2f223039ef877773cacf91692c986fd1ae14a53f913ee74ab8" />
+            module="e1/55/b3d95a49173c769df8d5def6f9c44e58df2fe63dba9e9141693333cdbd99/berkeleydb-18.1.15.tar.gz"
+            hash="sha256:7afa53143d754c6bb2c85656c1325ebae518adcfcd1b59e13cc2abb88ddf758e"
+      />
     <dependencies>
       <dep package="python3"/>
     </dependencies>
@@ -178,18 +236,21 @@
   <metamodule id="meta-gramps-modules">
     <dependencies>
       <dep package="geocode-glib"/>
-      <dep package="gexiv2"/>
-      <dep package="goocanvas2"/>
+      <dep package="pyexiv"/>
       <dep package="graphviz"/>
       <dep package="gspell"/>
       <dep package="gtk-mac-integration-python"/>
       <dep package="hunspell"/>
       <dep package="iso-codes"/>
       <dep package="librsvg"/>
-      <dep package="lmxl"/>
+      <dep package="lxml"/>
       <dep package="meta-gtk-osx-gtk3"/>
+      <dep package="certifi"/>
+      <dep package="idna"/>
       <dep package="orjson"/>
+      <dep package='requests'/>
       <dep package="osmgpsmap"/>
+      <dep package="goocanvas2"/>
       <dep package="pillow"/>
       <dep package="pybsddb"/>
       <dep package="pycairo"/>

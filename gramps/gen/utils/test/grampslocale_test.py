@@ -26,12 +26,7 @@ try:
 
     HAVE_ICU = True
 except ImportError:
-    try:
-        from PyICU import Collator
-
-        HAVE_ICU = True
-    except ImportError:
-        HAVE_ICU = False
+    HAVE_ICU = False
 
 
 class LexGettextTest(unittest.TestCase):
@@ -217,10 +212,7 @@ class SortKeyTest(unittest.TestCase):
         system locale of the test runner.  (Swedish, for example, places
         Ö *after* Z — that behaviour is covered in SortKeyLocaleTest.)
         """
-        try:
-            from icu import Locale, Collator
-        except ImportError:
-            from PyICU import Locale, Collator
+        from icu import Locale, Collator
 
         en_collator = Collator.createInstance(Locale("en"))
         with patch.object(self.glocale, "collator", en_collator):
@@ -250,10 +242,7 @@ class SortKeyTest(unittest.TestCase):
 
         Uses a fixed 'en' collator so the result is locale-independent.
         """
-        try:
-            from icu import Locale, Collator
-        except ImportError:
-            from PyICU import Locale, Collator
+        from icu import Locale, Collator
 
         en_collator = Collator.createInstance(Locale("en"))
         with patch.object(self.glocale, "collator", en_collator):
@@ -281,10 +270,7 @@ class SortKeyLocaleTest(unittest.TestCase):
         from gramps.gen.const import GRAMPS_LOCALE as glocale
 
         self.glocale = glocale
-        try:
-            from icu import Locale, Collator
-        except ImportError:
-            from PyICU import Locale, Collator
+        from icu import Locale, Collator
 
         self._Locale = Locale
         self._Collator = Collator

@@ -24,7 +24,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
-MODULE_VERSION = "6.0"
+MODULE_VERSION = "6.1"
 
 # ------------------------------------------------------------------------
 #
@@ -324,4 +324,37 @@ register(
     category=("Sources", _("Sources")),
     viewclass="CitationTreeView",
     stock_icon="gramps-tree-select",
+)
+
+register(
+    VIEW,
+    id="dnatestview",
+    name=_("DNA Tests"),
+    description=_("The view showing all DNA test records"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="dnatestview.py",
+    authors=["The Gramps project"],
+    authors_email=["https://gramps-project.org"],
+    category=("DNA", _("DNA")),
+    viewclass="DNATestView",
+    order=START,
+    stock_icon="gramps-dna-test",
+)
+
+register(
+    VIEW,
+    id="dnamatchview",
+    name=_("DNA Matches"),
+    description=_("The view showing all DNA match records"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="dnamatchview.py",
+    authors=["The Gramps project"],
+    authors_email=["https://gramps-project.org"],
+    category=("DNA", _("DNA")),
+    viewclass="DNAMatchView",
+    stock_icon="gramps-dna-match",
 )

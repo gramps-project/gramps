@@ -90,8 +90,38 @@ def _cfg_get(config, key: str, default=None):
         return default
 
 
+def needs_access_code() -> bool:
+    """Return whether foundation middleware is configured but missing its access code."""
+    auth_provider = os.environ.get("GRAMPS_FS_AUTH_PROVIDER", "").strip().lower()
+    if not auth_provider:
+        auth_provider = (
+            (
+                _cfg_get(_config, "familysearch.auth-provider", "foundation")
+                or "foundation"
+            )
+            .strip()
+            .lower()
+        )
+
+    if auth_provider == "direct" and not _direct_mode_enabled():
+        auth_provider = "foundation"
+    if auth_provider != "foundation":
+        return False
+
+    if os.environ.get("GRAMPS_FS_FOUNDATION_ACCESS_CODE", "").strip():
+        return False
+
+    return not str(
+        _cfg_get(_config, "familysearch.middleware.access-code", "") or ""
+    ).strip()
+
+
 def get_session(dbstate=None, uistate=None):
     global _SESSION
+
+    if not bool(_cfg_get(_config, "familysearch.enable", True)):
+        _SESSION = None
+        return None
 
     sess = _SESSION or get_active_session()
     if sess is not None:

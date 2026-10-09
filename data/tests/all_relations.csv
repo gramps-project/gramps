@@ -1,0 +1,8 @@
+gramps_id_a,gramps_id_b,relationship
+I0624,I0645,stepbrother-in-law
+I0624,I0646,stepnephew
+I0624,I0648,stepniece
+I0624,I0649,stepnephew-in-law
+I0645,I0624,stepbrother-in-law
+I0646,I0624,stepuncle
+I0649,I0624,stepuncle-in-law

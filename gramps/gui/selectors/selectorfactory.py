@@ -58,6 +58,14 @@ def SelectorFactory(classname):
         from .selectnote import SelectNote
 
         cls = SelectNote
+    elif classname == "DNATest":
+        from .selectdnatest import SelectDNATest
+
+        cls = SelectDNATest
+    elif classname == "DNAMatch":
+        from .selectdnamatch import SelectDNAMatch
+
+        cls = SelectDNAMatch
     else:
         raise SelectorException(
             "Attempt to create unknown "

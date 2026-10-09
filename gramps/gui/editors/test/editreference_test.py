@@ -19,6 +19,7 @@
 
 """Unittest for editreference.py"""
 
+import tempfile
 import unittest
 from unittest.mock import Mock, patch
 import os
@@ -68,24 +69,29 @@ class TestEditReference(unittest.TestCase):
     def test_editreference(self):
         dbstate = DbState()
         db = make_database("sqlite")
-        path = "/tmp/edit_ref_test"
-        try:
-            os.mkdir(path)
-        except:
-            pass
-        db.load(path)
-        dbstate.change_database(db)
-        source = Place()
-        source.gramps_id = "P0001"
-        with DbTxn("test place", dbstate.db) as trans:
-            dbstate.db.add_place(source, trans)
-        editor = MockEditReference(
-            dbstate, uistate=None, track=[], source=source, source_ref=None, update=None
-        )
-        with patch("gramps.gui.editors.editreference.ErrorDialog") as MockED:
-            editor.check_for_duplicate_id("Place")
-            self.assertTrue(MockED.called)
-        db.close()
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            try:
+                os.mkdir(tmpdirname)
+            except:
+                pass
+            db.load(tmpdirname)
+            dbstate.change_database(db)
+            source = Place()
+            source.gramps_id = "P0001"
+            with DbTxn("test place", dbstate.db) as trans:
+                dbstate.db.add_place(source, trans)
+            editor = MockEditReference(
+                dbstate,
+                uistate=None,
+                track=[],
+                source=source,
+                source_ref=None,
+                update=None,
+            )
+            with patch("gramps.gui.editors.editreference.ErrorDialog") as MockED:
+                editor.check_for_duplicate_id("Place")
+                self.assertTrue(MockED.called)
+            db.close()
 
 
 if __name__ == "__main__":

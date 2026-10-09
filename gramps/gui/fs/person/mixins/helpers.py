@@ -84,6 +84,7 @@ class AuthMixin:
                 code = sess.authorize()
                 if code and sess.get_token(code):
                     OkDialog(_("Logged in to FamilySearch."))
+                    self._maybe_offer_empty_tree_import(sess, parent)
                 else:
                     raise RuntimeError(
                         getattr(sess, "_status_detail", "") or _("Login failed.")
@@ -97,3 +98,20 @@ class AuthMixin:
                 refresh_status()
         except Exception:
             pass
+
+    def _maybe_offer_empty_tree_import(self, session: Any, parent: Any) -> None:
+        """
+        Offer the empty-tree starter import after a successful login.
+        """
+        try:
+            from gramps.gui.fs.actions import offer_empty_tree_import_if_empty
+
+            offer_empty_tree_import_if_empty(
+                getattr(self, "dbstate", None),
+                getattr(self, "uistate", None),
+                getattr(self, "track", None),
+                session,
+                parent,
+            )
+        except Exception:
+            return
