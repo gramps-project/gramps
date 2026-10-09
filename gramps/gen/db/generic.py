@@ -419,7 +419,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     __callback_map = {}
 
-    VERSION = (22, 0, 0)
+    VERSION = (21, 0, 0)
 
     def __init__(self, directory=None):
         DbReadBase.__init__(self)
@@ -825,6 +825,13 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         # Check on db version to see if we need upgrade or too new
         dbversion = int(self._get_metadata("version", default="0"))
+        if dbversion == 22:
+            # Gramps 6.1 betas used schema 22; their data is valid in schema 21
+            if not self.readonly:
+                from gramps.gen.db.upgrade import gramps_revert_22
+
+                gramps_revert_22(self)
+            dbversion = 21
         if dbversion > self.VERSION[0]:
             self.close()
             raise DbVersionError(dbversion, 18, self.VERSION[0])
@@ -2783,7 +2790,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_19,
             gramps_upgrade_20,
             gramps_upgrade_21,
-            gramps_upgrade_22,
         )
 
         if version < 14:
@@ -2802,8 +2808,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             gramps_upgrade_20(self)
         if version < 21:
             gramps_upgrade_21(self)
-        if version < 22:
-            gramps_upgrade_22(self)
 
         self.rebuild_secondary(callback)
         self.reindex_reference_map(callback)

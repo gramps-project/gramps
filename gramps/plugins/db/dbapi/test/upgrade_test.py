@@ -76,7 +76,7 @@ sys.modules.setdefault("gramps.gui.dialog", dialog_module)
 
 
 from gramps.gen.db.dbconst import PERSON_KEY
-from gramps.gen.db.upgrade import gramps_upgrade_22
+from gramps.gen.db.upgrade import gramps_revert_22
 
 DEFAULT_FAMILYSEARCH_SYNC_JSON = {
     "_class": "FamilySearchSync",
@@ -99,22 +99,14 @@ class FakeUpgradeDb:
     def __init__(self, people):
         self.people = copy.deepcopy(people)
         self.metadata = {}
-        self.total = None
         self.serializer_name = None
         self.commits = []
-        self.updates = 0
         self.txn_started = False
         self.txn_committed = False
         self.txn_aborted = False
 
     def set_serializer(self, name):
         self.serializer_name = name
-
-    def get_number_of_people(self):
-        return len(self.people)
-
-    def set_total(self, total):
-        self.total = total
 
     def _txn_begin(self):
         self.txn_started = True
@@ -126,14 +118,11 @@ class FakeUpgradeDb:
         return self.people[handle]
 
     def get_person_from_handle(self, handle):
-        raise AssertionError("gramps_upgrade_22 should use raw person JSON only")
+        raise AssertionError("gramps_revert_22 should use raw person JSON only")
 
     def _commit_raw(self, data, obj_key):
         self.commits.append((copy.deepcopy(data), obj_key))
         self.people[data["handle"]] = copy.deepcopy(data)
-
-    def update(self):
-        self.updates += 1
 
     def _set_metadata(self, key, value, use_txn=False):
         self.metadata[key] = value
@@ -150,7 +139,7 @@ class DbUpgradeTest(unittest.TestCase):
     Tests for schema upgrades.
     """
 
-    def test_upgrade_22_updates_raw_person_json_without_person_model(self):
+    def test_revert_22_clears_empty_familysearch_sync_and_keeps_data(self):
         existing_sync = {
             "_class": "FamilySearchSync",
             "fsid": "FS-123",
@@ -168,6 +157,7 @@ class DbUpgradeTest(unittest.TestCase):
                     "_class": "Person",
                     "handle": "person-1",
                     "gramps_id": "I0001",
+                    "familysearch_sync": copy.deepcopy(DEFAULT_FAMILYSEARCH_SYNC_JSON),
                 },
                 "person-2": {
                     "_class": "Person",
@@ -175,25 +165,26 @@ class DbUpgradeTest(unittest.TestCase):
                     "gramps_id": "I0002",
                     "familysearch_sync": existing_sync,
                 },
+                "person-3": {
+                    "_class": "Person",
+                    "handle": "person-3",
+                    "gramps_id": "I0003",
+                },
             }
         )
 
-        gramps_upgrade_22(db)
+        gramps_revert_22(db)
 
         self.assertEqual(db.serializer_name, "json")
-        self.assertEqual(db.total, 2)
         self.assertTrue(db.txn_started)
         self.assertTrue(db.txn_committed)
         self.assertFalse(db.txn_aborted)
-        self.assertEqual(db.updates, 2)
-        self.assertEqual(db.metadata["version"], 22)
+        self.assertEqual(db.metadata["version"], "21")
         self.assertEqual(len(db.commits), 1)
         self.assertEqual(db.commits[0][1], PERSON_KEY)
-        self.assertEqual(
-            db.people["person-1"]["familysearch_sync"],
-            DEFAULT_FAMILYSEARCH_SYNC_JSON,
-        )
+        self.assertIsNone(db.people["person-1"]["familysearch_sync"])
         self.assertEqual(db.people["person-2"]["familysearch_sync"], existing_sync)
+        self.assertNotIn("familysearch_sync", db.people["person-3"])
 
 
 if __name__ == "__main__":
