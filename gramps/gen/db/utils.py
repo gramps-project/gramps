@@ -166,6 +166,9 @@ def import_as_dict(
     genealogy file into it, and returns the populated database. All ID prefixes
     can be customized to support different ID formats.
 
+    By default, Gramps IDs are kept exactly as in the file, because the result
+    is used for comparison with an existing tree.
+
     :param filename: Path to the genealogy file to import.
     :type filename: str
     :param user: User object for the database operation.
@@ -173,54 +176,55 @@ def import_as_dict(
     :param skp_imp_adds: Whether to skip import additions. Defaults to True.
     :type skp_imp_adds: bool
     :param person_prefix: Custom prefix format for Person IDs (e.g., 'I%05d').
-        If None, uses the configured default.
+        If None, IDs are kept as in the file.
     :type person_prefix: str | None
     :param media_prefix: Custom prefix format for Media IDs (e.g., 'O%05d').
-        If None, uses the configured default.
+        If None, IDs are kept as in the file.
     :type media_prefix: str | None
     :param family_prefix: Custom prefix format for Family IDs (e.g., 'F%05d').
-        If None, uses the configured default.
+        If None, IDs are kept as in the file.
     :type family_prefix: str | None
     :param source_prefix: Custom prefix format for Source IDs (e.g., 'S%05d').
-        If None, uses the configured default.
+        If None, IDs are kept as in the file.
     :type source_prefix: str | None
     :param citation_prefix: Custom prefix format for Citation IDs (e.g., 'C%05d').
-        If None, uses the configured default.
+        If None, IDs are kept as in the file.
     :type citation_prefix: str | None
     :param place_prefix: Custom prefix format for Place IDs (e.g., 'P%05d').
-        If None, uses the configured default.
+        If None, IDs are kept as in the file.
     :type place_prefix: str | None
     :param event_prefix: Custom prefix format for Event IDs (e.g., 'E%05d').
-        If None, uses the configured default.
+        If None, IDs are kept as in the file.
     :type event_prefix: str | None
     :param repository_prefix: Custom prefix format for Repository IDs (e.g., 'R%05d').
-        If None, uses the configured default.
+        If None, IDs are kept as in the file.
     :type repository_prefix: str | None
     :param note_prefix: Custom prefix format for Note IDs (e.g., 'N%05d').
-        If None, uses the configured default.
+        If None, IDs are kept as in the file.
     :type note_prefix: str | None
     :returns: In-memory database with imported data, or None if import failed.
     :rtype: DbGeneric | None
     """
-    # Evaluate default prefixes at function call time, not module load time
+    # Unpadded defaults keep imported IDs verbatim; zero-padded prefixes
+    # would make the importer reformat matching IDs to their width.
     if person_prefix is None:
-        person_prefix = config.get("preferences.iprefix")
+        person_prefix = "I%d"
     if media_prefix is None:
-        media_prefix = config.get("preferences.oprefix")
+        media_prefix = "O%d"
     if family_prefix is None:
-        family_prefix = config.get("preferences.fprefix")
+        family_prefix = "F%d"
     if source_prefix is None:
-        source_prefix = config.get("preferences.sprefix")
+        source_prefix = "S%d"
     if citation_prefix is None:
-        citation_prefix = config.get("preferences.cprefix")
+        citation_prefix = "C%d"
     if place_prefix is None:
-        place_prefix = config.get("preferences.pprefix")
+        place_prefix = "P%d"
     if event_prefix is None:
-        event_prefix = config.get("preferences.eprefix")
+        event_prefix = "E%d"
     if repository_prefix is None:
-        repository_prefix = config.get("preferences.rprefix")
+        repository_prefix = "R%d"
     if note_prefix is None:
-        note_prefix = config.get("preferences.nprefix")
+        note_prefix = "N%d"
 
     db = make_database("sqlite")
     db.load(":memory:")
