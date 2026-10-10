@@ -674,6 +674,7 @@ gramps/plugins/sidebar/expandersidebar.py
 #
 gramps/plugins/test/db_undo_and_signals_test.py
 gramps/plugins/test/exports_test.py
+gramps/plugins/test/import_as_dict_test.py
 gramps/plugins/test/imports_test.py
 gramps/plugins/test/reports_test.py
 gramps/plugins/test/schema_validation_test.py
