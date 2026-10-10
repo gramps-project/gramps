@@ -45,6 +45,9 @@ jobs:
       with:
         msystem: UCRT64
         update: true
+        # Force the installation of the working 3.12 version of NSIS
+        install: >-
+          mingw-w64-ucrt-x86_64-nsis=3.12-1
     - name: Build
       run: |
         cd aio
@@ -55,9 +58,12 @@ jobs:
         export GRAMPS_RESOURCES=build/share
         source /tmp/grampspythonenv/bin/activate
         python3 -m unittest discover -p "*_test.py"
+    - name: Sanitize artifact name
+      run: |
+        echo "ARTIFACT_NAME=GrampsAIO-$(echo '${{ github.ref_name }}' | tr '/\\' '--')" >> $GITHUB_ENV
     - uses: actions/upload-artifact@v6
       with:
-        name: GrampsAIO
+        name: ${{ env.ARTIFACT_NAME }}
         path: D:\a\gramps\gramps\aio\ucrt64\src\GrampsAIO-*.exe
         if-no-files-found: error
         compression-level: 0 # no compression

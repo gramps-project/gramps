@@ -141,6 +141,15 @@ class DbTestClassBase(object):
         # print("('%s', %s)," % (sig, args))
         self.sigs.append((sig, args[0]))
 
+    def assert_serialize_equal(self, obj, expected, msg=None) -> None:
+        """Compare serialized objects ignoring the change timestamp."""
+        assert isinstance(self, unittest.TestCase)
+        actual = obj.serialize()
+        wanted = expected.serialize()
+        # Element 12 is the last-changed timestamp, which undo/redo
+        # re-stamps via time.time() and may tick over a second boundary.
+        self.assertEqual(actual[:12] + actual[13:], wanted[:12] + wanted[13:], msg=msg)
+
     def _cm_pers_add(self, *args):
         self.cm_sigs.append(("person-add", args[0]))
 
@@ -273,29 +282,35 @@ class DbTestClassBase(object):
         self.assertEqual(fam_cnt, 2, msg="undo merge families check")
         self.assertEqual(pers_cnt, 4, msg="undo merge families persons check")
         # step1 = (family1, father1, mother1, family2, father2, mother2)
-        obj_s = self.db.get_family_from_handle(family1.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[0].serialize(), msg="undo merge families fam1 check"
+        self.assert_serialize_equal(
+            self.db.get_family_from_handle(family1.handle),
+            step1[0],
+            msg="undo merge families fam1 check",
         )
-        obj_s = self.db.get_person_from_handle(father1.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[1].serialize(), msg="undo merge families father1 check"
+        self.assert_serialize_equal(
+            self.db.get_person_from_handle(father1.handle),
+            step1[1],
+            msg="undo merge families father1 check",
         )
-        obj_s = self.db.get_person_from_handle(mother1.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[2].serialize(), msg="undo merge families mother1 check"
+        self.assert_serialize_equal(
+            self.db.get_person_from_handle(mother1.handle),
+            step1[2],
+            msg="undo merge families mother1 check",
         )
-        obj_s = self.db.get_family_from_handle(family2.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[3].serialize(), msg="undo merge families fam2 check"
+        self.assert_serialize_equal(
+            self.db.get_family_from_handle(family2.handle),
+            step1[3],
+            msg="undo merge families fam2 check",
         )
-        obj_s = self.db.get_person_from_handle(father2.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[4].serialize(), msg="undo merge families father2 check"
+        self.assert_serialize_equal(
+            self.db.get_person_from_handle(father2.handle),
+            step1[4],
+            msg="undo merge families father2 check",
         )
-        obj_s = self.db.get_person_from_handle(mother2.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[5].serialize(), msg="undo merge families mother2 check"
+        self.assert_serialize_equal(
+            self.db.get_person_from_handle(mother2.handle),
+            step1[5],
+            msg="undo merge families mother2 check",
         )
 
         # Test family build undo
@@ -349,29 +364,35 @@ class DbTestClassBase(object):
         self.assertEqual(fam_cnt, 2, msg="redo make families check")
         self.assertEqual(pers_cnt, 4, msg="redo make families persons check")
         # step1 = (family1, father1, mother1, family2, father2, mother2)
-        obj_s = self.db.get_family_from_handle(family1.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[0].serialize(), msg="redo merge families fam1 check"
+        self.assert_serialize_equal(
+            self.db.get_family_from_handle(family1.handle),
+            step1[0],
+            msg="redo merge families fam1 check",
         )
-        obj_s = self.db.get_person_from_handle(father1.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[1].serialize(), msg="redo merge families father1 check"
+        self.assert_serialize_equal(
+            self.db.get_person_from_handle(father1.handle),
+            step1[1],
+            msg="redo merge families father1 check",
         )
-        obj_s = self.db.get_person_from_handle(mother1.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[2].serialize(), msg="redo merge families mother1 check"
+        self.assert_serialize_equal(
+            self.db.get_person_from_handle(mother1.handle),
+            step1[2],
+            msg="redo merge families mother1 check",
         )
-        obj_s = self.db.get_family_from_handle(family2.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[3].serialize(), msg="redo merge families fam2 check"
+        self.assert_serialize_equal(
+            self.db.get_family_from_handle(family2.handle),
+            step1[3],
+            msg="redo merge families fam2 check",
         )
-        obj_s = self.db.get_person_from_handle(father2.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[4].serialize(), msg="redo merge families father2 check"
+        self.assert_serialize_equal(
+            self.db.get_person_from_handle(father2.handle),
+            step1[4],
+            msg="redo merge families father2 check",
         )
-        obj_s = self.db.get_person_from_handle(mother2.handle).serialize()
-        self.assertEqual(
-            obj_s, step1[5].serialize(), msg="redo merge families mother2 check"
+        self.assert_serialize_equal(
+            self.db.get_person_from_handle(mother2.handle),
+            step1[5],
+            msg="redo merge families mother2 check",
         )
 
         # Test family merge redo
@@ -397,17 +418,20 @@ class DbTestClassBase(object):
         self.assertEqual(fam_cnt, 1, msg="merge families check")
         self.assertEqual(pers_cnt, 2, msg="merge families persons check")
         # step2 = (family1, father1, mother1)
-        obj_s = self.db.get_family_from_handle(family1.handle).serialize()
-        self.assertEqual(
-            obj_s, step2[0].serialize(), msg="undo merge families fam1 check"
+        self.assert_serialize_equal(
+            self.db.get_family_from_handle(family1.handle),
+            step2[0],
+            msg="undo merge families fam1 check",
         )
-        obj_s = self.db.get_person_from_handle(father1.handle).serialize()
-        self.assertEqual(
-            obj_s, step2[1].serialize(), msg="undo merge families father1 check"
+        self.assert_serialize_equal(
+            self.db.get_person_from_handle(father1.handle),
+            step2[1],
+            msg="undo merge families father1 check",
         )
-        obj_s = self.db.get_person_from_handle(mother1.handle).serialize()
-        self.assertEqual(
-            obj_s, step2[2].serialize(), msg="undo merge families mother1 check"
+        self.assert_serialize_equal(
+            self.db.get_person_from_handle(mother1.handle),
+            step2[2],
+            msg="undo merge families mother1 check",
         )
 
         # Test note redo

@@ -36,6 +36,8 @@ from ..lib import (
     Repository,
     Media,
     Note,
+    DNATest,
+    DNAMatch,
 )
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
@@ -114,6 +116,16 @@ class MergeNoteQuery:
                     assert note.has_handle_reference("Note", old_handle)
                     note.replace_handle_reference("Note", old_handle, new_handle)
                     self.database.commit_note(note, trans)
+                elif class_name == DNATest.__name__:
+                    test = self.database.get_dnatest_from_handle(handle)
+                    assert test.has_note_reference(old_handle)
+                    test.replace_note_references(old_handle, new_handle)
+                    self.database.commit_dnatest(test, trans)
+                elif class_name == DNAMatch.__name__:
+                    dnamatch = self.database.get_dnamatch_from_handle(handle)
+                    assert dnamatch.has_note_reference(old_handle)
+                    dnamatch.replace_note_references(old_handle, new_handle)
+                    self.database.commit_dnamatch(dnamatch, trans)
                 else:
                     raise MergeError(
                         "Encounter object of type %s that has "

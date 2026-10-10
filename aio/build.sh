@@ -56,6 +56,7 @@ pacman -S --needed --noconfirm \
     mingw-w64-ucrt-x86_64-hunspell \
     mingw-w64-ucrt-x86_64-iso-codes \
     mingw-w64-ucrt-x86_64-nsis \
+    mingw-w64-ucrt-x86_64-nsis-plugins \
     mingw-w64-ucrt-x86_64-osm-gps-map \
     mingw-w64-ucrt-x86_64-python \
 	mingw-w64-ucrt-x86_64-python-bsddb3 \
@@ -71,7 +72,6 @@ pacman -S --needed --noconfirm \
     mingw-w64-ucrt-x86_64-python-lief \
     mingw-w64-ucrt-x86_64-python-lxml \
     mingw-w64-ucrt-x86_64-python-networkx \
-    mingw-w64-ucrt-x86_64-python-nose \
     mingw-w64-ucrt-x86_64-python-packaging \
     mingw-w64-ucrt-x86_64-python-pillow \
     mingw-w64-ucrt-x86_64-python-pip \
