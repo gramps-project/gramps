@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-01 09:39+0000\n"
+"PO-Revision-Date: 2026-10-10 20:16+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.10.1.dev0\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -260,8 +260,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"גרמפס הוא מיזם פתוח תוכנת חקר־יוחסין שמיועדת לחוקרי־יוחסין (גנאלוגים) חובבים "
-"ומקצוענים כאחד, זאת בזכות התכונות הרבות שלה ומbשק המשתמש הנוח."
+"גרמפס הוא מיזם פיתוח תוכנת חקר־יוחסין שמיועדת לחוקרי־יוחסין (גנאלוגים) "
+"חובבים ומקצוענים כאחד, זאת בזכות התכונות הרבות שלה וממשק המשתמש הנוח."
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:8
 msgid ""
@@ -586,7 +586,7 @@ msgid ""
 "People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>יצירת אילן־יוחסין חדש</b><br/> דרך טובה להקמת אילן־יוחסין חדש היא על־ידי "
+"<b>יצירת אילן־יוחסין חדש</b><br/>דרך טובה להקמת אילן־יוחסין חדש היא על־ידי "
 "הזנת כל בני המשפחה למאגר הנתונים ‏(מתפריט 'עריכה > הוספה...' או הקשה על "
 "'הוספת אדם חדש' ממצג אנשים). לאחר מכן, מעבר למצג קשרי־הקרבה ליצירת קשרים בין "
 "אנשים."
@@ -607,7 +607,7 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>תאריך לא ודאי?</b><br/> אם תאריך האירוע אינו ודאי או מוחלט, ניתן להזין "
+"<b>תאריך לא ודאי?</b><br/>אם תאריך האירוע אינו ודאי או מוחלט, ניתן להזין "
 "מגוון רחב של תסדירי תאריך שמבוססים על, ניחוש או הערכה. כך לדוגמה, הביטוי "
 "'בסביבות 1908' הוא ערך תקין לציון תאריך לידה בגרמפס. הקריאה לעורך התאריך, "
 "נעשית בקשה על‏ לחצן 'קריאה לעורך תאריך' שבסמוך לשדה התאריך. למידע נוסף ניתן "
@@ -619,9 +619,8 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>רשומות כפולות<br/></b> באמצעות הכלי 'כלים > עיבוד אילן־יוחסין > חיפוש "
-"לכפל אנשים...' ניתן לאתר (ולמזג) ערכים של אדם שהוזן למסד הנתונים יותר מפעם "
-"אחת ."
+"<b>רשומות כפולות</b><br/>באמצעות הכלי 'כלים > עיבוד אילן־יוחסין > חיפוש לכפל "
+"אנשים...' ניתן לאתר (ולמזג) ערכים של אדם שהוזן למסד הנתונים יותר מפעם אחת ."
 
 #: ../data/tips.xml:49
 msgid ""
@@ -657,9 +656,9 @@ msgid ""
 "through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 msgstr ""
-"<b>ניווט קדימה ואחורה<br/></b> גרמפס מחזיק רשימה של עצמים שהיו פעילים "
-"לאחרונה כגון אנשים ואירועים. ניתן לנוע קדימה ואחורה ברשימה באמצעות ;דפדוף > "
-"קדימה' ו'דפדוף > אחורה' או בעזרת מקשי החצים."
+"<b>ניווט קדימה ואחורה</b><br/>גרמפס מחזיק רשימה של עצמים שהיו פעילים לאחרונה "
+"כגון אנשים ואירועים. ניתן לנוע קדימה ואחורה ברשימה באמצעות ;דפדוף > קדימה' "
+"ו'דפדוף > אחורה' או בעזרת מקשי החצים."
 
 #: ../data/tips.xml:55
 msgid ""
@@ -700,9 +699,9 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>עריכת קשרי־הקרבה הורה־צאצא<br/></b>ניתן לערוך קשרי צאצא להוריו על־ידי "
-"הקשה כפולה על הצאצא בעורך המשפחה. מערכות יחסים יכולות להיות מהסוגים: אימוץ, "
-"לידה, אומנה, ללא, נתמך, צאצא חורג ולא ידוע."
+"<b>עריכת קשר הורה – צאצא</b><br/> ניתן לערוך קשרי צאצא להוריו על־ידי הקשה "
+"כפולה על הצאצא בעורך המשפחה. מערכות יחסים יכולות להיות מהסוגים: אימוץ, לידה, "
+"אומנה, ללא, נתמך, צאצא משולב ולא ידוע."
 
 #: ../data/tips.xml:63
 msgid ""
@@ -738,7 +737,7 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
-"<b>רשימות דיוור גרמפס<br/></b> מחפשים תשובות לשאלות על גרמפס? אפשר לבדוק "
+"<b>רשימות דיוור של גרמפס</b><br/>מחפשים תשובות לשאלות על גרמפס? אפשר לבדוק "
 "ברשימות הדואר האלקטרוני של משתמשי גרמפס. אנשים רבים שנכונים לעזור, מופיעים "
 "ברשימה, כך שסביר להניח שתשובות יתקבלו במהירות. לגבי שאלות הקשורות לפיתוח "
 "מערכת גרמפס, כדאי לנסות את רשימת gramps-devel. אל הרשימות ניתן ללהגיע מתפריט "
@@ -799,11 +798,10 @@ msgid ""
 "on the date button. The format of the date is set under \"Edit > Preferences "
 "> Data\"."
 msgstr ""
-"<b>תאריכים שגויים</b><br/> לפעמים תאריכים מוזנים בתסדיר לא תקין. שדה תסדיר "
-"תאריך שגוי, מסומן בגרמפס, בצורת רקע אדמדם או נקודה אדומה בקצה הימני של השדה. "
-"ניתן לתקן את התאריך באמצעות תיבת דו־השיח 'בחירת תאריך', אליו ניתן להגיע "
-"בהקשה על לחצן התאריך. תסדיר התאריך ניתן להגדרה מתפריט: 'עריכה > העדפות > "
-"מצג'."
+"<b>תריכים שגויים</b><br/>לפעמים תאריכים מוזנים בתסדיר לא תקין. שדה תסדיר "
+"תאריך שגוי מסומן בגרמפס עם רקע אדמדם או נקודה אדומה בקצה הימני של השדה. ניתן "
+"לתקן את התאריך באמצעות תיבת דו־השיח 'בחירת תאריך', אליו ניתן להגיע בהקשה על "
+"לחצן התאריך. תסדיר התאריך ניתן להגדרה מתפריט: 'עריכה > העדפות > מצג'."
 
 #: ../data/tips.xml:77
 msgid ""
@@ -824,7 +822,7 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
-"<b>ניהול שמות<br/></b> לנהל בגרמפס אנשים עם מספר שמות, זה קל. בדו־שיח 'עריכת "
+"<b>ניהול שמות</b><br/>לנהל בגרמפס אנשים עם מספר שמות, זה קל. בדו־שיח 'עריכת "
 "אנשים', יש לבחור בלשונית שמות. ניתן להוסיף שמות מסוגים שונים ולהגדיר את השם "
 "המועדף על־ידי גרירתו למקטע' שם מועדף'."
 
@@ -990,9 +988,9 @@ msgid ""
 "report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>דוח ספר<br/></b> אליו ניתן לנווט מתפריט 'דוחות > ספרים > דוח ספר', מאפשר "
-"איסוף מגוון דוחות לתוך מסמך אחד. קל יותר (במיוחד להדפסה) להפיץ 'דוח ספר' "
-"מאשר מספר דוחות בודדים."
+"<b>ספר דוחות</b><br/>אליו ניתן לנווט מתפריט 'דוחות > ספרים > ספר דוחות', "
+"מאפשר איסוף מגוון דוחות לתוך מסמך אחד. קל יותר (במיוחד להדפסה) להפיץ 'ספר "
+"דוחות' מאשר מספר דוחות בודדים."
 
 #: ../data/tips.xml:111
 msgid ""
@@ -1034,10 +1032,10 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>ה'כיצד ומדוע' של הגנאלוגיה<br/></b>גנאלוגיה אינה רק 'תאריכים ושמות'. היא "
-"עוסקת באנשים. לכן חשוב להשתמש בשפה תיאורית לרבות תיאור הסיבות לקרות האירועים "
-"שקרו, וכיצד הם השפיעו על עיצוב חיי הדורות הבאים. סִפֵּר טוב הוא זה שהופך "
-"היסטוריה משפחתית לחווית סיפור חי ומוחשי."
+"<b>ה'איך' ו'למה' של חקר־יוחסין</b><br/> חקר יוחסן אינו רק 'תאריכים ושמות'. "
+"הוא עוסק בעיקר באנשים. לכן חשוב להשתמש בשפה תיאורית לרבות תיאור הסיבות לקרות "
+"האירועים שקרו וכיצד הם השפיעו על עיצוב חיי הדורות הבאים. סִפֵּר טוב הוא זה "
+"שהופך היסטוריה משפחתית לחווית סיפור חי ומוחשי."
 
 #: ../data/tips.xml:119
 msgid ""
@@ -1065,7 +1063,7 @@ msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
-"<b>שלום, привет או 喂<br/></b> לא משנה באיזו שפה משתמשים, גרמפס מציע תמיכה "
+"<b>שלום, 喂 או привет<br/></b>לא משנה באיזו שפה משתמשים, גרמפס מציע תמיכה "
 "מלאה ביוניקוד. תווים בכל השפות מוצגים כראוי."
 
 #: ../data/tips.xml:125
@@ -6649,7 +6647,7 @@ msgstr "אין חיבור ל-FamilySearch"
 #: ../gramps/gen/fs/compare/aggregate.py:326
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:623
 msgid "Essentials"
-msgstr "חיוניים"
+msgstr "עקריים"
 
 #: ../gramps/gen/fs/compare/aggregate.py:331
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:627
@@ -12272,14 +12270,14 @@ msgstr ""
 "‏  <b>פרטי</b>   - שם פרטי     <b>משפחה</b>  - שם משפחה (עם קידומת וקישור)\n"
 "‏  <b>תואר</b>   - תואר (דר', גב.)           <b>סיומת</b>   - סיומת (ג'וניור, "
 "השלישי)\n"
-"‏  <b>שם מקובל</b>    - השם הפרטי (אם קים יותר מאחד) בו אדם קורא "
-"לעצמו                   <b>כינוי</b> - כינוי\n"
+"‏  <b>שם מקובל</b>    - השם הפרטי (אם קים יותר מאחד) בו אדם קורא לעצמו"
+"                   <b>כינוי</b> - כינוי\n"
 "‏  <b>ראשי תיבות</b>- אות ראשונה של שם פרטי      <b>Common</b>   - כינוי, שם "
 "מקובל, או אות ראשונה של שם פרטי\n"
 "‏  <b>קידומת</b>  - כל הקידומות (וון, דה)\n"
 "‏שמות משפחה:\n"
-"‏  <b>השאר</b>      - לא שמות משפחה ראשוניים    <b>Notpatronymic</b>- כל שמות "
-"המשפחה, למעט שם שנגזר משם האב/שם שנגזר משם האם &amp; ראשי\n"
+"‏  <b>כל השאר</b>      - לא שמות משפחה ראשוניים    <b>Notpatronymic</b>- כל "
+"שמות המשפחה, למעט שם שנגזר משם האב/שם שנגזר משם האם &amp; ראשי\n"
 "‏  <b>כינוי משפחה</b>- כינוי משפחה        <b>שם משפחה גלמי</b>  - שמות משפחה "
 "(ללא קידומות וקישורים)\n"
 "‏  <b>ראשוני, ראשוני[pre] או [sur] או [con]</b>- שם משפחה ראשוני מלא, קידומת, "
@@ -12294,8 +12292,8 @@ msgstr ""
 "אנדרהילס\n"
 "‏     <i>אדווין חוזה</i>: פרטי, <i>וון דר</i>: קידומת, <i>סמיט</i> ו<i>וסטון</"
 "i>: ראשי, <i>'ו'</i>: [קישור], <i>ווילסון</i>: שם נגזר משם האב,\n"
-" ‏    <i>דר'</i>: תואר, <i>סניור</i>: סיומת, <i>אד</i>: כינוי, <i>אנדרהילס</"
-"i>: כינוי משפחה, <i>חוזה</i>: שם מקובל.\n"
+" ‏    <i>דר'</i>: תואר, <i>סניור</i>: סיומת, <i>אד</i>: כינוי, <i>אנדרהילס</i>"
+": כינוי משפחה, <i>חוזה</i>: שם מקובל.\n"
 
 #: ../gramps/gui/configure.py:163
 msgid " Name Editor"
@@ -16931,26 +16929,24 @@ msgstr "הורדת צאצאים... (5/11)"
 msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "מתבצעת הורדת דורות ממשיכים %(gen)d/%(total)d... (אדם %(count)d)"
+msgstr[1] "מתבצעת הורדת דורות ממשיכים %(gen)d/%(total)d... ( %(count)d) אנשים"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
-#, fuzzy, python-format
-#| msgid "Downloading descendants… (5/11)"
+#, python-format
 msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
-msgstr "הורדת צאצאים... (5/11)"
+msgstr "מתבצעת הורדת צאצאים... (5/11) – דור %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr "הורדת זוגאים... (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy, python-format
-#| msgid "Downloading spouses…"
+#, python-format
 msgid "Downloading spouses for %d person…"
 msgid_plural "Downloading spouses for %d people…"
-msgstr[0] "מתבצעת הורדת זוגאים…"
-msgstr[1] "מתבצעת הורדת זוגאים…"
+msgstr[0] "מתבצעת הורדת זוגאים עבור אדם %d…"
+msgstr[1] "מתבצעת הורדת זוגאים עבור %d אנשים…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
@@ -17003,25 +16999,22 @@ msgid "Importing children…"
 msgstr "ייבוא צאצאים…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
-#, fuzzy
-#| msgid "FamilySearch modified timestamp"
 msgid "Resolving FamilySearch timestamps…"
-msgstr "חתימת זמן שהוסגלה על ידי FamilySearch"
+msgstr "מתבצעת הפרדת חתימת זמן FamilySearch…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
-#, fuzzy, python-format
-#| msgid "No FamilySearch Person ID is set for this person."
+#, python-format
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
-msgstr[0] "לא נקבע מזהה אדם FamilySearch לאדם זה."
-msgstr[1] "לא נקבע מזהה אדם FamilySearch לאדם זה."
+msgstr[0] "מתבצעת הפרדת חותמות־זמן FamilySearch עבור אדם%d…"
+msgstr[1] "מתבצעת הפרדת חותמות־זמן FamilySearch עבור %d אנשים…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
 msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
 msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "הפרדת %(count)d חותמת־זמן FamilySearch בתוך %(elapsed).1f"
+msgstr[1] "הפרדת %(count)d חותמות־זמן FamilySearch בתוך %(elapsed).1f"
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
 msgid "Refreshing comparison status…"
@@ -17050,6 +17043,8 @@ msgid ""
 "Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
 "%(failed)d failed)"
 msgstr ""
+"רענון מצב השוואה הושלם בתוך%(elapsed).1f (%(compared)d הושוואות, %(failed)d "
+"כשלונות)"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
@@ -17127,7 +17122,7 @@ msgstr "רק FamilySearch"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:521
 msgid "Critical mismatch"
-msgstr "חוסר התאמה מכריע"
+msgstr "פער מהותי"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:525
 msgid ""
@@ -17176,7 +17171,7 @@ msgstr "לא בר מיזוג בשורה זו"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:862
 msgid "Critical"
-msgstr "מכריע"
+msgstr "מהותי"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:869
 msgid "Selectable"
@@ -17929,10 +17924,8 @@ msgid "Editor person: (none)"
 msgstr "האדם העורך: (ללא)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Only in FamilySearch"
 msgid "Open Person in FamilySearch"
-msgstr "רק FamilySearch"
+msgstr "פתיחת אדם ב־FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:381
 msgid "Single Person Actions"
@@ -18014,10 +18007,8 @@ msgid ""
 msgstr "יצירת אדם חסר ב־FamilySearch וקישור קשרי־קרבה (שם + לידה/פטירה)."
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Keep FamilySearch"
 msgid "Open FamilySearch.org"
-msgstr "להשאיר את FamilySearch"
+msgstr "פתיחת FamilySearch.org"
 
 #: ../gramps/gui/fs/tools_window.py:774
 #, python-format
@@ -21071,16 +21062,13 @@ msgid "Gramps was unable to install the required modules"
 msgstr "גרמפס לא הצליח להתקין את הפרקנים הנדרשים"
 
 #: ../gramps/gui/plug/_windows.py:370
-#, fuzzy
-#| msgid "Module installation failed"
 msgid "Addon installation failed"
-msgstr "התקנת פרקן כשלה"
+msgstr "התקנת תוסף כשלה"
 
 #: ../gramps/gui/plug/_windows.py:371
-#, fuzzy, python-format
-#| msgid "Gramps was unable to install the required modules"
+#, python-format
 msgid "Gramps was unable to install '%s'."
-msgstr "גרמפס לא הצליח להתקין את הפרקנים הנדרשים"
+msgstr "גרמפס לא הצליח להתקין '%s'."
 
 #: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
@@ -22402,7 +22390,7 @@ msgstr "אין אילן־יוחסין"
 
 #: ../gramps/gui/viewmanager.py:416
 msgid "You are not logged in to FamilySearch. Would you like to sign in now?"
-msgstr "טר נוצר חיבור ל־FamilySearch. האם להתחבר כעט?"
+msgstr "טרם נוצר חיבור ל־FamilySearch. האם להתחבר כעט?"
 
 #: ../gramps/gui/viewmanager.py:419
 msgid "Sign in"
@@ -24017,11 +24005,11 @@ msgid_plural ""
 "{wife} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{wife} ו\n"
-"{person}, {nyears}"
+"{wife} ו \n"
+" {person}, {nyears}"
 msgstr[1] ""
-"{wife} ו\n"
-"{person}, {nyears}"
+"{wife} ו \n"
+" {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:601
 #: ../gramps/plugins/webreport/webcal.py:1849
@@ -25634,7 +25622,7 @@ msgstr "Gramps_6.1_Wiki_Manual_-_Gramplets/he#Gramplet_List"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:30
 msgid "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
-msgstr "Gramps_6.1_Wiki_Manual_-_Tools#Debug"
+msgstr "Gramps_6.1_Wiki_Manual_-_Tools/he#ניפוי־תקלים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:50
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:58
@@ -26888,9 +26876,10 @@ msgid ""
 "powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"גרמפס נוצר על־ידי גנאלוגים עבור גנאלוגים במסגרת מיזם גרמפס. זוהי חבילת תוכנת "
-"קוד פתוח, מה שאומר שניתן, באופן חופשי לשכפל ולהפיץ את גרמפס לכל. גרמפס מפותח "
-"ומתוחזק על־ידי צוות מתנדבים עולמי שמטרתו להפוך אותו לעצמתי, אך קל לשימוש.\n"
+"גרמפס נוצרה על־ידי גנאלוגים עבור גנאלוגים במסגרת מיזם גרמפס. זוהי חבילת "
+"תוכנת קוד פתוח, מה שאומר שניתן, באופן חופשי לשכפל ולהפיץ את גרמפס לכל. תוכנת "
+"גרמפס מפותחת ומתוחזקת על־ידי צוות מתנדבים עולמי שמטרתו להפוך אותה לעצמתית "
+"וקלה לשימוש.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:139
@@ -34680,11 +34669,11 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
-"⚭ {year}{spouse}{deadtxt2} ו\n"
-"{person}{deadtxt1}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} ו \n"
+" {person}{deadtxt1}, {nyears}"
 msgstr[1] ""
-"⚭ {year}{spouse}{deadtxt2} ו\n"
-"{person}{deadtxt1}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} ו \n"
+" {person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:521
 #, python-brace-format
