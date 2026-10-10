@@ -241,6 +241,7 @@ register(
         "Repositories",
         "Media",
         "Notes",
+        "DNA",
     ],
 )
 register("interface.filter", False)
@@ -319,6 +320,7 @@ register("preferences.no-given-text", "[%s]" % _("Missing Given Name"))
 register("preferences.no-record-text", "[%s]" % _("Missing Record"))
 register("preferences.no-surname-text", "[%s]" % _("Missing Surname"))
 register("preferences.nprefix", "N%05d")
+register("preferences.mprefix", "M%05d")
 register("preferences.online-maps", False)
 register("preferences.oprefix", "O%05d")
 register("preferences.paper-metric", 0)
@@ -329,6 +331,7 @@ register("preferences.private-record-text", "[%s]" % _("Private Record"))
 register("preferences.private-surname-text", "%s" % _T_("[Living]"))
 register("preferences.rprefix", "R%05d")
 register("preferences.sprefix", "S%05d")
+register("preferences.tprefix", "T%05d")
 register("preferences.use-last-view", False)
 register("preferences.last-view", "")
 register("preferences.last-views", [])
