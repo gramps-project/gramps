@@ -18,7 +18,7 @@
 #
 
 """
-Unittest for gramps.gen.db.utils.
+Unittest for gramps.gen.db.utils.import_as_dict with the XML importer.
 """
 
 # ------------------------
