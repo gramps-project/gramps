@@ -10,6 +10,9 @@ Please read the [**COPYING**](https://github.com/gramps-project/gramps/blob/main
 
 Please read the [**INSTALL**](https://github.com/gramps-project/gramps/blob/maintenance/gramps60/INSTALL) file if you intend to build from source.
 
+This is a development fork. See [**CHANGES**](CHANGES.md) for the features it
+adds over Gramps `master`.
+
 Requirements
 ============
 The following packages **MUST** be installed in order for Gramps to work:
