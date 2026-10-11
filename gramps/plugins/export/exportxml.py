@@ -203,9 +203,14 @@ class GrampsXmlWriter(UpdateCallback):
 
         self.g = codecs.getwriter("utf8")(g)
 
-        self.write_xml_data()
-        if filename != "-":
-            g.close()
+        # The file handle must be released even when writing fails part way
+        # through, otherwise the partially written file cannot be removed on
+        # Windows until the process exits.
+        try:
+            self.write_xml_data()
+        finally:
+            if filename != "-":
+                g.close()
         return 1
 
     def write_handle(self, handle):
@@ -223,8 +228,12 @@ class GrampsXmlWriter(UpdateCallback):
 
         self.g = codecs.getwriter("utf8")(g)
 
-        self.write_xml_data()
-        g.close()
+        # Release the handle even when writing fails part way through, so the
+        # file can be removed immediately on Windows.
+        try:
+            self.write_xml_data()
+        finally:
+            g.close()
         return 1
 
     def write_xml_data(self):
