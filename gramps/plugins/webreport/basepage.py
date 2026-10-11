@@ -1081,7 +1081,7 @@ class BasePage:
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes
-        notelist = event.get_note_list()
+        notelist = event.get_note_list() + event_ref.get_note_list()
         # cached original
         htmllist = self.dump_notes(notelist, Event)
 
