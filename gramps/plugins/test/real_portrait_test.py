@@ -192,6 +192,31 @@ def svg_embeds_portrait(report_path, portrait_path):
     return False
 
 
+def svg_pages(report_path):
+    """Return the base SVG page plus any additional paginated SVG pages.
+
+    The SVG backend writes each page to ``name.svg``, ``name-2.svg`` and so
+    on, so a multi-page report is spread over several files.
+    """
+    if report_path.endswith(".svg"):
+        root = report_path[: -len(".svg")]
+    else:
+        root = report_path
+    pages = [report_path]
+    number = 2
+    while os.path.isfile("%s-%d.svg" % (root, number)):
+        pages.append("%s-%d.svg" % (root, number))
+        number += 1
+    return pages
+
+
+def svg_set_embeds_portrait(report_path, portrait_path):
+    """Check whether any page of a multi-page SVG embeds the portrait."""
+    return any(
+        svg_embeds_portrait(page, portrait_path) for page in svg_pages(report_path)
+    )
+
+
 class TestRealPortraitReports(unittest.TestCase):
     """Generate report formats using the committed portrait fixtures."""
 
@@ -283,7 +308,13 @@ class TestRealPortraitReports(unittest.TestCase):
                     else "pid=%s" % self.descendant_family_id
                 )
                 target = os.path.abspath(os.path.join(OUT_DIR, name)).replace("\\", "/")
-                if os.path.exists(target):
+                if out_format == "svg":
+                    # Remove every page of a previous run so stale
+                    # paginated pages cannot mask a missing output.
+                    for stale in svg_pages(target):
+                        if os.path.exists(stale):
+                            os.unlink(stale)
+                elif os.path.exists(target):
                     os.unlink(target)
                 options = "name=%s,off=%s,of=%s,%s,maxgen=5,inc_thumb=True" % (
                     report,
@@ -306,9 +337,15 @@ class TestRealPortraitReports(unittest.TestCase):
                 )
                 self.assertGreater(os.path.getsize(target), 0)
                 if out_format == "svg":
-                    xml.etree.ElementTree.parse(target)
-                    with open(target, encoding="utf-8") as fp:
-                        content = fp.read()
+                    # A multi-page report is written to name.svg,
+                    # name-2.svg, ...; validate every generated page.
+                    pages = svg_pages(target)
+                    self.assertTrue(pages, "No SVG pages were generated for %s" % name)
+                    content = ""
+                    for page in pages:
+                        xml.etree.ElementTree.parse(page)
+                        with open(page, encoding="utf-8") as fp:
+                            content += fp.read()
                     self.assertIn("data:image/", content)
                     self.assertIn("Smith, Edwin Michael", content)
                     expected_subject = (
@@ -318,7 +355,7 @@ class TestRealPortraitReports(unittest.TestCase):
                     )
                     self.assertIn(expected_subject, content)
                     self.assertTrue(
-                        svg_embeds_portrait(
+                        svg_set_embeds_portrait(
                             target, os.path.join(PORTRAIT_DIR, "P7.png")
                         ),
                         "P7.png is not embedded in %s" % name,
