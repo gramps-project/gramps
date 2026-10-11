@@ -322,13 +322,18 @@ def render_svg(options_class, report_class, report_id, subject, directory, name)
     return output + ".svg"
 
 
-def svg_text(path: str) -> list[str]:
+def svg_text(path: str) -> str:
     """
-    Return the visible strings of a generated SVG file.
+    Return the visible text of a generated SVG file as a single string.
+
+    The lines of a person are not always in separate ``<text>`` elements:
+    some cairo versions emit the whole block as one element with embedded
+    newlines.  Joining every element means the result can be searched with
+    substring matching regardless of how the text was split up.
     """
     with open(path, encoding="utf-8") as svg_file:
         content = svg_file.read()
-    return re.findall(r">([^<>]+)</(?:text|tspan)>", content)
+    return "\n".join(re.findall(r">([^<>]+)</(?:text|tspan)>", content))
 
 
 # -------------------------------------------------------------------------

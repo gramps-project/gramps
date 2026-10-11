@@ -269,8 +269,13 @@ class TestRealPortraitReports(unittest.TestCase):
         db.set_mediapath(os.path.abspath(MEDIA_DIR))
         self.addCleanup(db.close)
         for report, out_format, name, subject_type, fit in JOBS:
-            if out_format == "pdf" and not HAVE_CAIRO:
-                continue
+            if not HAVE_CAIRO:
+                # Every format embeds the portraits through GdkPixbuf, so
+                # without cairo none of these reports can be checked for
+                # thumbnails.  Reporting that keeps the test suite honest
+                # about the environment instead of failing on a missing
+                # image.
+                self.skipTest("cairo and GdkPixbuf are required to render thumbnails")
             with self.subTest(report=report, format=out_format, file=name):
                 subject = (
                     "pid=%s" % self.ancestor_person_id
