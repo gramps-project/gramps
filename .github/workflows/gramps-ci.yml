@@ -50,6 +50,7 @@ jobs:
         sudo apt-get install python3-icu
         sudo apt-get install python3-coverage
         sudo apt-get install python3-jsonschema
+        sudo apt-get install python3-pil
         sudo apt-get install libxml2-utils
         sudo apt-get install python3-lxml
         sudo apt-get install python3-libxml2

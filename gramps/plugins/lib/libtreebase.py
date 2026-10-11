@@ -31,8 +31,14 @@ _ = glocale.translation.sgettext
 from gramps.gen.plug.report import utils
 from gramps.plugins.lib.libsubstkeyword import SubstKeywords
 from gramps.gen.plug.docgen import IndexMark, INDEX_TYPE_TOC
+from gramps.gen.utils.image import image_actual_size, image_crop_to_ratio, image_size
 
 PT2CM = utils.pt2cm
+
+# Ways of fitting a thumbnail into the thumbnail box.
+FIT_SHRINK = 0  # whole image visible, aspect ratio kept
+FIT_CROP = 1  # box filled, aspect ratio kept, overflow cropped
+FIT_STRETCH = 2  # box filled, aspect ratio not kept
 
 
 # ------------------------------------------------------------------------
@@ -254,11 +260,19 @@ class Canvas(Page):
             if width > box.width:
                 box.width = width
 
+        # Account for the thumbnail width if it is larger than the text width
+        if box.thumbnail and box.thumb_width > box.width:
+            box.width = box.thumb_width
+
         #####################
         # Get the height
         height = len(box.text) * font.get_size() * 1.5
         height += 1.0 / 2.0 * font.get_size()  # funny number(s) based upon font.
         box.height = PT2CM(height)
+
+        # Account for the thumbnail height at the top of the box
+        if box.thumbnail:
+            box.height += box.thumb_height
 
     def page_count(self, incblank):
         count = 0
@@ -595,6 +609,14 @@ class BoxBase:
         self.line_to = None
         # if text in TOC needs to be different from text, set mark_text
         self.mark_text = None
+        # thumbnail image to draw at the top of the box
+        self.thumbnail = None
+        self.thumb_width = 0.0
+        self.thumb_height = 0.0
+        # how the thumbnail is fitted into the thumb_width x thumb_height box
+        self.thumb_fit = FIT_SHRINK
+        # mask image to draw over the thumbnail
+        self.mask = None
 
     def scale(self, scale_amount):
         """Scale the amounts"""
@@ -602,6 +624,37 @@ class BoxBase:
         self.y_cm *= scale_amount
         self.width *= scale_amount
         self.height *= scale_amount
+        self.thumb_width *= scale_amount
+        self.thumb_height *= scale_amount
+
+    def _thumbnail_fit(self):
+        """
+        Work out the size to draw the thumbnail at, and any cropping needed.
+
+        :returns: the width, the height and the crop to pass to ``draw_image``
+        :rtype: tuple(float, float, list | None)
+        """
+        width, height = self.thumb_width, self.thumb_height
+
+        if self.thumb_fit == FIT_STRETCH:
+            # Fill the box, ignoring the aspect ratio.
+            return (width, height, None)
+
+        img_width, img_height = image_size(self.thumbnail)
+        if (img_width, img_height) == (0, 0):
+            # Not an image Gdk can read; let draw_image skip it.
+            return (width, height, None)
+
+        if self.thumb_fit == FIT_CROP:
+            # Fill the box, keeping the aspect ratio by cropping the overflow.
+            return (
+                width,
+                height,
+                image_crop_to_ratio(img_width, img_height, width, height),
+            )
+
+        # FIT_SHRINK: show the whole image, keeping the aspect ratio.
+        return image_actual_size(width, height, img_width, img_height) + (None,)
 
     def add_mark(self, database, person):
         self.__mark = utils.get_person_mark(database, person)
@@ -618,9 +671,32 @@ class BoxBase:
         xbegin = self.x_cm - self.page.page_x_offset
         ybegin = self.y_cm - self.page.page_y_offset
 
+        # Draw the thumbnail image at the top of the box first.
+        # The text is drawn by draw_box which centers it vertically.
+        if self.thumbnail:
+            thumb_height = self.thumb_height
+
+        # Draw the box first, then the thumbnail image ON TOP of it.
+        # The thumbnail should be at the top of the box, starting at text_y.
+        # Adjust text y position so it appears below the thumbnail.
+        # draw_box centers text at y + h/2, so we shift y down by thumb_height.
+        text_y = ybegin + self.thumb_height
+
         doc.draw_box(
-            self.boxstr, text, xbegin, ybegin, self.width, self.height, self.__mark
+            self.boxstr, "", xbegin, ybegin, self.width, self.height, self.__mark
         )
+
+        doc.draw_text(self.boxstr, text, xbegin + 0.05, text_y)
+
+        if self.thumbnail:
+            img_x = xbegin + (self.width - self.thumb_width) / 2
+            img_y = ybegin + 0.05
+            draw_w, draw_h, crop = self._thumbnail_fit()
+            doc.draw_image(self.thumbnail, img_x, img_y, draw_w, draw_h, crop=crop)
+            # Draw the mask over the same area the image was drawn in, so
+            # that the two stay aligned whatever the fit mode is.
+            if self.mask:
+                doc.draw_image(self.mask, img_x, img_y, draw_w, draw_h)
 
         # I am responsible for my own lines. Do them here.
         if self.line_to:
