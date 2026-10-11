@@ -61,9 +61,9 @@ jobs:
     - name: Install addons
       run: |
         mkdir -p ~/.local/share/gramps/gramps61/plugins/
-        wget https://github.com
+        wget https://github.com/gramps-project/addons/raw/master/gramps61/download/CliMerge.addon.tgz
         tar -C ~/.local/share/gramps/gramps61/plugins/ -xzf CliMerge.addon.tgz
-        wget https://github.com
+        wget https://github.com/gramps-project/addons/raw/master/gramps61/download/ExportRaw.addon.tgz
         tar -C ~/.local/share/gramps/gramps61/plugins/ -xzf ExportRaw.addon.tgz
     - name: Build
       run: |

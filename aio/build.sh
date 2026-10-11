@@ -56,7 +56,6 @@ pacman -S --needed --noconfirm \
     mingw-w64-ucrt-x86_64-hunspell \
     mingw-w64-ucrt-x86_64-iso-codes \
     mingw-w64-ucrt-x86_64-nsis \
-    mingw-w64-ucrt-x86_64-nsis-plugins \
     mingw-w64-ucrt-x86_64-osm-gps-map \
     mingw-w64-ucrt-x86_64-python \
 	mingw-w64-ucrt-x86_64-python-bsddb3 \
