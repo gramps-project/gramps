@@ -20,6 +20,7 @@ tags
 
 # Testing
 test/data
+temp/
 
 # Windows image file caches
 Thumbs.db
