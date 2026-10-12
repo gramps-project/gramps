@@ -381,22 +381,26 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         font = para.get_font()
         font_size = font.get_size()
         fsize = (font_size / 28.35) * 1.2
-        self.buffer.write(
-            "<text "
-            + 'x="%4.2fcm" ' % x
-            + 'y="%4.2fcm" ' % (y + fsize)
-            + 'style="fill:#%02x%02x%02x;' % font.get_color()
-        )
-        if font.get_bold():
-            self.buffer.write("font-weight:bold;")
-        if font.get_italic():
-            self.buffer.write("font-style:italic;")
-        self.buffer.write("font-size:%dpt; " % font_size)
-        if font.get_type_face() == FONT_SANS_SERIF:
-            self.buffer.write("font-family:sans-serif;")
-        else:
-            self.buffer.write("font-family:serif;")
-        self.buffer.write('">' + escape(text) + "</text>\n")
+        # SVG collapses the newlines inside a <text> element into a single
+        # space, so each line needs its own element on its own baseline,
+        # exactly as draw_box does.
+        for offset, line in enumerate(text.split("\n")):
+            self.buffer.write(
+                "<text "
+                + 'x="%4.2fcm" ' % x
+                + 'y="%4.2fcm" ' % (y + fsize + (offset * fsize))
+                + 'style="fill:#%02x%02x%02x;' % font.get_color()
+            )
+            if font.get_bold():
+                self.buffer.write("font-weight:bold;")
+            if font.get_italic():
+                self.buffer.write("font-style:italic;")
+            self.buffer.write("font-size:%dpt; " % font_size)
+            if font.get_type_face() == FONT_SANS_SERIF:
+                self.buffer.write("font-family:sans-serif;")
+            else:
+                self.buffer.write("font-family:serif;")
+            self.buffer.write('">' + escape(line) + "</text>\n")
 
     def center_text(self, style, text, x, y, mark=None):
         """@param mark:  IndexMark to use for indexing (not supported)"""

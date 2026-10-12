@@ -144,6 +144,34 @@ def svg_embedded_images(path):
     ]
 
 
+TEXT_ELEMENT = re.compile(
+    r'<text x="(?P<x>[-.\d]+)cm" y="(?P<y>[-.\d]+)cm"[^>]*>(?P<text>.*?)</text>',
+    re.S,
+)
+
+
+def svg_box_lines(path, name):
+    """Return the rendered lines of the box whose first line is ``name``.
+
+    The SVG backend writes one ``<text>`` element per line, so the lines of
+    a box are the consecutive elements sharing its x coordinate.
+    """
+    with open(path, encoding="utf-8") as fp:
+        content = fp.read()
+    elements = [
+        (match.group("x"), match.group("text"))
+        for match in TEXT_ELEMENT.finditer(content)
+    ]
+    index = next(i for i, (_, text) in enumerate(elements) if text == name)
+    x = elements[index][0]
+    lines = [name]
+    for element_x, text in elements[index + 1 :]:
+        if element_x != x:
+            break
+        lines.append(text)
+    return lines
+
+
 def odt_thumb_frames(path):
     """Return the thumbnail draw:frame tags inside an ODT report."""
     with zipfile.ZipFile(path) as archive:
@@ -251,6 +279,37 @@ class TestThumbnailReports(unittest.TestCase):
         tags = svg_image_tags(filename)
         self.assertGreaterEqual(len(tags), 1)
         self.assertTrue(all("data:image/" in tag for tag in tags))
+
+    def test_ancestor_svg_text_lines_are_stacked(self):
+        """Each name/date line in an ancestor box sits on its own baseline.
+
+        Every box holds at least three lines (name, birth, death), so the
+        first few baselines of the first box must differ.  A shared y
+        coordinate means all lines overprint each other.
+        """
+        filename = os.path.join("temp", "thumb_ancestor.svg")
+        if os.path.exists(filename):
+            os.unlink(filename)
+        self._run_tree_report("ancestor_chart", "svg", filename)
+        xml.etree.ElementTree.parse(filename)
+        # The name and each date must be a separate line, not run together.
+        self.assertEqual(
+            svg_box_lines(filename, "Smith, Martin"),
+            ["Smith, Martin", "b. 1830-11-19", "d. between 1899 and 1905"],
+        )
+
+    def test_descendant_svg_text_lines_are_stacked(self):
+        """Each name/date line in a descendant box sits on its own baseline."""
+        filename = os.path.join("temp", "thumb_descendant.svg")
+        if os.path.exists(filename):
+            os.unlink(filename)
+        self._run_tree_report("descend_chart", "svg", filename, subject="pid=F0003")
+        xml.etree.ElementTree.parse(filename)
+        # The name and each date must be a separate line, not run together.
+        self.assertEqual(
+            svg_box_lines(filename, "Smith, Gustaf Sr."),
+            ["Smith, Gustaf Sr.", "b. 1862-11-28", "d. before 1930-07-23"],
+        )
 
     def test_report_with_real_photo_contains_picture_data(self):
         """A report on the real committed photo carries real picture data.

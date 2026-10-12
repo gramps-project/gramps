@@ -671,22 +671,16 @@ class BoxBase:
         xbegin = self.x_cm - self.page.page_x_offset
         ybegin = self.y_cm - self.page.page_y_offset
 
-        # Draw the thumbnail image at the top of the box first.
-        # The text is drawn by draw_box which centers it vertically.
-        if self.thumbnail:
-            thumb_height = self.thumb_height
-
-        # Draw the box first, then the thumbnail image ON TOP of it.
-        # The thumbnail should be at the top of the box, starting at text_y.
-        # Adjust text y position so it appears below the thumbnail.
-        # draw_box centers text at y + h/2, so we shift y down by thumb_height.
+        # Draw the box outline first, then the thumbnail image ON TOP of it,
+        # so the picture is not hidden by the box fill.  The text is drawn
+        # last for the same reason.
+        # draw_text places its first baseline at y + line height, so shift
+        # the text down by the thumbnail height to clear the picture.
         text_y = ybegin + self.thumb_height
 
         doc.draw_box(
             self.boxstr, "", xbegin, ybegin, self.width, self.height, self.__mark
         )
-
-        doc.draw_text(self.boxstr, text, xbegin + 0.05, text_y)
 
         if self.thumbnail:
             img_x = xbegin + (self.width - self.thumb_width) / 2
@@ -697,6 +691,8 @@ class BoxBase:
             # that the two stay aligned whatever the fit mode is.
             if self.mask:
                 doc.draw_image(self.mask, img_x, img_y, draw_w, draw_h)
+
+        doc.draw_text(self.boxstr, text, xbegin + 0.05, text_y)
 
         # I am responsible for my own lines. Do them here.
         if self.line_to:
