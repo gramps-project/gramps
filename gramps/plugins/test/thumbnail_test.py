@@ -290,7 +290,12 @@ class TestThumbnailReports(unittest.TestCase):
         filename = os.path.join("temp", "thumb_ancestor.svg")
         if os.path.exists(filename):
             os.unlink(filename)
-        self._run_tree_report("ancestor_chart", "svg", filename)
+        # show_age=False keeps the death line free of the "(age )" suffix so
+        # the assertion checks text wrapping only, not the age feature that
+        # the ancestor chart gained after this test was written.
+        self._run_tree_report(
+            "ancestor_chart", "svg", filename, extra=",show_age=False"
+        )
         xml.etree.ElementTree.parse(filename)
         # The name and each date must be a separate line, not run together.
         self.assertEqual(
@@ -303,7 +308,16 @@ class TestThumbnailReports(unittest.TestCase):
         filename = os.path.join("temp", "thumb_descendant.svg")
         if os.path.exists(filename):
             os.unlink(filename)
-        self._run_tree_report("descend_chart", "svg", filename, subject="pid=F0003")
+        # show_age=False keeps the death line free of the "(age )" suffix so
+        # the assertion checks text wrapping only, not the age feature that
+        # the descendant chart gained after this test was written.
+        self._run_tree_report(
+            "descend_chart",
+            "svg",
+            filename,
+            subject="pid=F0003",
+            extra=",show_age=False",
+        )
         xml.etree.ElementTree.parse(filename)
         # The name and each date must be a separate line, not run together.
         self.assertEqual(
