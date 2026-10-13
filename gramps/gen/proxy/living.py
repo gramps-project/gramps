@@ -43,7 +43,9 @@ from ..lib import (
     Repository,
     Note,
     Tag,
+    DNAMatch,
 )
+from ..types import DNAMatchHandle, DNATestHandle, PersonHandle
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 
@@ -109,6 +111,7 @@ class LivingProxyDb(ProxyDbBase):
         self._ = llocale.translation.gettext
         self._p_f_n = self._(config.get("preferences.private-given-text"))
         self._p_s_n = self._(config.get("preferences.private-surname-text"))
+        self.__living_handles: dict[PersonHandle, bool] = {}
 
     def get_person_from_handle(self, handle):
         """
@@ -174,6 +177,49 @@ class LivingProxyDb(ProxyDbBase):
             if person and self.__is_living(person):
                 return False
         return True
+
+    def include_dnatest(self, handle: DNATestHandle) -> bool:
+        """
+        Predicate returning False for the kit of a living person.
+        """
+        if self.mode == self.MODE_INCLUDE_ALL:
+            return True
+        dnatest = self.get_unfiltered_dnatest(handle)
+        if not dnatest:
+            return False
+        person_handle = dnatest.get_person_handle()
+        return not (person_handle and self.__is_living_handle(person_handle))
+
+    def include_dnamatch(self, handle: DNAMatchHandle) -> bool:
+        """
+        Predicate returning False for a match with the kit of a living person.
+        """
+        if self.mode == self.MODE_INCLUDE_ALL:
+            return True
+        dnamatch = self.get_unfiltered_dnamatch(handle)
+        if not dnamatch:
+            return False
+        for test_handle in (
+            dnamatch.get_subject_test_handle(),
+            dnamatch.get_match_test_handle(),
+        ):
+            if test_handle and not self.include_dnatest(test_handle):
+                return False
+        return True
+
+    def get_dnamatch_from_handle(self, handle: DNAMatchHandle) -> DNAMatch | None:
+        """
+        Finds a DNAMatch in the database from the passed handle.
+        If no such DNAMatch exists, None is returned.
+        """
+        dnamatch = ProxyDbBase.get_dnamatch_from_handle(self, handle)
+        if dnamatch and self.mode == self.MODE_EXCLUDE_ALL:
+            # Living people are absent, so do not leave references to them.
+            for ancestor in dnamatch.get_shared_ancestor_list():
+                person_handle = ancestor.get_person_handle()
+                if person_handle and self.__is_living_handle(person_handle):
+                    ancestor.set_person_handle(None)
+        return dnamatch
 
     def get_default_person(self):
         """returns the default Person of the database"""
@@ -245,8 +291,27 @@ class LivingProxyDb(ProxyDbBase):
                     or (father_not_living and mother_not_living)  # could  # could
                 ):
                     yield (class_name, handle)
+            elif class_name == "DNATest":
+                if self.include_dnatest(handle):
+                    yield (class_name, handle)
+            elif class_name == "DNAMatch":
+                if self.include_dnamatch(handle):
+                    yield (class_name, handle)
             else:
                 yield (class_name, handle)
+
+    def __is_living_handle(self, person_handle: PersonHandle) -> bool:
+        """
+        Check if the person with the passed handle is considered living.
+
+        The result is kept, because one kit is usually named by many matches.
+        """
+        if person_handle not in self.__living_handles:
+            person = self.get_unfiltered_person(person_handle)
+            self.__living_handles[person_handle] = bool(
+                person and self.__is_living(person)
+            )
+        return self.__living_handles[person_handle]
 
     def __is_living(self, person):
         """
