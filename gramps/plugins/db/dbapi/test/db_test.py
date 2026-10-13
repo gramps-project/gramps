@@ -22,14 +22,18 @@
 # Standard python modules
 #
 # -------------------------------------------------------------------------
+import shutil
+import tempfile
 import unittest
+from typing import Any
+from unittest.mock import patch
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.db import DbTxn
+from gramps.gen.db import DbTxn, DBMODE_R
 from gramps.gen.db.utils import make_database
 from gramps.gen.lib import (
     Person,
@@ -45,6 +49,15 @@ from gramps.gen.lib import (
     Researcher,
     Surname,
 )
+from gramps.gen.types import (
+    DNAMatchHandle,
+    DNATestHandle,
+    NoteGrampsID,
+    NoteHandle,
+    PersonGrampsID,
+    PersonHandle,
+)
+from gramps.plugins.db.dbapi.sqlite import SQLite
 
 
 # -------------------------------------------------------------------------
@@ -911,6 +924,265 @@ class DbPersonTest(unittest.TestCase):
         saved = self.db.get_gender_stats()
         self.assertEqual(saved["John"], (3, 1, 1))
         self.assertEqual(saved["Mary"], (1, 3, 1))
+
+
+# -------------------------------------------------------------------------
+#
+# DbMetadataSaveTest class
+#
+# -------------------------------------------------------------------------
+class DbMetadataSaveTest(unittest.TestCase):
+    """Test changed metadata and statistics persistence on writable close."""
+
+    def setUp(self) -> None:
+        """Create a database with saved name statistics for one person."""
+        self.directory = tempfile.mkdtemp()
+        self.db = SQLite()
+        self.db.load(self.directory)
+        person = Person()
+        person.set_handle(PersonHandle("0000000000000001"))
+        person.set_gramps_id(PersonGrampsID("I0001"))
+        person.get_primary_name().set_first_name("Existing")
+        person.set_gender(Person.MALE)
+        with DbTxn("Add fixture person", self.db) as trans:
+            self.db.add_person(person, trans)
+        self._reopen()
+
+    def tearDown(self) -> None:
+        """Close the database and remove its temporary files."""
+        self._close()
+        shutil.rmtree(self.directory)
+
+    def _close(self) -> None:
+        """Close the current database and its undo log."""
+        if self.db.is_open():
+            self.db.close()
+            self.db.undodb.close()
+
+    def _reopen(self, readonly: bool = False) -> None:
+        """Reopen the database to verify persisted values."""
+        self._close()
+        self.db = SQLite()
+        if readonly:
+            self.db.load(self.directory, mode=DBMODE_R)
+        else:
+            self.db.load(self.directory)
+
+    def _close_queries(self) -> tuple[list[str], int]:
+        """Return SQL statements and the commit count recorded during close."""
+        with (
+            patch.object(
+                self.db.dbapi, "execute", wraps=self.db.dbapi.execute
+            ) as execute,
+            patch.object(self.db.dbapi, "commit", wraps=self.db.dbapi.commit) as commit,
+        ):
+            self._close()
+        return [call.args[0] for call in execute.call_args_list], commit.call_count
+
+    def _add_note(self, generated_id: bool = False) -> None:
+        """Add a note with an explicit or automatically allocated ID."""
+        note = Note()
+        note.set_handle(NoteHandle("000000000000ffff"))
+        if not generated_id:
+            note.set_gramps_id(NoteGrampsID("N0001"))
+        note.set("Synthetic note")
+        with DbTxn("Add note", self.db) as trans:
+            self.db.add_note(note, trans)
+
+    def test_note_close_skips_metadata(self) -> None:
+        """An unrelated note must not rewrite metadata or name statistics."""
+        self._add_note()
+        self.assertGreater(self.db.has_changed, 0)
+        self.assertEqual(self._close_queries(), ([], 0))
+        self._reopen()
+        self.assertEqual(self.db.get_number_of_notes(), 1)
+        self.assertEqual(self.db.genderStats.name_stats("Existing"), (1, 0, 0))
+
+    def test_unchanged_writable_close(self) -> None:
+        """Closing an unchanged writable database requires no SQL or commits."""
+        self.assertEqual(self._close_queries(), ([], 0))
+
+    def test_reverted_changes(self) -> None:
+        """Values restored to their saved contents need no writes."""
+        self.db.owner.set_name("Temporary researcher")
+        self.db.owner.set_name("")
+        self.db.note_types.add("Temporary note type")
+        self.db.note_types.clear()
+        self.db.genderStats.count_name("Existing", Person.MALE)
+        person = self.db.get_person_from_handle(PersonHandle("0000000000000001"))
+        self.db.genderStats.uncount_person(person)
+        self.db.owner = Researcher(self.db.owner)
+        self.assertEqual(self._close_queries(), ([], 0))
+
+    def test_blob_metadata_persistence(self) -> None:
+        """Changed settings also persist with the blob metadata serializer."""
+        directory = tempfile.mkdtemp(dir=self.directory)
+        other = SQLite()
+        other.load(directory, json_data=False)
+        try:
+            other.owner.set_name("Blob researcher")
+            other.bookmarks.append(PersonHandle("0000000000000001"))
+            other.close()
+            other.undodb.close()
+            other.load(directory)
+            self.assertEqual(other.owner.get_name(), "Blob researcher")
+            self.assertEqual(other.bookmarks.get(), ["0000000000000001"])
+            with patch.object(
+                other.dbapi, "execute", wraps=other.dbapi.execute
+            ) as execute:
+                other.close()
+            execute.assert_not_called()
+        finally:
+            if other.is_open():
+                other.close()
+            other.undodb.close()
+
+    def test_generated_id_counter(self) -> None:
+        """An allocated note ID persists its counter without saving statistics."""
+        self._add_note(generated_id=True)
+        counter = self.db.nmap_index
+        queries, commits = self._close_queries()
+        self.assertEqual(commits, 1)
+        self.assertEqual(sum(q.startswith("UPDATE metadata") for q in queries), 1)
+        self.assertFalse(any("gender_stats" in q for q in queries))
+        self._reopen()
+        self.assertEqual(self.db.nmap_index, counter)
+
+    def test_mutable_metadata(self) -> None:
+        """Mutable settings persist together without rewriting unchanged keys."""
+        self.db.owner.set_name("Fixture researcher")
+        self.db.bookmarks.append(PersonHandle("0000000000000001"))
+        self.db.note_types.add("Fixture note type")
+        self.db.name_formats.append((99, "Fixture format", "%f", True))
+        queries, commits = self._close_queries()
+        self.assertEqual(commits, 1)
+        self.assertEqual(sum(q.startswith("UPDATE metadata") for q in queries), 4)
+        self.assertFalse(any("gender_stats" in q for q in queries))
+        self._reopen()
+        self.assertEqual(self.db.owner.get_name(), "Fixture researcher")
+        self.assertEqual(self.db.bookmarks.get(), ["0000000000000001"])
+        self.assertEqual(self.db.note_types, {"Fixture note type"})
+        self.assertEqual(self.db.name_formats, [[99, "Fixture format", "%f", True]])
+
+    def test_dna_metadata(self) -> None:
+        """DNA bookmarks, custom attributes and allocated ID counters persist."""
+        self.db.dnatest_bookmarks.append(DNATestHandle("000000000000dd01"))
+        self.db.dnamatch_bookmarks.append(DNAMatchHandle("000000000000dd02"))
+        self.db.dnatest_attributes.add("Fixture DNA test attribute")
+        self.db.dnamatch_attributes.add("Fixture DNA match attribute")
+        self.db.find_next_dnatest_gramps_id()
+        self.db.find_next_dnamatch_gramps_id()
+        counters = self.db.tmap_index, self.db.mmap_index
+        queries, commits = self._close_queries()
+        self.assertEqual(commits, 1)
+        self.assertEqual(sum(q.startswith("UPDATE metadata") for q in queries), 6)
+        self.assertFalse(any("gender_stats" in q for q in queries))
+        self._reopen()
+        self.assertEqual(self.db.dnatest_bookmarks.get(), ["000000000000dd01"])
+        self.assertEqual(self.db.dnamatch_bookmarks.get(), ["000000000000dd02"])
+        self.assertEqual(self.db.dnatest_attributes, {"Fixture DNA test attribute"})
+        self.assertEqual(self.db.dnamatch_attributes, {"Fixture DNA match attribute"})
+        self.assertEqual((self.db.tmap_index, self.db.mmap_index), counters)
+
+    def test_changed_person_statistics(self) -> None:
+        """Changed given names and genders still persist their statistics."""
+        person = self.db.get_person_from_handle(PersonHandle("0000000000000001"))
+        person.get_primary_name().set_first_name("Renamed")
+        person.set_gender(Person.FEMALE)
+        with DbTxn("Rename person", self.db) as trans:
+            self.db.commit_person(person, trans)
+        expected = self.db.genderStats.stats.copy()
+        queries, commits = self._close_queries()
+        self.assertEqual(commits, 1)
+        self.assertTrue(any(q.startswith("DELETE FROM gender_stats") for q in queries))
+        self.assertFalse(any("metadata" in q for q in queries))
+        self._reopen()
+        self.assertEqual(self.db.genderStats.stats, expected)
+
+    def test_unrelated_person_edit(self) -> None:
+        """An edit that keeps a person's name and gender skips statistics."""
+        person = self.db.get_person_from_handle(PersonHandle("0000000000000001"))
+        person.set_privacy(True)
+        with DbTxn("Set person privacy", self.db) as trans:
+            self.db.commit_person(person, trans)
+        self.assertEqual(self._close_queries(), ([], 0))
+
+    def test_rebuilt_statistics(self) -> None:
+        """Statistics rebuilt independently of record commits are persisted."""
+        self.db.genderStats.clear_stats()
+        self.db.genderStats.count_name("Rebuilt", Person.FEMALE)
+        self.assertEqual(self.db.has_changed, 0)
+        self._close()
+        self._reopen()
+        self.assertEqual(self.db.genderStats.stats, {"Rebuilt": (0, 1, 0)})
+
+    def test_older_instance_close(self) -> None:
+        """Unrelated writes preserve settings saved by another instance."""
+        other = SQLite()
+        other.load(self.directory)
+        try:
+            other.bookmarks.append(PersonHandle("0000000000000001"))
+            other.owner.set_name("Other researcher")
+            other.close()
+        finally:
+            if other.is_open():
+                other.close()
+            other.undodb.close()
+        self._add_note()
+        self.db.note_types.add("Fixture note type")
+        self._close()
+        self._reopen()
+        self.assertEqual(self.db.bookmarks.get(), ["0000000000000001"])
+        self.assertEqual(self.db.owner.get_name(), "Other researcher")
+        self.assertEqual(self.db.note_types, {"Fixture note type"})
+
+    def _check_failed_save(self, error: BaseException) -> None:
+        """Inject a write error and verify rollback and retry."""
+        self.db.owner.set_name("Fixture researcher")
+        self.db.bookmarks.append(PersonHandle("0000000000000001"))
+        original = self.db._set_metadata
+
+        def cb_fail_bookmarks(key: str, value: Any, use_txn: bool = True) -> None:
+            """Inject the error after the researcher setting has been written."""
+            if key == "bookmarks":
+                raise error
+            original(key, value, use_txn)
+
+        with patch.object(self.db, "_set_metadata", side_effect=cb_fail_bookmarks):
+            with self.assertRaises(type(error)):
+                self.db._set_all_metadata()
+        self.assertEqual(self.db._get_metadata("researcher").get_name(), "")
+        self.assertEqual(self.db._get_metadata("bookmarks"), [])
+        self.db._set_all_metadata()
+        self.assertEqual(
+            self.db._get_metadata("researcher").get_name(), "Fixture researcher"
+        )
+        self.assertEqual(self.db._get_metadata("bookmarks"), ["0000000000000001"])
+        self.assertEqual(self._close_queries(), ([], 0))
+
+    def test_failed_metadata_save(self) -> None:
+        """Failed saves roll back changed settings and retain them for retry."""
+        self._check_failed_save(RuntimeError("Synthetic write failure"))
+
+    def test_interrupted_metadata_save(self) -> None:
+        """An interrupted batch rolls back and can be retried without reopening."""
+        self._check_failed_save(KeyboardInterrupt("Synthetic interruption"))
+
+    def test_readonly_close(self) -> None:
+        """Closing a read-only instance cannot persist mutable settings."""
+        self._reopen(readonly=True)
+        self.db.owner.set_name("Unsaved researcher")
+        self.assertEqual(self._close_queries(), ([], 0))
+        self._reopen()
+        self.assertEqual(self.db.owner.get_name(), "")
+
+    def test_close_without_update(self) -> None:
+        """The explicit update=False close continues to discard metadata edits."""
+        self.db.bookmarks.append(PersonHandle("0000000000000001"))
+        self.db.close(update=False)
+        self.db.undodb.close()
+        self._reopen()
+        self.assertEqual(self.db.bookmarks.get(), [])
 
 
 if __name__ == "__main__":
