@@ -327,6 +327,20 @@ class PrivateProxyDNATest(DNAProxyTestCase):
             },
         )
 
+    def test_backlinks_of_removed_references(self):
+        # The kit and the match are shown without these references.
+        for handle in (self.people["private"], self.notes["secret"]):
+            self.assertEqual(self.backlinks(self.db, handle, "DNATest"), set())
+            self.assertEqual(self.backlinks(self.db, handle, "DNAMatch"), set())
+        self.assertEqual(
+            self.backlinks(self.db, self.notes["public"], "DNATest"),
+            {self.tests["dead"]},
+        )
+        self.assertEqual(
+            self.backlinks(self.db, self.people["dead"], "DNAMatch"),
+            {self.matches["dead_unlinked"]},
+        )
+
     def test_bookmarks_and_attribute_types(self):
         self.assertIs(self.db.get_dnatest_bookmarks(), self.base.dnatest_bookmarks)
         self.assertIs(self.db.get_dnamatch_bookmarks(), self.base.dnamatch_bookmarks)
@@ -389,6 +403,19 @@ class LivingProxyDNATest(DNAProxyTestCase):
             },
         )
 
+    def test_backlinks_of_living_shared_ancestor(self):
+        living = self.people["living"]
+        # The match is shown without the reference when the living are excluded.
+        self.assertEqual(self.backlinks(self.db, living, "DNAMatch"), set())
+        self.assertEqual(
+            self.backlinks(self.named, living, "DNAMatch"),
+            {self.matches["dead_unlinked"]},
+        )
+        self.assertEqual(
+            self.backlinks(self.db, self.people["dead"], "DNAMatch"),
+            {self.matches["dead_unlinked"]},
+        )
+
     def test_include_all_mode_keeps_everything(self):
         db = LivingProxyDb(self.base, LivingProxyDb.MODE_INCLUDE_ALL, current_year=2006)
         self.assert_tests(db, *self.tests)
@@ -449,6 +476,36 @@ class FilterProxyDNATest(DNAProxyTestCase):
             + dnamatch.get_predicted_relationship_list()
         ):
             self.assertEqual(child.get_note_list(), public)
+
+    def test_backlinks(self):
+        # The living_dead match is filtered out with its subject kit.
+        self.assertEqual(
+            self.backlinks(self.db, self.tests["dead"], "DNAMatch"),
+            {
+                self.matches["dead_unlinked"],
+                self.matches["dead_living"],
+                self.matches["dead_private"],
+                self.matches["hidden"],
+            },
+        )
+        self.assertEqual(
+            self.backlinks(self.db, self.people["dead"], "DNATest"),
+            {self.tests["dead"]},
+        )
+        # The kit of a filtered person is shown without the person.
+        self.assertEqual(
+            self.backlinks(self.db, self.people["living"], "DNATest"), set()
+        )
+        self.assertEqual(
+            self.backlinks(self.db, self.people["living"], "DNAMatch"), set()
+        )
+        self.assertEqual(
+            self.backlinks(self.noted, self.notes["secret"], "DNATest"), set()
+        )
+        self.assertEqual(
+            self.backlinks(self.noted, self.notes["public"], "DNATest"),
+            {self.tests["dead"]},
+        )
 
 
 # -------------------------------------------------------------------------

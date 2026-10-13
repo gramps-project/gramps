@@ -508,17 +508,16 @@ class PrivateProxyDb(ProxyDbBase):
             "Repository": self.db.get_repository_from_handle,
         }
 
+        target = handle
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for class_name, handle in handle_itr:
             if class_name in objects:
                 obj = objects[class_name](handle)
                 if obj and not obj.get_privacy():
                     yield (class_name, handle)
-            elif class_name == "DNATest":
-                if self.include_dnatest(handle):
-                    yield (class_name, handle)
-            elif class_name == "DNAMatch":
-                if self.include_dnamatch(handle):
+            elif class_name in ("DNATest", "DNAMatch"):
+                # The reference may be one that is removed from the object
+                if self._is_dna_backlink(class_name, handle, target):
                     yield (class_name, handle)
             else:
                 raise NotImplementedError

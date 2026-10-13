@@ -264,6 +264,7 @@ class LivingProxyDb(ProxyDbBase):
 
         >    result_list = list(find_backlink_handles(handle))
         """
+        target = handle
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for class_name, handle in handle_itr:
             if self.mode == self.MODE_INCLUDE_ALL:
@@ -291,11 +292,9 @@ class LivingProxyDb(ProxyDbBase):
                     or (father_not_living and mother_not_living)  # could  # could
                 ):
                     yield (class_name, handle)
-            elif class_name == "DNATest":
-                if self.include_dnatest(handle):
-                    yield (class_name, handle)
-            elif class_name == "DNAMatch":
-                if self.include_dnamatch(handle):
+            elif class_name in ("DNATest", "DNAMatch"):
+                # The reference may be one that is removed from the object
+                if self._is_dna_backlink(class_name, handle, target):
                     yield (class_name, handle)
             else:
                 yield (class_name, handle)

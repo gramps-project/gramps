@@ -673,8 +673,15 @@ class FilterProxyDb(ProxyDbBase):
 
         >    result_list = list(find_backlink_handles(handle))
         """
-        # FIXME: add a filter for returned handles (see private.py as an example)
-        return self.db.find_backlink_handles(handle, include_classes)
+        # FIXME: add a filter for the handles of the other classes (see
+        # private.py as an example)
+        for class_name, ref_handle in self.db.find_backlink_handles(
+            handle, include_classes
+        ):
+            if class_name not in ("DNATest", "DNAMatch") or self._is_dna_backlink(
+                class_name, ref_handle, handle
+            ):
+                yield (class_name, ref_handle)
 
     def sanitize_notebase(self, notebase):
         """

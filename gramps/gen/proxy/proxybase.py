@@ -530,6 +530,27 @@ class ProxyDbBase(DbReadBase):
             if dnamatch is not None:
                 yield dnamatch
 
+    def _is_dna_backlink(self, class_name: str, handle: str, target: str) -> bool:
+        """
+        Return True if the DNATest or DNAMatch with the passed handle, as
+        this proxy shows it, refers to the target handle.
+
+        :param class_name: "DNATest" or "DNAMatch"
+        :param handle: handle of the referring DNATest or DNAMatch
+        :param target: handle of the object that is referred to
+        """
+        obj: DNATest | DNAMatch | None
+        if class_name == "DNATest":
+            obj = self.get_dnatest_from_handle(DNATestHandle(handle))
+        else:
+            obj = self.get_dnamatch_from_handle(DNAMatchHandle(handle))
+        if obj is None:
+            return False
+        return any(
+            ref_handle == target
+            for _, ref_handle in obj.get_referenced_handles_recursively()
+        )
+
     @staticmethod
     def gfilter(predicate, obj):
         """
