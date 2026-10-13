@@ -554,7 +554,10 @@ class BasePage:
                 tbody = Html("tbody")
                 table2 += tbody
 
-                childlist = [(child_ref.ref, child_ref.citation_list, child_ref.note_list) for child_ref in childlist]
+                childlist = [
+                    (child_ref.ref, child_ref.citation_list, child_ref.note_list)
+                    for child_ref in childlist
+                ]
 
                 if birthorder:
                     childlist = sorted(childlist)
@@ -580,12 +583,18 @@ class BasePage:
                         )
                         for birth_date, birth, death, chandle in children
                     )
-                    cit_text = Html('<i class="NoteType">%s</i>' % self._("citation:")) if citations else ""
+                    cit_text = (
+                        Html('<i class="NoteType">%s</i>' % self._("citation:"))
+                        if citations
+                        else ""
+                    )
                     tbody.extend(
                         (
                             Html("tr", inline=True, colspan=3)
                             + Html("td", inline=True, close=False)
-                            + notes_list + cit_text + citations
+                            + notes_list
+                            + cit_text
+                            + citations
                         )
                     )
             trow += table2
