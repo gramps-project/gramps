@@ -17,13 +17,14 @@
 # "Aslam A.F." <winux-dev@users.noreply.hosted.weblate.org>, 2026.
 # Anthony <anthony@roussel.dev>, 2026.
 # Dot Max <ahmadfadil.original@outlook.com>, 2026.
+# Axel <axelbrot214@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-23 06:00+0000\n"
-"Last-Translator: Dot Max <ahmadfadil.original@outlook.com>\n"
+"PO-Revision-Date: 2026-10-05 21:38+0000\n"
+"Last-Translator: Axel <axelbrot214@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/id/>\n"
 "Language: id\n"
@@ -31,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.10.1.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -491,12 +492,13 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b> Menemukan Orang</b><br/>Dalam Tampilan Orang yang Dikelompokkan, setiap "
-"nama keluarga hanya tercantum satu kali. Dengan mengklik panah di sebelah "
-"kiri nama, daftar akan diperluas untuk menampilkan semua individu dengan "
-"nama belakang itu. Untuk menemukan Nama Keluarga apa pun dari daftar "
-"panjang, pilih Nama Keluarga (bukan orang) dan mulai mengetik. Tampilan akan "
-"melompat ke Nama Keluarga pertama yang cocok dengan huruf yang Anda masukkan."
+"<b>Mencari Orang</b><br/>Pada Tampilan Kelompok Orang, setiap nama keluarga "
+"hanya tercantum satu kali. Dengan mengklik panah di sebelah kiri sebuah "
+"nama, daftar akan meluas untuk menampilkan semua orang dengan nama keluarga "
+"tersebut. Untuk mencari Nama Keluarga tertentu dari daftar yang panjang, "
+"pilih Nama Keluarga (bukan orang) dan mulailah mengetik. Tampilan akan "
+"langsung berpindah ke Nama Keluarga pertama yang sesuai dengan huruf-huruf "
+"yang Anda masukkan."
 
 #: ../data/tips.xml:25
 msgid ""
@@ -539,12 +541,13 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Perkakas Gramps</b><br/> Gramps hadir dengan seperangkat alat yang kaya. "
-"Ini memungkinkan Anda untuk melakukan operasi seperti memeriksa basis data "
-"untuk kesalahan dan konsistensi. Ada alat penelitian dan analisis seperti "
-"perbandingan kejadian, menemukan orang duplikat, peramban keturunan "
-"interaktif, dan banyak lainnya. Semua alat dapat diakses melalui menu "
-"\"Alat\"."
+"<b>Alat-alat Gramps</b><br/>Gramps dilengkapi dengan serangkaian alat yang "
+"lengkap. Alat-alat ini memungkinkan Anda melakukan berbagai operasi, seperti "
+"memeriksa basis data untuk mendeteksi kesalahan dan memastikan "
+"konsistensinya. Terdapat pula alat-alat penelitian dan analisis, seperti "
+"perbandingan peristiwa, pencarian orang yang duplikat, penjelajah keturunan "
+"interaktif, dan banyak lagi lainnya. Semua alat tersebut dapat diakses "
+"melalui menu \"Alat\"."
 
 #: ../data/tips.xml:33
 msgid ""
@@ -646,10 +649,9 @@ msgid ""
 "Find Possible Duplicate People...\" allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Entri Duplikat</b><br/>\"Alat > Pemrosesan Basis Data > Temukan Orang "
-"Duplikat yang Mungkin...\" memungkinkan Anda untuk menemukan (dan "
-"menggabungkan) entri dari orang yang sama yang dimasukkan lebih dari sekali "
-"ke dalam basis data."
+"<b>Entri Ganda</b><br/>Alat \"Tools > Family Tree Processing > Find Possible "
+"Duplicate People...\" memungkinkan Anda untuk menemukan (dan menggabungkan) "
+"entri orang yang sama yang dimasukkan lebih dari sekali dalam basis data."
 
 #: ../data/tips.xml:49
 msgid ""
@@ -747,12 +749,12 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Tampilkan Semua Tombol Centang </b><br/>Saat menambahkan orang yang sudah "
-"ada sebagai pasangan, daftar orang yang ditampilkan disaring untuk hanya "
-"menampilkan orang-orang yang secara realistis cocok dengan peran tersebut "
-"(berdasarkan tanggal dalam basis data). Jika Gramps salah dalam membuat "
-"penyaringan ini, Anda dapat menonaktifkan filter tersebut dengan mencentang "
-"tombol centang Tampilkan Semua."
+"<b>Tombol Centang \"Tampilkan Semua\"</b><br/>Saat menambahkan seseorang "
+"yang sudah ada sebagai pasangan, daftar orang yang ditampilkan disaring agar "
+"hanya menampilkan orang-orang yang secara realistis cocok untuk peran "
+"tersebut (berdasarkan tanggal dalam basis data). Jika Gramps salah dalam "
+"menentukan pilihan ini, Anda dapat mengabaikan penyaringan tersebut dengan "
+"mencentang tombol \"Tampilkan Semua\"."
 
 #: ../data/tips.xml:65
 msgid ""
@@ -40373,14 +40375,12 @@ msgid "Basic-Ash"
 msgstr "Basic-Ash"
 
 #: ../gramps/plugins/webstuff/webstuff.py:77
-#, fuzzy
 msgid "Basic-Cypress"
-msgstr "Basic-Cypress"
+msgstr "Dasar-Cypress"
 
 #: ../gramps/plugins/webstuff/webstuff.py:87
-#, fuzzy
 msgid "Basic-Lilac"
-msgstr "Basic-Lilac"
+msgstr "Dasar-Lilac"
 
 #: ../gramps/plugins/webstuff/webstuff.py:97
 msgid "Basic-Peach"
