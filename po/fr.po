@@ -51,13 +51,14 @@
 # "David D." <dadu042@users.noreply.hosted.weblate.org>, 2026.
 # Julien Lepiller <roptat@lepiller.eu>, 2026.
 # AR <info@rmlrnd.com>, 2026.
+# Florian <geckoflume@outlook.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-07-07 13:01+0000\n"
-"Last-Translator: AR <info@rmlrnd.com>\n"
+"PO-Revision-Date: 2026-10-02 21:33+0000\n"
+"Last-Translator: Florian <geckoflume@outlook.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -65,7 +66,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.10\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -790,7 +791,7 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>Édition de la relation parent-enfant</b><br/>Vous pouvez éditer la "
+"<b>Édition de la relation parent-enfant</b><br/> Vous pouvez éditer la "
 "relation d'un enfant avec ses parents en cliquant deux fois sur l'enfant "
 "dans l'éditeur de famille. Les relations peuvent être du type Adopté, "
 "Naissance, Aucun, Enfant du conjoint, En nourrice, Parrainé et Inconnu."
@@ -1159,9 +1160,9 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>Le comment et pourquoi de votre généalogie</b><br/>La généalogie ce n'est "
-"pas seulement des dates et des noms. Il s'agit aussi d'individus. Soyez "
-"descriptif. Incluez pourquoi les choses se sont passées et comment les "
+"<b>Le comment et pourquoi de votre généalogie</b><br/> La généalogie ce "
+"n'est pas seulement des dates et des noms. Il s'agit aussi d'individus. "
+"Soyez descriptif. Incluez pourquoi les choses se sont passées et comment les "
 "descendants ont pu être façonnés par les évènements qu'ils ont traversés. "
 "Les anecdotes sont un bon moyen de perpétuer l'histoire familiale."
 
@@ -1246,10 +1247,10 @@ msgid ""
 "License, see &gpl_url; to read about the rights and restrictions of this "
 "license."
 msgstr ""
-"<b>La license logicielle de Gramps</b><br/>Le droit d'utilisation du "
-"programme Gramps</b><br/>Gramps est librement distribué sous licence "
-"publique générale GNU, voir &gpl_url; pour en savoir plus sur les droits et "
-"les restrictions de cette licence."
+"<b>La licence logicielle de Gramps</b><br/>Vous êtes libre d'utiliser et de "
+"partager Gramps avec d'autres. Gramps est librement distribuable sous la GNU "
+"General Public License, voir &gpl_url; pour lire les droits et les "
+"restrictions de cette licence."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -7658,7 +7659,7 @@ msgstr "Enfant"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "Brève notice biographique"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
 msgid "Birth Registration"
@@ -10757,7 +10758,7 @@ msgid ""
 "configured languages, using US English instead"
 msgstr ""
 "AVERTISSEMENT : l'extension %(plugin_name)s n'a pas de traduction pour vos "
-"langues configurées, utilisation de l'anglais américain."
+"langues configurées, utilisation de l'anglais américain"
 
 #: ../gramps/gen/plug/_pluginreg.py:1466
 #, python-format
@@ -12575,10 +12576,9 @@ msgstr ""
 
 # espace limité dans la fenêtre, bug #3596
 #: ../gramps/gen/utils/pypi.py:1285
-#, fuzzy, python-format
-#| msgid "No file to download"
+#, python-format
 msgid "Failed to download '%s': %s"
-msgstr "Aucun fichier en téléchargement"
+msgstr "Échec du téléchargement de « %s » : %s"
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
@@ -14608,7 +14608,7 @@ msgid ""
 "please upgrade my Family Tree"
 msgstr ""
 "J'ai fait une sauvegarde,\n"
-"veuillez mettre mon arbre à jour."
+"veuillez mettre mon arbre à jour"
 
 #: ../gramps/gui/dbloader.py:225 ../gramps/gui/fs/actions.py:174
 #: ../gramps/gui/fs/actions.py:289 ../gramps/gui/fs/actions.py:678
@@ -14700,7 +14700,7 @@ msgid ""
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
 "Ce fichier identifie incorrectement son jeu de caractères, il ne peut donc "
-"pas être importé fidèlement. Corrigez son encodage et importez-le de nouveau."
+"pas être importé fidèlement. Corrigez son encodage et importez-le de nouveau"
 
 # master
 #: ../gramps/gui/dbman.py:98
@@ -15271,7 +15271,7 @@ msgid ""
 msgstr ""
 "Répertoire spécifié dans les préférences : le chemin relatif de base pour "
 "les media : %s n'existe pas. Changez vos préférences ou n'utilisez pas de "
-"chemin relatif lors de l'importation."
+"chemin relatif lors de l'importation"
 
 #: ../gramps/gui/editors/addmedia.py:236
 #, python-format
@@ -16683,8 +16683,8 @@ msgid ""
 "You have attempted to use the path with value '%(path)s'. This path does not "
 "exist! Please enter a different path"
 msgstr ""
-"Vous tentez d'utiliser le chemin « %(path)s ». Ce chemin n'existe pas ! "
-"Essayez de saisir un chemin existant."
+"Vous tentez d'utiliser le chemin « %(path)s ». Ce chemin n'existe pas ! "
+"Veuillez saisir un chemin différent"
 
 #: ../gramps/gui/editors/editmedia.py:369
 #: ../gramps/gui/editors/editmediaref.py:589
@@ -17903,7 +17903,7 @@ msgstr "Générations d’ancêtres"
 msgid "Number of generations to import upward from the starting person."
 msgstr ""
 "Nombre de générations d'ancêtres à importer à partir de cet individu de "
-"départ"
+"départ."
 
 # master
 #: ../gramps/gui/fs/actions.py:719 ../gramps/gui/fs/fs_import/options.py:46
@@ -18373,25 +18373,21 @@ msgid "Downloading ancestors… (4/11)"
 msgstr "Téléchargement des ascendants… (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:152
-#, fuzzy, python-format
-#| msgid ""
-#| "Total ancestors in generations %(second_generation)d to "
-#| "%(last_generation)d is %(count)d. %(percent)s"
+#, python-format
 msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
 msgstr[0] ""
-"Total d'ascendants de la génération %(second_generation)d à "
-"%(last_generation)d est %(count)d. %(percent)s"
+"Téléchargement de la génération d'ancêtres %(gen)d/%(total)d… (%(count)d "
+"individu)"
 msgstr[1] ""
-"Total d'ascendants de la génération %(second_generation)d à "
-"%(last_generation)d est %(count)d. %(percent)s"
+"Téléchargement de la génération d'ancêtres %(gen)d/%(total)d… (%(count)d "
+"individus)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:159
-#, fuzzy, python-format
-#| msgid "Downloading ancestors… (4/11)"
+#, python-format
 msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
-msgstr "Téléchargement des ascendants… (4/11)"
+msgstr "Téléchargement des ascendants… (4/11) — génération %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
@@ -18406,22 +18402,20 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
-#, fuzzy, python-format
-#| msgid "Downloading descendants… (5/11)"
+#, python-format
 msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
-msgstr "Téléchargement des descendants… (5/11)"
+msgstr "Téléchargement des descendants… (5/11) — génération %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr "Téléchargement des conjoints… (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy, python-format
-#| msgid "Downloading spouses…"
+#, python-format
 msgid "Downloading spouses for %d person…"
 msgid_plural "Downloading spouses for %d people…"
-msgstr[0] "Téléchargement des conjoints…"
-msgstr[1] "Téléchargement des conjoints…"
+msgstr[0] "Téléchargement des conjoints pour %d individu…"
+msgstr[1] "Téléchargement des conjoints pour %d individus…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
@@ -18480,18 +18474,15 @@ msgid "Importing children…"
 msgstr "Importation enfants …"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
-#, fuzzy
-#| msgid "FamilySearch modified timestamp"
 msgid "Resolving FamilySearch timestamps…"
-msgstr "Horodatage de la dernière modification de FamilySearch"
+msgstr "Résolution des horodatages de FamilySearch…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
-#, fuzzy, python-format
-#| msgid "No FamilySearch Person ID is set for this person."
+#, python-format
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
-msgstr[0] "Aucun ID de personne FamilySearch n’est défini pour cette personne."
-msgstr[1] "Aucun ID de personne FamilySearch n’est défini pour cette personne."
+msgstr[0] "Détermination des horodatages FamilySearch pour %d individu…"
+msgstr[1] "Détermination des horodatages FamilySearch pour %d individus…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
@@ -18502,10 +18493,8 @@ msgstr[1] ""
 
 # bouton
 #: ../gramps/gui/fs/fs_import/importer.py:405
-#, fuzzy
-#| msgid "Refreshing Addon List"
 msgid "Refreshing comparison status…"
-msgstr "Actualisation de la liste"
+msgstr "Actualisation de l'état de la comparaison…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:410
 #, python-format
@@ -22587,9 +22576,9 @@ msgid ""
 "bug tracking website by using the button below, paste the report and click "
 "submit report"
 msgstr ""
-"Utiliser ce bouton pour copier votre rapport de bogue dans le presse-papier. "
-"Puis allez sur le site web de suivi de bogue en utilisant le bouton ci-"
-"dessous, collez le rapport et cliquez sur soumettre le rapport."
+"Utiliser ce bouton pour copier votre rapport de bogue dans le presse-"
+"papiers. Puis allez sur le site web de suivi de bogue en utilisant le bouton "
+"ci-dessous, collez le rapport et cliquez sur soumettre le rapport"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:734
 #: ../gramps/gui/logger/_errorreportassistant.py:765
@@ -22946,10 +22935,9 @@ msgid "Addon installation failed"
 msgstr "L'installation du module a échoué"
 
 #: ../gramps/gui/plug/_windows.py:371
-#, fuzzy, python-format
-#| msgid "Gramps was unable to install the required modules"
+#, python-format
 msgid "Gramps was unable to install '%s'."
-msgstr "Gramps n'a pas pu installer les modules nécessaires"
+msgstr "Gramps n'a pas pu installer « %s »."
 
 #: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
@@ -24354,12 +24342,12 @@ msgstr ""
 "créer un problème avec deux éditeurs pour la même source.\n"
 "\n"
 "Pour éditer la citation, fermez l'éditeur de source et ouvrez un éditeur "
-"pour une seule citation."
+"pour une seule citation"
 
 # trunk
 #: ../gramps/gui/utils.py:820
 msgid "Cannot open new citation editor"
-msgstr "Impossible d'ouvrir un nouvel éditeur de citation."
+msgstr "Impossible d'ouvrir un nouvel éditeur de citation"
 
 # trunk
 #: ../gramps/gui/viewmanager.py:349
@@ -24999,7 +24987,7 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletpane.py:837
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
-"Glissez le bouton propriétés pour déplacer et cliquez dessus pour l'utiliser."
+"Glissez le bouton propriétés pour déplacer et cliquez dessus pour l'utiliser"
 
 #: ../gramps/gui/widgets/grampletpane.py:1037
 msgid "Right click to add gramplets"
@@ -25721,7 +25709,7 @@ msgid ""
 msgstr ""
 "Redimensionner la page à la taille de l'arbre.\n"
 "\n"
-"Note : ceci outrepasse les « Options papier »."
+"Note : ceci outrepasse les « Options papier »"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:931
 #: ../gramps/plugins/drawreport/descendtree.py:1668
@@ -25755,7 +25743,7 @@ msgstr ""
 "\n"
 "Avec l'option « Adapter l'arbre à la taille de\n"
 "  la page », la page est redimensionnée pour\n"
-"  supprimer tout espace en hauteur ou largeur."
+"  supprimer tout espace en hauteur ou largeur"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:952
 #: ../gramps/plugins/drawreport/descendtree.py:1689
@@ -26376,7 +26364,7 @@ msgstr "Affichera les parents, frères et sœurs de l'individu sélectionné."
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 "Déplacer ou non les individus vers le haut, lorsque cela est possible, "
-"générant ainsi un arbre plus petit."
+"générant ainsi un arbre plus petit"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1614
 msgid "Bold direct descendants"
@@ -26682,7 +26670,7 @@ msgstr "Exclure le titre pour laisser plus de place au graphique"
 #: ../gramps/plugins/drawreport/fanchart.py:909
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
-msgstr "Le style utilisé pour l'affichage de la génération « %d »."
+msgstr "Le style utilisé pour l'affichage de la génération « %d »"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:329
 msgid "Item count"
@@ -29082,8 +29070,7 @@ msgstr "Ajouter une nouvelle note À faire"
 #: ../gramps/plugins/gramplet/todo.py:206
 msgid "First select the object to which you want to attach a note"
 msgstr ""
-"Tout d'abord sélectionnez l'objet pour lequel vous souhaitez attacher une "
-"note."
+"Sélectionnez d'abord l'objet pour lequel vous souhaitez attacher une note"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:150
 msgid "Unattached"
@@ -30773,8 +30760,8 @@ msgstr "Le répertoire media %s n'est pas accessible en écriture"
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
-"Le répertoire media %s existe. Supprimez le, puis redémarrez le processus "
-"d'importation."
+"Le répertoire media %s existe. Supprimez-le, puis redémarrez le processus "
+"d'importation"
 
 #: ../gramps/plugins/importer/importgpkg.py:98
 #, python-format
@@ -37286,7 +37273,7 @@ msgstr "Individus avec des noms incomplets"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/plugins/quickview/samesurnames.py:42
 msgid "Matches people with lastname missing"
-msgstr "Correspond aux individus sans prénom"
+msgstr "Correspond aux individus sans nom de famille"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/plugins/quickview/samesurnames.py:56
@@ -41530,11 +41517,11 @@ msgstr "Date de l'inhumation trop tardive"
 
 #: ../gramps/plugins/tool/verify.py:2499
 msgid "Children are not in chronological order"
-msgstr "Les enfants se sont pas dans l'ordre chronologique."
+msgstr "Les enfants ne sont pas dans l'ordre chronologique"
 
 #: ../gramps/plugins/tool/verify.py:2563
 msgid "Families are not in chronological order"
-msgstr "Les familles ne sont pas dans l'ordre chronologique."
+msgstr "Les familles ne sont pas dans l'ordre chronologique"
 
 #: ../gramps/plugins/tool/verify.py:2576
 msgid "Family has events with role Unknown"
@@ -41546,11 +41533,11 @@ msgstr "L'individu a des évènements avec un rôle inconnu"
 
 #: ../gramps/plugins/tool/verify.py:2602
 msgid "Family events are not in chronological order"
-msgstr "Les évènements de la famille ne sont pas dans l'ordre chronologique."
+msgstr "Les évènements de la famille ne sont pas dans l'ordre chronologique"
 
 #: ../gramps/plugins/tool/verify.py:2615
 msgid "Person events are not in chronological order"
-msgstr "Les évènements de l'individu ne sont pas dans l'ordre chronologique."
+msgstr "Les évènements de l'individu ne sont pas dans l'ordre chronologique"
 
 # trunk
 #: ../gramps/plugins/view/citationlistview.py:106
@@ -44011,7 +43998,7 @@ msgid ""
 msgstr ""
 "Une note prévue pour contacter l'auteur.\n"
 "Si aucune information sur l'auteur n'est donnée,\n"
-"alors aucune page contact ne sera créée."
+"alors aucune page contact ne sera créée"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2394
 msgid "Publisher contact image"
@@ -44025,7 +44012,7 @@ msgid ""
 msgstr ""
 "Une image prévue pour contacter l'auteur.\n"
 "Si aucune information sur l'auteur n'est donnée,\n"
-"alors aucune page contact ne sera créée."
+"alors aucune page contact ne sera créée"
 
 # espace limité dans la fenêtre, bug #3596
 #: ../gramps/plugins/webreport/narrativeweb.py:2404
