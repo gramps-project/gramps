@@ -290,6 +290,7 @@ gramps/gen/proxy/referencedbyselection.py
 # gen.proxy.test
 #
 gramps/gen/proxy/test/__init__.py
+gramps/gen/proxy/test/dna_proxies_test.py
 gramps/gen/proxy/test/proxies_test.py
 #
 # gen.simple

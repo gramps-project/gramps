@@ -47,6 +47,12 @@ from gramps.gen.lib import (
     Tag,
 )
 from gramps.gen.lib.json_utils import object_to_dict
+from gramps.gen.proxy import (
+    FilterProxyDb,
+    LivingProxyDb,
+    PrivateProxyDb,
+    ReferencedBySelectionProxyDb,
+)
 from gramps.gen.user import User
 
 # The XML writer imports gramps.gui, so these tests need GTK 3.
@@ -327,6 +333,98 @@ class TestDNAFloatExport(unittest.TestCase):
         self._export_segment_cm(70)
         with open(self.filename, encoding="utf-8") as xml:
             self.assertIn('shared_cm="70.0"', xml.read())
+
+
+@unittest.skipUnless(_WRITER_AVAILABLE, "GTK 3 not available for the XML writer")
+class TestDNAProxyExport(unittest.TestCase):
+    """An export through a proxy database holds the DNA objects the proxy shows."""
+
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        dbdir = os.path.join(self.tmpdir, "db")
+        os.mkdir(dbdir)
+        self.db = make_database("sqlite")
+        self.db.load(dbdir)
+        self.filename = os.path.join(self.tmpdir, "export.gramps")
+
+    def tearDown(self):
+        self.db.close()
+        shutil.rmtree(self.tmpdir)
+
+    def _populate(self):
+        """Add a person with a kit, a private kit, and a match to each."""
+        with DbTxn("add DNA", self.db) as trans:
+            person = self.db.add_person(Person(), trans)
+            test = DNATest()
+            test.set_person_handle(person)
+            self.subject = self.db.add_dnatest(test, trans)
+            self.other = self.db.add_dnatest(DNATest(), trans)
+            test = DNATest()
+            test.set_privacy(True)
+            self.private = self.db.add_dnatest(test, trans)
+            self.unreferenced = self.db.add_dnatest(DNATest(), trans)
+            match = DNAMatch()
+            match.set_subject_test_handle(self.subject)
+            match.set_match_test_handle(self.other)
+            self.match = self.db.add_dnamatch(match, trans)
+            match = DNAMatch()
+            match.set_subject_test_handle(self.subject)
+            match.set_match_test_handle(self.private)
+            self.private_match = self.db.add_dnamatch(match, trans)
+
+    def _export(self, proxy):
+        """Export proxy and return the handles of the DNA objects read back."""
+        XmlWriter(proxy, User(), 0, compress=0).write(self.filename)
+        imported = import_as_dict(self.filename, User())
+        try:
+            return (
+                set(imported.get_dnatest_handles()),
+                set(imported.get_dnamatch_handles()),
+            )
+        finally:
+            imported.close()
+
+    def test_tree_without_dna(self):
+        with DbTxn("add person", self.db) as trans:
+            self.db.add_person(Person(), trans)
+        for proxy in (
+            PrivateProxyDb(self.db),
+            LivingProxyDb(self.db, LivingProxyDb.MODE_EXCLUDE_ALL),
+            FilterProxyDb(self.db),
+            ReferencedBySelectionProxyDb(self.db, all_people=True),
+        ):
+            with self.subTest(proxy=type(proxy).__name__):
+                self.assertEqual(self._export(proxy), (set(), set()))
+
+    def test_private_proxy(self):
+        self._populate()
+        tests, matches = self._export(PrivateProxyDb(self.db))
+        self.assertEqual(tests, {self.subject, self.other, self.unreferenced})
+        self.assertEqual(matches, {self.match})
+
+    def test_living_and_filter_proxies_keep_everything(self):
+        self._populate()
+        everything = (
+            {self.subject, self.other, self.private, self.unreferenced},
+            {self.match, self.private_match},
+        )
+        proxy = LivingProxyDb(self.db, LivingProxyDb.MODE_INCLUDE_ALL)
+        self.assertEqual(self._export(proxy), everything)
+        self.assertEqual(self._export(FilterProxyDb(self.db)), everything)
+
+    def test_referenced_proxy(self):
+        self._populate()
+        proxy = ReferencedBySelectionProxyDb(self.db, all_people=True)
+        tests, matches = self._export(proxy)
+        self.assertEqual(tests, {self.subject, self.other, self.private})
+        self.assertEqual(matches, {self.match, self.private_match})
+
+    def test_stacked_proxies(self):
+        self._populate()
+        proxy = ReferencedBySelectionProxyDb(PrivateProxyDb(self.db), all_people=True)
+        tests, matches = self._export(proxy)
+        self.assertEqual(tests, {self.subject, self.other})
+        self.assertEqual(matches, {self.match})
 
 
 if __name__ == "__main__":

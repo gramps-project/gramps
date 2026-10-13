@@ -62,7 +62,14 @@ from ..lib import (
     SrcAttribute,
     Note,
     Tag,
+    DNAAttribute,
+    DNAMatch,
+    DNASegment,
+    DNATest,
+    PredictedRelationship,
+    SharedAncestor,
 )
+from ..types import DNAMatchHandle, DNATestHandle
 from .proxybase import ProxyDbBase
 
 
@@ -167,6 +174,30 @@ class PrivateProxyDb(ProxyDbBase):
         if note and not note.get_privacy():
             # Nothing to sanitize in note object:
             return note
+        return None
+
+    def get_dnatest_from_handle(self, handle: DNATestHandle) -> DNATest | None:
+        """
+        Finds a DNATest in the database from the passed handle.
+        If no such DNATest exists, None is returned.
+        """
+        dnatest = self.db.get_dnatest_from_handle(handle)
+        if dnatest and not dnatest.get_privacy():
+            return sanitize_dnatest(self.db, dnatest)
+        return None
+
+    def get_dnamatch_from_handle(self, handle: DNAMatchHandle) -> DNAMatch | None:
+        """
+        Finds a DNAMatch in the database from the passed handle.
+        If no such DNAMatch exists, None is returned.
+        """
+        dnamatch = self.db.get_dnamatch_from_handle(handle)
+        if (
+            dnamatch
+            and not dnamatch.get_privacy()
+            and not has_private_dnatest(self.db, dnamatch)
+        ):
+            return sanitize_dnamatch(self.db, dnamatch)
         return None
 
     def get_person_from_gramps_id(self, val):
@@ -324,6 +355,24 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_note(handle)
         return obj and not obj.get_privacy()
 
+    def include_dnatest(self, handle: DNATestHandle) -> bool:
+        """
+        Predicate returning True if object is to be included, else False
+        """
+        obj = self.get_unfiltered_dnatest(handle)
+        return bool(obj) and not obj.get_privacy()
+
+    def include_dnamatch(self, handle: DNAMatchHandle) -> bool:
+        """
+        Predicate returning True if object is to be included, else False
+        """
+        obj = self.get_unfiltered_dnamatch(handle)
+        return (
+            bool(obj)
+            and not obj.get_privacy()
+            and not has_private_dnatest(self.basedb, obj)
+        )
+
     def get_default_person(self):
         """returns the default Person of the database"""
         person = self.db.get_default_person()
@@ -459,15 +508,40 @@ class PrivateProxyDb(ProxyDbBase):
             "Repository": self.db.get_repository_from_handle,
         }
 
+        target = handle
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for class_name, handle in handle_itr:
             if class_name in objects:
                 obj = objects[class_name](handle)
                 if obj and not obj.get_privacy():
                     yield (class_name, handle)
+            elif class_name in ("DNATest", "DNAMatch"):
+                # The reference may be one that is removed from the object
+                if self._is_dna_backlink(class_name, handle, target):
+                    yield (class_name, handle)
             else:
                 raise NotImplementedError
         return
+
+
+def has_private_dnatest(db, dnamatch: DNAMatch) -> bool:
+    """
+    Return True if either kit of the passed DNAMatch is private.
+
+    :param db: Gramps database to which the DNAMatch object belongs
+    :type db: DbBase
+    :param dnamatch: DNAMatch whose kits are checked
+    :type dnamatch: DNAMatch
+    """
+    for handle in (
+        dnamatch.get_subject_test_handle(),
+        dnamatch.get_match_test_handle(),
+    ):
+        if handle:
+            dnatest = db.get_dnatest_from_handle(handle)
+            if dnatest and dnatest.get_privacy():
+                return True
+    return False
 
 
 def copy_media_ref_list(db, original_obj, clean_obj):
@@ -572,6 +646,29 @@ def copy_attributes(db, original_obj, clean_obj):
     for attribute in original_obj.get_attribute_list():
         if attribute and not attribute.get_privacy():
             new_attribute = Attribute()
+            new_attribute.set_type(attribute.get_type())
+            new_attribute.set_value(attribute.get_value())
+            copy_notes(db, attribute, new_attribute)
+            copy_citation_ref_list(db, attribute, new_attribute)
+            clean_obj.add_attribute(new_attribute)
+
+
+def copy_dna_attributes(db, original_obj, clean_obj) -> None:
+    """
+    Copies DNA attributes from one object to another - excluding private
+    attributes and references to private notes and citations.
+
+    :param db: Gramps database to which the references belongs
+    :type db: DbBase
+    :param original_obj: Object that may have private references
+    :type original_obj: DNAAttributeBase
+    :param clean_obj: Object that will have only non-private references
+    :type original_obj: DNAAttributeBase
+    :returns: Nothing
+    """
+    for attribute in original_obj.get_attribute_list():
+        if attribute and not attribute.get_privacy():
+            new_attribute = DNAAttribute()
             new_attribute.set_type(attribute.get_type())
             new_attribute.set_value(attribute.get_value())
             copy_notes(db, attribute, new_attribute)
@@ -1178,6 +1275,113 @@ def sanitize_repository(db, repository):
     copy_urls(db, repository, new_repository)
 
     return new_repository
+
+
+def sanitize_dnatest(db, dnatest: DNATest) -> DNATest:
+    """
+    Create a new DNATest instance based off the passed DNATest
+    instance. The returned instance has all private records
+    removed from it.
+
+    :param db: Gramps database to which the DNATest object belongs
+    :type db: DbBase
+    :param dnatest: source DNATest object that will be copied with
+                    privacy records removed
+    :type dnatest: DNATest
+    :returns: 'cleansed' DNATest object
+    :rtype: DNATest
+    """
+    new_dnatest = DNATest()
+
+    new_dnatest.set_gramps_id(dnatest.get_gramps_id())
+    new_dnatest.set_handle(dnatest.get_handle())
+    new_dnatest.set_change_time(dnatest.get_change_time())
+    new_dnatest.set_tag_list(dnatest.get_tag_list())
+    new_dnatest.set_account_name(dnatest.get_account_name())
+    new_dnatest.set_provider(dnatest.get_provider())
+    new_dnatest.set_kit_id(dnatest.get_kit_id())
+    new_dnatest.set_test_type(dnatest.get_test_type())
+    new_dnatest.set_genome_build(dnatest.get_genome_build())
+    new_dnatest.set_date_object(dnatest.get_date_object())
+    new_dnatest.set_y_haplogroup(dnatest.get_y_haplogroup())
+    new_dnatest.set_mt_haplogroup(dnatest.get_mt_haplogroup())
+
+    person_handle = dnatest.get_person_handle()
+    if person_handle:
+        person = db.get_person_from_handle(person_handle)
+        if person and not person.get_privacy():
+            new_dnatest.set_person_handle(person_handle)
+
+    copy_dna_attributes(db, dnatest, new_dnatest)
+    copy_citation_ref_list(db, dnatest, new_dnatest)
+    copy_notes(db, dnatest, new_dnatest)
+    copy_media_ref_list(db, dnatest, new_dnatest)
+
+    return new_dnatest
+
+
+def sanitize_dnamatch(db, dnamatch: DNAMatch) -> DNAMatch:
+    """
+    Create a new DNAMatch instance based off the passed DNAMatch
+    instance. The returned instance has all private records
+    removed from it.
+
+    :param db: Gramps database to which the DNAMatch object belongs
+    :type db: DbBase
+    :param dnamatch: source DNAMatch object that will be copied with
+                     privacy records removed
+    :type dnamatch: DNAMatch
+    :returns: 'cleansed' DNAMatch object
+    :rtype: DNAMatch
+    """
+    new_dnamatch = DNAMatch()
+
+    new_dnamatch.set_gramps_id(dnamatch.get_gramps_id())
+    new_dnamatch.set_handle(dnamatch.get_handle())
+    new_dnamatch.set_change_time(dnamatch.get_change_time())
+    new_dnamatch.set_tag_list(dnamatch.get_tag_list())
+    new_dnamatch.set_subject_test_handle(dnamatch.get_subject_test_handle())
+    new_dnamatch.set_match_test_handle(dnamatch.get_match_test_handle())
+    new_dnamatch.set_provider(dnamatch.get_provider())
+    new_dnamatch.set_shared_cm(dnamatch.get_shared_cm())
+    new_dnamatch.set_shared_cm_weighted(dnamatch.get_shared_cm_weighted())
+    new_dnamatch.set_percent_shared(dnamatch.get_percent_shared())
+    new_dnamatch.set_segment_count(dnamatch.get_segment_count())
+    new_dnamatch.set_largest_segment_cm(dnamatch.get_largest_segment_cm())
+    new_dnamatch.set_largest_segment_cm_weighted(
+        dnamatch.get_largest_segment_cm_weighted()
+    )
+
+    for relationship in dnamatch.get_predicted_relationship_list():
+        new_relationship = PredictedRelationship(relationship)
+        new_relationship.set_citation_list([])
+        new_relationship.set_note_list([])
+        copy_citation_ref_list(db, relationship, new_relationship)
+        copy_notes(db, relationship, new_relationship)
+        new_dnamatch.add_predicted_relationship(new_relationship)
+
+    for ancestor in dnamatch.get_shared_ancestor_list():
+        new_ancestor = SharedAncestor(ancestor)
+        new_ancestor.set_citation_list([])
+        new_ancestor.set_note_list([])
+        copy_citation_ref_list(db, ancestor, new_ancestor)
+        copy_notes(db, ancestor, new_ancestor)
+        person_handle = ancestor.get_person_handle()
+        if person_handle:
+            person = db.get_person_from_handle(person_handle)
+            if not person or person.get_privacy():
+                new_ancestor.set_person_handle(None)
+        new_dnamatch.add_shared_ancestor(new_ancestor)
+
+    for segment in dnamatch.get_segment_list():
+        new_dnamatch.add_segment(DNASegment(segment))
+
+    copy_dna_attributes(db, dnamatch, new_dnamatch)
+    copy_citation_ref_list(db, dnamatch, new_dnamatch)
+    copy_notes(db, dnamatch, new_dnamatch)
+    copy_media_ref_list(db, dnamatch, new_dnamatch)
+
+    return new_dnamatch
 
 
 def sanitize_person_ref(db, person_ref: PersonRef) -> PersonRef:

@@ -27,7 +27,10 @@ Proxy class for the Gramps databases. Filter out all data marked private.
 # Python modules
 #
 # -------------------------------------------------------------------------
+from __future__ import annotations
+
 import types
+from collections.abc import Callable, Iterator
 
 # -------------------------------------------------------------------------
 #
@@ -37,6 +40,8 @@ import types
 from ..db.base import DbReadBase, DbWriteBase
 from ..lib import (
     Citation,
+    DNAMatch,
+    DNATest,
     Event,
     Family,
     Media,
@@ -49,6 +54,12 @@ from ..lib import (
 )
 from ..lib.json_utils import object_to_data
 from ..const import GRAMPS_LOCALE as glocale
+from ..types import (
+    DNAMatchGrampsID,
+    DNAMatchHandle,
+    DNATestGrampsID,
+    DNATestHandle,
+)
 
 
 class ProxyCursor:
@@ -121,6 +132,8 @@ class ProxyDbBase(DbReadBase):
         self.repo_bookmarks = db.repo_bookmarks
         self.media_bookmarks = db.media_bookmarks
         self.note_bookmarks = db.note_bookmarks
+        self.dnatest_bookmarks = db.dnatest_bookmarks
+        self.dnamatch_bookmarks = db.dnamatch_bookmarks
 
         self.person_map = ProxyMap(
             self, self.get_raw_person_data, self.get_person_handles
@@ -169,6 +182,9 @@ class ProxyDbBase(DbReadBase):
         include_tag
     ) = None
 
+    include_dnatest: Callable[[DNATestHandle], bool] | None = None
+    include_dnamatch: Callable[[DNAMatchHandle], bool] | None = None
+
     def get_person_cursor(self):
         return ProxyCursor(self.get_raw_person_data, self.get_person_handles)
 
@@ -198,6 +214,18 @@ class ProxyDbBase(DbReadBase):
 
     def get_tag_cursor(self):
         return ProxyCursor(self.get_raw_tag_data, self.get_tag_handles)
+
+    def get_dnatest_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor over the DNATests in the database.
+        """
+        return ProxyCursor(self.get_raw_dnatest_data, self.get_dnatest_handles)
+
+    def get_dnamatch_cursor(self) -> ProxyCursor:
+        """
+        Return a cursor over the DNAMatches in the database.
+        """
+        return ProxyCursor(self.get_raw_dnamatch_data, self.get_dnamatch_handles)
 
     def get_person_handles(self, sort_handles=False, locale=glocale):
         """
@@ -307,6 +335,24 @@ class ProxyDbBase(DbReadBase):
         else:
             return []
 
+    def get_dnatest_handles(self) -> list[DNATestHandle]:
+        """
+        Return a list of database handles, one handle for each DNATest in
+        the database.
+        """
+        if (self.db is not None) and self.db.is_open():
+            return list(self.iter_dnatest_handles())
+        return []
+
+    def get_dnamatch_handles(self) -> list[DNAMatchHandle]:
+        """
+        Return a list of database handles, one handle for each DNAMatch in
+        the database.
+        """
+        if (self.db is not None) and self.db.is_open():
+            return list(self.iter_dnamatch_handles())
+        return []
+
     def get_default_person(self):
         """returns the default Person of the database"""
         return self.db.get_default_person()
@@ -385,6 +431,20 @@ class ProxyDbBase(DbReadBase):
         """
         return filter(self.include_tag, self.db.iter_tag_handles())
 
+    def iter_dnatest_handles(self) -> Iterator[DNATestHandle]:
+        """
+        Return an iterator over database handles, one handle for each DNATest
+        in the database.
+        """
+        return filter(self.include_dnatest, self.db.iter_dnatest_handles())
+
+    def iter_dnamatch_handles(self) -> Iterator[DNAMatchHandle]:
+        """
+        Return an iterator over database handles, one handle for each DNAMatch
+        in the database.
+        """
+        return filter(self.include_dnamatch, self.db.iter_dnamatch_handles())
+
     def __iter_object(self, selector, method):
         """Helper function to return an iterator over an object class"""
         retval = filter(
@@ -451,6 +511,45 @@ class ProxyDbBase(DbReadBase):
         Return an iterator over Tag objects in the database
         """
         return self.__iter_object(self.include_tag, self.db.iter_tags)
+
+    def iter_dnatests(self) -> Iterator[DNATest]:
+        """
+        Return an iterator over DNATest objects in the database
+        """
+        for handle in self.iter_dnatest_handles():
+            dnatest = self.get_dnatest_from_handle(handle)
+            if dnatest is not None:
+                yield dnatest
+
+    def iter_dnamatches(self) -> Iterator[DNAMatch]:
+        """
+        Return an iterator over DNAMatch objects in the database
+        """
+        for handle in self.iter_dnamatch_handles():
+            dnamatch = self.get_dnamatch_from_handle(handle)
+            if dnamatch is not None:
+                yield dnamatch
+
+    def _is_dna_backlink(self, class_name: str, handle: str, target: str) -> bool:
+        """
+        Return True if the DNATest or DNAMatch with the passed handle, as
+        this proxy shows it, refers to the target handle.
+
+        :param class_name: "DNATest" or "DNAMatch"
+        :param handle: handle of the referring DNATest or DNAMatch
+        :param target: handle of the object that is referred to
+        """
+        obj: DNATest | DNAMatch | None
+        if class_name == "DNATest":
+            obj = self.get_dnatest_from_handle(DNATestHandle(handle))
+        else:
+            obj = self.get_dnamatch_from_handle(DNAMatchHandle(handle))
+        if obj is None:
+            return False
+        return any(
+            ref_handle == target
+            for _, ref_handle in obj.get_referenced_handles_recursively()
+        )
 
     @staticmethod
     def gfilter(predicate, obj):
@@ -561,6 +660,24 @@ class ProxyDbBase(DbReadBase):
         """
         return self.gfilter(self.include_tag, self.db.get_tag_from_handle(handle))
 
+    def get_dnatest_from_handle(self, handle: DNATestHandle) -> DNATest | None:
+        """
+        Finds a DNATest in the database from the passed gramps handle.
+        If no such DNATest exists, None is returned.
+        """
+        return self.gfilter(
+            self.include_dnatest, self.db.get_dnatest_from_handle(handle)
+        )
+
+    def get_dnamatch_from_handle(self, handle: DNAMatchHandle) -> DNAMatch | None:
+        """
+        Finds a DNAMatch in the database from the passed gramps handle.
+        If no such DNAMatch exists, None is returned.
+        """
+        return self.gfilter(
+            self.include_dnamatch, self.db.get_dnamatch_from_handle(handle)
+        )
+
     def get_person_from_gramps_id(self, val):
         """
         Finds a Person in the database from the passed Gramps ID.
@@ -627,6 +744,28 @@ class ProxyDbBase(DbReadBase):
         If no such Note exists, None is returned.
         """
         return self.gfilter(self.include_note, self.db.get_note_from_gramps_id(val))
+
+    def get_dnatest_from_gramps_id(self, gramps_id: DNATestGrampsID) -> DNATest | None:
+        """
+        Finds a DNATest in the database from the passed gramps' ID.
+        If no such DNATest exists, None is returned.
+        """
+        dnatest = self.db.get_dnatest_from_gramps_id(gramps_id)
+        if dnatest is None:
+            return None
+        return self.get_dnatest_from_handle(dnatest.handle)
+
+    def get_dnamatch_from_gramps_id(
+        self, gramps_id: DNAMatchGrampsID
+    ) -> DNAMatch | None:
+        """
+        Finds a DNAMatch in the database from the passed gramps' ID.
+        If no such DNAMatch exists, None is returned.
+        """
+        dnamatch = self.db.get_dnamatch_from_gramps_id(gramps_id)
+        if dnamatch is None:
+            return None
+        return self.get_dnamatch_from_handle(dnamatch.handle)
 
     def get_tag_from_name(self, val):
         """
@@ -713,6 +852,18 @@ class ProxyDbBase(DbReadBase):
         """
         return len(self.get_tag_handles())
 
+    def get_number_of_dnatests(self) -> int:
+        """
+        Return the number of DNATests currently in the database.
+        """
+        return len(self.get_dnatest_handles())
+
+    def get_number_of_dnamatches(self) -> int:
+        """
+        Return the number of DNAMatches currently in the database.
+        """
+        return len(self.get_dnamatch_handles())
+
     def get_save_path(self):
         """returns the save path of the file, or "" if one does not exist"""
         return self.db.get_save_path()
@@ -748,6 +899,16 @@ class ProxyDbBase(DbReadBase):
         """returns a list of all Attribute types associated with Media
         and MediaRef instances in the database"""
         return self.db.get_media_attribute_types()
+
+    def get_dnatest_attribute_types(self) -> list[str]:
+        """returns a list of all Attribute types associated with DNATest
+        instances in the database"""
+        return self.db.get_dnatest_attribute_types()
+
+    def get_dnamatch_attribute_types(self) -> list[str]:
+        """returns a list of all Attribute types associated with DNAMatch
+        instances in the database"""
+        return self.db.get_dnamatch_attribute_types()
 
     def get_family_relation_types(self):
         """returns a list of all relationship types associated with Family
@@ -831,6 +992,18 @@ class ProxyDbBase(DbReadBase):
 
     def get_raw_tag_data(self, handle):
         return object_to_data(self.get_tag_from_handle(handle))
+
+    def get_raw_dnatest_data(self, handle: DNATestHandle):
+        """
+        Return the raw data of the DNATest with the passed handle.
+        """
+        return object_to_data(self.get_dnatest_from_handle(handle))
+
+    def get_raw_dnamatch_data(self, handle: DNAMatchHandle):
+        """
+        Return the raw data of the DNAMatch with the passed handle.
+        """
+        return object_to_data(self.get_dnamatch_from_handle(handle))
 
     def has_person_handle(self, handle):
         """
@@ -926,6 +1099,18 @@ class ProxyDbBase(DbReadBase):
             is not None
         )
 
+    def has_dnatest_handle(self, handle: DNATestHandle) -> bool:
+        """
+        returns True if the handle exists in the current DNATest database.
+        """
+        return self.get_dnatest_from_handle(handle) is not None
+
+    def has_dnamatch_handle(self, handle: DNAMatchHandle) -> bool:
+        """
+        returns True if the handle exists in the current DNAMatch database.
+        """
+        return self.get_dnamatch_from_handle(handle) is not None
+
     def get_mediapath(self):
         """returns the default media path of the database"""
         return self.db.get_mediapath()
@@ -965,6 +1150,14 @@ class ProxyDbBase(DbReadBase):
     def get_note_bookmarks(self):
         """returns the list of Note handles in the bookmarks"""
         return self.note_bookmarks
+
+    def get_dnatest_bookmarks(self):
+        """returns the list of DNATest handles in the bookmarks"""
+        return self.dnatest_bookmarks
+
+    def get_dnamatch_bookmarks(self):
+        """returns the list of DNAMatch handles in the bookmarks"""
+        return self.dnamatch_bookmarks
 
     def close(self):
         """

@@ -52,10 +52,14 @@ from ..lib import (
     Repository,
     Note,
     Tag,
+    DNAMatch,
+    DNATest,
 )
 from ..const import GRAMPS_LOCALE as glocale
 from ..types import (
     AnyHandle,
+    DNAMatchHandle,
+    DNATestHandle,
     PersonHandle,
     EventHandle,
     FamilyHandle,
@@ -123,6 +127,26 @@ class FilterProxyDb(ProxyDbBase):
                 self.flist.update(person.get_family_handle_list())
                 self.flist.update(person.get_parent_family_handle_list())
 
+        # DNA records follow the person filter. A kit is kept when its person
+        # is, a match when its subject kit is, and the other kit of a kept
+        # match is kept with it. None means that every record is kept.
+        self.tlist: set[DNATestHandle] | None = None
+        self.mlist: set[DNAMatchHandle] | None = None
+        if person_filter:
+            self.tlist = {
+                dnatest.handle
+                for dnatest in self.db.iter_dnatests()
+                if dnatest.get_person_handle() in self.plist
+            }
+            self.mlist = set()
+            match_tests = set()
+            for dnamatch in self.db.iter_dnamatches():
+                if dnamatch.get_subject_test_handle() in self.tlist:
+                    self.mlist.add(dnamatch.handle)
+                    if dnamatch.get_match_test_handle():
+                        match_tests.add(dnamatch.get_match_test_handle())
+            self.tlist.update(match_tests)
+
     def get_person_from_handle(self, handle):
         """
         Finds a Person in the database from the passed Gramps ID.
@@ -178,6 +202,18 @@ class FilterProxyDb(ProxyDbBase):
 
     def include_note(self, handle):
         return handle in self.nlist
+
+    def include_dnatest(self, handle: DNATestHandle) -> bool:
+        """
+        Predicate returning True if the DNATest is to be included.
+        """
+        return self.tlist is None or handle in self.tlist
+
+    def include_dnamatch(self, handle: DNAMatchHandle) -> bool:
+        """
+        Predicate returning True if the DNAMatch is to be included.
+        """
+        return self.mlist is None or handle in self.mlist
 
     def get_source_from_handle(self, handle):
         """
@@ -340,6 +376,46 @@ class FilterProxyDb(ProxyDbBase):
             return self.db.get_note_from_handle(handle)
         else:
             return None
+
+    def get_dnatest_from_handle(self, handle: DNATestHandle) -> DNATest | None:
+        """
+        Finds a DNATest in the database from the passed handle.
+        If no such DNATest exists, None is returned.
+        """
+        if not self.include_dnatest(handle):
+            return None
+        dnatest = self.db.get_dnatest_from_handle(handle)
+        if dnatest:
+            # The kit of a kept match may belong to a person filtered out
+            if dnatest.get_person_handle() not in self.plist:
+                dnatest.set_person_handle(None)
+
+            # Filter notes out
+            self.sanitize_dnabase(dnatest)
+
+        return dnatest
+
+    def get_dnamatch_from_handle(self, handle: DNAMatchHandle) -> DNAMatch | None:
+        """
+        Finds a DNAMatch in the database from the passed handle.
+        If no such DNAMatch exists, None is returned.
+        """
+        if not self.include_dnamatch(handle):
+            return None
+        dnamatch = self.db.get_dnamatch_from_handle(handle)
+        if dnamatch:
+            for ancestor in dnamatch.get_shared_ancestor_list():
+                if ancestor.get_person_handle() not in self.plist:
+                    ancestor.set_person_handle(None)
+                self.sanitize_notebase(ancestor)
+
+            # Filter notes out
+            self.sanitize_dnabase(dnamatch)
+
+            for relationship in dnamatch.get_predicted_relationship_list():
+                self.sanitize_notebase(relationship)
+
+        return dnamatch
 
     def get_person_from_gramps_id(self, gramps_id: PersonGrampsID) -> Person | None:
         """
@@ -597,8 +673,15 @@ class FilterProxyDb(ProxyDbBase):
 
         >    result_list = list(find_backlink_handles(handle))
         """
-        # FIXME: add a filter for returned handles (see private.py as an example)
-        return self.db.find_backlink_handles(handle, include_classes)
+        # FIXME: add a filter for the handles of the other classes (see
+        # private.py as an example)
+        for class_name, ref_handle in self.db.find_backlink_handles(
+            handle, include_classes
+        ):
+            if class_name not in ("DNATest", "DNAMatch") or self._is_dna_backlink(
+                class_name, ref_handle, handle
+            ):
+                yield (class_name, ref_handle)
 
     def sanitize_notebase(self, notebase):
         """
@@ -611,6 +694,21 @@ class FilterProxyDb(ProxyDbBase):
             note_list = notebase.get_note_list()
             new_note_list = [note for note in note_list if note in self.nlist]
             notebase.set_note_list(new_note_list)
+
+    def sanitize_dnabase(self, dnabase: DNATest | DNAMatch) -> None:
+        """
+        Filters notes out of the passed DNATest or DNAMatch, its attributes
+        and its media references according to the Note Filter.
+        """
+        self.sanitize_notebase(dnabase)
+
+        for attribute in dnabase.get_attribute_list():
+            self.sanitize_notebase(attribute)
+
+        for media_ref in dnabase.get_media_list():
+            self.sanitize_notebase(media_ref)
+            for attribute in media_ref.get_attribute_list():
+                self.sanitize_notebase(attribute)
 
     def sanitize_addressbase(self, addressbase):
         if addressbase:

@@ -41,7 +41,10 @@ from ..lib import (
     Repository,
     Note,
     Tag,
+    DNAMatch,
+    DNATest,
 )
+from ..types import DNAMatchHandle, DNATestHandle
 
 
 class ReferencedBySelectionProxyDb(ProxyDbBase):
@@ -109,6 +112,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             "Media": set(),
             "Note": set(),
             "Tag": set(),
+            "DNATest": set(),
+            "DNAMatch": set(),
         }
 
     def process_object(self, class_name, handle, reference=True):
@@ -148,6 +153,14 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             obj = self.db.get_note_from_handle(handle)
             if obj:
                 self.process_note(obj)
+        elif class_name == "DNATest":
+            obj = self.db.get_dnatest_from_handle(handle)
+            if obj:
+                self.process_dnatest(obj)
+        elif class_name == "DNAMatch":
+            obj = self.db.get_dnamatch_from_handle(handle)
+            if obj:
+                self.process_dnamatch(obj)
         else:
             raise AttributeError("unknown class: '%s'" % class_name)
 
@@ -173,7 +186,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             self.referenced["Person"].add(person.handle)
         # include backward references to this object:
         for class_name, handle in self.db.find_backlink_handles(
-            person.handle, ["Person", "Family"]
+            person.handle, ["Person", "Family", "DNATest", "DNAMatch"]
         ):
             self.queue_object(class_name, handle)
 
@@ -365,6 +378,59 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                         self.queue_object(obj_class, value)
         self.process_tags(note)
 
+    def process_dnatest(self, dnatest: DNATest | None) -> None:
+        """
+        Follow the DNATest object and find all of the primary objects
+        that it references.
+        """
+        if dnatest is None or dnatest.handle in self.referenced["DNATest"]:
+            return
+        self.referenced["DNATest"].add(dnatest.handle)
+        if dnatest.get_person_handle():
+            self.queue_object("Person", dnatest.get_person_handle())
+        # include the matches this kit takes part in:
+        for class_name, handle in self.db.find_backlink_handles(
+            dnatest.handle, ["DNAMatch"]
+        ):
+            self.queue_object(class_name, handle)
+
+        self.process_attributes(dnatest)
+        self.process_citation_ref_list(dnatest)
+        self.process_notes(dnatest)
+        self.process_media_ref_list(dnatest)
+        self.process_tags(dnatest)
+
+    def process_dnamatch(self, dnamatch: DNAMatch | None) -> None:
+        """
+        Follow the DNAMatch object and find all of the primary objects
+        that it references.
+        """
+        if dnamatch is None or dnamatch.handle in self.referenced["DNAMatch"]:
+            return
+        self.referenced["DNAMatch"].add(dnamatch.handle)
+        for handle in (
+            dnamatch.get_subject_test_handle(),
+            dnamatch.get_match_test_handle(),
+        ):
+            if handle:
+                self.queue_object("DNATest", handle)
+
+        for relationship in dnamatch.get_predicted_relationship_list():
+            self.process_citation_ref_list(relationship)
+            self.process_notes(relationship)
+
+        for ancestor in dnamatch.get_shared_ancestor_list():
+            self.process_citation_ref_list(ancestor)
+            self.process_notes(ancestor)
+            if ancestor.get_person_handle():
+                self.queue_object("Person", ancestor.get_person_handle())
+
+        self.process_attributes(dnamatch)
+        self.process_citation_ref_list(dnamatch)
+        self.process_notes(dnamatch)
+        self.process_media_ref_list(dnamatch)
+        self.process_tags(dnamatch)
+
     def process_notes(self, original_obj):
         """Find all of the primary objects referred to"""
         for note_handle in original_obj.get_note_list():
@@ -532,6 +598,18 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Filter for tags
         """
         return handle in self.referenced["Tag"]
+
+    def include_dnatest(self, handle: DNATestHandle) -> bool:
+        """
+        Filter for DNA tests
+        """
+        return handle in self.referenced["DNATest"]
+
+    def include_dnamatch(self, handle: DNAMatchHandle) -> bool:
+        """
+        Filter for DNA matches
+        """
+        return handle in self.referenced["DNAMatch"]
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
