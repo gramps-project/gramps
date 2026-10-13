@@ -318,6 +318,43 @@ class RelationshipMaxCommonResultsTest(unittest.TestCase):
         finally:
             db.close()
 
+    def test_cap_keeps_nearest_path_across_visit_order(self):
+        """The cap must keep the nearest paths even when a farther path
+        to the same ancestor is found first. Here the ancestor is
+        reached through the father's line (`fff`) before the mother's
+        (`mf`), and with a cap of 1 only the nearer `mf` may survive."""
+        db = _make_db()
+        try:
+            ancestor = _add_person(db, Person.MALE)
+            ancestor_family = _add_family(db, ancestor, None)
+            son = _add_person(db, Person.MALE)
+            daughter = _add_person(db, Person.FEMALE)
+            other = _add_person(db, Person.MALE)
+            _add_child(db, ancestor_family, son)
+            _add_child(db, ancestor_family, daughter)
+            _add_child(db, ancestor_family, other)
+            grandson = _add_person(db, Person.MALE)
+            _add_child(db, _add_family(db, son, None), grandson)
+            person = _add_person(db, Person.MALE)
+            _add_child(db, _add_family(db, grandson, daughter), person)
+
+            p1 = db.get_person_from_handle(person.handle)
+            p2 = db.get_person_from_handle(other.handle)
+            for all_dist in (True, False):
+                calc = get_relationship_calculator(reinit=True)
+                calc.set_max_common_results(1)
+                data, _msg = calc.get_relationship_distance_new(
+                    db, p1, p2, all_dist=all_dist, all_families=True
+                )
+                if all_dist:
+                    self.assertEqual(
+                        [(d[0], d[2], d[4]) for d in data], [(3, "mf", "f")]
+                    )
+                else:
+                    self.assertEqual((data[0], data[2], data[4]), (3, "mf", "f"))
+        finally:
+            db.close()
+
     def test_default_cap_is_set(self):
         calc = get_relationship_calculator(reinit=True)
         self.assertIsNotNone(calc.get_max_common_results())

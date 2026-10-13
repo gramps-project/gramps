@@ -25,6 +25,7 @@ Classes for relationships.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import heapq
 import logging
 
 # -------------------------------------------------------------------------
@@ -1363,6 +1364,88 @@ class RelationshipCalculator:
             last_kept = rel_str
         return [pairs[i] for i in sorted(keep)]
 
+    @staticmethod
+    def _common_candidates(sides, cap):
+        """Yield `(rel1, fam1, rel2, fam2, handle)` for every pairing of a
+        first-person path with a second-person path to the same common
+        ancestor. `sides` is a list of `(handle, first_pairs,
+        second_pairs)`, each pairs list holding `(rel_str, rel_fam)`.
+
+        When fewer pairings exist than `cap` they are yielded in plain
+        nested order, since the cap cannot be reached and the caller
+        sorts by (rank, yield order) anyway. Otherwise they come off a
+        heap in global (rank, ancestor, first index, second index) order,
+        so stopping at the cap keeps the nearest paths -- per-ancestor
+        ordering alone would let one ancestor's farther pairs fill the
+        cap before a nearer pair of its own, or of the next ancestor, is
+        reached. Both orders agree on ties, so the results are the same.
+        Each side is sorted by (length, original index); from pair
+        (i, j) the heap is fed (i, j + 1), plus (i + 1, 0) when j == 0,
+        whose keys are strictly greater -- so every pair is produced
+        exactly once, in order, and only as far as needed.
+        """
+        if cap is None or sum(len(f) * len(s) for _h, f, s in sides) <= cap:
+            for handle, first_pairs, second_pairs in sides:
+                for rel1, fam1 in first_pairs:
+                    for rel2, fam2 in second_pairs:
+                        yield rel1, fam1, rel2, fam2, handle
+            return
+        ordered = []
+        heap = []
+        for hidx, (handle, first_pairs, second_pairs) in enumerate(sides):
+            first_sorted, second_sorted = [
+                sorted(
+                    (len(rel), oidx, rel, fam) for oidx, (rel, fam) in enumerate(pairs)
+                )
+                for pairs in (first_pairs, second_pairs)
+            ]
+            ordered.append((handle, first_sorted, second_sorted))
+            heap.append(
+                (
+                    first_sorted[0][0] + second_sorted[0][0],
+                    hidx,
+                    first_sorted[0][1],
+                    second_sorted[0][1],
+                    0,
+                    0,
+                )
+            )
+        heapq.heapify(heap)
+        while heap:
+            _rank, hidx, _oi, _oj, i, j = heapq.heappop(heap)
+            handle, first_sorted, second_sorted = ordered[hidx]
+            if j + 1 < len(second_sorted):
+                heapq.heappush(
+                    heap,
+                    (
+                        first_sorted[i][0] + second_sorted[j + 1][0],
+                        hidx,
+                        first_sorted[i][1],
+                        second_sorted[j + 1][1],
+                        i,
+                        j + 1,
+                    ),
+                )
+            if j == 0 and i + 1 < len(first_sorted):
+                heapq.heappush(
+                    heap,
+                    (
+                        first_sorted[i + 1][0] + second_sorted[0][0],
+                        hidx,
+                        first_sorted[i + 1][1],
+                        second_sorted[0][1],
+                        i + 1,
+                        0,
+                    ),
+                )
+            yield (
+                first_sorted[i][2],
+                first_sorted[i][3],
+                second_sorted[j][2],
+                second_sorted[j][3],
+                handle,
+            )
+
     def get_relationship_distance_new(
         self,
         db,
@@ -1525,76 +1608,70 @@ class RelationshipCalculator:
         # behavior change (see `set_max_common_results`) -- not a change
         # to the earlier `__apply_filter` fix's byte-identical guarantee,
         # which this cap sits downstream of.
-        handles_by_min_rank = sorted(
-            (h for h in second_map if h in first_map),
-            key=lambda h: min(len(s) for s in first_map[h][0])
-            + min(len(s) for s in second_map[h][0]),
-        )
-        capped = False
-        for person_handle in handles_by_min_rank:
-            if capped:
-                break
-            first_pairs = self._prefix_minimal(
-                list(zip(first_map[person_handle][0], first_map[person_handle][1]))
+        # see `_common_candidates` for how nearest-first is guaranteed
+        sides = [
+            (
+                person_handle,
+                *[
+                    self._prefix_minimal(
+                        list(zip(pmap[person_handle][0], pmap[person_handle][1]))
+                    )
+                    for pmap in (first_map, second_map)
+                ],
             )
-            second_pairs = self._prefix_minimal(
-                list(zip(second_map[person_handle][0], second_map[person_handle][1]))
-            )
-            for rel1, fam1 in first_pairs:
-                if capped:
-                    break
-                for rel2, fam2 in second_pairs:
-                    rank = len(rel1) + len(rel2)
-                    dominated = False
-                    for cut in range(len(rel1) + 1):
-                        for rec in exact_rel1.get(rel1[:cut], ()):
-                            if not rec["alive"]:
-                                continue
-                            other_rel2 = rec["rel2"]
-                            if (
-                                rec["rank"] <= rank
-                                and other_rel2 == rel2[: len(other_rel2)]
-                            ):
-                                dominated = True
-                                break
-                        if dominated:
-                            break
-                    if dominated:
+            for person_handle in second_map
+            if person_handle in first_map
+        ]
+        for rel1, fam1, rel2, fam2, person_handle in self._common_candidates(
+            sides, cap
+        ):
+            rank = len(rel1) + len(rel2)
+            dominated = False
+            for cut in range(len(rel1) + 1):
+                for rec in exact_rel1.get(rel1[:cut], ()):
+                    if not rec["alive"]:
                         continue
-                    rec = {
-                        "alive": True,
-                        "rank": rank,
-                        "handle": person_handle,
-                        "rel1": rel1,
-                        "fam1": fam1,
-                        "rel2": rel2,
-                        "fam2": fam2,
-                        "seq": seq,
-                    }
-                    seq += 1
-                    exact_rel1.setdefault(rel1, []).append(rec)
-                    for cut in range(len(rel1) + 1):
-                        prefix_to_rel1.setdefault(rel1[:cut], set()).add(rel1)
-                    # this new (nearer-or-equal) record may make an
-                    # already-kept, farther record redundant -- mirrors
-                    # the original's own "superset deletion" step
-                    for other_exact in prefix_to_rel1.get(rel1, ()):
-                        for other in exact_rel1.get(other_exact, ()):
-                            if (
-                                other is not rec
-                                and other["alive"]
-                                and other["rank"] >= rank
-                                and rel2 == other["rel2"][: len(rel2)]
-                            ):
-                                other["alive"] = False
-                                alive_count -= 1
-                    alive_count += 1
-                    if cap is not None and alive_count >= cap:
-                        capped = True
+                    other_rel2 = rec["rel2"]
+                    if rec["rank"] <= rank and other_rel2 == rel2[: len(other_rel2)]:
+                        dominated = True
                         break
+                if dominated:
+                    break
+            if dominated:
+                continue
+            rec = {
+                "alive": True,
+                "rank": rank,
+                "handle": person_handle,
+                "rel1": rel1,
+                "fam1": fam1,
+                "rel2": rel2,
+                "fam2": fam2,
+                "seq": seq,
+            }
+            seq += 1
+            exact_rel1.setdefault(rel1, []).append(rec)
+            for cut in range(len(rel1) + 1):
+                prefix_to_rel1.setdefault(rel1[:cut], set()).add(rel1)
+            # this new (nearer-or-equal) record may make an
+            # already-kept, farther record redundant -- mirrors
+            # the original's own "superset deletion" step
+            for other_exact in prefix_to_rel1.get(rel1, ()):
+                for other in exact_rel1.get(other_exact, ()):
+                    if (
+                        other is not rec
+                        and other["alive"]
+                        and other["rank"] >= rank
+                        and rel2 == other["rel2"][: len(rel2)]
+                    ):
+                        other["alive"] = False
+                        alive_count -= 1
+            alive_count += 1
+            if cap is not None and alive_count >= cap:
+                break
         all_records = [r for recs in exact_rel1.values() for r in recs if r["alive"]]
-        # rank ascending, ties broken by generation order -- reconstructs
-        # the exact ordering the original's insertion-sort produced
+        # rank ascending, ties broken by `_common_candidates` yield order
+        # -- common-ancestor order, then each side's original path order
         all_records.sort(key=lambda r: (r["rank"], r["seq"]))
         common = [
             (r["rank"], r["handle"], r["rel1"], r["fam1"], r["rel2"], r["fam2"])
