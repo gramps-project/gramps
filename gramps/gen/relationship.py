@@ -1649,53 +1649,61 @@ class RelationshipCalculator:
         This does the same check via a per-handle prefix index bounded
         by generation depth instead.
 
-        Only checks the new entry against previously-seen ones for this
-        handle, not all pairs -- sufficient, because the original
-        `return`s the instant a loop is found, so by the time a new
-        entry is being added, no loop can exist among the entries
-        already there (else this call would have already stopped).
+        The index must cover *every* path recorded for `handle`, not just
+        the ones appended through here: the first path to a handle (and
+        any injected sibling path) is written to `pmap` directly, and
+        missing it lets a path that loops back through `handle` go
+        undetected and keep recursing. So any entries not yet indexed
+        are picked up from `pmap[handle][0]` on each call.
+
+        Once a loop has been seen for `handle` it stays seen, matching
+        the original: its full re-scan finds the same looping pair on
+        every later append, so it stops recursing above `handle` on
+        every later visit too.
+
+        A loop also marks every ancestor-closure still being assembled
+        (`memo["open"]`) as cut short, so none of them gets cached.
 
         Returns True if a loop was detected (caller should stop, as the
         original does via its own `return`).
         """
-        idx = memo["pmap_loop_index"].setdefault(handle, {"exact": set(), "prefix": {}})
+        idx = memo["pmap_loop_index"].setdefault(
+            handle, {"exact": set(), "prefix": {}, "count": 0, "relation": None}
+        )
         exact, prefix = idx["exact"], idx["prefix"]
-        loop = False
-        shorter_existing = None
-        for cut in range(len(rel_str)):
-            if rel_str[:cut] in exact:
-                loop = True
-                shorter_existing = rel_str[:cut]
-                break
-        longer_existing = None
-        if not loop:
-            for other in prefix.get(rel_str, ()):
-                if len(other) > len(rel_str):
-                    loop = True
-                    longer_existing = other
-                    break
         pmap[handle][0] += [rel_str]
         pmap[handle][1] += [rel_fam]
-        if loop:
-            self.__loop_detected = True
-            relation = (
-                rel_str[len(shorter_existing) :]
-                if shorter_existing is not None
-                else longer_existing[len(rel_str) :]
-            )
-            self.__msg += [
-                _("Relationship loop detected:")
-                + " "
-                + _("Person %(person)s connects to himself via %(relation)s")
-                % {
-                    "person": person.get_primary_name().get_name(),
-                    "relation": relation,
-                }
-            ]
-        exact.add(rel_str)
-        for cut in range(len(rel_str) + 1):
-            prefix.setdefault(rel_str[:cut], set()).add(rel_str)
-        return loop
+        paths = pmap[handle][0]
+        for path in paths[idx["count"] :]:
+            if idx["relation"] is None:
+                for cut in range(len(path)):
+                    if path[:cut] in exact:
+                        idx["relation"] = path[cut:]
+                        break
+                else:
+                    for other in prefix.get(path, ()):
+                        if len(other) > len(path):
+                            idx["relation"] = other[len(path) :]
+                            break
+            exact.add(path)
+            for cut in range(len(path) + 1):
+                prefix.setdefault(path[:cut], set()).add(path)
+        idx["count"] = len(paths)
+        if idx["relation"] is None:
+            return False
+        for rec in memo["open"]:
+            rec["loop_cut"] = True
+        self.__loop_detected = True
+        self.__msg += [
+            _("Relationship loop detected:")
+            + " "
+            + _("Person %(person)s connects to himself via %(relation)s")
+            % {
+                "person": person.get_primary_name().get_name(),
+                "relation": idx["relation"],
+            }
+        ]
+        return True
 
     def __apply_filter(
         self,
@@ -1819,8 +1827,23 @@ class RelationshipCalculator:
                 # which would re-expand descendants that are already
                 # separately present as their own entries in this same
                 # closure.
+                #
+                # A loop detected at one entry stops the walk above that
+                # person only, exactly as a fresh visit would `return`
+                # there; the rest of the closure is still applied. The
+                # entries are in visit order and a (str, fam) prefix pins
+                # down a unique route, so the looping person's own
+                # ancestors are the entries extending its suffix.
+                loop_cuts = []
                 for kind, suffix_str, suffix_fam, target in cached["entries"]:
                     if len(suffix_str) > budget_needed:
+                        continue
+                    if any(
+                        len(suffix_str) > len(cut_str)
+                        and suffix_str.startswith(cut_str)
+                        and suffix_fam[: len(cut_fam)] == cut_fam
+                        for cut_str, cut_fam in loop_cuts
+                    ):
                         continue
                     full_str = rel_str + suffix_str
                     full_fam = rel_fam + suffix_fam
@@ -1835,7 +1858,8 @@ class RelationshipCalculator:
                             if self._pmap_append_checked(
                                 memo, pmap, target_handle, full_str, full_fam, target
                             ):
-                                return
+                                loop_cuts.append((suffix_str, suffix_fam))
+                                continue
                         elif store:
                             pmap[target_handle] = [[full_str], [full_fam]]
                         for rec in memo["open"]:
@@ -1874,6 +1898,7 @@ class RelationshipCalculator:
                 "base_str": len(rel_str),
                 "base_fam": len(rel_fam),
                 "deltas": [],
+                "loop_cut": False,
             }
             memo["open"].append(recorder)
 
@@ -1979,6 +2004,9 @@ class RelationshipCalculator:
         else:
             if recorder is not None:
                 memo["open"].pop()
+            # a closure cut short by a loop depends on the route that
+            # reached it, so it must not be replayed for a different one
+            if recorder is not None and not recorder["loop_cut"]:
                 memo["closure"][person.handle] = {
                     "budget": budget_needed,
                     "entries": recorder["deltas"],

@@ -747,6 +747,38 @@ class RelationshipLoopDetectionTest(unittest.TestCase):
         finally:
             db.close()
 
+    def test_loop_through_start_person_is_not_reported(self):
+        """A path that climbs back to the starting person through a loop
+        and then on to a real ancestor must be pruned, as the original
+        does. The start person's own path is stored without going
+        through the loop index, so it has to be picked up from `pmap`."""
+        db = _make_db()
+        try:
+            person = _add_person(db, Person.MALE)
+            father = _add_person(db, Person.MALE)
+            grandfather = _add_person(db, Person.MALE)
+            mother = _add_person(db, Person.FEMALE)
+            son = _add_person(db, Person.MALE)
+            wife = _add_person(db, Person.FEMALE)
+            _add_child(db, _add_family(db, grandfather, None), father)
+            _add_child(db, _add_family(db, father, mother), person)
+            _add_child(db, _add_family(db, son, None), mother)
+            # closes the loop: son is also person's maternal grandfather
+            _add_child(db, _add_family(db, person, wife), son)
+
+            calc = get_relationship_calculator(reinit=True)
+            p1 = db.get_person_from_handle(person.handle)
+            p2 = db.get_person_from_handle(grandfather.handle)
+            rels, _handles = calc.get_all_relationships(db, p1, p2)
+            self.assertEqual(rels, ["grandfather"])
+            dist, _msg = calc.get_relationship_distance_new(
+                db, p1, p2, all_families=True, all_dist=True, only_birth=False
+            )
+            self.assertEqual([(d[2], d[4]) for d in dist], [("ff", "")])
+            self.assertTrue(calc._RelationshipCalculator__loop_detected)
+        finally:
+            db.close()
+
 
 if __name__ == "__main__":
     unittest.main()
