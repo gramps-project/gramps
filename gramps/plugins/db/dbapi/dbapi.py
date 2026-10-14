@@ -31,6 +31,7 @@ Database API interface
 import logging
 import time
 import copy
+from typing import Any
 
 # ------------------------------------------------------------------------
 #
@@ -107,6 +108,8 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
+
+    dbapi: Any
 
     def _initialize(self, directory, username, password):
         raise NotImplementedError
@@ -375,7 +378,14 @@ class DBAPI(DbGeneric):
         )
 
         action = {TXNADD: "-add", TXNUPD: "-update", TXNDEL: "-delete", None: "-delete"}
-        self.dbapi.commit()
+        try:
+            self._set_all_metadata(use_txn=False)
+            self.dbapi.commit()
+        except BaseException:
+            self.transaction_abort(transaction)
+            raise
+        self._remember_metadata()
+        self.transaction = None
         if not transaction.batch:
             # Now, emit signals:
             # do deletes and adds first
@@ -415,6 +425,8 @@ class DBAPI(DbGeneric):
         Executed after a batch operation abort.
         """
         self.dbapi.rollback()
+        self._restore_metadata()
+        self.surname_list = self.get_surname_list()
         self.transaction = None
         transaction.clear()
         transaction.first = None
@@ -1151,18 +1163,27 @@ class DBAPI(DbGeneric):
             gstats[row[0]] = (row[1], row[2], row[3])
         return gstats
 
-    def save_gender_stats(self, gstats):
-        self._txn_begin()
-        self.dbapi.execute("DELETE FROM gender_stats")
-        for key in gstats.stats:
-            female, male, unknown = gstats.stats[key]
-            self.dbapi.execute(
-                "INSERT INTO gender_stats "
-                "(given_name, female, male, unknown) "
-                "VALUES (?, ?, ?, ?)",
-                [key, female, male, unknown],
-            )
-        self._txn_commit()
+    def save_gender_stats(self, gstats: GenderStats, use_txn: bool = True) -> None:
+        """Save statistics atomically, optionally joining an existing transaction."""
+        if use_txn:
+            self._txn_begin()
+        committed = False
+        try:
+            self.dbapi.execute("DELETE FROM gender_stats")
+            for key in gstats.stats:
+                female, male, unknown = gstats.stats[key]
+                self.dbapi.execute(
+                    "INSERT INTO gender_stats "
+                    "(given_name, female, male, unknown) "
+                    "VALUES (?, ?, ?, ?)",
+                    [key, female, male, unknown],
+                )
+            if use_txn:
+                self._txn_commit()
+            committed = True
+        finally:
+            if use_txn and not committed:
+                self._txn_abort()
 
     def undo_reference(self, data, handle):
         """

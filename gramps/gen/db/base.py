@@ -1613,6 +1613,10 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def set_name_formats(self, formats: list) -> None:
+        """Set the custom name formats remembered by the database."""
+        self.name_formats = formats
+
     def set_researcher(self, owner):
         """
         Set the information about the owner of the database.

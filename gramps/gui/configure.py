@@ -1417,7 +1417,7 @@ class GrampsPreferences(ConfigureDialog):
             self.selected_fmt = (num, translation, pattern, exmpl)
             _nd.edit_name_format(num, translation, pattern)
             name_format = _nd.get_name_format(only_custom=True, only_active=False)
-            self.dbstate.db.name_formats = name_format
+            self.dbstate.db.set_name_formats(name_format)
 
     def __format_change(self, obj):
         try:
@@ -1567,8 +1567,8 @@ class GrampsPreferences(ConfigureDialog):
 
         self.fmt_model.remove(self.iter)
         _nd.set_format_inactive(num)
-        self.dbstate.db.name_formats = _nd.get_name_format(
-            only_custom=True, only_active=False
+        self.dbstate.db.set_name_formats(
+            _nd.get_name_format(only_custom=True, only_active=False)
         )
 
     def cb_grampletbar_close(self, obj):

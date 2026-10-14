@@ -54,6 +54,7 @@ log = logging.getLogger(".RebuildGenderStat")
 from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog
 from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.db import DbTxn
 from gramps.gen.lib import Name
 from gramps.gen.lib.json_utils import data_to_object
 
@@ -106,18 +107,19 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
         """
         Function to rebuild the gender stats
         """
-        self.db.genderStats.clear_stats()
-        with self.db.get_person_cursor() as cursor:
-            # loop over database and store the sort field, and the handle, and
-            # allow for a third iter
-            for key, data in cursor:
-                rawprimname = data["primary_name"]
-                rawaltnames = data["alternate_names"]
-                primary_name = data_to_object(rawprimname).get_first_name()
-                alternate_names = [
-                    data_to_object(name).get_first_name() for name in rawaltnames
-                ]
-                self.db.genderStats.count_name(primary_name, data["gender"])
+        with DbTxn(_("Rebuild gender statistics"), self.db, batch=True):
+            self.db.genderStats.clear_stats()
+            with self.db.get_person_cursor() as cursor:
+                # loop over database and store the sort field, and the handle, and
+                # allow for a third iter
+                for key, data in cursor:
+                    rawprimname = data["primary_name"]
+                    rawaltnames = data["alternate_names"]
+                    primary_name = data_to_object(rawprimname).get_first_name()
+                    alternate_names = [
+                        data_to_object(name).get_first_name() for name in rawaltnames
+                    ]
+                    self.db.genderStats.count_name(primary_name, data["gender"])
 
 
 # ------------------------------------------------------------------------

@@ -23,6 +23,8 @@
 DbBookmarks Class
 """
 
+from collections.abc import Callable
+
 from ..utils.callback import Callback
 
 
@@ -38,9 +40,19 @@ class DbBookmarks(Callback):
 
     __signals__ = {"bookmark-list-changed": None}
 
-    def __init__(self, default=None):
+    def __init__(
+        self, default: list | None = None, on_change: Callable[[], None] | None = None
+    ) -> None:
+        """Create bookmarks with an optional persistence callback."""
         super().__init__()
         self.bookmarks = default or []
+        self._on_change = on_change
+
+    def _changed(self) -> None:
+        """Persist the edit before notifying listeners, even with signals disabled."""
+        if self._on_change is not None:
+            self._on_change()
+        self.emit("bookmark-list-changed")
 
     def load(self, new_list):
         """
@@ -53,7 +65,7 @@ class DbBookmarks(Callback):
         Set the bookmark list.
         """
         self.bookmarks = list(new_list)
-        self.emit("bookmark-list-changed")
+        self._changed()
 
     def get(self):
         """
@@ -66,28 +78,28 @@ class DbBookmarks(Callback):
         Append an item to the end of the list.
         """
         self.bookmarks.append(item)
-        self.emit("bookmark-list-changed")
+        self._changed()
 
     def append_list(self, blist):
         """
         Append a list of items to the end of the list.
         """
         self.bookmarks += blist
-        self.emit("bookmark-list-changed")
+        self._changed()
 
     def remove(self, item):
         """
         Remove an item from the list.
         """
         self.bookmarks.remove(item)
-        self.emit("bookmark-list-changed")
+        self._changed()
 
     def pop(self, index):
         """
         Pop an item from the list.
         """
         item = self.bookmarks.pop(index)
-        self.emit("bookmark-list-changed")
+        self._changed()
         return item
 
     def insert(self, pos, item):
@@ -95,7 +107,7 @@ class DbBookmarks(Callback):
         Insert a new item into the list.
         """
         self.bookmarks.insert(pos, item)
-        self.emit("bookmark-list-changed")
+        self._changed()
 
     def close(self):
         """
