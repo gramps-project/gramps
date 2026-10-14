@@ -1,0 +1,42 @@
+Mismatch on file: imp_sample.ged
+Note: N0015  handle=0000004800000048
+  Diff on: Note, text, string
+    <class 'str'>164: Records not imported into INDI (individual) Gramps ID I0018:
+
+Tag recognized but not supported: 'first generaton' on line         Line   247: 2 TYPE first generaton
+
+    <class 'str'>164: Records not imported into INDI (individual) Gramps ID I0018:
+
+Tag recognized but not supported                                    Line   247: 2 TYPE first generaton
+
+Note: N0022  handle=000000d0000000d0
+  Diff on: Note, text, string
+    <class 'str'>144: Records not imported into FAM (family) Gramps ID F0010:
+
+Tag recognized but not supported: '' on line                        Line   865: 2 _STAT 
+
+    <class 'str'>144: Records not imported into FAM (family) Gramps ID F0010:
+
+Tag recognized but not supported                                    Line   865: 2 _STAT 
+
+Note: N0025  handle=000000e5000000e5
+  Diff on: Note, text, string
+    <class 'str'>182: Records not imported into FAM (family) Gramps ID F0008:
+
+Tag recognized but not supported: '123 Main st, Grantville, Virgi   Line  1007: 1 ADDR 123 Main st, Grantville, Virginia, USA
+
+    <class 'str'>182: Records not imported into FAM (family) Gramps ID F0008:
+
+Tag recognized but not supported                                    Line  1007: 1 ADDR 123 Main st, Grantville, Virginia, USA
+
+Note: N0031  handle=000000ef000000ef
+  Diff on: Note, text, string
+    <class 'str'>251: Records not imported into SOUR (source) Gramps ID S0003:
+
+Tag recognized but not supported: '' on line                        Line  1047: 1 DATA 
+Skipped subordinate line                                            Line  1048: 2 AGNC NYC Public Library
+
+    <class 'str'>251: Records not imported into SOUR (source) Gramps ID S0003:
+
+Tag recognized but not supported                                    Line  1047: 1 DATA 
+Skipped subordinate line                                            Line  1048: 2 AGNC NYC Public Library

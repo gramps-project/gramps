@@ -81,6 +81,8 @@ class BackRefList(EmbeddedList):
             "place",
             "repository",
             "note",
+            "dnatest",
+            "dnamatch",
         ]:
             self.db_connect.append(
                 self.dbstate.db.connect("%s-delete" % item, self.model.delete_row)

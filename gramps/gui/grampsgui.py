@@ -158,6 +158,16 @@ UIDEFAULT = (
           <attribute name="label" translatable="yes">Note</attribute>
         </item>
       </section>
+      <section>
+        <item>
+          <attribute name="action">win.DNATestAdd</attribute>
+          <attribute name="label" translatable="yes">DNA Test</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.DNAMatchAdd</attribute>
+          <attribute name="label" translatable="yes">DNA Match</attribute>
+        </item>
+      </section>
     </submenu>
     <submenu id='m3'>
       <attribute name="label" translatable="yes">_Edit</attribute>
