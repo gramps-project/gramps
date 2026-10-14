@@ -137,7 +137,7 @@ XPStyle on
 ;--------- Reserve Files ------------------------------------------------------
 !insertmacro MUI_RESERVEFILE_LANGDLL
 ;ReserveFile "${NSISDIR}\Plugins\x86-ansi\*.dll"
-ReserveFile "${NSISDIR}\Plugins\unicode\*.dll"
+ReserveFile "${NSISDIR}\Plugins\amd64-unicode\*.dll"
 
 ShowInstDetails show
 
