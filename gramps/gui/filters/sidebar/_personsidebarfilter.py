@@ -125,6 +125,9 @@ class PersonSidebarFilter(SidebarFilter):
 
         SidebarFilter.__init__(self, dbstate, uistate, "Person")
 
+    def _register_type_filters(self):
+        self.add_type_filter(self.event_menu, "get_event_types")
+
     def create_widget(self):
         cell = Gtk.CellRendererText()
         cell.set_property("width", self._FILTER_WIDTH)

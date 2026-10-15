@@ -98,6 +98,9 @@ class PlaceSidebarFilter(SidebarFilter):
 
         SidebarFilter.__init__(self, dbstate, uistate, "Place")
 
+    def _register_type_filters(self):
+        self.add_type_filter(self.place_menu, "get_place_types")
+
     def create_widget(self):
         cell = Gtk.CellRendererText()
         cell.set_property("width", self._FILTER_WIDTH)
