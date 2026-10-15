@@ -167,7 +167,13 @@ class JSONSerializer:
     @staticmethod
     def object_to_metadata(value):
         type_name = type(value).__name__
-        if type_name in ("set", "tuple"):
+        if type_name == "set":
+            # Sets are unordered, so list(value) yields a hash-dependent
+            # order that varies between processes (string hashing is
+            # randomised). Sort first so the on-disk metadata is stable
+            # across saves and unmodified databases are not rewritten.
+            value = sorted(value)
+        elif type_name == "tuple":
             value = list(value)
         elif type_name == "Researcher":
             value = object_to_dict(value)
