@@ -1123,7 +1123,7 @@ class GrampsParser(UpdateCallback):
 
             if len(self.name_formats) > 0:
                 # add new name formats to the existing table
-                self.db.name_formats += self.name_formats
+                self.db.set_name_formats(self.db.name_formats + self.name_formats)
                 # Register new formats
                 name_displayer.set_name_format(self.db.name_formats)
 

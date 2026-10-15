@@ -37,6 +37,7 @@ import pickle
 import random
 import re
 import time
+from copy import deepcopy
 from pathlib import Path
 from typing import Any, Generator, Type
 
@@ -123,7 +124,7 @@ from . import (
     DbWriteBase,
 )
 from .bookmarks import DbBookmarks
-from .exceptions import DbUpgradeRequiredError, DbVersionError
+from .exceptions import DbUpgradeRequiredError, DbVersionError, DbWriteFailure
 from .utils import clear_lock_file, write_lock_file
 
 _ = glocale.translation.gettext
@@ -648,17 +649,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.db_is_open = False
         self.name_formats = []
         # Bookmarks:
-        self.bookmarks = DbBookmarks()
-        self.family_bookmarks = DbBookmarks()
-        self.event_bookmarks = DbBookmarks()
-        self.place_bookmarks = DbBookmarks()
-        self.citation_bookmarks = DbBookmarks()
-        self.source_bookmarks = DbBookmarks()
-        self.repo_bookmarks = DbBookmarks()
-        self.media_bookmarks = DbBookmarks()
-        self.note_bookmarks = DbBookmarks()
-        self.dnatest_bookmarks = DbBookmarks()
-        self.dnamatch_bookmarks = DbBookmarks()
+        self.bookmarks = DbBookmarks(on_change=self._metadata_changed)
+        self.family_bookmarks = DbBookmarks(on_change=self._metadata_changed)
+        self.event_bookmarks = DbBookmarks(on_change=self._metadata_changed)
+        self.place_bookmarks = DbBookmarks(on_change=self._metadata_changed)
+        self.citation_bookmarks = DbBookmarks(on_change=self._metadata_changed)
+        self.source_bookmarks = DbBookmarks(on_change=self._metadata_changed)
+        self.repo_bookmarks = DbBookmarks(on_change=self._metadata_changed)
+        self.media_bookmarks = DbBookmarks(on_change=self._metadata_changed)
+        self.note_bookmarks = DbBookmarks(on_change=self._metadata_changed)
+        self.dnatest_bookmarks = DbBookmarks(on_change=self._metadata_changed)
+        self.dnamatch_bookmarks = DbBookmarks(on_change=self._metadata_changed)
         self.set_person_id_prefix("I%05d")
         self.set_media_id_prefix("O%05d")
         self.set_family_id_prefix("F%05d")
@@ -713,6 +714,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.has_changed = 0  # Also gives commits since startup
         self.surname_list = []
         self.genderStats = GenderStats()  # can pass in loaded stats as dict
+        self._saved_metadata: dict[str, Any] = {}
+        self._saved_gender_stats: dict[str, tuple[int, int, int]] = {}
         self.owner = Researcher()
         if directory:
             self.load(directory)
@@ -864,16 +867,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.tmap_index = self._get_metadata("tmap_index", 0)
         self.mmap_index = self._get_metadata("mmap_index", 0)
 
+        self._saved_metadata = self._metadata_snapshot(self._metadata_values())
+        self._saved_gender_stats = self.genderStats.stats.copy()
+
         if need_to_set_metadata:
             # for new db we always need blob metadata to allow prior Gramps versions
             # to make it to the downgrade version check
             # Note: downgrade check only works from v5.1.2 and later on sqlite
             self.set_serializer("blob")
-            self.has_changed = 1  # to make sure genderstats gets saved
-            self._set_all_metadata()
+            self._set_all_metadata(force=True)
             if self.use_json_data():
                 self.set_serializer("json")
-                self._set_all_metadata()
+                self._set_all_metadata(force=True)
             self.has_changed = 0  # number of commits
 
         self.db_is_open = True
@@ -890,6 +895,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             )
             if force_schema_upgrade:
                 self._gramps_upgrade(dbversion, directory, callback)
+                self._set_all_metadata()
+                self._remember_metadata()
             else:
                 self.close(update=False)
                 raise DbUpgradeRequiredError(dbversion, self.VERSION[0])
@@ -917,7 +924,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 # the database for gramps.cli.clidbman:
                 filename = os.path.join(self._directory, "meta_data.db")
                 Path(filename).touch()
-                self._set_all_metadata()
 
             self._close()
 
@@ -934,65 +940,127 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def is_open(self):
         return self.db_is_open
 
-    def _set_all_metadata(self):
-        """
-        sets all the metadata
-        """
-        # Save metadata
-        self._set_metadata("version", str(self.VERSION[0]))
-        self._set_metadata("name_formats", self.name_formats)
-        self._set_metadata("researcher", self.owner)
+    _METADATA_ATTRIBUTES = {
+        "name_formats": "name_formats",
+        "researcher": "owner",
+        "bookmarks": "bookmarks",
+        "family_bookmarks": "family_bookmarks",
+        "event_bookmarks": "event_bookmarks",
+        "place_bookmarks": "place_bookmarks",
+        "repo_bookmarks": "repo_bookmarks",
+        "source_bookmarks": "source_bookmarks",
+        "citation_bookmarks": "citation_bookmarks",
+        "media_bookmarks": "media_bookmarks",
+        "note_bookmarks": "note_bookmarks",
+        "dnatest_bookmarks": "dnatest_bookmarks",
+        "dnamatch_bookmarks": "dnamatch_bookmarks",
+        "event_names": "event_names",
+        "fattr_names": "family_attributes",
+        "pattr_names": "individual_attributes",
+        "sattr_names": "source_attributes",
+        "marker_names": "marker_names",
+        "child_refs": "child_ref_types",
+        "family_rels": "family_rel_types",
+        "event_roles": "event_role_names",
+        "name_types": "name_types",
+        "origin_types": "origin_types",
+        "repo_types": "repository_types",
+        "note_types": "note_types",
+        "sm_types": "source_media_types",
+        "url_types": "url_types",
+        "mattr_names": "media_attributes",
+        "eattr_names": "event_attributes",
+        "place_types": "place_types",
+        "dnatest_attr_names": "dnatest_attributes",
+        "dnamatch_attr_names": "dnamatch_attributes",
+        "cmap_index": "cmap_index",
+        "smap_index": "smap_index",
+        "emap_index": "emap_index",
+        "pmap_index": "pmap_index",
+        "fmap_index": "fmap_index",
+        "lmap_index": "lmap_index",
+        "omap_index": "omap_index",
+        "rmap_index": "rmap_index",
+        "nmap_index": "nmap_index",
+        "tmap_index": "tmap_index",
+        "mmap_index": "mmap_index",
+    }
 
-        # Bookmarks
-        self._set_metadata("bookmarks", self.bookmarks.get())
-        self._set_metadata("family_bookmarks", self.family_bookmarks.get())
-        self._set_metadata("event_bookmarks", self.event_bookmarks.get())
-        self._set_metadata("place_bookmarks", self.place_bookmarks.get())
-        self._set_metadata("repo_bookmarks", self.repo_bookmarks.get())
-        self._set_metadata("source_bookmarks", self.source_bookmarks.get())
-        self._set_metadata("citation_bookmarks", self.citation_bookmarks.get())
-        self._set_metadata("media_bookmarks", self.media_bookmarks.get())
-        self._set_metadata("note_bookmarks", self.note_bookmarks.get())
-        self._set_metadata("dnatest_bookmarks", self.dnatest_bookmarks.get())
-        self._set_metadata("dnamatch_bookmarks", self.dnamatch_bookmarks.get())
+    def _metadata_values(self) -> dict[str, Any]:
+        """Return the metadata maintained by this database instance."""
+        values: dict[str, Any] = {"version": str(self.VERSION[0])}
+        for key, attribute in self._METADATA_ATTRIBUTES.items():
+            value = getattr(self, attribute)
+            values[key] = value.get() if isinstance(value, DbBookmarks) else value
+        return values
 
-        # Custom type values, sets
-        self._set_metadata("event_names", self.event_names)
-        self._set_metadata("fattr_names", self.family_attributes)
-        self._set_metadata("pattr_names", self.individual_attributes)
-        self._set_metadata("sattr_names", self.source_attributes)
-        self._set_metadata("marker_names", self.marker_names)
-        self._set_metadata("child_refs", self.child_ref_types)
-        self._set_metadata("family_rels", self.family_rel_types)
-        self._set_metadata("event_roles", self.event_role_names)
-        self._set_metadata("name_types", self.name_types)
-        self._set_metadata("origin_types", self.origin_types)
-        self._set_metadata("repo_types", self.repository_types)
-        self._set_metadata("note_types", self.note_types)
-        self._set_metadata("sm_types", self.source_media_types)
-        self._set_metadata("url_types", self.url_types)
-        self._set_metadata("mattr_names", self.media_attributes)
-        self._set_metadata("eattr_names", self.event_attributes)
-        self._set_metadata("place_types", self.place_types)
-        self._set_metadata("dnatest_attr_names", self.dnatest_attributes)
-        self._set_metadata("dnamatch_attr_names", self.dnamatch_attributes)
+    def _remember_metadata(self) -> None:
+        """Remember only values that have successfully committed."""
+        self._saved_metadata = self._metadata_snapshot(self._metadata_values())
+        self._saved_gender_stats = self.genderStats.stats.copy()
 
-        # Save misc items:
-        if self.has_changed:
-            self.save_gender_stats(self.genderStats)
+    def _restore_metadata(self) -> None:
+        """Discard in-memory changes after an aborted or failed write."""
+        for key, attribute in self._METADATA_ATTRIBUTES.items():
+            value = deepcopy(self._saved_metadata[key])
+            current = getattr(self, attribute)
+            if isinstance(current, DbBookmarks):
+                current.load(value)
+            elif key == "researcher":
+                self.owner = Researcher().unserialize(value)
+            else:
+                setattr(self, attribute, value)
+        self.genderStats = GenderStats(self._saved_gender_stats.copy())
 
-        # Indexes:
-        self._set_metadata("cmap_index", self.cmap_index)
-        self._set_metadata("smap_index", self.smap_index)
-        self._set_metadata("emap_index", self.emap_index)
-        self._set_metadata("pmap_index", self.pmap_index)
-        self._set_metadata("fmap_index", self.fmap_index)
-        self._set_metadata("lmap_index", self.lmap_index)
-        self._set_metadata("omap_index", self.omap_index)
-        self._set_metadata("rmap_index", self.rmap_index)
-        self._set_metadata("nmap_index", self.nmap_index)
-        self._set_metadata("tmap_index", self.tmap_index)
-        self._set_metadata("mmap_index", self.mmap_index)
+    def _metadata_changed(self) -> None:
+        """Save standalone edits, or let the active transaction commit them."""
+        if not self.db_is_open:
+            return
+        if self.readonly:
+            self._restore_metadata()
+            raise DbWriteFailure(_("Cannot change metadata in a read-only database."))
+        if self.transaction is None:
+            try:
+                self._set_all_metadata()
+            except BaseException:
+                self._restore_metadata()
+                raise
+
+    @staticmethod
+    def _metadata_snapshot(metadata: dict[str, Any]) -> dict[str, Any]:
+        """Copy settings, serializing the researcher for value comparisons."""
+        values = metadata.copy()
+        values["researcher"] = values["researcher"].serialize()
+        return deepcopy(values)
+
+    def _set_all_metadata(self, force: bool = False, use_txn: bool = True) -> None:
+        """Save changed metadata and statistics, optionally in the caller's transaction."""
+        metadata = self._metadata_values()
+        saved = self._metadata_snapshot(metadata)
+        changed = {
+            key: value
+            for key, value in metadata.items()
+            if force or saved[key] != self._saved_metadata.get(key)
+        }
+        stats_changed = force or self.genderStats.stats != self._saved_gender_stats
+        if not changed and not stats_changed:
+            return
+        if use_txn:
+            self._txn_begin()
+        committed = False
+        try:
+            for key, value in changed.items():
+                self._set_metadata(key, value, use_txn=False)
+            if stats_changed:
+                self.save_gender_stats(self.genderStats, use_txn=False)
+            if use_txn:
+                self._txn_commit()
+            committed = True
+        finally:
+            if use_txn and not committed:
+                self._txn_abort()
+        if use_txn:
+            self._remember_metadata()
 
     def get_dbid(self):
         """
@@ -1312,6 +1380,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.pmap_index, gid = self._find_next_gramps_id(
             self.person_prefix, self.pmap_index, PERSON_KEY
         )
+        self._metadata_changed()
         return gid
 
     def find_next_place_gramps_id(self) -> PlaceGrampsID:
@@ -1322,6 +1391,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.lmap_index, gid = self._find_next_gramps_id(
             self.place_prefix, self.lmap_index, PLACE_KEY
         )
+        self._metadata_changed()
         return gid
 
     def find_next_event_gramps_id(self) -> EventGrampsID:
@@ -1332,6 +1402,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.emap_index, gid = self._find_next_gramps_id(
             self.event_prefix, self.emap_index, EVENT_KEY
         )
+        self._metadata_changed()
         return gid
 
     def find_next_media_gramps_id(self) -> MediaGrampsID:
@@ -1342,6 +1413,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.omap_index, gid = self._find_next_gramps_id(
             self.media_prefix, self.omap_index, MEDIA_KEY
         )
+        self._metadata_changed()
         return gid
 
     def find_next_citation_gramps_id(self) -> CitationGrampsID:
@@ -1352,6 +1424,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.cmap_index, gid = self._find_next_gramps_id(
             self.citation_prefix, self.cmap_index, CITATION_KEY
         )
+        self._metadata_changed()
         return gid
 
     def find_next_source_gramps_id(self) -> SourceGrampsID:
@@ -1362,6 +1435,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.smap_index, gid = self._find_next_gramps_id(
             self.source_prefix, self.smap_index, SOURCE_KEY
         )
+        self._metadata_changed()
         return gid
 
     def find_next_family_gramps_id(self) -> FamilyGrampsID:
@@ -1372,6 +1446,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.fmap_index, gid = self._find_next_gramps_id(
             self.family_prefix, self.fmap_index, FAMILY_KEY
         )
+        self._metadata_changed()
         return gid
 
     def find_next_repository_gramps_id(self) -> RepositoryGrampsID:
@@ -1382,6 +1457,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.rmap_index, gid = self._find_next_gramps_id(
             self.repository_prefix, self.rmap_index, REPOSITORY_KEY
         )
+        self._metadata_changed()
         return gid
 
     def find_next_note_gramps_id(self) -> NoteGrampsID:
@@ -1392,6 +1468,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.nmap_index, gid = self._find_next_gramps_id(
             self.note_prefix, self.nmap_index, NOTE_KEY
         )
+        self._metadata_changed()
         return gid
 
     def find_next_dnatest_gramps_id(self) -> DNATestGrampsID:
@@ -1402,6 +1479,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.tmap_index, gid = self._find_next_gramps_id(
             self.dnatest_prefix, self.tmap_index, DNATEST_KEY
         )
+        self._metadata_changed()
         return gid
 
     def find_next_dnamatch_gramps_id(self) -> DNAMatchGrampsID:
@@ -1412,6 +1490,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.mmap_index, gid = self._find_next_gramps_id(
             self.dnamatch_prefix, self.mmap_index, DNAMATCH_KEY
         )
+        self._metadata_changed()
         return gid
 
     ################################################################
@@ -2958,14 +3037,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
-    def save_gender_stats(self, gstats):
+    def save_gender_stats(self, gstats: GenderStats, use_txn: bool = True) -> None:
         raise NotImplementedError
 
-    def get_researcher(self):
-        return self.owner
+    def get_researcher(self) -> Researcher:
+        """Return a copy that can be edited before calling set_researcher."""
+        return Researcher(self.owner)
 
-    def set_researcher(self, owner):
-        self.owner.set_from(owner)
+    def set_researcher(self, owner: Researcher) -> None:
+        """Persist researcher details as part of this edit."""
+        self.owner = Researcher(owner)
+        self._metadata_changed()
+
+    def set_name_formats(self, formats: list) -> None:
+        """Persist custom name formats as part of this edit."""
+        self.name_formats = deepcopy(formats)
+        self._metadata_changed()
 
     def request_rebuild(self):
         self.emit("person-rebuild")

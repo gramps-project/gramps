@@ -394,7 +394,9 @@ class CheckIntegrity:
         # update the custom name name format table
         for number in deleted_name_formats:
             _nd.del_name_format(number)
-        self.db.name_formats = _nd.get_name_format(only_custom=True, only_active=False)
+        self.db.set_name_formats(
+            _nd.get_name_format(only_custom=True, only_active=False)
+        )
 
         if len(self.removed_name_format) == 0:
             logging.info("    OK: no invalid name formats found found")
