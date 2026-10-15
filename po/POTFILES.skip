@@ -604,6 +604,7 @@ gramps/plugins/importer/test/importvcard_test.py
 # plugins/lib directory
 #
 gramps/plugins/lib/__init__.py
+gramps/plugins/lib/libcairodocattr.py
 gramps/plugins/lib/libgrampsxml.py
 gramps/plugins/lib/libhtml.py
 gramps/plugins/lib/libmapservice.py
@@ -611,6 +612,11 @@ gramps/plugins/lib/libmixin.py
 gramps/plugins/lib/libodfbackend.py
 gramps/plugins/lib/libplaceimport.py
 gramps/plugins/lib/librecurse.py
+#
+# plugins/lib/test directory
+#
+gramps/plugins/lib/test/__init__.py
+gramps/plugins/lib/test/libcairodoc_test.py
 #
 # plugins/lib/maps directory
 #
