@@ -23,17 +23,10 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
-
-# -------------------------------------------------------------------------
-#
-# Gramps modules
-#
-# -------------------------------------------------------------------------
-from ....utils.db import for_each_ancestor
 from ._hascommonancestorwith import HasCommonAncestorWith
 from ._matchesfilter import MatchesFilter
+
+_ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
@@ -48,7 +41,8 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
     labels = [_("Filter name:")]
     name = _("People with a common ancestor with <filter> match")
     description = _(
-        "Matches people that have a common ancestor " "with anybody matched by a filter"
+        "Matches people that have a common ancestor "  # noqa: E501
+        "with anybody matched by a filter"
     )
     category = _("Ancestral filters")
 
@@ -61,28 +55,20 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         # For each(!) person we keep track of who their ancestors
         # are, in a set(). So we only have to compute a person's
         # ancestor list once.
-        # Start with filling the cache for root person (gramps_id in self.list[0])
+        # Filling the cache for root person (gramps_id in self.list[0])
         self.ancestor_cache = {}
         self.with_people = []
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        for person in db.iter_people():
-            if user:
-                user.step_progress()
-            if person and self.filt.apply_to_one(db, person):
-                # store all people in the filter so as to compare later
-                self.with_people.append(person.handle)
+
+        filt = self.filt.find_filter()
+        if filt:
+            for handle in filt.apply(db, user=user):
+                self.with_people.append(handle)
                 # fill list of ancestor of person if not present yet
-                if person.handle not in self.ancestor_cache:
+                if handle not in self.ancestor_cache:
+                    person = db.get_raw_person_data(handle)
                     self.add_ancs(db, person)
-        if user:
-            user.end_progress()
 
     def reset(self):
         self.filt.requestreset()

@@ -68,7 +68,11 @@ if TYPE_CHECKING:
         CONFIG: Any
         fs_Tree: Any
 
-        def _ensure_sources_cached(self, fsid: str) -> None: ...
+        def _ensure_sources_cached(
+            self,
+            fsid: str,
+            progress_callback: Any | None = None,
+        ) -> None: ...
 
         def _gather_sr_meta(self, fsid: str) -> dict[str, Any]: ...
 
@@ -150,8 +154,8 @@ class SourcesDialogMixin:
 
             fs_title = src_fs.citation_title or ""
             fs_text = src_fs.note_text or ""
-            fs_date = str(src_fs.date) if getattr(src_fs, "date", "") else ""
-            fs_url = src_fs.url or ""
+            fs_date = fs_import.normalize_source_date(src_fs.date)
+            fs_url = fs_import.normalize_source_url(src_fs.url)
 
             for c in by_sdid.get(sdid, []):
                 src_gr = fs_import.IntermediateSource()
@@ -159,14 +163,20 @@ class SourcesDialogMixin:
 
                 title = src_gr.citation_title or ""
                 note_text = (src_gr.note_text or "").strip()
-                gr_url = src_gr.url or ""
-                date = fs_utilities.gramps_date_to_formal(c.date)
+                gr_url = fs_import.normalize_source_url(src_gr.url)
+                date = fs_import.normalize_source_date(
+                    fs_utilities.gramps_date_to_formal(c.date)
+                )
 
-                if (
-                    fs_date == date
-                    and fs_title == title
-                    and fs_url == gr_url
-                    and (fs_text or "").strip() == note_text
+                if fs_import.source_values_match(
+                    date,
+                    title,
+                    gr_url,
+                    note_text,
+                    fs_date,
+                    fs_title,
+                    fs_url,
+                    fs_text,
                 ):
                     return "green"
 
@@ -715,7 +725,7 @@ class SourcesDialogMixin:
                 deserialize.SourceDescription._index[sdid] = sd_new
                 deps.fs_Tree.sourceDescriptions.add(sd_new)
 
-        fs_import.fetch_source_dates(deps.fs_Tree)
+        fs_import.fetch_source_dates(deps.fs_Tree, source_ids=sdids)
 
         out: List[Tuple[str, str, str, str, str, str, str]] = []
         for sdid in sdids:
@@ -728,8 +738,8 @@ class SourcesDialogMixin:
             isrc = fs_import.IntermediateSource()
             isrc.from_fs(sd_obj, None)
             title = isrc.citation_title or ""
-            date_s = str(isrc.date) if getattr(isrc, "date", "") else ""
-            url = isrc.url or ""
+            date_s = fs_import.normalize_source_date(isrc.date)
+            url = fs_import.normalize_source_url(isrc.url)
             m = meta.get(sdid, {})
             auto_kind = m.get("kind", "Mention")
             tags_disp = deps._pretty_tags(m.get("tags", []))

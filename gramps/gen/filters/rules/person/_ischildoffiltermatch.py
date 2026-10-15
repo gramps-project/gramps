@@ -23,25 +23,12 @@
 #
 # -------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
-
-# -------------------------------------------------------------------------
-#
-# Gramps modules
-#
-# -------------------------------------------------------------------------
 from .. import Rule
 from ._matchesfilter import MatchesFilter
-
-# -------------------------------------------------------------------------
-#
-# Typing modules
-#
-# -------------------------------------------------------------------------
-from typing import Set
 from ....lib import Person
 from ....db import Database
+
+_ = glocale.translation.gettext
 
 
 # -------------------------------------------------------------------------
@@ -60,22 +47,15 @@ class IsChildOfFilterMatch(Rule):
 
     def prepare(self, db: Database, user):
         self.db = db
-        self.selected_handles: Set[str] = set()
+        self.selected_handles: set[str] = set()
         self.filt = MatchesFilter(self.list)
         self.filt.requestprepare(db, user)
-        if user:
-            user.begin_progress(
-                self.category,
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        for person in db.iter_people():
-            if user:
-                user.step_progress()
-            if self.filt.apply_to_one(db, person):
+
+        filt = self.filt.find_filter()
+        if filt:
+            for handle in filt.apply(db, user=user):
+                person = db.get_raw_person_data(handle)
                 self.init_list(person)
-        if user:
-            user.end_progress()
 
     def reset(self):
         self.filt.requestreset()

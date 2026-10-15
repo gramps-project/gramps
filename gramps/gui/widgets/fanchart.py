@@ -1513,8 +1513,12 @@ class FanChartWidget(FanChartBaseWidget):
         elif self.form == FORM_QUADRANT:
             self.rootangle_rad = [math.radians(180), math.radians(270)]
         for i in range(self.generations):
-            # person, parents?, children?
-            self.data[i] = [(None,) * 4] * 2**i
+            # person, parents?, children?, userdata
+            # Each slot gets its own empty userdata list so that
+            # prepare_background_box can safely call userdata.append()
+            # even when _fill_data_structures short-circuits (e.g. on
+            # startup before rootpersonh is set). See bug 0013395.
+            self.data[i] = [(None, None, None, []) for _ in range(2**i)]
             self.angle[i] = []
             angle = self.rootangle_rad[0]
             portion = 1 / (2**i) * (self.rootangle_rad[1] - self.rootangle_rad[0])

@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2007-2009  Douglas S. Blank <doug.blank@gmail.com>
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2026       ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -241,7 +242,7 @@ class PedigreeGramplet(Gramplet):
         """
         self._boxes = [0] * (self.max_generations + 1)
         self._generations = {}
-        self.gui.buffer.set_text("")
+        self.clear_text()
         active_handle = self.get_active("Person")
         if active_handle is None:
             return

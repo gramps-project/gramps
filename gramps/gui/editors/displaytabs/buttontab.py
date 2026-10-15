@@ -70,7 +70,7 @@ class ButtonTab(GrampsTab):
         "add": _("Add"),
         "del": _("Remove"),
         "edit": _("Edit"),
-        "share": _("Share"),
+        "share": _("Select Existing"),
         "jump": _("Jump To"),
         "up": _("Move Up"),
         "down": _("Move Down"),

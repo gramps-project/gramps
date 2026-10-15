@@ -26,7 +26,7 @@ TOOLS_HELP = URL_MANUAL_PAGE + "_-_Navigation#Tools"
 GRAMPS registration file
 """
 
-MODULE_VERSION = "6.0"
+MODULE_VERSION = "6.1"
 
 # ------------------------------------------------------------------------
 #

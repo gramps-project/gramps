@@ -1168,7 +1168,9 @@ class RelationshipView(NavigationView):
                     selchild = widgets.IconButton(
                         self.sel_child_to_fam, family.handle, "gtk-index"
                     )
-                    selchild.set_tooltip_text(_("Add existing child to family"))
+                    selchild.set_tooltip_text(
+                        _("Select an existing person as a child of the family")
+                    )
                     hbox.pack_start(addchild, False, True, 0)
                     hbox.pack_start(selchild, False, True, 0)
 
@@ -1698,7 +1700,9 @@ class RelationshipView(NavigationView):
                 selchild = widgets.IconButton(
                     self.sel_child_to_fam, family.handle, "gtk-index"
                 )
-                selchild.set_tooltip_text(_("Add existing child to family"))
+                selchild.set_tooltip_text(
+                    _("Select an existing person as a child of the family")
+                )
                 hbox.pack_start(addchild, False, True, 0)
                 hbox.pack_start(selchild, False, True, 0)
                 self.child.attach(

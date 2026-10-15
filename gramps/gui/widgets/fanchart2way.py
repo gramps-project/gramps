@@ -224,8 +224,12 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         self.angle = {}
         self.data = {}
         for i in range(self.generations_asc):
-            # name, person, parents?, children?
-            self.data[i] = [(None,) * 4] * 2**i
+            # person, parents?, children?, userdata
+            # Each slot gets its own empty userdata list so that
+            # prepare_background_box can safely call userdata.append()
+            # even when _fill_data_structures short-circuits (e.g. on
+            # startup before rootpersonh is set). See bug 0013395.
+            self.data[i] = [(None, None, None, []) for _ in range(2**i)]
             self.angle[i] = []
             angle = self.rootangle_rad_asc[0]
             portion = (

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2026       ztlxltl
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -174,7 +175,9 @@ class Bookmarks(metaclass=ABCMeta):
                     func = self.callback(item)
                     action_id = "BM.%s" % item
                     actions.append((action_id, func))
-                    text.write(menuitem % (action_id, html.escape(label)))
+                    text.write(
+                        menuitem % (action_id, html.escape(label.replace("_", "__")))
+                    )
                     count += 1
                 except AttributeError:
                     pass
@@ -600,6 +603,44 @@ class NoteBookmarks(ListBookmarks):
 
     def get_bookmarks(self):
         return self.dbstate.db.get_note_bookmarks()
+
+    def get_config_name(self):
+        return __name__
+
+
+class DNATestBookmarks(ListBookmarks):
+    "Handle the bookmarks interface for DNA tests."
+
+    def __init__(self, dbstate, uistate, change_active):
+        ListBookmarks.__init__(self, dbstate, uistate, change_active)
+
+    def make_label(self, handle):
+        return navigation_label(self.dbstate.db, "DNATest", handle)
+
+    def connect_signals(self):
+        self.dbstate.db.connect("dnatest-delete", self.remove_handles)
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_dnatest_bookmarks()
+
+    def get_config_name(self):
+        return __name__
+
+
+class DNAMatchBookmarks(ListBookmarks):
+    "Handle the bookmarks interface for DNA matches."
+
+    def __init__(self, dbstate, uistate, change_active):
+        ListBookmarks.__init__(self, dbstate, uistate, change_active)
+
+    def make_label(self, handle):
+        return navigation_label(self.dbstate.db, "DNAMatch", handle)
+
+    def connect_signals(self):
+        self.dbstate.db.connect("dnamatch-delete", self.remove_handles)
+
+    def get_bookmarks(self):
+        return self.dbstate.db.get_dnamatch_bookmarks()
 
     def get_config_name(self):
         return __name__

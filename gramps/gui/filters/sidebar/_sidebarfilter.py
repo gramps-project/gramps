@@ -161,11 +161,33 @@ class SidebarFilter(DbGUIElement):
         if not self.filter_is_ok():
             return
         self.uistate.set_busy_cursor(True)
+        phase_msgs = []
         t1 = time.perf_counter()
-        self.clicked_func()
-        t2 = time.perf_counter()
-        msg = _("Elapsed time: %.2fs") % (t2 - t1)
-        self.msg_label.set_text(msg)
+
+        def render(searching=False):
+            lines = list(phase_msgs)
+            elapsed = time.perf_counter() - t1
+            lines.append(_("Elapsed time: %.2fs") % elapsed)
+            header = _("Searching...") + "\n" if searching else ""
+            self.msg_label.set_text(header + "\n".join(lines))
+
+        def live_print(msg):
+            phase_msgs.append(msg)
+            render(searching=True)
+            while Gtk.events_pending():
+                Gtk.main_iteration()
+
+        def live_step():
+            render(searching=True)
+
+        self.uistate.filter_print_func = live_print
+        self.uistate.filter_step_func = live_step
+        try:
+            self.clicked_func()
+        finally:
+            self.uistate.filter_print_func = None
+            self.uistate.filter_step_func = None
+        render(searching=False)
         self.msg_label.get_style_context().remove_class("error")
         self.uistate.set_busy_cursor(False)
 

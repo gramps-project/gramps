@@ -31,6 +31,7 @@ import sys
 import re
 import locale
 from time import localtime, strptime
+from unittest import SkipTest
 from unittest.mock import patch
 import zipfile
 import shutil
@@ -40,6 +41,9 @@ import shutil
 from gramps.gen.utils.config import config
 
 config.set("preferences.date-format", 0)
+from gramps.gen.constfunc import win
+from gramps.gen.const import GRAMPS_LOCALE as glocale, TEST_DIR, TEST_RANDOM
+from gramps.gen.constfunc import win
 from gramps.gen.db.utils import import_as_dict
 from gramps.gen.merge.diff import diff_dbs
 from gramps.gen.lib.json_utils import object_to_dict
@@ -86,22 +90,6 @@ def mock_localtime(*args):
     return strptime("25 Dec 1999", "%d %b %Y")
 
 
-# These tests assume a US date and time format.
-# If the locale is not available on the
-# build host, skip these tests.
-en_US_locale_available = False
-try:
-    locale.setlocale(locale.LC_ALL, "en_US.utf8")
-    en_US_locale_available = True
-except locale.Error:  # seems to fail on Windows system for some reason
-    try:
-        locale.setlocale(locale.LC_ALL, "English_United States")
-        en_US_locale_available = True
-    except locale.Error:
-        pass
-
-
-@unittest.skipUnless(en_US_locale_available, "en_US locale is not avaiable")
 class TestImports(unittest.TestCase):
     """The test class cases will be dynamically created at import time from
     files to be tested.  The following defs are used by the test cases
@@ -253,6 +241,10 @@ def db_load(zipfn, self):
             else:
                 dbid = "bsddb"
 
+            # skip if the bsddb backend is not available
+            if dbid == "bsddb" and win():
+                self.skipTest("bsddb not supported on Windows")
+
             db = make_database(dbid)
             db.disable_signals()
 
@@ -268,6 +260,9 @@ def db_load(zipfn, self):
                 continue
         return db
     # Get here is there is an exception the while loop does not handle
+    except SkipTest:
+        # SkipTest, so raise upwards for test framework to handle
+        raise
     except (
         DbVersionError,
         DbPythonError,
@@ -290,6 +285,16 @@ def make_tst_function(tstfile, file_name):
     @patch("gramps.gen.utils.unknown.localtime")
     @patch("gramps.gen.utils.unknown.time")
     @patch("time.localtime")
+    # Some tests assume a US date and time format.
+    @unittest.skipUnless(
+        (glocale.lang == "en_US")
+        or (win() and (glocale.lang == "en"))
+        or not (
+            tstfile in ["imp_MediaTest.ged", "imp_notetest_dfs.ged", "imp_sample.ged"]
+        ),
+        "skipping TestImports test case %s. en_US.utf-8 locale is required."
+        % (tstfile),
+    )
     def tst(self, mockptime, mocktime, mockltime, mockdtime):
         """This compares the import file with the expected result '.gramps'
         file.

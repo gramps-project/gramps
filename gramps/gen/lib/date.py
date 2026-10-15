@@ -1211,6 +1211,69 @@ class Date(BaseObject):
         """
         return self.sortval
 
+    def get_sort_key(self):
+        """
+        Return an integer sort key that incorporates modifier and quality.
+
+        Unlike :meth:`get_sort_value`, which returns the raw Julian Day Number
+        used for date arithmetic, this value is adjusted so that dates with
+        different modifiers and qualities group correctly in list view columns.
+
+        The return value is ``pos * 12 + modifier_score * 3 + quality_score``.
+
+        Modifier scores:
+
+          0 - MOD_BEFORE
+          1 - MOD_NONE, MOD_FROM, MOD_TO, MOD_SPAN, MOD_RANGE
+          2 - MOD_ABOUT
+          3 - MOD_AFTER
+
+        Quality scores:
+
+          0 - QUAL_NONE
+          1 - QUAL_ESTIMATED
+          2 - QUAL_CALCULATED
+
+        Modifier and quality scores combine independently, so "estimated about
+        1900" (modifier score 2, quality score 1) sorts between plain "about 1900"
+        (2, 0) and "calculated about 1900" (2, 2).
+
+        For year-only MOD_AFTER dates the position advances to the first JDN of
+        the following year so that "after 1900" sorts after every exact date
+        within 1900.  All other modifiers use sortval as the position.
+
+        Use this method when building sort strings for list views.
+        """
+        if self.sortval == 0:
+            return 0
+
+        if self.modifier == Date.MOD_BEFORE:
+            mod_score = 0
+        elif self.modifier == Date.MOD_ABOUT:
+            mod_score = 2
+        elif self.modifier == Date.MOD_AFTER:
+            mod_score = 3
+        else:
+            mod_score = 1
+
+        if self.quality == Date.QUAL_ESTIMATED:
+            qual_score = 1
+        elif self.quality == Date.QUAL_CALCULATED:
+            qual_score = 2
+        else:
+            qual_score = 0
+
+        pos = self.sortval
+        if self.modifier == Date.MOD_AFTER:
+            yr = self.dateval[Date._POS_YR]
+            mon = self.dateval[Date._POS_MON]
+            day = self.dateval[Date._POS_DAY]
+            if day == 0 and mon == 0 and yr != 0:
+                # year-only: advance past the end of the stated year
+                pos = Date._calendar_convert[self.calendar](yr + 1, 1, 1)
+
+        return pos * 12 + mod_score * 3 + qual_score
+
     def get_modifier(self):
         """
         Return an integer indicating the calendar selected.

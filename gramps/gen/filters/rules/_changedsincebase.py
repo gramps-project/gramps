@@ -93,7 +93,7 @@ class ChangedSinceBase(Rule):
             raise FilterError(
                 _("Wrong format of date-time"),
                 _(
-                    "Only date-times in the iso format of yyyy-mm-dd "
+                    "Only date-times in the ISO format of yyyy-mm-dd "
                     "hh:mm:ss, where the time part is optional, are "
                     "accepted. %s does not satisfy."
                 )

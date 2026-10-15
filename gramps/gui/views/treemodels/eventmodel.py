@@ -166,7 +166,7 @@ class EventModel(FlatBaseModel):
     def sort_date(self, data):
         if data.date:
             event = data_to_object(data)
-            retval = "%09d" % event.get_date_object().get_sort_value()
+            retval = "%09d" % event.get_date_object().get_sort_key()
             if not get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval
             else:

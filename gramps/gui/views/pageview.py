@@ -697,3 +697,9 @@ class DummyPage(PageView):
 
     def build_tree(self):
         pass
+
+    def navigation_type(self) -> None:
+        """
+        Return no navigation type for the fallback error page.
+        """
+        return None

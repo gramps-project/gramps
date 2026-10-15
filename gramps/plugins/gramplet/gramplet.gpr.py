@@ -25,9 +25,9 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
-MODULE_VERSION = "6.0"
-GRAMPLET_HELP = _("Gramps_6.0_Wiki_Manual_-_Gramplets#Gramplet_List")
-DEBUG_HELP = _("Gramps_6.0_Wiki_Manual_-_Tools#Debug")
+MODULE_VERSION = "6.1"
+GRAMPLET_HELP = _("Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List")
+DEBUG_HELP = _("Gramps_6.1_Wiki_Manual_-_Tools#Debug")
 
 # ------------------------------------------------------------------------
 #
@@ -518,10 +518,11 @@ try:
     from gi import Repository
 
     repository = Repository.get_default()
-    if repository.enumerate_versions("GExiv2"):
+    v_array = repository.enumerate_versions("GExiv2")
+    if v_array:
         import gi
 
-        gi.require_version("GExiv2", "0.10")
+        gi.require_version("GExiv2", v_array[-1])
         from gi.repository import GExiv2
 
         available = True
@@ -1355,6 +1356,38 @@ register(
     gramplet="NoteFilter",
     gramplet_title=_("Filter"),
     navtypes=["Note"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="DNA Test Filter",
+    name=_("DNA Test Filter"),
+    description=_("Gramplet providing a DNA test filter"),
+    version="1.0.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="filter.py",
+    height=200,
+    gramplet="DNATestFilter",
+    gramplet_title=_("Filter"),
+    navtypes=["DNATest"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="DNA Match Filter",
+    name=_("DNA Match Filter"),
+    description=_("Gramplet providing a DNA match filter"),
+    version="1.0.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="filter.py",
+    height=200,
+    gramplet="DNAMatchFilter",
+    gramplet_title=_("Filter"),
+    navtypes=["DNAMatch"],
     help_url=GRAMPLET_HELP,
 )
 

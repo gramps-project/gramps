@@ -171,8 +171,8 @@ class GeoGraphyView(OsmGps, NavigationView):
                         parent=uistate.window,
                     )
 
-        # if not config.is_set("geography.personal-map"):
-        #     config.set("geography.personal-map", "")
+        if not config.is_set("geography.personal-map"):
+            config.set("geography.personal-map", "")
 
         self.uistate = uistate
         self.uistate.connect("font-changed", self.font_changed)
@@ -1464,35 +1464,33 @@ class GeoGraphyView(OsmGps, NavigationView):
             "geography.use-keypad",
             extra_callback=self.update_shortcuts,
         )
-        # label = configdialog.add_text(
-        #     grid,
-        #     _(
-        #         "If you want to use a specific map provider,"
-        #         " You can set the following field to the"
-        #         " provider's url.\ni.e:\n"
-        #         "http://tile.stadiamaps.com/tiles/stamen_toner/#{z}/#{x}/#{y}{r}.png?api_key=YOUR-API-KEY\n"
-        #         "http://tile.stadiamaps.com/tiles/stamen_toner_lite/#{z}/#{x}/#{y}{r}.png?api_key=YOUR-API-KEY\n"
-        #         "http://tile.stadiamaps.com/tiles/stamen_terrain/#{z}/#{x}/#{y}{r}.png?api_key=YOUR-API-KEY\n"
-        #         "http://tile.stadiamaps.com/tiles/stamen_watercolor/#{z}/#{x}/#{y}{r}.jpg?api_key=YOUR-API-KEY\n"
-        #         "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
-        #     ),
-        #     6,
-        #     line_wrap=False,
-        # )
-        # # set the possibility to copy/paste the urls
-        # label.set_selectable(True)
-        # start = label.get_text().find("http")
-        # end = label.get_text().find("http", start + 1)
-        # label.select_region(start, end)
-        # url = configdialog.add_entry(
-        #     grid,
-        #     _("Personal map"),
-        #     7,
-        #     "geography.personal-map",
-        #     self.choosen_map,
-        # )
-        # if config.get("geography.personal-map") != "":
-        #     url.set_text(config.get("geography.personal-map"))
+        label = configdialog.add_text(
+            grid,
+            _(
+                "To use a custom tile provider, paste its tile URL below.\n"
+                "Use #Z, #X, #Y as placeholders for zoom, x and y.\ni.e:\n"
+                "https://api.maptiler.com/tiles/uk-osgb1888/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+                "https://api.maptiler.com/tiles/uk-osgb63k1885/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+                "https://api.maptiler.com/tiles/uk-osgb25k1937/#Z/#X/#Y.png?key=YOUR-API-KEY\n"
+                "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
+            ),
+            6,
+            line_wrap=False,
+        )
+        # set the possibility to copy/paste the urls
+        label.set_selectable(True)
+        start = label.get_text().find("http")
+        end = label.get_text().find("http", start + 1)
+        label.select_region(start, end)
+        lwidget = Gtk.Label(label=_("Personal map: "))
+        lwidget.set_halign(Gtk.Align.START)
+        url = Gtk.Entry()
+        url.set_hexpand(True)
+        url.set_text(config.get("geography.personal-map"))
+        url.connect("activate", self.choosen_map)
+        url.connect("focus-out-event", self.choosen_map)
+        grid.attach(lwidget, 1, 7, 1, 1)
+        grid.attach(url, 2, 7, 7, 1)
         return _("The map"), grid
 
     def choosen_map(self, *obj):
@@ -1500,18 +1498,23 @@ class GeoGraphyView(OsmGps, NavigationView):
         Save the provider map path in the config section.
         """
         map_source = obj[0].get_text()
-        # name = constants.TILES_PATH[constants.PERSONAL]
-        # config.set("geography.personal-map", map_source)
-        # self.clear_map(None, name)
+        name = constants.TILES_PATH[constants.PERSONAL]
         if map_source == "":
-            config.set("geography.map_service", constants.OPENSTREETMAP)
-            self.change_map(self.osm, config.get("geography.map_service"))
-            self.reload_tiles()
+            if config.get("geography.map_service") != constants.OPENSTREETMAP:
+                config.set("geography.map_service", constants.OPENSTREETMAP)
+                self.change_map(self.osm, constants.OPENSTREETMAP)
+                self.reload_tiles()
             return
-        # if map_source != config.get("geography.personal-map"):
-        #     config.set("geography.map_service", constants.PERSONAL)
-        #     self.change_new_map(name, map_source)
-        #     self.reload_tiles()
+        if (
+            map_source == config.get("geography.personal-map")
+            and self.current_map == constants.PERSONAL
+        ):
+            return
+        self.clear_map(None, name)
+        config.set("geography.personal-map", map_source)
+        config.set("geography.map_service", constants.PERSONAL)
+        self.change_new_map(name, map_source)
+        self.reload_tiles()
 
     def set_tilepath(self, *obj):
         """

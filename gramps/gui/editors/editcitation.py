@@ -122,25 +122,26 @@ class EditCitation(EditPrimary):
         """
         return Citation()
 
-    def get_menu_title(self):
+    def get_menu_title(self) -> str:
         """
         Construct the menu title, which may include the name of the object that
         contains a reference to this citation.
+
+        :returns: The window/menu title for this citation editor.
+        :rtype: str
         """
-        title = self.obj.get_page()
-        if title:
+        if self.obj.get_handle():
+            page = self.obj.get_page()
             if self.callertitle:
                 title = _("Citation") + (
-                    ": %(id)s - %(context)s"
-                    % {"id": title, "context": self.callertitle}
+                    ": %(id)s - %(context)s" % {"id": page, "context": self.callertitle}
                 )
             else:
-                title = _("Citation") + ": " + title
+                title = _("Citation") + (": " + page if page else "")
         else:
             if self.callertitle:
                 title = _("New Citation") + (
-                    ": %(id)s - %(context)s"
-                    % {"id": title, "context": self.callertitle}
+                    ": %(context)s" % {"context": self.callertitle}
                 )
             else:
                 title = _("New Citation")

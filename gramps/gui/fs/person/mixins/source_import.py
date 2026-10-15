@@ -59,13 +59,13 @@ def _get_sd_about_url(sd: Any) -> str:
         about = sd.get("about")
 
     if isinstance(about, str) and _is_fs_web_url(about):
-        return about.strip()
+        return fs_import.normalize_source_url(about)
 
     try:
         isrc = fs_import.IntermediateSource()
         isrc.from_fs(sd, None)
         if isrc.url and _is_fs_web_url(isrc.url):
-            return isrc.url.strip()
+            return fs_import.normalize_source_url(isrc.url)
     except Exception:
         pass
 

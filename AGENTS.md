@@ -43,7 +43,7 @@ black --check .
 
 ## Architecture
 
-Gramps is a GTK4 genealogy application. The codebase is split into four main packages:
+Gramps is a GTK3 genealogy application. The codebase is split into four main packages:
 
 ### `gramps/gen/` — Core (no GUI dependency)
 - `lib/` — Data model: `Person`, `Family`, `Event`, `Place`, `Source`, `Citation`, `Repository`, `Media`, `Note`, `Tag`. All inherit from `PrimaryObject` (has a database handle) or `SecondaryObject`.
@@ -51,7 +51,7 @@ Gramps is a GTK4 genealogy application. The codebase is split into four main pac
 - `plug/` — Plugin system core: `BasePluginManager` (singleton), `PluginRegister`, plugin metadata, and base `Plugin` class.
 - `filters/`, `datehandler/`, `display/` — Shared utilities with no GUI imports.
 
-### `gramps/gui/` — GTK4 frontend
+### `gramps/gui/` — GTK3 frontend
 - `editors/` — Modal dialogs for editing each primary object type.
 - `views/` — Navigation views (People, Families, Events, etc.) that populate the main window.
 - `grampsgui.py` — Main window and view-switching logic.

@@ -41,6 +41,6 @@ from .._hasnotetagbase import HasNoteTagBase
 class HasNoteTag(HasNoteTagBase):
     """Rule that checks for people with a note with a specified tag."""
 
-    name = _("People with a note with a tag of <type>")
+    name = _("People with a note with the <tag>")
     description = _("Matches people with a note with a specified tag")
     category = _("Note filters")

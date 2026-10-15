@@ -59,6 +59,8 @@ from ..lib import (
     Tag,
     ChildRef,
     ChildRefType,
+    DNATest,
+    DNAMatch,
 )
 from .id import create_id
 from ..const import IMAGE_DIR, ARABIC_COMMA
@@ -178,6 +180,10 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction, *
             % {"time": strftime("%x %X", localtime()), "count": make_unknown.count}
         )
         make_unknown.count += 1
+    elif isinstance(obj, DNATest):
+        obj.set_account_name(_("Unknown"))
+    elif isinstance(obj, DNAMatch):
+        pass
     else:
         raise TypeError("Object if of unsupported type")
 

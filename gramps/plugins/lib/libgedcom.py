@@ -893,6 +893,14 @@ SPAN1 = re.compile(r"\s*FROM\s+\s*(.*)\s+TO\s+@#D?([^@]+)@\s*(.*)$")
 SPAN2 = re.compile(r"\s*FROM\s+@#D?([^@]+)@\s*(.*)\s+TO\s+\s*(.*)$")
 NAME_RE = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
+# Bare numeric date in DATE values (e.g. "7/11/1959").  GEDCOM requires
+# 3-letter month names; numeric dates are out of spec and unavoidably
+# ambiguous between MM/DD/YYYY and DD/MM/YYYY.  The parser interprets
+# them as MM/DD/YYYY (US format, see GedcomDateParser.dhformat_changed),
+# which silently swaps day and month for exports from tools that emit
+# DD/MM/YYYY (notably ancestry.com — see Mantis 9298).  Used to flag
+# such dates with a warning so the user can audit them after import.
+BARE_NUMERIC_DATE = re.compile(r"^\s*\d{1,2}/\d{1,2}/\d{2,4}\s*$")
 
 
 # -----------------------------------------------------------------------
@@ -3557,6 +3565,54 @@ class GedcomParser(UpdateCallback):
             state.msg += message
         self.errors.append(message)
 
+    def __add_warn(self, problem, line=None, state=None):
+        """Add an advisory message to the import report that does NOT
+        count as an error.  Mirrors the +1/-1 pattern used at the end
+        of ``__finish_import`` for the unknown-references note.
+        Used for things like ambiguous-numeric-date warnings (Mantis 9298)
+        where the importer made a choice the user may want to audit
+        but no record was rejected or truncated."""
+        self.__add_msg(problem, line, state)
+        self.number_of_errors -= 1
+
+    def __warn_if_ambiguous_numeric_date(self, line, state):
+        """If ``line.data`` (a :class:`Date`) was parsed from a bare
+        numeric GEDCOM DATE (e.g. ``7/11/1959``) and the parser
+        committed to a day/month reading, log a warning so the user
+        can verify it.  Bare numerics are not GEDCOM-spec and are
+        unavoidably ambiguous; the importer defaults to MM/DD/YYYY,
+        which silently swaps day and month for sources that emit
+        DD/MM/YYYY (Mantis 9298)."""
+        date = line.data
+        if date.get_modifier() == Date.MOD_TEXTONLY:
+            # day > 12 or otherwise unparseable — already visibly
+            # flagged in the Events view as a textual (bold) date.
+            return
+        text = date.get_text()
+        if not text or not BARE_NUMERIC_DATE.match(text):
+            return
+        # ``line`` is intentionally not passed: ``__add_msg`` truncates
+        # the problem string to 66 columns when a line is supplied, which
+        # drops the actionable half of the warning.  The text below
+        # contains the original GEDCOM date string verbatim, so the user
+        # can still grep their .ged for it without the line number.
+        self.__add_warn(
+            _(
+                "Ambiguous numeric date '%(orig)s' interpreted as "
+                "MM/DD/YYYY (US format) = %(year)d-%(month)02d-%(day)02d. "
+                "If your source uses DD/MM/YYYY (e.g. ancestry.com "
+                "exports), verify and correct after import."
+            )
+            % {
+                "orig": text,
+                "year": date.get_year(),
+                "month": date.get_month(),
+                "day": date.get_day(),
+            },
+            None,
+            state,
+        )
+
     def __check_msgs(self, record_name, state, obj):
         if state.msg == "":
             return
@@ -6092,6 +6148,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.event.set_date_object(line.data)
+        self.__warn_if_ambiguous_numeric_date(line, state)
 
     def __event_place(self, line, state):
         """

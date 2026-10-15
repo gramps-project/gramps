@@ -49,8 +49,10 @@ jobs:
       run: |
         cd aio-pyinstaller
         ./build.sh ${{ inputs.cleanup }} ${{ inputs.build-number }}
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         name: GrampsAIO-PyInstaller
         path: D:\a\gramps\gramps\aio-pyinstaller\dist\grampsaio\src\GrampsAIO-*.exe
+        if-no-files-found: error
+        compression-level: 0 # no compression
         retention-days: 7

@@ -94,6 +94,30 @@ _ARROWS = [
 
 # ------------------------------------------------------------------------
 #
+# Helper functions
+#
+# ------------------------------------------------------------------------
+def _year_only_date(date: Date) -> Date:
+    """
+    Return a copy of *date* truncated to its year, preserving the
+    modifier (before/after/about) and quality (estimated/calculated).
+
+    Unlike ``Date(date.get_year())`` -- which builds a fresh date with
+    ``MOD_NONE``/``QUAL_NONE`` and drops the second stop of compound
+    dates -- this preserves the original modifier and quality, and
+    for ranges/spans preserves the second-stop year as well. That is
+    what bug 4658 asks for: "before 1923" must stay "before 1923",
+    not collapse to "1923".
+    """
+    if date.is_compound():
+        result = date.copy_ymd(date.get_year(), 0, 0, remove_stop_date=False)
+        result.set2_yr_mon_day(date.get_stop_year(), 0, 0)
+        return result
+    return date.copy_ymd(date.get_year(), 0, 0)
+
+
+# ------------------------------------------------------------------------
+#
 # RelGraphReport class
 #
 # ------------------------------------------------------------------------
@@ -827,9 +851,7 @@ class RelGraphReport(Report):
             if event_date:
                 if self.event_choice in [4, 5]:
                     if event_date.get_year_valid():
-                        return self.get_date(
-                            Date(event_date.get_year())
-                        )  # localized year
+                        return self.get_date(_year_only_date(event_date))
                     else:
                         return ""
                 elif self.event_choice in [1, 2, 3, 7]:

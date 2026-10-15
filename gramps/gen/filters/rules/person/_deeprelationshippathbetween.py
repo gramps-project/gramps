@@ -24,7 +24,6 @@
 # Standard Python modules
 #
 # -------------------------------------------------------------------------
-from __future__ import annotations
 from collections import deque
 
 # -------------------------------------------------------------------------
@@ -41,7 +40,6 @@ from ....const import GRAMPS_LOCALE as glocale
 # Typing modules
 #
 # -------------------------------------------------------------------------
-from typing import Union, List, Set, Dict
 from ....lib import Person
 from ....db import Database
 from ....types import FamilyHandle, PersonHandle
@@ -57,7 +55,7 @@ _ = glocale.translation.gettext
 def get_family_handle_people(
     db: Database, exclude_handle: str, family_handle: FamilyHandle
 ):
-    people: Set[str] = set()
+    people: set[str] = set()
 
     family = db.get_family_from_handle(family_handle)
 
@@ -77,12 +75,13 @@ def get_family_handle_people(
 
 def get_person_family_people(
     db: Database, person: Person, person_handle: PersonHandle
-) -> Set[str]:
-    people: Set[str] = set()
+) -> set[str]:
+    people: set[str] = set()
 
-    def add_family_handle_list(fam_list: List[FamilyHandle]):
+    def add_family_handle_list(fam_list: list[FamilyHandle]):
         for family_handle in fam_list:
-            people.update(get_family_handle_people(db, person_handle, family_handle))
+            ppl = get_family_handle_people(db, person_handle, family_handle)
+            people.update(ppl)
 
     add_family_handle_list(person.family_list)
     add_family_handle_list(person.parent_family_list)
@@ -91,8 +90,8 @@ def get_person_family_people(
 
 
 def find_deep_relations(
-    db: Database, user, person: Person | None, target_people: List[str]
-) -> Set[str]:
+    db: Database, user, person: Person | None, target_people: list[str]
+) -> set[str]:
     """This explores all possible paths between a person and one or more
     targets.  The algorithm processes paths in a breadth first wave, one
     remove at a time.  The first path that reaches a target causes the target
@@ -101,12 +100,12 @@ def find_deep_relations(
     The function stores to do data and intermediate results in an ordered dict,
     rather than using a recursive algorithm because some trees have been found
     that exceed the standard python recursive depth."""
-    return_paths: Set[str] = set()  # all people in paths between targets and person
+    return_paths: set[str] = set()  # people in paths between targets
     if person is None:
         return return_paths
     todo = deque([person.handle])  # list of work to do, handles, add to right,
     #                                pop from left
-    done: Dict[str, Union[str, None]] = {}  # The key records handles already examined,
+    done: dict[str, str | None] = {}  # handles already examined,
     # the value is a handle of the previous person in the path, or None at
     # head of path.  This forms a linked list of handles along the path.
     done[person.handle] = None
@@ -166,28 +165,20 @@ class DeepRelationshipPathBetween(Rule):
         self.filt = MatchesFilter([filter_name])
         self.filt.requestprepare(db, user)
 
+        filt = self.filt.find_filter()
+        target_people = filt.apply(db, user=user) if filt else []
+
         if user:
-            user.begin_progress(
-                _("Finding relationship paths"),
-                _("Retrieving all sub-filter matches"),
-                db.get_number_of_people(),
-            )
-        target_people = []
-        for person in db.iter_people():
-            if self.filt.apply_to_one(db, person):
-                target_people.append(person.handle)
-            if user:
-                user.step_progress()
-        if user:
-            user.end_progress()
             user.begin_progress(
                 _("Finding relationship paths"),
                 _("Evaluating people"),
-                db.get_number_of_people(),
+                len(target_people),
             )
-        self.selected_handles: Set[str] = find_deep_relations(
+
+        self.selected_handles: set[str] = find_deep_relations(
             db, user, root_person, target_people
         )
+
         if user:
             user.end_progress()
 

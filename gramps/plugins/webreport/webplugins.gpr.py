@@ -21,7 +21,7 @@ from gramps.gen.const import URL_MANUAL_PAGE, GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
-MODULE_VERSION = "6.0"
+MODULE_VERSION = "6.1"
 REPORTS_HELP = URL_MANUAL_PAGE + "_-_Reports#Web_Pages"
 
 # ------------------------------------------------------------------------

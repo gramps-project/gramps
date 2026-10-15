@@ -55,7 +55,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         "add": _("Create and add a new repository"),
         "del": _("Remove the existing repository"),
         "edit": _("Edit the selected repository"),
-        "share": _("Add an existing repository"),
+        "share": _("Select an existing repository"),
         "up": _("Move the selected repository upwards"),
         "down": _("Move the selected repository downwards"),
     }

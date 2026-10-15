@@ -76,7 +76,7 @@ UIDEFAULT = (
           <attribute name="label" translatable="yes">_Close</attribute>
         </item>
       </section>
-      <section groups='RO RW'>
+      <section groups='FS'>
         <item groups='RW'>
           <attribute name="action">win.Login</attribute>
           <attribute name="label" translatable="yes">_FamilySearch Sign in...</attribute>
@@ -156,6 +156,16 @@ UIDEFAULT = (
         <item>
           <attribute name="action">win.NoteAdd</attribute>
           <attribute name="label" translatable="yes">Note</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.DNATestAdd</attribute>
+          <attribute name="label" translatable="yes">DNA Test</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.DNAMatchAdd</attribute>
+          <attribute name="label" translatable="yes">DNA Match</attribute>
         </item>
       </section>
     </submenu>
