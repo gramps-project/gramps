@@ -35,6 +35,7 @@ Run explicitly with:
 # -------------------------------------------------------------------------
 import hashlib
 import importlib
+import importlib.metadata
 import io
 import json
 import os
@@ -53,9 +54,11 @@ import zipfile
 from ..pypi import (
     PyPIInstallError,
     _fetch_url,
+    _find_satisfying_version,
     _is_pure_wheel,
     _pick_wheel,
     _pypi_metadata,
+    _version_sort_key,
     install_package,
 )
 
@@ -81,6 +84,21 @@ _NODEP_PACKAGE = "iniconfig"
 # A small pure-Python package that is unlikely to be pre-installed in
 # the test environment, used to exercise the actual download path.
 _DOWNLOAD_PACKAGE = "tomli"
+
+
+def _force_extract(package: str, version: str, target: str) -> None:
+    """Download and extract a specific *version* of *package* into *target*.
+
+    Bypasses install_package()'s importability guard entirely by calling the
+    download/extract steps directly, so upgrade-test fixtures can be seeded
+    regardless of whether *package* happens to already be installed
+    elsewhere in the environment (e.g. as a build-tool dependency in CI).
+    """
+    meta = _pypi_metadata(package)
+    file_info = _pick_wheel(meta, package, version=version)
+    data = _fetch_url(file_info["url"])
+    with zipfile.ZipFile(io.BytesIO(data)) as whl:
+        whl.extractall(target)
 
 
 # -------------------------------------------------------------------------
@@ -266,6 +284,93 @@ class TestInstallPackageBehaviourE2E(unittest.TestCase):
         installed = install_package("os", self.target)
         self.assertEqual(installed, [])
         self.assertEqual(os.listdir(self.target), [])
+
+
+# -------------------------------------------------------------------------
+#
+# TestUpgradeE2E
+#
+# -------------------------------------------------------------------------
+class TestUpgradeE2E(unittest.TestCase):
+    """Tests of install_package(upgrade=True) against real PyPI."""
+
+    def setUp(self):
+        self.target = tempfile.mkdtemp()
+        self.canonical = _DOWNLOAD_PACKAGE.lower().replace("-", "_")
+        sys.path.insert(0, self.target)
+
+    def tearDown(self):
+        if self.target in sys.path:
+            sys.path.remove(self.target)
+        shutil.rmtree(self.target, ignore_errors=True)
+        # Drop the module we forced into sys.modules so later tests (in this
+        # file or others sharing the process) resolve it fresh.
+        sys.modules.pop(self.canonical, None)
+        importlib.invalidate_caches()
+
+    @_skip_offline
+    def test_upgrade_replaces_outdated_version(self):
+        """upgrade=True replaces an outdated mini-installed version."""
+        if self.canonical in sys.modules:
+            self.skipTest(f"{self.canonical!r} already imported in this process")
+
+        meta = _pypi_metadata(_DOWNLOAD_PACKAGE)
+        stable_versions = sorted(
+            (
+                ver
+                for ver, files in meta.get("releases", {}).items()
+                if files
+                and not all(f.get("yanked") for f in files)
+                and any(f.get("filename", "").endswith(".whl") for f in files)
+            ),
+            key=_version_sort_key,
+        )
+        self.assertGreaterEqual(
+            len(stable_versions), 2, "test package needs 2+ releases"
+        )
+        old_version = stable_versions[0]
+
+        # Seed target with the oldest release, bypassing install_package()'s
+        # importability guard so this works regardless of whether the real
+        # package is already installed elsewhere in the environment (e.g. as
+        # a build-tool dependency in CI).  self.target sits at sys.path[0],
+        # so this fixture shadows any such copy for the rest of the test.
+        _force_extract(_DOWNLOAD_PACKAGE, old_version, self.target)
+        importlib.invalidate_caches()
+        self.assertEqual(importlib.metadata.version(self.canonical), old_version)
+
+        # Upgrading should replace it with a newer release.
+        installed = install_package(_DOWNLOAD_PACKAGE, self.target, upgrade=True)
+        importlib.invalidate_caches()
+        self.assertEqual(installed, [_DOWNLOAD_PACKAGE])
+        new_version = importlib.metadata.version(self.canonical)
+        self.assertGreater(
+            _version_sort_key(new_version), _version_sort_key(old_version)
+        )
+
+        # The old dist-info must be gone, not merely shadowed.
+        dist_info_dirs = [
+            d for d in os.listdir(self.target) if d.endswith(".dist-info")
+        ]
+        self.assertTrue(all(old_version not in d for d in dist_info_dirs))
+
+    @_skip_offline
+    def test_upgrade_is_noop_when_already_latest(self):
+        """upgrade=True does not reinstall a package already at the newest version."""
+        if self.canonical in sys.modules:
+            self.skipTest(f"{self.canonical!r} already imported in this process")
+
+        latest = _find_satisfying_version(_DOWNLOAD_PACKAGE, "")
+        self.assertIsNotNone(latest, "could not determine latest version from PyPI")
+
+        # Seed target directly at the newest release (see comment above on
+        # why this bypasses install_package() rather than calling it).
+        _force_extract(_DOWNLOAD_PACKAGE, latest, self.target)
+        importlib.invalidate_caches()
+        self.assertEqual(importlib.metadata.version(self.canonical), latest)
+
+        installed_again = install_package(_DOWNLOAD_PACKAGE, self.target, upgrade=True)
+        self.assertEqual(installed_again, [])
 
 
 if __name__ == "__main__":

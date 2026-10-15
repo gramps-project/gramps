@@ -945,6 +945,7 @@ def _gather_requirements(
     extras: frozenset[str],
     specs: dict[str, list[str]],
     seen: set[str],
+    force: bool = False,
 ) -> None:
     """
     Recursively collect version constraints for *package* and its transitive deps.
@@ -961,18 +962,25 @@ def _gather_requirements(
     :param extras: Extras active on *package*; gates ``extra == "..."`` markers.
     :param specs: Accumulated ``{canonical_name: [spec, ...]}`` mapping.
     :param seen: Canonical names already visited (prevents infinite loops).
+    :param force: When True, gather *package*'s own requirements even if it is
+        already importable (used for upgrade checks).  Only applies to this
+        call; recursive calls for dependencies always use the normal
+        already-importable skip.
     """
     canonical = package.lower().replace("-", "_")
     if canonical in seen:
         return
     seen.add(canonical)
     # If already importable, skip: the install pass will also skip it, so its
-    # transitive constraints do not affect the resolution outcome.
-    try:
-        importlib.import_module(canonical)
-        return
-    except ImportError:
-        pass
+    # transitive constraints do not affect the resolution outcome.  In upgrade
+    # mode this skip is bypassed for the top-level package so a newer release's
+    # dependency list is still gathered.
+    if not force:
+        try:
+            importlib.import_module(canonical)
+            return
+        except ImportError:
+            pass
     try:
         meta = _pypi_metadata(package)
     except PyPIInstallError:
@@ -1166,7 +1174,10 @@ def _pip_available() -> bool:
 #
 # -------------------------------------------------------------------------
 def install_package(
-    package: str, target: str, extras: frozenset[str] = frozenset()
+    package: str,
+    target: str,
+    extras: frozenset[str] = frozenset(),
+    upgrade: bool = False,
 ) -> list[str]:
     """
     Download and install *package* from PyPI into *target*.
@@ -1189,6 +1200,10 @@ def install_package(
         ``"requests[security]"``.
     :param target: Filesystem path to install into (e.g. ``LIB_PATH``).
     :param extras: Set of extras to activate on *package*.
+    :param upgrade: When True, an already-importable *package* is not skipped
+        outright; the newest version on PyPI is looked up and *package* is
+        reinstalled unless the already-installed version is at least that
+        new.  Has no effect when *package* is not installed at all.
     :returns: List of package names that were installed.
     :raises PyPIInstallError: if the package or a dependency cannot be
         installed, or if no version satisfies the combined constraints.
@@ -1200,9 +1215,17 @@ def install_package(
         parsed = frozenset(e.strip() for e in em.group(2).split(",") if e.strip())
         extras = extras | parsed
 
+    # In upgrade mode, require at least the newest available version so the
+    # already-importable skip in _install_one() only fires when up to date.
+    top_version_spec = ""
+    if upgrade:
+        latest = _find_satisfying_version(package, "")
+        if latest is not None:
+            top_version_spec = f">={latest}"
+
     # Pass 1: gather all transitive version constraints from PyPI JSON metadata.
     specs: dict[str, list[str]] = {}
-    _gather_requirements(package, extras, specs, set())
+    _gather_requirements(package, extras, specs, set(), force=upgrade)
 
     # Pass 2: resolve a satisfying version for each constrained package.
     resolved: dict[str, str] = {}
@@ -1218,8 +1241,56 @@ def install_package(
 
     # Pass 3: install with pinned versions from the resolver.
     installed: list[str] = []
-    _install_one(package, target, installed, set(), extras=extras, resolved=resolved)
+    _install_one(
+        package,
+        target,
+        installed,
+        set(),
+        version_spec=top_version_spec,
+        extras=extras,
+        resolved=resolved,
+    )
     return installed
+
+
+def _uninstall_from_target(canonical: str, target: str) -> None:
+    """
+    Remove a previously mini-installed distribution of *canonical* from *target*.
+
+    Called before reinstalling a package during an upgrade so the old
+    version's ``dist-info`` cannot shadow the new one in subsequent
+    ``importlib.metadata`` lookups.  Only removes files belonging to a
+    distribution whose root is *target* itself; a distribution found
+    elsewhere on ``sys.path`` (system site-packages, a virtualenv, ...) is
+    left untouched since Gramps does not own it.
+    """
+    target_abs = os.path.abspath(target)
+    for name in (canonical, canonical.replace("_", "-")):
+        try:
+            dist = importlib.metadata.distribution(name)
+        except importlib.metadata.PackageNotFoundError:
+            continue
+        try:
+            root = os.path.abspath(str(dist.locate_file("")))
+        except Exception:
+            continue
+        if root != target_abs or not dist.files:
+            continue
+        dirs: set[str] = set()
+        for rel_path in dist.files:
+            abs_path = os.path.abspath(str(dist.locate_file(rel_path)))
+            if os.path.isfile(abs_path):
+                try:
+                    os.remove(abs_path)
+                except OSError:
+                    pass
+                dirs.add(os.path.dirname(abs_path))
+        # Best-effort cleanup of now-empty package directories.
+        for directory in sorted(dirs, key=len, reverse=True):
+            try:
+                os.removedirs(directory)
+            except OSError:
+                pass
 
 
 def _install_one(
@@ -1266,6 +1337,8 @@ def _install_one(
             canonical,
             version_spec,
         )
+        _uninstall_from_target(canonical, target)
+        importlib.invalidate_caches()
     except ImportError:
         pass
 
