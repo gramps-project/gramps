@@ -508,7 +508,11 @@ class ViewManager(CLIManager):
         Initialize the actions lists for the UIManager
         """
         self._app_actionlist = [
-            ("quit", self.quit, None if is_quartz() else "<PRIMARY>q"),
+            (
+                "quit",
+                self.app.cb_session_quit if is_quartz() else self.quit,
+                None if is_quartz() else "<PRIMARY>q",
+            ),
             ("preferences", self.preferences_activate),
             ("about", self.display_about_box),
         ]
@@ -857,9 +861,12 @@ class ViewManager(CLIManager):
         hits 'x' multiple times."""
         return True
 
-    def quit(self, *obj):
+    def quit(self, *obj: object, make_backup: bool = True) -> None:
         """
-        Closes out the program, backing up data
+        Closes out the program, optionally backing up data.
+
+        :param make_backup: Allow the configured exit backup. Windows session
+            termination skips it so database closure is not delayed.
         """
         # mark interface insenstitive to prevent unexpected events
         self.uistate.set_sensitive(False)
@@ -870,7 +877,7 @@ class ViewManager(CLIManager):
         self.window.connect("delete-event", self.no_del_event)
 
         # backup data
-        if config.get("database.backup-on-exit"):
+        if make_backup and config.get("database.backup-on-exit"):
             self.autobackup()
 
         # close the database
