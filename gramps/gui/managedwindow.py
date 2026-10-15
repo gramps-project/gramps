@@ -629,7 +629,7 @@ class ManagedWindow:
         Save the dimensions of the window to the config file
         """
         # self.width_key is set in the subclass (or in setup_configs)
-        if self.width_key is not None:
+        if self.width_key is not None and self.window is not None:
             width, height = self.window.get_size()
             config.set(self.width_key, width)
             config.set(self.height_key, height)
@@ -661,7 +661,7 @@ class ManagedWindow:
         (You can set save_config False if a _save_size() will instantly follow)
         """
         # self.horiz_position_key is set in the subclass (or in setup_configs)
-        if self.horiz_position_key is not None:
+        if self.horiz_position_key is not None and self.window is not None:
             horiz_position, vert_position = self.window.get_position()
             config.set(self.horiz_position_key, horiz_position)
             config.set(self.vert_position_key, vert_position)
