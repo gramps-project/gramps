@@ -6081,6 +6081,8 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.frel = PEDIGREE_TYPES.get(line.data.strip().lower())
+        if state.frel is None:
+            state.frel = ChildRefType(line.data.capitalize().strip())
 
     def __family_mrel(self, line, state):
         """
@@ -6095,6 +6097,8 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.mrel = PEDIGREE_TYPES.get(line.data.strip().lower())
+        if state.mrel is None:
+            state.mrel = ChildRefType(line.data.capitalize().strip())
 
     def __family_stat(self, line, state):
         """
