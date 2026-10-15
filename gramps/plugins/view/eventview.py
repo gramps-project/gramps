@@ -372,14 +372,31 @@ class EventView(ListView):
         </item>
       </section>
       <section>
+        <item>
+          <attribute name="action">win.MakeMainParticipantActive</attribute>
+          <attribute name="label" translatable="yes">"""
+        """Make First Main Participant Active Person</attribute>
+        </item>
+      </section>
+      <section>
         <placeholder id='QuickReport'>
         </placeholder>
         <placeholder id='WebConnect'>
         </placeholder>
       </section>
     </menu>
-""" % _("_Edit...", "action"),  # to use sgettext()
+"""
+        % _("_Edit...", "action"),  # to use sgettext()
     ]
+
+    def define_actions(self):
+        ListView.define_actions(self)
+
+        self.action_list.extend(
+            [
+                ("MakeMainParticipantActive", self._make_main_participant_active),
+            ]
+        )
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_event_from_gramps_id(gid)
@@ -434,6 +451,27 @@ class EventView(ListView):
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeEvent(self.dbstate, self.uistate, [], mlist[0], mlist[1])
+
+    def _make_main_participant_active(self, *obj):
+        """
+        Make the first main participant of the event the active person.
+        """
+        fhandle = self.first_selected()
+        if fhandle:
+            result_list = list(
+                self.dbstate.db.find_backlink_handles(
+                    fhandle, include_classes=["Person"]
+                )
+            )
+            people = set([x[1] for x in result_list if x[0] == "Person"])
+            for person_handle in people:
+                person = self.dbstate.db.get_person_from_handle(person_handle)
+                if not person:
+                    continue
+                for event_ref in person.get_event_ref_list():
+                    if fhandle == event_ref.ref and event_ref.get_role().is_primary():
+                        self.uistate.set_active(person_handle, "Person")
+                        return
 
     def tag_updated(self, handle_list):
         """
