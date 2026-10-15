@@ -385,9 +385,10 @@ class EventView(ListView):
         </placeholder>
       </section>
     </menu>
-""" % _("_Edit...", "action"),  # to use sgettext()
+"""
+        % _("_Edit...", "action"),  # to use sgettext()
     ]
-    
+
     def define_actions(self):
         ListView.define_actions(self)
 
@@ -450,14 +451,18 @@ class EventView(ListView):
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeEvent(self.dbstate, self.uistate, [], mlist[0], mlist[1])
-    
+
     def _make_main_participant_active(self, *obj):
         """
         Make the first main participant of the event the active person.
         """
         fhandle = self.first_selected()
         if fhandle:
-            result_list = list(self.dbstate.db.find_backlink_handles(fhandle, include_classes=["Person"]))
+            result_list = list(
+                self.dbstate.db.find_backlink_handles(
+                    fhandle, include_classes=["Person"]
+                )
+            )
             people = set([x[1] for x in result_list if x[0] == "Person"])
             for person_handle in people:
                 person = self.dbstate.db.get_person_from_handle(person_handle)
