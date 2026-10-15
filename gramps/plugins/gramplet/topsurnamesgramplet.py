@@ -30,6 +30,7 @@ from collections import defaultdict
 from gramps.gen.plug import Gramplet
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.lib import Person
 from gramps.gen.plug.menu import NumberOption
 from gramps.gen.types import PersonHandle
@@ -52,6 +53,7 @@ NUM_SURNAMES = _("Number of Surnames to display")
 #
 # ------------------------------------------------------------------------
 def record_surnames(
+    db,
     person: Person,
     surnames: dict[str, int],
     representative_handle: dict[str, PersonHandle],
@@ -60,16 +62,22 @@ def record_surnames(
     Tally one person's surnames and choose representatives for them.
 
     The person is counted under every group name taken from their primary and
-    alternate names.  They become the representative for a surname only when it
-    is their primary group name, or when no representative has been chosen yet.
-    The Same Surnames quick view re-derives the surname from the
-    representative's primary name, so a representative whose primary surname
-    differs would open a report for a different surname than the one clicked.
+    alternate names.  Group names are resolved with
+    :meth:`~.display.name.NameDisplay.name_grouping_name`, which honours both
+    the per-name "group as" override and the database-wide name-group mapping,
+    so two surnames the user grouped together are tallied as one --
+    consistently with the Same Surnames quick view (bug #6825).
+
+    They become the representative for a surname only when it is their primary
+    group name, or when no representative has been chosen yet.  The Same
+    Surnames quick view re-derives the surname from the representative's
+    primary name, so a representative whose primary surname differs would open
+    a report for a different surname than the one clicked.
     """
     primary_name = person.get_primary_name()
-    primary_surname = primary_name.get_group_name().strip()
+    primary_surname = name_displayer.name_grouping_name(db, primary_name).strip()
     allnames = set(
-        name.get_group_name().strip()
+        name_displayer.name_grouping_name(db, name).strip()
         for name in [primary_name] + person.get_alternate_names()
     )
     for surname in allnames:
@@ -117,7 +125,7 @@ class TopSurnamesGramplet(Gramplet):
 
         cnt = 0
         for person in self.dbstate.db.iter_people():
-            record_surnames(person, surnames, representative_handle)
+            record_surnames(self.dbstate.db, person, surnames, representative_handle)
             cnt += 1
             if not cnt % _YIELD_INTERVAL:
                 yield True
