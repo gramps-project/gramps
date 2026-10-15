@@ -504,7 +504,7 @@ class EditFamily(EditPrimary):
                 "event-update": self.topdata_updated,  # change eg birth event fath
                 "event-rebuild": self.topdata_updated,
                 "event-delete": self.topdata_updated,  # delete eg birth event fath
-                "person-update": self.topdata_updated,  # change eg name of father
+                "person-update": self.person_updated,  # change eg name of father
                 "person-delete": self.person_delete,  # mother/father deleted?
                 "person-rebuild": self._do_close,
             }
@@ -584,6 +584,22 @@ class EditFamily(EditPrimary):
               tabpage itself tracks it
         """
         self.load_data()
+
+    def person_updated(self, *obj):
+        """
+        Callback method called when a person shown in the family editor is
+        updated (eg the name of the father or mother is changed and saved from
+        within this dialog).
+
+        Besides the top father/mother panel (refreshed by load_data), the
+        embedded Events tab renders participant names derived from the
+        referenced persons in its "Main Participants" column. The event list
+        only tracks event signals, not person-update, so it must be rebuilt
+        here or that column keeps showing the participant's old name (bug 8603).
+        """
+        self.topdata_updated()
+        if hasattr(self, "event_list"):
+            self.event_list.rebuild_callback()
 
     def show_buttons(self):
         """
