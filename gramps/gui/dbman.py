@@ -632,7 +632,9 @@ class DbManager(CLIDbManager, ManagedWindow):
 
         cmd = ["rcs", "-x,v", "-m%s:%s" % (rev, new_text), archive]
 
-        proc = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+        proc = subprocess.Popen(
+            cmd, stderr=subprocess.PIPE, encoding="utf-8", errors="replace"
+        )
         status = proc.wait()
         message = "\n".join(proc.stderr.readlines())
         proc.stderr.close()
@@ -804,7 +806,9 @@ class DbManager(CLIDbManager, ManagedWindow):
 
         cmd = ["rcs", "-x,v", "-o%s" % rev, "-q", archive]
 
-        proc = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+        proc = subprocess.Popen(
+            cmd, stderr=subprocess.PIPE, encoding="utf-8", errors="replace"
+        )
         status = proc.wait()
         message = "\n".join(proc.stderr.readlines())
         proc.stderr.close()
@@ -1174,7 +1178,9 @@ def check_out(dbase, rev, path, user):
         os.path.join(path, ARCHIVE_V),
     ]
 
-    proc = subprocess.Popen(co_cmd, stderr=subprocess.PIPE)
+    proc = subprocess.Popen(
+        co_cmd, stderr=subprocess.PIPE, encoding="utf-8", errors="replace"
+    )
     status = proc.wait()
     message = "\n".join(proc.stderr.readlines())
     proc.stderr.close()
@@ -1219,7 +1225,9 @@ def _check_in(dbase, filename, user, cursor_func=None, parent=None):
 
     if not os.path.isfile(archive_name):
         cmd = init + [archive_name]
-        proc = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+        proc = subprocess.Popen(
+            cmd, stderr=subprocess.PIPE, encoding="utf-8", errors="replace"
+        )
         status = proc.wait()
         message = "\n".join(proc.stderr.readlines())
         proc.stderr.close()
@@ -1249,7 +1257,9 @@ def _check_in(dbase, filename, user, cursor_func=None, parent=None):
         cursor_func(_("Saving archive..."))
 
     cmd = ci_cmd + ["-m%s" % comment, filename, archive_name]
-    proc = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+    proc = subprocess.Popen(
+        cmd, stderr=subprocess.PIPE, encoding="utf-8", errors="replace"
+    )
 
     status = proc.wait()
     message = "\n".join(proc.stderr.readlines())
