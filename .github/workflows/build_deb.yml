@@ -52,10 +52,13 @@ jobs:
           
     - name: Build deb package
       run: |
-        # 1. Generate the distribution file cleanly
+        # 1. Patch pyproject.toml license-files array configuration to pass system hatchling validation
+        sed -i 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
+
+        # 2. Generate the distribution file cleanly
         python3 -m build --sdist
         
-        # 2. Extract version safely directly from the generated filename
+        # 3. Extract version safely directly from the generated filename
         VERSION=$(ls dist/gramps-*.tar.gz | sed 's/dist\/gramps-//;s/\.tar\.gz//')
         echo "Detected Gramps version: $VERSION"
         
@@ -65,17 +68,20 @@ jobs:
           appbuild=${{ inputs.build-number }}
         fi
         
-        # 3. Append your custom entry directly to the top of the existing changelog
+        # 4. Append your custom entry directly to the top of the existing changelog
         DEBFULLNAME="Gramps Project" DEBEMAIL="noreply@gramps-project.org" debchange -b -v "$VERSION"-"$appbuild" "Custom fork compilation package build."
         
-        # 4. Correctly structure the original source package in the parent folder
+        # 5. Correctly structure the original source package in the parent folder
         cp dist/gramps-"$VERSION".tar.gz dist/gramps_"$VERSION".orig.tar.gz
         
         cd dist
         tar zxf gramps-"$VERSION".tar.gz
         cd gramps-"$VERSION"
         
-        # 5. Bring our newly updated debian configuration folder into the build directory
+        # Patch the internal pyproject configuration copy as well before debuild reads it
+        sed -i 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
+        
+        # 6. Bring our newly updated debian configuration folder into the build directory
         cp -r ../../debian .
         
         # to allow resourcepath detection :
@@ -84,7 +90,7 @@ jobs:
         mkdir -p build/.gramps
         export LANG=en_US.utf8
         
-        # 6. Compile forcing the dependency check override flag (-d)
+        # 7. Compile forcing the dependency check override flag (-d)
         debuild -us -uc -d
         
         cd /home/runner/work/gramps/gramps/dist
