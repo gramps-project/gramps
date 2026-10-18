@@ -60,13 +60,16 @@ jobs:
         sudo apt-get install libxml2-utils
         sudo apt-get install python3-lxml
         sudo apt-get install python3-libxml2
+        sudo apt-get install python3-build
         sudo apt-get install zlib1g-dev
         sudo apt-get install python3-setuptools
         sudo apt-get install devscripts debhelper dh-python python3-all python3-nose-exclude
     - name: Build deb package
       run: |
-        python3 setup.py egg_info
-        VERSION=$(grep "^Version:" gramps.egg-info/PKG-INFO|sed 's/Version: *//')
+        python3 -m build --sdist
+        VER=`ls dist/gramps-*.tar.gz`
+        [[ $VER =~ dist/gramps-(.*)\.tar\.gz ]]
+        VERSION=${BASH_REMATCH[1]}
         if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
           appbuild=$(git rev-parse --short $GITHUB_SHA)
         else
@@ -76,7 +79,6 @@ jobs:
         if ! grep "^gramps ($VERSION" debian/changelog ; then
           DEBFULLNAME="Gramps Project" DEBEMAIL="noreply@gramps-project.org" debchange -D UNRELEASED -v "$VERSION"-"$appbuild" "New release"
         fi
-        python3 setup.py sdist
         cd dist
         tar zxf gramps-"$VERSION".tar.gz
         mv gramps-"$VERSION".tar.gz gramps_"$VERSION".orig.tar.gz
