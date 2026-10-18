@@ -35,7 +35,6 @@ jobs:
       matrix:
         os: [ubuntu-24.04]
 
-
     steps:
     - uses: actions/checkout@v6
     - name: Install dependencies
@@ -65,27 +64,36 @@ jobs:
         sudo apt-get install devscripts debhelper dh-python python3-all
     - name: Build deb package
       run: |
+        # 1. Generate the distribution file cleanly
         python3 -m build --sdist
-        VERSION=$(python3 -c "import urllib.request; from setuptools.config.setupcfg import read_configuration; print(read_configuration('setup.cfg')['metadata']['version'])" 2>/dev/null || grep "^version =" pyproject.toml | sed 's/version = "//;s/"//')
+        
+        # 2. Extract version safely directly from the generated filename
+        VERSION=$(ls dist/gramps-*.tar.gz | sed 's/dist\/gramps-//;s/\.tar\.gz//')
+        echo "Detected Gramps version: $VERSION"
+        
         if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
           appbuild=$(git rev-parse --short $GITHUB_SHA)
         else
           appbuild=${{ inputs.build-number }}
         fi
+        
         # create entry in debian/changelog, if needed :
         if ! grep "^gramps ($VERSION" debian/changelog ; then
           DEBFULLNAME="Gramps Project" DEBEMAIL="noreply@gramps-project.org" debchange -D UNRELEASED -v "$VERSION"-"$appbuild" "New release"
         fi
+        
         cd dist
         tar zxf gramps-"$VERSION".tar.gz
         mv gramps-"$VERSION".tar.gz gramps_"$VERSION".orig.tar.gz
         cd gramps-"$VERSION"
+        
         # to allow resourcepath detection :
         mkdir .git
         # to make mediapath test successful :
         mkdir -p build/.gramps
         export LANG=en_US.utf8
         debuild --no-sign
+        
         cd /home/runner/work/gramps/gramps/dist
         mv gramps_${VERSION}-${appbuild}_all.deb gramps_${VERSION}-${appbuild}_all.${{ matrix.os }}.deb
     - uses: actions/upload-artifact@v4
