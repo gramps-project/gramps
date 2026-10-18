@@ -43,6 +43,7 @@ jobs:
           zlib1g-dev \
           python3-setuptools \
           python3-build \
+          python3-hatchling \
           pybuild-plugin-pyproject \
           devscripts \
           debhelper \
