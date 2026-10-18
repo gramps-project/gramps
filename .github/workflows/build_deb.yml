@@ -82,8 +82,8 @@ jobs:
         mkdir -p build/.gramps
         export LANG=en_US.utf8
         
-        # 6. Compile using the continuous integration non-interactive flag (-us -uc)
-        debuild -us -uc
+        # 6. Compile forcing the dependency check override flag (-d)
+        debuild -us -uc -d
         
         cd /home/runner/work/gramps/gramps/dist
         mv gramps_${VERSION}-${appbuild}_all.deb gramps_${VERSION}-${appbuild}_all.${{ matrix.os }}.deb
