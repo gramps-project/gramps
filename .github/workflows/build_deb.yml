@@ -88,8 +88,8 @@ jobs:
         sed -i '/rm -rf data\/tips.xml/d' debian/rules
         sed -i '/rm -rf gramps\/plugins\/lib\/holidays.xml/d' debian/rules
         
-        # 8. Regenerate tips and core data templates natively within the building scope
-        python3 data/tips.py
+        # 8. Regenerate tips natively using the correct Gramps 6.x path string location
+        python3 scripts/generate_tips.py
         
         # to allow resourcepath detection :
         mkdir .git
