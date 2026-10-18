@@ -52,13 +52,17 @@ jobs:
           
     - name: Build deb package
       run: |
-        # 1. Patch pyproject.toml license-files array configuration to pass system hatchling validation
+        # 1. Save a protective local cache copy of data/tips.xml before cleaning strips it
+        mkdir -p ../file_cache
+        cp data/tips.xml ../file_cache/tips.xml
+
+        # 2. Patch pyproject.toml license-files array configuration to pass system hatchling validation
         sed -i 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
 
-        # 2. Generate the distribution file cleanly
+        # 3. Generate the distribution file cleanly
         python3 -m build --sdist
         
-        # 3. Extract version safely directly from the generated filename
+        # 4. Extract version safely directly from the generated filename
         VERSION=$(ls dist/gramps-*.tar.gz | sed 's/dist\/gramps-//;s/\.tar\.gz//')
         echo "Detected Gramps version: $VERSION"
         
@@ -68,10 +72,10 @@ jobs:
           appbuild=${{ inputs.build-number }}
         fi
         
-        # 4. Append your custom entry directly to the top of the existing changelog
+        # 5. Append your custom entry directly to the top of the existing changelog
         DEBFULLNAME="Gramps Project" DEBEMAIL="noreply@gramps-project.org" debchange -b -v "$VERSION"-"$appbuild" "Custom fork compilation package build."
         
-        # 5. Correctly structure the original source package in the parent folder
+        # 6. Correctly structure the original source package in the parent folder
         cp dist/gramps-"$VERSION".tar.gz dist/gramps_"$VERSION".orig.tar.gz
         
         cd dist
@@ -81,8 +85,12 @@ jobs:
         # Patch the internal pyproject configuration copy as well before debuild reads it
         sed -i 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
         
-        # 6. Bring our newly updated debian configuration folder into the build directory
+        # 7. Bring our newly updated debian configuration folder into the build directory
         cp -r ../../debian .
+        
+        # 8. Restore the cached files explicitly so the builder backend can locate them
+        mkdir -p data
+        cp ../../../file_cache/tips.xml data/tips.xml
         
         # to allow resourcepath detection :
         mkdir .git
@@ -90,7 +98,7 @@ jobs:
         mkdir -p build/.gramps
         export LANG=en_US.utf8
         
-        # 7. Compile forcing the dependency check override flag (-d)
+        # 9. Compile forcing the dependency check override flag (-d)
         debuild -us -uc -d
         
         cd /home/runner/work/gramps/gramps/dist
