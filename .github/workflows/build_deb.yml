@@ -50,6 +50,11 @@ jobs:
           dh-python \
           python3-all
           
+    - name: Sanitize artifact name
+      run: |
+        # Safely convert branch slashes into clean dashes for filenames
+        echo "ARTIFACT_NAME=Gramps_deb_$(echo '${{ github.ref_name }}' | tr '/\\' '--')" >> $GITHUB_ENV
+
     - name: Build deb package
       run: |
         # 1. Patch pyproject.toml license-files array configuration to pass system hatchling validation
@@ -95,15 +100,17 @@ jobs:
         mkdir -p build/.gramps
         export LANG=en_US.utf8
         
-        # 9. Compile using the industry-standard bypass flag to skip testing environment validation checks
+        # 9. Compile forcing dependency check override (-d) and skipping non-existent tests (-n)
         export DEB_BUILD_OPTIONS=nocheck
         debuild -us -uc -d -b
         
         cd /home/runner/work/gramps/gramps/dist
-        mv gramps_${VERSION}-${appbuild}_all.deb gramps_${VERSION}-${appbuild}_all.${{ matrix.os }}.deb
+        
+        # 10. Rename the output file dynamically using your sanitized branch name environment variable
+        mv gramps_${VERSION}-${appbuild}_all.deb gramps_${VERSION}-${appbuild}_${{ env.ARTIFACT_NAME }}.deb
         
     - uses: actions/upload-artifact@v4
       with:
-        name: Gramps_deb_${{ matrix.os }}
+        name: ${{ env.ARTIFACT_NAME }}
         path: /home/runner/work/gramps/gramps/dist/*.deb
         retention-days: 7
