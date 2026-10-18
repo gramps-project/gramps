@@ -100,14 +100,15 @@ jobs:
         mkdir -p build/.gramps
         export LANG=en_US.utf8
         
-        # 9. Compile forcing dependency check override (-d) and skipping non-existent tests (-n)
+        # 9. Compile forcing architecture-independent outputs (-A) to guarantee a .deb file
         export DEB_BUILD_OPTIONS=nocheck
-        debuild -us -uc -d -b
+        debuild -us -uc -d -A
         
         cd /home/runner/work/gramps/gramps/dist
         
-        # 10. Rename the output file dynamically using your sanitized branch name environment variable
-        mv gramps_${VERSION}-${appbuild}_all.deb gramps_${VERSION}-${appbuild}_${{ env.ARTIFACT_NAME }}.deb
+        # 10. Locate and rename the output .deb file dynamically using your sanitized variable name
+        DEB_FILE=$(ls gramps_*.deb)
+        mv "$DEB_FILE" "${{ env.ARTIFACT_NAME }}.deb"
         
     - uses: actions/upload-artifact@v4
       with:
