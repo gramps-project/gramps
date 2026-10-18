@@ -33,7 +33,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-22.04, ubuntu-24.04]
+        os: [ubuntu-24.04, ubuntu-26.04]
 
 
     steps:
@@ -62,7 +62,7 @@ jobs:
         sudo apt-get install python3-libxml2
         sudo apt-get install zlib1g-dev
         sudo apt-get install python3-setuptools
-        sudo apt-get install devscripts debhelper dh-python python3-all python3-nose-exclude
+        sudo apt-get install build-essential devscripts debhelper dh-python python3-all python3-nose-exclude
     - name: Build deb package
       run: |
         python3 setup.py egg_info
@@ -89,7 +89,7 @@ jobs:
         debuild --no-sign
         cd /home/runner/work/gramps/gramps/dist
         mv gramps_${VERSION}-${appbuild}_all.deb gramps_${VERSION}-${appbuild}_all.${{ matrix.os }}.deb
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         name: Gramps_deb_${{ matrix.os }}
         path: /home/runner/work/gramps/gramps/dist/*.deb
