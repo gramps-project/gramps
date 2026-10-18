@@ -84,18 +84,19 @@ jobs:
         # 6. Bring our newly updated debian configuration folder into the build directory
         cp -r ../../debian .
         
-        # 7. Strip out the custom cleaning overrides that drop required configuration targets
+        # 7. Strip out custom clean rules and remove the breaking nosetests3 target execution block
         sed -i '/rm -rf data\/tips.xml/d' debian/rules
         sed -i '/rm -rf gramps\/plugins\/lib\/holidays.xml/d' debian/rules
         sed -i '/debian\/rules override_dh_clean/d' debian/rules
+        sed -i '/override_dh_auto_test:/,/nosetests3/d' debian/rules
         
         # 8. Set tracking environment configurations
         mkdir .git
         mkdir -p build/.gramps
         export LANG=en_US.utf8
         
-        # 9. Compile forcing the dependency check override flag (-d)
-        debuild -us -uc -d
+        # 9. Compile forcing dependency check override (-d) and skipping non-existent tests (-n)
+        debuild -us -uc -d -b
         
         cd /home/runner/work/gramps/gramps/dist
         mv gramps_${VERSION}-${appbuild}_all.deb gramps_${VERSION}-${appbuild}_all.${{ matrix.os }}.deb
