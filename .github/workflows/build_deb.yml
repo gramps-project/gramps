@@ -52,13 +52,16 @@ jobs:
           
     - name: Build deb package
       run: |
-        # 1. Patch pyproject.toml license-files array configuration to pass system hatchling validation
+        # 1. Regenerate tips templates right here at the root where scripts/ exists naturally
+        python3 scripts/generate_tips.py
+
+        # 2. Patch pyproject.toml license-files array configuration to pass system hatchling validation
         sed -i 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
 
-        # 2. Generate the distribution file cleanly
+        # 3. Generate the distribution file cleanly (now including the freshly generated tips)
         python3 -m build --sdist
         
-        # 3. Extract version safely directly from the generated filename
+        # 4. Extract version safely directly from the generated filename
         VERSION=$(ls dist/gramps-*.tar.gz | sed 's/dist\/gramps-//;s/\.tar\.gz//')
         echo "Detected Gramps version: $VERSION"
         
@@ -66,12 +69,13 @@ jobs:
           appbuild=$(git rev-parse --short $GITHUB_SHA)
         else
           appbuild=${{ inputs.build-number }}
+        
         fi
         
-        # 4. Append your custom entry directly to the top of the existing changelog
+        # 5. Append your custom entry directly to the top of the existing changelog
         DEBFULLNAME="Gramps Project" DEBEMAIL="noreply@gramps-project.org" debchange -b -v "$VERSION"-"$appbuild" "Custom fork compilation package build."
         
-        # 5. Correctly structure the original source package in the parent folder
+        # 6. Correctly structure the original source package in the parent folder
         cp dist/gramps-"$VERSION".tar.gz dist/gramps_"$VERSION".orig.tar.gz
         
         cd dist
@@ -81,15 +85,12 @@ jobs:
         # Patch the internal pyproject configuration copy as well before debuild reads it
         sed -i 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
         
-        # 6. Bring our newly updated debian configuration folder into the build directory
+        # 7. Bring our newly updated debian configuration folder into the build directory
         cp -r ../../debian .
         
-        # 7. Explicitly modify debian/rules on the fly to stop it from breaking the build tree layout
+        # 8. Explicitly modify debian/rules on the fly to stop it from breaking the build tree layout
         sed -i '/rm -rf data\/tips.xml/d' debian/rules
         sed -i '/rm -rf gramps\/plugins\/lib\/holidays.xml/d' debian/rules
-        
-        # 8. Regenerate tips natively using the correct Gramps 6.x path string location
-        python3 scripts/generate_tips.py
         
         # to allow resourcepath detection :
         mkdir .git
