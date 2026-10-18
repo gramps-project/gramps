@@ -1,22 +1,3 @@
-#
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright (C) 2021       Nick Hall
-# Copyright (C) 2024       Jean Michault
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, see <https://www.gnu.org/licenses/>.
-
 name: Build Debian packages
 
 on:
@@ -29,39 +10,44 @@ on:
 
 jobs:
   build:
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-24.04]
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v4
+    
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install gir1.2-pango-1.0
-        sudo apt-get install gir1.2-gtk-3.0
-        sudo apt-get install xdg-utils
-        sudo apt-get install librsvg2-common
-        sudo apt-get install libglib2.0-dev
-        sudo apt-get install intltool
-        sudo apt-get install python3-gi
-        sudo apt-get install python3-cairo
-        sudo apt-get install python3-gi-cairo
-        sudo apt-get install python3-bsddb3
-        sudo apt-get install python3-dev
-        sudo apt-get install python3-mock
-        sudo apt-get install python3-icu
-        sudo apt-get install python3-coverage
-        sudo apt-get install python3-jsonschema
-        sudo apt-get install libxml2-utils
-        sudo apt-get install python3-lxml
-        sudo apt-get install python3-libxml2
-        sudo apt-get install zlib1g-dev
-        sudo apt-get install python3-setuptools
-        sudo apt-get install python3-build
-        sudo apt-get install devscripts debhelper dh-python python3-all
+        sudo apt-get install -y \
+          gir1.2-pango-1.0 \
+          gir1.2-gtk-3.0 \
+          xdg-utils \
+          librsvg2-common \
+          libglib2.0-dev \
+          intltool \
+          python3-gi \
+          python3-cairo \
+          python3-gi-cairo \
+          python3-bsddb3 \
+          python3-dev \
+          python3-mock \
+          python3-icu \
+          python3-coverage \
+          python3-jsonschema \
+          libxml2-utils \
+          python3-lxml \
+          python3-libxml2 \
+          zlib1g-dev \
+          python3-setuptools \
+          python3-build \
+          devscripts \
+          debhelper \
+          dh-python \
+          python3-all
+          
     - name: Build deb package
       run: |
         # 1. Generate the distribution file cleanly
@@ -77,25 +63,31 @@ jobs:
           appbuild=${{ inputs.build-number }}
         fi
         
-        # create entry in debian/changelog, if needed :
-        if ! grep "^gramps ($VERSION" debian/changelog ; then
-          DEBFULLNAME="Gramps Project" DEBEMAIL="noreply@gramps-project.org" debchange -D UNRELEASED -v "$VERSION"-"$appbuild" "New release"
-        fi
+        # 3. Create a clean entry in debian/changelog forcing the new version sequence
+        DEBFULLNAME="Gramps Project" DEBEMAIL="noreply@gramps-project.org" debchange --create --package "gramps" -D UNRELEASED -v "$VERSION"-"$appbuild" "Custom fork compilation package build."
+        
+        # 4. Correctly structure the original source package in the parent folder
+        cp dist/gramps-"$VERSION".tar.gz dist/gramps_"$VERSION".orig.tar.gz
         
         cd dist
         tar zxf gramps-"$VERSION".tar.gz
-        mv gramps-"$VERSION".tar.gz gramps_"$VERSION".orig.tar.gz
         cd gramps-"$VERSION"
+        
+        # 5. Bring our newly injected debian configuration folder into the build directory
+        cp -r ../../debian .
         
         # to allow resourcepath detection :
         mkdir .git
         # to make mediapath test successful :
         mkdir -p build/.gramps
         export LANG=en_US.utf8
-        debuild --no-sign
+        
+        # 6. Compile using the continuous integration non-interactive flag (-us -uc)
+        debuild -us -uc
         
         cd /home/runner/work/gramps/gramps/dist
         mv gramps_${VERSION}-${appbuild}_all.deb gramps_${VERSION}-${appbuild}_all.${{ matrix.os }}.deb
+        
     - uses: actions/upload-artifact@v4
       with:
         name: Gramps_deb_${{ matrix.os }}
