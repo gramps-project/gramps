@@ -66,9 +66,10 @@ jobs:
         tar zxf gramps-"$VERSION".tar.gz
         cd gramps-"$VERSION"
 
-        # 5. Patch legacy setuptools config validation error by converting license string to a dictionary block
+        # 5. Scrub modern PEP 621 license property extensions entirely to bypass legacy setuptools constraints
         sed -i '' 's/license = "GPL-2.0-or-later"/license = { text = "GPL-2.0-or-later" }/' pyproject.toml
-        sed -i '' 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
+        sed -i '' '/license-files =/d' pyproject.toml
+        sed -i '' '/\[project.license-files\]/,/paths =/d' pyproject.toml
 
         # 6. Compile application bundle using the py2applet tool sequence cleanly
         py2applet --make-setup Mac/mac_only/Gramps.py
