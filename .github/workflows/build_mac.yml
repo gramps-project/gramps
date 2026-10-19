@@ -71,16 +71,19 @@ jobs:
         sed -i '' '/license-files =/d' pyproject.toml
         sed -i '' '/\[project.license-files\]/,/paths =/d' pyproject.toml
 
-        # 6. Compile application bundle using the py2applet tool sequence cleanly
+        # 6. Generate configuration setup and dynamically patch bundling identifiers inside it
         py2applet --make-setup Mac/mac_only/Gramps.py
-        python3 setup.py py2app --semi-standalone --bundle-identifier=org.gramps-project.gramps
+        sed -i '' "s/OPTIONS = {}/OPTIONS = {'plist': {'CFBundleIdentifier': 'org.gramps-project.gramps'}}/g" setup.py
+        
+        # 7. Compile application bundle cleanly using the patched configuration layout
+        python3 setup.py py2app --semi-standalone
 
-        # 7. Structure the directory for DMG packaging cleanly
+        # 8. Structure the directory for DMG packaging cleanly
         cd /home/runner/work/gramps/gramps
         mkdir dmg_root
         mv dist/gramps-"$VERSION"/dist/Gramps.app dmg_root/
 
-        # 8. Generate the downloadable .dmg installer using native macOS diskutil tools
+        # 9. Generate the downloadable .dmg installer using native macOS diskutil tools
         hdiutil create -volname "Gramps Installation" -srcfolder dmg_root -ov -format UDZO "dist/${{ env.ARTIFACT_NAME }}.dmg"
 
     - name: Upload macOS Installer Artifact
