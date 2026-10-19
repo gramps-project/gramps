@@ -10,6 +10,7 @@ Build-Depends-Indep:
  python3-all,
  python3-setuptools,
  python3-nose,
+ python3-orjson,
  gir1.2-gtk-3.0 (>= 3.12.0),
  python3-gi (>= 3.12.0),
  python3-gi-cairo,
@@ -34,6 +35,7 @@ Depends:
  python3-gi (>= 3.12.0),
  python3-gi-cairo,
  python3-bsddb3,
+ python3-orjson,
  ${misc:Depends},
  ${python3:Depends}
 Recommends:
