@@ -1,11 +1,8 @@
-name: Build macOS Application (.dmg)
-
-on:
-  workflow_dispatch:
+    # Completely strips out the breaking 'type: string' syntax
     inputs:
       build-number:
         description: 'Build number'
-        type: string
+        required: true
         default: '1'
   push:
     branches:
@@ -15,103 +12,6 @@ on:
 
 jobs:
   build:
-    # Fixes the parsing crash by completely removing dynamic matrix evaluations
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-        cache: 'pip'
-
-    - name: Install macOS System Dependencies
-      run: |
-        brew update
-        brew install gtk+3 gobject-introspection pygobject3 cairo adwaita-icon-theme intltool gettext
-        echo "$(brew --prefix gettext)/bin" >> $GITHUB_PATH
-
-    - name: Install Python Build Dependencies
-      run: |
-        python3 -m pip install --upgrade pip
-        python3 -m pip install hatchling build py2app setuptools pycairo
-
-    - name: Sanitize artifact name
-      run: |
-        # Safely convert branch slashes into clean dashes for filenames
-        echo "ARTIFACT_NAME=Gramps_mac_$(echo '${{ github.ref_name }}' | tr '/\\' '--')" >> $GITHUB_ENV
-
-    - name: Package and Create DMG
-      env:
-        INPUT_BUILD_NUMBER: ${{ inputs.build-number }}
-        TARGET_ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
-      run: |
-        # 1. Patch pyproject.toml license-files array configuration to pass hatchling validation
-        sed -i '' 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
-
-        # 2. Generate the distribution source tarball cleanly
-        python3 -m build --sdist
-        
-        # 3. Extract version safely directly from the generated filename
-        VERSION=$(ls dist/gramps-*.tar.gz | sed 's/dist\/gramps-//;s/\.tar\.gz//')
-        echo "Detected Gramps version: $VERSION"
-        
-        if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
-          appbuild=$(git rev-parse --short $GITHUB_SHA)
-        else
-          appbuild="$INPUT_BUILD_NUMBER"
-        fi
-        
-        echo "App Build version suffix: $appbuild"
-        
-        # 4. Extract the source distribution package contents
-        cd dist
-        tar zxf gramps-"$VERSION".tar.gz
-        cd gramps-"$VERSION"
-
-        # 5. Scrub modern PEP 621 license property extensions entirely to bypass legacy setuptools constraints
-        sed -i '' 's/license = "GPL-2.0-or-later"/license = { text = "GPL-2.0-or-later" }/' pyproject.toml
-        sed -i '' '/license-files =/d' pyproject.toml
-        sed -i '' '/\[project.license-files\]/,/paths =/d' pyproject.toml
-
-        # 6. Generate a pristine, modern setup.py directly from scratch to fully bypass py2applet multi-line bugs
-        cat << 'INNER_EOF' > setup.py
-from setuptools import setup
-
-APP = ['Mac/mac_only/Gramps.py']
-DATA_FILES = []
-OPTIONS = {
-    'argv_emulation': False,
-    'plist': {
-        'CFBundleIdentifier': 'org.gramps-project.gramps',
-    }
-}
-
-setup(
-    app=APP,
-    data_files=DATA_FILES,
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
-)
-INNER_EOF
-        
-        # 7. Compile application bundle cleanly using the clean custom configuration setup
-        python3 setup.py py2app --semi-standalone
-
-        # 8. Structure the directory for DMG packaging cleanly
-        cd /home/runner/work/gramps/gramps
-        mkdir -p dmg_root
-        mv dist/gramps-"$VERSION"/dist/Gramps.app dmg_root/
-
-        # 9. Ensure the root output directory exists and generate the downloadable .dmg installer
-        mkdir -p dist
-        hdiutil create -volname "Gramps Installation" -srcfolder dmg_root -ov -format UDZO "dist/$TARGET_ARTIFACT_NAME.dmg"
-
-    - name: Upload macOS Installer Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ env.ARTIFACT_NAME }}
-        path: dist/*.dmg
-        retention-days: 7
