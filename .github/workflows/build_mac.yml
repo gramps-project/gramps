@@ -1,0 +1,77 @@
+name: Build macOS Application (.dmg)
+
+on:
+  workflow_dispatch:
+    inputs:
+      build-number:
+        description: 'Build number'
+        type: string
+        default: '1'
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Install macOS System Dependencies
+      run: |
+        brew update
+        # Install GTK+3, PyGObject requirements, and localization tools
+        brew install gtk+3 gobject-introspection pygobject3 cairo adwaita-icon-theme intltool gettext
+        echo "$(brew --prefix gettext)/bin" >> $GITHUB_PATH
+
+    - name: Install Python Build Dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install hatchling build py2app setuptools pycairo
+
+    - name: Sanitize artifact name
+      run: |
+        # Safely convert branch slashes into clean dashes for filenames
+        echo "ARTIFACT_NAME=Gramps_mac_$(echo '${{ github.ref_name }}' | tr '/\\' '--')" >> $GITHUB_ENV
+
+    - name: Package and Create DMG
+      run: |
+        # 1. Patch pyproject.toml license-files array configuration to pass hatchling validation
+        sed -i '' 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
+
+        # 2. Generate the distribution source tarball cleanly
+        python3 -m build --sdist
+        
+        # 3. Extract version safely directly from the generated filename
+        VERSION=$(ls dist/gramps-*.tar.gz | sed 's/dist\/gramps-//;s/\.tar\.gz//')
+        echo "Detected Gramps version: $VERSION"
+        
+        if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
+          appbuild=$(git rev-parse --short $GITHUB_SHA)
+        else
+          appbuild=${{ inputs.build-number }}
+        fi
+        
+        echo "App Build version suffix: $appbuild"
+        
+        # 4. Compile application bundle using py2app setup
+        # Note: If your repository uses a dedicated setup_mac.py for py2app, switch to that file
+        python3 setup.py py2app --semi-standalone --bundle-identifier=org.gramps-project.gramps
+
+        # 5. Structure the directory for DMG packaging
+        mkdir dmg_root
+        mv dist/Gramps.app dmg_root/
+
+        # 6. Generate the downloadable .dmg installer using native macOS diskutil tools
+        hdiutil create -volname "Gramps Installation" -srcfolder dmg_root -ov -format UDZO "dist/${{ env.ARTIFACT_NAME }}.dmg"
+
+    - name: Upload macOS Installer Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+        path: dist/*.dmg
+        retention-days: 7
