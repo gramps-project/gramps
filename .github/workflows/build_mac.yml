@@ -108,4 +108,5 @@ EOF
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: dist/*.dmg
-        retention-days: 7
+        retention-days: 7 
+        
