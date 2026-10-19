@@ -66,16 +66,20 @@ jobs:
         tar zxf gramps-"$VERSION".tar.gz
         cd gramps-"$VERSION"
 
-        # 5. Compile application bundle using the py2applet tool instead of python3 -m py2app
+        # 5. Patch legacy setuptools config validation error by converting license string to a dictionary block
+        sed -i '' 's/license = "GPL-2.0-or-later"/license = { text = "GPL-2.0-or-later" }/' pyproject.toml
+        sed -i '' 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
+
+        # 6. Compile application bundle using the py2applet tool sequence cleanly
         py2applet --make-setup Mac/mac_only/Gramps.py
         python3 setup.py py2app --semi-standalone --bundle-identifier=org.gramps-project.gramps
 
-        # 6. Structure the directory for DMG packaging cleanly
+        # 7. Structure the directory for DMG packaging cleanly
         cd /home/runner/work/gramps/gramps
         mkdir dmg_root
         mv dist/gramps-"$VERSION"/dist/Gramps.app dmg_root/
 
-        # 7. Generate the downloadable .dmg installer using native macOS diskutil tools
+        # 8. Generate the downloadable .dmg installer using native macOS diskutil tools
         hdiutil create -volname "Gramps Installation" -srcfolder dmg_root -ov -format UDZO "dist/${{ env.ARTIFACT_NAME }}.dmg"
 
     - name: Upload macOS Installer Artifact
