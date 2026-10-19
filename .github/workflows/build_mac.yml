@@ -11,9 +11,11 @@ on:
     branches:
       - gg_beta
       - grizard_plugin
+      - goatgramps/gg_beta
 
 jobs:
   build:
+    # Fixes the parsing crash by completely removing dynamic matrix evaluations
     runs-on: macos-latest
 
     steps:
