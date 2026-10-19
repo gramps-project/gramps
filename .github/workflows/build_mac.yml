@@ -1,3 +1,46 @@
+name: Build macOS Application (.dmg)
+
+on:
+  workflow_dispatch:
+    inputs:
+      build-number:
+        description: 'Build number'
+        type: string
+        default: '1'
+  push:
+    branches:
+      - gg_beta
+      - grizard_plugin
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Install macOS System Dependencies
+      run: |
+        brew update
+        brew install gtk+3 gobject-introspection pygobject3 cairo adwaita-icon-theme intltool gettext
+        echo "$(brew --prefix gettext)/bin" >> $GITHUB_PATH
+
+    - name: Install Python Build Dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install hatchling build py2app setuptools pycairo
+
+    - name: Sanitize artifact name
+      run: |
+        # Safely convert branch slashes into clean dashes for filenames
+        echo "ARTIFACT_NAME=Gramps_mac_$(echo '${{ github.ref_name }}' | tr '/\\' '--')" >> $GITHUB_ENV
+
     - name: Package and Create DMG
       run: |
         # 1. Patch pyproject.toml license-files array configuration to pass hatchling validation
@@ -18,20 +61,25 @@
         
         echo "App Build version suffix: $appbuild"
         
-        # 4. Extract the source distribution and navigate into it where build assets are located
+        # 4. Extract the source distribution package contents
         cd dist
         tar zxf gramps-"$VERSION".tar.gz
         cd gramps-"$VERSION"
 
-        # 5. Compile application bundle using the correct py2app target entry point
-        # This targets Gramps' primary entry script directly from the extracted package source
-        python3 -m pip install py2app
+        # 5. Compile application bundle using py2app targeting the valid Mac initialization vector
         python3 -m py2app Mac/mac_only/Gramps.py --semi-standalone --bundle-identifier=org.gramps-project.gramps
 
-        # 6. Structure the directory for DMG packaging
+        # 6. Structure the directory for DMG packaging cleanly
         cd /home/runner/work/gramps/gramps
         mkdir dmg_root
         mv dist/gramps-"$VERSION"/dist/Gramps.app dmg_root/
 
         # 7. Generate the downloadable .dmg installer using native macOS diskutil tools
         hdiutil create -volname "Gramps Installation" -srcfolder dmg_root -ov -format UDZO "dist/${{ env.ARTIFACT_NAME }}.dmg"
+
+    - name: Upload macOS Installer Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+        path: dist/*.dmg
+        retention-days: 7
