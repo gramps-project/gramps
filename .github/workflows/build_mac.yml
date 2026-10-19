@@ -66,8 +66,9 @@ jobs:
         tar zxf gramps-"$VERSION".tar.gz
         cd gramps-"$VERSION"
 
-        # 5. Compile application bundle using py2app targeting the valid Mac initialization vector
-        python3 -m py2app Mac/mac_only/Gramps.py --semi-standalone --bundle-identifier=org.gramps-project.gramps
+        # 5. Compile application bundle using the py2applet tool instead of python3 -m py2app
+        py2applet --make-setup Mac/mac_only/Gramps.py
+        python3 setup.py py2app --semi-standalone --bundle-identifier=org.gramps-project.gramps
 
         # 6. Structure the directory for DMG packaging cleanly
         cd /home/runner/work/gramps/gramps
