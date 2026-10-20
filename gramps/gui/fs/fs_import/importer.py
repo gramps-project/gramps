@@ -76,33 +76,61 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
     compare refresh, and warning dialogs in the GUI layer.
     """
 
-    def import_tree(self, caller, FSFTID):
-        print("import ID :" + FSFTID)
-        self.FS_ID = FSFTID
-        self.dbstate = caller.dbstate
+    fs_TreeImp: tree.Tree | None
 
+    def import_tree(self, caller: Any, FSFTID: str) -> None:
+        """
+        Import a tree and restore the interface even when import fails.
+
+        :param caller: The object containing database and UI state.
+        :param FSFTID: The starting FamilySearch person ID.
+        """
         active_handle = caller.uistate.get_active("Person")
-
         progress = ProgressMeter(
             _("FamilySearch Import"), _("Starting"), parent=caller.uistate.window
         )
+        owns_transaction = caller.dbstate.db.transaction is None
+        self.txn = None
         caller.uistate.set_busy_cursor(True)
-        signals_disabled = False
-
         if self.refresh_signals:
             caller.dbstate.db.disable_signals()
-            signals_disabled = True
-
-        if not FSG_Sync.FSG_Sync.ensure_session(caller, self.verbosity):
-            WarningDialog(_("Not connected to FamilySearch"))
-            if signals_disabled:
+        try:
+            self._import_tree(caller, FSFTID, progress)
+        except BaseException as error:
+            if owns_transaction and self.txn is not None:
+                caller.dbstate.db.transaction_abort(self.txn)
+            if isinstance(error, Exception):
+                LOG.exception("FamilySearch tree import failed")
+                WarningDialog(
+                    _(
+                        "FamilySearch import could not be completed. See the log for details."
+                    ),
+                    parent=caller.uistate.window,
+                )
+            raise
+        finally:
+            self.txn = None
+            if self.refresh_signals:
                 caller.dbstate.db.enable_signals()
             caller.uistate.set_busy_cursor(False)
             progress.close()
             if active_handle:
                 caller.uistate.set_active(active_handle, "Person")
-            return
 
+    def _import_tree(self, caller: Any, FSFTID: str, progress: ProgressMeter) -> None:
+        """
+        Download and import records using the caller's progress dialog.
+
+        :param caller: The object containing database and UI state.
+        :param FSFTID: The starting FamilySearch person ID.
+        :param progress: The active import progress dialog.
+        """
+        self.FS_ID = FSFTID
+        self.dbstate = caller.dbstate
+        signals_disabled = self.refresh_signals
+        if not FSG_Sync.FSG_Sync.ensure_session(caller, self.verbosity):
+            WarningDialog(_("Not connected to FamilySearch"))
+            return
         if not fs_utilities.FS_INDEX_PEOPLE:
             build_fs_index(caller, progress, 11)
 
@@ -112,7 +140,7 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         self.fs_TreeImp = tree.Tree()
 
         if getattr(FSG_Sync.FSG_Sync, "fs_Tree", None) is None:
-            FSG_Sync.FSG_Sync.fs_Tree = self.fs_TreeImp
+            setattr(FSG_Sync.FSG_Sync, "fs_Tree", self.fs_TreeImp)
 
         progress.set_pass(
             _("Downloading persons… (3/11)"), mode=ProgressMeter.MODE_ACTIVITY
@@ -123,12 +151,6 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                 [self.FS_ID], progress_callback=_pump_gtk_events
             )
         else:
-            if signals_disabled:
-                caller.dbstate.db.enable_signals()
-            caller.uistate.set_busy_cursor(False)
-            progress.close()
-            if active_handle:
-                caller.uistate.set_active(active_handle, "Person")
             return
 
         # Each generation can involve fetching anywhere from a handful to
@@ -270,7 +292,7 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             # Deserializing mutates shared tree state, so do it sequentially
             # in the main thread even though the fetches above ran
             # concurrently.
-            done = 0
+            processed = 0
             for urls in work_items:
                 progress.step()
                 for url in urls:
@@ -279,11 +301,11 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                         continue
                     self._strip_unknowns(payload)
                     deserialize.deserialize_json(self.fs_TreeImp, payload)
-                done += 1
-                if done == 1 or done % 25 == 0 or done == total:
+                processed += 1
+                if processed == 1 or processed % 25 == 0 or processed == total:
                     print(
                         _("  …notes/sources: %(done)d/%(total)d")
-                        % {"done": done, "total": total}
+                        % {"done": processed, "total": total}
                     )
 
             fetch_source_dates(self.fs_TreeImp)
@@ -302,7 +324,7 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             self.txn = existing_txn
         else:
             intr = False
-            self.txn = DbTxn("FamilySearch import", caller.dbstate.db)
+            self.txn = DbTxn(_("FamilySearch import"), caller.dbstate.db)
             caller.dbstate.db.transaction_begin(self.txn)
 
         progress.set_pass(_("Importing places… (8/11)"), len(self.fs_TreeImp.places))
@@ -415,13 +437,15 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
         )
         compare_start = time.monotonic()
         compared = 0
-        failed = 0
+        failed_count = 0
         caller.dbstate.db.disable_signals()
         try:
             with DbTxn(
                 "FamilySearch: refresh comparison status", caller.dbstate.db
             ) as compare_txn:
-                for done, (fs_person, gr_person) in enumerate(compare_pairs, start=1):
+                for processed, (fs_person, gr_person) in enumerate(
+                    compare_pairs, start=1
+                ):
                     progress.step()
 
                     person_start = time.monotonic()
@@ -435,7 +459,7 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                         )
                         compared += 1
                     except Exception:
-                        failed += 1
+                        failed_count += 1
                         LOG.warning(
                             "Comparison refresh failed for FamilySearch id %s",
                             fs_person.id,
@@ -448,10 +472,14 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
                             _("  …comparison for %(fsid)s took %(elapsed).1fs")
                             % {"fsid": fs_person.id, "elapsed": elapsed}
                         )
-                    if done == 1 or done % 25 == 0 or done == len(compare_pairs):
+                    if (
+                        processed == 1
+                        or processed % 25 == 0
+                        or processed == len(compare_pairs)
+                    ):
                         print(
                             _("  …comparison status: %(done)d/%(total)d")
-                            % {"done": done, "total": len(compare_pairs)}
+                            % {"done": processed, "total": len(compare_pairs)}
                         )
         except Exception:
             LOG.warning("Comparison refresh loop aborted early", exc_info=True)
@@ -466,15 +494,9 @@ class FSToGrampsImporter(CoreFSToGrampsImporter):
             % {
                 "elapsed": time.monotonic() - compare_start,
                 "compared": compared,
-                "failed": failed,
+                "failed": failed_count,
             }
         )
 
-        caller.uistate.set_busy_cursor(False)
-        progress.close()
-
         if signals_disabled and self.added_person:
             caller.dbstate.db.request_rebuild()
-
-        if active_handle:
-            caller.uistate.set_active(active_handle, "Person")

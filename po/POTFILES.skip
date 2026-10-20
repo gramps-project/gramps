@@ -1,5 +1,7 @@
 # List of source files which do not need to be translated.
 #
+# FamilySearch place resolution tests
+gramps/gen/fs/fs_import/test/places_test.py
 #   Python files
 #
 Gramps.py
@@ -718,3 +720,5 @@ gramps/test/test/test_util_test.py
 gramps/gui/glade/gramps.glade
 gramps/plugins/tool/check.glade
 gramps/plugins/tool/removespaces.glade
+
+gramps/gui/test/fs_import_test.py
