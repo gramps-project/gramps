@@ -276,8 +276,15 @@ def _ensure_fs_tree(session: Any) -> Optional[Any]:
     return new_tree
 
 
-def _prime_person_cache(session: Any, fsid: str, force: bool = False) -> Optional[Any]:
-    """Load one FS person into the shared tree cache, optionally forcing refresh."""
+def _prime_person_cache(session: Any, fsid: str, force: bool = False) -> Any | None:
+    """
+    Load a person into the shared tree, propagating fresh-download failures.
+
+    :param session: The active FamilySearch session.
+    :param fsid: The linked FamilySearch person ID.
+    :param force: Whether to require a fresh API response.
+    :returns: The shared tree, or ``None`` when no ID is supplied.
+    """
     fsid = (fsid or "").strip()
     if not fsid:
         return None
@@ -287,14 +294,9 @@ def _prime_person_cache(session: Any, fsid: str, force: bool = False) -> Optiona
         return None
 
     if force:
-        idx = getattr(deserialize.Person, "_index", None)
-        if isinstance(idx, dict):
-            idx.pop(fsid, None)
-
-        for attr_name in ("_persons", "persons", "_person", "_people"):
-            cache = getattr(tree_obj, attr_name, None)
-            if isinstance(cache, dict):
-                cache.pop(fsid, None)
+        person = tree_obj.fetch_person(fsid)
+        tree_obj._persons[fsid] = person
+        return tree_obj
 
     add_persons = getattr(tree_obj, "add_persons", None)
     if callable(add_persons):
@@ -1134,9 +1136,8 @@ def sync_to_familysearch(
                     person = db_person
 
         _bind_global_session(session)
-        _prime_person_cache(session, fsid, force=True)
-
-        fs_person = deserialize.Person.index.get(fsid)
+        fresh_tree = _prime_person_cache(session, fsid, force=True)
+        fs_person = fresh_tree._persons.get(fsid) if fresh_tree is not None else None
         if fs_person is None:
             WarningDialog(
                 _(
@@ -1146,6 +1147,12 @@ def sync_to_familysearch(
                 parent=parent,
             )
             return
+
+        if fs_person.id != fsid:
+            fsid = fs_person.id
+            with DbTxn(_("FamilySearch: Refresh merged ID"), dbstate.db) as txn:
+                db_person = dbstate.db.get_person_from_handle(handle)
+                fs_sync_core._get_or_set_person_fsid(dbstate.db, txn, db_person, fsid)
 
         # start with names/facts from the compare view, then add notes/sources/memories.
         compare_model = _make_overview_model()
