@@ -1,3 +1,22 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2021       Nick Hall
+# Copyright (C) 2024       Jean Michault
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, see <https://www.gnu.org/licenses/>.
+
 name: Build Debian packages
 
 on:
@@ -17,7 +36,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -49,7 +68,7 @@ jobs:
           debhelper \
           dh-python \
           python3-all
-          
+
     - name: Sanitize artifact name
       run: |
         # Safely convert branch slashes into clean dashes for filenames
@@ -62,54 +81,54 @@ jobs:
 
         # 2. Generate the distribution source tarball cleanly
         python3 -m build --sdist
-        
+
         # 3. Extract version safely directly from the generated filename
         VERSION=$(ls dist/gramps-*.tar.gz | sed 's/dist\/gramps-//;s/\.tar\.gz//')
         echo "Detected Gramps version: $VERSION"
-        
+
         if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
           appbuild=$(git rev-parse --short $GITHUB_SHA)
         else
           appbuild=${{ inputs.build-number }}
         fi
-        
+
         # 4. Append your custom entry directly to the top of the existing changelog
         DEBFULLNAME="Gramps Project" DEBEMAIL="noreply@gramps-project.org" debchange -b -v "$VERSION"-"$appbuild" "Custom fork compilation package build."
-        
+
         # 5. Correctly structure the original source package in the parent folder
         cp dist/gramps-"$VERSION".tar.gz dist/gramps_"$VERSION".orig.tar.gz
-        
+
         cd dist
         tar zxf gramps-"$VERSION".tar.gz
         cd gramps-"$VERSION"
-        
+
         # Patch the internal pyproject configuration copy as well before debuild reads it
         sed -i 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
-        
+
         # 6. Bring our newly updated debian configuration folder into the build directory
         cp -r ../../debian .
-        
+
         # 7. Strip out custom clean rules and remove the breaking nosetests3 target execution block
         sed -i '/rm -rf data\/tips.xml/d' debian/rules
         sed -i '/rm -rf gramps\/plugins\/lib\/holidays.xml/d' debian/rules
         sed -i '/debian\/rules override_dh_clean/d' debian/rules
         sed -i '/override_dh_auto_test:/,/nosetests3/d' debian/rules
-        
+
         # 8. Set tracking environment configurations
         mkdir .git
         mkdir -p build/.gramps
         export LANG=en_US.utf8
-        
+
         # 9. Compile forcing architecture-independent outputs (-A) to guarantee a .deb file
         export DEB_BUILD_OPTIONS=nocheck
         debuild -us -uc -d -A
-        
+
         cd /home/runner/work/gramps/gramps/dist
-        
+
         # 10. Locate and rename the output .deb file dynamically using your sanitized variable name
         DEB_FILE=$(ls gramps_*.deb)
         mv "$DEB_FILE" "${{ env.ARTIFACT_NAME }}.deb"
-        
+
     - uses: actions/upload-artifact@v4
       with:
         name: ${{ env.ARTIFACT_NAME }}
