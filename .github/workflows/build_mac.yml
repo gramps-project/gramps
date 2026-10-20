@@ -1,6 +1,12 @@
 name: Build macOS Application (.dmg)
 
 on:
+  workflow_dispatch:
+    inputs:
+      build-number:
+        description: 'Build number'
+        required: true
+        default: '1'
   push:
     branches:
       - gg_beta
@@ -38,6 +44,7 @@ jobs:
 
     - name: Package and Create DMG
       env:
+        INPUT_BUILD_NUMBER: ${{ inputs.build-number }}
         TARGET_ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
       run: |
         # 1. Patch pyproject.toml license-files array configuration to pass hatchling validation
@@ -53,7 +60,7 @@ jobs:
         if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
           appbuild=$(git rev-parse --short $GITHUB_SHA)
         else
-          appbuild="1"
+          appbuild="$INPUT_BUILD_NUMBER"
         fi
         
         echo "App Build version suffix: $appbuild"
