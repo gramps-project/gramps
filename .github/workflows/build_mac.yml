@@ -66,7 +66,7 @@ jobs:
         tar zxf gramps-"$VERSION".tar.gz
         cd gramps-"$VERSION"
 
-        # 5. FIXED: Natively link the module into the active Python environment tracker before purging files
+        # 5. Natively link the module into the active Python environment tracker before purging files
         python3 -m pip install -e .
 
         # 6. Remove conflicting configuration files entirely to prevent py2app setuptools crash
@@ -85,7 +85,7 @@ jobs:
           echo "Gramps.py is already present in the target build workspace folder."
         fi
 
-        # 8. Write setup.py referencing the flat, localized entry file name
+        # 8. FIXED: Exclude the conflicting webstuff plugin from graph parsing to clear the crash
         cat << 'INNER_EOF' > setup.py
         from setuptools import setup
 
@@ -93,6 +93,9 @@ jobs:
         DATA_FILES = []
         OPTIONS = {
             'argv_emulation': False,
+            'excludes': [
+                'gramps.plugins.webstuff'
+            ],
             'plist': {
                 'CFBundleIdentifier': 'org.gramps-project.gramps',
             }
