@@ -36,7 +36,6 @@ jobs:
         python3 -m pip install --upgrade pip
         python3 -m pip install hatchling build py2app setuptools pycairo
 
-    # FIXED: Context mapping via 'env' blocks prevents YAML & Bash parse crashes
     - name: Sanitize artifact name
       id: sanitize
       env:
@@ -46,6 +45,9 @@ jobs:
         echo "ARTIFACT_NAME=$CLEAN_NAME" >> $GITHUB_ENV
 
     - name: Package and Create DMG
+      env:
+        # SAFE: Fallback prevents parser crash during "push" events
+        INPUT_BUILD_NUMBER: ${{ github.event.inputs.build-number || '1' }}
       run: |
         # 1. Patch pyproject.toml license-files array configuration to pass hatchling validation
         sed -i '' 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
@@ -60,7 +62,7 @@ jobs:
         if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
           appbuild=$(git rev-parse --short $GITHUB_SHA)
         else
-          appbuild="${{ inputs.build-number }}"
+          appbuild="$INPUT_BUILD_NUMBER"
         fi
         
         echo "App Build version suffix: $appbuild"
