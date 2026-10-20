@@ -98,3 +98,4 @@ jobs:
         name: ${{ env.ARTIFACT_NAME }}
         path: output_dist/*.dmg
         retention-days: 7
+        
