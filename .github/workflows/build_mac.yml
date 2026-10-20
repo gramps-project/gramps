@@ -73,36 +73,22 @@ jobs:
         # 5. Remove conflicting configuration files entirely to prevent py2app setuptools crash
         rm -f pyproject.toml setup.cfg
 
-        # 6. FIXED: Generate a structured setup.py script manually to explicitly link the workspace file
-        cat << INNER_EOF > setup.py
-from setuptools import setup
+        # 6. FIXED: Sync the required Mac resource directories into the localized build environment tracking paths
+        cp -R "$GITHUB_WORKSPACE/Mac" ./Mac
 
-APP = ['$GITHUB_WORKSPACE/Mac/mac_only/Gramps.py']
-DATA_FILES = []
-OPTIONS = {
-    'argv_emulation': False,
-    'plist': {
-        'CFBundleIdentifier': 'org.gramps-project.gramps',
-    }
-}
-
-setup(
-    app=APP,
-    data_files=DATA_FILES,
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
-)
-INNER_EOF
+        # 7. Generate configuration setup and dynamically patch bundling identifiers inside it relatively
+        py2applet --make-setup Mac/mac_only/Gramps.py
+        sed -i '' "s/OPTIONS = {}/OPTIONS = {'plist': {'CFBundleIdentifier': 'org.gramps-project.gramps'}}/g" setup.py
         
-        # 7. Compile application bundle cleanly using the absolute-path configuration layout
+        # 8. Compile application bundle cleanly using the patched configuration layout
         python3 setup.py py2app --semi-standalone
 
-        # 8. Structure the directory for DMG packaging cleanly using dynamic workspace tracks
+        # 9. Structure the directory for DMG packaging cleanly using dynamic workspace tracks
         cd "$GITHUB_WORKSPACE"
         mkdir -p dmg_root
         mv dist/gramps-"$VERSION"/dist/Gramps.app dmg_root/
 
-        # 9. Generate the downloadable .dmg installer using native macOS diskutil tools
+        # 10. Generate the downloadable .dmg installer using native macOS diskutil tools
         mkdir -p output_dist
         hdiutil create -volname "Gramps Installation" -srcfolder dmg_root -ov -format UDZO "output_dist/${ARTIFACT_NAME}.dmg"
 
