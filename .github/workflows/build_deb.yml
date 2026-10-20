@@ -32,10 +32,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-24.04]
+        os: [ubuntu-26.04]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Install dependencies
       run: |
@@ -129,7 +129,7 @@ jobs:
         DEB_FILE=$(ls gramps_*.deb)
         mv "$DEB_FILE" "${{ env.ARTIFACT_NAME }}.deb"
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: /home/runner/work/gramps/gramps/dist/*.deb
