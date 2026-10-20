@@ -85,7 +85,7 @@ jobs:
           echo "Gramps.py is already present in the target build workspace folder."
         fi
 
-        # 8. FIXED: Exclude the conflicting webstuff plugin from graph parsing to clear the crash
+        # 8. FIXED: Exclude the entire plugin hierarchy from import-graph parsing and treat them as static application packages
         cat << 'INNER_EOF' > setup.py
         from setuptools import setup
 
@@ -93,8 +93,9 @@ jobs:
         DATA_FILES = []
         OPTIONS = {
             'argv_emulation': False,
+            'packages': ['gramps'],
             'excludes': [
-                'gramps.plugins.webstuff'
+                'gramps.plugins'
             ],
             'plist': {
                 'CFBundleIdentifier': 'org.gramps-project.gramps',
