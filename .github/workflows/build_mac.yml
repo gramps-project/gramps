@@ -5,13 +5,12 @@ on:
     inputs:
       build-number:
         description: 'Build number'
-        required: true
+        type: string
         default: '1'
   push:
     branches:
       - gg_beta
       - grizard_plugin
-      - goatgramps/gg_beta
 
 jobs:
   build:
@@ -43,9 +42,6 @@ jobs:
         echo "ARTIFACT_NAME=Gramps_mac_$(echo '${{ github.ref_name }}' | tr '/\\' '--')" >> $GITHUB_ENV
 
     - name: Package and Create DMG
-      env:
-        INPUT_BUILD_NUMBER: ${{ inputs.build-number }}
-        TARGET_ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
       run: |
         # 1. Patch pyproject.toml license-files array configuration to pass hatchling validation
         sed -i '' 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
@@ -60,7 +56,7 @@ jobs:
         if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
           appbuild=$(git rev-parse --short $GITHUB_SHA)
         else
-          appbuild="$INPUT_BUILD_NUMBER"
+          appbuild=${{ inputs.build-number }}
         fi
         
         echo "App Build version suffix: $appbuild"
@@ -75,38 +71,20 @@ jobs:
         sed -i '' '/license-files =/d' pyproject.toml
         sed -i '' '/\[project.license-files\]/,/paths =/d' pyproject.toml
 
-        # 6. Generate a pristine, modern setup.py directly from scratch to fully bypass py2applet multi-line bugs
-        cat << 'INNER_EOF' > setup.py
-from setuptools import setup
-
-APP = ['Mac/mac_only/Gramps.py']
-DATA_FILES = []
-OPTIONS = {
-    'argv_emulation': False,
-    'plist': {
-        'CFBundleIdentifier': 'org.gramps-project.gramps',
-    }
-}
-
-setup(
-    app=APP,
-    data_files=DATA_FILES,
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
-)
-INNER_EOF
+        # 6. Generate configuration setup and dynamically patch bundling identifiers inside it
+        py2applet --make-setup Mac/mac_only/Gramps.py
+        sed -i '' "s/OPTIONS = {}/OPTIONS = {'plist': {'CFBundleIdentifier': 'org.gramps-project.gramps'}}/g" setup.py
         
-        # 7. Compile application bundle cleanly using the clean custom configuration setup
+        # 7. Compile application bundle cleanly using the patched configuration layout
         python3 setup.py py2app --semi-standalone
 
         # 8. Structure the directory for DMG packaging cleanly
         cd /home/runner/work/gramps/gramps
-        mkdir -p dmg_root
+        mkdir dmg_root
         mv dist/gramps-"$VERSION"/dist/Gramps.app dmg_root/
 
-        # 9. Ensure the root output directory exists and generate the downloadable .dmg installer
-        mkdir -p dist
-        hdiutil create -volname "Gramps Installation" -srcfolder dmg_root -ov -format UDZO "dist/$TARGET_ARTIFACT_NAME.dmg"
+        # 9. Generate the downloadable .dmg installer using native macOS diskutil tools
+        hdiutil create -volname "Gramps Installation" -srcfolder dmg_root -ov -format UDZO "dist/${{ env.ARTIFACT_NAME }}.dmg"
 
     - name: Upload macOS Installer Artifact
       uses: actions/upload-artifact@v4
