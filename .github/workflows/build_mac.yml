@@ -66,10 +66,13 @@ jobs:
         tar zxf gramps-"$VERSION".tar.gz
         cd gramps-"$VERSION"
 
-        # 5. Remove conflicting configuration files entirely to prevent py2app setuptools crash
+        # 5. FIXED: Natively link the module into the active Python environment tracker before purging files
+        python3 -m pip install -e .
+
+        # 6. Remove conflicting configuration files entirely to prevent py2app setuptools crash
         rm -f pyproject.toml setup.cfg
 
-        # 6. FIXED: Only copy Gramps.py if it isn't already present in the current folder
+        # 7. Only copy Gramps.py if it isn't already present in the current folder
         if [ ! -f "./Gramps.py" ]; then
           FOUND_SCRIPT=$(find "$GITHUB_WORKSPACE" -type f -iname "Gramps.py" | head -n 1)
           if [ -z "$FOUND_SCRIPT" ]; then
@@ -82,7 +85,7 @@ jobs:
           echo "Gramps.py is already present in the target build workspace folder."
         fi
 
-        # 7. Write setup.py referencing the flat, localized entry file name
+        # 8. Write setup.py referencing the flat, localized entry file name
         cat << 'INNER_EOF' > setup.py
         from setuptools import setup
 
@@ -103,15 +106,15 @@ jobs:
         )
         INNER_EOF
         
-        # 8. Compile application bundle cleanly using the localized configuration layout
+        # 9. Compile application bundle cleanly using the localized configuration layout
         python3 setup.py py2app --semi-standalone
 
-        # 9. Structure the directory for DMG packaging cleanly using dynamic workspace tracks
+        # 10. Structure the directory for DMG packaging cleanly using dynamic workspace tracks
         cd "$GITHUB_WORKSPACE"
         mkdir -p dmg_root
         mv dist/gramps-"$VERSION"/dist/Gramps.app dmg_root/
 
-        # 10. Generate the downloadable .dmg installer using native macOS diskutil tools
+        # 11. Generate the downloadable .dmg installer using native macOS diskutil tools
         mkdir -p output_dist
         hdiutil create -volname "Gramps Installation" -srcfolder dmg_root -ov -format UDZO "output_dist/${ARTIFACT_NAME}.dmg"
 
