@@ -69,10 +69,16 @@ jobs:
         # 5. Remove conflicting configuration files entirely to prevent py2app setuptools crash
         rm -f pyproject.toml setup.cfg
 
-        # 6. Copy the main execution file to the flat local directory path
-        cp "$GITHUB_WORKSPACE/Mac/mac_only/Gramps.py" ./Gramps.py
+        # 6. FIXED: Dynamically locate Gramps.py anywhere in the checkout workspace to prevent path crashes
+        FOUND_SCRIPT=$(find "$GITHUB_WORKSPACE" -type f -iname "Gramps.py" | head -n 1)
+        if [ -z "$FOUND_SCRIPT" ]; then
+          echo "ERROR: Could not find Gramps.py anywhere in the repository!"
+          exit 1
+        fi
+        echo "Found main execution script at: $FOUND_SCRIPT"
+        cp "$FOUND_SCRIPT" ./Gramps.py
 
-        # 7. Write setup.py referencing the flat, localized entry file name (with safe indentation)
+        # 7. Write setup.py referencing the flat, localized entry file name
         cat << 'INNER_EOF' > setup.py
         from setuptools import setup
 
@@ -92,7 +98,7 @@ jobs:
             setup_requires=['py2app'],
         )
         INNER_EOF
-        
+                
         # 8. Compile application bundle cleanly using the localized configuration layout
         python3 setup.py py2app --semi-standalone
 
