@@ -44,13 +44,10 @@ jobs:
       run: |
         CLEAN_NAME="Gramps_mac_$(echo "$RAW_REF_NAME" | tr '/\\' '--')"
         echo "ARTIFACT_NAME=$CLEAN_NAME" >> $GITHUB_ENV
-        # FIXED: Exporting as a formal step output prevents top-level parse crashes
-        echo "name=$CLEAN_NAME" >> $GITHUB_OUTPUT
 
     - name: Package and Create DMG
       env:
         INPUT_BUILD_NUMBER: ${{ github.event.inputs.build-number || '1' }}
-        ARTIFACT_NAME: ${{ steps.sanitize.outputs.name }}
       run: |
         # 1. Patch pyproject.toml license-files array configuration to pass hatchling validation
         sed -i '' 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
@@ -109,7 +106,6 @@ INNER_EOF
     - name: Upload macOS Installer Artifact
       uses: actions/upload-artifact@v4
       with:
-        # FIXED: Referencing formal step output completely avoids the validation parse bug
-        name: ${{ steps.sanitize.outputs.name }}
+        name: ${{ env.ARTIFACT_NAME }}
         path: output_dist/*.dmg
         retention-days: 7
