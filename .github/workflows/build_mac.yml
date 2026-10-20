@@ -69,10 +69,10 @@ jobs:
         # 5. Remove conflicting configuration files entirely to prevent py2app setuptools crash
         rm -f pyproject.toml setup.cfg
 
-        # 6. FIXED: Copy the main execution file to the flat local directory path
+        # 6. Copy the main execution file to the flat local directory path
         cp "$GITHUB_WORKSPACE/Mac/mac_only/Gramps.py" ./Gramps.py
 
-        # 7. FIXED: Bypass py2applet tool string errors entirely by writing a clean, direct setup file
+        # 7. Write setup.py referencing the flat, localized entry file name (with safe indentation)
         cat << 'INNER_EOF' > setup.py
 from setuptools import setup
 
