@@ -46,7 +46,6 @@ jobs:
 
     - name: Package and Create DMG
       env:
-        # SAFE: Fallback prevents parser crash during "push" events
         INPUT_BUILD_NUMBER: ${{ github.event.inputs.build-number || '1' }}
       run: |
         # 1. Patch pyproject.toml license-files array configuration to pass hatchling validation
