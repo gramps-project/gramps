@@ -59,6 +59,12 @@ jobs:
         VERSION=$(ls dist/gramps-*.tar.gz | sed 's/dist\/gramps-//;s/\.tar\.gz//')
         echo "Detected Gramps version: $VERSION"
         
+        if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
+          appbuild=$(git rev-parse --short $GITHUB_SHA)
+        else
+          appbuild="$INPUT_BUILD_NUMBER"
+        fi
+        
         # 4. Extract the source distribution package contents
         cd dist
         tar zxf gramps-"$VERSION".tar.gz
@@ -67,31 +73,14 @@ jobs:
         # 5. Remove conflicting configuration files entirely to prevent py2app setuptools crash
         rm -f pyproject.toml setup.cfg
 
-        # 6. Copy the entry script to the local folder so py2app can find it natively
-        cp "$GITHUB_WORKSPACE/Mac/mac_only/Gramps.py" ./Gramps.py
+        # 6. FIXED: Sync the required Mac resource directories into the localized build environment tracking paths
+        cp -R "$GITHUB_WORKSPACE/Mac" ./Mac
 
-        # 7. Write setup.py referencing the flat, localized entry file name
-        cat << 'INNER_EOF' > setup.py
-from setuptools import setup
-
-APP = ['Gramps.py']
-DATA_FILES = []
-OPTIONS = {
-    'argv_emulation': False,
-    'plist': {
-        'CFBundleIdentifier': 'org.gramps-project.gramps',
-    }
-}
-
-setup(
-    app=APP,
-    data_files=DATA_FILES,
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
-)
-INNER_EOF
-
-        # 8. Compile application bundle cleanly using the localized setup layout
+        # 7. Generate configuration setup and dynamically patch bundling identifiers inside it relatively
+        py2applet --make-setup Mac/mac_only/Gramps.py
+        sed -i '' "s/OPTIONS = {}/OPTIONS = {'plist': {'CFBundleIdentifier': 'org.gramps-project.gramps'}}/g" setup.py
+        
+        # 8. Compile application bundle cleanly using the patched configuration layout
         python3 setup.py py2app --semi-standalone
 
         # 9. Structure the directory for DMG packaging cleanly using dynamic workspace tracks
@@ -109,3 +98,4 @@ INNER_EOF
         name: ${{ env.ARTIFACT_NAME }}
         path: output_dist/*.dmg
         retention-days: 7
+        
