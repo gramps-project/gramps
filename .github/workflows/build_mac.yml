@@ -74,24 +74,24 @@ jobs:
 
         # 7. Write setup.py referencing the flat, localized entry file name (with safe indentation)
         cat << 'INNER_EOF' > setup.py
-from setuptools import setup
+        from setuptools import setup
 
-APP = ['Gramps.py']
-DATA_FILES = []
-OPTIONS = {
-    'argv_emulation': False,
-    'plist': {
-        'CFBundleIdentifier': 'org.gramps-project.gramps',
-    }
-}
+        APP = ['Gramps.py']
+        DATA_FILES = []
+        OPTIONS = {
+            'argv_emulation': False,
+            'plist': {
+                'CFBundleIdentifier': 'org.gramps-project.gramps',
+            }
+        }
 
-setup(
-    app=APP,
-    data_files=DATA_FILES,
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
-)
-INNER_EOF
+        setup(
+            app=APP,
+            data_files=DATA_FILES,
+            options={'py2app': OPTIONS},
+            setup_requires=['py2app'],
+        )
+        INNER_EOF
         
         # 8. Compile application bundle cleanly using the localized configuration layout
         python3 setup.py py2app --semi-standalone
