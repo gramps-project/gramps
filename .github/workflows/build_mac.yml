@@ -36,11 +36,13 @@ jobs:
         python3 -m pip install --upgrade pip
         python3 -m pip install hatchling build py2app setuptools pycairo
 
+    # FIXED: Context mapping via 'env' blocks prevents YAML & Bash parse crashes
     - name: Sanitize artifact name
       id: sanitize
+      env:
+        RAW_REF_NAME: ${{ github.ref_name }}
       run: |
-        # Safely convert branch slashes into clean dashes for filenames
-        CLEAN_NAME="Gramps_mac_$(echo '${{ github.ref_name }}' | tr '/\\' '--')"
+        CLEAN_NAME="Gramps_mac_$(echo "$RAW_REF_NAME" | tr '/\\' '--')"
         echo "ARTIFACT_NAME=$CLEAN_NAME" >> $GITHUB_ENV
 
     - name: Package and Create DMG
@@ -98,7 +100,6 @@ INNER_EOF
         python3 setup.py py2app --semi-standalone
 
         # 8. Structure the directory for DMG packaging cleanly using dynamic workspace tracks
-        # Use shell variables to read the runner environment safely
         cd "$GITHUB_WORKSPACE"
         mkdir -p dmg_root
         mv dist/gramps-"$VERSION"/dist/Gramps.app dmg_root/
