@@ -44,10 +44,12 @@ jobs:
       run: |
         CLEAN_NAME="Gramps_mac_$(echo "$RAW_REF_NAME" | tr '/\\' '--')"
         echo "ARTIFACT_NAME=$CLEAN_NAME" >> $GITHUB_ENV
+        echo "name=$CLEAN_NAME" >> $GITHUB_OUTPUT
 
     - name: Package and Create DMG
       env:
         INPUT_BUILD_NUMBER: ${{ github.event.inputs.build-number || '1' }}
+        ARTIFACT_NAME: ${{ steps.sanitize.outputs.name }}
       run: |
         # 1. Patch pyproject.toml license-files array configuration to pass hatchling validation
         sed -i '' 's/license-files = \["COPYING"\]/\[project.license-files\]\npaths = \["COPYING"\]/' pyproject.toml
@@ -59,12 +61,6 @@ jobs:
         VERSION=$(ls dist/gramps-*.tar.gz | sed 's/dist\/gramps-//;s/\.tar\.gz//')
         echo "Detected Gramps version: $VERSION"
         
-        if grep -q '^DEV_VERSION\s*=\s*True' gramps/version.py; then
-          appbuild=$(git rev-parse --short $GITHUB_SHA)
-        else
-          appbuild="$INPUT_BUILD_NUMBER"
-        fi
-        
         # 4. Extract the source distribution package contents
         cd dist
         tar zxf gramps-"$VERSION".tar.gz
@@ -73,14 +69,31 @@ jobs:
         # 5. Remove conflicting configuration files entirely to prevent py2app setuptools crash
         rm -f pyproject.toml setup.cfg
 
-        # 6. FIXED: Sync the required Mac resource directories into the localized build environment tracking paths
-        cp -R "$GITHUB_WORKSPACE/Mac" ./Mac
+        # 6. FIXED: Copy the main execution file to the flat local directory path
+        cp "$GITHUB_WORKSPACE/Mac/mac_only/Gramps.py" ./Gramps.py
 
-        # 7. Generate configuration setup and dynamically patch bundling identifiers inside it relatively
-        py2applet --make-setup Mac/mac_only/Gramps.py
-        sed -i '' "s/OPTIONS = {}/OPTIONS = {'plist': {'CFBundleIdentifier': 'org.gramps-project.gramps'}}/g" setup.py
+        # 7. FIXED: Bypass py2applet tool string errors entirely by writing a clean, direct setup file
+        cat << 'INNER_EOF' > setup.py
+from setuptools import setup
+
+APP = ['Gramps.py']
+DATA_FILES = []
+OPTIONS = {
+    'argv_emulation': False,
+    'plist': {
+        'CFBundleIdentifier': 'org.gramps-project.gramps',
+    }
+}
+
+setup(
+    app=APP,
+    data_files=DATA_FILES,
+    options={'py2app': OPTIONS},
+    setup_requires=['py2app'],
+)
+INNER_EOF
         
-        # 8. Compile application bundle cleanly using the patched configuration layout
+        # 8. Compile application bundle cleanly using the localized configuration layout
         python3 setup.py py2app --semi-standalone
 
         # 9. Structure the directory for DMG packaging cleanly using dynamic workspace tracks
@@ -95,7 +108,6 @@ jobs:
     - name: Upload macOS Installer Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.ARTIFACT_NAME }}
+        name: ${{ steps.sanitize.outputs.name }}
         path: output_dist/*.dmg
         retention-days: 7
-        
