@@ -20,13 +20,15 @@
 # Zizhuo JIa <jzz0313@outlook.com>, 2026.
 # reducedradius <137701630+flytothehighest@users.noreply.github.com>, 2026.
 # Arnie97 <arnie97@gmail.com>, 2026.
+# Tian Shixiong <tiansworld@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-08-22 20:19+0000\n"
-"Last-Translator: Tian Shixiong <tiansworld@fedoraproject.org>\n"
+"PO-Revision-Date: 2026-10-18 09:51+0000\n"
+"Last-Translator: Tian Shixiong <tiansworld@users.noreply.hosted.weblate.org>"
+"\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -34,7 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -7070,18 +7072,13 @@ msgid "Sources ? row %(row)d not green (%(color)s)"
 msgstr ""
 
 #: ../gramps/gen/fs/tags.py:363
-#, fuzzy
-#| msgid ""
-#| "FamilySearch status tag colors can be customized in Gramps via Edit Tags. "
-#| "This add-on only sets default colors when the tags are first created and "
-#| "will not override your custom choices."
 msgid ""
 "FamilySearch status tag colors can be customized in Gramps via Edit > Tag > "
 "Organize Tags. This integration only sets default colors when the tags are "
 "first created and will not override your custom choices."
 msgstr ""
-"FamilySearch 状态标签的颜色可在 Gramps 中通过编辑标签进行自定义。此加载项仅在"
-"标签首次创建时设置默认颜色，并不会改写您的自定义选择。"
+"FamilySearch 状态标签的颜色可在 Gramps 中通过编辑 > 标签 > 整理标签进行自定义"
+"设置。该集成功能仅在标签首次创建时设置默认颜色，并不会改写您的自定义选择。"
 
 #: ../gramps/gen/fs/utils/linking.py:48
 msgid "FamilySearch tags"
@@ -8655,7 +8652,7 @@ msgstr "FamilySearch 修改时间戳"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:96
 msgid "Essential conflict"
-msgstr ""
+msgstr "根本冲突"
 
 #: ../gramps/gen/lib/fs/familysearchsync.py:98
 msgid "Conflict"
@@ -11541,6 +11538,15 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"SSL 证书验证失败。  该问题在非系统安装的 Python（如 pyenv，conda） 中很普遍，"
+"因为与其捆绑的 OpenSSL 并不知道系统证书所在的位置。  尝试以下解决方法之一：\n"
+"  1. 安装 certifi 软件包：  pip install certifi\n"
+"  2. 启动 Gramps 前将 SSL_CERT_FILE 设置为系统预置的 CA，比如：\n"
+"       export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt  (Debian/"
+"Ubuntu)\n"
+"       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
@@ -11550,17 +11556,17 @@ msgstr ""
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
-msgstr ""
+msgstr "该平台中没有为 '%s==%s' 找到兼容的 wheel。"
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "该平台中没有为“%s”找到兼容的 wheel。"
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "“%s”的 SHA-256 校验结果不一致：应该为 %s, 实际是 %s"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
@@ -11568,10 +11574,9 @@ msgid "No version of '%s' satisfies all constraints: %s"
 msgstr ""
 
 #: ../gramps/gen/utils/pypi.py:1285
-#, fuzzy, python-format
-#| msgid "No file to download"
+#, python-format
 msgid "Failed to download '%s': %s"
-msgstr "没有要下载的文件"
+msgstr "下载 '%s': %s 失败"
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
@@ -12590,7 +12595,7 @@ msgstr "直接进行家庭搜索"
 #: ../gramps/gui/configure.py:1147
 #, fuzzy
 msgid "Auth provider"
-msgstr "Auth 提供商"
+msgstr "Auth 提供方"
 
 #: ../gramps/gui/configure.py:1156
 msgid "App key (direct mode only)"
@@ -12742,10 +12747,8 @@ msgid "Round the year"
 msgstr "四舍五入年龄"
 
 #: ../gramps/gui/configure.py:1760
-#, fuzzy
-#| msgid "Display references for a %s"
 msgid "Display ages for events after death *"
-msgstr "显示 %s 的参考"
+msgstr "在去世后的事件中显示年龄 *"
 
 #: ../gramps/gui/configure.py:1776
 msgid "Calendar on reports"
@@ -12884,10 +12887,8 @@ msgid "Maximum age probably alive"
 msgstr "最长寿命"
 
 #: ../gramps/gui/configure.py:2095
-#, fuzzy
-#| msgid "Max generations for relationships"
 msgid "Maximum generations to estimate age"
-msgstr "最多显示几代关系"
+msgstr "估计年龄的最大代数"
 
 #: ../gramps/gui/configure.py:2100
 msgid ""
@@ -13090,10 +13091,8 @@ msgstr ""
 "可设定此方框的大小。"
 
 #: ../gramps/gui/configure.py:2379
-#, fuzzy
-#| msgid "Notes Preview"
 msgid "Note preview length"
-msgstr "注释预览"
+msgstr "注释的预览长度"
 
 #: ../gramps/gui/configure.py:2438
 msgid "Database Setting"
@@ -16414,13 +16413,11 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:290
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:194
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import selected"
-msgstr "导入失败"
+msgstr "已选择导入"
 
 #: ../gramps/gui/fs/actions.py:314
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{total} found - {new} new - {existing} already in tree"
 msgstr "共找到 {total} 个，{new} 个新的，{existing} 个已在其中"
 
@@ -16435,10 +16432,8 @@ msgid "Select all new"
 msgstr "选择所有新建"
 
 #: ../gramps/gui/fs/actions.py:369
-#, fuzzy
-#| msgid "Already dead"
 msgid "Already in tree"
-msgstr "已故"
+msgstr "已在家谱中"
 
 #: ../gramps/gui/fs/actions.py:369
 msgid "New (will import)"
@@ -16471,9 +16466,9 @@ msgid "Bulk import relatives"
 msgstr "批量导入亲属"
 
 #: ../gramps/gui/fs/actions.py:690
-#, fuzzy, python-format
+#, python-format
 msgid "Starting person: %(name)s [%(fsid)s]"
-msgstr "%(father)s [%(gramps_id)s]"
+msgstr "起始人员：%(name)s [%(fsid)s]"
 
 #: ../gramps/gui/fs/actions.py:712 ../gramps/gui/fs/fs_import/options.py:42
 msgid "Ancestor generations"
@@ -16628,10 +16623,9 @@ msgid "No FamilySearch ID linked. Click 'Link FamilySearch ID' first."
 msgstr "没有关联的 FamilySearch ID。请先点击“关联 FamilySearch ID”。"
 
 #: ../gramps/gui/fs/actions.py:1148
-#, fuzzy, python-brace-format
-#| msgid "Sealed to Parents"
+#, python-brace-format
 msgid "Failed to fetch parents: {e}"
-msgstr "与父母印证"
+msgstr "获取父母失败：{e}"
 
 #: ../gramps/gui/fs/actions.py:1170
 msgid "No parents found on FamilySearch for this person."
@@ -16681,10 +16675,8 @@ msgid "Children imported but could not be located in the local database."
 msgstr "子女已导入，但无法在本地数据库中定位。"
 
 #: ../gramps/gui/fs/actions.py:1343
-#, fuzzy
-#| msgid "Family Children"
 msgid "FamilySearch: Link children"
-msgstr "家庭子女"
+msgstr "FamilySearch：关联子女"
 
 #: ../gramps/gui/fs/actions.py:1411
 msgid "Child(ren) imported and linked."
@@ -16887,54 +16879,41 @@ msgid "Building ordered list (1/2)"
 msgstr "构建排序列表 (1/2)"
 
 #: ../gramps/gui/fs/compare/window.py:291
-#, fuzzy
-#| msgid "Processing File"
 msgid "Processing list (2/2)"
-msgstr "处理文件"
+msgstr "处理列表 (2/2)"
 
 #: ../gramps/gui/fs/compare/window.py:328
-#, fuzzy, python-format
-#| msgid "not found"
+#, python-format
 msgid "FS ID %s not found"
-msgstr "未找到"
+msgstr "FS ID %s 未找到"
 
 #: ../gramps/gui/fs/fs_import/importer.py:87
-#, fuzzy
-#| msgid "Family Group Report"
 msgid "FamilySearch Import"
-msgstr "家庭分组报告"
+msgstr "导入 FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/importer.py:118
 msgid "Downloading persons… (3/11)"
 msgstr "下载人员... (3/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:120
-#, fuzzy
-#| msgid "Download page note"
 msgid "Downloading person…"
-msgstr "下载页面备注"
+msgstr "下载人员…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:142
 msgid "Downloading ancestors… (4/11)"
 msgstr "下载祖先... (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:152
-#, fuzzy, python-format
-#| msgid ""
-#| "Total ancestors in generations %(second_generation)d to "
-#| "%(last_generation)d is %(count)d. %(percent)s"
+#, python-format
 msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
-"从 %(second_generation)d 代到 %(last_generation)d 代先辈人数是 %(count)d 为。"
-"占比 %(percent)s"
+msgstr[0] "正在下载祖先内容 第 %(gen)d 代/共 %(total)d 代… (%(count)d 位人员)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:159
-#, fuzzy, python-format
-#| msgid "Downloading ancestors… (4/11)"
+#, python-format
 msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
-msgstr "下载祖先... (4/11)"
+msgstr "正在下载祖先... (4/11) — 第 %(gen)d 代/共 %(total)d 代"
 
 #: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
@@ -16945,24 +16924,22 @@ msgstr "下载后代...（5/11)"
 msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
-msgstr[0] ""
+msgstr[0] "正在下载后代内容 第 %(gen)d 代/共 %(total)d 代… (%(count)d 位人员)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
-#, fuzzy, python-format
-#| msgid "Downloading descendants… (5/11)"
+#, python-format
 msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
-msgstr "下载后代...（5/11)"
+msgstr "正在下载后代...（5/11) — 第 %(gen)d 代/共 %(total)d 代"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr "下载配偶... (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy, python-format
-#| msgid "Downloading spouses…"
+#, python-format
 msgid "Downloading spouses for %d person…"
 msgid_plural "Downloading spouses for %d people…"
-msgstr[0] "下载配偶…"
+msgstr[0] "正在下载 %d 的配偶信息…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
@@ -16975,7 +16952,7 @@ msgstr "下载笔记和来源…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  ...注释/来源：已完成 %(done)d/共 %(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 msgid "Importing…"
@@ -17015,10 +16992,8 @@ msgid "Importing children…"
 msgstr "导入子女.…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
-#, fuzzy
-#| msgid "FamilySearch modified timestamp"
 msgid "Resolving FamilySearch timestamps…"
-msgstr "FamilySearch 修改时间戳"
+msgstr "正在解决 FamilySearch 时间戳问题…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
 #, fuzzy, python-format
@@ -17034,10 +17009,8 @@ msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
 msgstr[0] ""
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
-#, fuzzy
-#| msgid "Refreshing Addon List"
 msgid "Refreshing comparison status…"
-msgstr "刷新插件列表"
+msgstr "刷新对比状态…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:410
 #, python-format
@@ -17121,10 +17094,8 @@ msgstr "匹配"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:864
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:648
 #: ../gramps/gui/fs/sync_directions.py:887
-#, fuzzy
-#| msgid "Different database"
 msgid "Different"
-msgstr "不同的数据库"
+msgstr "不同的"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:519
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:866
@@ -17188,7 +17159,7 @@ msgstr "该行中无法合并的内容"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:862
 msgid "Critical"
-msgstr ""
+msgstr "关键的"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:869
 msgid "Selectable"
@@ -17457,10 +17428,8 @@ msgstr "比较失败：{e}"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2166
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2257
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2272
-#, fuzzy
-#| msgid "Missing Given Name"
 msgid "(missing in Gramps)"
-msgstr "缺失的名"
+msgstr "（在 Gramps 中缺失）"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2436
 msgid "Mention"
@@ -17479,10 +17448,8 @@ msgid "Logged in to FamilySearch."
 msgstr "已登录到 FamilySearch。"
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:90
-#, fuzzy
-#| msgid "Saving failed"
 msgid "Login failed."
-msgstr "保存失败"
+msgstr "登录失败。"
 
 #: ../gramps/gui/fs/person/mixins/helpers.py:93
 #, python-brace-format
@@ -17496,40 +17463,33 @@ msgstr ""
 #: ../gramps/gui/fs/person/mixins/source_import.py:338
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:186
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:191
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Import FamilySearch sources"
-msgstr "导入 Family Tree"
+msgstr "导入 FamilySearch 中的来源"
 
 #: ../gramps/gui/fs/person/mixins/source_import.py:468
-#, fuzzy, python-brace-format
-#| msgid "%s could not be imported"
+#, python-brace-format
 msgid ""
 "Some sources could not be imported:\n"
 "{errs}"
-msgstr "%s 无法导入"
+msgstr ""
+"某些来源无法导入：\n"
+"{errs}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:119
 msgid "No FamilySearch sources found to import."
 msgstr "没有找到用于导入的 FamilySearch 源。"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:266
-#, fuzzy
-#| msgid "Selected"
 msgid "Detected"
-msgstr "已选择"
+msgstr "已检测"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:284
-#, fuzzy
-#| msgid "Import"
 msgid "Import as"
-msgstr "导入"
+msgstr "导入为"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:295
-#, fuzzy
-#| msgid " Date"
 msgid "FS Date"
-msgstr "日期"
+msgstr "FS 日期"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:314
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:520
@@ -17563,48 +17523,36 @@ msgid "Manage images"
 msgstr "管理数据库"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:390
-#, fuzzy
-#| msgid "Add a new source"
 msgid "Add from source…"
-msgstr "新增来源"
+msgstr "从来源添加…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:391
 msgid "Open the source page and download images"
 msgstr "打开来源页面然后下载图像"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:393
-#, fuzzy
-#| msgid "Choose font"
 msgid "Choose file…"
-msgstr "选择字体"
+msgstr "选择文件…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:394
 msgid "Pick existing files from disk"
 msgstr "从硬盘中选择已有文件"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:396
-#, fuzzy
-#| msgid "Rename failed"
 msgid "Rename files"
-msgstr "重命名失败"
+msgstr "重命名文件"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:397
-#, fuzzy
-#| msgid "Remove the selected family event"
 msgid "Rename selected files on disk"
-msgstr "移除所选家庭事件"
+msgstr "重命名存储盘中的所选文件"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:436
-#, fuzzy
-#| msgid "File extension"
 msgid "Filename (without extension)"
-msgstr "文件扩展名"
+msgstr "文件名（不含扩展名）"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:440
-#, fuzzy
-#| msgid "Expression:"
 msgid "Extension"
-msgstr "表达式："
+msgstr "扩展名"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:453
 msgid ""
@@ -17664,10 +17612,8 @@ msgstr "重命名失败"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:631
 #: ../gramps/gui/fs/sync_directions.py:874
-#, fuzzy
-#| msgid "_Select All"
 msgid "Select all"
-msgstr "全选(_S)"
+msgstr "全选"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:652
 msgid ""
@@ -17680,16 +17626,12 @@ msgid "{n} source(s) imported."
 msgstr "已导入 {n} 个来源。"
 
 #: ../gramps/gui/fs/sync_directions.py:208
-#, fuzzy
-#| msgid "Produced with Gramps"
 msgid "Overwrite with Gramps"
-msgstr "以 Gramps 生成"
+msgstr "用 Gramps 的覆盖"
 
 #: ../gramps/gui/fs/sync_directions.py:210
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Add from Gramps"
-msgstr "添加 gramplet"
+msgstr "从 Gramps 添加"
 
 #: ../gramps/gui/fs/sync_directions.py:211
 msgid "Apply from Gramps"
@@ -17702,24 +17644,21 @@ msgstr "主要信息来源"
 
 #: ../gramps/gui/fs/sync_directions.py:596
 #: ../gramps/gui/fs/sync_directions.py:622
-#, fuzzy, python-brace-format
-#| msgid "Note Filter"
+#, python-brace-format
 msgid "Note: {title}"
-msgstr "注释筛选"
+msgstr "注释：{标题}"
 
 #: ../gramps/gui/fs/sync_directions.py:597
 #: ../gramps/gui/fs/sync_directions.py:623
-#, fuzzy
-#| msgid "title"
 msgid "(untitled)"
-msgstr "头衔"
+msgstr "（无标题）"
 
 #: ../gramps/gui/fs/sync_directions.py:601
 #: ../gramps/gui/fs/sync_directions.py:626
 #: ../gramps/gui/fs/sync_directions.py:627
 #: ../gramps/gui/fs/sync_directions.py:969
 msgid "(empty)"
-msgstr ""
+msgstr "（空白）"
 
 #: ../gramps/gui/fs/sync_directions.py:761
 #: ../gramps/gui/fs/sync_directions.py:1289
@@ -17751,10 +17690,8 @@ msgstr "来源：标题"
 
 #: ../gramps/gui/fs/sync_directions.py:806
 #: ../gramps/gui/fs/sync_directions.py:814
-#, fuzzy
-#| msgid "Select Family"
 msgid "Sync to FamilySearch"
-msgstr "选择一个家庭"
+msgstr "同步到 FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:815
 msgid "Gramps to FamilySearch"
@@ -17854,10 +17791,8 @@ msgstr ""
 "请尝试“从 FamilySearch 同步”或清空缓存，然后重试。"
 
 #: ../gramps/gui/fs/sync_directions.py:1171
-#, fuzzy
-#| msgid "No parents found"
 msgid "No pushable differences found."
-msgstr "未找到父母"
+msgstr "未发现可推送的差异。"
 
 #: ../gramps/gui/fs/sync_directions.py:1206
 msgid ""
@@ -17928,14 +17863,10 @@ msgstr ""
 "<i>无删除操作。已有的活跃关联人员信息不会被改写。</i>"
 
 #: ../gramps/gui/fs/sync_directions.py:1514
-#, fuzzy
-#| msgid "Include places"
 msgid "Include parents"
-msgstr "包括地点"
+msgstr "包括父母"
 
 #: ../gramps/gui/fs/sync_directions.py:1515
-#, fuzzy
-#| msgid "Include spouses"
 msgid "Include spouse(s)"
 msgstr "包含配偶"
 
@@ -18023,10 +17954,8 @@ msgid "Editor person: (none)"
 msgstr "编辑此人(%s)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Only in FamilySearch"
 msgid "Open Person in FamilySearch"
-msgstr "仅在FamilySearch 中"
+msgstr "在 FamilySearch 中打开人员"
 
 #: ../gramps/gui/fs/tools_window.py:381
 msgid "Single Person Actions"
@@ -18037,28 +17966,20 @@ msgid "Bulk Actions"
 msgstr "批量操作"
 
 #: ../gramps/gui/fs/tools_window.py:391
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import relatives"
-msgstr "导入失败"
+msgstr "导入亲属"
 
 #: ../gramps/gui/fs/tools_window.py:395
-#, fuzzy
-#| msgid "Import Pro-Gen"
 msgid "Import Parents"
-msgstr "导入 Pro-Gen"
+msgstr "导入父母"
 
 #: ../gramps/gui/fs/tools_window.py:396
-#, fuzzy
-#| msgid "Indent Spouses"
 msgid "Import Spouse"
-msgstr "缩进配偶"
+msgstr "导入配偶"
 
 #: ../gramps/gui/fs/tools_window.py:397
-#, fuzzy
-#| msgid "Import failed"
 msgid "Import Children"
-msgstr "导入失败"
+msgstr "导入儿童"
 
 #: ../gramps/gui/fs/tools_window.py:402 ../gramps/gui/fs/tools_window.py:422
 #: ../gramps/gui/plug/tool.py:71
@@ -18066,10 +17987,8 @@ msgid "Utilities"
 msgstr "实用程序"
 
 #: ../gramps/gui/fs/tools_window.py:405
-#, fuzzy
-#| msgid "Cleared"
 msgid "Clear Cache"
-msgstr "清除"
+msgstr "清除缓存"
 
 #: ../gramps/gui/fs/tools_window.py:411
 msgid "Import multiple generations"
@@ -18084,10 +18003,8 @@ msgid "Import ancestors and descendants from the selected FamilySearch person."
 msgstr "从所选的 FamilySearch 人员导入祖先和后代。"
 
 #: ../gramps/gui/fs/tools_window.py:425
-#, fuzzy
-#| msgid "Tags"
 msgid "Tags..."
-msgstr "标签"
+msgstr "标签..."
 
 #: ../gramps/gui/fs/tools_window.py:538
 #, fuzzy
@@ -18124,10 +18041,8 @@ msgid ""
 msgstr "在 FamilySearch 创建缺失人员并关联关系（名字+出生/死亡）。"
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Merge Family"
 msgid "Open FamilySearch.org"
-msgstr "合并家庭"
+msgstr "打开 FamilySearch.org"
 
 #: ../gramps/gui/fs/tools_window.py:774
 #, fuzzy, python-format
@@ -18161,21 +18076,16 @@ msgstr "%s 的家庭地点"
 
 #: ../gramps/gui/fs/utils/index.py:60
 #, fuzzy
-#| msgid "Duplicate Family"
 msgid "Duplicate FSFTID"
-msgstr "复制家庭"
+msgstr "复制 FSFTID"
 
 #: ../gramps/gui/fs/utils/index.py:62
-#, fuzzy
-#| msgid "_Continue anyway"
 msgid "_Continue warning"
-msgstr "仍然继续(_C)"
+msgstr "继续警告(_C)"
 
 #: ../gramps/gui/fs/utils/index.py:63
-#, fuzzy
-#| msgid "Undo history warning"
 msgid "_Stop warning"
-msgstr "撤销历史警示"
+msgstr "停止警告(_S)"
 
 #: ../gramps/gui/fs/utils/index.py:73
 #, python-format
@@ -19536,9 +19446,8 @@ msgstr "街道编号"
 
 #: ../gramps/gui/glade/editplacename.glade:157
 #: ../gramps/plugins/webreport/basepage.py:3460
-#, fuzzy
 msgid "Date range in which the name is valid."
-msgstr "某个地址中的日期有效"
+msgstr "名字有效的日期范围。"
 
 #: ../gramps/gui/glade/editplacename.glade:170
 msgid "The name of the place."
@@ -21163,10 +21072,9 @@ msgid "Addon installation failed"
 msgstr "模块安装失败"
 
 #: ../gramps/gui/plug/_windows.py:371
-#, fuzzy, python-format
-#| msgid "Gramps was unable to install the required modules"
+#, python-format
 msgid "Gramps was unable to install '%s'."
-msgstr "Gramps 无法安装所需模块"
+msgstr "Gramps 无法安装“%s”。"
 
 #: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
@@ -29211,6 +29119,9 @@ msgid ""
 "%(year)d-%(month)02d-%(day)02d. If your source uses DD/MM/YYYY (e.g. "
 "ancestry.com exports), verify and correct after import."
 msgstr ""
+"含糊的数字日期“%(orig)s”会被当作 MM/DD/YYYY（美国格式）= %(year)d-%(month)"
+"02d-%(day)02d。如果您的来源中使用 DD/MM/YYYY 格式（比如从 ancestry.com 导出的"
+"数据），则需要在导入后检查并修改。"
 
 #: ../gramps/plugins/lib/libgedcom.py:3619
 msgid "Records not imported into "
@@ -33580,9 +33491,8 @@ msgstr ""
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
-#, fuzzy
 msgid "Personal map: "
-msgstr "成员"
+msgstr "人员地图： "
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
 msgid "The map"
@@ -34635,20 +34545,16 @@ msgid "Expander"
 msgstr "扩展显示"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:82
-#, fuzzy
-#| msgid "Category Sidebar"
 msgid "Favorites Sidebar"
-msgstr "类别侧边栏"
+msgstr "个人收藏侧边栏"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:83
-#, fuzzy
-#| msgid "Selection of views from lists with expanders"
 msgid "Selection of views from a views selector"
-msgstr "从扩展列表中选择视图"
+msgstr "从视图选择器中选择视图"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:91
 msgid "Favorites"
-msgstr ""
+msgstr "个人收藏"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:73
 #: ../gramps/plugins/textreport/textplugins.gpr.py:412
@@ -38628,9 +38534,8 @@ msgid "Have they been able to meet?"
 msgstr "他们是否曾经相遇？"
 
 #: ../gramps/plugins/view/geoclose.py:264
-#, fuzzy
 msgid "GeoClose"
-msgstr "关闭"
+msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:319
 #, python-format
