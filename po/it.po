@@ -68,13 +68,14 @@
 # Paolo Zamponi <feus73@gmail.com>, 2026.
 # Pierfrancesco Passerini <p.passerini@gmail.com>, 2026.
 # Ezio Cabianca <mrcabez@users.noreply.hosted.weblate.org>, 2026.
+# Luigi Toscano <tosky@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-18 17:58+0000\n"
-"Last-Translator: Ezio Cabianca <mrcabez@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-10-21 16:29+0000\n"
+"Last-Translator: Luigi Toscano <tosky@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -18600,11 +18601,11 @@ msgstr "FSFTID duplicato"
 
 #: ../gramps/gui/fs/utils/index.py:62
 msgid "_Continue warning"
-msgstr "_Continua"
+msgstr "_Continua l'avviso"
 
 #: ../gramps/gui/fs/utils/index.py:63
 msgid "_Stop warning"
-msgstr "_Interrompi"
+msgstr "_Interrompi avviso"
 
 #: ../gramps/gui/fs/utils/index.py:73
 #, python-format
