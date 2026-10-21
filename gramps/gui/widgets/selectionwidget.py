@@ -32,6 +32,7 @@ from gi.repository import GLib, GObject
 # gramps modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.constfunc import is_quartz
 from gramps.gen.display.name import displayer as name_displayer
 
 # -------------------------------------------------------------------------
@@ -65,6 +66,14 @@ MAX_SIZE = 2000
 MIN_SIZE = 50
 SHADING_OPACITY = 0.7
 MIN_SELECTION_SIZE = 10
+
+# Amount of accumulated smooth scrolling needed for one zoom step. Most GDK
+# backends normalise smooth scroll deltas so that one mouse wheel notch is
+# 1.0. The quartz (macOS) backend instead reports the raw trackpad movement
+# in points, so a larger value is needed there to turn a two-finger swipe
+# into a sensible number of zoom steps.
+SCROLL_ZOOM_STEP = 1.0
+SCROLL_ZOOM_STEP_QUARTZ = 50.0
 
 
 def scale_to_fit(orig_x, orig_y, target_x, target_y):
@@ -216,6 +225,10 @@ class SelectionWidget(Gtk.ScrolledWindow):
         self.scaled_pixbuf = None
         self.scale = 1.0
         self.old_viewport_size = None
+        self.scroll_zoom_step = (
+            SCROLL_ZOOM_STEP_QUARTZ if is_quartz() else SCROLL_ZOOM_STEP
+        )
+        self.scroll_accumulator = 0.0
 
         Gtk.ScrolledWindow.__init__(self)
         self.add(self._build_gui())
@@ -856,18 +869,54 @@ class SelectionWidget(Gtk.ScrolledWindow):
                 self.event_box.get_window().set_cursor(None)
         self.image.queue_draw()
 
-    def _motion_scroll_event(self, widget, event):
+    def _motion_scroll_event(self, widget: Gtk.Widget, event: Gdk.EventScroll) -> bool:
         """
-        Handles the motion-scroll-event signal.
+        Handles the scroll-event signal by zooming the image.
+
+        Scrolling up zooms in and scrolling down zooms out. Smooth scroll
+        deltas, as produced by touchpads, are accumulated so that one zoom
+        step happens per ``scroll_zoom_step`` units of movement instead of
+        per event.
+
+        :param widget: The widget that received the event.
+        :type widget: Gtk.Widget
+        :param event: The scroll event.
+        :type event: Gdk.EventScroll
+        :returns: ``True`` to stop the scrolled window from also scrolling.
+        :rtype: bool
         """
         if not self.is_image_loaded():
-            return
+            return Gdk.EVENT_PROPAGATE
+        if event.get_pointer_emulated():
+            # Backends that deliver smooth scroll deltas also emit emulated
+            # legacy UP/DOWN events for the same movement. The smooth event
+            # is handled below, so this one is a duplicate.
+            return Gdk.EVENT_STOP
         if event.direction == Gdk.ScrollDirection.UP:
             self.zoom_in()
         elif event.direction == Gdk.ScrollDirection.DOWN:
             self.zoom_out()
         elif event.direction == Gdk.ScrollDirection.SMOOTH:
-            if event.delta_y < 0:
+            self._smooth_scroll_zoom(event)
+        return Gdk.EVENT_STOP
+
+    def _smooth_scroll_zoom(self, event: Gdk.EventScroll) -> None:
+        """
+        Accumulates the vertical delta of a smooth scroll event and zooms
+        once enough movement has been collected. Horizontal movement is
+        ignored and a stop event resets the accumulator.
+
+        :param event: The smooth scroll event.
+        :type event: Gdk.EventScroll
+        """
+        if event.is_stop or event.delta_y == 0:
+            self.scroll_accumulator = 0.0
+            return
+        self.scroll_accumulator += event.delta_y
+        steps = int(self.scroll_accumulator / self.scroll_zoom_step)
+        self.scroll_accumulator -= steps * self.scroll_zoom_step
+        for _ in range(abs(steps)):
+            if steps < 0:
                 self.zoom_in()
             else:
                 self.zoom_out()

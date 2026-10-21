@@ -56,6 +56,8 @@ import gi  # noqa: E402
 
 gi.require_version("Gtk", "3.0")  # noqa: E402
 
+from gi.repository import Gdk  # noqa: E402
+
 from gramps.gui.widgets.grabbers import INSIDE  # noqa: E402
 from gramps.gui.widgets.selectionwidget import (  # noqa: E402
     Region,
@@ -180,6 +182,127 @@ class SelectionWidgetClickAfterResizeTest(unittest.TestCase):
         self.assertEqual(widget.current.x2, 12)
         self.assertEqual(widget.current.y2, 14)
         widget.emit.assert_any_call("region-modified")
+
+
+# -----------------------------------------------------------
+#
+# _FakeScrollEvent
+#
+# -----------------------------------------------------------
+class _FakeScrollEvent:
+    """Minimal Gdk.EventScroll stand-in for the scroll handler."""
+
+    def __init__(
+        self,
+        direction: Gdk.ScrollDirection,
+        delta_y: float = 0.0,
+        emulated: bool = False,
+        is_stop: bool = False,
+    ) -> None:
+        self.direction = direction
+        self.delta_x = 0.0
+        self.delta_y = delta_y
+        self.is_stop = is_stop
+        self._emulated = emulated
+
+    def get_pointer_emulated(self) -> bool:
+        """Mirror ``Gdk.Event.get_pointer_emulated``."""
+        return self._emulated
+
+
+# -----------------------------------------------------------
+#
+# SelectionWidgetScrollZoomTest
+#
+# -----------------------------------------------------------
+class SelectionWidgetScrollZoomTest(unittest.TestCase):
+    """Tests for zooming via ``SelectionWidget._motion_scroll_event``.
+
+    Touchpads deliver many small smooth scroll events per swipe, and some
+    backends (notably quartz on macOS) also deliver an emulated legacy
+    UP/DOWN event alongside each smooth one. Zooming a full step on every
+    event made the zoom far too fast and erratic.
+    """
+
+    def setUp(self) -> None:
+        """Construct a ``SelectionWidget`` without running ``__init__``.
+
+        ``zoom_in`` / ``zoom_out`` are stubbed so the tests can count zoom
+        steps without needing a loaded pixbuf or a display.
+        """
+        self.widget = SelectionWidget.__new__(SelectionWidget)
+        self.widget.loaded = True
+        self.widget.scroll_zoom_step = 1.0
+        self.widget.scroll_accumulator = 0.0
+        self.zoom_in = MagicMock()
+        self.zoom_out = MagicMock()
+        self.widget.zoom_in = self.zoom_in  # type: ignore[method-assign]
+        self.widget.zoom_out = self.zoom_out  # type: ignore[method-assign]
+
+    def _scroll(self, event: _FakeScrollEvent) -> bool:
+        """Deliver a scroll event to the widget under test."""
+        return self.widget._motion_scroll_event(self.widget, event)  # type: ignore[arg-type]
+
+    def test_no_image_propagates_event(self) -> None:
+        """Without an image the event is left for the scrolled window."""
+        widget = self.widget
+        widget.loaded = False
+        event = _FakeScrollEvent(Gdk.ScrollDirection.UP)
+        self.assertFalse(self._scroll(event))
+        self.zoom_in.assert_not_called()
+
+    def test_legacy_directions_zoom_one_step_and_stop_event(self) -> None:
+        """A real wheel notch zooms one step and stops propagation, so the
+        scrolled window does not also scroll the viewport."""
+        result = self._scroll(_FakeScrollEvent(Gdk.ScrollDirection.UP))
+        self.assertTrue(result)
+        self.zoom_in.assert_called_once()
+        self._scroll(_FakeScrollEvent(Gdk.ScrollDirection.DOWN))
+        self.zoom_out.assert_called_once()
+
+    def test_emulated_events_are_ignored(self) -> None:
+        """Emulated UP/DOWN duplicates of smooth events must not zoom."""
+        result = self._scroll(_FakeScrollEvent(Gdk.ScrollDirection.UP, emulated=True))
+        self.assertTrue(result)
+        self.zoom_in.assert_not_called()
+        self.zoom_out.assert_not_called()
+
+    def test_smooth_deltas_accumulate_to_one_step(self) -> None:
+        """Small smooth deltas only zoom once a full step is accumulated."""
+        widget = self.widget
+        for _ in range(4):
+            self._scroll(_FakeScrollEvent(Gdk.ScrollDirection.SMOOTH, delta_y=-0.3))
+        self.zoom_in.assert_called_once()
+        self.zoom_out.assert_not_called()
+        self.assertAlmostEqual(widget.scroll_accumulator, -0.2)
+
+    def test_smooth_step_size_is_respected(self) -> None:
+        """Backends with pixel deltas use a larger ``scroll_zoom_step``, and a
+        large delta produces the corresponding number of steps."""
+        widget = self.widget
+        widget.scroll_zoom_step = 50.0
+        self._scroll(_FakeScrollEvent(Gdk.ScrollDirection.SMOOTH, delta_y=130.0))
+        self.assertEqual(self.zoom_out.call_count, 2)
+        self.assertAlmostEqual(widget.scroll_accumulator, 30.0)
+
+    def test_horizontal_smooth_scroll_does_not_zoom(self) -> None:
+        """Sideways trackpad movement (delta_y == 0) must not zoom out."""
+        widget = self.widget
+        widget.scroll_accumulator = 0.7
+        event = _FakeScrollEvent(Gdk.ScrollDirection.SMOOTH, delta_y=0.0)
+        event.delta_x = 3.0
+        self._scroll(event)
+        self.zoom_out.assert_not_called()
+        self.zoom_in.assert_not_called()
+        self.assertEqual(widget.scroll_accumulator, 0.0)
+
+    def test_stop_event_resets_accumulator(self) -> None:
+        """Lifting the fingers discards any partial step."""
+        widget = self.widget
+        widget.scroll_accumulator = 0.9
+        self._scroll(_FakeScrollEvent(Gdk.ScrollDirection.SMOOTH, is_stop=True))
+        self.assertEqual(widget.scroll_accumulator, 0.0)
+        self.zoom_out.assert_not_called()
 
 
 if __name__ == "__main__":
