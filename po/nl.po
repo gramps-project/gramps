@@ -16,13 +16,15 @@
 # Ailean Riepsaame-Duffy <aileanr@gmail.com>, 2024.
 # Enno Borgsteede <ennoborg@gmail.com>, 2024.
 # Hinse ter Schuur <haterschuur@gmail.com>, 2026.
+# Stephan Paternotte <stephan-p@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-14 07:51+0000\n"
-"Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
+"PO-Revision-Date: 2026-10-18 09:51+0000\n"
+"Last-Translator: Stephan Paternotte <stephan-"
+"p@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -30,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -5424,11 +5426,11 @@ msgstr "Overeenkomst met personen met een alternatieve naam"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:58
 msgid "People with <count> associations"
-msgstr "Personen met <aantal> connecties"
+msgstr "Personen met <aantal> associaties"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:59
 msgid "Matches people with a certain number of associations"
-msgstr "Overeenkomst met personen met een bepaald aantal connecties"
+msgstr "Overeenkomst met personen met een bepaald aantal associaties"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:113
@@ -9453,7 +9455,7 @@ msgstr "Adresnotitie"
 
 #: ../gramps/gen/lib/notetype.py:102
 msgid "Association Note"
-msgstr "Connectienotitie"
+msgstr "Associatienotitie"
 
 #: ../gramps/gen/lib/notetype.py:103
 msgid "LDS Note"
@@ -9565,7 +9567,7 @@ msgstr "Persoon verw"
 #: ../gramps/gen/lib/personref.py:120
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:67
 msgid "Association"
-msgstr "Connectie"
+msgstr "Associatie"
 
 #: ../gramps/gen/lib/place.py:163 ../gramps/plugins/export/exportcsv.py:311
 #: ../gramps/plugins/gramplet/coordinates.py:105
@@ -15018,27 +15020,27 @@ msgstr "U kunt gezinsgebeurtenissen niet wijzigen in de persoons-bewerker"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:55
 msgid "Create and add a new association"
-msgstr "Een nieuwe connectie aanmaken en toevoegen"
+msgstr "Een nieuwe associatie aanmaken en toevoegen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:56
 msgid "Remove the existing association"
-msgstr "De bestaande connectie verwijderen"
+msgstr "De bestaande associatie verwijderen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:57
 msgid "Edit the selected association"
-msgstr "De bestaande connectie aanpassen"
+msgstr "De geselecteerde associatie bewerken"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:58
 msgid "Move the selected association upwards"
-msgstr "De geselecteerde connectie omhoog verplaatsen"
+msgstr "De geselecteerde associatie omhoog verplaatsen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:59
 msgid "Move the selected association downwards"
-msgstr "De geselecteerde connectie omlaag verplaatsen"
+msgstr "De geselecteerde associatie omlaag verplaatsen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:80
 msgid "_Associations"
-msgstr "_Connecties"
+msgstr "_Associaties"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:148
 #: ../gramps/plugins/lib/libprogen.py:1601
@@ -19854,7 +19856,7 @@ msgstr "_Persoon:"
 
 #: ../gramps/gui/glade/editpersonref.glade:109
 msgid "_Association:"
-msgstr "_Connectie:"
+msgstr "_Associatie:"
 
 #: ../gramps/gui/glade/editpersonref.glade:123
 msgid ""
@@ -19864,24 +19866,24 @@ msgid ""
 "occasions. Events can be shared between people, each indicating their role "
 "in the event."
 msgstr ""
-"Beschrijving van de connectie, bijv. peetvader, vriend, …\n"
+"Beschrijving van de associatie, bijv. peetvader, vriend, …\n"
 "\n"
-"Let op: gebruik in plaats hiervan 'Gebeurtenissen' voor relaties die verband "
-"houden met specifieke tijdframes of gelegenheden. Gebeurtenissen kunnen "
-"worden gedeeld door personen, elk met een eigen rol in de gebeurtenis."
+"Let op: Gebruik 'Gebeurtenissen' voor relaties die verband houden met "
+"specifieke tijdframes of gelegenheden. Gebeurtenissen kunnen worden gedeeld "
+"door personen, elk met een eigen rol in de gebeurtenis."
 
 #: ../gramps/gui/glade/editpersonref.glade:143
 msgid ""
 "Use the select button to choose a person that has an association to the "
 "edited person."
 msgstr ""
-"Gebruik de selectieknop om een persoon te kiezen die een connectie heeft met "
-"de bewerkte persoon."
+"Gebruik de selectieknop om een persoon te kiezen die een associatie heeft "
+"met de bewerkte persoon."
 
 #: ../gramps/gui/glade/editpersonref.glade:159
 #: ../gramps/gui/glade/editpersonref.glade:223
 msgid "Select a person that has an association to the edited person."
-msgstr "Selecteer een persoon die een connectie heeft met de bewerkte persoon."
+msgstr "Selecteer een persoon die een associatie heeft met de bewerkte persoon."
 
 #: ../gramps/gui/glade/editplace.glade:108
 #: ../gramps/gui/glade/editplaceref.glade:249
