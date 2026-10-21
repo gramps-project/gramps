@@ -13,13 +13,14 @@
 # Milan <admin@thedigitaltechnologist.com>, 2025.
 # Jozef Gaal <preklady@mayday.sk>, 2025, 2026.
 # Milan <milan@users.noreply.hosted.weblate.org>, 2026.
+# Nick Hall <nick-hall@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-21 06:51+0000\n"
-"Last-Translator: Milan <milan@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-10-21 21:29+0000\n"
+"Last-Translator: Nick Hall <nick-hall@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -2587,7 +2588,7 @@ msgstr "N=febr.|G=febr.|L=febr.|I=febr."
 #: ../gramps/gen/datehandler/_datestrings.py:111
 msgctxt "localized lexeme inflections - short month form"
 msgid "Mar"
-msgstr "N=mar.|G=mar.|L=mar.I=mar."
+msgstr "N=mar.|G=mar.|L=mar.|I=mar."
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
 msgctxt "localized lexeme inflections - short month form"
@@ -2617,7 +2618,7 @@ msgstr "N=aug.|G=aug.|L=aug.|I=aug."
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "localized lexeme inflections - short month form"
 msgid "Sep"
-msgstr "N=sept.|G=sept.|L=sept.I=sept."
+msgstr "N=sept.|G=sept.|L=sept.|I=sept."
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "localized lexeme inflections - short month form"

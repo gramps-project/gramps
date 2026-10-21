@@ -10,6 +10,7 @@
 # Michal Várady <miko.vaji@gmail.com>, 2026.
 # Michal Várady <majkl82@users.noreply.hosted.weblate.org>, 2026.
 # Milan <milan@users.noreply.hosted.weblate.org>, 2026.
+# Nick Hall <nick-hall@users.noreply.hosted.weblate.org>, 2026.
 #
 # Common terms and translations:
 # ancestor        předek
@@ -45,8 +46,8 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-21 06:51+0000\n"
-"Last-Translator: Milan <milan@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-10-21 21:29+0000\n"
+"Last-Translator: Nick Hall <nick-hall@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
 "Language: cs\n"
@@ -2965,7 +2966,7 @@ msgstr "N=dhú l-hidždža|G=dhú l-hidždža|L=dhú l-hidždža|I=dhú l-hidžd
 #: ../gramps/gen/datehandler/_datestrings.py:224
 msgctxt "Persian month lexeme"
 msgid "Farvardin"
-msgstr "farvardín|G=farvardínu|L=farvardínu|I=farvardínem"
+msgstr "N=farvardín|G=farvardínu|L=farvardínu|I=farvardínem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "Persian month lexeme"
