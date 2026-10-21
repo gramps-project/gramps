@@ -12,13 +12,14 @@
 # Martin Štefany <m.stefany89@gmail.com>, 2024.
 # Milan <admin@thedigitaltechnologist.com>, 2025.
 # Jozef Gaal <preklady@mayday.sk>, 2025, 2026.
+# Milan <milan@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-27 07:51+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2026-10-21 06:51+0000\n"
+"Last-Translator: Milan <milan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2140,7 +2141,7 @@ msgstr "Dôverný záznam"
 #: ../gramps/gen/config.py:404 ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
 msgid "January"
-msgstr "P=január|D=januára|T=januári|O=januárom"
+msgstr "N=január|G=januára|L=januári|I=januárom"
 
 #: ../gramps/gen/const.py:297
 msgctxt "surname"
@@ -2209,7 +2210,7 @@ msgstr "Deň Mes Rok"
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, no-python-brace-format
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[N]} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2219,7 +2220,7 @@ msgstr "{long_month} {year}"
 #, no-python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[D]} {year}"
+msgstr "{long_month.forms[G]} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2229,7 +2230,7 @@ msgstr "{long_month.forms[D]} {year}"
 #, no-python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr "{long_month.forms[D]} {year}"
+msgstr "{long_month.forms[G]} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2239,7 +2240,7 @@ msgstr "{long_month.forms[D]} {year}"
 #, no-python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[I]} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2249,7 +2250,7 @@ msgstr "{long_month} {year}"
 #, no-python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[I]} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2259,7 +2260,7 @@ msgstr "{long_month} {year}"
 #, no-python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[I]} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2269,7 +2270,7 @@ msgstr "{long_month} {year}"
 #, no-python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[L]} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2279,7 +2280,7 @@ msgstr "{long_month} {year}"
 #, no-python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[G]} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2289,7 +2290,7 @@ msgstr "{long_month} {year}"
 #, no-python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[N]} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.forms[X]} {year}"
@@ -2299,12 +2300,12 @@ msgstr "{long_month} {year}"
 #, no-python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.forms[N]} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:255
 #, no-python-brace-format
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[N]} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2314,7 +2315,7 @@ msgstr "{short_month} {year}"
 #, no-python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[G]} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2324,7 +2325,7 @@ msgstr "{short_month} {year}"
 #, no-python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[G]} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2334,7 +2335,7 @@ msgstr "{short_month} {year}"
 #, no-python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[I]} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2344,7 +2345,7 @@ msgstr "{short_month} {year}"
 #, no-python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[I]} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2354,7 +2355,7 @@ msgstr "{short_month} {year}"
 #, no-python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[I]} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2364,7 +2365,7 @@ msgstr "{short_month} {year}"
 #, no-python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[L]} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2374,7 +2375,7 @@ msgstr "{short_month} {year}"
 #, no-python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[G]} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2384,7 +2385,7 @@ msgstr "{short_month} {year}"
 #, no-python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[N]} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.forms[X]} {year}"
@@ -2394,7 +2395,7 @@ msgstr "{short_month} {year}"
 #, no-python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.forms[N]} {year}"
 
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
@@ -2517,57 +2518,57 @@ msgstr "dnes"
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
 msgid "February"
-msgstr "P=február|D=februára|T=februári|O=februárom"
+msgstr "N=február|G=februára|L=februári|I=februárom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:91
 msgctxt "localized lexeme inflections"
 msgid "March"
-msgstr "P=marec|D=marca|T=marci|O=marcom"
+msgstr "N=marec|G=marca|L=marci|I=marcom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:92
 msgctxt "localized lexeme inflections"
 msgid "April"
-msgstr "P=apríl|D=apríla|T=apríli|O=aprílom"
+msgstr "N=apríl|G=apríla|L=apríli|I=aprílom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:93
 msgctxt "localized lexeme inflections"
 msgid "May"
-msgstr "P=máj|D=mája|T=máji|O=májom"
+msgstr "N=máj|G=mája|L=máji|I=májom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:94
 msgctxt "localized lexeme inflections"
 msgid "June"
-msgstr "P=jún|D=júna|T=júni|O=júnom"
+msgstr "N=jún|G=júna|L=júni|I=júnom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:95
 msgctxt "localized lexeme inflections"
 msgid "July"
-msgstr "P=júl|D=júla|T=júli|O=júlom"
+msgstr "N=júl|G=júla|L=júli|I=júlom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:96
 msgctxt "localized lexeme inflections"
 msgid "August"
-msgstr "P=august|D=augusta|T=auguste|O=augustom"
+msgstr "N=august|G=augusta|L=auguste|I=augustom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections"
 msgid "September"
-msgstr "P=september|D=septembra|T=septembri|O=septembrom"
+msgstr "N=september|G=septembra|L=septembri|I=septembrom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections"
 msgid "October"
-msgstr "P=október|D=októbra|T=októbri|O=októbrom"
+msgstr "N=október|G=októbra|L=októbri|I=októbrom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections"
 msgid "November"
-msgstr "P=november|D=novembra|T=novembri|O=novembrom"
+msgstr "N=november|G=novembra|L=novembri|I=novembrom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections"
 msgid "December"
-msgstr "P=december|D=decembra|T=decembri|O=decembrom"
+msgstr "N=december|G=decembra|L=decembri|I=decembrom"
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2576,62 +2577,62 @@ msgstr "P=december|D=decembra|T=decembri|O=decembrom"
 #: ../gramps/gen/datehandler/_datestrings.py:109
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jan"
-msgstr "jan"
+msgstr "N=jan.|G=jan.|L=jan.|I=jan."
 
 #: ../gramps/gen/datehandler/_datestrings.py:110
 msgctxt "localized lexeme inflections - short month form"
 msgid "Feb"
-msgstr "feb"
+msgstr "N=febr.|G=febr.|L=febr.|I=febr."
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
 msgctxt "localized lexeme inflections - short month form"
 msgid "Mar"
-msgstr "mar"
+msgstr "N=mar.|G=mar.|L=mar.I=mar."
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
 msgctxt "localized lexeme inflections - short month form"
 msgid "Apr"
-msgstr "apr"
+msgstr "N=apr.|G=apr.|L=apr.|I=apr."
 
 #: ../gramps/gen/datehandler/_datestrings.py:113
 msgctxt "localized lexeme inflections - short month form"
 msgid "May"
-msgstr "máj"
+msgstr "N=máj|G=mája|L=máji|I=máj."
 
 #: ../gramps/gen/datehandler/_datestrings.py:114
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jun"
-msgstr "jún"
+msgstr "N=jún|G=júna|L=júni|I=jún."
 
 #: ../gramps/gen/datehandler/_datestrings.py:115
 msgctxt "localized lexeme inflections - short month form"
 msgid "Jul"
-msgstr "júl"
+msgstr "N=júl|G=júla|L=júli|I=júl."
 
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "localized lexeme inflections - short month form"
 msgid "Aug"
-msgstr "aug"
+msgstr "N=aug.|G=aug.|L=aug.|I=aug."
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "localized lexeme inflections - short month form"
 msgid "Sep"
-msgstr "sep"
+msgstr "N=sept.|G=sept.|L=sept.I=sept."
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "localized lexeme inflections - short month form"
 msgid "Oct"
-msgstr "okt"
+msgstr "N=okt.|G=okt.|L=okt.|I=okt."
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "localized lexeme inflections - short month form"
 msgid "Nov"
-msgstr "nov"
+msgstr "N=nov.|G=nov.|L=nov.|I=nov."
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "localized lexeme inflections - short month form"
 msgid "Dec"
-msgstr "dec"
+msgstr "N=dec.|G=dec.|L=dec.|I=dec."
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2640,62 +2641,63 @@ msgstr "dec"
 #: ../gramps/gen/datehandler/_datestrings.py:130
 msgctxt "alternative month names for January"
 msgid ""
-msgstr "január"
+msgstr "január|januára|januári|januárom|jan|jan.|I|I.|i|i."
 
 #: ../gramps/gen/datehandler/_datestrings.py:131
 msgctxt "alternative month names for February"
 msgid ""
-msgstr "február"
+msgstr "február|februára|februári|februárom|febr|febr.|feb|feb.|II|II.|ii|ii."
 
 #: ../gramps/gen/datehandler/_datestrings.py:132
 msgctxt "alternative month names for March"
 msgid ""
-msgstr "marec"
+msgstr "marec|marca|marci|marcom|mar|mar.|marc|marc.|III|III.|iii|iii."
 
 #: ../gramps/gen/datehandler/_datestrings.py:133
 msgctxt "alternative month names for April"
 msgid ""
-msgstr "apríl"
+msgstr "apríl|apríla|apríli|aprílom|apr|apr.|IV|IV.|iv|iv."
 
 #: ../gramps/gen/datehandler/_datestrings.py:134
 msgctxt "alternative month names for May"
 msgid ""
-msgstr "máj"
+msgstr "máj|mája|máji|májom|máj.|V|V.|v|v."
 
 #: ../gramps/gen/datehandler/_datestrings.py:135
 msgctxt "alternative month names for June"
 msgid ""
-msgstr "jún"
+msgstr "jún|júna|júni|júnom|jún.|VI|VI.|vi|vi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136
 msgctxt "alternative month names for July"
 msgid ""
-msgstr "júl"
+msgstr "júl|júla|júli|júlom|júl.|VII|VII.|vii|vii."
 
 #: ../gramps/gen/datehandler/_datestrings.py:137
 msgctxt "alternative month names for August"
 msgid ""
-msgstr "august"
+msgstr "august|augusta|auguste|augustom|aug|aug.|VIII|VIII.|viii|viii."
 
 #: ../gramps/gen/datehandler/_datestrings.py:138
 msgctxt "alternative month names for September"
 msgid ""
-msgstr "september"
+msgstr ""
+"september|septembra|septembri|septembrom|sep|sep.|sept|sept.|IX|IX.|ix|ix."
 
 #: ../gramps/gen/datehandler/_datestrings.py:139
 msgctxt "alternative month names for October"
 msgid ""
-msgstr "október"
+msgstr "október|októbra|októbri|októbrom|okt|okt.|X|X.|x|x."
 
 #: ../gramps/gen/datehandler/_datestrings.py:140
 msgctxt "alternative month names for November"
 msgid ""
-msgstr "november"
+msgstr "november|novembra|novembri|novembrom|nov|nov.|XI|XI.|xi|xi."
 
 #: ../gramps/gen/datehandler/_datestrings.py:141
 msgctxt "alternative month names for December"
 msgid ""
-msgstr "december"
+msgstr "december|decembra|decembri|decembrom|dec|dec.|XII|XII.|xii|xii."
 
 #: ../gramps/gen/datehandler/_datestrings.py:146 ../gramps/gen/lib/date.py:656
 msgctxt "calendar"
@@ -2739,27 +2741,27 @@ msgstr "švédsky"
 #: ../gramps/gen/datehandler/_datestrings.py:162
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr "tišri"
+msgstr "N=tišrej|G=tišreja|L=tišreji|I=tišrejom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr "chešvan"
+msgstr "N=chešvan|G=chešvanu|L=chešvane|I=chešvanom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgctxt "Hebrew month lexeme"
 msgid "Kislev"
-msgstr "kislev"
+msgstr "N=kislev|G=kislevu|L=kisleve|I=kislevom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgctxt "Hebrew month lexeme"
 msgid "Tevet"
-msgstr "tevet"
+msgstr "N=tevet|G=tevetu|L=tevete|I=tevetom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:166
 msgctxt "Hebrew month lexeme"
 msgid "Shevat"
-msgstr "švat"
+msgstr "N=ševat|G=ševatu|L=ševate|I=ševatom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgctxt "Hebrew month lexeme"
@@ -2774,7 +2776,7 @@ msgstr "adarII"
 #: ../gramps/gen/datehandler/_datestrings.py:169
 msgctxt "Hebrew month lexeme"
 msgid "Nisan"
-msgstr "nisan"
+msgstr "N=nisan|G=nisanu|L=nisane|I=nisanom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgctxt "Hebrew month lexeme"
@@ -2784,12 +2786,12 @@ msgstr "ijar"
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgctxt "Hebrew month lexeme"
 msgid "Sivan"
-msgstr "sivan"
+msgstr "N=sivan|G=sivanu|L=sivane|I=sivanom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
 msgctxt "Hebrew month lexeme"
 msgid "Tammuz"
-msgstr "tamuz"
+msgstr "N=tamuz|G=tamuzu|L=tamuze|I=tamuzom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:173
 msgctxt "Hebrew month lexeme"
@@ -12273,7 +12275,7 @@ msgstr "Príspevky od"
 #. Translators: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:152
 msgid "translator-credits"
-msgstr "Ondrej Krč-Jediný"
+msgstr "Ondrej Krč-Jediný, Milan Obrcian"
 
 #: ../gramps/gui/aboutdialog.py:163
 #, python-format
