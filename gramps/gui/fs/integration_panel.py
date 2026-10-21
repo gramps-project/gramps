@@ -32,14 +32,13 @@ import requests
 import gi
 
 gi.require_version("Gtk", "3.0")
-gi.require_version("GdkPixbuf", "2.0")
-from gi.repository import GdkPixbuf, GLib, Gtk
+from gi.repository import GLib, Gtk
 
 # ------------------------
 # Gramps modules
 # ------------------------
 from gramps.gen.config import config
-from gramps.gen.const import IMAGE_DIR, GRAMPS_LOCALE as glocale
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gui.display import display_url
 
 # ------------------------
@@ -50,7 +49,6 @@ from . import manager
 _ = glocale.translation.gettext
 LOG = logging.getLogger(__name__)
 MIDDLEWARE_URL = "https://fs-auth-portal.gramps-project.org"
-ARTWORK = "FS-CompatibleSolution902x304.png"
 
 
 def middleware_address() -> str:
@@ -118,7 +116,7 @@ class FamilySearchIntegrationPanel:
         self._busy = False
         self._destroyed = False
         self._generation = 0
-        self.widget = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        self.widget = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self._build_header()
         self._build_settings()
         self._timer = GLib.timeout_add_seconds(1, self.cb_refresh)
@@ -126,40 +124,18 @@ class FamilySearchIntegrationPanel:
         self.cb_refresh()
 
     def _build_header(self) -> None:
-        """Keep the official logo independent of connection status."""
-        header = Gtk.Box(spacing=16)
-        self._expanded = Gtk.Expander()
-        self._expanded.set_valign(Gtk.Align.CENTER)
-        self._expanded.connect("notify::expanded", self.cb_expand)
-        header.pack_start(self._expanded, False, False, 0)
-        artwork = Gtk.Image()
-        artwork.set_margin_top(16)
-        artwork.set_margin_bottom(16)
-        artwork.set_margin_start(16)
-        artwork.set_margin_end(16)
-        try:
-            artwork.set_from_pixbuf(
-                GdkPixbuf.Pixbuf.new_from_file_at_scale(
-                    os.path.join(IMAGE_DIR, ARTWORK), 280, -1, True
-                )
-            )
-        except GLib.Error:
-            LOG.warning("Cannot load the FamilySearch integration artwork")
-        brand = Gtk.EventBox()
-        brand.add(artwork)
-        style = Gtk.CssProvider()
-        style.load_from_data(b".fs-preferences-brand { background-color: white; }")
-        brand.get_style_context().add_class("fs-preferences-brand")
-        brand.get_style_context().add_provider(
-            style, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        """Use the same section heading and checkbox as other Preferences tabs."""
+        heading = Gtk.Label(xalign=0.0)
+        heading.set_markup("<b>%s</b>" % GLib.markup_escape_text(_("FamilySearch")))
+        heading.set_margin_top(10)
+        self.widget.pack_start(heading, False, False, 0)
+        self._enabled = Gtk.CheckButton(
+            label=_("_Enable FamilySearch integration"), use_underline=True
         )
-        header.pack_start(brand, False, False, 0)
-        self._enabled = Gtk.CheckButton(label=_("Enable integration"))
-        self._enabled.set_valign(Gtk.Align.CENTER)
+        self._enabled.set_margin_start(12)
         self._enabled.set_active(bool(config.get("familysearch.enable")))
         self._enabled.connect("toggled", self.cb_enable)
-        header.pack_start(self._enabled, False, False, 0)
-        self.widget.pack_start(header, False, False, 0)
+        self.widget.pack_start(self._enabled, False, False, 0)
 
     def _row(self, title: str, control: Gtk.Widget) -> None:
         """
@@ -168,7 +144,10 @@ class FamilySearchIntegrationPanel:
         :param title: The translated field label.
         :param control: The field widget.
         """
-        self._grid.attach(Gtk.Label(label=title, xalign=1.0), 0, self._row_number, 1, 1)
+        label = Gtk.Label(label=title, xalign=0.0, use_underline=True)
+        label.set_halign(Gtk.Align.START)
+        label.set_mnemonic_widget(control)
+        self._grid.attach(label, 0, self._row_number, 1, 1)
         control.set_hexpand(True)
         self._grid.attach(control, 1, self._row_number, 1, 1)
         self._row_number += 1
@@ -199,45 +178,46 @@ class FamilySearchIntegrationPanel:
                 Gtk.EntryIconPosition.SECONDARY, "view-reveal-symbolic"
             )
             entry.set_icon_tooltip_text(
-                Gtk.EntryIconPosition.SECONDARY, _("Show access key")
+                Gtk.EntryIconPosition.SECONDARY, _("Show Access Key")
             )
             entry.connect("icon-press", self.cb_reveal)
         return entry
 
     def _build_settings(self) -> None:
-        """Build the collapsible access setup and account controls."""
-        self._grid = Gtk.Grid(column_spacing=12, row_spacing=8)
-        self._grid.set_margin_start(24)
+        """Build the standard Preferences grid and routine account actions."""
+        self._grid = Gtk.Grid(column_spacing=6, row_spacing=6)
+        self._grid.set_margin_start(12)
+        self._grid.set_margin_top(6)
         self._row_number = 0
         self._server = Gtk.ComboBoxText()
         for title in (_("Beta (testing)"), _("Production")):
             self._server.append_text(title)
         self._server.set_active(selected_server())
         self._server.connect("changed", self.cb_server)
-        self._row(_("Server:"), self._server)
+        self._row(_("_Server:"), self._server)
         self._account_note = Gtk.Label(xalign=0.0, wrap=True)
-        self._account_note.set_max_width_chars(60)
+        self._account_note.set_max_width_chars(42)
         self._wide(self._account_note)
-        heading = Gtk.Label(label=_("Gramps middleware access"), xalign=0.0)
+        heading = Gtk.Label(label=_("Gramps Middleware Access"), xalign=0.0)
         heading.set_markup(
-            "<b>%s</b>" % GLib.markup_escape_text(_("Gramps middleware access"))
+            "<b>%s</b>" % GLib.markup_escape_text(_("Gramps Middleware Access"))
         )
         heading.set_margin_top(12)
-        self._wide(heading)
+        self._grid.attach(heading, 0, self._row_number, 2, 1)
+        self._row_number += 1
         self._address = self._entry("familysearch.middleware.base-url")
         self._address.set_placeholder_text(MIDDLEWARE_URL)
-        self._row(_("Middleware address:"), self._address)
+        self._address.connect("populate-popup", self.cb_address_menu)
+        self._row(_("_Middleware Address:"), self._address)
         self._key = self._entry("familysearch.middleware.access-code", secret=True)
-        self._row(_("Integration access key:"), self._key)
-        self._request = Gtk.Expander(label=_("Don't have an Integration access key?"))
-        request = Gtk.Button(label=_("Request integration access"))
-        request.set_halign(Gtk.Align.START)
-        request.set_margin_start(16)
-        request.set_margin_top(8)
-        request.connect("clicked", self.cb_request)
-        self._request.add(request)
-        self._wide(self._request)
-        self._advanced = Gtk.Expander(label=_("Developer settings"))
+        self._row(_("Integration Access _Key:"), self._key)
+        self._key.connect("populate-popup", self.cb_key_menu)
+        self._key.set_tooltip_text(
+            _("Request integration access from the context menu.")
+        )
+        self._advanced = Gtk.Expander(
+            label=_("_Developer Settings"), use_underline=True
+        )
         advanced = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
         self._provider = Gtk.ComboBoxText()
         self._provider.append_text(_("Foundation middleware"))
@@ -257,38 +237,31 @@ class FamilySearchIntegrationPanel:
             )
         self._advanced.add(advanced)
         self._wide(self._advanced)
-        account = Gtk.Label(label=_("FamilySearch account"), xalign=0.0)
+        account = Gtk.Label(label=_("FamilySearch Account"), xalign=0.0)
         account.set_markup(
-            "<b>%s</b>" % GLib.markup_escape_text(_("FamilySearch account"))
+            "<b>%s</b>" % GLib.markup_escape_text(_("FamilySearch Account"))
         )
         account.set_margin_top(12)
-        self._wide(account)
-        buttons = Gtk.Box(spacing=8)
-        self._sign_in = Gtk.Button(label=_("Sign in to FamilySearch"))
-        self._sign_in.connect("clicked", self.cb_sign_in)
-        self._sign_out = Gtk.Button(label=_("Sign out"))
-        self._sign_out.connect("clicked", self.cb_sign_out)
-        self._test = Gtk.Button(label=_("Test connection"))
-        self._test.set_tooltip_text(
-            _("Check the middleware address without signing in.")
+        self._grid.attach(account, 0, self._row_number, 2, 1)
+        self._row_number += 1
+        buttons = Gtk.ButtonBox(orientation=Gtk.Orientation.HORIZONTAL)
+        buttons.set_layout(Gtk.ButtonBoxStyle.START)
+        buttons.set_spacing(6)
+        self._sign_in = Gtk.Button(
+            label=_("Sign _In to FamilySearch"), use_underline=True
         )
-        self._test.connect("clicked", self.cb_test)
-        for button in (self._sign_in, self._sign_out, self._test):
-            button.set_no_show_all(True)
+        self._sign_in.connect("clicked", self.cb_sign_in)
+        self._sign_out = Gtk.Button(label=_("Sign _Out"), use_underline=True)
+        self._sign_out.connect("clicked", self.cb_sign_out)
+        self._can_test = False
+        self._can_request = False
+        for button in (self._sign_in, self._sign_out):
             buttons.pack_start(button, False, False, 0)
         self._wide(buttons)
         self._status = Gtk.Label(xalign=0.0, wrap=True)
-        self._status.set_max_width_chars(60)
+        self._status.set_max_width_chars(42)
         self._wide(self._status)
-        self._revealer = Gtk.Revealer()
-        self._revealer.add(self._grid)
-        self.widget.pack_start(self._revealer, False, False, 0)
-
-    def cb_expand(self, expander: Gtk.Expander, _property: Any) -> None:
-        """Show settings when expanded and conceal keys when collapsed."""
-        self._revealer.set_reveal_child(expander.get_expanded())
-        if not expander.get_expanded():
-            self._key.set_visibility(False)
+        self.widget.pack_start(self._grid, False, False, 0)
 
     def cb_reveal(self, entry: Gtk.Entry, position: Any, _event: Any) -> None:
         """Toggle access-key visibility without copying it elsewhere."""
@@ -299,7 +272,7 @@ class FamilySearchIntegrationPanel:
                 position, "view-conceal-symbolic" if visible else "view-reveal-symbolic"
             )
             entry.set_icon_tooltip_text(
-                position, _("Hide access key") if visible else _("Show access key")
+                position, _("Hide Access Key") if visible else _("Show Access Key")
             )
 
     def _changed(self) -> None:
@@ -311,10 +284,8 @@ class FamilySearchIntegrationPanel:
         self.cb_refresh()
 
     def cb_enable(self, button: Gtk.CheckButton) -> None:
-        """Save integration enablement and expand initial setup."""
+        """Save integration enablement and update the available controls."""
         config.set("familysearch.enable", button.get_active())
-        if button.get_active():
-            self._expanded.set_expanded(True)
         self.cb_refresh()
 
     def cb_entry(self, entry: Gtk.Entry, key: str) -> None:
@@ -335,9 +306,28 @@ class FamilySearchIntegrationPanel:
         )
         self._changed()
 
-    def cb_request(self, _button: Gtk.Button) -> None:
-        """Open the middleware access-request website."""
-        display_url(middleware_address())
+    def cb_key_menu(self, _entry: Gtk.Entry, menu: Gtk.Menu) -> None:
+        """
+        Keep access requests in the access-key field's context menu.
+
+        :param _entry: The integration access-key entry.
+        :param menu: The entry's context menu.
+        """
+        self.cb_refresh()
+        separator = Gtk.SeparatorMenuItem()
+        menu.append(separator)
+        item = Gtk.MenuItem(label=_("_Request Integration Access"), use_underline=True)
+        item.set_sensitive(self._can_request)
+        item.connect("activate", self.cb_request)
+        menu.append(item)
+        separator.show()
+        item.show()
+
+    def cb_request(self, _item: Gtk.MenuItem) -> None:
+        """Open the middleware access-request website when setup is available."""
+        self.cb_refresh()
+        if self._can_request:
+            display_url(middleware_address())
 
     def cb_sign_in(self, _button: Gtk.Button) -> None:
         """Use the application's existing FamilySearch sign-in flow."""
@@ -383,8 +373,28 @@ class FamilySearchIntegrationPanel:
         self.cb_refresh()
         return False
 
-    def cb_test(self, _button: Gtk.Button) -> None:
+    def cb_address_menu(self, _entry: Gtk.Entry, menu: Gtk.Menu) -> None:
+        """
+        Add the occasional connection check to the field's native context menu.
+
+        :param _entry: The middleware address entry.
+        :param menu: The entry's context menu.
+        """
+        self.cb_refresh()
+        separator = Gtk.SeparatorMenuItem()
+        menu.append(separator)
+        item = Gtk.MenuItem(label=_("_Test Connection"), use_underline=True)
+        item.set_sensitive(self._can_test)
+        item.connect("activate", self.cb_test)
+        menu.append(item)
+        separator.show()
+        item.show()
+
+    def cb_test(self, _item: Gtk.MenuItem) -> None:
         """Run a bounded, unauthenticated reachability check off the GTK thread."""
+        self.cb_refresh()
+        if not self._can_test:
+            return
         self._busy = True
         generation = self._generation
         address = middleware_address()
@@ -431,18 +441,17 @@ class FamilySearchIntegrationPanel:
         )
         enabled = bool(config.get("familysearch.enable"))
         self._advanced.set_visible(direct_enabled)
-        self._sign_in.set_visible(not signed_in)
+        self._sign_in.set_visible(True)
         self._sign_in.set_sensitive(
-            enabled and not self._busy and (direct or bool(key))
+            enabled and not signed_in and not self._busy and (direct or bool(key))
         )
-        self._sign_out.set_visible(signed_in)
-        self._sign_out.set_sensitive(not self._busy)
-        self._test.set_visible(not direct and not signed_in)
-        self._test.set_sensitive(not self._busy)
+        self._sign_out.set_visible(True)
+        self._sign_out.set_sensitive(signed_in and not self._busy)
+        self._can_test = enabled and not direct and not signed_in and not self._busy
         for control in (self._server, self._address, self._key, self._advanced):
-            control.set_sensitive(not signed_in and not self._busy)
+            control.set_sensitive(enabled and not signed_in and not self._busy)
         self._enabled.set_sensitive(not self._busy)
-        self._request.set_visible(not direct and not key)
+        self._can_request = enabled and not direct and not self._busy
         if signed_in:
             self._status.set_text(
                 _("Sign out before using the selected server.")

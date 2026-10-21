@@ -1100,7 +1100,7 @@ class GrampsPreferences(ConfigureDialog):
         self, configdialog: Any
     ) -> tuple[str, Gtk.ScrolledWindow]:
         """
-        Display the collapsible FamilySearch integration preferences.
+        Display the FamilySearch integration preferences.
 
         :param configdialog: The Preferences controller.
         :returns: The translated tab title and scrollable panel.

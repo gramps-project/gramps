@@ -255,12 +255,27 @@ class IntegrationPreferencesTest(unittest.TestCase):
                 SimpleNamespace(viewmanager=None)
             )
             self.addCleanup(section.widget.destroy)
-            self.assertFalse(section._expanded.get_expanded())
-            self.assertFalse(section._request.get_expanded())
+            label = section._grid.get_child_at(0, 0)
+            self.assertIs(label.get_mnemonic_widget(), section._server)
+            menu = panel.Gtk.Menu()
+            self.addCleanup(menu.destroy)
+            section.cb_address_menu(section._address, menu)
+            self.assertTrue(menu.get_children()[-1].get_sensitive())
+            values["familysearch.enable"] = False
+            section.cb_refresh()
+            self.assertFalse(section._address.get_sensitive())
+            section.cb_address_menu(section._address, menu)
+            self.assertFalse(menu.get_children()[-1].get_sensitive())
+            values["familysearch.enable"] = True
+            section.cb_refresh()
             section._key.set_text("private-key")
             self.assertFalse(section._key.get_visibility())
             with patch.object(panel, "display_url") as opened:
-                section.cb_request(None)
+                request_menu = panel.Gtk.Menu()
+                self.addCleanup(request_menu.destroy)
+                section.cb_key_menu(section._key, request_menu)
+                self.assertTrue(request_menu.get_children()[-1].get_sensitive())
+                request_menu.get_children()[-1].activate()
                 opened.assert_called_once_with(
                     values["familysearch.middleware.base-url"]
                 )
@@ -331,6 +346,8 @@ class IntegrationPreferencesTest(unittest.TestCase):
                 section._status.get_text(), panel._("Signed in to FamilySearch.")
             )
             self.assertFalse(section._server.get_sensitive())
+            self.assertFalse(section._sign_in.get_sensitive())
+            self.assertTrue(section._sign_out.get_sensitive())
             values["familysearch.server"] = 1
             section.cb_refresh()
             self.assertEqual(

@@ -464,6 +464,7 @@ gramps/gui/selectors/selectorfactory.py
 #
 gramps/gui/test/display_test.py
 gramps/gui/test/user_test.py
+gramps/gui/test/viewmanager_fs_test.py
 #
 # gui/views - the GUI views package
 #
