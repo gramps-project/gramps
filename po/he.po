@@ -8,13 +8,14 @@
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2023, 2024, 2025, 2026.
 # satellithic <eitan.abc@gmail.com>, 2026.
 # "Omer I.S." <omeritzicschwartz@gmail.com>, 2026.
+# Avi Markovitz <avma@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-10 20:16+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2026-10-19 15:51+0000\n"
+"Last-Translator: Avi Markovitz <avma@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 2026.10.1.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -16418,7 +16419,7 @@ msgstr ""
 #: ../gramps/gui/fs/actions.py:290
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:194
 msgid "Import selected"
-msgstr "נבחר ייבוא"
+msgstr "ייבוא פריטים שנבחרו"
 
 #: ../gramps/gui/fs/actions.py:314
 #, python-brace-format
@@ -16479,7 +16480,7 @@ msgstr "דורות אבות קדמונים"
 
 #: ../gramps/gui/fs/actions.py:714
 msgid "Number of generations to import upward from the starting person."
-msgstr "מספר דורות לייבוא כלפי מעלה מהאדם שנבחר."
+msgstr "ייבוא מספר דורות כלפי מעלה מהאדם שנבחר."
 
 #: ../gramps/gui/fs/actions.py:719 ../gramps/gui/fs/fs_import/options.py:46
 msgid "Descendant generations"
@@ -17921,7 +17922,7 @@ msgstr "כלי FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:351 ../gramps/gui/fs/tools_window.py:761
 msgid "Editor person: (none)"
-msgstr "האדם העורך: (ללא)"
+msgstr "האדם בעורך: (ללא)"
 
 #: ../gramps/gui/fs/tools_window.py:358
 msgid "Open Person in FamilySearch"
@@ -17958,7 +17959,7 @@ msgstr "עזרים"
 
 #: ../gramps/gui/fs/tools_window.py:405
 msgid "Clear Cache"
-msgstr "נוקוי מטמון"
+msgstr "ניקוי מטמון"
 
 #: ../gramps/gui/fs/tools_window.py:411
 msgid "Import multiple generations"
@@ -17970,7 +17971,7 @@ msgstr "ייבוא צובר קרובי משפחה"
 
 #: ../gramps/gui/fs/tools_window.py:417
 msgid "Import ancestors and descendants from the selected FamilySearch person."
-msgstr "ייבוא אבות־קדמונים וצאצאים האדם שנבחר ב־FamilySearch."
+msgstr "ייבוא אבות־קדמונים וצאצאים של האדם שנבחר ב־FamilySearch."
 
 #: ../gramps/gui/fs/tools_window.py:425
 msgid "Tags..."
@@ -18013,12 +18014,12 @@ msgstr "פתיחת FamilySearch.org"
 #: ../gramps/gui/fs/tools_window.py:774
 #, python-format
 msgid "Editor person: %(name)s  [%(gid)s]"
-msgstr "האדם העורך: %(name)s  %(gid)s"
+msgstr "האדם בעורך: %(name)s  %(gid)s"
 
 #: ../gramps/gui/fs/tools_window.py:782
 #, python-format
 msgid "Editor person: %(name)s"
-msgstr "האדם העורך: %(name)s"
+msgstr "האדם בעורך: %(name)s"
 
 #: ../gramps/gui/fs/tools_window.py:801
 msgid "Add FamilySearch ID"
