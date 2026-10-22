@@ -20,6 +20,10 @@
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from gramps.gen.fs.tree import Tree
 
 from gramps.gen.lib import (
     Person,
@@ -51,7 +55,7 @@ class FSToGrampsImporter:
     GUI/session/progress orchestration lives in gramps.gui.fs.fs_import.importer.
     """
 
-    fs_TreeImp = None
+    fs_TreeImp: Tree | None = None
     active_handle = None
 
     def __init__(self):
