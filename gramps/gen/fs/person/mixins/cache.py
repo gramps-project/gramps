@@ -28,7 +28,7 @@ import os
 import time
 from typing import Any, Callable, ClassVar, Optional, Tuple
 
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import GRAMPS_LOCALE as glocale, USER_CACHE
 
 LOG = logging.getLogger(__name__)
 
@@ -152,6 +152,19 @@ class _FsCache:
                     pass
         except Exception as e:
             LOG.warning("FS Cache: failed to clear cache dir %s: %s", self.base_dir, e)
+
+
+def create_user_cache() -> _FsCache | None:
+    """
+    Create the FamilySearch disk cache in the current user's cache directory.
+
+    :returns: The cache, or ``None`` when disk caching is unavailable.
+    """
+    try:
+        return _FsCache(USER_CACHE)
+    except OSError:
+        LOG.warning("FamilySearch disk cache is unavailable", exc_info=True)
+        return None
 
 
 class CacheMixin:
