@@ -38,6 +38,21 @@ from .session import Session, get_active_session
 logger = logging.getLogger(__name__)
 
 _SESSION = None
+_SESSION_INVALIDATED = False
+
+
+def current_session() -> Session | None:
+    """Return the existing session without creating one or reusing old settings."""
+    if _SESSION_INVALIDATED:
+        return None
+    return _SESSION or get_active_session()
+
+
+def invalidate_session() -> None:
+    """Require a new session after signed-out integration settings change."""
+    global _SESSION, _SESSION_INVALIDATED
+    _SESSION = None
+    _SESSION_INVALIDATED = True
 
 
 def _direct_mode_enabled() -> bool:
@@ -117,13 +132,13 @@ def needs_access_code() -> bool:
 
 
 def get_session(dbstate=None, uistate=None):
-    global _SESSION
+    global _SESSION, _SESSION_INVALIDATED
 
     if not bool(_cfg_get(_config, "familysearch.enable", True)):
         _SESSION = None
         return None
 
-    sess = _SESSION or get_active_session()
+    sess = current_session()
     if sess is not None:
         _SESSION = sess
         _bind_session_context(sess, dbstate=dbstate, uistate=uistate)
@@ -194,5 +209,6 @@ def get_session(dbstate=None, uistate=None):
 
     sess = Session(server=server, app_key=app_key, redirect=redirect)
     _SESSION = sess
+    _SESSION_INVALIDATED = False
     _bind_session_context(sess, dbstate=dbstate, uistate=uistate)
     return sess
