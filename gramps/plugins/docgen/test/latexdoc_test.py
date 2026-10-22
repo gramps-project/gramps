@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2025  Gramps Development Team
 # Copyright (C) 2026  Eduard Ralph
+# Copyright (C) 2026  Doug Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,6 +39,7 @@ from gramps.plugins.docgen.latexdoc import (
     latexescape,
     latexescapeverbatim,
     map_font_size,
+    pict_with_caption,
     str_incr,
 )
 
@@ -161,6 +163,35 @@ class TestStrIncr(unittest.TestCase):
         self.assertEqual(values[25], "aaz")
         self.assertEqual(values[26], "aba")  # carry into the next column
         self.assertEqual(values[27], "abb")
+
+
+class TestPictWithCaption(unittest.TestCase):
+    def test_no_trailing_text(self):
+        pict = "\\grmkpicture{a.jpg}{4.0}{4.0}{}"
+        self.assertEqual(pict_with_caption(pict), pict)
+
+    def test_trailing_text_becomes_label(self):
+        pict = "\\grmkpicture{a.jpg}{4.0}{4.0}{}\\hfill\\footnotesize (Age: 50)"
+        self.assertEqual(
+            pict_with_caption(pict),
+            "\\grmkpicture{a.jpg}{4.0}{4.0}{\\footnotesize (Age: 50)}",
+        )
+
+    def test_trailing_text_appended_to_label(self):
+        pict = "\\grmkpicture{a.jpg}{4.0}{4.0}{a}(Age: 50)"
+        self.assertEqual(
+            pict_with_caption(pict), "\\grmkpicture{a.jpg}{4.0}{4.0}{a (Age: 50)}"
+        )
+
+    def test_trailing_text_with_braces(self):
+        pict = "\\grmkpicture{a.jpg}{4.0}{4.0}{}x\\textsuperscript{3c}"
+        self.assertEqual(
+            pict_with_caption(pict),
+            "\\grmkpicture{a.jpg}{4.0}{4.0}{x\\textsuperscript{3c}}",
+        )
+
+    def test_not_a_picture(self):
+        self.assertEqual(pict_with_caption("text"), "text")
 
 
 class TestMapFontSize(unittest.TestCase):

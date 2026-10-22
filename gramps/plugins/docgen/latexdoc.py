@@ -82,6 +82,12 @@ _CLICKABLE = "\\url{\\1}"
 #   So the choosen pattern will do the job without confusion:
 
 SEPARATION_PAT = "&&"
+# \\grmkpicture{file}{width}{height}{label} and text following it
+PICT_PAT = re.compile(
+    r"(\\grmkpicture\{[^}]*\}\{[^}]*\}\{[^}]*\}\{)([^}]*)\}(.*)", re.S
+)
+# image formats pdflatex includes without conversion
+LATEX_IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".pdf")
 
 # ------------------------------------------------------------------------
 #
@@ -153,6 +159,7 @@ _LATEX_TEMPLATE = """%
 \\newlength{\\grmaxwidth}%
 \\newlength{\\grprorated}%
 \\newlength{\\grxwd}%
+\\newlength{\\grcellpictwd}%
 \\newlength{\\grwidthused}%
 \\newlength{\\grreduce}%
 \\newlength{\\grcurcolend}%
@@ -405,6 +412,15 @@ _LATEX_TEMPLATE = """%
   \\setlength{\\grtabprepos}{-\\grtempwd}%
 }%
 %
+\\newcommand{\\grcellpicture}[4]{%  picture inside a table cell
+  \\setlength{\\grcellpictwd}{\\minof{#2\\grbaseindent}{\\linewidth}}%
+  {\\centering\\includegraphics[%
+    width= \\grcellpictwd,%
+    height= #3\\grbaseindent,%
+    keepaspectratio]%
+    {#1}\\par}%
+}%
+%
 %
 \\begin{document}%
 """
@@ -533,6 +549,19 @@ def str_incr(str_counter):
                 break
             else:
                 lili[i] = "a"
+
+
+def pict_with_caption(pict):
+    """
+    Move the text following a \\grmkpicture command into its label
+    argument, so that it is set beneath the picture.
+    """
+    match = PICT_PAT.match(pict)
+    if match is None or not match.group(3).strip():
+        return pict
+    caption = match.group(3).replace("\\hfill", "").strip()
+    label = " ".join(part for part in (match.group(2), caption) if part)
+    return "".join((match.group(1), label, "}"))
 
 
 # ------------------------------------------------------------------------
@@ -775,7 +804,7 @@ class VerticalFineTuning:
         "blank": "-1.2",
         "Section": "1.0",
         "Datastyle": "-\\parskip",
-        "Daystyle": "-\grbirthdaylineup",
+        "Daystyle": "-\\grbirthdaylineup",
         "instead_of_pg_break": "2.9",
     }
 
@@ -842,6 +871,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
     pict_in_table = False
     pict_width = 0
     pict_height = 0
+    fix_indent = False
     textmem: list[str] = []
     in_title = True
     curr_tab_style = ""
@@ -918,14 +948,32 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         to rows of cells with corresponding contents.
         Cols of the mult-row-cell are ended by SEPARATION_PAT
         """
+
+        def set_tail(index, what):
+            """Set the row termination of the index-th row from the end."""
+            if len(self.tabmem.rows) >= index:
+                self.tabmem.rows[-index].tail = "".join(
+                    (what, "%-", repr(index), "-\n")
+                )
+
         # if last col empty: delete
         if self.tabrow.cells[-1].content == "":
             del self.tabrow.cells[-1]
             self.numcols -= 1
 
-        # extract cell.contents
+        # a short row (e.g. the last row of a gallery) gets empty cells
+        for col_num in range(len(self.tabrow.cells), self.numcols):
+            self.tabrow.cells.append(
+                TabCell(get_charform(col_num), 1, "\\multicolumn{1}{l}", "")
+            )
+
+        # extract cell.contents; joining the lines must not let a
+        # trailing "%" comment out the rest of the cell
         bare_contents = [
-            cell.content.strip(SEPARATION_PAT).replace("\n", "").split(SEPARATION_PAT)
+            cell.content.strip(SEPARATION_PAT)
+            .replace("%\n", "")
+            .replace("\n", "")
+            .split(SEPARATION_PAT)
             for cell in self.tabrow.cells
         ]
 
@@ -942,7 +990,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         first_cell, last_cell = (0, self.numcols)
         if self.pict_in_table:
             if transp_cont[0][-1].startswith("\\grmkpicture"):
-                self.pict = transp_cont[0][-1]
+                self.pict = pict_with_caption(transp_cont[0][-1])
                 last_cell -= 1
                 self.numcols -= 1
                 self._backend.write(
@@ -957,10 +1005,8 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             self.pict_in_table = False
 
         # new row-col structure
-        first_cell, last_cell = (0, self.numcols)
         for row in range(num_new_rows):
             new_row = TabRow()
-            self.tabmem.rows.append(new_row)
             for i in range(first_cell, last_cell):
                 new_cell = TabCell(
                     get_charform(i + first_cell),
@@ -972,6 +1018,12 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             new_row.tail = self.tabrow.tail
             new_row.addit = ""
             self.tabmem.rows.append(new_row)
+            if self.stick_next > 0:
+                set_tail(1, NO_PAGE_BREAK)
+                self.stick_next -= 1
+
+        self.tabmem.rows[-1].addit = self.tabrow.addit
+        self.in_multrow_cell = False
 
         if self.curr_style_name in [
             "EOL-Generation",
@@ -996,155 +1048,6 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
                 return
             self.stick_next = 1
 
-    def discover_col_widths(self):
-        """Control width settings in latex table csonstruction
-        Evaluations are set up here and passed to LaTeX
-        to calculate required and to fix suitable widths.
-        """
-        total_pict_width = 4.0
-        for col_num in range(self.numcols):
-            col_char = get_charform(col_num)
-            self._backend.write(
-                "".join(("\\grinitlength{\\grmaxlencolcont", col_char, "}{0ex}%\n"))
-            )
-            if self.kind_of_pict == IN_GALLERY:
-                relevant_rows = self.tabmem.rows[1:2]
-            else:
-                relevant_rows = self.tabmem.rows
-            for row in relevant_rows:
-                if col_num >= len(row.cells):
-                    break
-                cell = row.cells[col_num]
-                if cell.span == 0:
-                    continue
-                if cell.content.startswith("\\grmkpicture"):
-                    self._backend.write(
-                        "".join(
-                            (
-                                "\\setlength{\\grpictsize}{",
-                                self.pict_width,
-                                "\\grbaseindent}%\n",
-                            )
-                        )
-                    )
-                else:
-                    for part in cell.content.split(SEPARATION_PAT):
-                        self._backend.write(
-                            "".join(("\\grtextneedwidth{", part, "}%\n"))
-                        )
-                    row.cells[col_num].content = cell.content.replace(
-                        SEPARATION_PAT, "~\\newline \n"
-                    )
-
-                if cell.span == 1:
-                    self._backend.write("".join(("\\grsetreqfull%\n")))
-                elif cell.span > 1:
-                    self._backend.write(
-                        "".join(
-                            (
-                                "\\grsetreqpart{\\grcolbeg",
-                                get_charform(get_numform(cell.colchar) - cell.span + 1),
-                                "}%\n",
-                            )
-                        )
-                    )
-
-            self._backend.write(
-                "".join(
-                    (
-                        "\\grcolsfirstfix",
-                        " {\\grcolbeg",
-                        col_char,
-                        "}{\\grtempwidth",
-                        col_char,
-                        "}{\\grfinalwidth",
-                        col_char,
-                        "}{\\grpictreq",
-                        col_char,
-                        "}{\\grtextreq",
-                        col_char,
-                        "}%\n",
-                    )
-                )
-            )
-
-        self._backend.write("".join(("\\grdividelength%\n")))
-        for col_char in tabcol_chars:
-            self._backend.write(
-                "".join(
-                    (
-                        "\\grcolssecondfix",
-                        " {\\grcolbeg",
-                        col_char,
-                        "}{\\grtempwidth",
-                        col_char,
-                        "}{\\grfinalwidth",
-                        col_char,
-                        "}{\\grpictreq",
-                        col_char,
-                        "}%\n",
-                    )
-                )
-            )
-
-        self._backend.write("".join(("\\grdividelength%\n")))
-        for col_char in tabcol_chars:
-            self._backend.write(
-                "".join(
-                    (
-                        "\\grcolsthirdfix",
-                        " {\\grcolbeg",
-                        col_char,
-                        "}{\\grtempwidth",
-                        col_char,
-                        "}{\\grfinalwidth",
-                        col_char,
-                        "}%\n",
-                    )
-                )
-            )
-
-        self._backend.write("".join(("\\grdividelength%\n")))
-        for col_char in tabcol_chars:
-            self._backend.write(
-                "".join(
-                    (
-                        "\\grcolsfourthfix",
-                        " {\\grcolbeg",
-                        col_char,
-                        "}{\\grtempwidth",
-                        col_char,
-                        "}{\\grfinalwidth",
-                        col_char,
-                        "}%\n",
-                    )
-                )
-            )
-
-    def discover_multcol_widths(self):
-        """calc width of _latex_ multicolumns for each row"""
-        self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
-        for row in self.tabmem.rows:
-            for cell_id, cell in enumerate(row.cells):
-                if cell.span > 1:
-                    multcol_alph_id = next(self.multcol_alph_counter)
-                    self._backend.write(
-                        "".join(
-                            (
-                                "\\grgetspanwidth{",
-                                "\\grspanwidth",
-                                multcol_alph_id,
-                                "}{\\grcolbeg",
-                                get_charform(get_numform(cell.colchar) - cell.span + 1),
-                                "}{\\grcolbeg",
-                                cell.colchar,
-                                "}{\\grtempwidth",
-                                cell.colchar,
-                                "}%\n",
-                            )
-                        )
-                    )
-
     def calc_latex_widths(self):
         """
         Control width settings in latex table construction.
@@ -1165,9 +1068,9 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
                     self._backend.write(
                         "".join(
                             (
-                                "\\setlength{\\grpictsize}{",
-                                self.pict_width,
-                                "\\grbaseindent}%\n",
+                                "\\setlength{\\grpictsize}{\\minof{",
+                                repr(self.pict_width),
+                                "\\grbaseindent}{\\grprorated - 2\\tabcolsep}}%\n",
                             )
                         )
                     )
@@ -1428,7 +1331,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
                         "}{%\n",
                         cell_width,
                         "}{%\n  ",
-                        cell.content,
+                        cell.content.replace("\\grmkpicture{", "\\grcellpicture{"),
                         "%\n}%\n",
                     )
                 )
@@ -1624,10 +1527,14 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         if self.fix_indent:
             self.emit("\\grminpgtail%\n\n")
             self.fix_indent = False
-            self.emit("".join(("\\grparagrtail{", self.space_below_paragr, "}%\n")))
+            self.emit("".join(("\\vspace{", self.space_below_paragr, "}%\n")))
         self.space_below_paragr = self.get_v_adjust(LO_SPACE, self.curr_style_name)
         if self.curr_style_name.startswith("DR"):
             self.emit("\\small%\n")
+
+        if self.pict_width:
+            self.pict_width = 0
+            self.pict_height = 0
 
     def start_bold(self):
         """Bold face"""
@@ -1673,11 +1580,6 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         """Close the table environment"""
         self.emit("%\n\\end{longtable}%\n", TAB_END)
         self.in_table = False
-        for col_num in range(self.numcols):
-            col_char = get_charform(col_num)
-            self._backend.write(
-                "".join(("\\setlength{\\grmaxlencolcont", col_char, "}{0em}%\n"))
-            )
 
     def start_row(self):
         """Begin a new row"""
@@ -1747,37 +1649,48 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         """Prepares for next cell"""
         self.emit("", CELL_END)
 
+    def media_error(self, infile, reason):
+        """
+        Note a picture that cannot be included, as a LaTeX comment.
+
+        The comment is written straight to the backend, so that it never ends
+        up inside a table cell, where it would comment out the rest of the
+        cell when the cell content is joined into a single line.
+        """
+        _LOG.warning("LaTeX: cannot include %s: %s", infile, reason)
+        self._backend.write(
+            "".join(
+                ("%\n% *** Error: cannot include ", infile, "\n% *** ", reason, "\n")
+            )
+        )
+
     def add_media(self, infile, pos, x, y, alt="", style_name=None, crop=None):
         """Add photo to report"""
-        outfile = os.path.splitext(infile)[0]
-        pictname = latexescape(os.path.split(outfile)[1])
-        outfile = "".join((outfile, ".jpg"))
-        outfile2 = "".join((outfile, ".jpeg"))
-        outfile3 = "".join((outfile, ".png"))
-        if HAVE_PIL and infile not in [outfile, outfile2, outfile3]:
+        base, ext = os.path.splitext(infile)
+        outfile = infile
+        if HAVE_PIL:
             try:
-                curr_img = Image.open(infile)
-                if crop:
-                    cr_n = [round(x * y / 100) for x, y in zip(2 * curr_img.size, crop)]
-                    curr_img = curr_img.crop(cr_n)
-                    outfile = "temp_" + os.path.basename(infile)
-                    curr_img.save(outfile)
-                width, height = curr_img.size
-                if height > width:
-                    y = y * height / width
-            except IOError:
-                self.emit(
-                    "".join(
-                        (
-                            "%\n *** Error: cannot convert ",
-                            infile,
-                            "\n ***                    to ",
-                            outfile,
-                            "%\n",
+                with Image.open(infile) as curr_img:
+                    if crop:
+                        cr_n = [
+                            round(x * y / 100) for x, y in zip(2 * curr_img.size, crop)
+                        ]
+                        curr_img = curr_img.crop(cr_n)
+                        outfile = os.path.join(
+                            os.path.dirname(self._backend.getf()),
+                            "temp_" + os.path.basename(base) + ".png",
                         )
-                    )
-                )
-        elif not HAVE_PIL:
+                        curr_img.save(outfile)
+                    elif ext.lower() not in LATEX_IMAGE_EXTS:
+                        outfile = base + ".jpg"
+                        curr_img.convert("RGB").save(outfile)
+                    width, height = curr_img.size
+                    if height > width:
+                        y = y * height / width
+            except (IOError, ValueError) as err:
+                self.media_error(infile, str(err))
+                return
+        elif crop or ext.lower() not in LATEX_IMAGE_EXTS:
             from gramps.gen.config import config
 
             if not config.get("interface.ignore-pil"):
@@ -1800,20 +1713,15 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
                         "interface.ignore-pil",
                         parent=self.uistate.window,
                     )
-            self.emit(
-                "".join(
-                    (
-                        "%\n *** Error: cannot convert ",
-                        infile,
-                        "\n ***                    to ",
-                        outfile,
-                        "\n *** PIL not installed %\n",
-                    )
-                )
-            )
+            self.media_error(infile, "PIL not installed")
+            return
 
         if self.in_table:
             self.pict_in_table = True
+            # the report writes its own caption into the table cell
+            pictname = ""
+        else:
+            pictname = latexescape(os.path.basename(base))
 
         self.emit(
             "".join(
@@ -1850,10 +1758,9 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         self, styledtext, format, style_name, contains_html=False, links=False
     ):
         """
-
         Convenience function to write a styledtext to the latex doc.
         styledtext : assumed a StyledText object to write
-        given_format : = 0 : Flowed, = 1 : Preformatted
+        format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
         contains_html: bool, the backend should not check if html is present.
             If contains_html=True, then the textdoc is free to handle that in
@@ -1881,7 +1788,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         # now solved by postprocessing in self.calc_latex_widths()
         # by explicitely setting suitable width for all columns.
         #
-        if given_format:
+        if format:
             self.start_paragraph(style_name)
             self.emit(markuptext)
             self.end_paragraph()
