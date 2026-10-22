@@ -75,11 +75,11 @@ class SurnameTab(EmbeddedList):
     # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text
     _column_names = [
-        (_("Prefix"), 0, 150, TEXT_EDIT_COL, -1, None),
+        (_("Prefix"), 0, 170, TEXT_EDIT_COL, -1, None),
         (_("Surname", "Multiple surnames"), 1, -1, TEXT_EDIT_COL, -1, None),
-        (_("Connector"), 2, 100, TEXT_EDIT_COL, -1, None),
+        (_("Connector"), 2, 130, TEXT_EDIT_COL, -1, None),
     ]
-    _column_combo = (_("Origin"), -1, 150, 3)  # name, sort, width, modelcol
+    _column_combo = (_("Origin"), -1, 160, 3)  # name, sort, width, modelcol
     _column_toggle = (_("Primary", "Name"), -1, 80, 4)
 
     def __init__(
@@ -147,7 +147,11 @@ class SurnameTab(EmbeddedList):
         column = Gtk.TreeViewColumn(name, renderer, text=self._column_combo[3])
         column.set_resizable(True)
         column.set_sort_column_id(self._column_combo[1])
-        column.set_min_width(self._column_combo[2])
+        # FIXED sizing (matching the other columns) is required for the
+        # resize handle to behave predictably; without it GTK falls back to
+        # GROW_ONLY, which resists shrinking and makes dragging feel stuck.
+        column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
+        column.set_fixed_width(self._column_combo[2])
         column.set_expand(False)
         self.columns.append(column)
         self.tree.append_column(column)
