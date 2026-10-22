@@ -25,25 +25,26 @@ import types
 import unittest
 
 from gramps.plugins.docgen.latexdoc import (
-    HI_SPACE,
-    HI_STRUT,
-    LO_SPACE,
-    LO_STRUT,
     NORMAL_END,
     TabCell,
     TabMem,
     TabRow,
-    VerticalFineTuning,
     get_charform,
     get_numform,
     latexescape,
     latexescapeverbatim,
     map_font_size,
     pict_with_caption,
+    pict_width_of,
     str_incr,
 )
 
 
+# ------------------------------------------------------------
+#
+# TestLatexEscape
+#
+# ------------------------------------------------------------
 class TestLatexEscape(unittest.TestCase):
     def test_ampersand(self):
         self.assertEqual(latexescape("a & b"), "a \\& b")
@@ -76,6 +77,11 @@ class TestLatexEscape(unittest.TestCase):
         self.assertEqual(latexescape("hello world"), "hello world")
 
 
+# ------------------------------------------------------------
+#
+# TestLatexEscapeVerbatim
+#
+# ------------------------------------------------------------
 class TestLatexEscapeVerbatim(unittest.TestCase):
     def test_space_escaped(self):
         self.assertEqual(latexescapeverbatim("a b"), "a\\ b")
@@ -91,6 +97,11 @@ class TestLatexEscapeVerbatim(unittest.TestCase):
         self.assertIn("\\&", result)
 
 
+# ------------------------------------------------------------
+#
+# TestGetCharform
+#
+# ------------------------------------------------------------
 class TestGetCharform(unittest.TestCase):
     def test_first_column(self):
         self.assertEqual(get_charform(0), "a")
@@ -107,6 +118,11 @@ class TestGetCharform(unittest.TestCase):
             get_charform(26)
 
 
+# ------------------------------------------------------------
+#
+# TestGetNumform
+#
+# ------------------------------------------------------------
 class TestGetNumform(unittest.TestCase):
     def test_first(self):
         self.assertEqual(get_numform("a"), 0)
@@ -119,6 +135,11 @@ class TestGetNumform(unittest.TestCase):
             self.assertEqual(get_numform(get_charform(i)), i)
 
 
+# ------------------------------------------------------------
+#
+# TestStrIncr
+#
+# ------------------------------------------------------------
 class TestStrIncr(unittest.TestCase):
     def test_basic_increment(self):
         gen = str_incr("aa")
@@ -165,6 +186,11 @@ class TestStrIncr(unittest.TestCase):
         self.assertEqual(values[27], "abb")
 
 
+# ------------------------------------------------------------
+#
+# TestPictWithCaption
+#
+# ------------------------------------------------------------
 class TestPictWithCaption(unittest.TestCase):
     def test_no_trailing_text(self):
         pict = "\\grmkpicture{a.jpg}{4.0}{4.0}{}"
@@ -193,7 +219,49 @@ class TestPictWithCaption(unittest.TestCase):
     def test_not_a_picture(self):
         self.assertEqual(pict_with_caption("text"), "text")
 
+    def test_trailing_comment_dropped(self):
+        """A trailing "%" must not end up in the label."""
+        self.assertEqual(
+            pict_with_caption("\\grmkpicture{a.jpg}{4.0}{4.0}{}%"),
+            "\\grmkpicture{a.jpg}{4.0}{4.0}{}",
+        )
 
+    def test_further_caption_lines(self):
+        self.assertEqual(
+            pict_with_caption(
+                "\\grmkpicture{a.jpg}{4.0}{4.0}{}(Age: 50)", ["(Height: 2m)", " "]
+            ),
+            "\\grmkpicture{a.jpg}{4.0}{4.0}{(Age: 50)\\newline (Height: 2m)}",
+        )
+
+    def test_only_further_caption_lines(self):
+        self.assertEqual(
+            pict_with_caption("\\grmkpicture{a.jpg}{4.0}{4.0}{}", ["(Height: 2m)"]),
+            "\\grmkpicture{a.jpg}{4.0}{4.0}{(Height: 2m)}",
+        )
+
+
+# ------------------------------------------------------------
+#
+# TestPictWidthOf
+#
+# ------------------------------------------------------------
+class TestPictWidthOf(unittest.TestCase):
+    def test_width(self):
+        self.assertEqual(pict_width_of("\\grmkpicture{a.jpg}{4.5}{3.0}{x}"), 4.5)
+
+    def test_not_a_picture(self):
+        self.assertEqual(pict_width_of("text"), 0)
+
+    def test_bad_width(self):
+        self.assertEqual(pict_width_of("\\grmkpicture{a.jpg}{x}{3.0}{}"), 0)
+
+
+# ------------------------------------------------------------
+#
+# TestMapFontSize
+#
+# ------------------------------------------------------------
 class TestMapFontSize(unittest.TestCase):
     def test_small_size(self):
         self.assertEqual(map_font_size(8), "footnotesize")
@@ -205,6 +273,11 @@ class TestMapFontSize(unittest.TestCase):
         self.assertEqual(map_font_size(4), "tiny")
 
 
+# ------------------------------------------------------------
+#
+# TestTabClasses
+#
+# ------------------------------------------------------------
 class TestTabClasses(unittest.TestCase):
     def test_tabcell_attributes(self):
         cell = TabCell("a", 1, "{l}", "some content")
@@ -237,57 +310,11 @@ class TestTabClasses(unittest.TestCase):
         self.assertEqual(len(mem.rows), 1)
 
 
-class TestVerticalFineTuningDecorate(unittest.TestCase):
-    def setUp(self):
-        self.vft = VerticalFineTuning()
-
-    def test_hi_strut_float_becomes_grupstrut(self):
-        self.assertEqual(self.vft.decorate(HI_STRUT, "1.0"), "\\grupstrut{1.0ex}")
-
-    def test_lo_strut_float_becomes_grdownstrut(self):
-        self.assertEqual(self.vft.decorate(LO_STRUT, "0.5"), "\\grdownstrut{0.5ex}")
-
-    def test_hi_space_float_becomes_ex_measure(self):
-        self.assertEqual(self.vft.decorate(HI_SPACE, "2.0"), "2.0ex")
-
-    def test_lo_space_float_becomes_ex_measure(self):
-        self.assertEqual(self.vft.decorate(LO_SPACE, "3.0"), "3.0ex")
-
-    def test_non_float_passes_through(self):
-        self.assertEqual(self.vft.decorate(HI_SPACE, "-\\parskip"), "-\\parskip")
-
-    def test_negative_float_passes_through_for_space(self):
-        # negative floats match FLOAT_PAT
-        self.assertEqual(self.vft.decorate(LO_SPACE, "-1.0"), "-1.0ex")
-
-
-class TestVerticalFineTuningGetVAdjust(unittest.TestCase):
-    def setUp(self):
-        self.vft = VerticalFineTuning()
-
-    def test_known_tail_style_returns_strut(self):
-        # "DR-First-Entry" → tail "First-Entry" → HI_STRUT value "1.0" → grupstrut
-        result = self.vft.get_v_adjust(HI_STRUT, "DR-First-Entry")
-        self.assertEqual(result, "\\grupstrut{1.0ex}")
-
-    def test_known_cmpl_style_returns_measure(self):
-        # "EOL" is a cmpl_vals key for HI_SPACE → "1.0" → "1.0ex"
-        result = self.vft.get_v_adjust(HI_SPACE, "EOL")
-        self.assertEqual(result, "1.0ex")
-
-    def test_unknown_style_returns_vacant(self):
-        result = self.vft.get_v_adjust(HI_STRUT, "Unknown-Style")
-        self.assertEqual(result, "")  # vacant[HI_STRUT] == ""
-
-    def test_unknown_style_hi_space_returns_vacant(self):
-        result = self.vft.get_v_adjust(HI_SPACE, "Unknown-Style")
-        self.assertEqual(result, "0ex")  # vacant[HI_SPACE] == "0ex"
-
-    def test_lo_strut_known_style(self):
-        result = self.vft.get_v_adjust(LO_STRUT, "DR-ParentName")
-        self.assertEqual(result, "\\grdownstrut{0.5ex}")
-
-
+# ------------------------------------------------------------
+#
+# TestMkCompleteRow
+#
+# ------------------------------------------------------------
 class TestMkCompleteRow(unittest.TestCase):
     """Test LaTeXDoc.mk_complete_row via a minimal stub object."""
 

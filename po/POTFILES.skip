@@ -561,6 +561,7 @@ gramps/plugins/docgen/__init__.py
 # plugins/docgen/test directory
 #
 gramps/plugins/docgen/test/__init__.py
+gramps/plugins/docgen/test/latexdoc_integration_test.py
 gramps/plugins/docgen/test/latexdoc_test.py
 #
 # plugins/drawreport directory

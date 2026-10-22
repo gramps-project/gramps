@@ -38,8 +38,8 @@ from __future__ import annotations
 from bisect import bisect
 import re
 import os.path
+import hashlib
 import logging
-import csv
 
 try:
     from PIL import Image
@@ -62,6 +62,7 @@ from gramps.gen.plug.docgen import (
 )
 from gramps.gen.plug.docbackend import DocBackend
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.image import crop_percentage_to_pixel
 
 _ = glocale.translation.gettext
 
@@ -84,7 +85,7 @@ _CLICKABLE = "\\url{\\1}"
 SEPARATION_PAT = "&&"
 # \\grmkpicture{file}{width}{height}{label} and text following it
 PICT_PAT = re.compile(
-    r"(\\grmkpicture\{[^}]*\}\{[^}]*\}\{[^}]*\}\{)([^}]*)\}(.*)", re.S
+    r"(\\grmkpicture\{[^}]*\}\{([^}]*)\}\{[^}]*\}\{)([^}]*)\}(.*)", re.S
 )
 # image formats pdflatex includes without conversion
 LATEX_IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".pdf")
@@ -473,24 +474,24 @@ TBLFMT_PAT = re.compile(r"({\|?)l(\|?})")
 CELL_BEG, CELL_TEXT, CELL_END, ROW_BEG, ROW_END, TAB_BEG, TAB_END = list(range(7))
 FIRST_ROW, SUBSEQ_ROW = list(range(2))
 
-# kind_of_picture:
-UNKNOWN, INDIVID_PICT, IN_GALLERY = list(range(3))
-
-# constants for vertical fine-tuning (used by VerticalFineTuning class):
-HI_STRUT, LO_STRUT, HI_SPACE, LO_SPACE = range(4)
-
-# additional regex patterns used by VerticalFineTuning:
-FLOAT_PAT = re.compile(r"[-+]?\d+\.\d+")
-STYLE_DETAIL = re.compile(r"\A[^-]+-([^\d]*)(\d*)([^\d]*)\Z")
-HASH_STRIP = re.compile(r" *#.*\Z")
-
 # endings of table rows
 NORMAL_END = r"\\"
 NO_PAGE_BREAK = r"\\*"
 
-# Dictionary for transliteration and/or supplying hyphenation patterns. Mapping to be
-# loaded in method LaTeXDoc.open(), to be used in global function latexescape(text)
-gramps_to_latex: dict[str, str] = {}
+# rows of a table cell written in these styles are kept on one page
+KEEP_TOGETHER_STYLES = {
+    "EOL-Generation",
+    "EOL-Normal",
+    "FGR-ChildText",
+    "FGR-ParentName",
+    "IDS-SectionTitle",
+    "IDS-ImageCaption",
+    "NoteLink-Normal-Bold",
+    "PLC-ColumnTitle",
+    "TR-Normal-Bold",
+}
+# headings, kept on one page with the row following them
+HEADING_STYLES = {"IDS-SectionTitle", "FGR-ParentName", "PLC-ColumnTitle"}
 
 
 def get_charform(col_num):
@@ -551,17 +552,38 @@ def str_incr(str_counter):
                 lili[i] = "a"
 
 
-def pict_with_caption(pict):
+def pict_with_caption(pict: str, more_lines: list[str] | None = None) -> str:
     """
-    Move the text following a \\grmkpicture command into its label
-    argument, so that it is set beneath the picture.
+    Move the text following a \\grmkpicture command, and any further
+    caption lines, into its label argument, so that they are set beneath
+    the picture.
     """
     match = PICT_PAT.match(pict)
-    if match is None or not match.group(3).strip():
+    if match is None:
         return pict
-    caption = match.group(3).replace("\\hfill", "").strip()
-    label = " ".join(part for part in (match.group(2), caption) if part)
+    lines = [match.group(4)] + (more_lines or [])
+    # an unescaped "%" would comment out the end of the label
+    lines = [
+        re.sub(r"(?<!\\)%.*", "", line).replace("\\hfill", "").strip() for line in lines
+    ]
+    caption = "\\newline ".join(line for line in lines if line)
+    if not caption:
+        return "".join((match.group(1), match.group(3), "}"))
+    label = " ".join(part for part in (match.group(3), caption) if part)
     return "".join((match.group(1), label, "}"))
+
+
+def pict_width_of(pict: str) -> float:
+    """
+    Return the width argument of a \\grmkpicture command, or 0.
+    """
+    match = PICT_PAT.match(pict)
+    if match is None:
+        return 0
+    try:
+        return float(match.group(2))
+    except ValueError:
+        return 0
 
 
 # ------------------------------------------------------------------------
@@ -602,33 +624,6 @@ class TabMem:
 # Functions for docbackend
 #
 # ------------------------------------------------------------------------
-def mapping_to_latex(filename, mapping):
-    """Read mapping from gramps terms to LaTeX terms and/or hyphenation
-    patterns, or initialize the mapping file if it does not exist."""
-    parts = os.path.split(filename)
-    mapping_file = os.path.join(parts[0], "mapping.csv")
-    if os.path.exists(mapping_file):
-        with open(mapping_file, newline="") as csv_file:
-            csv_reader = csv.reader(csv_file)
-            for line in csv_reader:
-                if line == []:
-                    return
-                cleared = [HASH_STRIP.sub("", cont) for cont in line]
-                if cleared[0] != "":
-                    mapping[cleared[0]] = cleared[1]
-        return
-    with open(mapping_file, "w") as csv_file:
-        csv_write = csv.writer(csv_file)
-        csv_write.writerow([r"# From # on", r"up to the end of each field: purged"])
-        csv_write.writerow([r"# First field", r"empty: line is ignored"])
-        csv_write.writerow([r"# professionally", r"pro\-fessionally # may hyph. at \-"])
-        csv_write.writerow(
-            [r"# professionally", r"\hyphenation{pro-fessionally} # new way"]
-        )
-        csv_write.writerow([r"# professionally", r"\-professionally # no hyphenation"])
-        csv_write.writerow([r"# \u6771\u4eac\u99c5", r"Tokyo Station # transcription"])
-
-
 def latexescape(text):
     """
     Escape the following special characters: & $ % # _ { }
@@ -762,96 +757,6 @@ class TexFont:
             self.first_line_indent = ""
 
 
-# -------------------------------------------------------------------------
-#
-# Vertical fine tuning, data and methods bound together to be included by LaTeXDoc
-#
-# -------------------------------------------------------------------------
-
-
-class VerticalFineTuning:
-    """Specific adjustments yielding an appealing appearence in pdf"""
-
-    tail_vals: list[dict[str, str]] = [{}, {}, {}, {}]
-    tail_vals[HI_STRUT] = {
-        "First-Entry": "1.0",
-        "Generation": "2.5",
-        "Entry": "0.5",
-        "ChildList": "0.8",
-        "ChildTitle": "1.5",
-        "ChildText": "2.0",
-        "MoreHeader": "1.5",
-        "NoteHeader": "1.5",
-        "ParentName": "2.0",
-        "PlaceTitle": "2.5",
-        "Section": "0.5",
-    }
-    tail_vals[LO_STRUT] = {"ParentName": "0.5", "PlaceTitle": "1.0", "Pedigree": "2.0"}
-    tail_vals[HI_SPACE] = {
-        "Heading": "2.0",
-        "Level": "-0.8",
-        "Spouse": "-1.0",
-        "PlaceDetails": "-1.0",
-        "PlaceTitle": "1.5",
-        "Section": "0.5",
-        "Monthstyle": "3.0",
-    }
-    tail_vals[LO_SPACE] = {
-        "First-Entry": "-1.0",
-        "ChildTitle": "-1.0",
-        "Title": "3.0",
-        "ReportTitle": "3.0",
-        "blank": "-1.2",
-        "Section": "1.0",
-        "Datastyle": "-\\parskip",
-        "Daystyle": "-\\grbirthdaylineup",
-        "instead_of_pg_break": "2.9",
-    }
-
-    cmpl_vals: list[dict[str, str]] = [{}, {}, {}, {}]
-    cmpl_vals[HI_STRUT] = {}
-    cmpl_vals[LO_STRUT] = {}
-    cmpl_vals[HI_SPACE] = {
-        "EOL": "1.0",  # short for:   endofline_report,
-        "IDS": "1.0",
-        "Not": "1.0",  # indiv_complete, notelinkreport
-        "PCL": "1.0",
-        "TR-": "1.0",  # place_report, tag_report
-        "KIN-Normal": "-1.0",
-        "KIN-Subtitle": "1.5",
-        "first_page_top": "3.0",
-        "before_tab": "-2.5",
-    }
-    cmpl_vals[LO_SPACE] = {
-        "behind_tab": "-2.5",
-        "REC-Normal": "-1.0",
-        "TR-Heading": "2\\parskip",
-        "KIN-Subtitle": "0.5",
-        "REC-Subtitle": "2.0",
-        "EOL-Subtitle": "2.0",
-    }
-
-    in_front = ["\\grupstrut{", "\\grdownstrut{"]
-    vacant = ["", "", "0ex", "0ex"]
-
-    def decorate(self, what, vert_val):
-        """Complete number to strut or measure"""
-        if re.fullmatch(FLOAT_PAT, vert_val):
-            if what in [HI_STRUT, LO_STRUT]:
-                return "".join((self.in_front[what], vert_val, "ex}"))
-            return "".join((vert_val, "ex"))
-        return vert_val
-
-    def get_v_adjust(self, what, style_name):
-        """Deliver special adjustments as strut or measure"""
-        style_tail = re.sub(STYLE_DETAIL, r"\1\3", style_name)
-        if style_tail in self.tail_vals[what].keys():
-            return self.decorate(what, self.tail_vals[what][style_tail])
-        if style_name in self.cmpl_vals[what].keys():
-            return self.decorate(what, self.cmpl_vals[what][style_name])
-        return self.vacant[what]
-
-
 # ------------------------------------------------------------------
 #
 # LaTeXDoc
@@ -859,7 +764,7 @@ class VerticalFineTuning:
 # ------------------------------------------------------------------
 
 
-class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
+class LaTeXDoc(BaseDoc, TextDoc):
     """LaTeX document interface class. Derived from BaseDoc"""
 
     #   ---------------------------------------------------------------
@@ -874,12 +779,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
     fix_indent = False
     textmem: list[str] = []
     in_title = True
-    curr_tab_style = ""
-    stick_next = 0
-    kind_of_pict = UNKNOWN
-    curr_style_name = "00-00"
-    space_above_paragr = "0ex"
-    space_below_paragr = "0ex"
+    row_styles: set[str] = set()
 
     #   ---------------------------------------------------------------
     #   begin of table special treatment
@@ -923,6 +823,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             self.textmem = []
         elif tab_state == ROW_BEG:
             self.tabrow = TabRow()
+            self.row_styles = set()
         elif tab_state == ROW_END:
             self.tabrow.addit = text  # text: \\hline, \\cline{}
             self.tabrow.tail = "".join(self.textmem)  # \\\\ row-termination
@@ -942,20 +843,12 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             self.calc_latex_widths()
             self.write_table()
 
-    def repack_row(self):
+    def repack_row(self) -> None:
         """
         Transpose contents contained in a row of cols of cells
         to rows of cells with corresponding contents.
         Cols of the mult-row-cell are ended by SEPARATION_PAT
         """
-
-        def set_tail(index, what):
-            """Set the row termination of the index-th row from the end."""
-            if len(self.tabmem.rows) >= index:
-                self.tabmem.rows[-index].tail = "".join(
-                    (what, "%-", repr(index), "-\n")
-                )
-
         # if last col empty: delete
         if self.tabrow.cells[-1].content == "":
             del self.tabrow.cells[-1]
@@ -968,11 +861,12 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             )
 
         # extract cell.contents; joining the lines must not let a
-        # trailing "%" comment out the rest of the cell
+        # "%" comment out the rest of the cell
         bare_contents = [
-            cell.content.strip(SEPARATION_PAT)
+            (cell.content + "\n")
             .replace("%\n", "")
             .replace("\n", "")
+            .strip(SEPARATION_PAT)
             .split(SEPARATION_PAT)
             for cell in self.tabrow.cells
         ]
@@ -986,67 +880,54 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             cols_equ_len.append(mrc)
         transp_cont = list(zip(*cols_equ_len))
 
-        # picts? extract
-        first_cell, last_cell = (0, self.numcols)
+        # picts? extract, together with all lines of their caption
+        last_cell = self.numcols
         if self.pict_in_table:
             if transp_cont[0][-1].startswith("\\grmkpicture"):
-                self.pict = pict_with_caption(transp_cont[0][-1])
+                self.pict = pict_with_caption(
+                    transp_cont[0][-1], [cont[-1] for cont in transp_cont[1:]]
+                )
                 last_cell -= 1
                 self.numcols -= 1
                 self._backend.write(
                     "".join(
                         (
                             "\\addtolength{\\grtabwidth}{-",
-                            repr(self.pict_width),
+                            repr(pict_width_of(self.pict)),
                             "\\grbaseindent -2\\tabcolsep}%\n",
                         )
                     )
                 )
+                # drop the rows that only held the caption
+                while num_new_rows > 1 and not any(
+                    transp_cont[num_new_rows - 1][:last_cell]
+                ):
+                    num_new_rows -= 1
             self.pict_in_table = False
 
         # new row-col structure
+        keep_together = bool(self.row_styles & KEEP_TOGETHER_STYLES)
         for row in range(num_new_rows):
             new_row = TabRow()
-            for i in range(first_cell, last_cell):
+            for i in range(last_cell):
                 new_cell = TabCell(
-                    get_charform(i + first_cell),
+                    get_charform(i),
                     self.tabrow.cells[i].span,
                     self.tabrow.cells[i].head,
-                    transp_cont[row][i + first_cell],
+                    transp_cont[row][i],
                 )
                 new_row.cells.append(new_cell)
-            new_row.tail = self.tabrow.tail
-            new_row.addit = ""
+            if keep_together and row < num_new_rows - 1:
+                new_row.tail = NO_PAGE_BREAK + " "
+            else:
+                new_row.tail = self.tabrow.tail
             self.tabmem.rows.append(new_row)
-            if self.stick_next > 0:
-                set_tail(1, NO_PAGE_BREAK)
-                self.stick_next -= 1
 
+        # a heading is kept on one page with the row following it
+        if self.row_styles & HEADING_STYLES:
+            self.tabmem.rows[-1].tail = NO_PAGE_BREAK + " "
         self.tabmem.rows[-1].addit = self.tabrow.addit
         self.in_multrow_cell = False
-
-        if self.curr_style_name in [
-            "EOL-Generation",
-            "EOL-Normal",
-            "FGR-ChildText",
-            "FGR-ParentName",
-            "IDS-SectionTitle",
-            "IDS-ImageCaption",
-            "NoteLink-Normal-Bold",
-            "PLC-ColumnTitle",
-            "TR-Normal_Bold",
-        ]:
-            set_tail(3, NO_PAGE_BREAK)  # last but two
-            set_tail(2, NORMAL_END)  # next to last
-            set_tail(1, NO_PAGE_BREAK)  # last row
-            if self.curr_style_name in [
-                "IDS-SectionTitle",
-                "FGR-ParentName",
-                "PCL-ColumnTitle",
-            ]:
-                self.stick_next = 2
-                return
-            self.stick_next = 1
 
     def calc_latex_widths(self):
         """
@@ -1060,7 +941,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             tabcol_chars.append(col_char)
             for row in self.tabmem.rows:
                 if col_num >= len(row.cells):
-                    break
+                    continue
                 cell = row.cells[col_num]
                 if cell.span == 0:
                     continue
@@ -1069,7 +950,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
                         "".join(
                             (
                                 "\\setlength{\\grpictsize}{\\minof{",
-                                repr(self.pict_width),
+                                repr(pict_width_of(cell.content)),
                                 "\\grbaseindent}{\\grprorated - 2\\tabcolsep}}%\n",
                             )
                         )
@@ -1250,36 +1131,9 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         self._backend.write("\\endfirsthead%\n")
         self._backend.write("\\endlastfoot%\n")
 
-        if self.kind_of_pict == INDIVID_PICT:
-            #    special treatment for individual report, individual data with picture
-            self._backend.write("\\multicolumn{2}{l}{%\n")
-            self._backend.write("\\begin{tabular}[t]{*{2}l}%\n")
-            # hand over _all_ rows
-            for row in self.tabmem.rows:
-                self._backend.write(self.mk_complete_row(row, -1))
-            self._backend.write("\\end{tabular}%\n")
-            self._backend.write("}&%\n")
-            self._backend.write(
-                "".join(
-                    (
-                        "\\grindivipict{%\n",
-                        self.tabmem.rows[FIRST_ROW]
-                        .cells[-1]
-                        .content.replace("{b}", "{}"),
-                        "}%\n{",
-                        self.tabmem.rows[SUBSEQ_ROW]
-                        .cells[-1]
-                        .content.replace("\\hfill", ""),
-                        "}%\n",
-                    )
-                )
-            )
-            #    end of special treatment for individual report
-            self.tabmem.rows[0].addit += "\\hline%\n%\n"
-        else:
-            # hand over subsequent rows
-            for row in self.tabmem.rows[SUBSEQ_ROW:]:
-                self._backend.write(self.mk_complete_row(row, None))
+        # hand over subsequent rows
+        for row in self.tabmem.rows[SUBSEQ_ROW:]:
+            self._backend.write(self.mk_complete_row(row, None))
 
         # close table by '\\end{longtable}', end '{\\RaggedRight' or '{' by '}'
         self._backend.write("".join(("".join(self.tabmem.tail), "}%\n\n")))
@@ -1358,7 +1212,6 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         extension of .tex"""
         self._backend = LaTeXBackend(filename)
         self._backend.open()
-        mapping_to_latex(filename, gramps_to_latex)
 
         # Font size control seems to be limited. For now, ignore
         # any style constraints, and use 12pt as the default
@@ -1380,11 +1233,6 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         # that we should use Latin1 and unicode character encodings.
         self.emit(_LATEX_TEMPLATE_1 % options)
         self.emit(_LATEX_TEMPLATE)
-        self.emit(
-            "".join(
-                ("\\vspace*{", self.get_v_adjust(HI_SPACE, "first_page_top"), "}%\n")
-            )
-        )
         self.in_list = False
         self.in_table = False
         self.head_line = False
@@ -1454,18 +1302,11 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         single body of text from a single word to several sentences.
         We assume a linebreak at the end of each paragraph.
         """
-        if style_name == "DR-Title":
-            self.emit("\\setlength{\\grbaseindent}{0.5\\grbaseindent}%\n")
-        self.space_above_paragr = self.get_v_adjust(HI_SPACE, self.curr_style_name)
-        self.space_below_paragr = self.get_v_adjust(LO_SPACE, self.curr_style_name)
-        self.curr_style_name = style_name
-
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_paragraph_style(style_name)
         ltxstyle = self.latexstyle[style_name]
         self.level = style.get_header_level()
 
-        self.curr_style_name = style_name
         self.fbeg = ltxstyle.font_beg
         self.fend = ltxstyle.font_end
 
@@ -1481,6 +1322,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             self._backend.write("\\vspace{5ex}%\n")
         if self.in_table:  #   paragraph in table indicates: cols of rows
             self.in_multrow_cell = True
+            self.row_styles.add(style_name)
         else:
             if leader:
                 self._backend.write("".join(("\\grprepleader{", leader, "}%\n")))
@@ -1527,10 +1369,6 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         if self.fix_indent:
             self.emit("\\grminpgtail%\n\n")
             self.fix_indent = False
-            self.emit("".join(("\\vspace{", self.space_below_paragr, "}%\n")))
-        self.space_below_paragr = self.get_v_adjust(LO_SPACE, self.curr_style_name)
-        if self.curr_style_name.startswith("DR"):
-            self.emit("\\small%\n")
 
         if self.pict_width:
             self.pict_width = 0
@@ -1560,7 +1398,6 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
     def start_table(self, name, style_name):
         """Begin new table"""
         self.in_table = True
-        self.curr_tab_style = style_name
         self.currow = 0
 
         # We need to know a priori how many columns are in this table
@@ -1621,10 +1458,6 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         self.bborder = self.cstyle.get_bottom_border() == 1
         self.tborder = self.cstyle.get_top_border() != 0
         cellfmt = "l"
-        # new settings:
-        self.lborder = 0
-        self.rborder = 0
-        self.bborder = 0
 
         # Account for vertical rules
         if self.lborder:
@@ -1649,7 +1482,7 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
         """Prepares for next cell"""
         self.emit("", CELL_END)
 
-    def media_error(self, infile, reason):
+    def media_error(self, infile: str, reason: str) -> None:
         """
         Note a picture that cannot be included, as a LaTeX comment.
 
@@ -1664,6 +1497,55 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             )
         )
 
+    def derived_image_name(
+        self, infile: str, crop: tuple[int, int, int, int] | None, ext: str
+    ) -> str:
+        """
+        Return the name of an image derived from infile (cropped or
+        converted), placed beside the LaTeX file. The name depends on the
+        source and the crop, so that different derived images never share
+        a file, and the user's media files are never overwritten.
+        """
+        key = "".join((os.path.abspath(infile), repr(crop))).encode("utf-8")
+        name = "".join(
+            (
+                "temp_",
+                os.path.splitext(os.path.basename(infile))[0],
+                "_",
+                hashlib.md5(key).hexdigest()[:8],
+                ext,
+            )
+        )
+        outdir = os.path.dirname(os.path.abspath(self._backend.getf()))
+        return os.path.join(outdir, name)
+
+    def warn_no_pil(self) -> None:
+        """
+        Tell the user once that pictures cannot be cropped or converted.
+        """
+        from gramps.gen.config import config
+
+        if not config.get("interface.ignore-pil"):
+            from gramps.gen.constfunc import has_display
+
+            if has_display() and self.uistate:
+                from gramps.gui.dialog import MessageHideDialog
+
+                title = _("PIL (Python Imaging Library) not loaded.")
+                message = _(
+                    "Production of jpg images from non-jpg images "
+                    "in LaTeX documents will not be available. "
+                    "Use your package manager to install "
+                    "python-imaging or python-pillow or "
+                    "python3-pillow"
+                )
+                MessageHideDialog(
+                    title,
+                    message,
+                    "interface.ignore-pil",
+                    parent=self.uistate.window,
+                )
+
     def add_media(self, infile, pos, x, y, alt="", style_name=None, crop=None):
         """Add photo to report"""
         base, ext = os.path.splitext(infile)
@@ -1672,17 +1554,15 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             try:
                 with Image.open(infile) as curr_img:
                     if crop:
-                        cr_n = [
-                            round(x * y / 100) for x, y in zip(2 * curr_img.size, crop)
-                        ]
-                        curr_img = curr_img.crop(cr_n)
-                        outfile = os.path.join(
-                            os.path.dirname(self._backend.getf()),
-                            "temp_" + os.path.basename(base) + ".png",
+                        curr_img = curr_img.crop(
+                            tuple(crop_percentage_to_pixel(*curr_img.size, crop))
                         )
+                        if curr_img.mode not in ("1", "L", "LA", "P", "RGB", "RGBA"):
+                            curr_img = curr_img.convert("RGB")
+                        outfile = self.derived_image_name(infile, crop, ".png")
                         curr_img.save(outfile)
                     elif ext.lower() not in LATEX_IMAGE_EXTS:
-                        outfile = base + ".jpg"
+                        outfile = self.derived_image_name(infile, None, ".jpg")
                         curr_img.convert("RGB").save(outfile)
                     width, height = curr_img.size
                     if height > width:
@@ -1690,31 +1570,14 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
             except (IOError, ValueError) as err:
                 self.media_error(infile, str(err))
                 return
-        elif crop or ext.lower() not in LATEX_IMAGE_EXTS:
-            from gramps.gen.config import config
-
-            if not config.get("interface.ignore-pil"):
-                from gramps.gen.constfunc import has_display
-
-                if has_display() and self.uistate:
-                    from gramps.gui.dialog import MessageHideDialog
-
-                    title = _("PIL (Python Imaging Library) not loaded.")
-                    message = _(
-                        "Production of jpg images from non-jpg images "
-                        "in LaTeX documents will not be available. "
-                        "Use your package manager to install "
-                        "python-imaging or python-pillow or "
-                        "python3-pillow"
-                    )
-                    MessageHideDialog(
-                        title,
-                        message,
-                        "interface.ignore-pil",
-                        parent=self.uistate.window,
-                    )
+        elif ext.lower() not in LATEX_IMAGE_EXTS:
+            self.warn_no_pil()
             self.media_error(infile, "PIL not installed")
             return
+        elif crop:
+            # include the whole picture rather than none of it
+            self.warn_no_pil()
+            _LOG.warning("LaTeX: cannot crop %s: PIL not installed", infile)
 
         if self.in_table:
             self.pict_in_table = True
@@ -1738,15 +1601,16 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
                 )
             )
         )
-        self.pict_width = x
-        self.pict_height = y
+        if not self.in_table:
+            # the next paragraph is set beside the picture
+            self.pict_width = x
+            self.pict_height = y
 
     def write_text(self, text, mark=None, links=False):
         """Write the text to the file"""
         if text == "\n":
             text = ""
         text = latexescape(text)
-        self.space_below_paragr = self.get_v_adjust(LO_SPACE, self.curr_style_name)
         if links is True:
             text = re.sub(URL_PATTERN, _CLICKABLE, text)
 
@@ -1799,4 +1663,5 @@ class LaTeXDoc(BaseDoc, TextDoc, VerticalFineTuning):
                 self.start_paragraph(style_name)
                 for realline in line.split("\n"):
                     self.emit(realline)
+                    self.emit("~\\newline \n")
                 self.end_paragraph()

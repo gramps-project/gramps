@@ -26,12 +26,13 @@ import tempfile
 import unittest
 from unittest import mock
 
+from gramps.gen.lib import StyledText
 from gramps.gen.plug.docgen import ParagraphStyle, TableCellStyle
 from gramps.gen.plug.docgen.paperstyle import PAPER_PORTRAIT, PaperSize, PaperStyle
 from gramps.gen.plug.docgen.stylesheet import StyleSheet
 from gramps.gen.plug.docgen.tablestyle import TableStyle
 from gramps.plugins.docgen import latexdoc
-from gramps.plugins.docgen.latexdoc import NO_PAGE_BREAK, LaTeXDoc
+from gramps.plugins.docgen.latexdoc import NO_PAGE_BREAK, NORMAL_END, LaTeXDoc
 
 
 def _make_doc(ncols=2):
@@ -50,6 +51,11 @@ def _make_doc(ncols=2):
     return LaTeXDoc(styles, paper), styles
 
 
+# ------------------------------------------------------------
+#
+# LaTeXDocIntegrationBase
+#
+# ------------------------------------------------------------
 class LaTeXDocIntegrationBase(unittest.TestCase):
     """Base class: creates a temp .tex file, opens the doc, and tears down."""
 
@@ -66,9 +72,6 @@ class LaTeXDocIntegrationBase(unittest.TestCase):
             os.unlink(self.fname)
         except FileNotFoundError:
             pass
-        mapping = os.path.join(os.path.dirname(self.fname), "mapping.csv")
-        if os.path.exists(mapping):
-            os.unlink(mapping)
 
     def _finish_and_read(self):
         self.doc.close()
@@ -88,6 +91,11 @@ class LaTeXDocIntegrationBase(unittest.TestCase):
         self.doc.end_table()
 
 
+# ------------------------------------------------------------
+#
+# TestDocumentStructure
+#
+# ------------------------------------------------------------
 class TestDocumentStructure(LaTeXDocIntegrationBase):
     def test_output_contains_documentclass(self):
         content = self._finish_and_read()
@@ -102,12 +110,22 @@ class TestDocumentStructure(LaTeXDocIntegrationBase):
         # The template should include some standard LaTeX infrastructure
         self.assertIn("\\usepackage", content)
 
-    def test_mapping_csv_created(self):
-        self._finish_and_read()
-        mapping = os.path.join(os.path.dirname(self.fname), "mapping.csv")
-        self.assertTrue(os.path.exists(mapping))
+    def test_no_extra_files_written(self):
+        """Only the LaTeX file is written to the output folder."""
+        outdir = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, outdir)
+        doc, _styles = _make_doc()
+        doc.open(os.path.join(outdir, "report.tex"))
+        doc.close()
+        self.doc.close()
+        self.assertEqual(os.listdir(outdir), ["report.tex"])
 
 
+# ------------------------------------------------------------
+#
+# TestTableOutput
+#
+# ------------------------------------------------------------
 class TestTableOutput(LaTeXDocIntegrationBase):
     def test_table_contains_cell_text(self):
         self._write_table([["Hello", "World"]])
@@ -150,6 +168,11 @@ class TestTableOutput(LaTeXDocIntegrationBase):
         self.assertIn("plaintext", content)
 
 
+# ------------------------------------------------------------
+#
+# TestThreeColumnTable
+#
+# ------------------------------------------------------------
 class TestThreeColumnTable(LaTeXDocIntegrationBase):
     ncols = 3
 
@@ -203,14 +226,19 @@ class TestPicturesInTables(unittest.TestCase):
         os.makedirs(os.path.dirname(self.fname), exist_ok=True)
         self.doc.open(self.fname)
 
-    def _image(self, name):
-        """Return the path of an image file, if PIL can create one."""
-        path = os.path.join(os.path.dirname(self.fname), name)
+    def _image(self, name, mode="RGB"):
+        """
+        Return the path of an image file in the media folder, if PIL can
+        create one.
+        """
+        mediadir = os.path.join(self.tmpdir, "media")
+        os.makedirs(mediadir, exist_ok=True)
+        path = os.path.join(mediadir, name)
         if latexdoc.HAVE_PIL:
-            latexdoc.Image.new("RGB", (40, 20), "blue").save(path)
+            latexdoc.Image.new(mode, (40, 20), "blue").save(path)
         return path
 
-    def _gallery(self, images, crop=None):
+    def _gallery(self, images, crop=None, text_after=None):
         """Write a gallery table the way write_images does."""
         self.doc.start_paragraph("IDS-Normal")
         self.doc.write_text("Person")
@@ -231,6 +259,10 @@ class TestPicturesInTables(unittest.TestCase):
             self.doc.write_text("Caption %d" % count)
             self.doc.end_paragraph()
             self.doc.add_media(image, "center", 5.0, 5.0, crop=crop)
+            if text_after:
+                self.doc.start_paragraph("IDS-Normal")
+                self.doc.write_text(text_after)
+                self.doc.end_paragraph()
             self.doc.end_cell()
             if count % self.cells == self.cells - 1:
                 self.doc.end_row()
@@ -281,10 +313,48 @@ class TestPicturesInTables(unittest.TestCase):
         )
 
     def test_section_title_keeps_rows_together(self):
-        """The rows after a section title are kept on the same page."""
-        self._gallery([self._image("img0.jpg")])
-        self.assertTrue(self.doc.tabmem.rows[0].tail.startswith(NO_PAGE_BREAK))
+        """
+        A section title stays with the first caption, and each caption
+        stays with its picture, but a page may break between the rows of
+        pictures.
+        """
+        self._gallery([self._image("img%d.jpg" % i) for i in range(4)])
+        tails = [row.tail for row in self.doc.tabmem.rows]
+        self.assertTrue(tails[0].startswith(NO_PAGE_BREAK))
+        self.assertTrue(tails[1].startswith(NO_PAGE_BREAK))
+        self.assertTrue(tails[2].startswith(NORMAL_END + " "))
+        self.assertTrue(tails[3].startswith(NO_PAGE_BREAK))
+        self.assertTrue(tails[4].startswith(NORMAL_END + " "))
         self._finish_and_read()
+
+    def test_keep_together_not_carried_to_next_table(self):
+        """The page break rules of one table do not affect the next one."""
+        self._gallery([self._image("img0.jpg")])
+        self.doc.start_table("plain", "IDS-GalleryTable")
+        for text in ("one", "two"):
+            self.doc.start_row()
+            self.doc.start_cell("IDS-NormalCell")
+            self.doc.start_paragraph("IDS-Normal")
+            self.doc.write_text(text)
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
+        self.doc.end_table()
+        for row in self.doc.tabmem.rows:
+            self.assertTrue(row.tail.startswith(NORMAL_END + " "))
+        self._finish_and_read()
+
+    def test_picture_width_with_text_after(self):
+        """
+        Text after a picture in its cell does not lose the picture's
+        width.
+        """
+        images = [self._image("img%d.jpg" % i) for i in range(3)]
+        self._gallery(images, text_after="Attribute")
+        content = self._finish_and_read()
+        self.assertIn("\\minof{5.0\\grbaseindent}", content)
+        self.assertNotIn("\\minof{0\\grbaseindent}", content)
+        self.assertIn("Attribute", content)
 
     def test_no_file_name_label_in_table(self):
         """
@@ -345,8 +415,11 @@ class TestPicturesInTables(unittest.TestCase):
         """A picture LaTeX cannot read is converted to jpg."""
         image = self._image("img0.gif")
         self._gallery([image])
-        converted = os.path.join(self.tmpdir, "img0.jpg")
+        converted = self.doc.derived_image_name(image, None, ".jpg")
+        self.assertEqual(os.path.dirname(converted), self.tmpdir)
         self.assertTrue(os.path.exists(converted))
+        # nothing is written to the media folder
+        self.assertEqual(os.listdir(os.path.dirname(image)), ["img0.gif"])
         self.assertIn("\\grcellpicture{%s}" % converted, self._finish_and_read())
 
     @unittest.skipUnless(latexdoc.HAVE_PIL, "PIL not installed")
@@ -354,9 +427,50 @@ class TestPicturesInTables(unittest.TestCase):
         """A cropped picture is saved next to the LaTeX file."""
         image = self._image("img0.jpg")
         self._gallery([image], crop=(0, 0, 50, 50))
-        cropped = os.path.join(self.tmpdir, "temp_img0.png")
+        cropped = self.doc.derived_image_name(image, (0, 0, 50, 50), ".png")
+        self.assertEqual(os.path.dirname(cropped), self.tmpdir)
         self.assertTrue(os.path.exists(cropped))
+        with latexdoc.Image.open(cropped) as img:
+            self.assertEqual(img.size, (20, 10))
         self.assertIn("\\grcellpicture{%s}" % cropped, self._finish_and_read())
+
+    @unittest.skipUnless(latexdoc.HAVE_PIL, "PIL not installed")
+    def test_different_crops_of_one_picture(self):
+        """Different crops of the same picture are kept apart."""
+        image = self._image("img0.jpg")
+        first = (0, 0, 50, 50)
+        second = (50, 50, 100, 100)
+        self.doc.add_media(image, "right", 4.0, 4.0, crop=first)
+        self.doc.add_media(image, "right", 4.0, 4.0, crop=second)
+        content = self._finish_and_read()
+        names = [
+            self.doc.derived_image_name(image, crop, ".png") for crop in (first, second)
+        ]
+        self.assertNotEqual(names[0], names[1])
+        for name in names:
+            self.assertTrue(os.path.exists(name))
+            self.assertIn("\\grmkpicture{%s}" % name, content)
+
+    @unittest.skipUnless(latexdoc.HAVE_PIL, "PIL not installed")
+    def test_crop_of_cmyk_picture(self):
+        """A cropped CMYK picture can be saved."""
+        image = self._image("img0.jpg", mode="CMYK")
+        self.doc.add_media(image, "right", 4.0, 4.0, crop=(0, 0, 50, 50))
+        content = self._finish_and_read()
+        cropped = self.doc.derived_image_name(image, (0, 0, 50, 50), ".png")
+        self.assertIn("\\grmkpicture{%s}" % cropped, content)
+        self.assertNotIn("*** Error", content)
+
+    def test_crop_without_pil(self):
+        """Without PIL, a picture LaTeX can read is used uncropped."""
+        image = self._image("img0.jpg")
+        with (
+            mock.patch.object(latexdoc, "HAVE_PIL", False),
+            mock.patch("gramps.gen.config.config.get", return_value=True),
+            self.assertLogs(".latexdoc", "WARNING"),
+        ):
+            self.doc.add_media(image, "right", 4.0, 4.0, crop=(0, 0, 50, 50))
+        self.assertIn("\\grmkpicture{%s}" % image, self._finish_and_read())
 
     def test_picture_outside_table(self):
         """
@@ -380,34 +494,76 @@ class TestPicturesInTables(unittest.TestCase):
         self.assertNotIn("\\grmaxlencolcont", content)
         self.assertIn("\\newcommand{\\grcellpicture}", content)
 
-    def test_photo_beside_table(self):
+    def _person_table(self, image, captions):
         """
-        A picture in the last column of the first row is set beside the
-        table, with the text following it in the cell as its label.
+        Write a person table with a photo the way write_person does: the
+        photo is in the last cell, followed by its caption paragraphs.
         """
         self.doc.start_paragraph("IDS-Normal")
         self.doc.write_text("Person")
         self.doc.end_paragraph()
         self.doc.start_table("person", "IDS-GalleryTable")
         self.doc.start_row()
-        for text in ("Name:", "Somebody"):
+        for texts in (("Name:", "Gender:"), ("Somebody", "Male")):
             self.doc.start_cell("IDS-NormalCell")
-            self.doc.start_paragraph("IDS-Normal")
-            self.doc.write_text(text)
-            self.doc.end_paragraph()
+            for text in texts:
+                self.doc.start_paragraph("IDS-Normal")
+                self.doc.write_text(text)
+                self.doc.end_paragraph()
             self.doc.end_cell()
         self.doc.start_cell("IDS-NormalCell")
-        image = self._image("img0.jpg")
         self.doc.add_media(image, "right", 4.0, 4.0)
-        self.doc.start_paragraph("IDS-Normal")
-        self.doc.write_text("(Age: 50)")
-        self.doc.end_paragraph()
+        for caption in captions:
+            self.doc.start_paragraph("IDS-Normal")
+            self.doc.write_text(caption)
+            self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
         self.doc.end_table()
+
+    def test_photo_beside_table(self):
+        """
+        A picture in the last column of the first row is set beside the
+        table, with the text following it in the cell as its label.
+        """
+        image = self._image("img0.jpg")
+        self._person_table(image, ["(Age: 50)"])
         content = self._finish_and_read()
-        self.assertIn("\\grmkpicture{%s}{4.0}{4.0}{(Age: 50)" % image, content)
+        self.assertIn("\\grmkpicture{%s}{4.0}{4.0}{(Age: 50)}" % image, content)
         self.assertIn("Somebody", content)
+
+    def test_photo_without_caption(self):
+        """A photo without a caption gets an empty label."""
+        image = self._image("img0.jpg")
+        self._person_table(image, [])
+        content = self._finish_and_read()
+        self.assertIn("\\grmkpicture{%s}{4.0}{4.0}{}%%\n" % image, content)
+        self.assertNotIn("{%}", content)
+
+    def test_photo_with_several_caption_lines(self):
+        """All caption lines of a photo are set beneath it."""
+        image = self._image("img0.jpg")
+        self._person_table(image, ["(Age: 50)", "(Height: 2m)", "(Eyes: blue)"])
+        # the caption lines do not leave empty rows behind
+        self.assertEqual(len(self.doc.tabmem.rows), 2)
+        content = self._finish_and_read()
+        self.assertIn(
+            "{4.0}{4.0}{(Age: 50)\\newline (Height: 2m)\\newline (Eyes: blue)}",
+            content,
+        )
+
+    def test_photo_width_taken_from_table(self):
+        """
+        The table is narrowed by the photo's width, even when caption
+        paragraphs follow the photo.
+        """
+        self._person_table(self._image("img0.jpg"), ["(Age: 50)"])
+        content = self._finish_and_read()
+        self.assertIn(
+            "\\addtolength{\\grtabwidth}{-4.0\\grbaseindent -2\\tabcolsep}",
+            content,
+        )
+        self.assertEqual(self.doc.pict_width, 0)
 
     def test_paragraph_in_first_table(self):
         """A table paragraph may come before any other paragraph."""
@@ -421,6 +577,101 @@ class TestPicturesInTables(unittest.TestCase):
         self.doc.end_row()
         self.doc.end_table()
         self.assertIn("First", self._finish_and_read())
+
+
+# ------------------------------------------------------------
+#
+# TestTableBorders
+#
+# ------------------------------------------------------------
+class TestTableBorders(LaTeXDocIntegrationBase):
+    """Cell borders of the style become rules in the table."""
+
+    def test_borders_are_drawn(self):
+        cstyle = TableCellStyle()
+        cstyle.set_left_border(1)
+        cstyle.set_right_border(1)
+        cstyle.set_top_border(1)
+        cstyle.set_bottom_border(1)
+        self.styles.add_cell_style("border", cstyle)
+        self.doc.start_table("t", "tbl")
+        self.doc.start_row()
+        for text in ("Left", "Right"):
+            self.doc.start_cell("border")
+            self.doc.emit(text)
+            self.doc.end_cell()
+        self.doc.end_row()
+        self.doc.end_table()
+        content = self._finish_and_read()
+        self.assertIn("{|l|}", content)
+        self.assertIn("\\hline", content)
+
+    def test_no_borders(self):
+        self._write_table([["Left", "Right"]])
+        content = self._finish_and_read()
+        self.assertNotIn("{|l", content)
+        self.assertNotIn("\\hline", content)
+
+
+# ------------------------------------------------------------
+#
+# TestParagraphs
+#
+# ------------------------------------------------------------
+class TestParagraphs(LaTeXDocIntegrationBase):
+    """Paragraphs and notes of various reports."""
+
+    def setUp(self):
+        self.doc, self.styles = _make_doc(self.ncols)
+        for name in ("Normal", "DR-Title", "DR-Normal", "BIR-Daystyle"):
+            self.styles.add_paragraph_style(name, ParagraphStyle())
+        fd, self.fname = tempfile.mkstemp(suffix=".tex")
+        os.close(fd)
+        self.doc.open(self.fname)
+
+    def _body(self, content):
+        """Return the document text after the template."""
+        return content[content.index("\\begin{document}") :]
+
+    def test_flowed_note_keeps_line_breaks(self):
+        """The lines of a flowed note are not run together."""
+        self.doc.write_styled_note(StyledText("Line one\nLine two"), 0, "Normal")
+        content = self._finish_and_read()
+        self.assertIn("Line one~\\newline \nLine two", content)
+
+    def test_flowed_note_in_table_keeps_line_breaks(self):
+        """The lines of a flowed note in a table cell are not run together."""
+        self.doc.start_table("t", "tbl")
+        self.doc.start_row()
+        self.doc.start_cell("cell")
+        self.doc.write_styled_note(StyledText("Line one\nLine two"), 0, "Normal")
+        self.doc.end_cell()
+        self.doc.end_row()
+        self.doc.end_table()
+        content = self._finish_and_read()
+        self.assertIn("Line one~\\newline Line two", content)
+
+    def test_descendant_report_changes_no_settings(self):
+        """
+        Descendant report paragraphs change neither the indentation nor
+        the font size of what follows, e.g. in a book.
+        """
+        for style in ("DR-Title", "DR-Normal"):
+            self.doc.start_paragraph(style)
+            self.doc.write_text("text")
+            self.doc.end_paragraph()
+        body = self._body(self._finish_and_read())
+        self.assertNotIn("\\setlength{\\grbaseindent}", body)
+        self.assertNotIn("\\small", body)
+
+    def test_birthday_report_uses_defined_lengths(self):
+        """The birthday report only uses lengths the template defines."""
+        self.doc.start_paragraph("BIR-Daystyle")
+        self.doc.write_text("1")
+        self.doc.end_paragraph()
+        content = self._finish_and_read()
+        self.assertNotIn("\\grbirthdaylineup", content)
+        self.assertNotIn("\\vspace{-", self._body(content))
 
 
 if __name__ == "__main__":
