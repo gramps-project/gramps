@@ -1,4 +1,3 @@
-#
 # -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
@@ -12,6 +11,7 @@
 #               2010       Peter Landgren
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 #               2011-2012  Harald Rosemann
+#               2019-2020  Harald Rosemann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +37,8 @@
 from __future__ import annotations
 from bisect import bisect
 import re
-import os
+import os.path
+import hashlib
 import logging
 
 try:
@@ -61,6 +62,7 @@ from gramps.gen.plug.docgen import (
 )
 from gramps.gen.plug.docbackend import DocBackend
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.image import crop_percentage_to_pixel
 
 _ = glocale.translation.gettext
 
@@ -81,6 +83,12 @@ _CLICKABLE = "\\url{\\1}"
 #   So the choosen pattern will do the job without confusion:
 
 SEPARATION_PAT = "&&"
+# \\grmkpicture{file}{width}{height}{label} and text following it
+PICT_PAT = re.compile(
+    r"(\\grmkpicture\{[^}]*\}\{([^}]*)\}\{[^}]*\}\{)([^}]*)\}(.*)", re.S
+)
+# image formats pdflatex includes without conversion
+LATEX_IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".pdf")
 
 # ------------------------------------------------------------------------
 #
@@ -152,6 +160,7 @@ _LATEX_TEMPLATE = """%
 \\newlength{\\grmaxwidth}%
 \\newlength{\\grprorated}%
 \\newlength{\\grxwd}%
+\\newlength{\\grcellpictwd}%
 \\newlength{\\grwidthused}%
 \\newlength{\\grreduce}%
 \\newlength{\\grcurcolend}%
@@ -404,6 +413,15 @@ _LATEX_TEMPLATE = """%
   \\setlength{\\grtabprepos}{-\\grtempwd}%
 }%
 %
+\\newcommand{\\grcellpicture}[4]{%  picture inside a table cell
+  \\setlength{\\grcellpictwd}{\\minof{#2\\grbaseindent}{\\linewidth}}%
+  {\\centering\\includegraphics[%
+    width= \\grcellpictwd,%
+    height= #3\\grbaseindent,%
+    keepaspectratio]%
+    {#1}\\par}%
+}%
+%
 %
 \\begin{document}%
 """
@@ -456,12 +474,29 @@ TBLFMT_PAT = re.compile(r"({\|?)l(\|?})")
 CELL_BEG, CELL_TEXT, CELL_END, ROW_BEG, ROW_END, TAB_BEG, TAB_END = list(range(7))
 FIRST_ROW, SUBSEQ_ROW = list(range(2))
 
+# endings of table rows
+NORMAL_END = r"\\"
+NO_PAGE_BREAK = r"\\*"
+
+# rows of a table cell written in these styles are kept on one page
+KEEP_TOGETHER_STYLES = {
+    "EOL-Generation",
+    "EOL-Normal",
+    "FGR-ChildText",
+    "FGR-ParentName",
+    "IDS-SectionTitle",
+    "IDS-ImageCaption",
+    "NoteLink-Normal-Bold",
+    "PLC-ColumnTitle",
+    "TR-Normal-Bold",
+}
+# headings, kept on one page with the row following them
+HEADING_STYLES = {"IDS-SectionTitle", "FGR-ParentName", "PLC-ColumnTitle"}
+
 
 def get_charform(col_num):
-    """
-    Transfer column number to column charakter,
-    limited to letters within a-z;
-    26, there is no need for more.
+    """Transfer column number to column character,
+    limited to letters within Station a-z  (26, there is no need for more).
     early test of column count in start_table()
     """
     if col_num > ord("z") - ord("a"):
@@ -517,14 +552,50 @@ def str_incr(str_counter):
                 lili[i] = "a"
 
 
+def pict_with_caption(pict: str, more_lines: list[str] | None = None) -> str:
+    """
+    Move the text following a \\grmkpicture command, and any further
+    caption lines, into its label argument, so that they are set beneath
+    the picture.
+    """
+    match = PICT_PAT.match(pict)
+    if match is None:
+        return pict
+    lines = [match.group(4)] + (more_lines or [])
+    # an unescaped "%" would comment out the end of the label
+    lines = [
+        re.sub(r"(?<!\\)%.*", "", line).replace("\\hfill", "").strip() for line in lines
+    ]
+    caption = "\\newline ".join(line for line in lines if line)
+    if not caption:
+        return "".join((match.group(1), match.group(3), "}"))
+    label = " ".join(part for part in (match.group(3), caption) if part)
+    return "".join((match.group(1), label, "}"))
+
+
+def pict_width_of(pict: str) -> float:
+    """
+    Return the width argument of a \\grmkpicture command, or 0.
+    """
+    match = PICT_PAT.match(pict)
+    if match is None:
+        return 0
+    try:
+        return float(match.group(2))
+    except ValueError:
+        return 0
+
+
 # ------------------------------------------------------------------------
 #
-# Structure of Table-Memory
+# LaTeX Table-Memory and related methods
 #
 # ------------------------------------------------------------------------
 
 
 class TabCell:
+    """ " cell of a row of a table"""
+
     def __init__(self, colchar, span, head, content):
         self.colchar = colchar
         self.span = span
@@ -533,6 +604,8 @@ class TabCell:
 
 
 class TabRow:
+    """ " row of a table"""
+
     def __init__(self):
         self.cells = []
         self.tail = ""
@@ -568,9 +641,8 @@ def latexescape(text):
 
 
 def latexescapeverbatim(text):
-    """
-    Escape special characters and also make sure that LaTeX respects whitespace
-    and newlines correctly.
+    """Escape special characters and also make sure that LaTeX
+    respects whitespace and newlines correctly.
     """
     text = latexescape(text)
     text = text.replace(" ", "\\ ")
@@ -595,6 +667,7 @@ class LaTeXBackend(DocBackend):
     """
 
     # overwrite base class attributes, they become static var of LaTeXDoc
+
     SUPPORTED_MARKUP = [
         DocBackend.BOLD,
         DocBackend.ITALIC,
@@ -625,6 +698,7 @@ class LaTeXBackend(DocBackend):
         """
         if not preformatted:
             LaTeXBackend.ESCAPE_FUNC = lambda x: latexescape
+
         else:
             LaTeXBackend.ESCAPE_FUNC = lambda x: latexescapeverbatim
 
@@ -632,8 +706,7 @@ class LaTeXBackend(DocBackend):
         r"""
         overwrites the method in DocBackend.
         creates the latex tags needed for non bool style types we support:
-            FONTSIZE : use different \large denomination based
-                                        on size
+            FONTSIZE : use different \large denomination based on size
                                      : very basic, in mono in the font face
                                         then we use {\ttfamily }
         """
@@ -658,6 +731,7 @@ class LaTeXBackend(DocBackend):
         """
         Check to make sure filename satisfies the standards for this filetype
         """
+
         if not self._filename.endswith(".tex"):
             self._filename = self._filename + ".tex"
 
@@ -702,16 +776,20 @@ class LaTeXDoc(BaseDoc, TextDoc):
     pict_in_table = False
     pict_width = 0
     pict_height = 0
+    fix_indent = False
     textmem: list[str] = []
     in_title = True
+    row_styles: set[str] = set()
 
     #   ---------------------------------------------------------------
     #   begin of table special treatment
     #   ---------------------------------------------------------------
     def emit(self, text, tab_state=CELL_TEXT, span=1):
         """
-        Hand over all text but tables to self._backend.write(), (line 1-2).
+        Hand over all text but tables and birthday-record lines to self._backend.write()
         In case of tables pass to specal treatment below.
+        _    gramps serves tables column by column
+        _    whereas LaTeX builds them row by row.
         """
         if not self.in_table:  # all stuff but table
             self._backend.write(text)
@@ -745,6 +823,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self.textmem = []
         elif tab_state == ROW_BEG:
             self.tabrow = TabRow()
+            self.row_styles = set()
         elif tab_state == ROW_END:
             self.tabrow.addit = text  # text: \\hline, \\cline{}
             self.tabrow.tail = "".join(self.textmem)  # \\\\ row-termination
@@ -764,7 +843,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self.calc_latex_widths()
             self.write_table()
 
-    def repack_row(self):
+    def repack_row(self) -> None:
         """
         Transpose contents contained in a row of cols of cells
         to rows of cells with corresponding contents.
@@ -775,9 +854,20 @@ class LaTeXDoc(BaseDoc, TextDoc):
             del self.tabrow.cells[-1]
             self.numcols -= 1
 
-        # extract cell.contents
+        # a short row (e.g. the last row of a gallery) gets empty cells
+        for col_num in range(len(self.tabrow.cells), self.numcols):
+            self.tabrow.cells.append(
+                TabCell(get_charform(col_num), 1, "\\multicolumn{1}{l}", "")
+            )
+
+        # extract cell.contents; joining the lines must not let a
+        # "%" comment out the rest of the cell
         bare_contents = [
-            cell.content.strip(SEPARATION_PAT).replace("\n", "").split(SEPARATION_PAT)
+            (cell.content + "\n")
+            .replace("%\n", "")
+            .replace("\n", "")
+            .strip(SEPARATION_PAT)
+            .split(SEPARATION_PAT)
             for cell in self.tabrow.cells
         ]
 
@@ -790,54 +880,68 @@ class LaTeXDoc(BaseDoc, TextDoc):
             cols_equ_len.append(mrc)
         transp_cont = list(zip(*cols_equ_len))
 
-        # picts? extract
-        first_cell, last_cell = (0, self.numcols)
+        # picts? extract, together with all lines of their caption
+        last_cell = self.numcols
         if self.pict_in_table:
             if transp_cont[0][-1].startswith("\\grmkpicture"):
-                self.pict = transp_cont[0][-1]
+                self.pict = pict_with_caption(
+                    transp_cont[0][-1], [cont[-1] for cont in transp_cont[1:]]
+                )
                 last_cell -= 1
                 self.numcols -= 1
                 self._backend.write(
                     "".join(
                         (
                             "\\addtolength{\\grtabwidth}{-",
-                            repr(self.pict_width),
+                            repr(pict_width_of(self.pict)),
                             "\\grbaseindent -2\\tabcolsep}%\n",
                         )
                     )
                 )
+                # drop the rows that only held the caption
+                while num_new_rows > 1 and not any(
+                    transp_cont[num_new_rows - 1][:last_cell]
+                ):
+                    num_new_rows -= 1
             self.pict_in_table = False
 
         # new row-col structure
+        keep_together = bool(self.row_styles & KEEP_TOGETHER_STYLES)
         for row in range(num_new_rows):
             new_row = TabRow()
-            for i in range(first_cell, last_cell):
+            for i in range(last_cell):
                 new_cell = TabCell(
-                    get_charform(i + first_cell),
+                    get_charform(i),
                     self.tabrow.cells[i].span,
                     self.tabrow.cells[i].head,
-                    transp_cont[row][i + first_cell],
+                    transp_cont[row][i],
                 )
                 new_row.cells.append(new_cell)
-            new_row.tail = self.tabrow.tail
-            new_row.addit = ""
+            if keep_together and row < num_new_rows - 1:
+                new_row.tail = NO_PAGE_BREAK + " "
+            else:
+                new_row.tail = self.tabrow.tail
             self.tabmem.rows.append(new_row)
 
+        # a heading is kept on one page with the row following it
+        if self.row_styles & HEADING_STYLES:
+            self.tabmem.rows[-1].tail = NO_PAGE_BREAK + " "
         self.tabmem.rows[-1].addit = self.tabrow.addit
         self.in_multrow_cell = False
 
     def calc_latex_widths(self):
         """
-        Control width settings in latex table construction
-        Evaluations are set up here and passed to LaTeX
-        to calculate required and to fix suitable widths.
-        ??? Can all this be done exclusively in TeX? Don't know how.
+        Control width settings in latex table construction.
+        Evaluations are set up here and passed to LaTeX to calculate
+        required and to fix suitable widths.
         """
         tabcol_chars = []
         for col_num in range(self.numcols):
             col_char = get_charform(col_num)
             tabcol_chars.append(col_char)
             for row in self.tabmem.rows:
+                if col_num >= len(row.cells):
+                    continue
                 cell = row.cells[col_num]
                 if cell.span == 0:
                     continue
@@ -845,9 +949,9 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     self._backend.write(
                         "".join(
                             (
-                                "\\setlength{\\grpictsize}{",
-                                self.pict_width,
-                                "\\grbaseindent}%\n",
+                                "\\setlength{\\grpictsize}{\\minof{",
+                                repr(pict_width_of(cell.content)),
+                                "\\grbaseindent}{\\grprorated - 2\\tabcolsep}}%\n",
                             )
                         )
                     )
@@ -859,7 +963,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     row.cells[col_num].content = cell.content.replace(
                         SEPARATION_PAT, "~\\newline \n"
                     )
-
                 if cell.span == 1:
                     self._backend.write("".join(("\\grsetreqfull%\n")))
                 elif cell.span > 1:
@@ -872,7 +975,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
                             )
                         )
                     )
-
             self._backend.write(
                 "".join(
                     (
@@ -891,7 +993,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     )
                 )
             )
-
         self._backend.write("".join(("\\grdividelength%\n")))
         for col_char in tabcol_chars:
             self._backend.write(
@@ -910,7 +1011,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     )
                 )
             )
-
         self._backend.write("".join(("\\grdividelength%\n")))
         for col_char in tabcol_chars:
             self._backend.write(
@@ -927,7 +1027,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     )
                 )
             )
-
         self._backend.write("".join(("\\grdividelength%\n")))
         for col_char in tabcol_chars:
             self._backend.write(
@@ -944,7 +1043,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     )
                 )
             )
-
         self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
         for row in self.tabmem.rows:
             for cell in row.cells:
@@ -1013,12 +1111,12 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write("".join(self.tabmem.head))
 
         # special treatment at begin of longtable for heading and
-        # closing at top and bottom of table
+        # closing at top and bottom of the table
         # and parts of it at pagebreak separating
         self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
         splitting_row = self.mk_splitting_row(self.tabmem.rows[FIRST_ROW])
         self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
-        complete_row = self.mk_complete_row(self.tabmem.rows[FIRST_ROW])
+        complete_row = self.mk_complete_row(self.tabmem.rows[FIRST_ROW], None)
 
         self._backend.write(splitting_row)
         self._backend.write("\\endhead%\n")
@@ -1035,7 +1133,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
         # hand over subsequent rows
         for row in self.tabmem.rows[SUBSEQ_ROW:]:
-            self._backend.write(self.mk_complete_row(row))
+            self._backend.write(self.mk_complete_row(row, None))
 
         # close table by '\\end{longtable}', end '{\\RaggedRight' or '{' by '}'
         self._backend.write("".join(("".join(self.tabmem.tail), "}%\n\n")))
@@ -1067,9 +1165,12 @@ class LaTeXDoc(BaseDoc, TextDoc):
             )
         return "".join((" & ".join(splitting), "%\n", row.tail))
 
-    def mk_complete_row(self, row):
+    def mk_complete_row(self, row, last=None):
+        #    last:  '-1' for [:-1] or
+        #           'None' for all i.e. [:]
+        """collocate all data of a latex row and write out"""
         complete = []
-        for cell in row.cells:
+        for cell in row.cells[:last]:
             if cell.span == 0:
                 continue
             elif cell.span == 1:
@@ -1084,7 +1185,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                         "}{%\n",
                         cell_width,
                         "}{%\n  ",
-                        cell.content,
+                        cell.content.replace("\\grmkpicture{", "\\grcellpicture{"),
                         "%\n}%\n",
                     )
                 )
@@ -1094,6 +1195,13 @@ class LaTeXDoc(BaseDoc, TextDoc):
     #       ---------------------------------------------------------------------
     #       end of special table treatment
     #       ---------------------------------------------------------------------
+
+    # ===========================================================
+    #
+    #       Interface to the central gramps doc-generator,
+    #       most of the following methods are called from there
+    #
+    # ===========================================================
 
     def page_break(self):
         "Forces a page break, creating a new page"
@@ -1107,12 +1215,11 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
         # Font size control seems to be limited. For now, ignore
         # any style constraints, and use 12pt as the default
-
         options = "12pt"
-
         if self.paper.get_orientation() == PAPER_LANDSCAPE:
             options = options + ",landscape"
 
+        # Old:
         # Paper selections are somewhat limited on a stock installation.
         # If the user picks something not listed here, we'll just accept
         # the default of the user's LaTeX installation (usually letter).
@@ -1120,11 +1227,12 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if paper_name in ["a4", "a5", "legal", "letter"]:
             options += "," + paper_name + "paper"
 
+        # Old:
+        # Paper selections are somewhat limited on a stock installation.
         # Use the article template, T1 font encodings, and specify
         # that we should use Latin1 and unicode character encodings.
         self.emit(_LATEX_TEMPLATE_1 % options)
         self.emit(_LATEX_TEMPLATE)
-
         self.in_list = False
         self.in_table = False
         self.head_line = False
@@ -1192,9 +1300,9 @@ class LaTeXDoc(BaseDoc, TextDoc):
     def start_paragraph(self, style_name, leader=None):
         """Paragraphs handling - A Gramps paragraph is any
         single body of text from a single word to several sentences.
-        We assume a linebreak at the end of each paragraph."""
+        We assume a linebreak at the end of each paragraph.
+        """
         style_sheet = self.get_style_sheet()
-
         style = style_sheet.get_paragraph_style(style_name)
         ltxstyle = self.latexstyle[style_name]
         self.level = style.get_header_level()
@@ -1214,6 +1322,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self._backend.write("\\vspace{5ex}%\n")
         if self.in_table:  #   paragraph in table indicates: cols of rows
             self.in_multrow_cell = True
+            self.row_styles.add(style_name)
         else:
             if leader:
                 self._backend.write("".join(("\\grprepleader{", leader, "}%\n")))
@@ -1222,7 +1331,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
             #           -------------------------------------------------------------------
             #   Gramps presumes 'cm' as units; here '\\grbaseindent' is used
-            #   as equivalent, set in '_LATEX_TEMPLATE' above to '3em';
+            #   as equivalent, set in '_LATEX_TEMPLATE' above to '2.85em';
             #   there another value might be choosen.
             #           -------------------------------------------------------------------
             if self.indent is not None:
@@ -1238,7 +1347,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     )
                 )
                 self.fix_indent = True
-
                 if leader is not None and not self.in_list:
                     self.in_list = True
                     self._backend.write("".join(("\\grlisthead{", leader, "}%\n")))
@@ -1279,6 +1387,13 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
     def end_superscript(self):
         self.emit("}")
+
+    # ---------------------------------------------------------------------
+    #
+    # Methods for table construction; values are supplied.
+    # For new LaTeX output some former settings are ignored.
+    #
+    # ---------------------------------------------------------------------
 
     def start_table(self, name, style_name):
         """Begin new table"""
@@ -1330,7 +1445,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
         for safety of formatting."""
         self.colspan = span
         self.curcol += self.colspan
-
         styles = self.get_style_sheet()
         self.cstyle = styles.get_cell_style(style_name)
 
@@ -1343,13 +1457,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.rborder = self.cstyle.get_right_border() == 1
         self.bborder = self.cstyle.get_bottom_border() == 1
         self.tborder = self.cstyle.get_top_border() != 0
-
-        # self.llist not needed any longer.
-        # now column widths are arranged in self.calc_latex_widths()
-        # serving for fitting of cell contents at any column position.
-        # self.llist = 1 == self.cstyle.get_longlist()
-
         cellfmt = "l"
+
         # Account for vertical rules
         if self.lborder:
             cellfmt = "|" + cellfmt
@@ -1373,69 +1482,109 @@ class LaTeXDoc(BaseDoc, TextDoc):
         """Prepares for next cell"""
         self.emit("", CELL_END)
 
+    def media_error(self, infile: str, reason: str) -> None:
+        """
+        Note a picture that cannot be included, as a LaTeX comment.
+
+        The comment is written straight to the backend, so that it never ends
+        up inside a table cell, where it would comment out the rest of the
+        cell when the cell content is joined into a single line.
+        """
+        _LOG.warning("LaTeX: cannot include %s: %s", infile, reason)
+        self._backend.write(
+            "".join(
+                ("%\n% *** Error: cannot include ", infile, "\n% *** ", reason, "\n")
+            )
+        )
+
+    def derived_image_name(
+        self, infile: str, crop: tuple[int, int, int, int] | None, ext: str
+    ) -> str:
+        """
+        Return the name of an image derived from infile (cropped or
+        converted), placed beside the LaTeX file. The name depends on the
+        source and the crop, so that different derived images never share
+        a file, and the user's media files are never overwritten.
+        """
+        key = "".join((os.path.abspath(infile), repr(crop))).encode("utf-8")
+        name = "".join(
+            (
+                "temp_",
+                os.path.splitext(os.path.basename(infile))[0],
+                "_",
+                hashlib.md5(key).hexdigest()[:8],
+                ext,
+            )
+        )
+        outdir = os.path.dirname(os.path.abspath(self._backend.getf()))
+        return os.path.join(outdir, name)
+
+    def warn_no_pil(self) -> None:
+        """
+        Tell the user once that pictures cannot be cropped or converted.
+        """
+        from gramps.gen.config import config
+
+        if not config.get("interface.ignore-pil"):
+            from gramps.gen.constfunc import has_display
+
+            if has_display() and self.uistate:
+                from gramps.gui.dialog import MessageHideDialog
+
+                title = _("PIL (Python Imaging Library) not loaded.")
+                message = _(
+                    "Production of jpg images from non-jpg images "
+                    "in LaTeX documents will not be available. "
+                    "Use your package manager to install "
+                    "python-imaging or python-pillow or "
+                    "python3-pillow"
+                )
+                MessageHideDialog(
+                    title,
+                    message,
+                    "interface.ignore-pil",
+                    parent=self.uistate.window,
+                )
+
     def add_media(self, infile, pos, x, y, alt="", style_name=None, crop=None):
         """Add photo to report"""
-        outfile = os.path.splitext(infile)[0]
-        pictname = latexescape(os.path.split(outfile)[1])
-        outfile = "".join((outfile, ".jpg"))
-        outfile2 = "".join((outfile, ".jpeg"))
-        outfile3 = "".join((outfile, ".png"))
-        if HAVE_PIL and infile not in [outfile, outfile2, outfile3]:
+        base, ext = os.path.splitext(infile)
+        outfile = infile
+        if HAVE_PIL:
             try:
-                curr_img = Image.open(infile)
-                curr_img.save(outfile)
-                width, height = curr_img.size
-                if height > width:
-                    y = y * height / width
-            except IOError:
-                self.emit(
-                    "".join(
-                        (
-                            "%\n *** Error: cannot convert ",
-                            infile,
-                            "\n ***                    to ",
-                            outfile,
-                            "%\n",
+                with Image.open(infile) as curr_img:
+                    if crop:
+                        curr_img = curr_img.crop(
+                            tuple(crop_percentage_to_pixel(*curr_img.size, crop))
                         )
-                    )
-                )
-        elif not HAVE_PIL:
-            from gramps.gen.config import config
-
-            if not config.get("interface.ignore-pil"):
-                from gramps.gen.constfunc import has_display
-
-                if has_display() and self.uistate:
-                    from gramps.gui.dialog import MessageHideDialog
-
-                    title = _("PIL (Python Imaging Library) not loaded.")
-                    message = _(
-                        "Production of jpg images from non-jpg images "
-                        "in LaTeX documents will not be available. "
-                        "Use your package manager to install "
-                        "python-imaging or python-pillow or "
-                        "python3-pillow"
-                    )
-                    MessageHideDialog(
-                        title,
-                        message,
-                        "interface.ignore-pil",
-                        parent=self.uistate.window,
-                    )
-            self.emit(
-                "".join(
-                    (
-                        "%\n *** Error: cannot convert ",
-                        infile,
-                        "\n ***                    to ",
-                        outfile,
-                        "\n *** PIL not installed %\n",
-                    )
-                )
-            )
+                        if curr_img.mode not in ("1", "L", "LA", "P", "RGB", "RGBA"):
+                            curr_img = curr_img.convert("RGB")
+                        outfile = self.derived_image_name(infile, crop, ".png")
+                        curr_img.save(outfile)
+                    elif ext.lower() not in LATEX_IMAGE_EXTS:
+                        outfile = self.derived_image_name(infile, None, ".jpg")
+                        curr_img.convert("RGB").save(outfile)
+                    width, height = curr_img.size
+                    if height > width:
+                        y = y * height / width
+            except (IOError, ValueError) as err:
+                self.media_error(infile, str(err))
+                return
+        elif ext.lower() not in LATEX_IMAGE_EXTS:
+            self.warn_no_pil()
+            self.media_error(infile, "PIL not installed")
+            return
+        elif crop:
+            # include the whole picture rather than none of it
+            self.warn_no_pil()
+            _LOG.warning("LaTeX: cannot crop %s: PIL not installed", infile)
 
         if self.in_table:
             self.pict_in_table = True
+            # the report writes its own caption into the table cell
+            pictname = ""
+        else:
+            pictname = latexescape(os.path.basename(base))
 
         self.emit(
             "".join(
@@ -1452,15 +1601,16 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 )
             )
         )
-        self.pict_width = x
-        self.pict_height = y
+        if not self.in_table:
+            # the next paragraph is set beside the picture
+            self.pict_width = x
+            self.pict_height = y
 
     def write_text(self, text, mark=None, links=False):
         """Write the text to the file"""
         if text == "\n":
             text = ""
         text = latexescape(text)
-
         if links is True:
             text = re.sub(URL_PATTERN, _CLICKABLE, text)
 
