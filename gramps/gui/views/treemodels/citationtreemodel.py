@@ -244,17 +244,18 @@ class _SourceGroupSearchFilter:
     Filter that groups a hierarchical source->citation text search *by source*
     (issue 8622).
 
-    It matches against a precomputed set of *shown* source handles.  For a
-    primary (source) row the handle is a source handle and is tested directly;
-    for a secondary (citation) row the handle is mapped to its parent source, so
-    every citation of a shown source stays reachable underneath it.  The set is
-    built once (see :func:`grouped_shown_sources`) and shared by the primary and
-    secondary instances, so matching here is a pure set-membership test that
-    never dereferences a source handle.
+    It matches against sets precomputed by :func:`grouped_shown_sources`.  A
+    primary (source) row is shown when its handle is in the *shown* set.  A
+    secondary (citation) row is shown when its parent source matched by title
+    (so every citation of a title-matched source stays reachable underneath it)
+    or when the citation itself matched (so a page search lists only the
+    matching citations, not their siblings).  The sets are built once and
+    shared by the primary and secondary instances, so matching here is a pure
+    set-membership test that never dereferences a source handle.
     """
 
-    def __init__(self, shown, secondary, get_source_handle):
-        self._shown = shown
+    def __init__(self, groups, secondary, get_source_handle):
+        self._shown, self._title_matched, self._matched_citations = groups
         self._secondary = secondary
         self._get_source_handle = get_source_handle
 
@@ -266,7 +267,10 @@ class _SourceGroupSearchFilter:
         test instead of raising.
         """
         if self._secondary:
-            return self._get_source_handle(handle) in self._shown
+            return (
+                handle in self._matched_citations
+                or self._get_source_handle(handle) in self._title_matched
+            )
         return handle in self._shown
 
 
@@ -274,17 +278,23 @@ def grouped_shown_sources(
     source_filter, citation_filter, source_cursor, citation_cursor, db, skip
 ):
     """
-    Compute the set of source handles a source-grouped search must show
-    (issue 8622): a source whose own (title) column matches the primary search,
-    plus any source owning a citation whose (page) column matches the secondary
-    search -- so a matched source is shown together with *all* of its citations.
+    Compute the sets a source-grouped search needs (issue 8622), returned as
+    ``(shown, title_matched, matched_citations)``:
+
+    * ``title_matched`` -- sources whose own (title) column matches the primary
+      search.  All of their citations are shown.
+    * ``matched_citations`` -- citations whose (page) column matches the
+      secondary search.  Only these are shown under a source that did not
+      match by title.
+    * ``shown`` -- the sources to show: ``title_matched`` plus every source
+      owning a matched citation.
 
     Both filters run only against handles yielded by their own cursor (always
-    live), and a citation's ``source_handle`` is added to the set *only* when it
-    belongs to a source that still exists.  A citation pointing at a deleted
-    source (an orphan) therefore never gets its dangling ``source_handle`` into
-    the shown set, so the later add-row pass never dereferences a missing source
-    -- the orphan is simply hidden (its source no longer exists to show it under).
+    live), and a citation is recorded as matched *only* when it belongs to a
+    source that still exists.  A citation pointing at a deleted source (an
+    orphan) therefore never gets itself or its dangling ``source_handle`` into
+    the sets, so the later add-row pass never dereferences a missing source --
+    the orphan is simply hidden (its source no longer exists to show it under).
 
     ``skip`` is the selector's set of handles to hide (public ``BaseSelector``
     parameter).  A skipped source is never shown, and a skipped citation never
@@ -292,12 +302,15 @@ def grouped_shown_sources(
     the caller asked to hide via ``add_row2``'s force-add-parent fallback.
     """
     shown = set()
+    title_matched = set()
+    matched_citations = set()
     existing_sources = set()
     with source_cursor() as cursor:
         for handle, _data in cursor:
             existing_sources.add(handle)
             if handle not in skip and source_filter.match(handle, db):
-                shown.add(handle)
+                title_matched.add(handle)
+    shown.update(title_matched)
     with citation_cursor() as cursor:
         for handle, data in cursor:
             # A skipped citation must not pull its source into the shown set,
@@ -307,12 +320,13 @@ def grouped_shown_sources(
                 continue
             if citation_filter.match(handle, db):
                 source_handle = data.source_handle
-                # Orphan/skip guard: never add a citation's source handle unless
-                # the source still exists AND is not itself skipped (else
-                # add_row2 would force-add a missing or hidden source).
+                # Orphan/skip guard: never record a citation unless its source
+                # still exists AND is not itself skipped (else add_row2 would
+                # force-add a missing or hidden source).
                 if source_handle in existing_sources and source_handle not in skip:
+                    matched_citations.add(handle)
                     shown.add(source_handle)
-    return shown
+    return shown, title_matched, matched_citations
 
 
 # -------------------------------------------------------------------------
@@ -325,12 +339,10 @@ class CitationTreeSelectorModel(CitationTreeModel):
     Citation tree model for the "Select Source or Citation" selector.
 
     Identical to :class:`CitationTreeModel` except that a *positive* plain text
-    search is grouped by source (issue 8622): a source kept by the search keeps
+    search is grouped by source (issue 8622): a source whose title matches keeps
     *all* of its existing citations reachable, so the user can reuse one instead
-    of being forced to create a new citation.  A citation stays reachable
-    whenever its parent source is shown -- whether the source was kept because
-    its title matched or because one of its citations matched (its siblings stay
-    reachable too).
+    of being forced to create a new citation.  A source shown only because some
+    of its citations matched lists just those citations, not their siblings.
 
     An **inverted** ("does not contain") search is deliberately left to the base
     model's independent secondary search: there the citation-level exclusion is
@@ -402,7 +414,7 @@ class CitationTreeSelectorModel(CitationTreeModel):
             or not self.db.is_open()
         ):
             return
-        shown = grouped_shown_sources(
+        groups = grouped_shown_sources(
             self.search,
             self.search2,
             self.gen_cursor,
@@ -411,10 +423,10 @@ class CitationTreeSelectorModel(CitationTreeModel):
             getattr(self, "_skip", set()),
         )
         self.search = _SourceGroupSearchFilter(
-            shown, False, self._citation_source_handle
+            groups, False, self._citation_source_handle
         )
         self.search2 = _SourceGroupSearchFilter(
-            shown, True, self._citation_source_handle
+            groups, True, self._citation_source_handle
         )
         self.current_filter = self.search
         self.current_filter2 = self.search2

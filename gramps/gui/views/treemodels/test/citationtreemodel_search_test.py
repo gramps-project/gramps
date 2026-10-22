@@ -249,14 +249,14 @@ class CitationSelectorSearchTest(unittest.TestCase):
         finally:
             model.destroy()
 
-    # -- selector: source pulled in by ONE citation keeps its SIBLINGS too ----
-    def test_selector_keeps_sibling_citations_of_citation_matched_source(self):
+    # -- selector: source pulled in by ONE citation lists only that citation --
+    def test_selector_hides_sibling_citations_of_citation_matched_source(self):
         """
         A search matching a single citation's *page* ("page 10") pulls its
-        source into the tree; the invariant requires the source's *sibling*
-        citations ("page 20") to remain reachable as well -- if a source is
-        shown, all its citations are selectable (issue 8622, iteration-1
-        finding 3).  The non-matching source stays hidden.
+        source into the tree, but the source's title did not match, so only
+        the matching citation is listed -- its sibling ("page 20") stays
+        hidden.  The user searched for citations, so the siblings are noise
+        (issue 8622 review feedback).  The non-matching source stays hidden.
         """
         model = self._selector_model(self._text_search("page 10"))
         try:
@@ -266,13 +266,36 @@ class CitationSelectorSearchTest(unittest.TestCase):
                 "source of a matched citation must be shown",
             )
             self.assertEqual(
-                sorted(self._child_handles(model, self.SRC_BIBLE)),
-                [self.CIT_B1, self.CIT_B2],
-                "sibling citations of a shown source must stay reachable, "
-                "not just the citation whose page matched",
+                self._child_handles(model, self.SRC_BIBLE),
+                [self.CIT_B1],
+                "only the citation whose page matched is listed, not its siblings",
             )
             # "page 10" matches no Newspaper citation and not its title.
             self.assertNotIn(self.SRC_NEWS, model.tree)
+        finally:
+            model.destroy()
+
+    # -- selector: a title match wins over a page match ----------------------
+    def test_selector_title_and_page_match_keeps_all_citations(self):
+        """
+        When the search text matches both a source's title and one of its
+        citations' pages, the title match wins: every citation of that source
+        stays reachable, not just the page-matched one (issue 8622).
+        """
+        sources = [_Source(self.SRC_BIBLE, "S0001", "Holy Bible")]
+        citations = [
+            _Citation(self.CIT_B1, "C0001", "Bible, page 10", self.SRC_BIBLE),
+            _Citation(self.CIT_B2, "C0002", "page 20", self.SRC_BIBLE),
+        ]
+        db = _FakeDb(sources, citations)
+        model = self._selector_model(self._text_search("Bible"), db=db)
+        try:
+            self.assertEqual(
+                sorted(self._child_handles(model, self.SRC_BIBLE)),
+                [self.CIT_B1, self.CIT_B2],
+                "a title-matched source keeps all its citations, including "
+                "ones whose page does not match",
+            )
         finally:
             model.destroy()
 
