@@ -20,6 +20,7 @@
 from __future__ import annotations
 
 import os
+import logging
 import re
 import threading
 from dataclasses import dataclass
@@ -72,6 +73,7 @@ from .fs_import.importer import FSToGrampsImporter
 from .person import fsg_sync as FSG_Sync
 
 _ = glocale.translation.gettext
+LOG = logging.getLogger(__name__)
 
 _FS_ID_RE = re.compile(r"\b([A-Z0-9]{4}-[A-Z0-9]{3})\b", re.IGNORECASE)
 
@@ -1729,9 +1731,25 @@ def _refresh_editor_person_views(editor) -> None:
 
 
 def sync_this_person(
-    dbstate, uistate, track, person, session, parent, editor=None
+    dbstate: Any,
+    uistate: Any,
+    track: Any,
+    person: Any,
+    session: Any,
+    parent: Any,
+    editor: Any = None,
 ) -> None:
-    # Sync the *selected existing Gramps person* from FamilySearch - facts/events (dates + place) + notes
+    """
+    Download facts and notes for the selected linked person.
+
+    :param dbstate: The current database state.
+    :param uistate: The current interface state.
+    :param track: The window tracking context.
+    :param person: The selected person.
+    :param session: The active FamilySearch session.
+    :param parent: The parent window.
+    :param editor: The active person editor, if any.
+    """
     _bind_global_session(session)
 
     fsid = _get_fs_id(person)
@@ -1768,39 +1786,20 @@ def sync_this_person(
         except Exception:
             pass
 
-        tmp.add_persons([fsid])
+        fs_person = tmp.fetch_person(fsid)
+        if fs_person.id != fsid:
+            fsid = fs_person.id
+            with DbTxn(_("FamilySearch: Update FSID after redirect"), db) as txn:
+                gr = db.get_person_from_handle(me_handle)
+                _set_fs_id(gr, fsid)
+                db.commit_person(gr, txn)
 
         notes_json = _platform_json(session, f"/platform/tree/persons/{fsid}/notes")
         _strip_unknowns_inplace(notes_json)
         try:
             deserialize.deserialize_json(tmp, notes_json)
         except Exception:
-            pass
-
-        fs_person = None
-        try:
-            fs_person = getattr(tmp, "_persons", {}).get(fsid)
-        except Exception:
-            fs_person = None
-
-        if fs_person is None:
-            try:
-                for p in list(getattr(tmp, "persons", []) or []):
-                    if getattr(p, "id", None) == fsid:
-                        fs_person = p
-                        break
-            except Exception:
-                pass
-
-        if fs_person is None:
-            _error(
-                parent,
-                _("FamilySearch"),
-                _(
-                    "Could not load this person from FamilySearch (no GEDCOMX person object)."
-                ),
-            )
-            return
+            LOG.warning("Unable to read FamilySearch person notes", exc_info=True)
 
     except Exception as e:
         _error(
@@ -1873,6 +1872,16 @@ def sync_this_person(
     except Exception as e:
         _error(parent, _("FamilySearch"), _("Sync failed: {e}").format(e=e))
         return
+
+    if _get_fs_id(person) != fsid:
+        _set_fs_id(person, fsid)
+        edit_person = getattr(editor, "obj", None)
+        if edit_person is not None:
+            _set_fs_id(edit_person, fsid)
+        attr_list = getattr(editor, "attr_list", None)
+        if attr_list is not None:
+            attr_list.data = (edit_person or person).get_attribute_list()
+            attr_list.rebuild_callback()
 
     _refresh_editor_person_views(editor)
     _info(

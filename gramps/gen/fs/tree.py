@@ -26,6 +26,10 @@ import calendar
 import email.utils
 import logging
 import time
+import re
+
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.fs.session import FSException
 
 from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gen.fs.fs_import.deserializer import deserialize_json, to_string, DateFormal
@@ -40,6 +44,7 @@ from gramps.gen.fs.fs_import.deserializer import (
 from .constants import MAX_PERSONS
 
 LOG = logging.getLogger(__name__)
+_ = glocale.translation.gettext
 
 _fs_session = None
 
@@ -72,6 +77,79 @@ class Tree(deserialize.Gedcomx):
             LOG.warning("Corrupted response from %s: %s", url, exc)
             data = None
         return fsid, r, data
+
+    def fetch_person(self, fsid: str) -> deserialize.Person:
+        """
+        Download a fresh person while keeping merged-ID redirects on the API route.
+
+        :param fsid: The linked FamilySearch person ID.
+        :returns: The downloaded person, with its current FamilySearch ID.
+        :raises FSException: If the service cannot return the requested person.
+        """
+        if _fs_session is None:
+            raise FSException(
+                _("Not connected to FamilySearch. Sign in and try again.")
+            )
+        current_id = fsid
+        visited: set[str] = set()
+        while current_id not in visited and len(visited) < 20:
+            visited.add(current_id)
+            endpoint = f"/platform/tree/persons/{current_id}"
+            try:
+                response = _fs_session.get_url(endpoint, allow_redirects=False)
+            except Exception as error:
+                raise FSException(
+                    _(
+                        "FamilySearch person download failed. Check your connection and sign in again."
+                    )
+                ) from error
+            if response is None:
+                raise FSException(
+                    _("FamilySearch returned no response for this person.")
+                )
+            if response.status_code == 301:
+                forwarded = response.headers.get("X-Entity-Forwarded-Id", "").strip()
+                if not re.fullmatch(r"[A-Za-z0-9]{4}-[A-Za-z0-9]{3}", forwarded):
+                    raise FSException(
+                        _("FamilySearch returned an invalid merged person ID.")
+                    )
+                current_id = forwarded
+                continue
+            if response.status_code != 200:
+                raise FSException(
+                    _(
+                        "FamilySearch person download failed (HTTP %s). Sign in again or check the linked person ID."
+                    )
+                    % response.status_code
+                )
+            try:
+                data = response.json()
+            except ValueError as error:
+                raise FSException(
+                    _("FamilySearch returned invalid person data.")
+                ) from error
+            payload = data.get("person", data) if isinstance(data, dict) else None
+            people = payload.get("persons") if isinstance(payload, dict) else None
+            if not isinstance(people, list) or not any(
+                isinstance(person, dict) and person.get("id") == current_id
+                for person in people
+            ):
+                raise FSException(
+                    _(
+                        "FamilySearch did not return the linked person. Check the person ID and selected server."
+                    )
+                )
+            deserialize.Person.index.pop(current_id, None)
+            self.persons = {
+                cached for cached in (self.persons or set()) if cached.id != current_id
+            }
+            deserialize.deserialize_json(self, data)
+            person = deserialize.Person.index.get(current_id)
+            if person is None:
+                raise FSException(_("FamilySearch person data could not be read."))
+            self._persons[current_id] = person
+            return person
+        raise FSException(_("FamilySearch returned a circular merged person redirect."))
 
     def add_person(self, fsid: str) -> None:
         """
