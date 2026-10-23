@@ -129,9 +129,7 @@ class DateParserCZ(DateParser):
             r"(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$" % self._jmon_str,
             re.IGNORECASE,
         )
-        self._numeric = re.compile(
-            r"((\d+)[/\. ])\s*((\d+)[/\. ])\s*(\d+)\.?$"
-        )
+        self._numeric = re.compile(r"((\d+)[/\. ])\s*((\d+)[/\. ])\s*(\d+)\.?$")
         _span_1 = ["od"]
         _span_2 = ["do"]
         _range_1 = ["mezi"]
@@ -194,9 +192,7 @@ class DateDisplayCZ(DateDisplay):
         else:
             # All non-empty inflect keys use FORMATS_* from DateDisplay / .po
             if inflect:
-                long_month = self.format_long_month(
-                    date_val[1], inflect, long_months
-                )
+                long_month = self.format_long_month(date_val[1], inflect, long_months)
             else:
                 long_month = "{long_month.forms[G]}".format(
                     long_month=long_months[date_val[1]]
