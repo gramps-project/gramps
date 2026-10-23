@@ -46,8 +46,8 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-21 21:29+0000\n"
-"Last-Translator: Nick Hall <nick-hall@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-10-23 13:51+0000\n"
+"Last-Translator: Milan <milan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
 "Language: cs\n"
@@ -3061,7 +3061,7 @@ msgstr "do "
 #: ../gramps/gen/datehandler/_datestrings.py:262
 msgctxt "date quality"
 msgid "estimated "
-msgstr "odhadovaný "
+msgstr "odhadované "
 
 #: ../gramps/gen/datehandler/_datestrings.py:263
 msgctxt "date quality"
@@ -8000,7 +8000,7 @@ msgstr "odhadem"
 
 #: ../gramps/gen/lib/date.py:2039
 msgid "calculated"
-msgstr "vypočítaný"
+msgstr "vypočteno"
 
 #: ../gramps/gen/lib/date.py:2063
 msgctxt "date-modifier"
@@ -16511,7 +16511,7 @@ msgstr "Vztah"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:110
 msgid "any"
-msgstr "jakýkoli"
+msgstr "jakékoli"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:163
 #: ../gramps/plugins/export/exportcsv.py:427
