@@ -72,8 +72,8 @@ def diff_items(path, json1, json2):
             return False
     elif isinstance(json1, dict) and isinstance(json2, dict):
         for key in json1.keys():
-            if key == "change":
-                continue  # don't care about time differences, only data changes
+            if key in ("change", "familysearch_sync"):
+                continue  # don't care about time or sync metadata, only data changes
             elif key == "date":
                 result = diff_dates(json1["date"], json2["date"])
                 if result:
