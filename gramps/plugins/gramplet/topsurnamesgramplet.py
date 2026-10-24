@@ -73,7 +73,7 @@ def record_surnames(
         for name in [primary_name] + person.get_alternate_names()
     )
     for surname in allnames:
-        surnames[surname] += 1
+        surnames[surname] = surnames.get(surname, 0) + 1
         if surname == primary_surname or surname not in representative_handle:
             representative_handle[surname] = person.handle
 
