@@ -52,45 +52,97 @@ class DateParserCZ(DateParser):
 
     modifier_to_int = {
         "před": Date.MOD_BEFORE,
-        "kolem": Date.MOD_ABOUT,
+        "pred": Date.MOD_BEFORE,
         "po": Date.MOD_AFTER,
+        "kolem": Date.MOD_ABOUT,
+        "okolo": Date.MOD_ABOUT,
+        "asi": Date.MOD_ABOUT,
+        "přibližně": Date.MOD_ABOUT,
+        "priblizne": Date.MOD_ABOUT,
+        "přibl.": Date.MOD_ABOUT,
+        "pribl.": Date.MOD_ABOUT,
+        "circa": Date.MOD_ABOUT,
+        "cca": Date.MOD_ABOUT,
+        "cca.": Date.MOD_ABOUT,
+        "c.": Date.MOD_ABOUT,
         "od": Date.MOD_FROM,
         "do": Date.MOD_TO,
     }
 
     quality_to_int = {
-        "přibližně": Date.QUAL_ESTIMATED,
-        "odhadem": Date.QUAL_ESTIMATED,
         "odhadovaný": Date.QUAL_ESTIMATED,
+        "odhadovaná": Date.QUAL_ESTIMATED,
+        "odhadované": Date.QUAL_ESTIMATED,
+        "odhadovany": Date.QUAL_ESTIMATED,
+        "odhadovana": Date.QUAL_ESTIMATED,
+        "odhadovane": Date.QUAL_ESTIMATED,
+        "odhadem": Date.QUAL_ESTIMATED,
         "odh.": Date.QUAL_ESTIMATED,
-        "vypočteno": Date.QUAL_CALCULATED,
-        "vypočtené": Date.QUAL_CALCULATED,
+        "odh": Date.QUAL_ESTIMATED,
         "vypočtený": Date.QUAL_CALCULATED,
+        "vypočtená": Date.QUAL_CALCULATED,
+        "vypočtené": Date.QUAL_CALCULATED,
+        "vypočteno": Date.QUAL_CALCULATED,
+        "vypocteny": Date.QUAL_CALCULATED,
+        "vypoctena": Date.QUAL_CALCULATED,
+        "vypoctene": Date.QUAL_CALCULATED,
+        "vypocteno": Date.QUAL_CALCULATED,
         "vyp.": Date.QUAL_CALCULATED,
+        "vyp": Date.QUAL_CALCULATED,
     }
 
     bce = [
         "před naším letopočtem",
+        "pred nasim letopoctem",
         "před Kristem",
+        "pred Kristem",
         "př. n. l.",
+        "pr. n. l.",
+        "př.n.l.",
+        "pr.n.l.",
         "př. Kr.",
+        "pr. Kr.",
+        "p. n. l.",
+        "p.n.l.",
     ] + DateParser.bce
 
     def dhformat_changed(self):
         """Allow overriding so a subclass can modify it"""
-        # bug 9739 grampslocale.py gets '%-d.%-m.%Y' -- makes it be '%/d.%/m.%Y'
-        self.dhformat = self.dhformat.replace("/", "")  # so counteract that
+        self.dhformat = self.dhformat.replace("/", "")
 
     def init_strings(self):
+        """
+        This method compiles regular expression strings for matching dates.
+
+        Most of the re's in most languages can stay as is. span and range
+        most likely will need to change. Whatever change is done, this method
+        may be called first as DateParser.init_strings(self) so that the
+        invariant expresions don't need to be repeatedly coded. All differences
+        can be coded after DateParser.init_strings(self) call is made.
+        """
         DateParser.init_strings(self)
         self._text2 = re.compile(
-            r"(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._mon_str, re.IGNORECASE
+            r"(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$" % self._mon_str,
+            re.IGNORECASE,
         )
+        self._jtext2 = re.compile(
+            r"(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$" % self._jmon_str,
+            re.IGNORECASE,
+        )
+        self._numeric = re.compile(r"((\d+)[/\. ])\s*((\d+)[/\. ])\s*(\d+)\.?$")
+        _span_1 = ["od"]
+        _span_2 = ["do"]
+        _range_1 = ["mezi"]
+        _range_2 = ["a"]
         self._span = re.compile(
-            r"(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)", re.IGNORECASE
+            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+            % ("|".join(_span_1), "|".join(_span_2)),
+            re.IGNORECASE,
         )
         self._range = re.compile(
-            r"(mezi)\s+(?P<start>.+)\s+(a)\s+(?P<stop>.+)", re.IGNORECASE
+            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+            % ("|".join(_range_1), "|".join(_range_2)),
+            re.IGNORECASE,
         )
 
 
@@ -104,13 +156,87 @@ class DateDisplayCZ(DateDisplay):
     Czech language date display class.
     """
 
+    _bce_str = "%s př. n. l."
+
     display = DateDisplay.display_formatted
 
     def formats_changed(self):
         """Allow overriding so a subclass can modify"""
+        self.dhformat = self.dhformat.replace("/", "")
 
-        # bug 9537 grampslocale.py gets '%-d.%-m.%Y' -- makes it be '%/d.%/m.%Y'
-        self.dhformat = self.dhformat.replace("/", "")  # so counteract that
+    def dd_dformat04(self, date_val, inflect, long_months):
+        """
+        day month_name year
+
+        this must agree with DateDisplayEn's "formats" definition
+        (it may be overridden if a locale-specific date displayer exists)
+
+        Month case follows .po lexemes N/G/L/I via ``inflect`` (from, to,
+        between, and, before, after, about, estimated, calculated).
+        A bare day+month+year uses genitive (G).
+        """
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return self._get_localized_year(year)
+            else:
+                return self.format_long_month_year(
+                    date_val[1], year, inflect, long_months
+                )
+        elif date_val[1] == 0:  # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
+        elif not hasattr(long_months[date_val[1]], "forms"):  # not a Lexeme
+            return "{day:d}. {long_month} {year}".format(
+                day=date_val[0], long_month=long_months[date_val[1]], year=year
+            )
+        else:
+            # All non-empty inflect keys use FORMATS_* from DateDisplay / .po
+            if inflect:
+                long_month = self.format_long_month(date_val[1], inflect, long_months)
+            else:
+                long_month = "{long_month.forms[G]}".format(
+                    long_month=long_months[date_val[1]]
+                )
+            return "{day:d}. {long_month} {year}".format(
+                day=date_val[0], long_month=long_month, year=year
+            )
+
+    def dd_dformat05(self, date_val, inflect, short_months):
+        """
+        day month_abbreviation year
+
+        this must agree with DateDisplayEn's "formats" definition
+        (it may be overridden if a locale-specific date displayer exists)
+
+        Month case follows .po lexemes N/G/L/I via ``inflect``; bare date
+        uses genitive (G).
+        """
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return self._get_localized_year(year)
+            else:
+                return self.format_short_month_year(
+                    date_val[1], year, inflect, short_months
+                )
+        elif date_val[1] == 0:  # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
+        elif not hasattr(short_months[date_val[1]], "forms"):  # not a Lexeme
+            return "{day:d}. {short_month} {year}".format(
+                day=date_val[0], short_month=short_months[date_val[1]], year=year
+            )
+        else:
+            if inflect:
+                short_month = self.format_short_month(
+                    date_val[1], inflect, short_months
+                )
+            else:
+                short_month = "{short_month.forms[G]}".format(
+                    short_month=short_months[date_val[1]]
+                )
+            return "{day:d}. {short_month} {year}".format(
+                day=date_val[0], short_month=short_month, year=year
+            )
 
 
 # -------------------------------------------------------------------------
@@ -119,5 +245,7 @@ class DateDisplayCZ(DateDisplay):
 #
 # -------------------------------------------------------------------------
 register_datehandler(
-    ("cs_CZ", "cs", "CS", "Czech", ("%-d.%-m.%Y",)), DateParserCZ, DateDisplayCZ
+    ("cs_CZ", "cs", "CS", "Czech", ("%-d.%-m.%Y",)),
+    DateParserCZ,
+    DateDisplayCZ,
 )
