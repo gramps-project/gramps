@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -249,4 +249,3 @@ register_datehandler(
     DateParserCZ,
     DateDisplayCZ,
 )
-        
