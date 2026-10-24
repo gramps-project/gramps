@@ -16,7 +16,6 @@ jobs:
       uses: msys2/setup-msys2@v2
       with:
         update: true
-        # FIXED: Updated package indexing parameters to match current rolling distribution tags
         install: >-
           git
           mingw-w64-x86_64-python
@@ -42,16 +41,12 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
+    # FIXED: Replaced the duplicate stacked syntax error keys with a clean single Python runtime environment map
     - name: Setup Python Runtime
-      uses: actions/setup-dotnet@v4 # Re-align with standard runner environment maps
-      with:
-        dotnet-version: '10.0.x' # Keep system framework runners aligned to target loops if needed
-      # Fallback to python configuration for dependency injection
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
 
-    # FIXED: Replaced non-existent homebrew formula calls with standard pip repository maps
     - name: Compile macOS Application Bundle
       run: |
         brew install gtk+3
