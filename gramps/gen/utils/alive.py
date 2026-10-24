@@ -43,6 +43,8 @@ from ..lib.person import Person
 from ..lib.json_utils import DataDict
 from ..errors import DatabaseError
 from ..const import GRAMPS_LOCALE as glocale
+from ..db.base import DbReadBase
+from ..proxy.private import PrivateProxyDb, sanitize_person
 from ..proxy.proxybase import ProxyDbBase
 
 LOG = logging.getLogger(".gen.utils.alive")
@@ -1103,16 +1105,35 @@ def probably_alive_range(
     Computes estimated birth and death date ranges.
     Returns: (birth_date, death_date, explain_text, related_person)
     """
-    # First, find the real database to use all people
-    # for determining alive status:
-    basedb = db
-    while isinstance(basedb, ProxyDbBase):
-        basedb = basedb.db
+    alive_db = get_alive_db(db)
+    if person is not None and isinstance(alive_db, PrivateProxyDb):
+        # the caller may have passed a person with private parts
+        if person.get_privacy():
+            person = None
+        else:
+            person = sanitize_person(alive_db.db, person)
     # Now, we create a wrapper for doing work:
     pbac = ProbablyAlive(
-        basedb, max_sib_age_diff, max_age_prob_alive, avg_generation_gap
+        alive_db, max_sib_age_diff, max_age_prob_alive, avg_generation_gap
     )
     return pbac.probably_alive_range(person)
+
+
+def get_alive_db(db: DbReadBase) -> DbReadBase:
+    """
+    Return the database to base probably alive estimates on.
+
+    All proxies are removed so that everyone in the database can be used,
+    but if one of them hides private records, they stay hidden.
+    """
+    basedb = db
+    private = False
+    while isinstance(basedb, ProxyDbBase):
+        private = private or isinstance(basedb, PrivateProxyDb)
+        basedb = basedb.db
+    if private:
+        return PrivateProxyDb(basedb)
+    return basedb
 
 
 def update_constants():
