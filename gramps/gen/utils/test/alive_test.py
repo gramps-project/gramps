@@ -27,8 +27,9 @@ import unittest
 
 from ...db import DbTxn
 from ...db.utils import make_database
-from ...lib import Date, Event, EventRef, EventType, Person
-from ..alive import probably_alive_range
+from ...lib import ChildRef, Date, Event, EventRef, EventType, Family, Person
+from ...proxy import LivingProxyDb, PrivateProxyDb
+from ..alive import get_alive_db, probably_alive, probably_alive_range
 
 
 def _make_db():
@@ -205,6 +206,93 @@ class TestProbablyAliveRange(unittest.TestCase):
             )
         year = self._get_birth_year(handle)
         self.assertEqual(year, 1848)
+
+
+class TestProbablyAlivePrivacy(unittest.TestCase):
+    """Tests that private records stay hidden from probably alive estimates."""
+
+    def setUp(self):
+        self.db = _make_db()
+        with DbTxn("test", self.db) as trans:
+            self.child_handle = _add_person_with_events(self.db, trans, birth_year=1700)
+            child = self.db.get_person_from_handle(self.child_handle)
+            event = self.db.get_event_from_handle(child.get_birth_ref().ref)
+            event.set_privacy(True)
+            self.db.commit_event(event, trans)
+
+            parent = Person()
+            parent.set_gender(Person.MALE)
+            self.parent_handle = self.db.add_person(parent, trans)
+
+            family = Family()
+            family.set_father_handle(self.parent_handle)
+            child_ref = ChildRef()
+            child_ref.ref = self.child_handle
+            family.add_child_ref(child_ref)
+            family_handle = self.db.add_family(family, trans)
+
+            parent = self.db.get_person_from_handle(self.parent_handle)
+            parent.add_family_handle(family_handle)
+            self.db.commit_person(parent, trans)
+            child = self.db.get_person_from_handle(self.child_handle)
+            child.add_parent_family_handle(family_handle)
+            self.db.commit_person(child, trans)
+
+    def tearDown(self):
+        self.db.close()
+
+    def test_base_db_uses_private_records(self):
+        """Without a PrivateProxyDb, the child's private birth is used."""
+        parent = self.db.get_person_from_handle(self.parent_handle)
+        self.assertFalse(probably_alive(parent, self.db))
+
+    def test_private_proxy_hides_private_records(self):
+        """With a PrivateProxyDb, the child's private birth is not used."""
+        private_db = PrivateProxyDb(self.db)
+        parent = private_db.get_person_from_handle(self.parent_handle)
+        birth, death, _explain, _who = probably_alive_range(parent, private_db)
+        self.assertIsNone(birth)
+        self.assertIsNone(death)
+        self.assertTrue(probably_alive(parent, private_db))
+
+    def test_private_proxy_below_living_proxy(self):
+        """A PrivateProxyDb below a LivingProxyDb still hides private records."""
+        living_db = LivingProxyDb(
+            PrivateProxyDb(self.db), LivingProxyDb.MODE_EXCLUDE_ALL
+        )
+        self.assertIsNone(living_db.get_person_from_handle(self.parent_handle))
+
+    def test_unsanitized_person_is_sanitized(self):
+        """A person passed with private parts is sanitized first."""
+        child = self.db.get_person_from_handle(self.child_handle)
+        private_db = PrivateProxyDb(self.db)
+        birth, _death, _explain, _who = probably_alive_range(child, private_db)
+        self.assertIsNone(birth)
+
+    def test_private_person_is_ignored(self):
+        """A private person passed under a PrivateProxyDb gives no estimate."""
+        with DbTxn("test", self.db) as trans:
+            child = self.db.get_person_from_handle(self.child_handle)
+            child.set_privacy(True)
+            self.db.commit_person(child, trans)
+        child = self.db.get_person_from_handle(self.child_handle)
+        self.assertEqual(
+            probably_alive_range(child, PrivateProxyDb(self.db)),
+            (None, None, "", None),
+        )
+
+    def test_get_alive_db(self):
+        """Proxies are removed, but a PrivateProxyDb is put back on top."""
+        self.assertIs(get_alive_db(self.db), self.db)
+        self.assertIs(
+            get_alive_db(LivingProxyDb(self.db, LivingProxyDb.MODE_EXCLUDE_ALL)),
+            self.db,
+        )
+        alive_db = get_alive_db(
+            LivingProxyDb(PrivateProxyDb(self.db), LivingProxyDb.MODE_EXCLUDE_ALL)
+        )
+        self.assertIsInstance(alive_db, PrivateProxyDb)
+        self.assertIs(alive_db.db, self.db)
 
 
 if __name__ == "__main__":
