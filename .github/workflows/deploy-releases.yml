@@ -7,64 +7,23 @@ on:
 
 jobs:
   build-windows:
-    runs-on: windows-latest
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
-
-    # FIXED: Forced msystem to ucrt64 and updated the package mapping array properties
-    - name: Setup MSYS2 Environment
-      uses: msys2/setup-msys2@v2
-      with:
-        msystem: ucrt64
-        update: true
-        install: >-
-          git
-          mingw-w64-ucrt-x86_64-python
-          mingw-w64-ucrt-x86_64-gtk3
-          mingw-w64-ucrt-x86_64-gexiv2
-          mingw-w64-ucrt-x86_64-python-cx-freeze
-
-    - name: Compile Windows All-In-One Installer
-      shell: msys2 {0}
-      run: |
-        cd aio
-        bash build-packages.sh --bundle=exe
-
-    - name: Upload Windows Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: Gramps-Windows-${{ github.ref_name }}
-        path: aio/dist/*.exe
+    uses: ./.github/workflows/windows-aio.yml
+    with:
+      build-number: '1'
+      cleanup: false
 
   build-macos:
-    runs-on: macos-latest
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+    uses: ./.github/workflows/build_mac.yml
+    with:
+      build-number: '1'
 
-    # Setup Python environment map
-    - name: Setup Python Runtime
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-
-    - name: Compile macOS Application Bundle
-      run: |
-        brew install gtk+3
-        pip install git+https://github.com
-        cd mac
-        pip install -r requirements.txt || true
-        sh make-bundle.sh
-
-    - name: Upload macOS Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: Gramps-Mac-${{ github.ref_name }}
-        path: mac/dist/*.dmg
+  build-linux:
+    uses: ./.github/workflows/build_deb.yml
+    with:
+      build-number: '1'
 
   create-release:
-    needs: [build-windows, build-macos]
+    needs: [build-windows, build-macos, build-linux]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -76,21 +35,29 @@ jobs:
     - name: Fetch Windows Package
       uses: actions/download-artifact@v4
       with:
-        name: Gramps-Windows-${{ github.ref_name }}
+        pattern: GrampsAIO-*
         path: ./artifacts
+        merge-multiple: true
 
     - name: Fetch macOS Package
       uses: actions/download-artifact@v4
       with:
-        name: Gramps-Mac-${{ github.ref_name }}
+        pattern: Gramps_mac_*
         path: ./artifacts
+        merge-multiple: true
+
+    - name: Fetch Linux Package
+      uses: actions/download-artifact@v4
+      with:
+        pattern: Gramps_deb_*
+        path: ./artifacts
+        merge-multiple: true
 
     - name: Publish Official Multi-Platform Release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         gh release create "${{ github.ref_name }}" \
-          ./artifacts/*.exe \
-          ./artifacts/*.dmg \
+          ./artifacts/* \
           --title "Gramps Release ${{ github.ref_name }}" \
           --generate-notes

@@ -26,6 +26,12 @@ on:
         description: 'Build number'
         type: string
         default: '1'
+  workflow_call:
+    inputs:
+      build-number:
+        description: 'Build number'
+        type: string
+        default: '1'
 
 jobs:
   build:

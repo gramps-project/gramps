@@ -8,6 +8,13 @@ on:
         type: string
         required: true
         default: '1'
+  workflow_call:
+    inputs:
+      build-number:
+        description: 'Build number'
+        type: string
+        required: false
+        default: '1'
   push:
     branches:
       - gg_beta

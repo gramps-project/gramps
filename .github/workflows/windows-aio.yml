@@ -30,6 +30,16 @@ on:
         type: boolean
         required: false
         default: false
+  workflow_call:
+    inputs:
+      build-number:
+        description: 'Build number'
+        type: string
+        default: '1'
+      cleanup:
+        description: 'Cleanup python environment on completion?'
+        type: boolean
+        default: false
 
 jobs:
   build:
