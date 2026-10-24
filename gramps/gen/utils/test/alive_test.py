@@ -27,8 +27,10 @@ import unittest
 
 from ...db import DbTxn
 from ...db.utils import make_database
-from ...lib import Date, Event, EventRef, EventType, Person
-from ..alive import probably_alive_range
+from ...lib import ChildRef, Date, Event, EventRef, EventType, Family, Person
+from ...lib.date import Today
+from ...proxy import PrivateProxyDb
+from ..alive import probably_alive, probably_alive_range
 
 
 def _make_db():
@@ -205,6 +207,158 @@ class TestProbablyAliveRange(unittest.TestCase):
             )
         year = self._get_birth_year(handle)
         self.assertEqual(year, 1848)
+
+
+def _add_death(db, trans, person, event_type=EventType.DEATH, date=None, private=False):
+    """Add a death or death fallback event to person; commit the person."""
+    event = Event()
+    event.set_type(EventType(event_type))
+    if date is not None:
+        event.set_date_object(date)
+    event.set_privacy(private)
+    event_ref = EventRef()
+    event_ref.set_reference_handle(db.add_event(event, trans))
+    if event_type == EventType.DEATH:
+        person.set_death_ref(event_ref)
+    else:
+        person.add_event_ref(event_ref)
+    db.commit_person(person, trans)
+
+
+class TestProbablyAliveKnownDead(unittest.TestCase):
+    """
+    A person with a recorded death is not alive today or later, whether or
+    not the death has a date.
+    """
+
+    def setUp(self):
+        self.db = _make_db()
+
+    def tearDown(self):
+        self.db.close()
+
+    def _person(self, trans, **kwargs):
+        """Add a person and return the Person object."""
+        handle = _add_person_with_events(self.db, trans, **kwargs)
+        return self.db.get_person_from_handle(handle)
+
+    def _alive(self, person, db=None, **kwargs):
+        """Reload the person and run probably_alive."""
+        person = self.db.get_person_from_handle(person.handle)
+        return probably_alive(person, db or self.db, **kwargs)
+
+    def test_undated_death_without_other_evidence(self):
+        """An undated death with no other dates means not alive today."""
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, include_birth=False)
+            _add_death(self.db, trans, person)
+        self.assertFalse(self._alive(person))
+        self.assertFalse(self._alive(person, current_date=Today()))
+
+    def test_undated_death_with_estimate_from_child(self):
+        """
+        An undated death is not overridden by a birth estimate from a child
+        whose dates would keep the person alive today.
+        """
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, include_birth=False)
+            _add_death(self.db, trans, person)
+            child = self._person(trans, birth_year=Today().get_year() - 30)
+            family = Family()
+            family.set_father_handle(person.handle)
+            child_ref = ChildRef()
+            child_ref.set_reference_handle(child.handle)
+            family.add_child_ref(child_ref)
+            self.db.add_family(family, trans)
+            person.add_family_handle(family.handle)
+            self.db.commit_person(person, trans)
+            child.add_parent_family_handle(family.handle)
+            self.db.commit_person(child, trans)
+        self.assertFalse(self._alive(person))
+
+    def test_undated_death_with_recent_birth(self):
+        """An undated death with a birth date this century is not alive."""
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, birth_year=Today().get_year() - 40)
+            _add_death(self.db, trans, person)
+        self.assertFalse(self._alive(person))
+
+    def test_undated_death_with_estimated_birth(self):
+        """An undated death with an estimated birth date is not alive."""
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, birth_year=Today().get_year() - 90)
+            birth = self.db.get_event_from_handle(person.get_birth_ref().ref)
+            birth.get_date_object().set_quality(Date.QUAL_ESTIMATED)
+            self.db.commit_event(birth, trans)
+            _add_death(self.db, trans, person)
+        self.assertFalse(self._alive(person))
+
+    def test_about_death_in_recent_years(self):
+        """A death dated "about" a recent year is not alive today."""
+        date = Date()
+        date.set(modifier=Date.MOD_ABOUT, value=(0, 0, Today().get_year() - 5, False))
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, include_birth=False)
+            _add_death(self.db, trans, person, date=date)
+        self.assertFalse(self._alive(person))
+
+    def test_undated_burial_only(self):
+        """An undated death fallback event, such as burial, also counts."""
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, include_birth=False)
+            _add_death(self.db, trans, person, event_type=EventType.BURIAL)
+        self.assertFalse(self._alive(person))
+
+    def test_undated_death_future_date(self):
+        """A person with a recorded death stays not alive in the future."""
+        future = Date()
+        future.set_yr_mon_day(Today().get_year() + 10, 1, 1)
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, include_birth=False)
+            _add_death(self.db, trans, person)
+        self.assertFalse(self._alive(person, current_date=future))
+
+    def test_undated_death_past_date_unchanged(self):
+        """
+        For a date in the past an undated death cannot decide, so the
+        estimate is used as before.
+        """
+        past = Date()
+        past.set_yr_mon_day(Today().get_year() - 10, 1, 1)
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, birth_year=Today().get_year() - 40)
+            _add_death(self.db, trans, person)
+        self.assertTrue(self._alive(person, current_date=past))
+
+    def test_undated_death_with_limit_unchanged(self):
+        """With years after death to check, an undated death cannot decide."""
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, include_birth=False)
+            _add_death(self.db, trans, person)
+        self.assertTrue(self._alive(person, limit=20))
+
+    def test_private_death_hidden_by_proxy(self):
+        """A death hidden by the private proxy does not count."""
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, include_birth=False)
+            _add_death(self.db, trans, person, private=True)
+        self.assertTrue(self._alive(person, db=PrivateProxyDb(self.db)))
+        self.assertFalse(self._alive(person))
+
+    def test_no_death_recent_birth_still_alive(self):
+        """Without a recorded death a recently born person stays alive."""
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, birth_year=Today().get_year() - 40)
+        self.assertTrue(self._alive(person))
+
+    def test_return_range_reports_not_alive(self):
+        """The return_range form gives the same answer."""
+        with DbTxn("test", self.db) as trans:
+            person = self._person(trans, include_birth=False)
+            _add_death(self.db, trans, person)
+        result = self._alive(person, return_range=True)
+        self.assertFalse(result[0])
+        self.assertEqual(len(result), 5)
 
 
 if __name__ == "__main__":
