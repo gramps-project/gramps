@@ -12,16 +12,18 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
+    # FIXED: Forced msystem to ucrt64 and updated the package mapping array properties
     - name: Setup MSYS2 Environment
       uses: msys2/setup-msys2@v2
       with:
+        msystem: ucrt64
         update: true
         install: >-
           git
-          mingw-w64-x86_64-python
-          mingw-w64-x86_64-gtk3
-          mingw-w64-x86_64-exiv2
-          mingw-w64-x86_64-python-cx-freeze
+          mingw-w64-ucrt-x86_64-python
+          mingw-w64-ucrt-x86_64-gtk3
+          mingw-w64-ucrt-x86_64-gexiv2
+          mingw-w64-ucrt-x86_64-python-cx-freeze
 
     - name: Compile Windows All-In-One Installer
       shell: msys2 {0}
@@ -41,7 +43,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    # FIXED: Replaced the duplicate stacked syntax error keys with a clean single Python runtime environment map
+    # Setup Python environment map
     - name: Setup Python Runtime
       uses: actions/setup-python@v5
       with:
