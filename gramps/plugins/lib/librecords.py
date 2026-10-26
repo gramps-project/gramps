@@ -130,8 +130,7 @@ def _count_person_marriages(db, person):
 
         for event_ref in family.get_event_ref_list():
             if not (
-                event_ref.get_role().is_family()
-                or event_ref.get_role().is_primary()
+                event_ref.get_role().is_family() or event_ref.get_role().is_primary()
             ):
                 continue
 
