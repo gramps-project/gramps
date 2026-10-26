@@ -5,6 +5,7 @@
 # Copyright (C) 2008-2011 Reinhard Müller
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2013-2016 Paul Franklin
+# Copyright (C) 2026      John Vitlin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,6 +39,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.lib import (
     ChildRefType,
     Date,
+    EventType,
     Span,
     Name,
     StyledText,
@@ -68,6 +70,7 @@ RECORDS = [
     (_T_("Person died at oldest age"), "person_oldestdied", True),
     (_T_("Person married at youngest age"), "person_youngestmarried", True),
     (_T_("Person married at oldest age"), "person_oldestmarried", True),
+    (_T_("Person with most marriages"), "person_mostmarriages", False),
     (_T_("Person divorced at youngest age"), "person_youngestdivorced", False),
     (_T_("Person divorced at oldest age"), "person_oldestdivorced", False),
     (_T_("Youngest father"), "person_youngestfather", True),
@@ -111,6 +114,37 @@ def _find_death_date(db, person):
     return None
 
 
+def _count_person_marriages(db, person):
+    """
+    Count families containing a Marriage or Alternate Marriage event.
+
+    Each qualifying family counts once, regardless of the number of
+    marriage events recorded for that family.
+    """
+    marriage_count = 0
+
+    for family_handle in set(person.get_family_handle_list()):
+        family = db.get_family_from_handle(family_handle)
+        if family is None:
+            continue
+
+        for event_ref in family.get_event_ref_list():
+            if not (
+                event_ref.get_role().is_family() or event_ref.get_role().is_primary()
+            ):
+                continue
+
+            event = db.get_event_from_handle(event_ref.ref)
+            if event and event.get_type() in (
+                EventType.MARRIAGE,
+                EventType.MARR_ALT,
+            ):
+                marriage_count += 1
+                break
+
+    return marriage_count
+
+
 def find_records(
     db,
     filter,
@@ -147,6 +181,7 @@ def find_records(
     person_oldestdied = []
     person_youngestmarried = []
     person_oldestmarried = []
+    person_mostmarriages = []
     person_youngestdivorced = []
     person_oldestdivorced = []
     person_youngestfather = []
@@ -313,6 +348,19 @@ def find_records(
         name = _get_styled_primary_name(
             person, callname, trans_text=trans_text, name_format=name_format
         )
+
+        # Count distinct married families, not individual ceremonies.
+        marriage_count = _count_person_marriages(db, person)
+        if marriage_count > 0:
+            _record(
+                None,
+                person_mostmarriages,
+                marriage_count,
+                name,
+                "Person",
+                person_handle,
+                top_size,
+            )
 
         person_child_list = get_birth_children(db, person)
         if person.get_gender() == person.MALE:
