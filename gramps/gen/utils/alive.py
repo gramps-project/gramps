@@ -66,14 +66,12 @@ try:
     _MAX_SIB_AGE_DIFF = config.get("behavior.max-sib-age-diff")
     _AVG_GENERATION_GAP = config.get("behavior.avg-generation-gap")
     _MIN_GENERATION_YEARS = config.get("behavior.min-generation-years")
-    _MAX_GEN_ESTIMATE = config.get("behavior.max-gen-estimate")
 except ImportError:
     # Utils used as module not part of GRAMPS
     _MAX_AGE_PROB_ALIVE = 110
     _MAX_SIB_AGE_DIFF = 20
     _AVG_GENERATION_GAP = 20
     _MIN_GENERATION_YEARS = 13
-    _MAX_GEN_ESTIMATE = 4
 
 
 # -------------------------------------------------------------------------
@@ -226,14 +224,13 @@ class ProbablyAlive:
                 evnt = self.db.get_event_from_handle(birth_ref.ref)
                 if evnt:
                     dateobj = evnt.get_date_object()
-                    if dateobj and dateobj.get_year_valid():
+                    if dateobj and dateobj.is_valid():
                         birth_date = dateobj
                         explain_birth = _("date")
 
             # to here:
-            #   birth_date is None: either no birth record, or the birth event
-            #   has no valid date (missing or year-less date like "February 3");
-            #   birth_date is a valid date with a known year
+            #   birth_date is None: either no birth record or else no date reported; or
+            #   birth_date is a valid date
             # Look for Baptism, etc events.
             # These are fairly good indications of someone's birth date.
             if not birth_date:
@@ -241,7 +238,7 @@ class ProbablyAlive:
                     evnt = self.db.get_event_from_handle(ev_ref.ref)
                     if evnt and evnt.type.is_birth_fallback():
                         birth_date_fb = evnt.get_date_object()
-                        if birth_date_fb and birth_date_fb.get_year_valid():
+                        if birth_date_fb and birth_date_fb.is_valid():
                             birth_date = birth_date_fb
                             explain_birth = _("date fallback")
                             break
@@ -498,6 +495,8 @@ class ProbablyAlive:
                         continue
                     spouse = None
                     if mother_handle == person.handle:
+                        if not father_handle:
+                            continue
                         spouse = self.db.get_person_from_handle(father_handle)
                     elif father_handle == person.handle:
                         spouse = self.db.get_person_from_handle(mother_handle)
@@ -620,13 +619,6 @@ class ProbablyAlive:
                 LOG.debug(
                     "....... person %s skipped - already seen in descendants test",
                     person.get_gramps_id(),
-                )
-                return no_valid_descendant
-            if generation > _MAX_GEN_ESTIMATE:
-                LOG.debug(
-                    "....... person %s skipped - already done %d generations",
-                    person.get_gramps_id(),
-                    _MAX_GEN_ESTIMATE,
                 )
                 return no_valid_descendant
             if DEBUGLEVEL > 2:
@@ -834,13 +826,6 @@ class ProbablyAlive:
                     person.get_gramps_id(),
                 )
                 return range_not_found
-            if generation > _MAX_GEN_ESTIMATE:
-                LOG.debug(
-                    "....... person %s skipped - already done %d generations",
-                    person.get_gramps_id(),
-                    _MAX_GEN_ESTIMATE,
-                )
-                return range_not_found
             self.pset.add(person.handle)
 
             family_handle = person.get_main_parents_family_handle()
@@ -939,7 +924,7 @@ class ProbablyAlive:
                 if father_handle is not None:
                     date1_f, date2_f, explan_f, other_f, gen_f = (
                         estimate_bd_range_from_ancestors(
-                            self.db.get_person_from_handle(father_handle),
+                            self.db.get_person_from_handle(father_handle) if father_handle else None,
                             year + self.AVG_GENERATION_GAP,
                             generation + 1,
                         )
@@ -1122,9 +1107,7 @@ def update_constants():
 
     global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF
     global _AVG_GENERATION_GAP, _MIN_GENERATION_YEARS
-    global _MAX_GEN_ESTIMATE
     _MAX_AGE_PROB_ALIVE = config.get("behavior.max-age-prob-alive")
     _MAX_SIB_AGE_DIFF = config.get("behavior.max-sib-age-diff")
     _AVG_GENERATION_GAP = config.get("behavior.avg-generation-gap")
     _MIN_GENERATION_YEARS = config.get("behavior.min-generation-years")
-    _MAX_GEN_ESTIMATE = config.get("behavior.max-gen-estimate")
