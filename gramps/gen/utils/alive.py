@@ -488,7 +488,7 @@ class ProbablyAlive:
                 if family:
                     mother_handle = family.get_mother_handle()
                     father_handle = family.get_father_handle()
-                    if mother_handle is None or father_handle is None:
+                    if not mother_handle or not father_handle:
                         if DEBUGLEVEL > 1:
                             LOG.debug(
                                 "         single parent family: [%s]",
@@ -927,7 +927,7 @@ class ProbablyAlive:
                 # but we choose the shortest number of generations from the responses
                 # not very efficient, but...
                 gen_m = gen_f = None
-                if mother_handle is not None:
+                if mother_handle:
                     date1_m, date2_m, explan_m, other_m, gen_m = (
                         estimate_bd_range_from_ancestors(
                             self.db.get_person_from_handle(mother_handle),
@@ -936,7 +936,7 @@ class ProbablyAlive:
                         )
                     )
                 # now try the father's line
-                if father_handle is not None:
+                if father_handle:
                     date1_f, date2_f, explan_f, other_f, gen_f = (
                         estimate_bd_range_from_ancestors(
                             self.db.get_person_from_handle(father_handle),
