@@ -20,7 +20,7 @@ from gramps.plugins.lib.librecords import _record
 class TestRecordSorting(unittest.TestCase):
     """Test alphabetical ordering of records with equal values."""
 
-    def test_highest_records_alphabetical_ties(self):
+    def test_highest_alpha_ties(self):
         """Equal highest values should be ordered by name, A-Z."""
         highest = []
 
@@ -32,7 +32,7 @@ class TestRecordSorting(unittest.TestCase):
             ["Anna", "Mike", "Zara"],
         )
 
-    def test_lowest_records_alphabetical_ties(self):
+    def test_lowest_alpha_ties(self):
         """Equal lowest values should be ordered by name, A-Z."""
         lowest = []
 
@@ -44,7 +44,7 @@ class TestRecordSorting(unittest.TestCase):
             ["Anna", "Mike", "Zara"],
         )
 
-    def test_highest_records_value_before_name(self):
+    def test_highest_value_priority(self):
         """Higher values must rank before names alphabetically."""
         highest = []
 
@@ -66,7 +66,7 @@ class TestRecordSorting(unittest.TestCase):
             ],
         )
 
-    def test_highest_records_ties_at_cutoff(self):
+    def test_highest_cutoff_ties(self):
         """All records tied at the cutoff should be retained."""
         highest = []
 
@@ -83,7 +83,7 @@ class TestRecordSorting(unittest.TestCase):
             ["Anna", "Mike", "Zara"],
         )
 
-    def test_lowest_records_ties_at_cutoff(self):
+    def test_lowest_cutoff_ties(self):
         """All lowest-value records tied at the cutoff should be retained."""
         lowest = []
 
@@ -100,7 +100,7 @@ class TestRecordSorting(unittest.TestCase):
             ["Anna", "Mike", "Zara"],
         )
 
-    def test_span_records_alphabetical_ties(self):
+    def test_span_alpha_ties(self):
         """Equal age spans should be ordered alphabetically."""
         highest = []
         lowest = []
