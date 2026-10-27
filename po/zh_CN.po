@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-18 09:51+0000\n"
+"PO-Revision-Date: 2026-10-26 08:52+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@users.noreply.hosted.weblate.org>"
 "\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -11523,6 +11523,15 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"在 macOS 系统中 Python 可能无法访问系统的 SSL 证书。可尝试以下操作：\n"
+"  1. python.org 安装程序：在您的 Python 安装目录下（如 /Applications/Python "
+"3.x/）运行 'Install Certificates.command'。\n"
+"  2. pyenv / Homebrew / 非全系统级别安装的 Python：在启动 Gramps 前先设置 "
+"SSL_CERT_FILE\n"
+"       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
+"  3. 安装 certifi 包：pip install certifi"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -16996,11 +17005,10 @@ msgid "Resolving FamilySearch timestamps…"
 msgstr "正在解决 FamilySearch 时间戳问题…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
-#, fuzzy, python-format
-#| msgid "No FamilySearch Person ID is set for this person."
+#, python-format
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
-msgstr[0] "没有为此人员设置 FamilySearch 人员 ID。"
+msgstr[0] "正在解析 %d 人员的 FamilySearch 时间戳…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
@@ -17412,9 +17420,8 @@ msgid "Contributor"
 msgstr "贡献者"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2059
-#, fuzzy
 msgid "Modified"
-msgstr "上次修订"
+msgstr "已修改"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2060
 msgid "FS ID"
@@ -17601,14 +17608,16 @@ msgid "Select"
 msgstr "选择"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:598
-#, fuzzy, python-brace-format
-#| msgid "Rename failed"
+#, python-brace-format
 msgid ""
 "Rename failed for:\n"
 "{p}\n"
 "\n"
 "{err}"
-msgstr "重命名失败"
+msgstr ""
+"重命名 {p} 失败：\n"
+"\n"
+"{err}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:631
 #: ../gramps/gui/fs/sync_directions.py:874
@@ -17662,31 +17671,25 @@ msgstr "（空白）"
 
 #: ../gramps/gui/fs/sync_directions.py:761
 #: ../gramps/gui/fs/sync_directions.py:1289
-#, fuzzy
-#| msgid "Source Filter Gramplet"
 msgid "Source from Gramps"
-msgstr "来源筛选 Gramplet"
+msgstr "来自 Gramps 的来源"
 
 #: ../gramps/gui/fs/sync_directions.py:772
-#, fuzzy
-#| msgid "_Delete Family"
 msgid "(deleted on FamilySearch)"
-msgstr "删除家庭 (_D)"
+msgstr "（FamilySearch 中已删除）"
 
 #: ../gramps/gui/fs/sync_directions.py:774
-#, fuzzy
 msgid "(missing on FamilySearch)"
-msgstr "Smith 家谱"
+msgstr "（FamilySearch 中缺失）"
 
 #: ../gramps/gui/fs/sync_directions.py:776
 msgid "(not attached to this person on FamilySearch)"
-msgstr ""
+msgstr "（没有在 FamilySearch 中关联到此人）"
 
 #: ../gramps/gui/fs/sync_directions.py:783
-#, fuzzy, python-brace-format
-#| msgid "Source: Title"
+#, python-brace-format
 msgid "Source: {title}"
-msgstr "来源：标题"
+msgstr "来源：{title}"
 
 #: ../gramps/gui/fs/sync_directions.py:806
 #: ../gramps/gui/fs/sync_directions.py:814
@@ -17698,10 +17701,8 @@ msgid "Gramps to FamilySearch"
 msgstr "从 Gramps 到 FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:821
-#, fuzzy
-#| msgid "Selected"
 msgid "Apply Selected"
-msgstr "已选择"
+msgstr "应用所选内容"
 
 #: ../gramps/gui/fs/sync_directions.py:839
 msgid "Choose FamilySearch updates"
@@ -21066,10 +21067,8 @@ msgid "Gramps was unable to install the required modules"
 msgstr "Gramps 无法安装所需模块"
 
 #: ../gramps/gui/plug/_windows.py:370
-#, fuzzy
-#| msgid "Module installation failed"
 msgid "Addon installation failed"
-msgstr "模块安装失败"
+msgstr "加载项安装失败"
 
 #: ../gramps/gui/plug/_windows.py:371
 #, python-format
@@ -28014,9 +28013,8 @@ msgid "Occupation place"
 msgstr "就职地点"
 
 #: ../gramps/plugins/importer/importcsv.py:322
-#, fuzzy
 msgid "occupationplace_id"
-msgstr "职业"
+msgstr "就职地点 ID"
 
 #: ../gramps/plugins/importer/importcsv.py:323
 msgid "Occupation place id"
