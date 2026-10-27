@@ -688,6 +688,8 @@ gramps/plugins/thumbnailer/imagethumb.py
 # Development tools
 #
 gramps/plugins/tool/__init__.py
+gramps/plugins/tool/test/__init__.py
+gramps/plugins/tool/test/mediamanager_test.py
 #
 # plugins/view directory
 #
