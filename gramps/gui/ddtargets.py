@@ -50,6 +50,7 @@ drag_dest_set(Gtk.DestDefaults.ALL,
 #
 # -------------------------------------------------------------------------
 import logging
+import threading
 
 log = logging.getLogger(".DdTargets")
 
@@ -71,10 +72,20 @@ class _DdType:
         """
 
         self.drag_type = drag_type
-        self.atom_drag_type = Gdk.atom_intern(drag_type, False)
+        self._atom_drag_type = None
+        self._atom_drag_type_lock = threading.Lock()
         self.target_flags = target_flags
         self.app_id = app_id or self._calculate_id()
         container.insert(self)
+
+    @property
+    def atom_drag_type(self):
+        """Return the Gdk atom for this drag type, creating it lazily on first use."""
+        if self._atom_drag_type is None:
+            with self._atom_drag_type_lock:
+                if self._atom_drag_type is None:
+                    self._atom_drag_type = Gdk.atom_intern(self.drag_type, False)
+        return self._atom_drag_type
 
     def _calculate_id(self):
         """Return the next available app_id."""
