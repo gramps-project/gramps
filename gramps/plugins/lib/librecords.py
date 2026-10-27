@@ -564,7 +564,7 @@ def _record(lowest, highest, value, text, handle_type, handle, top_size):
 
     if lowest is not None:
         lowest.append((high_value, value, text, handle_type, handle))
-        lowest.sort(key=lambda a: a[0])  # FIXME: Ist das lambda notwendig?
+        lowest.sort(key=lambda a: (a[0], glocale.sort_key(str(a[2]))))
         for i in range(top_size, len(lowest)):
             if lowest[i - 1][0] < lowest[i][0]:
                 del lowest[i:]
@@ -572,7 +572,8 @@ def _record(lowest, highest, value, text, handle_type, handle, top_size):
 
     if highest is not None:
         highest.append((low_value, value, text, handle_type, handle))
-        highest.sort(reverse=True)
+        highest.sort(key=lambda a: glocale.sort_key(str(a[2])))
+        highest.sort(key=lambda a: a[0], reverse=True)
         for i in range(top_size, len(highest)):
             if highest[i - 1][0] > highest[i][0]:
                 del highest[i:]
