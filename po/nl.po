@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-18 09:51+0000\n"
+"PO-Revision-Date: 2026-10-27 23:04+0000\n"
 "Last-Translator: Stephan Paternotte <stephan-"
 "p@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
@@ -40706,7 +40706,7 @@ msgstr "Weblinks"
 
 #: ../gramps/plugins/webreport/basepage.py:518
 msgid "Narrative"
-msgstr "Verhaal"
+msgstr "Narratief"
 
 #: ../gramps/plugins/webreport/basepage.py:904
 #: ../gramps/plugins/webreport/basepage.py:974
