@@ -19,8 +19,8 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-21 21:29+0000\n"
-"Last-Translator: Nick Hall <nick-hall@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-10-23 13:51+0000\n"
+"Last-Translator: Milan <milan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -2742,7 +2742,7 @@ msgstr "švédsky"
 #: ../gramps/gen/datehandler/_datestrings.py:162
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr "N=tišrej|G=tišreja|L=tišreji|I=tišrejom"
+msgstr "N=tišri|G=tišri|L=tišri|I=tišri"
 
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgctxt "Hebrew month lexeme"
@@ -2767,12 +2767,12 @@ msgstr "N=ševat|G=ševatu|L=ševate|I=ševatom"
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgctxt "Hebrew month lexeme"
 msgid "AdarI"
-msgstr "adarI"
+msgstr "N=adar I|G=adaru I|L=adare I|I=adarom I"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
 msgctxt "Hebrew month lexeme"
 msgid "AdarII"
-msgstr "adarII"
+msgstr "adar II|G=adaru II|L=adare II|I=adarom II"
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
 msgctxt "Hebrew month lexeme"
@@ -2782,7 +2782,7 @@ msgstr "N=nisan|G=nisanu|L=nisane|I=nisanom"
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgctxt "Hebrew month lexeme"
 msgid "Iyyar"
-msgstr "ijar"
+msgstr "N=ijar|G=ijaru|L=ijare|I=ijarom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgctxt "Hebrew month lexeme"
@@ -2797,12 +2797,12 @@ msgstr "N=tamuz|G=tamuzu|L=tamuze|I=tamuzom"
 #: ../gramps/gen/datehandler/_datestrings.py:173
 msgctxt "Hebrew month lexeme"
 msgid "Av"
-msgstr "av"
+msgstr "N=av|G=avu|L=ave|I=avom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgctxt "Hebrew month lexeme"
 msgid "Elul"
-msgstr "elul"
+msgstr "N=elul|G=elulu|L=elule|I=elulom"
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2811,67 +2811,67 @@ msgstr "elul"
 #: ../gramps/gen/datehandler/_datestrings.py:183
 msgctxt "French month lexeme"
 msgid "Vendémiaire"
-msgstr "vendémiaire"
+msgstr "N=vendémiaire|G=vendémiaira|L=vendémiairi|I=vendémiairom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgctxt "French month lexeme"
 msgid "Brumaire"
-msgstr "brumaire"
+msgstr "N=brumaire|G=brumaira|L=brumairi|I=brumairom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgctxt "French month lexeme"
 msgid "Frimaire"
-msgstr "frimaire"
+msgstr "N=frimaire|G=frimaira|L=frimairi|I=frimairom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:186
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr "nivôse"
+msgstr "N=nivôse|G=nivôsu|L=nivôse|I=nivôsom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:187
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr "pluviôse"
+msgstr "N=pluviôse|G=pluviôsu|L=pluviôse|I=pluviôsom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr "ventôse"
+msgstr "N=ventôse|G=ventôsu|L=ventôse|I=ventôsom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "French month lexeme"
 msgid "Germinal"
-msgstr "germinal"
+msgstr "N=germinal|G=germinalu|L=germinale|I=germinalom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr "floréal"
+msgstr "N=floréal|G=floréalu|L=floréale|I=floréalom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr "prairial"
+msgstr "N=prairial|G=prairialu|L=prairiale|I=prairialom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "French month lexeme"
 msgid "Messidor"
-msgstr "messidor"
+msgstr "N=messidor|G=messidoru|L=messidore|I=messidorom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr "thermidor"
+msgstr "N=thermidor|G=thermidoru|L=thermidore|I=thermidorom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "French month lexeme"
 msgid "Fructidor"
-msgstr "fructidor"
+msgstr "N=fructidor|G=fructidoru|L=fructidore|I=fructidorom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "French month lexeme"
 msgid "Extra"
-msgstr "extra"
+msgstr "N=extra|G=extra|L=extra|I=extra"
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2880,27 +2880,27 @@ msgstr "extra"
 #: ../gramps/gen/datehandler/_datestrings.py:204
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr "muharram"
+msgstr "N=muharram|G=muharramu|L=muharrame|I=muharramom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:205
 msgctxt "Islamic month lexeme"
 msgid "Safar"
-msgstr "safar"
+msgstr "N=safar|G=safaru|L=safare|I=safarom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:206
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr "rabí´al-avval"
+msgstr "N=rabí´al-avval|G=rabí´al-avvalu|L=rabí´al-avvale|I=rabí´al-avvalom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:207
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr "rabí´ath-thání"
+msgstr "N=rabí´ath-thání|G=rabí´ath-thání|L=rabí´ath-thání|I=rabí´ath-thání"
 
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr "džumádá l-úlá"
+msgstr "N=džumádá l-úlá|G=džumádá l-úlá|L=džumádá l-úlá|I=džumádá l-úlá"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Islamic month lexeme"
@@ -2910,32 +2910,32 @@ msgstr "džumádá l-áchira"
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr "radžab"
+msgstr "N=radžab|G=radžabu|L=radžabe|I=radžabom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr "ša´bán"
+msgstr "N=ša´bán|G=ša´bánu|L=ša´báne|I=ša´bánom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Islamic month lexeme"
 msgid "Ramadan"
-msgstr "ramadán"
+msgstr "N=ramadán|G=ramadánu|L=ramadáne|I=ramadánom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
 msgctxt "Islamic month lexeme"
 msgid "Shawwal"
-msgstr "šauvál"
+msgstr "N=šavvál|G=šavválu|L=šavvále|I=šavválom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Qa`da"
-msgstr "dhú l-ka´da"
+msgstr "N=dhú l-ka´da|G=dhú l-ka´da|L=dhú l-ka´da|I=dhú l-ka´da"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
-msgstr "dhú l-hidždža"
+msgstr "N=dhú l-hidždža|G=dhú l-hidždža|L=dhú l-hidždža|I=dhú l-hidždža"
 
 #. Translators: see
 #. https://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2944,62 +2944,62 @@ msgstr "dhú l-hidždža"
 #: ../gramps/gen/datehandler/_datestrings.py:224
 msgctxt "Persian month lexeme"
 msgid "Farvardin"
-msgstr "farvardin"
+msgstr "N=farvardin|G=farvardin|L=farvardine|I=farvardinom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "Persian month lexeme"
 msgid "Ordibehesht"
-msgstr "ordibehešt"
+msgstr "N=ordibehešt|G=ordibeheštu|L=ordibehešte|I=ordibeheštom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:226
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr "chordád"
+msgstr "N=chordád|G=chordádu|L=chordáde|I=chordádom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:227
 msgctxt "Persian month lexeme"
 msgid "Tir"
-msgstr "tír"
+msgstr "N=tír|G=tíru|I=tíre|I=tírom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "Persian month lexeme"
 msgid "Mordad"
-msgstr "mordád"
+msgstr "N=mordád|G=mordádu|L=mordáde|I=mordádom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:229
 msgctxt "Persian month lexeme"
 msgid "Shahrivar"
-msgstr "šahrí var"
+msgstr "N=šahrívar|G=šahrívaru|L=šahrívare|I=šahrívarom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:230
 msgctxt "Persian month lexeme"
 msgid "Mehr"
-msgstr "mehr"
+msgstr "N=mehr|G=mehru|L=mehr|I=mehrom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgctxt "Persian month lexeme"
 msgid "Aban"
-msgstr "ábán"
+msgstr "N=ábán|G=ábánu|L=ábáne|I=ábánom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:232
 msgctxt "Persian month lexeme"
 msgid "Azar"
-msgstr "ázar"
+msgstr "N=ázar|G=ázaru|L=ázare|I=ázarom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:233
 msgctxt "Persian month lexeme"
 msgid "Dey"
-msgstr "dei"
+msgstr "N=dei|G=deiu|L=dei|I=deiom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:234
 msgctxt "Persian month lexeme"
 msgid "Bahman"
-msgstr "bahman"
+msgstr "N=bahman|G=bahmanu|L=bahmane|I=bahmanom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
 msgctxt "Persian month lexeme"
 msgid "Esfand"
-msgstr "esfand"
+msgstr "N=esfand|G=esfandu|L=esfande|I=esfandom"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
