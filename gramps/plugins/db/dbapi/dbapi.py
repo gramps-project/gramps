@@ -1318,7 +1318,7 @@ class DBAPI(DbGeneric):
             return
 
         old_data = copy.deepcopy(person_data)
-        person_data["familysearch_sync"] = FamilySearchSync().serialize()
+        person_data["familysearch_sync"] = None
 
         if transaction is not None:
             self._commit_familysearch_person_raw(

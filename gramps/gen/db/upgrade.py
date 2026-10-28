@@ -62,46 +62,44 @@ _ = glocale.translation.gettext
 LOG = logging.getLogger(".upgrade")
 
 
-def _default_familysearch_sync_json_22():
+def _revert_person_json_22(person_data: dict) -> bool:
     """
-    Return the raw v22 FamilySearch sync JSON structure for Person records.
-    """
-    return FamilySearchSync().serialize()
+    Remove an empty FamilySearch sync object from raw Person JSON data.
 
-
-def _upgrade_person_json_22(person_data):
+    :param person_data: The raw Person JSON data, changed in place.
+    :type person_data: dict
+    :returns: Whether the data was changed.
+    :rtype: bool
     """
-    Upgrade raw Person JSON data from version 21 to 22 in place.
-    """
-    if person_data.get("familysearch_sync") is not None:
+    sync_data = person_data.get("familysearch_sync")
+    if sync_data is None:
+        return False
+    if isinstance(sync_data, dict) and not FamilySearchSync(sync_data).is_empty():
         return False
 
-    person_data["familysearch_sync"] = _default_familysearch_sync_json_22()
-
+    person_data["familysearch_sync"] = None
     return True
 
 
-def gramps_upgrade_22(self):
+def gramps_revert_22(self) -> None:
     """
-    Upgrade database from version 21 to 22.
+    Revert a database from version 22 to version 21.
 
-    Rewrite Person JSON data so every Person has a FamilySearch sync
-    secondary object, defaulting to empty state when missing.
+    Gramps 6.1 beta releases used schema version 22, which added an empty
+    FamilySearch sync object to every Person. The sync object is now
+    optional, so the empty objects are set to ``None``, any real
+    FamilySearch sync data is kept, and the version is set back to 21.
     """
     self.set_serializer("json")
-
-    length = self.get_number_of_people()
-    self.set_total(length)
 
     self._txn_begin()
     try:
         for handle in self.get_person_handles():
             json_data = self.get_raw_person_data(handle)
-            if _upgrade_person_json_22(json_data):
+            if _revert_person_json_22(json_data):
                 self._commit_raw(json_data, PERSON_KEY)
-            self.update()
 
-        self._set_metadata("version", 22, use_txn=False)
+        self._set_metadata("version", "21", use_txn=False)
         self._txn_commit()
     except Exception:
         self._txn_abort()

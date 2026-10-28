@@ -34,7 +34,7 @@ import unittest
 from gramps.gen.db import DbTxn
 from gramps.gen.db.dbconst import PERSON_KEY
 from gramps.gen.fs.db_familysearch import FSStatusDB
-from gramps.gen.lib import Person
+from gramps.gen.lib import FamilySearchSync, Person
 from gramps.plugins.db.dbapi.sqlite import SQLite
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -77,19 +77,6 @@ os.environ["HOME"] = os.environ.get("HOME") or tempfile.mkdtemp(prefix="gramps-h
 dialog_module = types.ModuleType("gramps.gui.dialog")
 setattr(dialog_module, "InfoDialog", object)
 sys.modules.setdefault("gramps.gui.dialog", dialog_module)
-
-
-DEFAULT_FAMILYSEARCH_SYNC = {
-    "_class": "FamilySearchSync",
-    "fsid": None,
-    "is_root": False,
-    "status_ts": None,
-    "confirmed_ts": None,
-    "gramps_modified_ts": None,
-    "fs_modified_ts": None,
-    "essential_conflict": False,
-    "conflict": False,
-}
 
 
 class _SQLiteIntegrationMixin:
@@ -169,9 +156,8 @@ class FamilySearchSyncSQLiteIntegrationTest(_SQLiteIntegrationMixin, unittest.Te
         self.db.delete_familysearch_person_status(person.handle)
 
         self.assertEqual(self.db.get_familysearch_person_status(person.handle, {}), {})
-        self.assertEqual(
-            self.db.get_raw_person_data(person.handle)["familysearch_sync"],
-            DEFAULT_FAMILYSEARCH_SYNC,
+        self.assertIsNone(
+            self.db.get_raw_person_data(person.handle)["familysearch_sync"]
         )
 
     def test_person_object_round_trip(self):
@@ -238,45 +224,63 @@ class FamilySearchSyncSQLiteIntegrationTest(_SQLiteIntegrationMixin, unittest.Te
         cleared.commit()
 
         self.assertEqual(self.db.get_familysearch_person_status(person.handle, {}), {})
-        self.assertEqual(
-            self.db.get_raw_person_data(person.handle)["familysearch_sync"],
-            DEFAULT_FAMILYSEARCH_SYNC,
+        self.assertIsNone(
+            self.db.get_raw_person_data(person.handle)["familysearch_sync"]
         )
 
 
 class FamilySearchSyncUpgradeIntegrationTest(
     _SQLiteIntegrationMixin, unittest.TestCase
 ):
-    def _remove_familysearch_sync_from_person_json(self, handle):
-        with DbTxn("Remove FamilySearch sync from raw JSON", self.db):
+    def _set_familysearch_sync_in_person_json(self, handle, sync_data):
+        with DbTxn("Set FamilySearch sync in raw JSON", self.db):
             person_data = copy.deepcopy(self.db.get_raw_person_data(handle))
-            person_data.pop("familysearch_sync", None)
+            if sync_data is ...:
+                person_data.pop("familysearch_sync", None)
+            else:
+                person_data["familysearch_sync"] = sync_data
             self.db._commit_raw(person_data, PERSON_KEY)
 
-        self.assertNotIn(
-            "familysearch_sync",
-            self.db.get_raw_person_data(handle),
+    def test_new_person_has_null_familysearch_sync(self):
+        person = self._create_person()
+
+        self.assertEqual(self.db.get_schema_version(), 21)
+        self.assertIsNone(
+            self.db.get_raw_person_data(person.handle)["familysearch_sync"]
         )
 
-    def test_upgrade_from_v21_rewrites_person_json_with_default_familysearch_sync(self):
+    def test_v21_person_without_familysearch_sync_loads_without_upgrade(self):
         person = self._create_person()
-        person_handle = person.handle
-
-        self._remove_familysearch_sync_from_person_json(person_handle)
-        self.db.set_schema_version(21)
+        self._set_familysearch_sync_in_person_json(person.handle, ...)
         self.db.close(update=False)
 
-        upgraded = self._open_db(force_schema_upgrade=True)
-        self.db = upgraded
+        self.db = self._open_db()
 
-        self.assertEqual(self.db.get_schema_version(), 22)
-        self.assertEqual(
-            self.db.get_raw_person_data(person_handle)["familysearch_sync"],
-            DEFAULT_FAMILYSEARCH_SYNC,
+        self.assertEqual(self.db.get_schema_version(), 21)
+        self.assertNotIn(
+            "familysearch_sync", self.db.get_raw_person_data(person.handle)
+        )
+        loaded = self.db.get_person_from_handle(person.handle)
+        self.assertIsNone(loaded.get_familysearch_sync())
+        self.assertEqual(self.db.get_familysearch_person_status(person.handle), {})
+
+    def test_v22_beta_db_is_reverted_to_v21(self):
+        empty = self._create_person()
+        linked = self._create_person()
+        empty_sync = FamilySearchSync().serialize()
+        linked_sync = FamilySearchSync({"fsid": "ABCD-EFG"}).serialize()
+        self._set_familysearch_sync_in_person_json(empty.handle, empty_sync)
+        self._set_familysearch_sync_in_person_json(linked.handle, linked_sync)
+        self.db.set_schema_version(22)
+        self.db.close(update=False)
+
+        self.db = self._open_db()
+
+        self.assertEqual(self.db.get_schema_version(), 21)
+        self.assertIsNone(
+            self.db.get_raw_person_data(empty.handle)["familysearch_sync"]
         )
         self.assertEqual(
-            self.db.get_person_from_handle(person_handle)
-            .get_familysearch_sync()
-            .to_status_dict(),
-            {},
+            self.db.get_raw_person_data(linked.handle)["familysearch_sync"],
+            linked_sync,
         )
