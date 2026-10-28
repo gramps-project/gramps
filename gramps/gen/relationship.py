@@ -1988,8 +1988,17 @@ class RelationshipCalculator:
             for relother in databest:
                 relbirth = self.only_birth(rel[2]) and self.only_birth(rel[4])
                 if relother[2] == "" or relother[4] == "":
-                    # direct relation, take that
-                    rel = relother
+                    # direct relation, take that, preferring one by birth
+                    rel = next(
+                        (
+                            direct
+                            for direct in databest
+                            if (direct[2] == "" or direct[4] == "")
+                            and self.only_birth(direct[2])
+                            and self.only_birth(direct[4])
+                        ),
+                        relother,
+                    )
                     break
                 if (
                     not relbirth
