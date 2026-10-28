@@ -25,6 +25,7 @@ Classes for relationships.
 # Python modules
 #
 # -------------------------------------------------------------------------
+import heapq
 import logging
 
 # -------------------------------------------------------------------------
@@ -955,6 +956,11 @@ class RelationshipCalculator:
             self.set_depth(config.get("behavior.generation-depth"))
         except ImportError:
             pass
+        # See `set_max_common_results` -- bounds the (otherwise
+        # unbounded, and on a heavily pedigree-collapsed tree,
+        # combinatorial) number of distinct common-ancestor paths
+        # get_relationship_distance_new(all_dist=True) will compute.
+        self.max_common_results = 2000
 
         # data storage to communicate with recursive functions
         self.__max_depth_reached = False
@@ -974,6 +980,25 @@ class RelationshipCalculator:
         if depth != self.depth:
             self.depth = depth
             self.dirtymap = True
+
+    def set_max_common_results(self, max_common_results):
+        """
+        Bound how many distinct non-dominated common-ancestor paths
+        `get_relationship_distance_new(all_dist=True)` will compute
+        before stopping, nearest-relationship-first. `None` means
+        unbounded (the original, pre-cap behavior) -- only appropriate
+        for a tree known not to have extreme pedigree collapse, since an
+        unbounded search can be combinatorial on one that does.
+        """
+        self.max_common_results = max_common_results
+
+    def get_max_common_results(self):
+        """
+        Obtain the current cap on common-ancestor paths searched by
+        `get_relationship_distance_new(all_dist=True)` -- see
+        `set_max_common_results`.
+        """
+        return self.max_common_results
 
     def get_depth(self):
         """
@@ -1300,6 +1325,138 @@ class RelationshipCalculator:
         else:
             return None
 
+    @staticmethod
+    def _prefix_minimal(pairs):
+        """`pairs`: a list of (rel_str, other_value) tuples, all paths
+        from the same person to the same target, as accumulated in a
+        `pmap` entry. Returns the subset (in original relative order)
+        whose `rel_str` is not properly prefixed by another `rel_str` in
+        the same list.
+
+        This is a safe reduction of the input to `get_relationship_distance_new`'s
+        `common`-list computation below, not a change to its output:
+        if some path B is properly prefixed by another path A to the same
+        target, then for *any* partner path P paired with B (rank =
+        len(B)+len(P)), the corresponding pairing of A with that same P
+        (rank = len(A)+len(P), strictly smaller) already satisfies that
+        computation's own domination test against B's pairing -- A is a
+        prefix of B (given) and P is trivially a "prefix" of itself. So a
+        B-pairing can never survive that computation regardless of what
+        else is being compared, and generating it at all (let alone
+        comparing it against every other candidate one by one) is
+        wasted, sometimes catastrophically so under heavy pedigree
+        collapse -- a single pair on a real 100,000-person tree was
+        observed with 696,320 candidate pairings for one shared ancestor
+        alone before this reduction.
+        """
+        order = sorted(range(len(pairs)), key=lambda i: (pairs[i][0], i))
+        keep = set()
+        last_kept = None
+        for i in order:
+            rel_str = pairs[i][0]
+            if (
+                last_kept is not None
+                and len(last_kept) < len(rel_str)
+                and rel_str.startswith(last_kept)
+            ):
+                continue
+            keep.add(i)
+            last_kept = rel_str
+        return [pairs[i] for i in sorted(keep)]
+
+    @staticmethod
+    def _common_candidates(sides, cap, not_birth):
+        """Yield `(rel1, fam1, rel2, fam2, handle, order)` for every
+        pairing of a first-person path with a second-person path to the
+        same common ancestor. `sides` is a list of `(handle, first_pairs,
+        second_pairs)`, each pairs list holding `(rel_str, rel_fam)`, and
+        `not_birth` holds the path codes of non-birth links. `order` is
+        `(ancestor index, first index, second index)`, the pairing's
+        place in plain nested order; the caller breaks rank ties by it,
+        so the result does not depend on which of the two orders below
+        produced it.
+
+        When fewer pairings exist than `cap` they are yielded in plain
+        nested order, since the cap cannot be reached. Otherwise they
+        come off a heap in global (rank, non-birth, ancestor, first
+        index, second index) order, so stopping at the cap keeps the
+        nearest paths and, among equally near ones, those with only birth
+        links -- per-ancestor ordering alone would let one ancestor's
+        farther pairs fill the cap before a nearer pair of its own, or of
+        the next ancestor, is reached, and visit order alone could fill
+        it with step lines before an equally near birth line is reached.
+        Each side is sorted by (length, non-birth, original index); from
+        pair (i, j) the heap is fed (i, j + 1), plus (i + 1, 0) when
+        j == 0, whose keys are not smaller -- so every pair is produced
+        exactly once, in order, and only as far as needed.
+        """
+        if cap is None or sum(len(f) * len(s) for _h, f, s in sides) <= cap:
+            for hidx, (handle, first_pairs, second_pairs) in enumerate(sides):
+                for i, (rel1, fam1) in enumerate(first_pairs):
+                    for j, (rel2, fam2) in enumerate(second_pairs):
+                        yield rel1, fam1, rel2, fam2, handle, (hidx, i, j)
+            return
+        ordered = []
+        heap = []
+        for hidx, (handle, first_pairs, second_pairs) in enumerate(sides):
+            first_sorted, second_sorted = [
+                sorted(
+                    (len(rel), not not_birth.isdisjoint(rel), oidx, rel, fam)
+                    for oidx, (rel, fam) in enumerate(pairs)
+                )
+                for pairs in (first_pairs, second_pairs)
+            ]
+            ordered.append((handle, first_sorted, second_sorted))
+            heap.append(
+                (
+                    first_sorted[0][0] + second_sorted[0][0],
+                    first_sorted[0][1] or second_sorted[0][1],
+                    hidx,
+                    first_sorted[0][2],
+                    second_sorted[0][2],
+                    0,
+                    0,
+                )
+            )
+        heapq.heapify(heap)
+        while heap:
+            _rank, _not_birth, hidx, oi, oj, i, j = heapq.heappop(heap)
+            handle, first_sorted, second_sorted = ordered[hidx]
+            if j + 1 < len(second_sorted):
+                heapq.heappush(
+                    heap,
+                    (
+                        first_sorted[i][0] + second_sorted[j + 1][0],
+                        first_sorted[i][1] or second_sorted[j + 1][1],
+                        hidx,
+                        first_sorted[i][2],
+                        second_sorted[j + 1][2],
+                        i,
+                        j + 1,
+                    ),
+                )
+            if j == 0 and i + 1 < len(first_sorted):
+                heapq.heappush(
+                    heap,
+                    (
+                        first_sorted[i + 1][0] + second_sorted[0][0],
+                        first_sorted[i + 1][1] or second_sorted[0][1],
+                        hidx,
+                        first_sorted[i + 1][2],
+                        second_sorted[0][2],
+                        i + 1,
+                        0,
+                    ),
+                )
+            yield (
+                first_sorted[i][3],
+                first_sorted[i][4],
+                second_sorted[j][3],
+                second_sorted[j][4],
+                handle,
+                (hidx, oi, oj),
+            )
+
     def get_relationship_distance_new(
         self,
         db,
@@ -1423,69 +1580,117 @@ class RelationshipCalculator:
             self.dirtymap = False
             self.map_handle = orig_person.handle
 
-        for person_handle in second_map:
-            if person_handle in first_map:
-                com = []
-                # a common ancestor
-                for rel1, fam1 in zip(
-                    first_map[person_handle][0], first_map[person_handle][1]
-                ):
-                    len1 = len(rel1)
-                    for rel2, fam2 in zip(
-                        second_map[person_handle][0], second_map[person_handle][1]
+        # Build `common` as the minimal (non-dominated) set of paths to
+        # every common ancestor -- the same "drop a path that's a
+        # same-or-nearer path's extension on both sides" rule the
+        # original code applied via a linear scan/insert/delete against
+        # the whole `common` list built so far for every single
+        # candidate (O(candidates x final size), and observed to make a
+        # single relationship() call intractable on a real
+        # 100,000-person tree under heavy pedigree collapse -- 696,320
+        # candidate path pairs for one shared ancestor alone). Every
+        # `rel_str` here is bounded by `self.__max_depth` generations
+        # (the same cap that already bounds recursion elsewhere in this
+        # class), so indexing by exact-prefix-string keeps each
+        # candidate's domination check to at most `self.__max_depth`
+        # lookups instead of a scan of everything found so far.
+        #
+        # `exact_rel1`: rel1-string -> list of candidate records sharing
+        #   that exact rel1 (a `rel1` string deterministically identifies
+        #   both the ancestor handle and the route to it, so two records
+        #   sharing an exact rel1 differ only in their rel2 pairing).
+        # `prefix_to_rel1`: rel1-string P -> set of exact rel1-strings
+        #   that have P as a prefix -- the reverse index needed to find
+        #   already-kept, farther records a new, nearer-or-equal record
+        #   makes redundant.
+        exact_rel1 = {}
+        prefix_to_rel1 = {}
+        alive_count = 0
+        cap = self.get_max_common_results()
+        # Process common ancestors nearest-first, and stop once `cap`
+        # non-dominated paths have been kept -- gramps-core's own
+        # `all_dist=True` contract promises literally every distinct
+        # non-dominated path, but a heavily pedigree-collapsed tree can
+        # have combinatorially many of those to a single shared ancestor
+        # (measured: 122,880 non-dominated paths for one pair on a real
+        # 100,000-person tree), and every one of them costs real work to
+        # check. Capped, nearest-first, this is a deliberate, documented
+        # behavior change (see `set_max_common_results`) -- not a change
+        # to the earlier `__apply_filter` fix's byte-identical guarantee,
+        # which this cap sits downstream of.
+        # see `_common_candidates` for how nearest-first is guaranteed
+        sides = [
+            (
+                person_handle,
+                *[
+                    self._prefix_minimal(
+                        list(zip(pmap[person_handle][0], pmap[person_handle][1]))
+                    )
+                    for pmap in (first_map, second_map)
+                ],
+            )
+            for person_handle in second_map
+            if person_handle in first_map
+        ]
+        not_birth = {
+            self.REL_FAM_NONBIRTH,
+            self.REL_FATHER_NOTBIRTH,
+            self.REL_MOTHER_NOTBIRTH,
+        }
+        for rel1, fam1, rel2, fam2, person_handle, order in self._common_candidates(
+            sides, cap, not_birth
+        ):
+            rank = len(rel1) + len(rel2)
+            dominated = False
+            for cut in range(len(rel1) + 1):
+                for rec in exact_rel1.get(rel1[:cut], ()):
+                    if not rec["alive"]:
+                        continue
+                    other_rel2 = rec["rel2"]
+                    if rec["rank"] <= rank and other_rel2 == rel2[: len(other_rel2)]:
+                        dominated = True
+                        break
+                if dominated:
+                    break
+            if dominated:
+                continue
+            rec = {
+                "alive": True,
+                "rank": rank,
+                "handle": person_handle,
+                "rel1": rel1,
+                "fam1": fam1,
+                "rel2": rel2,
+                "fam2": fam2,
+                "order": order,
+            }
+            exact_rel1.setdefault(rel1, []).append(rec)
+            for cut in range(len(rel1) + 1):
+                prefix_to_rel1.setdefault(rel1[:cut], set()).add(rel1)
+            # this new (nearer-or-equal) record may make an
+            # already-kept, farther record redundant -- mirrors
+            # the original's own "superset deletion" step
+            for other_exact in prefix_to_rel1.get(rel1, ()):
+                for other in exact_rel1.get(other_exact, ()):
+                    if (
+                        other is not rec
+                        and other["alive"]
+                        and other["rank"] >= rank
+                        and rel2 == other["rel2"][: len(rel2)]
                     ):
-                        len2 = len(rel2)
-                        # collect paths to arrive at common ancestor
-                        com.append((len1 + len2, person_handle, rel1, fam1, rel2, fam2))
-                # insert common ancestor in correct position,
-                #  if shorter links, check if not subset
-                #  if longer links, check if not superset
-                pos = 0
-                for ranknew, handlenew, rel1new, fam1new, rel2new, fam2new in com:
-                    insert = True
-                    for rank, handle, rel1, fam1, rel2, fam2 in common:
-                        if ranknew < rank:
-                            break
-                        elif ranknew >= rank:
-                            # check subset
-                            if (
-                                rel1 == rel1new[: len(rel1)]
-                                and rel2 == rel2new[: len(rel2)]
-                            ):
-                                # subset relation exists already
-                                insert = False
-                                break
-                        pos += 1
-                    if insert:
-                        if common:
-                            common.insert(
-                                pos,
-                                (
-                                    ranknew,
-                                    handlenew,
-                                    rel1new,
-                                    fam1new,
-                                    rel2new,
-                                    fam2new,
-                                ),
-                            )
-                        else:
-                            common = [
-                                (ranknew, handlenew, rel1new, fam1new, rel2new, fam2new)
-                            ]
-                        # now check if superset must be deleted from common
-                        deletelist = []
-                        index = pos + 1
-                        for rank, handle, rel1, fam1, rel2, fam2 in common[pos + 1 :]:
-                            if (
-                                rel1new == rel1[: len(rel1new)]
-                                and rel2new == rel2[: len(rel2new)]
-                            ):
-                                deletelist.append(index)
-                            index += 1
-                        deletelist.reverse()
-                        for index in deletelist:
-                            del common[index]
+                        other["alive"] = False
+                        alive_count -= 1
+            alive_count += 1
+            if cap is not None and alive_count >= cap:
+                break
+        all_records = [r for recs in exact_rel1.values() for r in recs if r["alive"]]
+        # rank ascending, ties broken by plain nested order -- common-
+        # ancestor order, then each side's original path order
+        all_records.sort(key=lambda r: (r["rank"], r["order"]))
+        common = [
+            (r["rank"], r["handle"], r["rel1"], r["fam1"], r["rel2"], r["fam2"])
+            for r in all_records
+        ]
         # check for extra messages
         if self.__max_depth_reached:
             self.__msg += [
@@ -1521,8 +1726,86 @@ class RelationshipCalculator:
         else:
             return [(-1, None, "", [], "", [])], self.__msg
 
+    def _pmap_append_checked(self, memo, pmap, handle, rel_str, rel_fam, person):
+        """Append `rel_str`/`rel_fam` to `pmap[handle]` (already known to
+        be present -- a crosslink) and run the same loop-detection check
+        `__apply_filter` always ran inline: a genuine cycle in the data
+        shows up as one recorded path to `handle` being a strict prefix
+        of another. The original re-scanned `pmap[handle][0]` in full on
+        every single append to check this, making one handle's own
+        accumulation O(n^3) in the number of distinct paths that reach
+        it -- independent of, and left exposed by, the exponential-
+        recursion fix elsewhere in this method (observed: ~2s for one
+        handle accumulating ~500 paths on a real 100,000-person tree).
+        This does the same check via a per-handle prefix index bounded
+        by generation depth instead.
+
+        The index must cover *every* path recorded for `handle`, not just
+        the ones appended through here: the first path to a handle (and
+        any injected sibling path) is written to `pmap` directly, and
+        missing it lets a path that loops back through `handle` go
+        undetected and keep recursing. So any entries not yet indexed
+        are picked up from `pmap[handle][0]` on each call.
+
+        Once a loop has been seen for `handle` it stays seen, matching
+        the original: its full re-scan finds the same looping pair on
+        every later append, so it stops recursing above `handle` on
+        every later visit too.
+
+        A loop also marks every ancestor-closure still being assembled
+        (`memo["open"]`) as cut short, so none of them gets cached.
+
+        Returns True if a loop was detected (caller should stop, as the
+        original does via its own `return`).
+        """
+        idx = memo["pmap_loop_index"].setdefault(
+            handle, {"exact": set(), "prefix": {}, "count": 0, "relation": None}
+        )
+        exact, prefix = idx["exact"], idx["prefix"]
+        pmap[handle][0] += [rel_str]
+        pmap[handle][1] += [rel_fam]
+        paths = pmap[handle][0]
+        for path in paths[idx["count"] :]:
+            if idx["relation"] is None:
+                for cut in range(len(path)):
+                    if path[:cut] in exact:
+                        idx["relation"] = path[cut:]
+                        break
+                else:
+                    for other in prefix.get(path, ()):
+                        if len(other) > len(path):
+                            idx["relation"] = other[len(path) :]
+                            break
+            exact.add(path)
+            for cut in range(len(path) + 1):
+                prefix.setdefault(path[:cut], set()).add(path)
+        idx["count"] = len(paths)
+        if idx["relation"] is None:
+            return False
+        for rec in memo["open"]:
+            rec["loop_cut"] = True
+        self.__loop_detected = True
+        self.__msg += [
+            _("Relationship loop detected:")
+            + " "
+            + _("Person %(person)s connects to himself via %(relation)s")
+            % {
+                "person": person.get_primary_name().get_name(),
+                "relation": idx["relation"],
+            }
+        ]
+        return True
+
     def __apply_filter(
-        self, db, person, rel_str, rel_fam, pmap, depth=1, stoprecursemap=None
+        self,
+        db,
+        person,
+        rel_str,
+        rel_fam,
+        pmap,
+        depth=1,
+        stoprecursemap=None,
+        memo=None,
     ):
         """
         Typically this method is called recursively in two ways:
@@ -1536,7 +1819,23 @@ class RelationshipCalculator:
         of first contains loops, and parents
         will be looked up anyway an stored if common. At end the doubles
         are filtered out
+
+        `memo` is per-outermost-call state: a person's set of reachable
+        ancestors (and any siblings injected along the way -- see the
+        "family without parents" case below) is memoized the first time
+        it is fully derived from the database, and replayed from memory
+        on a later revisit within the same outermost call instead of
+        being re-derived. Without this, a person reached a second time
+        via a different branch (pedigree collapse, or simply a large
+        tree) triggers a full second walk of everything above them,
+        which is what makes this method exponential in the number of
+        such revisits. Callers never pass `memo` explicitly; it is
+        created fresh on the outermost call and threaded through the
+        recursion below.
         """
+        if memo is None:
+            memo = {"closure": {}, "open": [], "pmap_loop_index": {}}
+
         if person is None or not person.handle:
             return
 
@@ -1563,29 +1862,20 @@ class RelationshipCalculator:
             # had lookup of all parents, we call that a crosslink
             if not stoprecursemap:
                 self.__crosslinks = True
-            pmap[person.handle][0] += [rel_str]
-            pmap[person.handle][1] += [rel_fam]
-            # check if there is no loop father son of his son, ...
-            # loop means person is twice reached, same rel_str in begin
-            for rel1 in pmap[person.handle][0]:
-                for rel2 in pmap[person.handle][0]:
-                    if len(rel1) < len(rel2) and rel1 == rel2[: len(rel1)]:
-                        # loop, keep one message in storage!
-                        self.__loop_detected = True
-                        self.__msg += [
-                            _("Relationship loop detected:")
-                            + " "
-                            + _(
-                                "Person %(person)s connects to himself via %(relation)s"
-                            )
-                            % {
-                                "person": person.get_primary_name().get_name(),
-                                "relation": rel2[len(rel1) :],
-                            }
-                        ]
-                        return
+            if self._pmap_append_checked(
+                memo, pmap, person.handle, rel_str, rel_fam, person
+            ):
+                return
         elif store:
             pmap[person.handle] = [[rel_str], [rel_fam]]
+
+        # record this visit against every ancestor-closure currently being
+        # assembled further up the call stack (see `memo` above), so it
+        # can be replayed later without touching the database again
+        for rec in memo["open"]:
+            rec["deltas"].append(
+                ("v", rel_str[rec["base_str"] :], rel_fam[rec["base_fam"] :], person)
+            )
 
         # having added person to the pmap, we only look up recursively to
         # parents if this person is not common relative
@@ -1600,6 +1890,108 @@ class RelationshipCalculator:
             family_handles = [main]
         if self.__all_families:
             family_handles = person.get_parent_family_handle_list()
+
+        # Memoization only covers the (overwhelmingly common) case of a
+        # person with at most one parent family -- with more than one,
+        # `rel_fam` entries can merge into nested per-family-index lists
+        # (see the `parentstodo` update below), which a cached, replayed
+        # closure would need to reproduce exactly; simpler and safer to
+        # just not memoize that rarer case and let it re-derive from the
+        # database every time it's revisited, same as before this change.
+        only_one_family = len(family_handles) <= 1
+        # A 1-hop child of this node is called with this (already-
+        # incremented) `depth` and is itself accepted iff `depth <=
+        # max_depth`; an L-hop descendant is accepted iff `depth + L - 1
+        # <= max_depth`. So the longest reachable suffix from here is
+        # `max_depth - depth + 1`, not `max_depth - depth`.
+        budget_needed = self.__max_depth - depth + 1
+        if only_one_family:
+            cached = memo["closure"].get(person.handle)
+            if cached is not None and cached["budget"] >= budget_needed:
+                # REPLAY: `cached["entries"]` is already the *complete*,
+                # flattened set of everything reachable from this handle
+                # (built once, the first time it was fully expanded) --
+                # so each entry is applied directly here (the same
+                # pmap-add-or-crosslink-append/loop-detection bookkeeping
+                # the top of this method does for a freshly-visited
+                # person) and NOT by recursing back into __apply_filter,
+                # which would re-expand descendants that are already
+                # separately present as their own entries in this same
+                # closure.
+                #
+                # A loop detected at one entry stops the walk above that
+                # person only, exactly as a fresh visit would `return`
+                # there; the rest of the closure is still applied. The
+                # entries are in visit order and a (str, fam) prefix pins
+                # down a unique route, so the looping person's own
+                # ancestors are the entries extending its suffix.
+                loop_cuts = []
+                for kind, suffix_str, suffix_fam, target in cached["entries"]:
+                    if len(suffix_str) > budget_needed:
+                        continue
+                    if any(
+                        len(suffix_str) > len(cut_str)
+                        and suffix_str.startswith(cut_str)
+                        and suffix_fam[: len(cut_fam)] == cut_fam
+                        for cut_str, cut_fam in loop_cuts
+                    ):
+                        continue
+                    full_str = rel_str + suffix_str
+                    full_fam = rel_fam + suffix_fam
+                    if kind == "v":
+                        target_handle = target.handle
+                        store = True
+                        if stoprecursemap:
+                            store = target_handle in stoprecursemap
+                        if target_handle in pmap:
+                            if not stoprecursemap:
+                                self.__crosslinks = True
+                            if self._pmap_append_checked(
+                                memo, pmap, target_handle, full_str, full_fam, target
+                            ):
+                                loop_cuts.append((suffix_str, suffix_fam))
+                                continue
+                        elif store:
+                            pmap[target_handle] = [[full_str], [full_fam]]
+                        for rec in memo["open"]:
+                            rec["deltas"].append(
+                                (
+                                    "v",
+                                    full_str[rec["base_str"] :],
+                                    full_fam[rec["base_fam"] :],
+                                    target,
+                                )
+                            )
+                    else:  # "s": a sibling injected via the no-recorded-
+                        # parents case below, a direct pmap write in the
+                        # original (never recursed into, and never gated
+                        # by `store`/`stoprecursemap`), replayed the same
+                        # unconditional way here
+                        if target in pmap:
+                            pmap[target][0] += [full_str]
+                            pmap[target][1] += [full_fam]
+                        else:
+                            pmap[target] = [[full_str], [full_fam]]
+                        for rec in memo["open"]:
+                            rec["deltas"].append(
+                                (
+                                    "s",
+                                    full_str[rec["base_str"] :],
+                                    full_fam[rec["base_fam"] :],
+                                    target,
+                                )
+                            )
+                return
+
+        recorder = None
+        if only_one_family:
+            recorder = {
+                "base_str": len(rel_str),
+                "base_fam": len(rel_fam),
+                "deltas": [],
+                "loop_cut": False,
+            }
+            memo["open"].append(recorder)
 
         try:
             parentstodo = {}
@@ -1678,17 +2070,38 @@ class RelationshipCalculator:
                             # person is already a grandparent in another branch
                         else:
                             pmap[chandle] = [[rel_str + addstr], [rel_fam_new]]
+                        for rec in memo["open"]:
+                            rec["deltas"].append(
+                                (
+                                    "s",
+                                    (rel_str + addstr)[rec["base_str"] :],
+                                    rel_fam_new[rec["base_fam"] :],
+                                    chandle,
+                                )
+                            )
                 fam += 1
 
             for handle, data in parentstodo.items():
                 self.__apply_filter(
-                    db, data[0], data[1], data[2], pmap, depth, stoprecursemap
+                    db, data[0], data[1], data[2], pmap, depth, stoprecursemap, memo
                 )
         except:
             import traceback
 
             traceback.print_exc()
+            if recorder is not None:
+                memo["open"].pop()
             return
+        else:
+            if recorder is not None:
+                memo["open"].pop()
+            # a closure cut short by a loop depends on the route that
+            # reached it, so it must not be replayed for a different one
+            if recorder is not None and not recorder["loop_cut"]:
+                memo["closure"][person.handle] = {
+                    "budget": budget_needed,
+                    "entries": recorder["deltas"],
+                }
 
     def collapse_relations(self, relations):
         """
