@@ -73,7 +73,6 @@ from gramps.gen.filters import SearchFilter, ExactSearchFilter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .basemodel import BaseModel
 from ...user import User
-from gramps.gen.proxy.cache import CacheProxyDb
 
 _ = glocale.translation.gettext
 
@@ -621,7 +620,6 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self.clear_cache()
         self._in_build = True
         if (self.db is not None) and self.db.is_open():
-            cdb = CacheProxyDb(self.db)
             allkeys = self.node_map.full_srtkey_hndl_map()
             if not allkeys:
                 allkeys = self.sort_keys()
@@ -631,11 +629,11 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 try:
                     if ignore is None:
                         dlist = self.search.apply(
-                            cdb, allkeys, tupleind=1, user=self.user
+                            self.db, allkeys, tupleind=1, user=self.user
                         )
                     else:
                         dlist = self.search.apply(
-                            cdb,
+                            self.db,
                             [k for k in allkeys if k[1] != ignore],
                             tupleind=1,
                             user=self.user,
