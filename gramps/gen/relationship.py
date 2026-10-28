@@ -1365,37 +1365,44 @@ class RelationshipCalculator:
         return [pairs[i] for i in sorted(keep)]
 
     @staticmethod
-    def _common_candidates(sides, cap):
-        """Yield `(rel1, fam1, rel2, fam2, handle)` for every pairing of a
-        first-person path with a second-person path to the same common
-        ancestor. `sides` is a list of `(handle, first_pairs,
-        second_pairs)`, each pairs list holding `(rel_str, rel_fam)`.
+    def _common_candidates(sides, cap, not_birth):
+        """Yield `(rel1, fam1, rel2, fam2, handle, order)` for every
+        pairing of a first-person path with a second-person path to the
+        same common ancestor. `sides` is a list of `(handle, first_pairs,
+        second_pairs)`, each pairs list holding `(rel_str, rel_fam)`, and
+        `not_birth` holds the path codes of non-birth links. `order` is
+        `(ancestor index, first index, second index)`, the pairing's
+        place in plain nested order; the caller breaks rank ties by it,
+        so the result does not depend on which of the two orders below
+        produced it.
 
         When fewer pairings exist than `cap` they are yielded in plain
-        nested order, since the cap cannot be reached and the caller
-        sorts by (rank, yield order) anyway. Otherwise they come off a
-        heap in global (rank, ancestor, first index, second index) order,
-        so stopping at the cap keeps the nearest paths -- per-ancestor
-        ordering alone would let one ancestor's farther pairs fill the
-        cap before a nearer pair of its own, or of the next ancestor, is
-        reached. Both orders agree on ties, so the results are the same.
-        Each side is sorted by (length, original index); from pair
-        (i, j) the heap is fed (i, j + 1), plus (i + 1, 0) when j == 0,
-        whose keys are strictly greater -- so every pair is produced
+        nested order, since the cap cannot be reached. Otherwise they
+        come off a heap in global (rank, non-birth, ancestor, first
+        index, second index) order, so stopping at the cap keeps the
+        nearest paths and, among equally near ones, those with only birth
+        links -- per-ancestor ordering alone would let one ancestor's
+        farther pairs fill the cap before a nearer pair of its own, or of
+        the next ancestor, is reached, and visit order alone could fill
+        it with step lines before an equally near birth line is reached.
+        Each side is sorted by (length, non-birth, original index); from
+        pair (i, j) the heap is fed (i, j + 1), plus (i + 1, 0) when
+        j == 0, whose keys are not smaller -- so every pair is produced
         exactly once, in order, and only as far as needed.
         """
         if cap is None or sum(len(f) * len(s) for _h, f, s in sides) <= cap:
-            for handle, first_pairs, second_pairs in sides:
-                for rel1, fam1 in first_pairs:
-                    for rel2, fam2 in second_pairs:
-                        yield rel1, fam1, rel2, fam2, handle
+            for hidx, (handle, first_pairs, second_pairs) in enumerate(sides):
+                for i, (rel1, fam1) in enumerate(first_pairs):
+                    for j, (rel2, fam2) in enumerate(second_pairs):
+                        yield rel1, fam1, rel2, fam2, handle, (hidx, i, j)
             return
         ordered = []
         heap = []
         for hidx, (handle, first_pairs, second_pairs) in enumerate(sides):
             first_sorted, second_sorted = [
                 sorted(
-                    (len(rel), oidx, rel, fam) for oidx, (rel, fam) in enumerate(pairs)
+                    (len(rel), not not_birth.isdisjoint(rel), oidx, rel, fam)
+                    for oidx, (rel, fam) in enumerate(pairs)
                 )
                 for pairs in (first_pairs, second_pairs)
             ]
@@ -1403,25 +1410,27 @@ class RelationshipCalculator:
             heap.append(
                 (
                     first_sorted[0][0] + second_sorted[0][0],
+                    first_sorted[0][1] or second_sorted[0][1],
                     hidx,
-                    first_sorted[0][1],
-                    second_sorted[0][1],
+                    first_sorted[0][2],
+                    second_sorted[0][2],
                     0,
                     0,
                 )
             )
         heapq.heapify(heap)
         while heap:
-            _rank, hidx, _oi, _oj, i, j = heapq.heappop(heap)
+            _rank, _not_birth, hidx, oi, oj, i, j = heapq.heappop(heap)
             handle, first_sorted, second_sorted = ordered[hidx]
             if j + 1 < len(second_sorted):
                 heapq.heappush(
                     heap,
                     (
                         first_sorted[i][0] + second_sorted[j + 1][0],
+                        first_sorted[i][1] or second_sorted[j + 1][1],
                         hidx,
-                        first_sorted[i][1],
-                        second_sorted[j + 1][1],
+                        first_sorted[i][2],
+                        second_sorted[j + 1][2],
                         i,
                         j + 1,
                     ),
@@ -1431,19 +1440,21 @@ class RelationshipCalculator:
                     heap,
                     (
                         first_sorted[i + 1][0] + second_sorted[0][0],
+                        first_sorted[i + 1][1] or second_sorted[0][1],
                         hidx,
-                        first_sorted[i + 1][1],
-                        second_sorted[0][1],
+                        first_sorted[i + 1][2],
+                        second_sorted[0][2],
                         i + 1,
                         0,
                     ),
                 )
             yield (
-                first_sorted[i][2],
                 first_sorted[i][3],
-                second_sorted[j][2],
+                first_sorted[i][4],
                 second_sorted[j][3],
+                second_sorted[j][4],
                 handle,
+                (hidx, oi, oj),
             )
 
     def get_relationship_distance_new(
@@ -1594,7 +1605,6 @@ class RelationshipCalculator:
         #   makes redundant.
         exact_rel1 = {}
         prefix_to_rel1 = {}
-        seq = 0
         alive_count = 0
         cap = self.get_max_common_results()
         # Process common ancestors nearest-first, and stop once `cap`
@@ -1622,8 +1632,13 @@ class RelationshipCalculator:
             for person_handle in second_map
             if person_handle in first_map
         ]
-        for rel1, fam1, rel2, fam2, person_handle in self._common_candidates(
-            sides, cap
+        not_birth = {
+            self.REL_FAM_NONBIRTH,
+            self.REL_FATHER_NOTBIRTH,
+            self.REL_MOTHER_NOTBIRTH,
+        }
+        for rel1, fam1, rel2, fam2, person_handle, order in self._common_candidates(
+            sides, cap, not_birth
         ):
             rank = len(rel1) + len(rel2)
             dominated = False
@@ -1647,9 +1662,8 @@ class RelationshipCalculator:
                 "fam1": fam1,
                 "rel2": rel2,
                 "fam2": fam2,
-                "seq": seq,
+                "order": order,
             }
-            seq += 1
             exact_rel1.setdefault(rel1, []).append(rec)
             for cut in range(len(rel1) + 1):
                 prefix_to_rel1.setdefault(rel1[:cut], set()).add(rel1)
@@ -1670,9 +1684,9 @@ class RelationshipCalculator:
             if cap is not None and alive_count >= cap:
                 break
         all_records = [r for recs in exact_rel1.values() for r in recs if r["alive"]]
-        # rank ascending, ties broken by `_common_candidates` yield order
-        # -- common-ancestor order, then each side's original path order
-        all_records.sort(key=lambda r: (r["rank"], r["seq"]))
+        # rank ascending, ties broken by plain nested order -- common-
+        # ancestor order, then each side's original path order
+        all_records.sort(key=lambda r: (r["rank"], r["order"]))
         common = [
             (r["rank"], r["handle"], r["rel1"], r["fam1"], r["rel2"], r["fam2"])
             for r in all_records

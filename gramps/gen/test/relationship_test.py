@@ -355,6 +355,35 @@ class RelationshipMaxCommonResultsTest(unittest.TestCase):
         finally:
             db.close()
 
+    def test_cap_keeps_birth_line_among_equally_near_paths(self):
+        """Among paths of the same length, the cap must keep one with
+        only birth links. The person's parents are the ancestor's
+        stepson (`fF`, found first) and birth daughter (`mf`); with a
+        cap of 1 only the birth line may survive."""
+        db = _make_db()
+        try:
+            ancestor = _add_person(db, Person.MALE)
+            ancestor_family = _add_family(db, ancestor, None)
+            stepson = _add_person(db, Person.MALE)
+            daughter = _add_person(db, Person.FEMALE)
+            other = _add_person(db, Person.MALE)
+            _add_child(db, ancestor_family, stepson, frel=STEPCHILD)
+            _add_child(db, ancestor_family, daughter)
+            _add_child(db, ancestor_family, other)
+            person = _add_person(db, Person.MALE)
+            _add_child(db, _add_family(db, stepson, daughter), person)
+
+            p1 = db.get_person_from_handle(person.handle)
+            p2 = db.get_person_from_handle(other.handle)
+            calc = get_relationship_calculator(reinit=True)
+            calc.set_max_common_results(1)
+            data, _msg = calc.get_relationship_distance_new(
+                db, p1, p2, all_dist=True, all_families=True, only_birth=False
+            )
+            self.assertEqual([(d[0], d[2], d[4]) for d in data], [(3, "mf", "f")])
+        finally:
+            db.close()
+
     def test_default_cap_is_set(self):
         calc = get_relationship_calculator(reinit=True)
         self.assertIsNotNone(calc.get_max_common_results())
