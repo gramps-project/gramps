@@ -19,12 +19,14 @@
 #
 from __future__ import annotations
 
+from pathlib import Path
+
 from typing import Optional, Protocol, Sequence, Tuple
 
 import gi
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gdk, Pango  # noqa: E402
+from gi.repository import Gtk, Gdk, Pango, GLib  # noqa: E402
 
 from gramps.gui.dialog import ErrorDialog, OkDialog, WarningDialog
 
@@ -51,6 +53,35 @@ def install_css_once(key: str, css: bytes) -> bool:
         return True
     except Exception:
         return False
+
+
+def tool_section(title: str, colour_class: str) -> tuple[Gtk.EventBox, Gtk.Box]:
+    """Build a section using the existing FamilySearch tools styling."""
+    from gramps.gen.const import DATA_DIR
+
+    for path in (
+        Path(__file__).resolve().parents[3] / "data" / "familysearch.css",
+        Path(DATA_DIR) / "familysearch.css",
+    ):
+        if path.is_file() and install_css_once("fs.tools_window.fs", path.read_bytes()):
+            break
+    wrapper = Gtk.EventBox()
+    wrapper.get_style_context().add_class("fs-section")
+    wrapper.get_style_context().add_class(colour_class)
+    content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
+    content.set_border_width(10)
+    wrapper.add(content)
+    heading = Gtk.Label()
+    heading.set_markup(
+        "<span size='large'><b>" + GLib.markup_escape_text(title) + "</b></span>"
+    )
+    heading.set_xalign(0)
+    heading.get_style_context().add_class("fs-section-title")
+    content.pack_start(heading, False, False, 0)
+    content.pack_start(
+        Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL), False, False, 0
+    )
+    return wrapper, content
 
 
 # ----------------------------------------------------------------------

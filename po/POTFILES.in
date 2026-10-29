@@ -320,6 +320,12 @@ gramps/gen/fs/sync_directions.py
 gramps/gen/fs/tags.py
 gramps/gen/fs/utils/attributes.py
 gramps/gen/fs/utils/linking.py
+gramps/gen/fs/linking.py
+gramps/gen/fs/preview.py
+gramps/gen/fs/request_runtime.py
+gramps/gen/fs/search.py
+gramps/gen/fs/search_context.py
+gramps/gen/fs/search_prefill.py
 gramps/gen/lib/address.py
 gramps/gen/lib/attribute.py
 gramps/gen/lib/attrtype.py
@@ -504,6 +510,7 @@ gramps/gui/fs/person/mixins/compare_gtk.py
 gramps/gui/fs/person/mixins/helpers.py
 gramps/gui/fs/person/mixins/source_import.py
 gramps/gui/fs/person/mixins/sources_dialog.py
+gramps/gui/fs/search_dialog.py
 gramps/gui/fs/sync_directions.py
 gramps/gui/fs/tags.py
 gramps/gui/fs/tools_window.py
