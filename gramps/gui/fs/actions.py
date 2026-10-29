@@ -20,16 +20,13 @@
 from __future__ import annotations
 
 import os
-import re
-import threading
 from dataclasses import dataclass
 from typing import Any
-from urllib.parse import urlencode, urlparse
 
 import gi
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import GLib, Gtk, Gdk  # noqa: F401 (Gdk used in some UI flows)
+from gi.repository import Gtk
 
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -58,6 +55,7 @@ from gramps.gen.fs.actions import (
     _strip_unknowns_inplace,
 )
 from gramps.gen.fs.compare import compare_fs_to_gramps
+from gramps.gen.fs.request_runtime import session_stamp
 from gramps.gen.fs.fs_import.events import add_event
 from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gen.fs.fs_import.notes import add_note
@@ -72,8 +70,6 @@ from .fs_import.importer import FSToGrampsImporter
 from .person import fsg_sync as FSG_Sync
 
 _ = glocale.translation.gettext
-
-_FS_ID_RE = re.compile(r"\b([A-Z0-9]{4}-[A-Z0-9]{3})\b", re.IGNORECASE)
 
 
 # ------------------------------------------------------------
@@ -429,170 +425,6 @@ def _dbstate_is_empty_tree(dbstate: Any) -> bool:
     return False
 
 
-def _familysearch_id_from_text(text: str) -> str:
-    """Return a normalized FamilySearch person ID from pasted text or a URL."""
-    text = (text or "").strip()
-    if not text:
-        return ""
-
-    candidates = [text]
-    if text.startswith(("http://", "https://")):
-        try:
-            parsed = urlparse(text)
-            candidates.extend([parsed.path, parsed.query, parsed.fragment])
-        except Exception:
-            pass
-
-    for candidate in candidates:
-        match = _FS_ID_RE.search(candidate or "")
-        if match:
-            return match.group(1).upper()
-    return ""
-
-
-def _familysearch_id_from_links(links: Any) -> str:
-    """Find a FamilySearch person ID in a GEDCOM X links object."""
-    if isinstance(links, dict):
-        values = list(links.values())
-    elif isinstance(links, list):
-        values = links
-    else:
-        values = []
-
-    for value in values:
-        if isinstance(value, dict):
-            fsid = _familysearch_id_from_text(
-                str(value.get("href") or value.get("resource") or "")
-            )
-            if fsid:
-                return fsid
-            fsid = _familysearch_id_from_links(value.get("links"))
-            if fsid:
-                return fsid
-        elif isinstance(value, list):
-            fsid = _familysearch_id_from_links(value)
-            if fsid:
-                return fsid
-        else:
-            fsid = _familysearch_id_from_text(str(value or ""))
-            if fsid:
-                return fsid
-    return ""
-
-
-def _search_entries(data: Any) -> list[dict[str, Any]]:
-    """Return search entries from a FamilySearch Atom/GEDCOM X payload."""
-    if not isinstance(data, dict):
-        return []
-    entries = data.get("entries")
-    if entries is None:
-        entries = (data.get("feed") or {}).get("entries")
-    if not isinstance(entries, list):
-        return []
-    return [entry for entry in entries if isinstance(entry, dict)]
-
-
-def _first_search_person(entry: dict[str, Any]) -> dict[str, Any]:
-    """Return the first GEDCOM X person embedded in a search entry."""
-    content = entry.get("content") or {}
-    gedcomx = content.get("gedcomx") or content.get("gedcomX") or {}
-    persons = gedcomx.get("persons") or entry.get("persons") or []
-    if isinstance(persons, list) and persons and isinstance(persons[0], dict):
-        return persons[0]
-    return {}
-
-
-def _search_result_life(person_data: dict[str, Any]) -> str:
-    """Return a compact life summary from FamilySearch display fields."""
-    display = person_data.get("display") or {}
-    lifespan = (display.get("lifespan") or display.get("lifeSpan") or "").strip()
-    if lifespan:
-        return lifespan
-
-    birth = (display.get("birthDate") or display.get("birthPlace") or "").strip()
-    death = (display.get("deathDate") or display.get("deathPlace") or "").strip()
-    if birth and death:
-        return _("%(birth)s - %(death)s") % {"birth": birth, "death": death}
-    return birth or death
-
-
-def _search_result_from_entry(
-    entry: dict[str, Any],
-) -> _FamilySearchSearchResult | None:
-    """Build a display result from one FamilySearch search entry."""
-    person_data = _first_search_person(entry)
-    display = person_data.get("display") or {}
-    fsid = (
-        _familysearch_id_from_text(str(person_data.get("id") or ""))
-        or _familysearch_id_from_links(person_data.get("links") or {})
-        or _familysearch_id_from_text(str(entry.get("id") or ""))
-        or _familysearch_id_from_links(entry.get("links") or {})
-    )
-    if not fsid:
-        return None
-
-    title = str(entry.get("title") or "").strip()
-    name = (
-        str(display.get("name") or display.get("fullName") or "").strip()
-        or title
-        or fsid
-    )
-    return _FamilySearchSearchResult(
-        fsid=fsid, name=name, life=_search_result_life(person_data)
-    )
-
-
-def _search_familysearch_people(
-    session: Any, query: str
-) -> list[_FamilySearchSearchResult]:
-    """Search FamilySearch Tree and return person choices for the dialog."""
-    query = (query or "").strip()
-    if not query:
-        return []
-
-    data = None
-    headers = {"Accept": "application/x-gedcomx-atom+json"}
-    get_url = getattr(session, "get_url", None)
-    if callable(get_url):
-        response = get_url(
-            "/platform/tree/search",
-            headers=headers,
-            params={"q": query, "count": "25"},
-        )
-        if isinstance(response, dict):
-            data = response
-        else:
-            status_code = getattr(response, "status_code", 200)
-            if status_code and status_code >= 400:
-                raise RuntimeError(
-                    _("FamilySearch search failed (HTTP %(status)s).")
-                    % {"status": status_code}
-                )
-            try:
-                data = response.json()
-            except Exception as err:
-                raise RuntimeError(
-                    _("FamilySearch search returned invalid data.")
-                ) from err
-    else:
-        get_json = getattr(session, "get_jsonurl", None) or getattr(
-            session, "get_json", None
-        )
-        if callable(get_json):
-            endpoint = "/platform/tree/search?" + urlencode({"q": query, "count": "25"})
-            data = get_json(endpoint, headers=headers)
-
-    results: list[_FamilySearchSearchResult] = []
-    seen: set[str] = set()
-    for entry in _search_entries(data):
-        result = _search_result_from_entry(entry)
-        if result is None or result.fsid in seen:
-            continue
-        seen.add(result.fsid)
-        results.append(result)
-    return results
-
-
 def _import_full_person(dbstate, uistate, fsid: str, verbosity: int = 0) -> None:
     _ensure_status_schema(dbstate.db)
 
@@ -776,189 +608,18 @@ def _bulk_import_options_dialog(
 
 
 def _empty_tree_start_person_dialog(
-    parent: Gtk.Window, session: Any
+    parent: Gtk.Window, session: Any, dbstate: Any
 ) -> _FamilySearchSearchResult | None:
-    """Ask for the FamilySearch person that should seed an empty tree."""
-    dlg = Gtk.Dialog(
-        title=_("Start FamilySearch import"), transient_for=parent, modal=True
-    )
-    fs_ui.set_headerbar(dlg, _("Start FamilySearch import"))
+    """Choose a freshly compared canonical person through the shared picker."""
+    from .search_dialog import choose_person
 
-    dlg.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
-    import_button = dlg.add_button(_("Continue"), Gtk.ResponseType.OK)
-    import_button.get_style_context().add_class("suggested-action")
-    import_button.set_sensitive(False)
-    dlg.set_default_response(Gtk.ResponseType.OK)
-
-    box = dlg.get_content_area()
-    box.set_spacing(10)
-    box.set_margin_top(12)
-    box.set_margin_bottom(12)
-    box.set_margin_start(12)
-    box.set_margin_end(12)
-
-    intro = Gtk.Label(
-        label=_(
-            "Choose the FamilySearch person to use as the starting point for "
-            "this new Gramps tree."
-        )
-    )
-    intro.set_xalign(0.0)
-    intro.set_line_wrap(True)
-    box.pack_start(intro, False, False, 0)
-
-    id_grid = Gtk.Grid()
-    id_grid.set_column_spacing(10)
-    id_grid.set_row_spacing(8)
-    id_grid.set_hexpand(True)
-    box.pack_start(id_grid, False, False, 0)
-
-    id_entry = Gtk.Entry()
-    id_entry.set_activates_default(True)
-    id_entry.set_hexpand(True)
-    id_entry.set_placeholder_text(_("FamilySearch ID or person URL"))
-    _attach_grid_row(id_grid, 0, _("FamilySearch ID or URL"), id_entry)
-
-    search_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
-    search_entry = Gtk.Entry()
-    search_entry.set_hexpand(True)
-    search_entry.set_placeholder_text(_("Name, date, place, or FamilySearch ID"))
-    search_button = Gtk.Button(label=_("Search"))
-    search_box.pack_start(search_entry, True, True, 0)
-    search_box.pack_start(search_button, False, False, 0)
-    box.pack_start(search_box, False, False, 0)
-
-    status_label = Gtk.Label(label="")
-    status_label.set_xalign(0.0)
-    status_label.set_line_wrap(True)
-    box.pack_start(status_label, False, False, 0)
-
-    store = Gtk.ListStore(str, str, str)
-    treeview = Gtk.TreeView(model=store)
-    treeview.set_headers_visible(True)
-    treeview.set_vexpand(True)
-    fs_ui.tune_treeview(treeview)
-
-    for title, column_id, width in (
-        (_("Name"), 1, 260),
-        (_("Life"), 2, 220),
-        (_("FamilySearch ID"), 0, 120),
-    ):
-        renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(title, renderer, text=column_id)
-        column.set_resizable(True)
-        column.set_min_width(width)
-        treeview.append_column(column)
-
-    box.pack_start(fs_ui.wrap_scroller(treeview, min_h=220), True, True, 0)
-
-    selection = treeview.get_selection()
-
-    def selected_result() -> _FamilySearchSearchResult | None:
-        """Return the selected result row, if any."""
-        model, tree_iter = selection.get_selected()
-        if tree_iter is None:
-            return None
-        return _FamilySearchSearchResult(
-            fsid=model.get_value(tree_iter, 0),
-            name=model.get_value(tree_iter, 1),
-            life=model.get_value(tree_iter, 2),
-        )
-
-    def refresh_import_button() -> None:
-        """Enable import when the ID entry contains a recognizable FSID."""
-        import_button.set_sensitive(
-            bool(_familysearch_id_from_text(id_entry.get_text()))
-        )
-
-    def cb_id_changed(_entry: Gtk.Entry) -> None:
-        """Refresh the Continue button as the ID text changes."""
-        refresh_import_button()
-
-    def cb_selection_changed(_selection: Gtk.TreeSelection) -> None:
-        """Copy the selected search result into the ID entry."""
-        result = selected_result()
-        if result is not None:
-            id_entry.set_text(result.fsid)
-
-    def cb_row_activated(
-        _treeview: Gtk.TreeView, _path: Gtk.TreePath, _column: Gtk.TreeViewColumn
-    ) -> None:
-        """Continue when a search result is activated."""
-        if _familysearch_id_from_text(id_entry.get_text()):
-            dlg.response(Gtk.ResponseType.OK)
-
-    dlg_alive = [True]
-    dlg.connect("destroy", lambda *_: dlg_alive.__setitem__(0, False))
-
-    def cb_search(*_args: Any) -> None:
-        """Search FamilySearch on a worker thread and populate the result list."""
-        raw_query = (search_entry.get_text() or "").strip()
-        direct_fsid = _familysearch_id_from_text(raw_query)
-        if direct_fsid:
-            id_entry.set_text(direct_fsid)
-            status_label.set_text(_("FamilySearch ID ready."))
-            return
-
-        if not raw_query:
-            status_label.set_text(_("Enter a name, date, place, ID, or URL to search."))
-            return
-
-        store.clear()
-        search_button.set_sensitive(False)
-        status_label.set_text(_("Searching FamilySearch..."))
-
-        def _do_search() -> None:
-            outcome: list[_FamilySearchSearchResult] | Exception
-            try:
-                outcome = _search_familysearch_people(session, raw_query)
-            except Exception as exc:
-                outcome = exc
-            GLib.idle_add(_on_search_done, outcome)
-
-        def _on_search_done(outcome: Any) -> bool:
-            if not dlg_alive[0]:
-                return False
-            if isinstance(outcome, Exception):
-                status_label.set_text(
-                    _("Search failed: %(error)s") % {"error": str(outcome)}
-                )
-                search_button.set_sensitive(True)
-                return False
-            results = outcome
-            for result in results:
-                store.append([result.fsid, result.name, result.life])
-            if results:
-                selection.select_path(0)
-                status_label.set_text(
-                    _("Search results: %(count)d") % {"count": len(results)}
-                )
-            else:
-                status_label.set_text(_("No FamilySearch people found."))
-            search_button.set_sensitive(True)
-            return False
-
-        threading.Thread(target=_do_search, daemon=True).start()
-
-    id_entry.connect("changed", cb_id_changed)
-    selection.connect("changed", cb_selection_changed)
-    treeview.connect("row-activated", cb_row_activated)
-    search_entry.connect("activate", cb_search)
-    search_button.connect("clicked", cb_search)
-
-    dlg.show_all()
-    response = dlg.run()
-    fsid = _familysearch_id_from_text(id_entry.get_text())
-    result = selected_result()
-    dlg.destroy()
-
-    if response != Gtk.ResponseType.OK or not fsid:
+    preview = choose_person(dbstate, session, parent)
+    if preview is None:
         return None
-
-    if result is not None and result.fsid == fsid:
-        return result
-
-    return _FamilySearchSearchResult(fsid=fsid, name=_("FamilySearch person"))
+    return _FamilySearchSearchResult(
+        fsid=preview.person.person_id,
+        name=" / ".join(preview.person.names) or preview.person.person_id,
+    )
 
 
 def _run_bulk_import_from_options(
@@ -1025,6 +686,30 @@ def offer_empty_tree_import(
     if not _familysearch_integration_enabled():
         return
 
+    db = getattr(dbstate, "db", None)
+    if not _dbstate_is_empty_tree(dbstate) or getattr(db, "readonly", True):
+        return
+    if getattr(session, "selected_tree_id", "GLOBAL") != "GLOBAL":
+        _info(
+            parent,
+            _("FamilySearch"),
+            _(
+                "Select the shared FamilySearch tree before importing a starting person."
+            ),
+        )
+        return
+    initial_stamp = session_stamp(session)
+
+    def context_current() -> bool:
+        """Recheck the empty target and authorized scope after each modal step."""
+        return bool(
+            dbstate.db is db
+            and not db.readonly
+            and _dbstate_is_empty_tree(dbstate)
+            and session_stamp(session) == initial_stamp
+            and getattr(session, "selected_tree_id", "GLOBAL") == "GLOBAL"
+        )
+
     try:
         setattr(session, "_fs_empty_tree_import_prompted", True)
     except Exception:
@@ -1042,12 +727,26 @@ def offer_empty_tree_import(
     if not dialog.run():
         return
 
-    start_person = _empty_tree_start_person_dialog(parent, session)
+    start_person = _empty_tree_start_person_dialog(parent, session, dbstate)
     if start_person is None:
+        return
+    if not context_current():
+        _info(
+            parent,
+            _("FamilySearch"),
+            _("The tree or FamilySearch context changed. Restart the import."),
+        )
         return
 
     options = _bulk_import_options_dialog(parent, start_person, start_person.fsid)
     if options is None:
+        return
+    if not context_current():
+        _info(
+            parent,
+            _("FamilySearch"),
+            _("The tree or FamilySearch context changed. Restart the import."),
+        )
         return
 
     if _run_bulk_import_from_options(

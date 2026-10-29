@@ -1073,8 +1073,23 @@ class Session(requests.Session):
     def write_log(self, text: str) -> None:
         _dbg(str(text))
 
-    def get_url(self, url, headers=None, params=None):
-        return self.get(url, headers=headers or {}, params=params)
+    def get_url(
+        self,
+        url: str,
+        headers: dict[str, str] | None = None,
+        params: dict[str, Any] | None = None,
+        **kwargs: Any,
+    ) -> requests.Response:
+        """
+        Request an API endpoint with optional transport settings.
+
+        :param url: The endpoint or absolute URL.
+        :param headers: Additional request headers.
+        :param params: URL query parameters.
+        :param kwargs: Additional request options, including redirect handling.
+        :returns: The HTTP response.
+        """
+        return self.get(url, headers=headers or {}, params=params, **kwargs)
 
     def post_url(self, url, data=None, headers=None):
         return self.post(url, data=data, headers=headers or {})
