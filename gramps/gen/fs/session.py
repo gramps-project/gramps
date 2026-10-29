@@ -55,8 +55,10 @@ import certifi
 import requests
 
 from gramps.gen.config import config
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.constfunc import win
 
+_ = glocale.translation.gettext
 LOG = logging.getLogger(__name__)
 _DEBUG_LOGGING_CONFIGURED = False
 
@@ -501,6 +503,7 @@ class Session(requests.Session):
         self.username: str = ""
         self._oauth_code: str = ""
         self._oauth_error: str = ""
+        self._auth_failure_kind: str = ""
         self._oauth_state: str = ""
         self._pkce_verifier: str = ""
         self._pkce_challenge: str = ""
@@ -696,6 +699,7 @@ class Session(requests.Session):
             self.last_probe_detail = ""
             self._oauth_code = ""
             self._oauth_error = ""
+            self._auth_failure_kind = ""
             self._oauth_state = ""
             self._pkce_verifier = ""
             self._pkce_challenge = ""
@@ -727,6 +731,169 @@ class Session(requests.Session):
 
     def get_status_widget(self):
         return self.status_indicator.create_widget()
+
+    def get_authentication_error(self) -> str:
+        """
+        Explain a failed sign-in without exposing credentials or response bodies.
+
+        :returns: A translated explanation and suggested recovery action.
+        """
+        detail = (self._status_detail or "").lower()
+        oauth_error = (self._oauth_error or detail.partition(" ")[0]).lower()
+        kind = self._auth_failure_kind
+        if not kind:
+            if self._auth_ui_cancelled or detail in (
+                "login canceled",
+                "login cancelled",
+                "no code provided",
+            ):
+                kind = "cancelled"
+            elif oauth_error == "access_denied":
+                kind = "consent"
+            elif "ssl" in detail or "certificate" in detail:
+                kind = "certificate"
+            elif "timeout" in detail or "timed out" in detail:
+                kind = "timeout"
+            elif "connectionerror" in detail:
+                kind = "connection"
+            elif any(
+                text in detail
+                for text in ("not configured", "no app key", "no redirect configured")
+            ):
+                kind = "configuration"
+        messages = {
+            "browser-challenge": _(
+                "A browser challenge is blocking the middleware. Contact the "
+                "middleware administrator to allow Gramps API requests."
+            ),
+            "unexpected-response": _(
+                "The middleware returned an unexpected response. "
+                "Check its address in Preferences."
+            ),
+            "cancelled": _(
+                "FamilySearch sign-in was canceled. Sign in again when ready."
+            ),
+            "consent": _(
+                "FamilySearch access was declined. Sign in again and allow "
+                "Gramps to access your account."
+            ),
+            "certificate": _(
+                "The secure connection could not be verified. Check your system "
+                "clock and the certificate files supplied with Gramps."
+            ),
+            "timeout": _(
+                "FamilySearch sign-in timed out. Check your connection and "
+                "complete the browser sign-in before trying again."
+            ),
+            "connection": _(
+                "The sign-in service could not be reached. Check your network "
+                "connection and middleware address in Preferences."
+            ),
+            "configuration": _(
+                "FamilySearch sign-in is not configured. Check the integration "
+                "settings in Preferences."
+            ),
+        }
+        if kind == "unexpected-response" and self._status_http is not None:
+            return (
+                _(
+                    "The middleware returned an unexpected response (HTTP %s). "
+                    "Check its address in Preferences."
+                )
+                % self._status_http
+            )
+        if kind in messages:
+            return messages[kind]
+        if self._status_http is not None:
+            http_messages = {
+                401: _(
+                    "The sign-in service rejected the credentials (HTTP 401). "
+                    "Check your middleware access code and selected server "
+                    "in Preferences."
+                ),
+                403: _(
+                    "The sign-in service refused the request (HTTP 403). "
+                    "Check your access approval or contact the "
+                    "middleware administrator."
+                ),
+            }
+            return http_messages.get(
+                self._status_http,
+                _(
+                    "The sign-in service returned HTTP %s. Try again later; "
+                    "if the problem continues, contact the middleware administrator."
+                )
+                % self._status_http,
+            )
+        return _(
+            "FamilySearch sign-in failed. Check the integration settings "
+            "in Preferences and try again."
+        )
+
+    def _authentication_response(
+        self, response: requests.Response
+    ) -> dict[str, Any] | None:
+        """
+        Validate a middleware response without copying its body into errors.
+
+        :param response: The response to a sign-in request.
+        :returns: The JSON object, or ``None`` for a failed response.
+        """
+        self._auth_failure_kind = ""
+        if response.headers.get("cf-mitigated", "").lower() == "challenge":
+            self._auth_failure_kind = "browser-challenge"
+        else:
+            try:
+                data = response.json()
+            except ValueError:
+                data = None
+            if not isinstance(data, dict):
+                self._auth_failure_kind = "unexpected-response"
+            elif response.status_code < 400:
+                return data
+        details = {
+            "browser-challenge": _("The middleware requires a browser challenge."),
+            "unexpected-response": _("Middleware returned an unexpected response."),
+        }
+        self._set_status(
+            "ERROR",
+            details.get(
+                self._auth_failure_kind, _("Middleware sign-in request failed.")
+            ),
+            http=response.status_code,
+        )
+        return None
+
+    def _set_authentication_exception(self, error: Exception, stage: str) -> None:
+        """
+        Classify transport failures without displaying exception text.
+
+        :param error: The exception raised by the sign-in request.
+        :param stage: The translated description of the failed operation.
+        """
+        if isinstance(error, requests.exceptions.SSLError):
+            self._auth_failure_kind = "certificate"
+        elif isinstance(error, requests.exceptions.Timeout):
+            self._auth_failure_kind = "timeout"
+        elif isinstance(error, requests.exceptions.ConnectionError):
+            self._auth_failure_kind = "connection"
+        elif isinstance(
+            error,
+            (
+                requests.exceptions.InvalidURL,
+                requests.exceptions.InvalidSchema,
+                requests.exceptions.MissingSchema,
+            ),
+        ):
+            self._auth_failure_kind = "configuration"
+        elif isinstance(error, OSError) and any(
+            text in str(error).lower() for text in ("certificate", "cacert.pem")
+        ):
+            self._auth_failure_kind = "certificate"
+        else:
+            self._auth_failure_kind = ""
+        self._set_status("ERROR", stage)
+        _dbg(f"{stage} {type(error).__name__}")
 
     def _set_status(self, state: str, detail: str = "", http: int | None = None):
         self._status_state = state
@@ -1336,6 +1503,8 @@ class Session(requests.Session):
     def _poll_foundation_login(
         self, login_id: str, poll_interval: float, timeout_s: int
     ) -> dict[str, Any]:
+        self._auth_failure_kind = ""
+        self._oauth_error = ""
         deadline = time.time() + max(1, int(timeout_s or self.listen_timeout))
         url = self._foundation_url(f"v1/fs/login/status/{login_id}")
         headers = self._foundation_headers()
@@ -1346,48 +1515,29 @@ class Session(requests.Session):
                 return {}
             self._set_status("AWAITING_BROWSER", "Waiting for middleware approval")
             try:
-                r = super().get(url, headers=headers, verify=self.verify)
-            except Exception as e:
-                self._set_status(
-                    "ERROR", f"Middleware status failed: {type(e).__name__}"
+                response = super().get(
+                    url, headers=headers, verify=self.verify, timeout=self.api_timeout_s
                 )
-                _dbg(f"foundation status exception: {type(e).__name__}: {e}")
-                return {}
-
-            try:
-                data = r.json()
-            except Exception as e:
-                self._set_status("ERROR", "Middleware returned non-JSON status")
-                _dbg(
-                    f"foundation status non-JSON: {type(e).__name__}: {e} "
-                    f"body={_safe(getattr(r, 'text', ''), 220)}"
+            except Exception as error:
+                self._set_authentication_exception(
+                    error, _("Could not check middleware sign-in status.")
                 )
                 return {}
 
-            if r.status_code >= 400:
-                err = (
-                    data.get("message")
-                    if isinstance(data, dict)
-                    else getattr(r, "text", "")
-                )
-                self._set_status(
-                    "ERROR",
-                    f"Middleware status failed: {_safe(str(err), 200)}",
-                    http=r.status_code,
-                )
-                return {}
-
-            if not isinstance(data, dict):
-                self._set_status("ERROR", "Middleware returned invalid status payload")
+            data = self._authentication_response(response)
+            if data is None:
                 return {}
 
             status = str(data.get("status") or "").strip().lower()
             if status == "approved":
                 return data
             if status == "failed":
+                self._oauth_error = (
+                    "access_denied" if data.get("error") == "access_denied" else ""
+                )
                 self._set_status(
                     "ERROR",
-                    str(data.get("message") or data.get("error") or "Login failed"),
+                    _("Middleware sign-in failed."),
                 )
                 return {}
 
@@ -1400,6 +1550,9 @@ class Session(requests.Session):
         return {}
 
     def _authorize_via_foundation(self, method: str) -> str:
+        self._auth_failure_kind = ""
+        self._oauth_error = ""
+        self._auth_ui_cancelled = False
         if not self.foundation_base_url:
             self._set_status(
                 "ERROR", "Foundation middleware base URL is not configured"
@@ -1414,38 +1567,37 @@ class Session(requests.Session):
         self._foundation_auth_payload = None
         self.foundation_session_token = ""
         self.foundation_login_id = ""
-        self._auth_ui_cancelled = False
         self._set_status("AUTHORIZING", "Starting middleware login")
         try:
-            r = super().post(
+            response = super().post(
                 self._foundation_url("v1/fs/login/start"),
                 json={"env": self._profile.env, "username": self.username or ""},
                 headers=self._foundation_headers(include_json=True),
                 verify=self.verify,
+                timeout=self.api_timeout_s,
             )
-            data = r.json()
-        except Exception as e:
-            _dbg(f"foundation start exception: {type(e).__name__}: {e}")
-            self._set_status(
-                "ERROR", f"Middleware login start failed: {type(e).__name__}"
+        except Exception as error:
+            self._set_authentication_exception(
+                error, _("Middleware sign-in could not start.")
             )
             return ""
 
-        if r.status_code >= 400 or not isinstance(data, dict):
-            message = ""
-            if isinstance(data, dict):
-                message = str(data.get("message") or data.get("error") or "").strip()
-            if not message:
-                message = _safe(getattr(r, "text", ""), 200) or "Login start failed"
-            self._set_status("ERROR", message, http=r.status_code)
+        data = self._authentication_response(response)
+        if data is None:
             return ""
 
         login_id = str(data.get("login_id") or "").strip()
         browser_url = str(data.get("browser_url") or "").strip()
-        poll_interval = float(data.get("poll_interval") or 2.0)
-        if not login_id or not browser_url:
+        try:
+            poll_interval = float(data.get("poll_interval") or 2.0)
+        except (TypeError, ValueError):
+            poll_interval = -1.0
+        if not login_id or not browser_url or not 0 < poll_interval < float("inf"):
+            self._auth_failure_kind = "unexpected-response"
             self._set_status(
-                "ERROR", "Middleware login start returned an incomplete payload"
+                "ERROR",
+                _("Middleware returned an unexpected response."),
+                http=response.status_code,
             )
             return ""
 
