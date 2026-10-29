@@ -55,8 +55,10 @@ import certifi
 import requests
 
 from gramps.gen.config import config
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.constfunc import win
 
+_ = glocale.translation.gettext
 LOG = logging.getLogger(__name__)
 _DEBUG_LOGGING_CONFIGURED = False
 
@@ -137,6 +139,8 @@ _SENSITIVE_LOG_KEYS = {
     "code_challenge",
     "code_verifier",
     "email",
+    "error",
+    "error_description",
     "id_token",
     "ip_address",
     "refresh_token",
@@ -188,13 +192,12 @@ def _safe_url_for_log(url: str | None, max_len: int = 500) -> str:
         return ""
     try:
         parsed = urlparse(url)
-        safe_qs = parse_qs(parsed.query, keep_blank_values=True)
-        query = urlencode(_safe_mapping_for_log(safe_qs), doseq=True)
+        query = "redacted" if parsed.query else ""
         fragment = _LOG_REDACTED if parsed.fragment else ""
         sanitized = urlunparse(
             (
                 parsed.scheme,
-                parsed.netloc,
+                parsed.hostname or "",
                 parsed.path,
                 parsed.params,
                 query,
@@ -203,11 +206,9 @@ def _safe_url_for_log(url: str | None, max_len: int = 500) -> str:
         )
         sanitized = _SENSITIVE_URL_RE.sub(r"\1\2=redacted", sanitized)
         sanitized = _SENSITIVE_ENCODED_URL_RE.sub(r"\1\2%3Dredacted", sanitized)
-        return _safe(sanitized or url, max_len)
+        return _safe(sanitized, max_len)
     except Exception:
-        fallback = _SENSITIVE_URL_RE.sub(r"\1\2=redacted", url)
-        fallback = _SENSITIVE_ENCODED_URL_RE.sub(r"\1\2%3Dredacted", fallback)
-        return _safe(fallback, max_len)
+        return "(invalid URL)"
 
 
 def _safe_http_request_line_for_log(first_line: str | None, max_len: int = 350) -> str:
@@ -395,9 +396,7 @@ class Listener(threading.Thread):
 
                     qs = parse_qs(query, keep_blank_values=True)
                     self.result = {k: (v[0] if v else "") for k, v in qs.items()}
-                    _dbg(
-                        f"Listener parsed params: {_safe_mapping_for_log(self.result)}"
-                    )
+                    _dbg("Listener received callback parameters")
 
                     if "error" in self.result or "error_description" in self.result:
                         msg = (
@@ -411,7 +410,7 @@ class Listener(threading.Thread):
                     conn.sendall(b"Content-Type: text/plain\r\n\r\n")
                     conn.sendall(msg.encode("utf-8"))
         except Exception as e:
-            self.error = f"{type(e).__name__}: {e}"
+            self.error = f"Callback failed: {type(e).__name__}"
             _dbg(f"Listener exception: {self.error}")
 
 
@@ -477,6 +476,7 @@ class Session(requests.Session):
         self._legacy_app_key = (app_key or "").strip()
         self._legacy_redirect = (redirect or "").strip()
 
+        self.auth_generation = 0
         self.access_token: str | None = None
         self.refresh_token: str | None = None
         self.id_token: str | None = None
@@ -495,6 +495,7 @@ class Session(requests.Session):
         self.foundation_session_token: str = ""
         self.foundation_login_id: str = ""
         self._foundation_auth_payload: dict[str, Any] | None = None
+        self.last_recovery_kind: str = "none"
         self.connected: bool = False
         self.last_probe_http: int | None = None
         self.last_probe_detail: str = ""
@@ -580,16 +581,9 @@ class Session(requests.Session):
 
         self._set_status("DISCONNECTED", "No token yet")
 
-        app_key_log = (
-            "hidden-by-foundation"
-            if self._using_foundation_middleware()
-            else _mask(self.app_key)
-        )
         _dbg(
             "Session initialized: "
-            f"env={self._profile.env} auth_provider={self.auth_provider} "
-            f"fs_url={self.fs_url} ident_url={self.ident_url} api_url={self.api_url} "
-            f"app_key={app_key_log} redirect={self.redirect} scope={self.oauth_scope!r}"
+            f"env={self._profile.env} auth_provider={self.auth_provider}"
         )
 
     @classmethod
@@ -680,6 +674,7 @@ class Session(requests.Session):
         self.redirect = (prof.redirect or "").strip()
 
         if clear_state:
+            self.auth_generation = getattr(self, "auth_generation", 0) + 1
             try:
                 self.cookies.clear()
             except Exception:
@@ -765,9 +760,7 @@ class Session(requests.Session):
                 ) and not self._validate_oauth_state(params):
                     return ""
                 if "error" in params or "error_description" in params:
-                    err = params.get("error", "")
-                    desc = params.get("error_description", "")
-                    self._set_status("ERROR", f"{err} {desc}".strip())
+                    self._set_status("ERROR", "FamilySearch authorization was declined")
                     return ""
                 return (params.get("code", "") or "").strip()
         except Exception:
@@ -853,6 +846,56 @@ class Session(requests.Session):
         if auth_token and not any(k.lower() == "authorization" for k in headers.keys()):
             headers["authorization"] = "Bearer " + auth_token
 
+    def _mark_auth_required(self, http: int) -> None:
+        """Discard expired credentials without starting a hidden login flow."""
+        self.last_recovery_kind = "auth_required"
+        self.connected = False
+        self.access_token = None
+        self.refresh_token = None
+        self.foundation_session_token = ""
+        self._foundation_auth_payload = None
+        self._set_status("AUTH_REQUIRED", _("Sign in to FamilySearch again."), http)
+
+    def _observe_api_response(self, response: Any) -> bool:
+        """Expose safe recovery state without trusting arbitrary upstream text.
+
+        :param response: The actual API or middleware HTTP response.
+        :returns: Whether middleware explicitly requires a new user sign-in.
+        """
+        status = response.status_code
+        if status >= 400 and self._using_foundation_middleware():
+            try:
+                payload = response.json()
+            except (ValueError, TypeError):
+                payload = None
+            if (
+                isinstance(payload, dict)
+                and payload.get("error")
+                in {"familysearch_session_unavailable", "refresh_failed"}
+                and payload.get("reauth_required") is True
+            ):
+                self._mark_auth_required(status)
+                return True
+        if status in (429, 502, 503, 504):
+            self.last_recovery_kind = "temporary_failure"
+            self._set_status(
+                "API_FAIL",
+                _("FamilySearch is temporarily unavailable. Try again later."),
+                status,
+            )
+        elif status == 403:
+            self.last_recovery_kind = "access_denied"
+            self._set_status(
+                "API_FAIL", _("FamilySearch access was not permitted."), status
+            )
+        elif 200 <= status < 300:
+            recovering = self.last_recovery_kind != "none"
+            self.last_recovery_kind = "none"
+            if recovering and self.access_token:
+                self.connected = True
+                self._set_status("CONNECTED", _("Connection restored."), status)
+        return False
+
     def _refresh_direct_access_token(self) -> bool:
         refresh_token = (self.refresh_token or "").strip()
         if not refresh_token or not (self.app_key or "").strip():
@@ -869,13 +912,25 @@ class Session(requests.Session):
                 "accept": "application/json",
                 "content-type": "application/x-www-form-urlencoded",
             }
-            r = super().post(url, data=payload, headers=headers, verify=self.verify)
+            r = super().post(
+                url,
+                data=payload,
+                headers=headers,
+                verify=self.verify,
+                timeout=self.api_timeout_s,
+            )
             data = r.json()
             if r.status_code >= 400 or not isinstance(data, dict):
-                _dbg(
-                    f"direct refresh failed HTTP {r.status_code}: "
-                    f"{_safe(getattr(r, 'text', ''), 220)}"
-                )
+                _dbg(f"direct refresh failed HTTP {r.status_code}")
+                if (
+                    r.status_code in (400, 401)
+                    and isinstance(data, dict)
+                    and data.get("error")
+                    in {"invalid_grant", "invalid_token", "login_required"}
+                ):
+                    self._mark_auth_required(r.status_code)
+                else:
+                    self._observe_api_response(r)
                 return False
             access_token = (data.get("access_token") or "").strip()
             if not access_token:
@@ -884,7 +939,8 @@ class Session(requests.Session):
             self.refresh_token = (data.get("refresh_token") or refresh_token).strip()
             return True
         except Exception as e:
-            _dbg(f"direct refresh exception: {type(e).__name__}: {e}")
+            self.last_recovery_kind = "temporary_failure"
+            _dbg(f"direct refresh exception: {type(e).__name__}")
             return False
 
     def _refresh_foundation_access_token(self) -> bool:
@@ -904,13 +960,13 @@ class Session(requests.Session):
                     include_session=True, include_json=True
                 ),
                 verify=self.verify,
+                timeout=self.api_timeout_s,
             )
             data = r.json()
             if r.status_code >= 400 or not isinstance(data, dict):
-                _dbg(
-                    f"foundation refresh failed HTTP {r.status_code}: "
-                    f"{_safe(getattr(r, 'text', ''), 220)}"
-                )
+                _dbg(f"foundation refresh failed HTTP {r.status_code}")
+                if not self._observe_api_response(r) and r.status_code == 401:
+                    self._mark_auth_required(r.status_code)
                 return False
             session_token = (
                 str(data.get("foundation_session_token") or "").strip()
@@ -922,7 +978,8 @@ class Session(requests.Session):
             self.foundation_session_token = session_token
             return True
         except Exception as e:
-            _dbg(f"foundation refresh exception: {type(e).__name__}: {e}")
+            self.last_recovery_kind = "temporary_failure"
+            _dbg(f"foundation refresh exception: {type(e).__name__}")
             return False
 
     def refresh_access_token(self) -> bool:
@@ -931,45 +988,68 @@ class Session(requests.Session):
             if self.access_token != token_before:
                 # Another thread already refreshed the token while we
                 # were waiting for the lock; no need to do it again.
-                return True
+                return bool(self.access_token)
             if self._using_foundation_middleware():
                 return self._refresh_foundation_access_token()
             return self._refresh_direct_access_token()
 
-    def _request_with_api_retry(self, method_name: str, url: str, **kwargs):
+    def _request_with_api_retry(
+        self, method_name: str, url: str, *, _query_only: bool = False, **kwargs
+    ):
         method = getattr(super(), method_name)
-        _dbg(f"{method_name.upper()} {url}")
+        _dbg(f"{method_name.upper()} {_safe_url_for_log(url)}")
         response = method(url, **kwargs)
-        if response.status_code != 401:
+        if self._observe_api_response(response) or response.status_code != 401:
+            return response
+        if method_name.lower() not in {"get", "head"} and not (
+            method_name.lower() == "post" and _query_only
+        ):
+            # A rejected write is returned to its caller for explicit handling.
+            # Never replay a potentially completed remote mutation automatically.
             return response
         if not self.refresh_access_token():
             return response
 
         retry_kwargs = self._clone_kwargs(kwargs)
         headers = retry_kwargs.setdefault("headers", {})
+        for key in list(headers):
+            if key.lower() == "authorization":
+                del headers[key]
         if self.access_token:
             headers["authorization"] = "Bearer " + self.access_token
-        _dbg(f"{method_name.upper()} {url} retry after token refresh")
-        return method(url, **retry_kwargs)
+        _dbg(
+            f"{method_name.upper()} {_safe_url_for_log(url)} retry after token refresh"
+        )
+        response = method(url, **retry_kwargs)
+        self._observe_api_response(response)
+        return response
 
     def _route_api_request(self, method_name: str, url: str, **kwargs):
         kwargs.setdefault("timeout", self.api_timeout_s)
         text_url = str(url)
+        query_only = (
+            method_name.lower() == "post"
+            and urlparse(text_url).path.strip("/") == "platform/tree/matches"
+        )
         if self._using_foundation_middleware() and text_url.startswith(
             ("http://", "https://")
         ):
             if self._is_proxyable_foundation_url(text_url):
                 url = self._foundation_proxy_absolute_url(text_url)
                 self._ensure_api_headers(kwargs)
-                return self._request_with_api_retry(method_name, url, **kwargs)
+                return self._request_with_api_retry(
+                    method_name, url, _query_only=query_only, **kwargs
+                )
         if not text_url.startswith("http"):
             if self._using_foundation_middleware():
                 url = self._foundation_proxy_url(text_url)
             else:
                 url = self._fs_join(self.api_url, text_url)
             self._ensure_api_headers(kwargs)
-            return self._request_with_api_retry(method_name, url, **kwargs)
-        _dbg(f"{method_name.upper()} {url}")
+            return self._request_with_api_retry(
+                method_name, url, _query_only=query_only, **kwargs
+            )
+        _dbg(f"{method_name.upper()} {_safe_url_for_log(url)}")
         return getattr(super(), method_name)(url, **kwargs)
 
     def get(self, url, **kwargs):
@@ -993,8 +1073,23 @@ class Session(requests.Session):
     def write_log(self, text: str) -> None:
         _dbg(str(text))
 
-    def get_url(self, url, headers=None, params=None):
-        return self.get(url, headers=headers or {}, params=params)
+    def get_url(
+        self,
+        url: str,
+        headers: dict[str, str] | None = None,
+        params: dict[str, Any] | None = None,
+        **kwargs: Any,
+    ) -> requests.Response:
+        """
+        Request an API endpoint with optional transport settings.
+
+        :param url: The endpoint or absolute URL.
+        :param headers: Additional request headers.
+        :param params: URL query parameters.
+        :param kwargs: Additional request options, including redirect handling.
+        :returns: The HTTP response.
+        """
+        return self.get(url, headers=headers or {}, params=params, **kwargs)
 
     def post_url(self, url, data=None, headers=None):
         return self.post(url, data=data, headers=headers or {})
@@ -1023,9 +1118,7 @@ class Session(requests.Session):
         try:
             r = self.get_url(url, headers=headers)
         except requests.exceptions.RequestException as e:
-            self.write_log(
-                f"WARNING: request failed for {url}: {type(e).__name__}: {e}"
-            )
+            self.write_log(f"WARNING: API request failed: {type(e).__name__}")
             return None
 
         if r is None or r == "error":
@@ -1038,7 +1131,7 @@ class Session(requests.Session):
             return None
 
         if r.status_code == 401:
-            self.write_log(f"WARNING: 401 from {url}")
+            self.write_log("WARNING: API request failed: HTTP 401")
             return None
 
         if r.status_code == 403:
@@ -1050,23 +1143,13 @@ class Session(requests.Session):
                 return "error"
 
         if r.status_code >= 400:
-            self.write_log(
-                f"WARNING: HTTP {r.status_code} from {url}: {_safe(getattr(r, 'text', ''), 200)}"
-            )
+            self.write_log(f"WARNING: API request failed: HTTP {r.status_code}")
             return None
 
         try:
             return r.json()
         except Exception as e:
-            body_preview = ""
-            try:
-                body_preview = _safe(getattr(r, "text", ""), 220)
-            except Exception:
-                pass
-            self.write_log(
-                f"WARNING: JSON decode failed from {url}: {type(e).__name__}: {e}"
-                + (f"; body preview: {body_preview}" if body_preview else "")
-            )
+            self.write_log(f"WARNING: API JSON decode failed: {type(e).__name__}")
             return None
 
     def _recompute_listener(self) -> None:
@@ -1090,22 +1173,17 @@ class Session(requests.Session):
             time.sleep(0.1)
             self._iterate_ui_events()
 
-        _dbg(
-            f"listen(): finished. error={getattr(self.listener, 'error', None)!r} "
-            f"result={getattr(self.listener, 'result', None)!r}"
-        )
+        _dbg("listen(): callback completed")
 
         if self.listener and self.listener.error:
-            self._set_status("ERROR", self.listener.error)
+            self._set_status("ERROR", "OAuth callback failed")
             return ""
 
         if self.listener and (
             "error_description" in self.listener.result
             or "error" in self.listener.result
         ):
-            err = self.listener.result.get("error", "")
-            desc = self.listener.result.get("error_description", "")
-            self._set_status("ERROR", f"{err} {desc}".strip())
+            self._set_status("ERROR", "FamilySearch authorization was declined")
             return ""
 
         if self.listener and not self._validate_oauth_state(self.listener.result):
@@ -1127,10 +1205,7 @@ class Session(requests.Session):
         else:
             self._set_status("ERROR", "OAuth state missing from callback")
 
-        _dbg(
-            "oauth state validation failed: "
-            f"expected={expected_state!r} got={got_state!r}"
-        )
+        _dbg("oauth state validation failed")
         return False
 
     def canonical_web_url(self, url: str) -> str:
@@ -1187,7 +1262,7 @@ class Session(requests.Session):
             r = self.get("platform/users/current")
             http = r.status_code
             self.last_probe_http = http
-            self.last_probe_detail = (r.reason or "") or "OK"
+            self.last_probe_detail = "OK" if http == 200 else f"HTTP {http}"
             if http == 200:
                 self.connected = True
                 self._set_status("CONNECTED", "API probe OK", http=http)
@@ -1196,14 +1271,14 @@ class Session(requests.Session):
             self.connected = False
             self._set_status(
                 "API_FAIL",
-                _safe(r.text, 200) or (r.reason or "API probe failed"),
+                "API probe failed",
                 http=http,
             )
             return False
         except Exception as e:
             self.connected = False
             self.last_probe_http = None
-            self.last_probe_detail = f"{type(e).__name__}: {e}"
+            self.last_probe_detail = f"API probe failed: {type(e).__name__}"
             self._set_status("ERROR", self.last_probe_detail)
             return False
 
@@ -1214,6 +1289,7 @@ class Session(requests.Session):
         return r.text
 
     def logout(self) -> None:
+        self.auth_generation = getattr(self, "auth_generation", 0) + 1
         if (
             self._using_foundation_middleware()
             and self.foundation_base_url
@@ -1234,7 +1310,7 @@ class Session(requests.Session):
                     verify=self.verify,
                 )
             except Exception as e:
-                _dbg(f"foundation logout exception: {type(e).__name__}: {e}")
+                _dbg(f"foundation logout exception: {type(e).__name__}")
         self.access_token = None
         self.refresh_token = None
         self.id_token = None
@@ -1281,13 +1357,15 @@ class Session(requests.Session):
         try:
             return bool(webbrowser.open(url, new=1, autoraise=True))
         except Exception as e:
-            _dbg(f"browser open failed: {type(e).__name__}: {e}")
+            _dbg(f"browser open failed: {type(e).__name__}")
             return False
 
     def _print_browser_url(self, url: str) -> None:
+        """Show a login link only in an interactive terminal, never captured logs."""
         try:
-            print("Open this URL in your browser to continue FamilySearch login:")
-            print(url)
+            if sys.stdout and sys.stdout.isatty():
+                print("Open this URL in your browser to continue FamilySearch login:")
+                print(url)
         except Exception:
             pass
 
@@ -1346,33 +1424,27 @@ class Session(requests.Session):
                 return {}
             self._set_status("AWAITING_BROWSER", "Waiting for middleware approval")
             try:
-                r = super().get(url, headers=headers, verify=self.verify)
+                r = super().get(
+                    url, headers=headers, verify=self.verify, timeout=self.api_timeout_s
+                )
             except Exception as e:
                 self._set_status(
                     "ERROR", f"Middleware status failed: {type(e).__name__}"
                 )
-                _dbg(f"foundation status exception: {type(e).__name__}: {e}")
+                _dbg(f"foundation status exception: {type(e).__name__}")
                 return {}
 
             try:
                 data = r.json()
             except Exception as e:
                 self._set_status("ERROR", "Middleware returned non-JSON status")
-                _dbg(
-                    f"foundation status non-JSON: {type(e).__name__}: {e} "
-                    f"body={_safe(getattr(r, 'text', ''), 220)}"
-                )
+                _dbg(f"foundation status non-JSON: {type(e).__name__}")
                 return {}
 
             if r.status_code >= 400:
-                err = (
-                    data.get("message")
-                    if isinstance(data, dict)
-                    else getattr(r, "text", "")
-                )
                 self._set_status(
                     "ERROR",
-                    f"Middleware status failed: {_safe(str(err), 200)}",
+                    "Middleware status request failed",
                     http=r.status_code,
                 )
                 return {}
@@ -1387,12 +1459,11 @@ class Session(requests.Session):
             if status == "failed":
                 self._set_status(
                     "ERROR",
-                    str(data.get("message") or data.get("error") or "Login failed"),
+                    "FamilySearch authorization failed",
                 )
                 return {}
 
-            detail = str(data.get("detail") or "Waiting for FamilySearch approval")
-            self._set_status("AWAITING_BROWSER", detail)
+            self._set_status("AWAITING_BROWSER", "Waiting for FamilySearch approval")
             time.sleep(max(3.0, float(poll_interval or 2.0)))
             self._iterate_ui_events()
 
@@ -1422,22 +1493,20 @@ class Session(requests.Session):
                 json={"env": self._profile.env, "username": self.username or ""},
                 headers=self._foundation_headers(include_json=True),
                 verify=self.verify,
+                timeout=self.api_timeout_s,
             )
             data = r.json()
         except Exception as e:
-            _dbg(f"foundation start exception: {type(e).__name__}: {e}")
+            _dbg(f"foundation start exception: {type(e).__name__}")
             self._set_status(
                 "ERROR", f"Middleware login start failed: {type(e).__name__}"
             )
             return ""
 
         if r.status_code >= 400 or not isinstance(data, dict):
-            message = ""
-            if isinstance(data, dict):
-                message = str(data.get("message") or data.get("error") or "").strip()
-            if not message:
-                message = _safe(getattr(r, "text", ""), 200) or "Login start failed"
-            self._set_status("ERROR", message, http=r.status_code)
+            self._set_status(
+                "ERROR", "Middleware login start failed", http=r.status_code
+            )
             return ""
 
         login_id = str(data.get("login_id") or "").strip()
@@ -1474,6 +1543,7 @@ class Session(requests.Session):
             self._set_status("ERROR", "Middleware approval payload is incomplete")
             return False
 
+        self.auth_generation = getattr(self, "auth_generation", 0) + 1
         self.access_token = foundation_session_token
         self.refresh_token = None
         self.id_token = None
@@ -1485,7 +1555,7 @@ class Session(requests.Session):
         try:
             self.probe_api(reason="post-token")
         except Exception as e:
-            _dbg(f"foundation probe_api failed: {type(e).__name__}: {e}")
+            _dbg(f"foundation probe_api failed: {type(e).__name__}")
         return True
 
     def _get_token_via_foundation(self, login_id: str) -> bool:
@@ -1563,7 +1633,13 @@ class Session(requests.Session):
                 "content-type": "application/x-www-form-urlencoded",
             }
             _dbg(f"POST {url}")
-            r = super().post(url, data=payload, headers=headers, verify=self.verify)
+            r = super().post(
+                url,
+                data=payload,
+                headers=headers,
+                verify=self.verify,
+                timeout=self.api_timeout_s,
+            )
 
             try:
                 data = r.json()
@@ -1571,12 +1647,11 @@ class Session(requests.Session):
                 self._set_status(
                     "ERROR", "Token endpoint returned non-JSON", http=r.status_code
                 )
-                _dbg(
-                    f"get_token(): non-JSON: {type(e).__name__}: {e} body={_safe(getattr(r, 'text', ''), 900)}"
-                )
+                _dbg(f"get_token(): non-JSON: {type(e).__name__}")
                 return False
 
             if isinstance(data, dict) and data.get("access_token"):
+                self.auth_generation = getattr(self, "auth_generation", 0) + 1
                 self.access_token = data["access_token"]
                 self.refresh_token = data.get("refresh_token")
                 self.id_token = data.get("id_token")
@@ -1585,22 +1660,14 @@ class Session(requests.Session):
                 try:
                     self.probe_api(reason="post-token")
                 except Exception as e:
-                    _dbg(f"get_token(): probe_api failed: {type(e).__name__}: {e}")
+                    _dbg(f"get_token(): probe_api failed: {type(e).__name__}")
                 return True
 
-            err = data.get("error") if isinstance(data, dict) else "token_error"
-            desc = (
-                (data.get("error_description") or data.get("message"))
-                if isinstance(data, dict)
-                else ""
-            )
-            self._set_status("ERROR", f"{err} {desc}".strip(), http=r.status_code)
-            _dbg(
-                f"get_token(): failed HTTP {r.status_code}: error={err!r} desc={desc!r}"
-            )
+            self._set_status("ERROR", "Token exchange failed", http=r.status_code)
+            _dbg(f"get_token(): failed HTTP {r.status_code}")
             return False
         except Exception as e:
-            _dbg(f"get_token(): exception: {type(e).__name__}: {e}")
+            _dbg(f"get_token(): exception: {type(e).__name__}")
             self._set_status("ERROR", f"token exchange failed: {type(e).__name__}")
             return False
 
@@ -1655,23 +1722,15 @@ class Session(requests.Session):
         self.listener.start()
 
         self._set_status("AUTHORIZING", "Opening system browser (loopback callback)")
-        try:
-            print("Open this URL in your browser to continue FamilySearch login:")
-            print(auth_url)
-        except Exception:
-            pass
+        self._print_browser_url(auth_url)
         opened = False
         try:
             opened = bool(webbrowser.open(auth_url, new=1, autoraise=True))
         except Exception as e:
-            _dbg(f"loopback browser open failed: {type(e).__name__}: {e}")
+            _dbg(f"loopback browser open failed: {type(e).__name__}")
 
         if not opened:
-            try:
-                print("Open this URL in your browser to continue FamilySearch login:")
-                print(auth_url)
-            except Exception:
-                pass
+            self._print_browser_url(auth_url)
 
         code = self.listen().strip()
         if code:
@@ -1721,23 +1780,15 @@ class Session(requests.Session):
     def _authorize_via_manual(self, auth_url: str) -> str:
         """Open the browser and ask the user to paste the code back. (usually for Windows)"""
         self._set_status("AUTHORIZING", "Opening system browser (manual code entry)")
-        try:
-            print("Open this URL in your browser to continue FamilySearch login:")
-            print(auth_url)
-        except Exception:
-            pass
+        self._print_browser_url(auth_url)
         opened = False
         try:
             opened = bool(webbrowser.open(auth_url, new=1, autoraise=True))
         except Exception as e:
-            _dbg(f"manual browser open failed: {type(e).__name__}: {e}")
+            _dbg(f"manual browser open failed: {type(e).__name__}")
 
         if not opened:
-            try:
-                print("Open this URL in your browser to continue FamilySearch login:")
-                print(auth_url)
-            except Exception:
-                pass
+            self._print_browser_url(auth_url)
 
         code = self._prompt_for_auth_code(auth_url)
         if not code:

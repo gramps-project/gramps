@@ -873,3 +873,12 @@ data/org.gramps_project.Gramps.metainfo.xml.in
 data/org.gramps_project.Gramps.desktop.in
 data/holidays.xml
 data/tips.xml
+
+gramps/gen/fs/session.py
+gramps/gen/fs/linking.py
+gramps/gen/fs/preview.py
+gramps/gen/fs/request_runtime.py
+gramps/gen/fs/search.py
+gramps/gen/fs/search_context.py
+gramps/gen/fs/search_prefill.py
+gramps/gui/fs/search_dialog.py
