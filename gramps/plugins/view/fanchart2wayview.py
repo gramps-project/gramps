@@ -536,6 +536,7 @@ class CairoPrintSave:
 
         # set up a print operation
         operation = Gtk.PrintOperation()
+        operation.set_embed_page_setup(True)
         operation.connect("draw_page", self.on_draw_page)
         operation.connect("preview", self.on_preview)
         operation.connect("paginate", self.on_paginate)
@@ -545,8 +546,10 @@ class CairoPrintSave:
         # locked the print dialog's paper-size combo at "Custom" and,
         # on Mac, made the printer try to reproduce a 1330x1330mm
         # page literally — printing 1/4 of the chart on real Letter
-        # paper.  Use the system default paper instead and rely on
-        # on_draw_page's existing scale-to-fit
+        # paper.  Start from the system default paper, let the user
+        # pick paper size and orientation in the print dialog
+        # (set_embed_page_setup above; without it GTK grays those
+        # out), and rely on on_draw_page's existing scale-to-fit
         # (``scale = min(pxwidth/widthpx, pxheight/heightpx)``).
 
         if PRINT_SETTINGS is not None:
@@ -560,6 +563,7 @@ class CairoPrintSave:
                 break
             # set up printing again; can't reuse PrintOperation?
             operation = Gtk.PrintOperation()
+            operation.set_embed_page_setup(True)
             operation.connect("draw_page", self.on_draw_page)
             operation.connect("preview", self.on_preview)
             operation.connect("paginate", self.on_paginate)

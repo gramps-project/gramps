@@ -31,11 +31,16 @@ built a ``Gtk.PaperSize.new_custom("custom", "Custom Size", widthpx *
 for the first ``operation.run`` and once when reconstructing the
 operation for the preview-rerun branch).
 
+Removing the override alone leaves the paper-size and orientation combos
+grayed out at the system default: GTK only lets the print dialog change
+the page setup when the operation sets ``embed_page_setup``.  So each
+print operation must also call ``set_embed_page_setup(True)``.
+
 The actual print flow is GUI-bound (live ``Gtk.PrintOperation``, real
 ``PRINT_DIALOG``, a printer to receive the job) so a runtime unit test
 of the dialog is impractical in headless CI.  These tests are the
 cheaper guard: they assert the buggy fragments are absent from each
-file so the pattern doesn't accidentally reappear via copy-paste from
+file, and that every print operation embeds the page setup, so the pattern doesn't accidentally reappear via copy-paste from
 a sibling view or a stale revert.  Same shape as the source-grep
 guards in ``gramps/gen/plug/docgen/test/graphdoc_test.py`` (bug 6556 /
 PR 2318)."""
@@ -80,6 +85,15 @@ class FanChartPrintNoCustomPaperSizeTest(unittest.TestCase):
     def test_fanchartdescview_does_not_override_paper_size(self):
         self._assert_no_buggy_fragments("fanchartdescview.py")
 
+    def test_fanchartview_embeds_page_setup(self):
+        self._assert_embeds_page_setup("fanchartview.py")
+
+    def test_fanchart2wayview_embeds_page_setup(self):
+        self._assert_embeds_page_setup("fanchart2wayview.py")
+
+    def test_fanchartdescview_embeds_page_setup(self):
+        self._assert_embeds_page_setup("fanchartdescview.py")
+
     def test_all_view_files_exist(self):
         # Tripwire: if any of the three files is renamed or moved, this
         # test surfaces it so the per-file tests above aren't silently
@@ -101,6 +115,19 @@ class FanChartPrintNoCustomPaperSizeTest(unittest.TestCase):
                 f"{name}: re-introduction of bug 10768 custom-paper override "
                 f"(forbidden fragment {fragment!r})",
             )
+
+    def _assert_embeds_page_setup(self, name: str) -> None:
+        # One call per print operation: the first run and the
+        # preview-rerun branch each build their own.
+        source = _read(name)
+        operations = source.count("Gtk.PrintOperation()")
+        self.assertGreater(operations, 0, f"{name}: no print operation found")
+        self.assertEqual(
+            source.count("set_embed_page_setup(True)"),
+            operations,
+            f"{name}: every Gtk.PrintOperation() needs "
+            "set_embed_page_setup(True), or the dialog grays out paper size",
+        )
 
 
 if __name__ == "__main__":
