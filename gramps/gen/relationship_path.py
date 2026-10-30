@@ -187,7 +187,7 @@ class FamilyLinkGraph:
 
     def parents(self, handle: PersonHandle) -> list[PersonHandle]:
         """
-        Return the parents of a person, in all their parent families.
+        Return the parents of a person, in all their parent families, by handle.
         """
         result: list[PersonHandle] = []
         for family, _, _ in self._parent_families.get(handle, []):
@@ -195,22 +195,22 @@ class FamilyLinkGraph:
             for parent in (father, mother):
                 if parent and parent not in result:
                     result.append(parent)
-        return result
+        return sorted(result)
 
     def children(self, handle: PersonHandle) -> list[PersonHandle]:
         """
-        Return the children of a person, in all their families.
+        Return the children of a person, in all their families, by handle.
         """
         result: list[PersonHandle] = []
         for family in self._spouse_families.get(handle, []):
             for child in self._families[family][2]:
                 if child not in result:
                     result.append(child)
-        return result
+        return sorted(result)
 
     def spouses(self, handle: PersonHandle) -> list[PersonHandle]:
         """
-        Return the partners of a person.
+        Return the partners of a person, by handle.
         """
         result: list[PersonHandle] = []
         for family in self._spouse_families.get(handle, []):
@@ -218,24 +218,28 @@ class FamilyLinkGraph:
             partner = mother if father == handle else father
             if partner and partner != handle and partner not in result:
                 result.append(partner)
-        return result
+        return sorted(result)
 
     def siblings(self, handle: PersonHandle) -> list[PersonHandle]:
         """
-        Return the other children of all parent families of a person.
+        Return the other children of all parent families of a person, by handle.
         """
         result: list[PersonHandle] = []
         for family, _, _ in self._parent_families.get(handle, []):
             for child in self._families[family][2]:
                 if child != handle and child not in result:
                     result.append(child)
-        return result
+        return sorted(result)
 
     def neighbors(
         self, handle: PersonHandle, links: Iterable[LinkType] = ALL_LINKS
     ) -> Iterator[tuple[PersonHandle, LinkType]]:
         """
         Yield the people linked to a person, blood relatives first.
+
+        Within each kind of link, people come in handle order, so that
+        searches give the same results whatever order the database
+        returns families in.
         """
         links = frozenset(links)
         if LinkType.PARENT in links:
@@ -367,6 +371,11 @@ def find_connections(
     the person is linked to the person before them, and is ``None`` for the
     first person. Paths never visit a person twice and are returned
     shortest first.
+
+    To keep the search fast, each person is expanded at most
+    ``max_results`` times, so a path that a full search would return can
+    occasionally be missed. The results depend only on the tree, not on the
+    order the database returns people and families in.
 
     :param max_depth: The maximum number of links in a path.
     :param max_results: The maximum number of paths to return.

@@ -192,7 +192,7 @@ class RelationshipPathTest(unittest.TestCase):
         )
         self.assertEqual(self.graph.children(people["me"]), [people["son"]])
         self.assertEqual(
-            self.graph.spouses(people["wife"]), [people["me"], people["ex"]]
+            self.graph.spouses(people["wife"]), sorted([people["me"], people["ex"]])
         )
         self.assertEqual(
             set(self.graph.siblings(people["me"])),
@@ -377,6 +377,51 @@ class RelationshipPathTest(unittest.TestCase):
         self.assertEqual(
             find_connections(self.graph, people["gf"], people["me"], links={P}), []
         )
+
+    def test_family_order(self) -> None:
+        """
+        The results do not depend on the order families were added in.
+        """
+        people = self.people
+        # families and children in database order, and reversed
+        families = [
+            (family.handle, family.father_handle, family.mother_handle, family)
+            for family in self.db.iter_families()
+        ]
+        graphs = []
+        for order in (families, families[::-1]):
+            graph = FamilyLinkGraph()
+            for person in self.db.iter_people():
+                graph.add_person(person.handle, person.get_gender())
+            for handle, father, mother, family in order:
+                graph.add_family(
+                    handle,
+                    father,
+                    mother,
+                    [
+                        (
+                            ref.ref,
+                            ref.get_mother_relation() == ChildRefType.BIRTH,
+                            ref.get_father_relation() == ChildRefType.BIRTH,
+                        )
+                        for ref in family.get_child_ref_list()[::-1]
+                    ],
+                )
+            graphs.append(graph)
+        for handle in people.values():
+            self.assertEqual(
+                list(graphs[0].neighbors(handle)), list(graphs[1].neighbors(handle))
+            )
+        for start in people.values():
+            for end in people.values():
+                for blood_only in (False, True):
+                    results = [
+                        find_connections(
+                            graph, start, end, max_results=1, blood_only=blood_only
+                        )
+                        for graph in graphs
+                    ]
+                    self.assertEqual(results[0], results[1])
 
     def test_private_proxy(self) -> None:
         """
