@@ -409,183 +409,74 @@ class FamilyLinesOptions(MenuReportOptions):
             self.justyears.set_available(False)
 
 
-# ------------------------------------------------------------------------
-#
-# FamilyLinesReport -- created once the user presses 'OK'
-#
-# ------------------------------------------------------------------------
-class FamilyLinesReport(Report):
-    """FamilyLines report"""
+class FamilyLinesSelection:
+    """
+    Determine which people and families a Family Lines report includes.
 
-    def __init__(self, database, options, user):
-        """
-        Create FamilyLinesReport object that eventually produces the report.
+    This is the people/family-selection half of :class:`FamilyLinesReport`,
+    factored out so it depends only on the database and the report's option
+    flags -- not on the GUI-entangled report machinery (the document writer,
+    the menu, the ``Report`` base class).  That makes the selection logic
+    (follow parents/children and the "remove extra people" pruning) directly
+    unit-testable without constructing the full report.
+    """
 
-        The arguments are:
-
-        database     - the Gramps database instance
-        options      - instance of the FamilyLinesOptions class for this report
-        user         - a gen.user.User() instance
-        name_format  - Preferred format to display names
-        incl_private - Whether to include private data
-        inc_id       - Whether to include IDs.
-        living_people - How to handle living people
-        years_past_death - Consider as living this many years after death
-        """
-        Report.__init__(self, database, options, user)
-
-        menu = options.menu
-        get_option_by_name = menu.get_option_by_name
-        get_value = lambda name: get_option_by_name(name).get_value()
-
-        self.set_locale(menu.get_option_by_name("trans").get_value())
-
-        stdoptions.run_date_format_option(self, menu)
-
-        stdoptions.run_private_data_option(self, menu)
-        stdoptions.run_living_people_option(self, menu, self._locale)
-        self.database = CacheProxyDb(self.database)
-        self._db = self.database
-
-        # initialize several convenient variables
-        self._people = set()  # handle of people we need in the report
-        self._families = set()  # handle of families we need in the report
+    def __init__(
+        self,
+        db,
+        interest_set,
+        followpar,
+        followchild,
+        removeextra,
+        limitparents,
+        maxparents,
+        limitchildren,
+        maxchildren,
+        surnamecolors,
+    ):
+        self._db = db
+        self._interest_set = interest_set
+        self._followpar = followpar
+        self._followchild = followchild
+        self._removeextra = removeextra
+        self._limitparents = limitparents
+        self._maxparents = maxparents
+        self._limitchildren = limitchildren
+        self._maxchildren = maxchildren
+        self._surnamecolors = surnamecolors
+        self._people = set()
+        self._families = set()
         self._deleted_people = 0
         self._deleted_families = 0
-        self._user = user
+        self._direct_ancestor_cache = None
 
-        self._followpar = get_value("followpar")
-        self._followchild = get_value("followchild")
-        self._removeextra = get_value("removeextra")
-        self._gidlist = get_value("gidlist")
-        self._colormales = get_value("colormales")
-        self._colorfemales = get_value("colorfemales")
-        self._colorother = get_value("colorother")
-        self._colorunknown = get_value("colorunknown")
-        self._colorfamilies = get_value("colorfamilies")
-        self._limitparents = get_value("limitparents")
-        self._maxparents = get_value("maxparents")
-        self._limitchildren = get_value("limitchildren")
-        self._maxchildren = get_value("maxchildren")
-        self._incimages = get_value("incimages")
-        self._imageonside = get_value("imageonside")
-        self._imagesize = get_value("imagesize")
-        self._useroundedcorners = get_value("useroundedcorners")
-        self._usesubgraphs = get_value("usesubgraphs")
-        self._incdates = get_value("incdates")
-        self._just_years = get_value("justyears")
-        self._incplaces = get_value("incplaces")
-        self._incchildcount = get_value("incchildcnt")
-        self.includeid = get_value("inc_id")
+    @property
+    def deleted_people(self):
+        """Number of people pruned by remove_uninteresting_parents()."""
+        return self._deleted_people
 
-        arrow_str = get_value("arrow")
-        if "d" in arrow_str:
-            self._arrowheadstyle = "normal"
-        else:
-            self._arrowheadstyle = "none"
-        if "a" in arrow_str:
-            self._arrowtailstyle = "normal"
-        else:
-            self._arrowtailstyle = "none"
+    @property
+    def deleted_families(self):
+        """Number of families pruned by remove_uninteresting_parents()."""
+        return self._deleted_families
 
-        # the gidlist is annoying for us to use since we always have to convert
-        # the GIDs to either Person or to handles, so we may as well convert the
-        # entire list right now and not have to deal with it ever again
-        self._interest_set = set()
-        if not self._gidlist:
-            raise ReportError(_("Empty report"), _("You did not specify anybody"))
-        for gid in self._gidlist.split():
-            person = self._db.get_person_from_gramps_id(gid)
-            if person:
-                # option can be from another family tree, so person can be None
-                self._interest_set.add(person.get_handle())
-
-        stdoptions.run_name_format_option(self, menu)
-
-        # convert the 'surnamecolors' string to a dictionary of names and colors
-        self._surnamecolors = {}
-        tmp = get_value("surnamecolors")
-        if tmp.find("\xb0") >= 0:
-            # new style delimiter (see bug report #2162)
-            tmp = tmp.split("\xb0")
-        else:
-            # old style delimiter
-            tmp = tmp.split(" ")
-
-        while len(tmp) > 1:
-            surname = tmp.pop(0).encode("iso-8859-1", "xmlcharrefreplace")
-            colour = tmp.pop(0)
-            self._surnamecolors[surname] = colour
-
-        self._colorize = get_value("color")
-
-    def begin_report(self):
+    def select(self):
         """
-        Inherited method; called by report() in _ReportDialog.py
+        Build and return the (people, families) handle sets for the report.
 
-        This is where we'll do all of the work of figuring out who
-        from the database is going to be output into the report
+        Mirrors the original FamilyLinesReport.begin_report() ordering:
+        follow parents (optionally pruning extra people), then follow
+        children.
         """
-
-        # starting with the people of interest, we then add parents:
         self._people.clear()
         self._families.clear()
         if self._followpar:
             self.find_parents()
-
             if self._removeextra:
                 self.remove_uninteresting_parents()
-
-        # ...and/or with the people of interest we add their children:
         if self._followchild:
             self.find_children()
-        # once we get here we have a full list of people
-        # and families that we need to generate a report
-
-    def write_report(self):
-        """
-        Inherited method; called by report() in _ReportDialog.py
-        """
-
-        # now that begin_report() has done the work, output what we've
-        # obtained into whatever file or format the user expects to use
-
-        self.doc.add_comment(
-            "# %s %d"
-            % (self._("Number of people in database:"), self._db.get_number_of_people())
-        )
-        self.doc.add_comment(
-            "# %s %d" % (self._("Number of people of interest:"), len(self._people))
-        )
-        self.doc.add_comment(
-            "# %s %d"
-            % (
-                self._("Number of families in database:"),
-                self._db.get_number_of_families(),
-            )
-        )
-        self.doc.add_comment(
-            "# %s %d" % (self._("Number of families of interest:"), len(self._families))
-        )
-        if self._removeextra:
-            self.doc.add_comment(
-                "# %s %d" % (self._("Additional people removed:"), self._deleted_people)
-            )
-            self.doc.add_comment(
-                "# %s %d"
-                % (self._("Additional families removed:"), self._deleted_families)
-            )
-        self.doc.add_comment("# %s" % self._("Initial list of people of interest:"))
-        for handle in self._interest_set:
-            person = self._db.get_person_from_handle(handle)
-            gid = person.get_gramps_id()
-            name = person.get_primary_name().get_regular_name()
-            # Translators: needed for Arabic, ignore otherwise
-            id_n = self._("%(str1)s, %(str2)s") % {"str1": gid, "str2": name}
-            self.doc.add_comment("# -> " + id_n)
-
-        self.write_people()
-        self.write_families()
+        return self._people, self._families
 
     def find_parents(self):
         """find the parents"""
@@ -769,6 +660,15 @@ class FamilyLinesReport(Report):
             if spouse_handle in self._interest_set:
                 continue
 
+            # a direct-line ancestor of a person of interest is never
+            # "extra": it was deliberately added by following parents up
+            # the tree.  Keep it whatever its surname -- ancestry is decided
+            # by lineage (parent links), not surname text, so a surname that
+            # drifts in spelling between generations no longer prunes the
+            # direct line (bug 10415 / 10400).
+            if person.get_handle() in self._direct_ancestors():
+                continue
+
             # if the surname (or the spouse's surname) matches a person
             # of interest, then we automatically keep this person
             keep_this_person = False
@@ -868,6 +768,226 @@ class FamilyLinesReport(Report):
 
         # we now merge our temp set "children_to_include" into our master set
         self._people.update(children_to_include)
+
+    def _direct_ancestors(self):
+        """
+        Return the set of person handles that are direct-line ancestors of
+        any person of interest (the people of interest themselves included).
+
+        Membership is decided purely by lineage -- walking parent-family
+        links upward -- and never by surname text, so an ancestor whose
+        surname spelling differs from the descendant's is still recognised
+        as part of the direct line.
+        """
+        if self._direct_ancestor_cache is not None:
+            return self._direct_ancestor_cache
+        ancestors = set()
+        to_visit = list(self._interest_set)
+        while to_visit:
+            handle = to_visit.pop()
+            if handle in ancestors:
+                continue
+            ancestors.add(handle)
+            person = self._db.get_person_from_handle(handle)
+            if not person:
+                continue
+            for family_handle in person.get_parent_family_handle_list():
+                family = self._db.get_family_from_handle(family_handle)
+                if not family:
+                    continue
+                for parent_handle in (
+                    family.get_father_handle(),
+                    family.get_mother_handle(),
+                ):
+                    if parent_handle and parent_handle not in ancestors:
+                        to_visit.append(parent_handle)
+        self._direct_ancestor_cache = ancestors
+        return ancestors
+
+
+# ------------------------------------------------------------------------
+#
+# FamilyLinesReport -- created once the user presses 'OK'
+#
+# ------------------------------------------------------------------------
+class FamilyLinesReport(Report):
+    """FamilyLines report"""
+
+    def __init__(self, database, options, user):
+        """
+        Create FamilyLinesReport object that eventually produces the report.
+
+        The arguments are:
+
+        database     - the Gramps database instance
+        options      - instance of the FamilyLinesOptions class for this report
+        user         - a gen.user.User() instance
+        name_format  - Preferred format to display names
+        incl_private - Whether to include private data
+        inc_id       - Whether to include IDs.
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
+        """
+        Report.__init__(self, database, options, user)
+
+        menu = options.menu
+        get_option_by_name = menu.get_option_by_name
+        get_value = lambda name: get_option_by_name(name).get_value()
+
+        self.set_locale(menu.get_option_by_name("trans").get_value())
+
+        stdoptions.run_date_format_option(self, menu)
+
+        stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, self._locale)
+        self.database = CacheProxyDb(self.database)
+        self._db = self.database
+
+        # initialize several convenient variables
+        self._people = set()  # handle of people we need in the report
+        self._families = set()  # handle of families we need in the report
+        self._deleted_people = 0
+        self._deleted_families = 0
+        self._user = user
+
+        self._followpar = get_value("followpar")
+        self._followchild = get_value("followchild")
+        self._removeextra = get_value("removeextra")
+        self._gidlist = get_value("gidlist")
+        self._colormales = get_value("colormales")
+        self._colorfemales = get_value("colorfemales")
+        self._colorother = get_value("colorother")
+        self._colorunknown = get_value("colorunknown")
+        self._colorfamilies = get_value("colorfamilies")
+        self._limitparents = get_value("limitparents")
+        self._maxparents = get_value("maxparents")
+        self._limitchildren = get_value("limitchildren")
+        self._maxchildren = get_value("maxchildren")
+        self._incimages = get_value("incimages")
+        self._imageonside = get_value("imageonside")
+        self._imagesize = get_value("imagesize")
+        self._useroundedcorners = get_value("useroundedcorners")
+        self._usesubgraphs = get_value("usesubgraphs")
+        self._incdates = get_value("incdates")
+        self._just_years = get_value("justyears")
+        self._incplaces = get_value("incplaces")
+        self._incchildcount = get_value("incchildcnt")
+        self.includeid = get_value("inc_id")
+
+        arrow_str = get_value("arrow")
+        if "d" in arrow_str:
+            self._arrowheadstyle = "normal"
+        else:
+            self._arrowheadstyle = "none"
+        if "a" in arrow_str:
+            self._arrowtailstyle = "normal"
+        else:
+            self._arrowtailstyle = "none"
+
+        # the gidlist is annoying for us to use since we always have to convert
+        # the GIDs to either Person or to handles, so we may as well convert the
+        # entire list right now and not have to deal with it ever again
+        self._interest_set = set()
+        if not self._gidlist:
+            raise ReportError(_("Empty report"), _("You did not specify anybody"))
+        for gid in self._gidlist.split():
+            person = self._db.get_person_from_gramps_id(gid)
+            if person:
+                # option can be from another family tree, so person can be None
+                self._interest_set.add(person.get_handle())
+
+        stdoptions.run_name_format_option(self, menu)
+
+        # convert the 'surnamecolors' string to a dictionary of names and colors
+        self._surnamecolors = {}
+        tmp = get_value("surnamecolors")
+        if tmp.find("\xb0") >= 0:
+            # new style delimiter (see bug report #2162)
+            tmp = tmp.split("\xb0")
+        else:
+            # old style delimiter
+            tmp = tmp.split(" ")
+
+        while len(tmp) > 1:
+            surname = tmp.pop(0).encode("iso-8859-1", "xmlcharrefreplace")
+            colour = tmp.pop(0)
+            self._surnamecolors[surname] = colour
+
+        self._colorize = get_value("color")
+
+    def begin_report(self):
+        """
+        Inherited method; called by report() in _ReportDialog.py
+
+        This is where we'll do all of the work of figuring out who
+        from the database is going to be output into the report
+        """
+
+        # The people/family selection is delegated to FamilyLinesSelection, a
+        # GUI-free unit that depends only on the database and the option flags
+        # (no doc, no menu, no Report base) so it can be unit-tested directly.
+        selection = FamilyLinesSelection(
+            self._db,
+            self._interest_set,
+            self._followpar,
+            self._followchild,
+            self._removeextra,
+            self._limitparents,
+            self._maxparents,
+            self._limitchildren,
+            self._maxchildren,
+            self._surnamecolors,
+        )
+        self._people, self._families = selection.select()
+        self._deleted_people = selection.deleted_people
+        self._deleted_families = selection.deleted_families
+        # once we get here we have a full list of people
+        # and families that we need to generate a report
+
+    def write_report(self):
+        """
+        Inherited method; called by report() in _ReportDialog.py
+        """
+
+        # now that begin_report() has done the work, output what we've
+        # obtained into whatever file or format the user expects to use
+
+        self.doc.add_comment(
+            "# %s %d"
+            % (self._("Number of people in database:"), self._db.get_number_of_people())
+        )
+        self.doc.add_comment(
+            "# %s %d" % (self._("Number of people of interest:"), len(self._people))
+        )
+        self.doc.add_comment(
+            "# %s %d"
+            % (
+                self._("Number of families in database:"),
+                self._db.get_number_of_families(),
+            )
+        )
+        self.doc.add_comment(
+            "# %s %d" % (self._("Number of families of interest:"), len(self._families))
+        )
+        if self._removeextra:
+            self.doc.add_comment(
+                "# %s %d" % (self._("Additional people removed:"), self._deleted_people)
+            )
+            self.doc.add_comment(
+                "# %s %d"
+                % (self._("Additional families removed:"), self._deleted_families)
+            )
+        self.doc.add_comment("# %s" % self._("Initial list of people of interest:"))
+        for handle in self._interest_set:
+            person = self._db.get_person_from_handle(handle)
+            gid = person.get_gramps_id()
+            name = person.get_primary_name().get_regular_name()
+            # Translators: needed for Arabic, ignore otherwise
+            id_n = self._("%(str1)s, %(str2)s") % {"str1": gid, "str2": name}
+            self.doc.add_comment("# -> " + id_n)
+
+        self.write_people()
+        self.write_families()
 
     def write_people(self):
         """write the people"""
