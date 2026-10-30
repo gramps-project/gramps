@@ -90,6 +90,7 @@ from gramps.gen.config import config
 from ..widgets.progressdialog import LongOpStatus, ProgressMonitor, GtkProgressDialog
 
 from gramps.gen.plug.utils import get_all_addons, available_updates
+from gramps.gen.plug._addonrefresh import AddonRefreshDispatch
 from ..display import display_help, display_url
 from gramps.gui.widgets import BasicLabel, SimpleButton
 from gramps.gen.utils.requirements import Requirements
@@ -425,6 +426,9 @@ class AddonManager(ManagedWindow):
     def __init__(self, dbstate, uistate, track):
         self.dbstate = dbstate
         self.title = _("Addon Manager")
+        # Gate for the background refresh result (Mantis 13174). Set before
+        # the window is built so close() can always cancel a pending refresh.
+        self._dispatch = None
         ManagedWindow.__init__(self, uistate, [], self)
 
         self.__pmgr = GuiPluginManager.get_instance()
@@ -584,8 +588,29 @@ class AddonManager(ManagedWindow):
 
         self.__placeholder(_("Loading..."))
 
-        thread = GetAddons(self.load_addons)
+        # A failing refresh (e.g. a project whose listing .json 404s) runs for
+        # a long time off the GUI thread. If the window is closed meanwhile,
+        # the result that arrives later must be dropped: delivering it would
+        # call back into the destroyed window and leave a dangling pointer in
+        # the Gtk draw cycle (Mantis 13174). Route delivery through a liveness
+        # gate, superseding any still-in-flight previous refresh.
+        if self._dispatch is not None:
+            self._dispatch.cancel()
+        self._dispatch = AddonRefreshDispatch(self.load_addons)
+
+        thread = GetAddons(self._dispatch.deliver)
         thread.start()
+
+    def close(self, *args):
+        """
+        Drop any in-flight refresh result, then close the window.
+
+        Cancelling the dispatch ensures a slow/failed refresh that completes
+        after teardown cannot touch the destroyed window (Mantis 13174).
+        """
+        if self._dispatch is not None:
+            self._dispatch.cancel()
+        ManagedWindow.close(self, *args)
 
     def update_addon(self, addon_id):
         """
