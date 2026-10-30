@@ -612,6 +612,11 @@ gramps/plugins/lib/libodfbackend.py
 gramps/plugins/lib/libplaceimport.py
 gramps/plugins/lib/librecurse.py
 #
+# plugins/lib/test directory
+#
+gramps/plugins/lib/test/__init__.py
+gramps/plugins/lib/test/libsourceview_test.py
+#
 # plugins/lib/maps directory
 #
 gramps/plugins/lib/maps/__init__.py
