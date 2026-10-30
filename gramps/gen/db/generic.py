@@ -714,10 +714,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.surname_list = []
         self.genderStats = GenderStats()  # can pass in loaded stats as dict
         self.owner = Researcher()
-        # Set by ``gen/db/upgrade.gramps_upgrade_16`` so the GUI caller
-        # in ``gramps/gui/dbloader.py`` can display the v15→v16 upgrade
-        # statistics via ``InfoDialog`` after ``load()`` returns.  Kept
-        # here so ``gen/db/upgrade.py`` does not have to import from
+        # Set by ``gen/db/upgrade.gramps_upgrade_16`` so the callers in
+        # ``gramps/gui/dbloader.py`` and ``gramps/cli/grampscli.py`` can
+        # display the v15→v16 upgrade statistics after ``load()`` returns.
+        # Kept here so ``gen/db/upgrade.py`` does not have to import from
         # ``gramps.gui`` (Mantis 6085).
         self.upgrade_summary: str | None = None
         if directory:

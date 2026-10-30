@@ -19,6 +19,7 @@ gramps/cli/__init__.py
 #
 gramps/cli/test/argparser_test.py
 gramps/cli/test/cli_test.py
+gramps/cli/test/grampscli_test.py
 gramps/cli/test/user_test.py
 #
 # gen
