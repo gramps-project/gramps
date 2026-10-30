@@ -525,7 +525,10 @@ class DateParser:
         self._ny = re.compile(r"(.*)\s+\(%s\)( ?.*)" % self._ny_str, re.IGNORECASE)
         self._ny_iso = re.compile(r"(.*)\s+\((\d{1,2}-\d{1,2})\)( ?.*)")
 
-        self._qual = re.compile(r"(.* ?)%s\s+(.+)" % self._qual_str, re.IGNORECASE)
+        # The \b before the quality keyword anchors it to a word boundary so a
+        # keyword embedded in an unrelated word (e.g. "est" inside "Test") is not
+        # stripped, mangling otherwise-free-text date input (bug 5516).
+        self._qual = re.compile(r"(.* ?)\b%s\s+(.+)" % self._qual_str, re.IGNORECASE)
 
         self._span = re.compile(
             r"(from)\s+(?P<start>.+)\s+to\s+(?P<stop>.+)", re.IGNORECASE
