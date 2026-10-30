@@ -50,42 +50,68 @@ PRIMARY_EVENT_ROLES = [EventRoleType.FAMILY, EventRoleType.PRIMARY]
 # Fallback functions
 #
 # -------------------------------------------------------------------------
-def get_birth_or_fallback(db, person, format=None):
+def _has_usable_date(event):
+    """
+    Return True when *event* carries a date usable for age computation,
+    i.e. a date that is valid and not empty (the same test ``get_age``
+    applies before it computes a span).
+    """
+    date = event.get_date_object()
+    return bool(date) and date.get_valid() and not date.is_empty()
+
+
+def get_birth_or_fallback(db, person, format=None, require_date=False):
     """
     Get BIRTH event from a person, or fallback to an event around
     the time of birth.
+
+    :param require_date: when True, a primary Birth event without a usable
+        date is skipped so that a dated birth-fallback event (e.g. Baptism)
+        can be returned instead. Defaults to False, preserving the original
+        behaviour for callers that want the primary event regardless of its
+        date (e.g. to display a birth place).
     """
     birth_ref = person.get_birth_ref()
     if birth_ref:  # regular birth found
         event = db.get_event_from_handle(birth_ref.ref)
-        if event:
+        if event and (not require_date or _has_usable_date(event)):
             return event
 
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
         if event and event.type.is_birth_fallback() and event_ref.role.is_primary():
+            if require_date and not _has_usable_date(event):
+                continue
             if format:
                 event.date.format = format
             return event
     return None
 
 
-def get_death_or_fallback(db, person, format=None):
+def get_death_or_fallback(db, person, format=None, require_date=False):
     """
     Get a DEATH event from a person, or fallback to an
     event around the time of death.
+
+    :param require_date: when True, a primary Death event without a usable
+        date is skipped so that a dated death-fallback event (e.g. Burial)
+        can be returned instead. Defaults to False, preserving the original
+        behaviour for callers that want the primary event regardless of its
+        date.
     """
     death_ref = person.get_death_ref()
     if death_ref:  # regular death found
         event = db.get_event_from_handle(death_ref.ref)
-        if event:
+        if event and (not require_date or _has_usable_date(event)):
             return event
 
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
         if event and event.type.is_death_fallback() and event_ref.role.is_primary():
+            if require_date and not _has_usable_date(event):
+                continue
             if format:
                 event.date.format = format
             return event
@@ -106,8 +132,8 @@ def get_age(db, person, fallback=True, calendar="gregorian"):
         # a handle is passed
         person = db.get_person_from_handle(person)
     if fallback:
-        birth = get_birth_or_fallback(db, person)
-        death = get_death_or_fallback(db, person)
+        birth = get_birth_or_fallback(db, person, require_date=True)
+        death = get_death_or_fallback(db, person, require_date=True)
     else:
         birth_ref = person.get_birth_ref()
         if birth_ref:  # regular birth found
