@@ -79,7 +79,7 @@ from gramps.gen.plug.report import (
     CATEGORY_TREE,
     CATEGORY_CODE,
     ReportOptions,
-    append_styles,
+    add_book_item_styles,
 )
 from gramps.gen.plug.report._paper import paper_sizes
 from gramps.gen.const import USER_HOME, DOCGEN_OPTIONS
@@ -877,7 +877,7 @@ def cl_book(database, name, book, options_str_dict):
     user = User()
     rptlist = []
     selected_style = StyleSheet()
-    for item in book.get_item_list():
+    for item_number, item in enumerate(book.get_item_list()):
         # The option values were loaded magically by the book parser.
         # But they still need to be applied to the menu options.
         opt_dict = item.option_class.options_dict
@@ -887,14 +887,18 @@ def cl_book(database, name, book, options_str_dict):
             if menu_option:
                 menu_option.set_value(opt_dict[optname])
 
-        item.option_class.set_document(doc)
+        # Collate this item's styles into the book's shared stylesheet under a
+        # per-item namespace and route the item's report through a proxy that
+        # rewrites its style references to that namespace, so same-named styles
+        # from different items keep their own values (issue 6128). Must run
+        # before the report is built (it grabs its document here).
+        add_book_item_styles(selected_style, item, doc, item_number)
         report_class = item.get_write_item()
         obj = (
             write_book_item(database, report_class, item.option_class, user),
             item.get_translated_name(),
         )
         if obj:
-            append_styles(selected_style, item)
             rptlist.append(obj)
 
     doc.set_style_sheet(selected_style)

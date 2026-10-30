@@ -270,6 +270,8 @@ gramps/gen/plug/report/_bibliography.py
 gramps/gen/plug/report/_options.py
 gramps/gen/plug/report/_paper.py
 gramps/gen/plug/report/_reportbase.py
+gramps/gen/plug/report/test/__init__.py
+gramps/gen/plug/report/test/book_styles_test.py
 #
 # gen.plug.test
 #
