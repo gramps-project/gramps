@@ -28,6 +28,7 @@ gramps/gen/constfunc.py
 gramps/gen/dbstate.py
 gramps/gen/errors.py
 gramps/gen/git_revision.py
+gramps/gen/relationship_path.py
 gramps/gen/sort.py
 gramps/gen/soundex.py
 gramps/gen/types.py
@@ -299,6 +300,7 @@ gramps/gen/simple/_simpledoc.py
 #
 gramps/gen/test/config_test.py
 gramps/gen/test/constfunc_test.py
+gramps/gen/test/relationship_path_test.py
 #
 # gen utils API
 #
