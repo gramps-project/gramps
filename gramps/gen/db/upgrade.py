@@ -36,8 +36,6 @@ import logging
 # Gramps Modules
 #
 # ------------------------------------------------------------------------
-from gramps.cli.clidbman import NAME_FILE
-from gramps.gen.db.dbconst import CLASS_TO_KEY_MAP
 from gramps.gen.lib import (
     DNAMatch,
     DNATest,
@@ -49,8 +47,9 @@ from gramps.gen.lib import (
 )
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
-from gramps.gui.dialog import InfoDialog
 from .dbconst import (
+    CLASS_TO_KEY_MAP,
+    NAME_FILE,
     PERSON_KEY,
     FAMILY_KEY,
     EVENT_KEY,
@@ -1383,7 +1382,12 @@ def gramps_upgrade_16(self):
         "in order to merge citations that contain similar\n"
         "information"
     )
-    InfoDialog(_("Upgrade Statistics"), txt, monospaced=True)  # TODO no-parent
+    # Stash the summary on the db instance instead of popping a dialog
+    # from inside ``gen`` — the callers display it once ``db.load``
+    # returns: gramps/gui/dbloader.py via ``InfoDialog``, and
+    # gramps/cli/grampscli.py on stderr.  Keeps ``gen/db/upgrade.py``
+    # free of any ``gramps.gui`` or ``gramps.cli`` imports (Mantis 6085).
+    self.upgrade_summary = txt
 
 
 def upgrade_media_list_16(self, media_list):

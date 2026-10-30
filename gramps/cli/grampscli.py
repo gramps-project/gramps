@@ -204,6 +204,13 @@ class CLIDbLoader:
         except Exception:
             self.dbstate.no_database()
             LOG.error("Failed to open database.", exc_info=True)
+        else:
+            # A log message would not reach CLI users at the default log
+            # level, so print the upgrade statistics (Mantis 6085).
+            if self.dbstate.db.upgrade_summary:
+                print(_("Upgrade Statistics"), file=sys.stderr)
+                print(self.dbstate.db.upgrade_summary, file=sys.stderr)
+                self.dbstate.db.upgrade_summary = None
         return True
 
 

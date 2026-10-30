@@ -67,7 +67,10 @@ _LOG = logging.getLogger(DBLOGNAME)
 #
 # -------------------------------------------------------------------------
 DEFAULT_TITLE = _("Family Tree")
-NAME_FILE = "name.txt"
+# Canonical location is gramps.gen.db.dbconst (Mantis 6085).
+# ``as NAME_FILE`` is the PEP 484 explicit re-export form for mypy/pylint/flake8.
+from gramps.gen.db.dbconst import NAME_FILE as NAME_FILE
+
 META_NAME = "meta_data.db"
 UNAVAILABLE = _("Unavailable")
 

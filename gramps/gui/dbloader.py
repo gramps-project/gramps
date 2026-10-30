@@ -66,7 +66,13 @@ from gramps.gen.db.exceptions import (
     DbConnectionError,
 )
 from .pluginmanager import GuiPluginManager
-from .dialog import DBErrorDialog, ErrorDialog, QuestionDialog2, WarningDialog
+from .dialog import (
+    DBErrorDialog,
+    ErrorDialog,
+    InfoDialog,
+    QuestionDialog2,
+    WarningDialog,
+)
 from .user import User
 from gramps.gen.errors import DbError
 from .managedwindow import ManagedWindow
@@ -210,6 +216,24 @@ class DbLoader(CLIDbLoader):
                                 dbstate=self.dbstate,
                             )
                         )
+                    # Display the v15→v16 upgrade statistics if
+                    # ``gramps_upgrade_16`` stashed a summary on the db
+                    # during the load.  Previously this dialog was
+                    # popped from inside ``gramps/gen/db/upgrade.py``,
+                    # which forced ``gen`` to import from ``gramps.gui``;
+                    # the summary is now handed up here so the gen/gui
+                    # boundary stays clean (Mantis 6085).  Shown *before*
+                    # ``change_database`` so the dialog precedes the main
+                    # window opening — matches the pre-fix UX where the
+                    # dialog popped from inside ``db.load()``.
+                    if db.upgrade_summary:
+                        InfoDialog(
+                            _("Upgrade Statistics"),
+                            db.upgrade_summary,
+                            parent=self.uistate.window,
+                            monospaced=True,
+                        )
+                        db.upgrade_summary = None
                     self.dbstate.change_database(db)
                     break
                 except (DbSupportedError, DbUpgradeRequiredError) as msg:
