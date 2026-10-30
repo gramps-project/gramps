@@ -692,6 +692,8 @@ gramps/plugins/tool/__init__.py
 # plugins/view directory
 #
 gramps/plugins/view/__init__.py
+gramps/plugins/view/test/__init__.py
+gramps/plugins/view/test/fanchart_print_papersize_test.py
 #
 # plugins/webreport directory
 #
