@@ -52,13 +52,14 @@
 # Julien Lepiller <roptat@lepiller.eu>, 2026.
 # AR <info@rmlrnd.com>, 2026.
 # Florian <geckoflume@outlook.com>, 2026.
+# leclercj <leclercj@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-02 21:33+0000\n"
-"Last-Translator: Florian <geckoflume@outlook.com>\n"
+"PO-Revision-Date: 2026-10-31 09:51+0000\n"
+"Last-Translator: leclercj <leclercj@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -66,7 +67,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 2026.10\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -94,7 +95,7 @@ msgstr "Croatie"
 
 #: ../data/holidays.xml:143
 msgid "Czech Republic"
-msgstr "République tchèque"
+msgstr "Tchéquie"
 
 #: ../data/holidays.xml:158
 msgid "England"
@@ -818,12 +819,11 @@ msgid ""
 "a Feature Request. Filing a Feature Request is preferred but it can be good "
 "to discuss your ideas on the email lists."
 msgstr ""
-"&bugs_url;<b>Amélioration de Gramps</b><br/>Vous êtes encouragé(e) à "
-"proposer des améliorations pour Gramps. Proposer une amélioration est "
-"possible via les listes de diffusion gramps-users ou gramps-devel ou en "
-"créant une demande d'amélioration (Request for Enhancement - RFE) dans "
-"&bugs_url;. Il est également apprécié d'en discuter sur l'une des listes de "
-"diffusion de Gramps."
+"<b>Amélioration de Gramps</b><br/>Vous êtes encouragé(e) à proposer des "
+"améliorations pour Gramps. Proposer une amélioration est possible via les "
+"listes de diffusion gramps-users ou gramps-devel ou en créant une demande "
+"d'amélioration (Request for Enhancement - RFE) dans &bugs_url;. Il est "
+"également apprécié d'en discuter sur l'une des listes de diffusion de Gramps."
 
 #: ../data/tips.xml:67
 msgid ""
@@ -2579,10 +2579,9 @@ msgstr "de"
 #. Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:440
 #: ../gramps/gen/datehandler/_datedisplay.py:524
-#, fuzzy
 msgctxt "to-date"
 msgid ""
-msgstr "à"
+msgstr ""
 
 # trunk
 #: ../gramps/gen/datehandler/_datedisplay.py:443
@@ -11021,7 +11020,7 @@ msgid ""
 msgstr ""
 "Graphviz peut créer des graphiques de grande taille en étalant le graphique "
 "sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une "
-"surface verticale. Seulement valide pour le format dot et PDF via "
+"surface verticale. Seulement valide pour les formats .dot et .PDF via "
 "Ghostscript."
 
 # Substantif (GNOME fr)
@@ -12552,27 +12551,28 @@ msgstr ""
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "Impossible d'accéder à PyPI pour le paquet '%s':%s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
 msgstr ""
+"Aucune roue compatible n'a été trouvée pour '%s==%s' sur cette plateforme."
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "Aucune roue compatible n'a été trouvée pour '%s' sur cette plateforme."
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "Erreur de signature SHA-256 pour '%s' : %s attendu, mais %s obtenu"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
 msgid "No version of '%s' satisfies all constraints: %s"
-msgstr ""
+msgstr "Aucune version de  '%s 'ne satisfait à toutes les contraintes : %s"
 
 # espace limité dans la fenêtre, bug #3596
 #: ../gramps/gen/utils/pypi.py:1285
@@ -19449,10 +19449,8 @@ msgid "Editor person: (none)"
 msgstr "Éditeur d'individu : (aucun)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Only in FamilySearch"
 msgid "Open Person in FamilySearch"
-msgstr "Uniquement dans FamilySearch"
+msgstr "Ouvrir la fiche de cette personne dans FamilySearch"
 
 # trunk
 #: ../gramps/gui/fs/tools_window.py:381
