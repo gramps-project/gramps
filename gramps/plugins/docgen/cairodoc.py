@@ -82,7 +82,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
         # See
         # https://cairographics.org/documentation/pycairo/3/reference/surfaces.html#class-pssurface-surface
         # for the arg semantics.
-        raise "Missing surface factory override!!!"
+        raise NotImplementedError("Missing surface factory override!!!")
 
     def run(self):
         """Create the output file.

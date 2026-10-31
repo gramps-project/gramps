@@ -1324,7 +1324,7 @@ class GrampletPane(Gtk.ScrolledWindow):
 
         except IOError as err:
             LOG.warning(
-                "Failed to open %s because $s; gramplets not saved", filename, str(err)
+                "Failed to open %s because %s; gramplets not saved", filename, str(err)
             )
             return
 

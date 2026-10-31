@@ -22,7 +22,6 @@ A replacement UIManager and ActionGroup.
 """
 
 import copy
-import sys
 import logging
 import xml.etree.ElementTree as ET
 
@@ -309,7 +308,7 @@ class UIManager:
             return changexml
         except:
             # the following is only here to assist debug
-            LOG.debug("*****", sys.exc_info())
+            LOG.debug("*****", exc_info=True)
             LOG.debug(xml)
             LOG.debug(changexml)
             assert False
