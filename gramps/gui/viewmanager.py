@@ -871,7 +871,7 @@ class ViewManager(CLIManager):
 
         # backup data
         if config.get("database.backup-on-exit"):
-            self.autobackup()
+            self.autobackup(on_exit=True)
 
         # close the database
         if self.dbstate.is_open():
@@ -1487,7 +1487,7 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             return
 
-    def autobackup(self):
+    def autobackup(self, on_exit=False):
         """
         Backup the current family tree.
         """
@@ -1520,10 +1520,12 @@ class ViewManager(CLIManager):
             and self.dbstate.db.has_changed > self.prev_has_changed
         ):
             self.prev_has_changed = self.dbstate.db.has_changed
-            message = _("Please wait for backup to complete.")
-            message = '<span size="larger" weight="bold">%s</span>' % message
-            pgr_title = _("Autobackup...")
-            popup = Popup(pgr_title, message, parent=self.window)
+            popup = None
+            if on_exit or self.window.is_active():
+                message = _("Please wait for backup to complete.")
+                message = '<span size="larger" weight="bold">%s</span>' % message
+                pgr_title = _("Autobackup...")
+                popup = Popup(pgr_title, message, parent=self.window)
             self.uistate.set_busy_cursor(True)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
@@ -1532,7 +1534,8 @@ class ViewManager(CLIManager):
             except DbWriteFailure as msg:
                 self.uistate.push_message(self.dbstate, _("Error saving backup data"))
             self.uistate.set_busy_cursor(False)
-            popup.destroy()
+            if popup:
+                popup.destroy()
             self.uistate.progress.hide()
 
     def __backup(self):
