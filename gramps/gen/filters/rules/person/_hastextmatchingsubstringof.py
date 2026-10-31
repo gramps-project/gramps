@@ -222,15 +222,19 @@ class HasTextMatchingSubstringOf(Rule):
                     )
                 )
                 if match or self.match_object(citation):
-                    # Update the maps to reflect the reference
+                    # Update the maps to reflect the reference.  Referent
+                    # classes beyond those used here are absorbed by the
+                    # starred name, so adding a new primary object type to
+                    # get_citation_referents does not break this unpacking.
                     (
                         person_list,
                         family_list,
                         event_list,
                         place_list,
-                        source_list,
+                        _source_list,
                         media_list,
                         repo_list,
+                        *_,
                     ) = refs
                     self.person_map.update(person_list)
                     self.family_map.update(family_list)

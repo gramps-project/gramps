@@ -1,0 +1,198 @@
+﻿0 HEAD
+1 SOUR Legacy
+2 VERS 10.0
+2 NAME Legacy (R)
+2 CORP MyHeritage USA Inc.
+3 ADDR 3098 W Executive Pkwy Ste 275
+4 CONT Lehi, UT 84043 USA
+1 DEST Legacy
+1 DATE 3 Aug 2026
+1 SUBM @S0@
+1 FILE C:\gramps_dev\gramps_legacy_import\data\tests\imp_notetest_dfs_lds.ged
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+0 @S0@ SUBM
+1 NAME Not Given
+0 @I1@ INDI
+1 NAME Tom /Tester/
+2 GIVN Tom
+2 SURN Tester
+1 SEX M
+1 BIRT
+2 DATE 15 Jun 1900
+2 ADDR 123 main, Norwalk, Ohio, USA
+3 ADR1 123 main, Norwalk, Ohio, USA
+3 NOTE Location Note 2
+2 NOTE @BI1@
+1 DEAT
+2 NOTE @DI1@
+1 _PPEXCLUDE
+1 REFN 98765 for PERSON
+1 EVEN 98765 for PERSON
+2 TYPE Who knows OBJE REFN TYPE
+1 _UID 8D70ED25CB654853AC16E58EEB1FD4AB9847
+1 CHAN
+2 DATE 11 Jan 2001
+3 TIME 16:00
+1 OBJE
+2 FILE http://homepages.rootsweb.com/~pmcbride/gedcom/55gctoc.htm
+3 FORM URL
+4 TYPE URL
+3 TITL GEDCOM 5.5 documentation web site
+2 _PRIM Y
+1 OBJE
+2 FILE photo.jpg
+3 FORM jpg
+4 TYPE PHOTO
+3 TITL Tom Tester's photo
+2 REFN 98765
+1 FAMS @F1@
+1 NOTE @NI1@
+1 NOTE @HI1@
+0 @NI1@ NOTE
+1 CONC Tom Tester xref note
+1 CONT
+1 CONT Tom Tester Note
+0 @HI1@ NOTE
+1 CONC (Research):from yearTEST: TEST person
+1 CONT NOTE: NOTE Empty note subordinate (Should be skipped)
+1 CONT NOTE: TEST Empty Note
+1 CONT NOTE: TEST 123456 Event Note
+1 CONT NOTE: TEST Location Note
+1 CONT NOTE: TEST Person Note
+1 CONT OBJE: TEST media
+1 CONT NOTE: TEST 123456 Note
+1 CONT OBJE: RIN 123456
+0 @BI1@ NOTE
+1 CONC Birth Event note
+0 @DI1@ NOTE
+1 CONC Death Event xref note
+0 @I2@ INDI
+1 NAME Mrs /Tester/
+2 GIVN Mrs
+2 SURN Tester
+1 SEX F
+1 BIRT
+2 DATE 15 Jun 1901
+1 DEAT
+2 DATE 5 Jul 1975
+1 _UID C58628B95D0B41EEB3305DFE5F824E16463C
+1 CHAN
+2 DATE 3 Aug 2026
+3 TIME 18:39
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Ed /Tester/
+2 GIVN Ed
+2 SURN Tester
+1 NAME Eddie /Tester/
+2 GIVN Eddie
+2 SURN Tester
+1 SEX M
+1 BIRT
+2 DATE 15 Jun 1922
+1 DEAT
+2 DATE 5 Jul 1994
+1 _PPEXCLUDE
+1 EVEN
+2 TYPE Association
+2 NOTE Association link note
+1 _UID DA9DFB151BEE490C983CBB0B6D9DCD4096C4
+1 BAPL
+2 DATE 5 May 0005 B.C.
+2 TEMP SLAKE - Salt Lake Temple
+1 CHAN
+2 DATE 3 Aug 2026
+3 TIME 18:38
+1 FAMC @F1@
+1 NOTE @NI3@
+1 NOTE @HI3@
+0 @NI3@ NOTE
+1 CONC Name note
+1 CONT
+1 CONT >LDS Baptism note: LDS xref note
+0 @HI3@ NOTE
+1 CONC (Research):from yearNOTE: TEST Empty Note
+1 CONT BAPL: SOUR @SOURCE1@
+1 CONT NOTE: TEST Accociation note
+0 @I4@ INDI
+1 NAME George /Testee/
+2 GIVN George
+2 SURN Testee
+1 SEX U
+1 _PPEXCLUDE
+1 _UID 77DA2714AB9D464DBAE1E44EB7A328974D11
+1 CHAN
+2 DATE 3 Aug 2026
+3 TIME 18:38
+1 NOTE @NI4@
+0 @NI4@ NOTE
+1 CONC Just for association
+0 @F1@ FAM
+1 HUSB @I1@
+2 _PREF Y
+1 WIFE @I2@
+2 _PREF Y
+1 MARR
+2 SOUR @S2@
+2 SOUR @S2@
+3 PAGE 42
+3 QUAY 0
+3 DATE 31 Dec 1900
+2 NOTE @NF1@
+1 CHIL @I3@
+2 _PREF Y
+1 CHAN
+2 DATE 3 Aug 2026
+3 TIME 18:38
+0 @NF1@ NOTE
+1 CONC Family xref note
+1 CONT Family note
+1 CONT
+1 CONT from year
+1 CONT TEST: TEST family
+0 _EVENT_DEFN Who knows OBJE REFN TYPE
+1 TYPE I
+1 TITL Who knows OBJE REFN TYPE
+1 _SEN1 [EventName]: [Desc], [onDate], [inPlace].
+1 _SEN2 [EventName]: [Date].
+1 _SEN3 [EventName]: [inPlace].
+1 _SEN4 [EventName]: [Desc].
+1 _SEN5 [EventName]: [Desc], [onDate].
+1 _SEN6 [EventName]: [Desc], [inPlace].
+1 _SEN7 [EventName]: [Date], [inPlace].
+1 _SEN8 [EventName].
+1 _DATE_TYPE 1
+1 _PLACE_TYPE 1
+1 _DESC_FLAG 1
+1 _INC_NOTES
+0 _EVENT_DEFN Association
+1 TYPE I
+1 TITL Association
+1 _SEN1 [EventName]: [Desc], [onDate], [inPlace].
+1 _SEN2 [EventName]: [Date].
+1 _SEN3 [EventName]: [inPlace].
+1 _SEN4 [EventName]: [Desc].
+1 _SEN5 [EventName]: [Desc], [onDate].
+1 _SEN6 [EventName]: [Desc], [inPlace].
+1 _SEN7 [EventName]: [Date], [inPlace].
+1 _SEN8 [EventName].
+1 _DATE_TYPE 1
+1 _PLACE_TYPE 1
+1 _DESC_FLAG 1
+1 _INC_NOTES
+0 @S2@ SOUR
+1 ABBR Note Test file Source: Tester
+1 TITL Note Test file Source: Tester
+1 NOTE note embedded in the SOURCE Record
+1 REPO @R1@
+1 _PAREN Y
+0 @R1@ REPO
+1 NAME The Testers repository
+1 ADDR The Testers repository
+2 _NAME The Testers repository
+2 ADR1 The Testers repository
+2 NOTE Repository Note
+0 TRLR

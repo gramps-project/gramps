@@ -1,0 +1,63 @@
+name: Compile & Deploy Gramps Releases
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    uses: ./.github/workflows/windows-aio.yml
+    with:
+      build-number: '1'
+      cleanup: false
+
+  build-macos:
+    uses: ./.github/workflows/build_mac.yml
+    with:
+      build-number: '1'
+
+  build-linux:
+    uses: ./.github/workflows/build_deb.yml
+    with:
+      build-number: '1'
+
+  create-release:
+    needs: [build-windows, build-macos, build-linux]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Fetch Windows Package
+      uses: actions/download-artifact@v4
+      with:
+        pattern: GrampsAIO-*
+        path: ./artifacts
+        merge-multiple: true
+
+    - name: Fetch macOS Package
+      uses: actions/download-artifact@v4
+      with:
+        pattern: Gramps_mac_*
+        path: ./artifacts
+        merge-multiple: true
+
+    - name: Fetch Linux Package
+      uses: actions/download-artifact@v4
+      with:
+        pattern: Gramps_deb_*
+        path: ./artifacts
+        merge-multiple: true
+
+    - name: Publish Official Multi-Platform Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release create "${{ github.ref_name }}" \
+          ./artifacts/* \
+          --title "Gramps Release ${{ github.ref_name }}" \
+          --generate-notes

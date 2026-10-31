@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -16,7 +17,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License along
-# with this program; if not, see <https://www.gnu.org/licenses/>.
+# with this program; if not, see <https://www.gnu.org/licenses/\>.
 #
 
 """
@@ -36,7 +37,13 @@ import re
 #
 # -------------------------------------------------------------------------
 from ..lib.date import Date
-from ._dateparser import DateParser
+from ._dateparser import (
+    DateParser,
+    gregorian_valid,
+    julian_valid,
+    swedish_valid,
+    french_valid,
+)
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
 
@@ -113,29 +120,73 @@ class DateParserHE(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._modifier = re.compile(r"%s\s*(.*)" % self._mod_str, re.IGNORECASE)
+
+        # Negative lookahead (?![א-ת]) prevents the single-letter
+        # modifiers "מ"/"ב" (no maqaf) from matching as a false prefix
+        # inside ordinary Hebrew words that happen to start with the
+        # same letter -- most notably the Gregorian month names "מאי"
+        # (May) and "מרץ" (March). Without this guard, "מאי 1944" was
+        # wrongly split into modifier "מ" + leftover text "אי 1944",
+        # which is not a valid date and so parsing failed entirely.
+        # Genuine modifier usage ("מ 1893", "מ-1893", "מ־1893", "מיום
+        # 1944", etc.) is unaffected, since in all of those the letter
+        # is followed by a non-Hebrew-letter character (space, digit,
+        # or maqaf), not by another Hebrew letter.
+        self._modifier = re.compile(
+            r"%s(?![א-ת])\s*(.*)" % self._mod_str, re.IGNORECASE
+        )
+
+        # Optional geresh (Hebrew ׳ or ASCII ') right after an
+        # abbreviated month name, e.g. "יונ'" or "יונ׳" for June.
+        self._text = re.compile(
+            r"%s['׳]?\.?(\s+\d+)?\s*,?\s+((\d+)(/\d+)?)?\s*$" % self._mon_str,
+            re.IGNORECASE,
+        )
         self._text2 = re.compile(
-            r"(\d+)?\s+?ב?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._mon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\.?\s*((\d+)(/\d+)?)?\s*$" % self._mon_str,
+            re.IGNORECASE,
         )
         self._jtext2 = re.compile(
-            r"(\d+)?\s+?ב?%s\s*((\d+)(/\d+)?)?\s*$" % self._jmon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\s*((\d+)(/\d+)?)?\s*$" % self._jmon_str,
+            re.IGNORECASE,
         )
         self._ftext2 = re.compile(
-            r"(\d+)?\s+?ב?%s\s*((\d+)(/\d+)?)?\s*$" % self._fmon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\s*((\d+)(/\d+)?)?\s*$" % self._fmon_str,
+            re.IGNORECASE,
         )
         self._ptext2 = re.compile(
-            r"(\d+)?\s+?ב?%s\s*((\d+)(/\d+)?)?\s*$" % self._pmon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\s*((\d+)(/\d+)?)?\s*$" % self._pmon_str,
+            re.IGNORECASE,
         )
         self._itext2 = re.compile(
-            r"(\d+)?\s+?ב?%s\s*((\d+)(/\d+)?)?\s*$" % self._imon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\s*((\d+)(/\d+)?)?\s*$" % self._imon_str,
+            re.IGNORECASE,
         )
         self._stext2 = re.compile(
-            r"(\d+)?\s+?ב?%s\.?\s*((\d+)(/\d+)?)?\s*$" % self._smon_str, re.IGNORECASE
+            r"(\d+)?\s+?ב?%s['׳]?\.?\s*((\d+)(/\d+)?)?\s*$" % self._smon_str,
+            re.IGNORECASE,
         )
-        _span_1 = ["מ־", "מ"]
+
+        # Flexible 3-field numeric date, with any separator among
+        # . - / (used in _parse_subdate below to support both
+        # yyyy-dd-mm and mm-dd-yyyy, alongside the regular
+        # dd-mm-yyyy / yyyy-mm-dd forms).
+        self._numeric_flexible = re.compile(
+            r"^\s*(\d+)\s*[./\-]\s*(\d+)\s*[./\-]\s*(\d+)\s*$"
+        )
+
+        # A bare two-year span, e.g. "1893-1894" or "1893–1894" (en
+        # dash), without needing the words "from...to" (used in
+        # match_span below).
+        self._bare_year_span = re.compile(r"^\s*(\d{3,4})\s*[-–]\s*(\d{3,4})\s*$")
+
+        # "מ" (from) and "ל" (to) are also supported with a regular
+        # hyphen (מ-1893) and with the Hebrew maqaf (מ־1893), not only
+        # with no separator at all.
+        _span_1 = ["מ־", "מ-", "מ"]
         _span_2 = ["עד"]
         _range_1 = ["בין"]
-        _range_2 = ["ל־", "ל"]
+        _range_2 = ["ל־", "ל-", "ל"]
         self._span = re.compile(
             r"(%s)\s*(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
             % ("|".join(_span_1), "|".join(_span_2)),
@@ -146,6 +197,91 @@ class DateParserHE(DateParser):
             % ("|".join(_range_1), "|".join(_range_2)),
             re.IGNORECASE,
         )
+
+    def _parse_subdate(self, text, subparser=None, cal=None):
+        """
+        Same as DateParser._parse_subdate, plus support for a flexible
+        3-field numeric date with any separator (./-), including
+        yyyy-dd-mm and mm-dd-yyyy: day vs. month is decided by
+        magnitude (over 12 = day); only when both fields are
+        ambiguous (both <= 12) does it fall back to the existing
+        default (day-month for the year-last form, month-day for the
+        year-first/ISO form). All other behaviour (slash-year, partial
+        date, RFC-2822, "$T"/"today") is unchanged from the original
+        DateParser.
+        """
+        if subparser is None:
+            subparser = self._parse_gregorian
+        check = {
+            self._parse_gregorian: gregorian_valid,
+            self._parse_julian: julian_valid,
+            self._parse_swedish: swedish_valid,
+            self._parse_french: french_valid,
+        }.get(subparser)
+
+        # 1) Forms with a month name (Hebrew/Gregorian/French/...)
+        value = subparser(text)
+        if value != Date.EMPTY:
+            return value
+
+        # 2) Flexible numeric date
+        match = self._numeric_flexible.match(text)
+        if match:
+            a, b, c = (int(g) for g in match.groups())
+            long_idx = [i for i, g in enumerate((a, b, c)) if len(str(g)) >= 3]
+            if len(long_idx) == 1:
+                idx = long_idx[0]
+                year = x = z = month_first = None
+                if idx == 0:
+                    year, x, z, month_first = a, b, c, True  # yyyy-X-Z
+                elif idx == 2:
+                    year, x, z, month_first = c, a, b, False  # X-Z-yyyy
+
+                if year is not None:
+                    day = month = None
+                    if x > 12 and z <= 12:
+                        day, month = x, z
+                    elif z > 12 and x <= 12:
+                        day, month = z, x
+                    elif x <= 12 and z <= 12:  # ambiguous: existing default
+                        if month_first:
+                            month, day = x, z
+                        else:
+                            day, month = x, z
+
+                    if day is not None:
+                        value = (day, month, year, False)
+                        if check is None or check((day, month, year)):
+                            return value
+                        return Date.EMPTY
+
+        # 3) Everything else unchanged: regular ISO, slash-year,
+        #    DB stamp, RFC-2822, "$T"/"today"
+        return DateParser._parse_subdate(self, text, subparser, cal)
+
+    def match_span(self, text, cal, ny, qual, date):
+        """
+        Same as DateParser.match_span, plus support for a bare
+        two-year span without the words "from...to", e.g. "1893-1894"
+        or "1893–1894" (en dash) -- parsed exactly like "מ־1893 עד
+        1894".
+        """
+        bare = self._bare_year_span.match(text)
+        if bare:
+            year1, year2 = int(bare.group(1)), int(bare.group(2))
+            if year2 >= year1:
+                date.set(
+                    qual,
+                    Date.MOD_SPAN,
+                    cal,
+                    (0, 0, year1, False, 0, 0, year2, False),
+                    newyear=ny,
+                )
+                return 1
+            # Larger year before smaller year (e.g. "1894-1893") -- not
+            # guessed at, falls back to normal behaviour (will fail,
+            # exactly as today)
+        return DateParser.match_span(self, text, cal, ny, qual, date)
 
 
 # -------------------------------------------------------------------------
