@@ -614,7 +614,7 @@ def run():
     except OSError as msg:
         error += [(_("Configuration error:"), str(msg))]
         return error
-    except msg:
+    except Exception as msg:
         LOG.error("Could not read configuration.", exc_info=True)
         return [(_("Could not read configuration"), str(msg))]
 

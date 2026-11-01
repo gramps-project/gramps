@@ -38,6 +38,7 @@ from time import strftime, time, localtime
 # Gramps module
 # ------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.errors import HandleError
 from gramps.plugins.lib.libhtml import Html
 
 # ------------------------------------------------
@@ -296,7 +297,7 @@ class UpdatesPage(BasePage):
             try:
                 obj = fct(handle)
                 timestamp = obj.get_change_time()
-            except exception:
+            except HandleError:
                 print("In sort :", handle, " not found for", object_type)
                 timestamp = 0
             return timestamp
@@ -329,7 +330,7 @@ class UpdatesPage(BasePage):
                 name = ""
                 try:
                     obj = fct(handle)
-                except exception:
+                except HandleError:
                     print("Handle not found:", handle, " not found for", object_type)
                     continue
                 if object_type == Person:
