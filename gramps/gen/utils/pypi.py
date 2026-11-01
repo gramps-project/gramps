@@ -467,7 +467,8 @@ def _pypi_metadata(package: str) -> dict:
         data = _fetch_url(url)
     except Exception as exc:
         raise PyPIInstallError(
-            _("Cannot reach PyPI for package '%s': %s") % (package, exc)
+            _("Cannot reach PyPI for package '%(package)s': %(exc)s")
+            % {"package": package, "exc": exc}
             + _ssl_cert_hint(exc)
         ) from exc
     return json.loads(data)
@@ -558,8 +559,10 @@ def _pick_wheel(meta: dict, package: str, version: str | None = None) -> dict:
             if _is_compatible_wheel(file_info):
                 return file_info
         raise PyPIInstallError(
-            _("No compatible wheel found for '%s==%s' on this platform.")
-            % (package, version)
+            _(
+                "No compatible wheel found for '%(package)s==%(version)s' on this platform."
+            )
+            % {"package": package, "version": version}
         )
     # 1. Pure wheel in latest release.
     for file_info in meta.get("urls", []):
@@ -610,8 +613,10 @@ def _verify_sha256(data: bytes, expected: str, filename: str) -> None:
     actual = hashlib.sha256(data).hexdigest()
     if actual != expected:
         raise PyPIInstallError(
-            _("SHA-256 mismatch for '%s': expected %s, got %s")
-            % (filename, expected, actual)
+            _(
+                "SHA-256 mismatch for '%(filename)s': expected %(expected)s, got %(actual)s"
+            )
+            % {"filename": filename, "expected": expected, "actual": actual}
         )
 
 
@@ -1211,8 +1216,10 @@ def install_package(
         version = _find_satisfying_version(pkg_canonical, combined)
         if version is None:
             raise PyPIInstallError(
-                _("No version of '%s' satisfies all constraints: %s")
-                % (pkg_canonical, combined)
+                _(
+                    "No version of '%(pkg_canonical)s' satisfies all constraints: %(combined)s"
+                )
+                % {"pkg_canonical": pkg_canonical, "combined": combined}
             )
         resolved[pkg_canonical] = version
 
@@ -1282,7 +1289,9 @@ def _install_one(
         data = _fetch_url(url)
     except Exception as exc:
         raise PyPIInstallError(
-            _("Failed to download '%s': %s") % (filename, exc) + _ssl_cert_hint(exc)
+            _("Failed to download '%(filename)s': %(exc)s")
+            % {"filename": filename, "exc": exc}
+            + _ssl_cert_hint(exc)
         ) from exc
 
     if expected_sha256:
