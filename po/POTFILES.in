@@ -507,6 +507,7 @@ gramps/gui/fs/sync_directions.py
 gramps/gui/fs/tags.py
 gramps/gui/fs/tools_window.py
 gramps/gui/fs/utils/index.py
+gramps/gui/fs/integration_panel.py
 gramps/gui/glade/addmedia.glade
 gramps/gui/glade/baseselector.glade
 gramps/gui/glade/book.glade

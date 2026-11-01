@@ -21,7 +21,7 @@
 
 The fix restructured the method so that both the familysearchgroup visibility
 calls and update_menu() are guarded under a single hasattr(self, "uimanager")
-check — preventing an AttributeError crash and silent skip of update_menu()
+check â€” preventing an AttributeError crash and silent skip of update_menu()
 when the method is called before the UI manager is fully initialised.
 
 We load the method body directly from viewmanager.py using AST parsing,
@@ -42,7 +42,6 @@ import types
 import unittest
 from unittest.mock import MagicMock, patch
 
-os.environ.setdefault("GDK_BACKEND", "-")
 os.environ.setdefault("LANG", "en_US.utf-8")
 
 # -------------------------------------------------------------------------
@@ -78,7 +77,7 @@ def _load_method_code(filepath: str, classname: str, methodname: str):
     raise ValueError(f"{classname}.{methodname} not found in {filepath}")
 
 
-# The method's global namespace — just what _update_familysearch_ui references.
+# The method's global namespace â€” just what _update_familysearch_ui references.
 _LOG = logging.getLogger("gramps.gui.viewmanager")
 _close_tools_window_stub = MagicMock(name="close_tools_window")
 _METHOD_NS: dict = {
@@ -158,7 +157,7 @@ class UpdateFamilySearchUiGuardTest(unittest.TestCase):
             self.fail(f"_update_familysearch_ui raised AttributeError: {exc}")
 
     def test_no_crash_without_familysearchgroup(self):
-        """uimanager present but familysearchgroup not yet created — must not raise."""
+        """uimanager present but familysearchgroup not yet created â€” must not raise."""
         vm = _make_mock_vm(has_uimanager=True, has_familysearchgroup=False)
         try:
             self._call(vm)
@@ -215,6 +214,171 @@ class UpdateFamilySearchUiGuardTest(unittest.TestCase):
         vm.uimanager.set_actions_sensitive.assert_called_once_with(
             vm.familysearchgroup, False
         )
+
+
+# ------------------------------------------------------------
+#
+# IntegrationPreferencesTest
+#
+# ------------------------------------------------------------
+class IntegrationPreferencesTest(unittest.TestCase):
+    """Check integration setup without sending keys or starting authentication."""
+
+    def test_access_setup_and_reachability(self) -> None:
+        """Keep access requests separate and never authenticate connection tests."""
+        import os
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        from gramps.gui.fs import integration_panel as panel
+
+        values = {
+            "familysearch.enable": True,
+            "familysearch.server": 0,
+            "familysearch.auth-provider": "foundation",
+            "familysearch.middleware.base-url": "https://middleware.example.invalid",
+        }
+        configuration = MagicMock()
+        configuration.get.side_effect = lambda key: values.get(key, "")
+        configuration.set.side_effect = values.__setitem__
+        for name, value in (("_SESSION", None), ("_SESSION_INVALIDATED", False)):
+            patcher = patch.object(panel.manager, name, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+        if not panel.Gtk.init_check()[0]:
+            self.skipTest("GTK display unavailable")
+        with (
+            patch.dict(os.environ, {}, clear=True),
+            patch.object(panel, "config", configuration),
+            patch.object(panel.manager, "current_session", return_value=None),
+        ):
+            section = panel.FamilySearchIntegrationPanel(
+                SimpleNamespace(viewmanager=None)
+            )
+            self.addCleanup(section.widget.destroy)
+            label = section._grid.get_child_at(0, 0)
+            self.assertIs(label.get_mnemonic_widget(), section._server)
+            menu = panel.Gtk.Menu()
+            self.addCleanup(menu.destroy)
+            section.cb_address_menu(section._address, menu)
+            self.assertTrue(menu.get_children()[-1].get_sensitive())
+            values["familysearch.enable"] = False
+            section.cb_refresh()
+            self.assertFalse(section._address.get_sensitive())
+            section.cb_address_menu(section._address, menu)
+            self.assertFalse(menu.get_children()[-1].get_sensitive())
+            values["familysearch.enable"] = True
+            section.cb_refresh()
+            section._key.set_text("private-key")
+            self.assertFalse(section._key.get_visibility())
+            with patch.object(panel, "display_url") as opened:
+                request_menu = panel.Gtk.Menu()
+                self.addCleanup(request_menu.destroy)
+                section.cb_key_menu(section._key, request_menu)
+                self.assertTrue(request_menu.get_children()[-1].get_sensitive())
+                request_menu.get_children()[-1].activate()
+                opened.assert_called_once_with(
+                    values["familysearch.middleware.base-url"]
+                )
+            response = MagicMock(status_code=200)
+            response.__enter__.return_value = response
+            with (
+                patch.object(panel.requests, "get", return_value=response) as get,
+                patch.object(panel.requests, "post") as post,
+            ):
+                self.assertIn(
+                    "200",
+                    panel.check_middleware(
+                        str(values["familysearch.middleware.base-url"])
+                    ),
+                )
+                self.assertNotIn("headers", get.call_args.kwargs)
+                self.assertFalse(get.call_args.kwargs["allow_redirects"])
+                self.assertEqual(get.call_args.kwargs["timeout"], (3, 5))
+                post.assert_not_called()
+            for address in (
+                "",
+                "invalid",
+                "file:///private",
+                "https://user:key@example.invalid",
+            ):
+                with (
+                    self.subTest(address=address),
+                    patch.object(panel.requests, "get") as get,
+                ):
+                    self.assertTrue(panel.check_middleware(address))
+                    get.assert_not_called()
+            with patch.object(
+                panel.requests, "get", side_effect=panel.requests.ConnectionError
+            ):
+                self.assertTrue(
+                    panel.check_middleware("https://middleware.example.invalid")
+                )
+
+    def test_session_settings_and_stale_results(self) -> None:
+        """Show the real session state and discard results for old settings."""
+        import os
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        from gramps.gui.fs import integration_panel as panel
+
+        values = {"familysearch.enable": True, "familysearch.server": 0}
+        configuration = MagicMock()
+        configuration.get.side_effect = lambda key: values.get(key, "")
+        configuration.set.side_effect = values.__setitem__
+        session = SimpleNamespace(
+            access_token="private-token",
+            connected=True,
+            _profile=SimpleNamespace(env="beta"),
+            logout=MagicMock(),
+        )
+        if not panel.Gtk.init_check()[0]:
+            self.skipTest("GTK display unavailable")
+        with (
+            patch.dict(os.environ, {}, clear=True),
+            patch.object(panel, "config", configuration),
+            patch.object(panel.manager, "current_session", return_value=session),
+        ):
+            section = panel.FamilySearchIntegrationPanel(
+                SimpleNamespace(viewmanager=None)
+            )
+            self.addCleanup(section.widget.destroy)
+            self.assertEqual(
+                section._status.get_text(), panel._("Signed in to FamilySearch.")
+            )
+            self.assertFalse(section._server.get_sensitive())
+            self.assertFalse(section._sign_in.get_sensitive())
+            self.assertTrue(section._sign_out.get_sensitive())
+            values["familysearch.server"] = 1
+            section.cb_refresh()
+            self.assertEqual(
+                section._status.get_text(),
+                panel._("Sign out before using the selected server."),
+            )
+            self.assertEqual(
+                section._account_note.get_text(),
+                panel._("Production requires your regular FamilySearch account."),
+            )
+            with (
+                patch.object(panel.manager, "invalidate_session") as invalidate,
+                patch.object(panel.threading, "Thread") as worker,
+                patch.object(
+                    panel.GLib, "idle_add", side_effect=lambda callback: callback()
+                ),
+            ):
+                section.cb_sign_out(None)
+                worker.call_args.kwargs["target"]()
+                session.logout.assert_called_once()
+                invalidate.assert_called_once()
+            section._status.set_text("current result")
+            section.cb_test_finished(section._generation - 1, "outdated result")
+            self.assertEqual(section._status.get_text(), "current result")
+        with (
+            patch.object(panel.manager, "_SESSION", session),
+            patch.object(panel.manager, "_SESSION_INVALIDATED", False),
+            patch.object(panel.manager, "get_active_session", return_value=session),
+        ):
+            panel.manager.invalidate_session()
+            self.assertIsNone(panel.manager.current_session())
 
 
 if __name__ == "__main__":
