@@ -83,28 +83,8 @@ Females     Web_Gender_Female.png
 #treeContainer div.boxbg a:hover {
     position:relative;
     z-index:999;
-    font-size:1.3em;
-    word-break:break-word;
-    word-wrap:break-word;
     text-decoration:none;
     color: #00029D;
-    width:400px;
-    margin-left:-20px;
-    padding: 0px 0px 0px 40px;
-}
-#treeContainer div.boxbg a:hover,
-#treeContainer div.AncCol4 a:hover {
-    margin-top:-44px;
-}
-#treeContainer div.boxbg a.noThumb:hover {
-    margin-top:0;
-    padding-left: 10px;
-}
-#treeContainer div.AncCol0 a:hover {
-    margin-left:12px;
-}
-#treeContainer div.AncCol4 a:hover {
-    margin-left:-60px;
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
@@ -117,9 +97,6 @@ Females     Web_Gender_Female.png
 #treeContainer div.boxbg a.thumbnail table td.img {
     padding-right: 5px;
 }
-#treeContainer div.boxbg a.thumbnail:hover table td.img {
-    padding-right: 9px;
-}
 #treeContainer div.boxbg a.thumbnail table td.name {
     padding-top:3px;
     padding-left: 2px;
@@ -131,14 +108,6 @@ Females     Web_Gender_Female.png
     padding-left: 0px;
     border-radius: 5px;
 }
-#treeContainer div.boxbg a.thumbnail:hover img {
-    max-height:90%;
-    margin-left:5px;
-    position: absolute;
-    left: 0px;
-    top: 4px;
-    border-radius: 5px;
-}
 #treeContainer div.boxbg table td:first-child, table th:first-child {
     padding-left: 5px;
     padding-top: 5px;
@@ -146,29 +115,6 @@ Females     Web_Gender_Female.png
 #IndividualDetail div.subsection table tr td:first-child {
     padding-left: 5px;
     padding-top: 5px;
-}
-#treeContainer #treeContainer div.AncCol4 span.thumbnail {
-    display:none;
-}
-#treeContainer div.boxbg a:hover span.thumbnail {
-    display:block;
-}
-#treeContainer div.boxbg span.fullname {
-    display: none;
-}
-#treeContainer div.boxbg span.shortname {
-    display: inline;
-}
-#treeContainer div.boxbg a:hover span.fullname {
-    display: inline;
-}
-#treeContainer div.boxbg a:hover span.shortname {
-    display: none;
-}
-#treeContainer div.boxbg a:hover {
-    float: right;
-    margin-top: 10px;
-    border: solid 4px #000;
 }
 #treeContainer div.male a,
 #treeContainer div.male span.unlinked {
