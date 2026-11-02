@@ -72,6 +72,7 @@ from gramps.gen.utils.db import (
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.errors import ReportError
+from gramps.gen.types import PersonHandle
 
 # ------------------------------------------------------------------------
 #
@@ -270,10 +271,16 @@ class RelGraphReport(Report):
             if not has_parent:
                 root_nodes.append(person_handle)
 
-        # now start from all root nodes we found and traverse their trees
+        # now start from all root nodes we found and traverse their trees;
+        # the remaining persons are only needed as starting points for
+        # people whose ancestors all lie in a loop (own ancestor)
         outlist = list()
         p_done = set()
-        for person_handle in root_nodes:
+        # person -> parents they are still waiting for
+        waiting = dict()
+        for person_handle in root_nodes + list(person_handle_list):
+            if person_handle in p_done:
+                continue
             todolist = list()
             todolist.append(person_handle)
             while len(todolist) > 0:
@@ -287,22 +294,27 @@ class RelGraphReport(Report):
                 person = self.database.get_person_from_handle(cur)
 
                 # first check whether both parents are added
-                missing_parents = False
+                missing_parents = set()
                 for parent_handle in find_parents(self.database, person):
                     if not parent_handle or parent_handle in p_done:
                         continue
                     if parent_handle not in self.persons:
                         continue
+                    # don't wait for a parent who is waiting for us
+                    if self._is_waiting_for(waiting, parent_handle, cur):
+                        continue
                     todolist.insert(0, parent_handle)
-                    missing_parents = True
+                    missing_parents.add(parent_handle)
 
                 # if one of the parents is still missing, wait for them
                 if missing_parents:
+                    waiting[cur] = missing_parents
                     continue
 
                 # add person to the sorted output
                 outlist.append(cur)
                 p_done.add(cur)
+                waiting.pop(cur, None)
 
                 # add all spouses and children to the todo list
                 family_list = person.get_family_handle_list()
@@ -320,6 +332,38 @@ class RelGraphReport(Report):
         # finally store the result
         assert len(person_handle_list) == len(outlist)
         return outlist
+
+    @staticmethod
+    def _is_waiting_for(
+        waiting: dict[PersonHandle, set[PersonHandle]],
+        start: PersonHandle,
+        target: PersonHandle,
+    ) -> bool:
+        """
+        Return whether ``start`` is, directly or through other persons,
+        waiting for ``target`` to be added. Since persons only wait for
+        their parents, this means ``target`` is an ancestor of ``start``.
+
+        :param waiting: Maps each person to the parents they wait for.
+        :type waiting: dict[PersonHandle, set[PersonHandle]]
+        :param start: The person to start searching from.
+        :type start: PersonHandle
+        :param target: The person to search for.
+        :type target: PersonHandle
+        :returns: ``True`` if ``start`` waits for ``target``.
+        :rtype: bool
+        """
+        seen = set()
+        todo = [start]
+        while todo:
+            handle = todo.pop()
+            if handle == target:
+                return True
+            if handle in seen:
+                continue
+            seen.add(handle)
+            todo.extend(waiting.get(handle, ()))
+        return False
 
     def add_child_links_to_families(self, person_handles):
         """
