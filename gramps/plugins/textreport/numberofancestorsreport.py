@@ -115,11 +115,17 @@ class NumberOfAncestorsReport(Report):
 
         thisgensize = 1
         gen = 0
+        num_people = self.__db.get_number_of_people()
         while thisgensize > 0:
             thisgensize = 0
             if thisgen != {}:
                 thisgensize = len(thisgen)
                 gen += 1
+                # without a loop, there can't be more generations than people
+                if gen > num_people:
+                    raise ReportError(
+                        _("ERROR : Too many levels in the tree (perhaps a loop?).")
+                    )
                 theoretical = math.pow(2, (gen - 1))
                 total_theoretical += theoretical
                 percent = "(%s%%)" % self._locale.format_string(
