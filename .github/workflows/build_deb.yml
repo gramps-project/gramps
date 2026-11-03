@@ -62,7 +62,8 @@ jobs:
         sudo apt-get install python3-libxml2
         sudo apt-get install zlib1g-dev
         sudo apt-get install python3-setuptools
-        sudo apt-get install devscripts debhelper dh-python python3-all python3-nose-exclude python3-orjson
+        sudo apt-get install devscripts debhelper dh-python python3-all python3-nose-exclude 
+        sudo apt-get install python3-orjson fontconfig gobject-introspection librsvg2-2
     - name: Build deb package
       run: |
         python3 setup.py egg_info
