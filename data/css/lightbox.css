@@ -49,120 +49,172 @@ Style Author: Serge Noiraud based on W3C: https://www.w3schools.com/howto/howto_
   height: 100px;
 }
 
-/* The Modal (background) */
+/* The Modal (background overlay) */
 .ModalClass {
   display: none;
   position: fixed;
   z-index: 900;
-  padding-top: 5px;
+  padding-top: 15px;
   left: 0px;
   top: 0px;
   width: 100%;
   height: 100%;
   overflow: auto;
+  background-color: rgba(0, 0, 0, 0.88);
 }
 
-/* Modal Content */
+/* Modal Content: transparent container sized to screen viewport */
 .ModalContent {
   position: relative;
-  background-color: #fefefe;
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   margin: auto;
   padding: 0;
-  width: 95%;
+  width: auto !important;
+  max-width: 90vw;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* The Close Button */
 .MediaClose {
-  color: black;
-  position: absolute;
+  color: #ffffff;
+  position: fixed;
   z-index: 960;
-  top: 10px;
-  right: 1%;
-  font-size: 48px;
+  top: 15px;
+  right: 25px;
+  font-size: 36px;
   font-weight: bold;
+  line-height: 1;
 }
 
 .MediaClose:hover,
 .MediaClose:focus {
-  color: #999;
+  color: #cccccc;
   text-decoration: none;
   cursor: pointer;
 }
 
+/* Slide container */
 .MediaSlide {
   display: none;
+  text-align: center;
+  background: transparent !important;
+  max-width: 90vw;
+  max-height: 92vh;
 }
 
 .MediaCursor {
   cursor: pointer;
 }
 
-/* Next & previous buttons */
+/* Navigation buttons pinned to viewport edges with high contrast */
 .MediaPrev,
-.MediaNext {
+.MediaNext,
+a.MediaPrev,
+a.MediaNext,
+a.MediaPrev:link,
+a.MediaNext:link,
+a.MediaPrev:visited,
+a.MediaNext:visited {
   cursor: pointer;
   position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
   width: auto;
-  top: 300px;
-  padding: 16px;
-  margin-top: -50px;
-  color: black;
+  padding: 16px 20px;
+  color: #ffffff !important;
   font-weight: bold;
-  font-size: 48px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
+  font-size: 32px !important;
+  line-height: 1;
+  transition: 0.2s ease;
   user-select: none;
   -webkit-user-select: none;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-radius: 6px;
+  text-decoration: none !important;
+  z-index: 100001;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
 }
 
-/* Position the "prev button" to the left */
+/* Position the prev button to the left */
 .MediaPrev {
-  left: 2%;
-  border-radius: 3px 0 0 3px;
+  left: 20px;
 }
 
-/* Position the "next button" to the right */
+/* Position the next button to the right */
 .MediaNext {
-  right: 2%;
-  border-radius: 3px 0 0 3px;
+  right: 20px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
+/* Hover state for navigation buttons */
 .MediaPrev:hover,
-.MediaNext:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+.MediaNext:hover,
+a.MediaPrev:hover,
+a.MediaNext:hover {
+  background-color: rgba(255, 255, 255, 0.38) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.75) !important;
 }
 
-/* Number text (1/3 etc) */
+/* Caption and slide number pill badge */
 .MediaNumber {
-  font-size: 36px;
-  font-weight: bold;
-  padding: 8px 12px;
-  position: absolute;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.4;
+  padding: 5px 12px;
+  position: static;
+  color: #e0e0e0;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0 auto 10px auto;
+  max-width: 80vw;
+  text-align: center;
 }
 
-/* Less whitespace on smaller real estate. */
-@media only screen and (max-width: 1080px) {
-  .MediaNumber {
-    font-size: 12px;
-    }
-  .MediaPrev,
-  .MediaNext {
-    top: 100px;
-    font-size: 24px;
-    }
-  .MediaClose {
-    font-size: 36px;
-    }
+/* Image scaling: clamp portrait and landscape images within viewport */
+.MediaSlide img {
+  max-height: 78vh !important;
+  max-width: 85vw !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+  border-radius: 2px;
 }
 
+/* Thumbnail hover effects */
 img.hover-shadow {
   transition: 0.3s;
 }
 
 .hover-shadow:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Responsive adjustments for smaller displays */
+@media only screen and (max-width: 768px) {
+  .MediaNumber {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+  .MediaPrev,
+  .MediaNext {
+    padding: 10px 12px;
+    font-size: 20px;
+  }
+  .MediaClose {
+    font-size: 28px;
+    top: 10px;
+    right: 15px;
+  }
 }
