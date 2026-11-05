@@ -176,6 +176,7 @@ register("behavior.surname-guessing", 0)
 register("behavior.translator-needed", True)
 register("behavior.use-tips", True)
 register("behavior.welcome", 100)
+register("behavior.child-relation-dialog", True)
 register("behavior.web-search-url", "https://google.com/search?q=%(text)s")
 register(
     "behavior.addons-url",

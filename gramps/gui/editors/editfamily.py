@@ -336,6 +336,13 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
     def call_edit_childref(self, ref):
         p = self.dbstate.db.get_person_from_handle(ref.ref)
         n = name_displayer.display(p)
+        
+        # Check if we should skip the child relationship dialog
+        if not config.get("behavior.child-relation-dialog"):
+            # Save with default/pre-filled relationships without showing dialog
+            self.child_ref_edited(ref)
+            return
+            
         try:
             EditChildRef(
                 n, self.dbstate, self.uistate, self.track, ref, self.child_ref_edited
