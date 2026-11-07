@@ -711,6 +711,7 @@ gramps/test/test_util.py
 #
 # test/test
 #
+gramps/test/test/gitattributes_test.py
 gramps/test/test/test_util_test.py
 #
 #   Glade files
