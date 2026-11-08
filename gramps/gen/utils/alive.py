@@ -43,8 +43,8 @@ from ..lib.person import Person
 from ..lib.json_utils import DataDict
 from ..errors import DatabaseError
 from ..const import GRAMPS_LOCALE as glocale
-from ..db.base import DbReadBase
 from ..proxy.proxybase import ProxyDbBase
+from .db import get_death_or_fallback
 
 LOG = logging.getLogger(".gen.utils.alive")
 
@@ -1045,7 +1045,7 @@ def probably_alive(
     if (
         not limit
         and current_date.get_sort_value() >= Today().get_sort_value()
-        and _has_recorded_death(person, db)
+        and get_death_or_fallback(db, person) is not None
     ):
         LOG.debug(
             "      [%s] %s: decided not alive - death recorded",
@@ -1111,32 +1111,6 @@ def probably_alive(
         return (result, birth, death, explain, relative)
 
     return result
-
-
-def _has_recorded_death(person: Person | DataDict, db: DbReadBase) -> bool:
-    """
-    Return True if the person has a death event, or a death fallback event
-    such as a burial, in a primary role, whether or not it has a date.
-
-    Events the database does not return (for example private events behind
-    a private proxy) do not count.
-
-    :param person: The person to check.
-    :type person: :py:class:`Person` or :py:class:`DataDict`
-    :param db: The database to read the person's events from.
-    :type db: :py:class:`DbReadBase`
-    :returns: ``True`` if a death is recorded for the person.
-    :rtype: bool
-    """
-    death_ref = person.get_death_ref()
-    if death_ref and death_ref.get_role().is_primary():
-        if db.get_event_from_handle(death_ref.ref):
-            return True
-    for event_ref in person.get_primary_event_ref_list():
-        event = db.get_event_from_handle(event_ref.ref)
-        if event and event.type.is_death_fallback():
-            return True
-    return False
 
 
 def probably_alive_range(
