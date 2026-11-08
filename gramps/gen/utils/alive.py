@@ -44,6 +44,7 @@ from ..lib.json_utils import DataDict
 from ..errors import DatabaseError
 from ..const import GRAMPS_LOCALE as glocale
 from ..proxy.proxybase import ProxyDbBase
+from .db import get_death_or_fallback
 
 LOG = logging.getLogger(".gen.utils.alive")
 
@@ -1013,7 +1014,8 @@ def probably_alive(
 
     This works by a process of elimination. If we can't find a good
     reason to believe that someone is dead then we assume they must
-    be alive.
+    be alive. A person with a recorded death, dated or not, is not alive
+    on today's date or later.
 
     :param current_date: a date object that is not estimated or modified
                          (defaults to today if None or a blank string)
@@ -1036,6 +1038,21 @@ def probably_alive(
     )
     if current_date is None or not current_date.is_valid():
         current_date = Today()
+
+    # A recorded death means the person is not alive today or later, even
+    # when the death has no date. For a date in the past, or when years
+    # after death are checked, the estimate below has to decide.
+    if (
+        not limit
+        and current_date.get_sort_value() >= Today().get_sort_value()
+        and get_death_or_fallback(db, person) is not None
+    ):
+        LOG.debug(
+            "      [%s] %s: decided not alive - death recorded",
+            person.get_gramps_id(),
+            person.get_primary_name().get_gedcom_name(),
+        )
+        return (False, birth, death, explain, relative) if return_range else False
 
     if DEBUGLEVEL > 0:
         if relative is None:
