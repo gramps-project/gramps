@@ -48,7 +48,9 @@ import threading
 import time
 import webbrowser
 from dataclasses import dataclass
-from typing import Any, ClassVar
+from functools import wraps
+from io import BytesIO
+from typing import Any, Callable, ClassVar, Concatenate, ParamSpec, TypeVar
 from urllib.parse import parse_qs, urlencode, urljoin, urlparse, urlunparse
 
 import certifi
@@ -438,6 +440,22 @@ class EnvProfile:
     redirect: str
 
 
+# ------------------------------------------------------------
+# _AuthContext
+# ------------------------------------------------------------
+@dataclass(frozen=True)
+class _AuthContext:
+    """Identify the sign-in and endpoints associated with an HTTP request."""
+
+    generation: int
+    provider: str
+    environment: str
+    api_url: str
+    ident_url: str
+    middleware_url: str
+    login_id: str
+
+
 def _normalize_auth_provider(value: str) -> str:
     value = (value or AUTH_PROVIDER_DIRECT).strip().lower()
     if value == AUTH_PROVIDER_FOUNDATION:
@@ -447,6 +465,10 @@ def _normalize_auth_provider(value: str) -> str:
 
 def _normalize_base_url(value: str) -> str:
     return (value or "").strip().rstrip("/")
+
+
+_ProfileParams = ParamSpec("_ProfileParams")
+_ProfileResult = TypeVar("_ProfileResult")
 
 
 class Session(requests.Session):
@@ -477,6 +499,7 @@ class Session(requests.Session):
         self._legacy_redirect = (redirect or "").strip()
 
         self.auth_generation = 0
+        self._auth_state_lock = threading.RLock()
         self.access_token: str | None = None
         self.refresh_token: str | None = None
         self.id_token: str | None = None
@@ -664,8 +687,34 @@ class Session(requests.Session):
             redirect=redirect,
         )
 
+    @staticmethod
+    def _with_auth_state_lock(
+        method: Callable[Concatenate[Session, _ProfileParams], _ProfileResult],
+    ) -> Callable[Concatenate[Session, _ProfileParams], _ProfileResult]:
+        """Serialize a profile update with requests from the same session.
+
+        :param method: The profile method to protect.
+        :returns: The method with its authorization lock held during the call.
+        """
+
+        @wraps(method)
+        def locked(
+            self: Session, *args: _ProfileParams.args, **kwargs: _ProfileParams.kwargs
+        ) -> _ProfileResult:
+            """Call the profile method while holding the session lock."""
+            with self._auth_state_lock:  # pylint: disable=protected-access
+                return method(self, *args, **kwargs)
+
+        return locked
+
+    @_with_auth_state_lock
     def _apply_profile(self, prof: EnvProfile, clear_state: bool = True) -> None:
-        """Apply the chosen profile and optionally clear auth state."""
+        """Apply the chosen profile and optionally clear authorization.
+
+
+        :param prof: The selected beta or production endpoints.
+        :param clear_state: Whether this starts a new authorization generation.
+        """
         self._profile = prof
         self.fs_url = prof.fs_url
         self.ident_url = prof.ident_url
@@ -688,6 +737,7 @@ class Session(requests.Session):
             self._foundation_auth_payload = None
             self._auth_ui_cancelled = False
             self.connected = False
+            self.last_recovery_kind = "none"
             self.last_probe_http = None
             self.last_probe_detail = ""
             self._oauth_code = ""
@@ -1012,7 +1062,11 @@ class Session(requests.Session):
             headers["authorization"] = "Bearer " + auth_token
 
     def _mark_auth_required(self, http: int) -> None:
-        """Discard expired credentials without starting a hidden login flow."""
+        """Discard expired credentials without starting a login flow.
+
+        :param http: The response status that invalidated authorization.
+        """
+        self.auth_generation += 1
         self.last_recovery_kind = "auth_required"
         self.connected = False
         self.access_token = None
@@ -1035,6 +1089,7 @@ class Session(requests.Session):
                 payload = None
             if (
                 isinstance(payload, dict)
+                and isinstance(payload.get("error"), str)
                 and payload.get("error")
                 in {"familysearch_session_unavailable", "refresh_failed"}
                 and payload.get("reauth_required") is True
@@ -1061,158 +1116,269 @@ class Session(requests.Session):
                 self._set_status("CONNECTED", _("Connection restored."), status)
         return False
 
-    def _refresh_direct_access_token(self) -> bool:
-        refresh_token = (self.refresh_token or "").strip()
-        if not refresh_token or not (self.app_key or "").strip():
-            return False
+    def _auth_context(self) -> _AuthContext:
+        """Read the sign-in identity while holding ``_auth_state_lock``.
 
-        try:
-            url = urljoin(self.ident_url, "cis-web/oauth2/v3/token")
-            payload = {
-                "grant_type": "refresh_token",
-                "refresh_token": refresh_token,
-                "client_id": self.app_key,
-            }
-            headers = {
-                "accept": "application/json",
-                "content-type": "application/x-www-form-urlencoded",
-            }
-            r = super().post(
-                url,
-                data=payload,
-                headers=headers,
-                verify=self.verify,
-                timeout=self.api_timeout_s,
-            )
-            data = r.json()
-            if r.status_code >= 400 or not isinstance(data, dict):
-                _dbg(f"direct refresh failed HTTP {r.status_code}")
-                if (
-                    r.status_code in (400, 401)
-                    and isinstance(data, dict)
-                    and data.get("error")
-                    in {"invalid_grant", "invalid_token", "login_required"}
-                ):
-                    self._mark_auth_required(r.status_code)
+        :returns: The generation and endpoints belonging to this sign-in.
+        """
+        return _AuthContext(
+            self.auth_generation,
+            self.auth_provider,
+            self._profile.env,
+            self.api_url,
+            self.ident_url,
+            self.foundation_base_url,
+            self.foundation_login_id,
+        )
+
+    @staticmethod
+    def _unavailable_response(status: int = 503) -> requests.Response:
+        """Represent failed recovery without exposing transport details.
+
+        :param status: The HTTP-equivalent failure status.
+        :returns: An empty failure response for the original caller.
+        """
+        response = requests.Response()
+        response.status_code = status
+        response.raw = BytesIO()
+        return response
+
+    def _refresh_access_token(
+        self, context: _AuthContext, rejected_token: str | None
+    ) -> tuple[bool, requests.Response | None]:
+        """Serialize refreshes and discard results from an earlier sign-in.
+
+        :param context: The identity that sent the rejected request.
+        :param rejected_token: The credential used by that request.
+        :returns: Whether a usable token exists, and any recovery failure.
+        """
+        with self._token_refresh_lock:
+            with self._auth_state_lock:
+                if context != self._auth_context():
+                    return False, None
+                if rejected_token != self.access_token:
+                    return bool(self.access_token), None
+                foundation = self._using_foundation_middleware()
+                options: dict[str, Any]
+                if foundation:
+                    if not (
+                        self.foundation_base_url
+                        and self.foundation_access_code
+                        and self.foundation_session_token
+                        and self.foundation_login_id
+                    ):
+                        self._mark_auth_required(401)
+                        return False, None
+                    url = self._foundation_url("v1/fs/token/refresh")
+                    options = {
+                        "json": {
+                            "login_id": context.login_id,
+                            "env": context.environment,
+                        },
+                        "headers": self._foundation_headers(
+                            include_session=True, include_json=True
+                        ),
+                    }
                 else:
-                    self._observe_api_response(r)
-                return False
-            access_token = (data.get("access_token") or "").strip()
-            if not access_token:
-                return False
-            self.access_token = access_token
-            self.refresh_token = (data.get("refresh_token") or refresh_token).strip()
-            return True
-        except Exception as e:
-            self.last_recovery_kind = "temporary_failure"
-            _dbg(f"direct refresh exception: {type(e).__name__}")
-            return False
+                    if not self.refresh_token or not self.app_key:
+                        self._mark_auth_required(401)
+                        return False, None
+                    url = urljoin(self.ident_url, "cis-web/oauth2/v3/token")
+                    options = {
+                        "data": {
+                            "grant_type": "refresh_token",
+                            "refresh_token": self.refresh_token,
+                            "client_id": self.app_key,
+                        },
+                        "headers": {
+                            "accept": "application/json",
+                            "content-type": "application/x-www-form-urlencoded",
+                        },
+                    }
+            try:
+                response = super().post(
+                    url, verify=self.verify, timeout=self.api_timeout_s, **options
+                )
+                try:
+                    data = response.json()
+                except (ValueError, TypeError):
+                    data = None
+            except requests.RequestException as error:
+                _dbg(f"token refresh exception: {type(error).__name__}")
+                response, data = self._unavailable_response(), None
 
-    def _refresh_foundation_access_token(self) -> bool:
-        if (
-            not self.foundation_base_url
-            or not self.foundation_access_code
-            or not self.foundation_session_token
-            or not self.foundation_login_id
-        ):
-            return False
-
-        try:
-            r = super().post(
-                self._foundation_url("v1/fs/token/refresh"),
-                json={"login_id": self.foundation_login_id, "env": self._profile.env},
-                headers=self._foundation_headers(
-                    include_session=True, include_json=True
-                ),
-                verify=self.verify,
-                timeout=self.api_timeout_s,
-            )
-            data = r.json()
-            if r.status_code >= 400 or not isinstance(data, dict):
-                _dbg(f"foundation refresh failed HTTP {r.status_code}")
-                if not self._observe_api_response(r) and r.status_code == 401:
-                    self._mark_auth_required(r.status_code)
-                return False
-            session_token = (
-                str(data.get("foundation_session_token") or "").strip()
-                or str(data.get("access_token") or "").strip()
-            )
-            if not session_token:
-                return False
-            self.access_token = session_token
-            self.foundation_session_token = session_token
-            return True
-        except Exception as e:
-            self.last_recovery_kind = "temporary_failure"
-            _dbg(f"foundation refresh exception: {type(e).__name__}")
-            return False
+            with self._auth_state_lock:
+                if context != self._auth_context():
+                    return False, None
+                if rejected_token != self.access_token:
+                    return bool(self.access_token), None
+                if response.status_code >= 400:
+                    expired = response.status_code == 401 or (
+                        not foundation
+                        and response.status_code == 400
+                        and isinstance(data, dict)
+                        and isinstance(data.get("error"), str)
+                        and data.get("error")
+                        in {"invalid_grant", "invalid_token", "login_required"}
+                    )
+                    if not self._observe_api_response(response) and expired:
+                        self._mark_auth_required(response.status_code)
+                    return False, response
+                token = ""
+                if isinstance(data, dict):
+                    value = (
+                        (
+                            data.get("foundation_session_token")
+                            or data.get("access_token")
+                        )
+                        if foundation
+                        else data.get("access_token")
+                    )
+                    if isinstance(value, str):
+                        token = value.strip()
+                if not token:
+                    response = self._unavailable_response(502)
+                    self._observe_api_response(response)
+                    return False, response
+                self.access_token = token
+                if foundation:
+                    self.foundation_session_token = token
+                elif isinstance(data, dict) and isinstance(
+                    data.get("refresh_token"), str
+                ):
+                    self.refresh_token = (
+                        data["refresh_token"].strip() or self.refresh_token
+                    )
+                return True, None
 
     def refresh_access_token(self) -> bool:
-        token_before = self.access_token
-        with self._token_refresh_lock:
-            if self.access_token != token_before:
-                # Another thread already refreshed the token while we
-                # were waiting for the lock; no need to do it again.
-                return bool(self.access_token)
-            if self._using_foundation_middleware():
-                return self._refresh_foundation_access_token()
-            return self._refresh_direct_access_token()
+        """Refresh the current sign-in without restoring discarded credentials.
+
+        :returns: Whether a current access token is available after recovery.
+        """
+        with self._auth_state_lock:
+            context, token = self._auth_context(), self.access_token
+        refreshed, _ = self._refresh_access_token(context, token)
+        return refreshed
 
     def _request_with_api_retry(
-        self, method_name: str, url: str, *, _query_only: bool = False, **kwargs
-    ):
+        self,
+        method_name: str,
+        url: str,
+        *,
+        _query_only: bool = False,
+        _context: _AuthContext | None = None,
+        **kwargs: Any,
+    ) -> requests.Response:
+        """Retry a safe read once and retain the actual recovery failure.
+
+        :param method_name: The requests transport method.
+        :param url: The already routed destination.
+        :param _query_only: Whether this POST is the read-only match query.
+        :param _context: The identity used when routing the request.
+        :param kwargs: Transport options, including the original headers.
+        :returns: The API response or the failed recovery response.
+        :raises FSException: If the sign-in changes while work is in flight.
+        """
+        with self._auth_state_lock:
+            context = _context or self._auth_context()
+            if context != self._auth_context():
+                raise FSException(_("The FamilySearch session changed. Try again."))
+            authorization = next(
+                (
+                    value
+                    for key, value in kwargs.get("headers", {}).items()
+                    if key.lower() == "authorization"
+                ),
+                "",
+            )
+            token = (
+                authorization.removeprefix("Bearer ")
+                if authorization.startswith("Bearer ")
+                else self.access_token
+            )
         method = getattr(super(), method_name)
         _dbg(f"{method_name.upper()} {_safe_url_for_log(url)}")
         response = method(url, **kwargs)
-        if self._observe_api_response(response) or response.status_code != 401:
-            return response
+        with self._auth_state_lock:
+            if context != self._auth_context():
+                raise FSException(_("The FamilySearch session changed. Try again."))
+            rotated = token != self.access_token and response.status_code == 401
+            if not rotated and self._observe_api_response(response):
+                return response
+            if response.status_code != 401:
+                return response
         if method_name.lower() not in {"get", "head"} and not (
             method_name.lower() == "post" and _query_only
         ):
-            # A rejected write is returned to its caller for explicit handling.
-            # Never replay a potentially completed remote mutation automatically.
             return response
-        if not self.refresh_access_token():
-            return response
-
-        retry_kwargs = self._clone_kwargs(kwargs)
-        headers = retry_kwargs.setdefault("headers", {})
-        for key in list(headers):
-            if key.lower() == "authorization":
-                del headers[key]
-        if self.access_token:
-            headers["authorization"] = "Bearer " + self.access_token
+        refreshed, failure = self._refresh_access_token(context, token)
+        with self._auth_state_lock:
+            if (
+                not refreshed
+                and self.access_token is None
+                and self.last_recovery_kind == "auth_required"
+            ):
+                return failure if failure is not None else response
+            if context != self._auth_context():
+                raise FSException(_("The FamilySearch session changed. Try again."))
+            if not refreshed:
+                return failure if failure is not None else response
+            retry_kwargs = self._clone_kwargs(kwargs)
+            headers = retry_kwargs.setdefault("headers", {})
+            for key in list(headers):
+                if key.lower() == "authorization":
+                    del headers[key]
+            headers["authorization"] = "Bearer " + str(self.access_token)
         _dbg(
             f"{method_name.upper()} {_safe_url_for_log(url)} retry after token refresh"
         )
         response = method(url, **retry_kwargs)
-        self._observe_api_response(response)
+        with self._auth_state_lock:
+            if context != self._auth_context():
+                raise FSException(_("The FamilySearch session changed. Try again."))
+            if not self._observe_api_response(response) and response.status_code == 401:
+                self._mark_auth_required(401)
         return response
 
-    def _route_api_request(self, method_name: str, url: str, **kwargs):
-        kwargs.setdefault("timeout", self.api_timeout_s)
-        text_url = str(url)
-        query_only = (
-            method_name.lower() == "post"
-            and urlparse(text_url).path.strip("/") == "platform/tree/matches"
-        )
-        if self._using_foundation_middleware() and text_url.startswith(
-            ("http://", "https://")
-        ):
-            if self._is_proxyable_foundation_url(text_url):
-                url = self._foundation_proxy_absolute_url(text_url)
-                self._ensure_api_headers(kwargs)
-                return self._request_with_api_retry(
-                    method_name, url, _query_only=query_only, **kwargs
+    def _route_api_request(
+        self, method_name: str, url: str, **kwargs: Any
+    ) -> requests.Response:
+        """Route an API request using one snapshot of the active sign-in.
+
+        :param method_name: The requests method to invoke.
+        :param url: A relative API path or an absolute resource URL.
+        :param kwargs: Transport options forwarded to requests.
+        :returns: The routed response.
+        """
+        with self._auth_state_lock:
+            kwargs = self._clone_kwargs(kwargs)
+            kwargs.setdefault("timeout", self.api_timeout_s)
+            text_url = str(url)
+            query_only = (
+                method_name.lower() == "post"
+                and urlparse(text_url).path.strip("/") == "platform/tree/matches"
+            )
+            routed = False
+            if self._using_foundation_middleware() and text_url.startswith(
+                ("http://", "https://")
+            ):
+                if self._is_proxyable_foundation_url(text_url):
+                    url = self._foundation_proxy_absolute_url(text_url)
+                    routed = True
+            elif not text_url.startswith("http"):
+                url = (
+                    self._foundation_proxy_url(text_url)
+                    if self._using_foundation_middleware()
+                    else self._fs_join(self.api_url, text_url)
                 )
-        if not text_url.startswith("http"):
-            if self._using_foundation_middleware():
-                url = self._foundation_proxy_url(text_url)
-            else:
-                url = self._fs_join(self.api_url, text_url)
-            self._ensure_api_headers(kwargs)
+                routed = True
+            if routed:
+                self._ensure_api_headers(kwargs)
+            context = self._auth_context()
+        if routed:
             return self._request_with_api_retry(
-                method_name, url, _query_only=query_only, **kwargs
+                method_name, url, _query_only=query_only, _context=context, **kwargs
             )
         _dbg(f"{method_name.upper()} {_safe_url_for_log(url)}")
         return getattr(super(), method_name)(url, **kwargs)
@@ -1415,46 +1581,51 @@ class Session(requests.Session):
             return url
 
     def probe_api(self, reason: str = "") -> bool:
-        """Hit a simple FS endpoint so we know whether the token still works."""
-        if not self.access_token:
-            self.connected = False
-            self.last_probe_http = None
-            self.last_probe_detail = "No access token"
-            self._set_status(
-                "DISCONNECTED", f"{reason}: no token" if reason else "No token"
-            )
-            return False
+        """Check authorization without changing a superseding sign-in.
 
-        self._set_status(
-            "PROBING",
-            (
-                f"{reason}: GET platform/users/current"
-                if reason
-                else "GET platform/users/current"
-            ),
-        )
+        :param reason: The diagnostic context for this connection check.
+        :returns: Whether the current sign-in passed the API check.
+        """
+        with self._auth_state_lock:
+            context = self._auth_context()
+            if not self.access_token:
+                self.connected = False
+                self.last_probe_http = None
+                self.last_probe_detail = "No access token"
+                self._set_status(
+                    "DISCONNECTED", f"{reason}: no token" if reason else "No token"
+                )
+                return False
+            self._set_status(
+                "PROBING",
+                (
+                    f"{reason}: GET platform/users/current"
+                    if reason
+                    else "GET platform/users/current"
+                ),
+            )
         try:
-            r = self.get("platform/users/current")
-            http = r.status_code
+            response = self.get("platform/users/current")
+        except Exception as error:
+            with self._auth_state_lock:
+                if context == self._auth_context():
+                    self.connected = False
+                    self.last_probe_http = None
+                    self.last_probe_detail = f"API probe failed: {type(error).__name__}"
+                    self._set_status("ERROR", self.last_probe_detail)
+            return False
+        with self._auth_state_lock:
+            if context != self._auth_context():
+                return False
+            http = response.status_code
             self.last_probe_http = http
             self.last_probe_detail = "OK" if http == 200 else f"HTTP {http}"
-            if http == 200:
-                self.connected = True
+            self.connected = http == 200
+            if self.connected:
                 self._set_status("CONNECTED", "API probe OK", http=http)
                 self._maybe_show_tools_window()
                 return True
-            self.connected = False
-            self._set_status(
-                "API_FAIL",
-                "API probe failed",
-                http=http,
-            )
-            return False
-        except Exception as e:
-            self.connected = False
-            self.last_probe_http = None
-            self.last_probe_detail = f"API probe failed: {type(e).__name__}"
-            self._set_status("ERROR", self.last_probe_detail)
+            self._set_status("API_FAIL", "API probe failed", http=http)
             return False
 
     def get_current_person(self) -> str:
@@ -1464,46 +1635,46 @@ class Session(requests.Session):
         return r.text
 
     def logout(self) -> None:
-        self.auth_generation = getattr(self, "auth_generation", 0) + 1
-        if (
-            self._using_foundation_middleware()
-            and self.foundation_base_url
-            and self.foundation_access_code
-            and self.foundation_session_token
-            and self.foundation_login_id
-        ):
+        """Discard local authorization before notifying the middleware."""
+        with self._auth_state_lock:
+            notify = bool(
+                self._using_foundation_middleware()
+                and self.foundation_base_url
+                and self.foundation_access_code
+                and self.foundation_session_token
+                and self.foundation_login_id
+            )
+            url = self._foundation_url("v1/fs/logout")
+            payload = {"login_id": self.foundation_login_id, "env": self._profile.env}
+            headers = self._foundation_headers(include_session=True, include_json=True)
+            self.auth_generation += 1
+            self.access_token = None
+            self.refresh_token = None
+            self.id_token = None
+            self.foundation_session_token = ""
+            self.foundation_login_id = ""
+            self._foundation_auth_payload = None
+            self._auth_ui_cancelled = True
+            self._oauth_state = ""
+            self._pkce_verifier = ""
+            self._pkce_challenge = ""
+            self.cookies.clear()
+            self.connected = False
+            self.last_recovery_kind = "none"
+            self.last_probe_http = None
+            self.last_probe_detail = "Logged out"
+            self._set_status("DISCONNECTED", "Logged out")
+        if notify:
             try:
                 super().post(
-                    self._foundation_url("v1/fs/logout"),
-                    json={
-                        "login_id": self.foundation_login_id,
-                        "env": self._profile.env,
-                    },
-                    headers=self._foundation_headers(
-                        include_session=True, include_json=True
-                    ),
+                    url,
+                    json=payload,
+                    headers=headers,
                     verify=self.verify,
+                    timeout=self.api_timeout_s,
                 )
-            except Exception as e:
-                _dbg(f"foundation logout exception: {type(e).__name__}")
-        self.access_token = None
-        self.refresh_token = None
-        self.id_token = None
-        self.foundation_session_token = ""
-        self.foundation_login_id = ""
-        self._foundation_auth_payload = None
-        self._auth_ui_cancelled = False
-        self._oauth_state = ""
-        self._pkce_verifier = ""
-        self._pkce_challenge = ""
-        try:
-            self.cookies.clear()
-        except Exception:
-            pass
-        self.connected = False
-        self.last_probe_http = None
-        self.last_probe_detail = "Logged out"
-        self._set_status("DISCONNECTED", "Logged out")
+            except requests.RequestException as error:
+                _dbg(f"foundation logout exception: {type(error).__name__}")
 
     def _available_methods(self) -> list[str]:
         methods = [AUTH_AUTO, AUTH_LOOPBACK, AUTH_MANUAL]
@@ -1702,6 +1873,11 @@ class Session(requests.Session):
         return login_id
 
     def _apply_foundation_login_payload(self, data: dict[str, Any]) -> bool:
+        """Install completed middleware authorization atomically.
+
+        :param data: The approved middleware login response.
+        :returns: Whether the response contains a usable session credential.
+        """
         foundation_session_token = (
             str(data.get("foundation_session_token") or "").strip()
             or str(data.get("access_token") or "").strip()
@@ -1711,15 +1887,17 @@ class Session(requests.Session):
             self._set_status("ERROR", "Middleware approval payload is incomplete")
             return False
 
-        self.auth_generation = getattr(self, "auth_generation", 0) + 1
-        self.access_token = foundation_session_token
-        self.refresh_token = None
-        self.id_token = None
-        self.foundation_session_token = foundation_session_token
-        self.foundation_login_id = login_id
-        self._foundation_auth_payload = None
-        self._oauth_state = ""
-        self._set_status("TOKEN_ACQUIRED", "Proxy session acquired from middleware")
+        with self._auth_state_lock:
+            self.auth_generation = getattr(self, "auth_generation", 0) + 1
+            self.last_recovery_kind = "none"
+            self.access_token = foundation_session_token
+            self.refresh_token = None
+            self.id_token = None
+            self.foundation_session_token = foundation_session_token
+            self.foundation_login_id = login_id
+            self._foundation_auth_payload = None
+            self._oauth_state = ""
+            self._set_status("TOKEN_ACQUIRED", "Proxy session acquired from middleware")
         try:
             self.probe_api(reason="post-token")
         except Exception as e:
@@ -1819,12 +1997,13 @@ class Session(requests.Session):
                 return False
 
             if isinstance(data, dict) and data.get("access_token"):
-                self.auth_generation = getattr(self, "auth_generation", 0) + 1
-                self.access_token = data["access_token"]
-                self.refresh_token = data.get("refresh_token")
-                self.id_token = data.get("id_token")
-                self._oauth_state = ""
-                self._set_status("TOKEN_ACQUIRED", "Access token acquired")
+                with self._auth_state_lock:
+                    self.auth_generation = getattr(self, "auth_generation", 0) + 1
+                    self.access_token = data["access_token"]
+                    self.refresh_token = data.get("refresh_token")
+                    self.id_token = data.get("id_token")
+                    self._oauth_state = ""
+                    self._set_status("TOKEN_ACQUIRED", "Access token acquired")
                 try:
                     self.probe_api(reason="post-token")
                 except Exception as e:
