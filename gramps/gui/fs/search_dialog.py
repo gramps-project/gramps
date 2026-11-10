@@ -29,13 +29,14 @@ import weakref
 from dataclasses import asdict
 from typing import Any, Callable
 
-from gi.repository import GLib, Gtk
+from gi.repository import GLib, Gtk, Pango
 
 # ------------------------
 # Gramps modules
 # ------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.fs.constants import GEDCOMX_TO_GRAMPS_FACTS
 from gramps.gen.fs.linking import (
     apply_link,
     plan_link,
@@ -46,12 +47,24 @@ from gramps.gen.fs.preview import FamilyPreview, PreviewService
 from gramps.gen.fs.search import SearchPage, SearchQuery, SearchService
 from gramps.gen.fs.search_prefill import person_query
 from gramps.gen.fs.session import FSException
-from gramps.gen.lib import Person
+from gramps.gen.lib import EventType, Person
 from gramps.gen.types import PersonHandle
 
-from .ui import tool_section
-
 _ = glocale.translation.gettext
+
+
+def fact_label(kind: str) -> str:
+    """Translate a known fact type while retaining unknown source labels.
+
+    :param kind: The fact type supplied by FamilySearch.
+    :returns: The corresponding Gramps label, or the original custom type.
+    """
+    value = GEDCOMX_TO_GRAMPS_FACTS.get(kind)
+    if isinstance(value, int):
+        return str(EventType(value))
+    if isinstance(value, str):
+        return value
+    return kind.removeprefix("data:,") or _("Unknown event")
 
 
 def preview_text(preview: FamilyPreview) -> str:
@@ -65,7 +78,7 @@ def preview_text(preview: FamilyPreview) -> str:
             " · ".join(
                 part
                 for part in (
-                    fact.kind.rsplit("/", 1)[-1],
+                    fact_label(fact.kind),
                     fact.date or fact.formal_date,
                     fact.place,
                 )
@@ -83,7 +96,7 @@ def preview_text(preview: FamilyPreview) -> str:
                 "%s: %s [%s]" % (roles[relation.role], text, relation.person.person_id)
             )
         for fact in relation.facts:
-            lines.append("  " + fact.kind.rsplit("/", 1)[-1])
+            lines.append("  " + fact_label(fact.kind))
     return "\n".join(lines)
 
 
@@ -135,68 +148,90 @@ class SearchDialog:
         self.initial_binding = public_bindings(person) if person is not None else ()
         self.entries: dict[str, Gtk.Entry] = {}
         self.window = Gtk.Window(title=_("Find on FamilySearch"), transient_for=parent)
-        self.window.set_default_size(900, 680)
+        self.window.set_default_size(760, 540)
         self.window.set_border_width(12)
         self.window.connect("destroy", self.cb_destroy)
-        outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
+        outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.window.add(outer)
+        self.scroll = Gtk.ScrolledWindow()
+        self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        outer.pack_start(self.scroll, True, True, 0)
+        content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        self.scroll.add(content)
         local = Gtk.Label(
             label=(
                 _("Local person: %s") % name_displayer.display(person)
                 if person is not None
-                else _("Choose a FamilySearch person and review their family.")
+                else _("Choose a FamilySearch person.")
             )
         )
         local.set_xalign(0)
-        outer.pack_start(local, False, False, 0)
-        local_details = Gtk.Label(
-            label=self._local_summary(person) if person is not None else ""
-        )
+        local.set_line_wrap(True)
+        local.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        local.set_max_width_chars(60)
+        content.pack_start(local, False, False, 0)
+        local_details = Gtk.Label(label=self._local_summary(person) if person else "")
         local_details.set_xalign(0)
         local_details.set_selectable(True)
         local_details.set_line_wrap(True)
-        outer.pack_start(local_details, False, False, 0)
-        search_section, search_box = tool_section(_("Find a person"), "fs-sec-person")
-        outer.pack_start(search_section, False, False, 0)
-        grid = Gtk.Grid(column_spacing=10, row_spacing=6)
+        local_details.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        local_details.set_max_width_chars(60)
+        if local_details.get_text():
+            content.pack_start(local_details, False, False, 0)
+        heading = Gtk.Label(xalign=0)
+        heading.set_markup("<b>%s</b>" % GLib.markup_escape_text(_("Find a person")))
+        content.pack_start(heading, False, False, 0)
+        search_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        search_box.set_margin_start(12)
+        content.pack_start(search_box, False, False, 0)
+        grid = Gtk.Grid(column_spacing=12, row_spacing=6)
         search_box.pack_start(grid, False, False, 0)
         self.more_options = Gtk.Expander(label=_("More search options"))
-        advanced_grid = Gtk.Grid(column_spacing=10, row_spacing=6)
+        advanced_grid = Gtk.Grid(column_spacing=12, row_spacing=6)
+        advanced_grid.set_margin_start(12)
+        advanced_grid.set_margin_top(6)
         self.more_options.add(advanced_grid)
         search_box.pack_start(self.more_options, False, False, 0)
         lookup = Gtk.Expander(label=_("Look up a known ID or link"))
-        lookup_row = Gtk.Box(spacing=8)
+        lookup_row = Gtk.Grid(column_spacing=12, row_spacing=6)
+        lookup_row.set_margin_start(12)
+        lookup_row.set_margin_top(6)
         lookup.add(lookup_row)
         search_box.pack_start(lookup, False, False, 0)
         fields = [
-            ("given_name", _("Given name")),
-            ("surname", _("Surname")),
-            ("birth_from", _("Birth year from")),
-            ("birth_to", _("Birth year to")),
-            ("birth_place", _("Birth place")),
-            ("death_place", _("Death place")),
-            ("death_from", _("Death year from")),
-            ("death_to", _("Death year to")),
-            ("father_given", _("Father given name")),
-            ("father_surname", _("Father surname")),
-            ("mother_given", _("Mother given name")),
-            ("mother_surname", _("Mother surname")),
-            ("spouse_given", _("Spouse given name")),
-            ("spouse_surname", _("Spouse surname")),
-            ("advanced", _("Advanced query")),
-            ("pid", _("Person ID or link")),
+            ("given_name", _("_Given name:")),
+            ("surname", _("_Surname:")),
+            ("birth_from", _("Birth year _from:")),
+            ("birth_to", _("Birth year _to:")),
+            ("birth_place", _("Birth _place:")),
+            ("death_place", _("Death p_lace:")),
+            ("death_from", _("_Death year from:")),
+            ("death_to", _("Death year t_o:")),
+            ("father_given", _("Father gi_ven name:")),
+            ("father_surname", _("Father s_urname:")),
+            ("mother_given", _("_Mother given name:")),
+            ("mother_surname", _("Mother su_rname:")),
+            ("spouse_given", _("Spouse given _name:")),
+            ("spouse_surname", _("Spouse surn_ame:")),
+            ("advanced", _("Advanced _query:")),
+            ("pid", _("Person _ID or link:")),
         ]
         basic_keys = {"given_name", "surname", "birth_from", "birth_to", "birth_place"}
         basic_index = advanced_index = 0
         for key, label in fields:
-            widget = Gtk.Label(label=label)
-            widget.set_xalign(0)
+            widget = Gtk.Label(label=label, use_underline=True, xalign=0)
+            widget.set_line_wrap(True)
+            widget.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+            widget.set_max_width_chars(20)
             entry = Gtk.Entry()
+            entry.set_width_chars(12)
             entry.set_hexpand(True)
+            widget.set_mnemonic_widget(entry)
             self.entries[key] = entry
             if key == "pid":
                 entry.set_placeholder_text(_("Person ID or FamilySearch person link"))
-                lookup_row.pack_start(entry, True, True, 0)
+                lookup_row.attach(widget, 0, 0, 1, 1)
+                lookup_row.attach(entry, 1, 0, 1, 1)
                 continue
             if key in basic_keys:
                 target, index = grid, basic_index
@@ -222,70 +257,71 @@ class SearchDialog:
             )
         for entry in self.entries.values():
             entry.connect("changed", self.cb_input_changed)
-        buttons = Gtk.Box(spacing=8)
+        buttons = Gtk.Box(spacing=6)
         search_box.pack_start(buttons, False, False, 0)
-        self.search_button = Gtk.Button(label=_("Search"))
-        self.pid_button = Gtk.Button(label=_("Look up ID"))
-        self.next_button = Gtk.Button(label=_("Next page"))
-        self.link_button = Gtk.Button(
-            label=(
-                _("Use this person")
-                if on_selected is not None
-                else _("Link this person")
-            )
-        )
+        self.search_button = Gtk.Button.new_with_mnemonic(_("_Search"))
+        self.pid_button = Gtk.Button.new_with_mnemonic(_("Look _up ID"))
         buttons.pack_start(self.search_button, False, False, 0)
-        lookup_row.pack_start(self.pid_button, False, False, 0)
-        review_section, review_box = tool_section(
-            _("Review the person and family"), "fs-sec-import"
+        lookup_row.attach(self.pid_button, 2, 0, 1, 1)
+        heading = Gtk.Label(xalign=0)
+        heading.set_markup(
+            "<b>%s</b>" % GLib.markup_escape_text(_("Review the person and family"))
         )
-        outer.pack_start(review_section, True, True, 0)
-        if on_selected is not None:
-            self.cancel_button = Gtk.Button(label=_("Cancel"))
-            self.cancel_button.connect("clicked", self.cb_cancel)
-            outer.pack_end(self.cancel_button, False, False, 0)
-        self.search_button.connect("clicked", self.cb_search)
-        self.pid_button.connect("clicked", self.cb_lookup)
-        self.next_button.connect("clicked", self.cb_next)
-        self.link_button.connect("clicked", self.cb_link)
+        content.pack_start(heading, False, False, 0)
         split = Gtk.Paned(orientation=Gtk.Orientation.HORIZONTAL)
-        review_box.pack_start(split, True, True, 0)
+        split.set_margin_start(12)
+        split.set_size_request(-1, 150)
+        content.pack_start(split, True, True, 0)
         self.results = Gtk.ListStore(str, str, str)
         tree = Gtk.TreeView(model=self.results)
         self.results_tree = tree
         for index, label in enumerate((_("Person"), _("ID"), _("Lifespan"))):
-            tree.append_column(
-                Gtk.TreeViewColumn(label, Gtk.CellRendererText(), text=index)
-            )
+            renderer = Gtk.CellRendererText(ellipsize=Pango.EllipsizeMode.END)
+            column = Gtk.TreeViewColumn(label, renderer, text=index)
+            column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
+            column.set_fixed_width(140 if index == 0 else 80)
+            column.set_resizable(True)
+            tree.append_column(column)
         tree.get_selection().connect("changed", self.cb_select)
         scroll = Gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         scroll.add(tree)
         split.pack1(scroll, True, False)
-        self.details = Gtk.TextView(editable=False, wrap_mode=Gtk.WrapMode.WORD)
+        self.details = Gtk.TextView(editable=False, wrap_mode=Gtk.WrapMode.WORD_CHAR)
         scroll = Gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         scroll.add(self.details)
         split.pack2(scroll, True, False)
-        review_buttons = Gtk.Box(spacing=8)
-        review_buttons.pack_start(self.next_button, False, False, 0)
-        review_buttons.pack_end(self.link_button, False, False, 0)
-        review_box.pack_start(review_buttons, False, False, 0)
         self.status = Gtk.Label(
             label=(
-                _("Search results require identity review before choosing a person.")
-                if on_selected is not None
-                else (
-                    _("Search results require identity review before linking.")
-                    if self.saved_at_open
-                    else _(
-                        "Searching an unsaved person. Save the person normally, "
-                        "then reopen this search before linking an ID."
-                    )
-                )
+                _("Select a result to review.")
+                if on_selected is not None or self.saved_at_open
+                else _("Save this person before linking a FamilySearch ID.")
             )
         )
         self.status.set_xalign(0)
         self.status.set_line_wrap(True)
+        self.status.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
+        self.status.set_max_width_chars(60)
         outer.pack_start(self.status, False, False, 0)
+        actions = Gtk.ButtonBox(orientation=Gtk.Orientation.HORIZONTAL)
+        actions.set_layout(Gtk.ButtonBoxStyle.END)
+        self.next_button = Gtk.Button.new_with_mnemonic(_("_Next page"))
+        self.link_button = Gtk.Button.new_with_mnemonic(
+            _("_Use this person") if on_selected is not None else _("_Link this person")
+        )
+        self.cancel_button = Gtk.Button.new_with_mnemonic(
+            _("_Cancel") if on_selected is not None else _("_Close")
+        )
+        self.cancel_button.connect("clicked", self.cb_cancel)
+        for button in (self.next_button, self.link_button, self.cancel_button):
+            actions.add(button)
+        actions.set_child_secondary(self.next_button, True)
+        outer.pack_start(actions, False, False, 0)
+        self.search_button.connect("clicked", self.cb_search)
+        self.pid_button.connect("clicked", self.cb_lookup)
+        self.next_button.connect("clicked", self.cb_next)
+        self.link_button.connect("clicked", self.cb_link)
         self._sensitivity()
         self.window.show_all()
 
@@ -379,10 +415,11 @@ class SearchDialog:
 
     def _sensitivity(self) -> None:
         """Expose actions only when their required inputs are still current."""
-        self.search_button.set_sensitive(not self.busy)
-        self.results_tree.set_sensitive(not self.busy)
-        self.pid_button.set_sensitive(not self.busy)
-        self.next_button.set_sensitive(not self.busy and bool(self.next_url))
+        available = not self.busy and self._context_valid()
+        self.search_button.set_sensitive(available)
+        self.results_tree.set_sensitive(available)
+        self.pid_button.set_sensitive(available)
+        self.next_button.set_sensitive(available and bool(self.next_url))
         self.link_button.set_sensitive(
             not self.busy
             and self.preview is not None
@@ -409,7 +446,7 @@ class SearchDialog:
         self._sensitivity()
         self.status.set_text(_("Contacting FamilySearch…"))
 
-        def deliver(value: Any, error: bool) -> bool:
+        def cb_deliver(value: Any, error: bool) -> bool:
             """Deliver only to the window and inputs that started this request."""
             if self.closed:
                 return False
@@ -427,22 +464,22 @@ class SearchDialog:
             self._sensitivity()
             return False
 
-        def worker() -> None:
+        def cb_worker() -> None:
             """Keep GTK and the native database out of the network worker."""
             try:
                 value = work()
             except (FSException, ValueError) as error:
-                GLib.idle_add(deliver, str(error), True)
+                GLib.idle_add(cb_deliver, str(error), True)
             except Exception:
                 GLib.idle_add(
-                    deliver,
+                    cb_deliver,
                     _("The request failed. Check the connection and try again."),
                     True,
                 )
             else:
-                GLib.idle_add(deliver, value, False)
+                GLib.idle_add(cb_deliver, value, False)
 
-        threading.Thread(target=worker, name="fs-person-search", daemon=True).start()
+        threading.Thread(target=cb_worker, name="fs-person-search", daemon=True).start()
 
     def cb_input_changed(self, *_args: Any) -> None:
         """Invalidate confirmation and pagination when any search input changes."""
