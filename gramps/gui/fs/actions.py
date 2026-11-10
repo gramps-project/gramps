@@ -253,9 +253,25 @@ def _fs_url_lang() -> str:
 
 
 def open_person_in_familysearch(
-    dbstate, uistate, track, person, session, parent, editor=None
-):
-    """Open the current person's FamilySearch person page in a web browser."""
+    dbstate: Any,
+    uistate: Any,
+    track: Any,
+    person: Person,
+    session: Any,
+    parent: Any,
+    editor: Any = None,
+) -> None:
+    """
+    Open the linked person in the active FamilySearch environment.
+
+    :param dbstate: The database state.
+    :param uistate: The interface state.
+    :param track: The navigation track.
+    :param person: The selected Gramps person.
+    :param session: The active FamilySearch session.
+    :param parent: The parent window.
+    :param editor: The optional person editor.
+    """
     _bind_global_session(session)
 
     fsid = _get_fs_id(person)
@@ -268,7 +284,7 @@ def open_person_in_familysearch(
         return
 
     display_url(
-        f"https://www.familysearch.org/{_fs_url_lang()}/tree/person/details/{fsid}"
+        f"{session.web_url.rstrip('/')}/{_fs_url_lang()}/tree/person/details/{fsid}"
     )
 
 
