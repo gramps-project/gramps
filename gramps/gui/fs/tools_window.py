@@ -648,7 +648,7 @@ class FamilySearchToolsWindow:
         self._set_logo_width(width)
 
         wrapper.connect("size-allocate", self._on_banner_size_allocate)
-        wrapper.connect("button-press-event", self._on_logo_clicked)
+        wrapper.connect("button-press-event", self.cb_logo_clicked)
         wrapper.connect("realize", self._on_banner_realize)
         return wrapper
 
@@ -657,8 +657,13 @@ class FamilySearchToolsWindow:
             Gdk.Cursor.new_for_display(Gdk.Display.get_default(), Gdk.CursorType.HAND2)
         )
 
-    def _on_logo_clicked(self, *_args: Any) -> None:
-        display_url("https://www.familysearch.org/")
+    def cb_logo_clicked(self, *_args: Any) -> None:
+        """
+        Open the FamilySearch home page for the active environment.
+
+        :param _args: The signal arguments supplied by GTK.
+        """
+        display_url(self.session.web_url)
 
     def _load_logo_pixbuf(self) -> Optional[GdkPixbuf.Pixbuf]:
         candidates: list[str] = []
