@@ -1,0 +1,37 @@
+Kevin White:
+so gg_beta is probably not the best choice of working then, since beta is a release - maybe gg_core?
+
+
+Devin:
+Yes, that is an accurate observation. Having beta in the branch name is confusing because "beta" usually denotes a temporary stabilization or pre-release milestone, whereas this is your permanent integration branch.
+
+Comparison of Naming Options
+Branch Name	Pros	Considerations
+goatgramps/main (Recommended)	Modern standard across Git/GitHub ecosystems. Immediately clear to anyone that this is the primary rolling trunk of the fork.	Generic, but follows universal conventions.
+goatgramps/core (or gg_core)	Clearly signifies the baseline integration platform for GoatGramps where all features come together.	Non-standard name for a primary branch, but very descriptive for internal use.
+goatgramps/devel	Traditional open-source convention (e.g. upstream Gramps patterns) distinguishing development from release tags.	Slightly dated compared to main.
+(Recommendation: Keep the goatgramps/ prefix rather than just gg_core, because list_goatgramps_tags.bash and check_tag_features.bash automatically match refs/heads/goatgramps/*).
+
+If You Rename goatgramps/gg_beta to goatgramps/core (or goatgramps/main)
+Here is what you would update to keep everything working smoothly:
+
+Rename the branch locally and remotely:
+# Create and switch to the new branch from gg_beta
+git checkout goatgramps/gg_beta
+git checkout -b goatgramps/core
+git push -u origin goatgramps/core
+ 
+# Once verified, delete the old gg_beta branch
+git branch -d goatgramps/gg_beta
+git push origin --delete goatgramps/gg_beta
+Files in the repository referencing gg_beta:
+build_mac.yml: Update the push trigger:
+push:
+  branches:
+    - goatgramps/core   # (or core)
+check_tag_features.bash: Update the fallback latest branch:
+LATEST="origin/goatgramps/core"
+CHANGES.md & create_env.bash: Update references from goatgramps/gg_beta to goatgramps/core.
+Scripts that work automatically without changes:
+list_goatgramps_tags.bash: Uses the pattern refs/heads/goatgramps/*, so any branch under goatgramps/ (including goatgramps/core or goatgramps/main) is discovered automatically.
+
