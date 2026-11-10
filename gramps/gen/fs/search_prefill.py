@@ -34,11 +34,16 @@ from gramps.gen.errors import HandleError
 from gramps.gen.fs.search_context import LocalFact, SearchPolicy, vital_filters
 from gramps.gen.fs.search import SearchQuery
 from gramps.gen.lib import ChildRefType, Person
-from gramps.gen.types import PersonHandle
+from gramps.gen.types import AnyHandle, EventHandle, PersonHandle
 
 
-def _read(reader: Callable[..., Any], handle: str) -> Any:
-    """Ignore missing referenced objects without interpreting them as empty facts."""
+def _read(reader: Callable[..., Any], handle: AnyHandle) -> Any:
+    """Read a referenced native object if it is still present.
+
+    :param reader: The database getter for this object type.
+    :param handle: The referenced object's handle.
+    :returns: The native object, or ``None`` for an absent reference.
+    """
     if not handle:
         return None
     try:
@@ -62,7 +67,7 @@ def person_query(
 
     :param db: Open native tree, read only during projection.
     :param person: Editor draft or saved Person; never reloaded over dirty edits.
-    :param policy: Finite year margin shared with the background matcher.
+    :param policy: Year margin used for exact native dates.
     :returns: Editable query hints, without identity conclusions or bindings.
 
     Parent slots come from actual family roles and explicit birth relationships,
@@ -80,7 +85,7 @@ def person_query(
             LocalFact(
                 event.get_type().xml_str(),
                 reference.get_role().xml_str(),
-                reference.ref,
+                EventHandle(reference.ref),
                 date.get_year(),
                 date.get_month(),
                 date.get_day(),

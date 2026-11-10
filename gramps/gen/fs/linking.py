@@ -24,7 +24,6 @@ from __future__ import annotations
 # ------------------------
 # Python modules
 # ------------------------
-import json
 from dataclasses import dataclass
 from typing import Any
 
@@ -50,42 +49,6 @@ def public_bindings(person: Person) -> tuple[tuple[str, str], ...]:
         for attr in person.get_attribute_list()
         if str(attr.get_type()) in PUBLIC_TYPES
     )
-
-
-def binding_payload(person: Person) -> tuple[str, ...]:
-    """Capture complete public attributes, including privacy, notes and citations."""
-    return tuple(
-        json.dumps(attribute.serialize(), ensure_ascii=False, sort_keys=True)
-        for attribute in person.get_attribute_list()
-        if str(attribute.get_type()) in PUBLIC_TYPES
-    )
-
-
-def restore_payload(
-    person: Person, expected: tuple[str, ...], target: tuple[str, ...]
-) -> None:
-    """Replace only public attributes, preserving subsequent unrelated edits."""
-    if binding_payload(person) != expected or len(target) > 1:
-        raise ValueError(
-            _("The FamilySearch binding changed. Review this batch again.")
-        )
-    attributes = person.get_attribute_list()
-    positions = [
-        index
-        for index, value in enumerate(attributes)
-        if str(value.get_type()) in PUBLIC_TYPES
-    ]
-    position = positions[0] if positions else len(attributes)
-    attributes = [
-        value for value in attributes if str(value.get_type()) not in PUBLIC_TYPES
-    ]
-    for payload in target:
-        attribute = Attribute()
-        attribute.unserialize(json.loads(payload))
-        if str(attribute.get_type()) not in PUBLIC_TYPES:
-            raise ValueError(_("Invalid public binding receipt."))
-        attributes.insert(min(position, len(attributes)), attribute)
-    person.set_attribute_list(attributes)
 
 
 def replace_binding(

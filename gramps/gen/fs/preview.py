@@ -24,9 +24,7 @@ from __future__ import annotations
 # ------------------------
 # Python modules
 # ------------------------
-from dataclasses import asdict, dataclass
-import hashlib
-import json
+from dataclasses import dataclass
 from typing import Any
 
 import requests
@@ -329,44 +327,3 @@ class PreviewService:
         raise FSException(
             _("This FamilySearch person changed while loading. Try again.")
         )
-
-
-def person_fingerprint(person: PersonPreview) -> str:
-    """Hash identity facts without timestamp churn or unrelated family additions."""
-    data = asdict(person)
-    data["names"] = sorted(data["names"])
-    data["facts"] = sorted(
-        data["facts"], key=lambda value: json.dumps(value, sort_keys=True)
-    )
-    return hashlib.sha256(
-        json.dumps(data, sort_keys=True, ensure_ascii=False).encode("utf-8")
-    ).hexdigest()
-
-
-def preview_from_data(value: dict[str, Any]) -> FamilyPreview:
-    """Decode a saved matching comparison, never a native serialized Person."""
-
-    def person(data: dict[str, Any]) -> PersonPreview:
-        """Restore immutable person facts from private operational state."""
-        return PersonPreview(
-            data["person_id"],
-            tuple(data["names"]),
-            data["gender"],
-            data["living"],
-            tuple(FactPreview(**fact) for fact in data["facts"]),
-        )
-
-    return FamilyPreview(
-        value["requested_id"],
-        person(value["person"]),
-        tuple(
-            RelationshipPreview(
-                item["role"],
-                person(item["person"]),
-                item["relationship_id"],
-                tuple(FactPreview(**fact) for fact in item["facts"]),
-            )
-            for item in value["relatives"]
-        ),
-        tuple(value["redirected_ids"]),
-    )

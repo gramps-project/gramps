@@ -17,36 +17,35 @@
 # with this program; if not, see <https://www.gnu.org/licenses/>.
 #
 
-"""Shared immutable search facts, finite budgets and conservative date filters.
-
-Single-person prefill and background retrieval use the same value rules. This
-module requires neither an evidence graph, matching job store nor User Tree.
-"""
+"""Immutable event details and conservative date filters for person search."""
 
 from __future__ import annotations
 
 # ------------------------
 # Python modules
 # ------------------------
-from dataclasses import asdict, dataclass
-from typing import Any
+from dataclasses import dataclass
 
 # ------------------------
 # Gramps modules
 # ------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import Date
+from gramps.gen.types import EventHandle
 
 _ = glocale.translation.gettext
 
 
+# ------------------------------------------------------------
+# LocalFact
+# ------------------------------------------------------------
 @dataclass(frozen=True)
 class LocalFact:
     """Keep date precision/quality/calendar and role with the original event."""
 
     kind: str
     role: str
-    event_handle: str
+    event_handle: EventHandle
     year: int = 0
     month: int = 0
     day: int = 0
@@ -57,48 +56,23 @@ class LocalFact:
     place: str = ""
 
 
+# ------------------------------------------------------------
+# SearchPolicy
+# ------------------------------------------------------------
 @dataclass(frozen=True)
 class SearchPolicy:
-    """Independent finite limits; the transport still enforces its request budget."""
+    """Year margin applied to exact dates when prefilling a person search."""
 
-    queries: int = 6
-    pages: int = 6
-    pages_per_query: int = 2
     year_margin: int = 2
 
     def __post_init__(self) -> None:
-        """Reject malformed budgets instead of allowing an unbounded search loop."""
-        for value, lower, upper in (
-            (self.queries, 1, 20),
-            (self.pages, 1, 40),
-            (self.pages_per_query, 1, 10),
-            (self.year_margin, 0, 25),
-        ):
-            if (
-                isinstance(value, bool)
-                or not isinstance(value, int)
-                or not lower <= value <= upper
-            ):
-                raise ValueError(_("Invalid structured search policy"))
-
-    def strategy(self) -> dict[str, Any]:
-        """Describe the versioned retrieval policy saved with a matching run."""
-        return {"version": 1, "policy": asdict(self)}
-
-    @classmethod
-    def from_strategy(cls, value: dict[str, Any]) -> SearchPolicy:
-        """Restore known settings without silently adopting future/default limits."""
-        fields = {"queries", "pages", "pages_per_query", "year_margin"}
-        policy = value.get("policy")
+        """Require a finite nonnegative year margin for prefilled searches."""
         if (
-            set(value) != {"version", "policy"}
-            or type(value.get("version")) is not int
-            or value["version"] != 1
-            or not isinstance(policy, dict)
-            or set(policy) != fields
+            isinstance(self.year_margin, bool)
+            or not isinstance(self.year_margin, int)
+            or not 0 <= self.year_margin <= 25
         ):
-            raise ValueError(_("Unsupported matching search strategy"))
-        return cls(**policy)
+            raise ValueError(_("Invalid search year margin."))
 
 
 def vital_filters(
