@@ -1414,7 +1414,9 @@ class RelationshipCalculator:
                 db, other_person, "", [], second_map, stoprecursemap=first_map
             )
         except RuntimeError:
-            return (-1, None, -1, [], -1, []), [
+            loop = (-1, None, -1, [], -1, [])
+            # all_dist promises a list of tuples, as the no relation path gives
+            return [loop] if self.__all_dist else loop, [
                 _("Relationship loop detected")
             ] + self.__msg
 
