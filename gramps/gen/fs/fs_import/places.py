@@ -18,15 +18,31 @@
 #
 from __future__ import annotations
 
+# ------------------------
+# Python modules
+# ------------------------
 import logging
+from typing import Any
+
+# ------------------------
+# Gramps modules
+# ------------------------
+from gramps.gen.db import DbTxn
+from gramps.gen.db.base import DbWriteBase
 
 from gramps.gen.lib import Place, PlaceName, PlaceType, Url, UrlType, PlaceRef
 
-from . import _
 from gramps.gen.fs import utils as fs_utilities
 from gramps.gen.fs import tree
 from gramps.gen.fs.constants import GEDCOMX_TO_GRAMPS_PLACES
 from gramps.gen.fs.fs_import import deserializer as deserialize
+from gramps.gen.errors import HandleError
+from gramps.gen.types import PlaceHandle
+
+# ------------------------
+# Gramps specific
+# ------------------------
+from . import _
 
 logger = logging.getLogger(__name__)
 
@@ -42,9 +58,18 @@ PT_CITY = _pt("CITY", 14)
 PT_PARISH = _pt("PARISH", 20)
 
 
-def create_place(db, txn, fs_place, parent):
-    # Create a Gramps Place from a FamilySearch PlaceDescription (fs_place),
-    # link to its parent (if any), add FS URLs, set coordinates and type, commit
+def create_place(
+    db: DbWriteBase, txn: DbTxn, fs_place: Any, parent: Place | None
+) -> Place:
+    """
+    Create a place from a downloaded FamilySearch description.
+
+    :param db: The destination database.
+    :param txn: The import transaction.
+    :param fs_place: The FamilySearch place description.
+    :param parent: The resolved enclosing place, if available.
+    :returns: The imported place.
+    """
     place = Place()
 
     # Two URLs: FS description API and human page
@@ -107,8 +132,14 @@ def create_place(db, txn, fs_place, parent):
     return place
 
 
-def get_place_by_id(db, fs_place):
-    # find the Gramps Place from a FamilySearch place id (or cached links).
+def get_place_by_id(db: DbWriteBase, fs_place: Any) -> Place | None:
+    """
+    Find an imported place by its FamilySearch ID or cached URLs.
+
+    :param db: The destination database.
+    :param fs_place: The FamilySearch place reference or description.
+    :returns: The existing place, or ``None`` if not linked.
+    """
     if (
         not getattr(fs_place, "id", None)
         and getattr(fs_place, "description", None)
@@ -132,24 +163,27 @@ def get_place_by_id(db, fs_place):
         )
         if handle:
             try:
-                return db.get_place_from_handle(handle)
-            except Exception:
-                pass
+                place = db.get_place_from_handle(PlaceHandle(handle))
+            except HandleError:
+                place = None
+            if place is not None:
+                return place
+            fs_utilities.FS_INDEX_PLACES.clear()
         else:
             return None
 
-    # build FSID map on first use
-    if not fs_utilities.FS_INDEX_PLACES:
-        logger.debug("%s", _("Building FSID list for places"))
-        fs_utilities.FS_INDEX_PLACES = {}
-        for handle in db.get_place_handles():
-            place = db.get_place_from_handle(handle)
-            for url in place.urls:
-                if str(url.type) == "FamilySearch":
-                    fs_utilities.FS_INDEX_PLACES[url.path] = handle
+    # Build the index on first use or after a cached handle becomes invalid.
+    logger.debug("%s", _("Building FSID list for places"))
+    for handle in db.get_place_handles():
+        place = db.get_place_from_handle(handle)
+        for url in place.urls:
+            if str(url.type) == "FamilySearch":
+                fs_utilities.FS_INDEX_PLACES[url.path] = handle
 
-    handle = fs_utilities.FS_INDEX_PLACES.get(api_url)
-    return db.get_place_from_handle(handle) if handle else None
+    handle = fs_utilities.FS_INDEX_PLACES.get(api_url) or (
+        human_url and fs_utilities.FS_INDEX_PLACES.get(human_url)
+    )
+    return db.get_place_from_handle(PlaceHandle(handle)) if handle else None
 
 
 def add_place(db, txn, fs_place):
