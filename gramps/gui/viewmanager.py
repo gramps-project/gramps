@@ -612,9 +612,11 @@ class ViewManager(CLIManager):
             ("Login", self.login, "<control>l"),
         ]
 
-    def login(self, *action):
+    def login(self, *action: object) -> None:
         """
         Login to FamilySearch.
+
+        :param action: The action arguments supplied by the interface.
         """
         if not self._familysearch_enabled():
             return
@@ -636,7 +638,7 @@ class ViewManager(CLIManager):
             if not auth_code:
                 ErrorDialog(
                     _("FamilySearch"),
-                    _("User consent declined"),
+                    session.get_authentication_error(),
                     parent=self.uistate.window,
                 )
                 return
@@ -644,7 +646,7 @@ class ViewManager(CLIManager):
             if not session.get_token(auth_code):
                 ErrorDialog(
                     _("FamilySearch"),
-                    _("Authorization error"),
+                    session.get_authentication_error(),
                     parent=self.uistate.window,
                 )
                 return

@@ -131,12 +131,26 @@ class FSStatusIndicator:
         win_.show_all()
         self._window = win_
 
-    def set(self, state: str, detail: str = "", http: int | None = None):
+    def set(self, state: str, detail: str = "", http: int | None = None) -> None:
+        """Queue the latest status for display on the GTK thread.
+
+        :param state: The current transport state.
+        :param detail: The safe description of that state.
+        :param http: The related HTTP response status, if available.
+        """
         self._state = state
         self._detail = detail or ""
         self._http = http
+        GLib.idle_add(self.cb_refresh)
+
+    def cb_refresh(self) -> bool:
+        """Refresh widgets from current state, discarding superseded messages.
+
+        :returns: ``False`` to remove this idle callback.
+        """
         for view in list(self._views):
             self._apply_to_view(view)
+        return False
 
     def _apply_to_view(self, view: dict):
         label: Gtk.Label = view["label"]

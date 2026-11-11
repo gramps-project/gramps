@@ -154,7 +154,7 @@ def notify_from_person_editor(
     global _LAST_EDITOR
 
     person_handle = _person_handle(person)
-    if not person_handle:
+    if person is None:
         return
 
     _LAST_EDITOR.dbstate = dbstate
@@ -355,10 +355,12 @@ class FamilySearchToolsWindow:
         name_row.pack_start(self.active_label, True, True, 0)
 
         self.btn_link = Gtk.Button(label=_("Link FamilySearch ID"))
+        self.btn_search = Gtk.Button(label=_("Find on FamilySearch"))
         self.btn_open_person = Gtk.Button(label=_("Open Person in FamilySearch"))
         link_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         link_row.get_style_context().add_class("fs-link-row")
         link_row.pack_start(self.btn_link, False, False, 0)
+        link_row.pack_start(self.btn_search, False, False, 0)
         link_row.pack_start(self.btn_open_person, False, False, 0)
         outer.pack_start(link_row, False, False, 0)
 
@@ -452,6 +454,7 @@ class FamilySearchToolsWindow:
             bottom_bar.pack_start(status_widget, False, False, 0)
 
         self.btn_link.connect("clicked", self._on_link)
+        self.btn_search.connect("clicked", self.cb_search_person)
         self.btn_open_person.connect("clicked", self._on_open_person)
         self.btn_cmp.connect("clicked", self._on_compare)
         self.btn_sync.connect("clicked", self._on_sync)
@@ -782,8 +785,15 @@ class FamilySearchToolsWindow:
                 _("Editor person: %(name)s") % {"name": display_name}
             )
 
-    def _set_action_sensitivity(self, enabled: bool, has_fsid: bool = True) -> None:
+    def _set_action_sensitivity(
+        self,
+        enabled: bool,
+        has_fsid: bool = True,
+        *,
+        search_ready: bool | None = None,
+    ) -> None:
         """Enable/disable buttons based on connection state and editor readiness."""
+        self.btn_search.set_sensitive(enabled if search_ready is None else search_ready)
         other_buttons = (
             self.btn_cmp,
             self.btn_sync,
@@ -829,9 +839,35 @@ class FamilySearchToolsWindow:
 
         editing = bool(self._fs_connected() and db_ready)
         has_fsid = bool(_get_fs_id(self._live_person_obj())) if editing else True
+        person = self._live_person_obj()
+        editor = _LAST_EDITOR.editor_obj()
+        db = getattr(_LAST_EDITOR.dbstate, "db", None)
+        search_ready = bool(
+            self._fs_connected()
+            and db is not None
+            and person is not None
+            and (
+                editor is None
+                or (
+                    getattr(editor, "db", None) is db
+                    and getattr(editor, "obj", None) is person
+                    and _get_editor_window(editor) is not None
+                    and _get_editor_window(editor).get_visible()
+                )
+            )
+        )
 
         self._update_label()
-        self._set_action_sensitivity(editing, has_fsid)
+        self._set_action_sensitivity(
+            editing,
+            has_fsid,
+            search_ready=search_ready,
+        )
+        self.btn_search.set_label(
+            _("Check / Change FamilySearch link")
+            if editing and has_fsid
+            else _("Find on FamilySearch")
+        )
         return True
 
     def _on_editor_ctx_changed(self) -> bool:
@@ -976,6 +1012,28 @@ class FamilySearchToolsWindow:
             return
 
         self._call_action(actions.link_familysearch_id, "Link failed", ctx)
+
+    def cb_search_person(self, *_args: Any) -> None:
+        """Search a saved person or an editor draft; only saved people can link."""
+        from .search_dialog import SearchDialog
+
+        ctx = self._ctx_db_only()
+        if ctx:
+            person = self._live_person_obj()
+            if person is None:
+                _show_info(
+                    self.window,
+                    _("FamilySearch"),
+                    _("Open an Edit Person window before searching."),
+                )
+                return
+            SearchDialog(
+                ctx["dbstate"],
+                person,
+                ctx["session"],
+                self.window,
+                editor=ctx["editor"],
+            )
 
     def _on_open_person(self, *_args: Any) -> None:
         ctx = self._ctx()

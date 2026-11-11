@@ -19,6 +19,7 @@
 #
 from __future__ import annotations
 
+
 from typing import Optional, Protocol, Sequence, Tuple
 
 import gi
