@@ -810,23 +810,21 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 else:
                     rel_str = "le beau-frère ou la belle-sœur"
         elif sib_type == self.HALF_SIB_MOTHER:
-            # for descendants the "half" logic is reversed !
-
-            if gender_b == Person.MALE:
-                rel_str = "le demi-frère consanguin"
-            elif gender_b == Person.FEMALE:
-                rel_str = "la demi-sœur consanguine"
-            else:
-                rel_str = "le demi-frère ou la demi-sœur consanguin(e)"
-        elif sib_type == self.HALF_SIB_FATHER:
-            # for descendants the "half" logic is reversed !
-
+            # same mother: "utérin(e)"
             if gender_b == Person.MALE:
                 rel_str = "le demi-frère utérin"
             elif gender_b == Person.FEMALE:
                 rel_str = "la demi-sœur utérine"
             else:
                 rel_str = "le demi-frère ou la demi-sœur utérin(e)"
+        elif sib_type == self.HALF_SIB_FATHER:
+            # same father: "consanguin(e)"
+            if gender_b == Person.MALE:
+                rel_str = "le demi-frère consanguin"
+            elif gender_b == Person.FEMALE:
+                rel_str = "la demi-sœur consanguine"
+            else:
+                rel_str = "le demi-frère ou la demi-sœur consanguin(e)"
         elif sib_type == self.STEP_SIB:
             if gender_b == Person.MALE:
                 rel_str = "le demi-frère"
