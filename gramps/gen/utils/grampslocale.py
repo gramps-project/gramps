@@ -785,6 +785,10 @@ class GrampsLocale:
             retval = _("the filter")
         elif objclass == "citation":
             retval = _("the citation")
+        elif objclass == "dnatest":
+            retval = _("the DNA test")
+        elif objclass == "dnamatch":
+            retval = _("the DNA match")
         else:
             retval = _("See details")
 

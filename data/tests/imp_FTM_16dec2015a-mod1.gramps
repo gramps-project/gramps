@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.2//EN"
+"http://gramps-project.org/xml/1.7.2/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.2/">
   <header>
-    <created date="2019-03-13" version="5.0.2"/>
+    <created date="1999-12-25" version="6.1.0"/>
     <researcher>
     </researcher>
   </header>
@@ -147,19 +147,19 @@
     <note handle="_0000001500000015" change="1" id="N0001" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M159:
 
-Could not import 1850 United States Federal Census(11)-1.jpg        Line    70: 1 FILE 1850 United States Federal Census(11)-1.jpg
+Could not import 1850 United States Federal Census(11)-1.jpg                                          Line    70: 1 FILE 1850 United States Federal Census(11)-1.jpg
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="200"/>
+        <range start="0" end="234"/>
       </style>
     </note>
     <note handle="_0000001700000017" change="1" id="N0002" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M158:
 
-Could not import D:\Users\PRC\Downloads\1850 United States Federa   Line    75: 1 FILE D:\Users\PRC\Downloads\1850 United States Federal Census(11)-1.jpg
+Could not import D:\Users\PRC\Downloads\1850 United States Federal Census(11)-1.jpg                   Line    75: 1 FILE D:\Users\PRC\Downloads\1850 United States Federal Census(11)-1.jpg
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="223"/>
+        <range start="0" end="257"/>
       </style>
     </note>
   </notes>

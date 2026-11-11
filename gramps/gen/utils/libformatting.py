@@ -114,17 +114,17 @@ class FormattingHelper:
             mplace = ""
             name = ""
 
-        if line_count >= 1:
-            text += mdate
-            text += "\n"
-        if line_count >= 2:
-            text += name
-            text += "\n"
-        if line_count >= 3:
-            text += mplace
-            text += "\n"
+        lines = []
+        if line_count >= 1 and mdate:
+            lines.append(mdate)
+        if line_count >= 2 and name:
+            lines.append(name)
+        if line_count >= 3 and mplace:
+            lines.append(mplace)
 
-        if not text:
+        if lines:
+            text = "\n".join(lines)
+        else:
             text = str(family.get_relationship())
 
         if use_markup:
@@ -200,17 +200,23 @@ class FormattingHelper:
                 dplace = ""
 
             if line_count < 5:
-                text = "%s\n%s %s\n%s %s" % (name, self.bth, bdate, self.dth, ddate)
+                lines = [name]
+                if bdate:
+                    lines.append("%s %s" % (self.bth, bdate))
+                if ddate:
+                    lines.append("%s %s" % (self.dth, ddate))
+                text = "\n".join(lines)
             else:
-                text = "%s\n%s %s\n  %s\n%s %s\n  %s" % (
-                    name,
-                    self.bth,
-                    bdate,
-                    bplace,
-                    self.dth,
-                    ddate,
-                    dplace,
-                )
+                lines = [name]
+                if bdate:
+                    lines.append("%s %s" % (self.bth, bdate))
+                    if bplace:
+                        lines.append("  %s" % bplace)
+                if ddate:
+                    lines.append("%s %s" % (self.dth, ddate))
+                    if dplace:
+                        lines.append("  %s" % dplace)
+                text = "\n".join(lines)
         if use_markup:
             if not person.handle in self._markup_cache:
                 self._markup_cache[person.handle] = {}

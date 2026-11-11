@@ -41,6 +41,16 @@ from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.db import family_name, get_participant_from_event
 
 
+def _dnatest_label(db, handle):
+    if not handle:
+        return _("Unknown")
+    t = db.get_dnatest_from_handle(handle)
+    if not t:
+        return _("Unknown")
+    account = t.get_account_name()
+    return account if account else str(t.get_provider())
+
+
 # -------------------------------------------------------------------------
 #
 # BackRefModel
@@ -139,13 +149,41 @@ class BackRefModel(Gtk.ListStore):
                 name = p.get_preview()
                 gid = p.gramps_id
                 handle = p.handle
-            else:
+            elif dtype == "Media":
                 p = self.db.get_media_from_handle(ref[1])
                 if not p:
                     continue
                 name = p.get_description()
                 gid = p.gramps_id
                 handle = p.handle
+            elif dtype == "DNATest":
+                p = self.db.get_dnatest_from_handle(ref[1])
+                if not p:
+                    continue
+                provider = str(p.get_provider())
+                label = None
+                person_handle = p.get_person_handle()
+                if person_handle:
+                    person = self.db.get_person_from_handle(person_handle)
+                    if person:
+                        label = name_displayer.display(person)
+                if label is None:
+                    label = p.get_account_name()
+                name = "%s (%s)" % (label, provider) if provider else label
+                gid = p.gramps_id
+                handle = p.handle
+            elif dtype == "DNAMatch":
+                p = self.db.get_dnamatch_from_handle(ref[1])
+                if not p:
+                    continue
+                gid = p.gramps_id
+                handle = p.handle
+                name = self.dispstr % {
+                    "part1": _dnatest_label(self.db, p.get_subject_test_handle()),
+                    "part2": _dnatest_label(self.db, p.get_match_test_handle()),
+                }
+            else:
+                continue
 
             # dtype is the class name, i.e. is English
             # We need to use localized string in the model.

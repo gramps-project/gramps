@@ -158,6 +158,8 @@ def import_as_dict(
     event_prefix: str | None = None,
     repository_prefix: str | None = None,
     note_prefix: str | None = None,
+    dnatest_prefix: str | None = None,
+    dnamatch_prefix: str | None = None,
 ) -> "DbGeneric | None":
     """
     Import a genealogy file into a new in-memory database with custom ID prefixes.
@@ -221,6 +223,10 @@ def import_as_dict(
         repository_prefix = config.get("preferences.rprefix")
     if note_prefix is None:
         note_prefix = config.get("preferences.nprefix")
+    if dnatest_prefix is None:
+        dnatest_prefix = config.get("preferences.tprefix")
+    if dnamatch_prefix is None:
+        dnamatch_prefix = config.get("preferences.mprefix")
 
     db = make_database("sqlite")
     db.load(":memory:")
@@ -235,6 +241,8 @@ def import_as_dict(
         event_prefix,
         repository_prefix,
         note_prefix,
+        dnatest_prefix,
+        dnamatch_prefix,
     )
     status = import_from_filename(db, filename, user)
     return db if status else None

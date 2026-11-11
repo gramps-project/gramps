@@ -48,6 +48,8 @@ from ..lib.repo import Repository
 from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
+from ..lib.dnatest import DNATest
+from ..lib.dnamatch import DNAMatch
 from ..const import GRAMPS_LOCALE as glocale
 from .rules import Rule
 from .optimizer import Optimizer
@@ -529,6 +531,52 @@ class GenericNoteFilter(GenericFilter):
         return db.get_note_from_handle(handle)
 
 
+class GenericDNATestFilter(GenericFilter):
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
+
+    def get_all_handles(self, db):
+        return db.get_dnatest_handles()
+
+    def get_cursor(self, db):
+        return db.get_dnatest_cursor()
+
+    def make_obj(self):
+        return DNATest()
+
+    def find_from_handle(self, db, handle):
+        return db.get_dnatest_from_handle(handle)
+
+    def get_number(self, db):
+        return db.get_number_of_dnatests()
+
+    def get_object(self, db, handle):
+        return db.get_dnatest_from_handle(handle)
+
+
+class GenericDNAMatchFilter(GenericFilter):
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
+
+    def get_all_handles(self, db):
+        return db.get_dnamatch_handles()
+
+    def get_cursor(self, db):
+        return db.get_dnamatch_cursor()
+
+    def make_obj(self):
+        return DNAMatch()
+
+    def find_from_handle(self, db, handle):
+        return db.get_dnamatch_from_handle(handle)
+
+    def get_number(self, db):
+        return db.get_number_of_dnamatches()
+
+    def get_object(self, db, handle):
+        return db.get_dnamatch_from_handle(handle)
+
+
 def GenericFilterFactory(namespace):
     if namespace == "Person":
         return GenericFilter
@@ -548,6 +596,10 @@ def GenericFilterFactory(namespace):
         return GenericRepoFilter
     elif namespace == "Note":
         return GenericNoteFilter
+    elif namespace == "DNATest":
+        return GenericDNATestFilter
+    elif namespace == "DNAMatch":
+        return GenericDNAMatchFilter
 
 
 class DeferredFilter(GenericFilter):

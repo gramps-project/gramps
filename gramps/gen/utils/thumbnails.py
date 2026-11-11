@@ -37,14 +37,21 @@ from hashlib import md5
 # GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
-from gi.repository import GLib
-from gi.repository import GdkPixbuf
+# gi is optional: headless/CLI environments (and the test suite) may not
+# have PyGObject installed.  Import lazily so this module stays importable;
+# code paths that need GTK raise a clear error only when actually used.
+try:
+    from gi.repository import GLib
+    from gi.repository import GdkPixbuf
+except ImportError:  # pragma: no cover - exercised on headless CI/Windows
+    GLib = None  # type: ignore[assignment]
+    GdkPixbuf = None  # type: ignore[assignment]
 
 try:
     from gi.repository import Gtk
 
     _icon_theme = Gtk.IconTheme.get_default()
-except:
+except Exception:
     _icon_theme = None
 
 # -------------------------------------------------------------------------
@@ -185,19 +192,23 @@ def run_thumbnailer(mime_type, src_file, dest_file, size, rectangle=None):
 
 
 def find_mime_type_pixbuf(mime_type):
+    if GdkPixbuf is None:
+        raise ImportError(
+            _("Thumbnails require PyGObject (gi.repository) which is not installed.")
+        )
     try:
         icontmp = mime_type.replace("/", "-")
         newicon = "gnome-mime-%s" % icontmp
         try:
             return _icon_theme.load_icon(newicon, 48, 0)
-        except:
+        except Exception:
             icontmp = mime_type.split("/")[0]
             try:
                 newicon = "gnome-mime-%s" % icontmp
                 return _icon_theme.load_icon(newicon, 48, 0)
-            except:
+            except Exception:
                 return GdkPixbuf.Pixbuf.new_from_file(ICON)
-    except:
+    except Exception:
         return GdkPixbuf.Pixbuf.new_from_file(ICON)
 
 
@@ -225,10 +236,14 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     :returns: thumbnail representing the source file
     :rtype: GdkPixbuf.Pixbuf
     """
+    if GdkPixbuf is None:
+        raise ImportError(
+            _("Thumbnails require PyGObject (gi.repository) which is not installed.")
+        )
     try:
         filename = get_thumbnail_path(src_file, mtype, rectangle, size)
         return GdkPixbuf.Pixbuf.new_from_file(filename)
-    except (GLib.GError, OSError):
+    except (OSError, Exception):
         if mtype:
             return find_mime_type_pixbuf(mtype)
         else:

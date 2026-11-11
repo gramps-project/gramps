@@ -311,6 +311,29 @@ def get_participant_from_event(db, event_handle, all_=False):
 # and to describe bookmarked objects.
 #
 # -------------------------------------------------------------------------
+def dnatest_short_label(db, test):
+    """
+    Return a short display label for a DNATest.
+
+    Format: 'person name (provider)' when a person is linked,
+    'account name (provider)' otherwise.
+    """
+    if isinstance(test, str):
+        test = db.get_dnatest_from_handle(test)
+    if test is None:
+        return ""
+    provider = str(test.get_provider())
+    person_handle = test.get_person_handle()
+    if person_handle:
+        person = db.get_person_from_handle(person_handle)
+        if person:
+            return f"{name_displayer.display(person)} ({provider})"
+    account = test.get_account_name()
+    if account:
+        return f"{account} ({provider})"
+    return f"({provider})"
+
+
 def navigation_label(db, nav_type, handle_or_obj):
     """
     Return a descriptive label for an object.
@@ -358,6 +381,16 @@ def navigation_label(db, nav_type, handle_or_obj):
         label = " ".join(label.split())
         if len(label) > 40:
             label = label[:40] + "..."
+    elif nav_type == "DNATest":
+        account = obj.get_account_name()
+        provider = str(obj.get_provider())
+        label = f"{account} ({provider})" if account else f"({provider})"
+    elif nav_type == "DNAMatch":
+        subj_handle = obj.get_subject_test_handle()
+        match_handle = obj.get_match_test_handle()
+        subj_label = dnatest_short_label(db, subj_handle) if subj_handle else ""
+        match_label = dnatest_short_label(db, match_handle) if match_handle else ""
+        label = f"{subj_label} - {match_label}"
 
     if label and obj:
         label = f"[{obj.get_gramps_id()}] {label}"
@@ -607,6 +640,8 @@ def get_citation_referents(citation_handle, db):
         "Source",
         "Media",
         "Repository",
+        "DNATest",
+        "DNAMatch",
     )
 
     return get_referents(citation_handle, db, _primaries)
@@ -697,7 +732,16 @@ def get_media_referents(media_handle, db):
     This function finds all primary objects that refer
     to a given media handle in a given database.
     """
-    _primaries = ("Person", "Family", "Event", "Place", "Source", "Citation")
+    _primaries = (
+        "Person",
+        "Family",
+        "Event",
+        "Place",
+        "Source",
+        "Citation",
+        "DNATest",
+        "DNAMatch",
+    )
 
     return get_referents(media_handle, db, _primaries)
 
@@ -718,6 +762,8 @@ def get_note_referents(note_handle, db):
         "Citation",
         "Media",
         "Repository",
+        "DNATest",
+        "DNAMatch",
     )
 
     return get_referents(note_handle, db, _primaries)

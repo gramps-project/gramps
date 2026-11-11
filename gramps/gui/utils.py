@@ -772,6 +772,8 @@ def edit_object(dbstate, uistate, reftype, ref):
         EditRepository,
         EditCitation,
         EditNote,
+        EditDNATest,
+        EditDNAMatch,
     )
 
     if reftype == "Person":
@@ -849,6 +851,18 @@ def edit_object(dbstate, uistate, reftype, ref):
         try:
             note = dbstate.db.get_note_from_handle(ref)
             EditNote(dbstate, uistate, [], note)
+        except WindowActiveError:
+            pass
+    elif reftype == "DNATest":
+        try:
+            dnatest = dbstate.db.get_dnatest_from_handle(ref)
+            EditDNATest(dbstate, uistate, [], dnatest)
+        except WindowActiveError:
+            pass
+    elif reftype == "DNAMatch":
+        try:
+            dnamatch = dbstate.db.get_dnamatch_from_handle(ref)
+            EditDNAMatch(dbstate, uistate, [], dnamatch)
         except WindowActiveError:
             pass
 

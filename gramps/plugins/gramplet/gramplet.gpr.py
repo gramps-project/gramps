@@ -1361,6 +1361,38 @@ register(
 
 register(
     GRAMPLET,
+    id="DNA Test Filter",
+    name=_("DNA Test Filter"),
+    description=_("Gramplet providing a DNA test filter"),
+    version="1.0.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="filter.py",
+    height=200,
+    gramplet="DNATestFilter",
+    gramplet_title=_("Filter"),
+    navtypes=["DNATest"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
+    id="DNA Match Filter",
+    name=_("DNA Match Filter"),
+    description=_("Gramplet providing a DNA match filter"),
+    version="1.0.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="filter.py",
+    height=200,
+    gramplet="DNAMatchFilter",
+    gramplet_title=_("Filter"),
+    navtypes=["DNAMatch"],
+    help_url=GRAMPLET_HELP,
+)
+
+register(
+    GRAMPLET,
     id="Records Gramplet",
     name=_("Records"),
     description=_("Shows some interesting records about people and families"),

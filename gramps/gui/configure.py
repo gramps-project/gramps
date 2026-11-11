@@ -891,6 +891,24 @@ class GrampsPreferences(ConfigureDialog):
             col_attach=1,
         )
         row += 1
+        self.add_entry(
+            grid,
+            _("DNA Test"),
+            row,
+            "preferences.tprefix",
+            self.update_idformat_entry,
+            col_attach=1,
+        )
+        row += 1
+        self.add_entry(
+            grid,
+            _("DNA Match"),
+            row,
+            "preferences.mprefix",
+            self.update_idformat_entry,
+            col_attach=1,
+        )
+        row += 1
         label = self.add_text(
             grid,
             _(  # xgettext: no-python-format
@@ -2799,6 +2817,8 @@ class GrampsPreferences(ConfigureDialog):
             config.get("preferences.eprefix"),
             config.get("preferences.rprefix"),
             config.get("preferences.nprefix"),
+            config.get("preferences.tprefix"),
+            config.get("preferences.mprefix"),
         )
 
     def update_gendepth(self, obj, constant):
