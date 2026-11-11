@@ -2219,6 +2219,20 @@ class GrampsPreferences(ConfigureDialog):
             )
 
         row += 1
+        self.add_checkbox(
+            grid,
+            _("Show child relationship dialog when adding a new child"),
+            row,
+            "behavior.child-relation-dialog",
+            start=1,
+            stop=3,
+            tooltip=_(
+                "When adding a new child to a family, show the dialog "
+                "to set the relationship to father and mother."
+            ),
+        )
+
+        row += 1
         # Text in sidebar:
         self.add_checkbox(
             grid,
