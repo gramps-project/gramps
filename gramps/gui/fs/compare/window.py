@@ -23,6 +23,7 @@ import os
 import logging
 import email.utils
 import time
+from typing import ClassVar
 
 from gramps.gen.config import config as _cfg
 from gramps.gui.plug import PluginWindows
@@ -37,8 +38,7 @@ import gramps.gui.fs.person.fsg_sync as FSG_Sync
 from gramps.gen.fs import db_familysearch
 from gramps.gen.fs.compare import compare_fs_to_gramps
 from gramps.gen.fs import utils as fs_utilities
-import gramps.gen.fs.person.mixins.cache as cache_mod
-from gramps.gen.fs.person.mixins.cache import CacheMixin, _FsCache
+from gramps.gen.fs.person.mixins.cache import CacheMixin, _FsCache, create_user_cache
 from gramps.gen.fs.person.mixins.helpers import HelpersMixin
 from gramps.gui.fs.manager import get_session
 from gramps.gui.fs.person.mixins.compare_gtk import CompareGtkMixin
@@ -76,7 +76,8 @@ class CompareWindow:
 
         self._open()
 
-    def _open(self):
+    def _open(self) -> None:
+        """Open the comparison using the shared tree and optional user cache."""
         # no schema/table  generated
 
         # ensure a session exists + wire it into tree._fs_session
@@ -144,9 +145,9 @@ class CompareWindow:
             HelpersMixin,
         ):
             # CompareGtkMixin expects class vars like the Gramplet did back when this was a gramplet
-            fs_Tree = None
+            fs_Tree: ClassVar[tree.Tree | None] = None
             FSID = None
-            _cache = None
+            _cache: ClassVar[_FsCache | None] = None
             CONFIG = None
 
             def __init__(self, dbstate, real_uistate, person_handle, parent_win):
@@ -194,16 +195,17 @@ class CompareWindow:
                 _Shim.CONFIG = None
 
         # Ensure fs_Tree exists and is shared with other compare modules
-        if not FSG_Sync.FSG_Sync.fs_Tree:
-            FSG_Sync.FSG_Sync.fs_Tree = tree.Tree()
-            FSG_Sync.FSG_Sync.fs_Tree._getsources = False
+        shared_tree = getattr(FSG_Sync.FSG_Sync, "fs_Tree", None)
+        if shared_tree is None:
+            shared_tree = tree.Tree()
+            shared_tree._getsources = False
+            setattr(FSG_Sync.FSG_Sync, "fs_Tree", shared_tree)
 
-        _Shim.fs_Tree = FSG_Sync.FSG_Sync.fs_Tree
+        _Shim.fs_Tree = shared_tree
 
         # Ensure cache exists (CacheMixin uses self.__class__._cache)
         if not getattr(_Shim, "_cache", None):
-            base_dir = os.path.dirname(cache_mod.__file__)
-            _Shim._cache = _FsCache(base_dir)
+            _Shim._cache = create_user_cache()
 
         shim = _Shim(self.dbstate, self.uistate, person_handle, parent_win)
         try:

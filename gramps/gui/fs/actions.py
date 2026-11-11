@@ -1594,7 +1594,26 @@ def import_partner(dbstate, uistate, track, person, session, parent, editor=None
 # -------------------------------------
 
 
-def clear_cache(dbstate, uistate, track, person, session, parent, editor=None) -> None:
+def clear_cache(
+    dbstate: Any,
+    uistate: Any,
+    track: Any,
+    person: Any,
+    session: Any,
+    parent: Any,
+    editor: Any = None,
+) -> None:
+    """
+    Clear the shared FamilySearch indices and the current user's disk cache.
+
+    :param dbstate: The current database state.
+    :param uistate: The current interface state.
+    :param track: The window tracking context.
+    :param person: The selected person.
+    :param session: The active FamilySearch session.
+    :param parent: The parent window.
+    :param editor: The active person editor, if any.
+    """
     _bind_global_session(session)
 
     cleared_indexes = 0
@@ -1627,17 +1646,11 @@ def clear_cache(dbstate, uistate, track, person, session, parent, editor=None) -
         _dbg(f"clear_cache: fs_Tree reset failed: {err}")
 
     try:
-        cache_dir = os.path.dirname(cache_mod.__file__)
-        disk_path = cache_dir
-        FsCache = getattr(cache_mod, "_FsCache", None)
-        if FsCache:
-            cache = FsCache(cache_dir)
-            for meth in ("clear", "clear_all", "purge", "wipe", "reset"):
-                fn = getattr(cache, meth, None)
-                if callable(fn):
-                    fn()
-                    cleared_disk = True
-                    break
+        cache = cache_mod.create_user_cache()
+        if cache is not None:
+            disk_path = cache.base_dir
+            cache.clear()
+            cleared_disk = True
     except Exception as err:
         _dbg(f"clear_cache: disk cache clear failed: {err}")
 

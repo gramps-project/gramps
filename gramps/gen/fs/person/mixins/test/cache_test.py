@@ -82,6 +82,29 @@ from gramps.gen.fs.fs_import import deserializer as deserialize
 class TestFsCacheLogging(unittest.TestCase):
     """Tests that _FsCache uses LOG.warning instead of print() on errors."""
 
+    def test_user_cache_round_trip_and_clear(self) -> None:
+        """The user cache supports persistence and removes its own files."""
+        with tempfile.TemporaryDirectory() as user_cache:
+            with patch.object(cache_module, "USER_CACHE", user_cache):
+                cache = cache_module.create_user_cache()
+                self.assertIsNotNone(cache)
+                assert cache is not None
+                self.assertEqual(cache.base_dir, os.path.join(user_cache, "fs_cache"))
+                cache.write_json("ABCD-EFG", {"persons": []}, "etag", 12)
+                self.assertEqual(
+                    cache.read_json("ABCD-EFG"), ({"persons": []}, "etag", 12)
+                )
+                second = cache_module.create_user_cache()
+                assert second is not None
+                second.clear()
+                self.assertIsNone(cache.read_json("ABCD-EFG"))
+
+    def test_unwritable_user_cache_is_optional(self) -> None:
+        """An unwritable cache directory leaves disk caching disabled."""
+        with patch.object(cache_module.os, "makedirs", side_effect=PermissionError):
+            with self.assertLogs(cache_module.LOG, level="WARNING"):
+                self.assertIsNone(cache_module.create_user_cache())
+
     def setUp(self):
         """Create a temporary cache directory."""
         self.tmpdir = tempfile.mkdtemp(prefix="gramps-cache-test-")
@@ -111,7 +134,7 @@ class TestFsCacheLogging(unittest.TestCase):
 
         mock_log.warning.assert_called_once()
         warning_args = mock_log.warning.call_args[0]
-        self.assertIn(self.cache.base_dir, str(warning_args))
+        self.assertIn(self.cache.base_dir, warning_args)
 
     def test_write_json_happy_path_no_warning(self):
         """A successful write does not call LOG.warning."""
