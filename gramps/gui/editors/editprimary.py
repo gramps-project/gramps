@@ -24,7 +24,6 @@
 #
 # -------------------------------------------------------------------------
 import abc
-from typing import Any
 
 # -------------------------------------------------------------------------
 #
@@ -52,10 +51,12 @@ from ..dialog import SaveDialog
 from gramps.gen.lib import PrimaryObject
 from ..dbguielement import DbGUIElement
 from ..uimanager import ActionGroup
-from ..savecascade import children_to_resolve, has_pending_reference
+from .dependentsave import DependentSaveMixin
 
 
-class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
+class EditPrimary(
+    DependentSaveMixin, ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta
+):
     QR_CATEGORY = -1
 
     def __init__(
@@ -82,11 +83,11 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         self.uistate = uistate
         self.db = state.db
         self.callback = callback
-        # Whether this editor was opened on a new, not yet stored object. Only
-        # such an editor's callback hands a new reference to the editor that
-        # spawned it, so only then must a parent resolve it before committing
-        # (see gramps.gui.savecascade.has_pending_reference, #7924).
-        self.opened_as_new = not obj.handle
+        # Whether a parent committing without this editor would lose its
+        # work: only true for a new, not yet stored object, whose callback
+        # hands the new handle to the editor that spawned it (see
+        # gramps.gui.savecascade.has_pending_reference, #7924).
+        self.writes_back = not obj.handle
         self.ok_button = None
         # The editor's confirm handler, captured by define_ok_button and driven
         # by _save_with_dependent_children. Defaults to save so the shared save
@@ -188,121 +189,19 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
     def define_ok_button(self, button, function):
         self.ok_button = button
-        # Do not wire the editor's confirm handler straight to the OK button.
-        # Route it -- and the close/"Save Changes?" save path (see close()) --
-        # through _save_with_dependent_children first, so open child editors
-        # that still owe this editor a reference are resolved BEFORE this
-        # editor reads its references and commits. See Mantis #7924.
-        self._ok_function = function
-        button.connect("clicked", self._save_with_dependent_children)
+        # Route the confirm handler -- and Save in the close dialog (see
+        # close()) -- through the dependent-children guard, so open child
+        # editors that still owe this editor work are resolved BEFORE this
+        # editor reads its references and commits (#7924, #12008).
+        self._wire_ok_button(button, function)
         button.set_sensitive(not self.db.readonly)
 
-    def _save_with_dependent_children(self, *args: Any) -> None:
+    def _discard_for_parent(self) -> None:
         """
-        Resolve open dependent child editors, then run this editor's save.
-
-        A primary editor is non-modal, so it can be confirmed while a child
-        primary editor it spawned -- e.g. an EditPerson opened as "add a new
-        person as the mother" from EditFamily -- is still open with unsaved
-        data. That child's completion callback, which writes the child's
-        handle onto *this* editor's object (EditFamily.new_mother_added),
-        only runs when the child saves. If this editor committed first, the
-        reference would be dropped and the child's object orphaned (#7924).
-
-        Each dependent child is therefore resolved first, through its own
-        "Save Changes?" guard. If one is left open (the user chose Cancel, or
-        its save failed validation), this editor's save is abandoned and the
-        editor stays open. Children resolved before that point have already
-        been saved, and their references have landed on this editor's
-        object, so confirming this editor again completes the graph.
-
-        Both save paths use this method: the OK button (define_ok_button)
-        and Save in the close/window-X "Save Changes?" dialog (close()).
-
-        :param args: Signal arguments, passed through to the save handler.
+        Drop this editor's edits and close it, as "Close without saving"
+        does.
         """
-        if not self._resolve_dependent_children():
-            return
-        self._ok_function(*args)
-
-    def _resolve_dependent_children(self) -> bool:
-        """
-        Resolve the open child editors that still owe this editor a
-        reference.
-
-        Children are resolved deepest-first (see
-        :func:`~gramps.gui.savecascade.children_to_resolve`), so in a nested
-        chain each level's callback has landed on its own parent before that
-        parent is resolved. Whether a child needs resolving is decided just
-        before it is resolved, against the current state.
-
-        :returns: True if the save may proceed: every dependent child was
-            saved or discarded by the user, or there were none. False if a
-            child was left open, in which case the caller must not commit.
-        """
-        if self.uistate is None:
-            return True
-        try:
-            item = self.uistate.gwm.get_item_from_track(self.track)
-        except (IndexError, KeyError):
-            return True
-        for child in children_to_resolve(item, self._is_unresolved_dependent_child):
-            if not child._resolve_before_parent_commit():
-                return False
-        return True
-
-    def _is_unresolved_dependent_child(self, window: Any) -> bool:
-        """
-        Tell whether a window is a child primary editor that must be
-        resolved before this editor commits.
-
-        Only primary editors are considered; reference and secondary editors
-        (EditReference, EditSecondary) do not take part in this cascade yet.
-
-        :param window: A window from this editor's part of the window tree.
-        :returns: True if ``window`` is another EditPrimary that still owes
-            its parent a reference
-            (see :func:`~gramps.gui.savecascade.has_pending_reference`).
-        """
-        return (
-            window is not self
-            and isinstance(window, EditPrimary)
-            and has_pending_reference(window)
-        )
-
-    def _resolve_before_parent_commit(self) -> bool:
-        """
-        Run this child editor's save guard because its parent is being
-        confirmed.
-
-        This shows the same "Save Changes?" dialog as :meth:`close`: Save
-        runs this editor's save (its completion callback lands the reference
-        on the parent's object), "Close without saving" discards the edits,
-        and Cancel keeps this editor open. With ``interface.dont-ask`` set,
-        the editor is saved without asking: discarding it instead would drop
-        the reference, which is the #7924 defect.
-
-        The outcome is read from this editor's state after the attempt: a
-        save or a discard closes the editor; Cancel or a failed validation
-        leaves it open.
-
-        :returns: True if this editor is now closed and the parent may
-            commit; False if it is still open and the parent must not.
-        """
-        if config.get("interface.dont-ask"):
-            self.save()
-        else:
-            SaveDialog(
-                _("Save Changes?"),
-                _(
-                    "If you close without saving, the changes you "
-                    "have made will be lost"
-                ),
-                self._do_close,
-                self.save,
-                parent=self.window,
-            )
-        return not self.opened
+        self._do_close()
 
     def define_cancel_button(self, button):
         button.connect("clicked", self.close)
@@ -367,8 +266,15 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
     def close(self, *obj):
         """If the data has changed, give the user a chance to cancel
-        the close window"""
-        if not config.get("interface.dont-ask") and self.data_has_changed():
+        the close window.
+
+        An open child editor that still owes this editor work counts as a
+        change too: closing this editor would otherwise drop it without a
+        prompt even though this editor's own fields are untouched (#12204).
+        """
+        if not config.get("interface.dont-ask") and (
+            self.data_has_changed() or self._has_dependent_children()
+        ):
             SaveDialog(
                 _("Save Changes?"),
                 _(

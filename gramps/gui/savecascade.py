@@ -38,6 +38,7 @@ authoritative description of the tree.
 """
 
 from collections.abc import Callable, Iterator
+from copy import deepcopy
 from typing import Any
 
 
@@ -82,27 +83,34 @@ def _collect(item: Any, leaves: list[Any]) -> None:
 
 def has_pending_reference(window: Any) -> bool:
     """
-    Tell whether an editor window still owes its parent a reference.
+    Tell whether an editor window still owes its parent unsaved work.
 
-    A primary editor writes a handle back onto the editor that spawned it
-    only when it was opened on a *new* object together with a completion
-    callback (e.g. ``EditFamily.new_mother_added``), and only once it saves.
-    Editors opened on an *existing* object may also carry a callback (for
-    instance ``ObjEntry.after_edit`` or ``EditFamily.child_ref_edited``), but
-    that callback merely refreshes the parent's display: the parent already
-    holds the handle, so committing the parent drops nothing and the child
-    is left alone.
+    An editor owes its parent work when committing the parent without it
+    would lose or half-apply its edits (``writes_back``), it has a completion
+    callback handing its result to the parent, and it holds unsaved changes.
+
+    ``writes_back`` depends on the kind of editor:
+
+    * A primary editor writes back only when it was opened on a *new*
+      object: its callback hands the new handle to the parent (e.g.
+      ``EditFamily.new_mother_added``). An editor opened on an *existing*
+      object may also carry a callback (``ObjEntry.after_edit``,
+      ``EditFamily.child_ref_edited``), but that only refreshes the parent,
+      which already holds the handle.
+    * A reference or secondary editor always writes back: a new object
+      reaches the parent only through the callback, and an existing one is
+      edited in place on the parent's own object.
 
     :param window: The candidate editor. It is read through the attributes
-        ``opened``, ``callback`` and ``opened_as_new`` and the method
+        ``opened``, ``callback`` and ``writes_back`` and the method
         ``data_has_changed()``.
-    :returns: True if the window is open, was opened on a new object with a
-        completion callback, and holds unsaved changes.
+    :returns: True if the window is open, writes back, has a completion
+        callback, and holds unsaved changes.
     """
     return bool(
         getattr(window, "opened", False)
         and getattr(window, "callback", None) is not None
-        and getattr(window, "opened_as_new", False)
+        and getattr(window, "writes_back", False)
         and window.data_has_changed()
     )
 
@@ -122,10 +130,49 @@ def children_to_resolve(
 
     :param item: The parent editor's node in the window tree.
     :param needs_resolving: Predicate deciding whether a window must be
-        resolved. In production it combines an ``EditPrimary`` type check
+        resolved. In production it combines a cascade-editor type check
         with :func:`has_pending_reference`.
     :returns: An iterator over the windows to resolve, deepest first.
     """
     for win in descendant_leaves(item):
         if needs_resolving(win):
             yield win
+
+
+class InPlaceSnapshot:
+    """
+    A copy of an object being edited in place, for change detection and
+    for undoing the edits without replacing the object.
+
+    Reference and secondary editors edit the very object the parent holds
+    (an existing ``EventRef``, ``Address``, ...). Undoing their edits must
+    therefore restore that same instance, not swap in a new one the parent
+    never sees.
+    """
+
+    def __init__(self, obj: Any) -> None:
+        """
+        :param obj: The object to snapshot; may be None.
+        """
+        self.obj = obj
+        self.copy = deepcopy(obj)
+
+    def has_changed(self) -> bool:
+        """
+        :returns: True if the object now serializes differently from the
+            snapshot.
+        """
+        if self.obj is None:
+            return False
+        return bool(self.obj.serialize() != self.copy.serialize())
+
+    def restore(self) -> None:
+        """
+        Put the snapshot's state back into the original object, keeping its
+        identity.
+        """
+        if self.obj is None:
+            return
+        state = deepcopy(self.copy).__dict__
+        self.obj.__dict__.clear()
+        self.obj.__dict__.update(state)

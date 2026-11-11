@@ -470,6 +470,24 @@ class EditMediaRef(EditReference):
             self.dbstate, self.uistate, self.track, self.source, self._update_addmedia
         )
 
+    def _take_snapshot(self) -> None:
+        """
+        Also record the region selection: it is kept in ``self.rectangle``
+        and copied onto the reference only when the editor saves.
+        """
+        EditReference._take_snapshot(self)
+        self._initial_rectangle = self.rectangle
+
+    def data_has_changed(self) -> bool:
+        """
+        :returns: True if the reference, the media object or the selected
+            region was edited since the editor opened.
+        """
+        return (
+            EditReference.data_has_changed(self)
+            or self.rectangle != self._initial_rectangle
+        )
+
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object("button84"))
         self.define_ok_button(self.top.get_object("button82"), self.save)

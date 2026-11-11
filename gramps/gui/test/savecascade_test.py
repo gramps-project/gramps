@@ -32,7 +32,9 @@ import unittest
 from collections.abc import Callable
 from typing import Any
 
+from gramps.gen.lib import Address
 from gramps.gui.savecascade import (
+    InPlaceSnapshot,
     children_to_resolve,
     descendant_leaves,
     has_pending_reference,
@@ -57,7 +59,7 @@ class FakeWindow:
     A stand-in for a managed editor window in the window tree.
 
     It carries the attributes :func:`has_pending_reference` reads off a
-    real ``EditPrimary``: ``opened``, ``callback``, ``opened_as_new`` and
+    real ``EditPrimary``: ``opened``, ``callback``, ``writes_back`` and
     ``data_has_changed()``. ``primary`` stands in for the
     ``isinstance(window, EditPrimary)`` check done by the editor.
     """
@@ -68,7 +70,7 @@ class FakeWindow:
         primary: bool = True,
         opened: bool = True,
         callback: Callable[..., None] | None = _refresh,
-        opened_as_new: bool = True,
+        writes_back: bool = True,
         dirty: bool = True,
     ) -> None:
         """
@@ -76,14 +78,15 @@ class FakeWindow:
         :param primary: Whether the window is a primary editor.
         :param opened: Whether the window is still open.
         :param callback: The completion callback, or None.
-        :param opened_as_new: Whether the editor was opened on a new object.
+        :param writes_back: Whether a parent commit without this editor
+            would lose its work.
         :param dirty: Whether the editor holds unsaved changes.
         """
         self.name = name
         self.primary = primary
         self.opened = opened
         self.callback = callback
-        self.opened_as_new = opened_as_new
+        self.writes_back = writes_back
         self.dirty = dirty
 
     def data_has_changed(self) -> bool:
@@ -174,7 +177,7 @@ class HasPendingReferenceTest(unittest.TestCase):
         family's child list (``child_ref_edited``) carries a callback, but
         the parent already holds its handle.
         """
-        existing = FakeWindow("existing_place", opened_as_new=False)
+        existing = FakeWindow("existing_place", writes_back=False)
         self.assertFalse(has_pending_reference(existing))
 
     def test_object_without_callback_is_not_pending(self) -> None:
@@ -222,10 +225,10 @@ class ChildrenToResolveTest(unittest.TestCase):
             list(children_to_resolve([family, mother], _needs_resolving)), [mother]
         )
 
-    def test_non_primary_child_is_skipped(self) -> None:
-        """Reference and secondary editors are not part of this cascade."""
+    def test_non_editor_child_is_skipped(self) -> None:
+        """Selectors and other plain windows are not part of the cascade."""
         family = FakeWindow("family")
-        ref_editor = FakeWindow("event_ref", primary=False)
+        ref_editor = FakeWindow("selector", primary=False)
         self.assertEqual(
             list(children_to_resolve([family, ref_editor], _needs_resolving)), []
         )
@@ -233,7 +236,7 @@ class ChildrenToResolveTest(unittest.TestCase):
     def test_existing_object_child_is_skipped(self) -> None:
         """An edited existing object is left for the normal close path."""
         event = FakeWindow("event")
-        place = FakeWindow("existing_place", opened_as_new=False)
+        place = FakeWindow("existing_place", writes_back=False)
         self.assertEqual(
             list(children_to_resolve([event, place], _needs_resolving)), []
         )
@@ -261,6 +264,56 @@ class ChildrenToResolveTest(unittest.TestCase):
             # Resolving 'first' also closes 'second' (e.g. it was discarded).
             second.opened = False
         self.assertEqual(resolved, [first])
+
+
+# -------------------------------------------------------------------------
+#
+# InPlaceSnapshotTest
+#
+# -------------------------------------------------------------------------
+class InPlaceSnapshotTest(unittest.TestCase):
+    """``InPlaceSnapshot`` detects and undoes edits on a shared object."""
+
+    def test_unchanged_object_is_clean(self) -> None:
+        """Taking a snapshot does not count as an edit."""
+        addr = Address()
+        addr.set_city("Pittsburgh")
+        self.assertFalse(InPlaceSnapshot(addr).has_changed())
+
+    def test_edit_is_detected(self) -> None:
+        """Changing a field after the snapshot is detected."""
+        addr = Address()
+        snap = InPlaceSnapshot(addr)
+        addr.set_city("Pittsburgh")
+        self.assertTrue(snap.has_changed())
+
+    def test_restore_keeps_identity(self) -> None:
+        """Restoring puts the old state back into the same instance."""
+        addr = Address()
+        addr.set_city("Pittsburgh")
+        holder = [addr]  # the parent's list holding the object
+        snap = InPlaceSnapshot(addr)
+        addr.set_city("Philadelphia")
+        snap.restore()
+        self.assertIs(holder[0], addr)
+        self.assertEqual(addr.get_city(), "Pittsburgh")
+        self.assertFalse(snap.has_changed())
+
+    def test_restore_can_be_repeated(self) -> None:
+        """The snapshot itself is not handed out, so it survives a restore."""
+        addr = Address()
+        snap = InPlaceSnapshot(addr)
+        addr.set_city("Pittsburgh")
+        snap.restore()
+        addr.set_city("Philadelphia")
+        snap.restore()
+        self.assertEqual(addr.get_city(), "")
+
+    def test_none_is_never_changed(self) -> None:
+        """A missing object (e.g. no reference yet) is treated as clean."""
+        snap = InPlaceSnapshot(None)
+        self.assertFalse(snap.has_changed())
+        snap.restore()
 
 
 if __name__ == "__main__":
