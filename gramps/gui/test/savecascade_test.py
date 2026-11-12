@@ -32,7 +32,7 @@ import unittest
 from collections.abc import Callable
 from typing import Any
 
-from gramps.gen.lib import Address, Attribute, EventRef
+from gramps.gen.lib import Address, Attribute, AttributeType, EventRef
 from gramps.gui.savecascade import (
     InPlaceSnapshot,
     children_to_resolve,
@@ -373,6 +373,21 @@ class InPlaceSnapshotTest(unittest.TestCase):
         snap.restore()
         self.assertEqual(len(ref.get_attribute_list()), 1)
         self.assertIs(ref.get_attribute_list()[0], kept)
+        self.assertFalse(snap.has_changed())
+
+    def test_restore_resets_types_kept_in_slots(self) -> None:
+        """
+        A ``GrampsType`` keeps its value in slots, not ``__dict__``; Cancel
+        must still put the old type back, on the same instance.
+        """
+        attr = Attribute()
+        attr.set_type(AttributeType.AGE)
+        attr_type = attr.get_type()
+        snap = InPlaceSnapshot(attr)
+        attr_type.set(AttributeType.NICKNAME)
+        snap.restore()
+        self.assertIs(attr.get_type(), attr_type)
+        self.assertEqual(attr_type, AttributeType.AGE)
         self.assertFalse(snap.has_changed())
 
     def test_restore_replaces_changed_structure(self) -> None:

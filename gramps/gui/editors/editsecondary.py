@@ -176,11 +176,14 @@ class EditSecondary(DependentSaveMixin, ManagedWindow, DbGUIElement):
         # replacing ``self.obj`` with a copy would leave the parent holding
         # the edited one. Any other close that does not follow a save --
         # Cancel, an ancestor closing -- restores it in place (#12008).
-        if not self._saving and self.opened:
-            self._snapshot.restore()
+        restore = not self._saving and self.opened
         self._cleanup_db_connects()
         self._cleanup_connects()
+        # Editors opened from this one close first and restore their own,
+        # later snapshots; this editor's restore must come last.
         ManagedWindow.close(self)
+        if restore:
+            self._snapshot.restore()
         self._cleanup_on_exit()
 
     def _cleanup_db_connects(self):

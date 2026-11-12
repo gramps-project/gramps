@@ -304,11 +304,14 @@ class EditReference(DependentSaveMixin, ManagedWindow, DbGUIElement):
         # Any other close that does not follow a save -- Cancel, deletion of
         # the referenced object, an ancestor closing -- must undo those
         # edits, or the parent would commit them (#12008).
-        if not self._saving and self.opened:
-            self._restore_snapshot()
+        restore = not self._saving and self.opened
         self._cleanup_db_connects()
         self._cleanup_connects()
+        # Editors opened from this one close first and restore their own,
+        # later snapshots; this editor's restore must come last.
         ManagedWindow.close(self)
+        if restore:
+            self._restore_snapshot()
         self._cleanup_on_exit()
 
     def _cleanup_db_connects(self):

@@ -40,7 +40,7 @@ from gramps.gen.db.utils import make_database
 from gramps.gen.dbstate import DbState
 from gi.repository import Gdk
 
-from gramps.gen.lib import Address, Place, PlaceRef
+from gramps.gen.lib import Address, Place, PlaceName, PlaceRef
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.editors.editreference import EditReference
 from gramps.gui.editors.editsecondary import EditSecondary
@@ -442,6 +442,30 @@ class DependentSaveTest(unittest.TestCase):
         addr.set_city("Pittsburgh")
         editor.close()
         self.assertEqual(addr.get_city(), "")
+
+    def test_outer_cancel_wins_over_open_inner_editor(self) -> None:
+        """
+        Cancel on an editor restores its object last: an editor still open
+        below it, whose snapshot was taken after an earlier save, must not
+        leave that intermediate state behind.
+        """
+        name = PlaceName()
+        place = Place()
+        place.add_alternative_name(name)
+        outer = RefEditor(self.dbstate, place, PlaceRef(), Mock())
+        name.set_value("saved earlier")
+        inner = SecondaryEditor(self.dbstate, name, Mock())
+        name.set_value("being edited")
+
+        def close_with_children(window: Any, *args: Any) -> None:
+            window.opened = False
+            if window is outer and inner.opened:
+                inner.close()
+
+        with patch.object(ManagedWindow, "close", close_with_children):
+            outer.close_and_cancel(None)
+        self.assertEqual(name.get_value(), "")
+        self.assertIs(place.get_alternative_names()[0], name)
 
     def test_window_close_button_asks_when_changed(self) -> None:
         """

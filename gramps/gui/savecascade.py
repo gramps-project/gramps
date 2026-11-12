@@ -213,8 +213,15 @@ class InPlaceSnapshot:
                 return items
             live[:] = items
             return live
+        if live is None or isinstance(saved, type) or type(live) is not type(saved):
+            return deepcopy(saved)
+        if hasattr(saved, "__setstate__"):
+            # Classes with their own pickling state (``GrampsType`` keeps
+            # its value in slots) are restored through it.
+            live.__setstate__(deepcopy(saved.__getstate__()))
+            return live
         state = getattr(saved, "__dict__", None)
-        if state is None or isinstance(saved, type) or type(live) is not type(saved):
+        if state is None:
             return deepcopy(saved)
         restored = {key: self._restore(value) for key, value in state.items()}
         live.__dict__.clear()
