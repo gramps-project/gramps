@@ -32,7 +32,7 @@ import unittest
 from collections.abc import Callable
 from typing import Any
 
-from gramps.gen.lib import Address
+from gramps.gen.lib import Address, Attribute, EventRef
 from gramps.gui.savecascade import (
     InPlaceSnapshot,
     children_to_resolve,
@@ -339,6 +339,41 @@ class InPlaceSnapshotTest(unittest.TestCase):
         self.assertFalse(snap.has_changed())
         addr.add_citation("c-2")  # a child saved after the restore
         self.assertEqual(addr.get_citation_list(), ["c-2"])
+
+    def test_restore_undoes_reordering_by_identity(self) -> None:
+        """
+        Reordered list items go back to their places as the same
+        instances, each with its own state, not swapped with each other.
+        """
+        ref = EventRef()
+        first, second = Attribute(), Attribute()
+        first.set_value("first")
+        second.set_value("second")
+        ref.add_attribute(first)
+        ref.add_attribute(second)
+        attributes = ref.get_attribute_list()
+        snap = InPlaceSnapshot(ref)
+        attributes.reverse()
+        first.set_value("edited")
+        snap.restore()
+        self.assertIs(ref.get_attribute_list(), attributes)
+        self.assertIs(attributes[0], first)
+        self.assertIs(attributes[1], second)
+        self.assertEqual(first.get_value(), "first")
+        self.assertEqual(second.get_value(), "second")
+
+    def test_restore_brings_back_removed_items_and_drops_added(self) -> None:
+        """A removed item returns as the same instance; an added one goes."""
+        ref = EventRef()
+        kept = Attribute()
+        ref.add_attribute(kept)
+        snap = InPlaceSnapshot(ref)
+        ref.get_attribute_list().remove(kept)
+        ref.add_attribute(Attribute())
+        snap.restore()
+        self.assertEqual(len(ref.get_attribute_list()), 1)
+        self.assertIs(ref.get_attribute_list()[0], kept)
+        self.assertFalse(snap.has_changed())
 
     def test_restore_replaces_changed_structure(self) -> None:
         """A nested object of a different type is replaced, not merged."""

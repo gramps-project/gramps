@@ -93,6 +93,10 @@ class DependentSaveMixin:
     """
 
     _ok_function: Callable[..., Any] | None = None
+    # True for an editor opened on a new reference to an object that
+    # already exists ("share existing", a dropped person): it owes its
+    # parent that reference even if nothing else was edited.
+    shares_existing_object = False
     # True while the editor's own confirm handler runs, so a close() it
     # triggers is known to follow a save rather than a discard.
     _saving = False
@@ -136,9 +140,11 @@ class DependentSaveMixin:
             return
         self._saving = True
         self._ok_function(*args)
-        # Not reset in a ``finally``: if the handler raises, it may already
+        # Not reset in a ``finally``. If the handler raises, it may already
         # have committed and handed part of the result to the parent, and a
-        # later Cancel must not undo that half of it.
+        # later Cancel must not undo that half of it. If it failed before
+        # committing, a later Cancel leaves the edits in place, as Gramps
+        # did before #12008; that is the safer of the two.
         self._saving = False
 
     def _tree_item(self) -> Any:
@@ -271,9 +277,10 @@ class DependentSaveMixin:
 
         Reference and secondary editors edit existing objects in place, so
         closing one must either save or undo the edits; doing either
-        silently would surprise the user (#6910). The same applies when the
-        editor itself is unchanged but an editor it opened still owes it
-        work: closing tears that editor down too.
+        silently would surprise the user (#6910). The same applies to a
+        new reference to an existing object, which closing would drop, and
+        when an editor this one opened still owes it work: closing tears
+        that editor down too.
 
         :param args: The arguments ``close()`` was called with. A close
             from the window's close button carries the Gdk event.
@@ -287,6 +294,7 @@ class DependentSaveMixin:
             or config.get("interface.dont-ask")
             or not (
                 self.data_has_changed()  # type: ignore[attr-defined]
+                or self.shares_existing_object
                 or self._has_dependent_children()
             )
         ):

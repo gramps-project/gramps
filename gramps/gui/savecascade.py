@@ -163,7 +163,16 @@ class InPlaceSnapshot:
         :param obj: The object to snapshot; may be None.
         """
         self.obj = obj
-        self.copy = deepcopy(obj)
+        memo: dict[int, Any] = {}
+        self.copy = deepcopy(obj, memo)
+        # Map each copied list or object back to the live one it was copied
+        # from, so a restore can put the live instances back where they were.
+        originals = {id(orig): orig for orig in memo.get(id(memo), [])}
+        self._origin: dict[int, Any] = {
+            id(copied): originals[key]
+            for key, copied in memo.items()
+            if key in originals and copied is not originals[key]
+        }
 
     def has_changed(self) -> bool:
         """
@@ -177,44 +186,37 @@ class InPlaceSnapshot:
     def restore(self) -> None:
         """
         Put the snapshot's state back into the original object, keeping its
-        identity and, where the structure still matches, the identity of the
-        lists and objects nested in it.
+        identity and that of every list and object that was inside it when
+        the snapshot was taken.
 
         Open tabs and child editors hold those nested lists and objects
-        (e.g. a citation tab holds the citation list), so a result handed
-        over after the restore must still land on the parent's object.
+        (e.g. a citation tab holds the citation list, a child editor holds a
+        reference in it), so they must stay the parent's own instances: each
+        goes back to where it was, with its old state, even if the edits
+        reordered, removed or replaced it. Anything added since is dropped.
         """
         if self.obj is None:
             return
-        _restore_into(self.obj, deepcopy(self.copy))
+        self._restore(self.copy)
 
-
-def _restore_into(current: Any, saved: Any) -> Any:
-    """
-    Make ``current`` equal to ``saved``, reusing ``current`` and the objects
-    nested in it where their type and shape still match.
-
-    :param current: The live value.
-    :param saved: A private copy of the value to restore; it may be used
-        as is.
-    :returns: The value to keep: ``current`` restored in place, or
-        ``saved`` where ``current`` could not be reused.
-    """
-    if type(current) is not type(saved):
-        return saved
-    if isinstance(saved, list):
-        if len(current) == len(saved):
-            current[:] = [_restore_into(c, s) for c, s in zip(current, saved)]
-        else:
-            current[:] = saved
-        return current
-    state = getattr(saved, "__dict__", None)
-    if state is None or isinstance(saved, type):
-        return saved
-    live = current.__dict__
-    for key in list(live):
-        if key not in state:
-            del live[key]
-    for key, value in state.items():
-        live[key] = _restore_into(live[key], value) if key in live else value
-    return current
+    def _restore(self, saved: Any) -> Any:
+        """
+        :param saved: A value inside the snapshot; it is not modified.
+        :returns: The live value to put in its place: the live instance it
+            was copied from, set back to the snapshot's state, or a fresh
+            copy if there is none.
+        """
+        live = self._origin.get(id(saved))
+        if isinstance(saved, list):
+            items = [self._restore(item) for item in saved]
+            if not isinstance(live, list):
+                return items
+            live[:] = items
+            return live
+        state = getattr(saved, "__dict__", None)
+        if state is None or isinstance(saved, type) or type(live) is not type(saved):
+            return deepcopy(saved)
+        restored = {key: self._restore(value) for key, value in state.items()}
+        live.__dict__.clear()
+        live.__dict__.update(restored)
+        return live

@@ -299,6 +299,19 @@ class DependentSaveTest(unittest.TestCase):
         child.result.assert_called_once()
         self.assertEqual(parent.saves, 1)
 
+    def test_window_close_button_asks_for_unchanged_share(self) -> None:
+        """
+        The window's close button on an unchanged "share existing" editor
+        asks, since closing would drop the picked object.
+        """
+        place = Place()
+        place.set_handle("shared-place")
+        editor = RefEditor(self.dbstate, place, PlaceRef(), Mock())
+        with patch(DIALOG, _answer("cancel")):
+            handled = editor.close(editor.window, Gdk.Event())
+        self.assertTrue(handled)
+        self.assertTrue(editor.opened)
+
     def test_unchanged_existing_reference_is_left_alone(self) -> None:
         """An existing reference opened and left unchanged owes nothing."""
         place = Place()

@@ -112,6 +112,7 @@ class EditReference(DependentSaveMixin, ManagedWindow, DbGUIElement):
         # is owed to the parent even if nothing else changes (#12008).
         self.shares_existing_object = bool(
             source is not None
+            and source_ref is not None
             and source.get_handle()
             and not source_ref.get_reference_handle()
         )
