@@ -183,9 +183,12 @@ class PersonRefEmbedList(DbGUIElement, EmbeddedList):
         try:
             ref = PersonRef(obj)
             ref.rel = _("Unknown")
-            EditPersonRef(
+            editor = EditPersonRef(
                 self.dbstate, self.uistate, self.track, ref, self.add_callback
             )
+            # A new reference to a person that already exists: owed to the
+            # parent even if the user changes nothing (#12008).
+            editor.shares_existing_object = bool(ref.ref)
         except WindowActiveError:
             pass
 
@@ -203,8 +206,11 @@ class PersonRefEmbedList(DbGUIElement, EmbeddedList):
             ref.rel = _("Unknown")
             if person:
                 ref.ref = person.get_handle()
-            EditPersonRef(
+            editor = EditPersonRef(
                 self.dbstate, self.uistate, self.track, ref, self.add_callback
             )
+            # A new reference to a person that already exists: owed to the
+            # parent even if the user changes nothing (#12008).
+            editor.shares_existing_object = bool(ref.ref)
         except WindowActiveError:
             pass

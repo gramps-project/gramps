@@ -51,9 +51,12 @@ from ..dialog import SaveDialog
 from gramps.gen.lib import PrimaryObject
 from ..dbguielement import DbGUIElement
 from ..uimanager import ActionGroup
+from .dependentsave import DependentSaveMixin
 
 
-class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
+class EditPrimary(
+    DependentSaveMixin, ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta
+):
     QR_CATEGORY = -1
 
     def __init__(
@@ -80,7 +83,16 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         self.uistate = uistate
         self.db = state.db
         self.callback = callback
+        # Whether a parent committing without this editor would lose its
+        # work: only true for a new, not yet stored object, whose callback
+        # hands the new handle to the editor that spawned it (see
+        # gramps.gui.savecascade.has_pending_reference, #7924).
+        self.writes_back = not obj.handle
         self.ok_button = None
+        # The editor's confirm handler, captured by define_ok_button and driven
+        # by _save_with_dependent_children. Defaults to save so the shared save
+        # guard is safe even before/without define_ok_button (#7924).
+        self._ok_function = self.save
         self.get_from_handle = get_from_handle
         self.get_from_gramps_id = get_from_gramps_id
         self.contexteventbox = None
@@ -177,8 +189,19 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
     def define_ok_button(self, button, function):
         self.ok_button = button
-        button.connect("clicked", function)
+        # Route the confirm handler -- and Save in the close dialog (see
+        # close()) -- through the dependent-children guard, so open child
+        # editors that still owe this editor work are resolved BEFORE this
+        # editor reads its references and commits (#7924, #12008).
+        self._wire_ok_button(button, function)
         button.set_sensitive(not self.db.readonly)
+
+    def _discard_for_parent(self) -> None:
+        """
+        Drop this editor's edits and close it, as "Close without saving"
+        does.
+        """
+        self._do_close()
 
     def define_cancel_button(self, button):
         button.connect("clicked", self.close)
@@ -243,8 +266,15 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
     def close(self, *obj):
         """If the data has changed, give the user a chance to cancel
-        the close window"""
-        if not config.get("interface.dont-ask") and self.data_has_changed():
+        the close window.
+
+        An open child editor that still owes this editor work counts as a
+        change too: closing this editor would otherwise drop it without a
+        prompt even though this editor's own fields are untouched (#12204).
+        """
+        if not config.get("interface.dont-ask") and (
+            self.data_has_changed() or self._has_dependent_children()
+        ):
             SaveDialog(
                 _("Save Changes?"),
                 _(
@@ -252,7 +282,10 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
                     "have made will be lost"
                 ),
                 self._do_close,
-                self.save,
+                # Save through the shared guard, not self.save directly, so
+                # Save here also resolves open dependent child editors before
+                # this editor commits (#7924, see _save_with_dependent_children).
+                self._save_with_dependent_children,
                 parent=self.window,
             )
             return True

@@ -28,9 +28,11 @@ from ..managedwindow import ManagedWindow
 from ..display import display_help
 from gramps.gen.config import config
 from ..dbguielement import DbGUIElement
+from ..savecascade import InPlaceSnapshot
+from .dependentsave import DependentSaveMixin
 
 
-class EditSecondary(ManagedWindow, DbGUIElement):
+class EditSecondary(DependentSaveMixin, ManagedWindow, DbGUIElement):
     def __init__(self, state, uistate, track, obj, callback=None):
         """Create an edit window.  Associates a person with the window."""
 
@@ -40,6 +42,11 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         self.uistate = uistate
         self.db = state.db
         self.callback = callback
+        # A secondary editor always owes its parent its work: a new object
+        # reaches the parent only through ``callback``, and an existing one
+        # is edited in place on the parent's own object (#12008).
+        self.writes_back = True
+        self._snapshot = InPlaceSnapshot(None)
         self.__tabs = []
 
         ManagedWindow.__init__(self, uistate, track, obj)
@@ -53,6 +60,27 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         self._connect_signals()
         self.show()
         self._post_init()
+        self._take_snapshot()
+
+    def _take_snapshot(self) -> None:
+        """
+        Record the object as it is when the editor opens, for
+        :meth:`data_has_changed` and for undoing the edits.
+        """
+        self._snapshot = InPlaceSnapshot(self.obj)
+
+    def data_has_changed(self) -> bool:
+        """
+        :returns: True if the object was edited since the editor opened.
+        """
+        return self._snapshot.has_changed()
+
+    def _discard_for_parent(self) -> None:
+        """
+        Drop this editor's edits and close it, as "Close without saving"
+        does.
+        """
+        self.canceledits()
 
     def _local_init(self):
         """
@@ -123,7 +151,10 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         self.callman = None
 
     def define_ok_button(self, button, function):
-        button.connect("clicked", function)
+        # Route the confirm handler through the dependent-children guard, so
+        # open child editors (e.g. a new citation) are resolved before this
+        # object is handed to its parent (#12008).
+        self._wire_ok_button(button, function)
         button.set_sensitive(not self.db.readonly)
 
     def define_cancel_button(self, button):
@@ -136,13 +167,23 @@ class EditSecondary(ManagedWindow, DbGUIElement):
         """
         Undo the edits that happened on this secondary object
         """
-        self.obj = self.db.serializer.data_to_object(self.old_obj)
         self.close(obj)
 
     def close(self, *obj):
+        if self._prompt_on_window_close(obj):
+            return True
+        # An existing object is edited in place on the parent's own object;
+        # replacing ``self.obj`` with a copy would leave the parent holding
+        # the edited one. Any other close that does not follow a save --
+        # Cancel, an ancestor closing -- restores it in place (#12008).
+        restore = not self._saving and self.opened
         self._cleanup_db_connects()
         self._cleanup_connects()
+        # Editors opened from this one close first and restore their own,
+        # later snapshots; this editor's restore must come last.
         ManagedWindow.close(self)
+        if restore:
+            self._snapshot.restore()
         self._cleanup_on_exit()
 
     def _cleanup_db_connects(self):

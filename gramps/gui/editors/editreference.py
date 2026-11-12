@@ -24,6 +24,8 @@
 # GTK/Gnome modules
 #
 # -------------------------------------------------------------------------
+from typing import Any
+
 from gi.repository import Gtk
 
 # -------------------------------------------------------------------------
@@ -39,6 +41,8 @@ from ..managedwindow import ManagedWindow
 from .displaytabs import GrampsTab
 from gramps.gen.config import config
 from ..dbguielement import DbGUIElement
+from ..savecascade import InPlaceSnapshot
+from .dependentsave import DependentSaveMixin
 
 # -------------------------------------------------------------------------
 #
@@ -90,7 +94,7 @@ class RefTab(GrampsTab):
 # EditReference class
 #
 # -------------------------------------------------------------------------
-class EditReference(ManagedWindow, DbGUIElement):
+class EditReference(DependentSaveMixin, ManagedWindow, DbGUIElement):
     def __init__(self, state, uistate, track, source, source_ref, update):
         self.db = state.db
         self.dbstate = state
@@ -99,6 +103,20 @@ class EditReference(ManagedWindow, DbGUIElement):
         self.source = source
         self.source_added = False
         self.update = update
+        # A reference editor always owes its parent its work: a new reference
+        # reaches the parent only through ``update``, and an existing one is
+        # edited in place on the parent's own object (#12008).
+        self.writes_back = True
+        # "Share existing": a new reference to an object already in the
+        # database. Picking the object is the user's edit, so the reference
+        # is owed to the parent even if nothing else changes (#12008).
+        self.shares_existing_object = bool(
+            source is not None
+            and source_ref is not None
+            and source.get_handle()
+            and not source_ref.get_reference_handle()
+        )
+        self._snapshots: list[InPlaceSnapshot] = []
         self.warn_box = None
         self.__tabs = []
 
@@ -112,6 +130,50 @@ class EditReference(ManagedWindow, DbGUIElement):
         self._connect_signals()
         self.show()
         self._post_init()
+        self._take_snapshot()
+
+    @property
+    def callback(self) -> Any:
+        """
+        :returns: The completion callback (``update``), under the name the
+            dependent-children cascade reads.
+        """
+        return self.update
+
+    def _take_snapshot(self) -> None:
+        """
+        Record the reference and its object as they are when the editor
+        opens, for :meth:`data_has_changed` and for undoing the edits.
+
+        Subclasses keeping edits outside these objects until save extend
+        this, together with :meth:`data_has_changed`.
+        """
+        self._snapshots = [
+            InPlaceSnapshot(self.source_ref),
+            InPlaceSnapshot(self.source),
+        ]
+
+    def data_has_changed(self) -> bool:
+        """
+        :returns: True if the reference or its object was edited since the
+            editor opened.
+        """
+        return any(snap.has_changed() for snap in self._snapshots)
+
+    def _restore_snapshot(self) -> None:
+        """
+        Undo the edits on the reference and its object, in place, so the
+        parent's copy of an existing reference is left as it was.
+        """
+        for snap in self._snapshots:
+            snap.restore()
+
+    def _discard_for_parent(self) -> None:
+        """
+        Drop this editor's edits and close it, as "Close without saving"
+        does.
+        """
+        self.close()
 
     def _local_init(self):
         """
@@ -190,7 +252,10 @@ class EditReference(ManagedWindow, DbGUIElement):
             return id(self)
 
     def define_ok_button(self, button, function):
-        button.connect("clicked", function)
+        # Route the confirm handler through the dependent-children guard, so
+        # open child editors (e.g. a new Place from the event's place field)
+        # are resolved before this reference is handed to its parent (#12008).
+        self._wire_ok_button(button, function)
         button.set_sensitive(not self.db.readonly)
 
     def define_cancel_button(self, button):
@@ -233,9 +298,20 @@ class EditReference(ManagedWindow, DbGUIElement):
         self.callman = None
 
     def close(self, *obj):
+        if self._prompt_on_window_close(obj):
+            return True
+        # An existing reference is edited in place on the parent's object.
+        # Any other close that does not follow a save -- Cancel, deletion of
+        # the referenced object, an ancestor closing -- must undo those
+        # edits, or the parent would commit them (#12008).
+        restore = not self._saving and self.opened
         self._cleanup_db_connects()
         self._cleanup_connects()
+        # Editors opened from this one close first and restore their own,
+        # later snapshots; this editor's restore must come last.
         ManagedWindow.close(self)
+        if restore:
+            self._restore_snapshot()
         self._cleanup_on_exit()
 
     def _cleanup_db_connects(self):

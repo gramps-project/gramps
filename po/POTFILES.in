@@ -426,6 +426,7 @@ gramps/gui/dbman.py
 gramps/gui/dialog.py
 gramps/gui/displaystate.py
 gramps/gui/editors/addmedia.py
+gramps/gui/editors/dependentsave.py
 gramps/gui/editors/displaytabs/addrembedlist.py
 gramps/gui/editors/displaytabs/attrembedlist.py
 gramps/gui/editors/displaytabs/backreflist.py

@@ -27,7 +27,7 @@
 #
 # -------------------------------------------------------------------------
 from gi.repository import GObject
-from copy import copy
+from copy import copy, deepcopy
 
 # -------------------------------------------------------------------------
 #
@@ -48,6 +48,7 @@ from gramps.gen.const import URL_MANUAL_SECT3
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
 from .editsecondary import EditSecondary
+from ..savecascade import InPlaceSnapshot
 from gramps.gen.lib import NoteType
 from .displaytabs import GrampsTab, CitationEmbedList, NoteTab, SurnameTab
 from ..widgets import (
@@ -117,6 +118,11 @@ class EditName(EditSecondary):
         EditSecondary.__init__(self, dbstate, uistate, track, name, callback)
 
     def _local_init(self):
+        # Snapshot before _setup_fields: it may write a display-only "group
+        # as" value onto the name (see _cleanup_on_exit). Comparing against
+        # the name as it was keeps a parent from committing that value while
+        # this editor is still open (#12008).
+        self._pre_setup_snapshot = InPlaceSnapshot(self.obj)
         self.top = Glade()
 
         self.set_window(self.top.toplevel, None, _("Name Editor"))
@@ -499,6 +505,38 @@ class EditName(EditSecondary):
             # the rebuild until closeing this dialog
             if ngm is not False:
                 db.set_name_group_mapping(surname, ngm)
+
+    def _take_snapshot(self) -> None:
+        """
+        Use the snapshot taken before the fields were set up.
+        """
+        self._snapshot = self._pre_setup_snapshot
+
+    def _shows_display_only_group(self) -> bool:
+        """
+        :returns: True if the "group as" value on the name is only for
+            display (the field is disabled) and is cleared on close; see
+            :meth:`_cleanup_on_exit`.
+        """
+        return not self.group_as.obj.get_editable()
+
+    def data_has_changed(self) -> bool:
+        """
+        :returns: True if the name was edited since the editor opened,
+            ignoring a display-only "group as" value.
+        """
+        current = deepcopy(self.obj)
+        if self._shows_display_only_group():
+            current.set_group_as("")
+        return bool(current.serialize() != self._snapshot.copy.serialize())
+
+    def _before_ancestor_commit(self) -> None:
+        """
+        Remove a display-only "group as" value before the person is
+        committed with this editor still open (#12008).
+        """
+        if self._shows_display_only_group():
+            self.obj.set_group_as("")
 
     def _cleanup_on_exit(self):
         """
