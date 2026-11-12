@@ -107,6 +107,14 @@ class EditReference(DependentSaveMixin, ManagedWindow, DbGUIElement):
         # reaches the parent only through ``update``, and an existing one is
         # edited in place on the parent's own object (#12008).
         self.writes_back = True
+        # "Share existing": a new reference to an object already in the
+        # database. Picking the object is the user's edit, so the reference
+        # is owed to the parent even if nothing else changes (#12008).
+        self.shares_existing_object = bool(
+            source is not None
+            and source.get_handle()
+            and not source_ref.get_reference_handle()
+        )
         self._snapshots: list[InPlaceSnapshot] = []
         self.warn_box = None
         self.__tabs = []

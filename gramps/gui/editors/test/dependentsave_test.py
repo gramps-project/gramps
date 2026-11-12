@@ -273,7 +273,7 @@ class DependentSaveTest(unittest.TestCase):
         self.assertEqual(parent.saves, 0)
 
     def test_clean_child_is_left_alone(self) -> None:
-        """A reference editor nobody typed into is not prompted for."""
+        """A reference editor on a new, blank object is not prompted for."""
         parent = self._parent()
         child = self._ref_editor()
         parent.set_tree([parent, child])
@@ -282,6 +282,36 @@ class DependentSaveTest(unittest.TestCase):
         dialog.assert_not_called()
         self.assertEqual(child.saves, 0)
         self.assertEqual(parent.saves, 1)
+
+    def test_unchanged_shared_object_is_resolved(self) -> None:
+        """
+        "Share existing" with nothing else edited: the new reference to the
+        picked object is still handed to the parent before it saves.
+        """
+        place = Place()
+        place.set_handle("shared-place")
+        parent = self._parent()
+        child = RefEditor(self.dbstate, place, PlaceRef(), Mock())
+        parent.set_tree([parent, child])
+        with patch(DIALOG, _answer("save")):
+            parent._save_with_dependent_children(None)
+        self.assertEqual(child.saves, 1)
+        child.result.assert_called_once()
+        self.assertEqual(parent.saves, 1)
+
+    def test_unchanged_existing_reference_is_left_alone(self) -> None:
+        """An existing reference opened and left unchanged owes nothing."""
+        place = Place()
+        place.set_handle("place-1")
+        ref = PlaceRef()
+        ref.ref = "place-1"
+        parent = self._parent()
+        child = RefEditor(self.dbstate, place, ref, Mock())
+        parent.set_tree([parent, child])
+        with patch(DIALOG) as dialog:
+            parent._save_with_dependent_children(None)
+        dialog.assert_not_called()
+        self.assertEqual(child.saves, 0)
 
     def test_discard_restores_existing_reference_in_place(self) -> None:
         """
@@ -431,6 +461,50 @@ class DependentSaveTest(unittest.TestCase):
             editor.close(editor.window, Gdk.Event())
         dialog.assert_not_called()
         self.assertFalse(editor.opened)
+
+    def test_window_close_button_asks_for_changed_child(self) -> None:
+        """
+        An unchanged editor whose own child still owes it work asks too:
+        closing would tear that child down. Cancel keeps both open.
+        """
+        editor = SecondaryEditor(self.dbstate, Address(), Mock())
+        child = self._ref_editor()
+        child.source.set_title("Pittsburgh")
+        editor.set_tree([editor, child])
+        with patch(DIALOG, _answer("cancel")):
+            handled = editor.close(editor.window, Gdk.Event())
+        self.assertTrue(handled)
+        self.assertTrue(editor.opened)
+        self.assertTrue(child.opened)
+
+    def test_window_close_button_save_resolves_child(self) -> None:
+        """Save in that dialog saves the child first, then the editor."""
+        editor = SecondaryEditor(self.dbstate, Address(), Mock())
+        child = self._ref_editor()
+        child.source.set_title("Pittsburgh")
+        editor.set_tree([editor, child])
+        with patch(DIALOG, _answer("save")):
+            editor.close(editor.window, Gdk.Event())
+        self.assertEqual(child.saves, 1)
+        self.assertEqual(editor.saves, 1)
+
+    def test_failed_save_is_not_undone_later(self) -> None:
+        """
+        If the save handler raises after it may have committed, a later
+        close keeps the edits instead of undoing half of a save.
+        """
+        addr = Address()
+        editor = SecondaryEditor(self.dbstate, addr, Mock())
+        addr.set_city("Pittsburgh")
+
+        def failing_ok(*args: Any) -> None:
+            raise RuntimeError("callback failed")
+
+        editor._ok_function = failing_ok
+        with self.assertRaises(RuntimeError):
+            editor._save_with_dependent_children(None)
+        editor.close()
+        self.assertEqual(addr.get_city(), "Pittsburgh")
 
     def test_child_without_window_is_not_resolved(self) -> None:
         """

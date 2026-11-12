@@ -101,17 +101,25 @@ def has_pending_reference(window: Any) -> bool:
       reaches the parent only through the callback, and an existing one is
       edited in place on the parent's own object.
 
+    A reference editor opened on a new reference to an object that already
+    exists ("share existing", ``shares_existing_object``) owes the parent
+    that reference even if nothing was edited: picking the object was the
+    user's edit.
+
     :param window: The candidate editor. It is read through the attributes
         ``opened``, ``callback`` and ``writes_back`` and the method
         ``data_has_changed()``.
     :returns: True if the window is open, writes back, has a completion
-        callback, and holds unsaved changes.
+        callback, and holds unsaved changes or shares an existing object.
     """
     return bool(
         getattr(window, "opened", False)
         and getattr(window, "callback", None) is not None
         and getattr(window, "writes_back", False)
-        and window.data_has_changed()
+        and (
+            window.data_has_changed()
+            or getattr(window, "shares_existing_object", False)
+        )
     )
 
 
@@ -169,10 +177,44 @@ class InPlaceSnapshot:
     def restore(self) -> None:
         """
         Put the snapshot's state back into the original object, keeping its
-        identity.
+        identity and, where the structure still matches, the identity of the
+        lists and objects nested in it.
+
+        Open tabs and child editors hold those nested lists and objects
+        (e.g. a citation tab holds the citation list), so a result handed
+        over after the restore must still land on the parent's object.
         """
         if self.obj is None:
             return
-        state = deepcopy(self.copy).__dict__
-        self.obj.__dict__.clear()
-        self.obj.__dict__.update(state)
+        _restore_into(self.obj, deepcopy(self.copy))
+
+
+def _restore_into(current: Any, saved: Any) -> Any:
+    """
+    Make ``current`` equal to ``saved``, reusing ``current`` and the objects
+    nested in it where their type and shape still match.
+
+    :param current: The live value.
+    :param saved: A private copy of the value to restore; it may be used
+        as is.
+    :returns: The value to keep: ``current`` restored in place, or
+        ``saved`` where ``current`` could not be reused.
+    """
+    if type(current) is not type(saved):
+        return saved
+    if isinstance(saved, list):
+        if len(current) == len(saved):
+            current[:] = [_restore_into(c, s) for c, s in zip(current, saved)]
+        else:
+            current[:] = saved
+        return current
+    state = getattr(saved, "__dict__", None)
+    if state is None or isinstance(saved, type):
+        return saved
+    live = current.__dict__
+    for key in list(live):
+        if key not in state:
+            del live[key]
+    for key, value in state.items():
+        live[key] = _restore_into(live[key], value) if key in live else value
+    return current

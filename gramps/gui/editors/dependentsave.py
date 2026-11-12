@@ -135,10 +135,11 @@ class DependentSaveMixin:
         if self._ok_function is None:
             return
         self._saving = True
-        try:
-            self._ok_function(*args)
-        finally:
-            self._saving = False
+        self._ok_function(*args)
+        # Not reset in a ``finally``: if the handler raises, it may already
+        # have committed and handed part of the result to the parent, and a
+        # later Cancel must not undo that half of it.
+        self._saving = False
 
     def _tree_item(self) -> Any:
         """
@@ -270,7 +271,9 @@ class DependentSaveMixin:
 
         Reference and secondary editors edit existing objects in place, so
         closing one must either save or undo the edits; doing either
-        silently would surprise the user (#6910).
+        silently would surprise the user (#6910). The same applies when the
+        editor itself is unchanged but an editor it opened still owes it
+        work: closing tears that editor down too.
 
         :param args: The arguments ``close()`` was called with. A close
             from the window's close button carries the Gdk event.
@@ -282,7 +285,10 @@ class DependentSaveMixin:
             not from_window
             or not getattr(self, "opened", False)
             or config.get("interface.dont-ask")
-            or not self.data_has_changed()  # type: ignore[attr-defined]
+            or not (
+                self.data_has_changed()  # type: ignore[attr-defined]
+                or self._has_dependent_children()
+            )
         ):
             return False
         SaveDialog(

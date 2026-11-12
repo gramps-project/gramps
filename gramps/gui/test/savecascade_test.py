@@ -72,6 +72,7 @@ class FakeWindow:
         callback: Callable[..., None] | None = _refresh,
         writes_back: bool = True,
         dirty: bool = True,
+        shares: bool = False,
     ) -> None:
         """
         :param name: Label used in failure messages.
@@ -81,10 +82,12 @@ class FakeWindow:
         :param writes_back: Whether a parent commit without this editor
             would lose its work.
         :param dirty: Whether the editor holds unsaved changes.
+        :param shares: Whether it is a new reference to an existing object.
         """
         self.name = name
         self.primary = primary
         self.opened = opened
+        self.shares_existing_object = shares
         self.callback = callback
         self.writes_back = writes_back
         self.dirty = dirty
@@ -188,6 +191,14 @@ class HasPendingReferenceTest(unittest.TestCase):
     def test_unchanged_new_object_is_not_pending(self) -> None:
         """A new editor nobody typed into has nothing to save."""
         self.assertFalse(has_pending_reference(FakeWindow("blank", dirty=False)))
+
+    def test_unchanged_shared_object_is_pending(self) -> None:
+        """
+        "Share existing": a new reference to an existing object is owed to
+        the parent even when nothing else was edited.
+        """
+        shared = FakeWindow("shared_event", dirty=False, shares=True)
+        self.assertTrue(has_pending_reference(shared))
 
     def test_closed_editor_is_not_pending(self) -> None:
         """An editor that has already closed has nothing to resolve."""
@@ -308,6 +319,34 @@ class InPlaceSnapshotTest(unittest.TestCase):
         addr.set_city("Philadelphia")
         snap.restore()
         self.assertEqual(addr.get_city(), "")
+
+    def test_restore_keeps_nested_identity(self) -> None:
+        """
+        Lists and objects inside the restored object stay the same
+        instances, so an open tab or child editor holding them still writes
+        onto the parent's object.
+        """
+        addr = Address()
+        citations = addr.get_citation_list()
+        date = addr.get_date_object()
+        snap = InPlaceSnapshot(addr)
+        addr.add_citation("c-1")
+        date.set_yr_mon_day(1900, 1, 1)
+        snap.restore()
+        self.assertIs(addr.get_citation_list(), citations)
+        self.assertIs(addr.get_date_object(), date)
+        self.assertEqual(citations, [])
+        self.assertFalse(snap.has_changed())
+        addr.add_citation("c-2")  # a child saved after the restore
+        self.assertEqual(addr.get_citation_list(), ["c-2"])
+
+    def test_restore_replaces_changed_structure(self) -> None:
+        """A nested object of a different type is replaced, not merged."""
+        addr = Address()
+        snap = InPlaceSnapshot(addr)
+        addr.date = None
+        snap.restore()
+        self.assertFalse(snap.has_changed())
 
     def test_none_is_never_changed(self) -> None:
         """A missing object (e.g. no reference yet) is treated as clean."""
