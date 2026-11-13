@@ -6,3 +6,60 @@ I0624,I0649,stepnephew-in-law
 I0645,I0624,stepbrother-in-law
 I0646,I0624,stepuncle
 I0649,I0624,stepuncle-in-law
+I0005,I0879,great granduncle-in-law
+I0005,I0879,second great granduncle
+I0005,I1663,great granduncle-in-law
+I0005,I1663,second great granduncle
+I0006,I0261,great grandaunt
+I0006,I0261,second great grandaunt-in-law
+I0006,I0394,great grandaunt
+I0006,I0394,second great grandaunt-in-law
+I0068,I1669,nephew-in-law
+I0068,I1669,first cousin once removed (down)
+I0069,I1671,niece
+I0069,I1671,first cousin-in-law once removed (down)
+I0093,I0242,brother
+I0093,I0242,brother-in-law
+I0094,I0406,sister-in-law
+I0094,I0406,sister
+I0172,I0225,granduncle-in-law
+I0172,I0225,first cousin once removed (up)
+I0225,I0172,grandnephew-in-law
+I0225,I0172,first cousin once removed (down)
+I0226,I0866,grandniece
+I0226,I0866,first cousin-in-law once removed (down)
+I0242,I0093,brother
+I0242,I0093,brother-in-law
+I0261,I0006,great grandniece
+I0261,I0006,second great grandniece-in-law
+I0394,I0006,great grandniece
+I0394,I0006,second great grandniece-in-law
+I0406,I0094,sister-in-law
+I0406,I0094,sister
+I0473,I1556,sister-in-law
+I0473,I1556,sister
+I0474,I1499,brother
+I0474,I1499,brother-in-law
+I0866,I0226,grandaunt
+I0866,I0226,first cousin-in-law once removed (up)
+I0879,I0005,great grandnephew-in-law
+I0879,I0005,second great grandnephew
+I1499,I0474,sister
+I1499,I0474,sister-in-law
+I1556,I0473,brother-in-law
+I1556,I0473,brother
+I1663,I0005,great grandnephew-in-law
+I1663,I0005,second great grandnephew
+I1669,I0068,uncle-in-law
+I1669,I0068,first cousin once removed (up)
+I1671,I0069,aunt
+I1671,I0069,first cousin-in-law once removed (up)
+I1900,I1914,brother-in-law
+I1900,I1914,brother
+I1901,I1915,sister
+I1901,I1915,sister-in-law
+I1914,I1900,brother-in-law
+I1914,I1900,brother
+I1915,I1901,sister
+I1915,I1901,sister-in-law
+

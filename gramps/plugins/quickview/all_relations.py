@@ -124,20 +124,24 @@ class AllRelReport:
         self.print_details_path(commonnew, self.home_person, self.person)
         self.print_details_path(commonnew, self.home_person, self.person, first=False)
 
-        if not common or common[0][0] == -1:
-            self.remarks(self.msg_list)
-            self.msg_list = []
-            # check inlaw relation next
-        else:
-            # stop
-            return
+        self.remarks(self.msg_list)
+        self.msg_list = []
+        # check inlaw relation next
 
         # we check the inlaw relationships if not partners.
         if is_spouse:
             return
         handles_done = [(self.person.handle, self.home_person.handle)]
-        inlaws_pers = [self.person] + self.get_inlaws(self.person)
-        inlaws_home = [self.home_person] + self.get_inlaws(self.home_person)
+        if not common or common[0][0] == -1:
+            # when there is NO direct relationship(s) between home and pers
+            # check relationships where inlawa == True OR inlawb == True
+            inlaws_pers = [self.person] + self.get_inlaws(self.person)
+            inlaws_home = [self.home_person] + self.get_inlaws(self.home_person)
+        else:
+            # when there is direct relationship(s) between home and pers
+            # check relationships where inlawa == True AND inlawb == True
+            inlaws_pers = self.get_inlaws(self.person)
+            inlaws_home = self.get_inlaws(self.home_person)
         # remove overlap:
         inlaws_home = [x for x in inlaws_home if x not in inlaws_pers]
         inlawwritten = False
@@ -145,10 +149,10 @@ class AllRelReport:
         commonnew = []
         for inlawpers in inlaws_pers:
             for inlawhome in inlaws_home:
-                if (inlawpers, inlawhome) in handles_done:
+                if (inlawpers.handle, inlawhome.handle) in handles_done:
                     continue
                 else:
-                    handles_done.append((inlawpers, inlawhome))
+                    handles_done.append((inlawpers.handle, inlawhome.handle))
                 common, msg = self.rel_class.get_relationship_distance_new(
                     self.database,
                     inlawpers,
