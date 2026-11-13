@@ -423,6 +423,80 @@ def _to_path(node: _PathNode | None) -> Path:
     return path
 
 
+class _DistanceToEnd:
+    """
+    The number of links from people to the end of a search.
+
+    Finding everyone within ``max_depth`` links of the end would read a
+    large part of a densely linked tree. Instead, only the people within
+    half of ``max_depth`` links of the end are found up front. Any path to
+    the end from someone further away passes someone exactly that far from
+    the end, so their distance is found by searching from them until they
+    reach one, and no further than a search needs. People are thus read
+    only near the end, or near the people the search reaches from the start.
+    """
+
+    def __init__(
+        self,
+        graph: FamilyLinkGraph,
+        end: PersonHandle,
+        max_depth: int,
+        links: frozenset[LinkType],
+    ) -> None:
+        self._graph = graph
+        self._links = links
+        self._radius = max_depth // 2
+        # following the links backwards gives the distance to the end
+        self._near = graph.distances(
+            end, self._radius, {link.reverse() for link in links}
+        )
+        # people further than the radius -> their distance to the end
+        self._far: dict[PersonHandle, int] = {}
+        # people further than the radius -> no one near within this many links
+        self._not_within: dict[PersonHandle, int] = {}
+
+    def within(self, handle: PersonHandle, limit: int) -> int | None:
+        """
+        Return the number of links from a person to the end, or None if it
+        is more than ``limit``.
+        """
+        distance = self._near.get(handle)
+        if distance is None:
+            distance = self._far.get(handle)
+        if distance is None:
+            steps = limit - self._radius
+            if steps <= self._not_within.get(handle, 0):
+                return None
+            distance = self._search(handle, steps)
+            if distance is None:
+                self._not_within[handle] = steps
+                return None
+            self._far[handle] = distance
+        return distance if distance <= limit else None
+
+    def _search(self, handle: PersonHandle, steps: int) -> int | None:
+        """
+        Return the distance to the end of someone further than the radius,
+        searching at most ``steps`` links from them, or None.
+        """
+        seen = {handle}
+        layer = [handle]
+        for step in range(1, steps + 1):
+            next_layer = []
+            for current in layer:
+                for other, _ in self._graph.neighbors(current, self._links):
+                    if other in seen:
+                        continue
+                    if other in self._near:
+                        # the first near person reached is exactly radius
+                        # links from the end
+                        return self._radius + step
+                    seen.add(other)
+                    next_layer.append(other)
+            layer = next_layer
+        return None
+
+
 def find_connections(
     graph: FamilyLinkGraph,
     start: PersonHandle,
@@ -460,10 +534,10 @@ def find_connections(
     links = frozenset(links)
     if blood_only:
         links -= {LinkType.SPOUSE}
-    # Distance of every person to the end, following the links backwards,
-    # so that people who cannot reach it within max_depth are never visited.
-    to_end = graph.distances(end, max_depth, {link.reverse() for link in links})
-    if start not in to_end:
+    # The distance to the end, so that people who cannot reach it within
+    # max_depth are never visited.
+    to_end = _DistanceToEnd(graph, end, max_depth, links)
+    if to_end.within(start, max_depth) is None:
         return []
 
     results: list[Path] = []
@@ -481,8 +555,7 @@ def find_connections(
         for other, link in graph.neighbors(handle, links):
             if going_down and link != LinkType.CHILD:
                 continue
-            remaining = to_end.get(other)
-            if remaining is None or depth + 1 + remaining > max_depth:
+            if to_end.within(other, max_depth - depth - 1) is None:
                 continue
             if _on_path(node, other):
                 continue
