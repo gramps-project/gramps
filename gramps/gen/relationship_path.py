@@ -22,10 +22,11 @@
 Find and label chains of family links between two people.
 
 A :class:`FamilyLinkGraph` holds only who is whose parent, child, partner
-and sibling, so it is small enough to keep in memory for large trees and
-holds no reference to the database it was built from. It is built through
-the public database interface, so proxies such as ``PrivateProxyDb`` and
-``LivingProxyDb`` decide which people and links it contains.
+and sibling. Made from a database, it reads people and their families when
+a search first reaches them, so a search reads only the part of a large
+tree near the people searched for. It reads through the public database
+interface, so proxies such as ``PrivateProxyDb`` and ``LivingProxyDb``
+decide which people and links it contains.
 
 :func:`find_connections` finds chains of links between two people, shortest
 first, and :func:`label_path` describes each person on a chain by their
@@ -101,9 +102,22 @@ _PathNode = tuple[PersonHandle, LinkType | None, "_PathNode | None", int]
 class FamilyLinkGraph:
     """
     The family links between people, kept in memory.
+
+    A graph made by :meth:`from_db` reads a person and their families from
+    the database the first time they are needed. Otherwise it contains the
+    people and families added with :meth:`add_person` and
+    :meth:`add_family`.
     """
 
     def __init__(self) -> None:
+        # the database people are read from as needed, or None
+        self._db: DbReadBase | None = None
+        # people read so far -> their parent families and own families
+        self._person_families: dict[PersonHandle, list[FamilyHandle]] = {}
+        # people missing from the database, or hidden by a proxy
+        self._missing: set[PersonHandle] = set()
+        # people whose families have all been read
+        self._expanded: set[PersonHandle] = set()
         self._gender: dict[PersonHandle, int] = {}
         # child -> [(family, birth child of mother, birth child of father)]
         self._parent_families: dict[
@@ -119,26 +133,69 @@ class FamilyLinkGraph:
     @classmethod
     def from_db(cls, db: DbReadBase) -> FamilyLinkGraph:
         """
-        Build the graph from all people and families in the database.
+        Return a graph that reads people and families from the database
+        when they are first needed.
+
+        A search only reads the people within reach of the people searched
+        for, rather than the whole tree. People and families are read with
+        ``get_raw_person_data`` and ``get_raw_family_data``, so proxies such
+        as ``PrivateProxyDb`` and ``LivingProxyDb`` decide which people and
+        links the graph contains. The database must stay open while the
+        graph is used.
         """
         graph = cls()
-        for person in db.iter_people():
-            graph.add_person(person.handle, person.get_gender())
-        for family in db.iter_families():
-            graph.add_family(
-                family.handle,
-                family.get_father_handle(),
-                family.get_mother_handle(),
-                [
-                    (
-                        ref.ref,
-                        ref.get_mother_relation() == ChildRefType.BIRTH,
-                        ref.get_father_relation() == ChildRefType.BIRTH,
-                    )
-                    for ref in family.get_child_ref_list()
-                ],
-            )
+        graph._db = db
         return graph
+
+    def _read_person(self, handle: PersonHandle | None) -> None:
+        """
+        Read a person, if not read yet.
+        """
+        if (
+            self._db is None
+            or not handle
+            or handle in self._gender
+            or handle in self._missing
+        ):
+            return
+        data = self._db.get_raw_person_data(handle)
+        if data is None:
+            self._missing.add(handle)
+            return
+        self.add_person(handle, data["gender"])
+        self._person_families[handle] = [
+            *data["parent_family_list"],
+            *data["family_list"],
+        ]
+
+    def _expand(self, handle: PersonHandle) -> None:
+        """
+        Read all families of a person, and the members of those families.
+        """
+        if self._db is None or handle in self._expanded:
+            return
+        self._expanded.add(handle)
+        self._read_person(handle)
+        for family_handle in self._person_families.get(handle, []):
+            if family_handle in self._families:
+                continue
+            data = self._db.get_raw_family_data(family_handle)
+            if data is None:
+                continue
+            father = data["father_handle"] or None
+            mother = data["mother_handle"] or None
+            children = [
+                (
+                    ref["ref"],
+                    ref["mrel"]["value"] == ChildRefType.BIRTH,
+                    ref["frel"]["value"] == ChildRefType.BIRTH,
+                )
+                for ref in data["child_ref_list"]
+            ]
+            # add_family leaves out people not in the graph
+            for member in (father, mother, *(child for child, _, _ in children)):
+                self._read_person(member)
+            self.add_family(family_handle, father, mother, children)
 
     def add_person(self, handle: PersonHandle, gender: int) -> None:
         """
@@ -174,21 +231,28 @@ class FamilyLinkGraph:
         self._families[handle] = (father, mother, child_list)
 
     def __contains__(self, handle: object) -> bool:
+        if isinstance(handle, str):
+            self._read_person(PersonHandle(handle))
         return handle in self._gender
 
     def __len__(self) -> int:
+        """
+        Return the number of people in the graph, or read so far.
+        """
         return len(self._gender)
 
     def gender(self, handle: PersonHandle) -> int:
         """
         Return the gender of a person.
         """
+        self._read_person(handle)
         return self._gender.get(handle, Person.UNKNOWN)
 
     def parents(self, handle: PersonHandle) -> list[PersonHandle]:
         """
         Return the parents of a person, in all their parent families, by handle.
         """
+        self._expand(handle)
         result: list[PersonHandle] = []
         for family, _, _ in self._parent_families.get(handle, []):
             father, mother, _ = self._families[family]
@@ -201,6 +265,7 @@ class FamilyLinkGraph:
         """
         Return the children of a person, in all their families, by handle.
         """
+        self._expand(handle)
         result: list[PersonHandle] = []
         for family in self._spouse_families.get(handle, []):
             for child in self._families[family][2]:
@@ -212,6 +277,7 @@ class FamilyLinkGraph:
         """
         Return the partners of a person, by handle.
         """
+        self._expand(handle)
         result: list[PersonHandle] = []
         for family in self._spouse_families.get(handle, []):
             father, mother, _ = self._families[family]
@@ -224,6 +290,7 @@ class FamilyLinkGraph:
         """
         Return the other children of all parent families of a person, by handle.
         """
+        self._expand(handle)
         result: list[PersonHandle] = []
         for family, _, _ in self._parent_families.get(handle, []):
             for child in self._families[family][2]:
@@ -261,6 +328,7 @@ class FamilyLinkGraph:
         """
         Return the calculator's code for the step from a child to a parent.
         """
+        self._expand(child)
         found = ""
         for family, mother_birth, father_birth in self._parent_families.get(child, []):
             father, mother, _ = self._families[family]
@@ -281,6 +349,7 @@ class FamilyLinkGraph:
         Return the calculator's code for the step from a child to the family
         it shares with a sibling.
         """
+        self._expand(child)
         found = ""
         for family, mother_birth, father_birth in self._parent_families.get(child, []):
             if sibling not in self._families[family][2]:

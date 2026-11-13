@@ -38,7 +38,7 @@ from typing import Any, ClassVar
 from ..db import DbTxn
 from ..db.utils import make_database
 from ..lib import ChildRef, ChildRefType, Family, FamilyRelType, Person
-from ..proxy import PrivateProxyDb
+from ..proxy import LivingProxyDb, PrivateProxyDb
 from ..relationship import RelationshipCalculator
 from ..relationship_path import (
     FamilyLinkGraph,
@@ -49,6 +49,37 @@ from ..relationship_path import (
 from ..types import PersonHandle
 
 M, F = Person.MALE, Person.FEMALE
+
+
+def _full_graph(db: Any, reverse: bool = False) -> FamilyLinkGraph:
+    """
+    Build a graph of all people and families at once.
+
+    :param reverse: Add families, and the children of each family, in
+                    reverse database order.
+    """
+    graph = FamilyLinkGraph()
+    for person in db.iter_people():
+        graph.add_person(person.handle, person.get_gender())
+    families = list(db.iter_families())
+    for family in families[::-1] if reverse else families:
+        refs = family.get_child_ref_list()
+        graph.add_family(
+            family.handle,
+            family.get_father_handle(),
+            family.get_mother_handle(),
+            [
+                (
+                    ref.ref,
+                    ref.get_mother_relation() == ChildRefType.BIRTH,
+                    ref.get_father_relation() == ChildRefType.BIRTH,
+                )
+                for ref in (refs[::-1] if reverse else refs)
+            ],
+        )
+    return graph
+
+
 P, C, S, SP = LinkType.PARENT, LinkType.CHILD, LinkType.SIBLING, LinkType.SPOUSE
 
 
@@ -200,7 +231,6 @@ class RelationshipPathTest(unittest.TestCase):
         )
         self.assertEqual(self.graph.gender(people["wife"]), F)
         self.assertIn(people["stranger"], self.graph)
-        self.assertEqual(len(self.graph), len(self.people))
 
     def test_ancestor_chain(self) -> None:
         """
@@ -383,31 +413,7 @@ class RelationshipPathTest(unittest.TestCase):
         The results do not depend on the order families were added in.
         """
         people = self.people
-        # families and children in database order, and reversed
-        families = [
-            (family.handle, family.father_handle, family.mother_handle, family)
-            for family in self.db.iter_families()
-        ]
-        graphs = []
-        for order in (families, families[::-1]):
-            graph = FamilyLinkGraph()
-            for person in self.db.iter_people():
-                graph.add_person(person.handle, person.get_gender())
-            for handle, father, mother, family in order:
-                graph.add_family(
-                    handle,
-                    father,
-                    mother,
-                    [
-                        (
-                            ref.ref,
-                            ref.get_mother_relation() == ChildRefType.BIRTH,
-                            ref.get_father_relation() == ChildRefType.BIRTH,
-                        )
-                        for ref in family.get_child_ref_list()[::-1]
-                    ],
-                )
-            graphs.append(graph)
+        graphs = [_full_graph(self.db), _full_graph(self.db, reverse=True)]
         for handle in people.values():
             self.assertEqual(
                 list(graphs[0].neighbors(handle)), list(graphs[1].neighbors(handle))
@@ -423,6 +429,37 @@ class RelationshipPathTest(unittest.TestCase):
                     ]
                     self.assertEqual(results[0], results[1])
 
+    def test_same_as_full_graph(self) -> None:
+        """
+        A graph read on demand gives the same paths and labels as a graph
+        of the whole tree.
+        """
+        full = _full_graph(self.db)
+        for start in self.people.values():
+            for end in self.people.values():
+                for blood_only in (False, True):
+                    graph = FamilyLinkGraph.from_db(self.db)
+                    paths = find_connections(graph, start, end, blood_only=blood_only)
+                    expected = find_connections(full, start, end, blood_only=blood_only)
+                    self.assertEqual(paths, expected)
+                    self.assertEqual(
+                        [label_path(self.calc, self.db, graph, p) for p in paths],
+                        [label_path(self.calc, self.db, full, p) for p in expected],
+                    )
+        self.assertEqual(len(full), len(self.people))
+
+    def test_reads_on_demand(self) -> None:
+        """
+        A search reads only the people within reach.
+        """
+        graph = FamilyLinkGraph.from_db(self.db)
+        self.assertEqual(len(graph), 0)
+        find_connections(graph, self.people["me"], self.people["father"], max_depth=1)
+        self.assertIn(self.people["mother"], graph._gender)
+        self.assertNotIn(self.people["stranger"], graph._gender)
+        self.assertNotIn(self.people["son_wife"], graph._gender)
+        self.assertLess(len(graph), len(self.people))
+
     def test_private_proxy(self) -> None:
         """
         People hidden by a proxy are not in the graph.
@@ -432,6 +469,17 @@ class RelationshipPathTest(unittest.TestCase):
         self.assertEqual(graph.children(self.people["wife_brother"]), [])
         self.assertEqual(
             find_connections(graph, self.people["me"], self.people["private"]), []
+        )
+
+    def test_living_proxy(self) -> None:
+        """
+        People hidden by a living proxy are not in the graph.
+        """
+        db = LivingProxyDb(self.db, LivingProxyDb.MODE_EXCLUDE_ALL)
+        graph = FamilyLinkGraph.from_db(db)
+        self.assertNotIn(self.people["me"], graph)
+        self.assertEqual(
+            find_connections(graph, self.people["son"], self.people["father"]), []
         )
 
 
