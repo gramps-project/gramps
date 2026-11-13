@@ -50,6 +50,7 @@ log = logging.getLogger(".ReadPkg")
 # -------------------------------------------------------------------------
 from gramps.gen.const import XMLFILE
 from gramps.gen.utils.file import media_path
+from gramps.gen.utils.safearchive import is_safe_tar_member
 
 ## we need absolute import as this is dynamically loaded:
 from gramps.plugins.importer.importxml import importData
@@ -92,6 +93,10 @@ def impData(database, name, user):
     try:
         archive = tarfile.open(name)
         for tarinfo in archive:
+            if not is_safe_tar_member(tarinfo, tmpdir_path):
+                raise tarfile.TarError(
+                    "Unsafe path in archive member: %s" % tarinfo.name
+                )
             archive.extract(tarinfo, tmpdir_path)
         archive.close()
     except:
