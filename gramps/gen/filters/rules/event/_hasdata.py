@@ -95,7 +95,7 @@ class HasData(Rule):
             place_id = obj.place
             if place_id:
                 place = db.get_place_from_handle(place_id)
-                place_title = place_displayer.display(db, place)
+                place_title = place_displayer.display(db, place, obj.date)
                 if not self.match_substring(2, place_title):
                     # No match
                     return False
