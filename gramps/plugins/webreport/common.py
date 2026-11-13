@@ -864,6 +864,8 @@ def add_birthdate(dbase, ppl_handle_list, rlocale):
     @param: rlocale         -- the locale for date translation
     """
     sortable_individuals = []
+    if isinstance(ppl_handle_list, str):
+        ppl_handle_list = [ppl_handle_list]
     for person_handle in ppl_handle_list:
         birth_date = 0  # dummy value in case none is found
         person = dbase.get_person_from_handle(person_handle)

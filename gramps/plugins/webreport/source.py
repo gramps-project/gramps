@@ -417,7 +417,10 @@ class SourcePages(BasePage):
                 tbody += trow
 
             # Source notes
-            notelist = self.display_note_list(source.get_note_list(), Source)
+            notes = []
+            for repo_ref in source.get_reporef_list():
+                notes += repo_ref.note_list
+            notelist = self.display_note_list(source.get_note_list() + notes, Source)
             if notelist is not None:
                 sourcedetail += notelist
 
