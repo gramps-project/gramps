@@ -21,7 +21,7 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Callable, Iterable, Set
+from typing import Any, Callable, Iterable, Set
 import calendar
 import email.utils
 import logging
@@ -81,11 +81,8 @@ class Tree(deserialize.Gedcomx):
         if not r or not data:
             return
 
-        deserialize.deserialize_json(self, data)
-
-        try:
-            fs_person = deserialize.Person.index[fsid]
-        except KeyError:
+        fs_person = self._load_downloaded_person(fsid, data)
+        if fs_person is None:
             return
 
         if "Last-Modified" in r.headers:
@@ -109,7 +106,8 @@ class Tree(deserialize.Gedcomx):
         Add multiple FamilySearch persons, fetching HTTP responses concurrently
         and deserializing sequentially to avoid shared-state races.
 
-        :param progress_callback: optional callable invoked after each
+        :param fids: The FamilySearch person IDs to add to this tree.
+        :param progress_callback: Optional callable invoked after each
             concurrent fetch completes, so a caller (e.g. the GUI layer) can
             report progress and keep the interface responsive during what
             may be a long-running batch of network requests.
@@ -142,10 +140,8 @@ class Tree(deserialize.Gedcomx):
                 if fid not in raw_results:
                     continue
                 r, data = raw_results[fid]
-                deserialize.deserialize_json(self, data)
-                try:
-                    fs_person = deserialize.Person.index[fid]
-                except KeyError:
+                fs_person = self._load_downloaded_person(fid, data)
+                if fs_person is None:
                     continue
                 if "Last-Modified" in r.headers:
                     try:
@@ -157,10 +153,6 @@ class Tree(deserialize.Gedcomx):
                 if "Etag" in r.headers:
                     fs_person._etag = r.headers["Etag"]
                 self._persons[fid] = fs_person
-
-        for fid in requested_fids:
-            if fid not in self._persons and fid in deserialize.Person.index:
-                self._persons[fid] = deserialize.Person.index[fid]
 
     def add_parents(
         self,
@@ -240,6 +232,30 @@ class Tree(deserialize.Gedcomx):
         rels.difference_update(fids)
         self.add_persons(rels, progress_callback=progress_callback)
         return set(filter(None, rels))
+
+    def _load_downloaded_person(
+        self, fsid: str, data: Any
+    ) -> deserialize.Person | None:
+        """
+        Load a full person response without retaining older cached fields.
+
+        :param fsid: The person ID requested from FamilySearch.
+        :param data: The decoded person response, including any wrapper.
+        :returns: The downloaded person, or ``None`` for an incomplete response.
+        """
+        payload = data.get("person", data) if isinstance(data, dict) else None
+        people = payload.get("persons") if isinstance(payload, dict) else None
+        if not isinstance(people, list) or not any(
+            isinstance(person, dict) and person.get("id") == fsid for person in people
+        ):
+            return None
+        cached = deserialize.Person.index.get(fsid)
+        if cached is not None:
+            # Keep shared references while replacing this complete record.
+            deserialize.init_class(cached)
+            cached.id = fsid
+        deserialize.deserialize_json(self, data)
+        return deserialize.Person.index.get(fsid)
 
 
 __all__ = ["Tree", "_fs_session", "DateFormal"]
