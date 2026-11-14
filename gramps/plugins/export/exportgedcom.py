@@ -263,6 +263,10 @@ class GedcomWriter(UpdateCallback):
         # _individuals), so that families do not have to reload whole
         # Person objects just to read their ID
         self._person_ids = {}
+        # a place (and its displayed name) is shared by many events
+        self._place_names = {}
+        self._place_undated = {}
+        self._get_place = lru_cache(maxsize=20_000)(self.dbase.get_place_from_handle)
         # families are read several times per export (as spouse family, as
         # parent family, in _adoption_records...)
         self._get_family = lru_cache(maxsize=20_000)(self.dbase.get_family_from_handle)
@@ -1253,7 +1257,7 @@ class GedcomWriter(UpdateCallback):
         place = None
 
         if event.get_place_handle():
-            place = self.dbase.get_place_from_handle(event.get_place_handle())
+            place = self._get_place(event.get_place_handle())
             self._place(place, dateobj, 2)
 
         for attr in event.get_attribute_list():
@@ -1588,6 +1592,29 @@ class GedcomWriter(UpdateCallback):
         self._source_references(media.get_citation_list(), 1)
         self._change(media.get_change_time(), 1)
 
+    def _place_is_undated(self, place):
+        """
+        True if neither the place nor any place above it has a dated name or
+        a dated reference to its enclosing place.
+        """
+        stack = [place]
+        seen = set()
+        while stack:
+            current = stack.pop()
+            if current.handle in seen:
+                continue
+            seen.add(current.handle)
+            for name in current.get_all_names():
+                if not name.get_date_object().is_empty():
+                    return False
+            for placeref in current.get_placeref_list():
+                if not placeref.get_date_object().is_empty():
+                    return False
+                parent = self._get_place(placeref.ref)
+                if parent is not None:
+                    stack.append(parent)
+        return True
+
     def _place(self, place, dateobj, level):
         """
         PLACE_STRUCTURE:=
@@ -1604,7 +1631,19 @@ class GedcomWriter(UpdateCallback):
         """
         if place is None:
             return
-        place_name = _pd.display(self.dbase, place, dateobj)
+        # The displayed name only depends on the date when the place, or a
+        # place above it, has a dated name or a dated link to the place that
+        # encloses it (see gramps.gen.utils.location.get_location_list).
+        handle = place.handle
+        undated = self._place_undated.get(handle)
+        if undated is None:
+            undated = self._place_is_undated(place)
+            self._place_undated[handle] = undated
+        key = (handle, None if undated else dateobj.get_sort_value())
+        place_name = self._place_names.get(key)
+        if place_name is None:
+            place_name = _pd.display(self.dbase, place, dateobj)
+            self._place_names[key] = place_name
         self._writeln(level, "PLAC", place_name.replace("\r", " "), limit=120)
         longitude = place.get_longitude()
         latitude = place.get_latitude()
