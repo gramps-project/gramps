@@ -86,6 +86,24 @@ def _privacy(db, kind, handle):
     return bool(obj.get_privacy())
 
 
+def _citation_visible(db, citation_handle):
+    """
+    True if the citation is not private and does not refer to a private
+    source.
+    """
+    if not isinstance(db, ProxyDbBase):
+        raw = db.get_raw_citation_data(citation_handle)
+        if raw is None or raw.get("private"):
+            return False
+        return _privacy(db, "source", raw.get("source_handle")) is False
+    # slow path:
+    citation = db.get_citation_from_handle(citation_handle)
+    if citation and not citation.get_privacy():
+        source = db.get_source_from_handle(citation.get_reference_handle())
+        return bool(source and not source.get_privacy())
+    return False
+
+
 def _parent_family_visible(db, family_handle, person_handle):
     """
     True if the family is not private and the person's child reference in
@@ -548,12 +566,8 @@ def copy_citation_ref_list(db, original_obj, clean_obj):
     :returns: Nothing
     """
     for citation_handle in original_obj.get_citation_list():
-        citation = db.get_citation_from_handle(citation_handle)
-        if citation and not citation.get_privacy():
-            handle = citation.get_reference_handle()
-            source = db.get_source_from_handle(handle)
-            if source and not source.get_privacy():
-                clean_obj.add_citation(citation_handle)
+        if _citation_visible(db, citation_handle):
+            clean_obj.add_citation(citation_handle)
 
 
 def copy_notes(db, original_obj, clean_obj):
