@@ -66,6 +66,26 @@ from ..lib import (
 from .proxybase import ProxyDbBase
 
 
+def _privacy(db, kind, handle):
+    """
+    Return True if the object is private, False if it is not, None if it
+    does not exist.
+
+    When `db` is a real database (not another proxy) the flag is read
+    from the raw data, which avoids building the whole Gramps object just
+    to look at its privacy flag.
+    """
+    if not isinstance(db, ProxyDbBase):
+        raw = getattr(db, "get_raw_%s_data" % kind)(handle)
+        if raw is None:
+            return None
+        return bool(raw.get("private"))
+    obj = getattr(db, "get_%s_from_handle" % kind)(handle)
+    if obj is None:
+        return None
+    return bool(obj.get_privacy())
+
+
 class PrivateProxyDb(ProxyDbBase):
     """
     A proxy to a Gramps database. This proxy will act like a Gramps database,
@@ -486,8 +506,7 @@ def copy_media_ref_list(db, original_obj, clean_obj):
     for media_ref in original_obj.get_media_list():
         if media_ref and not media_ref.get_privacy():
             handle = media_ref.get_reference_handle()
-            media = db.get_media_from_handle(handle)
-            if media and not media.get_privacy():
+            if _privacy(db, "media", handle) is False:
                 clean_obj.add_media_reference(sanitize_media_ref(db, media_ref))
 
 
@@ -528,8 +547,7 @@ def copy_notes(db, original_obj, clean_obj):
     :returns: Nothing
     """
     for note_handle in original_obj.get_note_list():
-        note = db.get_note_from_handle(note_handle)
-        if note and not note.get_privacy():
+        if _privacy(db, "note", note_handle) is False:
             clean_obj.add_note(note_handle)
 
 
@@ -549,8 +567,7 @@ def copy_associations(db, original_obj, clean_obj):
     new_person_ref_list = []
     for person_ref in original_obj.get_person_ref_list():
         if person_ref and not person_ref.get_privacy():
-            associated_person = db.get_person_from_handle(person_ref.ref)
-            if associated_person and not associated_person.get_privacy():
+            if _privacy(db, "person", person_ref.ref) is False:
                 new_person_ref = sanitize_person_ref(db, person_ref)
                 new_person_ref_list.append(new_person_ref)
     clean_obj.set_person_ref_list(new_person_ref_list)
@@ -675,16 +692,14 @@ def sanitize_lds_ord(db, lds_ord):
 
     fam_handle = lds_ord.get_family_handle()
     if fam_handle:
-        fam = db.get_family_from_handle(fam_handle)
-        if fam and not fam.get_privacy():
+        if _privacy(db, "family", fam_handle) is False:
             new_lds_ord.set_family_handle(fam_handle)
 
     new_lds_ord.set_date_object(lds_ord.get_date_object())
 
     place_handle = lds_ord.get_place_handle()
     if place_handle:
-        place = db.get_place_from_handle(place_handle)
-        if place and not place.get_privacy():
+        if _privacy(db, "place", place_handle) is False:
             new_lds_ord.set_place_handle(place_handle)
 
     copy_citation_ref_list(db, lds_ord, new_lds_ord)
@@ -902,23 +917,20 @@ def sanitize_person(db, person):
     # copy event list
     for event_ref in person.get_event_ref_list():
         if event_ref and not event_ref.get_privacy():
-            event = db.get_event_from_handle(event_ref.ref)
-            if event and not event.get_privacy():
+            if _privacy(db, "event", event_ref.ref) is False:
                 new_person.add_event_ref(sanitize_event_ref(db, event_ref))
 
     # Copy birth and death after event list to maintain the order.
     # copy birth event
     event_ref = person.get_birth_ref()
     if event_ref and not event_ref.get_privacy():
-        event = db.get_event_from_handle(event_ref.ref)
-        if event and not event.get_privacy():
+        if _privacy(db, "event", event_ref.ref) is False:
             new_person.set_birth_ref(sanitize_event_ref(db, event_ref))
 
     # copy death event
     event_ref = person.get_death_ref()
     if event_ref and not event_ref.get_privacy():
-        event = db.get_event_from_handle(event_ref.ref)
-        if event and not event.get_privacy():
+        if _privacy(db, "event", event_ref.ref) is False:
             new_person.set_death_ref(sanitize_event_ref(db, event_ref))
 
     copy_addresses(db, person, new_person)
@@ -961,8 +973,7 @@ def sanitize_source(db, source):
     for repo_ref in source.get_reporef_list():
         if repo_ref and not repo_ref.get_privacy():
             handle = repo_ref.get_reference_handle()
-            repo = db.get_repository_from_handle(handle)
-            if repo and not repo.get_privacy():
+            if _privacy(db, "repository", handle) is False:
                 new_source.add_repo_reference(RepoRef(repo_ref))
 
     copy_srcattributes(db, source, new_source)
@@ -1074,8 +1085,7 @@ def sanitize_event(db, event):
 
     place_handle = event.get_place_handle()
     if place_handle:
-        place = db.get_place_from_handle(place_handle)
-        if place and not place.get_privacy():
+        if _privacy(db, "place", place_handle) is False:
             new_event.set_place_handle(place_handle)
 
     return new_event
@@ -1106,15 +1116,13 @@ def sanitize_family(db, family):
     # Copy the father handle.
     father_handle = family.get_father_handle()
     if father_handle:
-        father = db.get_person_from_handle(father_handle)
-        if father and not father.get_privacy():
+        if _privacy(db, "person", father_handle) is False:
             new_family.set_father_handle(father_handle)
 
     # Copy the mother handle.
     mother_handle = family.get_mother_handle()
     if mother_handle:
-        mother = db.get_person_from_handle(mother_handle)
-        if mother and not mother.get_privacy():
+        if _privacy(db, "person", mother_handle) is False:
             new_family.set_mother_handle(mother_handle)
 
     # Copy child references.
@@ -1122,8 +1130,7 @@ def sanitize_family(db, family):
         if child_ref and child_ref.get_privacy():
             continue
         child_handle = child_ref.get_reference_handle()
-        child = db.get_person_from_handle(child_handle)
-        if child and child.get_privacy():
+        if _privacy(db, "person", child_handle) is True:
             continue
         # Copy this reference
         new_ref = ChildRef()
@@ -1137,8 +1144,7 @@ def sanitize_family(db, family):
     # Copy event ref list.
     for event_ref in family.get_event_ref_list():
         if event_ref and not event_ref.get_privacy():
-            event = db.get_event_from_handle(event_ref.ref)
-            if event and not event.get_privacy():
+            if _privacy(db, "event", event_ref.ref) is False:
                 new_family.add_event_ref(sanitize_event_ref(db, event_ref))
 
     copy_citation_ref_list(db, family, new_family)
