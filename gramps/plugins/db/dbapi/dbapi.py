@@ -71,6 +71,10 @@ from gramps.gen.errors import HandleError
 LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
 
+# The most handles read in one query, well below SQLite's limit on the
+# number of parameters.
+RAW_DATA_BATCH_SIZE = 500
+
 _ = glocale.translation.gettext
 
 
@@ -1085,6 +1089,27 @@ class DBAPI(DbGeneric):
         if row:
             return self.serializer.string_to_data(row[0])
         return None
+
+    def _get_raw_data_many(self, obj_key, handles):
+        if type(self)._get_raw_data is not DBAPI._get_raw_data:
+            # a subclass that changes how one object is read, for example
+            # to scope it, must also change how many are read
+            yield from super()._get_raw_data_many(obj_key, handles)
+            return
+        table = KEY_TO_NAME_MAP[obj_key]
+        handles = list(dict.fromkeys(handles))
+        for start in range(0, len(handles), RAW_DATA_BATCH_SIZE):
+            batch = handles[start : start + RAW_DATA_BATCH_SIZE]
+            marks = ", ".join("?" * len(batch))
+            self.dbapi.execute(
+                f"SELECT handle, {self.serializer.data_field} FROM {table} "
+                f"WHERE handle IN ({marks})",
+                batch,
+            )
+            # all rows are fetched before yielding, so callers may query
+            # the database in between
+            for handle, data in self.dbapi.fetchall():
+                yield handle, self.serializer.string_to_data(data)
 
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]

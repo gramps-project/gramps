@@ -39,6 +39,7 @@ import logging
 # -------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 from ..db.dbconst import DBLOGNAME
+from ..errors import HandleError
 from ..lib.childref import ChildRef
 from ..lib.childreftype import ChildRefType
 from .exceptions import DbTransactionCancel
@@ -47,6 +48,21 @@ from .txn import DbTxn
 _ = glocale.translation.gettext
 
 _LOG = logging.getLogger(DBLOGNAME)
+
+
+def _raw_data_many(get_raw_data, handles):
+    """
+    Yield (handle, raw data) for the objects with the given handles, read
+    one by one, leaving out handles that are not found.
+    """
+    for handle in dict.fromkeys(handles):
+        try:
+            data = get_raw_data(handle)
+        except HandleError:
+            # proxies raise this for objects that do not exist
+            continue
+        if data is not None:
+            yield handle, data
 
 
 # -------------------------------------------------------------------------
@@ -987,6 +1003,32 @@ class DbReadBase:
         Return raw (serialized and pickled) Tag object from handle
         """
         raise NotImplementedError
+
+    def get_raw_person_data_many(self, handles):
+        """
+        Yield (handle, raw data) for the Person objects with the given
+        handles, in any order. Handles that are not found are left out, and
+        a repeated handle is read once.
+
+        Reading many objects at once can take one query rather than one
+        per object. Each object's data is made as it is yielded, so that
+        only the objects in use are kept in memory. This default reads them
+        one by one with :meth:`get_raw_person_data`.
+        """
+        return _raw_data_many(self.get_raw_person_data, handles)
+
+    def get_raw_family_data_many(self, handles):
+        """
+        Yield (handle, raw data) for the Family objects with the given
+        handles, in any order. Handles that are not found are left out, and
+        a repeated handle is read once.
+
+        Reading many objects at once can take one query rather than one
+        per object. Each object's data is made as it is yielded, so that
+        only the objects in use are kept in memory. This default reads them
+        one by one with :meth:`get_raw_family_data`.
+        """
+        return _raw_data_many(self.get_raw_family_data, handles)
 
     def get_researcher(self):
         """

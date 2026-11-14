@@ -1897,6 +1897,23 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_raw_tag_data(self, handle):
         return self._get_raw_data(TAG_KEY, handle)
 
+    def _get_raw_data_many(self, obj_key, handles):
+        """
+        Yield (handle, raw data) for the objects with the given handles,
+        leaving out handles that are not found. Backends can read them in
+        one query.
+        """
+        for handle in dict.fromkeys(handles):
+            data = self._get_raw_data(obj_key, handle)
+            if data is not None:
+                yield handle, data
+
+    def get_raw_person_data_many(self, handles):
+        return self._get_raw_data_many(PERSON_KEY, handles)
+
+    def get_raw_family_data_many(self, handles):
+        return self._get_raw_data_many(FAMILY_KEY, handles)
+
     ################################################################
     #
     # get_raw_*_from_id_data methods
