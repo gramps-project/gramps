@@ -53,13 +53,14 @@
 # AR <info@rmlrnd.com>, 2026.
 # Florian <geckoflume@outlook.com>, 2026.
 # leclercj <leclercj@users.noreply.hosted.weblate.org>, 2026.
+# L'étoile <aymensalhi4eme@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-31 09:51+0000\n"
-"Last-Translator: leclercj <leclercj@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 18:51+0000\n"
+"Last-Translator: L'étoile <aymensalhi4eme@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -67,7 +68,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 2026.11.dev0\n"
+"X-Generator: Weblate 2026.11.2.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -12532,6 +12533,16 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"Sous macOS, Python peut ne pas avoir accès aux certificats SSL du système. "
+"Essayez l'une des solutions suivantes :\n"
+"  1. Installeur python.org : exécutez « Install Certificates.command » dans "
+"votre dossier d'installation de Python (par ex. /Applications/Python 3.x/).\n"
+"  2. pyenv / Homebrew / Python installé hors du système : définissez la "
+"variable d'environnement SSL_CERT_FILE avant de lancer Gramps :\n"
+"       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
+"  3. Installez le paquet certifi :  pip install certifi"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -12547,6 +12558,18 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"Échec de la vérification du certificat SSL.  Ce problème est courant avec "
+"les installations de Python hors du système (pyenv, conda) dont OpenSSL "
+"intégré ne sait pas où sont stockés les certificats du système.  Essayez "
+"l'une des solutions suivantes :\n"
+"  1. Installez le paquet certifi :  pip install certifi\n"
+"  2. Définissez SSL_CERT_FILE sur le lot de certificats CA de votre système "
+"avant de lancer Gramps, par ex. :\n"
+"       export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt  (Debian/"
+"Ubuntu)\n"
+"       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
@@ -13666,7 +13689,7 @@ msgstr "Messages d'avertissement"
 
 #: ../gramps/gui/configure.py:1113
 msgid "Live"
-msgstr ""
+msgstr "En direct"
 
 #: ../gramps/gui/configure.py:1121
 msgid "Server"
@@ -18001,7 +18024,7 @@ msgstr "Rechercher"
 
 #: ../gramps/gui/fs/actions.py:844
 msgid "Life"
-msgstr ""
+msgstr "Vie"
 
 #: ../gramps/gui/fs/actions.py:900
 msgid "FamilySearch ID ready."
@@ -18399,7 +18422,11 @@ msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
 msgstr[0] ""
+"Téléchargement de la génération de descendants %(gen)d/%(total)d… (%(count)d "
+"personne)"
 msgstr[1] ""
+"Téléchargement de la génération de descendants %(gen)d/%(total)d… (%(count)d "
+"personnes)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
 #, python-format
@@ -18428,7 +18455,7 @@ msgstr "Téléchargement des notes et des sources…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  ...notes/sources : %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 msgid "Importing…"
@@ -18488,8 +18515,8 @@ msgstr[1] "Détermination des horodatages FamilySearch pour %d individus…"
 #, python-format
 msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
 msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)d horodatage FamilySearch résolu en %(elapsed).1fs"
+msgstr[1] "%(count)d horodatages FamilySearch résolus en %(elapsed).1fs"
 
 # bouton
 #: ../gramps/gui/fs/fs_import/importer.py:405
@@ -18500,18 +18527,18 @@ msgstr "Actualisation de l'état de la comparaison…"
 #, python-format
 msgid "Refreshing comparison status for %d person…"
 msgid_plural "Refreshing comparison status for %d people…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Actualisation du statut de comparaison pour %d personne…"
+msgstr[1] "Actualisation du statut de comparaison pour %d personnes…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:448
 #, python-format
 msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
-msgstr ""
+msgstr "  ...la comparaison pour %(fsid)s a pris %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:453
 #, python-format
 msgid "  …comparison status: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …statut de comparaison : %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:463
 #, python-format
@@ -18519,6 +18546,8 @@ msgid ""
 "Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
 "%(failed)d failed)"
 msgstr ""
+"Actualisation du statut de comparaison terminée en %(elapsed).1fs (%"
+"(compared)d comparées, %(failed)d en échec)"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
@@ -18863,22 +18892,22 @@ msgstr "xType"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2024
 #: ../gramps/gui/fs/sync_directions.py:461
 msgid "xGr"
-msgstr ""
+msgstr "xGr"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2025
 #: ../gramps/gui/fs/sync_directions.py:462
 msgid "xFs"
-msgstr ""
+msgstr "xFs"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2026
 #: ../gramps/gui/fs/sync_directions.py:463
 msgid "xGr2"
-msgstr ""
+msgstr "xGr2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2027
 #: ../gramps/gui/fs/sync_directions.py:464
 msgid "xFs2"
-msgstr ""
+msgstr "xFs2"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2037
 msgid "Scope"
