@@ -33,6 +33,7 @@
 # -------------------------------------------------------------------------
 import os
 import time
+from functools import lru_cache
 
 # -------------------------------------------------------------------------
 #
@@ -258,6 +259,13 @@ class GedcomWriter(UpdateCallback):
         self.gedcom_file = None
         self.progress_cnt = 0
         self.setup(option_box)
+        # handle -> gramps_id of the people that are exported (filled by
+        # _individuals), so that families do not have to reload whole
+        # Person objects just to read their ID
+        self._person_ids = {}
+        # families are read several times per export (as spouse family, as
+        # parent family, in _adoption_records...)
+        self._get_family = lru_cache(maxsize=20_000)(self.dbase.get_family_from_handle)
 
     def setup(self, option_box):
         """
@@ -436,14 +444,13 @@ class GedcomWriter(UpdateCallback):
 
         """
         self.set_text(_("Writing individuals"))
-        phandles = self.dbase.iter_person_handles()
-
+        # iter_people() gives the (unsanitized) objects of the visible people
+        # without going through the proxy sanitizers, which is much cheaper
         sorted_list = []
-        for handle in phandles:
-            person = self.dbase.get_person_from_handle(handle)
-            if person:
-                data = (person.get_gramps_id(), handle)
-                sorted_list.append(data)
+        for person in self.dbase.iter_people():
+            gid = person.get_gramps_id()
+            self._person_ids[person.handle] = gid
+            sorted_list.append((gid, person.handle))
         sorted_list.sort()
 
         for data in sorted_list:
@@ -661,7 +668,7 @@ class GedcomWriter(UpdateCallback):
         adoptions = []
 
         for family in [
-            self.dbase.get_family_from_handle(fh)
+            self._get_family(fh)
             for fh in person.get_parent_family_handle_list()
         ]:
             if family is None:
@@ -771,7 +778,7 @@ class GedcomWriter(UpdateCallback):
 
         # get the list of familes from the handle list
         family_list = [
-            self.dbase.get_family_from_handle(hndl)
+            self._get_family(hndl)
             for hndl in person.get_parent_family_handle_list()
         ]
 
@@ -826,7 +833,7 @@ class GedcomWriter(UpdateCallback):
 
         # get the list of familes from the handle list
         family_list = [
-            self.dbase.get_family_from_handle(hndl)
+            self._get_family(hndl)
             for hndl in person.get_family_handle_list()
         ]
 
@@ -881,8 +888,9 @@ class GedcomWriter(UpdateCallback):
         # generate a list of (GRAMPS_ID, HANDLE) pairs. This list
         # can then be sorted by the sort routine, which will use the
         # first value of the tuple as the sort key.
-        sorted_list = sort_handles_by_id(
-            self.dbase.get_family_handles(), self.dbase.get_family_from_handle
+        sorted_list = sorted(
+            (family.get_gramps_id(), family.handle)
+            for family in self.dbase.iter_families()
         )
 
         # loop through the sorted list, pulling of the handle. This list
@@ -922,14 +930,21 @@ class GedcomWriter(UpdateCallback):
         self._note_references(family.get_note_list(), 1)
         self._change(family.get_change_time(), 1)
 
+    def _person_gramps_id(self, handle):
+        """
+        Return the Gramps ID of an exported person, or None if the person
+        is not visible (private, filtered...).
+        """
+        if self._person_ids:
+            return self._person_ids.get(handle)
+        person = self.dbase.get_person_from_handle(handle)
+        return person.get_gramps_id() if person else None
+
     def _family_child_list(self, child_ref_list):
         """
         Write the child XREF values to the GEDCOM file.
         """
-        child_list = [
-            self.dbase.get_person_from_handle(cref.ref).get_gramps_id()
-            for cref in child_ref_list
-        ]
+        child_list = [self._person_gramps_id(cref.ref) for cref in child_ref_list]
 
         for gid in child_list:
             if gid is None:
@@ -945,9 +960,9 @@ class GedcomWriter(UpdateCallback):
 
         """
         if person_handle:
-            person = self.dbase.get_person_from_handle(person_handle)
-            if person:
-                self._writeln(1, token, "@%s@" % person.get_gramps_id())
+            gid = self._person_gramps_id(person_handle)
+            if gid:
+                self._writeln(1, token, "@%s@" % gid)
 
     def _family_events(self, family):
         """
