@@ -86,6 +86,29 @@ def _privacy(db, kind, handle):
     return bool(obj.get_privacy())
 
 
+def _parent_family_visible(db, family_handle, person_handle):
+    """
+    True if the family is not private and the person's child reference in
+    that family is not private.
+    """
+    if not isinstance(db, ProxyDbBase):
+        raw = db.get_raw_family_data(family_handle)
+        if raw is None or raw.get("private"):
+            return False
+        for child_ref in raw["child_ref_list"]:
+            if child_ref["ref"] == person_handle:
+                return not child_ref.get("private")
+        return False
+    # slow path:
+    family = db.get_family_from_handle(family_handle)
+    if not family or family.get_privacy():
+        return False
+    for child_ref in family.get_child_ref_list():
+        if child_ref.get_reference_handle() == person_handle:
+            return bool(child_ref and not child_ref.get_privacy())
+    return False
+
+
 class PrivateProxyDb(ProxyDbBase):
     """
     A proxy to a Gramps database. This proxy will act like a Gramps database,
@@ -892,23 +915,13 @@ def sanitize_person(db, person):
 
     # copy Family reference list
     for handle in person.get_family_handle_list():
-        family = db.get_family_from_handle(handle)
-        if family and not family.get_privacy():
+        if _privacy(db, "family", handle) is False:
             new_person.add_family_handle(handle)
 
     # copy Family reference list
     for handle in person.get_parent_family_handle_list():
-        family = db.get_family_from_handle(handle)
-        if not family:
-            continue
-        elif family.get_privacy():
-            continue
-        child_ref_list = family.get_child_ref_list()
-        for child_ref in child_ref_list:
-            if child_ref.get_reference_handle() == person.get_handle():
-                if child_ref and not child_ref.get_privacy():
-                    new_person.add_parent_family_handle(handle)
-                break
+        if _parent_family_visible(db, handle, person.get_handle()):
+            new_person.add_parent_family_handle(handle)
 
     for name in person.get_alternate_names():
         if name and not name.get_privacy():
