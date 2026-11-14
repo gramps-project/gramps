@@ -288,11 +288,16 @@ class GedcomWriter(UpdateCallback):
 
         self.dirname = os.path.dirname(filename)
         with open(filename, "w", encoding="utf-8") as self.gedcom_file:
-            person_len = self.dbase.get_number_of_people()
-            family_len = self.dbase.get_number_of_families()
-            source_len = self.dbase.get_number_of_sources()
-            repo_len = self.dbase.get_number_of_repositories()
-            note_len = self.dbase.get_number_of_notes() / NOTES_PER_PERSON
+            # These counts only feed the progress bar. Through a proxy
+            # database they load every object to apply the filter, so ask the
+            # real database (the bar may then stop a bit short of 100% if
+            # some objects are filtered out).
+            counter = getattr(self.dbase, "basedb", self.dbase)
+            person_len = counter.get_number_of_people()
+            family_len = counter.get_number_of_families()
+            source_len = counter.get_number_of_sources()
+            repo_len = counter.get_number_of_repositories()
+            note_len = counter.get_number_of_notes() / NOTES_PER_PERSON
 
             total_steps = person_len + family_len + source_len + repo_len + note_len
             self.set_total(total_steps)
@@ -898,7 +903,7 @@ class GedcomWriter(UpdateCallback):
         # has already been sorted by GRAMPS_ID
         for family_handle in [hndl[1] for hndl in sorted_list]:
             self.update()
-            self._family(self.dbase.get_family_from_handle(family_handle))
+            self._family(self._get_family(family_handle))
 
     def _family(self, family):
         """
