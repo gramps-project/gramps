@@ -29,6 +29,7 @@ Unittest for relationship_path.py
 # -------------------------------------------------------------------------
 import random
 import unittest
+from collections.abc import Iterable, Iterator
 from typing import Any, ClassVar
 
 # -------------------------------------------------------------------------
@@ -36,13 +37,14 @@ from typing import Any, ClassVar
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from ..db import DbTxn
+from ..db import DbReadBase, DbTxn
 from ..db.utils import make_database
 from ..lib import ChildRef, ChildRefType, Family, FamilyRelType, Person
 from ..proxy import LivingProxyDb, PrivateProxyDb
 from ..relationship import RelationshipCalculator
 from ..relationship_path import (
     ALL_LINKS,
+    MAX_DEPTH,
     FamilyLinkGraph,
     LinkType,
     find_connections,
@@ -494,23 +496,35 @@ class RelationshipPathTest(unittest.TestCase):
 # LargeTreeTest
 #
 # -------------------------------------------------------------------------
-class _CountingDb:
+class _CountingDb(DbReadBase):
     """
-    A database that records which people and families are read from it.
+    A database that records which people and families are read from it,
+    and how many times it is asked for them.
     """
 
     def __init__(self, db: Any) -> None:
         self.db = db
         self.people: set[str] = set()
         self.families: set[str] = set()
+        self.reads = 0
 
     def get_raw_person_data(self, handle: str) -> Any:
-        self.people.add(handle)
-        return self.db.get_raw_person_data(handle)
+        return dict(self.get_raw_person_data_many([handle])).get(handle)
 
     def get_raw_family_data(self, handle: str) -> Any:
-        self.families.add(handle)
-        return self.db.get_raw_family_data(handle)
+        return dict(self.get_raw_family_data_many([handle])).get(handle)
+
+    def get_raw_person_data_many(self, handles: Iterable[str]) -> Iterator:
+        handles = list(handles)
+        self.reads += 1
+        self.people.update(handles)
+        return self.db.get_raw_person_data_many(handles)
+
+    def get_raw_family_data_many(self, handles: Iterable[str]) -> Iterator:
+        handles = list(handles)
+        self.reads += 1
+        self.families.update(handles)
+        return self.db.get_raw_family_data_many(handles)
 
 
 def _generate_tree(db: Any, seed: int) -> None:
@@ -573,12 +587,12 @@ def _generate_tree(db: Any, seed: int) -> None:
 
     person_objects = []
     for index, gender in enumerate(genders):
-        person = Person()
-        person.set_handle(f"P{index:05d}")
-        person.set_gramps_id(f"I{index:05d}")
-        person.set_gender(gender)
-        person.set_privacy(private[index])
-        person_objects.append(person)
+        person_object = Person()
+        person_object.set_handle(f"P{index:05d}")
+        person_object.set_gramps_id(f"I{index:05d}")
+        person_object.set_gender(gender)
+        person_object.set_privacy(private[index])
+        person_objects.append(person_object)
     family_objects = []
     for index, (father, mother, children) in enumerate(families):
         family = Family()
@@ -601,8 +615,8 @@ def _generate_tree(db: Any, seed: int) -> None:
             person_objects[child].add_parent_family_handle(handle)
         family_objects.append(family)
     with DbTxn("Generate tree", db) as trans:
-        for person in person_objects:
-            db.add_person(person, trans)
+        for person_object in person_objects:
+            db.add_person(person_object, trans)
         for family in family_objects:
             db.add_family(family, trans)
 
@@ -745,6 +759,43 @@ class LargeTreeTest(unittest.TestCase):
         db = _CountingDb(self.db)
         find_connections(FamilyLinkGraph.from_db(db), start, end)
         self.assertLess(len(db.people), len(self.full.distances(end, 10)) // 4)
+
+    def test_queries_depend_on_depth(self) -> None:
+        """
+        A search reads a layer of people at a time, so the number of
+        database queries depends on max_depth, not on the people read.
+        """
+        for max_depth in (4, 10, MAX_DEPTH):
+            radius = max_depth // 2
+            # reading the two people, then at most three queries (people,
+            # families, their members) for each layer around the end, each
+            # layer of the search, and each layer of finding the distance
+            # to the end from the people the search reaches
+            bound = 2 + 3 * radius
+            for depth in range(max_depth):
+                bound += 3 * (1 + max(0, max_depth - depth - 1 - radius))
+            for start, end in self.pairs:
+                with self.subTest(start=start, end=end, max_depth=max_depth):
+                    db = _CountingDb(self.db)
+                    find_connections(
+                        FamilyLinkGraph.from_db(db), start, end, max_depth=max_depth
+                    )
+                    self.assertLessEqual(db.reads, bound)
+        # the bound is far below one query per person
+        start, end = self.pairs[0]
+        db = _CountingDb(self.db)
+        find_connections(FamilyLinkGraph.from_db(db), start, end)
+        self.assertLess(db.reads * 10, len(db.people))
+
+    def test_max_depth_limit(self) -> None:
+        """
+        A search may follow at most MAX_DEPTH links.
+        """
+        start, end = self.pairs[0]
+        graph = FamilyLinkGraph.from_db(self.db)
+        self.assertTrue(find_connections(graph, start, end, max_depth=MAX_DEPTH))
+        with self.assertRaises(ValueError):
+            find_connections(graph, start, end, max_depth=MAX_DEPTH + 1)
 
     def test_private_proxy(self) -> None:
         """

@@ -24,9 +24,11 @@ Find and label chains of family links between two people.
 A :class:`FamilyLinkGraph` holds only who is whose parent, child, partner
 and sibling. Made from a database, it reads people and their families when
 a search first reaches them, so a search reads only the part of a large
-tree near the people searched for. It reads through the public database
-interface, so proxies such as ``PrivateProxyDb`` and ``LivingProxyDb``
-decide which people and links it contains.
+tree near the people searched for. Searches read a whole layer of people
+at a time, so the number of database queries depends on how many links
+they follow, not on how many people they reach. The graph reads through
+the public database interface, so proxies such as ``PrivateProxyDb`` and
+``LivingProxyDb`` decide which people and links it contains.
 
 :func:`find_connections` finds chains of links between two people, shortest
 first, and :func:`label_path` describes each person on a chain by their
@@ -56,6 +58,10 @@ from .relationship import RelationshipCalculator
 from .types import FamilyHandle, PersonHandle
 
 DEFAULT_MAX_DEPTH = 10
+# The most links a search may follow. A search first reads everyone within
+# half of this many links of the end person, which in a densely linked tree
+# grows quickly with the depth.
+MAX_DEPTH = 15
 DEFAULT_MAX_RESULTS = 5
 
 
@@ -116,6 +122,8 @@ class FamilyLinkGraph:
         self._person_families: dict[PersonHandle, list[FamilyHandle]] = {}
         # people missing from the database, or hidden by a proxy
         self._missing: set[PersonHandle] = set()
+        # families missing from the database, or hidden by a proxy
+        self._missing_families: set[FamilyHandle] = set()
         # people whose families have all been read
         self._expanded: set[PersonHandle] = set()
         self._gender: dict[PersonHandle, int] = {}
@@ -137,65 +145,95 @@ class FamilyLinkGraph:
         when they are first needed.
 
         A search only reads the people within reach of the people searched
-        for, rather than the whole tree. People and families are read with
-        ``get_raw_person_data`` and ``get_raw_family_data``, so proxies such
-        as ``PrivateProxyDb`` and ``LivingProxyDb`` decide which people and
-        links the graph contains. The database must stay open while the
-        graph is used.
+        for, rather than the whole tree. People and families are read many
+        at a time with ``get_raw_person_data_many`` and
+        ``get_raw_family_data_many``, so proxies such as ``PrivateProxyDb``
+        and ``LivingProxyDb`` decide which people and links the graph
+        contains. The database must stay open while the graph is used.
         """
         graph = cls()
         graph._db = db
         return graph
 
-    def _read_person(self, handle: PersonHandle | None) -> None:
+    def _read_people(self, handles: Iterable[PersonHandle | None]) -> None:
         """
-        Read a person, if not read yet.
+        Read the people not read yet, in one batch.
         """
-        if (
-            self._db is None
-            or not handle
-            or handle in self._gender
-            or handle in self._missing
-        ):
+        if self._db is None:
             return
-        data = self._db.get_raw_person_data(handle)
-        if data is None:
-            self._missing.add(handle)
-            return
-        self.add_person(handle, data["gender"])
-        self._person_families[handle] = [
-            *data["parent_family_list"],
-            *data["family_list"],
+        todo = [
+            handle
+            for handle in dict.fromkeys(handles)
+            if handle and handle not in self._gender and handle not in self._missing
         ]
-
-    def _expand(self, handle: PersonHandle) -> None:
-        """
-        Read all families of a person, and the members of those families.
-        """
-        if self._db is None or handle in self._expanded:
+        if not todo:
             return
-        self._expanded.add(handle)
-        self._read_person(handle)
-        for family_handle in self._person_families.get(handle, []):
-            if family_handle in self._families:
-                continue
-            data = self._db.get_raw_family_data(family_handle)
-            if data is None:
-                continue
-            father = data["father_handle"] or None
-            mother = data["mother_handle"] or None
-            children = [
-                (
-                    ref["ref"],
-                    ref["mrel"]["value"] == ChildRefType.BIRTH,
-                    ref["frel"]["value"] == ChildRefType.BIRTH,
-                )
-                for ref in data["child_ref_list"]
+        # each person's data is dropped as soon as it is used, which keeps
+        # the garbage collector from having to look at it
+        for handle, data in self._db.get_raw_person_data_many(todo):
+            self.add_person(handle, data["gender"])
+            self._person_families[handle] = [
+                *data["parent_family_list"],
+                *data["family_list"],
             ]
-            # add_family leaves out people not in the graph
-            for member in (father, mother, *(child for child, _, _ in children)):
-                self._read_person(member)
-            self.add_family(family_handle, father, mother, children)
+        self._missing.update(handle for handle in todo if handle not in self._gender)
+
+    def read(self, handles: Iterable[PersonHandle]) -> None:
+        """
+        Read the families of the given people, and the members of those
+        families, so that their links are known.
+
+        Reading many people at once takes a few database queries rather
+        than a few per person. Searches read each layer of people they
+        reach this way. Does nothing for a graph not made from a database.
+        """
+        if self._db is None:
+            return
+        todo = [
+            handle for handle in dict.fromkeys(handles) if handle not in self._expanded
+        ]
+        if not todo:
+            return
+        self._expanded.update(todo)
+        self._read_people(todo)
+        family_handles = [
+            family_handle
+            for family_handle in dict.fromkeys(
+                family_handle
+                for handle in todo
+                for family_handle in self._person_families.get(handle, [])
+            )
+            if family_handle not in self._families
+            and family_handle not in self._missing_families
+        ]
+        if not family_handles:
+            return
+        found = {}
+        for family_handle, data in self._db.get_raw_family_data_many(family_handles):
+            found[family_handle] = (
+                data["father_handle"] or None,
+                data["mother_handle"] or None,
+                [
+                    (
+                        ref["ref"],
+                        ref["mrel"]["value"] == ChildRefType.BIRTH,
+                        ref["frel"]["value"] == ChildRefType.BIRTH,
+                    )
+                    for ref in data["child_ref_list"]
+                ],
+            )
+        # add_family leaves out people not in the graph
+        self._read_people(
+            member
+            for father, mother, children in found.values()
+            for member in (father, mother, *(child for child, _, _ in children))
+        )
+        # in the order the people list them, whatever order they were read in
+        for family_handle in family_handles:
+            if family_handle in found:
+                self.add_family(family_handle, *found[family_handle])
+            else:
+                self._missing_families.add(family_handle)
 
     def add_person(self, handle: PersonHandle, gender: int) -> None:
         """
@@ -232,7 +270,7 @@ class FamilyLinkGraph:
 
     def __contains__(self, handle: object) -> bool:
         if isinstance(handle, str):
-            self._read_person(PersonHandle(handle))
+            self._read_people([PersonHandle(handle)])
         return handle in self._gender
 
     def __len__(self) -> int:
@@ -245,14 +283,14 @@ class FamilyLinkGraph:
         """
         Return the gender of a person.
         """
-        self._read_person(handle)
+        self._read_people([handle])
         return self._gender.get(handle, Person.UNKNOWN)
 
     def parents(self, handle: PersonHandle) -> list[PersonHandle]:
         """
         Return the parents of a person, in all their parent families, by handle.
         """
-        self._expand(handle)
+        self.read([handle])
         result: list[PersonHandle] = []
         for family, _, _ in self._parent_families.get(handle, []):
             father, mother, _ = self._families[family]
@@ -265,7 +303,7 @@ class FamilyLinkGraph:
         """
         Return the children of a person, in all their families, by handle.
         """
-        self._expand(handle)
+        self.read([handle])
         result: list[PersonHandle] = []
         for family in self._spouse_families.get(handle, []):
             for child in self._families[family][2]:
@@ -277,7 +315,7 @@ class FamilyLinkGraph:
         """
         Return the partners of a person, by handle.
         """
-        self._expand(handle)
+        self.read([handle])
         result: list[PersonHandle] = []
         for family in self._spouse_families.get(handle, []):
             father, mother, _ = self._families[family]
@@ -290,7 +328,7 @@ class FamilyLinkGraph:
         """
         Return the other children of all parent families of a person, by handle.
         """
-        self._expand(handle)
+        self.read([handle])
         result: list[PersonHandle] = []
         for family, _, _ in self._parent_families.get(handle, []):
             for child in self._families[family][2]:
@@ -328,7 +366,7 @@ class FamilyLinkGraph:
         """
         Return the calculator's code for the step from a child to a parent.
         """
-        self._expand(child)
+        self.read([child])
         found = ""
         for family, mother_birth, father_birth in self._parent_families.get(child, []):
             father, mother, _ = self._families[family]
@@ -349,7 +387,7 @@ class FamilyLinkGraph:
         Return the calculator's code for the step from a child to the family
         it shares with a sibling.
         """
-        self._expand(child)
+        self.read([child])
         found = ""
         for family, mother_birth, father_birth in self._parent_families.get(child, []):
             if sibling not in self._families[family][2]:
@@ -375,16 +413,18 @@ class FamilyLinkGraph:
         links of the given person.
         """
         result = {handle: 0}
-        queue = deque([handle])
-        while queue:
-            current = queue.popleft()
-            depth = result[current]
-            if depth >= max_depth:
-                continue
-            for other, _ in self.neighbors(current, links):
-                if other not in result:
-                    result[other] = depth + 1
-                    queue.append(other)
+        layer = [handle]
+        for depth in range(1, max_depth + 1):
+            self.read(layer)
+            next_layer = []
+            for current in layer:
+                for other, _ in self.neighbors(current, links):
+                    if other not in result:
+                        result[other] = depth
+                        next_layer.append(other)
+            if not next_layer:
+                break
+            layer = next_layer
         return result
 
 
@@ -434,6 +474,9 @@ class _DistanceToEnd:
     the end, so their distance is found by searching from them until they
     reach one, and no further than a search needs. People are thus read
     only near the end, or near the people the search reaches from the start.
+
+    :meth:`prepare` searches from many people together, reading one layer
+    of all their searches at a time.
     """
 
     def __init__(
@@ -455,6 +498,55 @@ class _DistanceToEnd:
         # people further than the radius -> no one near within this many links
         self._not_within: dict[PersonHandle, int] = {}
 
+    def prepare(self, handles: Iterable[PersonHandle], limit: int) -> None:
+        """
+        Find out whether each person is within ``limit`` links of the end,
+        so that :meth:`within` needs no more reading for them.
+        """
+        steps = limit - self._radius
+        # person -> (people seen by their search, its last layer)
+        searches: dict[PersonHandle, tuple[set[PersonHandle], list[PersonHandle]]] = {
+            handle: ({handle}, [handle])
+            for handle in dict.fromkeys(handles)
+            if handle not in self._near
+            and handle not in self._far
+            and steps > self._not_within.get(handle, 0)
+        }
+        for step in range(1, steps + 1):
+            if not searches:
+                return
+            self._graph.read(
+                current for _, layer in searches.values() for current in layer
+            )
+            for handle, (seen, layer) in list(searches.items()):
+                if self._step(seen, layer):
+                    # the first near person reached is exactly radius links
+                    # from the end
+                    self._far[handle] = self._radius + step
+                    del searches[handle]
+                elif not layer:
+                    self._not_within[handle] = steps
+                    del searches[handle]
+        for handle in searches:
+            self._not_within[handle] = steps
+
+    def _step(self, seen: set[PersonHandle], layer: list[PersonHandle]) -> bool:
+        """
+        Advance a search by one layer, in place. Return True if it reached
+        a near person.
+        """
+        next_layer = []
+        for current in layer:
+            for other, _ in self._graph.neighbors(current, self._links):
+                if other in seen:
+                    continue
+                if other in self._near:
+                    return True
+                seen.add(other)
+                next_layer.append(other)
+        layer[:] = next_layer
+        return False
+
     def within(self, handle: PersonHandle, limit: int) -> int | None:
         """
         Return the number of links from a person to the end, or None if it
@@ -464,37 +556,13 @@ class _DistanceToEnd:
         if distance is None:
             distance = self._far.get(handle)
         if distance is None:
-            steps = limit - self._radius
-            if steps <= self._not_within.get(handle, 0):
+            if limit - self._radius <= self._not_within.get(handle, 0):
                 return None
-            distance = self._search(handle, steps)
+            self.prepare([handle], limit)
+            distance = self._far.get(handle)
             if distance is None:
-                self._not_within[handle] = steps
                 return None
-            self._far[handle] = distance
         return distance if distance <= limit else None
-
-    def _search(self, handle: PersonHandle, steps: int) -> int | None:
-        """
-        Return the distance to the end of someone further than the radius,
-        searching at most ``steps`` links from them, or None.
-        """
-        seen = {handle}
-        layer = [handle]
-        for step in range(1, steps + 1):
-            next_layer = []
-            for current in layer:
-                for other, _ in self._graph.neighbors(current, self._links):
-                    if other in seen:
-                        continue
-                    if other in self._near:
-                        # the first near person reached is exactly radius
-                        # links from the end
-                        return self._radius + step
-                    seen.add(other)
-                    next_layer.append(other)
-            layer = next_layer
-        return None
 
 
 def find_connections(
@@ -520,13 +588,16 @@ def find_connections(
     occasionally be missed. The results depend only on the tree, not on the
     order the database returns people and families in.
 
-    :param max_depth: The maximum number of links in a path.
+    :param max_depth: The maximum number of links in a path, at most
+                      :data:`MAX_DEPTH`.
     :param max_results: The maximum number of paths to return.
     :param links: The kinds of links a path may follow.
     :param blood_only: Only find paths that go up to a common ancestor and
                        down again: parent links, at most one sibling link,
                        then child links.
     """
+    if max_depth > MAX_DEPTH:
+        raise ValueError(f"max_depth is more than {MAX_DEPTH}")
     if start not in graph or end not in graph or max_results < 1:
         return []
     if start == end:
@@ -542,19 +613,29 @@ def find_connections(
 
     results: list[Path] = []
     expanded: Counter[tuple[PersonHandle, bool]] = Counter()
-    queue: deque[_PathNode] = deque([(start, None, None, 0)])
-    while queue:
-        node = queue.popleft()
-        handle, depth = node[0], node[3]
-        going_down = blood_only and _going_down(node)
+    # The search goes one layer of paths at a time, all of the same length,
+    # so the people of a layer can be read together.
+    layer: list[_PathNode] = [(start, None, None, 0)]
+    for depth in range(max_depth):
         # Each person is expanded at most max_results times, which bounds
         # the search while still finding that many different paths.
-        if expanded[handle, going_down] >= max_results:
-            continue
-        expanded[handle, going_down] += 1
-        for other, link in graph.neighbors(handle, links):
-            if going_down and link != LinkType.CHILD:
+        to_expand = []
+        for node in layer:
+            going_down = blood_only and _going_down(node)
+            if expanded[node[0], going_down] >= max_results:
                 continue
+            expanded[node[0], going_down] += 1
+            to_expand.append((node, going_down))
+        graph.read(node[0] for node, _ in to_expand)
+        steps = [
+            (node, other, link)
+            for node, going_down in to_expand
+            for other, link in graph.neighbors(node[0], links)
+            if not going_down or link == LinkType.CHILD
+        ]
+        to_end.prepare((other for _, other, _ in steps), max_depth - depth - 1)
+        next_layer: list[_PathNode] = []
+        for node, other, link in steps:
             if to_end.within(other, max_depth - depth - 1) is None:
                 continue
             if _on_path(node, other):
@@ -565,7 +646,10 @@ def find_connections(
                 if len(results) >= max_results:
                     return results
             else:
-                queue.append(new_node)
+                next_layer.append(new_node)
+        if not next_layer:
+            break
+        layer = next_layer
     return results
 
 
