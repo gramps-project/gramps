@@ -30,10 +30,3 @@ override_dh_auto_install:
 	#Remove license information in COPYING file & link to system license
 	rm $(CURDIR)/debian/gramps/usr/share/doc/gramps/COPYING
 	ln -s /usr/share/common-licenses/GPL-2 $(CURDIR)/debian/gramps/usr/share/doc/gramps/COPYING
-
-# Fix clean target
-override_dh_clean:
-#	rm -rf data/tips.xml
-	rm -rf gramps/plugins/lib/holidays.xml
-	rm -rf po/.intltool-merge-cache
-	dh_clean
