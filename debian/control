@@ -36,7 +36,6 @@ Depends:
  python3-gi-cairo,
  python3-bsddb3,
  python3-orjson,
- gir1.2-gspell-1,
  ${misc:Depends},
  ${python3:Depends}
 Recommends:
@@ -45,6 +44,7 @@ Recommends:
  gir1.2-osmgpsmap-1.0,
  python3-icu,
  gir1.2-geocodeglib-1.0,
+ gir1.2-gspell-1,
 Suggests:
  fonts-freefont-ttf,
  gir1.2-goocanvas-2.0,
