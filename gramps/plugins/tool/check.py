@@ -92,6 +92,7 @@ from gramps.gui.dialog import OkDialog, MissingMediaDialog
 from gramps.gen.display.name import displayer as _nd
 from gramps.gui.glade import Glade
 from gramps.gen.errors import HandleError
+from gramps.gui.buttonorder import apply_button_order
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.
@@ -834,6 +835,7 @@ class CheckIntegrity:
             fs_top.add_buttons(
                 _("_Cancel"), Gtk.ResponseType.CANCEL, _("_OK"), Gtk.ResponseType.OK
             )
+            apply_button_order(fs_top)
             fs_top.set_current_folder(self.last_img_dir)
             response = fs_top.run()
             if response == Gtk.ResponseType.OK:

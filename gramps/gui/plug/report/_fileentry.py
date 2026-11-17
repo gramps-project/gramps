@@ -25,6 +25,7 @@ from gi.repository import GObject
 
 from gramps.gen.constfunc import get_curr_dir
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gui.buttonorder import apply_button_order
 
 _ = glocale.translation.gettext
 
@@ -66,6 +67,7 @@ class FileEntry(Gtk.Box):
         dialog.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.OK
         )
+        apply_button_order(dialog)
 
         name = os.path.basename(self.entry.get_text())
         if self.dir:

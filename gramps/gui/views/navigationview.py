@@ -54,6 +54,7 @@ from ..uimanager import ActionGroup
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.constfunc import mod_key
 from ..utils import match_primary_mask
+from gramps.gui.buttonorder import apply_button_order
 
 DISABLED = -1
 MRU_SIZE = 10
@@ -355,6 +356,7 @@ class NavigationView(PageView):
         dialog.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Jump to"), Gtk.ResponseType.OK
         )
+        apply_button_order(dialog)
         dialog.set_default_response(Gtk.ResponseType.OK)
         dialog.vbox.show_all()
 

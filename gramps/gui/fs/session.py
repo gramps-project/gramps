@@ -37,6 +37,7 @@ from gi.repository import Gtk, GLib  # noqa: E402
 
 from gramps.gen.constfunc import win
 from gramps.gen.fs import session as fs_session_core
+from gramps.gui.buttonorder import apply_button_order
 
 sys.modules.setdefault("gramps.gui.fs.session", sys.modules[__name__])
 
@@ -315,6 +316,7 @@ class Session(fs_session_core.Session):
         )
         dlg.add_button("Cancel", Gtk.ResponseType.CANCEL)
         dlg.add_button("Continue", Gtk.ResponseType.OK)
+        apply_button_order(dlg)
 
         box = dlg.get_content_area()
         box.set_border_width(10)

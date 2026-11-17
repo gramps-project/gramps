@@ -956,3 +956,60 @@ def no_match_primary_mask(test_mask, addl_mask=0):
     keymap = Gdk.Keymap.get_for_display(Gdk.Display.get_default())
     primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATOR)
     return (test_mask & (primary | addl_mask)) == 0
+
+
+def fix_assistant_button_order(assistant):
+    """
+    Keep Back to the left of Next in a Gtk.Assistant.
+
+    With gtk-alternative-button-order set (the default on Windows), GTK 3
+    reverses every button of an assistant, giving [Next] [Back] [Cancel].
+    Windows wizards use [< Back] [Next >] [Cancel], so put the navigation
+    buttons back in order: Back, Next, Apply, Finish, Cancel, Close.
+    Extra action widgets (e.g. a Help button) keep their places.
+
+    Call once, after Gtk.Assistant.__init__. Does nothing in the GNOME order.
+    """
+    from gi.repository import Gtk
+
+    settings = assistant.get_settings()
+    if not settings.props.gtk_alternative_button_order:
+        return
+
+    # The assistant's own buttons, in the visual order we want. Their labels
+    # come from GTK's template, translated in the gtk30 domain.
+    wanted = ["_Back", "_Next", "_Apply", "_Finish", "_Cancel", "_Close"]
+    labels = {GLib.dgettext("gtk30", msgid): msgid for msgid in wanted}
+
+    area = None
+
+    def find_action_area(widget):
+        nonlocal area
+        if area is not None:
+            return
+        if isinstance(widget, Gtk.Box) and any(
+            isinstance(child, Gtk.Button) and child.get_label() in labels
+            for child in widget.get_children()
+        ):
+            area = widget
+        elif isinstance(widget, Gtk.Container):
+            widget.forall(find_action_area)
+
+    assistant.forall(find_action_area)
+    if area is None:
+        return
+
+    # get_children() lists the buttons left to right
+    children = area.get_children()
+    slots = [i for i, c in enumerate(children) if c.get_label() in labels]
+    ordered = sorted(
+        (children[i] for i in slots),
+        key=lambda c: wanted.index(labels[c.get_label()]),
+    )
+    new_order = list(children)
+    for slot, button in zip(slots, ordered):
+        new_order[slot] = button
+    # The buttons are packed at the end, so the box's own child order is the
+    # reverse of the visual order.
+    for position, child in enumerate(reversed(new_order)):
+        area.reorder_child(child, position)

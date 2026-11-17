@@ -46,6 +46,7 @@ from gi.repository import Gtk
 # ------------------------------------------------------------------------
 from gramps.gen.const import GLADE_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.constfunc import is_quartz
+from .buttonorder import apply_to_builder
 
 # ------------------------------------------------------------------------
 #
@@ -183,6 +184,10 @@ class Glade(Gtk.Builder):
                             break
                     else:
                         self.__toplevel = None
+
+        # Put the affirmative button first when the platform expects it
+        # (gtk-alternative-button-order, e.g. Windows).
+        apply_to_builder(self)
 
     @property
     def filename(self):

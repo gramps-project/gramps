@@ -49,6 +49,7 @@ from gramps.gui.dialog import OkDialog
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.lib import Citation, Source
 from gramps.gen.db import DbTxn
+from gramps.gui.buttonorder import apply_button_order
 
 
 class PopulateSources(tool.Tool, ManagedWindow):
@@ -97,6 +98,7 @@ class PopulateSources(tool.Tool, ManagedWindow):
         dialog.add_buttons(
             _("_Cancel"), Gtk.ResponseType.REJECT, _("_OK"), Gtk.ResponseType.ACCEPT
         )
+        apply_button_order(dialog)
         label = Gtk.Label(
             label="Enter a valid number of sources and citations."
             " This will create the requested number of sources,"

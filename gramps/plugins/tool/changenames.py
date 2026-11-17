@@ -46,6 +46,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
+from gramps.gui.buttonorder import apply_window_button_order
 
 # -------------------------------------------------------------------------
 #
@@ -203,6 +204,9 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
     def display(self):
         self.top = Glade()
         window = self.top.toplevel
+        apply_window_button_order(
+            self.top.get_object("button5"), self.top.get_object("help")
+        )
         self.top.connect_signals(
             {
                 "destroy_passed_object": self.close,

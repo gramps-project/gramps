@@ -61,6 +61,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.mime import get_type, is_image_type
 from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.utils import fix_assistant_button_order
 
 # -------------------------------------------------------------------------
 #
@@ -88,6 +89,7 @@ class MediaMan(ManagedWindow, tool.Tool):
         self.build_batch_ops()
 
         self.assistant = Gtk.Assistant()
+        fix_assistant_button_order(self.assistant)
         self.set_window(self.assistant, None, _("Media Manager"))
         self.setup_configs("interface.mediaman", 780, 600)
 

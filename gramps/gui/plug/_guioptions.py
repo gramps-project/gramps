@@ -60,6 +60,7 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
 from gramps.gen.constfunc import get_curr_dir
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gui.buttonorder import apply_button_order
 
 _ = glocale.translation.gettext
 
@@ -1760,6 +1761,7 @@ class GuiDestinationOption(Gtk.Box):
         fcd.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.OK
         )
+        apply_button_order(fcd)
 
         name = os.path.abspath(self.__option.get_value())
         if self.__option.get_directory_entry():

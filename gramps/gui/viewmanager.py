@@ -141,6 +141,7 @@ from gramps.gen.filters import reload_custom_filters
 from .managedwindow import ManagedWindow
 from .fs.manager import get_session, needs_access_code
 from .fs.tools_window import close_tools_window, toggle_tools_window
+from gramps.gui.buttonorder import apply_button_order
 
 # -------------------------------------------------------------------------
 #
@@ -2207,6 +2208,7 @@ class QuickBackup(ManagedWindow):  # TODO move this class into its own module
         fdialog.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Apply"), Gtk.ResponseType.OK
         )
+        apply_button_order(fdialog)
         mpath = path_entry.get_text()
         if not mpath:
             mpath = USER_DATA

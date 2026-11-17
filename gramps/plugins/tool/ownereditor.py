@@ -45,6 +45,10 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
+from gramps.gui.buttonorder import (
+    alternative_order_enabled,
+    apply_window_button_order,
+)
 
 # -------------------------------------------------------------------------
 #
@@ -103,10 +107,14 @@ class OwnerEditor(tool.Tool, ManagedWindow):
         )
         self.setup_configs("interface.ownereditor", 500, 400)
 
-        # move help button to the left side
+        # move help button to the left side (GNOME order), or put OK first
+        # and Help last (Windows order)
         action_area = topDialog.get_object("action_area")
         help_button = topDialog.get_object("help_button")
-        action_area.set_child_secondary(help_button, True)
+        if alternative_order_enabled():
+            apply_window_button_order(topDialog.get_object("ok_button"), help_button)
+        else:
+            action_area.set_child_secondary(help_button, True)
 
         # connect signals
         topDialog.connect_signals(

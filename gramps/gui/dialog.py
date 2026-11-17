@@ -51,6 +51,7 @@ from gramps.gen.const import ICON as ICON_PATH, URL_BUGHOME
 from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
 from .glade import Glade
+from .buttonorder import apply_button_order
 from .display import display_url
 
 try:
@@ -533,6 +534,9 @@ class MultiSelectDialog:
 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
+        # Custom responses 1/2/3 (Cancel/No/Yes): give the Windows order
+        # explicitly since they carry no affirmative response type.
+        apply_button_order(self.top, order=[3, 2, 1])
 
         self.msg1_func = msg1_func
         self.msg2_func = msg2_func

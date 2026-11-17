@@ -276,6 +276,15 @@ register("interface.toolbar-preference", True)
 register("interface.toolbar-reports", True)
 register("interface.toolbar-tools", True)
 register("interface.view", True)
+# Order of the action buttons in dialogs:
+#   0 = automatic: affirmative (OK) button first on Windows, native elsewhere
+#   1 = GNOME: affirmative button on the right, after Cancel
+#   2 = Windows: affirmative button on the left, before Cancel
+register("interface.dialog-button-order", 0)
+# gtk-decoration-layout applied on Windows: the colon separates title-bar
+# buttons on the left from those on the right.
+register("interface.window-controls", ":minimize,maximize,close")
+
 register("interface.surname-box-height", 150)
 register("interface.treemodel-cache-size", 1000)
 register("interface.note-preview-length", 80)

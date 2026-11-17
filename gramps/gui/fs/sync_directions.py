@@ -56,6 +56,7 @@ from gramps.gen.fs import sync_directions as fs_sync_core
 from gramps.gen.fs import utils as fs_utilities
 from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gen.fs.compare import compare_fs_to_gramps
+from gramps.gui.buttonorder import apply_button_order
 import gramps.gen.fs.fs_import as fs_import_mod
 import gramps.gui.fs.person.fsg_sync as fsg_sync
 
@@ -819,6 +820,7 @@ def _prompt(
 
     dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
     apply_button = dialog.add_button(_("Apply Selected"), Gtk.ResponseType.OK)
+    apply_button_order(dialog)
     _add_style(apply_button, "suggested-action")
     dialog.set_default_response(Gtk.ResponseType.OK)
 
@@ -1493,6 +1495,7 @@ def _export_picker_dialog(
     dialog.set_default_size(760, 520)
     dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
     dialog.add_button(_("Export"), Gtk.ResponseType.OK)
+    apply_button_order(dialog)
     dialog.set_default_response(Gtk.ResponseType.OK)
 
     box = dialog.get_content_area()

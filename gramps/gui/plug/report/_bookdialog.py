@@ -70,6 +70,7 @@ from ...managedwindow import ManagedWindow, set_titles
 from ...glade import Glade
 from ...utils import is_right_click, open_file_with_default_application
 from ...user import User
+from gramps.gui.buttonorder import apply_window_button_order
 from .. import make_gui_option
 
 # Import from specific modules in ReportBase
@@ -346,6 +347,9 @@ class BookSelector(ManagedWindow):
 
         self.xml = Glade("book.glade", toplevel="top")
         window = self.xml.toplevel
+        apply_window_button_order(
+            self.xml.get_object("button13"), self.xml.get_object("button14")
+        )
 
         title_label = self.xml.get_object("title")
         self.set_window(window, title_label, self.title)

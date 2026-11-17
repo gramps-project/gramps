@@ -56,6 +56,7 @@ from gramps.gen.const import GLADE_FILE, ICON
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
+from .buttonorder import apply_on_realize
 from .uimanager import ActionGroup, valid_action_name
 from .utils import get_display_size
 from .glade import Glade
@@ -511,6 +512,9 @@ class ManagedWindow:
             # closing the Gtk.Window must also close ManagedWindow
             self.window = window
             self.window.connect("delete-event", self.close)
+        # Python-built dialogs get their buttons after set_window(), so the
+        # platform button order is applied when the dialog is realized.
+        apply_on_realize(self.window)
         # Set the mnemonic modifier on Macs to alt-ctrl so that it
         # doesn't interfere with the extended keyboard, see
         # https://gramps-project.org/bugs/view.php?id=6943

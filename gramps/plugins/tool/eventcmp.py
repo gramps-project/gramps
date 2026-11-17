@@ -61,6 +61,7 @@ from gramps.gui.glade import Glade
 from gramps.gui.editors import FilterEditor
 from gramps.gen.constfunc import get_curr_dir
 from gramps.gen.display.place import displayer as _pd
+from gramps.gui.buttonorder import apply_button_order
 
 # -------------------------------------------------------------------------
 #
@@ -408,6 +409,7 @@ class EventComparisonResults(ManagedWindow):
         f.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Save"), Gtk.ResponseType.OK
         )
+        apply_button_order(f)
 
         f.set_current_folder(get_curr_dir())
         status = f.run()

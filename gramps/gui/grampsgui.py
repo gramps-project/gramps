@@ -714,6 +714,7 @@ def startgramps(errors, argparser):
 
 # we do the following import here to avoid the Gtk require version warning
 from .uimanager import UIManager
+from .buttonorder import apply_platform_button_order
 from gramps.gen.constfunc import is_quartz
 
 
@@ -726,6 +727,7 @@ class GrampsApplication(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
+        apply_platform_button_order()
         self.uimanager = UIManager(self, UIDEFAULT)
         if not is_quartz():
             self.uimanager.show_groups = ["OSX"]

@@ -64,6 +64,7 @@ from gramps.gen.utils.file import find_folder, get_new_filename
 from ...managedwindow import ManagedWindow
 from ...dialog import ErrorDialog
 from ...user import User
+from gramps.gui.utils import fix_assistant_button_order
 
 # -------------------------------------------------------------------------
 #
@@ -120,6 +121,7 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
 
         # set up Assistant
         Gtk.Assistant.__init__(self)
+        fix_assistant_button_order(self)
 
         # set up ManagedWindow
         self.top_title = _("Export Assistant")

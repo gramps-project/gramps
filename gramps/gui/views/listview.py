@@ -76,6 +76,7 @@ from ..plug.quick import create_quickreport_menu, create_web_connect_menu
 from ..utils import is_right_click
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..widgets.persistenttreeview import PersistentTreeView
+from gramps.gui.buttonorder import apply_button_order
 
 # ----------------------------------------------------------------
 #
@@ -1259,6 +1260,7 @@ class ListView(NavigationView):
         chooser.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Save"), Gtk.ResponseType.OK
         )
+        apply_button_order(chooser)
         chooser.set_do_overwrite_confirmation(True)
 
         combobox = Gtk.ComboBoxText()

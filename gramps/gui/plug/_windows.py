@@ -103,6 +103,7 @@ from gramps.gen.utils.pypi import (
 from gramps.gen.const import USER_PLUGINS, LIB_PATH
 from gramps.gen.constfunc import win
 from gramps.version import major_version
+from gramps.gui.buttonorder import apply_button_order
 
 
 def display_message(message):
@@ -930,6 +931,7 @@ class AddonManager(ManagedWindow):
         dialog.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_OK"), Gtk.ResponseType.OK
         )
+        apply_button_order(dialog)
         dialog.set_default_response(Gtk.ResponseType.OK)
         dialog.vbox.show_all()
 
@@ -1493,6 +1495,7 @@ class PluginStatus(ManagedWindow):
         fcd.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Open"), Gtk.ResponseType.OK
         )
+        apply_button_order(fcd)
         name = self.install_addon_path.get_text()
         dir = os.path.dirname(name)
         if not os.path.isdir(dir):

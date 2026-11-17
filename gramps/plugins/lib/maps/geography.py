@@ -70,6 +70,7 @@ from .selectionlayer import SelectionLayer
 from .placeselection import PlaceSelection
 from .cairoprint import CairoPrintSave
 from .libkml import Kml
+from gramps.gui.buttonorder import apply_button_order
 
 gi.require_version("OsmGpsMap", "1.0")
 
@@ -1114,6 +1115,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         kml.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Apply"), Gtk.ResponseType.OK
         )
+        apply_button_order(kml)
         mpath = USER_HOME
         kml.set_current_folder(os.path.dirname(mpath))
         kml.set_filter(filtering)
@@ -1539,6 +1541,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         selected_dir.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Apply"), Gtk.ResponseType.OK
         )
+        apply_button_order(selected_dir)
         mpath = config.get("geography.path")
         if not mpath:
             mpath = USER_HOME

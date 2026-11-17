@@ -36,6 +36,7 @@ import os
 import random
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gui.buttonorder import apply_button_order
 
 _ = glocale.translation.gettext
 
@@ -393,6 +394,7 @@ class TestcaseGenerator(tool.BatchTool):
         self.top.add_button(_("_Cancel"), Gtk.ResponseType.CANCEL)
         self.top.add_button(_("_OK"), Gtk.ResponseType.OK)
         self.top.add_button(_("_Help"), Gtk.ResponseType.HELP)
+        apply_button_order(self.top)
         self.top.show_all()
 
         while True:

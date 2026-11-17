@@ -43,6 +43,7 @@ import gramps.gen.fs.fs_import as fs_import
 from gramps.gen.fs import utils as fs_utilities
 from gramps.gen.fs.fs_import import deserializer as deserialize
 from gramps.gui.fs import ui as fs_ui
+from gramps.gui.buttonorder import apply_button_order
 
 _has_img_picker = False
 fs_source_image: Optional[ModuleType] = None
@@ -192,6 +193,7 @@ class SourcesDialogMixin:
 
         dlg.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
         dlg.add_button(_("Import selected"), Gtk.ResponseType.OK)
+        apply_button_order(dlg)
 
         box = dlg.get_content_area()
         box.set_spacing(10)

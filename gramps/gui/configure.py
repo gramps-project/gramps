@@ -82,6 +82,7 @@ from gramps.gen.constfunc import win
 _ = glocale.translation.gettext
 from gramps.gen.utils.symbols import Symbols
 from gramps.gen.constfunc import get_env_var
+from gramps.gui.buttonorder import apply_button_order, apply_platform_button_order
 
 # -------------------------------------------------------------------------
 #
@@ -331,6 +332,14 @@ class ConfigureDialog(ManagedWindow):
         :param constant: the config setting to which the value must be saved
         """
         self.__config.set(constant, obj.get_active())
+
+    def cb_button_order_changed(self, obj, constant):
+        """
+        Save the dialog button order and apply it to dialogs opened from
+        now on.
+        """
+        self.update_combo(obj, constant)
+        apply_platform_button_order()
 
     def update_slider(self, obj, constant):
         """
@@ -2318,6 +2327,27 @@ class GrampsPreferences(ConfigureDialog):
         )
 
         row += 1
+        # Dialog button order:
+        combo = self.add_combo(
+            grid,
+            _("Dialog button order"),
+            row,
+            "interface.dialog-button-order",
+            [
+                (0, _("Automatic (follow the operating system)")),
+                (1, _("OK on the right (GNOME)")),
+                (2, _("OK on the left (Windows)")),
+            ],
+            callback=self.cb_button_order_changed,
+        )
+        combo.set_tooltip_text(
+            _(
+                "Order of the OK and Cancel buttons in dialogs. "
+                "Applies to dialogs opened after the change."
+            )
+        )
+
+        row += 1
         # Toolbar styles:
         obox = Gtk.ComboBoxText()
         formats = [
@@ -2736,6 +2766,7 @@ class GrampsPreferences(ConfigureDialog):
                 Gtk.ResponseType.OK,
             ),
         )
+        apply_button_order(f)
         mpath = media_path(self.dbstate.db)
         f.set_current_folder(os.path.dirname(mpath))
 
@@ -2762,6 +2793,7 @@ class GrampsPreferences(ConfigureDialog):
         f.add_buttons(
             _("_Cancel"), Gtk.ResponseType.CANCEL, _("_Apply"), Gtk.ResponseType.OK
         )
+        apply_button_order(f)
         dbpath = config.get("database.path")
         if not dbpath:
             dbpath = os.path.join(USER_DATA, "grampsdb")
@@ -2793,6 +2825,7 @@ class GrampsPreferences(ConfigureDialog):
                 Gtk.ResponseType.OK,
             ),
         )
+        apply_button_order(f)
         backup_path = config.get("database.backup-path")
         if not backup_path:
             backup_path = config.get("database.path")

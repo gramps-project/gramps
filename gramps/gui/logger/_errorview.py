@@ -37,6 +37,7 @@ from ._errorreportassistant import ErrorReportAssistant
 from ..display import display_help
 from ..utils import get_display_size
 from ..managedwindow import ManagedWindow
+from gramps.gui.buttonorder import apply_button_order
 
 # -------------------------------------------------------------------------
 #
@@ -187,3 +188,4 @@ class ErrorView(ManagedWindow):
         self.top.add_button(_("_Cancel"), Gtk.ResponseType.CANCEL)
         self.top.add_button(_("Report"), Gtk.ResponseType.YES)
         self.top.add_button(_("_Help"), Gtk.ResponseType.HELP)
+        apply_button_order(self.top)

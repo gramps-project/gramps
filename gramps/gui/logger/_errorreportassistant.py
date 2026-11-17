@@ -75,6 +75,7 @@ from gramps.gen.constfunc import get_env_var
 from gramps.version import VERSION
 from ..display import display_help, display_url
 from ..managedwindow import ManagedWindow
+from gramps.gui.utils import fix_assistant_button_order
 
 
 # -------------------------------------------------------------------------
@@ -90,6 +91,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
 
     def __init__(self, error_detail, rotate_handler, ownthread=False, parent=None):
         Gtk.Assistant.__init__(self)
+        fix_assistant_button_order(self)
         ManagedWindow.__init__(self, None, [], self.__class__, modal=True)
         if parent is not None:  # the next two will not be set in ManagedWindow
             self.parent_window = parent
