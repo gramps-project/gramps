@@ -2130,7 +2130,14 @@ class CheckIntegrity:
                 self.db.add_note(self.explanation, self.trans, set_gid=True)
 
     def check_checksum(self):
-        """fix media checksums"""
+        """
+        Fix media checksums.
+
+        A file that is missing or cannot be read gives an empty checksum.
+        The stored checksum is kept in that case: it still identifies the
+        file the record refers to, so tools such as Media Verify can find
+        the file again after it has been moved or renamed.
+        """
         self.progress.set_pass(
             _("Updating checksums on media"), len(self.db.get_media_handles())
         )
@@ -2139,7 +2146,7 @@ class CheckIntegrity:
             obj = self.db.get_media_from_handle(objectid)
             full_path = media_path_full(self.db, obj.get_path())
             new_checksum = create_checksum(full_path)
-            if new_checksum != obj.checksum:
+            if new_checksum and new_checksum != obj.checksum:
                 logging.info("checksum: updating " + obj.gramps_id)
                 obj.checksum = new_checksum
                 self.db.commit_media(obj, self.trans)
