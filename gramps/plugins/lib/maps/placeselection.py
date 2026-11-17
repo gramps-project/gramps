@@ -88,14 +88,35 @@ class PlaceSelection(ManagedWindow, OsmGps):
     We can select the diameter of the region which is a circle.
     Depending of this region, we can show the possible choice.
     We select the value depending of our need which open the EditPlace box.
+
+    This dialog is reusable by any plugin or addon. The map widget (maps)
+    and the selection layer (layer) are optional: without them, the same
+    dialog is shown but no circle is drawn on a map.
+
+    The places argument follows the geography marker format; for each
+    entry, the latitude is entry[3], the longitude is entry[4] and the
+    place gramps_id is entry[9].
+
+    The function callback is called with the selected row, the latitude
+    and the longitude when the user activates a row in the table.
     """
 
     def __init__(
-        self, uistate, dbstate, maps, layer, places, lat, lon, function, oldvalue=None
+        self,
+        uistate,
+        dbstate,
+        maps=None,
+        layer=None,
+        places=None,
+        lat=0.0,
+        lon=0.0,
+        function=None,
+        oldvalue=None,
     ):
         """
         Place Selection initialization
         """
+        places = places or []
         try:
             ManagedWindow.__init__(self, uistate, [], PlaceSelection)
         except WindowActiveError:
@@ -246,6 +267,8 @@ class PlaceSelection(ManagedWindow, OsmGps):
         """
         Hide the layer which contains the circle
         """
+        if self.osm is None:
+            return
         layer = self.get_selection_layer()
         if layer:
             self.remove_layer(layer)
@@ -254,6 +277,8 @@ class PlaceSelection(ManagedWindow, OsmGps):
         """
         Show a circle in which we select the places.
         """
+        if self.osm is None:
+            return
         # circle (rds)
         self.hide_the_region()
         self.selection_layer = self.add_selection_layer()
