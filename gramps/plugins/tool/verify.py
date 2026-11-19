@@ -1939,15 +1939,19 @@ class OldParent(FamilyRule):
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
-            father_broken = father_birth_date_ok and (
-                (child_birth_date - father_birth_date) / 365 > self.old_dad
+            father_broken = (
+                father_birth_date_ok
+                and child_ref.frel == ChildRefType.BIRTH
+                and (child_birth_date - father_birth_date) / 365 > self.old_dad
             )
             if father_broken:
                 self.get_message = self.father_message
                 return True
 
-            mother_broken = mother_birth_date_ok and (
-                (child_birth_date - mother_birth_date) / 365 > self.old_mom
+            mother_broken = (
+                mother_birth_date_ok
+                and child_ref.mrel == ChildRefType.BIRTH
+                and (child_birth_date - mother_birth_date) / 365 > self.old_mom
             )
             if mother_broken:
                 self.get_message = self.mother_message
@@ -1995,15 +1999,19 @@ class YoungParent(FamilyRule):
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
-            father_broken = father_birth_date_ok and (
-                (child_birth_date - father_birth_date) / 365 < self.yng_dad
+            father_broken = (
+                father_birth_date_ok
+                and child_ref.frel == ChildRefType.BIRTH
+                and (child_birth_date - father_birth_date) / 365 < self.yng_dad
             )
             if father_broken:
                 self.get_message = self.father_message
                 return True
 
-            mother_broken = mother_birth_date_ok and (
-                (child_birth_date - mother_birth_date) / 365 < self.yng_mom
+            mother_broken = (
+                mother_birth_date_ok
+                and child_ref.mrel == ChildRefType.BIRTH
+                and (child_birth_date - mother_birth_date) / 365 < self.yng_mom
             )
             if mother_broken:
                 self.get_message = self.mother_message
