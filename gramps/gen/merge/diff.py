@@ -25,6 +25,7 @@ import json
 
 from ..db.utils import import_as_dict
 from ..lib.json_utils import object_to_dict
+from ..lib.date import Date
 from ..const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
@@ -43,12 +44,13 @@ def diff_dates(json1, json2):
             return True
         elif json1["quality"] != json2["quality"]:
             return True
-        elif json1["dateval"] == json2["dateval"] and json2["dateval"] != 0:
-            return False
-        elif json1["text"] == json2["text"]:
-            return False
-        else:
+        elif json1["dateval"] != json2["dateval"]:
             return True
+        elif json1["modifier"] == Date.MOD_TEXTONLY:
+            # only the text carries the value of a text-only date
+            return json1["text"] != json2["text"]
+        else:
+            return False
     else:
         return True
 
