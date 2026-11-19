@@ -31,6 +31,15 @@ from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 
+def _date_is_empty(json_date):
+    """
+    Return True if a json date object holds no value (like Date.is_empty()).
+    """
+    return not json_date["text"] and not any(
+        value for value in json_date["dateval"] if not isinstance(value, bool)
+    )
+
+
 def diff_dates(json1, json2):
     """
     Compare two json date objects. Returns True if different.
@@ -38,7 +47,10 @@ def diff_dates(json1, json2):
     if json1 == json2:  # if same, then Not Different
         return False  # else, they still might be Not Different
     elif isinstance(json1, dict) and isinstance(json2, dict):
-        if json1["calendar"] != json2["calendar"]:
+        if _date_is_empty(json1) and _date_is_empty(json2):
+            # e.g. an empty text-only date and Date(): both mean "no date"
+            return False
+        elif json1["calendar"] != json2["calendar"]:
             return True
         elif json1["modifier"] != json2["modifier"]:
             return True

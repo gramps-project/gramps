@@ -71,6 +71,14 @@ class DiffDatesTest(unittest.TestCase):
             diff_dates(_dict(_text_date("spring")), _dict(_text_date("summer")))
         )
 
+    def test_empty_dates_are_equal(self):
+        # an empty entry parsed in the editors is an empty text-only date,
+        # while the XML importer creates Date() for a missing date
+        self.assertFalse(diff_dates(_dict(_text_date("")), _dict(_date())))
+
+    def test_empty_and_regular_date_differ(self):
+        self.assertTrue(diff_dates(_dict(_text_date("")), _dict(_date(1813))))
+
     def test_event_with_changed_date_is_different(self):
         event1 = Event()
         event1.set_date_object(_date(1697, 5, 14))
