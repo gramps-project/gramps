@@ -12,6 +12,7 @@
 # Kaj Arne Mikkelsen <kmi@vgdata.dk>, 2021, 2023, 2024, 2025, 2026.
 # Jørn Hansen <joernh@gmail.com>, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2025.
+# Kaj Arne Mikkelsen <kmikkels@users.noreply.hosted.weblate.org>, 2026.
 #
 # "Før reparationen udføres, forvis dig om at databasen virkelig
 # "ikke længere kan åbnes"
@@ -49,8 +50,9 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-28 14:40+0000\n"
-"Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
+"PO-Revision-Date: 2026-10-29 08:27+0000\n"
+"Last-Translator: Kaj Arne Mikkelsen "
+"<kmikkels@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
 "Language: da\n"
@@ -58,7 +60,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -11797,7 +11799,7 @@ msgstr "Kan ikke nå PyPI for pakken '%s:%s"
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
-msgstr "Intet kompatibelt wheel blev fundet for  '%s==%s' på denne platform."
+msgstr "Intet kompatibelt wheel blev fundet for '%s==%s' på denne platform."
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
@@ -17314,14 +17316,14 @@ msgstr "Løser FamilySearch tidsstempler…"
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
 msgstr[0] "Løser FamilySearch tidsstempel for %d person…"
-msgstr[1] "Løser FamilySearch tidsstempel for %d person…"
+msgstr[1] "Løser FamilySearch tidsstempler for %d person…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
 msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
 msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Løste %(count)d FamilySearch tidstempel i %(elapsed).1fs"
+msgstr[1] "Løste %(count)d FamilySearch tidstempler i %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
 msgid "Refreshing comparison status…"
@@ -17331,18 +17333,18 @@ msgstr "Genopfrisker sammenlignings status…"
 #, python-format
 msgid "Refreshing comparison status for %d person…"
 msgid_plural "Refreshing comparison status for %d people…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Opdaterer sammenligning status for %d person…"
+msgstr[1] "Opdaterer sammenligning status for %d personer…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:448
 #, python-format
 msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
-msgstr ""
+msgstr "  sammenligning for %(fsid)s tog %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:453
 #, python-format
 msgid "  …comparison status: %(done)d/%(total)d"
-msgstr ""
+msgstr "  ...sammenligningsstatus; %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:463
 #, python-format
@@ -17350,6 +17352,8 @@ msgid ""
 "Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
 "%(failed)d failed)"
 msgstr ""
+"Opdatering af sammenligningsstatus varede %(elapsed).1fs (%(compared)d "
+"sammenlignet, %(failed)d fejlede)"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
@@ -18238,10 +18242,8 @@ msgid "Editor person: (none)"
 msgstr "Redaktør: (ingen)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Only in FamilySearch"
 msgid "Open Person in FamilySearch"
-msgstr "Kun i FamilySearch"
+msgstr "Åbn person i FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:381
 msgid "Single Person Actions"
@@ -18325,10 +18327,8 @@ msgstr ""
 "Dan manglende personer på FamilySearch og link forhold (navn + fødsel/død)."
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Keep FamilySearch"
 msgid "Open FamilySearch.org"
-msgstr "Behold FamilySearch"
+msgstr "Åbn FamilySearch.org"
 
 #: ../gramps/gui/fs/tools_window.py:774
 #, python-format
@@ -21461,10 +21461,8 @@ msgid "Gramps was unable to install the required modules"
 msgstr "Gramps kunne ikke installere de krævede moduler"
 
 #: ../gramps/gui/plug/_windows.py:370
-#, fuzzy
-#| msgid "Module installation failed"
 msgid "Addon installation failed"
-msgstr "Installation af modul mislykkedes"
+msgstr "Installation af udvidelsesmodul mislykkedes"
 
 #: ../gramps/gui/plug/_windows.py:371
 #, python-format
