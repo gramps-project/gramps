@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-26 08:52+0000\n"
+"PO-Revision-Date: 2026-11-14 12:51+0000\n"
 "Last-Translator: Tian Shixiong <tiansworld@users.noreply.hosted.weblate.org>"
 "\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -36,7 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.11.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -17517,17 +17517,13 @@ msgid "Actions"
 msgstr "行动"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:342
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage Images…"
-msgstr "管理数据库"
+msgstr "管理图像…"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:382
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:384
-#, fuzzy
-#| msgid "Manage databases"
 msgid "Manage images"
-msgstr "管理数据库"
+msgstr "管理图像"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:390
 msgid "Add from source…"
@@ -17574,30 +17570,25 @@ msgstr ""
 "• 如果文件的新名称已存在，会添加数字后缀。"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:474
-#, fuzzy
-#| msgid "No map service is available."
 msgid "Image picker module is not available."
-msgstr "无可用的地图信息"
+msgstr "图像挑选模块不可用"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:481
-#, fuzzy
-#| msgid "Add Source"
 msgid "Add Source Image"
-msgstr "添加来源"
+msgstr "添加源图像"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:485
-#, fuzzy, python-brace-format
-#| msgid "Could not open file: %s"
+#, python-brace-format
 msgid ""
 "Could not open image picker:\n"
 "{e}"
-msgstr "无法打开文件: %s"
+msgstr ""
+"无法打开图像挑选程序:\n"
+"{e}"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:503
-#, fuzzy
-#| msgid "Close file first"
 msgid "Choose image file(s)"
-msgstr "先关闭文档"
+msgstr "选择图像文件"
 
 #: ../gramps/gui/fs/person/mixins/sources_dialog.py:509
 #: ../gramps/gui/glade/mergedata.glade:170
@@ -17717,10 +17708,8 @@ msgstr ""
 "FamilySearch 不变，不做删除操作。"
 
 #: ../gramps/gui/fs/sync_directions.py:865
-#, fuzzy
-#| msgid "Warning messages"
 msgid "Change message:"
-msgstr "警告信息"
+msgstr "修改消息："
 
 #: ../gramps/gui/fs/sync_directions.py:891
 msgid "Needs attention"
@@ -17735,10 +17724,8 @@ msgid "Action"
 msgstr "行动"
 
 #: ../gramps/gui/fs/sync_directions.py:995
-#, fuzzy
-#| msgid "Merge Family"
 msgid "Keep FamilySearch"
-msgstr "合并家庭"
+msgstr "保留 FamilySearch"
 
 #: ../gramps/gui/fs/sync_directions.py:999
 msgid "Choose whether to keep FamilySearch or push this Gramps value."
@@ -17879,38 +17866,28 @@ msgid "Include children"
 msgstr "包括子女"
 
 #: ../gramps/gui/fs/sync_directions.py:1538
-#, fuzzy
-#| msgid "person"
 msgid "(person)"
-msgstr "成员"
+msgstr "{person}"
 
 #: ../gramps/gui/fs/sync_directions.py:1557
-#, fuzzy
-#| msgid "the person"
 msgid "This person: "
-msgstr "人员"
+msgstr "此人员： "
 
 #: ../gramps/gui/fs/sync_directions.py:1585
-#, fuzzy
-#| msgid "Created by:"
 msgid "Create"
-msgstr "创建者："
+msgstr "创建："
 
 #: ../gramps/gui/fs/sync_directions.py:1591
-#, fuzzy
-#| msgid "Select an existing note"
 msgid "Select all missing"
-msgstr "选择一个现有的注释"
+msgstr "选择所有缺失部分"
 
 #: ../gramps/gui/fs/sync_directions.py:1658
 msgid "Please save this person first."
 msgstr "请先保存此人员信息。"
 
 #: ../gramps/gui/fs/sync_directions.py:1664
-#, fuzzy
-#| msgid "Deleting the person will remove the person from the database."
 msgid "Could not resolve this person from the database."
-msgstr "删除成员将会从数据库中移除."
+msgstr "无法在数据库中辨认此人。"
 
 #: ../gramps/gui/fs/sync_directions.py:1705
 msgid "FamilySearch: Export basic people"
@@ -17932,10 +17909,8 @@ msgid ""
 msgstr "导出完成：没有创建新人员；尝试过建立关系。"
 
 #: ../gramps/gui/fs/sync_directions.py:1878
-#, fuzzy
-#| msgid "No matching addons found."
 msgid "Nothing was exported."
-msgstr "未找到匹配的加载项。"
+msgstr "没有导出内容。"
 
 #: ../gramps/gui/fs/sync_directions.py:1882
 #, python-brace-format
@@ -17943,16 +17918,12 @@ msgid "FamilySearch export failed: {e}"
 msgstr "FamilySearch 导出失败：{e}"
 
 #: ../gramps/gui/fs/tools_window.py:332
-#, fuzzy
-#| msgid "Family To Do"
 msgid "FamilySearch Tools"
-msgstr "家庭待做事项"
+msgstr "FamilySearch 工具"
 
 #: ../gramps/gui/fs/tools_window.py:351 ../gramps/gui/fs/tools_window.py:761
-#, fuzzy
-#| msgid "Edit Person (%s)"
 msgid "Editor person: (none)"
-msgstr "编辑此人(%s)"
+msgstr "编辑人:(无)"
 
 #: ../gramps/gui/fs/tools_window.py:358
 msgid "Open Person in FamilySearch"
@@ -18008,16 +17979,12 @@ msgid "Tags..."
 msgstr "标签..."
 
 #: ../gramps/gui/fs/tools_window.py:538
-#, fuzzy
-#| msgid "Person Citations"
 msgid "Person actions"
-msgstr "人员引用"
+msgstr "人员动作"
 
 #: ../gramps/gui/fs/tools_window.py:548
-#, fuzzy
-#| msgid "Co_mpare"
 msgid "Compare"
-msgstr "对比(_M)"
+msgstr "比较"
 
 #: ../gramps/gui/fs/tools_window.py:553
 msgid "Sync from FamilySearch"
@@ -18046,9 +18013,9 @@ msgid "Open FamilySearch.org"
 msgstr "打开 FamilySearch.org"
 
 #: ../gramps/gui/fs/tools_window.py:774
-#, fuzzy, python-format
+#, python-format
 msgid "Editor person: %(name)s  [%(gid)s]"
-msgstr "%(father)s [%(gramps_id)s]"
+msgstr "编辑人：%(name)s  [%(gid)s]"
 
 #: ../gramps/gui/fs/tools_window.py:782
 #, fuzzy, python-format
@@ -20041,7 +20008,6 @@ msgid "Rule list"
 msgstr "规则列表"
 
 #: ../gramps/gui/glade/rule.glade:539
-#, fuzzy
 msgid "Definition"
 msgstr "定义"
 
@@ -22399,7 +22365,7 @@ msgstr "登录"
 
 #: ../gramps/gui/viewmanager.py:639
 msgid "User consent declined"
-msgstr ""
+msgstr "用户拒绝同意"
 
 #: ../gramps/gui/viewmanager.py:647
 msgid "Authorization error"
@@ -24351,7 +24317,6 @@ msgid "inter-box Y scale factor"
 msgstr "箱间Y比例因子"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1769
-#, fuzzy
 msgid "Make the inter-box Y bigger or smaller"
 msgstr "让方框间的枝叉线变大或变小"
 
@@ -28021,9 +27986,8 @@ msgid "Occupation place id"
 msgstr "就职地点 ID 编号"
 
 #: ../gramps/plugins/importer/importcsv.py:327
-#, fuzzy
 msgid "occupationsource"
-msgstr "职业"
+msgstr "职业来源"
 
 #: ../gramps/plugins/importer/importcsv.py:328
 #, fuzzy
@@ -28079,9 +28043,8 @@ msgid "attribute value"
 msgstr "属性值"
 
 #: ../gramps/plugins/importer/importcsv.py:354
-#, fuzzy
 msgid "attributesource"
-msgstr "属性"
+msgstr "属性来源"
 
 #: ../gramps/plugins/importer/importcsv.py:355
 msgid "attribute source"
@@ -29239,7 +29202,6 @@ msgid "Detail"
 msgstr "详细信息"
 
 #: ../gramps/plugins/lib/libgedcom.py:6336
-#, fuzzy
 msgid "Location already populated; ADDR ignored"
 msgstr "地点已居住；已忽略 ADDR"
 
@@ -29515,10 +29477,8 @@ msgid "Advanced Tags"
 msgstr "高级标签"
 
 #: ../gramps/plugins/lib/libmetadata.py:130
-#, fuzzy
-#| msgid "Edit Tags"
 msgid "Rights Tags"
-msgstr "编辑标签"
+msgstr "权利标签"
 
 #: ../gramps/plugins/lib/libmetadata.py:131
 msgid "Keyword Tags"
@@ -36190,6 +36150,12 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
+"您的家谱存在表单间的重复句柄。\n"
+" 这是有问题的，不过您可以通过\n"
+"备份家谱，然后将该备份导入到\n"
+"空白家谱中解决此问题。剩余的\n"
+"检查已跳过，检查及修复工具会\n"
+"对新家谱文件再次运行。"
 
 #: ../gramps/plugins/tool/check.py:212
 msgid "Check Integrity"

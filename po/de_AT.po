@@ -32,7 +32,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-19 15:51+0000\n"
+"PO-Revision-Date: 2026-11-19 05:13+0000\n"
 "Last-Translator: Christoph Eder <cedecode@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
 "project/gramps/de_AT/>\n"
@@ -41,7 +41,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.11.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -3386,7 +3386,7 @@ msgstr "Anzahl der Notizen"
 
 #: ../gramps/gen/db/generic.py:2713
 msgid "Number of tags"
-msgstr "Anzahl an Kennzeichen"
+msgstr "Anzahl der Markierungen"
 
 #: ../gramps/gen/db/generic.py:2714
 msgid "Schema version"
@@ -3907,15 +3907,15 @@ msgstr "Teilzeichenfolge:"
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 #: ../gramps/gui/editors/filtereditor.py:618
 msgid "Tag:"
-msgstr "Kennzeichen:"
+msgstr "Markierung:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
 msgid "Objects with notes with a specified tag."
-msgstr "Objekte mit Notizen mit einem bestimmten Kennzeichen."
+msgstr "Objekte mit Notizen mit einer bestimmten Markierung."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
 msgid "Matches notes with a specified tag"
-msgstr "Entspricht Notizen mit einem bestimmten Kennzeichen"
+msgstr "Entspricht Notizen mit einer bestimmten Markierung"
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -4150,12 +4150,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
 msgid "Citations with a note with the <tag>"
-msgstr "Fundstellen mit einer Notiz mit <Kennzeichen>"
+msgstr "Fundstellen mit einer Notiz mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
 msgid "Matches citations with a note with a specified tag"
-msgstr ""
-"Entspricht Fundstellen mit einer Notiz mit einem angegebenen Kennzeichen"
+msgstr "Entspricht Fundstellen mit einer Notiz mit einer angegebenen Markierung"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4278,11 +4277,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
 msgid "Citations with the <tag>"
-msgstr "Fundstellen mit dem <Kennzeichen>"
+msgstr "Fundstellen mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Matches citations with the particular tag"
-msgstr "Entspricht Fundstellen mit bestimmtem Kennzeichen"
+msgstr "Entspricht Fundstellen mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:46
 msgid "Citations matching the <filter>"
@@ -4524,12 +4523,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
 msgid "Events with a note with the <tag>"
-msgstr "Ereignisse mit einer Notiz mit <Kennzeichen>"
+msgstr "Ereignisse mit einer Notiz mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
 msgid "Matches events with a note with a specified tag"
-msgstr ""
-"Entspricht Ereignissen mit einer Notiz mit einem bestimmten Kennzeichen"
+msgstr "Entspricht Ereignissen mit einer Notiz mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4557,11 +4555,11 @@ msgstr "Entspricht Ereignissen mit einer bestimmten Anzahl verknüpfter Quellen"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:51
 msgid "Events with the <tag>"
-msgstr "Ereignisse mit dem <Kennzeichen>"
+msgstr "Ereignisse mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:52
 msgid "Matches events with the particular tag"
-msgstr "Entspricht Ereignissen mit einem bestimmten Kennzeichen"
+msgstr "Entspricht Ereignissen mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:56
 msgid "Events with the particular type"
@@ -4833,11 +4831,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
 msgid "Families with a note with the <tag>"
-msgstr "Familien mit einer Notiz mit < Kennzeichen >"
+msgstr "Familien mit einer Notiz mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
 msgid "Matches families with a note with a specified tag"
-msgstr "Entspricht Familien mit einer Notiz mit bestimmtem Kennzeichen"
+msgstr "Entspricht Familien mit einer Notiz mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -4890,11 +4888,11 @@ msgstr "Entspricht Familien, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:51
 msgid "Families with the <tag>"
-msgstr "Familien mit dem <Kennzeichen>"
+msgstr "Familien mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:52
 msgid "Matches families with the particular tag"
-msgstr "Entspricht Familien mit bestimmtem Kennzeichen"
+msgstr "Entspricht Familien mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:55
 msgid "Families with twins"
@@ -5149,11 +5147,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
 msgid "Media with a note with the <tag>"
-msgstr "Medien mit einer Notiz mit <Kennzeichen>"
+msgstr "Medien mit einer Notiz mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
 msgid "Matches media with a note with a specified tag"
-msgstr "Entspricht Medien mit einer Notiz mit bestimmtem Kennzeichen"
+msgstr "Entspricht Medien mit einer Notiz mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
 msgid "Media with a note of type <type>"
@@ -5191,11 +5189,11 @@ msgstr "Entspricht Medien, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:51
 msgid "Media objects with the <tag>"
-msgstr "Medienobjekte mit dem <Kennzeichen>"
+msgstr "Medienobjekte mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:52
 msgid "Matches media objects with the particular tag"
-msgstr "Entspricht Medienobjekten mit einem bestimmten Kennzeichen"
+msgstr "Entspricht Medienobjekten mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:45
 msgid "Media objects matching the <filter>"
@@ -5279,11 +5277,11 @@ msgstr "Entspricht Notizen mit einer bestimmten Anzahl an Referenzen"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:51
 msgid "Notes with the <tag>"
-msgstr "Notizen mit dem <Kennzeichen>"
+msgstr "Notizen mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:52
 msgid "Matches notes with the particular tag"
-msgstr "Entspricht Notizen mit bestimmtem Kennzeichen"
+msgstr "Entspricht Notizen mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:56
 msgid "Notes with the particular type"
@@ -5698,11 +5696,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
 msgid "People with a note with the <tag>"
-msgstr "Personen mit einer Notiz mit <Kennzeichen>"
+msgstr "Personen mit einer Notiz mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
 msgid "Matches people with a note with a specified tag"
-msgstr "Entspricht Personen mit einer Notiz mit bestimmtem Kennzeichen"
+msgstr "Entspricht Personen mit einer Notiz mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -5787,11 +5785,11 @@ msgstr "Entspricht Personen, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:51
 msgid "People with the <tag>"
-msgstr "Personen mit dem <Kennzeichen>"
+msgstr "Personen mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "Matches people with the particular tag"
-msgstr "Entspricht Personen mit bestimmtem Kennzeichen"
+msgstr "Entspricht Personen mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:64
 #: ../gramps/gui/editors/filtereditor.py:610
@@ -6388,11 +6386,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
 msgid "Places with a note with the <tag>"
-msgstr "Orte mit einer Notiz mit <Kennzeichen>"
+msgstr "Orte mit einer Notiz mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
 msgid "Matches places with a note with a specified tag"
-msgstr "Entspricht Orten mit einer Notiz mit bestimmtem Kennzeichen"
+msgstr "Entspricht Orten mit einer Notiz mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6462,11 +6460,11 @@ msgstr "Entspricht Orten, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:51
 msgid "Places with the <tag>"
-msgstr "Orte mit dem <Kennzeichen>"
+msgstr "Orte mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:52
 msgid "Matches places with the particular tag"
-msgstr "Entspricht Orten mit bestimmtem Kennzeichen"
+msgstr "Entspricht Orten mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:58
 msgid "Places matching a title"
@@ -6658,12 +6656,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
 msgid "Repositories with a note with the <tag>"
-msgstr "Aufbewahrungsorte mit einer Notiz mit <Kennzeichen>"
+msgstr "Aufbewahrungsorte mit einer Notiz mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
 msgid "Matches repositories with a note with a specified tag"
-msgstr ""
-"Entspricht Aufbewahrungsorten mit einer Notiz mit bestimmtem Kennzeichen"
+msgstr "Entspricht Aufbewahrungsorten mit einer Notiz mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
 msgid "Repositories with a note of type <type>"
@@ -6707,11 +6704,11 @@ msgstr "Entspricht Aufbewahrungsorten mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:51
 msgid "Repositories with the <tag>"
-msgstr "Aufbewahrungsorte mit dem <Kennzeichen>"
+msgstr "Aufbewahrungsorte mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:52
 msgid "Matches repositories with the particular tag"
-msgstr "Entspricht Aufbewahrungsorten mit bestimmtem Kennzeichen"
+msgstr "Entspricht Aufbewahrungsorten mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
 msgid "Repositories matching the <filter>"
@@ -6829,11 +6826,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
 msgid "Sources with a note with the <tag>"
-msgstr "Quellen mit einer Notiz mit <Kennzeichen>"
+msgstr "Quellen mit einer Notiz mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
 msgid "Matches sources with a note with a specified tag"
-msgstr "Entspricht Quellen mit einer Notiz mit bestimmtem Kennzeichen"
+msgstr "Entspricht Quellen mit einer Notiz mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6878,11 +6875,11 @@ msgstr "Entspricht Quellen mit gegebenen Parametern"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:51
 msgid "Sources with the <tag>"
-msgstr "Quellen mit dem <Kennzeichen>"
+msgstr "Quellen mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:52
 msgid "Matches sources with the particular tag"
-msgstr "Entspricht Quellen mit bestimmtem Kennzeichen"
+msgstr "Entspricht Quellen mit bestimmter Markierung"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:45
 msgid "Sources matching the <filter>"
@@ -7401,7 +7398,7 @@ msgid ""
 msgstr ""
 "Die Farben der FamilySearch-Status-Markierungen können in Gramps über "
 "Bearbeiten > Markierung > Markierungen organisieren angepasst werden. Diese "
-"Integration legt nur Standardfarben fest, wenn die Kennzeichen zum ersten "
+"Integration legt nur Standardfarben fest, wenn die Markierungen zum ersten "
 "Mal erstellt werden und überschreibt deine benutzerdefinierten Einstellungen "
 "nicht."
 
@@ -11094,7 +11091,7 @@ msgstr "Einfügen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:371
 msgid "Whether to include tags"
-msgstr "Ob Kennzeichen eingefügt werden sollen"
+msgstr "Ob Markierungen eingefügt werden sollen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:396
 msgid "Share an existing line"
@@ -12010,8 +12007,8 @@ msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
 msgstr ""
-"Die Daten können nur durch die Rückgängig-Funktion oder durch Abbrechen "
-"wiederhergestellt werden."
+"Die Daten können nur durch Rückgängigmachen wiederhergestellt oder die "
+"Änderungen durch Abbrechen verworfen werden."
 
 #: ../gramps/gen/utils/symbols.py:83 ../gramps/gui/editors/editfamily.py:1001
 #: ../gramps/plugins/graph/gvfamilylines.py:96
@@ -13579,19 +13576,18 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2585
 msgid "Tag Records"
-msgstr "Eintragsmarkierungen"
+msgstr "Einträge markieren"
 
 #: ../gramps/gui/configure.py:2607
 msgid "Add tag on import"
-msgstr "Kennzeichen beim Import hinzufügen"
+msgstr "Markierung beim Import hinzufügen"
 
 #: ../gramps/gui/configure.py:2614
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Das angegebene Kennzeichen wird beim Importieren allen Einträgen "
-"hinzugefügt.\n"
+"Die angegebene Markierung wird beim Import zu allen Einträgen hinzugefügt.\n"
 "Löschen um Standardwert festzulegen."
 
 #: ../gramps/gui/configure.py:2623
@@ -13782,7 +13778,7 @@ msgstr "Trennzeichen:"
 
 #: ../gramps/gui/dbloader.py:115 ../gramps/gui/plug/tool.py:123
 msgid "Undo history warning"
-msgstr "Warnung: Bearbeitungschronik"
+msgstr "Bearbeitungschronik-Warnung"
 
 #: ../gramps/gui/dbloader.py:117
 msgid ""
@@ -13793,9 +13789,9 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"Während des Importes wird die Bearbeitungschronik für diese Sitzung "
-"gelöscht. Das bedeutet, du kannst weder den Import noch die davor gemachten "
-"Änderungen rückgängig machen.\n"
+"Während des Importes wird die Bearbeitungschronik dieser Sitzung gelöscht. "
+"Das bedeutet, du kannst weder den Import noch die davor gemachten Änderungen "
+"rückgängig machen.\n"
 "\n"
 "Falls du den Import rückgängig machen möchtest, brich bitte hier ab und "
 "erstelle ein Backup von deiner Datenbank."
@@ -16305,7 +16301,7 @@ msgstr "Markierungauswahldialog"
 #: ../gramps/gui/editors/edittaglist.py:72
 #: ../gramps/gui/editors/edittaglist.py:130
 msgid "Tag selection"
-msgstr "Markierungen auswählen"
+msgstr "Auswahl markieren"
 
 #: ../gramps/gui/editors/editurl.py:47
 msgctxt "manual"
@@ -17244,7 +17240,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/actions.py:1660 ../gramps/gui/fs/actions.py:1661
 msgid "FamilySearch Tags"
-msgstr "FamilySearch-Kennzeichen"
+msgstr "FamilySearch-Markierungen"
 
 #: ../gramps/gui/fs/actions.py:1662
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1768
@@ -17257,14 +17253,14 @@ msgstr "Schließen"
 
 #: ../gramps/gui/fs/actions.py:1663
 msgid "Retag all (Linked/NotLinked)"
-msgstr "Alle mit neuen Kennzeichen versehen (verlinkt/nicht verlinkt)"
+msgstr "Umschreiben der Markierungen (verlinkt/nicht verlinkt)"
 
 #: ../gramps/gui/fs/actions.py:1675
 msgid ""
 "This will scan your whole tree and apply FS_Linked / FS_NotLinked tags.\n"
 "It does NOT change any person data."
 msgstr ""
-"Dadurch wird dein gesamter Stammbaum durchsucht und mit den Kennzeichen "
+"Dadurch wird dein gesamter Stammbaum durchsucht und mit den Markierungen "
 "\"FS_Linked\" bzw. \"FS_NotLinked\" versehen.\n"
 "Es werden KEINE Personendaten geändert."
 
@@ -17278,7 +17274,7 @@ msgid ""
 "Not linked: {not_linked}\n"
 "Changed: {changed}"
 msgstr ""
-"Versehen mit neuen Kennzeichen abgeschlossen.\n"
+"Umschreiben der Markierungen abgeschlossen.\n"
 "\n"
 "Gesamtzahl der Personen: {total}\n"
 "Verknüpft: {linked}\n"
@@ -17288,7 +17284,7 @@ msgstr ""
 #: ../gramps/gui/fs/actions.py:1705
 #, python-brace-format
 msgid "Retag failed: {e}"
-msgstr "Versehen mit neuen Kennzeichen fehlgeschlagen: {e}"
+msgstr "Umschreiben der Markierungen fehlgeschlagen: {e}"
 
 #: ../gramps/gui/fs/actions.py:1756
 msgid "FamilySearch: Update FSID after redirect"
@@ -18530,7 +18526,7 @@ msgstr ""
 
 #: ../gramps/gui/fs/tools_window.py:425
 msgid "Tags..."
-msgstr "Kennzeichen..."
+msgstr "Markierungen..."
 
 #: ../gramps/gui/fs/tools_window.py:538
 msgid "Person actions"
@@ -19197,7 +19193,7 @@ msgstr "Eine eindeutige ID zur Identifizierung der Fundstelle"
 #: ../gramps/gui/glade/editrepository.glade:235
 #: ../gramps/gui/glade/editsource.glade:230
 msgid "Tags:"
-msgstr "Markierung:"
+msgstr "Markierungen:"
 
 #: ../gramps/gui/glade/editdate.glade:137
 msgid "Calenda_r:"
@@ -19417,7 +19413,7 @@ msgstr "_Markierung:"
 #: ../gramps/gui/glade/editfamily.glade:778
 #: ../gramps/gui/widgets/monitoredwidgets.py:863
 msgid "Edit the tag list"
-msgstr "Kennzeichenliste bearbeiten"
+msgstr "Markierungenliste bearbeiten"
 
 #: ../gramps/gui/glade/editldsord.glade:177
 msgid "Ordinance:"
@@ -20361,7 +20357,7 @@ msgid ""
 "families will be combined."
 msgstr ""
 "Ereignisse, HLT-_Verordnungen, Medienobjekte, Attribute, Notizen, Quellen "
-"und Kennzeichen von beiden Familien werden kombiniert."
+"und Markierungen von beiden Familien werden kombiniert."
 
 #: ../gramps/gui/glade/mergemedia.glade:94
 msgid ""
@@ -20382,7 +20378,7 @@ msgstr "Objekt 2"
 #: ../gramps/gui/glade/mergemedia.glade:443
 msgid "Attributes, sources, notes and tags of both objects will be combined."
 msgstr ""
-"Attribute, Quellen, Notizen und Kennzeichen von beiden Objekte werden "
+"Attribute, Quellen, Notizen und Markierungen von beiden Objekte werden "
 "kombiniert."
 
 #: ../gramps/gui/glade/mergenote.glade:94
@@ -20436,7 +20432,7 @@ msgid ""
 "of both persons will be combined."
 msgstr ""
 "Ereignisse, Medienobjekte, Adressen, Attribute, URLs, Notizen, Quellen und "
-"Kennzeichen von beiden Personen werden kombiniert."
+"Markierungen von beiden Personen werden kombiniert."
 
 #: ../gramps/gui/glade/mergeperson.glade:490
 msgid "Context Information"
@@ -20779,7 +20775,7 @@ msgstr "_Abstand:"
 
 #: ../gramps/gui/glade/styleeditor.glade:937
 msgid "Indentation"
-msgstr "Markierung"
+msgstr "Einrückung"
 
 #: ../gramps/gui/glade/styleeditor.glade:966
 msgid "_Left"
@@ -23016,7 +23012,7 @@ msgstr "Bestätigung zum Löschen"
 
 #: ../gramps/gui/undohistory.py:196
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "Willst du wirklich die Bearbeitungschronik leeren?"
+msgstr "Willst du wirklich die Bearbeitungschronik löschen?"
 
 #: ../gramps/gui/undohistory.py:197 ../gramps/plugins/gramplet/eval.py:83
 msgid "Clear"
@@ -23028,7 +23024,7 @@ msgstr "Datenbank geöffnet"
 
 #: ../gramps/gui/undohistory.py:237
 msgid "History cleared"
-msgstr "Historie gelöscht"
+msgstr "Chronik gelöscht"
 
 #: ../gramps/gui/utils.py:318
 msgid "Canceling..."
@@ -23483,12 +23479,12 @@ msgstr "Neue_Markierung_Dialog"
 #: ../gramps/gui/views/tags.py:258
 #, python-format
 msgid "Add tag '%s'"
-msgstr "Kennzeichen '%s' hinzufügen"
+msgstr "Markierung '%s' hinzufügen"
 
 #: ../gramps/gui/views/tags.py:266
 #, python-format
 msgid "Remove tag '%s'"
-msgstr "Kennzeichen '%s' entfernen"
+msgstr "Markierung '%s' entfernen"
 
 #: ../gramps/gui/views/tags.py:329
 msgid "Adding Tags"
@@ -23497,11 +23493,11 @@ msgstr "Markierungen hinzufügen"
 #: ../gramps/gui/views/tags.py:335 ../gramps/gui/views/tags.py:362
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "Markierungenauswahl (%s)"
+msgstr "Markierungsauswahl (%s)"
 
 #: ../gramps/gui/views/tags.py:356 ../gramps/gui/views/tags.py:601
 msgid "Removing Tags"
-msgstr "Entferne Markierung"
+msgstr "Entferne Markierungen"
 
 #: ../gramps/gui/views/tags.py:395 ../gramps/gui/views/tags.py:405
 #: ../gramps/gui/views/tags.py:471
@@ -23515,14 +23511,14 @@ msgstr "Ändere die Priorität der Markierung"
 #: ../gramps/gui/views/tags.py:566
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Kennzeichen '%s' entfernen?"
+msgstr "Markierung '%s' entfernen?"
 
 #: ../gramps/gui/views/tags.py:568
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Die Kennzeichendefinition wird entfernt. Das Kennzeichen wird auch aus allen "
+"Die Markierungsdefinition wird entfernt. Die Markierung wird auch aus allen "
 "Objekten in der Datenbank entfernt."
 
 #: ../gramps/gui/views/tags.py:607
@@ -23541,11 +23537,11 @@ msgstr "Neue Markierung"
 
 #: ../gramps/gui/views/tags.py:685
 msgid "Cannot save tag"
-msgstr "Kann Kennzeichen nicht speichern"
+msgstr "Kann Markierung nicht speichern"
 
 #: ../gramps/gui/views/tags.py:686
 msgid "The tag name cannot be empty"
-msgstr "Der Name des Kennzeichens darf nicht leer sein"
+msgstr "Der Name der Markierung darf nicht leer sein"
 
 #: ../gramps/gui/views/tags.py:692
 #, python-format
@@ -23619,7 +23615,7 @@ msgstr "Geschwister"
 #: ../gramps/gui/widgets/fanchart.py:2274
 #: ../gramps/plugins/view/pedigreeview.py:2053
 msgid "Related"
-msgstr "Verknüpft"
+msgstr "Verwandt"
 
 #: ../gramps/gui/widgets/fanchart.py:2321
 msgid "Add partner to person"
@@ -24908,7 +24904,7 @@ msgstr "Tagesnummern laut Kalender"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:784
 msgid "Daily text display"
-msgstr "Tagestext Anzeige"
+msgstr "Tagestextanzeige"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:786
 msgid "Holiday text display"
@@ -24916,7 +24912,7 @@ msgstr "Textanzeige von Feiertagen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:791
 msgid "Days of the week text"
-msgstr "Text der Wochentage"
+msgstr "Wochentagstext"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:798
 #: ../gramps/plugins/textreport/birthdayreport.py:765
@@ -26090,7 +26086,7 @@ msgstr "_Aktiviere %s"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:69
 msgid "Double-click a day for details"
-msgstr "Doppelklick auf Tag um Details anzuzeigen"
+msgstr "Doppelklick auf Tag um Details"
 
 #: ../gramps/plugins/gramplet/children.py:98
 #: ../gramps/plugins/gramplet/children.py:209
@@ -28746,7 +28742,7 @@ msgstr "Spitz_name"
 
 #: ../gramps/plugins/importer/importcsv.py:229
 msgid "tag"
-msgstr "Kennzeichen"
+msgstr "Markierung"
 
 #: ../gramps/plugins/importer/importcsv.py:230
 msgid "title"
@@ -29394,11 +29390,11 @@ msgid ""
 "all object tags."
 msgstr ""
 "Aktiviere/Deaktiviere\n"
-"alle Objektkennzeichen."
+"alle Objektmarkierungen."
 
 #: ../gramps/plugins/importer/importprogen.glade:1135
 msgid "Tag Text"
-msgstr "Markierung Text"
+msgstr "Markierungstext"
 
 #: ../gramps/plugins/importer/importprogen.glade:1154
 msgid "Import Objects"
@@ -29999,7 +29995,7 @@ msgstr "Die Zeile wurde ignoriert, da sie nicht verstanden wurde"
 
 #: ../gramps/plugins/lib/libgedcom.py:3498
 msgid "Tag recognized but not supported"
-msgstr "Die Markierung wurde zwar erkannt, wird aber nicht unterstützt"
+msgstr "Markierung erkannt, aber nicht unterstützt"
 
 #: ../gramps/plugins/lib/libgedcom.py:3534
 msgid "Skipped subordinate line"
@@ -30087,7 +30083,7 @@ msgstr "GEDCOM Daten"
 
 #: ../gramps/plugins/lib/libgedcom.py:4046
 msgid "Unknown tag"
-msgstr "Unbekanntes Kennzeichen"
+msgstr "Unbekannte Markierung"
 
 #: ../gramps/plugins/lib/libgedcom.py:4048
 #: ../gramps/plugins/lib/libgedcom.py:4062
@@ -35687,11 +35683,11 @@ msgstr "Ob nach dem Namen ein Zeilenumbruch folgen sollte."
 #: ../gramps/plugins/textreport/birthdayreport.py:299
 #: ../gramps/plugins/textreport/textplugins.gpr.py:61
 msgid "Birthday and Anniversary Report"
-msgstr "Geburtstage- und Jahrestagebericht"
+msgstr "Geburtstags- und Jahrestagebericht"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:82
 msgid "My Birthday Report"
-msgstr "Mein Geburtstagebericht"
+msgstr "Mein Geburtstagsbericht"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:84
 msgid "✝"
@@ -36612,7 +36608,7 @@ msgstr "Markierungen einfügen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1183
 msgid "Whether to include tags."
-msgstr "Ob Kennzeichen eingefügt werden."
+msgstr "Ob Markierungen eingefügt werden."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1186
 msgid "Include Attributes"
@@ -37041,17 +37037,17 @@ msgstr "Der Stil, der für Überschriften der 3. Ebene verwendet wird."
 #: ../gramps/plugins/textreport/tagreport.py:113
 #: ../gramps/plugins/textreport/textplugins.gpr.py:271
 msgid "Tag Report"
-msgstr "Kennzeichenbericht"
+msgstr "Markierungsbericht"
 
 #: ../gramps/plugins/textreport/tagreport.py:114
 msgid "You must first create a tag before running this report."
 msgstr ""
-"Du musst ein Kennzeichen erstellen, bevor du diesen Bericht ausführen kannst."
+"Du musst eine Markierung erstellen, bevor du diesen Bericht ausführen kannst."
 
 #: ../gramps/plugins/textreport/tagreport.py:124
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Kennzeichenbericht für %s Objekte"
+msgstr "Markierungsbericht für %s Objekte"
 
 #: ../gramps/plugins/textreport/tagreport.py:680
 msgid "Email Address"
@@ -37064,7 +37060,7 @@ msgstr "Publikationsdaten"
 
 #: ../gramps/plugins/textreport/tagreport.py:926
 msgid "The tag to use for the report"
-msgstr "Kennzeichen, das für den Bericht verwendet wird"
+msgstr "Die Markierung, die für den Bericht verwendet wird"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:38
 msgid "Ahnentafel Report"
@@ -37138,7 +37134,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:272
 msgid "Produces a list of people with a specified tag"
-msgstr "Erzeugt eine Liste von Personen mit einem festgelegten Kennzeichen"
+msgstr "Erzeugt eine Liste von Personen mit einer festgelegten Markierung"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:295
 msgid "Number of Ancestors Report"
@@ -37255,9 +37251,9 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"Dieses Werkzeug benennt alle Ereignisse einer Art in eine andere Art um. Die "
-"Umbenennung kann nicht mit der normalen Rückgängig-Funktion rückgängig "
-"gemacht werden."
+"Dieses Werkzeug benennt alle Ereignisse einer Art in eine andere Art um. "
+"Diese Umbenennung kann nicht mehr mit der normalen Rückgängig-Funktion "
+"rückgängig gemacht werden."
 
 #: ../gramps/plugins/tool/changetypes.glade:110
 msgid "Original event type:"
@@ -37479,7 +37475,7 @@ msgstr "Aktualisiere Prüfsummen der Medien"
 
 #: ../gramps/plugins/tool/check.py:2163
 msgid "Looking for tag reference problems"
-msgstr "Suche nach Problemen mit Kennzeichenreferenzen"
+msgstr "Suche nach Markierungsreferenzproblemen"
 
 #: ../gramps/plugins/tool/check.py:2307
 msgid "Looking for media source reference problems"
@@ -37693,10 +37689,9 @@ msgstr[1] "{quantity} Notizobjekte wurden referenziert, aber nicht gefunden\n"
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] ""
-"{quantity} Kennzeichenobjekt wurde referenziert, aber nicht gefunden\n"
+msgstr[0] "{quantity} Markierungsobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
-"{quantity} Kennzeichenobjekte wurden referenziert, aber nicht gefunden\n"
+"{quantity} Markierungsobjekte wurden referenziert, aber nicht gefunden\n"
 
 #: ../gramps/plugins/tool/check.py:3102
 #, python-brace-format
@@ -38266,7 +38261,7 @@ msgstr[1] "{number_of} Fundstellen zusammengeführt"
 
 #: ../gramps/plugins/tool/notrelated.glade:159
 msgid "_Tag"
-msgstr "Marke"
+msgstr "Markierung"
 
 #: ../gramps/plugins/tool/notrelated.py:60
 msgctxt "manual"
@@ -38291,8 +38286,8 @@ msgstr "Jeder in der Datenbank ist verwandt mit %s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "Setze Kennzeichen für {number_of} Person"
-msgstr[1] "Setze Kennzeichen für {number_of} Personen"
+msgstr[0] "Setze Markierung für {number_of} Person"
+msgstr[1] "Setze Markierung für {number_of} Personen"
 
 #: ../gramps/plugins/tool/notrelated.py:302
 #, python-brace-format
@@ -39856,7 +39851,7 @@ msgid ""
 "use filtering."
 msgstr ""
 "Klicke rechts auf die Karte und wähle 'Alle Ereignisse anzeigen', um alle "
-"bekannten Ereignisse mit Koordinaten zu zeigen. Du kannst den Verlauf "
+"bekannten Ereignisse mit Koordinaten zu zeigen. Du kannst die Chronik "
 "verwenden um auf der Karte zu navigieren. Du kannst Filter verwenden."
 
 #: ../gramps/plugins/view/geoevents.py:426
@@ -40178,7 +40173,7 @@ msgid ""
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
 "Klicke rechts auf die Karte und wähle 'Alle Orte anzeigen' aus um alle "
-"bekannten Orte mit Koordinaten anzuzeigen. Du kannst den Verlauf verwenden, "
+"bekannten Orte mit Koordinaten anzuzeigen. Du kannst die Chronik verwenden, "
 "um auf der Karte zu navigieren. Du kannst die Farbe der Markierungen je nach "
 "Ortsart ändern. Du kannst Filter verwenden."
 
@@ -40373,7 +40368,7 @@ msgstr "Unbekannte Personen anzeigen"
 
 #: ../gramps/plugins/view/pedigreeview.py:2249
 msgid "Show tags"
-msgstr "Kennzeichen anzeigen"
+msgstr "Markierungen anzeigen"
 
 #: ../gramps/plugins/view/pedigreeview.py:2253
 msgid "Tree style"
@@ -41174,7 +41169,7 @@ msgstr "Nachname"
 #: ../gramps/plugins/webreport/heatmap.py:460
 msgid "The next section contains an index of all the tags for an Heatmap map."
 msgstr ""
-"Der nächste Abschnitt enthält ein Register aller Kennzeichen für eine "
+"Der nächste Abschnitt enthält ein Register aller Markierungen für eine "
 "Heatmap-Karte."
 
 #: ../gramps/plugins/webreport/heatmap.py:614
@@ -41207,8 +41202,8 @@ msgid ""
 "This section contains the map for all people, events with the tag: {tag} "
 "({selected_filter})"
 msgstr ""
-"Dieser Abschnitt enthält die Karte für alle Personen und Ereignisse mit dem "
-"Kennzeichen: {tag} ({selected_filter})"
+"Dieser Abschnitt enthält die Karte für alle Personen und Ereignisse mit der "
+"Markierung: {tag} ({selected_filter})"
 
 #: ../gramps/plugins/webreport/home.py:81
 msgid "Home"
@@ -42170,7 +42165,7 @@ msgstr "Max. Tage für Änderungen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2845
 msgid "You want to see the last updates on how many days?"
-msgstr "Wieviele Tage soll die Liste der letzten Änderungen zurückgehen?"
+msgstr "Du willst die letzten Änderungen für wie viele Tage sehen?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2850
 msgid "Max number of updates per object to show"
@@ -42256,7 +42251,7 @@ msgstr "Ob ein Kalender für das Jahr %s eingefügt wird"
 #: ../gramps/plugins/webreport/narrativeweb.py:3176
 #: ../gramps/plugins/webreport/webcal.py:2056
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Erstelle Ereignisseiten pro Tag für den Jahresüberblickkalender"
+msgstr "Erstelle Ereignisseiten pro Tag für den Jahresüberblickskalender"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3178
 #: ../gramps/plugins/webreport/webcal.py:2058

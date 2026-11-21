@@ -19,13 +19,15 @@
 # RiseT <twilite505-4bf24909@yahoo.com>, 2022.
 # Oliver Lehmann <lehmann@ans-netz.de>, 2023.
 # Christoph Eder <christoph.eder@phsalzburg.at>, 2024.
+# Mirko Leonhäuser <leonhaeuser@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-14 07:51+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"PO-Revision-Date: 2026-11-21 03:06+0000\n"
+"Last-Translator: Mirko Leonhäuser "
+"<leonhaeuser@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -33,7 +35,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7176,7 +7178,7 @@ msgstr "Mutter"
 #: ../gramps/plugins/textreport/familygroup.py:580
 #: ../gramps/plugins/view/relview.py:1651
 msgid "Spouse"
-msgstr "Partner(in)"
+msgstr "Eheartner(in)"
 
 #: ../gramps/gen/fs/compare/comparators.py:977
 #: ../gramps/gen/fs/compare/comparators.py:1021
@@ -8211,7 +8213,7 @@ msgstr "um"
 
 #: ../gramps/gen/lib/date.py:2067
 msgid "range"
-msgstr "Bereich"
+msgstr "Zeitraum"
 
 #: ../gramps/gen/lib/date.py:2068
 msgid "from"
@@ -11333,7 +11335,7 @@ msgstr "Ehefrau"
 #: ../gramps/gen/relationship.py:2470
 msgctxt "gender unknown"
 msgid "spouse"
-msgstr "Partner(in)"
+msgstr "Eheartner(in)"
 
 #: ../gramps/gen/relationship.py:2473
 msgid "ex-husband"
@@ -11351,7 +11353,7 @@ msgstr "Ex-Partner(in)"
 #: ../gramps/gen/relationship.py:2480
 msgctxt "male,unmarried"
 msgid "partner"
-msgstr "Partner"
+msgstr "Partner(in)"
 
 #: ../gramps/gen/relationship.py:2482
 msgctxt "female,unmarried"
@@ -11411,7 +11413,7 @@ msgstr "ehemalige(r) eingetragene(r) Lebenspartner(in)"
 #: ../gramps/gen/relationship.py:2508
 msgctxt "male,unknown relation"
 msgid "partner"
-msgstr "Partner"
+msgstr "Partner(in)"
 
 #: ../gramps/gen/relationship.py:2510
 msgctxt "female,unknown relation"
@@ -15341,7 +15343,7 @@ msgstr "Um"
 
 #: ../gramps/gui/editors/editdate.py:80
 msgid "Range"
-msgstr "Bereich"
+msgstr "Zeitraum"
 
 #: ../gramps/gui/editors/editdate.py:81
 msgid "From"
