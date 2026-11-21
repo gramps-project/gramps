@@ -33,13 +33,14 @@
 # Артур <atter192837@gmail.com>, 2026.
 # Vadim Barsukov <vadbars@gmail.com>, 2026.
 # Dubrovsky <techxplorer@atomicmail.io>, 2026.
+# mr-GreyWolf <mr-greywolf@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-08-01 09:01+0000\n"
-"Last-Translator: Dubrovsky <techxplorer@atomicmail.io>\n"
+"PO-Revision-Date: 2026-11-02 08:51+0000\n"
+"Last-Translator: mr-GreyWolf <mr-greywolf@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -48,7 +49,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -35736,7 +35737,7 @@ msgstr "Следует ли после имени делать переход н
 #: ../gramps/plugins/textreport/birthdayreport.py:299
 #: ../gramps/plugins/textreport/textplugins.gpr.py:61
 msgid "Birthday and Anniversary Report"
-msgstr "Отчёт Дни рождения и Годовщины"
+msgstr "Дни рождения и годовщины"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:82
 msgid "My Birthday Report"
@@ -37139,7 +37140,7 @@ msgstr "Добавляет указанный пользователем тек�
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:107
 msgid "Descendant Report"
-msgstr "Отчёт Потомки"
+msgstr "Потомки"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:108
 msgid "Produces a list of descendants of the active person"
