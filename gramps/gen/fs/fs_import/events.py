@@ -19,38 +19,81 @@
 
 from __future__ import annotations
 
+# ------------------------
+# Python modules
+# ------------------------
+from typing import Any
 from urllib.parse import unquote
 
-from gramps.gen.lib import Event, Attribute
+# ------------------------
+# Gramps modules
+# ------------------------
+from gramps.gen.db import DbTxn
+from gramps.gen.db.base import DbWriteBase
+from gramps.gen.lib import Event, Attribute, Date, Family, Person
+from gramps.gen.types import PlaceHandle
 
-from . import _
-from .places import get_place_by_id, add_place
-from .notes import add_note
 from gramps.gen.fs.utils import fs_date_to_gramps_date, get_fsftid
 from gramps.gen.fs.constants import GEDCOMX_TO_GRAMPS_FACTS
 
+# ------------------------
+# Gramps specific
+# ------------------------
+from .places import get_place_by_id, add_place
+from .notes import add_note
 
-def update_event(db, txn, fs_fact, gr_event):
-    # Update a Gramps Event from a FS fact (place/date/description). Commits event
+
+def update_event(db: DbWriteBase, txn: DbTxn, fs_fact: Any, gr_event: Event) -> None:
+    """
+    Apply the imported date, place and description to an existing event.
+
+    :param db: The destination database.
+    :param txn: The active import transaction.
+    :param fs_fact: The downloaded FamilySearch fact.
+    :param gr_event: The native event to update.
+    """
+    place_handle: PlaceHandle | None = None
     if fs_fact.place:
-        if not hasattr(fs_fact.place, "normalized"):
-            print("place not normalized: " + fs_fact.place.original)
         gr_place = get_place_by_id(db, fs_fact.place)
-        if gr_place:
-            gr_handle = gr_place.handle
-        else:
-            add_place(db, txn, fs_fact.place)
-            gr_handle = fs_fact.place._handle
-        gr_event.set_place_handle(gr_handle)
+        if gr_place is None:
+            gr_place = add_place(db, txn, fs_fact.place)
+        if gr_place is not None:
+            place_handle = gr_place.handle
 
     gr_date = fs_date_to_gramps_date(fs_fact.date)
-    if gr_date:
+    before = gr_event.serialize()
+    if gr_date is not None:
         gr_event.set_date_object(gr_date)
+    elif fs_fact.date is None or not (
+        fs_fact.date.original or fs_fact.date.formal or fs_fact.date.normalized
+    ):
+        gr_event.set_date_object(Date())
+    if (
+        place_handle is not None
+        or fs_fact.place is None
+        or not (
+            fs_fact.place.original
+            or fs_fact.place.description
+            or fs_fact.place.normalized
+            or getattr(fs_fact.place, "id", None)
+        )
+    ):
+        gr_event.set_place_handle(place_handle or PlaceHandle(""))
     gr_event.set_description(fs_fact.value or "")
-    db.commit_event(gr_event, txn)
+    if gr_event.serialize() != before:
+        db.commit_event(gr_event, txn)
 
 
-def add_event(db, txn, fs_fact, obj):
+def add_event(db: DbWriteBase, txn: DbTxn, fs_fact: Any, obj: Person | Family) -> Event:
+    """
+    Import a fact, updating date, place and description on its linked event.
+
+    :param db: The destination database.
+    :param txn: The active import transaction.
+    :param fs_fact: The downloaded FamilySearch fact.
+    :param obj: The person or family receiving the event.
+    :returns: The existing or newly imported event.
+    """
     evt_type = GEDCOMX_TO_GRAMPS_FACTS.get(unquote(fs_fact.type))
     if not evt_type:
         if fs_fact.type[:6] == "data:,":
@@ -58,7 +101,14 @@ def add_event(db, txn, fs_fact, obj):
         else:
             evt_type = fs_fact.type
 
-    place_handle = None
+    # Match by FSFTID before creating another event.
+    for er in obj.event_ref_list:
+        event = db.get_event_from_handle(er.ref)
+        if fs_fact.id and get_fsftid(event) == fs_fact.id:
+            update_event(db, txn, fs_fact, event)
+            return event
+
+    place_handle: PlaceHandle | None = None
     if fs_fact.place:
         if not hasattr(fs_fact.place, "normalized"):
             print("place not normalized: " + fs_fact.place.original)
@@ -72,12 +122,6 @@ def add_event(db, txn, fs_fact, obj):
 
     fs_desc = fs_fact.value or ""
     gr_date = fs_date_to_gramps_date(fs_fact.date)
-
-    # match by FSFTID first
-    for er in obj.event_ref_list:
-        e = db.get_event_from_handle(er.ref)
-        if get_fsftid(e) == fs_fact.id:
-            return e
 
     for er in obj.event_ref_list:
         e = db.get_event_from_handle(er.ref)
