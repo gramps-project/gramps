@@ -33,6 +33,7 @@
 # -------------------------------------------------------------------------
 import os
 import time
+from functools import lru_cache
 
 # -------------------------------------------------------------------------
 #
@@ -258,6 +259,17 @@ class GedcomWriter(UpdateCallback):
         self.gedcom_file = None
         self.progress_cnt = 0
         self.setup(option_box)
+        # handle -> gramps_id of the people that are exported (filled by
+        # _individuals), so that families do not have to reload whole
+        # Person objects just to read their ID
+        self._person_ids = {}
+        # a place (and its displayed name) is shared by many events
+        self._place_names = {}
+        self._place_undated = {}
+        self._get_place = lru_cache(maxsize=20_000)(self.dbase.get_place_from_handle)
+        # families are read several times per export (as spouse family, as
+        # parent family, in _adoption_records...)
+        self._get_family = lru_cache(maxsize=20_000)(self.dbase.get_family_from_handle)
 
     def setup(self, option_box):
         """
@@ -276,11 +288,16 @@ class GedcomWriter(UpdateCallback):
 
         self.dirname = os.path.dirname(filename)
         with open(filename, "w", encoding="utf-8") as self.gedcom_file:
-            person_len = self.dbase.get_number_of_people()
-            family_len = self.dbase.get_number_of_families()
-            source_len = self.dbase.get_number_of_sources()
-            repo_len = self.dbase.get_number_of_repositories()
-            note_len = self.dbase.get_number_of_notes() / NOTES_PER_PERSON
+            # These counts only feed the progress bar. Through a proxy
+            # database they load every object to apply the filter, so ask the
+            # real database (the bar may then stop a bit short of 100% if
+            # some objects are filtered out).
+            counter = getattr(self.dbase, "basedb", self.dbase)
+            person_len = counter.get_number_of_people()
+            family_len = counter.get_number_of_families()
+            source_len = counter.get_number_of_sources()
+            repo_len = counter.get_number_of_repositories()
+            note_len = counter.get_number_of_notes() / NOTES_PER_PERSON
 
             total_steps = person_len + family_len + source_len + repo_len + note_len
             self.set_total(total_steps)
@@ -436,14 +453,13 @@ class GedcomWriter(UpdateCallback):
 
         """
         self.set_text(_("Writing individuals"))
-        phandles = self.dbase.iter_person_handles()
-
+        # iter_people() gives the (unsanitized) objects of the visible people
+        # without going through the proxy sanitizers, which is much cheaper
         sorted_list = []
-        for handle in phandles:
-            person = self.dbase.get_person_from_handle(handle)
-            if person:
-                data = (person.get_gramps_id(), handle)
-                sorted_list.append(data)
+        for person in self.dbase.iter_people():
+            gid = person.get_gramps_id()
+            self._person_ids[person.handle] = gid
+            sorted_list.append((gid, person.handle))
         sorted_list.sort()
 
         for data in sorted_list:
@@ -661,8 +677,7 @@ class GedcomWriter(UpdateCallback):
         adoptions = []
 
         for family in [
-            self.dbase.get_family_from_handle(fh)
-            for fh in person.get_parent_family_handle_list()
+            self._get_family(fh) for fh in person.get_parent_family_handle_list()
         ]:
             if family is None:
                 continue
@@ -771,8 +786,7 @@ class GedcomWriter(UpdateCallback):
 
         # get the list of familes from the handle list
         family_list = [
-            self.dbase.get_family_from_handle(hndl)
-            for hndl in person.get_parent_family_handle_list()
+            self._get_family(hndl) for hndl in person.get_parent_family_handle_list()
         ]
 
         for family in family_list:
@@ -826,8 +840,7 @@ class GedcomWriter(UpdateCallback):
 
         # get the list of familes from the handle list
         family_list = [
-            self.dbase.get_family_from_handle(hndl)
-            for hndl in person.get_family_handle_list()
+            self._get_family(hndl) for hndl in person.get_family_handle_list()
         ]
 
         for family in family_list:
@@ -881,15 +894,16 @@ class GedcomWriter(UpdateCallback):
         # generate a list of (GRAMPS_ID, HANDLE) pairs. This list
         # can then be sorted by the sort routine, which will use the
         # first value of the tuple as the sort key.
-        sorted_list = sort_handles_by_id(
-            self.dbase.get_family_handles(), self.dbase.get_family_from_handle
+        sorted_list = sorted(
+            (family.get_gramps_id(), family.handle)
+            for family in self.dbase.iter_families()
         )
 
         # loop through the sorted list, pulling of the handle. This list
         # has already been sorted by GRAMPS_ID
         for family_handle in [hndl[1] for hndl in sorted_list]:
             self.update()
-            self._family(self.dbase.get_family_from_handle(family_handle))
+            self._family(self._get_family(family_handle))
 
     def _family(self, family):
         """
@@ -922,14 +936,21 @@ class GedcomWriter(UpdateCallback):
         self._note_references(family.get_note_list(), 1)
         self._change(family.get_change_time(), 1)
 
+    def _person_gramps_id(self, handle):
+        """
+        Return the Gramps ID of an exported person, or None if the person
+        is not visible (private, filtered...).
+        """
+        if self._person_ids:
+            return self._person_ids.get(handle)
+        person = self.dbase.get_person_from_handle(handle)
+        return person.get_gramps_id() if person else None
+
     def _family_child_list(self, child_ref_list):
         """
         Write the child XREF values to the GEDCOM file.
         """
-        child_list = [
-            self.dbase.get_person_from_handle(cref.ref).get_gramps_id()
-            for cref in child_ref_list
-        ]
+        child_list = [self._person_gramps_id(cref.ref) for cref in child_ref_list]
 
         for gid in child_list:
             if gid is None:
@@ -945,9 +966,9 @@ class GedcomWriter(UpdateCallback):
 
         """
         if person_handle:
-            person = self.dbase.get_person_from_handle(person_handle)
-            if person:
-                self._writeln(1, token, "@%s@" % person.get_gramps_id())
+            gid = self._person_gramps_id(person_handle)
+            if gid:
+                self._writeln(1, token, "@%s@" % gid)
 
     def _family_events(self, family):
         """
@@ -1241,7 +1262,7 @@ class GedcomWriter(UpdateCallback):
         place = None
 
         if event.get_place_handle():
-            place = self.dbase.get_place_from_handle(event.get_place_handle())
+            place = self._get_place(event.get_place_handle())
             self._place(place, dateobj, 2)
 
         for attr in event.get_attribute_list():
@@ -1576,6 +1597,29 @@ class GedcomWriter(UpdateCallback):
         self._source_references(media.get_citation_list(), 1)
         self._change(media.get_change_time(), 1)
 
+    def _place_is_undated(self, place):
+        """
+        True if neither the place nor any place above it has a dated name or
+        a dated reference to its enclosing place.
+        """
+        stack = [place]
+        seen = set()
+        while stack:
+            current = stack.pop()
+            if current.handle in seen:
+                continue
+            seen.add(current.handle)
+            for name in current.get_all_names():
+                if not name.get_date_object().is_empty():
+                    return False
+            for placeref in current.get_placeref_list():
+                if not placeref.get_date_object().is_empty():
+                    return False
+                parent = self._get_place(placeref.ref)
+                if parent is not None:
+                    stack.append(parent)
+        return True
+
     def _place(self, place, dateobj, level):
         """
         PLACE_STRUCTURE:=
@@ -1592,7 +1636,19 @@ class GedcomWriter(UpdateCallback):
         """
         if place is None:
             return
-        place_name = _pd.display(self.dbase, place, dateobj)
+        # The displayed name only depends on the date when the place, or a
+        # place above it, has a dated name or a dated link to the place that
+        # encloses it (see gramps.gen.utils.location.get_location_list).
+        handle = place.handle
+        undated = self._place_undated.get(handle)
+        if undated is None:
+            undated = self._place_is_undated(place)
+            self._place_undated[handle] = undated
+        key = (handle, None if undated else dateobj.get_sort_value())
+        place_name = self._place_names.get(key)
+        if place_name is None:
+            place_name = _pd.display(self.dbase, place, dateobj)
+            self._place_names[key] = place_name
         self._writeln(level, "PLAC", place_name.replace("\r", " "), limit=120)
         longitude = place.get_longitude()
         latitude = place.get_latitude()
