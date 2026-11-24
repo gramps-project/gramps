@@ -668,8 +668,7 @@ class GedcomWriter(UpdateCallback):
         adoptions = []
 
         for family in [
-            self._get_family(fh)
-            for fh in person.get_parent_family_handle_list()
+            self._get_family(fh) for fh in person.get_parent_family_handle_list()
         ]:
             if family is None:
                 continue
@@ -778,8 +777,7 @@ class GedcomWriter(UpdateCallback):
 
         # get the list of familes from the handle list
         family_list = [
-            self._get_family(hndl)
-            for hndl in person.get_parent_family_handle_list()
+            self._get_family(hndl) for hndl in person.get_parent_family_handle_list()
         ]
 
         for family in family_list:
@@ -833,8 +831,7 @@ class GedcomWriter(UpdateCallback):
 
         # get the list of familes from the handle list
         family_list = [
-            self._get_family(hndl)
-            for hndl in person.get_family_handle_list()
+            self._get_family(hndl) for hndl in person.get_family_handle_list()
         ]
 
         for family in family_list:
