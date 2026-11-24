@@ -38,7 +38,11 @@ _LOG = logging.getLogger(".libmetadata")
 from gi.repository import Gtk
 import gi
 
-gi.require_version("GExiv2", "0.10")
+repository = gi.Repository.get_default()
+v_array = repository.enumerate_versions("GExiv2")
+if not v_array:
+    raise ValueError("GExiv2 is not installed")
+gi.require_version("GExiv2", v_array[-1])
 from gi.repository import GExiv2
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
