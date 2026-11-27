@@ -408,10 +408,7 @@ class Family(
         )
         ret += [
             ("Person", handle)
-            for handle in (
-                [ref.ref for ref in self.child_ref_list]
-                + [self.father_handle, self.mother_handle]
-            )
+            for handle in [self.father_handle, self.mother_handle]
             if handle
         ]
         ret += self.get_referenced_tag_handles()
