@@ -34,13 +34,14 @@
 # Vadim Barsukov <vadbars@gmail.com>, 2026.
 # Dubrovsky <techxplorer@atomicmail.io>, 2026.
 # mr-GreyWolf <mr-greywolf@users.noreply.hosted.weblate.org>, 2026.
+# Stern <stern@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-11-02 08:51+0000\n"
-"Last-Translator: mr-GreyWolf <mr-greywolf@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-11-19 05:12+0000\n"
+"Last-Translator: Stern <stern@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -49,7 +50,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.11.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8574,7 +8575,7 @@ msgstr "у."
 #: ../gramps/plugins/drawreport/descendtree.py:73
 msgctxt "marriage abbreviation"
 msgid "m."
-msgstr "св."
+msgstr "бр."
 
 #: ../gramps/gen/lib/eventtype.py:250
 msgctxt "Unknown abbreviation"
