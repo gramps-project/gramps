@@ -19,8 +19,8 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-11-20 17:15+0000\n"
-"Last-Translator: Milan <milan@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-11-27 21:53+0000\n"
+"Last-Translator: Jozef Gaal <preklady@mayday.sk>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -255,7 +255,7 @@ msgstr ""
 
 #: ../data/org.gramps_project.Gramps.desktop.in:11
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "Genealógia;Rodinná história;Výskum;Rodostrom;GEDCOM;"
+msgstr "Genealógia;Rodinná história;Výskum;Rodokmeň;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:7
 #: ../gramps/gen/const.py:263
@@ -460,10 +460,10 @@ msgstr ""
 "\"Upraviť > Editor filtra osoby\". Tam môžete svoj filter pomenovať, "
 "pridávať a kombinovať pravidlá pomocou mnohých prednastavených pravidiel. "
 "Napríklad môžete definovať filter na nájdenie všetkých adoptovaných osôb v "
-"rodostrome. Je možné filtrovať aj ľudí, ktorí nemajú uvedený dátum "
-"narodenia. K výsledkom sa dostanete uložením vášho filtra. Potom ho vyberte "
-"v bočnom paneli v poli Filter. Ďalej kliknite na tlačidlo Nájsť. Ak bočný "
-"panel nie je viditeľný, zvoľte Pohľad > Bočný panel."
+"rodokmeni. Je možné filtrovať aj ľudí, ktorí nemajú uvedený dátum narodenia. "
+"K výsledkom sa dostanete uložením vášho filtra. Potom ho vyberte v bočnom "
+"paneli v poli Filter. Ďalej kliknite na tlačidlo Nájsť. Ak bočný panel nie "
+"je viditeľný, zvoľte Pohľad > Bočný panel."
 
 #: ../data/tips.xml:21
 msgid ""
@@ -592,8 +592,8 @@ msgstr ""
 "<b>Zostavy Gramps</b><br/>Gramps ponúka široký výber zostáv. Grafické "
 "zostavy a Grafy zobrazia komplexné vzťahy jednoduchou formou. Textové "
 "zostavy sú obzvlášť vhodné v prípade, ak chcete poslať výstupy z vášho "
-"rodostromu členom rodiny e-mailom. Ak ste pripravení vytvoriť webové sídlo "
-"pre váš rodostrom, potom tu existuje zostava aj pre tento účel."
+"rodokmeňa členom rodiny e-mailom. Ak ste pripravení vytvoriť webové sídlo "
+"pre váš rodokmeň, potom tu existuje zostava aj pre tento účel."
 
 #: ../data/tips.xml:41
 msgid ""
@@ -603,8 +603,8 @@ msgid ""
 "People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>Začíname nový rodostrom</b><br/>Dobrým spôsobom ako začať nový rodostrom "
-"je zapísať všetkých členov rodiny do databázy v pohľade Osoba (použitím "
+"<b>Začíname nový rodokmeň</b><br/>Dobrým spôsobom ako začať nový rodokmeň je "
+"zapísať všetkých členov rodiny do databázy v pohľade Osoba (použitím "
 "\"Upraviť > Pridať...\", alebo kliknutím na tlačidlo Pridať novú osobu v "
 "pohľade Ľudia). Potom prejdite do pohľadu Vzťahy a vytvorte vzťahy medzi "
 "osobami."
@@ -638,7 +638,7 @@ msgid ""
 "of the same person entered more than once in the database."
 msgstr ""
 "<b>Duplicitné záznamy</b><br/>Pomocou nástroja \"Nástroje > Spracovanie "
-"rodostromu > Vyhľadať možné duplicity ľudí...\" môžete nájsť (a zlúčiť) "
+"rodokmeňa > Vyhľadať možné duplicity ľudí...\" môžete nájsť (a zlúčiť) "
 "záznamy rovnakej osoby, ktoré boli v databáze zadané viac ako raz."
 
 #: ../data/tips.xml:49
@@ -938,8 +938,8 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>Gramps XML balík</b><br/>Váš rodostrom môžete exportovať do XML balíka. "
-"To je komprimovaný súbor obsahujúci údaje vášho rodostromu a všetky médiálne "
+"<b>Gramps XML balík</b><br/>Váš rodokmeň môžete exportovať do XML balíka. To "
+"je komprimovaný súbor obsahujúci údaje vášho rodokmeňa a všetky mediálne "
 "súbory pripojené k databáze (napr. obrázky). Tento súbor je plne "
 "prenositeľný, preto sa hodí pre zálohovanie a zdieľanie s ostatnými "
 "používateľmi Gramps. Tento formát má oproti GEDCOM kľúčovú výhodu v tom, že "
@@ -951,9 +951,9 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
-"<b>Webový formát rodostromu</b><br/>Gramps dokáže exportovať údaje do "
-"formátu 'Web Family Tree (WFT)'. Tento formát umožňuje online zobrazenie "
-"rodostromu pomocou jediného súboru namiesto množstva html súborov."
+"<b>Webový formát rodokmeňa</b><br/>Gramps dokáže exportovať údaje do formátu "
+"'Web Family Tree (WFT)'. Tento formát umožňuje online zobrazenie rodokmeňa "
+"pomocou jediného súboru namiesto množstva html súborov."
 
 #: ../data/tips.xml:97
 msgid ""
@@ -962,7 +962,7 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
-"<b>Tvorba genealogického webového sídla</b><br/>Váš rodostrom môžete ľahko "
+"<b>Tvorba genealogického webového sídla</b><br/>Váš rodokmeň môžete ľahko "
 "exportovať do webovej stránky. Vyberte celú databázu, rodové línie či "
 "vybraných jedincov do kolekcie stránok, pripravenej pre umiestnenie na web."
 
@@ -1175,7 +1175,7 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Chyba: Rodostrom '%s' už existuje.\n"
+"Chyba: Rodokmeň '%s' už existuje.\n"
 "Voľbu '-C' nemožno použiť."
 
 #: ../gramps/cli/arghandler.py:247
@@ -1185,8 +1185,8 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
-"Chyba: Vstupný rodostrom \"%s\" neexistuje.\n"
-"Pre GEDCOM, Gramps-xml alebo grdb použite pre import do rodostromu voľbu -i."
+"Chyba: Vstupný rodokmeň \"%s\" neexistuje.\n"
+"Pre GEDCOM, Gramps-xml alebo grdb použite pre import do rodokmeňa voľbu -i."
 
 #: ../gramps/cli/arghandler.py:263
 #, python-format
@@ -1197,7 +1197,7 @@ msgstr "Chyba: Importný súbor %s. nebol nájdený."
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr ""
-"Chyba: Nespoznateľný typ: \"%(format)s\" pre importný súbor: %(filename)s"
+"Chyba: Nerozpoznaný typ: \"%(format)s\" v importovanom súbore: %(filename)s"
 
 #: ../gramps/cli/arghandler.py:306
 #, python-format
@@ -1232,7 +1232,7 @@ msgstr "Prepíše existujúci súbor: %s"
 #: ../gramps/cli/arghandler.py:338
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr "CHYBA: Nespoznateľný formát pre exportný súbor %s"
+msgstr "CHYBA: Nerozpoznaný formát pre exportný súbor %s"
 
 #: ../gramps/cli/arghandler.py:402 ../gramps/gen/plug/utils.py:373
 #, python-format
@@ -1241,7 +1241,7 @@ msgstr "Chyba: nemožno otvoriť '%s'"
 
 #: ../gramps/cli/arghandler.py:421
 msgid "List of known Family Trees in your database path\n"
-msgstr "Zoznam známych rodostromov vo vašej ceste k databázam\n"
+msgstr "Zoznam známych rodokmeňov vo vašej ceste k databázam\n"
 
 #: ../gramps/cli/arghandler.py:433
 #, python-format
@@ -1250,7 +1250,7 @@ msgstr "%(full_DB_path)s s názvom \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:451 ../gramps/cli/clidbman.py:196
 msgid "Gramps Family Trees:"
-msgstr "Rodostromy Gramps:"
+msgstr "Rodokmene Gramps:"
 
 #: ../gramps/cli/arghandler.py:457 ../gramps/cli/arghandler.py:459
 #: ../gramps/cli/arghandler.py:463 ../gramps/cli/arghandler.py:465
@@ -1258,7 +1258,7 @@ msgstr "Rodostromy Gramps:"
 #: ../gramps/cli/clidbman.py:176 ../gramps/cli/clidbman.py:215
 #: ../gramps/gui/clipboard.py:919 ../gramps/gui/configure.py:2576
 msgid "Family Tree"
-msgstr "Rodostrom"
+msgstr "Rodokmeň"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:465 ../gramps/cli/arghandler.py:469
@@ -1288,7 +1288,7 @@ msgstr "Čistenie."
 
 #: ../gramps/cli/arghandler.py:532
 msgid "Created empty Family Tree successfully"
-msgstr "Prázdny rodostrom bol úspešne vytvorený"
+msgstr "Prázdny rodokmeň bol úspešne vytvorený"
 
 #: ../gramps/cli/arghandler.py:535 ../gramps/cli/arghandler.py:562
 msgid "Error opening the file."
@@ -1430,22 +1430,22 @@ msgstr ""
 "  --usage Zobraziť stručnú správu o použití\n"
 "\n"
 "Možnosti aplikácie\n"
-"  -O, --open=FAMILY_TREE Otvoriť rodostrom\n"
+"  -O, --open=FAMILY_TREE Otvoriť rodokmeň\n"
 "  -U, --username=USERNAME Používateľský názov databázy\n"
 "  -P, --password=PASSWORD Heslo databázy\n"
-"  -C, --create=FAMILY_TREE Vytvoriť pri otvorení, ak je rodostrom nový\n"
+"  -C, --create=FAMILY_TREE Vytvoriť pri otvorení, ak je rodokmeň nový\n"
 "  -i, --import=FILENAME Importovať súbor\n"
 "  -e, --export=FILENAME Exportovať súbor\n"
-"  -r, --remove=FAMILY_TREE_PATTERN Odstrániť zodpovedajúce rodostromy "
-"(použiť regulárne výrazy)\n"
-"  -f, --format=FORMAT Určiť formát rodostromu\n"
+"  -r, --remove=FAMILY_TREE_PATTERN Odstrániť zodpovedajúce rodokmene (použiť "
+"regulárne výrazy)\n"
+"  -f, --format=FORMAT Určiť formát rodokmeňa\n"
 "  -a, --action=ACTION Určiť akciu\n"
 "  -p, --options=OPTIONS_STRING Určiť voľby\n"
 "  -d, --debug=LOGGER_NAME Zapnúť protokoly ladenia\n"
-"  -l [FAMILY_TREE_PATTERN...] Zoznam rodostromov\n"
-"  -L [FAMILY_TREE_PATTERN...] Podrobný zoznam rodostromov\n"
-"  -t [FAMILY_TREE_PATTERN...] Zoznam rodostromov, oddelených tabelátorom\n"
-"  -u, --force-unlock Vynútiť odomknutie rodostromu\n"
+"  -l [FAMILY_TREE_PATTERN...] Zoznam rodokmeňov\n"
+"  -L [FAMILY_TREE_PATTERN...] Podrobný zoznam rodokmeňov\n"
+"  -t [FAMILY_TREE_PATTERN...] Zoznam rodokmeňov, oddelených tabelátorom\n"
+"  -u, --force-unlock Vynútiť odomknutie rodokmeňa\n"
 "  -s, --show Zobraziť konfiguračné nastavenia\n"
 "  -c, --config=[config.setting[:value]]  Nastaviť konfiguračné nastavenie(-"
 "ia) a spustiť Gramps\n"
@@ -1553,11 +1553,11 @@ msgstr ""
 "6. Pre otvorenie databázy a vygenerovanie zostavy o časovej osi vo formáte "
 "PDF na základe týchto údajov \n"
 "vložením výstupu do súboru my_timeline.pdf:\n"
-"gramps -O 'Rodostrom 1' -a report -p "
+"gramps -O 'Rodokmeň 1' -a report -p "
 "name=timeline,off=pdf,of=my_timeline.pdf\n"
 "\n"
 "7. Ak chcete vygenerovať súhrn databázy:\n"
-"gramps -O 'Rodostrom 1' -a report -p name=summary\n"
+"gramps -O 'Rodokmeň 1' -a report -p name=summary\n"
 "\n"
 "8. Zoznam možností zostavy\n"
 "Pomocou name=timeline,show=all sa dozviete o všetkých dostupných možnostiach "
@@ -1567,12 +1567,12 @@ msgstr ""
 "Ak sa chcete dozvedieť o dostupných názvoch zostavy, použite name=show "
 "string\n"
 "\n"
-"9. Ak chcete konvertovať rodostrom za chodu do súboru .gramps xml:\n"
-"gramps -O 'Rodostrom 1' -e output.gramps -f gramps-xml\n"
+"9. Ak chcete konvertovať rodokmeň za chodu do súboru .gramps xml:\n"
+"gramps -O 'Rodokmeň 1' -e output.gramps -f gramps-xml\n"
 "\n"
 "10. Ak chcete vygenerovať webovú stránku do iného miestneho nastavenia (v "
 "nemčine):\n"
-"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Rodostrom 1' -a report -p "
+"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Rodokmeň 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
 "11. Nakoniec, pre spustenie normálnej interaktívnej relácie napíšte:\n"
@@ -1673,7 +1673,7 @@ msgstr "Zamknutá?"
 #: ../gramps/cli/clidbman.py:215
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr "Rodostrom \"%s\":"
+msgstr "Rodokmeň \"%s\":"
 
 #. Translators: needed for French, ignore otherwise
 #. Translators: for French, else ignore
@@ -1714,7 +1714,7 @@ msgstr "Importovanie údajov..."
 
 #: ../gramps/cli/clidbman.py:465
 msgid "Remove family tree warning"
-msgstr "Upozornenie na odstránenie rodostromu"
+msgstr "Upozornenie na odstránenie rodokmeňa"
 
 #: ../gramps/cli/clidbman.py:466
 #, python-format
@@ -1722,16 +1722,16 @@ msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
 msgstr ""
-"Ste si istí, že chcete odstrániť rodostrom s názvom\n"
+"Ste si istí, že chcete odstrániť rodokmeň s názvom\n"
 "\"%s\"?"
 
 #: ../gramps/cli/clidbman.py:478 ../gramps/gui/dbman.py:790
 msgid "Could not delete Family Tree"
-msgstr "Rodostrom sa nepodarilo odstrániť"
+msgstr "Rodokmeň sa nepodarilo odstrániť"
 
 #: ../gramps/cli/clidbman.py:491
 msgid "Could not rename Family Tree"
-msgstr "Rodostrom sa nedá premenovať"
+msgstr "Rodokmeň sa nedá premenovať"
 
 #: ../gramps/cli/clidbman.py:527
 #, python-format
@@ -1864,7 +1864,7 @@ msgid ""
 "the Repair button"
 msgstr ""
 "Gramps zistil problém v základnej databáze. Niekedy sa to dá napraviť cez "
-"menu Správca rodostromu. Vyberte databázu a kliknite na tlačidlo Opraviť"
+"ponuku Správca rodokmeňa. Vyberte databázu a kliknite na tlačidlo Opraviť"
 
 #: ../gramps/cli/grampscli.py:158 ../gramps/gui/dbloader.py:164
 msgid "Read only database"
@@ -1888,11 +1888,11 @@ msgstr "Nedá sa otvoriť súbor: %s"
 
 #: ../gramps/cli/grampscli.py:259
 msgid "Could not load a recent Family Tree."
-msgstr "Nedá sa načítať posledný rodostrom."
+msgstr "Nedá sa načítať posledný rodokmeň."
 
 #: ../gramps/cli/grampscli.py:260
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "Rodostrom neexistuje, pretože bol odstránený."
+msgstr "Rodokmeň neexistuje, pretože bol odstránený."
 
 #: ../gramps/cli/grampscli.py:266
 msgid "The database is locked."
@@ -2067,7 +2067,7 @@ msgstr "   Dostupné parametre:"
 
 #: ../gramps/cli/plug/__init__.py:686
 msgid "(no help available)"
-msgstr "(pomoc nieje k dispozícii)"
+msgstr "(pomoc nie je k dispozícii)"
 
 #: ../gramps/cli/plug/__init__.py:698
 msgid "   Available values are:"
@@ -3136,7 +3136,7 @@ msgid ""
 msgstr ""
 "Verzia schémy nie je podporovaná touto verziou Gramps.\n"
 "\n"
-"Tento rodostrom je vo verzii schémy %(tree_vers)s, táto verzia Gramps "
+"Tento rodokmeň je vo verzii schémy %(tree_vers)s, táto verzia Gramps "
 "podporuje verzie %(min_vers)s až do %(max_vers)s\n"
 "\n"
 "Inštalujte prosím zodpovedajúcu verziu, alebo na prenos údajov medzi rôznymi "
@@ -3155,7 +3155,7 @@ msgid ""
 msgstr ""
 "Verzia Pythonu nie je podporovaná touto verziou Gramps.\n"
 "\n"
-"Tento rodostrom je vo verzii Pythonu %(tree_vers)s, táto verzia Gramps "
+"Tento rodokmeň je vo verzii Pythonu %(tree_vers)s, táto verzia Gramps "
 "podporuje verzie %(min_vers)s až do %(max_vers)s\n"
 "\n"
 "Aktualizujte prosím na zodpovedajúcu verziu, alebo na prenos údajov medzi "
@@ -3181,21 +3181,21 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"Rodostrom, ktorý sa pokúšate načítať je vo verzii schémy %(oldschema)s. Táto "
+"Rodokmeň, ktorý sa pokúšate načítať je vo verzii schémy %(oldschema)s. Táto "
 "verzia Gramps používa schému verzie %(newschema)s. Preto nemôžete načítať "
-"rodostrom bez aktualizovania verzie schémy rodostromu.\n"
+"rodokmeň bez aktualizovania verzie schémy rodokmeňa.\n"
 "\n"
 "V prípade aktualizácie nebude možné používať predchádzajúcu verziu Gramps, "
 "ani v prípade že následne %(wiki_manual_backup_html_start)szálohujete%"
 "(html_end)s alebo %(wiki_manual_export_html_start)sexportujete%(html_end)s "
-"váš aktualizovaný rodostrom.\n"
+"váš aktualizovaný rodokmeň.\n"
 "\n"
-"Aktualizácia je náročná úloha, ktorá môže nezvratne poškodiť Váš rodostrom, "
+"Aktualizácia je náročná úloha, ktorá môže nezvratne poškodiť Váš rodokmeň, "
 "ak je prerušená alebo zlyhá.\n"
 "\n"
-"Ak ste ešte nevytvorili zálohu Vášho rodostromu, spustite %(bold_start)"
-"sstarú%(bold_end)s verziu Gramps a %(wiki_backup_html_start)svytvorte zálohu%"
-"(html_end)s Vášho rodostromu."
+"Ak ste ešte nevytvorili zálohu Vášho rodokmeňa, spustite %(bold_start)sstarú%"
+"(bold_end)s verziu Gramps a %(wiki_backup_html_start)svytvorte zálohu%"
+"(html_end)s Vášho rodokmeňa."
 
 #: ../gramps/gen/db/exceptions.py:194
 #, python-format
@@ -3230,20 +3230,20 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"Rodostrom, ktorý sa pokúšate načítať, sa nachádza v databáze %(dbtype)s, "
+"Rodokmeň, ktorý sa pokúšate načítať, sa nachádza v databáze %(dbtype)s, "
 "ktorá už nie je podporovaná.\n"
-"Preto nemôžete načítať tento rodostrom bez aktualizácie.\n"
+"Preto nemôžete načítať tento rodokmeň bez aktualizácie.\n"
 "\n"
 "Ak aktualizujete, nebudete môcť použiť predchádzajúcu verziu Gramps, a to "
 "ani v prípade, že následne zálohujete %(wiki_manual_backup_html_start)s%"
 "(html_end)s alebo %(wiki_manual_export_html_start)sexportujete%(html_end)s "
-"Váš aktualizovaný rodostrom.\n"
+"Váš aktualizovaný rodokmeň.\n"
 "\n"
-"Dôrazne sa odporúča zálohovať svoj rodostrom.\n"
+"Dôrazne sa odporúča zálohovať svoj rodokmeň.\n"
 "\n"
-"Ak ste ešte nevytvorili zálohu Vášho rodostromu, mali by ste spustiť "
+"Ak ste ešte nevytvorili zálohu Vášho rodokmeňa, mali by ste spustiť "
 "predchádzajúcu verziu Gramps a %(wiki_backup_html_start)s vytvoriť zálohu%"
-"(html_end)s svojho rodostromu."
+"(html_end)s svojho rodokmeňa."
 
 #: ../gramps/gen/db/generic.py:229 ../gramps/gen/db/generic.py:279
 #: ../gramps/gen/db/generic.py:2313
@@ -3382,9 +3382,9 @@ msgstr ""
 "\n"
 "\n"
 "Možno budete chcieť spustiť\n"
-"Nástroje -> Spracovanie rodostromu -> Zlúčiť\n"
+"Nástroje -> Spracovanie rodokmeňa -> Zlúčiť\n"
 "za účelom zlúčenia citácií, ktoré obsahujú podobné \n"
-"nformácie"
+"informácie"
 
 #: ../gramps/gen/db/upgrade.py:1324
 msgid "Upgrade Statistics"
@@ -3997,7 +3997,7 @@ msgstr "Hodnota:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citations with the attribute <attribute>"
-msgstr "Citácie s atribútom <attribút>"
+msgstr "Citácie s atribútom <atribút>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
 msgid "Matches citations with the attribute of a particular value"
@@ -5108,7 +5108,7 @@ msgstr "Zodpovedá mediálnym objektom, ktoré sú označené ako súkromné"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:48
 msgid "Media objects with Id containing <text>"
-msgstr "Mediálne objeky s Id obsahujúcim <text>"
+msgstr "Mediálne objekty s ID obsahujúcim <text>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:50
 msgid "Matches media objects whose Gramps ID matches the regular expression"
@@ -9812,7 +9812,7 @@ msgstr "FTP"
 
 #: ../gramps/gen/merge/diff.py:109
 msgid "Family Tree Differences"
-msgstr "Rozdiely v rodostrome"
+msgstr "Rozdiely v rodokmeni"
 
 #: ../gramps/gen/merge/diff.py:109
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:171
@@ -11124,8 +11124,7 @@ msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Rodostrom siaha dozadu viac ako maximálny počet %d prehľadávaných "
-"generácií.\n"
+"Rodokmeň siaha dozadu viac ako maximálny počet %d prehľadávaných generácií.\n"
 "Je možné, že niektoré vzťahy boli vynechané"
 
 #: ../gramps/gen/relationship.py:1576
@@ -11389,7 +11388,7 @@ msgstr "predok "
 
 #: ../gramps/gen/utils/alive.py:895
 msgid "mother death "
-msgstr "úmrtíe matky "
+msgstr "úmrtie matky "
 
 #: ../gramps/gen/utils/alive.py:899 ../gramps/gen/utils/alive.py:905
 msgid "father death "
@@ -11686,7 +11685,7 @@ msgstr "Zápis stupňov, minút a sekúnd s oddeľovačom :"
 
 #: ../gramps/gen/utils/place.py:101
 msgid "Degree notation, 4 decimals"
-msgstr "Zápis stupňov, 4 desatinnné miesta"
+msgstr "Zápis stupňov, 4 desatinné miesta"
 
 #: ../gramps/gen/utils/place.py:102
 msgid "Degree notation, 8 decimals (precision like ISO-DMS)"
@@ -11929,7 +11928,7 @@ msgstr "Ortodoxný kríž"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Chi rho"
-msgstr "Chi rho křesťanský symbol"
+msgstr "Chi rho kresťanský symbol"
 
 #: ../gramps/gen/utils/symbols.py:114
 msgid "Cross of Lorraine"
@@ -11992,7 +11991,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/win32locale.py:44
 msgid "Arabic"
-msgstr "Arabština"
+msgstr "Arabčina"
 
 #: ../gramps/gen/utils/win32locale.py:46
 msgid "Bashkir"
@@ -12104,7 +12103,7 @@ msgstr "Litovčina"
 
 #: ../gramps/gen/utils/win32locale.py:77
 msgid "Macedonian"
-msgstr "Macedončina"
+msgstr "Macedónčina"
 
 #: ../gramps/gen/utils/win32locale.py:78
 msgid "Norwegian Bokmal"
@@ -12120,7 +12119,7 @@ msgstr "Nórčina (Nynorsk)"
 
 #: ../gramps/gen/utils/win32locale.py:81
 msgid "Polish"
-msgstr "Polština"
+msgstr "Poľština"
 
 #: ../gramps/gen/utils/win32locale.py:82
 msgid "Portuguese (Brazil)"
@@ -12609,8 +12608,8 @@ msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
 msgstr ""
-"Vložte informáciu o sebe, aby vás ľudia mohli kontaktovať, keď budete "
-"distribuovať svoj rodostrom."
+"Zadajte informácie o sebe, aby vás ľudia mohli kontaktovať, keď budete šíriť "
+"svoj rodokmeň."
 
 #: ../gramps/gui/configure.py:808 ../gramps/gui/configure.py:909
 msgid "ID Formats"
@@ -12714,7 +12713,7 @@ msgstr "Pozadie pre registrované partnerstvo"
 
 #: ../gramps/gui/configure.py:987
 msgid "Background for Unknown"
-msgstr "Pozadie pre neznámé osoby"
+msgstr "Pozadie pre neznáme osoby"
 
 #: ../gramps/gui/configure.py:988
 msgid "Background for Divorced"
@@ -12908,7 +12907,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1689
 msgid "Custom name display options are unique to each family tree."
-msgstr "Vlastné voľby zobrazenia mien sú jedinečné pre každý rodostrom."
+msgstr "Vlastné voľby zobrazenia mien sú jedinečné pre každý rodokmeň."
 
 #: ../gramps/gui/configure.py:1701
 msgid "Consider single pa/matronymic as surname"
@@ -13120,14 +13119,14 @@ msgstr "Zobraziť užitočné informácie o používaní programu Gramps pri spu
 
 #: ../gramps/gui/configure.py:2173
 msgid "Remember last Family Tree"
-msgstr "Zapamätať si posledný rodostrom"
+msgstr "Zapamätať si posledný rodokmeň"
 
 #: ../gramps/gui/configure.py:2179
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
-"Neotvárať pri spustení dialóg na výber rodostromu, ale načítať naposledy "
+"Neotvárať pri spustení dialóg na výber rodokmeňa, ale načítať naposledy "
 "použitý."
 
 #: ../gramps/gui/configure.py:2187
@@ -13336,7 +13335,7 @@ msgstr "Zálohovať pri ukončení"
 #: ../gramps/gui/configure.py:2514
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
-"Zálohovať Váš rodostrom pri ukončení programu do adresára špecifikovaného "
+"Zálohovať Váš rodokmeň pri ukončení programu do adresára špecifikovaného "
 "vyššie."
 
 #: ../gramps/gui/configure.py:2522
@@ -13369,7 +13368,7 @@ msgid ""
 "Family Tree's Media path"
 msgstr ""
 "\n"
-"Cesta k médiám rodostromu"
+"Cesta k médiám rodokmeňa"
 
 #: ../gramps/gui/configure.py:2552
 msgid "Base media path"
@@ -13381,9 +13380,9 @@ msgid ""
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
-"Základná relatívna cesta k médiám je špecifická pre aktívny rodostrom. Nie "
-"je to globálne nastavenie. Každý rodostrom môže mať jedinečnú relatívnu "
-"cestu k médiám, ktorá je uložená v databáze."
+"Základná relatívna cesta k médiám je špecifická pre aktívny rodokmeň. Nie je "
+"to globálne nastavenie. Každý rodokmeň môže mať jedinečnú relatívnu cestu k "
+"médiám, ktorá je uložená v databáze."
 
 #: ../gramps/gui/configure.py:2585
 msgid "Tag Records"
@@ -13616,7 +13615,7 @@ msgstr "_Zastaviť"
 
 #: ../gramps/gui/dbloader.py:219
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "Ste si istí, že chcete aktualizovať tento rodostrom?"
+msgstr "Ste si istí, že chcete aktualizovať tento rodokmeň?"
 
 #: ../gramps/gui/dbloader.py:222
 msgid ""
@@ -13624,7 +13623,7 @@ msgid ""
 "please upgrade my Family Tree"
 msgstr ""
 "Vytvoril som zálohu,\n"
-"prosím aktualizujte môj rodostrom"
+"prosím aktualizujte môj rodokmeň"
 
 #: ../gramps/gui/dbloader.py:225 ../gramps/gui/fs/actions.py:174
 #: ../gramps/gui/fs/actions.py:289 ../gramps/gui/fs/actions.py:678
@@ -13667,7 +13666,7 @@ msgstr "Heslo: "
 
 #: ../gramps/gui/dbloader.py:386
 msgid "Import Family Tree"
-msgstr "Importovať rodostrom"
+msgstr "Importovať rodokmeň"
 
 #: ../gramps/gui/dbloader.py:407
 msgid "All supported files"
@@ -13718,11 +13717,11 @@ msgstr ""
 #: ../gramps/gui/dbman.py:98
 #, python-format
 msgid "%s_-_Manage_Family_Trees"
-msgstr "%s _-_ Správa_rodostromov"
+msgstr "%s _-_ Správa_rodokmeňov"
 
 #: ../gramps/gui/dbman.py:99
 msgid "Family_Trees_manager_window"
-msgstr "Okno_správcu_rodostromov"
+msgstr "Okno_správcu_rodokmeňov"
 
 #: ../gramps/gui/dbman.py:113 ../gramps/gui/glade/dbman.glade:344
 msgid "_Archive"
@@ -13798,11 +13797,11 @@ msgstr "Nastavenie"
 
 #: ../gramps/gui/dbman.py:223
 msgid "Family Trees"
-msgstr "Rodostromy"
+msgstr "Rodokmene"
 
 #: ../gramps/gui/dbman.py:406
 msgid "Family Tree name"
-msgstr "Názov rodostromu"
+msgstr "Názov rodokmeňa"
 
 #: ../gramps/gui/dbman.py:425
 msgid "Database Type"
@@ -13846,11 +13845,11 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:667
 msgid "Could not rename the Family Tree."
-msgstr "Rodostrom nebolo možné premenovať."
+msgstr "Rodokmeň nebolo možné premenovať."
 
 #: ../gramps/gui/dbman.py:668
 msgid "Family Tree already exists, choose a unique name."
-msgstr "Rodostrom už existuje, zvoľte jedinečné meno."
+msgstr "Rodokmeň už existuje, zvoľte jedinečné meno."
 
 #: ../gramps/gui/dbman.py:722
 msgid "Extracting archive..."
@@ -13863,15 +13862,15 @@ msgstr "Importovanie archívu..."
 #: ../gramps/gui/dbman.py:743
 #, python-format
 msgid "Remove the '%s' Family Tree?"
-msgstr "Odstrániť rodostrom '%s'?"
+msgstr "Odstrániť rodokmeň '%s'?"
 
 #: ../gramps/gui/dbman.py:744
 msgid "Removing this Family Tree will permanently destroy the data."
-msgstr "Odstránením tohto rodostromu sa jeho údaje natrvalo zničia."
+msgstr "Odstránením tohto rodokmeňa sa jeho údaje natrvalo zničia."
 
 #: ../gramps/gui/dbman.py:745
 msgid "Remove Family Tree"
-msgstr "Odstrániť rodostrom"
+msgstr "Odstrániť rodokmeň"
 
 #: ../gramps/gui/dbman.py:753
 #, python-format
@@ -13911,7 +13910,7 @@ msgstr "Konvertovať databázu \"%s\"?"
 #, python-format
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
-msgstr "Chcete tento rodostrom previesť do databázy %(database_type)s?"
+msgstr "Chcete tento rodokmeň previesť do databázy %(database_type)s?"
 
 #: ../gramps/gui/dbman.py:844
 msgid "Convert"
@@ -13950,7 +13949,7 @@ msgstr "Pokus o import do databázy zlyhal."
 
 #: ../gramps/gui/dbman.py:960
 msgid "Repair Family Tree?"
-msgstr "Opraviť rodostrom?"
+msgstr "Opraviť rodokmeň?"
 
 #: ../gramps/gui/dbman.py:962
 #, python-format
@@ -13979,27 +13978,26 @@ msgid ""
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
 "Ak kliknete na %(bold_start)sPokračovať%(bold_end)s, Gramps sa pokúsi "
-"opraviť Váš rodostrom z poslednej platnej zálohy. Niekedy to môže spôsobiť "
+"opraviť Váš rodokmeň z poslednej platnej zálohy. Niekedy to môže spôsobiť "
 "neočakávané následky, a preto odporúčame najprv %(bold_start)szálohovať%"
-"(bold_end)s rodostrom.\n"
-"Vami vybraný rodostrom je uložený v %(dirname)s.\n"
+"(bold_end)s rodokmeň.\n"
+"Vami vybraný rodokmeň je uložený v %(dirname)s.\n"
 "\n"
-"Predtým ako sa rozhodnete pre opravu, preverte ešte raz, či sa rodostrom "
+"Predtým ako sa rozhodnete pre opravu, preverte ešte raz, či sa rodokmeň "
 "naozaj nedá otvoriť. Niektoré chyby totiž dokáže back-end databázy opraviť "
 "automaticky.\n"
 "\n"
-"%(bold_start)sPodrobnosti:%(bold_end)s Oprava rodostromu aktuálne používa "
+"%(bold_start)sPodrobnosti:%(bold_end)s Oprava rodokmeňa aktuálne používa "
 "uloženú zálohu, ktorú Gramps vytvoril pri poslednom použití. Ak ste "
 "pracovali nepretržite bez ukončenia Gramps počas niekoľkých hodín, všetky "
-"informácie budú stratené! Ak oprava zlyhá, pôvodný rodostrom sa úplne "
-"stratí. Preto je nutné pravidelne zálohovať. Pri zlyhaní opravy alebo ak sa "
-"stratí viacero údajov, opravte rodostrom ručne podľa inštrukcií na web "
-"stránkach\n"
+"informácie budú stratené! Ak oprava zlyhá, pôvodný rodokmeň sa úplne stratí. "
+"Preto je nutné pravidelne zálohovať. Pri zlyhaní opravy alebo ak sa stratí "
+"viacero údajov, opravte rodokmeň ručne podľa inštrukcií na web stránkach\n"
 "%(gramps_wiki_recover_url)s\n"
-"Pred opravou sa ešte pokúste otvoriť rodostrom bežným spôsobom. Viacero "
-"chýb, ktoré aktivujú tlačidlo opráv sa môže opraviť automaticky. V takom "
-"prípade môžete tlačidlo opráv deaktivovať odstránením súboru %(recover_file)"
-"s z adresára s rodostromom."
+"Pred opravou sa ešte pokúste otvoriť rodokmeň bežným spôsobom. Viacero chýb, "
+"ktoré aktivujú tlačidlo opráv sa môže opraviť automaticky. V takom prípade "
+"môžete tlačidlo opráv deaktivovať odstránením súboru %(recover_file)s z "
+"adresára s rodokmeňom."
 
 #: ../gramps/gui/dbman.py:996
 msgid "Proceed, I have taken a backup"
@@ -14019,7 +14017,7 @@ msgstr "Chyba pri obnovovaní zálohovaných údajov"
 
 #: ../gramps/gui/dbman.py:1061
 msgid "Could not create Family Tree"
-msgstr "Nepodarilo sa vytvoriť rodostrom"
+msgstr "Nepodarilo sa vytvoriť rodokmeň"
 
 #: ../gramps/gui/dbman.py:1185
 msgid "Retrieve failed"
@@ -14412,7 +14410,7 @@ msgstr "Prejsť na"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:75
 msgid "Move Up"
-msgstr "Presenúť hore"
+msgstr "Presunúť hore"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:76
 msgid "Move Down"
@@ -18505,7 +18503,7 @@ msgstr "Popis verzie"
 
 #: ../gramps/gui/glade/dbman.glade:118
 msgid "Family Trees - Gramps"
-msgstr "Rodostromy - Gramps"
+msgstr "Rodokmene - Gramps"
 
 #: ../gramps/gui/glade/dbman.glade:133
 msgid "_Close Window"
@@ -18513,7 +18511,7 @@ msgstr "_Zatvoriť okno"
 
 #: ../gramps/gui/glade/dbman.glade:148
 msgid "_Load Family Tree"
-msgstr "_Načítať rodostrom"
+msgstr "_Načítať rodokmeň"
 
 #: ../gramps/gui/glade/dbman.glade:239 ../gramps/gui/glade/editlink.glade:205
 msgid "_New"
@@ -20756,7 +20754,7 @@ msgstr "_FAQ"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Family Trees"
-msgstr "_Rodostromy"
+msgstr "_Rodokmene"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_FamilySearch Sign in..."
@@ -20776,7 +20774,7 @@ msgstr "_Klávesové skratky"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Manage Family Trees..."
-msgstr "_Správa rodostromov..."
+msgstr "_Správa rodokmeňov..."
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Navigator"
@@ -20940,8 +20938,8 @@ msgstr ""
 "\n"
 "Gramps sa nepodarilo spustiť. Oznámte prosím túto chybu.\n"
 "Môže to byť spôsobené chybou v Pohľade (tretej strany) pri spustení.\n"
-"Ak chcete použiť iný pohľad, nenačítajte rodostrom, zmeňte pohľad a potom "
-"načítajte Váš rodostrom.\n"
+"Ak chcete použiť iný pohľad, nenačítajte rodokmeň, zmeňte pohľad a potom "
+"načítajte Váš rodokmeň.\n"
 "Zmenou parametra last-view v súbore gramps.ini\n"
 "môžete tiež ručne zmeniť počiatočný pohľad zobrazený pri spustení Gramps.\n"
 
@@ -21959,7 +21957,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:628
 msgid "Error exporting your Family Tree"
-msgstr "Chyba pri exporte vášho rodostromu"
+msgstr "Chyba pri exporte vášho rodokmeňa"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:636
 #: ../gramps/gui/plug/export/_exportassistant.py:672
@@ -21977,7 +21975,7 @@ msgstr "Výber..."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:175
 msgid "Unfiltered Family Tree:"
-msgstr "Nefiltrovaný rodostrom:"
+msgstr "Nefiltrovaný rodokmeň:"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:181
 #: ../gramps/gui/plug/export/_exportoptions.py:292
@@ -22507,11 +22505,11 @@ msgstr "Analýza a výskum"
 
 #: ../gramps/gui/plug/tool.py:68
 msgid "Family Tree Processing"
-msgstr "Spracovanie rodostromu"
+msgstr "Spracovanie rodokmeňa"
 
 #: ../gramps/gui/plug/tool.py:69
 msgid "Family Tree Repair"
-msgstr "Oprava rodostromu"
+msgstr "Oprava rodokmeňa"
 
 #: ../gramps/gui/plug/tool.py:70
 msgid "Revision Control"
@@ -22755,7 +22753,7 @@ msgstr "Nástroje FamilySearch"
 
 #: ../gramps/gui/viewmanager.py:393 ../gramps/gui/viewmanager.py:1404
 msgid "No Family Tree"
-msgstr "Žiadny rodostrom"
+msgstr "Žiadny rodokmeň"
 
 #: ../gramps/gui/viewmanager.py:416
 msgid "You are not logged in to FamilySearch. Would you like to sign in now?"
@@ -25413,18 +25411,18 @@ msgstr "Voľby exportu GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:125
 msgid "Gramps XML Package (family tree and media)"
-msgstr "Gramps XML balík (rodostrom a médiá)"
+msgstr "Gramps XML balík (rodokmeň a médiá)"
 
 #: ../gramps/plugins/export/export.gpr.py:126
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "Gra_mps XML balík (rodostrom a médiá)"
+msgstr "Gra_mps XML balík (rodokmeň a médiá)"
 
 #: ../gramps/plugins/export/export.gpr.py:128
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
 msgstr ""
-"Balík Gramps je archivovaná XML databáza rodostromu spolu so súbormi "
+"Balík Gramps je archivovaná XML databáza rodokmeňa spolu so súbormi "
 "mediálnych objektov."
 
 #: ../gramps/plugins/export/export.gpr.py:138
@@ -25433,18 +25431,18 @@ msgstr "Voľby exportu balíka Gramps"
 
 #: ../gramps/plugins/export/export.gpr.py:149
 msgid "Gramps XML (family tree)"
-msgstr "Gramps XML (rodostrom)"
+msgstr "Gramps XML (rodokmeň)"
 
 #: ../gramps/plugins/export/export.gpr.py:150
 msgid "Gramps _XML (family tree)"
-msgstr "Gramps_XML (rodostrom)"
+msgstr "Gramps_XML (rodokmeň)"
 
 #: ../gramps/plugins/export/export.gpr.py:152
 msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
-"Gramps XML export je úplná archivovaná XML záloha rodostromu Gramps bez "
+"Gramps XML export je úplná archivovaná XML záloha rodokmeň Gramps bez "
 "súborov mediálnych objektov. Hodí sa pre účely zálohovania."
 
 #: ../gramps/plugins/export/export.gpr.py:163
@@ -25644,7 +25642,7 @@ msgid ""
 msgstr ""
 "Do vstupného textového poľa zadajte platný dátum (napríklad RRRR-MM-DD) a "
 "kliknite na tlačidlo Spustiť. Tým sa vypočíta vek všetkých osôb vo vašom "
-"rodostrome k danému dátumu. Potom môžete zoradiť podľa stĺpca veku a "
+"rodokmeni k danému dátumu. Potom môžete zoradiť podľa stĺpca veku a "
 "dvojklikom na riadok ho zobraziť alebo upraviť."
 
 #: ../gramps/plugins/gramplet/agestats.py:84
@@ -26009,7 +26007,7 @@ msgstr "Dvakrát kliknite na dané (krstné) meno pre podrobnosti"
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:98
 #: ../gramps/plugins/gramplet/whatsnext.py:44
 msgid "No Family Tree loaded."
-msgstr "Nie je načítaný žiadny rodostrom."
+msgstr "Nie je načítaný žiadny rodokmeň."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:155
 msgid "Total unique given names"
@@ -26187,7 +26185,7 @@ msgstr "Gramplet zobrazujúci všetky aktivity v tejto relácii"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:358
 msgid "Gramplet showing summary data of the Family Tree"
-msgstr "Gramplet zobrazujúci súhrnné údaje rodostromu"
+msgstr "Gramplet zobrazujúci súhrnné údaje rodokmeňa"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:373
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:380
@@ -27342,14 +27340,14 @@ msgid ""
 "\n"
 msgstr ""
 "Pri prvom spustení programu Gramps sú všetky Pohľady prázdne. V menu je len "
-"veľmi málo volieb. Rodostrom je potrebný na to, aby sa mohla vykonať "
+"veľmi málo volieb. Rodokmeň je potrebný na to, aby sa mohla vykonať "
 "akákoľvek činnosť.\n"
 "\n"
-"Ak chcete vytvoriť nový Rodostrom (niekedy nazývaný \"databáza\"), vyberte z "
-"ponuky \"Rodostromy\", vyberte \"Správa rodostromov\", stlačte \"Nový\" a "
-"pomenujte svoj Rodostrom. \"Načítať rodostrom\", aby bol strom aktívny a "
+"Ak chcete vytvoriť nový rodokmeň (niekedy nazývaný \"databáza\"), vyberte z "
+"ponuky \"Rodokmene\", vyberte \"Správa rodokmeňov\", stlačte \"Nový\" a "
+"pomenujte svoj rodokmeň. \"Načítať rodokmeň\", aby bol rodokmeň aktívny a "
 "pripravený na prijímanie údajov zadaním prvej rodiny alebo importom "
-"rodostromu. Podrobnejšie informácie nájdete na nižšie uvedených odkazoch.\n"
+"rodokmeňa. Podrobnejšie informácie nájdete na nižšie uvedených odkazoch.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:170
@@ -27417,7 +27415,7 @@ msgstr "Zadávanie a úprava údajov (stručný prehľad)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:208
 msgid "Importing a Family Tree"
-msgstr "Importovanie rodostromu"
+msgstr "Importovanie rodokmeňa"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:211
 msgid ""
@@ -27428,11 +27426,11 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
-"Ak chcete importovať rodostrom z iného programu, najprv vytvorte súbor "
-"GEDCOM (alebo iné údaje) z predchádzajúceho programu.\n"
+"Ak chcete importovať rodokmeň z iného programu, najprv vytvorte súbor GEDCOM "
+"(alebo iné údaje) z predchádzajúceho programu.\n"
 "\n"
-"Po vytvorení nového súboru databázy Gramps použite možnosť \"Import\" v menu "
-"\"Rodostromy\" na import údajov GEDCOM.\n"
+"Po vytvorení nového súboru databázy Gramps použite možnosť \"Import\" v "
+"ponuke \"Rodokmene\" na import údajov GEDCOM.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:219
@@ -27481,8 +27479,8 @@ msgid ""
 "\n"
 msgstr ""
 "K dispozícii je veľa doplnkov alebo grampletov, ktoré vám pomôžu pri "
-"zadávaní údajov a vizualizácii vášho rodostromu. Veľa z týchto nástrojov už "
-"máte k dispozícii. Mnoho dalších si môžete stiahnuť a nainštalovať.\n"
+"zadávaní údajov a vizualizácii vášho rodokmeňa. Veľa z týchto nástrojov už "
+"máte k dispozícii. Mnoho ďalších si môžete stiahnuť a nainštalovať.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:256
@@ -27505,8 +27503,8 @@ msgstr ""
 "Chcete vidieť, ako sa používa Gramps? Vytvorte a importujte vzorovú "
 "databázu.\n"
 "\n"
-"Vytvorte nový rodostrom, ako je popísané vyššie. Odporúčame vám nazvať "
-"rodostrom “VZOR”...\n"
+"Vytvorte nový rodokmeň, ako je popísané vyššie. Odporúčame vám nazvať "
+"rodokmeň “VZOR”...\n"
 "\n"
 "Importujte súbor Gramps example.gramps.\n"
 "\n"
@@ -28283,19 +28281,19 @@ msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
-"Import údajov z balíka Gramps (archivovaný rodostrom v XML spolu so súbormi "
+"Import údajov z balíka Gramps (archivovaný rodokmeň v XML spolu so súbormi "
 "mediálnych objektov)."
 
 #: ../gramps/plugins/importer/import.gpr.py:114
 msgid "Gramps XML Family Tree"
-msgstr "Rodostrom Gramps XML"
+msgstr "Rodokmeň Gramps XML"
 
 #: ../gramps/plugins/importer/import.gpr.py:116
 msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"Formát Gramps XML je textová verzia rodostromu. Je kompatibilný so súčasným "
+"Formát Gramps XML je textová verzia rodokmeňa. Je kompatibilný so súčasným "
 "formátom databázy Gramps na čítanie a zápis."
 
 #: ../gramps/plugins/importer/import.gpr.py:137
@@ -28840,7 +28838,7 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"Základná cesta k médiám tohto rodostromu bola nastavená na %s. Zvážte "
+"Základná cesta k médiám tohto rodokmeňa bola nastavená na %s. Zvážte "
 "použitie jednoduchšej cesty. Môžete to zmeniť v Predvoľbách a zároveň "
 "presunúť mediálne súbory na nové miesto a pomocou nástroja Správca médií, "
 "voľby 'Nahradiť podreťazec v ceste' nastaviť správne cesty v mediálnych "
@@ -28861,7 +28859,7 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"Rodostrom, do ktorého ste importovali, už má základnú cestu k médiám: %"
+"Rodokmeň, do ktorého ste importovali, už má základnú cestu k médiám: %"
 "(orig_path)s. Importované objekty médií sú však relatívne od cesty %(path)s. "
 "Cestu k médiám môžete zmeniť v Predvoľbách alebo môžete importované súbory "
 "previesť na existujúcu základnú cestu k médiám. Môžete to urobiť tak, že "
@@ -28890,10 +28888,9 @@ msgstr ""
 "Verzia databázy nie je podporovaná touto verziou programu Gramps.Mali by ste "
 "použiť starú kópiu programu Gramps vo verzii 3.0.x a importovať databázu do "
 "tejto verzie. Potom by ste mali exportovať kópiu svojich údajov do programu "
-"Gramps XML (Rodostrom). Potom by ste mali prejsť na najnovšiu verziu "
-"programu Gramps (napríklad túto verziu), vytvoriť novú prázdnu databázu a "
-"importovať do nej súbor Gramps XML. Pozri: %"
-"(gramps_wiki_migrate_two_to_three_url)s"
+"Gramps XML (Rodokmeň). Potom by ste mali prejsť na najnovšiu verziu programu "
+"Gramps (napríklad túto verziu), vytvoriť novú prázdnu databázu a importovať "
+"do nej súbor Gramps XML. Pozri: %(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:44
 msgid "_Ok"
@@ -29348,7 +29345,7 @@ msgid ""
 "Preferences."
 msgstr ""
 "Otvorený súbor má uvedenú cestu k médiám %s, ktorá je v konflikte s cestou v "
-"rodostrome do ktorého importujete. Pôvodná cesta ostala nezmenená. Súbory "
+"rodokmeni do ktorého importujete. Pôvodná cesta ostala nezmenená. Súbory "
 "skopírujte do správneho adresára, alebo upravte cestu k médiám v Predvoľbách."
 
 #: ../gramps/plugins/importer/importxml.py:1153
@@ -29450,7 +29447,7 @@ msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"Váš rodostrom zoskupuje meno \"%(key)s\" spolu s \"%(parent)s\", nezmenil "
+"Váš rodokmeň zoskupuje meno \"%(key)s\" spolu s \"%(parent)s\", nezmenil "
 "toto zoskupenie na \"%(value)s\"."
 
 #: ../gramps/plugins/importer/importxml.py:1932
@@ -35464,7 +35461,7 @@ msgstr "Zobraziť duplicitné stromy"
 
 #: ../gramps/plugins/textreport/descendreport.py:619
 msgid "Whether to show duplicate Family Trees in the report."
-msgstr "Či zobraziť duplicitné rodostromy v zostave."
+msgstr "Či zobraziť duplicitné rodokmene v zostave."
 
 #: ../gramps/plugins/textreport/descendreport.py:661
 #, python-format
@@ -36806,11 +36803,11 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
-"Váš rodostrom obsahuje duplicitné odkazy naprieč tabuľkami.\n"
+"Váš rodokmeň obsahuje duplicitné odkazy naprieč tabuľkami.\n"
 " To je zlé a dá sa to opraviť vytvorením zálohy vášho\n"
-"rodostromu a importovaním tejto zálohy do prázdneho rodostromu.\n"
+"rodokmeňa a importovaním tejto zálohy do prázdneho rodokmeňa.\n"
 "Zvyšok kontroly bude vynechaný a nástroj Kontrola a\n"
-"oprava bude potrebné spustiť znovu na tomto novom rodostrome."
+"oprava bude potrebné spustiť znovu na tomto novom rodokmeni."
 
 #: ../gramps/plugins/tool/check.py:212
 msgid "Check Integrity"
@@ -37896,7 +37893,7 @@ msgid ""
 "that can be extracted."
 msgstr ""
 "Nižšie je uvedený zoznam prezývok, titulov, predpôn a zložených priezvisk, "
-"ktoré môže Gramps získať z rodostromu.\n"
+"ktoré môže Gramps získať z rodokmeňa.\n"
 "Ak zmeny prijmete, Gramps upraví vybrané záznamy.\n"
 "\n"
 "Zložené priezviská sa zobrazujú ako zoznamy [predpona, priezvisko, spojka].\n"
@@ -40203,15 +40200,15 @@ msgstr "Zoskupení ľudia"
 #: ../gramps/plugins/view/view.gpr.py:201
 msgid "The view showing all people in the Family Tree grouped per family name"
 msgstr ""
-"Pohľad zobrazujúci všetkých ľudí v rodostrome zoskupených podľa rodového mena"
+"Pohľad zobrazujúci všetkých ľudí v rodokmeni zoskupených podľa rodového mena"
 
 #: ../gramps/plugins/view/view.gpr.py:219
 msgid "The view showing all people in the Family Tree in a flat list"
-msgstr "Pohľad zobrazujúci všetkých ľudí v rodostrome v plošnom zozname"
+msgstr "Pohľad zobrazujúci všetkých ľudí v rodokmeni v plošnom zozname"
 
 #: ../gramps/plugins/view/view.gpr.py:235
 msgid "The view showing all the places of the Family Tree"
-msgstr "Pohľad zobrazujúci všetky miesta z rodostromu"
+msgstr "Pohľad zobrazujúci všetky miesta z rodokmeňa"
 
 #: ../gramps/plugins/view/view.gpr.py:250
 msgid "Place Tree"
@@ -40541,11 +40538,11 @@ msgid ""
 "download page and files have the same copyright as the remainder of these "
 "web pages."
 msgstr ""
-"Táto stránka je pre používateľa/tvorcu tohoto rodostromu/naratívneho "
-"webového sídla, aby s vami zdieľal niekoľko súborov týkajúcich sa ich "
-"rodiny. Ak existujú nižšie uvedené súbory, kliknutím na ne ich stiahnete. "
-"Stránka pre sťahovanie a súbory sú chránené rovnakým autorským právom ako "
-"zvyšok týchto webových stránok."
+"Táto stránka je pre používateľa/tvorcu tohoto rodokmeňa/naratívneho webového "
+"sídla, aby s vami zdieľal niekoľko súborov týkajúcich sa ich rodiny. Ak "
+"existujú nižšie uvedené súbory, kliknutím na ne ich stiahnete. Stránka pre "
+"sťahovanie a súbory sú chránené rovnakým autorským právom ako zvyšok týchto "
+"webových stránok."
 
 #: ../gramps/plugins/webreport/download.py:128
 msgid "File Name"
@@ -40889,7 +40886,7 @@ msgstr "Cieľový adresár pre webové súbory"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "My Family Tree"
-msgstr "Môj rodostrom"
+msgstr "Môj rodokmeň"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2127
 msgid "Website title"
@@ -41299,7 +41296,7 @@ msgstr "Popis pre stiahnutie"
 #: ../gramps/plugins/webreport/narrativeweb.py:2526
 #, python-format
 msgid "Family Tree #%c"
-msgstr "Rodostrom #%c"
+msgstr "Rodokmeň #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
 msgid "Give a description for this file."
