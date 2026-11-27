@@ -22,13 +22,15 @@
 # Artur <wy66m6xm@anonaddy.me>, 2026.
 # Maciej Stefańczyk <maciek.slon@gmail.com>, 2026.
 # Kazimierz Koziarz <rsakakr@gmail.com>, 2026.
+# Adam Karpiński <kogut0000@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-15 08:51+0000\n"
-"Last-Translator: Artur <wy66m6xm@anonaddy.me>\n"
+"PO-Revision-Date: 2026-11-25 12:51+0000\n"
+"Last-Translator: Adam Karpiński <kogut0000@users.noreply.hosted.weblate.org>"
+"\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -37,7 +39,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -381,11 +383,11 @@ msgstr "Osoba"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
-msgstr "Baza danych GRAMPS"
+msgstr "Baza danych Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
 msgid "Gramps package"
-msgstr "Pakiet GRAMPS"
+msgstr "Pakiet Gramps"
 
 #: ../data/org.gramps_project.Gramps.xml.in:14
 msgid "Gramps XML database"
@@ -10286,16 +10288,13 @@ msgid "Font family"
 msgstr "Krój pisma"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:182
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Choose the font family. If international characters don't show, use "
-#| "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+#, python-brace-format
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: {freefont_url}"
 msgstr ""
 "Wybierz krój pisma. Jeśli nie pokazują się znaki międzynarodowe, użyj "
-"czcionki FreeSans dostępnej ze strony http://www.nongnu.org/freefont/"
+"czcionki FreeSans dostępnej ze strony {freefont_url}"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:189
 #: ../gramps/gui/widgets/styledtexteditor.py:83
