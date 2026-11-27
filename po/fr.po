@@ -59,8 +59,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-11-10 18:51+0000\n"
-"Last-Translator: L'étoile <aymensalhi4eme@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-11-17 06:53+0000\n"
+"Last-Translator: leclercj <leclercj@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -68,7 +68,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 2026.11.2.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -19571,10 +19571,8 @@ msgstr ""
 "naissance/décès)."
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Keep FamilySearch"
 msgid "Open FamilySearch.org"
-msgstr "Garder FamilySearch"
+msgstr "Ouvrir FamilySearch.org"
 
 # trunk
 #: ../gramps/gui/fs/tools_window.py:774
@@ -22956,10 +22954,8 @@ msgid "Gramps was unable to install the required modules"
 msgstr "Gramps n'a pas pu installer les modules nécessaires"
 
 #: ../gramps/gui/plug/_windows.py:370
-#, fuzzy
-#| msgid "Module installation failed"
 msgid "Addon installation failed"
-msgstr "L'installation du module a échoué"
+msgstr "L'installation de l'extension a échoué"
 
 #: ../gramps/gui/plug/_windows.py:371
 #, python-format
