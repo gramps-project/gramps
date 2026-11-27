@@ -4,13 +4,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2025.
 # "Mārtiņš B(...)" <user-154873@users.noreply.hosted.weblate.org>, 2026.
 # Anthony <anthony@roussel.dev>, 2026.
+# Atis Kozulis <atis@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-16 14:51+0000\n"
-"Last-Translator: Anthony <anthony@roussel.dev>\n"
+"PO-Revision-Date: 2026-11-20 02:11+0000\n"
+"Last-Translator: Atis Kozulis <atis@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Latvian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/lv/>\n"
 "Language: lv\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= "
 "19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -111,15 +112,15 @@ msgstr ""
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Roš Hašāna"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "2. Roš Hašānas diena"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Jomkipura"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
@@ -916,6 +917,9 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
+"BRĪDINĀJUMS: Fails ar šādu nosaukumu jau eksistē!\n"
+"BRĪDINĀJUMS: Tas tiks pārrakstīts:\n"
+"   %s"
 
 #: ../gramps/cli/arghandler.py:312
 msgid "OK to overwrite?"
@@ -31948,10 +31952,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1485
-#, fuzzy
-#| msgid "Person"
 msgid "Personal map: "
-msgstr "Persona"
+msgstr "Personīgā karte: "
 
 #: ../gramps/plugins/lib/maps/geography.py:1494
 msgid "The map"
