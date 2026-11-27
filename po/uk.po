@@ -18,13 +18,15 @@
 # Максим Горпиніч <gorpinicmaksim0@gmail.com>, 2025.
 # Ivan <ivan47044704@gmail.com>, 2025.
 # Denis <drift2000@gmail.com>, 2026.
+# Віталій Перегончук <brute18@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-06-27 05:51+0000\n"
-"Last-Translator: Denis <drift2000@gmail.com>\n"
+"PO-Revision-Date: 2026-11-20 17:15+0000\n"
+"Last-Translator: Віталій Перегончук "
+"<brute18@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
 "Language: uk\n"
@@ -33,7 +35,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -986,28 +988,19 @@ msgstr ""
 "Павутину."
 
 #: ../data/tips.xml:99
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at http://bugs.gramps-"
-#| "project.org"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at &bugs_url;."
 msgstr ""
-"<b>Повідомлення про помилки в Gramps</b><br/>Найкращий спосіб повідомити про "
-"виявлену помилку в Gramps, це використовувати систему слідкування за "
-"помилками Gramps на http://bugs.gramps-project.org"
+"<b>Сповіщання про вади в Gramps</b><br/>Найкращий спосіб повідомити про "
+"виявлену ваду в Gramps – це скористатися системою відслідковування вад на "
+"&bugs_url;."
 
 #: ../data/tips.xml:101
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at https://gramps-"
-#| "project.org/."
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at &gramps_url;."
 msgstr ""
-"<b>Домашня сторінка Gramps</b><br/>Домашня сторінка Gramps https://gramps-"
-"project.org/."
+"<b>Початкова сторінка Gramps</b><br/>Початкова сторінка Gramps – "
+"&gramps_url;."
 
 #: ../data/tips.xml:103
 msgid ""
@@ -1181,23 +1174,16 @@ msgstr ""
 "Foundation та Open Source Initiative."
 
 #: ../data/tips.xml:131
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Software License</b><br/>You are free to use and share "
-#| "Gramps with others. Gramps is freely distributable under the GNU General "
-#| "Public License, see https://www.gnu.org/licenses/licenses.html#GPL to "
-#| "read about the rights and restrictions of this license."
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see &gpl_url; to read about the rights and restrictions of this "
 "license."
 msgstr ""
-"<b>Ліцензія на програму Gramps</b><br/>Ви можете вільно використовувати та "
-"ділитись програмою Gramps з іншими. Gramps безкоштовно розповсюджується за "
-"ліцензією GNU General Public License, дивіться https://www.gnu.org/licenses/"
-"licenses.html#GPL для отримання інформації про права та обмеження цієї "
-"ліцензії."
+"<b>Ліцензія на програмне забезпечення Gramps</b><br/>Можна вільно "
+"користуватися Gramps та ділитись Gramps із іншими. Gramps безкоштовно "
+"поширюється згідно з ліцензією GNU General Public License; про права та "
+"обмеження, що накладаються цією ліцензією, читайте &gpl_url;."
 
 #: ../data/tips.xml:133
 msgid ""
@@ -3695,16 +3681,13 @@ msgid "Wrong format of date-time"
 msgstr "Хибний формат дати і часу"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:96
-#, fuzzy, python-format
-#| msgid ""
-#| "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#| "part is optional, are accepted. %s does not satisfy."
+#, python-format
 msgid ""
 "Only date-times in the ISO format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Дозволено лише дата-час у ISO форматі yyyy-mm-dd hh:mm:ss, де час є "
-"необов’язковим. %s не задовільняє вимог."
+"Дозволений лише час із датою в форматі ISO: yyyy-mm-dd hh:mm:ss, де час є "
+"необов’язковою частиною. %s не відповідає цим вимогам."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:59
 #: ../gramps/gen/fs/fs_import/sources.py:645
@@ -3875,16 +3858,12 @@ msgid "Tag:"
 msgstr "Мітка:"
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:55
-#, fuzzy
-#| msgid "Objects with notes with the particular type"
 msgid "Objects with notes with a specified tag."
-msgstr "Об’єкти із примітками вказаного типу"
+msgstr "Об’єкти з примітками, що мають задану мітку."
 
 #: ../gramps/gen/filters/rules/_hasnotetagbase.py:56
-#, fuzzy
-#| msgid "Matches a note with a specified Gramps ID"
 msgid "Matches notes with a specified tag"
-msgstr "Вибирає примітки з вказаним Gramps ID"
+msgstr "Дає збіг з примітками, що мають задану мітку."
 
 #: ../gramps/gen/filters/rules/_hasnotetypebase.py:54
 #: ../gramps/gen/filters/rules/note/_hasnote.py:57
@@ -3924,10 +3903,8 @@ msgstr "ID джерела:"
 
 #: ../gramps/gen/filters/rules/_matchescitationfilterbase.py:33
 #: ../gramps/gui/editors/filtereditor.py:577
-#, fuzzy
-#| msgid "Citation Filter"
 msgid "Citation filter name:"
-msgstr "Фільтр цитат"
+msgstr "Фільтр цитувань:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:66
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:147
@@ -4112,16 +4089,12 @@ msgstr ""
 "вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Citations with a note with the <tag>"
-msgstr "Цитати з приміткою типу <type>"
+msgstr "Цитування з примітками, що мають <tag>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches citations with a note of the specified type"
 msgid "Matches citations with a note with a specified tag"
-msgstr "Відповідає цитатам із приміткою визначеного типу"
+msgstr "Дає збіг із цитуваннями, що мають примітку із заданою міткою"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotetag.py:46
 #: ../gramps/gen/filters/rules/citation/_hasnotetype.py:49
@@ -4475,16 +4448,12 @@ msgstr ""
 "вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Events with a note with the <tag>"
-msgstr "Події з приміткою типу <type>"
+msgstr "Події з приміткою з <tag>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches events with a note of the specified type"
 msgid "Matches events with a note with a specified tag"
-msgstr "Збігається з подіями, що мають примітку заданого типу"
+msgstr "Дає збіг з подіями, котрі мають примітку із заданою міткою"
 
 #: ../gramps/gen/filters/rules/event/_hasnotetype.py:47
 msgid "Events with a note of type <type>"
@@ -4775,16 +4744,12 @@ msgstr ""
 "вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Families with father with the <name>"
 msgid "Families with a note with the <tag>"
-msgstr "Сім’ї з батьком на <ім’я>"
+msgstr "Сім'ї з приміткою, що має <tag>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches families with a note with a specified tag"
-msgstr "Збігається з сім'ями, що мають примітку заданого типу"
+msgstr "Дає збіг з родинами, котрі мають примітку із заданою міткою"
 
 #: ../gramps/gen/filters/rules/family/_hasnotetype.py:47
 msgid "Families with a note of type <type>"
@@ -5083,28 +5048,20 @@ msgstr ""
 "регулярний вираз"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Citations with a note of type <type>"
 msgid "Media with a note with the <tag>"
-msgstr "Цитати з приміткою типу <type>"
+msgstr "Медіафайли, що мають примітки з <tag>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note with a specified tag"
-msgstr "Збігається з сім'ями, що мають примітку заданого типу"
+msgstr "Дає збіг з медіафайлами, що мають примітку із заданою міткою"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Events with a note of type <type>"
 msgid "Media with a note of type <type>"
-msgstr "Події з приміткою типу <type>"
+msgstr "Медіафайли, що мають примітку типу <type>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches families with a note of the specified type"
 msgid "Matches media with a note of a specified type"
-msgstr "Збігається з сім'ями, що мають примітку заданого типу"
+msgstr "Дає збіг з медіафайлами, що мають примітку заданого типу"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Media objects with a reference count of <count>"
@@ -5617,16 +5574,12 @@ msgstr ""
 "регулярний вираз"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:44
-#, fuzzy
-#| msgid "People with a note of type <type>"
 msgid "People with a note with the <tag>"
-msgstr "Особи з приміткою типу <type>"
+msgstr "Люди, що мають примітку з <tag>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches people with a note of the specified type"
 msgid "Matches people with a note with a specified tag"
-msgstr "Збігається з особами, що мають примітку заданого типу"
+msgstr "Дає збіг з людьми, що мають примітку із заданою міткою"
 
 #: ../gramps/gen/filters/rules/person/_hasnotetype.py:47
 msgid "People with a note of type <type>"
@@ -6286,16 +6239,12 @@ msgstr ""
 "регулярний вираз"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Places with a note of type <type>"
 msgid "Places with a note with the <tag>"
-msgstr "Місця з приміткою типу <type>"
+msgstr "Місця, що мають примітку з <tag>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches places with a note of the specified type"
 msgid "Matches places with a note with a specified tag"
-msgstr "Збігається з місцями, що мають примітку заданого типу"
+msgstr "Дає збіг з місцями, що мають примітку з заданою міткою"
 
 #: ../gramps/gen/filters/rules/place/_hasnotetype.py:47
 msgid "Places with a note of type <type>"
@@ -6550,28 +6499,20 @@ msgstr ""
 "вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Repositories with the <tag>"
 msgid "Repositories with a note with the <tag>"
-msgstr "Сховища з <міткою>"
+msgstr "Сховища, що мають примітку з <tag>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note with a specified tag"
-msgstr "Відповідає джерелам із приміткою заданого типу"
+msgstr "Дає збіг зі сховищами, що мають примітку із заданою міткою"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Repositories with a note of type <type>"
-msgstr "Джерела з приміткою типу <type>"
+msgstr "Сховища, що мають примітку типу <type>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotetype.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches repositories with a note of a specified type"
-msgstr "Відповідає джерелам із приміткою заданого типу"
+msgstr "Дає збіг зі сховищами, що мають примітку заданого типу"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Repositories with a reference count of <count>"
@@ -6720,16 +6661,12 @@ msgstr ""
 "вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:44
-#, fuzzy
-#| msgid "Sources with a note of type <type>"
 msgid "Sources with a note with the <tag>"
-msgstr "Джерела з приміткою типу <type>"
+msgstr "Джерела, що мають примітку з <tag>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetag.py:45
-#, fuzzy
-#| msgid "Matches sources with a note of the specified type"
 msgid "Matches sources with a note with a specified tag"
-msgstr "Відповідає джерелам із приміткою заданого типу"
+msgstr "Дає збіг зі джерелами, що мають примітку із заданою міткою"
 
 #: ../gramps/gen/filters/rules/source/_hasnotetype.py:47
 msgid "Sources with a note of type <type>"
@@ -6849,10 +6786,8 @@ msgstr "Вибирає джерела, які були помічені як п�
 #: ../gramps/gui/fs/sync_directions.py:955 ../gramps/gui/viewmanager.py:414
 #: ../gramps/gui/viewmanager.py:625 ../gramps/gui/viewmanager.py:638
 #: ../gramps/gui/viewmanager.py:646
-#, fuzzy
-#| msgid "Family Sources"
 msgid "FamilySearch"
-msgstr "Джерела для сім’ї"
+msgstr "FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:287
 #: ../gramps/gui/fs/compare/window.py:232
@@ -6860,21 +6795,17 @@ msgstr "Джерела для сім’ї"
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2084
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:2288
 msgid "Not connected to FamilySearch"
-msgstr ""
+msgstr "Немає зв'язування з FamilySearch"
 
 #: ../gramps/gen/fs/compare/aggregate.py:326
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:623
-#, fuzzy
-#| msgid "initials"
 msgid "Essentials"
-msgstr "ініціали"
+msgstr "Найголовніше"
 
 #: ../gramps/gen/fs/compare/aggregate.py:331
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:627
-#, fuzzy
-#| msgid "Item name"
 msgid "Other names"
-msgstr "Назва елемента"
+msgstr "Інші імена"
 
 #: ../gramps/gen/fs/compare/aggregate.py:338
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:632
@@ -6917,7 +6848,7 @@ msgstr "Сім'ї"
 #: ../gramps/gen/fs/compare/aggregate.py:352
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:640
 msgid "Facts"
-msgstr ""
+msgstr "Факти"
 
 #: ../gramps/gen/fs/compare/comparators.py:334
 #: ../gramps/gen/fs/compare/comparators.py:341 ../gramps/gen/utils/string.py:49
@@ -7098,7 +7029,7 @@ msgstr "Дитина"
 
 #: ../gramps/gen/fs/constants.py:80
 msgid "LifeSketch"
-msgstr ""
+msgstr "LifeSketch"
 
 #: ../gramps/gen/fs/constants.py:81 ../gramps/gen/fs/constants.py:82
 msgid "Birth Registration"
@@ -7109,28 +7040,21 @@ msgid "Death Registration"
 msgstr "Реєстрація смерті"
 
 #: ../gramps/gen/fs/constants.py:85
-#, fuzzy
-#| msgctxt "localized lexeme inflections"
-#| msgid "February"
 msgid "Obituary"
-msgstr "N=лютий|G=лютого"
+msgstr "Некролог"
 
 #: ../gramps/gen/fs/constants.py:86
-#, fuzzy
-#| msgid "Relationship"
 msgid "Citizenship"
-msgstr "Відносини"
+msgstr "Громадянство"
 
 #: ../gramps/gen/fs/fs_import/places.py:143
-#, fuzzy
-#| msgid "Building display"
 msgid "Building FSID list for places"
-msgstr "Будую показ"
+msgstr "Формування списку FSID для місць"
 
 #: ../gramps/gen/fs/fs_import/sources.py:406
 #, python-format
 msgid "Loading FamilySearch source %(current)d/%(total)d"
-msgstr ""
+msgstr "Завантаження джерела FamilySearch %(current)d/%(total)d"
 
 #: ../gramps/gen/fs/fs_import/sources.py:611
 #: ../gramps/gen/fs/fs_import/sources.py:614
@@ -7203,35 +7127,28 @@ msgid "Internet Address"
 msgstr "Інтернет адреса"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:434
-#, fuzzy, python-format
-#| msgid "%(current)d of %(total)d"
+#, python-format
 msgid "%(header)s (%(current)d/%(total)d)"
-msgstr "%(current)d з %(total)d"
+msgstr "%(header)s (%(current)d/%(total)d)"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:443
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Loading FamilySearch person sources"
-msgstr "Імпорт сімейного дерева"
+msgstr "Завантаження джерел осіб FamilySearch"
 
 #: ../gramps/gen/fs/person/mixins/cache.py:451
-#, fuzzy
-#| msgid "Family relationships"
 msgid "Loading FamilySearch relationship sources"
-msgstr "Сімейні відносини"
+msgstr "Завантаження джерел стосунків FamilySearch"
 
 #: ../gramps/gen/fs/sync_directions.py:493
 #, python-brace-format
 msgid "Memory: {t}"
-msgstr ""
+msgstr "Пам'ять: {t}"
 
 #: ../gramps/gen/fs/sync_directions.py:494
 #: ../gramps/gui/fs/sync_directions.py:600
 #: ../gramps/gui/fs/sync_directions.py:778
-#, fuzzy
-#| msgid "Date(s) missing"
 msgid "(missing)"
-msgstr "Дата(и) відсутня(і)"
+msgstr "(немає)"
 
 #: ../gramps/gen/fs/sync_directions.py:832 ../gramps/gen/lib/note.py:105
 #: ../gramps/gen/plug/docgen/graphdoc.py:321
@@ -7278,34 +7195,32 @@ msgstr "Примітка"
 #: ../gramps/gen/fs/sync_directions.py:1095
 #: ../gramps/gui/fs/sync_directions.py:871
 msgid "Updated from Gramps"
-msgstr ""
+msgstr "Оновлено з Gramps"
 
 #: ../gramps/gen/fs/sync_directions.py:1259
 #: ../gramps/gui/fs/sync_directions.py:1680
-#, fuzzy
-#| msgid "Created for %(author)s"
 msgid "Created from Gramps"
-msgstr "Створено для %(author)s"
+msgstr "Створено з Gramps"
 
 #: ../gramps/gen/fs/tags.py:322
 #, python-format
 msgid "Group %(num)d"
-msgstr ""
+msgstr "Група %(num)d"
 
 #: ../gramps/gen/fs/tags.py:333
 #, python-format
 msgid "Overview ? %(title)s ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Огляд ? %(title)s ? ряд %(row)d не є зеленим (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:343
 #, python-format
 msgid "Notes ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Примітки ? ряд %(row)d не є зеленим (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:353
 #, python-format
 msgid "Sources ? row %(row)d not green (%(color)s)"
-msgstr ""
+msgstr "Джерела ? ряд %(row)d не є зеленим (%(color)s)"
 
 #: ../gramps/gen/fs/tags.py:363
 msgid ""
@@ -7313,6 +7228,10 @@ msgid ""
 "Organize Tags. This integration only sets default colors when the tags are "
 "first created and will not override your custom choices."
 msgstr ""
+"Кольори міток статусу FamilySearch можна налаштувати в Gramps у Редагувати > "
+"Мітка > Організувати мітки. Ця інтеграція задає лише кольори за "
+"замовчуванням, коли мітки лишень створюються, і не змінює Ваших власних "
+"налаштувань."
 
 #: ../gramps/gen/fs/utils/linking.py:48
 #, fuzzy

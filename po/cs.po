@@ -46,7 +46,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-23 13:51+0000\n"
+"PO-Revision-Date: 2026-11-05 07:51+0000\n"
 "Last-Translator: Milan <milan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -55,7 +55,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.11.dev0\n"
+"X-Generator: Weblate 2026.11.1.dev0\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -4204,7 +4204,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
 msgid "Citations with the <tag>"
-msgstr "Citace s <tag>"
+msgstr "Citace se <štítkem>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:52
 msgid "Matches citations with the particular tag"
@@ -26135,7 +26135,7 @@ msgstr "Úkoly"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:390
 msgid "Gramplet for displaying a To Do list"
-msgstr "Gramplet poskytující seznam poznámek"
+msgstr "Gramplet zobrazující seznam úkolů"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:406
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:412

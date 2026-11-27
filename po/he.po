@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-10-19 15:51+0000\n"
+"PO-Revision-Date: 2026-11-27 09:51+0000\n"
 "Last-Translator: Avi Markovitz <avma@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 2026.11.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -1148,7 +1148,7 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:263
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr "שגיאה: לא נמצא הקובץ לייבוא %s."
+msgstr "שגיאה: קובץ %s לייבוא, לא נמצא."
 
 #: ../gramps/cli/arghandler.py:283
 #, python-format
@@ -1162,9 +1162,9 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
-"אזהרה: הקובץ כבר קיים.\n"
-"אזהרה: הוא יכתב מחדש\n"
-" %s"
+"אזהרה: קובץ הפלט כבר קיים!\n"
+"אזהרה: תוכנו יוחלף:\n"
+"   %s"
 
 #: ../gramps/cli/arghandler.py:312
 msgid "OK to overwrite?"
@@ -1183,7 +1183,7 @@ msgstr "לא"
 #: ../gramps/cli/arghandler.py:319
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "הקובץ הקיים יידרס: %s"
+msgstr "ייכתב על הקובץ הקיים: %s"
 
 #: ../gramps/cli/arghandler.py:338
 #, python-format
@@ -1197,7 +1197,7 @@ msgstr "שגיאה: לא ניתן לפתוח '%s'"
 
 #: ../gramps/cli/arghandler.py:421
 msgid "List of known Family Trees in your database path\n"
-msgstr "רשימת אילנות יוחסין מוכרים בנתיב מסד־הנתונים\n"
+msgstr "רשימת אילנות־יוחסין ידועים בנתיב מסד־הנתונים\n"
 
 #: ../gramps/cli/arghandler.py:433
 #, python-format
@@ -1274,7 +1274,7 @@ msgstr "מסד הנתונים נעול. לא ניתן לפתוח אותו!"
 
 #: ../gramps/cli/arghandler.py:580
 msgid "Database needs recovery, cannot open it!"
-msgstr "לא ניתן לפתוח את מסד־הנתונים!"
+msgstr "מסד־הנתונים מחייב שחזור, לא ניתן לפתוח אותו!"
 
 #: ../gramps/cli/arghandler.py:583
 msgid "Database backend unavailable, cannot open it!"
@@ -1283,7 +1283,7 @@ msgstr "שרת מסד־הנתונים לא זמין. לא ניתן לפתוח א
 #: ../gramps/cli/arghandler.py:634 ../gramps/cli/arghandler.py:691
 #: ../gramps/cli/arghandler.py:739
 msgid "Ignoring invalid options string."
-msgstr "המערכת תתעלם ממחרוזת אפשרויות לא חוקית."
+msgstr "התעלמות ממחרוזת אפשרויות לא תקינה."
 
 #: ../gramps/cli/arghandler.py:663
 msgid "Unknown report name."
@@ -1292,7 +1292,7 @@ msgstr "שם דוח לא ידוע."
 #: ../gramps/cli/arghandler.py:666
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
-msgstr "לא הוזן שם לדוח. נא להשתמש באחד מתוך%(donottranslate)s=reportname"
+msgstr "לא הוזן שם לדוח. נא להשתמש באחד מתוך %(donottranslate)s=reportname"
 
 #: ../gramps/cli/arghandler.py:670 ../gramps/cli/arghandler.py:722
 #: ../gramps/cli/arghandler.py:759
@@ -1302,7 +1302,7 @@ msgid ""
 " Available names are:"
 msgstr ""
 "%s\n"
-"השמות האפשריים הם:"
+" שמות אפשריים:"
 
 #: ../gramps/cli/arghandler.py:715
 msgid "Unknown tool name."
@@ -1577,7 +1577,7 @@ msgstr "גרמפס: אין הגדרות תיצור כאלו: '%s'"
 
 #: ../gramps/cli/argparser.py:493
 msgid "Error parsing the arguments"
-msgstr "שגיאה בפרישת המשתנים"
+msgstr "שגיאה בניתוח המשתנים"
 
 #: ../gramps/cli/clidbman.py:72 ../gramps/cli/clidbman.py:171
 #: ../gramps/cli/clidbman.py:173 ../gramps/gui/clipboard.py:207
@@ -1657,7 +1657,7 @@ msgstr "ייבוא הסתיים..."
 
 #: ../gramps/cli/clidbman.py:405 ../gramps/plugins/importer/importcsv.py:536
 msgid "Importing data..."
-msgstr "נתונים מיובאים..."
+msgstr "מתבצע ייבוא נתונים..."
 
 #: ../gramps/cli/clidbman.py:465
 msgid "Remove family tree warning"
@@ -1674,7 +1674,7 @@ msgstr ""
 
 #: ../gramps/cli/clidbman.py:478 ../gramps/gui/dbman.py:790
 msgid "Could not delete Family Tree"
-msgstr "לא ניתן למחוק אילן יוחסים"
+msgstr "לא ניתן למחוק אילן־יוחסין"
 
 #: ../gramps/cli/clidbman.py:491
 msgid "Could not rename Family Tree"

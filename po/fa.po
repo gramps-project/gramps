@@ -7,13 +7,14 @@
 # Seyed Amir MirMohammadi <s.a.mirmohammadi@gmail.com>, 2026.
 # he tav haf <l2ryun8if@mozmail.com>, 2026.
 # mohammad montajebii <mohammad.montajebii@gmail.com>, 2026.
+# Saman <saman749@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-09-03 10:51+0000\n"
-"Last-Translator: mohammad montajebii <mohammad.montajebii@gmail.com>\n"
+"PO-Revision-Date: 2026-11-14 12:51+0000\n"
+"Last-Translator: Saman <saman749@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fa/>\n"
 "Language: fa\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.9\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1022,40 +1023,40 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:314 ../gramps/cli/arghandler.py:316
 #: ../gramps/cli/clidbman.py:468
 msgid "yes"
-msgstr ""
+msgstr "بله"
 
 #: ../gramps/cli/arghandler.py:315 ../gramps/cli/clidbman.py:469
 #: ../gramps/cli/clidbman.py:470
 msgid "no"
-msgstr ""
+msgstr "خیر"
 
 #: ../gramps/cli/arghandler.py:319
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr ""
+msgstr "فایل موجود را بازنویسی خواهد شد: %s"
 
 #: ../gramps/cli/arghandler.py:338
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr ""
+msgstr "خطا: فرمت ناشناخته برای فایل خروجی %s"
 
 #: ../gramps/cli/arghandler.py:402 ../gramps/gen/plug/utils.py:373
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr ""
+msgstr "خطا: نمیتوان %s را باز کرد"
 
 #: ../gramps/cli/arghandler.py:421
 msgid "List of known Family Trees in your database path\n"
-msgstr ""
+msgstr "فهرست شجره نامه های شناخته شده ی خانواده در مسیر پایگاه داده ی شما\n"
 
 #: ../gramps/cli/arghandler.py:433
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr ""
+msgstr "%(full_DB_path)s با نام \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:451 ../gramps/cli/clidbman.py:196
 msgid "Gramps Family Trees:"
-msgstr ""
+msgstr "شجره نامه های خانواده ی گرمپس"
 
 #: ../gramps/cli/arghandler.py:457 ../gramps/cli/arghandler.py:459
 #: ../gramps/cli/arghandler.py:463 ../gramps/cli/arghandler.py:465
@@ -1063,54 +1064,54 @@ msgstr ""
 #: ../gramps/cli/clidbman.py:176 ../gramps/cli/clidbman.py:215
 #: ../gramps/gui/clipboard.py:919 ../gramps/gui/configure.py:2576
 msgid "Family Tree"
-msgstr ""
+msgstr "شجره نامه ی خانوادگی"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:465 ../gramps/cli/arghandler.py:469
 #: ../gramps/plugins/cite/legacy.py:90
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "%s"
 
 #: ../gramps/cli/arghandler.py:477
 #, python-format
 msgid "Performing action: %s."
-msgstr ""
+msgstr "عمل مقابل در حال انجام است: %s."
 
 #: ../gramps/cli/arghandler.py:479 ../gramps/gen/plug/report/stdoptions.py:337
 #, python-format
 msgid "Using options string: %s"
-msgstr ""
+msgstr "در حال استفاده ی رشته ی گزینه های: %s"
 
 #: ../gramps/cli/arghandler.py:484
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "در حال صدور: فایل %(filename)s، به فرمت %(format)s."
 
 #: ../gramps/cli/arghandler.py:495
 msgid "Cleaning up."
-msgstr ""
+msgstr "در حال تمیز کردن."
 
 #: ../gramps/cli/arghandler.py:532
 msgid "Created empty Family Tree successfully"
-msgstr ""
+msgstr "شجره نامه ی خانوادگی با موفقیت ایجاد شد"
 
 #: ../gramps/cli/arghandler.py:535 ../gramps/cli/arghandler.py:562
 msgid "Error opening the file."
-msgstr ""
+msgstr "خطا در باز کردن فایل."
 
 #: ../gramps/cli/arghandler.py:536 ../gramps/cli/arghandler.py:563
 msgid "Exiting..."
-msgstr ""
+msgstr "در حال خروج..."
 
 #: ../gramps/cli/arghandler.py:540
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "در حال وارد کردن: فایل %(filename)s، به فرمت %(format)s."
 
 #: ../gramps/cli/arghandler.py:560
 msgid "Opened successfully!"
-msgstr ""
+msgstr "با موفقیت باز شد!"
 
 #: ../gramps/cli/arghandler.py:575
 #, python-format
@@ -1119,11 +1120,11 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:575
 msgid "Database is locked, cannot open it!"
-msgstr ""
+msgstr "پایگاه داده قفل شده است، نمیتوان آن را باز کرد!"
 
 #: ../gramps/cli/arghandler.py:580
 msgid "Database needs recovery, cannot open it!"
-msgstr ""
+msgstr "پایگاه داده نیاز به بازیابی دارد، نمیتوان آن را باز کرد!"
 
 #: ../gramps/cli/arghandler.py:583
 msgid "Database backend unavailable, cannot open it!"
@@ -1153,26 +1154,30 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:715
 msgid "Unknown tool name."
-msgstr ""
+msgstr "نام ابزار ناشناخته."
 
 #: ../gramps/cli/arghandler.py:718
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
+"نام ابزار داده نشده است. لطفاً یکی از %(donottranslate)s=toolname را استفاده "
+"کنید."
 
 #: ../gramps/cli/arghandler.py:752
 msgid "Unknown book name."
-msgstr ""
+msgstr "نام کتاب ناشناخته."
 
 #: ../gramps/cli/arghandler.py:755
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
+"نام کتاب داده نشده است. لطفاً یکی از نام های %(donottranslate)s =booknameرا "
+"استفاده کنید."
 
 #: ../gramps/cli/arghandler.py:764
 #, python-format
 msgid "Unknown action: %s."
-msgstr ""
+msgstr "عمل ناشناخته: %s."
 
 #: ../gramps/cli/argparser.py:65
 msgid ""
@@ -1283,7 +1288,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:276
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr ""
+msgstr "در حال تلاش برای باز کردن: %s..."
 
 #: ../gramps/cli/argparser.py:321
 #, python-format
@@ -1295,7 +1300,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:331
 #, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr ""
+msgstr "عمل ناشناخته ی: %s. نادیده گرفته خواهد شد."
 
 #: ../gramps/cli/argparser.py:341
 msgid "setup debugging"

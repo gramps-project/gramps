@@ -29,13 +29,14 @@
 # Sofia <sofimanci2112@gmail.com>, 2025.
 # Cobol <cobol1970@protonmail.com>, 2026.
 # Libre <6n0n1m0s@proton.me>, 2026.
+# fserrador <fserrador@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-13 00:06+0100\n"
-"PO-Revision-Date: 2026-06-28 21:01+0000\n"
-"Last-Translator: Libre <6n0n1m0s@proton.me>\n"
+"PO-Revision-Date: 2026-11-27 19:37+0000\n"
+"Last-Translator: fserrador <fserrador@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -43,7 +44,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -329,7 +330,7 @@ msgstr "Abanico descendiente"
 #: ../gramps/plugins/view/view.gpr.py:226
 #: ../gramps/plugins/webreport/updates.py:106
 msgid "People"
-msgstr "Personas"
+msgstr "Miembros"
 
 #: ../data/org.gramps_project.Gramps.metainfo.xml.in:42
 #: ../gramps/plugins/view/relview.py:147 ../gramps/plugins/view/view.gpr.py:118
@@ -380,7 +381,7 @@ msgstr "Relaciones"
 #: ../gramps/plugins/webreport/family.py:314
 #: ../gramps/plugins/webreport/person.py:1639
 msgid "Person"
-msgstr "Persona"
+msgstr "Miembro"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -505,12 +506,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Encontrar personas</b><br/>En la vista agrupada de personas, cada "
-"apellido se lista una sola vez. Al hacer clic en la flecha que aparece a la "
-"izquierda de un apellido, se mostrarán todas las personas que tengan ese "
-"apellido. Para localizar cualquier apellido de una lista larga, seleccione "
-"un apellido (no una persona) y empiece a teclear. La vista saltará al primer "
-"apellido que empiece con las letras introducidas."
+"<b>Situar miembros</b><br/>En la vista agrupada de personas, cada apellido "
+"se lista una sola vez. Al hacer clic en la flecha que aparece a la izquierda "
+"de un apellido, se mostrarán todos los miembros que tengan ese apellido. "
+"Para localizar cualquier apellido de una lista larga, seleccione un apellido "
+"(no un miembro) y empiece a teclear. La vista saltará al primer apellido que "
+"empiece con las letras introducidas."
 
 #: ../data/tips.xml:25
 msgid ""
@@ -527,10 +528,10 @@ msgid ""
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
-"<b>Cambiar la Persona Activa</b><br/>Es fácil cambiar la Persona Activa en "
-"las distintas vistas. En la vista de Relaciones, simplemente haga clic en "
-"cualquier persona. En la vista de Ascendientes, haga doble clic en una "
-"persona o haga clic con el botón derecho y seleccione cualquiera de sus "
+"<b>Cambiar el Miembro Activo</b><br/>Es fácil cambiar el Miembro Activo en "
+"las distintas vistas. En la vista de Relaciones, simplemente pulse en "
+"cualquier miembro. En la vista de Ascendientes, pulse dos veces en un "
+"miembro o pulse con el botón secundario y seleccione cualquiera de sus "
 "cónyuges, hermanos, hijos o padres."
 
 #: ../data/tips.xml:29
@@ -540,9 +541,9 @@ msgid ""
 "your database. This is useful, say, if you wish to list the birth dates of "
 "everyone in your database. You can use a custom filter to narrow the results."
 msgstr ""
-"<b>¿Quién nació y cuándo?</b><br/>Debajo de «Herramientas > Análisis y "
-"Exploración > Comparar eventos individuales…» se pueden comparar los datos "
-"de personas en su base de datos. Esto es útil, digamos, si desea alistar las "
+"<b>¿Quién nació y cuándo?</b><br/>Debajo de \"Herramientas > Análisis y "
+"Exploración > Comparar eventos individuales…\" se pueden comparar los datos "
+"de miembros en su base de datos. Esto es útil, digamos, si desea alistar las "
 "fechas de nacimiento de cada uno en su base de datos. Puede usar un filtro "
 "personalizado para limitar los resultados."
 
@@ -629,12 +630,12 @@ msgid ""
 "People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>Comenzar un nuevo árbol genealógico</b><br/>Una buena manera de comenzar "
+"<b>Comenzar un Árbol Genealógico nuevo</b><br/>Una buena manera de comenzar "
 "un nuevo árbol genealógico es introducir los miembros de la familia en la "
-"base de datos mediante la vista de Personas (emplee \"Editar > Agregar...\" "
-"o pulse en el botón Agregar una nueva persona en la vista de Personas). A "
+"base de datos mediante la vista de Miembros (emplee \"Editar > Agregar...\" "
+"o pulse en el botón Agregar un miembro nuevo en la vista de Personas). A "
 "continuación, vaya a la vista de Relaciones y cree las relaciones entre "
-"personas."
+"gente."
 
 #: ../data/tips.xml:43
 msgid ""
@@ -706,10 +707,10 @@ msgid ""
 "through the list using \"Go > Forward\" and \"Go > Back\" or the arrow "
 "buttons."
 msgstr ""
-"<b>Navegar atrás y adelante</b><br/>Gramps mantiene una lista de los últimos "
-"objetos activos como Personas y Eventos. Puede moverse adelante y atrás por "
-"el listado utilizando «Ir > Avanzar» e «Ir > Retroceder» o los botones de "
-"flechas."
+"<b>Navegar atrás y adelante</b><br/>Gramps mantiene un listado de los "
+"últimos objetos activos como Miembros y Eventos. Puede moverse adelante y "
+"atrás por el listado utilizando \"Ir > Avanzar\" e \"Ir > Retroceder\" o los "
+"botones de flechas."
 
 #: ../data/tips.xml:55
 msgid ""
@@ -767,7 +768,7 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Casilla Mostrar todos</b><br/>Al añadir una persona existente como "
+"<b>Casilla Mostrar todos</b><br/>Al añadir un miembro existente como "
 "cónyuge, solo se muestran inicialmente las personas que realísticamente "
 "podrían cumplir ese papel (en función de las fechas en la base de datos). Si "
 "Gramps erró al efectuar esta elección, puede pasar por alto el filtro "
@@ -795,13 +796,12 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help > Gramps Mailing Lists\"."
 msgstr ""
-"<b>Listados de correo de Gramps</b><br/>¿Quiere buscar respuestas a sus "
-"preguntas sobre Gramps? Pruebe el listado de correo gramps-users. En el "
-"listado hay muchas personas dispuestas a ayudar, así que es fácil que "
-"obtenga una respuesta en poco tiempo. Si tiene preguntas acerca del "
-"desarrollo de Gramps, pruebe el listado gramps-devel. Puede encontrar "
-"información acerca de estos listados seleccionando «Ayuda > Listas de correo "
-"de Gramps»."
+"<b>Listados de correo de Gramps</b><br/>Desea respuestas a sus preguntas "
+"sobre Gramps? Pruebe el listado de correo gramps‐users. En el listado hay "
+"muchas personas dispuestas a ayudar, así que es fácil que obtenga una "
+"respuesta en poco tiempo. Si tiene preguntas acerca del desarrollo de "
+"Gramps, pruebe el listado gramps‐devel. Puede encontrar información acerca "
+"de estos listados seleccionando \"Ayuda > Listas de correo de Gramps\"."
 
 #: ../data/tips.xml:69
 msgid ""
@@ -878,8 +878,8 @@ msgid ""
 "types. You can add your own event types by typing in the text field, they "
 "will be added to the available events, but not translated."
 msgstr ""
-"<b>Listar eventos</b><br/>Los eventos se agregan usando el editor que se "
-"abre mediante «Persona > Editar persona > Eventos». Hay una larga lista de "
+"<b>Alistar eventos</b><br/>Los eventos se agregan usando el editor que se "
+"abre mediante \"Miembro > Editar miembro > Eventos\". Hay una larga lista de "
 "tipos de eventos predefinidos. Puede agregar sus propios tipos de evento "
 "tecleando en el campo de texto, se agregarán a la lista de eventos "
 "disponibles, pero no resultarán traducidos a otros idiomas."
@@ -891,8 +891,8 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
-"<b>Gestionar nombres</b><br/>Es fácil gestionar personas con varios nombres "
-"en Gramps. En el editor de personas, escoja la pestaña Nombres. Puede "
+"<b>Gestionar nombres</b><br/>Es fácil gestionar miembros con varios nombres "
+"en Gramps. En el Editor de Miembros, escoja la pestaña Nombres. Puede "
 "agregar nombres de distintos tipos y seleccionar el nombre preferido "
 "arrastrándolo a la sección de Nombre Preferido."
 
@@ -1164,9 +1164,9 @@ msgid ""
 "is the person who is selected when the database is opened or when the home "
 "button is pressed."
 msgstr ""
-"<b>La persona inicial</b><br/>Puede elegir cualquier persona como Persona "
-"Inicial en Gramps. Utilice \"Editar > Establecer persona inicial\" La "
-"persona inicial es la que resulta seleccionada cuando se abre la base de "
+"<b>El miembro inicial</b><br/>Puede elegir cualquier persona como Miembro "
+"Inicial en Gramps. Utilice \"Editar > Establecer Miembro inicial\" El "
+"miembro inicial es el que resulta seleccionada cuando se abre la base de "
 "datos o cuando se pulsa el botón \"Ir a botón inicio\"."
 
 #: ../data/tips.xml:127
@@ -1993,7 +1993,7 @@ msgstr "Error encontrado al analizar los argumentos: %s"
 
 #: ../gramps/cli/plug/__init__.py:197
 msgid "ERROR: Please specify a person"
-msgstr "ERROR: especifique una persona"
+msgstr "ERROR: especifique un miembro"
 
 #: ../gramps/cli/plug/__init__.py:221
 msgid "ERROR: Please specify a family"
@@ -3338,7 +3338,7 @@ msgstr "_Rehacer %s"
 
 #: ../gramps/gen/db/generic.py:2704
 msgid "Number of people"
-msgstr "Número de personas"
+msgstr "Número de miembros"
 
 #: ../gramps/gen/db/generic.py:2705
 #: ../gramps/plugins/gramplet/statsgramplet.py:186
@@ -3398,7 +3398,7 @@ msgstr "Versión de esquema"
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Personas      actualizadas con %(n2)6d citas en %(n3)6d segundos\n"
+"%(n1)6d  Miembros      mejoradas con %(n2)6d citas en %(n3)6d segundos\n"
 
 #: ../gramps/gen/db/upgrade.py:723
 #, python-format
@@ -3973,7 +3973,8 @@ msgstr "Nombre del filtro:"
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:86
 #, python-format
 msgid "Can't find filter %s in the defined custom filters"
-msgstr "No se encuentra el filtro %s entre los filtros personalizados"
+msgstr ""
+"No puede encontrar el filtro %s entre los filtros personalizados definidos"
 
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:56
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:57
@@ -4578,16 +4579,16 @@ msgstr "Incluir eventos familiares:"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:59
 #: ../gramps/gui/editors/filtereditor.py:565
 msgid "Person filter name:"
-msgstr "Nombre del filtro de persona:"
+msgstr "Nombre del filtro de miembro:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:60
 msgid "Events of persons matching the <person filter>"
-msgstr "Eventos de personas que coinciden con <filtro de persona>"
+msgstr "Eventos de miembros que coinciden con <filtro de miembro>"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:62
 msgid "Matches events of persons matched by the specified person filter name"
 msgstr ""
-"Coincide con los eventos de personas que coinciden con el filtro de persona "
+"Coincide con los eventos de miembros que coinciden con el filtro de miembro "
 "especificado"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:58
@@ -4662,7 +4663,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:53
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:53
 msgid "Person ID:"
-msgstr "ID de la persona:"
+msgstr "ID de miembro:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:54
 msgid "Families having child with Id containing <text>"
@@ -4926,7 +4927,7 @@ msgstr "Familias en marcadores"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:56
 msgid "Matches the families on the bookmark list"
-msgstr "Concide con las personas de la lista de marcadores"
+msgstr "Coincide con los miembros del listado de marcadores"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:63
 msgid "Descendant families of <family>"
@@ -5339,21 +5340,21 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:48
 msgid "Persons changed after <date time>"
-msgstr "Personas modificadas después de <fecha hora>"
+msgstr "Miembros modificados tras <fecha hora>"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:50
 msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Coincide con los registros de personas modificadas tras una fecha-hora "
-"determinadas (aaaa-mm-dd hh:mm:ss) o en un lapso, si se indica una segunda "
+"Coincide con los registros de miembro modificado tras una fecha-hora "
+"determinadas (aaaa‐mm‐dd hh:mm:ss) o en un lapso, si se indica una segunda "
 "fecha-hora."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
 msgid "Relationship path between <person> and people matching <filter>"
 msgstr ""
-"Línea de parentesco entre <persona> y las personas que coinciden con <filtro>"
+"Línea de parentesco entre <miembro> y miembros que coinciden con <filtro>"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:149
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:57
@@ -5370,12 +5371,12 @@ msgid ""
 "between the specified person and the target people.  Each path is not "
 "necessarily the shortest path."
 msgstr ""
-"Busca en la base de datos a partir de una persona y devuelve todas las "
-"personas comprendidas entre esa persona y una serie de personas "
-"seleccionadas por un filtro.  Produce un conjunto de líneas de parentesco "
-"(incluidas las creadas por matrimonio) entre la persona especificada y las "
-"personas seleccionadas por el filtro.  Cada línea no es necesariamente la "
-"más corta entre las personas."
+"Busca en la base de datos a partir de un miembro y devuelve todos los "
+"miembros comprendidos entre ese miembro y una serie de miembros "
+"seleccionados por un filtro.  Esto produce un conjunto de líneas de "
+"parentesco (incluidas las creadas por matrimonio) entre el miembro "
+"especificado y los miembros seleccionados por el filtro.  Cada línea no es "
+"necesariamente la más breve entre los miembros."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:173
 msgid "Finding relationship paths"
@@ -5383,19 +5384,19 @@ msgstr "Buscando líneas de parentesco"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:174
 msgid "Evaluating people"
-msgstr "Evaluando personas"
+msgstr "Evaluando miembros"
 
 #: ../gramps/gen/filters/rules/person/_disconnected.py:53
 msgid "Disconnected people"
-msgstr "Personas desconectadas"
+msgstr "Miembros desconectados"
 
 #: ../gramps/gen/filters/rules/person/_disconnected.py:56
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
 msgstr ""
-"Coincide con las personas que no tienen relaciones familiares con ninguna "
-"otra persona de la base de datos"
+"Coincide con los miembros que no tienen relaciones familiares con ningún "
+"otro miembro de la base de datos"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:53
 #: ../gramps/gen/plug/_pluginreg.py:79 ../gramps/gui/fs/compare/options.py:68
@@ -5404,7 +5405,7 @@ msgstr "Todos"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:55
 msgid "Matches everyone in the database"
-msgstr "Concide con todas las personas de la base de datos"
+msgstr "Coincide con todos los miembros de la base de datos"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:51
 msgid "Families with incomplete events"
@@ -5413,81 +5414,80 @@ msgstr "Familias con eventos incompletos"
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:53
 msgid "Matches people with missing date or place in an event of the family"
 msgstr ""
-"Coincide con las personas que tienen eventos en su familia en los que no "
+"Coincide con los miembros que tienen eventos en su familia en los que no "
 "consta fecha o lugar"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:58
 msgid "People with <count> addresses"
-msgstr "Personas que tienen <cuenta> direcciones"
+msgstr "Miembros que tienen <cuenta> direcciones"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:59
 msgid "Matches people with a certain number of personal addresses"
-msgstr ""
-"Coincide con las personas con un cierto número de direcciones personales"
+msgstr "Coinciden miembros con un cierto número de direcciones personales"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:52
 msgid "People with an address containing <text>"
-msgstr "Personas con una dirección que contiene <texto>"
+msgstr "Miembros con una dirección que contiene <texto>"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:54
 msgid "Matches people with a personal address containing the given text"
 msgstr ""
-"Coincide con las personas que tienen una dirección particular que contiene "
+"Coincide con los miembros que tienen una dirección particular que contiene "
 "el texto dado"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:54
 msgid "People with an alternate name"
-msgstr "Personas con nombres alternativos"
+msgstr "Miembros con nombres alternativos"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:55
 msgid "Matches people with an alternate name"
-msgstr "Coincide con las personas que tienen un nombre alternativo"
+msgstr "Coincide con los miembros que tienen un nombre alternativo"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:58
 msgid "People with <count> associations"
-msgstr "Personas con <cuenta> asociaciones"
+msgstr "Miembros con <cuenta> asociaciones"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:59
 msgid "Matches people with a certain number of associations"
-msgstr "Coincide con las personas que tienen un cierto número de asociaciones"
+msgstr "Coincide con los miembros que tienen un cierto número de asociaciones"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:45
 #: ../gramps/gui/editors/filtereditor.py:113
 #: ../gramps/gui/editors/filtereditor.py:587
 msgid "Personal attribute:"
-msgstr "Atributo personal:"
+msgstr "Atributo de miembro:"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
 msgid "People with the personal <attribute>"
-msgstr "Personas con el <atributo> personal"
+msgstr "Miembros con el <atributo> personal"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:48
 msgid "Matches people with the personal attribute of a particular value"
 msgstr ""
-"Coincide con las personas que tienen un atributo personal con un valor "
+"Coincide con los miembros que tienen un atributo personal con un valor "
 "particular"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:58
 msgid "People with the <birth data>"
-msgstr "Personas nacidas en <datos de nacimiento>"
+msgstr "Miembros nacidos en <datos de nacimiento>"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:59
 msgid "Matches people with birth data of a particular value"
 msgstr ""
-"Coincide con las personas cuyos datos de nacimiento tienen un valor "
+"Coincide con los miembros cuyos datos de nacimiento tienen un valor "
 "particular"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:50
 msgid "People with the <citation>"
-msgstr "Personas con la <cita>"
+msgstr "Miembros con la <cita>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:51
 msgid "Matches people with a citation of a particular value"
-msgstr "Coincide con las personas que tienen una cita con un valor particular"
+msgstr "Coincide con los miembros que tienen una cita con un valor particular"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:56
 msgid "People with a common ancestor with <person>"
-msgstr "Personas con un ascendiente común con una <persona>"
+msgstr "Miembros con un ascendiente común con un <miembro>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:57
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:47
@@ -5504,34 +5504,34 @@ msgstr "Filtros por ascendencia"
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:59
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr ""
-"Coincide con las personas con un ascendiente común con la persona "
-"especificada"
+"Coincide con los miembros con un ascendiente común con el miembro "
+"especificado"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:42
 msgid "People with a common ancestor with <filter> match"
-msgstr "Personas con un ascendiente común con los que coinciden con <filtro>"
+msgstr "Miembros con un ascendiente común con los que coinciden con <filtro>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:44
 msgid ""
 "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
-"Coincide con las personas qie tienen un ascendiente común con alguien que "
+"Coincide con los miembros que tienen un ascendiente común con alguien que "
 "coincide con un filtro"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:58
 msgid "People with the <death data>"
-msgstr "Personas fallecidas en <datos de defunción>"
+msgstr "Miembros fallecidos en <datos de defunción>"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:59
 msgid "Matches people with death data of a particular value"
 msgstr ""
-"Coincide con las personas cuyos datos de defunción tienen un valor particular"
+"Coincide con los miembros cuyos datos de defunción tienen un valor particular"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:56
 #: ../gramps/gui/editors/filtereditor.py:110
 #: ../gramps/gui/editors/filtereditor.py:583
 msgid "Personal event:"
-msgstr "Evento personal:"
+msgstr "Efeméride personal:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:61
 #: ../gramps/gui/editors/filtereditor.py:616
@@ -5540,27 +5540,26 @@ msgstr "Rol Primario:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:63
 msgid "People with the personal <event>"
-msgstr "Personas con el <evento> personal"
+msgstr "Personas con el <efeméride> personal"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:64
 msgid "Matches people with a personal event of a particular value"
 msgstr ""
-"Coincide con las personas que tienen un evento personal con un valor "
+"Coincide con las personas que tienen una efeméride personal con un valor "
 "particular"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:54
 msgid "People with the family <attribute>"
-msgstr "Personas con el <atributo> familiar"
+msgstr "Miembros con el <atributo> familiar"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:55
 msgid "Matches people with the family attribute of a particular value"
 msgstr ""
-"Coincide con las personas que tienen un atributo familiar con un valor "
-"particular"
+"Coincide con miembros que tienen un atributo familiar con un valor particular"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:58
 msgid "People with the family <event>"
-msgstr "Personas con el <evento> familiar"
+msgstr "Personas con la <efeméride> familiar"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:59
 msgid "Matches people with a family event of a particular value"
@@ -5570,18 +5569,16 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:43
 msgid "People with <count> media"
-msgstr "Personas que tienen un número de imágenes igual a <cuenta>"
+msgstr "Gente que tiene un objeto audiovisual igual a <cuenta>"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:44
 msgid "Matches people with a certain number of items in the gallery"
-msgstr ""
-"Coincide con las personas que tienen un cierto número de imágenes en la "
-"galería"
+msgstr "Coincide con gente que tenga un cierto número de imágenes en la galería"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:46
 #: ../gramps/gen/filters/rules/person/_matchidof.py:54
 msgid "Person with <Id>"
-msgstr "Persona con <Id>"
+msgstr "Miembro con <Id>"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:47
 #: ../gramps/gen/filters/rules/person/_matchidof.py:55
@@ -5590,7 +5587,7 @@ msgstr "Coincide con la persona que tiene el ID Gramps especificado"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "People with <count> LDS events"
-msgstr "Personas con <cuenta> eventos SUD"
+msgstr "Miembros con <cuenta> eventos SUD"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:50
 msgid "Matches people with a certain number of LDS events"
@@ -5680,7 +5677,7 @@ msgstr "Personas con el <tipo de nombre>"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:57
 msgid "Matches people with a type of name"
-msgstr "Coincide con las personas con un cierto tipo de nombre"
+msgstr "Coincide con miembros con un cierto tipo de nombre"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:54
 msgid "People with a nickname"
@@ -5688,7 +5685,7 @@ msgstr "Personas con un apodo"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:55
 msgid "Matches people with a nickname"
-msgstr "Coincide con las personas que tienen algún apodo"
+msgstr "Coincide con miembros que tienen algún apodo"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:46
 msgid "People having <count> notes"
@@ -5738,7 +5735,7 @@ msgstr "Personas que no son ni hombres ni mujeres"
 
 #: ../gramps/gen/filters/rules/person/_hasothergender.py:55
 msgid "Matches all people with other gender"
-msgstr "Coincide con todas las personas de otro género"
+msgstr "Coincide con todos los miembros de otro género"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:56
 msgid "Number of relationships:"
@@ -5776,7 +5773,7 @@ msgstr "Nombre:"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:57
 msgid "Soundex match of People with the <name>"
-msgstr "Coincidencia en Soundex para Personas con el <nombre>"
+msgstr "Coincidencia en Soundex para Miembros con el <nombre>"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:59
 msgid ""
@@ -5811,7 +5808,7 @@ msgstr "Personas con la <etiqueta>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:52
 msgid "Matches people with the particular tag"
-msgstr "Coincide con las personas que tienen una etiqueta en particular"
+msgstr "Coincide con miembros que tienen una etiqueta en particular"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:64
 #: ../gramps/gui/editors/filtereditor.py:610
@@ -5828,7 +5825,7 @@ msgstr "Personas que tienen algún registro cuyo texto contiene una cadena"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:53
 msgid "People with unknown gender"
-msgstr "Personas de género desconocido"
+msgstr "Miembros de género desconocido"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:55
 msgid "Matches all people with unknown gender"
@@ -5848,7 +5845,7 @@ msgstr "Personas con hijos"
 
 #: ../gramps/gen/filters/rules/person/_havechildren.py:55
 msgid "Matches people who have children"
-msgstr "Personas con hijos"
+msgstr "Coinciden con miembros que tengan hijos"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:53
 msgid "People with incomplete names"
@@ -5856,7 +5853,7 @@ msgstr "Personas con nombres incompletos"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:54
 msgid "Matches people with firstname or lastname missing"
-msgstr "Coincide con las personas sin nombre o sin apellidos"
+msgstr "Coincide con miembros sin nombre o sin apellidos"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:56
 msgid "Ancestors of <person>"
@@ -5864,7 +5861,7 @@ msgstr "Ascendientes de una <persona>"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:58
 msgid "Matches people that are ancestors of a specified person"
-msgstr "Ascendientes de la persona especificada"
+msgstr "Coincide miembros que sean ascendientes de un miembro especificado"
 
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:44
 msgid "Ancestors of <filter> match"
@@ -5880,7 +5877,7 @@ msgstr "Personas en Marcadores"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:57
 msgid "Matches the people on the bookmark list"
-msgstr "Concide con las personas de la lista de marcadores"
+msgstr "Coincide con miembros del listado de marcador"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:44
 msgid "Children of <filter> match"
@@ -5935,15 +5932,15 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:57
 msgid "Descendants of <person>"
-msgstr "Descendientes de <persona>"
+msgstr "Descendientes de <miembro>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:59
 msgid "Matches all descendants for the specified person"
-msgstr "Todos los descendientes de la persona especificada"
+msgstr "Todos los descendientes del miembro especificado"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:44
 msgid "Descendants of <filter> match"
-msgstr "Descendientes de las personas que coinciden con <filtro>"
+msgstr "Descendientes de miembros que coinciden con <filtro>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:47
 msgid "Matches people that are descendants of anybody matched by a filter"
@@ -5956,8 +5953,8 @@ msgstr "Ascendientes duplicados de <persona>"
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:60
 msgid "Matches people that are ancestors twice or more of a specified person"
 msgstr ""
-"Coincide con las personas que son ascendientes dos o más veces de una "
-"persona especificada"
+"Coincide con las personas que son ascendientes dos o más veces de un miembro "
+"especificado"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:53
 #: ../gramps/plugins/gramplet/statsgramplet.py:152
@@ -5993,7 +5990,7 @@ msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
 msgstr ""
-"Coincide con los ascendientes de una persona específicada a no más de N "
+"Coincide con los ascendientes de un miembro especificado a no más de N "
 "generaciones de distancia"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:63
@@ -6013,7 +6010,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:58
 msgid "Ancestors of the Home Person not more than <N> generations away"
 msgstr ""
-"Ascendientes a no más de <N> generaciones de distancia de la persona inicial"
+"Ascendientes a no más de <N> generaciones de distancia del miembro inicial"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:61
 msgid "Matches ancestors of the Home Person not more than N generations away"
@@ -6057,7 +6054,7 @@ msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
-"Coincide con los ascendientes de una persona específicada al menos a N "
+"Coincide con los ascendientes de un miembro especificado al menos a N "
 "generaciones de distancia"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:56
@@ -6083,11 +6080,11 @@ msgstr "Coincide con los progenitores de los que coinciden con un filtro"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:56
 msgid "People related to <Person>"
-msgstr "Personas emparentadas con <Persona>"
+msgstr "Gente relacionada con <Miembro>"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:58
 msgid "Matches people related to a specified person"
-msgstr "Coincide con las personas emparentadas con una persona especificada"
+msgstr "Coincide con miembros emparentados con un miembro especificado"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:43
 msgid "Siblings of <filter> match"
@@ -6113,7 +6110,7 @@ msgstr "Testigos"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:57
 msgid "Matches people who are witnesses in any event"
-msgstr "Coincide con las personas testigos de algún evento"
+msgstr "Coincide con miembros los cual sean testigos de alguna efeméride"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:52
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:58
@@ -6123,21 +6120,21 @@ msgstr "Nombre del filtro de eventos:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Persons with events matching the <event filter>"
-msgstr "Personas con eventos que coinciden con <filtro de evento>"
+msgstr "Miembros con eventos que coinciden con <filtro de evento>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:55
 msgid "Matches persons who have events that match a certain event filter"
 msgstr ""
-"Coincide con las personas que tienen eventos que conciden con un cierto "
-"filtro de evento"
+"Coincide con los miembros que tienen eventos que coincida con un cierto "
+"filtro de efeméride"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:45
 msgid "People matching the <filter>"
-msgstr "Personas que coinciden con <filtro>"
+msgstr "Miembros que coinciden con <filtro>"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:46
 msgid "Matches people matched by the specified filter name"
-msgstr "Coincide con las personas que coinciden con el filtro especificado"
+msgstr "Coincide con los miembros que coinciden con el filtro especificado"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 msgid "Persons with at least one direct source >= <confidence level>"
@@ -6176,7 +6173,7 @@ msgstr "Personas sin matrimonios"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:52
 msgid "Matches people who have no spouse"
-msgstr "Personas sin cónyuges"
+msgstr "Coinciden con miembros sin cónyuges"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:51
 msgid "People without a known birth date"
@@ -6196,7 +6193,7 @@ msgstr "Coincide con las personas sin fecha de defunción conocida"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:43
 msgid "People marked private"
-msgstr "Personas marcadas privadas"
+msgstr "Miembros marcados privados"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:44
 msgid "Matches people that are indicated as private"
@@ -6208,7 +6205,7 @@ msgstr "Personas no marcadas privadas"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:45
 msgid "Matches people that are not indicated as private"
-msgstr "Coincide con las personas no marcadas como privadas"
+msgstr "Coincide con miembros no marcados como privados"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:51
 msgid "People with incomplete events"
@@ -6269,16 +6266,16 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:62
 msgid "Relationship path between bookmarked persons"
-msgstr "Camino de parentesco entre personas en marcadores"
+msgstr "Ruta de parentesco entre miembros en marcadores"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:65
 msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Compara los ascendientes de las personas en marcadores hasta los "
-"ascendientes comunes, produciendo los caminos de parentesco entre las "
-"personas que están en marcadores."
+"Compara los ascendientes de los miembros en marcadores hasta los "
+"ascendientes comunes, produciendo las rutas de parentesco entre los miembros "
+"que estén en marcadores."
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:55
 msgid "People matching the <name>"
@@ -9458,7 +9455,7 @@ msgstr "Enlace"
 
 #: ../gramps/gen/lib/notetype.py:98
 msgid "Person Note"
-msgstr "Nota de persona"
+msgstr "Nota de miembro"
 
 #: ../gramps/gen/lib/notetype.py:99
 msgid "Name Note"
@@ -11514,7 +11511,7 @@ msgstr "muerte del padre"
 
 #: ../gramps/gen/utils/alive.py:376
 msgid "person's death"
-msgstr "muerte de la persona"
+msgstr "fallecimiento de miembro"
 
 #: ../gramps/gen/utils/alive.py:383
 msgid "oldest sibling's age"
@@ -11915,6 +11912,16 @@ msgid ""
 "       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
 "  3. Install the certifi package:  pip install certifi"
 msgstr ""
+"\n"
+"\n"
+"En macOS, es posible que Python no tenga acceso a los certificados SSL del "
+"sistema. Pruebe una de las siguientes opciones:\n"
+"  1. Instalador de python.org : ejecute 'Instalar Certificates.command' en "
+"su carpeta de instalación de Python (p.e. /Applications/Python 3.x/).\n"
+"  2. pyenv / Homebrew / sin sistema Python: ponga la variable de entorno "
+"SSL_CERT_FILE antes de iniciar Gramps:\n"
+"       export SSL_CERT_FILE=/etc/ssl/cert.pem\n"
+"  3. Instale el paquete certifi:  pip install certifi"
 
 #: ../gramps/gen/utils/pypi.py:237
 msgid ""
@@ -11930,37 +11937,49 @@ msgid ""
 "Ubuntu)\n"
 "       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 msgstr ""
+"\n"
+"\n"
+"Ha fallado la verificación del certificado SSL.  Esto es usual con "
+"instalaciones de Python distintas del sistema (pyenv, conda) cuyo OpenSSL "
+"agrupado no conoce donde están almacenados los certificados del sistema.  "
+"Intente uno de lo siguiente:\n"
+"  1. Instala el paquete certifi:  pip install certifi\n"
+"  2. Pon SSL_CERT_FILE en su agrupamiento del sistema AC antes de iniciar "
+"Gramps, e.g.:\n"
+"       export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt  (Debian/"
+"Ubuntu)\n"
+"       export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt    (RHEL/Fedora)"
 
 #: ../gramps/gen/utils/pypi.py:470
 #, python-format
 msgid "Cannot reach PyPI for package '%s': %s"
-msgstr ""
+msgstr "No se puede acceder a PyPI para el paquete '%s': %s"
 
 #: ../gramps/gen/utils/pypi.py:561
 #, python-format
 msgid "No compatible wheel found for '%s==%s' on this platform."
 msgstr ""
+"No se encontró ninguna rueda compatible para '%s==%s' en esta plataforma."
 
 #: ../gramps/gen/utils/pypi.py:591
 #, python-format
 msgid "No compatible wheel found for '%s' on this platform."
-msgstr ""
+msgstr "No se encontró ninguna rueda compatible para '%s' en esta plataforma."
 
 #: ../gramps/gen/utils/pypi.py:613
 #, python-format
 msgid "SHA-256 mismatch for '%s': expected %s, got %s"
-msgstr ""
+msgstr "Error de coincidencia SHA-256 para '%s': se esperaba %s, se obtuvo %s"
 
 #: ../gramps/gen/utils/pypi.py:1214
 #, python-format
 msgid "No version of '%s' satisfies all constraints: %s"
-msgstr ""
+msgstr "Ninguna versión de '%s' satisface todas las restricciones: %s"
 
 #: ../gramps/gen/utils/pypi.py:1285
-#, fuzzy, python-format
-#| msgid "No file to download"
+#, python-format
 msgid "Failed to download '%s': %s"
-msgstr "Ningún archivo para descargar"
+msgstr "Ha fallado al descargar '%s': %s"
 
 #: ../gramps/gen/utils/requirements.py:172
 msgid "Python modules"
@@ -12861,7 +12880,7 @@ msgstr "Colores para personas que no son ni hombres ni mujeres"
 
 #: ../gramps/gui/configure.py:950
 msgid "Colors for Unknown persons"
-msgstr "Colores para personas desconocidas"
+msgstr "Colores para miembros desconocidos"
 
 #: ../gramps/gui/configure.py:951
 msgid "Colors for Family nodes"
@@ -12921,7 +12940,7 @@ msgstr "Borde para Divorciados"
 
 #: ../gramps/gui/configure.py:992
 msgid "Background for Home Person"
-msgstr "Fondo para la Persona Inicial"
+msgstr "Fondo para Miembro Inicial"
 
 #: ../gramps/gui/configure.py:1011 ../gramps/gui/configure.py:3006
 #, python-format
@@ -13178,7 +13197,7 @@ msgstr "Nombre e ID de la persona activa"
 #: ../gramps/gui/configure.py:1817
 #: ../gramps/plugins/textreport/indivcomplete.py:396
 msgid "Relationship to home person"
-msgstr "Parentesco con la persona inicial"
+msgstr "Parentesco con el miembro inicial"
 
 #: ../gramps/gui/configure.py:1828
 msgid "Status bar"
@@ -13270,7 +13289,7 @@ msgstr "Fecha 'antes del rango' de años: (fecha - #)"
 
 #: ../gramps/gui/configure.py:2087
 msgid "Maximum age probably alive"
-msgstr "Edad máxima para presumir a persona viva"
+msgstr "Edad máxima para presumir a miembro vivo"
 
 #: ../gramps/gui/configure.py:2095
 msgid "Maximum generations to estimate age"
@@ -14774,7 +14793,7 @@ msgstr "No se puede editar esta referencia"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:385
 msgid "Cannot change Person"
-msgstr "No se puede cambiar la persona"
+msgstr "No se puede cambiar el Miembro"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:386
 msgid "You cannot change Person events in the Family Editor"
@@ -15019,7 +15038,7 @@ msgstr "No se puede cambiar la familia"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:145
 msgid "You cannot change Family events in the Person Editor"
-msgstr "No se pueden cambiar eventos familiares en el editor de personas"
+msgstr "No se pueden cambiar eventos familiares en el editor de Miembro"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:55
 msgid "Create and add a new association"
@@ -15865,7 +15884,7 @@ msgid ""
 "All people with the name of %(surname)s will no longer be grouped with the "
 "name of %(group_name)s."
 msgstr ""
-"Las personas con apellidos %(surname)s ya no quedarán agrupadas bajo el "
+"Los miembros con el apellido %(surname)s ya no quedarán agrupadas bajo el "
 "grupo %(group_name)s."
 
 #: ../gramps/gui/editors/editname.py:417 ../gramps/gui/fs/actions.py:788
@@ -15954,7 +15973,7 @@ msgstr "Agregar nota"
 #: ../gramps/gui/editors/editperson.py:175
 #, python-format
 msgid "Person: %(name)s"
-msgstr "Persona: %(name)s"
+msgstr "Miembro: %(name)s"
 
 #: ../gramps/gui/editors/editperson.py:179
 #, python-format
@@ -15963,17 +15982,17 @@ msgstr "Nueva persona: %(name)s"
 
 #: ../gramps/gui/editors/editperson.py:181
 msgid "New Person"
-msgstr "Nueva persona"
+msgstr "Nuevo Miembro"
 
 #: ../gramps/gui/editors/editperson.py:261
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "Editar_información_sobre_personas"
+msgstr "Editar_información_sobre_miembros"
 
 #: ../gramps/gui/editors/editperson.py:689
 #: ../gramps/plugins/view/geofamily.py:498
 msgid "Edit Person"
-msgstr "Editar persona"
+msgstr "Editar Miembro"
 
 #: ../gramps/gui/editors/editperson.py:738
 msgid "Edit Object Properties"
@@ -15985,7 +16004,7 @@ msgstr "Hacer que sea la persona activa"
 
 #: ../gramps/gui/editors/editperson.py:787
 msgid "Make Home Person"
-msgstr "Establecer persona inicial"
+msgstr "Establecer miembro inicial"
 
 #: ../gramps/gui/editors/editperson.py:906
 msgid "Problem changing the gender"
@@ -16035,7 +16054,7 @@ msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
 msgstr ""
-"Se desconoce el género de la persona. Por lo general, esto es un error. "
+"Se desconoce el género del miembro. Por lo general, esto es un error. "
 "Especifique el género."
 
 #: ../gramps/gui/editors/editperson.py:1234
@@ -16062,11 +16081,11 @@ msgstr "Editor_de_referencias_de_personas"
 #: ../gramps/gui/editors/editpersonref.py:93
 #: ../gramps/gui/editors/editpersonref.py:183
 msgid "Person Reference Editor"
-msgstr "Editor de referencias a personas"
+msgstr "Editor de referencias a miembro"
 
 #: ../gramps/gui/editors/editpersonref.py:183
 msgid "Person Reference"
-msgstr "Referencia a persona"
+msgstr "Referenciar Miembro"
 
 #: ../gramps/gui/editors/editpersonref.py:200
 msgid "No person selected"
@@ -16074,7 +16093,7 @@ msgstr "No se seleccionó ninguna persona"
 
 #: ../gramps/gui/editors/editpersonref.py:201
 msgid "You must either select a person or Cancel the edit"
-msgstr "Debe seleccionar una persona o Cancelar la edición"
+msgstr "Debe seleccionar un miembro o Cancelar la edición"
 
 #: ../gramps/gui/editors/editplace.py:76
 msgctxt "manual"
@@ -16421,7 +16440,7 @@ msgstr "Usar expresión regular"
 
 #: ../gramps/gui/editors/filtereditor.py:615
 msgid "Also family events where person is spouse"
-msgstr "También eventos familiares en que la persona es cónyuge"
+msgstr "También eventos familiares en que el miembro es cónyuge"
 
 #: ../gramps/gui/editors/filtereditor.py:617
 msgid "Only include primary participants"
@@ -16491,11 +16510,11 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:72
 msgid "Case sensitive"
-msgstr "Distingue entre mayúsculas y minúsculas"
+msgstr "Distingue capitulinas"
 
 #: ../gramps/gui/editors/filtereditor.py:689
 msgid "Rule Name"
-msgstr "Nombre de la regla"
+msgstr "Nombre de regla"
 
 #: ../gramps/gui/editors/filtereditor.py:834
 #: ../gramps/gui/editors/filtereditor.py:838 ../gramps/gui/glade/rule.glade:898
@@ -16587,7 +16606,7 @@ msgstr "Seleccionar una persona existente"
 #: ../gramps/gui/editors/objectentries.py:310
 #: ../gramps/plugins/lib/libpersonview.py:143
 msgid "Add a new person"
-msgstr "Agregar una nueva persona"
+msgstr "Agrega una persona nueva"
 
 #: ../gramps/gui/editors/objectentries.py:311
 msgid "Remove person"
@@ -16684,7 +16703,7 @@ msgstr "No se indicó la nota; pulse en el botón para seleccionar una"
 #: ../gramps/gui/editors/objectentries.py:590
 #: ../gramps/plugins/view/noteview.py:96
 msgid "Add a new note"
-msgstr "Agregar una nueva nota"
+msgstr "Agregar una nota nueva"
 
 #: ../gramps/gui/editors/objectentries.py:591
 msgid "Remove note"
@@ -16699,7 +16718,7 @@ msgstr "_Buscar"
 #: ../gramps/gui/filters/_searchbar.py:60
 #: ../gramps/gui/glade/clipboard.glade:53 ../gramps/gui/undohistory.py:86
 msgid "_Clear"
-msgstr "_Borrar"
+msgstr "_Vaciar"
 
 #: ../gramps/gui/filters/_searchbar.py:113
 #, python-format
@@ -16771,7 +16790,7 @@ msgstr "Participantes"
 #: ../gramps/plugins/view/familyview.py:84
 #: ../gramps/plugins/webreport/person.py:1640
 msgid "Relationship"
-msgstr "Relación"
+msgstr "Parentesco"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:110
 msgid "any"
@@ -16841,7 +16860,7 @@ msgstr ""
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:120
 msgid "Reset"
-msgstr "Limpiar"
+msgstr "Restablecer"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:170
 #, python-format
@@ -16879,7 +16898,7 @@ msgstr "Aceptar"
 
 #: ../gramps/gui/fs/actions.py:181
 msgid "Enter FamilySearch Person ID (e.g. GSVF-SGV):"
-msgstr "Introduzca el ID de la persona de FamilySearch (p.e. GSVF-SGV):"
+msgstr "Introduzca el ID del miembro de FamilySearch (p.e. GSVF-SGV):"
 
 #: ../gramps/gui/fs/actions.py:225 ../gramps/gui/fs/actions.py:266
 msgid ""
@@ -17028,7 +17047,7 @@ msgid ""
 "Choose the FamilySearch person to use as the starting point for this new "
 "Gramps tree."
 msgstr ""
-"Elija la persona de FamilySearch para utilizar como el punto inicio para "
+"Elija el miembro de FamilySearch para utilizar como el punto inicio para "
 "este árbol Gramps nuevo."
 
 #: ../gramps/gui/fs/actions.py:819
@@ -17096,7 +17115,7 @@ msgstr "¡Su árbol está vacío! ¿Le gustaría importar en masa de FamilySearc
 
 #: ../gramps/gui/fs/actions.py:1038
 msgid "Choose Starting Person"
-msgstr "Elegir Persona Inicial"
+msgstr "Elegir Miembro Inicial"
 
 #: ../gramps/gui/fs/actions.py:1039
 msgid "Not now"
@@ -17161,7 +17180,7 @@ msgstr " (otro pariente: {name})"
 
 #: ../gramps/gui/fs/actions.py:1319
 msgid "Import children"
-msgstr "Importar hijo"
+msgstr "Importar hijos"
 
 #: ../gramps/gui/fs/actions.py:1339
 msgid "Children imported but could not be located in the local database."
@@ -17259,7 +17278,7 @@ msgid ""
 msgstr ""
 "Re‐etiquetado completo.\n"
 "\n"
-"Personas en total: {total}\n"
+"Miembros en total: {total}\n"
 "Enlazadas: {linked}\n"
 "No enlazadas: {not_linked}\n"
 "Cambiadas: {changed}"
@@ -17277,7 +17296,7 @@ msgstr "FamilySearch: actualiza FSID tras re‐direccionar"
 msgid ""
 "Could not load this person from FamilySearch (no GEDCOMX person object)."
 msgstr ""
-"No pudo cargar esta persona desde FamilySearch (ningún objeto de persona "
+"No se pudo cargar este miembro de FamilySearch (ningún objeto de miembro "
 "GEDCOMX)."
 
 #: ../gramps/gui/fs/actions.py:1809
@@ -17394,36 +17413,30 @@ msgstr "Importar FamilySearch"
 
 #: ../gramps/gui/fs/fs_import/importer.py:118
 msgid "Downloading persons… (3/11)"
-msgstr "Descargando personas… (3/11)"
+msgstr "Descargando miembros… (3/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:120
 msgid "Downloading person…"
-msgstr "Descargando personal…"
+msgstr "Descargando miembro…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:142
 msgid "Downloading ancestors… (4/11)"
 msgstr "Descargando ancestros… (4/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:152
-#, fuzzy, python-format
-#| msgid ""
-#| "Total ancestors in generations %(second_generation)d to "
-#| "%(last_generation)d is %(count)d. %(percent)s"
+#, python-format
 msgid "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d person)"
 msgid_plural ""
 "Downloading ancestor generation %(gen)d/%(total)d… (%(count)d people)"
 msgstr[0] ""
-"Número total de ascendientes entre la generación %(second_generation)d y la "
-"%(last_generation)d es %(count)d. %(percent)s"
+"Descargando generación %(gen)d/%(total)d de ancestro… (%(count)d persona)"
 msgstr[1] ""
-"Número total de ascendientes entre la generación %(second_generation)d y la "
-"%(last_generation)d es %(count)d. %(percent)s"
+"Descargando generación %(gen)d/%(total)d de ancestro… (%(count)d personas)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:159
-#, fuzzy, python-format
-#| msgid "Downloading ancestors… (4/11)"
+#, python-format
 msgid "Downloading ancestors… (4/11) — generation %(gen)d/%(total)d"
-msgstr "Descargando ancestros… (4/11)"
+msgstr "Descargando ancestros… (4/11): generación %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:168
 msgid "Downloading descendants… (5/11)"
@@ -17435,25 +17448,26 @@ msgid "Downloading descendant generation %(gen)d/%(total)d… (%(count)d person)
 msgid_plural ""
 "Downloading descendant generation %(gen)d/%(total)d… (%(count)d people)"
 msgstr[0] ""
+"Descargando la generación descendiente %(gen)d/%(total)d… (%(count)d persona)"
 msgstr[1] ""
+"Descargando la generación descendiente %(gen)d/%(total)d… (%(count)d "
+"personas)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:185
-#, fuzzy, python-format
-#| msgid "Downloading descendants… (5/11)"
+#, python-format
 msgid "Downloading descendants… (5/11) — generation %(gen)d/%(total)d"
-msgstr "Descargando descendientes… (5/11)"
+msgstr "Descargando descendientes… (5/11) — generación %(gen)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:195
 msgid "Downloading spouses… (6/11)"
 msgstr "Descargando esposas… (6/11)"
 
 #: ../gramps/gui/fs/fs_import/importer.py:200
-#, fuzzy, python-format
-#| msgid "Downloading spouses…"
+#, python-format
 msgid "Downloading spouses for %d person…"
 msgid_plural "Downloading spouses for %d people…"
-msgstr[0] "Descargando esposas…"
-msgstr[1] "Descargando esposas…"
+msgstr[0] "Descargando esposas para %d persona…"
+msgstr[1] "Descargando esposas para %d personas…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:210
 msgid "Downloading notes… (7/11)"
@@ -17466,7 +17480,7 @@ msgstr "Descargando notas y fuentes…"
 #: ../gramps/gui/fs/fs_import/importer.py:285
 #, python-format
 msgid "  …notes/sources: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …notas/fuentes: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:296
 msgid "Importing…"
@@ -17506,48 +17520,43 @@ msgid "Importing children…"
 msgstr "Importando hijos…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:381
-#, fuzzy
-#| msgid "FamilySearch modified timestamp"
 msgid "Resolving FamilySearch timestamps…"
-msgstr "FamilySearch ha modificado sello temporal"
+msgstr "Resolviendo marcas de tiempo de FamilySearch…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:385
-#, fuzzy, python-format
-#| msgid "No FamilySearch Person ID is set for this person."
+#, python-format
 msgid "Resolving FamilySearch timestamps for %d person…"
 msgid_plural "Resolving FamilySearch timestamps for %d people…"
-msgstr[0] "Ningún ID de Persona de FamilySearch está fijado para esta persona."
-msgstr[1] "Ningún ID de Persona de FamilySearch está fijado para esta persona."
+msgstr[0] "Resolviendo marcad de tiempo de FamilySearch para %d persona…"
+msgstr[1] "Resolviendo marcad de tiempo de FamilySearch para %d personas…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:397
 #, python-format
 msgid "Resolved %(count)d FamilySearch timestamp in %(elapsed).1fs"
 msgid_plural "Resolved %(count)d FamilySearch timestamps in %(elapsed).1fs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Resuelto marca de tiempo de %(count)d FamilySearch en %(elapsed).1f"
+msgstr[1] "Resuelto marca de tiempo de %(count)d FamilySearch en %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:405
-#, fuzzy
-#| msgid "Refreshing Addon List"
 msgid "Refreshing comparison status…"
-msgstr "Refrescando la lista de extensiones"
+msgstr "Refrescando estado de comparación…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:410
 #, python-format
 msgid "Refreshing comparison status for %d person…"
 msgid_plural "Refreshing comparison status for %d people…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Refrescando estado de comparación para %d persona…"
+msgstr[1] "Refrescando estado de comparación para %d personas…"
 
 #: ../gramps/gui/fs/fs_import/importer.py:448
 #, python-format
 msgid "  …comparison for %(fsid)s took %(elapsed).1fs"
-msgstr ""
+msgstr "  …comparación para %(fsid)s tomó %(elapsed).1fs"
 
 #: ../gramps/gui/fs/fs_import/importer.py:453
 #, python-format
 msgid "  …comparison status: %(done)d/%(total)d"
-msgstr ""
+msgstr "  …estado de comparación: %(done)d/%(total)d"
 
 #: ../gramps/gui/fs/fs_import/importer.py:463
 #, python-format
@@ -17555,6 +17564,8 @@ msgid ""
 "Comparison status refresh done in %(elapsed).1fs (%(compared)d compared, "
 "%(failed)d failed)"
 msgstr ""
+"Refresco del estado de comparación hecho en %(elapsed).1fs (%(compared)d "
+"comparado, %(failed)d incorrecto)"
 
 #: ../gramps/gui/fs/fs_import/options.py:36
 #: ../gramps/gui/fs/fs_import/tool.py:42
@@ -17740,7 +17751,7 @@ msgstr "Comparar/Fusionar FamilySearch"
 #, python-brace-format
 msgid "Copy {count} selected FamilySearch item(s) into the Gramps person?"
 msgstr ""
-"Copia {count} seleccionado de elementos de FamilySearch en la persona Gramps?"
+"Copia {count} seleccionado de elementos de FamilySearch en el miembro Gramps?"
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1623
 msgid "_Merge"
@@ -17769,7 +17780,7 @@ msgstr "Ninguna fila seleccionada pudo ser copiada a Gramps."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1696
 msgid "Select a person first."
-msgstr "Seleccione primero a una persona."
+msgstr "Seleccione primero un miembro."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1700
 msgid "You must login first."
@@ -17777,7 +17788,7 @@ msgstr "Primero debes iniciar sesión."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1716
 msgid "Could not resolve the selected person in the database."
-msgstr "No se pudo encontrar a la persona seleccionada en la base de datos."
+msgstr "No se pudo encontrar al miembro seleccionado en la base de datos."
 
 #: ../gramps/gui/fs/person/mixins/compare_gtk.py:1723
 msgid ""
@@ -18399,11 +18410,11 @@ msgstr "Selecciona todos los ausentes"
 
 #: ../gramps/gui/fs/sync_directions.py:1658
 msgid "Please save this person first."
-msgstr "Primero guarde esta persona."
+msgstr "Primero guarde este miembro."
 
 #: ../gramps/gui/fs/sync_directions.py:1664
 msgid "Could not resolve this person from the database."
-msgstr "No se pudo resolver esta persona desde la base de datos."
+msgstr "No se pudo resolver este miembro desde la base de datos."
 
 #: ../gramps/gui/fs/sync_directions.py:1705
 msgid "FamilySearch: Export basic people"
@@ -18443,13 +18454,11 @@ msgstr "Herr. FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:351 ../gramps/gui/fs/tools_window.py:761
 msgid "Editor person: (none)"
-msgstr "Editor de persona: (ninguna)"
+msgstr "Miembro de editor: (ninguna)"
 
 #: ../gramps/gui/fs/tools_window.py:358
-#, fuzzy
-#| msgid "Only in FamilySearch"
 msgid "Open Person in FamilySearch"
-msgstr "Solo en FamilySearch"
+msgstr "Abre Persona en FamilySearch"
 
 #: ../gramps/gui/fs/tools_window.py:381
 msgid "Single Person Actions"
@@ -18537,15 +18546,13 @@ msgstr ""
 "nacimiento/defunción)."
 
 #: ../gramps/gui/fs/tools_window.py:635
-#, fuzzy
-#| msgid "Keep FamilySearch"
 msgid "Open FamilySearch.org"
-msgstr "Mantener FamilySearch"
+msgstr "Abrir FamilySearch.org"
 
 #: ../gramps/gui/fs/tools_window.py:774
 #, python-format
 msgid "Editor person: %(name)s  [%(gid)s]"
-msgstr "Persona de editor: %(name)s  [%(gid)s]"
+msgstr "Miembro de editor: %(name)s  [%(gid)s]"
 
 #: ../gramps/gui/fs/tools_window.py:782
 #, python-format
@@ -18695,7 +18702,7 @@ msgstr "Configurar el elemento seleccionado actualmente"
 
 #: ../gramps/gui/glade/clipboard.glade:38
 msgid "Clear _All"
-msgstr "Borrar _Todos"
+msgstr "V_aciar Todo"
 
 #: ../gramps/gui/glade/configure.glade:77
 msgid "Format _name:"
@@ -18722,7 +18729,7 @@ msgstr ""
 "  <b>%t</b> - Tratamiento      <b>%T</b> - TRATAMIENTO\n"
 "  <b>%p</b> - Prefijo          <b>%P</b> - PREFIJO\n"
 "  <b>%s</b> - Sufijo           <b>%S</b> - SUFIJO\n"
-"  <b>%c</b> - Nombre corto     <b>%C</b> - NOMBRE CORTO\n"
+"  <b>%c</b> - Nombre corto     <b>%C</b> - NOMBRE BREVE\n"
 "  <b>%y</b> - Patronímico      <b>%Y</b> - PATRONÍMICO</tt>"
 
 #: ../gramps/gui/glade/configure.glade:154
@@ -18909,7 +18916,7 @@ msgstr "F_echa:"
 
 #: ../gramps/gui/glade/editaddress.glade:109
 msgid "St_reet:"
-msgstr "Calle:"
+msgstr "Ca_lle:"
 
 #: ../gramps/gui/glade/editaddress.glade:124
 #: ../gramps/gui/glade/editlocation.glade:91
@@ -18937,7 +18944,7 @@ msgstr "Código postal"
 #: ../gramps/gui/glade/editaddress.glade:195
 #: ../gramps/gui/glade/editlocation.glade:218
 msgid "Cou_ntry:"
-msgstr "_País:"
+msgstr "P_aís:"
 
 #: ../gramps/gui/glade/editaddress.glade:210
 #: ../gramps/gui/glade/editlocation.glade:272
@@ -18994,7 +19001,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:160
 #: ../gramps/plugins/importer/importprogen.glade:283
 msgid "Privacy"
-msgstr "Intimidad"
+msgstr "Privacidad"
 
 #: ../gramps/gui/glade/editaddress.glade:314
 #: ../gramps/gui/glade/editcitation.glade:107
@@ -19182,7 +19189,7 @@ msgstr "Viejo estilo/Nuevo estilo"
 
 #: ../gramps/gui/glade/editdate.glade:212
 msgid "Ne_w year begins:  "
-msgstr "El nue_vo año comienza:  "
+msgstr "El año _nuevo comienza:  "
 
 #: ../gramps/gui/glade/editdate.glade:227
 msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
@@ -19207,7 +19214,7 @@ msgstr "_Mes"
 
 #: ../gramps/gui/glade/editdate.glade:361
 msgid "_Year"
-msgstr "A_ño"
+msgstr "_Año"
 
 #: ../gramps/gui/glade/editdate.glade:417
 msgid "Second date"
@@ -19442,7 +19449,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editlocation.glade:162
 msgid "Co_unty:"
-msgstr "Con_dado:"
+msgstr "Paí_s:"
 
 #: ../gramps/gui/glade/editlocation.glade:176
 msgid "Third level of place division. Eg., in the USA a county."
@@ -19655,7 +19662,7 @@ msgstr ""
 #: ../gramps/gui/glade/editperson.glade:209
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
-"Un tratamiento que se antepone al nombre de la persona como «Dr.» o «Rev.»"
+"Un tratamiento que se antepone al nombre de la persona como 'Dr.' o 'Rev.'"
 
 #: ../gramps/gui/glade/editname.glade:301
 #: ../gramps/gui/glade/editperson.glade:223
@@ -19702,7 +19709,7 @@ msgstr "Cla_sificar como:"
 
 #: ../gramps/gui/glade/editname.glade:507
 msgid "_Display as:"
-msgstr "_Mostrar como:"
+msgstr "_Exhibir como:"
 
 #: ../gramps/gui/glade/editname.glade:520
 msgid ""
@@ -19730,7 +19737,7 @@ msgstr ""
 "Las personas se ordenan según el formato de nombre elegido en Preferencias "
 "(el predeterminado).\n"
 "Aquí se puede hacer que esta persona se ordene según un formato de nombre "
-"particularizado (se pueden crera formatos adicionales en Preferencias)."
+"particularizado (se pueden crear formatos adicionales en Preferencias)."
 
 #: ../gramps/gui/glade/editname.glade:617
 msgid ""
@@ -19746,7 +19753,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:631
 msgid "O_verride"
-msgstr "Man_ual"
+msgstr "A_nular"
 
 #: ../gramps/gui/glade/editname.glade:656
 msgid ""
@@ -19789,7 +19796,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editperson.glade:163
 msgid "C_all:"
-msgstr "H_abitual:"
+msgstr "Cit_ar:"
 
 #: ../gramps/gui/glade/editperson.glade:243
 msgid "_Nick:"
@@ -19815,7 +19822,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editperson.glade:395
 msgid "Set person as private data"
-msgstr "Fijar la persona como datos privados"
+msgstr "Fijar el miembro como datos privados"
 
 #: ../gramps/gui/glade/editperson.glade:446
 msgid "_Surname:"
@@ -19832,8 +19839,7 @@ msgstr ""
 #: ../gramps/gui/glade/editperson.glade:481
 msgid ""
 "Part of a person's name indicating the family to which the person belongs"
-msgstr ""
-"Parte del nombre de una persona que indica la familia a la que pertenece"
+msgstr "Parte del nombre de un miembro que indica la familia a la que pertenece"
 
 #: ../gramps/gui/glade/editperson.glade:506
 msgid "Go to Name Editor to add more information about this name"
@@ -20044,7 +20050,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editreporef.glade:126
 msgid "_Media Type:"
-msgstr "Tipo de _Objeto:"
+msgstr "Tipo de _medio:"
 
 #: ../gramps/gui/glade/editreporef.glade:141
 msgid "Call n_umber:"
@@ -20376,8 +20382,8 @@ msgid ""
 "Select the person that will provide the\n"
 "primary data for the merged person."
 msgstr ""
-"Seleccione la persona que proporcionará los\n"
-"datos primarios para la persona fusionada."
+"Seleccione el miembro que proporcionará los\n"
+"datos primarios para el miembro fusionado."
 
 #: ../gramps/gui/glade/mergeperson.glade:192
 #: ../gramps/plugins/textreport/recordsreport.py:292
@@ -20576,31 +20582,31 @@ msgstr "Relaciones de familia"
 
 #: ../gramps/gui/glade/reorder.glade:251
 msgid "Move family up"
-msgstr "Mover familia hacia arriba"
+msgstr "Subir familia"
 
 #: ../gramps/gui/glade/reorder.glade:280
 msgid "Move family down"
-msgstr "Mover familia hacia abajo"
+msgstr "Bajar familia"
 
 #: ../gramps/gui/glade/rule.glade:119
 msgid "Add a new filter"
-msgstr "Agregar un nuevo filtro"
+msgstr "Agrega un filtro nuevo"
 
 #: ../gramps/gui/glade/rule.glade:142
 msgid "Edit the selected filter"
-msgstr "Editar el filtro seleccionado"
+msgstr "Edita el filtro seleccionado"
 
 #: ../gramps/gui/glade/rule.glade:165
 msgid "Clone the selected filter"
-msgstr "Clonar el filtro seleccionado"
+msgstr "Clona el filtro seleccionado"
 
 #: ../gramps/gui/glade/rule.glade:186
 msgid "Test the selected filter"
-msgstr "Probar el filtro seleccionado"
+msgstr "Prueba el filtro seleccionado"
 
 #: ../gramps/gui/glade/rule.glade:209
 msgid "Delete the selected filter"
-msgstr "Eliminar el filtro seleccionado"
+msgstr "Borra el filtro seleccionado"
 
 #: ../gramps/gui/glade/rule.glade:249
 msgid "Note: changes take effect only after this window is closed"
@@ -20620,19 +20626,19 @@ msgstr "Exactamente una regla debe cumplirse"
 
 #: ../gramps/gui/glade/rule.glade:403
 msgid "Add another rule to the filter"
-msgstr "Agregar otra regla al filtro"
+msgstr "Agrega otra regla al filtro"
 
 #: ../gramps/gui/glade/rule.glade:436
 msgid "Edit the selected rule"
-msgstr "Modificar la regla seleccionada"
+msgstr "Edita la regla seleccionada"
 
 #: ../gramps/gui/glade/rule.glade:469
 msgid "Delete the selected rule"
-msgstr "Eliminar la regla seleccionada"
+msgstr "Borra la regla seleccionada"
 
 #: ../gramps/gui/glade/rule.glade:524
 msgid "Rule list"
-msgstr "Lista de reglas"
+msgstr "Listado de reglas"
 
 #: ../gramps/gui/glade/rule.glade:539
 msgid "Definition"
@@ -20741,7 +20747,7 @@ msgstr "Es_pacio:"
 
 #: ../gramps/gui/glade/styleeditor.glade:937
 msgid "Indentation"
-msgstr "Sangría"
+msgstr "Sangrado"
 
 #: ../gramps/gui/glade/styleeditor.glade:966
 msgid "_Left"
@@ -20753,7 +20759,7 @@ msgstr "_Derecha"
 
 #: ../gramps/gui/glade/styleeditor.glade:1000
 msgid "J_ustify"
-msgstr "Aj_ustar"
+msgstr "J_ustificación"
 
 #: ../gramps/gui/glade/styleeditor.glade:1017
 msgid "Cen_ter"
@@ -20906,7 +20912,7 @@ msgstr "_Mostrar al arrancar"
 #: ../gramps/plugins/view/sourceview.py:171
 #: ../gramps/plugins/view/sourceview.py:214
 msgid "_Forward"
-msgstr "A_delante"
+msgstr "A_vanzar"
 
 #: ../gramps/gui/glade/updateaddons.glade:40
 msgid "Install Selected _Addons"
@@ -20970,7 +20976,7 @@ msgstr "Listas de _correo de Gramps"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "Make Backup..."
-msgstr "Hacer copia de respaldo…"
+msgstr "Hacer respaldo…"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "Manage databases"
@@ -20995,7 +21001,7 @@ msgstr "_Abandonar los cambios y salir"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_About"
-msgstr "A_cerca de"
+msgstr "Acerca _de"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Addon Manager..."
@@ -21019,7 +21025,7 @@ msgstr "R_eportes/herramientas adicionales"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_FAQ"
-msgstr "Preguntas _frecuentes"
+msgstr "P_+F"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Family Trees"
@@ -21067,7 +21073,7 @@ msgstr "_Reportar un error"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Reports"
-msgstr "_Informes"
+msgstr "Pa_rtes"
 
 #: ../gramps/gui/grampsgui.py:57
 msgid "_Toolbar"
@@ -21448,13 +21454,13 @@ msgstr "Fusionar_familias"
 
 #: ../gramps/gui/merge/mergefamily.py:71
 msgid "Merge Families"
-msgstr "Mazclar familias"
+msgstr "Fusionar familias"
 
 #: ../gramps/gui/merge/mergefamily.py:225
 #: ../gramps/gui/merge/mergeperson.py:385
 #: ../gramps/plugins/lib/libpersonview.py:523
 msgid "Cannot merge people"
-msgstr "No se pueden fusionar estas personas"
+msgstr "No se pueden fusionar estos miembros"
 
 #: ../gramps/gui/merge/mergemedia.py:44
 msgctxt "manual"
@@ -21477,7 +21483,7 @@ msgstr "preformateado"
 #: ../gramps/gui/merge/mergeperson.py:58
 msgctxt "manual"
 msgid "Merge_People"
-msgstr "Fusionar_personas"
+msgstr "Fusionar_miembros"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -21591,7 +21597,7 @@ msgstr "Número"
 
 #: ../gramps/gui/plug/_guioptions.py:119
 msgid "Finding Surnames"
-msgstr "Búsqueda de apellidos"
+msgstr "Búsqueda de Apellidos"
 
 #: ../gramps/gui/plug/_guioptions.py:120
 msgid "Finding surnames"
@@ -21607,7 +21613,7 @@ msgstr "Personas activas, en marcadores o inicial"
 
 #: ../gramps/gui/plug/_guioptions.py:720
 msgid "Select a person for the report"
-msgstr "Seleccionar una persona para el informe"
+msgstr "Seleccione un miembro para el parte"
 
 #: ../gramps/gui/plug/_guioptions.py:803
 msgid "Select a different family"
@@ -21689,16 +21695,13 @@ msgid "Gramps was unable to install the required modules"
 msgstr "Gramps no pudo instalar los módulos requeridos"
 
 #: ../gramps/gui/plug/_windows.py:370
-#, fuzzy
-#| msgid "Module installation failed"
 msgid "Addon installation failed"
-msgstr "Falló la actualización del módulo"
+msgstr "Instalación de complemento incorrecta"
 
 #: ../gramps/gui/plug/_windows.py:371
-#, fuzzy, python-format
-#| msgid "Gramps was unable to install the required modules"
+#, python-format
 msgid "Gramps was unable to install '%s'."
-msgstr "Gramps no pudo instalar los módulos requeridos"
+msgstr "Gramps no fue capaz de instalar '%s'."
 
 #: ../gramps/gui/plug/_windows.py:391
 msgid "Requirements"
@@ -22293,7 +22296,7 @@ msgstr "Filtro de _personas"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:320
 msgid "Click to see preview after person filter"
-msgstr "Haga clic para previsualizar tras el filtro de personas"
+msgstr "Pulse para previsualizar tras el filtro del miembro"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:325
 msgid "_Note Filter"
@@ -22337,11 +22340,11 @@ msgstr "Filtrando datos privados"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:641
 msgid "Filtering living persons"
-msgstr "Filtrando personas vivas"
+msgstr "Filtrando miembros vivos"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:657
 msgid "Applying selected person filter"
-msgstr "Aplicando el filtro de persona seleccionado"
+msgstr "Aplicando el filtro del miembro seleccionado"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:668
 msgid "Applying selected note filter"
@@ -22362,7 +22365,7 @@ msgstr "Seleccione un filtro diferente para editarlo"
 #: ../gramps/gui/plug/export/_exportoptions.py:761
 #: ../gramps/gui/plug/export/_exportoptions.py:786
 msgid "Include all selected people"
-msgstr "Incluir todas las personas seleccionadas"
+msgstr "Incluir todos los miembros seleccionados"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:775
 msgid "Include all selected notes"
@@ -22370,15 +22373,15 @@ msgstr "Incluir todas las notas seleccionadas"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:787
 msgid "Replace given names of living people"
-msgstr "Sustituir los nombres de pila de las personas vivas"
+msgstr "Sustituir los nombres de pila de los miembros vivos"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:788
 msgid "Replace complete name of living people"
-msgstr "Sustituir los nombres completos de las personas vivas"
+msgstr "Sustituir los nombres completos de los miembros vivos"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:789
 msgid "Do not include living people"
-msgstr "No incluir las personas vivas"
+msgstr "No incluir miembros vivos"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:798
 msgid "Include all selected records"
@@ -22566,7 +22569,7 @@ msgstr "Opciones de HTML"
 #: ../gramps/gui/plug/report/_docreportdialog.py:184
 #: ../gramps/gui/plug/report/_graphreportdialog.py:157
 msgid "Output Format"
-msgstr "Formato de salida"
+msgstr "Formato Saliente"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:191
 #: ../gramps/gui/plug/report/_graphreportdialog.py:164
@@ -23365,7 +23368,7 @@ msgstr "No se pudo establecer el marcador porque no había nadie seleccionado."
 
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
-msgstr "No se ha establecido una persona inicial"
+msgstr "No se ha establecido un miembro inicial"
 
 #: ../gramps/gui/views/navigationview.py:325
 msgid ""
@@ -23685,9 +23688,9 @@ msgid ""
 "Right click to display the edit menu\n"
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
-"Botón izquierdo para cambiar la persona activa\n"
-"Botón derecho para mostrar el menú de edición\n"
-"Clic en el icono de edición (activar en el diálogo de configuración) para "
+"Botón principal para cambiar el miembro activo\n"
+"Botón secundario para exhibir el menú de edición\n"
+"Pulse en el icono de edición (habilita en el diálogo de configuración) para "
 "editar"
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:660
@@ -24210,17 +24213,17 @@ msgstr "Persona base"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:842
 msgid "The center person for the tree"
-msgstr "La persona base del árbol"
+msgstr "El miembro base del árbol"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:845
 msgid "Include siblings of the center person"
-msgstr "Incluir hermanos de la persona central"
+msgstr "Incluir hermanos del miembro central"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:848
 msgid ""
 "Whether to only display the center person or all of his/her siblings too"
 msgstr ""
-"Indica si se debe mostrar solo la persona central o también a todos sus "
+"Indica si se debe mostrar solo el miembro central o también a todos sus "
 "hermanos"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:854
@@ -24465,7 +24468,7 @@ msgstr "Usar el formato de presentación Madre"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:998
 msgid "The display format for the center person"
-msgstr "El formato de presentación para la persona central"
+msgstr "El formato de presentación para el miembro central"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1001
 #: ../gramps/plugins/drawreport/descendtree.py:1728
@@ -24972,7 +24975,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1598
 msgid "Start with the parent(s) of the selected first"
-msgstr "Comenzar con los padres de la persona antes seleccionada"
+msgstr "Comenzar con los padres del miembro antes seleccionado"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1601
 msgid "Will show the parents, brother and sisters of the selected person."
@@ -25414,7 +25417,7 @@ msgstr "Falta el nacimiento"
 #: ../gramps/plugins/drawreport/statisticschart.py:735
 #: ../gramps/plugins/drawreport/statisticschart.py:1044
 msgid "Personal information missing"
-msgstr "Falta información personal"
+msgstr "Falta información del miembro"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:886
 #: ../gramps/plugins/drawreport/timeline.py:128
@@ -25423,7 +25426,7 @@ msgstr "Falta información personal"
 #: ../gramps/plugins/textreport/tagreport.py:106
 #, python-format
 msgid "(Living people: %(option_name)s)"
-msgstr "(Personas vivas: %(option_name)s)"
+msgstr "(Miembros vivos: %(option_name)s)"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:901
 #, python-format
@@ -25432,7 +25435,7 @@ msgstr "%s nacido"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:903
 msgid "Persons born"
-msgstr "Personas nacidas"
+msgstr "Miembros nacidos"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:916
 msgid "Collecting data..."
@@ -25455,7 +25458,7 @@ msgstr "%s (personas):"
 #: ../gramps/plugins/drawreport/statisticschart.py:1126
 #: ../gramps/plugins/textreport/recordsreport.py:236
 msgid "Determines what people are included in the report."
-msgstr "Determina qué personas se incluyen en el informe."
+msgstr "Determina qué miembros se incluyen en el parte."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1131
 #: ../gramps/plugins/drawreport/timeline.py:432
@@ -25500,11 +25503,11 @@ msgstr "Año de nacimiento desde el que incluir personas."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1151
 msgid "People Born Before"
-msgstr "Personas nacidas antes de"
+msgstr "Miembros nacidos antes de"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1152
 msgid "Birth year until which to include people"
-msgstr "Año de nacimiento hasta el que incluir personas"
+msgstr "Año de nacimiento hasta el que incluir miembros"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1155
 msgid "Include people without known birth years"
@@ -25512,7 +25515,7 @@ msgstr "Incluir personas sin año de nacimiento conocido"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1156
 msgid "Whether to include people without known birth years."
-msgstr "Indica si se deben incluir personas sin año de nacimiento conocido."
+msgstr "Indica si se deben incluir miembros sin año de nacimiento conocido."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1159
 msgid "Genders included"
@@ -25542,7 +25545,7 @@ msgid ""
 "Whether to include counts of the number of people who lack the given "
 "information."
 msgstr ""
-"Indica si se deben incluir conteos del número de personas que carecen de la "
+"Indica si se deben incluir conteos del número de miembros que carecen de la "
 "información dada."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1214
@@ -26237,8 +26240,8 @@ msgid ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sHow do you add a photo of a "
 "person/source/event?%(html_end)s\n"
 msgstr ""
-"  8. %(gramps_FAQ_html_start)s%(faq_section)s¿Cómo se agrega una foto a una "
-"persona/fuente/evento?%(html_end)s\n"
+"  8. %(gramps_FAQ_html_start)s%(faq_section)s¿Cómo se agrega una foto a un "
+"miembro/origen/evento?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:168
 #, python-format
@@ -26333,7 +26336,7 @@ msgstr "Total de nombres de pila mostrados"
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:186
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:154
 msgid "Total people"
-msgstr "Total de personas"
+msgstr "Total de miembros"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:29
 msgid "Gramps_6.1_Wiki_Manual_-_Gramplets#Gramplet_List"
@@ -26351,7 +26354,7 @@ msgstr "Edad en la fecha"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:51
 msgid "Gramplet showing ages of living people on a specific date"
-msgstr "Gramplete que muestra las edades de personas vivas en una fecha dada"
+msgstr "Gramplete que muestra las edades de miembros vivos en una fecha dada"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:65
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:72
@@ -26451,8 +26454,8 @@ msgid ""
 "Gramplet showing active person's direct ancestors and descendants as a "
 "fanchart"
 msgstr ""
-"Gramplete que muestra los ancestros y descendientes directos de la persona "
-"activa mediante un diagrama en abanico"
+"Gramplete que muestra los ancestros y descendientes directos del miembro "
+"activo mediante un diagrama en abanico"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:245
 #: ../gramps/plugins/view/view.gpr.py:183
@@ -26631,7 +26634,7 @@ msgstr "Residencia de la persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:582
 msgid "Gramplet showing residence events for a person"
-msgstr "Gramplete que muestra los eventos de residencia de una persona"
+msgstr "Gramplete que muestra los eventos de residencia de un miembro"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:597
 msgid "Person Events"
@@ -26656,7 +26659,7 @@ msgstr "Galería de la persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:630
 msgid "Gramplet showing media objects for a person"
-msgstr "Gramplete que muestra los objetos audiovisuales de una persona"
+msgstr "Gramplete que muestra los objetos audiovisuales de un miembro"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:637
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:653
@@ -26709,7 +26712,7 @@ msgstr "Gramplete que muestra los objetos audiovisuales de una cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:725
 msgid "Person Attributes"
-msgstr "Atributos personales"
+msgstr "Atributos de Miembro"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:726
 msgid "Gramplet showing the attributes of a person"
@@ -26753,11 +26756,11 @@ msgstr "Gramplete que muestra los atributos de un objeto de cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:821
 msgid "Person Notes"
-msgstr "Notas de la persona"
+msgstr "Notas del miembro"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:822
 msgid "Gramplet showing the notes for a person"
-msgstr "Gramplete que muestra las notas de una persona"
+msgstr "Gramplete que muestra las notas de un miembro"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:837
 msgid "Event Notes"
@@ -26823,11 +26826,11 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:965
 msgid "Person Citations"
-msgstr "Citas de la persona"
+msgstr "Citas de Miembro"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:966
 msgid "Gramplet showing the citations for a person"
-msgstr "Gramplete que muestra las citas de una persona"
+msgstr "Gramplete que muestra las citas de un miembro"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 msgid "Event Citations"
@@ -26863,7 +26866,7 @@ msgstr "Gramplete que muestra las citas de un objeto audiovisual"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1045
 msgid "Person Children"
-msgstr "Hijos de la persona"
+msgstr "Hijos del miembro"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1046
 msgid "Gramplet showing the children of a person"
@@ -26879,11 +26882,12 @@ msgstr "Gramplete que muestra los hijos/as de una familia"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1077
 msgid "Person References"
-msgstr "Referencia a Persona"
+msgstr "Referencia a Miembro"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1078
 msgid "Gramplet showing the backlink references for a person"
-msgstr "Gramplete que muestra los retroenlaces a referencias para una persona"
+msgstr ""
+"Gramplete que muestra los enlaces de vuelta a referencias para un miembro"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1085
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1101
@@ -27268,12 +27272,12 @@ msgstr "Generación 1"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:271
 msgid "Double-click to see people in generation"
-msgstr "Haga doble clic para ver las personas en la generación"
+msgstr "Pulse dos veces para ver miembros en la generación"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:275
 #, python-format
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
-msgstr " tiene 1 de 1 persona (%(percent)s terminado)\n"
+msgstr " tiene 1 de 1 miembro (%(percent)s completo)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:281
 #: ../gramps/plugins/textreport/ancestorreport.py:231
@@ -27296,9 +27300,10 @@ msgid ""
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] ""
-" tiene {count_person} de {max_count_person} persona ({percent} terminado)\n"
+" tiene {count_person} de {max_count_person} miembro ({percent} completado)\n"
 msgstr[1] ""
-" tiene {count_person} de {max_count_person} personas ({percent} terminado)\n"
+" tiene {count_person} de {max_count_person} miembros ({percent} completados)"
+"\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:305
 msgid "All generations"
@@ -27355,7 +27360,7 @@ msgstr "Pulse con el botón secundario para editar la persona"
 #: ../gramps/plugins/gramplet/relativegramplet.py:76
 #, python-format
 msgid "Active person: %s"
-msgstr "Persona activa: %s"
+msgstr "Miembro activo: %s"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:94
 #, python-format
@@ -27439,13 +27444,13 @@ msgstr "menos de 1"
 #: ../gramps/plugins/webreport/statistics.py:120
 #: ../gramps/plugins/webreport/statistics.py:230
 msgid "Individuals"
-msgstr "Personas"
+msgstr "Individuales"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:146
 #: ../gramps/plugins/webreport/statistics.py:125
 #: ../gramps/plugins/webreport/statistics.py:233
 msgid "Number of individuals"
-msgstr "Número de personas"
+msgstr "Número de individuales"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:156
 #: ../gramps/plugins/webreport/statistics.py:134
@@ -27860,7 +27865,7 @@ msgstr "Etiqueta para indicar que una persona o una familia debe ignorarse"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:162
 msgid "No Home Person set."
-msgstr "No se ha establecido una persona inicial."
+msgstr "No se ha establecido un miembro inicial."
 
 #: ../gramps/plugins/gramplet/whatsnext.py:345
 msgid "first name unknown"
@@ -28104,11 +28109,11 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:252
 msgid "People of Interest"
-msgstr "Personas de interés"
+msgstr "Miembro de interés"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:255
 msgid "People of interest"
-msgstr "Personas de interés"
+msgstr "Miembros de interés"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:258
 msgid ""
@@ -28512,7 +28517,7 @@ msgstr "Incluir parentesco con la persona central"
 #: ../gramps/plugins/graph/gvrelgraph.py:1035
 msgid "Whether to show every person's relationship to the center person"
 msgstr ""
-"Indica si se debe mostrar la relación de cada persona con la persona central"
+"Indica si se debe mostrar la relación de cada miembro con el miembro central"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:1043
 msgid "Whether to include thumbnails of people."
@@ -29371,7 +29376,7 @@ msgid ""
 "Person import."
 msgstr ""
 "Activar/desactivar\n"
-"importación de persona."
+"importación de miembro."
 
 #: ../gramps/plugins/importer/importprogen.glade:1196
 msgid ""
@@ -33693,11 +33698,11 @@ msgstr "Editar la persona seleccionada"
 
 #: ../gramps/plugins/lib/libpersonview.py:145
 msgid "Delete the selected person"
-msgstr "Eliminar la persona seleccionada"
+msgstr "Elimina el miembro seleccionado"
 
 #: ../gramps/plugins/lib/libpersonview.py:146
 msgid "Merge the selected persons"
-msgstr "Fusionar las personas seleccionadas"
+msgstr "Fusiona los miembros seleccionados"
 
 #: ../gramps/plugins/lib/libpersonview.py:212
 #: ../gramps/plugins/lib/libplaceview.py:297
@@ -33936,7 +33941,7 @@ msgstr "Adelante"
 
 #: ../gramps/plugins/lib/libpersonview.py:482
 msgid "Deleting the person will remove the person from the database."
-msgstr "Eliminar una persona la quitará de la base de datos."
+msgstr "Eliminar un miembro le retirará el miembro de la base de datos."
 
 #: ../gramps/plugins/lib/libpersonview.py:488
 #, python-format
@@ -34087,7 +34092,7 @@ msgstr "Gestiona un archivo ODF que implementa DocBackend."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:240
 msgid "Provides the Base needed for the List People views."
-msgstr "Proporciona la base necesaria para las vistas de listados de personas."
+msgstr "Proporciona la base necesaria para las vistas de Listado de Miembros."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:258
 msgid "Provides common functionality for Pro-Gen import"
@@ -34338,11 +34343,11 @@ msgstr "Añadir retículo"
 
 #: ../gramps/plugins/lib/maps/geography.py:407
 msgid "Unlock zoom and position"
-msgstr "Desbloquear zum y posición"
+msgstr "Desbloquear zoom y posición"
 
 #: ../gramps/plugins/lib/maps/geography.py:409
 msgid "Lock zoom and position"
-msgstr "Bloquear zum y posición"
+msgstr "Bloquear zoom y posición"
 
 #: ../gramps/plugins/lib/maps/geography.py:414
 msgid "Add place"
@@ -34457,7 +34462,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1443
 msgid "Zoom used when centering"
-msgstr "Zum usado al centrar"
+msgstr "Zoom usado al centrar"
 
 #: ../gramps/plugins/lib/maps/geography.py:1450
 msgid "The maximum number of places to show"
@@ -34745,13 +34750,13 @@ msgstr "Eventos personales de los hijos"
 
 #: ../gramps/plugins/quickview/all_relations.py:73
 msgid "Home person not set."
-msgstr "No se ha establecido una persona inicial."
+msgstr "No se ha establecido un miembro inicial."
 
 #: ../gramps/plugins/quickview/all_relations.py:83
 #: ../gramps/plugins/tool/relcalc.py:208
 #, python-format
 msgid "%(person)s and %(active_person)s are the same person."
-msgstr "%(person)s y %(active_person)s son la misma persona."
+msgstr "%(person)s y %(active_person)s son el mismo miembro."
 
 #: ../gramps/plugins/quickview/all_relations.py:94
 #: ../gramps/plugins/tool/relcalc.py:221
@@ -34818,7 +34823,7 @@ msgstr "todos"
 #: ../gramps/plugins/quickview/filterbyname.py:43
 msgctxt "Filtering_on"
 msgid "Inverse Person"
-msgstr "personas no presentes"
+msgstr "Miembro no presente"
 
 #: ../gramps/plugins/quickview/filterbyname.py:44
 msgctxt "Filtering_on"
@@ -34908,12 +34913,12 @@ msgstr "mujeres"
 #: ../gramps/plugins/quickview/filterbyname.py:61
 msgctxt "Filtering_on"
 msgid "people with other gender"
-msgstr "personas de otro género"
+msgstr "miembros de otro género"
 
 #: ../gramps/plugins/quickview/filterbyname.py:62
 msgctxt "Filtering_on"
 msgid "people with unknown gender"
-msgstr "personas de género desconocido"
+msgstr "miembros de género desconocido"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -34928,7 +34933,7 @@ msgstr "personas sin fecha de nacimiento conocida"
 #: ../gramps/plugins/quickview/filterbyname.py:67
 msgctxt "Filtering_on"
 msgid "disconnected people"
-msgstr "personas desconectadas"
+msgstr "miembros desconectados"
 
 #: ../gramps/plugins/quickview/filterbyname.py:68
 msgctxt "Filtering_on"
@@ -34938,7 +34943,7 @@ msgstr "apellidos distintos"
 #: ../gramps/plugins/quickview/filterbyname.py:69
 msgctxt "Filtering_on"
 msgid "people with media"
-msgstr "personas que tienen audiovisuales"
+msgstr "miembros con audiovisuales"
 
 #: ../gramps/plugins/quickview/filterbyname.py:70
 msgctxt "Filtering_on"
@@ -35056,8 +35061,8 @@ msgid ""
 "This report shows the father lineage, also called the patrilineal lineage or "
 "Y-line. People in this lineage all share the same Y-chromosomes."
 msgstr ""
-"Este informe muestra el linaje paterno, también llamado linaje patrilineal o "
-"linaje Y. Todas las personas de este linaje comparten los mismos cromosomas "
+"Este parte muestra el linaje paterno, también llamado linaje patrilineal o "
+"linaje‐Y. Todos los miembros de este linaje comparten los mismos cromosomas‐"
 "Y."
 
 #: ../gramps/plugins/quickview/lineage.py:64
@@ -35171,7 +35176,7 @@ msgstr "No hay otros eventos en %(year)d"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:38
 msgid "Display people and ages on a particular date"
-msgstr "Mostrar personas y sus edades en una fecha dada"
+msgstr "Mostrar miembros y sus edades en una fecha dada"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:59
 msgid "Attribute Match"
@@ -35179,7 +35184,7 @@ msgstr "Coincidencia de atributo"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:60
 msgid "Display people with same attribute."
-msgstr "Mostrar personas con el mismo atributo."
+msgstr "Mostrar miembros con el mismo atributo."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:81
 #: ../gramps/plugins/webreport/heatmap.py:780
@@ -35188,7 +35193,7 @@ msgstr "Todos los eventos"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:82
 msgid "Display a person's events, both personal and family."
-msgstr "Mostrar los eventos de una persona, tanto personales como familiares."
+msgstr "Muestra eventos de un miembro, tanto personales como familiares."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:98
 msgid "All Family Events"
@@ -35200,7 +35205,7 @@ msgstr "Mostrar los eventos de la familia y sus miembros."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:120
 msgid "Relation to Home Person"
-msgstr "Parentesco con la persona inicial"
+msgstr "Parentesco del Miembro Inicial"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:121
 msgid "Display all relationships between person and home person."
@@ -35288,7 +35293,7 @@ msgstr "Mismos nombres de pila - Independiente"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:354
 msgid "Display a person's siblings."
-msgstr "Mostrar los hermanos de una persona."
+msgstr "Muestra hermanos de un miembro."
 
 #: ../gramps/plugins/quickview/references.py:70
 #, python-format
@@ -35323,7 +35328,7 @@ msgstr "Personas que coinciden con <apellido>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:57
 msgid "Matches people with same lastname"
-msgstr "Coincide con las personas con el mismo apellido"
+msgstr "Coincide con los miembros con el mismo apellido"
 
 #: ../gramps/plugins/quickview/samesurnames.py:72
 msgid "People matching the <given>"
@@ -36320,7 +36325,7 @@ msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
 msgstr ""
-"Indica si se debe incluir la línea de descendencia con la persona inicial "
+"Indica si se debe incluir la línea de descendencia con el miembro inicial "
 "para cada descendiente."
 
 # TBC
@@ -36521,7 +36526,7 @@ msgstr "Indica si se deben ordenar los eventos de forma cronológica."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1120
 msgid "Use name of person as title"
-msgstr "Usar nombre de persona como título"
+msgstr "Usar nombre de miembro como título"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1123
 msgid ""
@@ -36537,7 +36542,7 @@ msgstr "Incluir Notas"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1153
 msgid "Whether to include Person and Family Notes."
-msgstr "Indica si se deben incluir Notas de Persona y Familia."
+msgstr "Indica si se deben incluir Notas de Miembro y Familia."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1156
 msgid "Include Source Information"
@@ -36654,7 +36659,7 @@ msgstr "Id. de la nota"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:90
 msgid "Link Type"
-msgstr "Tipo de enlace"
+msgstr "Tipo de Enlace"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:96
 msgid "Links To"
@@ -36723,7 +36728,7 @@ msgstr "%(persons)s y %(name)s (%(id)s)"
 
 #: ../gramps/plugins/textreport/placereport.py:321
 msgid "People associated with this place"
-msgstr "Personas asociadas con este lugar"
+msgstr "Miembros asociados con este lugar"
 
 #: ../gramps/plugins/textreport/placereport.py:362
 #, python-format
@@ -37088,7 +37093,7 @@ msgstr "Informe de número de ascendientes"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:296
 msgid "Counts number of ancestors of selected person"
-msgstr "Cuenta el número de ascendientes de la persona seleccionada"
+msgstr "Cuenta el número de ascendientes del miembro seleccionado"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:319
 msgid "Produces a textual place report"
@@ -37527,8 +37532,8 @@ msgstr[1] "Se repararon {quantity} nombres de lugar alternativo\n"
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
-msgstr[0] "{quantity} persona está referenciada, pero no existe\n"
-msgstr[1] "{quantity} personas están referenciadas, pero no existen\n"
+msgstr[0] "{quantity} miembro está referenciada, pero no existe\n"
+msgstr[1] "{quantity} miembros están referenciadas, pero no existen\n"
 
 #: ../gramps/plugins/tool/check.py:2932
 #, python-brace-format
@@ -37800,7 +37805,7 @@ msgstr "Comparación de eventos"
 
 #: ../gramps/plugins/tool/eventcmp.py:184
 msgid "Selecting people"
-msgstr "Seleccionando personas"
+msgstr "Seleccionando miembros"
 
 #: ../gramps/plugins/tool/eventcmp.py:195
 msgid "No matches were found"
@@ -37873,7 +37878,7 @@ msgstr "Co_mparar"
 #: ../gramps/plugins/tool/finddupes.py:66
 msgctxt "manual"
 msgid "Find_Possible_Duplicate_People"
-msgstr "Buscar_posibles_personas_duplicadas"
+msgstr "Buscar_posibles_miembros_duplicados"
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:171
@@ -37950,7 +37955,7 @@ msgstr "Encontar bucle en la base de datos"
 
 #: ../gramps/plugins/tool/findloop.py:98
 msgid "Looking for possible loop for each person"
-msgstr "Buscando posibles bucles para cada persona"
+msgstr "Buscando posibles bucles para cada miembro"
 
 #: ../gramps/plugins/tool/mediamanager.py:71
 msgctxt "manual"
@@ -38709,7 +38714,7 @@ msgstr "Incluir eventos familiares"
 
 #: ../gramps/plugins/tool/sortevents.py:201
 msgid "Sort family events of the person"
-msgstr "Ordenar los eventos familiares de la persona"
+msgstr "Ordenar los eventos familiares del miembro"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:127
 msgid "Generate_Testcases_for_Persons_and_Families"
@@ -38757,7 +38762,7 @@ msgid ""
 "Number of people to generate\n"
 "(Number is approximate because families are generated)"
 msgstr ""
-"Número de personas a generar\n"
+"Número de miembros a generar\n"
 "(El número es aproximado porque se generan familias)"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:435
@@ -39253,7 +39258,7 @@ msgstr "La familia tiene eventos con el rol Desconocido"
 
 #: ../gramps/plugins/tool/verify.py:2589
 msgid "Person has events with role Unknown"
-msgstr "La persona tiene eventos con el rol Desconocido"
+msgstr "El miembro tiene eventos con rol Desconocido"
 
 #: ../gramps/plugins/tool/verify.py:2602
 msgid "Family events are not in chronological order"
@@ -39728,7 +39733,7 @@ msgid ""
 "Go to the person view and select the people you want to compare. Return to "
 "this view and use the history."
 msgstr ""
-"Vaya a la vista de personas y seleccione las personas que desea comparar. "
+"Vaya a la vista de miembros y seleccione los miembros que desea comparar. "
 "Vuelva a esta vista y utilice la historia."
 
 #: ../gramps/plugins/view/geoclose.py:408
@@ -39940,12 +39945,11 @@ msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:95
 msgid "All known places for one Person"
-msgstr "Todos los lugares conocidos de una persona"
+msgstr "Todos los lugares conocidos de un Miembro"
 
 #: ../gramps/plugins/view/geography.gpr.py:97
 msgid "A view showing the places visited by one person during his life."
-msgstr ""
-"Vista que muestra los lugares visitados por una persona durante su vida."
+msgstr "Vista que muestra los lugares visitados por un miembro durante su vida."
 
 #: ../gramps/plugins/view/geography.gpr.py:105
 #: ../gramps/plugins/view/geography.gpr.py:124
@@ -40260,7 +40264,7 @@ msgstr "Ir a la madre"
 
 #: ../gramps/plugins/view/pedigreeview.py:1727
 msgid "A person was found to be his/her own ancestor."
-msgstr "Se encontró una persona que es su propio ascendiente."
+msgstr "Se encontró un miembro que es su propio ascendiente."
 
 #: ../gramps/plugins/view/pedigreeview.py:1769
 msgid "Pre_vious"
@@ -40410,11 +40414,11 @@ msgstr "Reordenar padres"
 
 #: ../gramps/plugins/view/relview.py:1014
 msgid "Remove person as child of these parents"
-msgstr "Quitar la persona como hija de estos padres"
+msgstr "Quitar miembro como hijo/a de estos padres"
 
 #: ../gramps/plugins/view/relview.py:1020
 msgid "Remove person as parent in this family"
-msgstr "Quitar la persona como padre o madre de esta familia"
+msgstr "Quita un miembro como padre o madre de esta familia"
 
 #: ../gramps/plugins/view/relview.py:1079
 #: ../gramps/plugins/view/relview.py:1140
@@ -40649,8 +40653,7 @@ msgstr "Personas agrupadas"
 
 #: ../gramps/plugins/view/view.gpr.py:201
 msgid "The view showing all people in the Family Tree grouped per family name"
-msgstr ""
-"Vista que muestra todas las personas del árbol genealógico por apellido"
+msgstr "La vista muestra todos los miembros del árbol genealógico por apellido"
 
 #: ../gramps/plugins/view/view.gpr.py:219
 msgid "The view showing all people in the Family Tree in a flat list"
@@ -41783,11 +41786,11 @@ msgstr "Codificación a utilizar en los archivos web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2552
 msgid "Include link to active person on every page"
-msgstr "Incluir un enlace a la persona activa en cada página"
+msgstr "Incluir un enlace al miembro activo en cada página"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2555
 msgid "Include a link to the active person (if they have a webpage)"
-msgstr "Incluir un enlace a la persona activa (si tiene página web)"
+msgstr "Incluir un enlace al miembro activo (si tiene página web)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
 msgid "Include a column for birth dates on the index pages"
@@ -41857,7 +41860,7 @@ msgstr "Incluir otros roles"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2612
 msgid "Include persons with other roles to an event"
-msgstr "Incluir personas con otros roles a un evento"
+msgstr "Incluir miembros con otros roles a una efeméride"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2615
 msgid "Include place pages"
@@ -42275,11 +42278,11 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3241
 msgid "Zoom"
-msgstr "Zum"
+msgstr "Zoom"
 
 #: ../gramps/plugins/webreport/person.py:169
 msgid "Creating individual pages"
-msgstr "Creando las páginas de personas"
+msgstr "Creando páginas del miembro"
 
 #: ../gramps/plugins/webreport/person.py:222
 #, python-format
@@ -42356,7 +42359,7 @@ msgstr "No hermanos"
 
 #: ../gramps/plugins/webreport/person.py:2303
 msgid "Relation to the center person"
-msgstr "Parentesco con la persona central"
+msgstr "Parentesco con el miembro central"
 
 #: ../gramps/plugins/webreport/person.py:2348
 msgid "Relation to main person"
