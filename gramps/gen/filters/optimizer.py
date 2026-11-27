@@ -46,15 +46,24 @@ class Optimizer:
 
     def compute_potential_handles_for_filter(
         self, filter: GenericFilter
-    ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
+    ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None, bool]:
+        """
+        Return (handles_in, handles_out, exact). An object not in handles_in,
+        or in handles_out, can't match the filter (None means no limit).
+        exact is True when the filter matches exactly the other objects.
+        """
         if len(filter.flist) == 0:
-            return (None, None)
+            return (None, None, False)
 
         handles_in = None
         handles_out = None
+        exact = filter.logical_op == "and" or len(filter.flist) == 1
         for rule in filter.flist:
             if filter.logical_op == "and" or len(filter.flist) == 1:
-                rule_in, rule_out = self.compute_potential_handles_for_rule(rule)
+                rule_in, rule_out, rule_exact = self.compute_potential_handles_for_rule(
+                    rule
+                )
+                exact = exact and rule_exact
                 if rule_in is not None:
                     if handles_in is None:
                         handles_in = rule_in
@@ -66,26 +75,47 @@ class Optimizer:
                     else:
                         handles_out = handles_out.union(rule_out)
 
-        if filter.invert:
-            handles_in, handles_out = handles_out, handles_in
+        if filter.logical_op == "or" and len(filter.flist) > 1:
+            # An object can only match an "or" filter by matching one of its
+            # rules, so if every rule limits what it can match, so does the
+            # union of those limits.
+            limits = [
+                self.compute_potential_handles_for_rule(rule) for rule in filter.flist
+            ]
+            if all(rule_in is not None for rule_in, _, _ in limits):
+                handles_in = set().union(*(rule_in for rule_in, _, _ in limits))
+                exact = all(
+                    rule_out is None and rule_exact
+                    for _, rule_out, rule_exact in limits
+                )
 
-        return handles_in, handles_out
+        if filter.invert:
+            # An inverted filter can't match what the filter itself matches,
+            # which is only known when the handles are exact.
+            if not exact:
+                return (None, None, False)
+            if handles_in is None:
+                return (handles_out, None, handles_out is not None)
+            return (None, handles_in - (handles_out or set()), True)
+
+        return handles_in, handles_out, exact
 
     def compute_potential_handles_for_rule(
         self,
         rule: Rule,
-    ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None]:
+    ) -> Tuple[Set[PrimaryObjectHandle] | None, Set[PrimaryObjectHandle] | None, bool]:
         """
-        Find the the handles for a particular rule.
+        Find the the handles for a particular rule. A rule's selected_handles
+        are exactly the objects it matches.
         """
         # Has to be of the appropriate type
         if hasattr(rule, "selected_handles"):
-            return (rule.selected_handles, None)
+            return (rule.selected_handles, None, True)
         if hasattr(rule, "find_filter"):
             filter = rule.find_filter()
             if filter and self.is_same_namespace(filter):
                 return self.compute_potential_handles_for_filter(filter)
-        return (None, None)
+        return (None, None, False)
 
     def is_same_namespace(self, filter):
         """

@@ -20,6 +20,7 @@
 import tempfile
 import os
 import unittest
+from unittest import mock
 
 from ...const import DATA_DIR
 from ...db.utils import import_as_dict
@@ -220,6 +221,28 @@ custom_filters_xml = """<?xml version="1.0" encoding="utf-8"?>
         <arg value="Edwards|Daniels"/>
       </rule>
     </filter>
+    <filter name="not (I0001 and male)" function="and" invert="1">
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0001"/>
+      </rule>
+      <rule class="IsMale" use_regex="False" use_case="False">
+      </rule>
+    </filter>
+    <filter name="not (I0001 and (not I0002))" function="and" invert="1">
+      <rule class="HasIdOf" use_regex="False" use_case="False">
+        <arg value="I0001"/>
+      </rule>
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="not I0002"/>
+      </rule>
+    </filter>
+    <filter name="not ((I0001 or I0002) and male)" function="and" invert="1">
+      <rule class="MatchesFilter" use_regex="False" use_case="False">
+        <arg value="I0001 or I0002"/>
+      </rule>
+      <rule class="IsMale" use_regex="False" use_case="False">
+      </rule>
+    </filter>
   </object>
   <object type="Event">
     <filter name="Events of Home Person" function="and">
@@ -336,6 +359,43 @@ class OptimizerTest(unittest.TestCase):
         filter = self.filters["I0001 or I0002"]
         results = filter.apply(self.db)
         self.assertEqual(len(results), 2)
+
+    def test_I0001orI0002_only_reads_matches(self):
+        # every rule of the "or" is optimized, so only the union is read
+        filter = self.filters["I0001 or I0002"]
+        with mock.patch.object(
+            filter, "get_object", wraps=filter.get_object
+        ) as get_object:
+            results = filter.apply(self.db)
+        self.assertEqual(len(results), 2)
+        self.assertEqual(get_object.call_count, 2)
+
+    def assert_same_as_testing_each(self, name):
+        filter = self.filters[name]
+        results = set(filter.apply(self.db))
+        for rule in filter.flist:
+            rule.requestprepare(self.db, User())
+        expected = {
+            person.handle
+            for person in self.db.iter_people()
+            if filter.apply_to_one(self.db, person)
+        }
+        for rule in filter.flist:
+            rule.requestreset()
+        self.assertEqual(results, expected)
+        return results
+
+    def test_inverted_and_with_unoptimized_rule(self):
+        # I0001 is female, so nobody matches "I0001 and male"
+        results = self.assert_same_as_testing_each("not (I0001 and male)")
+        self.assertEqual(len(results), 2128)
+
+    def test_inverted_and_with_inverted_rule(self):
+        results = self.assert_same_as_testing_each("not (I0001 and (not I0002))")
+        self.assertEqual(len(results), 2127)
+
+    def test_inverted_and_with_or_subfilter(self):
+        self.assert_same_as_testing_each("not ((I0001 or I0002) and male)")
 
     def test_I0001andI0002(self):
         filter = self.filters["I0001 and I0002"]
