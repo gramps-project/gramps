@@ -363,6 +363,7 @@ class DescendantView(NavigationView):
         ("interface.descrtl-tree-size", 4),
         ("interface.descrtl-show-images", True),
         ("interface.descrtl-show-tags", False),
+        ("interface.descrtl-show-age", True),
     )
 
     FLEUR_CURSOR = Gdk.Cursor.new_for_display(
@@ -475,6 +476,8 @@ class DescendantView(NavigationView):
         self.tree_depth = self._config.get("interface.descrtl-tree-size")
         self.show_images = self._config.get("interface.descrtl-show-images")
         self.show_tags = self._config.get("interface.descrtl-show-tags")
+        # Read by PersonBoxWidgetCairo to add the age at death to each box
+        self.show_age = self._config.get("interface.descrtl-show-age")
         self.scrolledwindow = None
         self.table = None
         self.additional_uis.append(self.additional_ui)
@@ -1557,6 +1560,7 @@ class DescendantView(NavigationView):
         )
         self._config.connect("interface.descrtl-show-tags", self.cb_update_show_tags)
         self._config.connect("interface.descrtl-tree-size", self.cb_update_tree_size)
+        self._config.connect("interface.descrtl-show-age", self.cb_update_show_age)
 
     def cb_update_show_tags(self, client, cnxn_id, entry, data) -> None:
         """Called when tags setting changes."""
@@ -1566,6 +1570,11 @@ class DescendantView(NavigationView):
     def cb_update_show_images(self, client, cnxn_id, entry, data) -> None:
         """Called when images setting changes."""
         self.show_images = entry == "True"
+        self.build_tree()
+
+    def cb_update_show_age(self, client, cnxn_id, entry, data) -> None:
+        """Called when the age/years setting changes."""
+        self.show_age = entry == "True"
         self.build_tree()
 
     def cb_update_tree_size(self, client, cnxn_id, entry, data) -> None:
@@ -1632,8 +1641,11 @@ class DescendantView(NavigationView):
         configdialog.add_checkbox(
             grid, _("Show tags"), 1, "interface.descrtl-show-tags"
         )
+        configdialog.add_checkbox(
+            grid, _("Display age/years"), 2, "interface.descrtl-show-age"
+        )
         configdialog.add_slider(
-            grid, _("Tree size"), 2, "interface.descrtl-tree-size", (2, 9)
+            grid, _("Tree size"), 3, "interface.descrtl-tree-size", (2, 9)
         )
 
         return _("Layout"), grid
