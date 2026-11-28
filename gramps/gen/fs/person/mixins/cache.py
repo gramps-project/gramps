@@ -391,6 +391,25 @@ class CacheMixin:
         if cache:
             cache.mark_loaded(fsid, notes=True)
 
+    def _load_source_payload(self, url: str) -> bool:
+        """
+        Deserialize a successful source response into the shared tree.
+
+        :param url: The person or relationship source endpoint.
+        :returns: Whether a JSON mapping was received and loaded.
+        """
+        session = self._get_fs_session()
+        get_json = getattr(session, "get_jsonurl", None) or getattr(
+            session, "get_json", None
+        )
+        if not callable(get_json):
+            return False
+        payload = get_json(url)  # pylint: disable=not-callable
+        if not isinstance(payload, dict):
+            return False
+        deserialize.deserialize_json(self.__class__._get_fs_tree(), payload)
+        return True
+
     def _ensure_sources_cached(
         self,
         fsid: str,
@@ -398,6 +417,9 @@ class CacheMixin:
     ) -> None:
         """
         Ensure FamilySearch source payloads are cached for a person.
+
+        :param fsid: The FamilySearch person ID.
+        :param progress_callback: Optional source-loading progress callback.
         """
         cache = self.__class__._cache
         # loaded this session, dont fetch again
@@ -406,10 +428,6 @@ class CacheMixin:
             if ce and ce.loaded_sources and deserialize.Person.index.get(fsid):
                 return
 
-        fs_session = self._get_fs_session()
-        _get_json = getattr(fs_session, "get_jsonurl", None) or getattr(
-            fs_session, "get_json", None
-        )
         total_steps = 1
 
         p0 = deserialize.Person.index.get(fsid)
@@ -439,23 +457,26 @@ class CacheMixin:
                     }
                 )
 
-        if _get_json:
-            _notify_progress(_("Loading FamilySearch person sources"))
-            _get_json(f"/platform/tree/persons/{fsid}/sources")
+        _notify_progress(_("Loading FamilySearch person sources"))
+        sources_loaded = self._load_source_payload(
+            f"/platform/tree/persons/{fsid}/sources"
+        )
 
         p = deserialize.Person.index.get(fsid)
         if p:
             for rel in getattr(p, "_spouses", []) or []:
                 try:
-                    if _get_json:
-                        _notify_progress(_("Loading FamilySearch relationship sources"))
-                        _get_json(
+                    _notify_progress(_("Loading FamilySearch relationship sources"))
+                    sources_loaded = (
+                        self._load_source_payload(
                             f"/platform/tree/couple-relationships/{rel.id}/sources"
                         )
+                        and sources_loaded
+                    )
                 except Exception:
-                    pass
+                    sources_loaded = False
 
-        if cache:
+        if cache and sources_loaded:
             cache.mark_loaded(fsid, sources=True)
 
     def _clear_fs_cache(self) -> None:
